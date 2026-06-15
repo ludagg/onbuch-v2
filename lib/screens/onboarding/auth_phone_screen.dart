@@ -60,12 +60,19 @@ class _AuthPhoneScreenState extends State<AuthPhoneScreen> {
         );
         if (!mounted) return;
 
-        // Pré-remplir le nom dans la base de données
+        // Pré-remplir le nom dans la base de données. Cette étape est
+        // optionnelle : le profil sera de toute façon complété à l'écran
+        // suivant. Si la base n'est pas joignable, on ne bloque pas
+        // l'inscription qui, elle, a déjà réussi.
         if (_nomCtrl.text.trim().isNotEmpty) {
-          await _databaseService.createUserProfile(
-            uid,
-            {'nom': _nomCtrl.text.trim()},
-          );
+          try {
+            await _databaseService.createUserProfile(
+              uid,
+              {'nom': _nomCtrl.text.trim()},
+            );
+          } catch (_) {
+            // Pré-remplissage non critique — on continue.
+          }
         }
         if (!mounted) return;
         context.go('/auth/profile');
@@ -206,7 +213,7 @@ class _AuthPhoneScreenState extends State<AuthPhoneScreen> {
                     obscureText: _obscurePassword,
                     style: body(15, color: OC.ink),
                     decoration: _inputDecoration(
-                      hint: _isLogin ? '••••••••' : 'Au moins 6 caractères',
+                      hint: _isLogin ? '••••••••' : 'Au moins 8 caractères',
                       icon: Icons.lock_rounded,
                       suffix: IconButton(
                         icon: Icon(
@@ -221,7 +228,7 @@ class _AuthPhoneScreenState extends State<AuthPhoneScreen> {
                     ),
                     validator: (v) {
                       if (v == null || v.isEmpty) return 'Entre ton mot de passe';
-                      if (!_isLogin && v.length < 6) return 'Minimum 6 caractères';
+                      if (!_isLogin && v.length < 8) return 'Minimum 8 caractères';
                       return null;
                     },
                   ),
