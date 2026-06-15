@@ -12,11 +12,17 @@ Remplace `YOUR_PROJECT_ID` par ton Project ID.
 Dans Appwrite Console → Databases → Create database → ID: `main`
 
 ### Collection `users`
+Profil utilisateur, document keyé par l'ID Appwrite Auth.
 Attributs :
-- `nom` (string, 100, required)
+- `firstName` (string, 100, **required**)
+- `lastName` (string, 100)
+- `email` (string, **required**)
+- `password` (string, 255) — **non utilisé / optionnel** : l'authentification est
+  gérée par Appwrite Auth, l'app ne stocke aucun mot de passe ici.
+- `role` (string) · `phoneNumber` (string)
 - `classe` (string, 50)
 - `examen` (string, 50)
-- `serie` (string, 20)
+- `serie` (string, 40)
 - `createdAt` (datetime)
 
 ### Collection `results`
@@ -32,6 +38,19 @@ Attributs :
 - `name` (string, 100)
 - `params` (string, 500)
 - `timestamp` (datetime)
+
+### Collection `articles` (fil OnBuch / actualités)
+Attributs :
+- `title` (string, 200, required)
+- `category` (string, 50) — ex. `Examens`, `Bourses`, `Conseil`, `Concours`, `Alerte`
+- `source` (string, 60) — défaut `OnBuch`
+- `imageUrl` (string, 500) — URL de l'image (optionnel)
+- `body` (string, 5000) — contenu de l'article (optionnel)
+- `featured` (boolean) — `true` pour l'article mis en avant (carte vedette)
+- `publishedAt` (datetime) — sinon `$createdAt` est utilisé
+
+Permissions : Read `any` (le fil est public), Write réservé à l'admin.
+Les articles sont triés du plus récent au plus ancien.
 
 ## 4. Permissions
 Pour chaque collection, ajouter :

@@ -53,26 +53,26 @@ class _AuthPhoneScreenState extends State<AuthPhoneScreen> {
         context.go(hasProfile ? '/home' : '/auth/profile');
       } else {
         // Création de compte
+        final fullName = _nomCtrl.text.trim().isNotEmpty
+            ? _nomCtrl.text.trim()
+            : 'Utilisateur';
         final uid = await _authService.register(
           _emailCtrl.text,
           _passwordCtrl.text,
-          _nomCtrl.text.trim().isNotEmpty ? _nomCtrl.text.trim() : 'Utilisateur',
+          fullName,
         );
         if (!mounted) return;
 
-        // Pré-remplir le nom dans la base de données. Cette étape est
-        // optionnelle : le profil sera de toute façon complété à l'écran
-        // suivant. Si la base n'est pas joignable, on ne bloque pas
-        // l'inscription qui, elle, a déjà réussi.
-        if (_nomCtrl.text.trim().isNotEmpty) {
-          try {
-            await _databaseService.createUserProfile(
-              uid,
-              {'nom': _nomCtrl.text.trim()},
-            );
-          } catch (_) {
-            // Pré-remplissage non critique — on continue.
-          }
+        // Pré-remplir le profil dans la collection `users`. Cette étape est
+        // optionnelle : le profil sera complété à l'écran suivant. Si la base
+        // n'est pas joignable, on ne bloque pas l'inscription déjà réussie.
+        try {
+          await _databaseService.createUserProfile(uid, {
+            ...DatabaseService.splitFullName(fullName),
+            'email': _emailCtrl.text.trim(),
+          });
+        } catch (_) {
+          // Pré-remplissage non critique — on continue.
         }
         if (!mounted) return;
         context.go('/auth/profile');

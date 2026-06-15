@@ -3,6 +3,8 @@ import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
 import '../../services/appwrite_client.dart';
+import '../../services/database_service.dart';
+import '../../models/article.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -94,11 +96,8 @@ class HomeScreen extends StatelessWidget {
               ),
               const SizedBox(height: 22),
 
-              // Hero dark — résultats countdown
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: _HeroCard(),
-              ),
+              // Hero — carrousel d'examens (compte à rebours résultats)
+              _HeroCarousel(),
               const SizedBox(height: 18),
 
               // Tuteur CTA
@@ -191,12 +190,73 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-// ─── Hero card (dark editorial) ───────────────────────────────────────────────
-class _HeroCard extends StatelessWidget {
+// ─── Examen à venir (compte à rebours) ────────────────────────────────────────
+class _ExamCountdown {
+  final String label;
+  final DateTime date;
+  const _ExamCountdown(this.label, this.date);
+}
+
+// ─── Hero carousel (plusieurs examens) ────────────────────────────────────────
+class _HeroCarousel extends StatefulWidget {
+  @override
+  State<_HeroCarousel> createState() => _HeroCarouselState();
+}
+
+class _HeroCarouselState extends State<_HeroCarousel> {
+  final _ctrl = PageController();
+  int _page = 0;
+
+  static final _exams = [
+    _ExamCountdown('Baccalauréat 2026', DateTime(2026, 6, 18, 10)),
+    _ExamCountdown('Probatoire 2026', DateTime(2026, 6, 22, 10)),
+    _ExamCountdown('BEPC 2026', DateTime(2026, 7, 1, 10)),
+    _ExamCountdown('GCE O/A Level 2026', DateTime(2026, 7, 8, 10)),
+  ];
+
+  @override
+  void dispose() {
+    _ctrl.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    return Column(children: [
+      SizedBox(
+        height: 210,
+        child: PageView.builder(
+          controller: _ctrl,
+          itemCount: _exams.length,
+          onPageChanged: (i) => setState(() => _page = i),
+          itemBuilder: (_, i) => Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: _HeroCard(_exams[i]),
+          ),
+        ),
+      ),
+      const SizedBox(height: 12),
+      ProgressDots(count: _exams.length, active: _page),
+    ]);
+  }
+}
+
+// ─── Hero card (dark editorial — compacte) ────────────────────────────────────
+class _HeroCard extends StatelessWidget {
+  final _ExamCountdown exam;
+  const _HeroCard(this.exam);
+
+  @override
+  Widget build(BuildContext context) {
+    final diff = exam.date.difference(DateTime.now());
+    final available = diff.isNegative;
+    final days = available ? 0 : diff.inDays;
+    final hours = available ? 0 : diff.inHours % 24;
+    final mins = available ? 0 : diff.inMinutes % 60;
+    String two(int v) => v.toString().padLeft(2, '0');
+
     return Container(
-      padding: const EdgeInsets.all(22),
+      padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
           begin: Alignment.topLeft,
@@ -204,73 +264,93 @@ class _HeroCard extends StatelessWidget {
           stops: [0, 1],
           colors: [OC.darkHero, OC.darkHero2],
         ),
-        borderRadius: BorderRadius.circular(26),
+        borderRadius: BorderRadius.circular(22),
       ),
       child: Stack(children: [
         // glow blob
         Positioned(
-          top: -90, right: -70,
+          top: -80, right: -60,
           child: Container(
-            width: 200, height: 200,
+            width: 170, height: 170,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               gradient: RadialGradient(
-                colors: [OC.o500.withValues(alpha:0.55), OC.o500.withValues(alpha:0)],
+                colors: [OC.o500.withValues(alpha: 0.50), OC.o500.withValues(alpha: 0)],
               ),
             ),
           ),
         ),
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(children: [
-            Container(width: 7, height: 7, decoration: BoxDecoration(
+            Container(width: 6, height: 6, decoration: BoxDecoration(
               color: OC.o500,
               shape: BoxShape.circle,
-              boxShadow: [BoxShadow(color: OC.o500.withValues(alpha:0.22), blurRadius: 6, spreadRadius: 3)],
+              boxShadow: [BoxShadow(color: OC.o500.withValues(alpha: 0.22), blurRadius: 6, spreadRadius: 2)],
             )),
             const SizedBox(width: 7),
-            Text(
-              'BACCALAURÉAT 2026',
-              style: body(11, weight: FontWeight.w800, color: const Color(0xFFFFB489))
-                  .copyWith(letterSpacing: 0.14 * 11),
+            Expanded(
+              child: Text(
+                exam.label.toUpperCase(),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: body(10.5, weight: FontWeight.w800, color: const Color(0xFFFFB489))
+                    .copyWith(letterSpacing: 0.12 * 10.5),
+              ),
             ),
           ]),
-          const SizedBox(height: 16),
-          Text('Résultats bientôt\ndisponibles', style: display(26, weight: FontWeight.w700, color: Colors.white)),
-          const SizedBox(height: 20),
+          const SizedBox(height: 10),
+          Text(
+            available ? 'Résultats disponibles' : 'Résultats bientôt disponibles',
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: display(19, weight: FontWeight.w700, color: Colors.white),
+          ),
+          const Spacer(),
           // Countdown
           Row(children: [
-            _CountUnit('02', 'jours'),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 14),
-              child: Text(':', style: display(26, weight: FontWeight.w600, color: Colors.white.withValues(alpha:0.22))),
-            ),
-            _CountUnit('14', 'heures'),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 14),
-              child: Text(':', style: display(26, weight: FontWeight.w600, color: Colors.white.withValues(alpha:0.22))),
-            ),
-            _CountUnit('38', 'min'),
+            _CountUnit(two(days), 'jours'),
+            _ColonSep(),
+            _CountUnit(two(hours), 'heures'),
+            _ColonSep(),
+            _CountUnit(two(mins), 'min'),
           ]),
-          Container(height: 1, color: Colors.white.withValues(alpha:0.10), margin: const EdgeInsets.symmetric(vertical: 18)),
+          Container(
+            height: 1,
+            color: Colors.white.withValues(alpha: 0.10),
+            margin: const EdgeInsets.symmetric(vertical: 11),
+          ),
           Row(children: [
-            const Icon(Icons.notifications_outlined, size: 17, color: Color(0xFFFFB489)),
-            const SizedBox(width: 8),
-            Text('Alerte activée', style: body(12.5, weight: FontWeight.w600, color: Colors.white.withValues(alpha:0.86))),
+            const Icon(Icons.notifications_outlined, size: 16, color: Color(0xFFFFB489)),
+            const SizedBox(width: 7),
+            Text('Alerte activée',
+                style: body(12, weight: FontWeight.w600, color: Colors.white.withValues(alpha: 0.86))),
             const Spacer(),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-              decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(12)),
-              child: Row(children: [
-                Text('Vérifier', style: body(13, weight: FontWeight.w700, color: OC.ink)),
-                const SizedBox(width: 6),
-                const Icon(Icons.arrow_forward_rounded, size: 16, color: OC.ink),
-              ]),
+            GestureDetector(
+              onTap: () => context.go('/results'),
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 9),
+                decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(11)),
+                child: Row(children: [
+                  Text('Vérifier', style: body(12.5, weight: FontWeight.w700, color: OC.ink)),
+                  const SizedBox(width: 5),
+                  const Icon(Icons.arrow_forward_rounded, size: 15, color: OC.ink),
+                ]),
+              ),
             ),
           ]),
         ]),
       ]),
     );
   }
+}
+
+class _ColonSep extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) => Padding(
+        padding: const EdgeInsets.only(bottom: 12),
+        child: Text(':',
+            style: display(24, weight: FontWeight.w600, color: Colors.white.withValues(alpha: 0.22))),
+      );
 }
 
 class _CountUnit extends StatelessWidget {
@@ -280,12 +360,12 @@ class _CountUnit extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 7),
+      padding: const EdgeInsets.symmetric(horizontal: 6),
       child: Column(children: [
-        Text(value, style: mono(34, weight: FontWeight.w700, color: Colors.white)),
-        const SizedBox(height: 6),
-        Text(unit, style: body(10.5, color: Colors.white.withValues(alpha:0.5), weight: FontWeight.w600)
-            .copyWith(letterSpacing: 0.04 * 10.5)),
+        Text(value, style: mono(26, weight: FontWeight.w700, color: Colors.white)),
+        const SizedBox(height: 5),
+        Text(unit, style: body(10, color: Colors.white.withValues(alpha: 0.5), weight: FontWeight.w600)
+            .copyWith(letterSpacing: 0.04 * 10)),
       ]),
     );
   }
@@ -360,35 +440,71 @@ class _TuteurCard extends StatelessWidget {
 
 // ─── Raccourcis ───────────────────────────────────────────────────────────────
 class _Shortcuts extends StatelessWidget {
+  // [icône, libellé, accent, fond pastille, route (ou null si à venir)]
   static const _items = [
-    [Icons.description_outlined, 'Résultats', OC.o600, OC.bg],
-    [Icons.menu_book_rounded, 'Annales', OC.waInk, OC.goodBg],
-    [Icons.track_changes_rounded, 'Concours', OC.blue, OC.blueBg],
-    [Icons.paid_outlined, 'Crédits', OC.warn, OC.warnBg],
+    [Icons.description_outlined, 'Résultats', OC.o600, OC.o50, '/results'],
+    [Icons.menu_book_rounded, 'Annales', OC.waInk, OC.goodBg, '/annales'],
+    [Icons.track_changes_rounded, 'Concours', OC.blue, OC.blueBg, null],
+    [Icons.paid_outlined, 'Crédits', OC.warn, OC.warnBg, null],
   ];
+
+  void _onTap(BuildContext context, String label, String? route) {
+    if (route != null) {
+      context.go(route);
+      return;
+    }
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('$label — bientôt disponible',
+            style: body(13, weight: FontWeight.w600, color: Colors.white)),
+        backgroundColor: OC.ink,
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        duration: const Duration(seconds: 2),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: List.generate(_items.length, (i) {
         final it = _items[i];
         return Expanded(
           child: Padding(
-            padding: EdgeInsets.only(left: i > 0 ? 10 : 0),
-            child: Column(children: [
-              Container(
-                height: 60,
-                decoration: BoxDecoration(
-                  color: OC.paper,
-                  borderRadius: BorderRadius.circular(17),
-                  border: Border.all(color: OC.line, width: 1.5),
+            padding: EdgeInsets.only(left: i > 0 ? 11 : 0),
+            child: GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: () => _onTap(context, it[1] as String, it[4] as String?),
+              child: Column(children: [
+                AspectRatio(
+                  aspectRatio: 1,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: OC.paper,
+                      borderRadius: BorderRadius.circular(18),
+                      border: Border.all(color: OC.line, width: 1.5),
+                      boxShadow: [
+                        BoxShadow(color: OC.ink.withValues(alpha: 0.04), blurRadius: 10, offset: const Offset(0, 4)),
+                      ],
+                    ),
+                    child: Center(
+                      child: Container(
+                        width: 44,
+                        height: 44,
+                        decoration: BoxDecoration(
+                          color: it[3] as Color,
+                          borderRadius: BorderRadius.circular(13),
+                        ),
+                        child: Icon(it[0] as IconData, size: 23, color: it[2] as Color),
+                      ),
+                    ),
+                  ),
                 ),
-                child: Icon(it[0] as IconData, size: 22, color: it[2] as Color),
-              ),
-              const SizedBox(height: 8),
-              Text(it[1] as String, style: body(11.5, weight: FontWeight.w600, color: OC.ink2)),
-            ]),
+                const SizedBox(height: 9),
+                Text(it[1] as String, style: body(12, weight: FontWeight.w700, color: OC.ink2)),
+              ]),
+            ),
           ),
         );
       }),
@@ -470,83 +586,265 @@ class _SavedSection extends StatelessWidget {
 }
 
 // ─── Actualités ───────────────────────────────────────────────────────────────
-class _NewsSection extends StatelessWidget {
+class _NewsSection extends StatefulWidget {
+  @override
+  State<_NewsSection> createState() => _NewsSectionState();
+}
+
+class _NewsSectionState extends State<_NewsSection> {
+  late Future<List<Article>> _future;
+
+  @override
+  void initState() {
+    super.initState();
+    _future = DatabaseService().getArticles(limit: 6);
+  }
+
+  /// Contenu de repli affiché tant qu'aucun article n'est publié côté backend.
+  static List<Article> _sample() {
+    final now = DateTime.now();
+    return [
+      Article(
+        id: 's1',
+        category: 'Examens',
+        title: 'Calendrier officiel du Bac 2026 publié par l\'OBC',
+        source: 'OnBuch',
+        featured: true,
+        publishedAt: now.subtract(const Duration(hours: 2)),
+      ),
+      Article(
+        id: 's2',
+        category: 'Bourses',
+        title: 'Bourses d\'excellence MINESUP : candidatures ouvertes',
+        source: 'OnBuch',
+        publishedAt: now.subtract(const Duration(days: 1)),
+      ),
+      Article(
+        id: 's3',
+        category: 'Conseil',
+        title: '5 réflexes pour réviser le jour J avec le Tuteur IA',
+        source: 'OnBuch',
+        publishedAt: now.subtract(const Duration(days: 3)),
+      ),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       SecHead(eyebrow: 'Le fil OnBuch', title: 'Actualités'),
       const SizedBox(height: 14),
-      // Featured
+      FutureBuilder<List<Article>>(
+        future: _future,
+        builder: (context, snap) {
+          if (snap.connectionState == ConnectionState.waiting) {
+            return const _NewsSkeleton();
+          }
+          // En cas d'absence d'articles (collection vide ou erreur réseau),
+          // on retombe sur un contenu exemple pour ne pas laisser un vide.
+          var articles = snap.data ?? const <Article>[];
+          if (articles.isEmpty) articles = _sample();
+
+          final featured = articles.firstWhere(
+            (a) => a.featured,
+            orElse: () => articles.first,
+          );
+          final rest = articles.where((a) => a.id != featured.id).take(3).toList();
+
+          return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            _FeaturedArticle(featured),
+            if (rest.isNotEmpty) const SizedBox(height: 16),
+            ...rest.map((a) => Padding(
+                  padding: const EdgeInsets.only(bottom: 16),
+                  child: _ArticleRow(a),
+                )),
+          ]);
+        },
+      ),
+    ]);
+  }
+}
+
+// Couleurs (accent + teinte) associées à une catégorie d'article.
+class _CatStyle {
+  final Color accent, tint;
+  const _CatStyle(this.accent, this.tint);
+}
+
+_CatStyle _catStyle(String category) {
+  switch (category.toLowerCase()) {
+    case 'examens':
+      return const _CatStyle(OC.o600, OC.o50);
+    case 'bourses':
+      return const _CatStyle(OC.blue, OC.blueBg);
+    case 'conseil':
+      return const _CatStyle(OC.waInk, OC.goodBg);
+    case 'concours':
+      return const _CatStyle(OC.blue, OC.blueBg);
+    case 'alerte':
+      return const _CatStyle(OC.bad, OC.badBg);
+    default:
+      return const _CatStyle(OC.o600, OC.o50);
+  }
+}
+
+String _timeAgo(DateTime dt) {
+  final diff = DateTime.now().difference(dt);
+  if (diff.inMinutes < 1) return 'à l\'instant';
+  if (diff.inMinutes < 60) return 'il y a ${diff.inMinutes} min';
+  if (diff.inHours < 24) return 'il y a ${diff.inHours} h';
+  if (diff.inDays == 1) return 'hier';
+  if (diff.inDays < 7) return 'il y a ${diff.inDays} j';
+  if (diff.inDays < 35) return 'il y a ${(diff.inDays / 7).floor()} sem';
+  return 'il y a ${(diff.inDays / 30).floor()} mois';
+}
+
+Widget _articleImage(String? url, double iconSize) {
+  if (url == null || url.isEmpty) {
+    return Center(child: Icon(Icons.image_outlined, color: OC.faint, size: iconSize));
+  }
+  return Image.network(
+    url,
+    fit: BoxFit.cover,
+    width: double.infinity,
+    height: double.infinity,
+    errorBuilder: (_, __, ___) =>
+        Center(child: Icon(Icons.image_outlined, color: OC.faint, size: iconSize)),
+    loadingBuilder: (_, child, progress) =>
+        progress == null ? child : Container(color: OC.panel),
+  );
+}
+
+// ─── Article — carte vedette ──────────────────────────────────────────────────
+class _FeaturedArticle extends StatelessWidget {
+  final Article article;
+  const _FeaturedArticle(this.article);
+
+  @override
+  Widget build(BuildContext context) {
+    final cat = _catStyle(article.category);
+    return Container(
+      height: 220,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: OC.line, width: 1.5),
+        color: OC.panel,
+      ),
+      child: Stack(children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(19),
+          child: SizedBox.expand(child: _articleImage(article.imageUrl, 48)),
+        ),
+        Positioned(
+          bottom: 0, left: 0, right: 0,
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.vertical(bottom: Radius.circular(19)),
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [Colors.transparent, const Color(0xFF0F0A07).withValues(alpha: 0.86)],
+              ),
+            ),
+            padding: const EdgeInsets.fromLTRB(16, 40, 16, 14),
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 4),
+                decoration: BoxDecoration(color: cat.accent, borderRadius: BorderRadius.circular(8)),
+                child: Text(article.category.toUpperCase(),
+                    style: body(10, weight: FontWeight.w800, color: Colors.white)
+                        .copyWith(letterSpacing: 0.04 * 10)),
+              ),
+              const SizedBox(height: 9),
+              Text(article.title,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: display(18, weight: FontWeight.w700, color: Colors.white)),
+              const SizedBox(height: 6),
+              Text('${article.source} · ${_timeAgo(article.publishedAt)}',
+                  style: body(11.5, color: Colors.white.withValues(alpha: 0.7), weight: FontWeight.w500)),
+            ]),
+          ),
+        ),
+      ]),
+    );
+  }
+}
+
+// ─── Article — ligne de liste ─────────────────────────────────────────────────
+class _ArticleRow extends StatelessWidget {
+  final Article article;
+  const _ArticleRow(this.article);
+
+  @override
+  Widget build(BuildContext context) {
+    final cat = _catStyle(article.category);
+    return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      ClipRRect(
+        borderRadius: BorderRadius.circular(14),
+        child: Container(
+          width: 66, height: 66,
+          color: cat.tint,
+          child: article.imageUrl == null
+              ? Center(child: Icon(Icons.article_outlined, color: cat.accent, size: 28))
+              : _articleImage(article.imageUrl, 24),
+        ),
+      ),
+      const SizedBox(width: 13),
+      Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+          decoration: BoxDecoration(color: cat.tint, borderRadius: BorderRadius.circular(7)),
+          child: Text(article.category.toUpperCase(),
+              style: body(9.5, weight: FontWeight.w800, color: cat.accent)),
+        ),
+        const SizedBox(height: 6),
+        Text(article.title,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: body(13.5, weight: FontWeight.w700).copyWith(height: 1.25)),
+        const SizedBox(height: 4),
+        Text('${article.source} · ${_timeAgo(article.publishedAt)}',
+            style: body(11, color: OC.muted, weight: FontWeight.w500)),
+      ])),
+    ]);
+  }
+}
+
+// ─── Article — squelette de chargement ────────────────────────────────────────
+class _NewsSkeleton extends StatelessWidget {
+  const _NewsSkeleton();
+
+  Widget _bar(double w, double h) => Container(
+        width: w, height: h,
+        decoration: BoxDecoration(color: OC.panel, borderRadius: BorderRadius.circular(6)),
+      );
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Container(
         height: 220,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: OC.line, width: 1.5),
-          color: OC.panel,
-        ),
-        child: Stack(children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(19),
-            child: Container(
-              color: OC.panel,
-              child: const Center(child: Icon(Icons.image_outlined, color: OC.faint, size: 48)),
-            ),
-          ),
-          Positioned(
-            bottom: 0, left: 0, right: 0,
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.vertical(bottom: Radius.circular(19)),
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter, end: Alignment.bottomCenter,
-                  colors: [Colors.transparent, const Color(0xFF0F0A07).withValues(alpha:0.86)],
-                ),
-              ),
-              padding: const EdgeInsets.fromLTRB(16, 40, 16, 14),
-              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 4),
-                  decoration: BoxDecoration(color: OC.o500, borderRadius: BorderRadius.circular(8)),
-                  child: Text('EXAMENS', style: body(10, weight: FontWeight.w800, color: Colors.white)
-                      .copyWith(letterSpacing: 0.04 * 10)),
-                ),
-                const SizedBox(height: 9),
-                Text('Calendrier officiel du Bac 2026 publié par l\'OBC',
-                    style: display(18, weight: FontWeight.w700, color: Colors.white)),
-                const SizedBox(height: 6),
-                Text('OnBuch · il y a 2 h', style: body(11.5, color: Colors.white.withValues(alpha:0.7), weight: FontWeight.w500)),
-              ]),
-            ),
-          ),
-        ]),
+        decoration: BoxDecoration(color: OC.panel, borderRadius: BorderRadius.circular(20)),
       ),
       const SizedBox(height: 16),
-      // List
-      ...[
-        ['Bourses', const Color(0xFFE3ECFB), OC.blue, 'Bourses d\'excellence MINESUP : candidatures ouvertes', 'hier'],
-        ['Conseil', OC.goodBg, OC.waInk, '5 réflexes pour réviser le jour J avec le Tuteur IA', 'il y a 3 j'],
-      ].map((n) => Padding(
-        padding: const EdgeInsets.only(bottom: 16),
-        child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Container(
-            width: 66, height: 66,
-            decoration: BoxDecoration(color: n[1] as Color, borderRadius: BorderRadius.circular(14)),
-            child: Center(child: Icon(Icons.article_outlined, color: n[2] as Color, size: 28)),
-          ),
-          const SizedBox(width: 13),
-          Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-              decoration: BoxDecoration(color: n[1] as Color, borderRadius: BorderRadius.circular(7)),
-              child: Text((n[0] as String).toUpperCase(), style: body(9.5, weight: FontWeight.w800, color: n[2] as Color)),
-            ),
-            const SizedBox(height: 6),
-            Text(n[3] as String, style: body(13.5, weight: FontWeight.w700).copyWith(height: 1.25)),
-            const SizedBox(height: 4),
-            Text('OnBuch · ${n[4]}', style: body(11, color: OC.muted, weight: FontWeight.w500)),
-          ])),
-        ]),
-      )),
+      ...List.generate(2, (_) => Padding(
+            padding: const EdgeInsets.only(bottom: 16),
+            child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Container(
+                width: 66, height: 66,
+                decoration: BoxDecoration(color: OC.panel, borderRadius: BorderRadius.circular(14)),
+              ),
+              const SizedBox(width: 13),
+              Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                _bar(60, 12),
+                const SizedBox(height: 9),
+                _bar(double.infinity, 12),
+                const SizedBox(height: 7),
+                _bar(160, 12),
+              ])),
+            ]),
+          )),
     ]);
   }
 }
