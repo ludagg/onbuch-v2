@@ -92,7 +92,7 @@ class _ValueScreen extends StatelessWidget {
                   decoration: BoxDecoration(
                     gradient: const LinearGradient(colors: [Color(0xFFFFB347), OC.o500, OC.o600]),
                     borderRadius: BorderRadius.circular(14),
-                    boxShadow: [BoxShadow(color: OC.o500.withOpacity(0.30), blurRadius: 14, offset: const Offset(0, 6))],
+                    boxShadow: [BoxShadow(color: OC.o500.withValues(alpha:0.30), blurRadius: 14, offset: const Offset(0, 6))],
                   ),
                   child: Row(mainAxisSize: MainAxisSize.min, children: [
                     Text(idx == 2 ? 'Commencer' : 'Suivant',
@@ -141,7 +141,7 @@ class _MiniResult extends StatelessWidget {
             color: Colors.white,
             borderRadius: BorderRadius.circular(22),
             border: Border.all(color: OC.line, width: 1.5),
-            boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.12), blurRadius: 30, offset: const Offset(0, 12))],
+            boxShadow: [BoxShadow(color: Colors.black.withValues(alpha:0.12), blurRadius: 30, offset: const Offset(0, 12))],
           ),
           padding: const EdgeInsets.all(18),
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -195,7 +195,7 @@ class _MiniTutor extends StatelessWidget {
               topLeft: Radius.circular(18), topRight: Radius.circular(18),
               bottomLeft: Radius.circular(18), bottomRight: Radius.circular(4),
             ),
-            boxShadow: [BoxShadow(color: OC.o500.withOpacity(0.22), blurRadius: 14, offset: const Offset(0, 6))],
+            boxShadow: [BoxShadow(color: OC.o500.withValues(alpha:0.22), blurRadius: 14, offset: const Offset(0, 6))],
           ),
           padding: const EdgeInsets.all(8),
           child: Container(
@@ -236,7 +236,7 @@ class _MiniTutor extends StatelessWidget {
                 bottomRight: Radius.circular(18), topLeft: Radius.circular(4),
               ),
               border: Border.all(color: OC.line, width: 1.5),
-              boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.06), blurRadius: 12)],
+              boxShadow: [BoxShadow(color: Colors.black.withValues(alpha:0.06), blurRadius: 12)],
             ),
             padding: const EdgeInsets.all(14),
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -278,7 +278,7 @@ class _MiniShare extends StatelessWidget {
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(16),
                 border: Border.all(color: OC.line, width: 1.5),
-                boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.08), blurRadius: 16, offset: const Offset(0, 6))],
+                boxShadow: [BoxShadow(color: Colors.black.withValues(alpha:0.08), blurRadius: 16, offset: const Offset(0, 6))],
               ),
               padding: const EdgeInsets.all(14),
               child: rev == 0 ? Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -308,7 +308,7 @@ class _MiniShare extends StatelessWidget {
           decoration: BoxDecoration(
             color: OC.wa,
             borderRadius: BorderRadius.circular(14),
-            boxShadow: [BoxShadow(color: OC.wa.withOpacity(0.35), blurRadius: 16, offset: const Offset(0, 6))],
+            boxShadow: [BoxShadow(color: OC.wa.withValues(alpha:0.35), blurRadius: 16, offset: const Offset(0, 6))],
           ),
           child: Row(mainAxisSize: MainAxisSize.min, children: [
             const Icon(Icons.chat, color: Colors.white, size: 18),

@@ -41,7 +41,7 @@ class TutorCorrectionScreen extends StatelessWidget {
                         topLeft: Radius.circular(18), topRight: Radius.circular(18),
                         bottomLeft: Radius.circular(18), bottomRight: Radius.circular(5),
                       ),
-                      boxShadow: [BoxShadow(color: OC.o500.withOpacity(0.22), blurRadius: 12, offset: const Offset(0, 4))],
+                      boxShadow: [BoxShadow(color: OC.o500.withValues(alpha:0.22), blurRadius: 12, offset: const Offset(0, 4))],
                     ),
                     padding: const EdgeInsets.all(6),
                     child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -87,7 +87,7 @@ class TutorCorrectionScreen extends StatelessWidget {
                         bottomRight: Radius.circular(18), topLeft: Radius.circular(5),
                       ),
                       border: Border.all(color: OC.line, width: 1.5),
-                      boxShadow: [BoxShadow(color: OC.ink.withOpacity(0.04), blurRadius: 6)],
+                      boxShadow: [BoxShadow(color: OC.ink.withValues(alpha:0.04), blurRadius: 6)],
                     ),
                     padding: const EdgeInsets.all(14),
                     child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

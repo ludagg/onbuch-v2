@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../services/auth_service.dart';
-import '../../services/firestore_service.dart';
+import '../../services/database_service.dart';
 
 class AuthPhoneScreen extends StatefulWidget {
   const AuthPhoneScreen({super.key});
@@ -18,7 +18,7 @@ class _AuthPhoneScreenState extends State<AuthPhoneScreen> {
   final _nomCtrl = TextEditingController();
 
   final _authService = AuthService();
-  final _firestoreService = FirestoreService();
+  final _databaseService = DatabaseService();
 
   bool _isLogin = true;
   bool _obscurePassword = true;
@@ -41,29 +41,30 @@ class _AuthPhoneScreenState extends State<AuthPhoneScreen> {
     try {
       if (_isLogin) {
         // Connexion
-        final cred = await _authService.signInWithEmail(
+        final uid = await _authService.signIn(
           _emailCtrl.text,
           _passwordCtrl.text,
         );
         if (!mounted) return;
 
         // Vérifier si le profil existe
-        final hasProfile = await _firestoreService.profileExists(cred.user!.uid);
+        final hasProfile = await _databaseService.profileExists(uid);
         if (!mounted) return;
         context.go(hasProfile ? '/home' : '/auth/profile');
       } else {
         // Création de compte
-        final cred = await _authService.createAccount(
+        final uid = await _authService.register(
           _emailCtrl.text,
           _passwordCtrl.text,
+          _nomCtrl.text.trim().isNotEmpty ? _nomCtrl.text.trim() : 'Utilisateur',
         );
         if (!mounted) return;
 
-        // Pré-remplir le nom dans Firestore
+        // Pré-remplir le nom dans la base de données
         if (_nomCtrl.text.trim().isNotEmpty) {
-          await _firestoreService.createUserProfile(
-            cred.user!.uid,
-            nom: _nomCtrl.text.trim(),
+          await _databaseService.createUserProfile(
+            uid,
+            {'nom': _nomCtrl.text.trim()},
           );
         }
         if (!mounted) return;
@@ -237,7 +238,7 @@ class _AuthPhoneScreenState extends State<AuthPhoneScreen> {
                         gradient: OC.grad,
                         borderRadius: BorderRadius.circular(14),
                         boxShadow: [BoxShadow(
-                          color: OC.o500.withOpacity(0.30),
+                          color: OC.o500.withValues(alpha:0.30),
                           blurRadius: 14,
                           offset: const Offset(0, 6),
                         )],

@@ -65,7 +65,7 @@ class ProfileScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   gradient: OC.grad,
                   borderRadius: BorderRadius.circular(13),
-                  boxShadow: [BoxShadow(color: OC.o500.withOpacity(0.30), blurRadius: 14, offset: const Offset(0, 6))],
+                  boxShadow: [BoxShadow(color: OC.o500.withValues(alpha:0.30), blurRadius: 14, offset: const Offset(0, 6))],
                 ),
                 child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                   const Icon(Icons.bolt_rounded, color: Colors.white, size: 18),
@@ -108,7 +108,7 @@ class ProfileScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 color: OC.paper,
                 borderRadius: BorderRadius.circular(14),
-                border: Border.all(color: OC.bad.withOpacity(0.3), width: 1.5),
+                border: Border.all(color: OC.bad.withValues(alpha:0.3), width: 1.5),
               ),
               child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 const Icon(Icons.logout_rounded, color: OC.bad, size: 18),

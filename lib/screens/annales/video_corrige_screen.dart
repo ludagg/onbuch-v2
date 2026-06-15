@@ -62,7 +62,7 @@ class _VideoCorrigeScreenState extends State<VideoCorrigeScreen> {
                         borderRadius: const BorderRadius.vertical(bottom: Radius.circular(18)),
                         gradient: LinearGradient(
                           begin: Alignment.topCenter, end: Alignment.bottomCenter,
-                          colors: [Colors.transparent, Colors.black.withOpacity(0.55)],
+                          colors: [Colors.transparent, Colors.black.withValues(alpha:0.55)],
                         ),
                       ),
                     ),
@@ -71,9 +71,9 @@ class _VideoCorrigeScreenState extends State<VideoCorrigeScreen> {
                   Container(
                     width: 58, height: 58,
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.92),
+                      color: Colors.white.withValues(alpha:0.92),
                       shape: BoxShape.circle,
-                      boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.4), blurRadius: 18)],
+                      boxShadow: [BoxShadow(color: Colors.black.withValues(alpha:0.4), blurRadius: 18)],
                     ),
                     child: const Icon(Icons.play_arrow_rounded, size: 34, color: OC.ink),
                   ),
@@ -87,7 +87,7 @@ class _VideoCorrigeScreenState extends State<VideoCorrigeScreen> {
                         Container(
                           height: 4,
                           decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(0.3),
+                            color: Colors.white.withValues(alpha:0.3),
                             borderRadius: BorderRadius.circular(3),
                           ),
                         ),
@@ -127,7 +127,7 @@ class _VideoCorrigeScreenState extends State<VideoCorrigeScreen> {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 4),
                     decoration: BoxDecoration(
-                      color: const Color(0xFF7A5AE0).withOpacity(0.25),
+                      color: const Color(0xFF7A5AE0).withValues(alpha:0.25),
                       borderRadius: BorderRadius.circular(999),
                     ),
                     child: Text('CORRIGÉ VIDÉO', style: body(10.5, weight: FontWeight.w800, color: const Color(0xFFC3B0FF))),
@@ -136,16 +136,16 @@ class _VideoCorrigeScreenState extends State<VideoCorrigeScreen> {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 4),
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.10),
+                      color: Colors.white.withValues(alpha:0.10),
                       borderRadius: BorderRadius.circular(999),
                     ),
-                    child: Text('Maths · Bac D', style: body(10.5, weight: FontWeight.w700, color: Colors.white.withOpacity(0.75))),
+                    child: Text('Maths · Bac D', style: body(10.5, weight: FontWeight.w700, color: Colors.white.withValues(alpha:0.75))),
                   ),
                 ]),
                 const SizedBox(height: 9),
                 Text('Nombres complexes — Exercice 1', style: display(19, weight: FontWeight.w600, color: Colors.white).copyWith(height: 1.15)),
                 const SizedBox(height: 6),
-                Text('Par M. Kamga · 8:02 · 1,2k vues', style: body(12.5, color: Colors.white.withOpacity(0.55))),
+                Text('Par M. Kamga · 8:02 · 1,2k vues', style: body(12.5, color: Colors.white.withValues(alpha:0.55))),
                 const SizedBox(height: 14),
 
                 // Buttons
@@ -153,7 +153,7 @@ class _VideoCorrigeScreenState extends State<VideoCorrigeScreen> {
                   Expanded(child: Container(
                     height: 46,
                     decoration: BoxDecoration(gradient: OC.grad, borderRadius: BorderRadius.circular(14),
-                        boxShadow: [BoxShadow(color: OC.o500.withOpacity(0.30), blurRadius: 14, offset: const Offset(0, 6))]),
+                        boxShadow: [BoxShadow(color: OC.o500.withValues(alpha:0.30), blurRadius: 14, offset: const Offset(0, 6))]),
                     child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                       const Icon(Icons.play_arrow_rounded, color: Colors.white, size: 20),
                       const SizedBox(width: 7),
@@ -168,7 +168,7 @@ class _VideoCorrigeScreenState extends State<VideoCorrigeScreen> {
                 const SizedBox(height: 18),
 
                 // Chapters
-                Text('CHAPITRES', style: body(12, weight: FontWeight.w800, color: Colors.white.withOpacity(0.5))
+                Text('CHAPITRES', style: body(12, weight: FontWeight.w800, color: Colors.white.withValues(alpha:0.5))
                     .copyWith(letterSpacing: 0.04 * 12)),
                 const SizedBox(height: 10),
                 ...[
@@ -182,11 +182,11 @@ class _VideoCorrigeScreenState extends State<VideoCorrigeScreen> {
                     child: Row(children: [
                       SizedBox(
                         width: 34,
-                        child: Text(c.$1, style: mono(11.5, weight: FontWeight.w700, color: c.$3 ? OC.o500 : Colors.white.withOpacity(0.5))),
+                        child: Text(c.$1, style: mono(11.5, weight: FontWeight.w700, color: c.$3 ? OC.o500 : Colors.white.withValues(alpha:0.5))),
                       ),
                       const SizedBox(width: 12),
                       Expanded(child: Text(c.$2, style: body(13.5, weight: c.$3 ? FontWeight.w700 : FontWeight.w500,
-                          color: c.$3 ? Colors.white : Colors.white.withOpacity(0.7)))),
+                          color: c.$3 ? Colors.white : Colors.white.withValues(alpha:0.7)))),
                       if (c.$3) Icon(Icons.play_arrow_rounded, size: 17, color: OC.o500),
                     ]),
                   ),
@@ -209,7 +209,7 @@ class _DarkVideoBtn extends StatelessWidget {
     return Container(
       width: 50, height: 46,
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.10),
+        color: Colors.white.withValues(alpha:0.10),
         borderRadius: BorderRadius.circular(14),
       ),
       child: Icon(icon, color: Colors.white, size: 20),

@@ -1,9 +1,9 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
-import '../../services/firestore_service.dart';
+import '../../services/auth_service.dart';
+import '../../services/database_service.dart';
 
 class ProfileSetupScreen extends StatefulWidget {
   const ProfileSetupScreen({super.key});
@@ -17,24 +17,27 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
   int _exam = 0;  // Baccalauréat
   bool _saving = false;
 
-  final _firestoreService = FirestoreService();
+  final _authService = AuthService();
+  final _databaseService = DatabaseService();
 
   static const _levels = ['3ème', '2nde', '1ère', 'Terminale', 'Sup. / Fac'];
   static const _exams  = ['Baccalauréat', 'Probatoire', 'GCE A Level', 'BTS', 'Concours (ENS…)'];
 
   Future<void> _saveAndContinue() async {
-    final uid = FirebaseAuth.instance.currentUser?.uid;
-    if (uid == null) {
-      context.go('/welcome');
+    final user = await _authService.getCurrentUser();
+    if (user == null) {
+      if (mounted) context.go('/welcome');
       return;
     }
 
     setState(() => _saving = true);
     try {
-      await _firestoreService.createUserProfile(
-        uid,
-        classe: _levels[_level],
-        examen: _exams[_exam],
+      await _databaseService.createUserProfile(
+        user.$id,
+        {
+          'classe': _levels[_level],
+          'examen': _exams[_exam],
+        },
       );
       if (mounted) context.go('/welcome');
     } catch (e) {
@@ -141,7 +144,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
                   decoration: BoxDecoration(
                     gradient: OC.grad,
                     borderRadius: BorderRadius.circular(14),
-                    boxShadow: [BoxShadow(color: OC.o500.withOpacity(0.30), blurRadius: 14, offset: const Offset(0, 6))],
+                    boxShadow: [BoxShadow(color: OC.o500.withValues(alpha:0.30), blurRadius: 14, offset: const Offset(0, 6))],
                   ),
                   child: _saving
                       ? const Center(child: SizedBox(

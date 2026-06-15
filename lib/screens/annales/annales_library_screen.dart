@@ -37,7 +37,7 @@ class AnnalesLibraryScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 color: OC.paper,
                 borderRadius: BorderRadius.circular(999),
-                boxShadow: [BoxShadow(color: OC.ink.withOpacity(0.05), blurRadius: 5)],
+                boxShadow: [BoxShadow(color: OC.ink.withValues(alpha:0.05), blurRadius: 5)],
               ),
               child: Row(children: [
                 const Icon(Icons.search_rounded, size: 20, color: OC.muted),
@@ -144,24 +144,24 @@ class _FolderCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(18),
           border: Border.all(color: OC.line, width: 1.5),
           boxShadow: [
-            BoxShadow(color: OC.ink.withOpacity(0.04), blurRadius: 2),
-            BoxShadow(color: OC.ink.withOpacity(0.04), blurRadius: 14, offset: const Offset(0, 6)),
+            BoxShadow(color: OC.ink.withValues(alpha:0.04), blurRadius: 2),
+            BoxShadow(color: OC.ink.withValues(alpha:0.04), blurRadius: 14, offset: const Offset(0, 6)),
           ],
         ),
         child: Stack(children: [
           Positioned(top: -28, right: -22,
             child: Container(width: 70, height: 70, decoration: BoxDecoration(
-              color: bg.withOpacity(0.55), shape: BoxShape.circle))),
+              color: bg.withValues(alpha:0.55), shape: BoxShape.circle))),
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             // folder icon
             Stack(children: [
-              Container(
+              SizedBox(
                 width: 46, height: 40,
                 child: Stack(children: [
                   Positioned(top: 0, left: 2, child: Container(
                     width: 22, height: 8,
                     decoration: BoxDecoration(
-                      color: c.withOpacity(0.85),
+                      color: c.withValues(alpha:0.85),
                       borderRadius: const BorderRadius.only(topLeft: Radius.circular(5), topRight: Radius.circular(5)),
                     ),
                   )),
@@ -170,7 +170,7 @@ class _FolderCard extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: c,
                       borderRadius: BorderRadius.circular(10),
-                      boxShadow: [BoxShadow(color: c.withOpacity(0.27), blurRadius: 10, offset: const Offset(0, 4))],
+                      boxShadow: [BoxShadow(color: c.withValues(alpha:0.27), blurRadius: 10, offset: const Offset(0, 4))],
                     ),
                     child: const Icon(Icons.menu_book_rounded, color: Colors.white, size: 19),
                   )),

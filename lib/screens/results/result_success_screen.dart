@@ -252,19 +252,19 @@ class _ShareableCard extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: OC.grad,
         borderRadius: BorderRadius.circular(24),
-        boxShadow: [BoxShadow(color: OC.o500.withOpacity(0.34), blurRadius: 26, offset: const Offset(0, 10))],
+        boxShadow: [BoxShadow(color: OC.o500.withValues(alpha:0.34), blurRadius: 26, offset: const Offset(0, 10))],
       ),
       child: Stack(children: [
         Positioned(top: -55, right: -40,
           child: Container(width: 150, height: 150, decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.14), shape: BoxShape.circle))),
+            color: Colors.white.withValues(alpha:0.14), shape: BoxShape.circle))),
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(children: [
             const OBWordmark(size: 18, light: true),
             const Spacer(),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-              decoration: BoxDecoration(color: Colors.white.withOpacity(0.22), borderRadius: BorderRadius.circular(999)),
+              decoration: BoxDecoration(color: Colors.white.withValues(alpha:0.22), borderRadius: BorderRadius.circular(999)),
               child: Row(mainAxisSize: MainAxisSize.min, children: [
                 const Icon(Icons.verified_outlined, size: 13, color: Colors.white),
                 const SizedBox(width: 5),
@@ -274,17 +274,17 @@ class _ShareableCard extends StatelessWidget {
           ]),
           const SizedBox(height: 26),
           Text('BACCALAURÉAT 2026 · SÉRIE D',
-              style: body(11.5, weight: FontWeight.w800, color: Colors.white.withOpacity(0.85))
+              style: body(11.5, weight: FontWeight.w800, color: Colors.white.withValues(alpha:0.85))
                   .copyWith(letterSpacing: 0.12 * 11.5)),
           const SizedBox(height: 8),
           Text('ADMISE', style: display(30, weight: FontWeight.w700, color: Colors.white)),
           const SizedBox(height: 8),
           Text('Mention Bien · 14,25/20', style: display(17, weight: FontWeight.w600, color: Colors.white)),
-          Divider(height: 36, color: Colors.white.withOpacity(0.22), thickness: 1),
+          Divider(height: 36, color: Colors.white.withValues(alpha:0.22), thickness: 1),
           Row(children: [
             Text('NDJAMÉ Aïcha', style: display(15, weight: FontWeight.w600, color: Colors.white)),
             const Spacer(),
-            Text('onbuch.cm', style: body(11.5, color: Colors.white.withOpacity(0.82), weight: FontWeight.w600)),
+            Text('onbuch.cm', style: body(11.5, color: Colors.white.withValues(alpha:0.82), weight: FontWeight.w600)),
           ]),
         ]),
       ]),

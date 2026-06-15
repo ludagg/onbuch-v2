@@ -30,18 +30,18 @@ class TutorHubScreen extends StatelessWidget {
             decoration: BoxDecoration(
               gradient: OC.grad,
               borderRadius: BorderRadius.circular(24),
-              boxShadow: [BoxShadow(color: OC.o500.withOpacity(0.30), blurRadius: 26, offset: const Offset(0, 10))],
+              boxShadow: [BoxShadow(color: OC.o500.withValues(alpha:0.30), blurRadius: 26, offset: const Offset(0, 10))],
             ),
             child: Stack(children: [
               Positioned(top: -60, right: -40, child: Container(
                 width: 150, height: 150,
-                decoration: BoxDecoration(color: Colors.white.withOpacity(0.14), shape: BoxShape.circle),
+                decoration: BoxDecoration(color: Colors.white.withValues(alpha:0.14), shape: BoxShape.circle),
               )),
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 Container(
                   width: 50, height: 50,
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.2),
+                    color: Colors.white.withValues(alpha:0.2),
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: const Icon(Icons.camera_alt_outlined, color: Colors.white, size: 26),
@@ -50,7 +50,7 @@ class TutorHubScreen extends StatelessWidget {
                 Text('Photographie\nton exercice', style: display(21, weight: FontWeight.w600, color: Colors.white).copyWith(height: 1.1)),
                 const SizedBox(height: 6),
                 Text('Correction, explication pas-à-pas et réponse adaptées à ton programme.',
-                    style: body(13, color: Colors.white.withOpacity(0.9)).copyWith(height: 1.4)),
+                    style: body(13, color: Colors.white.withValues(alpha:0.9)).copyWith(height: 1.4)),
                 const SizedBox(height: 16),
                 Row(children: [
                   GestureDetector(
@@ -69,7 +69,7 @@ class TutorHubScreen extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.18),
+                      color: Colors.white.withValues(alpha:0.18),
                       borderRadius: BorderRadius.circular(13),
                     ),
                     child: Row(children: [
@@ -271,7 +271,7 @@ class _PaywallSheetState extends State<_PaywallSheet> {
           decoration: BoxDecoration(
             gradient: OC.grad,
             borderRadius: BorderRadius.circular(14),
-            boxShadow: [BoxShadow(color: OC.o500.withOpacity(0.30), blurRadius: 14, offset: const Offset(0, 6))],
+            boxShadow: [BoxShadow(color: OC.o500.withValues(alpha:0.30), blurRadius: 14, offset: const Offset(0, 6))],
           ),
           child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             Text('Payer ${_packs[_selectedPack].$2} · ${_selectedPayment == 0 ? 'MTN MoMo' : 'Orange Money'}',

@@ -54,7 +54,7 @@ class _TutorCameraScreenState extends State<TutorCameraScreen> {
                   color: const Color(0xFF1A1310),
                   child: Stack(alignment: Alignment.center, children: [
                     // Dark overlay
-                    Container(color: Colors.black.withOpacity(0.28)),
+                    Container(color: Colors.black.withValues(alpha:0.28)),
                     // Corner guides
                     ...[
                       const Alignment(-0.85, -0.82),
@@ -98,7 +98,7 @@ class _TutorCameraScreenState extends State<TutorCameraScreen> {
               Container(
                 width: 48, height: 48,
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.12),
+                  color: Colors.white.withValues(alpha:0.12),
                   borderRadius: BorderRadius.circular(14),
                 ),
                 child: const Icon(Icons.image_outlined, color: Colors.white, size: 23),
@@ -111,7 +111,7 @@ class _TutorCameraScreenState extends State<TutorCameraScreen> {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     shape: BoxShape.circle,
-                    boxShadow: [BoxShadow(color: Colors.white.withOpacity(0.25), blurRadius: 0, spreadRadius: 4)],
+                    boxShadow: [BoxShadow(color: Colors.white.withValues(alpha:0.25), blurRadius: 0, spreadRadius: 4)],
                   ),
                   child: Center(child: Container(
                     width: 58, height: 58,
@@ -122,7 +122,7 @@ class _TutorCameraScreenState extends State<TutorCameraScreen> {
               Container(
                 width: 48, height: 48,
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.12),
+                  color: Colors.white.withValues(alpha:0.12),
                   borderRadius: BorderRadius.circular(14),
                 ),
                 child: const Icon(Icons.flip_camera_ios_outlined, color: Colors.white, size: 22),
@@ -147,7 +147,7 @@ class _CameraBtn extends StatelessWidget {
       child: Container(
         width: 38, height: 38,
         decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.12),
+          color: Colors.white.withValues(alpha:0.12),
           borderRadius: BorderRadius.circular(12),
         ),
         child: Icon(icon, color: Colors.white, size: 19),
@@ -165,10 +165,10 @@ class _HintPill extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 7),
       decoration: BoxDecoration(
-        color: Colors.black.withOpacity(0.6),
+        color: Colors.black.withValues(alpha:0.6),
         borderRadius: BorderRadius.circular(999),
       ),
-      child: Text(text, style: body(11.5, weight: FontWeight.w600, color: Colors.white.withOpacity(0.9))),
+      child: Text(text, style: body(11.5, weight: FontWeight.w600, color: Colors.white.withValues(alpha:0.9))),
     );
   }
 }

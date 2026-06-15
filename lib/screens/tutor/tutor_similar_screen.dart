@@ -114,7 +114,7 @@ class TutorSimilarScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 gradient: OC.grad,
                 borderRadius: BorderRadius.circular(14),
-                boxShadow: [BoxShadow(color: OC.o500.withOpacity(0.30), blurRadius: 14, offset: const Offset(0, 6))],
+                boxShadow: [BoxShadow(color: OC.o500.withValues(alpha:0.30), blurRadius: 14, offset: const Offset(0, 6))],
               ),
               child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 const Icon(Icons.refresh_rounded, color: Colors.white, size: 18),

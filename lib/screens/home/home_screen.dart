@@ -70,8 +70,8 @@ class HomeScreen extends StatelessWidget {
                     color: OC.paper,
                     borderRadius: BorderRadius.circular(999),
                     boxShadow: [
-                      BoxShadow(color: OC.ink.withOpacity(0.05), blurRadius: 5, offset: const Offset(0, 2)),
-                      BoxShadow(color: OC.ink.withOpacity(0.06), blurRadius: 24, offset: const Offset(0, 10)),
+                      BoxShadow(color: OC.ink.withValues(alpha:0.05), blurRadius: 5, offset: const Offset(0, 2)),
+                      BoxShadow(color: OC.ink.withValues(alpha:0.06), blurRadius: 24, offset: const Offset(0, 10)),
                     ],
                   ),
                   child: Row(children: [
@@ -84,7 +84,7 @@ class HomeScreen extends StatelessWidget {
                       decoration: BoxDecoration(
                         gradient: OC.grad,
                         shape: BoxShape.circle,
-                        boxShadow: [BoxShadow(color: OC.o500.withOpacity(0.34), blurRadius: 14, offset: const Offset(0, 6))],
+                        boxShadow: [BoxShadow(color: OC.o500.withValues(alpha:0.34), blurRadius: 14, offset: const Offset(0, 6))],
                       ),
                       child: const Icon(Icons.camera_alt_outlined, color: Colors.white, size: 20),
                     ),
@@ -167,7 +167,7 @@ class _HeroCard extends StatelessWidget {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               gradient: RadialGradient(
-                colors: [OC.o500.withOpacity(0.55), OC.o500.withOpacity(0)],
+                colors: [OC.o500.withValues(alpha:0.55), OC.o500.withValues(alpha:0)],
               ),
             ),
           ),
@@ -177,7 +177,7 @@ class _HeroCard extends StatelessWidget {
             Container(width: 7, height: 7, decoration: BoxDecoration(
               color: OC.o500,
               shape: BoxShape.circle,
-              boxShadow: [BoxShadow(color: OC.o500.withOpacity(0.22), blurRadius: 6, spreadRadius: 3)],
+              boxShadow: [BoxShadow(color: OC.o500.withValues(alpha:0.22), blurRadius: 6, spreadRadius: 3)],
             )),
             const SizedBox(width: 7),
             Text(
@@ -194,20 +194,20 @@ class _HeroCard extends StatelessWidget {
             _CountUnit('02', 'jours'),
             Padding(
               padding: const EdgeInsets.only(bottom: 14),
-              child: Text(':', style: display(26, weight: FontWeight.w600, color: Colors.white.withOpacity(0.22))),
+              child: Text(':', style: display(26, weight: FontWeight.w600, color: Colors.white.withValues(alpha:0.22))),
             ),
             _CountUnit('14', 'heures'),
             Padding(
               padding: const EdgeInsets.only(bottom: 14),
-              child: Text(':', style: display(26, weight: FontWeight.w600, color: Colors.white.withOpacity(0.22))),
+              child: Text(':', style: display(26, weight: FontWeight.w600, color: Colors.white.withValues(alpha:0.22))),
             ),
             _CountUnit('38', 'min'),
           ]),
-          Container(height: 1, color: Colors.white.withOpacity(0.10), margin: const EdgeInsets.symmetric(vertical: 18)),
+          Container(height: 1, color: Colors.white.withValues(alpha:0.10), margin: const EdgeInsets.symmetric(vertical: 18)),
           Row(children: [
             const Icon(Icons.notifications_outlined, size: 17, color: Color(0xFFFFB489)),
             const SizedBox(width: 8),
-            Text('Alerte activée', style: body(12.5, weight: FontWeight.w600, color: Colors.white.withOpacity(0.86))),
+            Text('Alerte activée', style: body(12.5, weight: FontWeight.w600, color: Colors.white.withValues(alpha:0.86))),
             const Spacer(),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
@@ -236,7 +236,7 @@ class _CountUnit extends StatelessWidget {
       child: Column(children: [
         Text(value, style: mono(34, weight: FontWeight.w700, color: Colors.white)),
         const SizedBox(height: 6),
-        Text(unit, style: body(10.5, color: Colors.white.withOpacity(0.5), weight: FontWeight.w600)
+        Text(unit, style: body(10.5, color: Colors.white.withValues(alpha:0.5), weight: FontWeight.w600)
             .copyWith(letterSpacing: 0.04 * 10.5)),
       ]),
     );
@@ -261,7 +261,7 @@ class _TuteurCard extends StatelessWidget {
             decoration: BoxDecoration(
               gradient: OC.grad,
               borderRadius: BorderRadius.circular(16),
-              boxShadow: [BoxShadow(color: OC.o500.withOpacity(0.30), blurRadius: 14, offset: const Offset(0, 6))],
+              boxShadow: [BoxShadow(color: OC.o500.withValues(alpha:0.30), blurRadius: 14, offset: const Offset(0, 6))],
             ),
             child: const Icon(Icons.auto_awesome_rounded, color: Colors.white, size: 26),
           ),
@@ -295,7 +295,7 @@ class _TuteurCard extends StatelessWidget {
               decoration: BoxDecoration(
                 color: OC.o500,
                 borderRadius: BorderRadius.circular(13),
-                boxShadow: [BoxShadow(color: OC.o500.withOpacity(0.28), blurRadius: 14, offset: const Offset(0, 6))],
+                boxShadow: [BoxShadow(color: OC.o500.withValues(alpha:0.28), blurRadius: 14, offset: const Offset(0, 6))],
               ),
               child: Row(children: [
                 const Icon(Icons.camera_alt_outlined, color: Colors.white, size: 18),
@@ -395,7 +395,7 @@ class _SavedSection extends StatelessWidget {
                   Positioned(top: 8, left: 8,
                     child: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                      decoration: BoxDecoration(color: Colors.black.withOpacity(0.72), borderRadius: BorderRadius.circular(8)),
+                      decoration: BoxDecoration(color: Colors.black.withValues(alpha:0.72), borderRadius: BorderRadius.circular(8)),
                       child: Row(mainAxisSize: MainAxisSize.min, children: [
                         const Icon(Icons.wifi_off_rounded, color: Colors.white, size: 12),
                         const SizedBox(width: 4),
@@ -451,7 +451,7 @@ class _NewsSection extends StatelessWidget {
                 borderRadius: const BorderRadius.vertical(bottom: Radius.circular(19)),
                 gradient: LinearGradient(
                   begin: Alignment.topCenter, end: Alignment.bottomCenter,
-                  colors: [Colors.transparent, const Color(0xFF0F0A07).withOpacity(0.86)],
+                  colors: [Colors.transparent, const Color(0xFF0F0A07).withValues(alpha:0.86)],
                 ),
               ),
               padding: const EdgeInsets.fromLTRB(16, 40, 16, 14),
@@ -466,7 +466,7 @@ class _NewsSection extends StatelessWidget {
                 Text('Calendrier officiel du Bac 2026 publié par l\'OBC',
                     style: display(18, weight: FontWeight.w700, color: Colors.white)),
                 const SizedBox(height: 6),
-                Text('OnBuch · il y a 2 h', style: body(11.5, color: Colors.white.withOpacity(0.7), weight: FontWeight.w500)),
+                Text('OnBuch · il y a 2 h', style: body(11.5, color: Colors.white.withValues(alpha:0.7), weight: FontWeight.w500)),
               ]),
             ),
           ),
@@ -545,7 +545,7 @@ class _AfficheSection extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(19),
                       gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter,
-                          colors: [Colors.transparent, Colors.black.withOpacity(0.84)]),
+                          colors: [Colors.transparent, Colors.black.withValues(alpha:0.84)]),
                     ),
                   ),
                 ),
@@ -561,7 +561,7 @@ class _AfficheSection extends StatelessWidget {
                   child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                     Text(it[2] as String, style: display(16.5, weight: FontWeight.w700, color: Colors.white)),
                     const SizedBox(height: 4),
-                    Text(it[3] as String, style: body(11.5, color: Colors.white.withOpacity(0.8), weight: FontWeight.w500)),
+                    Text(it[3] as String, style: body(11.5, color: Colors.white.withValues(alpha:0.8), weight: FontWeight.w500)),
                   ]),
                 ),
               ]),

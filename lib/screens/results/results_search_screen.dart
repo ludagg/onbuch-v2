@@ -57,13 +57,13 @@ class _ResultsSearchScreenState extends State<ResultsSearchScreen> {
                 color: OC.paper,
                 borderRadius: BorderRadius.circular(16),
                 border: Border.all(color: OC.line2, width: 1.5),
-                boxShadow: [BoxShadow(color: OC.ink.withOpacity(0.03), blurRadius: 2)],
+                boxShadow: [BoxShadow(color: OC.ink.withValues(alpha:0.03), blurRadius: 2)],
               ),
               child: Row(children: [
                 Container(
                   width: 42, height: 42,
                   decoration: BoxDecoration(gradient: OC.grad, borderRadius: BorderRadius.circular(13),
-                      boxShadow: [BoxShadow(color: OC.o500.withOpacity(0.28), blurRadius: 14, offset: const Offset(0, 6))]),
+                      boxShadow: [BoxShadow(color: OC.o500.withValues(alpha:0.28), blurRadius: 14, offset: const Offset(0, 6))]),
                   child: const Icon(Icons.school_outlined, color: Colors.white, size: 22),
                 ),
                 const SizedBox(width: 13),
@@ -103,7 +103,7 @@ class _ResultsSearchScreenState extends State<ResultsSearchScreen> {
                     decoration: BoxDecoration(
                       gradient: OC.grad,
                       borderRadius: BorderRadius.circular(14),
-                      boxShadow: [BoxShadow(color: OC.o500.withOpacity(0.30), blurRadius: 14, offset: const Offset(0, 6))],
+                      boxShadow: [BoxShadow(color: OC.o500.withValues(alpha:0.30), blurRadius: 14, offset: const Offset(0, 6))],
                     ),
                     child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                       Text('Voir mon résultat', style: body(14, weight: FontWeight.w700, color: Colors.white)),

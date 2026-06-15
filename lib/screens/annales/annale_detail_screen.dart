@@ -43,7 +43,7 @@ class AnnaleDetailScreen extends StatelessWidget {
               Positioned(top: 10, left: 10,
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 5),
-                  decoration: BoxDecoration(color: Colors.black.withOpacity(0.72), borderRadius: BorderRadius.circular(8)),
+                  decoration: BoxDecoration(color: Colors.black.withValues(alpha:0.72), borderRadius: BorderRadius.circular(8)),
                   child: Row(mainAxisSize: MainAxisSize.min, children: [
                     const Icon(Icons.access_time_rounded, color: Colors.white, size: 13),
                     const SizedBox(width: 4),
@@ -59,7 +59,7 @@ class AnnaleDetailScreen extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(12),
-                      boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.16), blurRadius: 10)],
+                      boxShadow: [BoxShadow(color: Colors.black.withValues(alpha:0.16), blurRadius: 10)],
                     ),
                     child: Row(mainAxisSize: MainAxisSize.min, children: [
                       const Icon(Icons.visibility_outlined, size: 17, color: OC.ink),

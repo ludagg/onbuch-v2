@@ -72,14 +72,14 @@ class OBButton extends StatelessWidget {
       dec = BoxDecoration(
         gradient: const LinearGradient(colors: [Color(0xFFFFB347), OC.o500, OC.o600]),
         borderRadius: BorderRadius.circular(14),
-        boxShadow: [BoxShadow(color: OC.o500.withOpacity(0.30), blurRadius: 14, offset: const Offset(0, 6))],
+        boxShadow: [BoxShadow(color: OC.o500.withValues(alpha:0.30), blurRadius: 14, offset: const Offset(0, 6))],
       );
     } else if (isWa) {
       fg = Colors.white;
       dec = BoxDecoration(
         color: OC.wa,
         borderRadius: BorderRadius.circular(14),
-        boxShadow: [BoxShadow(color: OC.wa.withOpacity(0.30), blurRadius: 14, offset: const Offset(0, 6))],
+        boxShadow: [BoxShadow(color: OC.wa.withValues(alpha:0.30), blurRadius: 14, offset: const Offset(0, 6))],
       );
     } else if (isOutline) {
       fg = OC.ink;
@@ -199,8 +199,8 @@ class OBCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         border: Border.all(color: OC.line, width: 1.5),
         boxShadow: [
-          BoxShadow(color: OC.ink.withOpacity(0.04), blurRadius: 2, offset: const Offset(0, 1)),
-          BoxShadow(color: OC.ink.withOpacity(0.05), blurRadius: 14, offset: const Offset(0, 6)),
+          BoxShadow(color: OC.ink.withValues(alpha:0.04), blurRadius: 2, offset: const Offset(0, 1)),
+          BoxShadow(color: OC.ink.withValues(alpha:0.05), blurRadius: 14, offset: const Offset(0, 6)),
         ],
       ),
       child: child,
@@ -238,7 +238,7 @@ class OBField extends StatelessWidget {
             borderRadius: BorderRadius.circular(14),
             border: Border.all(color: focused ? OC.o500 : OC.line2, width: focused ? 2 : 1.5),
             boxShadow: focused
-                ? [BoxShadow(color: OC.o500.withOpacity(0.12), blurRadius: 8, offset: const Offset(0, 3))]
+                ? [BoxShadow(color: OC.o500.withValues(alpha:0.12), blurRadius: 8, offset: const Offset(0, 3))]
                 : null,
           ),
           child: Row(
@@ -350,7 +350,7 @@ class OTPRow extends StatelessWidget {
             borderRadius: BorderRadius.circular(14),
             border: Border.all(color: i == 3 ? OC.o500 : OC.line2, width: i == 3 ? 2 : 1.5),
             boxShadow: i == 3
-                ? [BoxShadow(color: OC.o500.withOpacity(0.14), blurRadius: 8)]
+                ? [BoxShadow(color: OC.o500.withValues(alpha:0.14), blurRadius: 8)]
                 : null,
           ),
           child: Center(

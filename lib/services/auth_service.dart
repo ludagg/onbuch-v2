@@ -1,43 +1,65 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:appwrite/appwrite.dart';
+import 'package:appwrite/models.dart' as models;
 import 'package:flutter/foundation.dart';
+import 'appwrite_client.dart';
+import 'database_service.dart';
 
 class AuthService extends ChangeNotifier {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  // ── Utilisateur courant ──────────────────────────────────────────────────
 
-  // ── Getters ──────────────────────────────────────────────────────────────
+  Future<models.User?> getCurrentUser() async {
+    try {
+      return await AppwriteClient.account.get();
+    } catch (_) {
+      return null;
+    }
+  }
 
-  User? get currentUser => _auth.currentUser;
+  Future<bool> isLoggedIn() async {
+    return await getCurrentUser() != null;
+  }
 
-  Stream<User?> get authStateChanges => _auth.authStateChanges();
-
-  bool get isLoggedIn => _auth.currentUser != null;
+  Future<bool> hasProfile() async {
+    final user = await getCurrentUser();
+    if (user == null) return false;
+    return DatabaseService().profileExists(user.$id);
+  }
 
   // ── Connexion email / mot de passe ───────────────────────────────────────
 
-  Future<UserCredential> signInWithEmail(String email, String password) async {
+  /// Retourne l'ID utilisateur si la connexion réussit.
+  Future<String> signIn(String email, String password) async {
     try {
-      final credential = await _auth.signInWithEmailAndPassword(
+      final session = await AppwriteClient.account.createEmailPasswordSession(
         email: email.trim(),
         password: password,
       );
       notifyListeners();
-      return credential;
-    } on FirebaseAuthException catch (e) {
+      return session.userId;
+    } on AppwriteException catch (e) {
       throw _mapError(e);
     }
   }
 
   // ── Création de compte ───────────────────────────────────────────────────
 
-  Future<UserCredential> createAccount(String email, String password) async {
+  /// Retourne l'ID utilisateur si la création réussit.
+  Future<String> register(String email, String password, String name) async {
     try {
-      final credential = await _auth.createUserWithEmailAndPassword(
+      final user = await AppwriteClient.account.create(
+        userId: ID.unique(),
+        email: email.trim(),
+        password: password,
+        name: name.trim(),
+      );
+      // Créer la session immédiatement après la création du compte
+      await AppwriteClient.account.createEmailPasswordSession(
         email: email.trim(),
         password: password,
       );
       notifyListeners();
-      return credential;
-    } on FirebaseAuthException catch (e) {
+      return user.$id;
+    } on AppwriteException catch (e) {
       throw _mapError(e);
     }
   }
@@ -45,46 +67,31 @@ class AuthService extends ChangeNotifier {
   // ── Déconnexion ──────────────────────────────────────────────────────────
 
   Future<void> signOut() async {
-    await _auth.signOut();
-    notifyListeners();
-  }
-
-  // ── Réinitialisation mot de passe ────────────────────────────────────────
-
-  Future<void> sendPasswordResetEmail(String email) async {
     try {
-      await _auth.sendPasswordResetEmail(email: email.trim());
-    } on FirebaseAuthException catch (e) {
+      await AppwriteClient.account.deleteSession(sessionId: 'current');
+    } on AppwriteException catch (e) {
       throw _mapError(e);
+    } finally {
+      notifyListeners();
     }
   }
 
-  // ── Mapping des erreurs Firebase → messages en français ──────────────────
+  // ── Mapping des erreurs Appwrite → messages en français ──────────────────
 
-  String _mapError(FirebaseAuthException e) {
+  String _mapError(AppwriteException e) {
     switch (e.code) {
-      case 'user-not-found':
-        return 'Aucun compte trouvé avec cet e-mail.';
-      case 'wrong-password':
-        return 'Mot de passe incorrect. Réessaie.';
-      case 'invalid-credential':
-        return 'E-mail ou mot de passe incorrect.';
-      case 'email-already-in-use':
-        return 'Un compte existe déjà avec cet e-mail.';
-      case 'invalid-email':
-        return 'Adresse e-mail invalide.';
-      case 'weak-password':
-        return 'Mot de passe trop faible. Utilise au moins 6 caractères.';
-      case 'user-disabled':
-        return 'Ce compte a été désactivé. Contacte le support.';
-      case 'too-many-requests':
+      case 401:
+        return 'Email ou mot de passe incorrect.';
+      case 409:
+        return 'Un compte existe déjà avec cet email.';
+      case 400:
+        return 'Données invalides. Vérifie ton email et mot de passe.';
+      case 429:
         return 'Trop de tentatives. Réessaie dans quelques minutes.';
-      case 'network-request-failed':
-        return 'Problème de connexion internet. Vérifie ton réseau.';
-      case 'operation-not-allowed':
-        return 'Cette méthode de connexion n\'est pas activée.';
+      case 503:
+        return 'Service temporairement indisponible. Réessaie plus tard.';
       default:
-        return e.message ?? 'Une erreur inattendue s\'est produite.';
+        return e.message ?? 'Erreur réseau, réessaie.';
     }
   }
 }

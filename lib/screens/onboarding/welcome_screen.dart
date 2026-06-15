@@ -42,7 +42,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
         child: Container(
         decoration: const BoxDecoration(gradient: OC.grad),
         child: Stack(fit: StackFit.expand, children: [
-          Positioned(top: -80, left: -70, child: _blob(260, Colors.white.withOpacity(0.10))),
+          Positioned(top: -80, left: -70, child: _blob(260, Colors.white.withValues(alpha:0.10))),
           SafeArea(
             child: Column(children: [
               const Spacer(),
@@ -52,7 +52,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                   Container(
                     width: 96, height: 96,
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.16),
+                      color: Colors.white.withValues(alpha:0.16),
                       shape: BoxShape.circle,
                     ),
                   ),
@@ -71,14 +71,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                 child: Text(
                   'On surveille déjà la publication du Bac 2026. Tu seras la première prévenue.',
                   textAlign: TextAlign.center,
-                  style: body(15, color: Colors.white.withOpacity(0.9)).copyWith(height: 1.45),
+                  style: body(15, color: Colors.white.withValues(alpha:0.9)).copyWith(height: 1.45),
                 ),
               ),
               const SizedBox(height: 20),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.18),
+                  color: Colors.white.withValues(alpha:0.18),
                   borderRadius: BorderRadius.circular(999),
                 ),
                 child: Text('🔔 Alerte Bac active', style: body(12, weight: FontWeight.w700, color: Colors.white)),
@@ -93,7 +93,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(14),
-                      boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.12), blurRadius: 16, offset: const Offset(0, 6))],
+                      boxShadow: [BoxShadow(color: Colors.black.withValues(alpha:0.12), blurRadius: 16, offset: const Offset(0, 6))],
                     ),
                     child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                       Text('Voir mes résultats', style: body(14, weight: FontWeight.w700, color: OC.o600)),

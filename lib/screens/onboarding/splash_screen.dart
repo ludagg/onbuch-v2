@@ -41,9 +41,9 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
           child: Stack(fit: StackFit.expand, children: [
             // texture blobs
             Positioned(top: -90, right: -80,
-              child: _blob(280, Colors.white.withOpacity(0.10))),
+              child: _blob(280, Colors.white.withValues(alpha:0.10))),
             Positioned(bottom: 40, left: -70,
-              child: _blob(200, Colors.white.withOpacity(0.08))),
+              child: _blob(200, Colors.white.withValues(alpha:0.08))),
             // content
             SafeArea(
               child: Column(children: [
@@ -62,7 +62,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                 Text(
                   'Tes résultats. Ton tuteur. Ta réussite\n— dans une seule app.',
                   textAlign: TextAlign.center,
-                  style: body(14.5, color: Colors.white.withOpacity(0.88)),
+                  style: body(14.5, color: Colors.white.withValues(alpha:0.88)),
                 ),
                 const Spacer(),
                 Column(children: [
@@ -71,11 +71,11 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                     child: CircularProgressIndicator(
                       color: Colors.white,
                       strokeWidth: 2.6,
-                      backgroundColor: Colors.white.withOpacity(0.28),
+                      backgroundColor: Colors.white.withValues(alpha:0.28),
                     ),
                   ),
                   const SizedBox(height: 8),
-                  Text('LuvviX · Douala', style: body(12, weight: FontWeight.w600, color: Colors.white.withOpacity(0.75))),
+                  Text('LuvviX · Douala', style: body(12, weight: FontWeight.w600, color: Colors.white.withValues(alpha:0.75))),
                   const SizedBox(height: 40),
                 ]),
               ]),

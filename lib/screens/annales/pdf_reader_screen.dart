@@ -44,7 +44,7 @@ class _PdfReaderScreenState extends State<PdfReaderScreen> {
               const SizedBox(width: 10),
               Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 Text('Maths · Bac D 2025', style: body(14, weight: FontWeight.w700, color: Colors.white)),
-                Text('Sujet officiel · PDF', style: body(11, color: Colors.white.withOpacity(0.55))),
+                Text('Sujet officiel · PDF', style: body(11, color: Colors.white.withValues(alpha:0.55))),
               ])),
               _DarkBtn(Icons.download_outlined, () {}),
               const SizedBox(width: 8),
@@ -60,7 +60,7 @@ class _PdfReaderScreenState extends State<PdfReaderScreen> {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(6),
-                  boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.5), blurRadius: 30, offset: const Offset(0, 10))],
+                  boxShadow: [BoxShadow(color: Colors.black.withValues(alpha:0.5), blurRadius: 30, offset: const Offset(0, 10))],
                 ),
                 padding: const EdgeInsets.all(24),
                 child: SingleChildScrollView(
@@ -120,7 +120,7 @@ class _PdfReaderScreenState extends State<PdfReaderScreen> {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 7),
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.12),
+                  color: Colors.white.withValues(alpha:0.12),
                   borderRadius: BorderRadius.circular(999),
                 ),
                 child: Text('$_currentPage / $_totalPages',
@@ -129,7 +129,7 @@ class _PdfReaderScreenState extends State<PdfReaderScreen> {
               const SizedBox(width: 8),
               const Icon(Icons.chevron_right_rounded, size: 22, color: Colors.white),
               const SizedBox(width: 8),
-              Container(width: 1, height: 22, color: Colors.white.withOpacity(0.18)),
+              Container(width: 1, height: 22, color: Colors.white.withValues(alpha:0.18)),
               const SizedBox(width: 8),
               _DarkBtn(Icons.fullscreen_rounded, () {}),
             ]),
@@ -152,7 +152,7 @@ class _DarkBtn extends StatelessWidget {
       child: Container(
         width: 38, height: 38,
         decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.10),
+          color: Colors.white.withValues(alpha:0.10),
           borderRadius: BorderRadius.circular(12),
         ),
         child: Icon(icon, color: Colors.white, size: 19),
