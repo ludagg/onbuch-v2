@@ -96,11 +96,8 @@ class HomeScreen extends StatelessWidget {
               ),
               const SizedBox(height: 22),
 
-              // Hero dark — résultats countdown
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: _HeroCard(),
-              ),
+              // Hero — carrousel d'examens (compte à rebours résultats)
+              _HeroCarousel(),
               const SizedBox(height: 18),
 
               // Tuteur CTA
@@ -193,12 +190,73 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-// ─── Hero card (dark editorial) ───────────────────────────────────────────────
-class _HeroCard extends StatelessWidget {
+// ─── Examen à venir (compte à rebours) ────────────────────────────────────────
+class _ExamCountdown {
+  final String label;
+  final DateTime date;
+  const _ExamCountdown(this.label, this.date);
+}
+
+// ─── Hero carousel (plusieurs examens) ────────────────────────────────────────
+class _HeroCarousel extends StatefulWidget {
+  @override
+  State<_HeroCarousel> createState() => _HeroCarouselState();
+}
+
+class _HeroCarouselState extends State<_HeroCarousel> {
+  final _ctrl = PageController();
+  int _page = 0;
+
+  static final _exams = [
+    _ExamCountdown('Baccalauréat 2026', DateTime(2026, 6, 18, 10)),
+    _ExamCountdown('Probatoire 2026', DateTime(2026, 6, 22, 10)),
+    _ExamCountdown('BEPC 2026', DateTime(2026, 7, 1, 10)),
+    _ExamCountdown('GCE O/A Level 2026', DateTime(2026, 7, 8, 10)),
+  ];
+
+  @override
+  void dispose() {
+    _ctrl.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    return Column(children: [
+      SizedBox(
+        height: 210,
+        child: PageView.builder(
+          controller: _ctrl,
+          itemCount: _exams.length,
+          onPageChanged: (i) => setState(() => _page = i),
+          itemBuilder: (_, i) => Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: _HeroCard(_exams[i]),
+          ),
+        ),
+      ),
+      const SizedBox(height: 12),
+      ProgressDots(count: _exams.length, active: _page),
+    ]);
+  }
+}
+
+// ─── Hero card (dark editorial — compacte) ────────────────────────────────────
+class _HeroCard extends StatelessWidget {
+  final _ExamCountdown exam;
+  const _HeroCard(this.exam);
+
+  @override
+  Widget build(BuildContext context) {
+    final diff = exam.date.difference(DateTime.now());
+    final available = diff.isNegative;
+    final days = available ? 0 : diff.inDays;
+    final hours = available ? 0 : diff.inHours % 24;
+    final mins = available ? 0 : diff.inMinutes % 60;
+    String two(int v) => v.toString().padLeft(2, '0');
+
     return Container(
-      padding: const EdgeInsets.all(22),
+      padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
           begin: Alignment.topLeft,
@@ -206,73 +264,93 @@ class _HeroCard extends StatelessWidget {
           stops: [0, 1],
           colors: [OC.darkHero, OC.darkHero2],
         ),
-        borderRadius: BorderRadius.circular(26),
+        borderRadius: BorderRadius.circular(22),
       ),
       child: Stack(children: [
         // glow blob
         Positioned(
-          top: -90, right: -70,
+          top: -80, right: -60,
           child: Container(
-            width: 200, height: 200,
+            width: 170, height: 170,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               gradient: RadialGradient(
-                colors: [OC.o500.withValues(alpha:0.55), OC.o500.withValues(alpha:0)],
+                colors: [OC.o500.withValues(alpha: 0.50), OC.o500.withValues(alpha: 0)],
               ),
             ),
           ),
         ),
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(children: [
-            Container(width: 7, height: 7, decoration: BoxDecoration(
+            Container(width: 6, height: 6, decoration: BoxDecoration(
               color: OC.o500,
               shape: BoxShape.circle,
-              boxShadow: [BoxShadow(color: OC.o500.withValues(alpha:0.22), blurRadius: 6, spreadRadius: 3)],
+              boxShadow: [BoxShadow(color: OC.o500.withValues(alpha: 0.22), blurRadius: 6, spreadRadius: 2)],
             )),
             const SizedBox(width: 7),
-            Text(
-              'BACCALAURÉAT 2026',
-              style: body(11, weight: FontWeight.w800, color: const Color(0xFFFFB489))
-                  .copyWith(letterSpacing: 0.14 * 11),
+            Expanded(
+              child: Text(
+                exam.label.toUpperCase(),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: body(10.5, weight: FontWeight.w800, color: const Color(0xFFFFB489))
+                    .copyWith(letterSpacing: 0.12 * 10.5),
+              ),
             ),
           ]),
-          const SizedBox(height: 16),
-          Text('Résultats bientôt\ndisponibles', style: display(26, weight: FontWeight.w700, color: Colors.white)),
-          const SizedBox(height: 20),
+          const SizedBox(height: 10),
+          Text(
+            available ? 'Résultats disponibles' : 'Résultats bientôt disponibles',
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: display(19, weight: FontWeight.w700, color: Colors.white),
+          ),
+          const Spacer(),
           // Countdown
           Row(children: [
-            _CountUnit('02', 'jours'),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 14),
-              child: Text(':', style: display(26, weight: FontWeight.w600, color: Colors.white.withValues(alpha:0.22))),
-            ),
-            _CountUnit('14', 'heures'),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 14),
-              child: Text(':', style: display(26, weight: FontWeight.w600, color: Colors.white.withValues(alpha:0.22))),
-            ),
-            _CountUnit('38', 'min'),
+            _CountUnit(two(days), 'jours'),
+            _ColonSep(),
+            _CountUnit(two(hours), 'heures'),
+            _ColonSep(),
+            _CountUnit(two(mins), 'min'),
           ]),
-          Container(height: 1, color: Colors.white.withValues(alpha:0.10), margin: const EdgeInsets.symmetric(vertical: 18)),
+          Container(
+            height: 1,
+            color: Colors.white.withValues(alpha: 0.10),
+            margin: const EdgeInsets.symmetric(vertical: 11),
+          ),
           Row(children: [
-            const Icon(Icons.notifications_outlined, size: 17, color: Color(0xFFFFB489)),
-            const SizedBox(width: 8),
-            Text('Alerte activée', style: body(12.5, weight: FontWeight.w600, color: Colors.white.withValues(alpha:0.86))),
+            const Icon(Icons.notifications_outlined, size: 16, color: Color(0xFFFFB489)),
+            const SizedBox(width: 7),
+            Text('Alerte activée',
+                style: body(12, weight: FontWeight.w600, color: Colors.white.withValues(alpha: 0.86))),
             const Spacer(),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-              decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(12)),
-              child: Row(children: [
-                Text('Vérifier', style: body(13, weight: FontWeight.w700, color: OC.ink)),
-                const SizedBox(width: 6),
-                const Icon(Icons.arrow_forward_rounded, size: 16, color: OC.ink),
-              ]),
+            GestureDetector(
+              onTap: () => context.go('/results'),
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 9),
+                decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(11)),
+                child: Row(children: [
+                  Text('Vérifier', style: body(12.5, weight: FontWeight.w700, color: OC.ink)),
+                  const SizedBox(width: 5),
+                  const Icon(Icons.arrow_forward_rounded, size: 15, color: OC.ink),
+                ]),
+              ),
             ),
           ]),
         ]),
       ]),
     );
   }
+}
+
+class _ColonSep extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) => Padding(
+        padding: const EdgeInsets.only(bottom: 12),
+        child: Text(':',
+            style: display(24, weight: FontWeight.w600, color: Colors.white.withValues(alpha: 0.22))),
+      );
 }
 
 class _CountUnit extends StatelessWidget {
@@ -282,12 +360,12 @@ class _CountUnit extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 7),
+      padding: const EdgeInsets.symmetric(horizontal: 6),
       child: Column(children: [
-        Text(value, style: mono(34, weight: FontWeight.w700, color: Colors.white)),
-        const SizedBox(height: 6),
-        Text(unit, style: body(10.5, color: Colors.white.withValues(alpha:0.5), weight: FontWeight.w600)
-            .copyWith(letterSpacing: 0.04 * 10.5)),
+        Text(value, style: mono(26, weight: FontWeight.w700, color: Colors.white)),
+        const SizedBox(height: 5),
+        Text(unit, style: body(10, color: Colors.white.withValues(alpha: 0.5), weight: FontWeight.w600)
+            .copyWith(letterSpacing: 0.04 * 10)),
       ]),
     );
   }
