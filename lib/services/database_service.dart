@@ -7,6 +7,23 @@ import 'appwrite_client.dart';
 class DatabaseService {
   // ── Profil utilisateur ───────────────────────────────────────────────────
 
+  /// Découpe un nom complet en `firstName` / `lastName` pour la collection
+  /// `users` (qui attend ces deux champs séparés).
+  static Map<String, dynamic> splitFullName(String fullName) {
+    final parts = fullName
+        .trim()
+        .split(RegExp(r'\s+'))
+        .where((p) => p.isNotEmpty)
+        .toList();
+    if (parts.isEmpty) {
+      return {'firstName': 'Utilisateur', 'lastName': ''};
+    }
+    return {
+      'firstName': parts.first,
+      'lastName': parts.length > 1 ? parts.sublist(1).join(' ') : '',
+    };
+  }
+
   /// Crée ou met à jour le profil d'un utilisateur dans la collection `users`.
   Future<void> createUserProfile(String uid, Map<String, dynamic> data) async {
     try {

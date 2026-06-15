@@ -32,9 +32,14 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
 
     setState(() => _saving = true);
     try {
+      // On inclut l'identité (firstName/lastName/email) en plus des champs
+      // profil : ainsi le document est valide même s'il doit être créé ici
+      // (champs requis de la collection `users`), pas seulement mis à jour.
       await _databaseService.createUserProfile(
         user.$id,
         {
+          ...DatabaseService.splitFullName(user.name),
+          'email': user.email,
           'classe': _levels[_level],
           'examen': _exams[_exam],
         },

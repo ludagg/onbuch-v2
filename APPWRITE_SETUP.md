@@ -12,11 +12,17 @@ Remplace `YOUR_PROJECT_ID` par ton Project ID.
 Dans Appwrite Console → Databases → Create database → ID: `main`
 
 ### Collection `users`
+Profil utilisateur, document keyé par l'ID Appwrite Auth.
 Attributs :
-- `nom` (string, 100, required)
+- `firstName` (string, 100, **required**)
+- `lastName` (string, 100)
+- `email` (string, **required**)
+- `password` (string, 255) — **non utilisé / optionnel** : l'authentification est
+  gérée par Appwrite Auth, l'app ne stocke aucun mot de passe ici.
+- `role` (string) · `phoneNumber` (string)
 - `classe` (string, 50)
 - `examen` (string, 50)
-- `serie` (string, 20)
+- `serie` (string, 40)
 - `createdAt` (datetime)
 
 ### Collection `results`
