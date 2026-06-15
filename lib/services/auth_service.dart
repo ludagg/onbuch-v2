@@ -30,6 +30,9 @@ class AuthService extends ChangeNotifier {
   /// Retourne l'ID utilisateur si la connexion réussit.
   Future<String> signIn(String email, String password) async {
     try {
+      // Supprimer toute session résiduelle avant d'en créer une nouvelle,
+      // sinon Appwrite renvoie une erreur « session already active ».
+      await _deleteExistingSession();
       final session = await AppwriteClient.account.createEmailPasswordSession(
         email: email.trim(),
         password: password,
@@ -37,7 +40,7 @@ class AuthService extends ChangeNotifier {
       notifyListeners();
       return session.userId;
     } on AppwriteException catch (e) {
-      throw _mapError(e);
+      throw _mapError(e, action: _AuthAction.login);
     }
   }
 
@@ -46,21 +49,43 @@ class AuthService extends ChangeNotifier {
   /// Retourne l'ID utilisateur si la création réussit.
   Future<String> register(String email, String password, String name) async {
     try {
+      // Repartir d'un état propre : aucune session ne doit être active avant
+      // de créer le compte puis sa session.
+      await _deleteExistingSession();
+
       final user = await AppwriteClient.account.create(
         userId: ID.unique(),
         email: email.trim(),
         password: password,
         name: name.trim(),
       );
-      // Créer la session immédiatement après la création du compte
-      await AppwriteClient.account.createEmailPasswordSession(
-        email: email.trim(),
-        password: password,
-      );
+
+      // Créer la session immédiatement après la création du compte.
+      // Si une session existe déjà (cas de course), le compte est tout de même
+      // créé et l'utilisateur est connecté : on ne traite pas ça comme un échec.
+      try {
+        await AppwriteClient.account.createEmailPasswordSession(
+          email: email.trim(),
+          password: password,
+        );
+      } on AppwriteException catch (e) {
+        if (e.type != 'user_session_already_exists') rethrow;
+      }
+
       notifyListeners();
       return user.$id;
     } on AppwriteException catch (e) {
-      throw _mapError(e);
+      throw _mapError(e, action: _AuthAction.register);
+    }
+  }
+
+  /// Supprime la session courante si elle existe. Silencieux si aucune session
+  /// n'est active (utilisateur invité).
+  Future<void> _deleteExistingSession() async {
+    try {
+      await AppwriteClient.account.deleteSession(sessionId: 'current');
+    } on AppwriteException {
+      // Pas de session active — rien à faire.
     }
   }
 
@@ -70,7 +95,7 @@ class AuthService extends ChangeNotifier {
     try {
       await AppwriteClient.account.deleteSession(sessionId: 'current');
     } on AppwriteException catch (e) {
-      throw _mapError(e);
+      throw _mapError(e, action: _AuthAction.login);
     } finally {
       notifyListeners();
     }
@@ -78,14 +103,44 @@ class AuthService extends ChangeNotifier {
 
   // ── Mapping des erreurs Appwrite → messages en français ──────────────────
 
-  String _mapError(AppwriteException e) {
+  String _mapError(AppwriteException e, {required _AuthAction action}) {
+    // On se base d'abord sur le type d'erreur Appwrite (plus précis que le
+    // simple code HTTP, qui est partagé par plusieurs situations).
+    switch (e.type) {
+      case 'user_already_exists':
+        return 'Un compte existe déjà avec cet email.';
+      case 'user_invalid_credentials':
+        return 'Email ou mot de passe incorrect.';
+      case 'user_session_already_exists':
+        return 'Une session est déjà active. Déconnecte-toi puis réessaie.';
+      case 'user_password_mismatch':
+      case 'password_personal_data':
+      case 'general_argument_invalid':
+        return 'Mot de passe invalide (8 caractères minimum).';
+      case 'user_blocked':
+      case 'user_email_not_whitelisted':
+        return 'Ce compte n\'est pas autorisé à se connecter.';
+      case 'database_not_found':
+      case 'collection_not_found':
+        return 'Service indisponible : base de données non configurée.';
+      case 'general_rate_limit_exceeded':
+        return 'Trop de tentatives. Réessaie dans quelques minutes.';
+    }
+
+    // Repli sur le code HTTP si le type n'est pas reconnu.
     switch (e.code) {
       case 401:
-        return 'Email ou mot de passe incorrect.';
+        // Pendant l'inscription, un 401 ne veut pas dire « identifiants
+        // incorrects » : le compte vient d'être saisi par l'utilisateur.
+        return action == _AuthAction.register
+            ? 'Impossible de finaliser l\'inscription. Réessaie.'
+            : 'Email ou mot de passe incorrect.';
       case 409:
         return 'Un compte existe déjà avec cet email.';
       case 400:
-        return 'Données invalides. Vérifie ton email et mot de passe.';
+        return 'Données invalides. Vérifie ton email et ton mot de passe.';
+      case 404:
+        return 'Service indisponible. Réessaie plus tard.';
       case 429:
         return 'Trop de tentatives. Réessaie dans quelques minutes.';
       case 503:
@@ -95,3 +150,7 @@ class AuthService extends ChangeNotifier {
     }
   }
 }
+
+/// Contexte de l'action d'authentification, pour produire des messages
+/// d'erreur adaptés (connexion vs inscription).
+enum _AuthAction { login, register }
