@@ -50,16 +50,10 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                 const Spacer(),
                 ScaleTransition(
                   scale: _scale,
-                  child: Container(
-                    width: 92, height: 92,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(28),
-                      boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.18), blurRadius: 24, offset: const Offset(0, 8))],
-                    ),
-                    child: Center(
-                      child: Text('OB', style: display(32, weight: FontWeight.w900, color: OC.o500)),
-                    ),
+                  child: Image.asset(
+                    'assets/images/logo.png',
+                    width: 110,
+                    height: 110,
                   ),
                 ),
                 const SizedBox(height: 22),
