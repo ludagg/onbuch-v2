@@ -1,6 +1,7 @@
 // ignore_for_file: deprecated_member_use
 import 'package:appwrite/appwrite.dart';
 import '../appwrite_config.dart';
+import '../models/article.dart';
 import 'appwrite_client.dart';
 
 class DatabaseService {
@@ -89,6 +90,34 @@ class DatabaseService {
       queries: [Query.equal('userId', uid)],
     );
     return result.documents.map((d) => d.data).toList();
+  }
+
+  // ── Fil d'actualités ─────────────────────────────────────────────────────
+
+  /// Retourne les articles du fil OnBuch, les plus récents d'abord.
+  ///
+  /// Renvoie une liste vide en cas d'erreur (collection absente, réseau…) afin
+  /// que l'écran d'accueil puisse afficher un contenu de repli sans planter.
+  Future<List<Article>> getArticles({int limit = 6}) async {
+    try {
+      final res = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteArticlesCollectionId,
+        queries: [
+          Query.orderDesc('\$createdAt'),
+          Query.limit(limit),
+        ],
+      );
+      return res.documents
+          .map((d) => Article.fromMap(
+                d.data,
+                id: d.$id,
+                createdAtFallback: d.$createdAt,
+              ))
+          .toList();
+    } on AppwriteException {
+      return const [];
+    }
   }
 
   // ── Analytics ────────────────────────────────────────────────────────────

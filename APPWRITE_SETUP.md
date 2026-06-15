@@ -33,6 +33,19 @@ Attributs :
 - `params` (string, 500)
 - `timestamp` (datetime)
 
+### Collection `articles` (fil OnBuch / actualités)
+Attributs :
+- `title` (string, 200, required)
+- `category` (string, 50) — ex. `Examens`, `Bourses`, `Conseil`, `Concours`, `Alerte`
+- `source` (string, 60) — défaut `OnBuch`
+- `imageUrl` (string, 500) — URL de l'image (optionnel)
+- `body` (string, 5000) — contenu de l'article (optionnel)
+- `featured` (boolean) — `true` pour l'article mis en avant (carte vedette)
+- `publishedAt` (datetime) — sinon `$createdAt` est utilisé
+
+Permissions : Read `any` (le fil est public), Write réservé à l'admin.
+Les articles sont triés du plus récent au plus ancien.
+
 ## 4. Permissions
 Pour chaque collection, ajouter :
 - Read: `user:[USER_ID]` (ou `any` pour les events)
