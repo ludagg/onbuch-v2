@@ -130,14 +130,13 @@ class _AuthPhoneScreenState extends State<AuthPhoneScreen> {
                 key: _formKey,
                 child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                   // Logo
-                  Container(
-                    width: 56, height: 56,
-                    decoration: BoxDecoration(
-                      gradient: OC.grad,
-                      borderRadius: BorderRadius.circular(18),
-                    ),
-                    child: Center(
-                      child: Text('O', style: display(28, weight: FontWeight.w900, color: Colors.white)),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(18),
+                    child: Image.asset(
+                      'assets/images/logo.png',
+                      width: 56,
+                      height: 56,
+                      fit: BoxFit.cover,
                     ),
                   ),
                   const SizedBox(height: 22),

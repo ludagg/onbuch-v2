@@ -20,9 +20,23 @@ import '../screens/tutor/tutor_camera_screen.dart';
 import '../screens/tutor/tutor_correction_screen.dart';
 import '../screens/tutor/tutor_similar_screen.dart';
 import '../screens/profile/profile_screen.dart';
+import '../services/auth_service.dart';
+
+final _authService = AuthService();
 
 final appRouter = GoRouter(
   initialLocation: '/splash',
+  redirect: (context, state) async {
+    final path = state.uri.path;
+    final isPublic = path == '/splash' ||
+        path.startsWith('/onboarding') ||
+        path.startsWith('/auth') ||
+        path == '/welcome';
+    if (isPublic) return null;
+    final loggedIn = await _authService.isLoggedIn();
+    if (!loggedIn) return '/auth/phone';
+    return null;
+  },
   routes: [
     GoRoute(path: '/splash', builder: (_, __) => const SplashScreen()),
     GoRoute(path: '/onboarding/1', builder: (_, __) => const Value1Screen()),

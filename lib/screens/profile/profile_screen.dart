@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
+import '../../services/auth_service.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -102,7 +103,10 @@ class ProfileScreen extends StatelessWidget {
 
           // Sign out
           GestureDetector(
-            onTap: () => context.go('/splash'),
+            onTap: () async {
+              await AuthService().signOut();
+              if (context.mounted) context.go('/splash');
+            },
             child: Container(
               width: double.infinity, height: 50,
               decoration: BoxDecoration(

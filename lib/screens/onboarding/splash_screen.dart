@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
+import '../../services/auth_service.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -20,9 +21,21 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
     _ctrl = AnimationController(vsync: this, duration: const Duration(milliseconds: 600));
     _scale = CurvedAnimation(parent: _ctrl, curve: Curves.elasticOut);
     _ctrl.forward();
-    Future.delayed(const Duration(seconds: 2), () {
-      if (mounted) context.go('/onboarding/1');
-    });
+    Future.delayed(const Duration(seconds: 2), _navigate);
+  }
+
+  Future<void> _navigate() async {
+    if (!mounted) return;
+    final auth = AuthService();
+    final loggedIn = await auth.isLoggedIn();
+    if (!mounted) return;
+    if (!loggedIn) {
+      context.go('/onboarding/1');
+      return;
+    }
+    final hasProfile = await auth.hasProfile();
+    if (!mounted) return;
+    context.go(hasProfile ? '/home' : '/auth/profile');
   }
 
   @override
