@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
+import '../../services/appwrite_client.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -59,6 +60,13 @@ class HomeScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
                 child: Center(child: Text('Bonjour, Aïcha 👋', style: display(24, weight: FontWeight.w600))),
+              ),
+              const SizedBox(height: 16),
+
+              // Appwrite connectivity check
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: const _PingButton(),
               ),
               const SizedBox(height: 16),
 
@@ -138,6 +146,61 @@ class HomeScreen extends StatelessWidget {
             ]),
           ),
         ],
+      ),
+    );
+  }
+}
+
+// ─── Appwrite "Send a ping" button ────────────────────────────────────────────
+class _PingButton extends StatefulWidget {
+  const _PingButton();
+
+  @override
+  State<_PingButton> createState() => _PingButtonState();
+}
+
+class _PingButtonState extends State<_PingButton> {
+  bool _loading = false;
+
+  Future<void> _sendPing() async {
+    setState(() => _loading = true);
+    String message;
+    try {
+      await client.ping();
+      message = 'Ping réussi — Appwrite est connecté ✅';
+    } catch (e) {
+      message = 'Échec du ping : $e';
+    }
+    if (!mounted) return;
+    setState(() => _loading = false);
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(SnackBar(content: Text(message)));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: _loading ? null : _sendPing,
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(vertical: 14),
+        decoration: BoxDecoration(
+          color: OC.o500,
+          borderRadius: BorderRadius.circular(14),
+          boxShadow: [BoxShadow(color: OC.o500.withOpacity(0.28), blurRadius: 14, offset: const Offset(0, 6))],
+        ),
+        child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          if (_loading)
+            const SizedBox(
+              width: 18, height: 18,
+              child: CircularProgressIndicator(strokeWidth: 2, valueColor: AlwaysStoppedAnimation(Colors.white)),
+            )
+          else
+            const Icon(Icons.wifi_tethering_rounded, color: Colors.white, size: 19),
+          const SizedBox(width: 9),
+          Text('Send a ping', style: body(14.5, weight: FontWeight.w700, color: Colors.white)),
+        ]),
       ),
     );
   }
