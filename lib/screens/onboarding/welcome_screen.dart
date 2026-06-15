@@ -37,9 +37,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      backgroundColor: OC.o500,
+      body: SizedBox.expand(
+        child: Container(
         decoration: const BoxDecoration(gradient: OC.grad),
-        child: Stack(children: [
+        child: Stack(fit: StackFit.expand, children: [
           Positioned(top: -80, left: -70, child: _blob(260, Colors.white.withOpacity(0.10))),
           SafeArea(
             child: Column(children: [
@@ -104,6 +106,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
             ]),
           ),
         ]),
+        ),
       ),
     );
   }

@@ -34,57 +34,60 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(gradient: OC.grad),
-        child: Stack(children: [
-          // texture blobs
-          Positioned(top: -90, right: -80,
-            child: _blob(280, Colors.white.withOpacity(0.10))),
-          Positioned(bottom: 40, left: -70,
-            child: _blob(200, Colors.white.withOpacity(0.08))),
-          // content
-          SafeArea(
-            child: Column(children: [
-              const Spacer(),
-              ScaleTransition(
-                scale: _scale,
-                child: Container(
-                  width: 92, height: 92,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(28),
-                    boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.18), blurRadius: 24, offset: const Offset(0, 8))],
-                  ),
-                  child: Center(
-                    child: Text('O', style: display(44, weight: FontWeight.w900, color: OC.o500)),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 22),
-              OBWordmark(size: 38, light: true),
-              const SizedBox(height: 12),
-              Text(
-                'Tes résultats. Ton tuteur. Ta réussite\n— dans une seule app.',
-                textAlign: TextAlign.center,
-                style: body(14.5, color: Colors.white.withOpacity(0.88)),
-              ),
-              const Spacer(),
-              Column(children: [
-                SizedBox(
-                  width: 26, height: 26,
-                  child: CircularProgressIndicator(
-                    color: Colors.white,
-                    strokeWidth: 2.6,
-                    backgroundColor: Colors.white.withOpacity(0.28),
+      backgroundColor: OC.o500,
+      body: SizedBox.expand(
+        child: Container(
+          decoration: const BoxDecoration(gradient: OC.grad),
+          child: Stack(fit: StackFit.expand, children: [
+            // texture blobs
+            Positioned(top: -90, right: -80,
+              child: _blob(280, Colors.white.withOpacity(0.10))),
+            Positioned(bottom: 40, left: -70,
+              child: _blob(200, Colors.white.withOpacity(0.08))),
+            // content
+            SafeArea(
+              child: Column(children: [
+                const Spacer(),
+                ScaleTransition(
+                  scale: _scale,
+                  child: Container(
+                    width: 92, height: 92,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(28),
+                      boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.18), blurRadius: 24, offset: const Offset(0, 8))],
+                    ),
+                    child: Center(
+                      child: Text('OB', style: display(32, weight: FontWeight.w900, color: OC.o500)),
+                    ),
                   ),
                 ),
-                const SizedBox(height: 8),
-                Text('LuvviX · Douala', style: body(12, weight: FontWeight.w600, color: Colors.white.withOpacity(0.75))),
-                const SizedBox(height: 40),
+                const SizedBox(height: 22),
+                OBWordmark(size: 38, light: true),
+                const SizedBox(height: 12),
+                Text(
+                  'Tes résultats. Ton tuteur. Ta réussite\n— dans une seule app.',
+                  textAlign: TextAlign.center,
+                  style: body(14.5, color: Colors.white.withOpacity(0.88)),
+                ),
+                const Spacer(),
+                Column(children: [
+                  SizedBox(
+                    width: 26, height: 26,
+                    child: CircularProgressIndicator(
+                      color: Colors.white,
+                      strokeWidth: 2.6,
+                      backgroundColor: Colors.white.withOpacity(0.28),
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text('LuvviX · Douala', style: body(12, weight: FontWeight.w600, color: Colors.white.withOpacity(0.75))),
+                  const SizedBox(height: 40),
+                ]),
               ]),
-            ]),
-          ),
-        ]),
+            ),
+          ]),
+        ),
       ),
     );
   }
