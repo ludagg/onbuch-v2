@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
+import '../../services/firestore_service.dart';
 
 class ProfileSetupScreen extends StatefulWidget {
   const ProfileSetupScreen({super.key});
@@ -13,9 +15,43 @@ class ProfileSetupScreen extends StatefulWidget {
 class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
   int _level = 3; // Terminale
   int _exam = 0;  // Baccalauréat
+  bool _saving = false;
+
+  final _firestoreService = FirestoreService();
 
   static const _levels = ['3ème', '2nde', '1ère', 'Terminale', 'Sup. / Fac'];
   static const _exams  = ['Baccalauréat', 'Probatoire', 'GCE A Level', 'BTS', 'Concours (ENS…)'];
+
+  Future<void> _saveAndContinue() async {
+    final uid = FirebaseAuth.instance.currentUser?.uid;
+    if (uid == null) {
+      context.go('/welcome');
+      return;
+    }
+
+    setState(() => _saving = true);
+    try {
+      await _firestoreService.createUserProfile(
+        uid,
+        classe: _levels[_level],
+        examen: _exams[_exam],
+      );
+      if (mounted) context.go('/welcome');
+    } catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Erreur lors de la sauvegarde : $e'),
+          backgroundColor: OC.bad,
+          behavior: SnackBarBehavior.floating,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          margin: const EdgeInsets.all(12),
+        ),
+      );
+    } finally {
+      if (mounted) setState(() => _saving = false);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +135,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
             ),
             child: Column(children: [
               GestureDetector(
-                onTap: () => context.go('/welcome'),
+                onTap: _saving ? null : _saveAndContinue,
                 child: Container(
                   width: double.infinity, height: 50,
                   decoration: BoxDecoration(
@@ -107,11 +143,16 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
                     borderRadius: BorderRadius.circular(14),
                     boxShadow: [BoxShadow(color: OC.o500.withOpacity(0.30), blurRadius: 14, offset: const Offset(0, 6))],
                   ),
-                  child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                    Text('Entrer dans OnBuch', style: body(14, weight: FontWeight.w700, color: Colors.white)),
-                    const SizedBox(width: 8),
-                    const Icon(Icons.arrow_forward_rounded, color: Colors.white, size: 17),
-                  ]),
+                  child: _saving
+                      ? const Center(child: SizedBox(
+                          width: 22, height: 22,
+                          child: CircularProgressIndicator(strokeWidth: 2.5, color: Colors.white),
+                        ))
+                      : Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                          Text('Entrer dans OnBuch', style: body(14, weight: FontWeight.w700, color: Colors.white)),
+                          const SizedBox(width: 8),
+                          const Icon(Icons.arrow_forward_rounded, color: Colors.white, size: 17),
+                        ]),
                 ),
               ),
               const SizedBox(height: 10),

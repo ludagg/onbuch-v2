@@ -3,7 +3,6 @@ import 'package:go_router/go_router.dart';
 import '../screens/onboarding/splash_screen.dart';
 import '../screens/onboarding/value_screens.dart';
 import '../screens/onboarding/auth_phone_screen.dart';
-import '../screens/onboarding/auth_otp_screen.dart';
 import '../screens/onboarding/profile_setup_screen.dart';
 import '../screens/onboarding/welcome_screen.dart';
 import '../screens/main_shell.dart';
@@ -30,7 +29,6 @@ final appRouter = GoRouter(
     GoRoute(path: '/onboarding/2', builder: (_, __) => const Value2Screen()),
     GoRoute(path: '/onboarding/3', builder: (_, __) => const Value3Screen()),
     GoRoute(path: '/auth/phone', builder: (_, __) => const AuthPhoneScreen()),
-    GoRoute(path: '/auth/otp', builder: (_, __) => const AuthOtpScreen()),
     GoRoute(path: '/auth/profile', builder: (_, __) => const ProfileSetupScreen()),
     GoRoute(path: '/welcome', builder: (_, __) => const WelcomeScreen()),
     ShellRoute(
