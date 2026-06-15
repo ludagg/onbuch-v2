@@ -1,5 +1,5 @@
-const appwriteEndpoint = 'https://cloud.appwrite.io/v1';
-const appwriteProjectId = 'YOUR_PROJECT_ID';
+const appwriteEndpoint = 'https://nyc.cloud.appwrite.io/v1';
+const appwriteProjectId = '6a30463b00001375e229';
 const appwriteDatabaseId = 'main';
 const appwriteUsersCollectionId = 'users';
 const appwriteResultsCollectionId = 'results';

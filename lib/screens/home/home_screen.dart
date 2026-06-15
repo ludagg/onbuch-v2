@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
+import '../../services/appwrite_client.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -135,6 +136,53 @@ class HomeScreen extends StatelessWidget {
                 child: _CommunitySection(),
               ),
               const SizedBox(height: 24),
+
+              // Appwrite ping
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
+                child: GestureDetector(
+                  onTap: () async {
+                    try {
+                      await client.ping();
+                      if (context.mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Appwrite connecté ✓', style: body(13, weight: FontWeight.w600, color: Colors.white)),
+                            backgroundColor: OC.good,
+                            behavior: SnackBarBehavior.floating,
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                          ),
+                        );
+                      }
+                    } catch (e) {
+                      if (context.mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Erreur: $e', style: body(13, weight: FontWeight.w600, color: Colors.white)),
+                            backgroundColor: OC.bad,
+                            behavior: SnackBarBehavior.floating,
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                          ),
+                        );
+                      }
+                    }
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: OC.paper,
+                      borderRadius: BorderRadius.circular(14),
+                      border: Border.all(color: OC.line2, width: 1.5),
+                    ),
+                    child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                      const Icon(Icons.wifi_tethering_rounded, size: 18, color: OC.o500),
+                      const SizedBox(width: 8),
+                      Text('Send a ping', style: body(14, weight: FontWeight.w700, color: OC.ink)),
+                    ]),
+                  ),
+                ),
+              ),
             ]),
           ),
         ],

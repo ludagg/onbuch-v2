@@ -1,14 +1,12 @@
 import 'package:appwrite/appwrite.dart';
-import '../appwrite_config.dart';
+
+final Client client = Client()
+    .setProject('6a30463b00001375e229')
+    .setEndpoint('https://nyc.cloud.appwrite.io/v1');
 
 class AppwriteClient {
-  static final Client _client = Client()
-      .setEndpoint(appwriteEndpoint)
-      .setProject(appwriteProjectId)
-      .setSelfSigned(status: true);
-
-  static Client get instance => _client;
-  static Account get account => Account(_client);
-  static Databases get databases => Databases(_client);
-  static Messaging get messaging => Messaging(_client);
+  static Client get instance => client;
+  static Account get account => Account(client);
+  static Databases get databases => Databases(client);
+  static Messaging get messaging => Messaging(client);
 }
