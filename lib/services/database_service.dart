@@ -11,6 +11,26 @@ import '../models/affiche.dart';
 import 'appwrite_client.dart';
 
 class DatabaseService {
+  // ── Cache mémoire (contenu global, partagé pour la session) ───────────────
+  static final Map<String, _CacheEntry> _cache = {};
+  static const _cacheTtl = Duration(minutes: 5);
+
+  /// Renvoie le contenu depuis le cache (si frais) ou via [fetch]. Ne met pas
+  /// en cache un résultat vide (souvent un échec réseau).
+  Future<List<T>> _cachedList<T>(String key, Future<List<T>> Function() fetch,
+      {bool force = false}) async {
+    final e = _cache[key];
+    if (!force && e != null && DateTime.now().difference(e.at) < _cacheTtl) {
+      return (e.data as List).cast<T>();
+    }
+    final data = await fetch();
+    if (data.isNotEmpty) _cache[key] = _CacheEntry(data, DateTime.now());
+    return data;
+  }
+
+  /// Vide le cache (ex. rafraîchissement manuel).
+  static void clearCache() => _cache.clear();
+
   // ── Profil utilisateur ───────────────────────────────────────────────────
 
   /// Découpe un nom complet en `firstName` / `lastName` pour la collection
@@ -121,26 +141,28 @@ class DatabaseService {
   ///
   /// Renvoie une liste vide en cas d'erreur (collection absente, réseau…) afin
   /// que l'écran d'accueil puisse afficher un contenu de repli sans planter.
-  Future<List<Article>> getArticles({int limit = 6}) async {
-    try {
-      final res = await AppwriteClient.databases.listDocuments(
-        databaseId: appwriteDatabaseId,
-        collectionId: appwriteArticlesCollectionId,
-        queries: [
-          Query.orderDesc('\$createdAt'),
-          Query.limit(limit),
-        ],
-      );
-      return res.documents
-          .map((d) => Article.fromMap(
-                d.data,
-                id: d.$id,
-                createdAtFallback: d.$createdAt,
-              ))
-          .toList();
-    } on AppwriteException {
-      return const [];
-    }
+  Future<List<Article>> getArticles({int limit = 6}) {
+    return _cachedList('articles:$limit', () async {
+      try {
+        final res = await AppwriteClient.databases.listDocuments(
+          databaseId: appwriteDatabaseId,
+          collectionId: appwriteArticlesCollectionId,
+          queries: [
+            Query.orderDesc('\$createdAt'),
+            Query.limit(limit),
+          ],
+        );
+        return res.documents
+            .map((d) => Article.fromMap(
+                  d.data,
+                  id: d.$id,
+                  createdAtFallback: d.$createdAt,
+                ))
+            .toList();
+      } on AppwriteException {
+        return const <Article>[];
+      }
+    });
   }
 
   /// Retourne un article par son ID, ou null s'il est introuvable.
@@ -161,93 +183,103 @@ class DatabaseService {
 
   /// Retourne les examens configurés, triés par `order` croissant.
   /// Liste vide en cas d'erreur (l'accueil affiche alors un repli).
-  Future<List<Exam>> getExams({int limit = 20}) async {
-    try {
-      final res = await AppwriteClient.databases.listDocuments(
-        databaseId: appwriteDatabaseId,
-        collectionId: appwriteExamsCollectionId,
-        queries: [
-          Query.orderAsc('order'),
-          Query.limit(limit),
-        ],
-      );
-      return res.documents
-          .map((d) => Exam.fromMap(d.data, id: d.$id, createdAtFallback: d.$createdAt))
-          .toList();
-    } on AppwriteException {
-      return const [];
-    }
+  Future<List<Exam>> getExams({int limit = 20}) {
+    return _cachedList('exams:$limit', () async {
+      try {
+        final res = await AppwriteClient.databases.listDocuments(
+          databaseId: appwriteDatabaseId,
+          collectionId: appwriteExamsCollectionId,
+          queries: [
+            Query.orderAsc('order'),
+            Query.limit(limit),
+          ],
+        );
+        return res.documents
+            .map((d) => Exam.fromMap(d.data, id: d.$id, createdAtFallback: d.$createdAt))
+            .toList();
+      } on AppwriteException {
+        return const <Exam>[];
+      }
+    });
   }
 
   // ── Calendrier scolaire ───────────────────────────────────────────────────
 
   /// Retourne les événements du calendrier scolaire, du plus ancien au plus
   /// récent. Liste vide en cas d'erreur.
-  Future<List<CalendarEvent>> getCalendarEvents({int limit = 100}) async {
-    try {
-      final res = await AppwriteClient.databases.listDocuments(
-        databaseId: appwriteDatabaseId,
-        collectionId: appwriteSchoolCalendarCollectionId,
-        queries: [
-          Query.orderAsc('startDate'),
-          Query.limit(limit),
-        ],
-      );
-      return res.documents
-          .map((d) => CalendarEvent.fromMap(d.data, id: d.$id))
-          .toList();
-    } on AppwriteException {
-      return const [];
-    }
+  Future<List<CalendarEvent>> getCalendarEvents({int limit = 100}) {
+    return _cachedList('calendar:$limit', () async {
+      try {
+        final res = await AppwriteClient.databases.listDocuments(
+          databaseId: appwriteDatabaseId,
+          collectionId: appwriteSchoolCalendarCollectionId,
+          queries: [
+            Query.orderAsc('startDate'),
+            Query.limit(limit),
+          ],
+        );
+        return res.documents
+            .map((d) => CalendarEvent.fromMap(d.data, id: d.$id))
+            .toList();
+      } on AppwriteException {
+        return const <CalendarEvent>[];
+      }
+    });
   }
 
   // ── Concours ──────────────────────────────────────────────────────────────
 
   /// Retourne les concours (triés par `order`). Liste vide en cas d'erreur.
-  Future<List<Concours>> getConcours({int limit = 50}) async {
-    try {
-      final res = await AppwriteClient.databases.listDocuments(
-        databaseId: appwriteDatabaseId,
-        collectionId: appwriteConcoursCollectionId,
-        queries: [
-          Query.orderAsc('order'),
-          Query.limit(limit),
-        ],
-      );
-      return res.documents.map((d) => Concours.fromMap(d.data, id: d.$id)).toList();
-    } on AppwriteException {
-      return const [];
-    }
+  Future<List<Concours>> getConcours({int limit = 50}) {
+    return _cachedList('concours:$limit', () async {
+      try {
+        final res = await AppwriteClient.databases.listDocuments(
+          databaseId: appwriteDatabaseId,
+          collectionId: appwriteConcoursCollectionId,
+          queries: [
+            Query.orderAsc('order'),
+            Query.limit(limit),
+          ],
+        );
+        return res.documents.map((d) => Concours.fromMap(d.data, id: d.$id)).toList();
+      } on AppwriteException {
+        return const <Concours>[];
+      }
+    });
   }
 
   // ── Cours (matières & chapitres) ──────────────────────────────────────────
 
   /// Matières, triées par `order`.
-  Future<List<Subject>> getSubjects({int limit = 50}) async {
-    try {
-      final res = await AppwriteClient.databases.listDocuments(
-        databaseId: appwriteDatabaseId,
-        collectionId: appwriteSubjectsCollectionId,
-        queries: [Query.orderAsc('order'), Query.limit(limit)],
-      );
-      return res.documents.map((d) => Subject.fromMap(d.data, id: d.$id)).toList();
-    } on AppwriteException {
-      return const [];
-    }
+  Future<List<Subject>> getSubjects({int limit = 50}) {
+    return _cachedList('subjects:$limit', () async {
+      try {
+        final res = await AppwriteClient.databases.listDocuments(
+          databaseId: appwriteDatabaseId,
+          collectionId: appwriteSubjectsCollectionId,
+          queries: [Query.orderAsc('order'), Query.limit(limit)],
+        );
+        return res.documents.map((d) => Subject.fromMap(d.data, id: d.$id)).toList();
+      } on AppwriteException {
+        return const <Subject>[];
+      }
+    });
   }
 
   /// Tous les chapitres (filtrés côté app par matière), triés par `order`.
-  Future<List<Chapter>> getChapters({int limit = 500}) async {
-    try {
-      final res = await AppwriteClient.databases.listDocuments(
-        databaseId: appwriteDatabaseId,
-        collectionId: appwriteChaptersCollectionId,
-        queries: [Query.orderAsc('order'), Query.limit(limit)],
-      );
-      return res.documents.map((d) => Chapter.fromMap(d.data, id: d.$id)).toList();
-    } on AppwriteException {
-      return const [];
-    }
+  Future<List<Chapter>> getChapters({int limit = 500}) {
+    return _cachedList('chapters:$limit', () async {
+      try {
+        final res = await AppwriteClient.databases.listDocuments(
+          databaseId: appwriteDatabaseId,
+          collectionId: appwriteChaptersCollectionId,
+          queries: [Query.orderAsc('order'), Query.limit(limit)],
+        );
+        return res.documents.map((d) => Chapter.fromMap(d.data, id: d.$id)).toList();
+      } on AppwriteException {
+        return const <Chapter>[];
+      }
+    });
   }
 
   /// Fiche de cours mise en cache pour un chapitre, ou null si non générée.
@@ -322,17 +354,19 @@ class DatabaseService {
   // ── À l'affiche (événements & partenaires) ────────────────────────────────
 
   /// Éléments « À l'affiche », triés par `order`. Liste vide en cas d'erreur.
-  Future<List<AfficheItem>> getAffiche({int limit = 30}) async {
-    try {
-      final res = await AppwriteClient.databases.listDocuments(
-        databaseId: appwriteDatabaseId,
-        collectionId: appwriteAfficheCollectionId,
-        queries: [Query.orderAsc('order'), Query.limit(limit)],
-      );
-      return res.documents.map((d) => AfficheItem.fromMap(d.data, id: d.$id)).toList();
-    } on AppwriteException {
-      return const [];
-    }
+  Future<List<AfficheItem>> getAffiche({int limit = 30}) {
+    return _cachedList('affiche:$limit', () async {
+      try {
+        final res = await AppwriteClient.databases.listDocuments(
+          databaseId: appwriteDatabaseId,
+          collectionId: appwriteAfficheCollectionId,
+          queries: [Query.orderAsc('order'), Query.limit(limit)],
+        );
+        return res.documents.map((d) => AfficheItem.fromMap(d.data, id: d.$id)).toList();
+      } on AppwriteException {
+        return const <AfficheItem>[];
+      }
+    });
   }
 
   // ── Analytics ────────────────────────────────────────────────────────────
@@ -358,4 +392,10 @@ class DatabaseService {
       // Silencieux — les analytics ne doivent jamais bloquer l'UX
     }
   }
+}
+
+class _CacheEntry {
+  final dynamic data;
+  final DateTime at;
+  _CacheEntry(this.data, this.at);
 }
