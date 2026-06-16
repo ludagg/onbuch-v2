@@ -23,6 +23,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
   final _serieCtrl = TextEditingController();
   final _ecoleCtrl = TextEditingController();
   final _villeCtrl = TextEditingController();
+  final _phoneCtrl = TextEditingController();
   String? _gender;
 
   static const _levels = ['3ème', '2nde', '1ère', 'Terminale', 'Sup. / Fac'];
@@ -34,6 +35,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
     _serieCtrl.dispose();
     _ecoleCtrl.dispose();
     _villeCtrl.dispose();
+    _phoneCtrl.dispose();
     super.dispose();
   }
 
@@ -52,6 +54,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
       final serie = _serieCtrl.text.trim();
       final ecole = _ecoleCtrl.text.trim();
       final ville = _villeCtrl.text.trim();
+      final phone = _phoneCtrl.text.trim();
       await _databaseService.createUserProfile(
         user.$id,
         {
@@ -62,6 +65,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
           if (serie.isNotEmpty) 'serie': serie,
           if (ecole.isNotEmpty) 'school': ecole,
           if (ville.isNotEmpty) 'city': ville,
+          if (phone.isNotEmpty) 'phoneNumber': phone,
           if (_gender != null) 'gender': _gender,
         },
       );
@@ -82,13 +86,17 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
     }
   }
 
-  Widget _field(String label, TextEditingController c, String hint, IconData icon) {
+  Widget _field(String label, TextEditingController c, String hint, IconData icon,
+      {TextInputType keyboard = TextInputType.text}) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text(label, style: body(13, weight: FontWeight.w700, color: OC.ink2)),
       const SizedBox(height: 8),
       TextField(
         controller: c,
-        textCapitalization: TextCapitalization.words,
+        keyboardType: keyboard,
+        textCapitalization: keyboard == TextInputType.phone
+            ? TextCapitalization.none
+            : TextCapitalization.words,
         style: body(15, color: OC.ink),
         decoration: InputDecoration(
           hintText: hint,
@@ -175,6 +183,9 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
                 Text('Ça nous aide à améliorer OnBuch pour les élèves comme toi.',
                     style: body(12, color: OC.muted, weight: FontWeight.w500)),
                 const SizedBox(height: 12),
+                _field('Numéro WhatsApp', _phoneCtrl, '+237 6XX XX XX XX', Icons.chat_rounded,
+                    keyboard: TextInputType.phone),
+                const SizedBox(height: 14),
                 _field('Série', _serieCtrl, 'D — Sciences & Mathématiques', Icons.workspace_premium_outlined),
                 const SizedBox(height: 14),
                 _field('Établissement', _ecoleCtrl, 'Lycée de Bonabéri', Icons.account_balance_outlined),
