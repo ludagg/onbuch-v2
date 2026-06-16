@@ -21,6 +21,8 @@ import '../screens/tutor/tutor_camera_screen.dart';
 import '../screens/tutor/tutor_correction_screen.dart';
 import '../screens/tutor/tutor_similar_screen.dart';
 import '../screens/profile/profile_screen.dart';
+import '../screens/news/article_detail_screen.dart';
+import '../models/article.dart';
 import '../services/auth_service.dart';
 
 final _authService = AuthService();
@@ -46,6 +48,10 @@ final appRouter = GoRouter(
     GoRoute(path: '/auth/phone', builder: (_, __) => const AuthPhoneScreen()),
     GoRoute(path: '/auth/profile', builder: (_, __) => const ProfileSetupScreen()),
     GoRoute(path: '/welcome', builder: (_, __) => const WelcomeScreen()),
+    GoRoute(
+      path: '/article',
+      builder: (_, s) => ArticleDetailScreen(article: s.extra as Article?),
+    ),
     ShellRoute(
       builder: (_, state, child) => MainShell(location: state.uri.path, child: child),
       routes: [

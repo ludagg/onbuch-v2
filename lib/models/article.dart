@@ -4,6 +4,7 @@ class Article {
   final String category;
   final String title;
   final String source;
+  final String? excerpt;
   final String? imageUrl;
   final String? body;
   final bool featured;
@@ -15,10 +16,30 @@ class Article {
     required this.title,
     required this.source,
     required this.publishedAt,
+    this.excerpt,
     this.imageUrl,
     this.body,
     this.featured = false,
   });
+
+  /// Temps de lecture estimé (minutes), à partir du corps de l'article.
+  int get readTimeMinutes {
+    final text = (body ?? '').trim();
+    if (text.isEmpty) return 1;
+    final words = text.split(RegExp(r'\s+')).length;
+    return (words / 200).ceil().clamp(1, 99);
+  }
+
+  /// Paragraphes du corps (séparés par des lignes vides ou des retours ligne).
+  List<String> get paragraphs {
+    final text = (body ?? '').trim();
+    if (text.isEmpty) return const [];
+    return text
+        .split(RegExp(r'\n+'))
+        .map((p) => p.trim())
+        .where((p) => p.isNotEmpty)
+        .toList();
+  }
 
   /// Construit un [Article] depuis un document Appwrite.
   ///
@@ -35,6 +56,7 @@ class Article {
       category: (data['category'] ?? 'Actu').toString(),
       title: (data['title'] ?? '').toString(),
       source: (data['source'] ?? 'OnBuch').toString(),
+      excerpt: _nullableString(data['excerpt']),
       imageUrl: _nullableString(data['imageUrl']),
       body: _nullableString(data['body']),
       featured: data['featured'] == true,
