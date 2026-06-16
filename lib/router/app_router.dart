@@ -1,3 +1,4 @@
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../screens/onboarding/splash_screen.dart';
@@ -80,7 +81,10 @@ final appRouter = GoRouter(
           builder: (_, __) => const TutorHubScreen(),
           routes: [
             GoRoute(path: 'camera', builder: (_, __) => const TutorCameraScreen()),
-            GoRoute(path: 'correction', builder: (_, __) => const TutorCorrectionScreen()),
+            GoRoute(
+              path: 'correction',
+              builder: (_, s) => TutorCorrectionScreen(image: s.extra as Uint8List?),
+            ),
             GoRoute(path: 'similar', builder: (_, __) => const TutorSimilarScreen()),
           ],
         ),
