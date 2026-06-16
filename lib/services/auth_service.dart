@@ -1,10 +1,29 @@
 import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart' as models;
 import 'package:flutter/foundation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'appwrite_client.dart';
 import 'database_service.dart';
 
 class AuthService extends ChangeNotifier {
+  static const _loggedInKey = 'ob_logged_in';
+
+  Future<void> _setLoggedIn(bool v) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setBool(_loggedInKey, v);
+    } catch (_) {}
+  }
+
+  Future<bool> _cachedLoggedIn() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      return prefs.getBool(_loggedInKey) ?? false;
+    } catch (_) {
+      return false;
+    }
+  }
+
   // ── Utilisateur courant ──────────────────────────────────────────────────
 
   Future<models.User?> getCurrentUser() async {
@@ -15,8 +34,22 @@ class AuthService extends ChangeNotifier {
     }
   }
 
+  /// Connecté ? Tolérant au hors-ligne : un échec **réseau** ne déconnecte pas
+  /// l'utilisateur (on garde le dernier état connu) ; seul un vrai 401 le fait.
   Future<bool> isLoggedIn() async {
-    return await getCurrentUser() != null;
+    try {
+      await AppwriteClient.account.get();
+      await _setLoggedIn(true);
+      return true;
+    } on AppwriteException catch (e) {
+      if (e.code == 401) {
+        await _setLoggedIn(false);
+        return false;
+      }
+      return _cachedLoggedIn(); // erreur serveur/réseau → tolérance hors-ligne
+    } catch (_) {
+      return _cachedLoggedIn(); // pas de réseau → on garde l'état connu
+    }
   }
 
   Future<bool> hasProfile() async {
@@ -37,6 +70,7 @@ class AuthService extends ChangeNotifier {
         email: email.trim(),
         password: password,
       );
+      await _setLoggedIn(true);
       notifyListeners();
       return session.userId;
     } on AppwriteException catch (e) {
@@ -72,6 +106,7 @@ class AuthService extends ChangeNotifier {
         if (e.type != 'user_session_already_exists') rethrow;
       }
 
+      await _setLoggedIn(true);
       notifyListeners();
       return user.$id;
     } on AppwriteException catch (e) {
@@ -97,6 +132,7 @@ class AuthService extends ChangeNotifier {
     } on AppwriteException catch (e) {
       throw _mapError(e, action: _AuthAction.login);
     } finally {
+      await _setLoggedIn(false);
       notifyListeners();
     }
   }
