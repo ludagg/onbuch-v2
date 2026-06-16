@@ -18,18 +18,34 @@ class _ProfileScreenState extends State<ProfileScreen> {
   final _db = DatabaseService();
   final _tutor = TutorService();
 
-  String _name = 'Élève OnBuch';
-  String _initial = '🙂';
-  String _classeExamen = '—';
-  String _school = '';
-  String _city = '';
-  String _phone = '';
-  int _credits = 0;
-  int _corrections = 0;
+  // Cache mémoire partagé : conserve l'affichage entre deux visites de l'écran,
+  // pour ne pas « recharger » le nom et les infos à chaque navigation.
+  static String _name = 'Élève OnBuch';
+  static String _initial = '🙂';
+  static String _classeExamen = '—';
+  static String _school = '';
+  static String _city = '';
+  static String _phone = '';
+  static int _credits = 0;
+  static int _corrections = 0;
 
   @override
   void initState() {
     super.initState();
+    // Affichage instantané du nom connu (sans attendre le réseau). Si le nom
+    // en cache diffère de ce qui est affiché (1re charge ou changement de
+    // compte), on repart propre pour ne pas montrer les infos d'un autre élève.
+    final cached = AuthService.cachedFullName;
+    if (cached != null && cached.isNotEmpty && cached != _name) {
+      _name = cached;
+      _initial = cached.substring(0, 1).toUpperCase();
+      _classeExamen = '—';
+      _school = '';
+      _city = '';
+      _phone = '';
+      _credits = 0;
+      _corrections = 0;
+    }
     _load();
   }
 

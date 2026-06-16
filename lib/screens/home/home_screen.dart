@@ -170,25 +170,32 @@ class _Greeting extends StatefulWidget {
 }
 
 class _GreetingState extends State<_Greeting> {
-  late final Future<String?> _firstName = _loadFirstName();
+  // Valeur initiale lue **de façon synchrone** dans le cache : si le prénom est
+  // déjà connu (navigation, redémarrage à chaud), il s'affiche sans clignoter.
+  String? _first = AuthService.cachedFirstName;
 
-  Future<String?> _loadFirstName() async {
+  @override
+  void initState() {
+    super.initState();
+    if (_first == null) _load();
+  }
+
+  Future<void> _load() async {
     final user = await AuthService().getCurrentUser();
     final name = user?.name.trim() ?? '';
-    if (name.isEmpty) return null;
-    return DatabaseService.splitFullName(name)['firstName'] as String?;
+    final first = name.isEmpty
+        ? null
+        : DatabaseService.splitFullName(name)['firstName'] as String?;
+    if (mounted && first != null && first != _first) {
+      setState(() => _first = first);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<String?>(
-      future: _firstName,
-      builder: (context, snap) {
-        final first = snap.data;
-        final text = (first == null || first.isEmpty) ? 'Bonjour 👋' : 'Bonjour, $first 👋';
-        return Text(text, style: display(24, weight: FontWeight.w600));
-      },
-    );
+    final first = _first;
+    final text = (first == null || first.isEmpty) ? 'Bonjour 👋' : 'Bonjour, $first 👋';
+    return Text(text, style: display(24, weight: FontWeight.w600));
   }
 }
 

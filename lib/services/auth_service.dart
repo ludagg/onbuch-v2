@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:appwrite/appwrite.dart';
 import 'package:appwrite/models.dart' as models;
 import 'package:flutter/foundation.dart';
@@ -7,6 +8,54 @@ import 'database_service.dart';
 
 class AuthService extends ChangeNotifier {
   static const _loggedInKey = 'ob_logged_in';
+  static const _nameKey = 'ob_user_name';
+
+  // ── Cache utilisateur (mémoire) ────────────────────────────────────────────
+  // Conserve l'utilisateur courant et son prénom le temps de la session, pour
+  // un affichage **instantané** (le nom ne « recharge » plus à chaque retour
+  // sur l'accueil ou le profil).
+  static models.User? _userCache;
+
+  /// Prénom de l'utilisateur, lisible **de façon synchrone** pour afficher le
+  /// nom dès la première frame, sans clignotement « Bonjour 👋 ».
+  static String? cachedFirstName;
+  static String? cachedFullName;
+
+  /// Amorce le cache du nom depuis le stockage local (à appeler au démarrage).
+  /// Permet d'afficher le prénom dès l'ouverture, même hors-ligne.
+  static Future<void> primeNameCache() async {
+    if (cachedFullName != null) return;
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final name = prefs.getString(_nameKey);
+      if (name != null && name.trim().isNotEmpty) _setNameCache(name);
+    } catch (_) {}
+  }
+
+  static void _setNameCache(String fullName) {
+    final name = fullName.trim();
+    if (name.isEmpty) return;
+    cachedFullName = name;
+    cachedFirstName = DatabaseService.splitFullName(name)['firstName'] as String?;
+  }
+
+  Future<void> _persistName(String fullName) async {
+    _setNameCache(fullName);
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString(_nameKey, fullName.trim());
+    } catch (_) {}
+  }
+
+  Future<void> _clearNameCache() async {
+    _userCache = null;
+    cachedFirstName = null;
+    cachedFullName = null;
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.remove(_nameKey);
+    } catch (_) {}
+  }
 
   Future<void> _setLoggedIn(bool v) async {
     try {
@@ -27,10 +76,27 @@ class AuthService extends ChangeNotifier {
   // ── Utilisateur courant ──────────────────────────────────────────────────
 
   Future<models.User?> getCurrentUser() async {
+    // Sert immédiatement le dernier utilisateur connu et rafraîchit en
+    // arrière-plan : l'UI ne reconstruit pas (donc ne clignote pas) à chaque
+    // navigation, mais reste à jour.
+    if (_userCache != null) {
+      unawaited(_refreshUser()); // rafraîchit sans bloquer l'affichage
+      return _userCache;
+    }
+    return _refreshUser();
+  }
+
+  Future<models.User?> _refreshUser() async {
     try {
-      return await AppwriteClient.account.get();
+      final user = await AppwriteClient.account.get();
+      _userCache = user;
+      if (user.name.trim().isNotEmpty) {
+        await _persistName(user.name);
+      }
+      return user;
     } catch (_) {
-      return null;
+      // Hors-ligne / erreur réseau : on garde le dernier utilisateur connu.
+      return _userCache;
     }
   }
 
@@ -71,6 +137,8 @@ class AuthService extends ChangeNotifier {
         password: password,
       );
       await _setLoggedIn(true);
+      _userCache = null; // forcer un rafraîchissement du nom au prochain accès
+      await _refreshUser();
       notifyListeners();
       return session.userId;
     } on AppwriteException catch (e) {
@@ -107,6 +175,8 @@ class AuthService extends ChangeNotifier {
       }
 
       await _setLoggedIn(true);
+      _userCache = user;
+      if (name.trim().isNotEmpty) await _persistName(name);
       notifyListeners();
       return user.$id;
     } on AppwriteException catch (e) {
@@ -133,6 +203,8 @@ class AuthService extends ChangeNotifier {
       throw _mapError(e, action: _AuthAction.login);
     } finally {
       await _setLoggedIn(false);
+      await _clearNameCache();
+      DatabaseService.clearCache();
       notifyListeners();
     }
   }
