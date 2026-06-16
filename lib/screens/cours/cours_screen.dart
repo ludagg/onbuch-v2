@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
 import '../../models/course.dart';
+import '../../services/auth_service.dart';
 import '../../services/database_service.dart';
 
 class CoursScreen extends StatefulWidget {
@@ -15,7 +16,9 @@ class CoursScreen extends StatefulWidget {
 class _CoursScreenState extends State<CoursScreen> {
   final _db = DatabaseService();
   List<Subject> _subjects = [];
-  Map<String, int> _counts = {};
+  List<Chapter> _chapters = [];
+  Set<String> _viewed = {};
+  String? _classe;
   bool _loading = true;
 
   @override
@@ -27,11 +30,22 @@ class _CoursScreenState extends State<CoursScreen> {
   Future<void> _load() async {
     final subjects = await _db.getSubjects();
     final chapters = await _db.getChapters();
-    final counts = <String, int>{};
-    for (final c in chapters) {
-      counts[c.subjectId] = (counts[c.subjectId] ?? 0) + 1;
+    final viewed = await _db.getViewedChapterIds();
+    String? classe;
+    final user = await AuthService().getCurrentUser();
+    if (user != null) {
+      final p = await _db.getUserProfile(user.$id);
+      classe = p?['classe']?.toString();
     }
-    if (mounted) setState(() { _subjects = subjects; _counts = counts; _loading = false; });
+    if (mounted) {
+      setState(() {
+        _subjects = subjects;
+        _chapters = chapters;
+        _viewed = viewed;
+        _classe = classe;
+        _loading = false;
+      });
+    }
   }
 
   @override
@@ -55,7 +69,7 @@ class _CoursScreenState extends State<CoursScreen> {
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 Text('Cours', style: display(24, weight: FontWeight.w700)),
                 const SizedBox(height: 4),
-                Text('Le programme par matière, avec des fiches générées par l\'IA.',
+                Text('Le programme${_classe != null && _classe!.isNotEmpty ? ' · $_classe' : ''} — fiches générées par l\'IA.',
                     style: body(13.5, color: OC.ink2).copyWith(height: 1.4)),
                 const SizedBox(height: 18),
                 if (_loading)
@@ -64,10 +78,14 @@ class _CoursScreenState extends State<CoursScreen> {
                 else if (_subjects.isEmpty)
                   _hint('Les matières arrivent bientôt.')
                 else
-                  Wrap(
-                    spacing: 12, runSpacing: 12,
-                    children: _subjects.map((s) => _subjectCard(s, w)).toList(),
-                  ),
+                  Builder(builder: (_) {
+                    var visible = _subjects.where((s) => s.appliesTo(_classe)).toList();
+                    if (visible.isEmpty) visible = _subjects;
+                    return Wrap(
+                      spacing: 12, runSpacing: 12,
+                      children: visible.map((s) => _subjectCard(s, w)).toList(),
+                    );
+                  }),
               ]),
             ),
           ),
@@ -77,7 +95,10 @@ class _CoursScreenState extends State<CoursScreen> {
   }
 
   Widget _subjectCard(Subject s, double w) {
-    final n = _counts[s.id] ?? 0;
+    final chs = _chapters.where((c) => c.subjectId == s.id).toList();
+    final total = chs.length;
+    final done = chs.where((c) => _viewed.contains(c.id)).length;
+    final pct = total == 0 ? 0.0 : done / total;
     return GestureDetector(
       onTap: () => context.push('/cours-subject', extra: s),
       child: Container(
@@ -98,8 +119,19 @@ class _CoursScreenState extends State<CoursScreen> {
           const SizedBox(height: 12),
           Text(s.name, maxLines: 2, overflow: TextOverflow.ellipsis,
               style: body(14.5, weight: FontWeight.w700).copyWith(height: 1.15)),
-          const SizedBox(height: 3),
-          Text('$n chapitre${n > 1 ? 's' : ''}', style: body(12, color: OC.muted, weight: FontWeight.w600)),
+          const SizedBox(height: 6),
+          Text('$done/$total chapitre${total > 1 ? 's' : ''}', style: body(12, color: OC.muted, weight: FontWeight.w600)),
+          if (total > 0) ...[
+            const SizedBox(height: 7),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(4),
+              child: LinearProgressIndicator(
+                value: pct, minHeight: 5,
+                backgroundColor: OC.line,
+                valueColor: AlwaysStoppedAnimation(s.color),
+              ),
+            ),
+          ],
         ]),
       ),
     );

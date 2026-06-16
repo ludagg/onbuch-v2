@@ -10,5 +10,7 @@ const appwriteSchoolCalendarCollectionId = 'school_calendar';
 const appwriteConcoursCollectionId = 'concours';
 const appwriteSubjectsCollectionId = 'subjects';
 const appwriteChaptersCollectionId = 'chapters';
+const appwriteLessonsCollectionId = 'lessons';
+const appwriteChapterProgressCollectionId = 'chapter_progress';
 const appwriteTutorJobsCollectionId = 'tutor_jobs';
 const appwriteTutorQuotaCollectionId = 'tutor_quota';
