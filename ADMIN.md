@@ -87,6 +87,13 @@ La page Cours liste les matières → chapitres. Chaque chapitre propose
 « Suivre ce cours avec le Tuteur IA » : la fiche de cours est **générée par l'IA**
 (mode `lesson`) — l'admin n'a donc à saisir que l'ossature du programme.
 
+## Gérer « À l'affiche » (événements & partenaires)
+
+Console → collection **`affiche`** : `type` (`event`/`sponsored`/`info`), `title`,
+`subtitle`, `imageUrl`, `date`, `location`, `description`, et les infos partenaire
+`partnerName`, `partnerLogo`, `partnerDescription`, `link`, plus `order`.
+Affiché sur l'accueil (carrousel) + page « À l'affiche » + page détail avec le partenaire.
+
 ## À venir (même principe)
 
 Quand on ajoutera d'autres contenus pilotés serveur (examens & dates, événements/partenaires, annales PDF…), ils suivront le même modèle : collection avec `read("any")` + écriture réservée à `team:admins` / `team:editors`, gérés depuis la console.

@@ -24,6 +24,9 @@ import '../screens/tutor/tutor_similar_screen.dart';
 import '../screens/profile/profile_screen.dart';
 import '../screens/news/article_detail_screen.dart';
 import '../screens/news/news_screen.dart';
+import '../screens/affiche/affiche_screen.dart';
+import '../screens/affiche/affiche_detail_screen.dart';
+import '../models/affiche.dart';
 import '../screens/menu/concours_screen.dart';
 import '../screens/menu/credits_screen.dart';
 import '../screens/menu/communaute_screen.dart';
@@ -66,6 +69,8 @@ final appRouter = GoRouter(
       builder: (_, s) => ArticleDetailScreen(article: s.extra as Article?),
     ),
     GoRoute(path: '/actualites', builder: (_, __) => const NewsScreen()),
+    GoRoute(path: '/affiche', builder: (_, __) => const AfficheScreen()),
+    GoRoute(path: '/affiche-detail', builder: (_, s) => AfficheDetailScreen(item: s.extra as AfficheItem?)),
     GoRoute(path: '/concours', builder: (_, __) => const ConcoursScreen()),
     GoRoute(path: '/credits', builder: (_, __) => const CreditsScreen()),
     GoRoute(path: '/communaute', builder: (_, __) => const CommunauteScreen()),
