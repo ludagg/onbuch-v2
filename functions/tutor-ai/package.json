@@ -1,0 +1,7 @@
+{
+  "name": "tutor-ai",
+  "version": "1.0.0",
+  "description": "Proxy serveur OnBuch -> API vision NVIDIA (Tuteur IA)",
+  "type": "module",
+  "main": "src/main.js"
+}

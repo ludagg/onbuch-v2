@@ -1,99 +1,59 @@
 import 'dart:convert';
 import 'dart:typed_data';
 import 'package:flutter/foundation.dart';
-import 'package:http/http.dart' as http;
+import 'package:appwrite/appwrite.dart';
 import 'package:image/image.dart' as img;
 import '../ai_config.dart';
+import 'appwrite_client.dart';
 
-/// Service du Tuteur IA : envoie la photo d'un exercice au modèle vision NVIDIA
-/// et renvoie une correction pédagogique.
+/// Service du Tuteur IA. La photo d'un exercice est compressée puis envoyée à
+/// la fonction Appwrite `tutor-ai`, qui appelle le modèle vision NVIDIA côté
+/// serveur (la clé NVIDIA n'est jamais sur le téléphone).
 class TutorService {
   /// Analyse l'image d'un exercice et renvoie la correction (texte formaté).
   /// Lève une [String] lisible en cas d'erreur (affichable telle quelle).
   Future<String> analyzeExercise(Uint8List imageBytes, {String? question}) async {
-    if (!AIConfig.isConfigured) {
-      throw 'Tuteur IA non configuré. Compile l\'app avec '
-          '--dart-define=NVIDIA_API_KEY=nvapi-…';
-    }
-
-    // Compression hors du thread UI pour éviter les saccades.
+    // Compression hors du thread UI (et sous la limite NVIDIA) avant l'envoi.
     final b64 = await compute(_compressToBase64, imageBytes);
 
-    final userText = (question == null || question.trim().isEmpty)
-        ? 'Voici la photo d\'un exercice. Corrige-le en détaillant chaque étape.'
-        : question.trim();
-
-    final payload = {
-      'model': AIConfig.model,
-      'messages': [
-        {'role': 'system', 'content': _systemPrompt},
-        {
-          'role': 'user',
-          'content': [
-            {'type': 'text', 'text': userText},
-            {
-              'type': 'image_url',
-              'image_url': {'url': 'data:image/jpeg;base64,$b64'},
-            },
-          ],
-        },
-      ],
-      'temperature': 0.2,
-      'top_p': 0.7,
-      'max_tokens': 1024,
-      'stream': false,
+    final payload = <String, dynamic>{
+      'image': b64,
+      if (question != null && question.trim().isNotEmpty) 'question': question.trim(),
     };
 
-    http.Response resp;
-    try {
-      resp = await http
-          .post(
-            Uri.parse(AIConfig.endpoint),
-            headers: {
-              'Authorization': 'Bearer ${AIConfig.apiKey}',
-              'Content-Type': 'application/json',
-              'Accept': 'application/json',
-            },
-            body: jsonEncode(payload),
-          )
-          .timeout(const Duration(seconds: 60));
-    } catch (_) {
-      throw 'Connexion impossible. Vérifie ta connexion internet et réessaie.';
-    }
-
-    if (resp.statusCode == 200) {
-      final data = jsonDecode(utf8.decode(resp.bodyBytes));
-      final content = data['choices']?[0]?['message']?['content'];
-      if (content is String && content.trim().isNotEmpty) {
-        return content.trim();
+    final exec = await () async {
+      try {
+        return await AppwriteClient.functions.createExecution(
+          functionId: AIConfig.tutorFunctionId,
+          body: jsonEncode(payload),
+        );
+      } on AppwriteException catch (e) {
+        if (e.code == 401) {
+          throw 'Connecte-toi pour utiliser le Tuteur IA.';
+        }
+        throw 'Connexion au Tuteur impossible. Vérifie ta connexion et réessaie.';
       }
-      throw 'Le Tuteur n\'a pas pu lire l\'exercice. Réessaie avec une photo plus nette.';
+    }();
+
+    final raw = exec.responseBody;
+    if (raw.isEmpty) {
+      throw 'Le Tuteur n\'a pas répondu. Réessaie dans un instant.';
     }
 
-    switch (resp.statusCode) {
-      case 401:
-      case 403:
-        throw 'Clé API NVIDIA invalide ou non autorisée.';
-      case 402:
-        throw 'Crédits NVIDIA épuisés. Réessaie plus tard.';
-      case 413:
-        throw 'Image trop volumineuse. Reprends une photo plus petite.';
-      case 429:
-        throw 'Trop de requêtes. Patiente quelques secondes et réessaie.';
-      default:
-        throw 'Erreur du Tuteur (${resp.statusCode}). Réessaie.';
+    Map<String, dynamic> data;
+    try {
+      data = jsonDecode(raw) as Map<String, dynamic>;
+    } catch (_) {
+      throw 'Réponse inattendue du Tuteur. Réessaie.';
     }
+
+    final correction = data['correction'];
+    if (correction is String && correction.trim().isNotEmpty) {
+      return correction.trim();
+    }
+    final err = data['error'];
+    throw (err is String && err.isNotEmpty) ? err : 'Le Tuteur a rencontré un problème.';
   }
-
-  static const _systemPrompt = '''
-Tu es le Tuteur IA d'OnBuch, une application éducative pour les élèves camerounais (système francophone : BEPC, Probatoire, Baccalauréat).
-À partir de la photo d'un exercice, tu dois :
-1. Restituer brièvement l'énoncé tel que tu le lis.
-2. Donner une correction pédagogique claire, étape par étape, numérotée.
-3. Expliquer le raisonnement simplement et en français.
-4. Terminer par la réponse finale mise en évidence, préfixée par "Réponse :".
-Reste rigoureux, bienveillant et concis. Si l'image est illisible ou n'est pas un exercice scolaire, dis-le poliment et demande une meilleure photo.
-''';
 }
 
 /// Décode, redimensionne et recompresse l'image en JPEG jusqu'à passer sous la
@@ -101,7 +61,6 @@ Reste rigoureux, bienveillant et concis. Si l'image est illisible ou n'est pas u
 String _compressToBase64(Uint8List bytes) {
   img.Image? im = img.decodeImage(bytes);
   if (im == null) {
-    // Format non décodable : on tente l'envoi brut (peut dépasser la limite).
     return base64Encode(bytes);
   }
 
