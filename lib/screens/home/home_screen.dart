@@ -947,25 +947,46 @@ class _CommunitySection extends StatelessWidget {
       SecHead(eyebrow: 'Reste connectée', title: 'La communauté', action: null),
       const SizedBox(height: 14),
       Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: socials.map((s) => Expanded(child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 5),
-          child: Column(children: [
-            Container(
-              height: 56,
-              decoration: BoxDecoration(
-                color: OC.paper,
-                borderRadius: BorderRadius.circular(17),
-                border: Border.all(color: OC.line, width: 1.5),
-              ),
-              child: Icon(s[0] as IconData, color: s[3] as Color, size: 25),
+        children: List.generate(socials.length, (i) {
+          final s = socials[i];
+          final color = s[3] as Color;
+          return Expanded(
+            child: Padding(
+              padding: EdgeInsets.only(left: i > 0 ? 11 : 0),
+              child: Column(children: [
+                AspectRatio(
+                  aspectRatio: 1,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: OC.paper,
+                      borderRadius: BorderRadius.circular(18),
+                      border: Border.all(color: OC.line, width: 1.5),
+                      boxShadow: [
+                        BoxShadow(color: OC.ink.withValues(alpha: 0.04), blurRadius: 10, offset: const Offset(0, 4)),
+                      ],
+                    ),
+                    child: Center(
+                      child: Container(
+                        width: 44, height: 44,
+                        decoration: BoxDecoration(
+                          color: color.withValues(alpha: 0.12),
+                          borderRadius: BorderRadius.circular(13),
+                        ),
+                        child: Icon(s[0] as IconData, color: color, size: 24),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 9),
+                Text(s[1] as String,
+                    style: body(11.5, weight: FontWeight.w700, color: OC.ink),
+                    textAlign: TextAlign.center, maxLines: 1, overflow: TextOverflow.ellipsis),
+                const SizedBox(height: 2),
+                Text(s[2] as String, style: body(10, weight: FontWeight.w600, color: OC.muted)),
+              ]),
             ),
-            const SizedBox(height: 8),
-            Text(s[1] as String, style: body(11.5, weight: FontWeight.w700, color: OC.ink), textAlign: TextAlign.center),
-            const SizedBox(height: 3),
-            Text(s[2] as String, style: body(10, weight: FontWeight.w600, color: OC.muted)),
-          ]),
-        ))).toList(),
+          );
+        }),
       ),
     ]);
   }
