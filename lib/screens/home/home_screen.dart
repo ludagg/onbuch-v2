@@ -753,7 +753,11 @@ class _NewsSectionState extends State<_NewsSection> {
   @override
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      SecHead(eyebrow: 'Le fil OnBuch', title: 'Actualités'),
+      GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: () => context.push('/actualites'),
+        child: SecHead(eyebrow: 'Le fil OnBuch', title: 'Actualités'),
+      ),
       const SizedBox(height: 14),
       FutureBuilder<List<Article>>(
         future: _future,
