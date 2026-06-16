@@ -75,6 +75,18 @@ Console → Databases → onbuchprimary → collection **`concours`**.
 La page Concours affiche les cartes triées par `order`, avec un compte à rebours (J-…)
 et, dès que `resultsAvailable = true`, un encart **« Résultats disponibles »** + bouton vers `resultsLink`.
 
+## Gérer les cours (matières & chapitres)
+
+**Matières** → collection **`subjects`** : `name`, `code` (initiales, ex. `Ma`),
+`color` (hex `#2D6CDF`), `levels` (ex. `Terminale`), `order`.
+
+**Chapitres** → collection **`chapters`** : `subjectId` (= `$id` de la matière),
+`title`, `description` (optionnel), `videoUrl` / `pdfUrl` (ressources, optionnel), `order`.
+
+La page Cours liste les matières → chapitres. Chaque chapitre propose
+« Suivre ce cours avec le Tuteur IA » : la fiche de cours est **générée par l'IA**
+(mode `lesson`) — l'admin n'a donc à saisir que l'ossature du programme.
+
 ## À venir (même principe)
 
 Quand on ajoutera d'autres contenus pilotés serveur (examens & dates, événements/partenaires, annales PDF…), ils suivront le même modèle : collection avec `read("any")` + écriture réservée à `team:admins` / `team:editors`, gérés depuis la console.

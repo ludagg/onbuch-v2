@@ -28,10 +28,12 @@ import '../screens/menu/credits_screen.dart';
 import '../screens/menu/communaute_screen.dart';
 import '../screens/menu/parametres_screen.dart';
 import '../screens/menu/aide_screen.dart';
+import '../screens/cours/cours_screen.dart';
+import '../screens/cours/chapters_screen.dart';
+import '../screens/cours/chapter_detail_screen.dart';
 import '../models/article.dart';
 import '../models/tutor_request.dart';
-import '../theme/app_theme.dart';
-import '../widgets/ob_widgets.dart';
+import '../models/course.dart';
 import '../services/auth_service.dart';
 
 final _authService = AuthService();
@@ -66,6 +68,20 @@ final appRouter = GoRouter(
     GoRoute(path: '/communaute', builder: (_, __) => const CommunauteScreen()),
     GoRoute(path: '/parametres', builder: (_, __) => const ParametresScreen()),
     GoRoute(path: '/aide', builder: (_, __) => const AideScreen()),
+    GoRoute(
+      path: '/cours-subject',
+      builder: (_, s) => ChaptersScreen(subject: s.extra as Subject?),
+    ),
+    GoRoute(
+      path: '/cours-chapter',
+      builder: (_, s) {
+        final m = s.extra is Map ? s.extra as Map : const {};
+        return ChapterDetailScreen(
+          chapter: m['chapter'] as Chapter?,
+          subjectName: m['subject'] as String?,
+        );
+      },
+    ),
     ShellRoute(
       builder: (_, state, child) => MainShell(location: state.uri.path, child: child),
       routes: [
@@ -107,47 +123,9 @@ final appRouter = GoRouter(
             GoRoute(path: 'similar', builder: (_, __) => const TutorSimilarScreen()),
           ],
         ),
-        GoRoute(path: '/cours', builder: (_, __) => const CoursPlaceholderScreen()),
+        GoRoute(path: '/cours', builder: (_, __) => const CoursScreen()),
         GoRoute(path: '/profile', builder: (_, __) => const ProfileScreen()),
       ],
     ),
   ],
 );
-
-class CoursPlaceholderScreen extends StatelessWidget {
-  const CoursPlaceholderScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: OC.bg,
-      appBar: AppBar(
-        title: Text('Cours', style: display(17, weight: FontWeight.w700)),
-        backgroundColor: OC.bg,
-        surfaceTintColor: Colors.transparent,
-        actions: obTopActions(context),
-      ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(32),
-          child: Column(mainAxisSize: MainAxisSize.min, children: [
-            Container(
-              width: 84, height: 84,
-              decoration: BoxDecoration(
-                color: OC.o50,
-                borderRadius: BorderRadius.circular(26),
-                border: Border.all(color: OC.o100, width: 1.5),
-              ),
-              child: const Icon(Icons.play_lesson_rounded, size: 40, color: OC.o600),
-            ),
-            const SizedBox(height: 20),
-            Text('Cours', style: display(24, weight: FontWeight.w700)),
-            const SizedBox(height: 8),
-            Text('Tes cours et fiches de révision arrivent bientôt.',
-                textAlign: TextAlign.center, style: body(14.5, color: OC.ink2).copyWith(height: 1.5)),
-          ]),
-        ),
-      ),
-    );
-  }
-}

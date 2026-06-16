@@ -5,6 +5,7 @@ import '../models/article.dart';
 import '../models/exam.dart';
 import '../models/calendar_event.dart';
 import '../models/concours.dart';
+import '../models/course.dart';
 import 'appwrite_client.dart';
 
 class DatabaseService {
@@ -212,6 +213,36 @@ class DatabaseService {
         ],
       );
       return res.documents.map((d) => Concours.fromMap(d.data, id: d.$id)).toList();
+    } on AppwriteException {
+      return const [];
+    }
+  }
+
+  // ── Cours (matières & chapitres) ──────────────────────────────────────────
+
+  /// Matières, triées par `order`.
+  Future<List<Subject>> getSubjects({int limit = 50}) async {
+    try {
+      final res = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteSubjectsCollectionId,
+        queries: [Query.orderAsc('order'), Query.limit(limit)],
+      );
+      return res.documents.map((d) => Subject.fromMap(d.data, id: d.$id)).toList();
+    } on AppwriteException {
+      return const [];
+    }
+  }
+
+  /// Tous les chapitres (filtrés côté app par matière), triés par `order`.
+  Future<List<Chapter>> getChapters({int limit = 500}) async {
+    try {
+      final res = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteChaptersCollectionId,
+        queries: [Query.orderAsc('order'), Query.limit(limit)],
+      );
+      return res.documents.map((d) => Chapter.fromMap(d.data, id: d.$id)).toList();
     } on AppwriteException {
       return const [];
     }

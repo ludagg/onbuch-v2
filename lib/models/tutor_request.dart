@@ -12,6 +12,7 @@ class TutorRequest {
   final String? subject;
   final String? jobId;
   final String? titleHint;
+  final String? mode; // ex. 'lesson' pour générer un cours
 
   const TutorRequest({
     this.image,
@@ -19,5 +20,6 @@ class TutorRequest {
     this.subject,
     this.jobId,
     this.titleHint,
+    this.mode,
   });
 }
