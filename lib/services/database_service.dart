@@ -3,6 +3,7 @@ import 'package:appwrite/appwrite.dart';
 import '../appwrite_config.dart';
 import '../models/article.dart';
 import '../models/exam.dart';
+import '../models/calendar_event.dart';
 import 'appwrite_client.dart';
 
 class DatabaseService {
@@ -168,6 +169,28 @@ class DatabaseService {
       );
       return res.documents
           .map((d) => Exam.fromMap(d.data, id: d.$id, createdAtFallback: d.$createdAt))
+          .toList();
+    } on AppwriteException {
+      return const [];
+    }
+  }
+
+  // ── Calendrier scolaire ───────────────────────────────────────────────────
+
+  /// Retourne les événements du calendrier scolaire, du plus ancien au plus
+  /// récent. Liste vide en cas d'erreur.
+  Future<List<CalendarEvent>> getCalendarEvents({int limit = 100}) async {
+    try {
+      final res = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteSchoolCalendarCollectionId,
+        queries: [
+          Query.orderAsc('startDate'),
+          Query.limit(limit),
+        ],
+      );
+      return res.documents
+          .map((d) => CalendarEvent.fromMap(d.data, id: d.$id))
           .toList();
     } on AppwriteException {
       return const [];
