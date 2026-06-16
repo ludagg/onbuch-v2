@@ -4,6 +4,7 @@ import '../appwrite_config.dart';
 import '../models/article.dart';
 import '../models/exam.dart';
 import '../models/calendar_event.dart';
+import '../models/concours.dart';
 import 'appwrite_client.dart';
 
 class DatabaseService {
@@ -192,6 +193,25 @@ class DatabaseService {
       return res.documents
           .map((d) => CalendarEvent.fromMap(d.data, id: d.$id))
           .toList();
+    } on AppwriteException {
+      return const [];
+    }
+  }
+
+  // ── Concours ──────────────────────────────────────────────────────────────
+
+  /// Retourne les concours (triés par `order`). Liste vide en cas d'erreur.
+  Future<List<Concours>> getConcours({int limit = 50}) async {
+    try {
+      final res = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteConcoursCollectionId,
+        queries: [
+          Query.orderAsc('order'),
+          Query.limit(limit),
+        ],
+      );
+      return res.documents.map((d) => Concours.fromMap(d.data, id: d.$id)).toList();
     } on AppwriteException {
       return const [];
     }
