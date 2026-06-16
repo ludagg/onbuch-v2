@@ -20,8 +20,22 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
   final _authService = AuthService();
   final _databaseService = DatabaseService();
 
+  final _serieCtrl = TextEditingController();
+  final _ecoleCtrl = TextEditingController();
+  final _villeCtrl = TextEditingController();
+  String? _gender;
+
   static const _levels = ['3ème', '2nde', '1ère', 'Terminale', 'Sup. / Fac'];
   static const _exams  = ['Baccalauréat', 'Probatoire', 'GCE A Level', 'BTS', 'Concours (ENS…)'];
+  static const _genders = ['Fille', 'Garçon', 'Autre'];
+
+  @override
+  void dispose() {
+    _serieCtrl.dispose();
+    _ecoleCtrl.dispose();
+    _villeCtrl.dispose();
+    super.dispose();
+  }
 
   Future<void> _saveAndContinue() async {
     final user = await _authService.getCurrentUser();
@@ -35,6 +49,9 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
       // On inclut l'identité (firstName/lastName/email) en plus des champs
       // profil : ainsi le document est valide même s'il doit être créé ici
       // (champs requis de la collection `users`), pas seulement mis à jour.
+      final serie = _serieCtrl.text.trim();
+      final ecole = _ecoleCtrl.text.trim();
+      final ville = _villeCtrl.text.trim();
       await _databaseService.createUserProfile(
         user.$id,
         {
@@ -42,6 +59,10 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
           'email': user.email,
           'classe': _levels[_level],
           'examen': _exams[_exam],
+          if (serie.isNotEmpty) 'serie': serie,
+          if (ecole.isNotEmpty) 'school': ecole,
+          if (ville.isNotEmpty) 'city': ville,
+          if (_gender != null) 'gender': _gender,
         },
       );
       if (mounted) context.go('/welcome');
@@ -59,6 +80,29 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
     } finally {
       if (mounted) setState(() => _saving = false);
     }
+  }
+
+  Widget _field(String label, TextEditingController c, String hint, IconData icon) {
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Text(label, style: body(13, weight: FontWeight.w700, color: OC.ink2)),
+      const SizedBox(height: 8),
+      TextField(
+        controller: c,
+        textCapitalization: TextCapitalization.words,
+        style: body(15, color: OC.ink),
+        decoration: InputDecoration(
+          hintText: hint,
+          hintStyle: body(14, color: OC.muted),
+          prefixIcon: Icon(icon, color: OC.muted, size: 20),
+          filled: true,
+          fillColor: OC.paper,
+          contentPadding: const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(14), borderSide: const BorderSide(color: OC.line2, width: 1.5)),
+          enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(14), borderSide: const BorderSide(color: OC.line2, width: 1.5)),
+          focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(14), borderSide: const BorderSide(color: OC.o500, width: 2)),
+        ),
+      ),
+    ]);
   }
 
   @override
@@ -125,12 +169,35 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
                 })),
                 const SizedBox(height: 22),
 
-                // Series field
-                OBField(
-                  label: 'Série (optionnel)',
-                  placeholder: 'D — Sciences & Mathématiques',
-                  trailing: const Icon(Icons.keyboard_arrow_down_rounded, color: OC.muted, size: 20),
-                ),
+                // Infos complémentaires (optionnel)
+                Text('Infos complémentaires (optionnel)', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
+                const SizedBox(height: 4),
+                Text('Ça nous aide à améliorer OnBuch pour les élèves comme toi.',
+                    style: body(12, color: OC.muted, weight: FontWeight.w500)),
+                const SizedBox(height: 12),
+                _field('Série', _serieCtrl, 'D — Sciences & Mathématiques', Icons.workspace_premium_outlined),
+                const SizedBox(height: 14),
+                _field('Établissement', _ecoleCtrl, 'Lycée de Bonabéri', Icons.account_balance_outlined),
+                const SizedBox(height: 14),
+                _field('Ville', _villeCtrl, 'Douala', Icons.location_on_outlined),
+                const SizedBox(height: 16),
+                Text('Sexe', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
+                const SizedBox(height: 10),
+                Wrap(spacing: 9, runSpacing: 9, children: List.generate(_genders.length, (i) {
+                  final on = _gender == _genders[i];
+                  return GestureDetector(
+                    onTap: () => setState(() => _gender = on ? null : _genders[i]),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                      decoration: BoxDecoration(
+                        color: on ? OC.o50 : OC.paper,
+                        borderRadius: BorderRadius.circular(999),
+                        border: Border.all(color: on ? OC.o500 : OC.line2, width: 1.5),
+                      ),
+                      child: Text(_genders[i], style: body(13.5, weight: FontWeight.w700, color: on ? OC.o700 : OC.ink2)),
+                    ),
+                  );
+                })),
                 const SizedBox(height: 24),
               ]),
             ),

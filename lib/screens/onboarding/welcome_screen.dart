@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
+import '../../services/auth_service.dart';
+import '../../services/database_service.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -13,6 +15,7 @@ class WelcomeScreen extends StatefulWidget {
 class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProviderStateMixin {
   late final AnimationController _ctrl;
   late final Animation<double> _scale;
+  String? _firstName;
 
   @override
   void initState() {
@@ -23,6 +26,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarIconBrightness: Brightness.light,
     ));
+    _loadName();
+  }
+
+  Future<void> _loadName() async {
+    final user = await AuthService().getCurrentUser();
+    final name = user?.name.trim() ?? '';
+    if (name.isEmpty) return;
+    final first = DatabaseService.splitFullName(name)['firstName'] as String?;
+    if (mounted && first != null && first.isNotEmpty) setState(() => _firstName = first);
   }
 
   @override
@@ -64,7 +76,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                 ]),
               ),
               const SizedBox(height: 20),
-              Text('Tout est prêt,\nAïcha !', style: display(28, weight: FontWeight.w700, color: Colors.white), textAlign: TextAlign.center),
+              Text(_firstName != null ? 'Tout est prêt,\n$_firstName !' : 'Tout est prêt !',
+                  style: display(28, weight: FontWeight.w700, color: Colors.white), textAlign: TextAlign.center),
               const SizedBox(height: 12),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 32),

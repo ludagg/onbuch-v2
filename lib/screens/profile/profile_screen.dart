@@ -3,9 +3,69 @@ import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
 import '../../services/auth_service.dart';
+import '../../services/database_service.dart';
+import '../../services/tutor_service.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  final _auth = AuthService();
+  final _db = DatabaseService();
+  final _tutor = TutorService();
+
+  String _name = 'Élève OnBuch';
+  String _initial = '🙂';
+  String _classeExamen = '—';
+  String _school = '';
+  String _city = '';
+  int _credits = 0;
+  int _corrections = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _load();
+  }
+
+  Future<void> _load() async {
+    final user = await _auth.getCurrentUser();
+    if (user == null) return;
+    final profile = await _db.getUserProfile(user.$id);
+    final quota = await _tutor.getQuota();
+    final count = await _tutor.correctionsCount();
+    if (!mounted) return;
+
+    var name = user.name.trim();
+    if (name.isEmpty) {
+      final f = (profile?['firstName'] ?? '').toString().trim();
+      final l = (profile?['lastName'] ?? '').toString().trim();
+      name = [f, l].where((s) => s.isNotEmpty).join(' ').trim();
+    }
+    if (name.isEmpty) name = 'Élève OnBuch';
+
+    final classe = (profile?['classe'] ?? '').toString().trim();
+    final examen = (profile?['examen'] ?? '').toString().trim();
+    final serie = (profile?['serie'] ?? '').toString().trim();
+    final ce = [
+      [classe, if (serie.isNotEmpty) serie].where((s) => s.toString().isNotEmpty).join(' '),
+      examen,
+    ].where((s) => s.isNotEmpty).join(' · ');
+
+    setState(() {
+      _name = name;
+      _initial = name.substring(0, 1).toUpperCase();
+      _classeExamen = ce.isEmpty ? '—' : ce;
+      _school = (profile?['school'] ?? '').toString().trim();
+      _city = (profile?['city'] ?? '').toString().trim();
+      _credits = quota.credits;
+      _corrections = count;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,25 +100,25 @@ class ProfileScreen extends StatelessWidget {
                 Container(
                   width: 64, height: 64,
                   decoration: BoxDecoration(gradient: OC.grad, shape: BoxShape.circle),
-                  child: Center(child: Text('A', style: display(28, weight: FontWeight.w700, color: Colors.white))),
+                  child: Center(child: Text(_initial, style: display(28, weight: FontWeight.w700, color: Colors.white))),
                 ),
                 const SizedBox(width: 14),
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  Text('NDJAMÉ Aïcha', style: display(20, weight: FontWeight.w700)),
+                Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Text(_name, maxLines: 1, overflow: TextOverflow.ellipsis, style: display(20, weight: FontWeight.w700)),
                   const SizedBox(height: 4),
-                  Text('Terminale D · Baccalauréat 2026', style: body(13, color: OC.ink2, weight: FontWeight.w500)),
-                ]),
+                  Text(_classeExamen, style: body(13, color: OC.ink2, weight: FontWeight.w500)),
+                ])),
               ]),
               const SizedBox(height: 16),
               HRule(),
               const SizedBox(height: 16),
               // Credits
               Row(children: [
-                _Stat('Crédits Tuteur', '8', OC.o500),
+                _Stat('Crédits Tuteur', '$_credits', OC.o500),
                 const SizedBox(width: 10),
-                _Stat('Annales téléchargées', '12', OC.waInk),
+                _Stat('Corrections IA', '$_corrections', OC.blue),
                 const SizedBox(width: 10),
-                _Stat('Corrections IA', '34', OC.blue),
+                _Stat('Annales', '—', OC.waInk),
               ]),
               const SizedBox(height: 14),
               Container(
@@ -80,9 +140,11 @@ class ProfileScreen extends StatelessWidget {
 
           // Mon parcours
           _Section('Mon parcours', [
-            _ProfileRow(Icons.school_outlined, 'Classe & examen', 'Terminale D · Baccalauréat', OC.o500, OC.o50),
+            _ProfileRow(Icons.school_outlined, 'Classe & examen', _classeExamen, OC.o500, OC.o50),
+            if (_school.isNotEmpty)
+              _ProfileRow(Icons.account_balance_outlined, 'Établissement',
+                  [_school, if (_city.isNotEmpty) _city].join(' · '), OC.waInk, OC.goodBg),
             _ProfileRow(Icons.history_rounded, 'Historique résultats', 'Voir mes anciens résultats', OC.blue, OC.blueBg),
-            _ProfileRow(Icons.menu_book_rounded, 'Mes annales', '12 téléchargées', OC.waInk, OC.goodBg),
           ]),
           const SizedBox(height: 16),
 

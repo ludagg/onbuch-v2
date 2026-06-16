@@ -88,7 +88,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                     ),
                   ),
                   const SizedBox(height: 8),
-                  Text('LuvviX · Douala', style: body(12, weight: FontWeight.w600, color: Colors.white.withValues(alpha:0.75))),
+                  Text('By Ludovic Aggaï', style: body(12, weight: FontWeight.w600, color: Colors.white.withValues(alpha:0.75))),
                   const SizedBox(height: 40),
                 ]),
               ]),
