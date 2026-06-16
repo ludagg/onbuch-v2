@@ -3,14 +3,19 @@
 Le Tuteur IA envoie la photo d'un exercice à un modèle vision NVIDIA (API
 compatible OpenAI) et renvoie une correction étape par étape.
 
-## Architecture sécurisée (proxy)
+## Architecture sécurisée (proxy + pipeline hybride)
 ```
-App Flutter  ──(image base64)──►  Fonction Appwrite "tutor-ai"  ──►  NVIDIA
-   (session utilisateur)              (détient NVIDIA_API_KEY)
+App Flutter ─(image base64)─► Fonction Appwrite "tutor-ai" ─► NVIDIA
+   (session utilisateur)         (détient NVIDIA_API_KEY)        │
+                                                                 ├─ 1) VISION : transcrit l'énoncé depuis la photo
+                                                                 └─ 2) RAISONNEMENT : résout & rédige la correction
 ```
 La clé NVIDIA **n'est jamais sur le téléphone** : elle vit dans les variables
 d'environnement de la fonction Appwrite. L'app appelle la fonction via le SDK
 Appwrite (authentifiée), envoie l'image, reçoit `{ "correction": "…" }`.
+
+DeepSeek étant **texte uniquement**, un modèle vision transcrit d'abord la
+photo, puis DeepSeek raisonne sur l'énoncé.
 
 - L'app **ne contient aucune clé** et n'a pas besoin de `--dart-define`.
 - Build standard : `flutter pub get && flutter build apk --release`.
@@ -21,7 +26,8 @@ Appwrite (authentifiée), envoie l'image, reçoit `{ "correction": "…" }`.
 - Exécutable par les utilisateurs connectés (`execute: ["users"]`).
 - Variables d'environnement (Console → Functions → tutor-ai → Settings → Variables) :
   - `NVIDIA_API_KEY` = `nvapi-…` (**secret**, défini).
-  - `NVIDIA_MODEL` = `meta/llama-4-maverick-17b-128e-instruct` (multimodal, testé et validé ; modifiable).
+  - `VISION_MODEL` = `meta/llama-4-maverick-17b-128e-instruct` (transcription de la photo).
+  - `NVIDIA_MODEL` = `deepseek-ai/deepseek-v4-pro` (raisonnement / correction).
 
 > ⚠️ Les variables sont injectées **au build** : après modification d'une variable, **redéployer** la fonction pour qu'elle prenne effet.
 
