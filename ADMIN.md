@@ -35,6 +35,25 @@ Console → Databases → onbuchprimary → collection **`articles`** → *Creat
 
 Permissions : la collection est en `read("any")` → tout article créé est **public** automatiquement, rien à configurer par document. Les articles s'affichent du plus récent au plus ancien ; mettre **un seul** `featured = true`.
 
+## Gérer les examens (carrousel d'accueil)
+
+Console → Databases → onbuchprimary → collection **`exams`**.
+
+| Champ | Détail |
+|---|---|
+| `label` | ex. `Baccalauréat 2026` |
+| `examDate` | date/heure de début des épreuves |
+| `resultsDate` | date prévue des résultats (optionnel) |
+| `status` | `auto` (par défaut), ou forcer : `upcoming`, `awaiting`, `published` |
+| `order` | ordre d'affichage (1, 2, 3…) |
+
+**États (calculés automatiquement quand `status = auto`)** :
+- avant `examDate` → **À venir** : compte à rebours vers l'examen.
+- après `examDate`, avant `resultsDate` → **En attente** : compte à rebours vers les résultats (ou message « publication imminente » si `resultsDate` est vide).
+- après `resultsDate` → **Résultats disponibles**.
+
+Pour publier les résultats manuellement (sans attendre la date), mettre `status = published`. Pour figer un état, utiliser `upcoming` / `awaiting`.
+
 ## À venir (même principe)
 
 Quand on ajoutera d'autres contenus pilotés serveur (examens & dates, événements/partenaires, annales PDF…), ils suivront le même modèle : collection avec `read("any")` + écriture réservée à `team:admins` / `team:editors`, gérés depuis la console.

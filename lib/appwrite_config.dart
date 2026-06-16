@@ -5,3 +5,4 @@ const appwriteUsersCollectionId = 'users';
 const appwriteResultsCollectionId = 'results';
 const appwriteAnalyticsCollectionId = 'analytics_events';
 const appwriteArticlesCollectionId = 'articles';
+const appwriteExamsCollectionId = 'exams';
