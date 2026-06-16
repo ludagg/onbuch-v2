@@ -214,7 +214,7 @@ export default async ({ req, res, error }) => {
     const correction = await callNvidia(apiKey, reasoningModel, [
       { role: 'system', content: SOLVE_PROMPT },
       { role: 'user', content: userMsg },
-    ], 1400);
+    ], 3200);
 
     if (!correction) {
       return finish({ status: 'error', error: "Le Tuteur n'a pas pu rédiger la correction. Réessaie." });

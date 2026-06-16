@@ -4,6 +4,7 @@ import '../../theme/app_theme.dart';
 import '../../models/tutor_request.dart';
 import '../../services/tutor_service.dart';
 import '../../widgets/rich_answer.dart';
+import '../../utils/tutor_pdf.dart';
 
 class TutorCorrectionScreen extends StatefulWidget {
   final TutorRequest? request;
@@ -16,6 +17,7 @@ class TutorCorrectionScreen extends StatefulWidget {
 class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
   final _service = TutorService();
   Future<String>? _future;
+  String? _correctionText; // mémorise la correction pour l'export PDF
 
   @override
   void initState() {
@@ -25,21 +27,34 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
 
   void _run() {
     final r = widget.request;
+    _correctionText = null;
     if (r == null) {
       setState(() => _future = null);
       return;
     }
-    setState(() {
-      if (r.jobId != null) {
-        _future = _service.getJobCorrection(r.jobId!);
-      } else if (r.image != null) {
-        _future = _service.analyzeExercise(image: r.image, subject: r.subject);
-      } else if (r.question != null && r.question!.trim().isNotEmpty) {
-        _future = _service.analyzeExercise(text: r.question, subject: r.subject);
-      } else {
-        _future = null;
-      }
-    });
+    Future<String>? f;
+    if (r.jobId != null) {
+      f = _service.getJobCorrection(r.jobId!);
+    } else if (r.image != null) {
+      f = _service.analyzeExercise(image: r.image, subject: r.subject);
+    } else if (r.question != null && r.question!.trim().isNotEmpty) {
+      f = _service.analyzeExercise(text: r.question, subject: r.subject);
+    }
+    setState(() => _future = f);
+    f?.then((c) {
+      if (mounted) setState(() => _correctionText = c);
+    }).catchError((_) {});
+  }
+
+  Future<void> _exportPdf() async {
+    final r = widget.request;
+    if (_correctionText == null) return;
+    await exportCorrectionPdf(
+      correction: _correctionText!,
+      image: r?.image,
+      question: r?.question,
+      title: r?.titleHint,
+    );
   }
 
   @override
@@ -62,6 +77,15 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
           icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 20),
           onPressed: () => context.canPop() ? context.pop() : context.go('/tutor'),
         ),
+        actions: [
+          if (_correctionText != null)
+            IconButton(
+              icon: const Icon(Icons.ios_share_rounded, size: 21),
+              color: OC.ink2,
+              tooltip: 'Exporter en PDF',
+              onPressed: _exportPdf,
+            ),
+        ],
       ),
       body: hasContent ? _conversation(r) : _empty(),
     );
