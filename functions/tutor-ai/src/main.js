@@ -46,6 +46,16 @@ FORMAT — l'app rend du Markdown enrichi :
 - Maths en LaTeX : en ligne \\( ... \\) et en bloc \\[ ... \\]. N'utilise PAS le symbole "$".
 Reste rigoureux, clair et adapté à un élève du secondaire.`;
 
+const QUIZ_PROMPT = `Tu génères un QCM de révision pour un chapitre du programme scolaire camerounais.
+Réponds UNIQUEMENT avec un JSON valide, sans aucun texte autour ni balise de code, au format EXACT :
+{"questions":[{"q":"énoncé de la question","options":["option A","option B","option C","option D"],"answer":0,"explanation":"courte justification"}]}
+Règles :
+- Exactement 5 questions, chacune avec 4 options.
+- "answer" = index (0 à 3) de la bonne option.
+- "explanation" = justification courte et claire.
+- Questions variées et pertinentes, niveau secondaire, en français.
+- Pas de LaTeX ni de symbole "$" ; écris les maths simplement (x^2, racine de, etc.).`;
+
 class NvError extends Error {
   constructor(status) {
     super(`nvidia_${status}`);
@@ -152,6 +162,19 @@ async function writeLesson(chapterId, content) {
   }
 }
 
+// Cache d'un QCM généré (collection quizzes, keyée par chapterId).
+async function writeQuiz(chapterId, content) {
+  const db = process.env.DATABASE_ID;
+  if (!db || !chapterId) return;
+  const now = new Date().toISOString();
+  let r = await awFetch('POST', `/databases/${db}/collections/quizzes/documents`,
+    { documentId: chapterId, data: { chapterId, content, createdAt: now }, permissions: ['read("any")'] });
+  if (r.status === 409) {
+    await awFetch('PATCH', `/databases/${db}/collections/quizzes/documents/${chapterId}`,
+      { data: { content, createdAt: now } });
+  }
+}
+
 async function writeQuota(db, uid, q) {
   const data = { freeUsedToday: q.freeUsedToday, freeResetDate: q.freeResetDate, credits: q.credits };
   let r = await awFetch('POST', `/databases/${db}/collections/${QUOTA_COL}/documents`,
@@ -205,8 +228,9 @@ export default async ({ req, res, error }) => {
   const db = process.env.DATABASE_ID;
   const freeDaily = parseInt(process.env.FREE_DAILY || '3', 10);
   let quota = null;
-  // Les cours (mode lesson) sont gratuits et mutualisés : pas de quota.
-  if (db && uid && mode !== 'lesson') {
+  // Les cours et quiz (mode lesson/quiz) sont gratuits et mutualisés : pas de quota.
+  const isFree = mode === 'lesson' || mode === 'quiz';
+  if (db && uid && !isFree) {
     quota = await readQuota(db, uid);
     if (quota.freeResetDate !== todayStr()) {
       quota.freeUsedToday = 0;
@@ -220,7 +244,7 @@ export default async ({ req, res, error }) => {
   }
 
   const consumeQuota = async () => {
-    if (mode === 'lesson') return;
+    if (isFree) return;
     if (quota && db && uid) {
       if (quota.freeUsedToday < freeDaily) quota.freeUsedToday += 1;
       else if (quota.credits > 0) quota.credits -= 1;
@@ -266,12 +290,14 @@ export default async ({ req, res, error }) => {
     }
 
     const isLesson = mode === 'lesson';
-    const userMsg = isLesson
+    const isQuiz = mode === 'quiz';
+    const sysPrompt = isLesson ? LESSON_PROMPT : (isQuiz ? QUIZ_PROMPT : SOLVE_PROMPT);
+    const userMsg = (isLesson || isQuiz)
       ? enonce
       : (instruction ? `${instruction}\n\nÉnoncé :\n${enonce}` : `Voici l'énoncé d'un exercice. Corrige-le.\n\n${enonce}`);
 
     const correction = await callNvidia(apiKey, reasoningModel, [
-      { role: 'system', content: isLesson ? LESSON_PROMPT : SOLVE_PROMPT },
+      { role: 'system', content: sysPrompt },
       { role: 'user', content: userMsg },
     ], 3200);
 
@@ -282,6 +308,9 @@ export default async ({ req, res, error }) => {
     await consumeQuota();
     if (isLesson && chapterId) {
       try { await writeLesson(chapterId, correction); } catch (e) { error(`writeLesson: ${String(e)}`); }
+    }
+    if (isQuiz && chapterId) {
+      try { await writeQuiz(chapterId, correction); } catch (e) { error(`writeQuiz: ${String(e)}`); }
     }
     return finish({ status: 'done', correction, title: makeTitle(enonce), subject });
   } catch (e) {
