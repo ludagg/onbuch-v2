@@ -1,40 +1,33 @@
-# Tuteur IA — Configuration (API NVIDIA)
+# Tuteur IA — Architecture (proxy Appwrite + API NVIDIA)
 
 Le Tuteur IA envoie la photo d'un exercice à un modèle vision NVIDIA (API
 compatible OpenAI) et renvoie une correction étape par étape.
 
-## Clé API
-La clé NVIDIA (`nvapi-…`) n'est **jamais** dans le code. Elle est injectée au
-build via `--dart-define` :
-
-```bash
-flutter pub get
-
-# Debug
-flutter run --dart-define=NVIDIA_API_KEY=nvapi-XXXXXXXX
-
-# Release APK
-flutter build apk --release --dart-define=NVIDIA_API_KEY=nvapi-XXXXXXXX
+## Architecture sécurisée (proxy)
 ```
-
-Obtenir une clé : https://build.nvidia.com (Get API Key).
-
-## Modèle (optionnel)
-Par défaut : `qwen/qwen2.5-vl-72b-instruct` (excellent en maths/manuscrit).
-Pour en changer :
-
-```bash
---dart-define=NVIDIA_MODEL=meta/llama-3.2-90b-vision-instruct
+App Flutter  ──(image base64)──►  Fonction Appwrite "tutor-ai"  ──►  NVIDIA
+   (session utilisateur)              (détient NVIDIA_API_KEY)
 ```
+La clé NVIDIA **n'est jamais sur le téléphone** : elle vit dans les variables
+d'environnement de la fonction Appwrite. L'app appelle la fonction via le SDK
+Appwrite (authentifiée), envoie l'image, reçoit `{ "correction": "…" }`.
+
+- L'app **ne contient aucune clé** et n'a pas besoin de `--dart-define`.
+- Build standard : `flutter pub get && flutter build apk --release`.
+- ⚠️ Build natif complet requis (dépendance native `image_picker`).
+
+## Fonction Appwrite `tutor-ai`
+- Code versionné dans `functions/tutor-ai/` (runtime `node-22`, entrypoint `src/main.js`).
+- Exécutable par les utilisateurs connectés (`execute: ["users"]`).
+- Variables d'environnement (Console → Functions → tutor-ai → Settings → Variables) :
+  - `NVIDIA_API_KEY` = `nvapi-…` (**secret**, à définir).
+  - `NVIDIA_MODEL` = `qwen/qwen2.5-vl-72b-instruct` (déjà défini, modifiable).
+
+### Redéployer après modification du code
+Depuis la Console (Function → Deployments → Create) ou via le CLI Appwrite, en
+pointant sur `functions/tutor-ai/` (entrypoint `src/main.js`, commande `npm install`).
 
 ## Détails techniques
-- Endpoint : `https://integrate.api.nvidia.com/v1/chat/completions`
-- L'image est redimensionnée/recompressée en JPEG pour rester **sous ~170 Ko**
-  (limite NVIDIA de 180 Ko pour une image base64 inline), dans un isolate.
-- Le prompt système cadre une correction pédagogique en français.
-
-## ⚠️ Sécurité
-Mode actuel : **appel direct depuis l'app**. La clé est injectée au build mais
-reste techniquement extractible d'un APK distribué. Pour la production, prévoir
-un **proxy serveur** (Appwrite Function) détenant la clé + quota — la logique
-client (`TutorService`) est déjà isolée pour faciliter ce basculement.
+- Endpoint NVIDIA : `https://integrate.api.nvidia.com/v1/chat/completions`.
+- L'app redimensionne/recompresse l'image en JPEG **sous ~170 Ko** (limite NVIDIA
+  de 180 Ko pour une image base64 inline) dans un isolate, avant l'envoi.

@@ -8,5 +8,6 @@ class AppwriteClient {
   static Client get instance => client;
   static Account get account => Account(client);
   static Databases get databases => Databases(client);
+  static Functions get functions => Functions(client);
   static Messaging get messaging => Messaging(client);
 }
