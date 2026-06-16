@@ -16,6 +16,7 @@ class ChaptersScreen extends StatefulWidget {
 class _ChaptersScreenState extends State<ChaptersScreen> {
   final _db = DatabaseService();
   List<Chapter> _chapters = [];
+  Set<String> _viewed = {};
   bool _loading = true;
 
   @override
@@ -31,9 +32,11 @@ class _ChaptersScreenState extends State<ChaptersScreen> {
       return;
     }
     final all = await _db.getChapters();
+    final viewed = await _db.getViewedChapterIds();
     if (mounted) {
       setState(() {
         _chapters = all.where((c) => c.subjectId == sub.id).toList();
+        _viewed = viewed;
         _loading = false;
       });
     }
@@ -85,8 +88,12 @@ class _ChaptersScreenState extends State<ChaptersScreen> {
 
   Widget _chapterTile(Chapter c, int num, Subject? sub) {
     final color = sub?.color ?? OC.o500;
+    final viewed = _viewed.contains(c.id);
     return GestureDetector(
-      onTap: () => context.push('/cours-chapter', extra: {'chapter': c, 'subject': sub?.name ?? ''}),
+      onTap: () async {
+        await context.push('/cours-chapter', extra: {'chapter': c, 'subject': sub?.name ?? ''});
+        if (mounted) _load(); // rafraîchir la progression au retour
+      },
       child: Container(
         margin: const EdgeInsets.only(bottom: 10),
         padding: const EdgeInsets.all(13),
@@ -94,8 +101,13 @@ class _ChaptersScreenState extends State<ChaptersScreen> {
         child: Row(children: [
           Container(
             width: 36, height: 36,
-            decoration: BoxDecoration(color: color.withValues(alpha: 0.12), borderRadius: BorderRadius.circular(10)),
-            child: Center(child: Text('$num', style: mono(15, weight: FontWeight.w700, color: color))),
+            decoration: BoxDecoration(
+              color: viewed ? OC.goodBg : color.withValues(alpha: 0.12),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Center(child: viewed
+                ? const Icon(Icons.check_rounded, size: 18, color: OC.good)
+                : Text('$num', style: mono(15, weight: FontWeight.w700, color: color))),
           ),
           const SizedBox(width: 12),
           Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

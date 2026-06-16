@@ -13,6 +13,8 @@ class TutorRequest {
   final String? jobId;
   final String? titleHint;
   final String? mode; // ex. 'lesson' pour générer un cours
+  final String? chapterId; // pour la mise en cache d'une fiche de cours
+  final String? presetAnswer; // contenu déjà disponible (cache) -> pas d'appel IA
 
   const TutorRequest({
     this.image,
@@ -21,5 +23,7 @@ class TutorRequest {
     this.jobId,
     this.titleHint,
     this.mode,
+    this.chapterId,
+    this.presetAnswer,
   });
 }

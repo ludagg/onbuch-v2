@@ -47,6 +47,7 @@ class TutorService {
     String? text,
     String? subject,
     String? mode,
+    String? chapterId,
   }) async {
     if (image == null && (text == null || text.trim().isEmpty)) {
       throw 'Fournis une photo ou écris ton exercice.';
@@ -61,6 +62,7 @@ class TutorService {
       if (text != null && text.trim().isNotEmpty) 'question': text.trim(),
       if (subject != null && subject.trim().isNotEmpty) 'subject': subject.trim(),
       if (mode != null && mode.isNotEmpty) 'mode': mode,
+      if (chapterId != null && chapterId.isNotEmpty) 'chapterId': chapterId,
     };
 
     return _run(payload, jobId);

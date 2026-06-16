@@ -4,16 +4,44 @@ import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
 import '../../models/course.dart';
 import '../../models/tutor_request.dart';
+import '../../services/database_service.dart';
 import '../../utils/launch.dart';
 
-class ChapterDetailScreen extends StatelessWidget {
+class ChapterDetailScreen extends StatefulWidget {
   final Chapter? chapter;
   final String? subjectName;
   const ChapterDetailScreen({super.key, this.chapter, this.subjectName});
 
   @override
+  State<ChapterDetailScreen> createState() => _ChapterDetailScreenState();
+}
+
+class _ChapterDetailScreenState extends State<ChapterDetailScreen> {
+  final _db = DatabaseService();
+  bool _busy = false;
+
+  Future<void> _follow() async {
+    final c = widget.chapter;
+    if (c == null || _busy) return;
+    setState(() => _busy = true);
+    _db.markChapterViewed(c.id); // progression (non bloquant)
+    final cached = await _db.getLesson(c.id); // cache : null si à générer
+    if (!mounted) return;
+    setState(() => _busy = false);
+    final subj = widget.subjectName ?? '';
+    context.push('/tutor/correction', extra: TutorRequest(
+      question: 'Chapitre : ${c.title}${subj.isNotEmpty ? ' ($subj, Terminale)' : ''}',
+      subject: subj,
+      titleHint: c.title,
+      mode: 'lesson',
+      chapterId: c.id,
+      presetAnswer: cached,
+    ));
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final c = chapter;
+    final c = widget.chapter;
     if (c == null) {
       return Scaffold(
         backgroundColor: OC.bg,
@@ -21,7 +49,7 @@ class ChapterDetailScreen extends StatelessWidget {
         body: const Center(child: Text('Chapitre introuvable.')),
       );
     }
-    final subj = subjectName ?? '';
+    final subj = widget.subjectName ?? '';
     return Scaffold(
       backgroundColor: OC.bg,
       appBar: obBackAppBar(context, subj.isNotEmpty ? subj : 'Chapitre'),
@@ -39,14 +67,8 @@ class ChapterDetailScreen extends StatelessWidget {
           ],
           const SizedBox(height: 22),
 
-          // Cours IA (CTA principal)
           GestureDetector(
-            onTap: () => context.push('/tutor/correction', extra: TutorRequest(
-              question: 'Chapitre : ${c.title}${subj.isNotEmpty ? ' ($subj, Terminale)' : ''}',
-              subject: subj,
-              titleHint: c.title,
-              mode: 'lesson',
-            )),
+            onTap: _busy ? null : _follow,
             child: Container(
               padding: const EdgeInsets.all(18),
               decoration: BoxDecoration(
@@ -58,7 +80,9 @@ class ChapterDetailScreen extends StatelessWidget {
                 Container(
                   width: 48, height: 48,
                   decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.2), borderRadius: BorderRadius.circular(14)),
-                  child: const Icon(Icons.auto_awesome_rounded, color: Colors.white, size: 26),
+                  child: _busy
+                      ? const Padding(padding: EdgeInsets.all(13), child: CircularProgressIndicator(strokeWidth: 2.5, color: Colors.white))
+                      : const Icon(Icons.auto_awesome_rounded, color: Colors.white, size: 26),
                 ),
                 const SizedBox(width: 14),
                 Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -72,7 +96,6 @@ class ChapterDetailScreen extends StatelessWidget {
             ),
           ),
 
-          // Ressources
           if (c.pdfUrl != null || c.videoUrl != null) ...[
             const SizedBox(height: 20),
             Text('Ressources', style: body(13, weight: FontWeight.w800, color: OC.ink2)),

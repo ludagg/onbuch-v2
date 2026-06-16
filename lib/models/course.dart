@@ -7,6 +7,7 @@ class Subject {
   final String name;
   final String code; // initiales pour la tuile (ex. "Ma")
   final Color color;
+  final String levels; // classes concernées (ex. "Terminale,1ère"), vide = toutes
   final int order;
 
   const Subject({
@@ -14,8 +15,16 @@ class Subject {
     required this.name,
     required this.code,
     required this.color,
+    this.levels = '',
     this.order = 0,
   });
+
+  /// Vrai si la matière concerne la [classe] de l'élève (ou s'applique à toutes).
+  bool appliesTo(String? classe) {
+    if (levels.trim().isEmpty || classe == null || classe.trim().isEmpty) return true;
+    final c = classe.toLowerCase();
+    return levels.toLowerCase().split(RegExp(r'[,;]')).map((e) => e.trim()).any((l) => l.isNotEmpty && c.contains(l));
+  }
 
   factory Subject.fromMap(Map<String, dynamic> d, {required String id}) {
     final name = (d['name'] ?? 'Matière').toString();
@@ -25,6 +34,7 @@ class Subject {
       name: name,
       code: code.isNotEmpty ? code : _initials(name),
       color: _parseColor(d['color']) ?? OC.o500,
+      levels: (d['levels'] ?? '').toString(),
       order: d['order'] is int ? d['order'] as int : int.tryParse('${d['order']}') ?? 0,
     );
   }

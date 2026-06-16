@@ -65,12 +65,14 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
     }
     // Réponse initiale
     Future<String>? fut;
-    if (r.jobId != null) {
+    if (r.presetAnswer != null && r.presetAnswer!.trim().isNotEmpty) {
+      fut = Future.value(r.presetAnswer!.trim()); // contenu déjà en cache → instantané
+    } else if (r.jobId != null) {
       fut = _service.getJobCorrection(r.jobId!);
     } else if (r.image != null) {
       fut = _service.analyzeExercise(image: r.image, subject: r.subject);
     } else if (r.question != null && r.question!.trim().isNotEmpty) {
-      fut = _service.analyzeExercise(text: r.question, subject: r.subject, mode: r.mode);
+      fut = _service.analyzeExercise(text: r.question, subject: r.subject, mode: r.mode, chapterId: r.chapterId);
     }
     if (fut != null) _addAi(fut, primary: true);
   }

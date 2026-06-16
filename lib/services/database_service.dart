@@ -248,6 +248,60 @@ class DatabaseService {
     }
   }
 
+  /// Fiche de cours mise en cache pour un chapitre, ou null si non générée.
+  Future<String?> getLesson(String chapterId) async {
+    try {
+      final doc = await AppwriteClient.databases.getDocument(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteLessonsCollectionId,
+        documentId: chapterId,
+      );
+      final c = doc.data['content']?.toString() ?? '';
+      return c.trim().isEmpty ? null : c;
+    } on AppwriteException {
+      return null;
+    }
+  }
+
+  /// IDs des chapitres déjà consultés par l'utilisateur.
+  Future<Set<String>> getViewedChapterIds() async {
+    try {
+      // La sécurité par document limite déjà aux progrès de l'utilisateur.
+      final res = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteChapterProgressCollectionId,
+        queries: [Query.limit(500)],
+      );
+      return res.documents.map((d) => d.data['chapterId']?.toString() ?? '').where((s) => s.isNotEmpty).toSet();
+    } on AppwriteException {
+      return <String>{};
+    }
+  }
+
+  /// Marque un chapitre comme consulté (idempotent côté UI).
+  Future<void> markChapterViewed(String chapterId) async {
+    try {
+      final user = await AppwriteClient.account.get();
+      await AppwriteClient.databases.createDocument(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteChapterProgressCollectionId,
+        documentId: ID.unique(),
+        data: {
+          'uid': user.$id,
+          'chapterId': chapterId,
+          'viewedAt': DateTime.now().toIso8601String(),
+        },
+        permissions: [
+          Permission.read(Role.user(user.$id)),
+          Permission.update(Role.user(user.$id)),
+          Permission.delete(Role.user(user.$id)),
+        ],
+      );
+    } on AppwriteException {
+      // non bloquant
+    }
+  }
+
   // ── Analytics ────────────────────────────────────────────────────────────
 
   /// Loggue un événement analytics dans la collection `analytics_events`.

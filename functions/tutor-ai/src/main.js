@@ -139,6 +139,19 @@ async function readQuota(db, uid) {
   }
   return { freeUsedToday: 0, freeResetDate: '', credits: 0 };
 }
+// Cache d'une fiche de cours générée (collection lessons, keyée par chapterId).
+async function writeLesson(chapterId, content) {
+  const db = process.env.DATABASE_ID;
+  if (!db || !chapterId) return;
+  const now = new Date().toISOString();
+  let r = await awFetch('POST', `/databases/${db}/collections/lessons/documents`,
+    { documentId: chapterId, data: { chapterId, content, createdAt: now }, permissions: ['read("any")'] });
+  if (r.status === 409) {
+    await awFetch('PATCH', `/databases/${db}/collections/lessons/documents/${chapterId}`,
+      { data: { content, createdAt: now } });
+  }
+}
+
 async function writeQuota(db, uid, q) {
   const data = { freeUsedToday: q.freeUsedToday, freeResetDate: q.freeResetDate, credits: q.credits };
   let r = await awFetch('POST', `/databases/${db}/collections/${QUOTA_COL}/documents`,
@@ -163,6 +176,7 @@ export default async ({ req, res, error }) => {
   const image = (typeof input.image === 'string' && input.image) ? input.image : null;
   const question = (input.question || '').toString().trim();
   const mode = (input.mode || '').toString();
+  const chapterId = (input.chapterId || '').toString() || null;
   const subject = (input.subject || '').toString().trim().slice(0, 40);
   const jobId = (input.jobId || '').toString() || null;
   const uid = req.headers['x-appwrite-user-id'] || null;
@@ -191,7 +205,8 @@ export default async ({ req, res, error }) => {
   const db = process.env.DATABASE_ID;
   const freeDaily = parseInt(process.env.FREE_DAILY || '3', 10);
   let quota = null;
-  if (db && uid) {
+  // Les cours (mode lesson) sont gratuits et mutualisés : pas de quota.
+  if (db && uid && mode !== 'lesson') {
     quota = await readQuota(db, uid);
     if (quota.freeResetDate !== todayStr()) {
       quota.freeUsedToday = 0;
@@ -205,6 +220,7 @@ export default async ({ req, res, error }) => {
   }
 
   const consumeQuota = async () => {
+    if (mode === 'lesson') return;
     if (quota && db && uid) {
       if (quota.freeUsedToday < freeDaily) quota.freeUsedToday += 1;
       else if (quota.credits > 0) quota.credits -= 1;
@@ -264,6 +280,9 @@ export default async ({ req, res, error }) => {
     }
 
     await consumeQuota();
+    if (isLesson && chapterId) {
+      try { await writeLesson(chapterId, correction); } catch (e) { error(`writeLesson: ${String(e)}`); }
+    }
     return finish({ status: 'done', correction, title: makeTitle(enonce), subject });
   } catch (e) {
     if (e instanceof NvError) {
