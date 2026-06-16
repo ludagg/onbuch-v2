@@ -40,19 +40,21 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
               ]),
-              Padding(
-                padding: const EdgeInsets.only(right: 12),
-                child: GestureDetector(
-                  onTap: () => context.go('/profile'),
-                  child: Container(
-                    width: 40, height: 40,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(color: OC.line2, width: 1.5),
-                    ),
-                    child: const Icon(Icons.person_outline_rounded, size: 22, color: OC.ink),
+              GestureDetector(
+                onTap: () => context.go('/profile'),
+                child: Container(
+                  width: 40, height: 40,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(color: OC.line2, width: 1.5),
                   ),
+                  child: const Icon(Icons.person_outline_rounded, size: 22, color: OC.ink),
                 ),
+              ),
+              const SizedBox(width: 10),
+              const Padding(
+                padding: EdgeInsets.only(right: 16),
+                child: OBTopMenu(),
               ),
             ],
           ),
