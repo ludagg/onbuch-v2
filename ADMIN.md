@@ -54,6 +54,29 @@ Console → Databases → onbuchprimary → collection **`exams`**.
 
 Pour publier les résultats manuellement (sans attendre la date), mettre `status = published`. Pour figer un état, utiliser `upcoming` / `awaiting`.
 
+## Publier un cours / une fiche de révision
+
+Console → Databases → onbuchprimary → collection **`courses`** → *Create document*.
+
+| Champ | Obligatoire | Détail |
+|---|---|---|
+| `title` | ✅ | Titre du chapitre ou de la fiche |
+| `subject` | ✅ | Clé matière **exacte** : `maths`, `pc`, `svt`, `francais`, `philo`, `anglais`, `histgeo` |
+| `kind` | — | `cours` (défaut) ou `fiche` |
+| `body` | — | Contenu riche : **même syntaxe que le Tuteur** (Markdown, LaTeX `\( \)`, tableaux, blocs ```` ```onbuch-plot ````) |
+| `summary` | — | Court résumé affiché dans la liste |
+| `classe` | — | ex. `Terminale` ; **laisser vide = visible par toutes les classes** |
+| `examen` | — | ex. `Baccalauréat` ; vide = tous |
+| `serie` | — | ex. `D` ; vide = toutes les séries |
+| `order` | — | ordre dans la matière (1, 2, 3…) |
+| `chapter` | — | regroupe les leçons sous un en-tête (ex. `Algèbre`) |
+| `premium` | — | `true` = badge PREMIUM |
+
+Permissions : la collection est en `read("any")` → tout cours créé est **public** automatiquement.
+Le filtrage par classe / série est fait côté app : un contenu dont `classe`/`serie` sont **vides**
+s'affiche pour tous les élèves. Le `body` est rendu par le même moteur que les corrections du Tuteur,
+donc formules et graphiques fonctionnent à l'identique.
+
 ## À venir (même principe)
 
 Quand on ajoutera d'autres contenus pilotés serveur (examens & dates, événements/partenaires, annales PDF…), ils suivront le même modèle : collection avec `read("any")` + écriture réservée à `team:admins` / `team:editors`, gérés depuis la console.

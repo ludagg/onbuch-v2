@@ -4,6 +4,7 @@ import '../appwrite_config.dart';
 import '../models/article.dart';
 import '../models/exam.dart';
 import '../models/calendar_event.dart';
+import '../models/course.dart';
 import 'appwrite_client.dart';
 
 class DatabaseService {
@@ -194,6 +195,79 @@ class DatabaseService {
           .toList();
     } on AppwriteException {
       return const [];
+    }
+  }
+
+  // ── Cours & fiches ───────────────────────────────────────────────────────
+
+  /// Retourne tous les cours/fiches, triés par matière puis `order`, filtrés
+  /// côté client selon la classe / série de l'élève. Sert à l'écran
+  /// bibliothèque pour compter le contenu par matière. Liste vide en cas
+  /// d'erreur (la bibliothèque affiche alors un repli).
+  Future<List<Course>> getAllCourses({
+    String? classe,
+    String? serie,
+    int limit = 500,
+  }) async {
+    try {
+      final res = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteCoursesCollectionId,
+        queries: [
+          Query.orderAsc('subject'),
+          Query.orderAsc('order'),
+          Query.limit(limit),
+        ],
+      );
+      return res.documents
+          .map((d) => Course.fromMap(d.data, id: d.$id, createdAtFallback: d.$createdAt))
+          .where((c) => c.matchesProfile(profileClasse: classe, profileSerie: serie))
+          .toList();
+    } on AppwriteException {
+      return const [];
+    }
+  }
+
+  /// Retourne les cours/fiches d'une matière, triés par `order`, filtrés selon
+  /// la classe / série. [kind] vide = cours + fiches confondus.
+  Future<List<Course>> getCoursesBySubject(
+    CourseSubject subject, {
+    String? classe,
+    String? serie,
+    String kind = '',
+    int limit = 200,
+  }) async {
+    try {
+      final res = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteCoursesCollectionId,
+        queries: [
+          Query.equal('subject', subject.key),
+          if (kind.isNotEmpty) Query.equal('kind', kind),
+          Query.orderAsc('order'),
+          Query.limit(limit),
+        ],
+      );
+      return res.documents
+          .map((d) => Course.fromMap(d.data, id: d.$id, createdAtFallback: d.$createdAt))
+          .where((c) => c.matchesProfile(profileClasse: classe, profileSerie: serie))
+          .toList();
+    } on AppwriteException {
+      return const [];
+    }
+  }
+
+  /// Retourne un cours/fiche par son ID, ou null s'il est introuvable.
+  Future<Course?> getCourseById(String id) async {
+    try {
+      final doc = await AppwriteClient.databases.getDocument(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteCoursesCollectionId,
+        documentId: id,
+      );
+      return Course.fromMap(doc.data, id: doc.$id, createdAtFallback: doc.$createdAt);
+    } on AppwriteException {
+      return null;
     }
   }
 

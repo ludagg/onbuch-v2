@@ -52,6 +52,33 @@ Attributs :
 Permissions : Read `any` (le fil est public), Write réservé à l'admin.
 Les articles sont triés du plus récent au plus ancien.
 
+### Collection `courses` (cours & fiches de révision)
+Une seule collection pour les **cours** et les **fiches** : l'attribut `kind` fait
+la distinction. Le corps `body` accepte la **même syntaxe que le Tuteur** (Markdown,
+LaTeX `\( \)` / `\[ \]`, tableaux, blocs `onbuch-plot`) car il est rendu par le même
+widget `RichAnswer`.
+
+Attributs :
+- `title` (string, 200, **required**) — titre du chapitre / de la fiche
+- `subject` (string, 40, **required**) — clé matière, **exactement** l'une de :
+  `maths`, `pc`, `svt`, `francais`, `philo`, `anglais`, `histgeo`
+- `kind` (string, 20) — `cours` (défaut) ou `fiche`
+- `body` (string, 100000) — contenu riche (Markdown / LaTeX / `onbuch-plot`)
+- `summary` (string, 500) — court teaser affiché dans les listes
+- `classe` (string, 50) — = `users.classe` ; **laisser vide = visible par toutes les classes**
+- `examen` (string, 50) — = `users.examen` ; vide = tous les examens
+- `serie` (string, 40) — = `users.serie` ; vide = toutes les séries
+- `order` (integer) — ordre dans la matière (défaut 0)
+- `chapter` (string, 60) — regroupement optionnel (en-têtes de section)
+- `premium` (boolean) — `true` affiche le badge PREMIUM
+
+Index (nécessaires aux requêtes) : `subject` (ASC), `order` (ASC), composite
+`subject`+`order`, et un index sur `classe` / `serie` si tu filtres côté serveur.
+
+Permissions : **collection-level** Read `any` (les cours sont publics), Write réservé
+aux équipes `admins` / `editors` — identique à `articles`. Le filtrage par classe /
+série se fait côté app : un contenu à `classe`/`serie` vide s'applique à tout le monde.
+
 ## 4. Permissions
 Pour chaque collection, ajouter :
 - Read: `user:[USER_ID]` (ou `any` pour les events)

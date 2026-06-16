@@ -9,3 +9,4 @@ const appwriteExamsCollectionId = 'exams';
 const appwriteSchoolCalendarCollectionId = 'school_calendar';
 const appwriteTutorJobsCollectionId = 'tutor_jobs';
 const appwriteTutorQuotaCollectionId = 'tutor_quota';
+const appwriteCoursesCollectionId = 'courses';
