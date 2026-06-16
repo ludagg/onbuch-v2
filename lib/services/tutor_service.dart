@@ -61,6 +61,18 @@ class TutorService {
       if (subject != null && subject.trim().isNotEmpty) 'subject': subject.trim(),
     };
 
+    return _run(payload, jobId);
+  }
+
+  /// Question de suivi dans une conversation. [messages] = historique
+  /// [{role:'user'|'assistant', content}]. Renvoie la réponse de l'assistant.
+  Future<String> continueConversation(List<Map<String, String>> messages) async {
+    final jobId = ID.unique();
+    return _run({'jobId': jobId, 'messages': messages}, jobId);
+  }
+
+  /// Lance l'exécution async et interroge le document jusqu'à complétion.
+  Future<String> _run(Map<String, dynamic> payload, String jobId) async {
     try {
       await AppwriteClient.functions.createExecution(
         functionId: AIConfig.tutorFunctionId,
@@ -90,7 +102,7 @@ class TutorService {
         if (status == 'done') {
           final c = doc.data['correction']?.toString() ?? '';
           if (c.trim().isNotEmpty) return c.trim();
-          throw 'Le Tuteur n\'a pas pu rédiger la correction. Réessaie.';
+          throw 'Le Tuteur n\'a pas pu répondre. Réessaie.';
         }
         if (status == 'error') {
           final err = doc.data['error']?.toString();

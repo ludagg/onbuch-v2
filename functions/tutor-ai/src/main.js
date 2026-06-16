@@ -153,6 +153,13 @@ export default async ({ req, res, error }) => {
   const subject = (input.subject || '').toString().trim().slice(0, 40);
   const jobId = (input.jobId || '').toString() || null;
   const uid = req.headers['x-appwrite-user-id'] || null;
+  // Historique de conversation (suivi) : [{role:'user'|'assistant', content}]
+  const messages = Array.isArray(input.messages)
+    ? input.messages
+        .filter((m) => m && (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string')
+        .slice(-12)
+        .map((m) => ({ role: m.role, content: m.content.slice(0, 6000) }))
+    : null;
 
   const finish = async (result) => {
     await writeJob(jobId, uid, result, error);
@@ -163,7 +170,7 @@ export default async ({ req, res, error }) => {
     error('NVIDIA_API_KEY absente.');
     return finish({ status: 'error', error: 'Tuteur IA non configuré côté serveur.' });
   }
-  if (!image && !question) {
+  if (!image && !question && !(messages && messages.length)) {
     return finish({ status: 'error', error: 'Aucun exercice fourni (photo ou texte).' });
   }
 
@@ -184,7 +191,29 @@ export default async ({ req, res, error }) => {
     }
   }
 
+  const consumeQuota = async () => {
+    if (quota && db && uid) {
+      if (quota.freeUsedToday < freeDaily) quota.freeUsedToday += 1;
+      else if (quota.credits > 0) quota.credits -= 1;
+      try { await writeQuota(db, uid, quota); } catch (e) { error(`writeQuota: ${String(e)}`); }
+    }
+  };
+
   try {
+    // Suivi de conversation (texte uniquement, pas de vision).
+    if (messages && messages.length) {
+      const reply = await callNvidia(apiKey, reasoningModel, [
+        { role: 'system', content: SOLVE_PROMPT },
+        ...messages,
+      ], 3200);
+      if (!reply) {
+        return finish({ status: 'error', error: "Le Tuteur n'a pas pu répondre. Réessaie." });
+      }
+      await consumeQuota();
+      const lastUser = [...messages].reverse().find((m) => m.role === 'user');
+      return finish({ status: 'done', correction: reply, title: makeTitle(lastUser ? lastUser.content : 'Question'), subject });
+    }
+
     // Énoncé : transcrit depuis la photo, ou directement le texte saisi.
     let enonce;
     let instruction = '';
@@ -220,13 +249,7 @@ export default async ({ req, res, error }) => {
       return finish({ status: 'error', error: "Le Tuteur n'a pas pu rédiger la correction. Réessaie." });
     }
 
-    // Consommer le quota après une correction réussie.
-    if (quota && db && uid) {
-      if (quota.freeUsedToday < freeDaily) quota.freeUsedToday += 1;
-      else if (quota.credits > 0) quota.credits -= 1;
-      try { await writeQuota(db, uid, quota); } catch (e) { error(`writeQuota: ${String(e)}`); }
-    }
-
+    await consumeQuota();
     return finish({ status: 'done', correction, title: makeTitle(enonce), subject });
   } catch (e) {
     if (e instanceof NvError) {
