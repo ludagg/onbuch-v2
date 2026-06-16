@@ -21,6 +21,16 @@ class TutorJob {
       );
 }
 
+/// Quota du Tuteur : corrections gratuites restantes aujourd'hui + crédits.
+class TutorQuota {
+  final int freeRemaining;
+  final int credits;
+  const TutorQuota({required this.freeRemaining, required this.credits});
+
+  bool get canAsk => freeRemaining > 0 || credits > 0;
+  int get freeDaily => AIConfig.freeDaily;
+}
+
 /// Service du Tuteur IA.
 ///
 /// La photo (ou le texte) d'un exercice est envoyé à la fonction Appwrite
@@ -106,6 +116,42 @@ class TutorService {
     } on AppwriteException catch (_) {
       throw 'Correction introuvable.';
     }
+  }
+
+  /// Renvoie le quota courant de l'utilisateur (gratuites restantes + crédits).
+  /// En cas d'erreur (hors-ligne, non connecté), suppose le quota plein pour ne
+  /// pas bloquer l'UI — l'enforcement réel reste côté serveur.
+  Future<TutorQuota> getQuota() async {
+    try {
+      final user = await AppwriteClient.account.get();
+      try {
+        final doc = await AppwriteClient.databases.getDocument(
+          databaseId: appwriteDatabaseId,
+          collectionId: appwriteTutorQuotaCollectionId,
+          documentId: user.$id,
+        );
+        final used = (doc.data['freeUsedToday'] as num?)?.toInt() ?? 0;
+        final resetDate = doc.data['freeResetDate']?.toString() ?? '';
+        final credits = (doc.data['credits'] as num?)?.toInt() ?? 0;
+        final remaining = resetDate == _todayStr()
+            ? (AIConfig.freeDaily - used).clamp(0, AIConfig.freeDaily)
+            : AIConfig.freeDaily;
+        return TutorQuota(freeRemaining: remaining, credits: credits);
+      } on AppwriteException catch (e) {
+        if (e.code == 404) {
+          return const TutorQuota(freeRemaining: AIConfig.freeDaily, credits: 0);
+        }
+        rethrow;
+      }
+    } catch (_) {
+      return const TutorQuota(freeRemaining: AIConfig.freeDaily, credits: 0);
+    }
+  }
+
+  String _todayStr() {
+    final n = DateTime.now().toUtc();
+    String two(int v) => v.toString().padLeft(2, '0');
+    return '${n.year}-${two(n.month)}-${two(n.day)}';
   }
 
   /// Liste les corrections récentes de l'utilisateur (les plus récentes d'abord).

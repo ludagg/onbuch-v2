@@ -25,6 +25,8 @@ import '../screens/profile/profile_screen.dart';
 import '../screens/news/article_detail_screen.dart';
 import '../models/article.dart';
 import '../models/tutor_request.dart';
+import '../theme/app_theme.dart';
+import '../widgets/ob_widgets.dart';
 import '../services/auth_service.dart';
 
 final _authService = AuthService();
@@ -107,8 +109,35 @@ class CoursPlaceholderScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: Text('Cours — Bientôt disponible')),
+    return Scaffold(
+      backgroundColor: OC.bg,
+      appBar: AppBar(
+        title: Text('Cours', style: display(17, weight: FontWeight.w700)),
+        backgroundColor: OC.bg,
+        surfaceTintColor: Colors.transparent,
+        actions: obTopActions(context),
+      ),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(32),
+          child: Column(mainAxisSize: MainAxisSize.min, children: [
+            Container(
+              width: 84, height: 84,
+              decoration: BoxDecoration(
+                color: OC.o50,
+                borderRadius: BorderRadius.circular(26),
+                border: Border.all(color: OC.o100, width: 1.5),
+              ),
+              child: const Icon(Icons.play_lesson_rounded, size: 40, color: OC.o600),
+            ),
+            const SizedBox(height: 20),
+            Text('Cours', style: display(24, weight: FontWeight.w700)),
+            const SizedBox(height: 8),
+            Text('Tes cours et fiches de révision arrivent bientôt.',
+                textAlign: TextAlign.center, style: body(14.5, color: OC.ink2).copyWith(height: 1.5)),
+          ]),
+        ),
+      ),
     );
   }
 }

@@ -367,6 +367,46 @@ class _NavTab {
   const _NavTab({required this.icon, required this.label});
 }
 
+// ─── Actions standard de la barre supérieure (cloche + profil + menu) ────────
+/// À mettre dans `AppBar.actions` / `SliverAppBar.actions` pour avoir la même
+/// barre du haut sur toutes les pages.
+List<Widget> obTopActions(BuildContext context, {bool showProfile = true}) {
+  return [
+    Stack(alignment: Alignment.center, children: [
+      IconButton(
+        icon: const Icon(Icons.notifications_outlined, size: 23),
+        color: OC.ink,
+        onPressed: () {},
+      ),
+      Positioned(
+        top: 10, right: 10,
+        child: Container(
+          width: 8, height: 8,
+          decoration: BoxDecoration(
+            color: OC.o500,
+            shape: BoxShape.circle,
+            border: Border.all(color: OC.bg, width: 1.5),
+          ),
+        ),
+      ),
+    ]),
+    if (showProfile)
+      GestureDetector(
+        onTap: () => context.go('/profile'),
+        child: Container(
+          width: 40, height: 40,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(color: OC.line2, width: 1.5),
+          ),
+          child: const Icon(Icons.person_outline_rounded, size: 22, color: OC.ink),
+        ),
+      ),
+    const SizedBox(width: 10),
+    const Padding(padding: EdgeInsets.only(right: 12), child: OBTopMenu()),
+  ];
+}
+
 // ─── Top overflow menu (popup ancré sous le bouton) ──────────────────────────
 class OBMenuEntry {
   final IconData icon;

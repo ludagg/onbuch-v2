@@ -7,6 +7,9 @@ class AIConfig {
   /// ID de la fonction Appwrite qui relaie les requêtes vers NVIDIA.
   static const tutorFunctionId = 'tutor-ai';
 
+  /// Corrections gratuites par jour (doit refléter FREE_DAILY de la fonction).
+  static const freeDaily = 3;
+
   /// Limite NVIDIA pour une image base64 inline (~180 Ko). On vise un peu en
   /// dessous pour garder une marge avec le reste du payload.
   static const maxInlineImageBytes = 170 * 1024;
