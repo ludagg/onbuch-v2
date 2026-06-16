@@ -1,46 +1,37 @@
 # Mise à jour silencieuse (Shorebird Code Push)
 
-OnBuch peut recevoir des mises à jour **du code Dart** sans réinstallation et
-sans repasser par le store : à l'ouverture de l'app, le correctif est téléchargé
-en arrière-plan et appliqué au redémarrage suivant. C'est **silencieux**.
+OnBuch reçoit les mises à jour **du code Dart** sans réinstallation et sans
+repasser par le store : à l'ouverture, le correctif est téléchargé en arrière-plan
+et appliqué au redémarrage suivant. **Silencieux.**
 
-> ⚠️ Shorebird met à jour le **code Dart** (écrans, logique, UI). Les changements
-> **natifs** (nouveau plugin natif, permissions, AndroidManifest, montée de
-> version Flutter) nécessitent une **nouvelle release** (un nouvel APK).
+> ⚠️ Patche le **code Dart** uniquement. Un changement **natif** (nouveau plugin
+> natif, permissions, AndroidManifest, montée de Flutter) demande une **nouvelle
+> release** (un nouvel APK à distribuer).
 
-## 1. Créer le compte (une fois — à faire par toi)
-```bash
-# Installer le CLI
-curl --proto '=https' --tlsv1.2 https://raw.githubusercontent.com/shorebirdtech/install/main/install.sh -sS | bash
+## ✅ Déjà fait
+- App Shorebird **créée** (`app_id` dans `shorebird.yaml`, bundlé via `pubspec.yaml`).
+- Workflow CI `.github/workflows/shorebird.yml` (déclenchement manuel : `release` / `patch`).
 
-shorebird login        # crée/associe ton compte Shorebird
-shorebird init         # génère shorebird.yaml (contient l'app_id) à la racine
-```
-`shorebird init` crée le fichier **`shorebird.yaml`** avec ton `app_id`.
-➡️ **Commits ce fichier** (ou donne-le-moi pour que je le commite).
+## À faire de ton côté (une fois)
+1. **Régénérer ton token** Shorebird (il a transité dans le chat) sur
+   https://console.shorebird.dev.
+2. Ajouter le secret repo **`SHOREBIRD_TOKEN`** : GitHub → repo → Settings →
+   Secrets and variables → Actions → New repository secret.
+3. **Première release** (depuis ta machine, où Flutter + Android sont installés) :
+   ```bash
+   flutter pub get
+   shorebird release android
+   ```
+   → distribue l'APK généré (WhatsApp, site…). C'est la version « socle ».
 
-## 2. Publier la version socle (release)
-À chaque version « de base » distribuée (APK à partager) :
-```bash
-shorebird release android \
-  --dart-define=... (si besoin)
-# -> produit l'APK à distribuer (WhatsApp, site…)
-```
+## Pousser une mise à jour silencieuse
+Après une modif de **code Dart** (et que la release socle est installée) :
+- soit en local : `shorebird patch android`
+- soit via GitHub : Actions → **Shorebird** → Run workflow → `patch`.
 
-## 3. Pousser une mise à jour silencieuse (patch)
-Après une modif de **code Dart** (corrections, UI, logique) :
-```bash
-shorebird patch android
-```
-Tous les téléphones ayant la release reçoivent le patch automatiquement.
+> Important : un `patch` doit cibler une `release` faite avec la **même version
+> de Flutter**. Quand tu changes de version Flutter ou du natif → refais une
+> `release` (nouvel APK), puis repars en `patch`.
 
-## Notes
-- Le **CI** peut automatiser `shorebird patch` à chaque merge sur `main` (je peux
-  préparer le workflow une fois l'`app_id` connu).
-- Tarif : offre gratuite pour petits volumes, puis paliers payants (voir
-  shorebird.dev au moment de t'inscrire).
-- Côté app : **rien à coder** — Shorebird agit au niveau du moteur Flutter.
-
-## Ce qu'il me faut de toi
-- Lance `shorebird init` et donne-moi le `shorebird.yaml` (ou commits-le), et je
-  finalise (doc de build, CI de patch automatique).
+## Tarif
+Offre gratuite pour petits volumes, puis paliers payants (voir shorebird.dev).

@@ -1,0 +1,42 @@
+name: Shorebird
+
+# Mises à jour via Shorebird (code push).
+# - "release" : publie une version socle (à distribuer comme APK), à faire
+#   quand le natif change (nouveau plugin, permissions, montée de Flutter…).
+# - "patch"   : pousse une mise à jour silencieuse du code Dart aux téléphones
+#   qui ont déjà la release correspondante.
+#
+# Déclenchement manuel (Actions -> Shorebird -> Run workflow) pour garder le
+# contrôle. Nécessite le secret repo SHOREBIRD_TOKEN.
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "release ou patch"
+        type: choice
+        default: patch
+        options: [patch, release]
+
+jobs:
+  shorebird:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Setup Shorebird
+        uses: shorebirdtech/setup-shorebird@v1
+
+      - name: Shorebird ${{ inputs.mode }}
+        env:
+          SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}
+        run: shorebird ${{ inputs.mode }} android --no-confirm
+
+      # NB : pour distribuer un APK release signé depuis le CI, ajoute la
+      # configuration de signature Android (keystore en secrets). Les "patch"
+      # n'ont pas besoin de signature.
