@@ -7,7 +7,7 @@ class MainShell extends StatelessWidget {
   final Widget child;
   const MainShell({super.key, required this.location, required this.child});
 
-  static const _routes = ['/home', '/results', '/tutor', '/annales', '/cours'];
+  static const _routes = ['/home', '/campus', '/tutor', '/annales', '/cours'];
 
   int get _index {
     for (int i = 0; i < _routes.length; i++) {

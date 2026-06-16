@@ -1,5 +1,6 @@
 // Shared UI primitives for OnBuch V2
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../theme/app_theme.dart';
 
 // ─── Wordmark ─────────────────────────────────────────────────────────────────
@@ -267,7 +268,7 @@ class OBNavBar extends StatelessWidget {
 
   static const _tabs = [
     _NavTab(icon: Icons.dashboard_rounded, label: 'Tableau'),
-    _NavTab(icon: Icons.description_outlined, label: 'Résultats'),
+    _NavTab(icon: Icons.school_rounded, label: 'Campus'),
     _NavTab(icon: Icons.auto_awesome_rounded, label: 'Tuteur'),
     _NavTab(icon: Icons.menu_book_rounded, label: 'Annales'),
     _NavTab(icon: Icons.play_lesson_rounded, label: 'Cours'),
@@ -329,6 +330,87 @@ class _NavTab {
   final IconData icon;
   final String label;
   const _NavTab({required this.icon, required this.label});
+}
+
+// ─── Top overflow menu (popup ancré sous le bouton) ──────────────────────────
+class OBMenuEntry {
+  final IconData icon;
+  final String label;
+  final String? route; // null = pas encore disponible
+  const OBMenuEntry(this.icon, this.label, [this.route]);
+}
+
+/// Bouton « trois traits » de la barre supérieure : ouvre un petit menu
+/// contextuel juste sous le bouton (pas un tiroir latéral). Pensé pour
+/// accueillir les onglets/sections qui s'ajouteront.
+class OBTopMenu extends StatelessWidget {
+  final List<OBMenuEntry> entries;
+  const OBTopMenu({super.key, this.entries = _defaults});
+
+  static const List<OBMenuEntry> _defaults = [
+    OBMenuEntry(Icons.track_changes_rounded, 'Concours'),
+    OBMenuEntry(Icons.paid_outlined, 'Crédits'),
+    OBMenuEntry(Icons.groups_rounded, 'Communauté'),
+    OBMenuEntry(Icons.settings_outlined, 'Paramètres'),
+    OBMenuEntry(Icons.help_outline_rounded, 'Aide & support'),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return PopupMenuButton<int>(
+      tooltip: 'Menu',
+      position: PopupMenuPosition.under,
+      offset: const Offset(0, 8),
+      color: OC.paper,
+      elevation: 10,
+      shadowColor: OC.ink.withValues(alpha: 0.20),
+      constraints: const BoxConstraints(minWidth: 204, maxWidth: 240),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+        side: const BorderSide(color: OC.line2, width: 1.5),
+      ),
+      itemBuilder: (context) => [
+        for (int i = 0; i < entries.length; i++)
+          PopupMenuItem<int>(
+            value: i,
+            height: 46,
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            child: Row(children: [
+              Container(
+                width: 30, height: 30,
+                decoration: BoxDecoration(color: OC.o50, borderRadius: BorderRadius.circular(9)),
+                child: Icon(entries[i].icon, size: 17, color: OC.o600),
+              ),
+              const SizedBox(width: 12),
+              Text(entries[i].label, style: body(13.5, weight: FontWeight.w600, color: OC.ink)),
+            ]),
+          ),
+      ],
+      onSelected: (i) {
+        final e = entries[i];
+        if (e.route != null) {
+          context.go(e.route!);
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text('${e.label} — bientôt disponible',
+                style: body(13, weight: FontWeight.w600, color: Colors.white)),
+            backgroundColor: OC.ink,
+            behavior: SnackBarBehavior.floating,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            duration: const Duration(seconds: 2),
+          ));
+        }
+      },
+      child: Container(
+        width: 40, height: 40,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          border: Border.all(color: OC.line2, width: 1.5),
+        ),
+        child: const Icon(Icons.menu_rounded, size: 21, color: OC.ink),
+      ),
+    );
+  }
 }
 
 // ─── OTP Row ──────────────────────────────────────────────────────────────────

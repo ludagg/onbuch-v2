@@ -7,6 +7,7 @@ import '../screens/onboarding/profile_setup_screen.dart';
 import '../screens/onboarding/welcome_screen.dart';
 import '../screens/main_shell.dart';
 import '../screens/home/home_screen.dart';
+import '../screens/school/school_life_screen.dart';
 import '../screens/results/results_search_screen.dart';
 import '../screens/results/result_success_screen.dart';
 import '../screens/results/result_fail_screen.dart';
@@ -49,6 +50,7 @@ final appRouter = GoRouter(
       builder: (_, state, child) => MainShell(location: state.uri.path, child: child),
       routes: [
         GoRoute(path: '/home', builder: (_, __) => const HomeScreen()),
+        GoRoute(path: '/campus', builder: (_, __) => const SchoolLifeScreen()),
         GoRoute(
           path: '/results',
           builder: (_, __) => const ResultsSearchScreen(),
