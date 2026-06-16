@@ -148,6 +148,41 @@ class OBChip extends StatelessWidget {
   }
 }
 
+// ─── Style de catégorie d'article (accent + teinte) ──────────────────────────
+class CatStyle {
+  final Color accent, tint;
+  const CatStyle(this.accent, this.tint);
+}
+
+CatStyle categoryStyle(String category) {
+  switch (category.toLowerCase()) {
+    case 'examens':
+      return const CatStyle(OC.o600, OC.o50);
+    case 'bourses':
+      return const CatStyle(OC.blue, OC.blueBg);
+    case 'conseil':
+      return const CatStyle(OC.waInk, OC.goodBg);
+    case 'concours':
+      return const CatStyle(OC.blue, OC.blueBg);
+    case 'alerte':
+      return const CatStyle(OC.bad, OC.badBg);
+    default:
+      return const CatStyle(OC.o600, OC.o50);
+  }
+}
+
+/// Horodatage relatif court en français ("il y a 2 h", "hier"…).
+String timeAgo(DateTime dt) {
+  final diff = DateTime.now().difference(dt);
+  if (diff.inMinutes < 1) return 'à l\'instant';
+  if (diff.inMinutes < 60) return 'il y a ${diff.inMinutes} min';
+  if (diff.inHours < 24) return 'il y a ${diff.inHours} h';
+  if (diff.inDays == 1) return 'hier';
+  if (diff.inDays < 7) return 'il y a ${diff.inDays} j';
+  if (diff.inDays < 35) return 'il y a ${(diff.inDays / 7).floor()} sem';
+  return 'il y a ${(diff.inDays / 30).floor()} mois';
+}
+
 // ─── Section header ───────────────────────────────────────────────────────────
 class SecHead extends StatelessWidget {
   final String title;

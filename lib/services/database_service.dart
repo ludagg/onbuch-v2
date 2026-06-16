@@ -137,6 +137,20 @@ class DatabaseService {
     }
   }
 
+  /// Retourne un article par son ID, ou null s'il est introuvable.
+  Future<Article?> getArticleById(String id) async {
+    try {
+      final doc = await AppwriteClient.databases.getDocument(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteArticlesCollectionId,
+        documentId: id,
+      );
+      return Article.fromMap(doc.data, id: doc.$id, createdAtFallback: doc.$createdAt);
+    } on AppwriteException {
+      return null;
+    }
+  }
+
   // ── Analytics ────────────────────────────────────────────────────────────
 
   /// Loggue un événement analytics dans la collection `analytics_events`.

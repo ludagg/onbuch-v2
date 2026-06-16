@@ -699,40 +699,6 @@ class _NewsSectionState extends State<_NewsSection> {
   }
 }
 
-// Couleurs (accent + teinte) associées à une catégorie d'article.
-class _CatStyle {
-  final Color accent, tint;
-  const _CatStyle(this.accent, this.tint);
-}
-
-_CatStyle _catStyle(String category) {
-  switch (category.toLowerCase()) {
-    case 'examens':
-      return const _CatStyle(OC.o600, OC.o50);
-    case 'bourses':
-      return const _CatStyle(OC.blue, OC.blueBg);
-    case 'conseil':
-      return const _CatStyle(OC.waInk, OC.goodBg);
-    case 'concours':
-      return const _CatStyle(OC.blue, OC.blueBg);
-    case 'alerte':
-      return const _CatStyle(OC.bad, OC.badBg);
-    default:
-      return const _CatStyle(OC.o600, OC.o50);
-  }
-}
-
-String _timeAgo(DateTime dt) {
-  final diff = DateTime.now().difference(dt);
-  if (diff.inMinutes < 1) return 'à l\'instant';
-  if (diff.inMinutes < 60) return 'il y a ${diff.inMinutes} min';
-  if (diff.inHours < 24) return 'il y a ${diff.inHours} h';
-  if (diff.inDays == 1) return 'hier';
-  if (diff.inDays < 7) return 'il y a ${diff.inDays} j';
-  if (diff.inDays < 35) return 'il y a ${(diff.inDays / 7).floor()} sem';
-  return 'il y a ${(diff.inDays / 30).floor()} mois';
-}
-
 Widget _articleImage(String? url, double iconSize) {
   if (url == null || url.isEmpty) {
     return Center(child: Icon(Icons.image_outlined, color: OC.faint, size: iconSize));
@@ -756,51 +722,55 @@ class _FeaturedArticle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cat = _catStyle(article.category);
-    return Container(
-      height: 220,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: OC.line, width: 1.5),
-        color: OC.panel,
-      ),
-      child: Stack(children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(19),
-          child: SizedBox.expand(child: _articleImage(article.imageUrl, 48)),
+    final cat = categoryStyle(article.category);
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () => context.push('/article', extra: article),
+      child: Container(
+        height: 220,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(color: OC.line, width: 1.5),
+          color: OC.panel,
         ),
-        Positioned(
-          bottom: 0, left: 0, right: 0,
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: const BorderRadius.vertical(bottom: Radius.circular(19)),
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [Colors.transparent, const Color(0xFF0F0A07).withValues(alpha: 0.86)],
-              ),
-            ),
-            padding: const EdgeInsets.fromLTRB(16, 40, 16, 14),
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 4),
-                decoration: BoxDecoration(color: cat.accent, borderRadius: BorderRadius.circular(8)),
-                child: Text(article.category.toUpperCase(),
-                    style: body(10, weight: FontWeight.w800, color: Colors.white)
-                        .copyWith(letterSpacing: 0.04 * 10)),
-              ),
-              const SizedBox(height: 9),
-              Text(article.title,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: display(18, weight: FontWeight.w700, color: Colors.white)),
-              const SizedBox(height: 6),
-              Text('${article.source} · ${_timeAgo(article.publishedAt)}',
-                  style: body(11.5, color: Colors.white.withValues(alpha: 0.7), weight: FontWeight.w500)),
-            ]),
+        child: Stack(children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(19),
+            child: SizedBox.expand(child: _articleImage(article.imageUrl, 48)),
           ),
-        ),
-      ]),
+          Positioned(
+            bottom: 0, left: 0, right: 0,
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.vertical(bottom: Radius.circular(19)),
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [Colors.transparent, const Color(0xFF0F0A07).withValues(alpha: 0.86)],
+                ),
+              ),
+              padding: const EdgeInsets.fromLTRB(16, 40, 16, 14),
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 4),
+                  decoration: BoxDecoration(color: cat.accent, borderRadius: BorderRadius.circular(8)),
+                  child: Text(article.category.toUpperCase(),
+                      style: body(10, weight: FontWeight.w800, color: Colors.white)
+                          .copyWith(letterSpacing: 0.04 * 10)),
+                ),
+                const SizedBox(height: 9),
+                Text(article.title,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: display(18, weight: FontWeight.w700, color: Colors.white)),
+                const SizedBox(height: 6),
+                Text('${article.source} · ${timeAgo(article.publishedAt)}',
+                    style: body(11.5, color: Colors.white.withValues(alpha: 0.7), weight: FontWeight.w500)),
+              ]),
+            ),
+          ),
+        ]),
+      ),
     );
   }
 }
@@ -812,36 +782,40 @@ class _ArticleRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cat = _catStyle(article.category);
-    return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      ClipRRect(
-        borderRadius: BorderRadius.circular(14),
-        child: Container(
-          width: 66, height: 66,
-          color: cat.tint,
-          child: article.imageUrl == null
-              ? Center(child: Icon(Icons.article_outlined, color: cat.accent, size: 28))
-              : _articleImage(article.imageUrl, 24),
+    final cat = categoryStyle(article.category);
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () => context.push('/article', extra: article),
+      child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(14),
+          child: Container(
+            width: 66, height: 66,
+            color: cat.tint,
+            child: article.imageUrl == null
+                ? Center(child: Icon(Icons.article_outlined, color: cat.accent, size: 28))
+                : _articleImage(article.imageUrl, 24),
+          ),
         ),
-      ),
-      const SizedBox(width: 13),
-      Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-          decoration: BoxDecoration(color: cat.tint, borderRadius: BorderRadius.circular(7)),
-          child: Text(article.category.toUpperCase(),
-              style: body(9.5, weight: FontWeight.w800, color: cat.accent)),
-        ),
-        const SizedBox(height: 6),
-        Text(article.title,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            style: body(13.5, weight: FontWeight.w700).copyWith(height: 1.25)),
-        const SizedBox(height: 4),
-        Text('${article.source} · ${_timeAgo(article.publishedAt)}',
-            style: body(11, color: OC.muted, weight: FontWeight.w500)),
-      ])),
-    ]);
+        const SizedBox(width: 13),
+        Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+            decoration: BoxDecoration(color: cat.tint, borderRadius: BorderRadius.circular(7)),
+            child: Text(article.category.toUpperCase(),
+                style: body(9.5, weight: FontWeight.w800, color: cat.accent)),
+          ),
+          const SizedBox(height: 6),
+          Text(article.title,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: body(13.5, weight: FontWeight.w700).copyWith(height: 1.25)),
+          const SizedBox(height: 4),
+          Text('${article.source} · ${timeAgo(article.publishedAt)}',
+              style: body(11, color: OC.muted, weight: FontWeight.w500)),
+        ])),
+      ]),
+    );
   }
 }
 
