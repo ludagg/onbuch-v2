@@ -10,5 +10,5 @@
 /// l'URL de production de `ol`.
 const String onbuchApiBaseUrl = String.fromEnvironment(
   'ONBUCH_API_BASE_URL',
-  defaultValue: 'https://onbuch-library.vercel.app',
+  defaultValue: 'https://onbuchlib.vercel.app',
 );
