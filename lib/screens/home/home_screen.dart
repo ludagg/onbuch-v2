@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
 import '../../services/appwrite_client.dart';
+import '../../services/auth_service.dart';
 import '../../services/database_service.dart';
 import '../../models/article.dart';
 
@@ -61,9 +62,9 @@ class HomeScreen extends StatelessWidget {
           SliverToBoxAdapter(
             child: Column(children: [
               // Greeting
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
-                child: Center(child: Text('Bonjour, Aïcha 👋', style: display(24, weight: FontWeight.w600))),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 4),
+                child: Center(child: _Greeting()),
               ),
               const SizedBox(height: 16),
 
@@ -188,6 +189,37 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+// ─── Greeting (prénom de l'utilisateur connecté) ──────────────────────────────
+class _Greeting extends StatefulWidget {
+  const _Greeting();
+
+  @override
+  State<_Greeting> createState() => _GreetingState();
+}
+
+class _GreetingState extends State<_Greeting> {
+  late final Future<String?> _firstName = _loadFirstName();
+
+  Future<String?> _loadFirstName() async {
+    final user = await AuthService().getCurrentUser();
+    final name = user?.name.trim() ?? '';
+    if (name.isEmpty) return null;
+    return DatabaseService.splitFullName(name)['firstName'] as String?;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<String?>(
+      future: _firstName,
+      builder: (context, snap) {
+        final first = snap.data;
+        final text = (first == null || first.isEmpty) ? 'Bonjour 👋' : 'Bonjour, $first 👋';
+        return Text(text, style: display(24, weight: FontWeight.w600));
+      },
     );
   }
 }
