@@ -1,0 +1,6 @@
+# Configuration Shorebird (code push / mises à jour silencieuses).
+# app_id identifie l'app OnBuch sur Shorebird (ce n'est pas un secret).
+app_id: 8e4c97b4-3196-4b65-a3d3-3e1e6c780461
+
+# Les patches sont téléchargés et appliqués automatiquement (silencieux).
+auto_update: true
