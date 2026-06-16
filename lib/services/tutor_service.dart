@@ -154,6 +154,20 @@ class TutorService {
     return '${n.year}-${two(n.month)}-${two(n.day)}';
   }
 
+  /// Nombre total de corrections de l'utilisateur (pour le profil).
+  Future<int> correctionsCount() async {
+    try {
+      final res = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteTutorJobsCollectionId,
+        queries: [Query.limit(1)],
+      );
+      return res.total;
+    } on AppwriteException {
+      return 0;
+    }
+  }
+
   /// Liste les corrections récentes de l'utilisateur (les plus récentes d'abord).
   Future<List<TutorJob>> recentJobs({int limit = 8}) async {
     try {
