@@ -8,5 +8,7 @@ const appwriteArticlesCollectionId = 'articles';
 const appwriteExamsCollectionId = 'exams';
 const appwriteSchoolCalendarCollectionId = 'school_calendar';
 const appwriteConcoursCollectionId = 'concours';
+const appwriteSubjectsCollectionId = 'subjects';
+const appwriteChaptersCollectionId = 'chapters';
 const appwriteTutorJobsCollectionId = 'tutor_jobs';
 const appwriteTutorQuotaCollectionId = 'tutor_quota';

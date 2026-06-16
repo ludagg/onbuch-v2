@@ -70,7 +70,7 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
     } else if (r.image != null) {
       fut = _service.analyzeExercise(image: r.image, subject: r.subject);
     } else if (r.question != null && r.question!.trim().isNotEmpty) {
-      fut = _service.analyzeExercise(text: r.question, subject: r.subject);
+      fut = _service.analyzeExercise(text: r.question, subject: r.subject, mode: r.mode);
     }
     if (fut != null) _addAi(fut, primary: true);
   }

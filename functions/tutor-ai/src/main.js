@@ -34,6 +34,18 @@ FORMAT — l'app rend du Markdown enrichi. Utilise au mieux :
 
 Reste rigoureux, bienveillant et concis.`;
 
+const LESSON_PROMPT = `Tu es le Tuteur IA d'OnBuch. On te donne un chapitre du programme scolaire camerounais (système francophone). Rédige un COURS clair, structuré et pédagogique en français :
+1. Une courte introduction (à quoi sert ce chapitre).
+2. Les définitions et notions clés.
+3. Les propriétés / formules / méthodes importantes.
+4. Un ou deux exemples concrets.
+5. Une synthèse « à retenir ».
+
+FORMAT — l'app rend du Markdown enrichi :
+- Markdown : titres courts, listes, **gras**, tableaux si utile.
+- Maths en LaTeX : en ligne \\( ... \\) et en bloc \\[ ... \\]. N'utilise PAS le symbole "$".
+Reste rigoureux, clair et adapté à un élève du secondaire.`;
+
 class NvError extends Error {
   constructor(status) {
     super(`nvidia_${status}`);
@@ -150,6 +162,7 @@ export default async ({ req, res, error }) => {
   }
   const image = (typeof input.image === 'string' && input.image) ? input.image : null;
   const question = (input.question || '').toString().trim();
+  const mode = (input.mode || '').toString();
   const subject = (input.subject || '').toString().trim().slice(0, 40);
   const jobId = (input.jobId || '').toString() || null;
   const uid = req.headers['x-appwrite-user-id'] || null;
@@ -236,12 +249,13 @@ export default async ({ req, res, error }) => {
       enonce = question; // mode texte : l'énoncé est le texte saisi
     }
 
-    const userMsg = instruction
-      ? `${instruction}\n\nÉnoncé :\n${enonce}`
-      : `Voici l'énoncé d'un exercice. Corrige-le.\n\n${enonce}`;
+    const isLesson = mode === 'lesson';
+    const userMsg = isLesson
+      ? enonce
+      : (instruction ? `${instruction}\n\nÉnoncé :\n${enonce}` : `Voici l'énoncé d'un exercice. Corrige-le.\n\n${enonce}`);
 
     const correction = await callNvidia(apiKey, reasoningModel, [
-      { role: 'system', content: SOLVE_PROMPT },
+      { role: 'system', content: isLesson ? LESSON_PROMPT : SOLVE_PROMPT },
       { role: 'user', content: userMsg },
     ], 3200);
 
