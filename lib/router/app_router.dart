@@ -13,9 +13,12 @@ import '../screens/results/result_success_screen.dart';
 import '../screens/results/result_fail_screen.dart';
 import '../screens/annales/annales_library_screen.dart';
 import '../screens/annales/annales_folder_screen.dart';
+import '../screens/annales/annales_list_screen.dart';
 import '../screens/annales/annale_detail_screen.dart';
 import '../screens/annales/pdf_reader_screen.dart';
 import '../screens/annales/video_corrige_screen.dart';
+import '../models/annale.dart';
+import '../models/annales_filter.dart';
 import '../screens/tutor/tutor_hub_screen.dart';
 import '../screens/tutor/tutor_camera_screen.dart';
 import '../screens/tutor/tutor_correction_screen.dart';
@@ -52,6 +55,13 @@ final appRouter = GoRouter(
       path: '/article',
       builder: (_, s) => ArticleDetailScreen(article: s.extra as Article?),
     ),
+    // Lecteur PDF plein écran (hors shell : pas de barre de navigation).
+    GoRoute(
+      path: '/pdf',
+      builder: (_, s) => s.extra is PdfArgs
+          ? PdfReaderScreen(args: s.extra as PdfArgs)
+          : const AnnalesLibraryScreen(),
+    ),
     ShellRoute(
       builder: (_, state, child) => MainShell(location: state.uri.path, child: child),
       routes: [
@@ -69,9 +79,24 @@ final appRouter = GoRouter(
           path: '/annales',
           builder: (_, __) => const AnnalesLibraryScreen(),
           routes: [
-            GoRoute(path: 'folder/:name', builder: (_, s) => AnnalesFolderScreen(folderName: s.pathParameters['name'] ?? '')),
-            GoRoute(path: 'detail', builder: (_, __) => const AnnaleDetailScreen()),
-            GoRoute(path: 'pdf', builder: (_, __) => const PdfReaderScreen()),
+            GoRoute(
+              path: 'browse',
+              builder: (_, s) => AnnalesBrowseScreen(
+                filter: s.extra is AnnalesFilter ? s.extra as AnnalesFilter : const AnnalesFilter(),
+              ),
+            ),
+            GoRoute(
+              path: 'list',
+              builder: (_, s) => AnnalesListScreen(
+                filter: s.extra is AnnalesFilter ? s.extra as AnnalesFilter : const AnnalesFilter(),
+              ),
+            ),
+            GoRoute(
+              path: 'detail',
+              builder: (_, s) => s.extra is Annale
+                  ? AnnaleDetailScreen(annale: s.extra as Annale)
+                  : const AnnalesLibraryScreen(),
+            ),
             GoRoute(path: 'video', builder: (_, __) => const VideoCorrigeScreen()),
           ],
         ),
