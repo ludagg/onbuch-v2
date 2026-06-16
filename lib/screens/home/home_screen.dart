@@ -8,6 +8,7 @@ import '../../services/auth_service.dart';
 import '../../services/database_service.dart';
 import '../../models/article.dart';
 import '../../models/exam.dart';
+import '../../models/affiche.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -949,85 +950,112 @@ class _NewsSkeleton extends StatelessWidget {
 }
 
 // ─── À l'affiche (events + ads) ───────────────────────────────────────────────
-class _AfficheSection extends StatelessWidget {
-  const _AfficheSection();
+class _AfficheSection extends StatefulWidget {
+  @override
+  State<_AfficheSection> createState() => _AfficheSectionState();
+}
+
+class _AfficheSectionState extends State<_AfficheSection> {
+  late final Future<List<AfficheItem>> _future = DatabaseService().getAffiche(limit: 12);
+
+  static List<AfficheItem> _sample() => const [
+        AfficheItem(id: 'a1', type: 'event', title: 'Concours blanc national', subtitle: 'Sam. 28 juin · en ligne'),
+        AfficheItem(id: 'a2', type: 'sponsored', title: 'Prépa ENS Yaoundé', subtitle: 'Stages intensifs · –20 %'),
+      ];
 
   @override
   Widget build(BuildContext context) {
-    const items = [
-      ['ÉVÉNEMENT', OC.o500, 'Concours blanc national', 'Sam. 28 juin · en ligne'],
-      ['SPONSORISÉ', Color(0xFF3A3346), 'Prépa ENS Yaoundé', 'Stages intensifs · –20 %'],
-    ];
     return Column(children: [
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: SecHead(eyebrow: 'Événements & partenaires', title: 'À l\'affiche', action: null),
+        child: GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: () => context.push('/affiche'),
+          child: SecHead(eyebrow: 'Événements & partenaires', title: 'À l\'affiche'),
+        ),
       ),
       const SizedBox(height: 14),
-      SizedBox(
-        height: 185,
-        child: ListView.separated(
-          scrollDirection: Axis.horizontal,
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          itemCount: items.length,
-          separatorBuilder: (_, __) => const SizedBox(width: 13),
-          itemBuilder: (_, i) {
-            final it = items[i];
-            return Container(
-              width: 270,
-              decoration: BoxDecoration(
-                color: OC.panel,
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: OC.line, width: 1.5),
+      FutureBuilder<List<AfficheItem>>(
+        future: _future,
+        builder: (context, snap) {
+          if (snap.connectionState == ConnectionState.waiting) {
+            return const SizedBox(height: 185, child: Center(child: CircularProgressIndicator(color: OC.o500)));
+          }
+          var items = snap.data ?? const <AfficheItem>[];
+          if (items.isEmpty) items = _sample();
+          return Column(children: [
+            SizedBox(
+              height: 185,
+              child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                itemCount: items.length,
+                separatorBuilder: (_, __) => const SizedBox(width: 13),
+                itemBuilder: (_, i) => _afficheCard(context, items[i]),
               ),
-              child: Stack(children: [
-                ClipRRect(borderRadius: BorderRadius.circular(19), child: Container(
-                  color: OC.panel,
-                  child: const Center(child: Icon(Icons.image_outlined, color: OC.faint, size: 48)),
-                )),
-                Positioned(top: 0, left: 0, right: 0, bottom: 0,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(19),
-                      gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter,
-                          colors: [Colors.transparent, Colors.black.withValues(alpha:0.84)]),
-                    ),
-                  ),
-                ),
-                Positioned(top: 12, left: 12,
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 4),
-                    decoration: BoxDecoration(color: it[1] as Color, borderRadius: BorderRadius.circular(999)),
-                    child: Text(it[0] as String, style: body(9.5, weight: FontWeight.w800, color: Colors.white)
-                        .copyWith(letterSpacing: 0.06 * 9.5)),
-                  ),
-                ),
-                Positioned(bottom: 13, left: 14, right: 14,
-                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                    Text(it[2] as String, style: display(16.5, weight: FontWeight.w700, color: Colors.white)),
-                    const SizedBox(height: 4),
-                    Text(it[3] as String, style: body(11.5, color: Colors.white.withValues(alpha:0.8), weight: FontWeight.w500)),
-                  ]),
-                ),
-              ]),
-            );
-          },
-        ),
+            ),
+            const SizedBox(height: 12),
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: List.generate(items.length, (i) =>
+              AnimatedContainer(
+                duration: const Duration(milliseconds: 200),
+                width: i == 0 ? 18 : 6, height: 6,
+                margin: const EdgeInsets.symmetric(horizontal: 3),
+                decoration: BoxDecoration(color: i == 0 ? OC.o500 : OC.o100, borderRadius: BorderRadius.circular(3)),
+              ),
+            )),
+          ]);
+        },
       ),
-      const SizedBox(height: 12),
-      Row(mainAxisAlignment: MainAxisAlignment.center, children: List.generate(3, (i) =>
-        AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
-          width: i == 0 ? 18 : 6, height: 6,
-          margin: const EdgeInsets.symmetric(horizontal: 3),
-          decoration: BoxDecoration(
-            color: i == 0 ? OC.o500 : OC.o100,
-            borderRadius: BorderRadius.circular(3),
-          ),
-        ),
-      )),
     ]);
   }
+}
+
+Widget _afficheCard(BuildContext context, AfficheItem a) {
+  final hasImg = a.imageUrl != null && a.imageUrl!.isNotEmpty;
+  return GestureDetector(
+    onTap: () => context.push('/affiche-detail', extra: a),
+    child: Container(
+      width: 270,
+      clipBehavior: Clip.antiAlias,
+      decoration: BoxDecoration(
+        color: OC.panel,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: OC.line, width: 1.5),
+      ),
+      child: Stack(fit: StackFit.expand, children: [
+        if (hasImg)
+          Image.network(a.imageUrl!, fit: BoxFit.cover,
+              errorBuilder: (_, __, ___) => Container(color: OC.panel),
+              loadingBuilder: (_, c, p) => p == null ? c : Container(color: OC.panel))
+        else
+          Container(color: OC.panel, child: const Center(child: Icon(Icons.image_outlined, color: OC.faint, size: 48))),
+        DecoratedBox(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter,
+                colors: [Colors.transparent, Colors.black.withValues(alpha: 0.84)]),
+          ),
+        ),
+        Positioned(top: 12, left: 12,
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 4),
+            decoration: BoxDecoration(color: a.badgeColor, borderRadius: BorderRadius.circular(999)),
+            child: Text(a.badge, style: body(9.5, weight: FontWeight.w800, color: Colors.white).copyWith(letterSpacing: 0.06 * 9.5)),
+          ),
+        ),
+        Positioned(bottom: 13, left: 14, right: 14,
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(a.title, maxLines: 2, overflow: TextOverflow.ellipsis,
+                style: display(16.5, weight: FontWeight.w700, color: Colors.white)),
+            if (a.subtitle != null) ...[
+              const SizedBox(height: 4),
+              Text(a.subtitle!, maxLines: 1, overflow: TextOverflow.ellipsis,
+                  style: body(11.5, color: Colors.white.withValues(alpha: 0.8), weight: FontWeight.w500)),
+            ],
+          ]),
+        ),
+      ]),
+    ),
+  );
 }
 
 // ─── Community ────────────────────────────────────────────────────────────────

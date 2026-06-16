@@ -7,6 +7,7 @@ import '../models/calendar_event.dart';
 import '../models/concours.dart';
 import '../models/course.dart';
 import '../models/quiz.dart';
+import '../models/affiche.dart';
 import 'appwrite_client.dart';
 
 class DatabaseService {
@@ -315,6 +316,22 @@ class DatabaseService {
       );
     } on AppwriteException {
       // non bloquant
+    }
+  }
+
+  // ── À l'affiche (événements & partenaires) ────────────────────────────────
+
+  /// Éléments « À l'affiche », triés par `order`. Liste vide en cas d'erreur.
+  Future<List<AfficheItem>> getAffiche({int limit = 30}) async {
+    try {
+      final res = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteAfficheCollectionId,
+        queries: [Query.orderAsc('order'), Query.limit(limit)],
+      );
+      return res.documents.map((d) => AfficheItem.fromMap(d.data, id: d.$id)).toList();
+    } on AppwriteException {
+      return const [];
     }
   }
 
