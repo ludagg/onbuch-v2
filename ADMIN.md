@@ -54,6 +54,27 @@ Console → Databases → onbuchprimary → collection **`exams`**.
 
 Pour publier les résultats manuellement (sans attendre la date), mettre `status = published`. Pour figer un état, utiliser `upcoming` / `awaiting`.
 
+## Gérer les concours
+
+Console → Databases → onbuchprimary → collection **`concours`**.
+
+| Champ | Détail |
+|---|---|
+| `name` | nom du concours (ex. *Concours ENS Yaoundé 2026*) |
+| `organizer` | établissement organisateur |
+| `description` | présentation, conditions… |
+| `communique` | **lien** vers le communiqué officiel |
+| `link` | **lien** d'inscription / d'infos |
+| `registrationDeadline` | date limite d'inscription |
+| `examDate` | date des épreuves |
+| `resultsAvailable` | `true` quand les résultats sont publiés |
+| `resultsLink` | **lien** vers les résultats |
+| `resultsDate` | date de publication des résultats |
+| `audience` · `order` | cible (optionnel) · ordre d'affichage |
+
+La page Concours affiche les cartes triées par `order`, avec un compte à rebours (J-…)
+et, dès que `resultsAvailable = true`, un encart **« Résultats disponibles »** + bouton vers `resultsLink`.
+
 ## À venir (même principe)
 
 Quand on ajoutera d'autres contenus pilotés serveur (examens & dates, événements/partenaires, annales PDF…), ils suivront le même modèle : collection avec `read("any")` + écriture réservée à `team:admins` / `team:editors`, gérés depuis la console.
