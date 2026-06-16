@@ -7,28 +7,50 @@ import '../ai_config.dart';
 import '../appwrite_config.dart';
 import 'appwrite_client.dart';
 
+/// Une correction du Tuteur (entrée de l'historique « Corrections récentes »).
+class TutorJob {
+  final String id;
+  final String title;
+  final String subject;
+  const TutorJob({required this.id, required this.title, required this.subject});
+
+  factory TutorJob.fromDoc(String id, Map<String, dynamic> data) => TutorJob(
+        id: id,
+        title: (data['title'] ?? 'Exercice').toString(),
+        subject: (data['subject'] ?? '').toString(),
+      );
+}
+
 /// Service du Tuteur IA.
 ///
-/// La photo d'un exercice est compressée puis envoyée à la fonction Appwrite
-/// `tutor-ai` (en **asynchrone** : la correction prend 15-30 s, au-delà de la
-/// limite des exécutions synchrones). La fonction transcrit l'énoncé (vision)
-/// puis le corrige (raisonnement) et écrit le résultat dans `tutor_jobs/{jobId}`.
-/// L'app interroge ce document jusqu'à complétion. La clé NVIDIA n'est jamais
-/// sur le téléphone.
+/// La photo (ou le texte) d'un exercice est envoyé à la fonction Appwrite
+/// `tutor-ai` (en **asynchrone**). La fonction transcrit l'énoncé si besoin
+/// (vision) puis le corrige (raisonnement) et écrit le résultat dans
+/// `tutor_jobs/{jobId}`. L'app interroge ce document jusqu'à complétion. La clé
+/// NVIDIA n'est jamais sur le téléphone.
 class TutorService {
-  /// Analyse l'image d'un exercice et renvoie la correction (Markdown + LaTeX
-  /// + éventuels blocs `onbuch-plot`). Lève une [String] lisible en cas d'erreur.
-  Future<String> analyzeExercise(Uint8List imageBytes, {String? question}) async {
-    final b64 = await compute(_compressToBase64, imageBytes);
+  /// Lance une correction depuis une [image] et/ou un [text], et renvoie la
+  /// correction (Markdown + LaTeX + éventuels blocs `onbuch-plot`).
+  /// Lève une [String] lisible en cas d'erreur.
+  Future<String> analyzeExercise({
+    Uint8List? image,
+    String? text,
+    String? subject,
+  }) async {
+    if (image == null && (text == null || text.trim().isEmpty)) {
+      throw 'Fournis une photo ou écris ton exercice.';
+    }
+
+    final b64 = image != null ? await compute(_compressToBase64, image) : null;
     final jobId = ID.unique();
 
     final payload = <String, dynamic>{
-      'image': b64,
       'jobId': jobId,
-      if (question != null && question.trim().isNotEmpty) 'question': question.trim(),
+      if (b64 != null) 'image': b64,
+      if (text != null && text.trim().isNotEmpty) 'question': text.trim(),
+      if (subject != null && subject.trim().isNotEmpty) 'subject': subject.trim(),
     };
 
-    // 1) Lancer l'exécution en asynchrone (le résultat sera écrit dans la base).
     try {
       await AppwriteClient.functions.createExecution(
         functionId: AIConfig.tutorFunctionId,
@@ -42,14 +64,12 @@ class TutorService {
       throw 'Connexion au Tuteur impossible. Vérifie ta connexion et réessaie.';
     }
 
-    // 2) Interroger le document `tutor_jobs/{jobId}` jusqu'à complétion.
     final deadline = DateTime.now().add(const Duration(seconds: 110));
     while (true) {
       if (DateTime.now().isAfter(deadline)) {
         throw 'Le Tuteur met trop de temps à répondre. Réessaie.';
       }
       await Future.delayed(const Duration(milliseconds: 1800));
-
       try {
         final doc = await AppwriteClient.databases.getDocument(
           databaseId: appwriteDatabaseId,
@@ -66,11 +86,45 @@ class TutorService {
           final err = doc.data['error']?.toString();
           throw (err != null && err.isNotEmpty) ? err : 'Le Tuteur a rencontré un problème.';
         }
-        // status pending/null → on continue d'interroger.
       } on AppwriteException catch (_) {
-        // 404 (job pas encore écrit) ou erreur transitoire → on retente.
-        continue;
+        continue; // 404 (pas encore écrit) ou erreur transitoire → on retente.
       }
+    }
+  }
+
+  /// Renvoie la correction déjà calculée d'un job (réouverture).
+  Future<String> getJobCorrection(String jobId) async {
+    try {
+      final doc = await AppwriteClient.databases.getDocument(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteTutorJobsCollectionId,
+        documentId: jobId,
+      );
+      final c = doc.data['correction']?.toString() ?? '';
+      if (c.trim().isEmpty) throw 'Correction introuvable.';
+      return c.trim();
+    } on AppwriteException catch (_) {
+      throw 'Correction introuvable.';
+    }
+  }
+
+  /// Liste les corrections récentes de l'utilisateur (les plus récentes d'abord).
+  Future<List<TutorJob>> recentJobs({int limit = 8}) async {
+    try {
+      final res = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteTutorJobsCollectionId,
+        queries: [
+          Query.orderDesc('\$createdAt'),
+          Query.limit(limit),
+        ],
+      );
+      return res.documents
+          .where((d) => d.data['status'] == 'done')
+          .map((d) => TutorJob.fromDoc(d.$id, d.data))
+          .toList();
+    } on AppwriteException {
+      return const [];
     }
   }
 }
