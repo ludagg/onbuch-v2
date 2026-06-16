@@ -23,6 +23,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   String _classeExamen = '—';
   String _school = '';
   String _city = '';
+  String _phone = '';
   int _credits = 0;
   int _corrections = 0;
 
@@ -62,6 +63,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       _classeExamen = ce.isEmpty ? '—' : ce;
       _school = (profile?['school'] ?? '').toString().trim();
       _city = (profile?['city'] ?? '').toString().trim();
+      _phone = (profile?['phoneNumber'] ?? '').toString().trim();
       _credits = quota.credits;
       _corrections = count;
     });
@@ -150,6 +152,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
           // Préférences
           _Section('Préférences', [
+            if (_phone.isNotEmpty)
+              _ProfileRow(Icons.chat_rounded, 'WhatsApp', _phone, OC.wa, OC.goodBg),
             _ProfileRow(Icons.language_rounded, 'Langue', 'Français', OC.muted, OC.panel),
             _ProfileRow(Icons.notifications_outlined, 'Notifications', 'Alertes résultats activées', OC.muted, OC.panel),
             _ProfileRow(Icons.people_outline_rounded, 'Mode parent', 'Configurer un accès', OC.muted, OC.panel),
