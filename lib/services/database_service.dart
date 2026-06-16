@@ -73,6 +73,7 @@ class DatabaseService {
           },
         );
       }
+      _cache.remove('profile:$uid');
     } on AppwriteException {
       rethrow;
     }
@@ -81,15 +82,23 @@ class DatabaseService {
   /// Retourne le profil d'un utilisateur sous forme de Map, ou null s'il
   /// n'existe pas.
   Future<Map<String, dynamic>?> getUserProfile(String uid) async {
+    final key = 'profile:$uid';
+    final cached = _cache[key];
+    if (cached != null && DateTime.now().difference(cached.at) < _cacheTtl) {
+      return cached.data as Map<String, dynamic>?;
+    }
     try {
       final doc = await AppwriteClient.databases.getDocument(
         databaseId: appwriteDatabaseId,
         collectionId: appwriteUsersCollectionId,
         documentId: uid,
       );
+      _cache[key] = _CacheEntry(doc.data, DateTime.now());
       return doc.data;
     } on AppwriteException catch (e) {
       if (e.code == 404) return null;
+      // Hors-ligne / erreur : on sert le dernier profil connu s'il existe.
+      if (cached != null) return cached.data as Map<String, dynamic>?;
       rethrow;
     }
   }
@@ -102,6 +111,7 @@ class DatabaseService {
       documentId: uid,
       data: data,
     );
+    _cache.remove('profile:$uid');
   }
 
   /// Vérifie si le profil d'un utilisateur existe déjà.
