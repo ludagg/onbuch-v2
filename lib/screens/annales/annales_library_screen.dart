@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
+import '../../widgets/ob_widgets.dart';
 
 const _examFolders = [
   ('Baccalauréat', 320, Color(0xFFDB4F12), Color(0xFFFDEBE2)),
@@ -22,9 +23,7 @@ class AnnalesLibraryScreen extends StatelessWidget {
         title: Text('Bibliothèque', style: display(17, weight: FontWeight.w700)),
         backgroundColor: OC.bg,
         surfaceTintColor: Colors.transparent,
-        actions: [
-          IconButton(icon: const Icon(Icons.grid_view_rounded, size: 19), color: OC.ink2, onPressed: () {}),
-        ],
+        actions: obTopActions(context),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(0, 4, 0, 24),

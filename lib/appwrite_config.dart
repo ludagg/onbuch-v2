@@ -7,3 +7,4 @@ const appwriteAnalyticsCollectionId = 'analytics_events';
 const appwriteArticlesCollectionId = 'articles';
 const appwriteExamsCollectionId = 'exams';
 const appwriteTutorJobsCollectionId = 'tutor_jobs';
+const appwriteTutorQuotaCollectionId = 'tutor_quota';

@@ -104,6 +104,39 @@ async function writeJob(jobId, uid, result, error) {
   }
 }
 
+// ── Quota : free quotidien + crédits, stockés dans tutor_quota/{uid} ──────────
+const QUOTA_COL = 'tutor_quota';
+function todayStr() {
+  return new Date().toISOString().slice(0, 10); // YYYY-MM-DD (UTC)
+}
+async function awFetch(method, path, body) {
+  const endpoint = process.env.APPWRITE_ENDPOINT;
+  const project = process.env.APPWRITE_PROJECT;
+  const key = process.env.APPWRITE_API_KEY;
+  return fetch(`${endpoint}${path}`, {
+    method,
+    headers: { 'X-Appwrite-Project': project, 'X-Appwrite-Key': key, 'Content-Type': 'application/json' },
+    body: body ? JSON.stringify(body) : undefined,
+  });
+}
+async function readQuota(db, uid) {
+  const r = await awFetch('GET', `/databases/${db}/collections/${QUOTA_COL}/documents/${uid}`);
+  if (r.status === 200) {
+    const d = await r.json();
+    return { freeUsedToday: d.freeUsedToday || 0, freeResetDate: d.freeResetDate || '', credits: d.credits || 0 };
+  }
+  return { freeUsedToday: 0, freeResetDate: '', credits: 0 };
+}
+async function writeQuota(db, uid, q) {
+  const data = { freeUsedToday: q.freeUsedToday, freeResetDate: q.freeResetDate, credits: q.credits };
+  let r = await awFetch('POST', `/databases/${db}/collections/${QUOTA_COL}/documents`,
+    { documentId: uid, data, permissions: [`read("user:${uid}")`] });
+  if (r.status === 409) {
+    r = await awFetch('PATCH', `/databases/${db}/collections/${QUOTA_COL}/documents/${uid}`, { data });
+  }
+  return r.ok;
+}
+
 export default async ({ req, res, error }) => {
   const apiKey = process.env.NVIDIA_API_KEY;
   const visionModel = process.env.VISION_MODEL || 'meta/llama-4-maverick-17b-128e-instruct';
@@ -132,6 +165,23 @@ export default async ({ req, res, error }) => {
   }
   if (!image && !question) {
     return finish({ status: 'error', error: 'Aucun exercice fourni (photo ou texte).' });
+  }
+
+  // Vérification du quota (free quotidien + crédits) avant tout appel coûteux.
+  const db = process.env.DATABASE_ID;
+  const freeDaily = parseInt(process.env.FREE_DAILY || '3', 10);
+  let quota = null;
+  if (db && uid) {
+    quota = await readQuota(db, uid);
+    if (quota.freeResetDate !== todayStr()) {
+      quota.freeUsedToday = 0;
+      quota.freeResetDate = todayStr();
+    }
+    const hasFree = quota.freeUsedToday < freeDaily;
+    const hasCredit = quota.credits > 0;
+    if (!hasFree && !hasCredit) {
+      return finish({ status: 'error', error: 'Quota du jour atteint. Recharge des crédits pour continuer.', quota: true });
+    }
   }
 
   try {
@@ -169,6 +219,14 @@ export default async ({ req, res, error }) => {
     if (!correction) {
       return finish({ status: 'error', error: "Le Tuteur n'a pas pu rédiger la correction. Réessaie." });
     }
+
+    // Consommer le quota après une correction réussie.
+    if (quota && db && uid) {
+      if (quota.freeUsedToday < freeDaily) quota.freeUsedToday += 1;
+      else if (quota.credits > 0) quota.credits -= 1;
+      try { await writeQuota(db, uid, quota); } catch (e) { error(`writeQuota: ${String(e)}`); }
+    }
+
     return finish({ status: 'done', correction, title: makeTitle(enonce), subject });
   } catch (e) {
     if (e instanceof NvError) {

@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
+import '../../ai_config.dart';
 import '../../models/tutor_request.dart';
 import '../../services/tutor_service.dart';
 
@@ -20,6 +21,18 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
   String? _subject;
   bool _busy = false;
   late Future<List<TutorJob>> _recent = _service.recentJobs();
+  TutorQuota? _quota;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadQuota();
+  }
+
+  Future<void> _loadQuota() async {
+    final q = await _service.getQuota();
+    if (mounted) setState(() => _quota = q);
+  }
 
   static const _subjects = [
     ('Maths', Color(0xFF2D6CDF), Color(0xFFE7EEFB)),
@@ -37,11 +50,25 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
 
   Future<void> _open(TutorRequest req) async {
     await context.push('/tutor/correction', extra: req);
-    if (mounted) setState(() => _recent = _service.recentJobs());
+    if (mounted) {
+      setState(() => _recent = _service.recentJobs());
+      _loadQuota();
+    }
+  }
+
+  /// Vérifie le quota côté client avant de lancer une correction (l'enforcement
+  /// réel est côté serveur). Réouverture d'un job = pas de consommation.
+  bool _blockedByQuota() {
+    if (_quota != null && !_quota!.canAsk) {
+      _showPaywall(context);
+      return true;
+    }
+    return false;
   }
 
   Future<void> _pickImage(ImageSource source) async {
     if (_busy) return;
+    if (_blockedByQuota()) return;
     setState(() => _busy = true);
     try {
       final file = await _picker.pickImage(source: source, maxWidth: 1600, imageQuality: 90);
@@ -66,6 +93,7 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
       _toast('Écris ton exercice d\'abord.');
       return;
     }
+    if (_blockedByQuota()) return;
     FocusScope.of(context).unfocus();
     _textCtrl.clear();
     _open(TutorRequest(question: text, subject: _subject));
@@ -92,6 +120,7 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
         ]),
         backgroundColor: OC.bg,
         surfaceTintColor: Colors.transparent,
+        actions: obTopActions(context),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(20, 4, 20, 24),
@@ -177,36 +206,8 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
           ),
           const SizedBox(height: 16),
 
-          // ── Quota (statique pour l'instant) ────────────────────────────────
-          OBCard(
-            child: Row(children: [
-              SizedBox(
-                width: 46, height: 46,
-                child: Stack(alignment: Alignment.center, children: [
-                  CircularProgressIndicator(
-                    value: 2 / 3, strokeWidth: 5, backgroundColor: OC.o100,
-                    valueColor: const AlwaysStoppedAnimation(OC.o500), strokeCap: StrokeCap.round,
-                  ),
-                  Text('2', style: mono(15, weight: FontWeight.w700, color: OC.o600)),
-                ]),
-              ),
-              const SizedBox(width: 13),
-              Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text('2 / 3 corrections gratuites', style: body(14, weight: FontWeight.w700)),
-                const SizedBox(height: 2),
-                Text('Réinitialisé chaque jour · crédits dès 100 F', style: body(12, color: OC.muted, weight: FontWeight.w500)),
-              ])),
-              GestureDetector(
-                onTap: () => _showPaywall(context),
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 9),
-                  decoration: BoxDecoration(
-                    color: OC.o50, border: Border.all(color: OC.o100, width: 1.5), borderRadius: BorderRadius.circular(12)),
-                  child: Text('Recharger', style: body(12.5, weight: FontWeight.w700, color: OC.o700)),
-                ),
-              ),
-            ]),
-          ),
+          // ── Quota (réel) ───────────────────────────────────────────────────
+          _quotaCard(),
           const SizedBox(height: 16),
 
           // ── Matières (contexte) ────────────────────────────────────────────
@@ -261,6 +262,44 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
           ),
         ]),
       ),
+    );
+  }
+
+  Widget _quotaCard() {
+    final q = _quota;
+    final remaining = q?.freeRemaining ?? AIConfig.freeDaily;
+    final credits = q?.credits ?? 0;
+    final loading = q == null;
+    return OBCard(
+      child: Row(children: [
+        SizedBox(
+          width: 46, height: 46,
+          child: Stack(alignment: Alignment.center, children: [
+            CircularProgressIndicator(
+              value: loading ? null : (remaining / AIConfig.freeDaily).clamp(0.0, 1.0),
+              strokeWidth: 5, backgroundColor: OC.o100,
+              valueColor: const AlwaysStoppedAnimation(OC.o500), strokeCap: StrokeCap.round,
+            ),
+            if (!loading) Text('$remaining', style: mono(15, weight: FontWeight.w700, color: OC.o600)),
+          ]),
+        ),
+        const SizedBox(width: 13),
+        Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Text('$remaining / ${AIConfig.freeDaily} corrections gratuites', style: body(14, weight: FontWeight.w700)),
+          const SizedBox(height: 2),
+          Text(credits > 0 ? 'Réinitialisé chaque jour · $credits crédits' : 'Réinitialisé chaque jour · crédits dès 100 F',
+              style: body(12, color: OC.muted, weight: FontWeight.w500)),
+        ])),
+        GestureDetector(
+          onTap: () => _showPaywall(context),
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 9),
+            decoration: BoxDecoration(
+              color: OC.o50, border: Border.all(color: OC.o100, width: 1.5), borderRadius: BorderRadius.circular(12)),
+            child: Text('Recharger', style: body(12.5, weight: FontWeight.w700, color: OC.o700)),
+          ),
+        ),
+      ]),
     );
   }
 

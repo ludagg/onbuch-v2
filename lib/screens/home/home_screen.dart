@@ -24,42 +24,7 @@ class HomeScreen extends StatelessWidget {
             surfaceTintColor: Colors.transparent,
             titleSpacing: 18,
             title: const OBWordmark(size: 23),
-            actions: [
-              Stack(alignment: Alignment.center, children: [
-                IconButton(
-                  icon: const Icon(Icons.notifications_outlined, size: 23),
-                  color: OC.ink,
-                  onPressed: () {},
-                ),
-                Positioned(
-                  top: 10, right: 10,
-                  child: Container(
-                    width: 8, height: 8,
-                    decoration: BoxDecoration(
-                      color: OC.o500,
-                      shape: BoxShape.circle,
-                      border: Border.all(color: OC.bg, width: 1.5),
-                    ),
-                  ),
-                ),
-              ]),
-              GestureDetector(
-                onTap: () => context.go('/profile'),
-                child: Container(
-                  width: 40, height: 40,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(color: OC.line2, width: 1.5),
-                  ),
-                  child: const Icon(Icons.person_outline_rounded, size: 22, color: OC.ink),
-                ),
-              ),
-              const SizedBox(width: 10),
-              const Padding(
-                padding: EdgeInsets.only(right: 16),
-                child: OBTopMenu(),
-              ),
-            ],
+            actions: obTopActions(context),
           ),
           SliverToBoxAdapter(
             child: Column(children: [

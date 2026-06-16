@@ -19,12 +19,7 @@ class SchoolLifeScreen extends StatelessWidget {
             surfaceTintColor: Colors.transparent,
             titleSpacing: 18,
             title: const OBWordmark(size: 23),
-            actions: const [
-              Padding(
-                padding: EdgeInsets.only(right: 16),
-                child: OBTopMenu(),
-              ),
-            ],
+            actions: obTopActions(context),
           ),
           SliverFillRemaining(
             hasScrollBody: false,
