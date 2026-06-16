@@ -1,15 +1,13 @@
-import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
+import '../../models/tutor_request.dart';
 import '../../services/tutor_service.dart';
 import '../../widgets/rich_answer.dart';
 
 class TutorCorrectionScreen extends StatefulWidget {
-  /// Photo de l'exercice à corriger (octets).
-  final Uint8List? image;
-  final String? question;
-  const TutorCorrectionScreen({super.key, this.image, this.question});
+  final TutorRequest? request;
+  const TutorCorrectionScreen({super.key, this.request});
 
   @override
   State<TutorCorrectionScreen> createState() => _TutorCorrectionScreenState();
@@ -26,15 +24,31 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
   }
 
   void _run() {
-    if (widget.image != null) {
-      setState(() {
-        _future = _service.analyzeExercise(widget.image!, question: widget.question);
-      });
+    final r = widget.request;
+    if (r == null) {
+      setState(() => _future = null);
+      return;
     }
+    setState(() {
+      if (r.jobId != null) {
+        _future = _service.getJobCorrection(r.jobId!);
+      } else if (r.image != null) {
+        _future = _service.analyzeExercise(image: r.image, subject: r.subject);
+      } else if (r.question != null && r.question!.trim().isNotEmpty) {
+        _future = _service.analyzeExercise(text: r.question, subject: r.subject);
+      } else {
+        _future = null;
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    final r = widget.request;
+    final hasContent = r != null &&
+        (r.image != null ||
+            (r.question != null && r.question!.trim().isNotEmpty) ||
+            r.jobId != null);
     return Scaffold(
       backgroundColor: OC.bg,
       appBar: AppBar(
@@ -49,7 +63,7 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
           onPressed: () => context.canPop() ? context.pop() : context.go('/tutor'),
         ),
       ),
-      body: widget.image == null ? _empty() : _conversation(),
+      body: hasContent ? _conversation(r) : _empty(),
     );
   }
 
@@ -61,41 +75,48 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
         child: Column(mainAxisSize: MainAxisSize.min, children: [
           const Icon(Icons.auto_awesome_rounded, size: 46, color: OC.o500),
           const SizedBox(height: 14),
-          Text('Scanne un exercice', style: display(19, weight: FontWeight.w700)),
+          Text('Demande une correction', style: display(19, weight: FontWeight.w700)),
           const SizedBox(height: 6),
-          Text('Prends une photo d\'un exercice et le Tuteur IA te le corrige étape par étape.',
+          Text('Photographie un exercice ou écris-le : le Tuteur IA te le corrige étape par étape.',
               textAlign: TextAlign.center, style: body(14, color: OC.muted).copyWith(height: 1.5)),
           const SizedBox(height: 18),
-          _scanButton('Scanner un exercice'),
+          _scanButton('Aller au Tuteur'),
         ]),
       ),
     );
   }
 
-  // ── Conversation (photo + correction) ──────────────────────────────────────
-  Widget _conversation() {
+  // ── Conversation (énoncé + correction) ─────────────────────────────────────
+  Widget _conversation(TutorRequest r) {
     return Column(children: [
       Expanded(
         child: SingleChildScrollView(
           padding: const EdgeInsets.fromLTRB(18, 8, 18, 12),
           child: Column(children: [
-            // Bulle utilisateur : la photo
+            // Bulle utilisateur : la photo, ou le texte de l'énoncé.
             Align(
               alignment: Alignment.centerRight,
-              child: Container(
-                constraints: const BoxConstraints(maxWidth: 230),
-                decoration: BoxDecoration(
-                  color: OC.o500,
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(18), topRight: Radius.circular(18),
-                    bottomLeft: Radius.circular(18), bottomRight: Radius.circular(5),
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 250),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: OC.o500,
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(18), topRight: Radius.circular(18),
+                      bottomLeft: Radius.circular(18), bottomRight: Radius.circular(5),
+                    ),
+                    boxShadow: [BoxShadow(color: OC.o500.withValues(alpha: 0.22), blurRadius: 12, offset: const Offset(0, 4))],
                   ),
-                  boxShadow: [BoxShadow(color: OC.o500.withValues(alpha: 0.22), blurRadius: 12, offset: const Offset(0, 4))],
-                ),
-                padding: const EdgeInsets.all(6),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(13),
-                  child: Image.memory(widget.image!, fit: BoxFit.cover),
+                  padding: r.image != null ? const EdgeInsets.all(6) : const EdgeInsets.fromLTRB(14, 11, 14, 11),
+                  child: r.image != null
+                      ? ClipRRect(
+                          borderRadius: BorderRadius.circular(13),
+                          child: Image.memory(r.image!, fit: BoxFit.cover),
+                        )
+                      : Text(
+                          r.question?.trim().isNotEmpty == true ? r.question!.trim() : (r.titleHint ?? 'Exercice'),
+                          style: body(13, weight: FontWeight.w600, color: Colors.white).copyWith(height: 1.35),
+                        ),
                 ),
               ),
             ),
@@ -121,14 +142,13 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
           ]),
         ),
       ),
-      // Barre d'action
       Container(
         padding: const EdgeInsets.fromLTRB(16, 10, 16, 16),
         decoration: const BoxDecoration(
           color: OC.paper,
           border: Border(top: BorderSide(color: OC.line, width: 1.5)),
         ),
-        child: SafeArea(top: false, child: _scanButton('Scanner un autre exercice')),
+        child: SafeArea(top: false, child: _scanButton('Nouvelle question')),
       ),
     ]);
   }
@@ -197,7 +217,7 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
 
   Widget _scanButton(String label) {
     return GestureDetector(
-      onTap: () => context.go('/tutor/camera'),
+      onTap: () => context.go('/tutor'),
       child: Container(
         width: double.infinity,
         height: 50,
@@ -207,7 +227,7 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
           boxShadow: [BoxShadow(color: OC.o500.withValues(alpha: 0.30), blurRadius: 14, offset: const Offset(0, 6))],
         ),
         child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          const Icon(Icons.camera_alt_outlined, color: Colors.white, size: 19),
+          const Icon(Icons.auto_awesome_rounded, color: Colors.white, size: 19),
           const SizedBox(width: 8),
           Text(label, style: body(14, weight: FontWeight.w700, color: Colors.white)),
         ]),

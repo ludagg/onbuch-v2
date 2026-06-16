@@ -1,10 +1,85 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:image_picker/image_picker.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
+import '../../models/tutor_request.dart';
+import '../../services/tutor_service.dart';
 
-class TutorHubScreen extends StatelessWidget {
+class TutorHubScreen extends StatefulWidget {
   const TutorHubScreen({super.key});
+
+  @override
+  State<TutorHubScreen> createState() => _TutorHubScreenState();
+}
+
+class _TutorHubScreenState extends State<TutorHubScreen> {
+  final _service = TutorService();
+  final _picker = ImagePicker();
+  final _textCtrl = TextEditingController();
+  String? _subject;
+  bool _busy = false;
+  late Future<List<TutorJob>> _recent = _service.recentJobs();
+
+  static const _subjects = [
+    ('Maths', Color(0xFF2D6CDF), Color(0xFFE7EEFB)),
+    ('Physique', OC.good, OC.goodBg),
+    ('SVT', Color(0xFF0E9AA0), Color(0xFFE1F2F2)),
+    ('Philo', Color(0xFF7A5AE0), Color(0xFFEEE9FA)),
+    ('Français', Color(0xFFDB4F12), Color(0xFFFDEBE2)),
+  ];
+
+  @override
+  void dispose() {
+    _textCtrl.dispose();
+    super.dispose();
+  }
+
+  Future<void> _open(TutorRequest req) async {
+    await context.push('/tutor/correction', extra: req);
+    if (mounted) setState(() => _recent = _service.recentJobs());
+  }
+
+  Future<void> _pickImage(ImageSource source) async {
+    if (_busy) return;
+    setState(() => _busy = true);
+    try {
+      final file = await _picker.pickImage(source: source, maxWidth: 1600, imageQuality: 90);
+      if (file == null) {
+        if (mounted) setState(() => _busy = false);
+        return;
+      }
+      final bytes = await file.readAsBytes();
+      if (!mounted) return;
+      setState(() => _busy = false);
+      await _open(TutorRequest(image: bytes, subject: _subject));
+    } catch (_) {
+      if (!mounted) return;
+      setState(() => _busy = false);
+      _toast('Impossible d\'ouvrir la caméra/galerie.');
+    }
+  }
+
+  void _askText() {
+    final text = _textCtrl.text.trim();
+    if (text.isEmpty) {
+      _toast('Écris ton exercice d\'abord.');
+      return;
+    }
+    FocusScope.of(context).unfocus();
+    _textCtrl.clear();
+    _open(TutorRequest(question: text, subject: _subject));
+  }
+
+  void _toast(String msg) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text(msg, style: body(13, weight: FontWeight.w600, color: Colors.white)),
+      backgroundColor: OC.ink,
+      behavior: SnackBarBehavior.floating,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      duration: const Duration(seconds: 2),
+    ));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,85 +92,100 @@ class TutorHubScreen extends StatelessWidget {
         ]),
         backgroundColor: OC.bg,
         surfaceTintColor: Colors.transparent,
-        actions: [
-          IconButton(icon: const Icon(Icons.access_time_rounded, size: 20), color: OC.ink2, onPressed: () {}),
-        ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(20, 4, 20, 24),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          // Big scan hero
+          // ── Hero : photographie ton exercice ──────────────────────────────
           Container(
             padding: const EdgeInsets.all(22),
             decoration: BoxDecoration(
               gradient: OC.grad,
               borderRadius: BorderRadius.circular(24),
-              boxShadow: [BoxShadow(color: OC.o500.withValues(alpha:0.30), blurRadius: 26, offset: const Offset(0, 10))],
+              boxShadow: [BoxShadow(color: OC.o500.withValues(alpha: 0.30), blurRadius: 26, offset: const Offset(0, 10))],
             ),
             child: Stack(children: [
               Positioned(top: -60, right: -40, child: Container(
                 width: 150, height: 150,
-                decoration: BoxDecoration(color: Colors.white.withValues(alpha:0.14), shape: BoxShape.circle),
+                decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.14), shape: BoxShape.circle),
               )),
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 Container(
                   width: 50, height: 50,
-                  decoration: BoxDecoration(
-                    color: Colors.white.withValues(alpha:0.2),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: const Icon(Icons.camera_alt_outlined, color: Colors.white, size: 26),
+                  decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.2), borderRadius: BorderRadius.circular(15)),
+                  child: _busy
+                      ? const Padding(padding: EdgeInsets.all(13),
+                          child: CircularProgressIndicator(strokeWidth: 2.5, color: Colors.white))
+                      : const Icon(Icons.camera_alt_outlined, color: Colors.white, size: 26),
                 ),
                 const SizedBox(height: 14),
                 Text('Photographie\nton exercice', style: display(21, weight: FontWeight.w600, color: Colors.white).copyWith(height: 1.1)),
                 const SizedBox(height: 6),
                 Text('Correction, explication pas-à-pas et réponse adaptées à ton programme.',
-                    style: body(13, color: Colors.white.withValues(alpha:0.9)).copyWith(height: 1.4)),
+                    style: body(13, color: Colors.white.withValues(alpha: 0.9)).copyWith(height: 1.4)),
                 const SizedBox(height: 16),
                 Row(children: [
-                  GestureDetector(
-                    onTap: () => context.go('/tutor/camera'),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(13)),
-                      child: Row(children: [
-                        const Icon(Icons.camera_alt_outlined, color: OC.o600, size: 18),
-                        const SizedBox(width: 8),
-                        Text('Scanner', style: body(14, weight: FontWeight.w700, color: OC.o600)),
-                      ]),
-                    ),
-                  ),
+                  _heroBtn('Scanner', Icons.camera_alt_outlined, true, () => _pickImage(ImageSource.camera)),
                   const SizedBox(width: 10),
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                    decoration: BoxDecoration(
-                      color: Colors.white.withValues(alpha:0.18),
-                      borderRadius: BorderRadius.circular(13),
-                    ),
-                    child: Row(children: [
-                      const Icon(Icons.image_outlined, color: Colors.white, size: 18),
-                      const SizedBox(width: 8),
-                      Text('Importer', style: body(14, weight: FontWeight.w700, color: Colors.white)),
-                    ]),
-                  ),
+                  _heroBtn('Importer', Icons.image_outlined, false, () => _pickImage(ImageSource.gallery)),
                 ]),
               ]),
             ]),
           ),
+          const SizedBox(height: 14),
+
+          // ── Saisie texte (nouvelle fonctionnalité) ────────────────────────
+          OBCard(
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Row(children: [
+                const Icon(Icons.edit_note_rounded, size: 20, color: OC.o600),
+                const SizedBox(width: 8),
+                Text('Écris ou colle ton exercice', style: body(13.5, weight: FontWeight.w700)),
+              ]),
+              const SizedBox(height: 10),
+              TextField(
+                controller: _textCtrl,
+                maxLines: 4,
+                minLines: 2,
+                textInputAction: TextInputAction.newline,
+                style: body(13.5, color: OC.ink),
+                decoration: InputDecoration(
+                  hintText: 'Ex : Résous dans IR : x² − 5x + 6 = 0',
+                  hintStyle: body(13, color: OC.muted),
+                  filled: true,
+                  fillColor: OC.bg,
+                  contentPadding: const EdgeInsets.all(12),
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: OC.line2, width: 1.5)),
+                  enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: OC.line2, width: 1.5)),
+                  focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: OC.o500, width: 2)),
+                ),
+              ),
+              const SizedBox(height: 10),
+              GestureDetector(
+                onTap: _askText,
+                child: Container(
+                  width: double.infinity, height: 46,
+                  decoration: BoxDecoration(gradient: OC.grad, borderRadius: BorderRadius.circular(12)),
+                  child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                    const Icon(Icons.auto_awesome_rounded, color: Colors.white, size: 18),
+                    const SizedBox(width: 8),
+                    Text('Corriger ce texte', style: body(13.5, weight: FontWeight.w700, color: Colors.white)),
+                  ]),
+                ),
+              ),
+            ]),
+          ),
           const SizedBox(height: 16),
 
-          // Quota
+          // ── Quota (statique pour l'instant) ────────────────────────────────
           OBCard(
             child: Row(children: [
               SizedBox(
                 width: 46, height: 46,
                 child: Stack(alignment: Alignment.center, children: [
                   CircularProgressIndicator(
-                    value: 2 / 3,
-                    strokeWidth: 5,
-                    backgroundColor: OC.o100,
-                    valueColor: const AlwaysStoppedAnimation(OC.o500),
-                    strokeCap: StrokeCap.round,
+                    value: 2 / 3, strokeWidth: 5, backgroundColor: OC.o100,
+                    valueColor: const AlwaysStoppedAnimation(OC.o500), strokeCap: StrokeCap.round,
                   ),
                   Text('2', style: mono(15, weight: FontWeight.w700, color: OC.o600)),
                 ]),
@@ -111,9 +201,7 @@ class TutorHubScreen extends StatelessWidget {
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 9),
                   decoration: BoxDecoration(
-                    color: OC.o50, border: Border.all(color: OC.o100, width: 1.5),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
+                    color: OC.o50, border: Border.all(color: OC.o100, width: 1.5), borderRadius: BorderRadius.circular(12)),
                   child: Text('Recharger', style: body(12.5, weight: FontWeight.w700, color: OC.o700)),
                 ),
               ),
@@ -121,55 +209,103 @@ class TutorHubScreen extends StatelessWidget {
           ),
           const SizedBox(height: 16),
 
-          // Subjects
-          Text('Matières', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
+          // ── Matières (contexte) ────────────────────────────────────────────
+          Text('Matière (optionnel)', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
           const SizedBox(height: 10),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(children: [
-              _SubjectChip('Maths', const Color(0xFF2D6CDF), const Color(0xFFE7EEFB)),
-              const SizedBox(width: 9),
-              _SubjectChip('Physique', OC.good, OC.goodBg),
-              const SizedBox(width: 9),
-              _SubjectChip('SVT', const Color(0xFF0E9AA0), const Color(0xFFE1F2F2)),
-              const SizedBox(width: 9),
-              _SubjectChip('Philo', const Color(0xFF7A5AE0), const Color(0xFFEEE9FA)),
+              for (final s in _subjects) ...[
+                _SubjectChip(
+                  label: s.$1, c: s.$2, bg: s.$3,
+                  selected: _subject == s.$1,
+                  onTap: () => setState(() => _subject = _subject == s.$1 ? null : s.$1),
+                ),
+                const SizedBox(width: 9),
+              ],
             ]),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 18),
 
-          // Recent corrections
+          // ── Corrections récentes (dynamiques) ──────────────────────────────
           Text('Corrections récentes', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
           const SizedBox(height: 10),
-          ...[
-            ('Équation du 2nd degré', 'Maths · résolu'),
-            ('Dissertation — la liberté', 'Philo · résolu'),
-          ].map((r) => GestureDetector(
-            onTap: () => context.go('/tutor/correction'),
-            child: Container(
-              margin: const EdgeInsets.only(bottom: 9),
-              padding: const EdgeInsets.all(11),
-              decoration: BoxDecoration(
-                color: OC.paper,
-                borderRadius: BorderRadius.circular(14),
-                border: Border.all(color: OC.line, width: 1.5),
-              ),
-              child: Row(children: [
-                Container(
-                  width: 38, height: 38,
-                  decoration: BoxDecoration(color: OC.goodBg, borderRadius: BorderRadius.circular(11)),
-                  child: const Icon(Icons.check_circle_outline_rounded, size: 19, color: OC.good),
-                ),
-                const SizedBox(width: 12),
-                Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  Text(r.$1, style: body(13.5, weight: FontWeight.w700)),
-                  const SizedBox(height: 2),
-                  Text(r.$2, style: body(11.5, color: OC.muted, weight: FontWeight.w500)),
-                ])),
-                const Icon(Icons.chevron_right_rounded, size: 18, color: OC.muted),
-              ]),
-            ),
-          )),
+          FutureBuilder<List<TutorJob>>(
+            future: _recent,
+            builder: (context, snap) {
+              if (snap.connectionState == ConnectionState.waiting) {
+                return const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 14),
+                  child: Center(child: SizedBox(width: 20, height: 20,
+                      child: CircularProgressIndicator(strokeWidth: 2.4, color: OC.o500))),
+                );
+              }
+              final jobs = snap.data ?? const <TutorJob>[];
+              if (jobs.isEmpty) {
+                return Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: OC.paper, borderRadius: BorderRadius.circular(14),
+                    border: Border.all(color: OC.line, width: 1.5),
+                  ),
+                  child: Row(children: [
+                    const Icon(Icons.history_rounded, size: 18, color: OC.muted),
+                    const SizedBox(width: 10),
+                    Expanded(child: Text('Tes corrections apparaîtront ici.',
+                        style: body(13, color: OC.muted, weight: FontWeight.w500))),
+                  ]),
+                );
+              }
+              return Column(children: jobs.map(_recentTile).toList());
+            },
+          ),
+        ]),
+      ),
+    );
+  }
+
+  Widget _recentTile(TutorJob job) {
+    return GestureDetector(
+      onTap: () => _open(TutorRequest(jobId: job.id, titleHint: job.title, subject: job.subject)),
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 9),
+        padding: const EdgeInsets.all(11),
+        decoration: BoxDecoration(
+          color: OC.paper, borderRadius: BorderRadius.circular(14),
+          border: Border.all(color: OC.line, width: 1.5),
+        ),
+        child: Row(children: [
+          Container(
+            width: 38, height: 38,
+            decoration: BoxDecoration(color: OC.goodBg, borderRadius: BorderRadius.circular(11)),
+            child: const Icon(Icons.check_circle_outline_rounded, size: 19, color: OC.good),
+          ),
+          const SizedBox(width: 12),
+          Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(job.title, maxLines: 1, overflow: TextOverflow.ellipsis, style: body(13.5, weight: FontWeight.w700)),
+            const SizedBox(height: 2),
+            Text(job.subject.isNotEmpty ? '${job.subject} · résolu' : 'résolu',
+                style: body(11.5, color: OC.muted, weight: FontWeight.w500)),
+          ])),
+          const Icon(Icons.chevron_right_rounded, size: 18, color: OC.muted),
+        ]),
+      ),
+    );
+  }
+
+  Widget _heroBtn(String label, IconData icon, bool filled, VoidCallback onTap) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        decoration: BoxDecoration(
+          color: filled ? Colors.white : Colors.white.withValues(alpha: 0.18),
+          borderRadius: BorderRadius.circular(13),
+        ),
+        child: Row(children: [
+          Icon(icon, color: filled ? OC.o600 : Colors.white, size: 18),
+          const SizedBox(width: 8),
+          Text(label, style: body(14, weight: FontWeight.w700, color: filled ? OC.o600 : Colors.white)),
         ]),
       ),
     );
@@ -188,14 +324,26 @@ class TutorHubScreen extends StatelessWidget {
 class _SubjectChip extends StatelessWidget {
   final String label;
   final Color c, bg;
-  const _SubjectChip(this.label, this.c, this.bg);
+  final bool selected;
+  final VoidCallback onTap;
+  const _SubjectChip({required this.label, required this.c, required this.bg, required this.selected, required this.onTap});
 
   @override
-  Widget build(BuildContext context) => Container(
-    padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 9),
-    decoration: BoxDecoration(color: bg, borderRadius: BorderRadius.circular(12)),
-    child: Text(label, style: body(13, weight: FontWeight.w700, color: c)),
-  );
+  Widget build(BuildContext context) => GestureDetector(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 9),
+          decoration: BoxDecoration(
+            color: bg,
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: selected ? c : Colors.transparent, width: 1.8),
+          ),
+          child: Row(mainAxisSize: MainAxisSize.min, children: [
+            if (selected) ...[Icon(Icons.check_rounded, size: 14, color: c), const SizedBox(width: 5)],
+            Text(label, style: body(13, weight: FontWeight.w700, color: c)),
+          ]),
+        ),
+      );
 }
 
 class _PaywallSheet extends StatefulWidget {
@@ -271,7 +419,7 @@ class _PaywallSheetState extends State<_PaywallSheet> {
           decoration: BoxDecoration(
             gradient: OC.grad,
             borderRadius: BorderRadius.circular(14),
-            boxShadow: [BoxShadow(color: OC.o500.withValues(alpha:0.30), blurRadius: 14, offset: const Offset(0, 6))],
+            boxShadow: [BoxShadow(color: OC.o500.withValues(alpha: 0.30), blurRadius: 14, offset: const Offset(0, 6))],
           ),
           child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             Text('Payer ${_packs[_selectedPack].$2} · ${_selectedPayment == 0 ? 'MTN MoMo' : 'Orange Money'}',

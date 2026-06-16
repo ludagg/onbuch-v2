@@ -24,6 +24,7 @@ import '../screens/tutor/tutor_similar_screen.dart';
 import '../screens/profile/profile_screen.dart';
 import '../screens/news/article_detail_screen.dart';
 import '../models/article.dart';
+import '../models/tutor_request.dart';
 import '../services/auth_service.dart';
 
 final _authService = AuthService();
@@ -83,7 +84,13 @@ final appRouter = GoRouter(
             GoRoute(path: 'camera', builder: (_, __) => const TutorCameraScreen()),
             GoRoute(
               path: 'correction',
-              builder: (_, s) => TutorCorrectionScreen(image: s.extra as Uint8List?),
+              builder: (_, s) {
+                final e = s.extra;
+                final req = e is TutorRequest
+                    ? e
+                    : (e is Uint8List ? TutorRequest(image: e) : null);
+                return TutorCorrectionScreen(request: req);
+              },
             ),
             GoRoute(path: 'similar', builder: (_, __) => const TutorSimilarScreen()),
           ],

@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../theme/app_theme.dart';
+import '../../models/tutor_request.dart';
 
 class TutorCameraScreen extends StatefulWidget {
   const TutorCameraScreen({super.key});
@@ -48,7 +49,7 @@ class _TutorCameraScreenState extends State<TutorCameraScreen> {
       if (!mounted) return;
       setState(() => _busy = false);
       // Envoie les octets à l'écran de correction (analyse côté Tuteur IA).
-      context.push('/tutor/correction', extra: bytes);
+      context.push('/tutor/correction', extra: TutorRequest(image: bytes));
     } catch (_) {
       if (!mounted) return;
       setState(() => _busy = false);

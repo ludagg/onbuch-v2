@@ -65,6 +65,15 @@ async function callNvidia(apiKey, model, messages, maxTokens) {
   return content;
 }
 
+// Construit un titre court à partir de l'énoncé (première ligne non vide).
+function makeTitle(s) {
+  const line = (s || '')
+    .split('\n')
+    .map((x) => x.trim())
+    .find((x) => x.length > 0) || 'Exercice';
+  return line.length > 120 ? `${line.slice(0, 117)}…` : line;
+}
+
 // Écrit le résultat dans tutor_jobs/{jobId}, lisible par l'utilisateur.
 async function writeJob(jobId, uid, result, error) {
   const endpoint = process.env.APPWRITE_ENDPOINT;
@@ -77,6 +86,8 @@ async function writeJob(jobId, uid, result, error) {
   const data = { status: result.status, createdAt: new Date().toISOString() };
   if (result.correction) data.correction = result.correction;
   if (result.error) data.error = result.error;
+  if (result.title) data.title = result.title;
+  if (result.subject) data.subject = result.subject;
 
   const r = await fetch(`${endpoint}/databases/${db}/collections/${col}/documents`, {
     method: 'POST',
@@ -104,8 +115,9 @@ export default async ({ req, res, error }) => {
   } catch (_) {
     input = {};
   }
-  const image = input.image;
+  const image = (typeof input.image === 'string' && input.image) ? input.image : null;
   const question = (input.question || '').toString().trim();
+  const subject = (input.subject || '').toString().trim().slice(0, 40);
   const jobId = (input.jobId || '').toString() || null;
   const uid = req.headers['x-appwrite-user-id'] || null;
 
@@ -118,29 +130,36 @@ export default async ({ req, res, error }) => {
     error('NVIDIA_API_KEY absente.');
     return finish({ status: 'error', error: 'Tuteur IA non configuré côté serveur.' });
   }
-  if (!image || typeof image !== 'string') {
-    return finish({ status: 'error', error: 'Image manquante.' });
+  if (!image && !question) {
+    return finish({ status: 'error', error: 'Aucun exercice fourni (photo ou texte).' });
   }
 
   try {
-    const transcript = await callNvidia(apiKey, visionModel, [
-      { role: 'system', content: TRANSCRIBE_PROMPT },
-      {
-        role: 'user',
-        content: [
-          { type: 'text', text: "Transcris fidèlement l'exercice de cette image." },
-          { type: 'image_url', image_url: { url: `data:image/jpeg;base64,${image}` } },
-        ],
-      },
-    ], 800);
-
-    if (!transcript || /^illisible/i.test(transcript.trim())) {
-      return finish({ status: 'error', error: "Photo illisible. Reprends une photo nette et bien cadrée de l'exercice." });
+    // Énoncé : transcrit depuis la photo, ou directement le texte saisi.
+    let enonce;
+    let instruction = '';
+    if (image) {
+      enonce = await callNvidia(apiKey, visionModel, [
+        { role: 'system', content: TRANSCRIBE_PROMPT },
+        {
+          role: 'user',
+          content: [
+            { type: 'text', text: "Transcris fidèlement l'exercice de cette image." },
+            { type: 'image_url', image_url: { url: `data:image/jpeg;base64,${image}` } },
+          ],
+        },
+      ], 800);
+      if (!enonce || /^illisible/i.test(enonce.trim())) {
+        return finish({ status: 'error', error: "Photo illisible. Reprends une photo nette et bien cadrée de l'exercice." });
+      }
+      instruction = question; // question = instruction optionnelle en mode photo
+    } else {
+      enonce = question; // mode texte : l'énoncé est le texte saisi
     }
 
-    const userMsg = question
-      ? `${question}\n\nÉnoncé (transcrit depuis une photo) :\n${transcript}`
-      : `Voici l'énoncé d'un exercice, transcrit depuis une photo. Corrige-le.\n\n${transcript}`;
+    const userMsg = instruction
+      ? `${instruction}\n\nÉnoncé :\n${enonce}`
+      : `Voici l'énoncé d'un exercice. Corrige-le.\n\n${enonce}`;
 
     const correction = await callNvidia(apiKey, reasoningModel, [
       { role: 'system', content: SOLVE_PROMPT },
@@ -150,7 +169,7 @@ export default async ({ req, res, error }) => {
     if (!correction) {
       return finish({ status: 'error', error: "Le Tuteur n'a pas pu rédiger la correction. Réessaie." });
     }
-    return finish({ status: 'done', correction });
+    return finish({ status: 'done', correction, title: makeTitle(enonce), subject });
   } catch (e) {
     if (e instanceof NvError) {
       error(`NVIDIA ${e.status}`);
