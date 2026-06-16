@@ -34,6 +34,8 @@ dependencies:
   appwrite: 25.1.0
   image_picker: ^1.1.2
   image: ^4.2.0
+  gpt_markdown: ^1.0.19
+  fl_chart: ^0.69.2
 
 dev_dependencies:
   flutter_test:

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../services/tutor_service.dart';
+import '../../widgets/rich_answer.dart';
 
 class TutorCorrectionScreen extends StatefulWidget {
   /// Photo de l'exercice à corriger (octets).
@@ -188,10 +189,7 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
               ),
             ]);
           }
-          return SelectableText(
-            snap.data ?? '',
-            style: body(13.5, color: OC.ink).copyWith(height: 1.55),
-          );
+          return RichAnswer(snap.data ?? '');
         },
       ),
     );
