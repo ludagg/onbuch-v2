@@ -75,16 +75,25 @@ class AnnaleDetailScreen extends StatelessWidget {
 
           // Resource tabs
           Row(children: [
-            _ResourceTab(icon: Icons.picture_as_pdf_rounded, label: 'Sujet', sub: 'PDF',
-                iconC: const Color(0xFFC0392B), iconBg: const Color(0xFFFAE7E4), selected: true),
+            Expanded(
+              child: GestureDetector(
+                onTap: () => context.go('/annales/pdf'),
+                child: _ResourceTab(icon: Icons.picture_as_pdf_rounded, label: 'Sujet', sub: 'PDF',
+                    iconC: const Color(0xFFC0392B), iconBg: const Color(0xFFFAE7E4), selected: true),
+              ),
+            ),
             const SizedBox(width: 9),
-            _ResourceTab(icon: Icons.check_circle_outline_rounded, label: 'Corrigé', sub: 'Texte',
-                iconC: OC.good, iconBg: OC.goodBg),
+            Expanded(
+              child: _ResourceTab(icon: Icons.check_circle_outline_rounded, label: 'Corrigé', sub: 'Texte',
+                  iconC: OC.good, iconBg: OC.goodBg),
+            ),
             const SizedBox(width: 9),
-            GestureDetector(
-              onTap: () => context.go('/annales/video'),
-              child: _ResourceTab(icon: Icons.play_circle_outline_rounded, label: 'Vidéo', sub: '8 min',
-                  iconC: const Color(0xFF7A5AE0), iconBg: const Color(0xFFEEE9FA)),
+            Expanded(
+              child: GestureDetector(
+                onTap: () => context.go('/annales/video'),
+                child: _ResourceTab(icon: Icons.play_circle_outline_rounded, label: 'Vidéo', sub: '8 min',
+                    iconC: const Color(0xFF7A5AE0), iconBg: const Color(0xFFEEE9FA)),
+              ),
             ),
           ]),
           const SizedBox(height: 15),
@@ -187,7 +196,7 @@ class _ResourceTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(child: Container(
+    return Container(
       padding: const EdgeInsets.fromLTRB(10, 13, 10, 13),
       decoration: BoxDecoration(
         color: OC.paper,
@@ -205,6 +214,6 @@ class _ResourceTab extends StatelessWidget {
         const SizedBox(height: 2),
         Text(sub, style: body(10, color: OC.muted, weight: FontWeight.w600)),
       ]),
-    ));
+    );
   }
 }
