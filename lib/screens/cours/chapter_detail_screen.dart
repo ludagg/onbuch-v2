@@ -96,6 +96,31 @@ class _ChapterDetailScreenState extends State<ChapterDetailScreen> {
             ),
           ),
 
+          const SizedBox(height: 11),
+          GestureDetector(
+            onTap: () => context.push('/cours-quiz', extra: {'chapter': c, 'subject': subj}),
+            child: Container(
+              padding: const EdgeInsets.all(15),
+              decoration: BoxDecoration(
+                color: OC.paper, borderRadius: BorderRadius.circular(18), border: Border.all(color: OC.line2, width: 1.5),
+              ),
+              child: Row(children: [
+                Container(
+                  width: 42, height: 42,
+                  decoration: BoxDecoration(color: OC.blueBg, borderRadius: BorderRadius.circular(12)),
+                  child: const Icon(Icons.quiz_outlined, color: OC.blue, size: 22),
+                ),
+                const SizedBox(width: 13),
+                Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Text('Tester mes connaissances', style: body(14.5, weight: FontWeight.w700)),
+                  const SizedBox(height: 2),
+                  Text('Un QCM rapide sur ce chapitre.', style: body(12, color: OC.muted, weight: FontWeight.w500)),
+                ])),
+                const Icon(Icons.chevron_right_rounded, size: 20, color: OC.muted),
+              ]),
+            ),
+          ),
+
           if (c.pdfUrl != null || c.videoUrl != null) ...[
             const SizedBox(height: 20),
             Text('Ressources', style: body(13, weight: FontWeight.w800, color: OC.ink2)),

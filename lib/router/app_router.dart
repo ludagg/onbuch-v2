@@ -31,6 +31,7 @@ import '../screens/menu/aide_screen.dart';
 import '../screens/cours/cours_screen.dart';
 import '../screens/cours/chapters_screen.dart';
 import '../screens/cours/chapter_detail_screen.dart';
+import '../screens/cours/quiz_screen.dart';
 import '../models/article.dart';
 import '../models/tutor_request.dart';
 import '../models/course.dart';
@@ -77,6 +78,16 @@ final appRouter = GoRouter(
       builder: (_, s) {
         final m = s.extra is Map ? s.extra as Map : const {};
         return ChapterDetailScreen(
+          chapter: m['chapter'] as Chapter?,
+          subjectName: m['subject'] as String?,
+        );
+      },
+    ),
+    GoRoute(
+      path: '/cours-quiz',
+      builder: (_, s) {
+        final m = s.extra is Map ? s.extra as Map : const {};
+        return QuizScreen(
           chapter: m['chapter'] as Chapter?,
           subjectName: m['subject'] as String?,
         );

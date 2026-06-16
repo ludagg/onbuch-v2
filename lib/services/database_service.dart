@@ -6,6 +6,7 @@ import '../models/exam.dart';
 import '../models/calendar_event.dart';
 import '../models/concours.dart';
 import '../models/course.dart';
+import '../models/quiz.dart';
 import 'appwrite_client.dart';
 
 class DatabaseService {
@@ -258,6 +259,21 @@ class DatabaseService {
       );
       final c = doc.data['content']?.toString() ?? '';
       return c.trim().isEmpty ? null : c;
+    } on AppwriteException {
+      return null;
+    }
+  }
+
+  /// QCM mis en cache pour un chapitre, ou null si non généré.
+  Future<List<QuizQuestion>?> getQuiz(String chapterId) async {
+    try {
+      final doc = await AppwriteClient.databases.getDocument(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteQuizzesCollectionId,
+        documentId: chapterId,
+      );
+      final c = doc.data['content']?.toString() ?? '';
+      return c.trim().isEmpty ? null : parseQuiz(c);
     } on AppwriteException {
       return null;
     }

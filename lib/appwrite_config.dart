@@ -12,5 +12,6 @@ const appwriteSubjectsCollectionId = 'subjects';
 const appwriteChaptersCollectionId = 'chapters';
 const appwriteLessonsCollectionId = 'lessons';
 const appwriteChapterProgressCollectionId = 'chapter_progress';
+const appwriteQuizzesCollectionId = 'quizzes';
 const appwriteTutorJobsCollectionId = 'tutor_jobs';
 const appwriteTutorQuotaCollectionId = 'tutor_quota';
