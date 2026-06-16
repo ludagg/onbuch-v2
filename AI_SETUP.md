@@ -1,41 +1,48 @@
-# Tuteur IA — Architecture (proxy Appwrite + API NVIDIA)
+# Tuteur IA — Architecture
 
-Le Tuteur IA envoie la photo d'un exercice à un modèle vision NVIDIA (API
-compatible OpenAI) et renvoie une correction étape par étape.
+Photo d'un exercice → correction pédagogique riche (Markdown + LaTeX + tableaux
++ graphiques), via les modèles NVIDIA, derrière un proxy serveur.
 
-## Architecture sécurisée (proxy + pipeline hybride)
+## Flux
 ```
-App Flutter ─(image base64)─► Fonction Appwrite "tutor-ai" ─► NVIDIA
-   (session utilisateur)         (détient NVIDIA_API_KEY)        │
-                                                                 ├─ 1) VISION : transcrit l'énoncé depuis la photo
-                                                                 └─ 2) RAISONNEMENT : résout & rédige la correction
+App ─(image, jobId, async)─► Fonction Appwrite "tutor-ai" ─► NVIDIA
+ │                              1) VISION  : transcrit la photo (Llama 4 Maverick)
+ │                              2) RAISONNE: corrige (DeepSeek V4)
+ │                              puis écrit le résultat dans tutor_jobs/{jobId}
+ └─(poll getDocument tutor_jobs/{jobId})──────────────────────────┘
 ```
-La clé NVIDIA **n'est jamais sur le téléphone** : elle vit dans les variables
-d'environnement de la fonction Appwrite. L'app appelle la fonction via le SDK
-Appwrite (authentifiée), envoie l'image, reçoit `{ "correction": "…" }`.
+- **Asynchrone + base** : une correction prend 15-30 s (au-delà de la limite des
+  exécutions *synchrones* d'Appwrite). La fonction écrit `{status, correction|error}`
+  dans `tutor_jobs/{jobId}` ; l'app interroge ce document jusqu'à `done`/`error`.
+- La clé NVIDIA **n'est jamais sur le téléphone** (variable serveur de la fonction).
+- L'app **ne contient aucune clé** : build standard `flutter pub get && flutter build apk --release`.
+- ⚠️ Build natif complet requis (dépendances natives `image_picker`).
 
-DeepSeek étant **texte uniquement**, un modèle vision transcrit d'abord la
-photo, puis DeepSeek raisonne sur l'énoncé.
-
-- L'app **ne contient aucune clé** et n'a pas besoin de `--dart-define`.
-- Build standard : `flutter pub get && flutter build apk --release`.
-- ⚠️ Build natif complet requis (dépendance native `image_picker`).
+## Rendu riche (app)
+`RichAnswer` (lib/widgets/rich_answer.dart) rend :
+- Markdown + **LaTeX** + tableaux (`gpt_markdown`).
+- Graphiques via blocs ```onbuch-plot { ...json... }``` → `fl_chart` (courbes/barres).
 
 ## Fonction Appwrite `tutor-ai`
-- Code versionné dans `functions/tutor-ai/` (runtime `node-22`, entrypoint `src/main.js`).
+- Code : `functions/tutor-ai/` (runtime `node-22`, entrypoint `src/main.js`, timeout 120 s).
 - Exécutable par les utilisateurs connectés (`execute: ["users"]`).
-- Variables d'environnement (Console → Functions → tutor-ai → Settings → Variables) :
-  - `NVIDIA_API_KEY` = `nvapi-…` (**secret**, défini).
-  - `VISION_MODEL` = `meta/llama-4-maverick-17b-128e-instruct` (transcription de la photo).
-  - `NVIDIA_MODEL` = `deepseek-ai/deepseek-v4-pro` (raisonnement / correction).
+- Variables d'environnement :
+  - `NVIDIA_API_KEY` = `nvapi-…` (**secret**).
+  - `VISION_MODEL` = `meta/llama-4-maverick-17b-128e-instruct` (transcription photo).
+  - `NVIDIA_MODEL` = `deepseek-ai/deepseek-v4-flash` (raisonnement ; `-pro` = +qualité/-vitesse).
+  - `APPWRITE_ENDPOINT`, `APPWRITE_PROJECT`, `APPWRITE_API_KEY` (**secret**), `DATABASE_ID`,
+    `JOBS_COLLECTION` → pour écrire le résultat dans `tutor_jobs`.
 
-> ⚠️ Les variables sont injectées **au build** : après modification d'une variable, **redéployer** la fonction pour qu'elle prenne effet.
+> ⚠️ Les variables sont injectées **au build** : après modification, **redéployer**.
 
-### Redéployer après modification du code
-Depuis la Console (Function → Deployments → Create) ou via le CLI Appwrite, en
-pointant sur `functions/tutor-ai/` (entrypoint `src/main.js`, commande `npm install`).
+### Redéployer
+Console (Function → Deployments → Create) ou CLI Appwrite, en pointant sur
+`functions/tutor-ai/` (entrypoint `src/main.js`, commande `npm install`).
 
-## Détails techniques
-- Endpoint NVIDIA : `https://integrate.api.nvidia.com/v1/chat/completions`.
-- L'app redimensionne/recompresse l'image en JPEG **sous ~170 Ko** (limite NVIDIA
-  de 180 Ko pour une image base64 inline) dans un isolate, avant l'envoi.
+## Collection `tutor_jobs`
+`status` (pending/done/error), `correction`, `error`, `createdAt`.
+`documentSecurity: true` — chaque job n'est lisible que par l'utilisateur qui l'a lancé.
+
+## Détails NVIDIA
+- Endpoint : `https://integrate.api.nvidia.com/v1/chat/completions` (compatible OpenAI).
+- L'app recompresse l'image en JPEG **sous ~170 Ko** (limite NVIDIA de 180 Ko) avant l'envoi.
