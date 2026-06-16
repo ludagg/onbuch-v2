@@ -23,6 +23,11 @@ import '../screens/tutor/tutor_correction_screen.dart';
 import '../screens/tutor/tutor_similar_screen.dart';
 import '../screens/profile/profile_screen.dart';
 import '../screens/news/article_detail_screen.dart';
+import '../screens/menu/concours_screen.dart';
+import '../screens/menu/credits_screen.dart';
+import '../screens/menu/communaute_screen.dart';
+import '../screens/menu/parametres_screen.dart';
+import '../screens/menu/aide_screen.dart';
 import '../models/article.dart';
 import '../models/tutor_request.dart';
 import '../theme/app_theme.dart';
@@ -56,6 +61,11 @@ final appRouter = GoRouter(
       path: '/article',
       builder: (_, s) => ArticleDetailScreen(article: s.extra as Article?),
     ),
+    GoRoute(path: '/concours', builder: (_, __) => const ConcoursScreen()),
+    GoRoute(path: '/credits', builder: (_, __) => const CreditsScreen()),
+    GoRoute(path: '/communaute', builder: (_, __) => const CommunauteScreen()),
+    GoRoute(path: '/parametres', builder: (_, __) => const ParametresScreen()),
+    GoRoute(path: '/aide', builder: (_, __) => const AideScreen()),
     ShellRoute(
       builder: (_, state, child) => MainShell(location: state.uri.path, child: child),
       routes: [

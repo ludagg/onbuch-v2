@@ -25,7 +25,7 @@ On te donne l'énoncé d'un exercice (transcrit depuis une photo). Tu dois :
 
 FORMAT — l'app rend du Markdown enrichi. Utilise au mieux :
 - Markdown : titres courts, listes, **gras**, et TABLEAUX Markdown quand c'est utile (valeurs, variation, signe).
-- Maths en LaTeX : en ligne $...$ et en bloc $$...$$ (\\frac, \\sqrt, \\Delta, \\times, \\le, \\ge, etc.).
+- Maths en LaTeX : en ligne avec \\( ... \\) et en bloc avec \\[ ... \\] (\\frac, \\sqrt, \\Delta, \\times, \\le, \\ge, etc.). N'utilise PAS le symbole "$" pour les maths.
 - GRAPHIQUES / COURBES : quand un tracé aide, insère un bloc de code dont le langage est exactement onbuch-plot, contenant un JSON valide :
 \`\`\`onbuch-plot
 {"title":"f(x)=x^2-5x+6","type":"line","series":[{"label":"f","points":[[-1,12],[0,6],[1,2],[2,0],[3,0],[4,2],[5,6]]}]}

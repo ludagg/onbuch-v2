@@ -407,6 +407,17 @@ List<Widget> obTopActions(BuildContext context, {bool showProfile = true}) {
   ];
 }
 
+/// AppBar simple avec bouton retour, pour les sous-pages (menu, détails…).
+PreferredSizeWidget obBackAppBar(BuildContext context, String title) => AppBar(
+      title: Text(title, style: display(17, weight: FontWeight.w700)),
+      backgroundColor: OC.bg,
+      surfaceTintColor: Colors.transparent,
+      leading: IconButton(
+        icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 20),
+        onPressed: () => context.canPop() ? context.pop() : context.go('/home'),
+      ),
+    );
+
 // ─── Top overflow menu (popup ancré sous le bouton) ──────────────────────────
 class OBMenuEntry {
   final IconData icon;
@@ -423,11 +434,11 @@ class OBTopMenu extends StatelessWidget {
   const OBTopMenu({super.key, this.entries = _defaults});
 
   static const List<OBMenuEntry> _defaults = [
-    OBMenuEntry(Icons.track_changes_rounded, 'Concours'),
-    OBMenuEntry(Icons.paid_outlined, 'Crédits'),
-    OBMenuEntry(Icons.groups_rounded, 'Communauté'),
-    OBMenuEntry(Icons.settings_outlined, 'Paramètres'),
-    OBMenuEntry(Icons.help_outline_rounded, 'Aide & support'),
+    OBMenuEntry(Icons.track_changes_rounded, 'Concours', '/concours'),
+    OBMenuEntry(Icons.paid_outlined, 'Crédits', '/credits'),
+    OBMenuEntry(Icons.groups_rounded, 'Communauté', '/communaute'),
+    OBMenuEntry(Icons.settings_outlined, 'Paramètres', '/parametres'),
+    OBMenuEntry(Icons.help_outline_rounded, 'Aide & support', '/aide'),
   ];
 
   @override
@@ -464,7 +475,7 @@ class OBTopMenu extends StatelessWidget {
       onSelected: (i) {
         final e = entries[i];
         if (e.route != null) {
-          context.go(e.route!);
+          context.push(e.route!);
         } else {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text('${e.label} — bientôt disponible',

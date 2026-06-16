@@ -40,9 +40,18 @@ class RichAnswer extends StatelessWidget {
   }
 
   Widget _markdown(String md) => GptMarkdown(
-        md,
+        _normalizeMath(md),
         style: body(13.5, color: textColor).copyWith(height: 1.5),
       );
+
+  /// `gpt_markdown` rend les maths avec \( \) (en ligne) et \[ \] (bloc), pas
+  /// avec des `$`. On convertit donc les délimiteurs dollar produits par le
+  /// modèle pour qu'ils s'affichent bien.
+  static String _normalizeMath(String s) {
+    var out = s.replaceAllMapped(RegExp(r'\$\$([\s\S]+?)\$\$'), (m) => '\\[${m[1]}\\]');
+    out = out.replaceAllMapped(RegExp(r'\$([^\$\n]+?)\$'), (m) => '\\(${m[1]}\\)');
+    return out;
+  }
 }
 
 // ─── Bloc graphique ───────────────────────────────────────────────────────────
