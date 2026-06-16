@@ -2,6 +2,7 @@
 import 'package:appwrite/appwrite.dart';
 import '../appwrite_config.dart';
 import '../models/article.dart';
+import '../models/exam.dart';
 import 'appwrite_client.dart';
 
 class DatabaseService {
@@ -148,6 +149,28 @@ class DatabaseService {
       return Article.fromMap(doc.data, id: doc.$id, createdAtFallback: doc.$createdAt);
     } on AppwriteException {
       return null;
+    }
+  }
+
+  // ── Examens (carrousel d'accueil) ─────────────────────────────────────────
+
+  /// Retourne les examens configurés, triés par `order` croissant.
+  /// Liste vide en cas d'erreur (l'accueil affiche alors un repli).
+  Future<List<Exam>> getExams({int limit = 20}) async {
+    try {
+      final res = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteExamsCollectionId,
+        queries: [
+          Query.orderAsc('order'),
+          Query.limit(limit),
+        ],
+      );
+      return res.documents
+          .map((d) => Exam.fromMap(d.data, id: d.$id, createdAtFallback: d.$createdAt))
+          .toList();
+    } on AppwriteException {
+      return const [];
     }
   }
 

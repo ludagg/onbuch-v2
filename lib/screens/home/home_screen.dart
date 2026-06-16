@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
@@ -6,6 +7,7 @@ import '../../services/appwrite_client.dart';
 import '../../services/auth_service.dart';
 import '../../services/database_service.dart';
 import '../../models/article.dart';
+import '../../models/exam.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -224,14 +226,7 @@ class _GreetingState extends State<_Greeting> {
   }
 }
 
-// ─── Examen à venir (compte à rebours) ────────────────────────────────────────
-class _ExamCountdown {
-  final String label;
-  final DateTime date;
-  const _ExamCountdown(this.label, this.date);
-}
-
-// ─── Hero carousel (plusieurs examens) ────────────────────────────────────────
+// ─── Hero carousel (examens — états & compteurs) ──────────────────────────────
 class _HeroCarousel extends StatefulWidget {
   @override
   State<_HeroCarousel> createState() => _HeroCarouselState();
@@ -240,54 +235,113 @@ class _HeroCarousel extends StatefulWidget {
 class _HeroCarouselState extends State<_HeroCarousel> {
   final _ctrl = PageController();
   int _page = 0;
+  late final Future<List<Exam>> _future = DatabaseService().getExams();
+  Timer? _timer;
 
-  static final _exams = [
-    _ExamCountdown('Baccalauréat 2026', DateTime(2026, 6, 18, 10)),
-    _ExamCountdown('Probatoire 2026', DateTime(2026, 6, 22, 10)),
-    _ExamCountdown('BEPC 2026', DateTime(2026, 7, 1, 10)),
-    _ExamCountdown('GCE O/A Level 2026', DateTime(2026, 7, 8, 10)),
-  ];
+  @override
+  void initState() {
+    super.initState();
+    // Rafraîchit les compteurs chaque seconde.
+    _timer = Timer.periodic(const Duration(seconds: 1), (_) {
+      if (mounted) setState(() {});
+    });
+  }
 
   @override
   void dispose() {
+    _timer?.cancel();
     _ctrl.dispose();
     super.dispose();
   }
 
+  /// Repli affiché tant qu'aucun examen n'est configuré côté backend
+  /// (couvre les trois états pour rester démonstratif).
+  static List<Exam> _sample() {
+    final now = DateTime.now();
+    return [
+      Exam(id: 's1', label: 'Baccalauréat 2026', examDate: now.add(const Duration(days: 6, hours: 3))),
+      Exam(id: 's2', label: 'Probatoire 2026',
+          examDate: now.subtract(const Duration(days: 7)), resultsDate: now.add(const Duration(days: 22))),
+      Exam(id: 's3', label: 'BEPC 2026', examDate: now.subtract(const Duration(days: 20)), status: 'published'),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
-      SizedBox(
-        height: 210,
-        child: PageView.builder(
-          controller: _ctrl,
-          itemCount: _exams.length,
-          onPageChanged: (i) => setState(() => _page = i),
-          itemBuilder: (_, i) => Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: _HeroCard(_exams[i]),
+    return FutureBuilder<List<Exam>>(
+      future: _future,
+      builder: (context, snap) {
+        if (snap.connectionState == ConnectionState.waiting) {
+          return const _HeroSkeleton();
+        }
+        var exams = snap.data ?? const <Exam>[];
+        if (exams.isEmpty) exams = _sample();
+        return Column(children: [
+          SizedBox(
+            height: 210,
+            child: PageView.builder(
+              controller: _ctrl,
+              itemCount: exams.length,
+              onPageChanged: (i) => setState(() => _page = i),
+              itemBuilder: (_, i) => Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: _HeroCard(exams[i]),
+              ),
+            ),
           ),
-        ),
-      ),
-      const SizedBox(height: 12),
-      ProgressDots(count: _exams.length, active: _page),
-    ]);
+          const SizedBox(height: 12),
+          ProgressDots(count: exams.length, active: _page.clamp(0, exams.length - 1).toInt()),
+        ]);
+      },
+    );
   }
 }
 
-// ─── Hero card (dark editorial — compacte) ────────────────────────────────────
+// Squelette de chargement du hero.
+class _HeroSkeleton extends StatelessWidget {
+  const _HeroSkeleton();
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Container(
+        height: 210,
+        decoration: BoxDecoration(color: OC.panel, borderRadius: BorderRadius.circular(22)),
+      ),
+    );
+  }
+}
+
+// ─── Hero card (dark editorial — état + compteur) ─────────────────────────────
 class _HeroCard extends StatelessWidget {
-  final _ExamCountdown exam;
+  final Exam exam;
   const _HeroCard(this.exam);
 
   @override
   Widget build(BuildContext context) {
-    final diff = exam.date.difference(DateTime.now());
-    final available = diff.isNegative;
-    final days = available ? 0 : diff.inDays;
-    final hours = available ? 0 : diff.inHours % 24;
-    final mins = available ? 0 : diff.inMinutes % 60;
-    String two(int v) => v.toString().padLeft(2, '0');
+    final state = exam.state;
+
+    late final Color dotColor;
+    late final String title;
+    late final String ctaLabel;
+    switch (state) {
+      case ExamState.upcoming:
+        dotColor = OC.o500;
+        title = 'Les épreuves approchent';
+        ctaLabel = 'Réviser';
+        break;
+      case ExamState.awaiting:
+        dotColor = const Color(0xFFFFB489);
+        title = 'Résultats bientôt disponibles';
+        ctaLabel = 'Vérifier';
+        break;
+      case ExamState.resultsAvailable:
+        dotColor = const Color(0xFF54D38A);
+        title = 'Résultats disponibles';
+        ctaLabel = 'Voir mes résultats';
+        break;
+    }
+    final ctaRoute = state == ExamState.upcoming ? '/annales' : '/results';
 
     return Container(
       padding: const EdgeInsets.all(18),
@@ -301,7 +355,7 @@ class _HeroCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(22),
       ),
       child: Stack(children: [
-        // glow blob
+        // halo coloré selon l'état
         Positioned(
           top: -80, right: -60,
           child: Container(
@@ -309,7 +363,7 @@ class _HeroCard extends StatelessWidget {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               gradient: RadialGradient(
-                colors: [OC.o500.withValues(alpha: 0.50), OC.o500.withValues(alpha: 0)],
+                colors: [dotColor.withValues(alpha: 0.45), dotColor.withValues(alpha: 0)],
               ),
             ),
           ),
@@ -317,9 +371,9 @@ class _HeroCard extends StatelessWidget {
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(children: [
             Container(width: 6, height: 6, decoration: BoxDecoration(
-              color: OC.o500,
+              color: dotColor,
               shape: BoxShape.circle,
-              boxShadow: [BoxShadow(color: OC.o500.withValues(alpha: 0.22), blurRadius: 6, spreadRadius: 2)],
+              boxShadow: [BoxShadow(color: dotColor.withValues(alpha: 0.4), blurRadius: 6, spreadRadius: 2)],
             )),
             const SizedBox(width: 7),
             Expanded(
@@ -333,48 +387,116 @@ class _HeroCard extends StatelessWidget {
             ),
           ]),
           const SizedBox(height: 10),
-          Text(
-            available ? 'Résultats disponibles' : 'Résultats bientôt disponibles',
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            style: display(19, weight: FontWeight.w700, color: Colors.white),
-          ),
+          Text(title,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: display(19, weight: FontWeight.w700, color: Colors.white)),
           const Spacer(),
-          // Countdown
-          Row(children: [
-            _CountUnit(two(days), 'jours'),
-            _ColonSep(),
-            _CountUnit(two(hours), 'heures'),
-            _ColonSep(),
-            _CountUnit(two(mins), 'min'),
-          ]),
+          _HeroMiddle(exam),
           Container(
             height: 1,
             color: Colors.white.withValues(alpha: 0.10),
             margin: const EdgeInsets.symmetric(vertical: 11),
           ),
-          Row(children: [
-            const Icon(Icons.notifications_outlined, size: 16, color: Color(0xFFFFB489)),
-            const SizedBox(width: 7),
-            Text('Alerte activée',
-                style: body(12, weight: FontWeight.w600, color: Colors.white.withValues(alpha: 0.86))),
-            const Spacer(),
-            GestureDetector(
-              onTap: () => context.go('/results'),
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 9),
-                decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(11)),
-                child: Row(children: [
-                  Text('Vérifier', style: body(12.5, weight: FontWeight.w700, color: OC.ink)),
-                  const SizedBox(width: 5),
-                  const Icon(Icons.arrow_forward_rounded, size: 15, color: OC.ink),
-                ]),
-              ),
-            ),
-          ]),
+          _HeroFooter(state: state, ctaLabel: ctaLabel, ctaRoute: ctaRoute),
         ]),
       ]),
     );
+  }
+}
+
+// Zone centrale : compteur, message d'attente ou message de sortie.
+class _HeroMiddle extends StatelessWidget {
+  final Exam exam;
+  const _HeroMiddle(this.exam);
+
+  @override
+  Widget build(BuildContext context) {
+    final state = exam.state;
+    final target = exam.countdownTarget;
+
+    if (state == ExamState.resultsAvailable) {
+      return Row(children: [
+        const Icon(Icons.celebration_rounded, size: 20, color: Color(0xFF54D38A)),
+        const SizedBox(width: 9),
+        Expanded(
+          child: Text('C\'est tombé ! Consulte ton résultat maintenant.',
+              style: body(13, weight: FontWeight.w600, color: Colors.white.withValues(alpha: 0.9))),
+        ),
+      ]);
+    }
+
+    if (target == null) {
+      return Row(children: [
+        const Icon(Icons.hourglass_bottom_rounded, size: 19, color: Color(0xFFFFB489)),
+        const SizedBox(width: 9),
+        Expanded(
+          child: Text('Publication imminente — active l\'alerte pour être prévenu·e.',
+              style: body(13, weight: FontWeight.w600, color: Colors.white.withValues(alpha: 0.9))),
+        ),
+      ]);
+    }
+
+    final diff = target.difference(DateTime.now());
+    final neg = diff.isNegative;
+    String two(int x) => (neg ? 0 : x).toString().padLeft(2, '0');
+    return Row(children: [
+      _CountUnit(two(diff.inDays), 'jours'),
+      _ColonSep(),
+      _CountUnit(two(diff.inHours % 24), 'heures'),
+      _ColonSep(),
+      _CountUnit(two(diff.inMinutes % 60), 'min'),
+      _ColonSep(),
+      _CountUnit(two(diff.inSeconds % 60), 'sec'),
+    ]);
+  }
+}
+
+// Pied de carte : alerte + bouton d'action contextuel.
+class _HeroFooter extends StatelessWidget {
+  final ExamState state;
+  final String ctaLabel;
+  final String ctaRoute;
+  const _HeroFooter({required this.state, required this.ctaLabel, required this.ctaRoute});
+
+  @override
+  Widget build(BuildContext context) {
+    // Résultats sortis : bouton pleine largeur, plus engageant.
+    if (state == ExamState.resultsAvailable) {
+      return GestureDetector(
+        onTap: () => context.go(ctaRoute),
+        child: Container(
+          width: double.infinity,
+          height: 40,
+          decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(11)),
+          child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            Text(ctaLabel, style: body(13, weight: FontWeight.w700, color: OC.ink)),
+            const SizedBox(width: 6),
+            const Icon(Icons.arrow_forward_rounded, size: 16, color: OC.ink),
+          ]),
+        ),
+      );
+    }
+
+    return Row(children: [
+      const Icon(Icons.notifications_active_outlined, size: 16, color: Color(0xFFFFB489)),
+      const SizedBox(width: 7),
+      Text('Alerte activée',
+          style: body(12, weight: FontWeight.w600, color: Colors.white.withValues(alpha: 0.86))),
+      const Spacer(),
+      GestureDetector(
+        onTap: () => context.go(ctaRoute),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 9),
+          decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(11)),
+          child: Row(mainAxisSize: MainAxisSize.min, children: [
+            Text(ctaLabel, style: body(12.5, weight: FontWeight.w700, color: OC.ink)),
+            const SizedBox(width: 5),
+            const Icon(Icons.arrow_forward_rounded, size: 15, color: OC.ink),
+          ]),
+        ),
+      ),
+    ]);
   }
 }
 
@@ -383,7 +505,7 @@ class _ColonSep extends StatelessWidget {
   Widget build(BuildContext context) => Padding(
         padding: const EdgeInsets.only(bottom: 12),
         child: Text(':',
-            style: display(24, weight: FontWeight.w600, color: Colors.white.withValues(alpha: 0.22))),
+            style: display(20, weight: FontWeight.w600, color: Colors.white.withValues(alpha: 0.22))),
       );
 }
 
@@ -394,12 +516,12 @@ class _CountUnit extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 6),
+      padding: const EdgeInsets.symmetric(horizontal: 5),
       child: Column(children: [
-        Text(value, style: mono(26, weight: FontWeight.w700, color: Colors.white)),
-        const SizedBox(height: 5),
-        Text(unit, style: body(10, color: Colors.white.withValues(alpha: 0.5), weight: FontWeight.w600)
-            .copyWith(letterSpacing: 0.04 * 10)),
+        Text(value, style: mono(24, weight: FontWeight.w700, color: Colors.white)),
+        const SizedBox(height: 4),
+        Text(unit, style: body(9.5, color: Colors.white.withValues(alpha: 0.5), weight: FontWeight.w600)
+            .copyWith(letterSpacing: 0.03 * 9.5)),
       ]),
     );
   }
