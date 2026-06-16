@@ -20,8 +20,10 @@ Appwrite (authentifiée), envoie l'image, reçoit `{ "correction": "…" }`.
 - Code versionné dans `functions/tutor-ai/` (runtime `node-22`, entrypoint `src/main.js`).
 - Exécutable par les utilisateurs connectés (`execute: ["users"]`).
 - Variables d'environnement (Console → Functions → tutor-ai → Settings → Variables) :
-  - `NVIDIA_API_KEY` = `nvapi-…` (**secret**, à définir).
-  - `NVIDIA_MODEL` = `qwen/qwen2.5-vl-72b-instruct` (déjà défini, modifiable).
+  - `NVIDIA_API_KEY` = `nvapi-…` (**secret**, défini).
+  - `NVIDIA_MODEL` = `meta/llama-4-maverick-17b-128e-instruct` (multimodal, testé et validé ; modifiable).
+
+> ⚠️ Les variables sont injectées **au build** : après modification d'une variable, **redéployer** la fonction pour qu'elle prenne effet.
 
 ### Redéployer après modification du code
 Depuis la Console (Function → Deployments → Create) ou via le CLI Appwrite, en
