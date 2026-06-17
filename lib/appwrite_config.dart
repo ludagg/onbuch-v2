@@ -17,3 +17,11 @@ const appwriteAfficheCollectionId = 'affiche';
 const appwriteTutorJobsCollectionId = 'tutor_jobs';
 const appwriteTutorQuotaCollectionId = 'tutor_quota';
 const appwriteNotificationsCollectionId = 'notifications';
+
+// ── Push (FCM via Appwrite Messaging) ───────────────────────────────────────
+// Optionnels. Laisser vide fonctionne tant qu'il n'y a qu'un seul provider push
+// côté Appwrite. Renseigner si tu veux cibler un provider/topic précis.
+// `appwritePushTopicId` : si défini, chaque appareil s'abonne à ce topic, ce qui
+// permet à l'admin d'envoyer un push « à tous » en une fois.
+const appwriteFcmProviderId = '';
+const appwritePushTopicId = '';

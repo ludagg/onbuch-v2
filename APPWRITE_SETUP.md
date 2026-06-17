@@ -75,9 +75,12 @@ Pour chaque collection, ajouter :
 Appwrite Console → Settings → Platforms → Add Platform → Android
 - Package Name: `cm.luvvix.onbuch`
 
-## 6. Push Notifications (optionnel)
-Appwrite Console → Messaging → Providers → Add FCM provider
-Nécessite un projet Firebase juste pour FCM (pas de SDK dans l'app).
+## 6. Push Notifications (FCM)
+Le code push est implémenté (FCM + Appwrite Messaging). La configuration pas à
+pas (projet Firebase, `google-services.json`, provider FCM Appwrite, topic,
+envoi d'un message) est décrite dans **`PUSH.md`**.
+⚠️ C'est une fonctionnalité **native** → nécessite une **nouvelle release APK**
+(non patchable par Shorebird).
 
 ## 7. Build
 ```bash
