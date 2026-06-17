@@ -33,6 +33,23 @@ Attributs :
 - `mention` (string, 50)
 - `savedAt` (datetime)
 
+### Collection `exam_results` (résultats publiés — recherche)
+Attributs :
+- `examType` (string, 60, required) — ex. `Baccalauréat`, `Probatoire`, `BEPC`,
+  `GCE O Level`, `GCE A Level`, `BTS`, `Université` (doit matcher le sélecteur app)
+- `serie` (string, 10) — ex. `D` (optionnel)
+- `year` (string, 10) — ex. `2026`
+- `tableNumber` (string, 40, required) — n° de table / candidat (clé de recherche)
+- `candidateName` (string, 160, required)
+- `center` (string, 160) · `city` (string, 80)
+- `admitted` (boolean, required)
+- `mention` (string, 40) · `average` (string, 20) — cas admis
+- `threshold` (string, 20) — moyenne d'admissibilité (cas non admis)
+
+Index **`idx_lookup`** (type key) sur `examType` + `tableNumber` pour la recherche.
+Permissions : Read `any`, Write admin. La recherche se fait par `examType` +
+`tableNumber`. Script de création : `tools/setup_exam_results_collection.sh`.
+
 ### Collection `analytics_events`
 Attributs :
 - `name` (string, 100)
@@ -65,6 +82,25 @@ Attributs :
 Permissions : Read `any`, Write réservé à l'admin. Triées du plus récent au plus
 ancien. L'état « lu / non lu » est géré **localement** sur l'appareil (aucune
 écriture côté serveur n'est nécessaire).
+
+### Collections du hub Concours
+Gérées par l'admin (Read `any`, Write admin). Script :
+`tools/setup_concours_hub_collections.sh`.
+
+**`prep_centers`** (centres de préparation) :
+- `name` (string, 120, required) · `city` (string, 80, required)
+- `description` (600) · `specialties` (200, séparées par des virgules)
+- `imageUrl` (500) · `phone` (30, WhatsApp) · `link` (300) · `address` (200)
+- `eventTitle` (160) · `eventDate` (datetime) — prochain événement
+- `order` (integer)
+
+**`concours_resources`** (ressources de prépa) :
+- `title` (string, 160, required)
+- `type` (string, 20) — `annales` · `guide` · `video` · `fiche` · `site`
+- `description` (400) · `url` (500) · `concours` (60, concours ciblé)
+- `order` (integer)
+
+> Tant que ces collections sont vides, la page Concours affiche des exemples.
 
 ## 4. Permissions
 Pour chaque collection, ajouter :

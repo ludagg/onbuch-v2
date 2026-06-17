@@ -5,10 +5,13 @@ import '../models/article.dart';
 import '../models/exam.dart';
 import '../models/calendar_event.dart';
 import '../models/concours.dart';
+import '../models/prep_center.dart';
+import '../models/concours_resource.dart';
 import '../models/course.dart';
 import '../models/quiz.dart';
 import '../models/affiche.dart';
 import '../models/app_notification.dart';
+import '../models/exam_result.dart';
 import 'appwrite_client.dart';
 
 class DatabaseService {
@@ -134,6 +137,34 @@ class DatabaseService {
         'savedAt': DateTime.now().toIso8601String(),
       },
     );
+  }
+
+  /// Recherche un résultat publié par type d'examen + numéro de table.
+  /// Retourne `null` si rien ne correspond (ou en cas d'erreur réseau).
+  Future<ExamResult?> lookupResult({
+    required String examType,
+    required String tableNumber,
+    String? year,
+  }) async {
+    final table = tableNumber.trim();
+    if (table.isEmpty) return null;
+    try {
+      final res = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteExamResultsCollectionId,
+        queries: [
+          Query.equal('examType', examType),
+          Query.equal('tableNumber', table),
+          if (year != null && year.isNotEmpty) Query.equal('year', year),
+          Query.limit(1),
+        ],
+      );
+      if (res.documents.isEmpty) return null;
+      final d = res.documents.first;
+      return ExamResult.fromMap(d.data, id: d.$id);
+    } on AppwriteException {
+      return null;
+    }
   }
 
   /// Retourne les résultats d'un utilisateur.
@@ -284,6 +315,38 @@ class DatabaseService {
         return res.documents.map((d) => Concours.fromMap(d.data, id: d.$id)).toList();
       } on AppwriteException {
         return const <Concours>[];
+      }
+    });
+  }
+
+  /// Centres de préparation aux concours (triés par `order`).
+  Future<List<PrepCenter>> getPrepCenters({int limit = 30}) {
+    return _cachedList('prep_centers:$limit', () async {
+      try {
+        final res = await AppwriteClient.databases.listDocuments(
+          databaseId: appwriteDatabaseId,
+          collectionId: appwritePrepCentersCollectionId,
+          queries: [Query.orderAsc('order'), Query.limit(limit)],
+        );
+        return res.documents.map((d) => PrepCenter.fromMap(d.data, id: d.$id)).toList();
+      } on AppwriteException {
+        return const <PrepCenter>[];
+      }
+    });
+  }
+
+  /// Ressources de préparation aux concours (triées par `order`).
+  Future<List<ConcoursResource>> getConcoursResources({int limit = 40}) {
+    return _cachedList('concours_resources:$limit', () async {
+      try {
+        final res = await AppwriteClient.databases.listDocuments(
+          databaseId: appwriteDatabaseId,
+          collectionId: appwriteConcoursResourcesCollectionId,
+          queries: [Query.orderAsc('order'), Query.limit(limit)],
+        );
+        return res.documents.map((d) => ConcoursResource.fromMap(d.data, id: d.$id)).toList();
+      } on AppwriteException {
+        return const <ConcoursResource>[];
       }
     });
   }

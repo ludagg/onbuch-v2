@@ -2,9 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
+import '../../models/exam_result.dart';
 
 class ResultFailScreen extends StatelessWidget {
-  const ResultFailScreen({super.key});
+  final ExamResult? result;
+  const ResultFailScreen({super.key, this.result});
+
+  String get _examLine => result?.examLine ?? 'Baccalauréat · Série D';
+  String get _session => result?.sessionLine ?? 'Session 2026';
+  String get _name => result?.candidateName ?? 'NDJAMÉ Aïcha Larissa';
+  String get _meta => result?.candidateMeta ?? 'N° table 10428 · Centre Lycée de Bonabéri, Douala';
+  String get _average => result?.average ?? '9,40/20';
+  String get _threshold => result?.threshold ?? '10,00';
 
   @override
   Widget build(BuildContext context) {
@@ -31,16 +40,21 @@ class ResultFailScreen extends StatelessWidget {
           Text('Ce n\'est qu\'une étape', style: display(23, weight: FontWeight.w700), textAlign: TextAlign.center),
           const SizedBox(height: 6),
           const Text(
-            'Tu n\'es pas admise cette session — mais tu étais proche. On t\'aide à revenir plus forte.',
+            'Tu n\'es pas admis·e cette session — mais on t\'aide à revenir plus fort·e.',
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 16),
 
-          // Result card
-          _FailResultCard(),
+          _FailResultCard(
+            examLine: _examLine,
+            session: _session,
+            name: _name,
+            meta: _meta,
+            average: _average,
+            threshold: _threshold,
+          ),
           const SizedBox(height: 16),
 
-          // Tuteur CTA
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
@@ -57,7 +71,7 @@ class ResultFailScreen extends StatelessWidget {
                 ),
                 const SizedBox(width: 12),
                 Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  Text('Prépare la session 2027', style: body(14.5, weight: FontWeight.w700)),
+                  Text('Prépare la prochaine session', style: body(14.5, weight: FontWeight.w700)),
                   const SizedBox(height: 2),
                   Text('Un plan de révision sur tes points faibles, avec le Tuteur IA.',
                       style: body(12.5, color: OC.o700, weight: FontWeight.w500)),
@@ -104,6 +118,16 @@ class ResultFailScreen extends StatelessWidget {
 }
 
 class _FailResultCard extends StatelessWidget {
+  final String examLine, session, name, meta, average, threshold;
+  const _FailResultCard({
+    required this.examLine,
+    required this.session,
+    required this.name,
+    required this.meta,
+    required this.average,
+    required this.threshold,
+  });
+
   @override
   Widget build(BuildContext context) {
     return OBCard(
@@ -113,10 +137,10 @@ class _FailResultCard extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(18, 16, 18, 16),
           child: Row(children: [
             Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text('BACCALAURÉAT · SÉRIE D', style: body(11, weight: FontWeight.w800, color: OC.muted)
+              Text(examLine.toUpperCase(), style: body(11, weight: FontWeight.w800, color: OC.muted)
                   .copyWith(letterSpacing: 0.1 * 11)),
               const SizedBox(height: 3),
-              Text('Session 2026', style: display(17, weight: FontWeight.w600)),
+              Text(session, style: display(17, weight: FontWeight.w600)),
             ])),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
@@ -135,10 +159,9 @@ class _FailResultCard extends StatelessWidget {
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text('Candidat', style: body(12.5, color: OC.muted, weight: FontWeight.w600)),
             const SizedBox(height: 2),
-            Text('NDJAMÉ Aïcha Larissa', style: display(22, weight: FontWeight.w600)),
+            Text(name, style: display(22, weight: FontWeight.w600)),
             const SizedBox(height: 4),
-            Text('N° table 10428 · Centre Lycée de Bonabéri, Douala',
-                style: body(12.5, color: OC.ink2, weight: FontWeight.w500)),
+            Text(meta, style: body(12.5, color: OC.ink2, weight: FontWeight.w500)),
             const SizedBox(height: 16),
             Row(children: [
               Expanded(child: Container(
@@ -147,7 +170,7 @@ class _FailResultCard extends StatelessWidget {
                 child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                   Text('Moyenne obtenue', style: body(11, weight: FontWeight.w700, color: OC.muted)),
                   const SizedBox(height: 3),
-                  Text('9,40/20', style: display(19, weight: FontWeight.w700)),
+                  Text(average, style: display(19, weight: FontWeight.w700)),
                 ]),
               )),
               const SizedBox(width: 10),
@@ -157,7 +180,7 @@ class _FailResultCard extends StatelessWidget {
                 child: Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
                   Text('Admissibilité', style: body(11, weight: FontWeight.w700, color: OC.muted)),
                   const SizedBox(height: 3),
-                  Text('10,00', style: display(19, weight: FontWeight.w700, color: OC.warn)),
+                  Text(threshold, style: display(19, weight: FontWeight.w700, color: OC.warn)),
                 ]),
               )),
             ]),
