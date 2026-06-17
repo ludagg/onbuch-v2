@@ -5,6 +5,8 @@ import '../models/article.dart';
 import '../models/exam.dart';
 import '../models/calendar_event.dart';
 import '../models/concours.dart';
+import '../models/prep_center.dart';
+import '../models/concours_resource.dart';
 import '../models/course.dart';
 import '../models/quiz.dart';
 import '../models/affiche.dart';
@@ -313,6 +315,38 @@ class DatabaseService {
         return res.documents.map((d) => Concours.fromMap(d.data, id: d.$id)).toList();
       } on AppwriteException {
         return const <Concours>[];
+      }
+    });
+  }
+
+  /// Centres de préparation aux concours (triés par `order`).
+  Future<List<PrepCenter>> getPrepCenters({int limit = 30}) {
+    return _cachedList('prep_centers:$limit', () async {
+      try {
+        final res = await AppwriteClient.databases.listDocuments(
+          databaseId: appwriteDatabaseId,
+          collectionId: appwritePrepCentersCollectionId,
+          queries: [Query.orderAsc('order'), Query.limit(limit)],
+        );
+        return res.documents.map((d) => PrepCenter.fromMap(d.data, id: d.$id)).toList();
+      } on AppwriteException {
+        return const <PrepCenter>[];
+      }
+    });
+  }
+
+  /// Ressources de préparation aux concours (triées par `order`).
+  Future<List<ConcoursResource>> getConcoursResources({int limit = 40}) {
+    return _cachedList('concours_resources:$limit', () async {
+      try {
+        final res = await AppwriteClient.databases.listDocuments(
+          databaseId: appwriteDatabaseId,
+          collectionId: appwriteConcoursResourcesCollectionId,
+          queries: [Query.orderAsc('order'), Query.limit(limit)],
+        );
+        return res.documents.map((d) => ConcoursResource.fromMap(d.data, id: d.$id)).toList();
+      } on AppwriteException {
+        return const <ConcoursResource>[];
       }
     });
   }

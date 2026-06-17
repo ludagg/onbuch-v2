@@ -83,6 +83,25 @@ Permissions : Read `any`, Write réservé à l'admin. Triées du plus récent au
 ancien. L'état « lu / non lu » est géré **localement** sur l'appareil (aucune
 écriture côté serveur n'est nécessaire).
 
+### Collections du hub Concours
+Gérées par l'admin (Read `any`, Write admin). Script :
+`tools/setup_concours_hub_collections.sh`.
+
+**`prep_centers`** (centres de préparation) :
+- `name` (string, 120, required) · `city` (string, 80, required)
+- `description` (600) · `specialties` (200, séparées par des virgules)
+- `imageUrl` (500) · `phone` (30, WhatsApp) · `link` (300) · `address` (200)
+- `eventTitle` (160) · `eventDate` (datetime) — prochain événement
+- `order` (integer)
+
+**`concours_resources`** (ressources de prépa) :
+- `title` (string, 160, required)
+- `type` (string, 20) — `annales` · `guide` · `video` · `fiche` · `site`
+- `description` (400) · `url` (500) · `concours` (60, concours ciblé)
+- `order` (integer)
+
+> Tant que ces collections sont vides, la page Concours affiche des exemples.
+
 ## 4. Permissions
 Pour chaque collection, ajouter :
 - Read: `user:[USER_ID]` (ou `any` pour les events)
