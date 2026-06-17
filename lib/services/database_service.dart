@@ -8,6 +8,7 @@ import '../models/concours.dart';
 import '../models/course.dart';
 import '../models/quiz.dart';
 import '../models/affiche.dart';
+import '../models/app_notification.dart';
 import 'appwrite_client.dart';
 
 class DatabaseService {
@@ -187,6 +188,35 @@ class DatabaseService {
     } on AppwriteException {
       return null;
     }
+  }
+
+  // ── Notifications ─────────────────────────────────────────────────────────
+
+  /// Retourne les notifications (gérées côté admin), les plus récentes d'abord.
+  /// Liste vide en cas d'erreur (collection absente, réseau…), pour ne pas
+  /// planter l'écran.
+  Future<List<AppNotification>> getNotifications({int limit = 30}) {
+    return _cachedList('notifications:$limit', () async {
+      try {
+        final res = await AppwriteClient.databases.listDocuments(
+          databaseId: appwriteDatabaseId,
+          collectionId: appwriteNotificationsCollectionId,
+          queries: [
+            Query.orderDesc('\$createdAt'),
+            Query.limit(limit),
+          ],
+        );
+        return res.documents
+            .map((d) => AppNotification.fromMap(
+                  d.data,
+                  id: d.$id,
+                  createdAtFallback: d.$createdAt,
+                ))
+            .toList();
+      } on AppwriteException {
+        return const <AppNotification>[];
+      }
+    });
   }
 
   // ── Examens (carrousel d'accueil) ─────────────────────────────────────────

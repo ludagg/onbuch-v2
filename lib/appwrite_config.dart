@@ -16,3 +16,4 @@ const appwriteQuizzesCollectionId = 'quizzes';
 const appwriteAfficheCollectionId = 'affiche';
 const appwriteTutorJobsCollectionId = 'tutor_jobs';
 const appwriteTutorQuotaCollectionId = 'tutor_quota';
+const appwriteNotificationsCollectionId = 'notifications';

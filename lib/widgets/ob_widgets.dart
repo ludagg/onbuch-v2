@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../theme/app_theme.dart';
+import '../services/notifications_service.dart';
 
 // ─── Wordmark ─────────────────────────────────────────────────────────────────
 class OBWordmark extends StatelessWidget {
@@ -372,24 +373,7 @@ class _NavTab {
 /// barre du haut sur toutes les pages.
 List<Widget> obTopActions(BuildContext context, {bool showProfile = true}) {
   return [
-    Stack(alignment: Alignment.center, children: [
-      IconButton(
-        icon: const Icon(Icons.notifications_outlined, size: 23),
-        color: OC.ink,
-        onPressed: () {},
-      ),
-      Positioned(
-        top: 10, right: 10,
-        child: Container(
-          width: 8, height: 8,
-          decoration: BoxDecoration(
-            color: OC.o500,
-            shape: BoxShape.circle,
-            border: Border.all(color: OC.bg, width: 1.5),
-          ),
-        ),
-      ),
-    ]),
+    const _NotifBell(),
     if (showProfile)
       GestureDetector(
         onTap: () => context.go('/profile'),
@@ -405,6 +389,56 @@ List<Widget> obTopActions(BuildContext context, {bool showProfile = true}) {
     const SizedBox(width: 10),
     const Padding(padding: EdgeInsets.only(right: 12), child: OBTopMenu()),
   ];
+}
+
+/// Cloche de notifications : ouvre le centre de notifications et affiche une
+/// pastille tant qu'il reste des notifications non lues.
+class _NotifBell extends StatefulWidget {
+  const _NotifBell();
+
+  @override
+  State<_NotifBell> createState() => _NotifBellState();
+}
+
+class _NotifBellState extends State<_NotifBell> {
+  bool _hasUnread = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _refresh();
+  }
+
+  Future<void> _refresh() async {
+    final unread = await NotificationsService().hasUnread();
+    if (mounted && unread != _hasUnread) setState(() => _hasUnread = unread);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(alignment: Alignment.center, children: [
+      IconButton(
+        icon: const Icon(Icons.notifications_outlined, size: 23),
+        color: OC.ink,
+        onPressed: () async {
+          await context.push('/notifications');
+          _refresh(); // met à jour la pastille au retour
+        },
+      ),
+      if (_hasUnread)
+        Positioned(
+          top: 10, right: 10,
+          child: Container(
+            width: 8, height: 8,
+            decoration: BoxDecoration(
+              color: OC.o500,
+              shape: BoxShape.circle,
+              border: Border.all(color: OC.bg, width: 1.5),
+            ),
+          ),
+        ),
+    ]);
+  }
 }
 
 /// AppBar simple avec bouton retour, pour les sous-pages (menu, détails…).
