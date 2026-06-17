@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "718818979433",
+    "project_id": "onbuch-47836",
+    "storage_bucket": "onbuch-47836.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:718818979433:android:071a8c417d420236cbbcf8",
+        "android_client_info": {
+          "package_name": "cm.luvvix.onbuch"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "718818979433-eojtgddhmor0flpd183im1s0mqd3jcma.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALmVtt9EO0QEv9O7pi9GdJ-uPLL3gaPmM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "718818979433-eojtgddhmor0flpd183im1s0mqd3jcma.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:718818979433:android:e3eec1c3243dd0e0cbbcf8",
+        "android_client_info": {
+          "package_name": "com.luvvix.onbuch"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "718818979433-eojtgddhmor0flpd183im1s0mqd3jcma.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALmVtt9EO0QEv9O7pi9GdJ-uPLL3gaPmM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "718818979433-eojtgddhmor0flpd183im1s0mqd3jcma.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
