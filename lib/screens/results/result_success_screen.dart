@@ -1,10 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
+import '../../models/exam_result.dart';
 
 class ResultSuccessScreen extends StatelessWidget {
-  const ResultSuccessScreen({super.key});
+  final ExamResult? result;
+  const ResultSuccessScreen({super.key, this.result});
+
+  // Valeurs d'exemple si l'écran est ouvert sans résultat (démo).
+  String get _examLine => result?.examLine ?? 'Baccalauréat · Série D';
+  String get _session => result?.sessionLine ?? 'Session 2026';
+  String get _name => result?.candidateName ?? 'NDJAMÉ Aïcha Larissa';
+  String get _meta => result?.candidateMeta ?? 'N° table 10428 · Centre Lycée de Bonabéri, Douala';
+  String get _mention => result?.mention ?? 'Bien';
+  String get _average => result?.average ?? '14,25/20';
+
+  String _shareText() {
+    final buf = StringBuffer()
+      ..writeln('🎓 $_examLine · $_session')
+      ..writeln('✅ ADMIS·E${result?.mention != null ? ' — Mention $_mention' : ''}'
+          '${result?.average != null ? ' ($_average)' : ''}')
+      ..writeln('$_name · $_meta')
+      ..write('Vérifié sur OnBuch · onbuch.cm');
+    return buf.toString();
+  }
+
+  Future<void> _shareWhatsApp() async {
+    final uri = Uri.parse('https://wa.me/?text=${Uri.encodeComponent(_shareText())}');
+    await launchUrl(uri, mode: LaunchMode.externalApplication);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,23 +48,28 @@ class ResultSuccessScreen extends StatelessWidget {
       body: SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
         child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-          // Celebration header
           Container(
             width: 60, height: 60,
             decoration: const BoxDecoration(color: OC.goodBg, shape: BoxShape.circle),
             child: const Icon(Icons.check_circle_outline_rounded, size: 34, color: OC.good),
           ),
           const SizedBox(height: 12),
-          Text('Félicitations, tu es admise ! 🎉', style: display(24, weight: FontWeight.w700), textAlign: TextAlign.center),
+          Text('Félicitations, tu es admis·e ! 🎉', style: display(24, weight: FontWeight.w700), textAlign: TextAlign.center),
           const SizedBox(height: 6),
           Text('Partage la bonne nouvelle avec ta famille.', style: body(14, color: OC.ink2, weight: FontWeight.w500)),
           const SizedBox(height: 16),
 
-          // Result card
-          const _ResultCard(admis: true),
+          _ResultCard(
+            admis: true,
+            examLine: _examLine,
+            session: _session,
+            name: _name,
+            meta: _meta,
+            mention: _mention,
+            average: _average,
+          ),
           const SizedBox(height: 16),
 
-          // Share WhatsApp
           SizedBox(
             width: double.infinity, height: 50,
             child: ElevatedButton.icon(
@@ -63,7 +94,7 @@ class ResultSuccessScreen extends StatelessWidget {
               ),
               icon: const Icon(Icons.verified_outlined, size: 18),
               label: const Text('Carte vérifiée'),
-              onPressed: () {},
+              onPressed: () => _showShareSheet(context),
             )),
             const SizedBox(width: 11),
             Expanded(child: OutlinedButton.icon(
@@ -72,9 +103,9 @@ class ResultSuccessScreen extends StatelessWidget {
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
                 foregroundColor: OC.ink,
               ),
-              icon: const Icon(Icons.download_outlined, size: 18),
-              label: const Text('Enregistrer'),
-              onPressed: () {},
+              icon: const Icon(Icons.share_outlined, size: 18),
+              label: const Text('Partager'),
+              onPressed: _shareWhatsApp,
             )),
           ]),
         ]),
@@ -96,76 +127,57 @@ class ResultSuccessScreen extends StatelessWidget {
           const SizedBox(height: 4),
           Text('Carte vérifiée OnBuch — infalsifiable', style: body(12.5, color: OC.muted, weight: FontWeight.w500)),
           const SizedBox(height: 18),
-          // Shareable card
-          _ShareableCard(),
+          _ShareableCard(examLine: _examLine, mention: _mention, average: _average, name: _name, admis: true),
           const SizedBox(height: 18),
           SizedBox(
             width: double.infinity, height: 50,
             child: ElevatedButton.icon(
               style: ElevatedButton.styleFrom(
                 backgroundColor: OC.wa,
+                foregroundColor: Colors.white,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
                 elevation: 0,
               ),
               icon: const Icon(Icons.chat_bubble_rounded, size: 18),
               label: const Text('Partager sur WhatsApp', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14)),
-              onPressed: () {},
+              onPressed: () { Navigator.pop(context); _shareWhatsApp(); },
             ),
           ),
-          const SizedBox(height: 16),
-          Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-            _ShareAction(Icons.download_outlined, 'Image'),
-            _ShareAction(Icons.share_outlined, 'Plus'),
-            _ShareAction(Icons.link_rounded, 'Copier lien'),
-          ]),
         ]),
       ),
     );
   }
 }
 
-class _ShareAction extends StatelessWidget {
-  final IconData icon;
-  final String label;
-  const _ShareAction(this.icon, this.label);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(children: [
-      Container(
-        width: 52, height: 52,
-        decoration: BoxDecoration(
-          color: OC.paper,
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: OC.line, width: 1.5),
-        ),
-        child: Icon(icon, size: 22, color: OC.ink2),
-      ),
-      const SizedBox(height: 7),
-      Text(label, style: body(11.5, weight: FontWeight.w600, color: OC.ink2)),
-    ]);
-  }
-}
-
 // ─── Shared result card ───────────────────────────────────────────────────────
 class _ResultCard extends StatelessWidget {
   final bool admis;
-  const _ResultCard({required this.admis});
+  final String examLine, session, name, meta;
+  final String? mention, average, threshold;
+  const _ResultCard({
+    required this.admis,
+    required this.examLine,
+    required this.session,
+    required this.name,
+    required this.meta,
+    this.mention,
+    this.average,
+    this.threshold,
+  });
 
   @override
   Widget build(BuildContext context) {
     return OBCard(
       padding: EdgeInsets.zero,
       child: Column(children: [
-        // header
         Padding(
           padding: const EdgeInsets.fromLTRB(18, 16, 18, 16),
           child: Row(children: [
             Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text('Baccalauréat · Série D', style: body(11, weight: FontWeight.w800, color: OC.muted)
+              Text(examLine.toUpperCase(), style: body(11, weight: FontWeight.w800, color: OC.muted)
                   .copyWith(letterSpacing: 0.1 * 11)),
               const SizedBox(height: 3),
-              Text('Session 2026', style: display(17, weight: FontWeight.w600)),
+              Text(session, style: display(17, weight: FontWeight.w600)),
             ])),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
@@ -189,23 +201,17 @@ class _ResultCard extends StatelessWidget {
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text('Candidat', style: body(12.5, color: OC.muted, weight: FontWeight.w600)),
             const SizedBox(height: 2),
-            Text('NDJAMÉ Aïcha Larissa', style: display(22, weight: FontWeight.w600)),
+            Text(name, style: display(22, weight: FontWeight.w600)),
             const SizedBox(height: 4),
-            Text('N° table 10428 · Centre Lycée de Bonabéri, Douala',
-                style: body(12.5, color: OC.ink2, weight: FontWeight.w500)),
-            const SizedBox(height: 16),
-            if (admis)
+            Text(meta, style: body(12.5, color: OC.ink2, weight: FontWeight.w500)),
+            if (admis && (mention != null || average != null)) ...[
+              const SizedBox(height: 16),
               Row(children: [
-                Expanded(child: _Stat('Mention', 'Bien')),
-                const SizedBox(width: 10),
-                Expanded(child: _Stat('Moyenne', '14,25/20')),
-              ])
-            else
-              Row(children: [
-                Expanded(child: _Stat('Moyenne obtenue', '9,40/20')),
-                const SizedBox(width: 10),
-                Expanded(child: _Stat('Admissibilité', '10,00', warn: true)),
+                if (mention != null) Expanded(child: _Stat('Mention', mention!)),
+                if (mention != null && average != null) const SizedBox(width: 10),
+                if (average != null) Expanded(child: _Stat('Moyenne', average!)),
               ]),
+            ],
           ]),
         ),
         const HRule(),
@@ -245,8 +251,17 @@ class _Stat extends StatelessWidget {
 
 // ─── Shareable card ───────────────────────────────────────────────────────────
 class _ShareableCard extends StatelessWidget {
+  final String examLine, name;
+  final String? mention, average;
+  final bool admis;
+  const _ShareableCard({required this.examLine, required this.name, this.mention, this.average, required this.admis});
+
   @override
   Widget build(BuildContext context) {
+    final detail = [
+      if (mention != null) 'Mention $mention',
+      if (average != null) average,
+    ].join(' · ');
     return Container(
       padding: const EdgeInsets.fromLTRB(22, 22, 22, 18),
       decoration: BoxDecoration(
@@ -273,17 +288,20 @@ class _ShareableCard extends StatelessWidget {
             ),
           ]),
           const SizedBox(height: 26),
-          Text('BACCALAURÉAT 2026 · SÉRIE D',
+          Text(examLine.toUpperCase(),
               style: body(11.5, weight: FontWeight.w800, color: Colors.white.withValues(alpha:0.85))
                   .copyWith(letterSpacing: 0.12 * 11.5)),
           const SizedBox(height: 8),
-          Text('ADMISE', style: display(30, weight: FontWeight.w700, color: Colors.white)),
-          const SizedBox(height: 8),
-          Text('Mention Bien · 14,25/20', style: display(17, weight: FontWeight.w600, color: Colors.white)),
+          Text(admis ? 'ADMIS·E' : 'NON ADMIS', style: display(30, weight: FontWeight.w700, color: Colors.white)),
+          if (detail.isNotEmpty) ...[
+            const SizedBox(height: 8),
+            Text(detail, style: display(17, weight: FontWeight.w600, color: Colors.white)),
+          ],
           Divider(height: 36, color: Colors.white.withValues(alpha:0.22), thickness: 1),
           Row(children: [
-            Text('NDJAMÉ Aïcha', style: display(15, weight: FontWeight.w600, color: Colors.white)),
-            const Spacer(),
+            Expanded(child: Text(name, maxLines: 1, overflow: TextOverflow.ellipsis,
+                style: display(15, weight: FontWeight.w600, color: Colors.white))),
+            const SizedBox(width: 8),
             Text('onbuch.cm', style: body(11.5, color: Colors.white.withValues(alpha:0.82), weight: FontWeight.w600)),
           ]),
         ]),

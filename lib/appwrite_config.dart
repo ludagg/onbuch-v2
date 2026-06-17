@@ -3,6 +3,7 @@ const appwriteProjectId = '6a30463b00001375e229';
 const appwriteDatabaseId = '6a3047f8001d11d1b3c1';
 const appwriteUsersCollectionId = 'users';
 const appwriteResultsCollectionId = 'results';
+const appwriteExamResultsCollectionId = 'exam_results';
 const appwriteAnalyticsCollectionId = 'analytics_events';
 const appwriteArticlesCollectionId = 'articles';
 const appwriteExamsCollectionId = 'exams';

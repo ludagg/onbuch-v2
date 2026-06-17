@@ -38,6 +38,7 @@ import '../screens/cours/chapters_screen.dart';
 import '../screens/cours/chapter_detail_screen.dart';
 import '../screens/cours/quiz_screen.dart';
 import '../models/article.dart';
+import '../models/exam_result.dart';
 import '../models/tutor_request.dart';
 import '../models/course.dart';
 import '../services/auth_service.dart';
@@ -111,8 +112,8 @@ final appRouter = GoRouter(
           path: '/results',
           builder: (_, __) => const ResultsSearchScreen(),
           routes: [
-            GoRoute(path: 'success', builder: (_, __) => const ResultSuccessScreen()),
-            GoRoute(path: 'fail', builder: (_, __) => const ResultFailScreen()),
+            GoRoute(path: 'success', builder: (_, s) => ResultSuccessScreen(result: s.extra as ExamResult?)),
+            GoRoute(path: 'fail', builder: (_, s) => ResultFailScreen(result: s.extra as ExamResult?)),
           ],
         ),
         GoRoute(

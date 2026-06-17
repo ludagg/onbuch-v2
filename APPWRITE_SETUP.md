@@ -33,6 +33,23 @@ Attributs :
 - `mention` (string, 50)
 - `savedAt` (datetime)
 
+### Collection `exam_results` (résultats publiés — recherche)
+Attributs :
+- `examType` (string, 60, required) — ex. `Baccalauréat`, `Probatoire`, `BEPC`,
+  `GCE O Level`, `GCE A Level`, `BTS`, `Université` (doit matcher le sélecteur app)
+- `serie` (string, 10) — ex. `D` (optionnel)
+- `year` (string, 10) — ex. `2026`
+- `tableNumber` (string, 40, required) — n° de table / candidat (clé de recherche)
+- `candidateName` (string, 160, required)
+- `center` (string, 160) · `city` (string, 80)
+- `admitted` (boolean, required)
+- `mention` (string, 40) · `average` (string, 20) — cas admis
+- `threshold` (string, 20) — moyenne d'admissibilité (cas non admis)
+
+Index **`idx_lookup`** (type key) sur `examType` + `tableNumber` pour la recherche.
+Permissions : Read `any`, Write admin. La recherche se fait par `examType` +
+`tableNumber`. Script de création : `tools/setup_exam_results_collection.sh`.
+
 ### Collection `analytics_events`
 Attributs :
 - `name` (string, 100)

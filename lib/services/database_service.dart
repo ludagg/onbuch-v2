@@ -9,6 +9,7 @@ import '../models/course.dart';
 import '../models/quiz.dart';
 import '../models/affiche.dart';
 import '../models/app_notification.dart';
+import '../models/exam_result.dart';
 import 'appwrite_client.dart';
 
 class DatabaseService {
@@ -134,6 +135,34 @@ class DatabaseService {
         'savedAt': DateTime.now().toIso8601String(),
       },
     );
+  }
+
+  /// Recherche un résultat publié par type d'examen + numéro de table.
+  /// Retourne `null` si rien ne correspond (ou en cas d'erreur réseau).
+  Future<ExamResult?> lookupResult({
+    required String examType,
+    required String tableNumber,
+    String? year,
+  }) async {
+    final table = tableNumber.trim();
+    if (table.isEmpty) return null;
+    try {
+      final res = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteExamResultsCollectionId,
+        queries: [
+          Query.equal('examType', examType),
+          Query.equal('tableNumber', table),
+          if (year != null && year.isNotEmpty) Query.equal('year', year),
+          Query.limit(1),
+        ],
+      );
+      if (res.documents.isEmpty) return null;
+      final d = res.documents.first;
+      return ExamResult.fromMap(d.data, id: d.$id);
+    } on AppwriteException {
+      return null;
+    }
   }
 
   /// Retourne les résultats d'un utilisateur.
