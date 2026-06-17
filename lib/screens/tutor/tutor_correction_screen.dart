@@ -37,7 +37,6 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
   final _inputCtrl = TextEditingController();
   final _scroll = ScrollController();
   final List<_Msg> _msgs = [];
-  String? _correctionText; // 1re correction, pour l'export PDF
 
   @override
   void initState() {
@@ -74,18 +73,15 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
     } else if (r.question != null && r.question!.trim().isNotEmpty) {
       fut = _service.analyzeExercise(text: r.question, subject: r.subject, mode: r.mode, chapterId: r.chapterId);
     }
-    if (fut != null) _addAi(fut, primary: true);
+    if (fut != null) _addAi(fut);
   }
 
-  void _addAi(Future<String> fut, {bool primary = false}) {
+  void _addAi(Future<String> fut) {
     final m = _Msg.ai(fut);
     _msgs.add(m);
     fut.then((t) {
       if (!mounted) return;
-      setState(() {
-        m.resolved = t;
-        if (primary) _correctionText = t;
-      });
+      setState(() => m.resolved = t);
       _scrollToBottom();
     }).catchError((_) {
       if (!mounted) return;
@@ -136,15 +132,19 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
     });
   }
 
+  bool get _hasExportable => _msgs.any((m) => !m.isUser && m.resolved != null);
+
   Future<void> _exportPdf() async {
-    if (_correctionText == null) return;
-    final r = widget.request;
-    await exportCorrectionPdf(
-      correction: _correctionText!,
-      image: r?.image,
-      question: r?.question,
-      title: r?.titleHint,
-    );
+    final turns = <PdfTurn>[];
+    for (final m in _msgs) {
+      if (m.isUser) {
+        turns.add(PdfTurn(isUser: true, text: m.text ?? '', image: m.image));
+      } else if (m.resolved != null) {
+        turns.add(PdfTurn(isUser: false, text: m.resolved!));
+      }
+    }
+    if (!turns.any((t) => !t.isUser)) return; // aucune réponse à exporter
+    await exportConversationPdf(turns: turns, title: widget.request?.titleHint);
   }
 
   @override
@@ -164,11 +164,11 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
           onPressed: () => context.canPop() ? context.pop() : context.go('/tutor'),
         ),
         actions: [
-          if (_correctionText != null)
+          if (_hasExportable)
             IconButton(
               icon: const Icon(Icons.ios_share_rounded, size: 21),
               color: OC.ink2,
-              tooltip: 'Exporter en PDF',
+              tooltip: 'Exporter la discussion en PDF',
               onPressed: _exportPdf,
             ),
         ],
