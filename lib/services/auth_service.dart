@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'appwrite_client.dart';
 import 'database_service.dart';
+import 'push_service.dart';
 
 class AuthService extends ChangeNotifier {
   static const _loggedInKey = 'ob_logged_in';
@@ -139,6 +140,7 @@ class AuthService extends ChangeNotifier {
       await _setLoggedIn(true);
       _userCache = null; // forcer un rafraîchissement du nom au prochain accès
       await _refreshUser();
+      unawaited(PushService.instance.registerForCurrentUser());
       notifyListeners();
       return session.userId;
     } on AppwriteException catch (e) {
@@ -177,6 +179,7 @@ class AuthService extends ChangeNotifier {
       await _setLoggedIn(true);
       _userCache = user;
       if (name.trim().isNotEmpty) await _persistName(name);
+      unawaited(PushService.instance.registerForCurrentUser());
       notifyListeners();
       return user.$id;
     } on AppwriteException catch (e) {
@@ -205,6 +208,7 @@ class AuthService extends ChangeNotifier {
       await _setLoggedIn(false);
       await _clearNameCache();
       DatabaseService.clearCache();
+      await PushService.instance.unregister();
       notifyListeners();
     }
   }

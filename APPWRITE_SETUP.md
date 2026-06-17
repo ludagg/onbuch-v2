@@ -52,6 +52,20 @@ Attributs :
 Permissions : Read `any` (le fil est public), Write réservé à l'admin.
 Les articles sont triés du plus récent au plus ancien.
 
+### Collection `notifications` (centre de notifications)
+Attributs :
+- `title` (string, 200, required)
+- `body` (string, 1000) — texte de la notification (optionnel)
+- `type` (string, 30) — `result` · `exam` · `credit` · `course` · `promo` · `info`
+  (détermine l'icône et la couleur ; défaut `info`)
+- `route` (string, 200) — lien interne ouvert au tap, ex. `/results` (optionnel)
+- `imageUrl` (string, 500) — optionnel
+- `publishedAt` (datetime) — sinon `$createdAt` est utilisé
+
+Permissions : Read `any`, Write réservé à l'admin. Triées du plus récent au plus
+ancien. L'état « lu / non lu » est géré **localement** sur l'appareil (aucune
+écriture côté serveur n'est nécessaire).
+
 ## 4. Permissions
 Pour chaque collection, ajouter :
 - Read: `user:[USER_ID]` (ou `any` pour les events)
@@ -61,9 +75,12 @@ Pour chaque collection, ajouter :
 Appwrite Console → Settings → Platforms → Add Platform → Android
 - Package Name: `cm.luvvix.onbuch`
 
-## 6. Push Notifications (optionnel)
-Appwrite Console → Messaging → Providers → Add FCM provider
-Nécessite un projet Firebase juste pour FCM (pas de SDK dans l'app).
+## 6. Push Notifications (FCM)
+Le code push est implémenté (FCM + Appwrite Messaging). La configuration pas à
+pas (projet Firebase, `google-services.json`, provider FCM Appwrite, topic,
+envoi d'un message) est décrite dans **`PUSH.md`**.
+⚠️ C'est une fonctionnalité **native** → nécessite une **nouvelle release APK**
+(non patchable par Shorebird).
 
 ## 7. Build
 ```bash
