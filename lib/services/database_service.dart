@@ -5,6 +5,7 @@ import '../models/article.dart';
 import '../models/exam.dart';
 import '../models/calendar_event.dart';
 import '../models/concours.dart';
+import '../models/concours_application.dart';
 import '../models/prep_center.dart';
 import '../models/concours_resource.dart';
 import '../models/course.dart';
@@ -349,6 +350,53 @@ class DatabaseService {
         return const <ConcoursResource>[];
       }
     });
+  }
+
+  /// Enregistre une candidature de l'utilisateur à un concours (privée).
+  Future<ConcoursApplication> createApplication({
+    required String uid,
+    required String concoursId,
+    required String concoursName,
+    String? examLabel,
+    String? receiptNo,
+  }) async {
+    final now = DateTime.now();
+    final doc = await AppwriteClient.databases.createDocument(
+      databaseId: appwriteDatabaseId,
+      collectionId: appwriteConcoursApplicationsCollectionId,
+      documentId: ID.unique(),
+      data: {
+        'userId': uid,
+        'concoursId': concoursId,
+        'concoursName': concoursName,
+        'status': 'submitted',
+        if (examLabel != null) 'examLabel': examLabel,
+        if (receiptNo != null) 'receiptNo': receiptNo,
+        'createdAt': now.toIso8601String(),
+      },
+      permissions: [
+        Permission.read(Role.user(uid)),
+        Permission.update(Role.user(uid)),
+        Permission.delete(Role.user(uid)),
+      ],
+    );
+    return ConcoursApplication.fromMap(doc.data, id: doc.$id, createdAtFallback: doc.$createdAt);
+  }
+
+  /// Candidatures de l'utilisateur connecté (les plus récentes d'abord).
+  Future<List<ConcoursApplication>> getMyApplications(String uid) async {
+    try {
+      final res = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteConcoursApplicationsCollectionId,
+        queries: [Query.equal('userId', uid), Query.orderDesc('\$createdAt'), Query.limit(50)],
+      );
+      return res.documents
+          .map((d) => ConcoursApplication.fromMap(d.data, id: d.$id, createdAtFallback: d.$createdAt))
+          .toList();
+    } on AppwriteException {
+      return const <ConcoursApplication>[];
+    }
   }
 
   // ── Cours (matières & chapitres) ──────────────────────────────────────────
