@@ -29,6 +29,7 @@ import '../screens/affiche/affiche_screen.dart';
 import '../screens/affiche/affiche_detail_screen.dart';
 import '../models/affiche.dart';
 import '../screens/menu/concours_screen.dart';
+import '../screens/menu/concours_detail_screen.dart';
 import '../screens/menu/credits_screen.dart';
 import '../screens/menu/communaute_screen.dart';
 import '../screens/menu/parametres_screen.dart';
@@ -39,6 +40,7 @@ import '../screens/cours/chapter_detail_screen.dart';
 import '../screens/cours/quiz_screen.dart';
 import '../models/article.dart';
 import '../models/exam_result.dart';
+import '../models/concours.dart';
 import '../models/tutor_request.dart';
 import '../models/course.dart';
 import '../services/auth_service.dart';
@@ -75,6 +77,7 @@ final appRouter = GoRouter(
     GoRoute(path: '/affiche', builder: (_, __) => const AfficheScreen()),
     GoRoute(path: '/affiche-detail', builder: (_, s) => AfficheDetailScreen(item: s.extra as AfficheItem?)),
     GoRoute(path: '/concours', builder: (_, __) => const ConcoursScreen()),
+    GoRoute(path: '/concours-detail', builder: (_, s) => ConcoursDetailScreen(concours: s.extra as Concours?)),
     GoRoute(path: '/credits', builder: (_, __) => const CreditsScreen()),
     GoRoute(path: '/communaute', builder: (_, __) => const CommunauteScreen()),
     GoRoute(path: '/parametres', builder: (_, __) => const ParametresScreen()),
