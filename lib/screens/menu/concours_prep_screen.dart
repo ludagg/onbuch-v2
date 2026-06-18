@@ -22,7 +22,7 @@ class ConcoursPrepScreen extends StatelessWidget {
       (Icons.bolt_rounded, 'Sujets types (IA)', 'Nouv.', () => context.go('/tutor')),
       (Icons.play_circle_outline_rounded, 'Méthodo & pièges', '2/5', () => context.go('/cours')),
       (Icons.insights_rounded, 'Ma progression', '', () => context.push('/concours-progress')),
-      (Icons.edit_note_rounded, 'Concours blanc', 'V2.1', () => _soon(context)),
+      (Icons.edit_note_rounded, 'Concours blanc', 'V2.1', () => context.push('/concours-blanc', extra: c)),
     ];
 
     return Scaffold(
@@ -124,13 +124,4 @@ class ConcoursPrepScreen extends StatelessWidget {
     );
   }
 
-  void _soon(BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text('Concours blanc — bientôt (V2.1)', style: body(13, weight: FontWeight.w600, color: Colors.white)),
-      backgroundColor: OC.ink,
-      behavior: SnackBarBehavior.floating,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      duration: const Duration(seconds: 2),
-    ));
-  }
 }

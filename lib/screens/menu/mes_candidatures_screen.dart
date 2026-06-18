@@ -89,7 +89,10 @@ class _MesCandidaturesScreenState extends State<MesCandidaturesScreen> {
   }
 
   Widget _card(ConcoursApplication a) {
-    return Container(
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () => context.push('/resultat-admission', extra: a),
+      child: Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
         color: OC.paper,
@@ -135,6 +138,7 @@ class _MesCandidaturesScreenState extends State<MesCandidaturesScreen> {
                   color: j <= a.stepIndex ? OC.o700 : OC.muted)));
         })),
       ]),
+      ),
     );
   }
 
