@@ -6,6 +6,8 @@ import '../../widgets/ob_widgets.dart';
 import '../../services/appwrite_client.dart';
 import '../../services/auth_service.dart';
 import '../../services/database_service.dart';
+import '../../services/tutor_service.dart';
+import '../../ai_config.dart';
 import '../../models/article.dart';
 import '../../models/exam.dart';
 import '../../models/affiche.dart';
@@ -501,9 +503,40 @@ class _CountUnit extends StatelessWidget {
 }
 
 // ─── Tuteur CTA card ──────────────────────────────────────────────────────────
-class _TuteurCard extends StatelessWidget {
+class _TuteurCard extends StatefulWidget {
+  @override
+  State<_TuteurCard> createState() => _TuteurCardState();
+}
+
+class _TuteurCardState extends State<_TuteurCard> {
+  TutorQuota? _quota;
+
+  @override
+  void initState() {
+    super.initState();
+    _load();
+  }
+
+  Future<void> _load() async {
+    final q = await TutorService().getQuota();
+    if (mounted) setState(() => _quota = q);
+  }
+
   @override
   Widget build(BuildContext context) {
+    final q = _quota;
+    final daily = AIConfig.freeDaily;
+    final free = q?.freeRemaining ?? daily;
+    final credits = q?.credits ?? 0;
+    final progress = daily > 0 ? (free / daily).clamp(0.0, 1.0) : 0.0;
+    final String label;
+    if (free > 0) {
+      label = '$free / $daily correction${daily > 1 ? 's' : ''} gratuite${daily > 1 ? 's' : ''} aujourd\'hui';
+    } else if (credits > 0) {
+      label = '$credits crédit${credits > 1 ? 's' : ''} Tuteur disponible${credits > 1 ? 's' : ''}';
+    } else {
+      label = 'Quota du jour épuisé — recharge des crédits';
+    }
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -535,14 +568,14 @@ class _TuteurCard extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(4),
               child: LinearProgressIndicator(
-                value: 0.66,
+                value: progress,
                 minHeight: 7,
                 backgroundColor: OC.o100,
                 valueColor: const AlwaysStoppedAnimation(OC.o500),
               ),
             ),
             const SizedBox(height: 6),
-            Text('2 / 3 corrections gratuites aujourd\'hui', style: body(11, color: OC.o700, weight: FontWeight.w600)),
+            Text(label, style: body(11, color: OC.o700, weight: FontWeight.w600)),
           ])),
           const SizedBox(width: 12),
           GestureDetector(
@@ -573,8 +606,8 @@ class _Shortcuts extends StatelessWidget {
   static const _items = [
     [Icons.description_outlined, 'Résultats', OC.o600, OC.o50, '/results'],
     [Icons.menu_book_rounded, 'Annales', OC.waInk, OC.goodBg, '/annales'],
-    [Icons.track_changes_rounded, 'Concours', OC.blue, OC.blueBg, null],
-    [Icons.paid_outlined, 'Crédits', OC.warn, OC.warnBg, null],
+    [Icons.track_changes_rounded, 'Concours', OC.blue, OC.blueBg, '/concours'],
+    [Icons.paid_outlined, 'Crédits', OC.warn, OC.warnBg, '/credits'],
   ];
 
   void _onTap(BuildContext context, String label, String? route) {
@@ -641,73 +674,47 @@ class _Shortcuts extends StatelessWidget {
   }
 }
 
-// ─── Saved papers ─────────────────────────────────────────────────────────────
+// ─── Saved papers (hors-ligne) ────────────────────────────────────────────────
 class _SavedSection extends StatelessWidget {
   const _SavedSection();
-
-  static const _papers = [
-    ['Mathématiques', 'Bac D · 2023'],
-    ['Philosophie', 'Probatoire A · 2024'],
-    ['Physique-Chimie', 'Bac D · 2022'],
-  ];
 
   @override
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: SecHead(eyebrow: 'Hors-ligne', title: 'Tes épreuves', action: 'Gérer'),
+        child: SecHead(eyebrow: 'Hors-ligne', title: 'Tes épreuves', action: null),
       ),
       const SizedBox(height: 14),
-      SizedBox(
-        height: 170,
-        child: ListView.separated(
-          scrollDirection: Axis.horizontal,
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          itemCount: _papers.length,
-          separatorBuilder: (_, __) => const SizedBox(width: 13),
-          itemBuilder: (_, i) {
-            final p = _papers[i];
-            return Container(
-              width: 156,
-              decoration: BoxDecoration(
-                color: OC.paper,
-                borderRadius: BorderRadius.circular(18),
-                border: Border.all(color: OC.line, width: 1.5),
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: () => context.go('/annales'),
+          child: Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: OC.paper,
+              borderRadius: BorderRadius.circular(18),
+              border: Border.all(color: OC.line, width: 1.5),
+            ),
+            child: Row(children: [
+              Container(
+                width: 46, height: 46,
+                decoration: BoxDecoration(color: OC.goodBg, borderRadius: BorderRadius.circular(13)),
+                child: const Icon(Icons.download_for_offline_outlined, size: 24, color: OC.waInk),
               ),
-              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Stack(children: [
-                  Container(
-                    height: 92,
-                    decoration: BoxDecoration(
-                      color: OC.panel,
-                      borderRadius: const BorderRadius.vertical(top: Radius.circular(17)),
-                    ),
-                    child: const Center(child: Icon(Icons.description_outlined, color: OC.faint, size: 36)),
-                  ),
-                  Positioned(top: 8, left: 8,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                      decoration: BoxDecoration(color: Colors.black.withValues(alpha:0.72), borderRadius: BorderRadius.circular(8)),
-                      child: Row(mainAxisSize: MainAxisSize.min, children: [
-                        const Icon(Icons.wifi_off_rounded, color: Colors.white, size: 12),
-                        const SizedBox(width: 4),
-                        Text('Hors-ligne', style: body(10, weight: FontWeight.w700, color: Colors.white)),
-                      ]),
-                    ),
-                  ),
-                ]),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(12, 11, 12, 13),
-                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                    Text(p[0], style: body(13.5, weight: FontWeight.w700).copyWith(height: 1.15)),
-                    const SizedBox(height: 4),
-                    Text(p[1], style: body(11.5, weight: FontWeight.w600, color: OC.muted)),
-                  ]),
-                ),
-              ]),
-            );
-          },
+              const SizedBox(width: 13),
+              Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Text('Aucune épreuve hors-ligne', style: body(14, weight: FontWeight.w700)),
+                const SizedBox(height: 3),
+                Text('Télécharge des annales pour les consulter sans connexion.',
+                    style: body(12, color: OC.muted, weight: FontWeight.w500).copyWith(height: 1.35)),
+              ])),
+              const SizedBox(width: 8),
+              const Icon(Icons.chevron_right_rounded, size: 20, color: OC.muted),
+            ]),
+          ),
         ),
       ),
     ]);
