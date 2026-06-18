@@ -30,6 +30,10 @@ import '../screens/affiche/affiche_detail_screen.dart';
 import '../models/affiche.dart';
 import '../screens/menu/concours_screen.dart';
 import '../screens/menu/concours_detail_screen.dart';
+import '../screens/menu/concours_inscription_screen.dart';
+import '../screens/menu/mes_candidatures_screen.dart';
+import '../screens/menu/concours_prep_screen.dart';
+import '../screens/menu/concours_progress_screen.dart';
 import '../screens/menu/credits_screen.dart';
 import '../screens/menu/communaute_screen.dart';
 import '../screens/menu/parametres_screen.dart';
@@ -78,6 +82,10 @@ final appRouter = GoRouter(
     GoRoute(path: '/affiche-detail', builder: (_, s) => AfficheDetailScreen(item: s.extra as AfficheItem?)),
     GoRoute(path: '/concours', builder: (_, __) => const ConcoursScreen()),
     GoRoute(path: '/concours-detail', builder: (_, s) => ConcoursDetailScreen(concours: s.extra as Concours?)),
+    GoRoute(path: '/concours-inscription', builder: (_, s) => ConcoursInscriptionScreen(concours: s.extra as Concours?)),
+    GoRoute(path: '/mes-candidatures', builder: (_, __) => const MesCandidaturesScreen()),
+    GoRoute(path: '/concours-prep', builder: (_, s) => ConcoursPrepScreen(concours: s.extra as Concours?)),
+    GoRoute(path: '/concours-progress', builder: (_, __) => const ConcoursProgressScreen()),
     GoRoute(path: '/credits', builder: (_, __) => const CreditsScreen()),
     GoRoute(path: '/communaute', builder: (_, __) => const CommunauteScreen()),
     GoRoute(path: '/parametres', builder: (_, __) => const ParametresScreen()),

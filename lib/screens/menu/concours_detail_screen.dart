@@ -283,7 +283,7 @@ class _ConcoursDetailScreenState extends State<ConcoursDetailScreen> {
           ),
           icon: const Icon(Icons.bolt_rounded, size: 18),
           label: const Text('Préparer ces épreuves', style: TextStyle(fontWeight: FontWeight.w700)),
-          onPressed: () => context.go('/cours'),
+          onPressed: () => context.push('/concours-prep', extra: c),
         ),
       ),
       const SizedBox(height: 8),
@@ -350,19 +350,7 @@ class _ConcoursDetailScreenState extends State<ConcoursDetailScreen> {
           ),
           const SizedBox(width: 10),
           Expanded(child: GestureDetector(
-            onTap: () {
-              if (c.link != null) {
-                openUrl(context, c.link);
-              } else {
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  content: Text('Vérification d\'éligibilité — bientôt disponible',
-                      style: body(13, weight: FontWeight.w600, color: Colors.white)),
-                  backgroundColor: OC.ink,
-                  behavior: SnackBarBehavior.floating,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                ));
-              }
-            },
+            onTap: () => context.push('/concours-inscription', extra: c),
             child: Container(
               height: 50,
               decoration: BoxDecoration(
@@ -373,7 +361,7 @@ class _ConcoursDetailScreenState extends State<ConcoursDetailScreen> {
               child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 const Icon(Icons.verified_outlined, size: 18, color: Colors.white),
                 const SizedBox(width: 8),
-                Text(c.link != null ? 'S\'inscrire' : 'Vérifier mon éligibilité',
+                Text('Vérifier mon éligibilité',
                     style: body(14, weight: FontWeight.w700, color: Colors.white)),
               ]),
             ),

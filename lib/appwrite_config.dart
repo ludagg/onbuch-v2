@@ -11,6 +11,7 @@ const appwriteSchoolCalendarCollectionId = 'school_calendar';
 const appwriteConcoursCollectionId = 'concours';
 const appwritePrepCentersCollectionId = 'prep_centers';
 const appwriteConcoursResourcesCollectionId = 'concours_resources';
+const appwriteConcoursApplicationsCollectionId = 'concours_applications';
 const appwriteSubjectsCollectionId = 'subjects';
 const appwriteChaptersCollectionId = 'chapters';
 const appwriteLessonsCollectionId = 'lessons';

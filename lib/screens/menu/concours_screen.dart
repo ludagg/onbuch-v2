@@ -42,11 +42,17 @@ class _ConcoursScreenState extends State<ConcoursScreen> {
         ]),
         actions: [
           IconButton(
+            icon: const Icon(Icons.track_changes_rounded, size: 21),
+            color: OC.ink,
+            tooltip: 'Mes candidatures',
+            onPressed: () => context.push('/mes-candidatures'),
+          ),
+          IconButton(
             icon: const Icon(Icons.notifications_outlined, size: 22),
             color: OC.ink,
             onPressed: () => context.push('/notifications'),
           ),
-          const SizedBox(width: 6),
+          const SizedBox(width: 4),
         ],
       ),
       body: FutureBuilder<List<Concours>>(
@@ -73,7 +79,7 @@ class _ConcoursScreenState extends State<ConcoursScreen> {
               _label('Préparer mon concours'),
               const SizedBox(height: 10),
               Row(children: [
-                _shortcut(Icons.bolt_rounded, 'Préparation', () => context.go('/cours')),
+                _shortcut(Icons.bolt_rounded, 'Préparation', () => context.push('/concours-prep')),
                 const SizedBox(width: 9),
                 _shortcut(Icons.description_outlined, 'Anciens sujets', () => context.go('/annales')),
                 const SizedBox(width: 9),

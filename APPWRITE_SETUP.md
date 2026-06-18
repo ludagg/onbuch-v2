@@ -102,6 +102,14 @@ Gérées par l'admin (Read `any`, Write admin). Script :
 
 > Tant que ces collections sont vides, la page Concours affiche des exemples.
 
+### Collection `concours_applications` (candidatures — privé)
+Candidatures de l'utilisateur à un concours. **Document security activé** :
+chaque candidature est lisible/modifiable uniquement par son auteur.
+Permission collection : `create("users")`. Script :
+`tools/setup_concours_applications.sh`.
+Attributs : `userId` (req), `concoursId`, `concoursName` (req), `status`
+(`submitted`·`validated`·`exam`·`result`), `examLabel`, `receiptNo`, `createdAt`.
+
 ## 4. Permissions
 Pour chaque collection, ajouter :
 - Read: `user:[USER_ID]` (ou `any` pour les events)
