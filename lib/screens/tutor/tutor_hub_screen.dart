@@ -8,9 +8,9 @@ import '../../services/tutor_service.dart';
 import '../../services/auth_service.dart';
 import '../../services/database_service.dart';
 import '../../widgets/paywall_sheet.dart';
-import '../../widgets/lea_mascot.dart';
+import '../../widgets/leo_mascot.dart';
 
-/// Page principale du Tuteur « Léa » — direction « tableau de bord » (option C)
+/// Page principale du Tuteur « Léo » — direction « tableau de bord » (option C)
 /// modernisée avec l'accueil conversationnel (option A) : en-tête de marque,
 /// salut + mascotte + suggestions, puis scan / quota / modes / reprise.
 class TutorHubScreen extends StatefulWidget {
@@ -208,10 +208,10 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
         border: Border.all(color: OC.o100, width: 1.5),
       ),
       child: Row(children: [
-        // Mascotte Léa, animée (jamais figée).
+        // Mascotte Léo, animée (jamais figée).
         const SizedBox(
           width: 64, height: 64,
-          child: Center(child: LeaMascot(size: 64)),
+          child: Center(child: LeoMascot(size: 64)),
         ),
         const SizedBox(width: 12),
         Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

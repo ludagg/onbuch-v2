@@ -262,9 +262,9 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
         alignment: Alignment.centerLeft,
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(children: [
-            SizedBox(width: 26, height: 26, child: Image.asset('assets/images/lea.png', fit: BoxFit.contain)),
+            SizedBox(width: 26, height: 26, child: Image.asset('assets/images/leo.png', fit: BoxFit.contain)),
             const SizedBox(width: 7),
-            Text('Léa · Tuteur OnBuch', style: body(12, weight: FontWeight.w700, color: OC.ink2)),
+            Text('Léo · Tuteur OnBuch', style: body(12, weight: FontWeight.w700, color: OC.ink2)),
           ]),
           const SizedBox(height: 7),
           Container(
