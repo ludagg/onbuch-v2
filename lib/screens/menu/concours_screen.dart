@@ -48,9 +48,10 @@ class _ConcoursScreenState extends State<ConcoursScreen> {
             onPressed: () => context.push('/mes-candidatures'),
           ),
           IconButton(
-            icon: const Icon(Icons.notifications_outlined, size: 22),
+            icon: const Icon(Icons.notifications_active_outlined, size: 21),
             color: OC.ink,
-            onPressed: () => context.push('/notifications'),
+            tooltip: 'Alertes & échéances',
+            onPressed: () => context.push('/concours-alertes'),
           ),
           const SizedBox(width: 4),
         ],
@@ -83,7 +84,7 @@ class _ConcoursScreenState extends State<ConcoursScreen> {
                 const SizedBox(width: 9),
                 _shortcut(Icons.description_outlined, 'Anciens sujets', () => context.go('/annales')),
                 const SizedBox(width: 9),
-                _shortcut(Icons.edit_note_rounded, 'Concours blanc', () => _soon(context)),
+                _shortcut(Icons.edit_note_rounded, 'Concours blanc', () => context.push('/concours-blanc')),
               ]),
               const SizedBox(height: 18),
 
