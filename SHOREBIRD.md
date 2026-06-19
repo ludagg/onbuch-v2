@@ -8,8 +8,8 @@ et appliqué au redémarrage suivant. **Silencieux.**
 > natif, permissions, AndroidManifest, montée de Flutter) demande une **nouvelle
 > release** (un nouvel APK à distribuer).
 >
-> Exemple : l'ajout du **push (FCM)** est natif → nouvelle release requise
-> (voir `PUSH.md`), pas un patch.
+> Exemples natifs (→ nouvelle release, pas un patch) : le **push (FCM)** (voir
+> `PUSH.md`) et les **achats Play Billing** (voir `BILLING.md`).
 
 ## ✅ Déjà fait
 - App Shorebird **créée** (`app_id` dans `shorebird.yaml`, bundlé via `pubspec.yaml`).

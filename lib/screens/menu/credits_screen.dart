@@ -78,7 +78,7 @@ class _CreditsScreenState extends State<CreditsScreen> {
           Text('Comment ça marche', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
           const SizedBox(height: 10),
           _info(Icons.bolt_rounded, '3 corrections gratuites par jour', 'Réinitialisées chaque jour, sans rien payer.'),
-          _info(Icons.shopping_bag_outlined, 'Des crédits à la demande', 'Recharge dès 100 F via MTN MoMo ou Orange Money.'),
+          _info(Icons.shopping_bag_outlined, 'Des crédits à la demande', 'Recharge en un tap via Google Play, paiement sécurisé.'),
           _info(Icons.lock_outline_rounded, 'Sans abonnement', 'Tu paies seulement quand tu en as besoin.'),
         ],
       ),

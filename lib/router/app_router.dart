@@ -21,6 +21,9 @@ import '../screens/tutor/tutor_hub_screen.dart';
 import '../screens/tutor/tutor_camera_screen.dart';
 import '../screens/tutor/tutor_correction_screen.dart';
 import '../screens/tutor/tutor_similar_screen.dart';
+import '../screens/tutor/tutor_mode_screens.dart';
+import '../screens/tutor/camera_capture_screen.dart';
+import '../screens/tutor/crop_screen.dart';
 import '../screens/profile/profile_screen.dart';
 import '../screens/news/article_detail_screen.dart';
 import '../screens/news/news_screen.dart';
@@ -160,6 +163,19 @@ final appRouter = GoRouter(
               },
             ),
             GoRoute(path: 'similar', builder: (_, __) => const TutorSimilarScreen()),
+            GoRoute(path: 'corriger', builder: (_, __) => const TutorCorrigerScreen()),
+            GoRoute(path: 'expliquer', builder: (_, __) => const TutorExpliquerScreen()),
+            GoRoute(path: 'entrainer', builder: (_, __) => const TutorEntrainerScreen()),
+            GoRoute(path: 'capture', builder: (_, s) => CameraCaptureScreen(subject: s.extra as String?)),
+            GoRoute(
+              path: 'crop',
+              builder: (_, s) {
+                final m = s.extra as Map?;
+                final bytes = m?['bytes'] as Uint8List?;
+                if (bytes == null) return const TutorHubScreen();
+                return CropScreen(bytes: bytes, subject: m?['subject'] as String?);
+              },
+            ),
           ],
         ),
         GoRoute(path: '/cours', builder: (_, __) => const CoursScreen()),

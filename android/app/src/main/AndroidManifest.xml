@@ -2,6 +2,8 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <!-- Notifications push (Android 13+) -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <!-- Caméra intégrée (scan d'exercices) -->
+    <uses-permission android:name="android.permission.CAMERA"/>
     <application
         android:label="onbuch"
         android:name="${applicationName}"
