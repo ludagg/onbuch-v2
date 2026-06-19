@@ -237,7 +237,13 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
             padding: m.image != null ? const EdgeInsets.all(6) : const EdgeInsets.fromLTRB(14, 11, 14, 11),
             child: m.image != null
                 ? Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
-                    ClipRRect(borderRadius: BorderRadius.circular(13), child: Image.memory(m.image!, fit: BoxFit.cover)),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(13),
+                      child: ConstrainedBox(
+                        constraints: const BoxConstraints(maxWidth: 190, maxHeight: 220),
+                        child: Image.memory(m.image!, fit: BoxFit.cover),
+                      ),
+                    ),
                     if (m.text != null && m.text!.trim().isNotEmpty)
                       Padding(padding: const EdgeInsets.fromLTRB(6, 7, 6, 2),
                           child: Text(m.text!.trim(), style: body(12.5, weight: FontWeight.w600, color: Colors.white))),

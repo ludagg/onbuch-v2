@@ -5,11 +5,13 @@ import '../../widgets/ob_widgets.dart';
 import '../../ai_config.dart';
 import '../../models/tutor_request.dart';
 import '../../services/tutor_service.dart';
+import '../../services/auth_service.dart';
+import '../../services/database_service.dart';
 import '../../widgets/paywall_sheet.dart';
 
-/// Page principale du Tuteur — direction « Tableau de bord » (option C des
-/// wireframes) : scan + quota + 3 modes (Corriger · Expliquer · S'entraîner) +
-/// reprise des corrections récentes.
+/// Page principale du Tuteur « Léa » — direction « tableau de bord » (option C)
+/// modernisée avec l'accueil conversationnel (option A) : en-tête de marque,
+/// salut + mascotte + suggestions, puis scan / quota / modes / reprise.
 class TutorHubScreen extends StatefulWidget {
   const TutorHubScreen({super.key});
 
@@ -21,16 +23,25 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
   final _service = TutorService();
   late Future<List<TutorJob>> _recent = _service.recentJobs();
   TutorQuota? _quota;
+  String? _firstName = AuthService.cachedFirstName;
 
   @override
   void initState() {
     super.initState();
     _loadQuota();
+    if (_firstName == null) _loadName();
   }
 
   Future<void> _loadQuota() async {
     final q = await _service.getQuota();
     if (mounted) setState(() => _quota = q);
+  }
+
+  Future<void> _loadName() async {
+    final user = await AuthService().getCurrentUser();
+    final name = user?.name.trim() ?? '';
+    final f = name.isEmpty ? null : DatabaseService.splitFullName(name)['firstName'] as String?;
+    if (mounted && f != null) setState(() => _firstName = f);
   }
 
   Future<void> _open(TutorRequest req) async {
@@ -60,22 +71,39 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
     }
   }
 
+  void _ask(String question, {String? title}) {
+    if (_blockedByQuota()) return;
+    _open(TutorRequest(question: question, titleHint: title));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: OC.bg,
       appBar: AppBar(
-        title: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text('Tuteur IA', style: display(17, weight: FontWeight.w700)),
-          Text('Programme MINESEC · français', style: body(11, color: OC.muted, weight: FontWeight.w500)),
-        ]),
         backgroundColor: OC.bg,
         surfaceTintColor: Colors.transparent,
+        titleSpacing: 18,
+        title: const OBWordmark(size: 23),
         actions: obTopActions(context),
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.fromLTRB(20, 6, 20, 24),
+        padding: const EdgeInsets.fromLTRB(20, 4, 20, 24),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          // ── Salut + mascotte (option A) ───────────────────────────────────
+          _greeting(),
+          const SizedBox(height: 18),
+
+          // ── Suggestions (option A) ────────────────────────────────────────
+          Text('Essaie de demander', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
+          const SizedBox(height: 10),
+          _suggestion(Icons.fact_check_outlined, 'Corrige cet exercice de maths', _scan),
+          _suggestion(Icons.school_outlined, 'Explique-moi le théorème de Thalès',
+              () => _ask('Explique-moi clairement, avec un exemple : le théorème de Thalès.', title: 'Théorème de Thalès')),
+          _suggestion(Icons.bolt_rounded, 'Génère 5 exercices similaires',
+              () => _ask('Génère 5 exercices de maths de niveau lycée, variés, avec un corrigé détaillé pour chacun.', title: 'Exercices générés')),
+          const SizedBox(height: 20),
+
           // ── Scan (action primaire) ────────────────────────────────────────
           Row(children: [
             Expanded(
@@ -163,6 +191,63 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
               return Column(children: jobs.map(_recentTile).toList());
             },
           ),
+        ]),
+      ),
+    );
+  }
+
+  // ── Salut + mascotte ─────────────────────────────────────────────────────
+  Widget _greeting() {
+    final hello = _firstName == null ? 'Bonjour 👋' : 'Bonjour, $_firstName 👋';
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: OC.o50,
+        borderRadius: BorderRadius.circular(22),
+        border: Border.all(color: OC.o100, width: 1.5),
+      ),
+      child: Row(children: [
+        // Mascotte (placeholder — à remplacer par l'illustration de Léa).
+        Container(
+          width: 60, height: 60,
+          decoration: BoxDecoration(
+            gradient: OC.grad,
+            borderRadius: BorderRadius.circular(18),
+            boxShadow: [BoxShadow(color: OC.o500.withValues(alpha: 0.28), blurRadius: 14, offset: const Offset(0, 6))],
+          ),
+          child: const Icon(Icons.auto_awesome_rounded, color: Colors.white, size: 28),
+        ),
+        const SizedBox(width: 14),
+        Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Text(hello, style: display(20, weight: FontWeight.w700)),
+          const SizedBox(height: 4),
+          Text('Sur quoi bloques-tu ?', style: body(13, color: OC.o700, weight: FontWeight.w600)),
+        ])),
+      ]),
+    );
+  }
+
+  Widget _suggestion(IconData icon, String text, VoidCallback onTap) {
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: onTap,
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 9),
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: OC.paper,
+          borderRadius: BorderRadius.circular(14),
+          border: Border.all(color: OC.line, width: 1.5),
+        ),
+        child: Row(children: [
+          Container(
+            width: 36, height: 36,
+            decoration: BoxDecoration(color: OC.o50, borderRadius: BorderRadius.circular(11)),
+            child: Icon(icon, size: 18, color: OC.o600),
+          ),
+          const SizedBox(width: 12),
+          Expanded(child: Text('« $text »', style: body(13, weight: FontWeight.w600, color: OC.ink2))),
+          const Icon(Icons.north_east_rounded, size: 16, color: OC.muted),
         ]),
       ),
     );
