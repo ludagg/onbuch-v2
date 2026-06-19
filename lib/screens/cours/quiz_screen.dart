@@ -1,11 +1,14 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
-import '../../widgets/ob_widgets.dart';
 import '../../models/course.dart';
 import '../../models/quiz.dart';
 import '../../services/database_service.dart';
 import '../../services/tutor_service.dart';
 
+/// Quiz/QCM (refonte « Nomad Educ ») : une question à la fois, minuteur, barre
+/// de progression, puis écran de résultat.
 class QuizScreen extends StatefulWidget {
   final Chapter? chapter;
   final String? subjectName;
@@ -22,13 +25,22 @@ class _QuizScreenState extends State<QuizScreen> {
   List<QuizQuestion>? _questions;
   Object? _error;
   bool _loading = true;
-  final Map<int, int> _selected = {};
-  bool _submitted = false;
+
+  int _index = 0;
+  final Map<int, int> _answers = {};
+  int _seconds = 0;
+  Timer? _timer;
 
   @override
   void initState() {
     super.initState();
     _load();
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
   }
 
   Future<void> _load() async {
@@ -37,41 +49,52 @@ class _QuizScreenState extends State<QuizScreen> {
       setState(() { _loading = false; _error = 'Chapitre introuvable.'; });
       return;
     }
-    setState(() { _loading = true; _error = null; _submitted = false; _selected.clear(); });
+    setState(() { _loading = true; _error = null; _index = 0; _answers.clear(); _seconds = 0; });
     try {
       var qs = await _db.getQuiz(c.id);
-      if (qs == null) {
-        final raw = await _tutor.analyzeExercise(
-          text: 'Chapitre : ${c.title}', mode: 'quiz', chapterId: c.id);
-        qs = parseQuiz(raw);
-      }
+      qs ??= parseQuiz(await _tutor.analyzeExercise(text: 'Chapitre : ${c.title}', mode: 'quiz', chapterId: c.id));
       if (qs == null || qs.isEmpty) throw 'Quiz indisponible pour le moment. Réessaie.';
-      if (mounted) setState(() { _questions = qs; _loading = false; });
+      if (!mounted) return;
+      setState(() { _questions = qs; _loading = false; });
+      _timer = Timer.periodic(const Duration(seconds: 1), (_) {
+        if (mounted) setState(() => _seconds++);
+      });
     } catch (e) {
       if (mounted) setState(() { _error = e; _loading = false; });
     }
   }
 
-  int get _score {
-    final qs = _questions;
-    if (qs == null) return 0;
-    var n = 0;
-    for (var i = 0; i < qs.length; i++) {
-      if (_selected[i] == qs[i].answer) n++;
+  String _fmt(int s) => '${(s ~/ 60).toString().padLeft(2, '0')}:${(s % 60).toString().padLeft(2, '0')}';
+
+  void _next() {
+    final qs = _questions!;
+    if (_index < qs.length - 1) {
+      setState(() => _index++);
+    } else {
+      _finish();
     }
-    return n;
+  }
+
+  void _finish() {
+    _timer?.cancel();
+    final c = widget.chapter;
+    if (c != null) _db.markChapterViewed(c.id);
+    context.pushReplacement('/cours-quiz-result', extra: {
+      'questions': _questions,
+      'answers': Map<int, int>.from(_answers),
+      'seconds': _seconds,
+      'chapter': c,
+      'subject': widget.subjectName ?? '',
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: OC.bg,
-      appBar: obBackAppBar(context, 'Quiz'),
-      body: _loading
-          ? _loadingView()
-          : _error != null
-              ? _errorView()
-              : _quizView(),
+      body: SafeArea(
+        child: _loading ? _loadingView() : (_error != null ? _errorView() : _quizView()),
+      ),
     );
   }
 
@@ -111,141 +134,109 @@ class _QuizScreenState extends State<QuizScreen> {
 
   Widget _quizView() {
     final qs = _questions!;
-    final subj = widget.subjectName ?? '';
+    final q = qs[_index];
+    final answered = _answers.containsKey(_index);
+    final last = _index == qs.length - 1;
     return Column(children: [
-      Expanded(
-        child: ListView(
-          padding: const EdgeInsets.fromLTRB(20, 12, 20, 16),
-          children: [
-            if (widget.chapter != null) ...[
-              if (subj.isNotEmpty)
-                Text(subj.toUpperCase(), style: body(11, weight: FontWeight.w800, color: OC.o600).copyWith(letterSpacing: 0.1 * 11)),
-              const SizedBox(height: 4),
-              Text(widget.chapter!.title, style: display(20, weight: FontWeight.w700).copyWith(height: 1.15)),
-              const SizedBox(height: 16),
-            ],
-            if (_submitted) _scoreBanner(qs.length),
-            ...List.generate(qs.length, (i) => _questionCard(i, qs[i])),
-          ],
+      // Top bar : back + timer + index
+      Padding(
+        padding: const EdgeInsets.fromLTRB(8, 6, 16, 6),
+        child: Row(children: [
+          IconButton(
+            icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 20),
+            onPressed: () => context.canPop() ? context.pop() : context.go('/cours'),
+          ),
+          const Spacer(),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 6),
+            decoration: BoxDecoration(color: OC.o50, borderRadius: BorderRadius.circular(999)),
+            child: Row(mainAxisSize: MainAxisSize.min, children: [
+              const Icon(Icons.timer_outlined, size: 14, color: OC.o600),
+              const SizedBox(width: 5),
+              Text(_fmt(_seconds), style: mono(12.5, weight: FontWeight.w700, color: OC.o700)),
+            ]),
+          ),
+          const SizedBox(width: 10),
+          Text('Q ${_index + 1}/${qs.length}', style: body(12.5, weight: FontWeight.w800, color: OC.ink2)),
+        ]),
+      ),
+      // Progress
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(4),
+          child: LinearProgressIndicator(
+            value: (_index + 1) / qs.length, minHeight: 6,
+            backgroundColor: OC.panel, valueColor: const AlwaysStoppedAnimation(OC.o500),
+          ),
         ),
       ),
-      _bottomBar(qs.length),
+      Expanded(child: ListView(
+        padding: const EdgeInsets.fromLTRB(20, 18, 20, 16),
+        children: [
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(color: OC.panel, borderRadius: BorderRadius.circular(16)),
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text('QUESTION ${_index + 1}', style: body(10.5, weight: FontWeight.w800, color: OC.muted).copyWith(letterSpacing: 0.06 * 10.5)),
+              const SizedBox(height: 8),
+              Text(q.question, style: body(15, weight: FontWeight.w700, color: OC.ink).copyWith(height: 1.35)),
+            ]),
+          ),
+          const SizedBox(height: 16),
+          ...List.generate(q.options.length, (oi) => _option(oi, q)),
+        ],
+      )),
+      // Bottom
+      Container(
+        padding: const EdgeInsets.fromLTRB(20, 10, 20, 14),
+        decoration: const BoxDecoration(color: OC.paper, border: Border(top: BorderSide(color: OC.line, width: 1.5))),
+        child: GestureDetector(
+          onTap: answered ? _next : null,
+          child: Container(
+            width: double.infinity, height: 50,
+            decoration: BoxDecoration(
+              gradient: answered ? OC.grad : null,
+              color: answered ? null : OC.line2,
+              borderRadius: BorderRadius.circular(14),
+            ),
+            child: Center(
+              child: Text(last ? 'Terminer' : 'Valider', style: body(14.5, weight: FontWeight.w700, color: Colors.white)),
+            ),
+          ),
+        ),
+      ),
     ]);
   }
 
-  Widget _scoreBanner(int total) {
-    final s = _score;
-    final good = s >= (total / 2).ceil();
-    return Container(
-      margin: const EdgeInsets.only(bottom: 16),
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: good ? OC.goodBg : OC.warnBg,
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Row(children: [
-        Icon(good ? Icons.emoji_events_rounded : Icons.school_rounded, size: 26, color: good ? OC.good : OC.warn),
-        const SizedBox(width: 12),
-        Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text('Score : $s / $total', style: display(18, weight: FontWeight.w700, color: good ? OC.waInk : OC.warn)),
-          const SizedBox(height: 2),
-          Text(good ? 'Bien joué ! Continue comme ça.' : 'Revois le cours et réessaie.',
-              style: body(12.5, weight: FontWeight.w500, color: OC.ink2)),
-        ])),
-      ]),
-    );
-  }
-
-  Widget _questionCard(int qi, QuizQuestion q) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 14),
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: OC.paper, borderRadius: BorderRadius.circular(18), border: Border.all(color: OC.line, width: 1.5),
-      ),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text('Question ${qi + 1}', style: body(11.5, weight: FontWeight.w800, color: OC.o600)),
-        const SizedBox(height: 6),
-        Text(q.question, style: body(14.5, weight: FontWeight.w700).copyWith(height: 1.3)),
-        const SizedBox(height: 12),
-        ...List.generate(q.options.length, (oi) => _option(qi, oi, q)),
-        if (_submitted && q.explanation != null) ...[
-          const SizedBox(height: 6),
-          Container(
-            padding: const EdgeInsets.all(11),
-            decoration: BoxDecoration(color: OC.bg, borderRadius: BorderRadius.circular(11), border: Border.all(color: OC.line, width: 1.5)),
-            child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              const Icon(Icons.lightbulb_outline_rounded, size: 16, color: OC.o600),
-              const SizedBox(width: 8),
-              Expanded(child: Text(q.explanation!, style: body(12.5, color: OC.ink2, weight: FontWeight.w500).copyWith(height: 1.4))),
-            ]),
-          ),
-        ],
-      ]),
-    );
-  }
-
-  Widget _option(int qi, int oi, QuizQuestion q) {
-    final selected = _selected[qi] == oi;
-    Color bg = OC.paper, border = OC.line2;
-    Color txt = OC.ink;
-    IconData? icon;
-    Color iconC = OC.muted;
-
-    if (_submitted) {
-      if (oi == q.answer) {
-        bg = OC.goodBg; border = OC.good; txt = OC.waInk; icon = Icons.check_circle_rounded; iconC = OC.good;
-      } else if (selected) {
-        bg = OC.badBg; border = OC.bad; txt = OC.bad; icon = Icons.cancel_rounded; iconC = OC.bad;
-      }
-    } else if (selected) {
-      bg = OC.o50; border = OC.o500; txt = OC.o700;
-    }
-
+  Widget _option(int oi, QuizQuestion q) {
+    final selected = _answers[_index] == oi;
     return GestureDetector(
-      onTap: _submitted ? null : () => setState(() => _selected[qi] = oi),
+      onTap: () => setState(() => _answers[_index] = oi),
       child: Container(
-        margin: const EdgeInsets.only(bottom: 8),
-        padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 12),
-        decoration: BoxDecoration(color: bg, borderRadius: BorderRadius.circular(12), border: Border.all(color: border, width: 1.5)),
+        margin: const EdgeInsets.only(bottom: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+        decoration: BoxDecoration(
+          color: selected ? OC.o50 : OC.paper,
+          borderRadius: BorderRadius.circular(13),
+          border: Border.all(color: selected ? OC.o500 : OC.line2, width: selected ? 2 : 1.5),
+        ),
         child: Row(children: [
-          Expanded(child: Text(q.options[oi], style: body(13.5, weight: FontWeight.w600, color: txt).copyWith(height: 1.3))),
-          if (icon != null) Icon(icon, size: 19, color: iconC)
-          else Container(
-            width: 20, height: 20,
-            decoration: BoxDecoration(shape: BoxShape.circle, border: Border.all(color: selected ? OC.o500 : OC.line2, width: 2),
-                color: selected ? OC.o500 : Colors.transparent),
-            child: selected ? const Icon(Icons.check_rounded, size: 12, color: Colors.white) : null,
+          Container(
+            width: 26, height: 26,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: selected ? OC.o500 : Colors.transparent,
+              border: Border.all(color: selected ? OC.o500 : OC.line2, width: 2),
+            ),
+            child: Text(String.fromCharCode(65 + oi),
+                style: body(11.5, weight: FontWeight.w800, color: selected ? Colors.white : OC.ink2)),
           ),
+          const SizedBox(width: 12),
+          Expanded(child: Text(q.options[oi], style: body(13.5, weight: FontWeight.w600, color: OC.ink).copyWith(height: 1.3))),
         ]),
       ),
-    );
-  }
-
-  Widget _bottomBar(int total) {
-    final allAnswered = _selected.length >= total;
-    return Container(
-      padding: const EdgeInsets.fromLTRB(20, 10, 20, 16),
-      decoration: const BoxDecoration(color: OC.paper, border: Border(top: BorderSide(color: OC.line, width: 1.5))),
-      child: SafeArea(top: false, child: GestureDetector(
-        onTap: _submitted
-            ? _load
-            : (allAnswered ? () => setState(() => _submitted = true) : null),
-        child: Container(
-          width: double.infinity, height: 50,
-          decoration: BoxDecoration(
-            gradient: (_submitted || allAnswered) ? OC.grad : null,
-            color: (_submitted || allAnswered) ? null : OC.line2,
-            borderRadius: BorderRadius.circular(14),
-          ),
-          child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Icon(_submitted ? Icons.refresh_rounded : Icons.check_rounded, color: Colors.white, size: 19),
-            const SizedBox(width: 8),
-            Text(_submitted ? 'Recommencer' : (allAnswered ? 'Valider' : 'Réponds à toutes les questions'),
-                style: body(14, weight: FontWeight.w700, color: Colors.white)),
-          ]),
-        ),
-      )),
     );
   }
 }

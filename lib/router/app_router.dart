@@ -49,6 +49,7 @@ import '../screens/cours/cours_screen.dart';
 import '../screens/cours/chapters_screen.dart';
 import '../screens/cours/chapter_detail_screen.dart';
 import '../screens/cours/quiz_screen.dart';
+import '../screens/cours/quiz_result_screen.dart';
 import '../models/article.dart';
 import '../models/exam_result.dart';
 import '../models/concours.dart';
@@ -123,6 +124,12 @@ final appRouter = GoRouter(
           subjectName: m['subject'] as String?,
         );
       },
+    ),
+    GoRoute(
+      path: '/cours-quiz-result',
+      builder: (_, s) => QuizResultScreen(
+        data: s.extra is Map ? (s.extra as Map).cast<String, dynamic>() : null,
+      ),
     ),
     ShellRoute(
       builder: (_, state, child) => MainShell(location: state.uri.path, child: child),
