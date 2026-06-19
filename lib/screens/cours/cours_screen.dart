@@ -88,6 +88,26 @@ class _CoursScreenState extends State<CoursScreen> {
               const SizedBox(height: 3),
               Text(_classe != null && _classe!.isNotEmpty ? '$_classe · MINESEC' : 'Programme MINESEC',
                   style: body(13, color: OC.ink2, weight: FontWeight.w500)),
+              const SizedBox(height: 16),
+
+              // Recherche transverse
+              GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTap: () => context.push('/cours-search'),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 13),
+                  decoration: BoxDecoration(
+                    color: OC.paper,
+                    borderRadius: BorderRadius.circular(999),
+                    border: Border.all(color: OC.line2, width: 1.5),
+                  ),
+                  child: Row(children: [
+                    const Icon(Icons.search_rounded, size: 19, color: OC.muted),
+                    const SizedBox(width: 11),
+                    Text('Chercher un cours, une vidéo, un quiz…', style: body(13.5, color: OC.muted, weight: FontWeight.w500)),
+                  ]),
+                ),
+              ),
               const SizedBox(height: 18),
 
               if (_loading)
