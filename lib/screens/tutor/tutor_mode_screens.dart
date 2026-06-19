@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:image_picker/image_picker.dart';
 import '../../theme/app_theme.dart';
 import '../../models/tutor_request.dart';
 import '../../services/tutor_service.dart';
@@ -79,10 +78,8 @@ class TutorCorrigerScreen extends StatefulWidget {
 }
 
 class _TutorCorrigerScreenState extends State<TutorCorrigerScreen> with _TutorMode {
-  final _picker = ImagePicker();
   final _text = TextEditingController();
   String? _subject;
-  bool _busy = false;
 
   @override
   void dispose() {
@@ -90,23 +87,9 @@ class _TutorCorrigerScreenState extends State<TutorCorrigerScreen> with _TutorMo
     super.dispose();
   }
 
-  Future<void> _pick(ImageSource source) async {
-    if (_busy || blocked()) return;
-    setState(() => _busy = true);
-    try {
-      final f = await _picker.pickImage(source: source, maxWidth: 1600, imageQuality: 90);
-      if (f == null) {
-        if (mounted) setState(() => _busy = false);
-        return;
-      }
-      final bytes = await f.readAsBytes();
-      if (!mounted) return;
-      setState(() => _busy = false);
-      send(TutorRequest(image: bytes, subject: _subject));
-    } catch (_) {
-      if (mounted) setState(() => _busy = false);
-      toast('Impossible d\'ouvrir la caméra/galerie.');
-    }
+  void _scan() {
+    if (blocked()) return;
+    context.push('/tutor/capture', extra: _subject);
   }
 
   void _sendText() {
@@ -136,7 +119,7 @@ class _TutorCorrigerScreenState extends State<TutorCorrigerScreen> with _TutorMo
               () => setState(() => _subject = _subject == s ? null : s))).toList()),
           const SizedBox(height: 10),
           GestureDetector(
-            onTap: () => _pick(ImageSource.camera),
+            onTap: _scan,
             child: Container(
               width: double.infinity,
               padding: const EdgeInsets.symmetric(vertical: 26),
@@ -149,9 +132,7 @@ class _TutorCorrigerScreenState extends State<TutorCorrigerScreen> with _TutorMo
                 Container(
                   width: 56, height: 56,
                   decoration: BoxDecoration(gradient: OC.grad, shape: BoxShape.circle),
-                  child: _busy
-                      ? const Padding(padding: EdgeInsets.all(16), child: CircularProgressIndicator(strokeWidth: 2.5, color: Colors.white))
-                      : const Icon(Icons.camera_alt_rounded, color: Colors.white, size: 26),
+                  child: const Icon(Icons.camera_alt_rounded, color: Colors.white, size: 26),
                 ),
                 const SizedBox(height: 10),
                 Text('Cadre la copie ou l\'énoncé', style: body(12.5, color: OC.ink2, weight: FontWeight.w600)),
@@ -160,9 +141,9 @@ class _TutorCorrigerScreenState extends State<TutorCorrigerScreen> with _TutorMo
           ),
           const SizedBox(height: 11),
           Row(children: [
-            Expanded(child: _actionBtn('Scanner', Icons.camera_alt_outlined, true, () => _pick(ImageSource.camera))),
+            Expanded(child: _actionBtn('Scanner', Icons.camera_alt_outlined, true, _scan)),
             const SizedBox(width: 10),
-            Expanded(child: _actionBtn('Importer', Icons.image_outlined, false, () => _pick(ImageSource.gallery))),
+            Expanded(child: _actionBtn('Importer', Icons.image_outlined, false, _scan)),
           ]),
           const SizedBox(height: 20),
           _sectionLabel('Ou écris l\'exercice'),

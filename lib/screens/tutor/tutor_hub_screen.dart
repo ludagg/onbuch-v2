@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:image_picker/image_picker.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
 import '../../ai_config.dart';
@@ -20,8 +19,6 @@ class TutorHubScreen extends StatefulWidget {
 
 class _TutorHubScreenState extends State<TutorHubScreen> {
   final _service = TutorService();
-  final _picker = ImagePicker();
-  bool _busy = false;
   late Future<List<TutorJob>> _recent = _service.recentJobs();
   TutorQuota? _quota;
 
@@ -54,35 +51,13 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
     return false;
   }
 
-  Future<void> _pickImage(ImageSource source) async {
-    if (_busy) return;
+  Future<void> _scan() async {
     if (_blockedByQuota()) return;
-    setState(() => _busy = true);
-    try {
-      final file = await _picker.pickImage(source: source, maxWidth: 1600, imageQuality: 90);
-      if (file == null) {
-        if (mounted) setState(() => _busy = false);
-        return;
-      }
-      final bytes = await file.readAsBytes();
-      if (!mounted) return;
-      setState(() => _busy = false);
-      await _open(TutorRequest(image: bytes));
-    } catch (_) {
-      if (!mounted) return;
-      setState(() => _busy = false);
-      _toast('Impossible d\'ouvrir la caméra/galerie.');
+    await context.push('/tutor/capture');
+    if (mounted) {
+      setState(() => _recent = _service.recentJobs());
+      _loadQuota();
     }
-  }
-
-  void _toast(String msg) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text(msg, style: body(13, weight: FontWeight.w600, color: Colors.white)),
-      backgroundColor: OC.ink,
-      behavior: SnackBarBehavior.floating,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      duration: const Duration(seconds: 2),
-    ));
   }
 
   @override
@@ -106,7 +81,7 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
             Expanded(
               flex: 2,
               child: GestureDetector(
-                onTap: () => _pickImage(ImageSource.camera),
+                onTap: _scan,
                 child: Container(
                   height: 56,
                   decoration: BoxDecoration(
@@ -115,20 +90,18 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
                     boxShadow: [BoxShadow(color: OC.o500.withValues(alpha: 0.30), blurRadius: 16, offset: const Offset(0, 7))],
                   ),
                   child: Center(
-                    child: _busy
-                        ? const SizedBox(width: 22, height: 22, child: CircularProgressIndicator(strokeWidth: 2.5, color: Colors.white))
-                        : Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                            const Icon(Icons.camera_alt_rounded, color: Colors.white, size: 20),
-                            const SizedBox(width: 9),
-                            Text('Scanner un exercice', style: body(14.5, weight: FontWeight.w700, color: Colors.white)),
-                          ]),
+                    child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                      const Icon(Icons.camera_alt_rounded, color: Colors.white, size: 20),
+                      const SizedBox(width: 9),
+                      Text('Scanner un exercice', style: body(14.5, weight: FontWeight.w700, color: Colors.white)),
+                    ]),
                   ),
                 ),
               ),
             ),
             const SizedBox(width: 11),
             GestureDetector(
-              onTap: () => _pickImage(ImageSource.gallery),
+              onTap: _scan,
               child: Container(
                 width: 56, height: 56,
                 decoration: BoxDecoration(

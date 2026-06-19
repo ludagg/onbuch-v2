@@ -579,7 +579,7 @@ class _TuteurCardState extends State<_TuteurCard> {
           ])),
           const SizedBox(width: 12),
           GestureDetector(
-            onTap: () => context.go('/tutor/camera'),
+            onTap: () => context.go('/tutor/capture'),
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               decoration: BoxDecoration(
