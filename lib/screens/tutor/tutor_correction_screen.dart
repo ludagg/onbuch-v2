@@ -237,7 +237,13 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
             padding: m.image != null ? const EdgeInsets.all(6) : const EdgeInsets.fromLTRB(14, 11, 14, 11),
             child: m.image != null
                 ? Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
-                    ClipRRect(borderRadius: BorderRadius.circular(13), child: Image.memory(m.image!, fit: BoxFit.cover)),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(13),
+                      child: ConstrainedBox(
+                        constraints: const BoxConstraints(maxWidth: 190, maxHeight: 220),
+                        child: Image.memory(m.image!, fit: BoxFit.cover),
+                      ),
+                    ),
                     if (m.text != null && m.text!.trim().isNotEmpty)
                       Padding(padding: const EdgeInsets.fromLTRB(6, 7, 6, 2),
                           child: Text(m.text!.trim(), style: body(12.5, weight: FontWeight.w600, color: Colors.white))),
@@ -256,10 +262,9 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
         alignment: Alignment.centerLeft,
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(children: [
-            Container(width: 26, height: 26, decoration: BoxDecoration(gradient: OC.grad, shape: BoxShape.circle),
-                child: const Icon(Icons.auto_awesome_rounded, color: Colors.white, size: 14)),
+            SizedBox(width: 26, height: 26, child: Image.asset('assets/images/lea.png', fit: BoxFit.contain)),
             const SizedBox(width: 7),
-            Text('Tuteur OnBuch', style: body(12, weight: FontWeight.w700, color: OC.ink2)),
+            Text('Léa · Tuteur OnBuch', style: body(12, weight: FontWeight.w700, color: OC.ink2)),
           ]),
           const SizedBox(height: 7),
           Container(
