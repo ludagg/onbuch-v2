@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:in_app_purchase/in_app_purchase.dart';
 import '../theme/app_theme.dart';
+import '../services/billing_service.dart';
 
-/// Feuille de paiement (recharge de crédits Tuteur). Le paiement réel
-/// (MTN MoMo / Orange Money) reste à brancher sur un prestataire.
+/// Feuille de recharge de crédits Tuteur via **Google Play Billing**.
+/// Les crédits sont des biens numériques : le Play Store impose son système
+/// de facturation. L'attribution réelle se fait après vérification serveur.
 class PaywallSheet extends StatefulWidget {
   const PaywallSheet({super.key});
 
-  static Future<void> show(BuildContext context) {
-    return showModalBottomSheet(
+  static Future<bool?> show(BuildContext context) {
+    return showModalBottomSheet<bool>(
       context: context,
       backgroundColor: OC.bg,
       isScrollControlled: true,
@@ -21,15 +24,79 @@ class PaywallSheet extends StatefulWidget {
 }
 
 class _PaywallSheetState extends State<PaywallSheet> {
-  int _selectedPack = 1;
-  int _selectedPayment = 0;
+  final _billing = BillingService.instance;
+  List<ProductDetails> _products = const [];
+  bool _loading = true;
+  bool _available = false;
+  bool _busy = false;
+  String? _selected;
 
-  static const _packs = [('5 crédits', '100 F'), ('15 crédits', '250 F'), ('40 crédits', '500 F')];
+  @override
+  void initState() {
+    super.initState();
+    _billing.onCredited = (n) {
+      if (!mounted) return;
+      _toast('+$n crédits ajoutés ✓');
+      Navigator.of(context).pop(true);
+    };
+    _billing.onError = (m) {
+      if (!mounted) return;
+      setState(() => _busy = false);
+      _toast(m, bad: true);
+    };
+    _billing.onPending = () {
+      if (!mounted) return;
+      _toast('Paiement en cours…');
+    };
+    _billing.start();
+    _load();
+  }
 
-  void _pay() {
+  @override
+  void dispose() {
+    _billing.onCredited = null;
+    _billing.onError = null;
+    _billing.onPending = null;
+    super.dispose();
+  }
+
+  Future<void> _load() async {
+    final available = await _billing.isAvailable();
+    var products = <ProductDetails>[];
+    if (available) {
+      try {
+        products = await _billing.loadProducts();
+      } catch (_) {}
+    }
+    if (!mounted) return;
+    setState(() {
+      _available = available;
+      _products = products;
+      _selected = products.isNotEmpty ? products[products.length > 1 ? 1 : 0].id : null;
+      _loading = false;
+    });
+  }
+
+  Future<void> _buy() async {
+    final id = _selected;
+    if (id == null) return;
+    final p = _products.firstWhere((e) => e.id == id);
+    setState(() => _busy = true);
+    try {
+      await _billing.buy(p);
+    } catch (e) {
+      if (mounted) {
+        setState(() => _busy = false);
+        _toast('Achat impossible : $e', bad: true);
+      }
+    }
+  }
+
+  void _toast(String msg, {bool bad = false}) {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text('Paiement mobile bientôt disponible.', style: body(13, weight: FontWeight.w600, color: Colors.white)),
-      backgroundColor: OC.ink, behavior: SnackBarBehavior.floating,
+      content: Text(msg, style: body(13, weight: FontWeight.w600, color: Colors.white)),
+      backgroundColor: bad ? OC.bad : OC.ink,
+      behavior: SnackBarBehavior.floating,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
     ));
   }
@@ -52,106 +119,80 @@ class _PaywallSheetState extends State<PaywallSheet> {
         Text('Continue tes corrections IA — ou reviens demain (3 gratuites/jour).',
             textAlign: TextAlign.center, style: body(13.5, color: OC.ink2, weight: FontWeight.w500).copyWith(height: 1.45)),
         const SizedBox(height: 18),
-        Row(children: List.generate(_packs.length, (i) {
-          final p = _packs[i];
-          final sel = i == _selectedPack;
-          return Expanded(child: Padding(
-            padding: EdgeInsets.only(left: i > 0 ? 10 : 0),
-            child: GestureDetector(
-              onTap: () => setState(() => _selectedPack = i),
-              child: Stack(clipBehavior: Clip.none, children: [
-                if (sel) Positioned(top: -9, left: 0, right: 0, child: Center(child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                  decoration: BoxDecoration(color: OC.o500, borderRadius: BorderRadius.circular(999)),
-                  child: Text('POPULAIRE', style: body(9, weight: FontWeight.w800, color: Colors.white)),
-                ))),
-                Container(
-                  padding: const EdgeInsets.fromLTRB(8, 14, 8, 14),
-                  decoration: BoxDecoration(
-                    color: sel ? OC.o50 : OC.paper,
-                    borderRadius: BorderRadius.circular(16),
-                    border: Border.all(color: sel ? OC.o500 : OC.line, width: sel ? 2 : 1.5),
-                  ),
-                  child: Column(children: [
-                    Text(p.$2, style: display(15, weight: FontWeight.w700)),
-                    const SizedBox(height: 3),
-                    Text(p.$1, style: body(11, color: OC.muted, weight: FontWeight.w600)),
-                  ]),
+        if (_loading)
+          const Padding(padding: EdgeInsets.all(28), child: CircularProgressIndicator(color: OC.o500))
+        else if (!_available || _products.isEmpty)
+          _unavailable()
+        else ...[
+          Row(children: _products.map(_packTile).toList()),
+          const SizedBox(height: 18),
+          GestureDetector(
+            onTap: _busy ? null : _buy,
+            child: Opacity(
+              opacity: _busy ? 0.7 : 1,
+              child: Container(
+                width: double.infinity, height: 50,
+                decoration: BoxDecoration(
+                  gradient: OC.grad,
+                  borderRadius: BorderRadius.circular(14),
+                  boxShadow: [BoxShadow(color: OC.o500.withValues(alpha: 0.30), blurRadius: 14, offset: const Offset(0, 6))],
                 ),
-              ]),
+                child: Center(
+                  child: _busy
+                      ? const SizedBox(width: 22, height: 22, child: CircularProgressIndicator(strokeWidth: 2.4, color: Colors.white))
+                      : Text('Acheter avec Google Play', style: body(14, weight: FontWeight.w700, color: Colors.white)),
+                ),
+              ),
             ),
-          ));
-        })),
-        const SizedBox(height: 18),
-        Text('Payer avec', style: body(12, weight: FontWeight.w800, color: OC.ink2)),
-        const SizedBox(height: 10),
-        Row(children: [
-          _PayMethod(OC.mtn, 'MTN', 'MTN MoMo', _selectedPayment == 0, () => setState(() => _selectedPayment = 0)),
-          const SizedBox(width: 10),
-          _PayMethod(OC.orange, 'Or.', 'Orange Money', _selectedPayment == 1, () => setState(() => _selectedPayment = 1)),
-        ]),
-        const SizedBox(height: 16),
-        GestureDetector(
-          onTap: _pay,
-          child: Container(
-            width: double.infinity, height: 50,
-            decoration: BoxDecoration(
-              gradient: OC.grad,
-              borderRadius: BorderRadius.circular(14),
-              boxShadow: [BoxShadow(color: OC.o500.withValues(alpha: 0.30), blurRadius: 14, offset: const Offset(0, 6))],
-            ),
-            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              Text('Payer ${_packs[_selectedPack].$2} · ${_selectedPayment == 0 ? 'MTN MoMo' : 'Orange Money'}',
-                  style: body(14, weight: FontWeight.w700, color: Colors.white)),
-              const SizedBox(width: 8),
-              const Icon(Icons.arrow_forward_rounded, color: Colors.white, size: 17),
-            ]),
           ),
-        ),
-        const SizedBox(height: 10),
-        Text('Micro-paiement ponctuel · sans abonnement', style: body(11, color: OC.muted, weight: FontWeight.w500)),
+          const SizedBox(height: 10),
+          Text('Paiement sécurisé via Google Play · sans abonnement',
+              textAlign: TextAlign.center, style: body(11, color: OC.muted, weight: FontWeight.w500)),
+        ],
       ]),
     );
   }
-}
 
-class _PayMethod extends StatelessWidget {
-  final Color c;
-  final String abbr, name;
-  final bool selected;
-  final VoidCallback onTap;
-  const _PayMethod(this.c, this.abbr, this.name, this.selected, this.onTap);
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(child: GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: OC.paper,
-          borderRadius: BorderRadius.circular(14),
-          border: Border.all(color: selected ? OC.o500 : OC.line, width: selected ? 2 : 1.5),
+  Widget _packTile(ProductDetails p) {
+    final n = BillingService.creditProducts[p.id] ?? 0;
+    final sel = p.id == _selected;
+    final i = _products.indexOf(p);
+    return Expanded(child: Padding(
+      padding: EdgeInsets.only(left: i > 0 ? 10 : 0),
+      child: GestureDetector(
+        onTap: () => setState(() => _selected = p.id),
+        child: Container(
+          padding: const EdgeInsets.fromLTRB(8, 14, 8, 14),
+          decoration: BoxDecoration(
+            color: sel ? OC.o50 : OC.paper,
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(color: sel ? OC.o500 : OC.line, width: sel ? 2 : 1.5),
+          ),
+          child: Column(children: [
+            Text(p.price, style: display(15, weight: FontWeight.w700)),
+            const SizedBox(height: 3),
+            Text('$n crédits', style: body(11, color: OC.muted, weight: FontWeight.w600)),
+          ]),
         ),
-        child: Row(children: [
-          Container(
-            width: 36, height: 36,
-            decoration: BoxDecoration(color: c, borderRadius: BorderRadius.circular(9)),
-            child: Center(child: Text(abbr, style: body(9, weight: FontWeight.w900, color: c == OC.mtn ? Colors.black : Colors.white))),
-          ),
-          const SizedBox(width: 10),
-          Expanded(child: Text(name, style: body(12.5, weight: FontWeight.w700), overflow: TextOverflow.ellipsis)),
-          Container(
-            width: 18, height: 18,
-            decoration: BoxDecoration(
-              color: selected ? OC.o500 : Colors.transparent,
-              shape: BoxShape.circle,
-              border: selected ? null : Border.all(color: OC.line2, width: 2),
-            ),
-            child: selected ? const Icon(Icons.check_rounded, color: Colors.white, size: 12) : null,
-          ),
-        ]),
       ),
     ));
+  }
+
+  Widget _unavailable() {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(color: OC.panel, borderRadius: BorderRadius.circular(16)),
+      child: Column(children: [
+        const Icon(Icons.storefront_outlined, size: 26, color: OC.muted),
+        const SizedBox(height: 10),
+        Text('Achats indisponibles', style: body(14, weight: FontWeight.w700)),
+        const SizedBox(height: 6),
+        Text(
+          'La boutique n\'est accessible que depuis une version installée via le Play Store, avec les produits configurés.',
+          textAlign: TextAlign.center,
+          style: body(12.5, color: OC.muted, weight: FontWeight.w500).copyWith(height: 1.4),
+        ),
+      ]),
+    );
   }
 }
