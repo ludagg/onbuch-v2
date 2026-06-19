@@ -8,6 +8,7 @@ import '../../services/tutor_service.dart';
 import '../../services/auth_service.dart';
 import '../../services/database_service.dart';
 import '../../widgets/paywall_sheet.dart';
+import '../../widgets/lea_mascot.dart';
 
 /// Page principale du Tuteur « Léa » — direction « tableau de bord » (option C)
 /// modernisée avec l'accueil conversationnel (option A) : en-tête de marque,
@@ -207,17 +208,12 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
         border: Border.all(color: OC.o100, width: 1.5),
       ),
       child: Row(children: [
-        // Mascotte (placeholder — à remplacer par l'illustration de Léa).
-        Container(
-          width: 60, height: 60,
-          decoration: BoxDecoration(
-            gradient: OC.grad,
-            borderRadius: BorderRadius.circular(18),
-            boxShadow: [BoxShadow(color: OC.o500.withValues(alpha: 0.28), blurRadius: 14, offset: const Offset(0, 6))],
-          ),
-          child: const Icon(Icons.auto_awesome_rounded, color: Colors.white, size: 28),
+        // Mascotte Léa, animée (jamais figée).
+        const SizedBox(
+          width: 64, height: 64,
+          child: Center(child: LeaMascot(size: 64)),
         ),
-        const SizedBox(width: 14),
+        const SizedBox(width: 12),
         Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text(hello, style: display(20, weight: FontWeight.w700)),
           const SizedBox(height: 4),
