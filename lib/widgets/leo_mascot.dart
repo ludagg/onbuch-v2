@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
-/// Léa, la mascotte OnBuch (petit lion). Affichée **animée** (léger flottement
-/// + respiration) pour la rendre vivante, jamais figée. Image transparente
+/// Léo, la mascotte OnBuch (petit lion). Affiché **animé** (léger flottement
+/// + respiration) pour le rendre vivant, jamais figé. Image transparente
 /// réutilisable partout.
-class LeaMascot extends StatefulWidget {
+class LeoMascot extends StatefulWidget {
   final double size;
 
   /// Décalage de phase pour désynchroniser plusieurs mascottes à l'écran.
   final double phase;
-  const LeaMascot({super.key, this.size = 64, this.phase = 0});
+  const LeoMascot({super.key, this.size = 64, this.phase = 0});
 
   @override
-  State<LeaMascot> createState() => _LeaMascotState();
+  State<LeoMascot> createState() => _LeoMascotState();
 }
 
-class _LeaMascotState extends State<LeaMascot> with SingleTickerProviderStateMixin {
+class _LeoMascotState extends State<LeoMascot> with SingleTickerProviderStateMixin {
   late final AnimationController _c = AnimationController(
     vsync: this,
     duration: const Duration(milliseconds: 2800),
@@ -46,7 +46,7 @@ class _LeaMascotState extends State<LeaMascot> with SingleTickerProviderStateMix
         );
       },
       child: Image.asset(
-        'assets/images/lea.png',
+        'assets/images/leo.png',
         width: widget.size,
         height: widget.size,
         fit: BoxFit.contain,
