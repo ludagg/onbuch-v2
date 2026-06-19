@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
@@ -1077,10 +1078,10 @@ class _CommunitySection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const socials = [
-      [Icons.chat_bubble_rounded, 'WhatsApp', '12k', Color(0xFF25D366)],
-      [Icons.send_rounded, 'Telegram', '8k', Color(0xFF2AABEE)],
-      [Icons.music_note_rounded, 'TikTok', '@onbuch', Colors.black],
-      [Icons.facebook_rounded, 'Facebook', 'Page', Color(0xFF1877F2)],
+      [FontAwesomeIcons.whatsapp, 'WhatsApp', '12k', Color(0xFF25D366)],
+      [FontAwesomeIcons.telegram, 'Telegram', '8k', Color(0xFF2AABEE)],
+      [FontAwesomeIcons.tiktok, 'TikTok', '@onbuch', Color(0xFF111111)],
+      [FontAwesomeIcons.facebookF, 'Facebook', 'Page', Color(0xFF1877F2)],
     ];
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       SecHead(eyebrow: 'Reste connectée', title: 'La communauté', action: null),
@@ -1111,7 +1112,7 @@ class _CommunitySection extends StatelessWidget {
                           color: color.withValues(alpha: 0.12),
                           borderRadius: BorderRadius.circular(13),
                         ),
-                        child: Icon(s[0] as IconData, color: color, size: 24),
+                        child: FaIcon(s[0] as IconData, color: color, size: 22),
                       ),
                     ),
                   ),

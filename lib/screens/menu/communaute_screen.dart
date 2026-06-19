@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
 
@@ -6,10 +7,10 @@ class CommunauteScreen extends StatelessWidget {
   const CommunauteScreen({super.key});
 
   static const _socials = [
-    (Icons.chat_bubble_rounded, 'WhatsApp', 'Groupe d\'entraide · 12k membres', Color(0xFF25D366)),
-    (Icons.send_rounded, 'Telegram', 'Annonces & annales · 8k abonnés', Color(0xFF2AABEE)),
-    (Icons.music_note_rounded, 'TikTok', '@onbuch · astuces de révision', Colors.black),
-    (Icons.facebook_rounded, 'Facebook', 'Page officielle OnBuch', Color(0xFF1877F2)),
+    (FontAwesomeIcons.whatsapp, 'WhatsApp', 'Groupe d\'entraide · 12k membres', Color(0xFF25D366)),
+    (FontAwesomeIcons.telegram, 'Telegram', 'Annonces & annales · 8k abonnés', Color(0xFF2AABEE)),
+    (FontAwesomeIcons.tiktok, 'TikTok', '@onbuch · astuces de révision', Color(0xFF111111)),
+    (FontAwesomeIcons.facebookF, 'Facebook', 'Page officielle OnBuch', Color(0xFF1877F2)),
   ];
 
   @override
@@ -30,8 +31,8 @@ class CommunauteScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(13),
                 decoration: BoxDecoration(color: OC.paper, borderRadius: BorderRadius.circular(16), border: Border.all(color: OC.line, width: 1.5)),
                 child: Row(children: [
-                  Container(width: 46, height: 46, decoration: BoxDecoration(color: (s.$4).withValues(alpha: 0.12), borderRadius: BorderRadius.circular(13)),
-                      child: Icon(s.$1, color: s.$4, size: 24)),
+                  Container(width: 46, height: 46, alignment: Alignment.center, decoration: BoxDecoration(color: (s.$4).withValues(alpha: 0.12), borderRadius: BorderRadius.circular(13)),
+                      child: FaIcon(s.$1, color: s.$4, size: 21)),
                   const SizedBox(width: 13),
                   Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                     Text(s.$2, style: body(14.5, weight: FontWeight.w700)),
