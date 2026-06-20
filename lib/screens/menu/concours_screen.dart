@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import '../../theme/app_theme.dart';
+import '../../widgets/skeletons.dart';
 import '../../models/concours.dart';
 import '../../services/database_service.dart';
 
@@ -60,7 +61,14 @@ class _ConcoursScreenState extends State<ConcoursScreen> {
         future: _future,
         builder: (context, snap) {
           if (snap.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator(color: OC.o500));
+            return ListView(
+              padding: const EdgeInsets.fromLTRB(20, 16, 20, 28),
+              children: const [
+                Skeleton(width: double.infinity, height: 150, radius: 24),
+                SizedBox(height: 22),
+                SkeletonList(count: 4),
+              ],
+            );
           }
           final all = snap.data ?? const <Concours>[];
           // Clôture la plus proche → carte vedette.

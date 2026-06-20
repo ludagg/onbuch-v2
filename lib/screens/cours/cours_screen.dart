@@ -1,8 +1,9 @@
-import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
+import '../../widgets/skeletons.dart';
+import '../../widgets/states.dart';
 import '../../models/course.dart';
 import '../../services/auth_service.dart';
 import '../../services/database_service.dart';
@@ -111,10 +112,17 @@ class _CoursScreenState extends State<CoursScreen> {
               const SizedBox(height: 18),
 
               if (_loading)
-                const Padding(padding: EdgeInsets.symmetric(vertical: 40),
-                    child: Center(child: CircularProgressIndicator(color: OC.o500)))
+                Column(children: const [
+                  Skeleton(width: double.infinity, height: 80, radius: 20),
+                  SizedBox(height: 20),
+                  SkeletonList(count: 3),
+                ])
               else if (_subjects.isEmpty)
-                _hint('Les matières arrivent bientôt.')
+                const EmptyState(
+                  icon: Icons.menu_book_rounded,
+                  title: 'Bientôt disponible',
+                  message: 'Les matières de ton programme arriveront ici.',
+                )
               else ...[
                 _progressStrip(totalCh, doneCh),
                 const SizedBox(height: 20),
@@ -144,7 +152,7 @@ class _CoursScreenState extends State<CoursScreen> {
         borderRadius: BorderRadius.circular(20),
       ),
       child: Row(children: [
-        _Ring(pct: pct, size: 52, color: OC.o500, track: Colors.white24,
+        OBRing(pct: pct, size: 52, color: OC.o500, track: Colors.white24,
             center: Text('${(pct * 100).round()}%', style: mono(13, weight: FontWeight.w800, color: Colors.white))),
         const SizedBox(width: 14),
         Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -266,7 +274,7 @@ class _CoursScreenState extends State<CoursScreen> {
               child: Center(child: Text(s.code, style: display(16, weight: FontWeight.w700, color: s.color))),
             ),
             const Spacer(),
-            _Ring(pct: pct, size: 36, color: s.color, track: OC.line,
+            OBRing(pct: pct, size: 36, color: s.color, track: OC.line,
                 center: Text('${(pct * 100).round()}', style: mono(10.5, weight: FontWeight.w800, color: s.color))),
           ]),
           const SizedBox(height: 11),
@@ -279,53 +287,4 @@ class _CoursScreenState extends State<CoursScreen> {
     );
   }
 
-  Widget _hint(String t) => Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(color: OC.paper, borderRadius: BorderRadius.circular(14), border: Border.all(color: OC.line, width: 1.5)),
-        child: Row(children: [
-          const Icon(Icons.menu_book_rounded, size: 18, color: OC.muted),
-          const SizedBox(width: 10),
-          Expanded(child: Text(t, style: body(13, color: OC.muted, weight: FontWeight.w500))),
-        ]),
-      );
-}
-
-// ─── Anneau de progression réutilisable ───────────────────────────────────────
-class _Ring extends StatelessWidget {
-  final double pct; // 0..1
-  final double size;
-  final Color color;
-  final Color track;
-  final Widget? center;
-  const _Ring({required this.pct, this.size = 40, this.color = OC.o500, this.track = OC.line, this.center});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: size, height: size,
-      child: Stack(alignment: Alignment.center, children: [
-        CustomPaint(size: Size.square(size), painter: _RingPainter(pct.clamp(0.0, 1.0), color, track)),
-        if (center != null) center!,
-      ]),
-    );
-  }
-}
-
-class _RingPainter extends CustomPainter {
-  final double pct;
-  final Color color, track;
-  _RingPainter(this.pct, this.color, this.track);
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final stroke = size.width * 0.12;
-    final rect = Offset(stroke / 2, stroke / 2) & Size(size.width - stroke, size.height - stroke);
-    final bg = Paint()..style = PaintingStyle.stroke..strokeWidth = stroke..color = track;
-    final fg = Paint()..style = PaintingStyle.stroke..strokeWidth = stroke..color = color..strokeCap = StrokeCap.round;
-    canvas.drawArc(rect, 0, 2 * math.pi, false, bg);
-    if (pct > 0) canvas.drawArc(rect, -math.pi / 2, 2 * math.pi * pct, false, fg);
-  }
-
-  @override
-  bool shouldRepaint(covariant _RingPainter old) => old.pct != pct || old.color != color || old.track != track;
 }
