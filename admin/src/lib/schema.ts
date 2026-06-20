@@ -168,6 +168,102 @@ export const RESOURCES: Resource[] = [
       { key: 'status', label: 'Statut', type: 'select', options: ['', 'published'] },
       order
     ]
+  },
+  {
+    id: 'exam_series',
+    collectionId: 'exam_series',
+    label: 'Séries / filières',
+    singular: 'série',
+    icon: '🧩',
+    titleField: 'name',
+    subtitleField: 'exam',
+    orderBy: { field: 'sortOrder', dir: 'asc' },
+    fields: [
+      { key: 'exam', label: 'Cursus', type: 'text', required: true, help: 'EXACT : Baccalauréat, Probatoire, BTS, GCE A Level, Concours (ENS…)' },
+      { key: 'category', label: 'Regroupement', type: 'text', help: 'ex. Enseignement général / Enseignement technique / Filière' },
+      { key: 'name', label: 'Libellé', type: 'text', required: true, help: 'Affiché ET stocké, ex. « C — Maths & Sciences physiques »' },
+      { key: 'sortOrder', label: 'Ordre', type: 'number', help: 'Tri croissant.' },
+      { key: 'active', label: 'Active (cocher pour afficher)', type: 'boolean', help: 'Décochée = masquée dans l’app.' }
+    ]
+  },
+  {
+    id: 'subjects',
+    collectionId: 'subjects',
+    label: 'Matières (Cours)',
+    singular: 'matière',
+    icon: '📘',
+    titleField: 'name',
+    subtitleField: 'code',
+    orderBy: { field: 'order', dir: 'asc' },
+    fields: [
+      { key: 'name', label: 'Nom', type: 'text', required: true, help: 'ex. Mathématiques' },
+      { key: 'code', label: 'Code', type: 'text', help: 'Initiales, ex. Ma (l’icône est déduite du nom).' },
+      { key: 'color', label: 'Couleur', type: 'text', help: 'Hex, ex. #F59321' },
+      { key: 'levels', label: 'Classes concernées', type: 'text', help: 'ex. Terminale,1ère — vide = toutes' },
+      order
+    ]
+  },
+  {
+    id: 'chapters',
+    collectionId: 'chapters',
+    label: 'Chapitres (Cours)',
+    singular: 'chapitre',
+    icon: '📑',
+    titleField: 'title',
+    subtitleField: 'subjectId',
+    orderBy: { field: 'order', dir: 'asc' },
+    fields: [
+      { key: 'subjectId', label: 'ID de la matière', type: 'text', required: true, help: 'Copie l’ID depuis « Matières » (bouton ID).' },
+      { key: 'title', label: 'Titre', type: 'text', required: true },
+      { key: 'description', label: 'Description', type: 'textarea' },
+      { key: 'level', label: 'Classe', type: 'text', help: 'ex. Terminale' },
+      { key: 'videoUrl', label: 'Lien vidéo', type: 'text' },
+      { key: 'pdfUrl', label: 'Lien PDF', type: 'text' },
+      order
+    ]
+  },
+  {
+    id: 'school_calendar',
+    collectionId: 'school_calendar',
+    label: 'Calendrier (Campus)',
+    singular: 'évènement',
+    icon: '📆',
+    titleField: 'title',
+    subtitleField: 'type',
+    orderBy: { field: 'startDate', dir: 'asc' },
+    fields: [
+      { key: 'title', label: 'Titre', type: 'text', required: true },
+      { key: 'type', label: 'Type', type: 'select', options: ['rentree', 'composition', 'conge', 'examen', 'resultats', 'concours', 'info'] },
+      { key: 'startDate', label: 'Début', type: 'datetime', required: true },
+      { key: 'endDate', label: 'Fin', type: 'datetime' },
+      { key: 'description', label: 'Description', type: 'textarea' },
+      { key: 'link', label: 'Lien', type: 'text' },
+      { key: 'audience', label: 'Public visé', type: 'text' }
+    ]
+  },
+  {
+    id: 'affiche',
+    collectionId: 'affiche',
+    label: 'À l’affiche (Accueil)',
+    singular: 'affiche',
+    icon: '🪧',
+    titleField: 'title',
+    subtitleField: 'type',
+    orderBy: { field: 'order', dir: 'asc' },
+    fields: [
+      { key: 'type', label: 'Type', type: 'select', options: ['event', 'sponsored', 'info'] },
+      { key: 'title', label: 'Titre', type: 'text', required: true },
+      { key: 'subtitle', label: 'Sous-titre', type: 'text' },
+      { key: 'imageUrl', label: "URL d'image", type: 'text' },
+      { key: 'date', label: 'Date', type: 'datetime' },
+      { key: 'location', label: 'Lieu', type: 'text' },
+      { key: 'description', label: 'Description', type: 'textarea' },
+      { key: 'partnerName', label: 'Partenaire — nom', type: 'text' },
+      { key: 'partnerLogo', label: 'Partenaire — logo (URL)', type: 'text' },
+      { key: 'partnerDescription', label: 'Partenaire — description', type: 'textarea' },
+      { key: 'link', label: 'Lien', type: 'text' },
+      order
+    ]
   }
 ];
 

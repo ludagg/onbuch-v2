@@ -182,6 +182,7 @@
             {#if subtitle(doc)}<div class="row-sub muted">{subtitle(doc)}</div>{/if}
           </div>
           <div class="row-actions">
+            <button class="btn-ghost btn-sm" title="Copier l'ID du document" on:click={() => navigator.clipboard?.writeText(doc.$id)}>ID</button>
             <button class="btn-ghost btn-sm" on:click={() => openEdit(doc)}>Modifier</button>
             <button class="btn-danger btn-sm" on:click={() => remove(doc)}>Suppr.</button>
           </div>
