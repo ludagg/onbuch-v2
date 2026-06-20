@@ -178,7 +178,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           // Préférences
           _Section('Préférences', [
             if (_phone.isNotEmpty)
-              _ProfileRow(FontAwesomeIcons.whatsapp, 'WhatsApp', _phone, OC.wa, OC.goodBg),
+              _ProfileRow(FontAwesomeIcons.whatsapp.data, 'WhatsApp', _phone, OC.wa, OC.goodBg),
             _ProfileRow(Icons.language_rounded, 'Langue', 'Français', OC.muted, OC.panel),
             _ProfileRow(Icons.notifications_outlined, 'Notifications', 'Alertes résultats activées', OC.muted, OC.panel),
             _ProfileRow(Icons.people_outline_rounded, 'Mode parent', 'Configurer un accès', OC.muted, OC.panel),

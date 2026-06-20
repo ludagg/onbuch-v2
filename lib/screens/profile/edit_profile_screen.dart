@@ -133,7 +133,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               children: [
                 _field('Nom & prénom', _nameCtrl, 'NDJAMÉ Aïcha', Icons.person_outline_rounded),
                 const SizedBox(height: 16),
-                _field('Numéro WhatsApp', _phoneCtrl, '+237 6XX XX XX XX', FontAwesomeIcons.whatsapp, keyboard: TextInputType.phone),
+                _field('Numéro WhatsApp', _phoneCtrl, '+237 6XX XX XX XX', FontAwesomeIcons.whatsapp.data, keyboard: TextInputType.phone),
                 const SizedBox(height: 18),
                 _label('Ta classe / niveau'),
                 const SizedBox(height: 10),
