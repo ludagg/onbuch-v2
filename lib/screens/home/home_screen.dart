@@ -1119,7 +1119,7 @@ class _CommunitySection extends StatelessWidget {
                           color: color.withValues(alpha: 0.12),
                           borderRadius: BorderRadius.circular(13),
                         ),
-                        child: FaIcon(s[0] as IconData, color: color, size: 22),
+                        child: FaIcon(s[0] as FaIconData, color: color, size: 22),
                       ),
                     ),
                   ),

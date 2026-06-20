@@ -26,7 +26,7 @@ class AideScreen extends StatelessWidget {
           Text('On te répond rapidement.', style: body(13, color: OC.ink2, weight: FontWeight.w500)),
           const SizedBox(height: 16),
           Row(children: [
-            _contact(FontAwesomeIcons.whatsapp, 'WhatsApp', OC.wa, OC.goodBg),
+            _contact(FontAwesomeIcons.whatsapp.data, 'WhatsApp', OC.wa, OC.goodBg),
             const SizedBox(width: 11),
             _contact(Icons.mail_outline_rounded, 'E-mail', OC.blue, OC.blueBg),
           ]),
