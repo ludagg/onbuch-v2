@@ -4,10 +4,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
-import '../../services/appwrite_client.dart';
 import '../../services/auth_service.dart';
 import '../../services/database_service.dart';
 import '../../services/tutor_service.dart';
+import '../../utils/launch.dart';
 import '../../ai_config.dart';
 import '../../models/article.dart';
 import '../../models/exam.dart';
@@ -117,49 +117,23 @@ class HomeScreen extends StatelessWidget {
               ),
               const SizedBox(height: 24),
 
-              // Appwrite ping
+              // Signature
               Padding(
-                padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
-                child: GestureDetector(
-                  onTap: () async {
-                    try {
-                      await client.ping();
-                      if (context.mounted) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text('Appwrite connecté ✓', style: body(13, weight: FontWeight.w600, color: Colors.white)),
-                            backgroundColor: OC.good,
-                            behavior: SnackBarBehavior.floating,
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                          ),
-                        );
-                      }
-                    } catch (e) {
-                      if (context.mounted) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text('Erreur: $e', style: body(13, weight: FontWeight.w600, color: Colors.white)),
-                            backgroundColor: OC.bad,
-                            behavior: SnackBarBehavior.floating,
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                          ),
-                        );
-                      }
-                    }
-                  },
-                  child: Container(
-                    width: double.infinity,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      color: OC.paper,
-                      borderRadius: BorderRadius.circular(14),
-                      border: Border.all(color: OC.line2, width: 1.5),
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 26),
+                child: Center(
+                  child: GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onTap: () => openUrl(context, 'https://wa.me/237678438557'),
+                    child: Text.rich(
+                      TextSpan(children: [
+                        TextSpan(text: 'OnBuch a été créé avec ❤️ par ',
+                            style: body(12.5, color: OC.muted, weight: FontWeight.w500)),
+                        TextSpan(text: 'Ludovic Aggaï',
+                            style: body(12.5, color: OC.o600, weight: FontWeight.w800)
+                                .copyWith(decoration: TextDecoration.underline, decorationColor: OC.o600)),
+                      ]),
+                      textAlign: TextAlign.center,
                     ),
-                    child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                      const Icon(Icons.wifi_tethering_rounded, size: 18, color: OC.o500),
-                      const SizedBox(width: 8),
-                      Text('Send a ping', style: body(14, weight: FontWeight.w700, color: OC.ink)),
-                    ]),
                   ),
                 ),
               ),
@@ -1115,11 +1089,12 @@ class _CommunitySection extends StatelessWidget {
                     child: Center(
                       child: Container(
                         width: 44, height: 44,
+                        alignment: Alignment.center,
                         decoration: BoxDecoration(
                           color: color.withValues(alpha: 0.12),
                           borderRadius: BorderRadius.circular(13),
                         ),
-                        child: FaIcon(s[0] as FaIconData, color: color, size: 22),
+                        child: FaIcon(s[0] as FaIconData, color: color, size: 20),
                       ),
                     ),
                   ),
