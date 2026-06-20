@@ -33,3 +33,4 @@ ios/Flutter/ephemeral/
 
 # Web
 lib/generated_plugin_registrant.dart
+.vercel
