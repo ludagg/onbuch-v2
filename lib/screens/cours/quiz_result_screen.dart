@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
+import '../../widgets/leo_mascot.dart';
 import '../../models/course.dart';
 import '../../models/quiz.dart';
 
@@ -45,6 +46,8 @@ class QuizResultScreen extends StatelessWidget {
             padding: const EdgeInsets.all(22),
             decoration: BoxDecoration(color: good ? OC.goodBg : OC.warnBg, borderRadius: BorderRadius.circular(22)),
             child: Column(children: [
+              LeoMascot(size: 88, mood: good ? LeoMood.celebrate : LeoMood.encourage),
+              const SizedBox(height: 8),
               SizedBox(
                 width: 96, height: 96,
                 child: Stack(alignment: Alignment.center, children: [

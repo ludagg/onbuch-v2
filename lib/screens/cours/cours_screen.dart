@@ -4,6 +4,7 @@ import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
 import '../../widgets/skeletons.dart';
 import '../../widgets/states.dart';
+import '../../widgets/leo_mascot.dart';
 import '../../models/course.dart';
 import '../../services/auth_service.dart';
 import '../../services/database_service.dart';
@@ -119,6 +120,7 @@ class _CoursScreenState extends State<CoursScreen> {
                 ])
               else if (_subjects.isEmpty)
                 const EmptyState(
+                  art: LeoMascot(size: 96, mood: LeoMood.wave),
                   icon: Icons.menu_book_rounded,
                   title: 'Bientôt disponible',
                   message: 'Les matières de ton programme arriveront ici.',

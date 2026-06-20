@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
 import '../../widgets/rich_answer.dart';
+import '../../widgets/leo_mascot.dart';
 import '../../models/course.dart';
 import '../../services/database_service.dart';
 import '../../services/tutor_service.dart';
@@ -172,8 +173,8 @@ class _ChapterDetailScreenState extends State<ChapterDetailScreen> {
         padding: const EdgeInsets.all(22),
         decoration: BoxDecoration(color: OC.paper, borderRadius: BorderRadius.circular(18), border: Border.all(color: OC.line, width: 1.5)),
         child: Column(children: [
-          const SizedBox(width: 26, height: 26, child: CircularProgressIndicator(strokeWidth: 2.6, color: OC.o500)),
-          const SizedBox(height: 14),
+          const LeoMascot(size: 64, mood: LeoMood.thinking),
+          const SizedBox(height: 10),
           Text('Léo prépare ta fiche…', style: body(13.5, weight: FontWeight.w600, color: OC.ink2)),
           const SizedBox(height: 4),
           Text('Définitions, formules et exemples clairs.',

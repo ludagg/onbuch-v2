@@ -5,6 +5,7 @@ import '../../theme/app_theme.dart';
 import '../../models/tutor_request.dart';
 import '../../services/tutor_service.dart';
 import '../../widgets/rich_answer.dart';
+import '../../widgets/leo_mascot.dart';
 import '../../utils/tutor_pdf.dart';
 
 /// Message du fil de conversation avec le Tuteur.
@@ -285,10 +286,9 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
               builder: (context, snap) {
                 if (snap.connectionState == ConnectionState.waiting) {
                   return Row(mainAxisSize: MainAxisSize.min, children: [
-                    const SizedBox(width: 18, height: 18,
-                        child: CircularProgressIndicator(strokeWidth: 2.4, color: OC.o500)),
-                    const SizedBox(width: 11),
-                    Flexible(child: Text('Le Tuteur réfléchit…', style: body(13, color: OC.ink2, weight: FontWeight.w500))),
+                    const LeoMascot(size: 32, mood: LeoMood.thinking),
+                    const SizedBox(width: 10),
+                    Flexible(child: Text('Léo réfléchit…', style: body(13, color: OC.ink2, weight: FontWeight.w500))),
                   ]);
                 }
                 if (snap.hasError) {
