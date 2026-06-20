@@ -41,6 +41,7 @@ dependencies:
   url_launcher: ^6.3.1
   pdf: ^3.11.1
   printing: ^5.13.4
+  screenshot: ^3.0.0
   shared_preferences: ^2.3.2
   firebase_core: ^3.8.0
   firebase_messaging: ^15.1.6

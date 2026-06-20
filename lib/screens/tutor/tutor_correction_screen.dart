@@ -180,6 +180,25 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
 
   bool get _hasExportable => _msgs.any((m) => !m.isUser && m.resolved != null);
 
+  // Fiche de révision : première réponse de Léo en mode « summary ».
+  bool get _isFiche => widget.request?.mode == 'summary';
+  String? get _ficheText {
+    for (final m in _msgs) {
+      if (!m.isUser && m.resolved != null) return m.resolved;
+    }
+    return null;
+  }
+
+  String? _ficheTitle() {
+    final t = _ficheText;
+    if (t == null) return null;
+    for (final line in t.split('\n')) {
+      final l = line.replaceFirst(RegExp(r'^#+\s*'), '').replaceAll('*', '').trim();
+      if (l.isNotEmpty) return l.length > 60 ? l.substring(0, 60) : l;
+    }
+    return null;
+  }
+
   Future<void> _exportPdf() async {
     final turns = <PdfTurn>[];
     for (final m in _msgs) {
@@ -190,7 +209,18 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
       }
     }
     if (!turns.any((t) => !t.isUser)) return; // aucune réponse à exporter
-    await exportConversationPdf(turns: turns, title: widget.request?.titleHint);
+    await exportConversationPdf(turns: turns, title: widget.request?.titleHint, context: context);
+  }
+
+  Future<void> _downloadFiche() async {
+    final t = _ficheText;
+    if (t == null) return;
+    await exportFichePdf(
+      content: t,
+      subject: widget.request?.subject,
+      title: _ficheTitle(),
+      context: context,
+    );
   }
 
   @override
@@ -260,8 +290,32 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
           itemBuilder: (_, i) => _msgs[i].isUser ? _userBubble(_msgs[i]) : _aiBubble(_msgs[i]),
         ),
       ),
+      if (_isFiche && _ficheText != null) _downloadFicheBar(),
       _composer(),
     ]);
+  }
+
+  Widget _downloadFicheBar() {
+    return Container(
+      padding: const EdgeInsets.fromLTRB(14, 10, 14, 0),
+      color: OC.paper,
+      child: GestureDetector(
+        onTap: _downloadFiche,
+        child: Container(
+          height: 46,
+          decoration: BoxDecoration(
+            gradient: OC.grad,
+            borderRadius: BorderRadius.circular(13),
+            boxShadow: [BoxShadow(color: OC.o500.withValues(alpha: 0.28), blurRadius: 12, offset: const Offset(0, 5))],
+          ),
+          child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            const Icon(Icons.download_rounded, color: Colors.white, size: 19),
+            const SizedBox(width: 8),
+            Text('Télécharger la fiche (PDF)', style: body(14, weight: FontWeight.w700, color: Colors.white)),
+          ]),
+        ),
+      ),
+    );
   }
 
   Widget _userBubble(_Msg m) {
