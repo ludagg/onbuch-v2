@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
 import '../../widgets/leo_mascot.dart';
+import '../../widgets/series_picker.dart';
 import '../../services/auth_service.dart';
 import '../../services/database_service.dart';
 
@@ -28,7 +29,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
   // ── Données du profil ───────────────────────────────────────────────────
   String _classe = 'Terminale';
   String _examen = 'Baccalauréat';
-  final _serieCtrl = TextEditingController();
+  String? _serie;
 
   String? _studyField;      // domaine d'études visé (aspiration)
   final _careerCtrl = TextEditingController(); // métier de rêve
@@ -53,7 +54,6 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
 
   @override
   void dispose() {
-    _serieCtrl.dispose();
     _careerCtrl.dispose();
     _ecoleCtrl.dispose();
     _villeCtrl.dispose();
@@ -88,7 +88,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
 
     setState(() => _saving = true);
 
-    final serie = _serieCtrl.text.trim();
+    final serie = _serie?.trim() ?? '';
     final career = _careerCtrl.text.trim();
     final ecole = _ecoleCtrl.text.trim();
     final ville = _villeCtrl.text.trim();
@@ -282,10 +282,14 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
             _choice(_classes, _classe, (v) => setState(() => _classe = v!)),
             const SizedBox(height: 20),
             _groupLabel('Examen / concours visé'),
-            _choice(_exams, _examen, (v) => setState(() => _examen = v!)),
+            _choice(_exams, _examen, (v) => setState(() { _examen = v!; _serie = null; })),
             const SizedBox(height: 20),
-            _field('Série (optionnel)', _serieCtrl, 'D — Sciences & Mathématiques',
-                Icons.workspace_premium_outlined),
+            SeriesPicker(
+              exam: _examen,
+              value: _serie,
+              label: 'Série / filière (optionnel)',
+              onChanged: (v) => setState(() => _serie = v),
+            ),
           ],
         1 => [
             _groupLabel('Quel domaine te fait vibrer ?'),

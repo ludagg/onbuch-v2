@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
+import '../../widgets/series_picker.dart';
 import '../../services/auth_service.dart';
 import '../../services/database_service.dart';
 
@@ -20,7 +21,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   final _db = DatabaseService();
 
   final _nameCtrl = TextEditingController();
-  final _serieCtrl = TextEditingController();
   final _ecoleCtrl = TextEditingController();
   final _villeCtrl = TextEditingController();
   final _phoneCtrl = TextEditingController();
@@ -29,6 +29,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   int _level = 3;
   int _exam = 0;
   String? _gender;
+  String? _serie;
   String? _studyField;
   String? _destination;
   String _email = '';
@@ -55,7 +56,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
   @override
   void dispose() {
-    for (final c in [_nameCtrl, _serieCtrl, _ecoleCtrl, _villeCtrl, _phoneCtrl, _careerCtrl]) {
+    for (final c in [_nameCtrl, _ecoleCtrl, _villeCtrl, _phoneCtrl, _careerCtrl]) {
       c.dispose();
     }
     super.dispose();
@@ -70,7 +71,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       _email = user?.email ?? '';
       _nameCtrl.text = user?.name.trim() ?? '';
       if (p != null) {
-        _serieCtrl.text = (p['serie'] ?? '').toString();
+        final sv = (p['serie'] ?? '').toString().trim();
+        _serie = sv.isEmpty ? null : sv;
         _ecoleCtrl.text = (p['school'] ?? '').toString();
         _villeCtrl.text = (p['city'] ?? '').toString();
         _phoneCtrl.text = (p['phoneNumber'] ?? '').toString();
@@ -111,7 +113,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         'email': _email.isNotEmpty ? _email : user.email,
         'classe': _levels[_level],
         'examen': _exams[_exam],
-        'serie': _serieCtrl.text.trim(),
+        'serie': _serie?.trim() ?? '',
         'school': _ecoleCtrl.text.trim(),
         'city': _villeCtrl.text.trim(),
         'phoneNumber': _phoneCtrl.text.trim(),
@@ -160,9 +162,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 const SizedBox(height: 18),
                 _label('Examen / concours visé'),
                 const SizedBox(height: 10),
-                _chips(_exams, _exam, (i) => setState(() => _exam = i)),
+                _chips(_exams, _exam, (i) => setState(() { _exam = i; _serie = null; })),
                 const SizedBox(height: 18),
-                _field('Série', _serieCtrl, 'D — Sciences & Mathématiques', Icons.workspace_premium_outlined),
+                SeriesPicker(
+                  exam: _exams[_exam],
+                  value: _serie,
+                  onChanged: (v) => setState(() => _serie = v),
+                ),
                 const SizedBox(height: 14),
                 _field('Établissement', _ecoleCtrl, 'Lycée de Bonabéri', Icons.account_balance_outlined),
                 const SizedBox(height: 14),
