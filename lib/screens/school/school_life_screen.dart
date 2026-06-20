@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 import '../../theme/app_theme.dart';
@@ -116,7 +117,18 @@ class _SchoolLifeScreenState extends State<SchoolLifeScreen> {
                 const SizedBox(height: 18),
 
                 // À venir
-                Text('À venir', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
+                Row(children: [
+                  Text('À venir', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
+                  const Spacer(),
+                  GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onTap: () => context.push('/agenda'),
+                    child: Row(children: [
+                      Text('Voir tout', style: body(12.5, weight: FontWeight.w700, color: OC.o600)),
+                      const Icon(Icons.chevron_right_rounded, size: 18, color: OC.o600),
+                    ]),
+                  ),
+                ]),
                 const SizedBox(height: 8),
                 if (_loading)
                   _hintBox('Chargement du calendrier…')
