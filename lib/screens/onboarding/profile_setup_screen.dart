@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
+import '../../widgets/leo_mascot.dart';
 import '../../services/auth_service.dart';
 import '../../services/database_service.dart';
 
+/// Création du profil (étape 3 de l'onboarding), découpée en 3 sections courtes
+/// guidées par Léo : parcours scolaire, ambitions universitaires, école & toi.
 class ProfileSetupScreen extends StatefulWidget {
   const ProfileSetupScreen({super.key});
 
@@ -13,32 +16,69 @@ class ProfileSetupScreen extends StatefulWidget {
 }
 
 class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
-  int _level = 3; // Terminale
-  int _exam = 0;  // Baccalauréat
+  static const _sectionCount = 3;
+  int _section = 0;
   bool _saving = false;
+  // Sens de l'animation (1 = on avance, -1 = on recule) pour la transition.
+  int _dir = 1;
 
   final _authService = AuthService();
   final _databaseService = DatabaseService();
 
+  // ── Données du profil ───────────────────────────────────────────────────
+  String _classe = 'Terminale';
+  String _examen = 'Baccalauréat';
   final _serieCtrl = TextEditingController();
+
+  String? _studyField;      // domaine d'études visé (aspiration)
+  final _careerCtrl = TextEditingController(); // métier de rêve
+  String? _destination;     // où étudier
+
   final _ecoleCtrl = TextEditingController();
   final _villeCtrl = TextEditingController();
   final _phoneCtrl = TextEditingController();
   String? _gender;
 
-  static const _levels = ['3ème', '2nde', '1ère', 'Terminale', 'Sup. / Fac'];
-  static const _exams  = ['Baccalauréat', 'Probatoire', 'GCE A Level', 'BTS', 'Concours (ENS…)'];
+  static const _classes = ['3ème', '2nde', '1ère', 'Terminale', 'Sup. / Fac'];
+  static const _exams   = ['Baccalauréat', 'Probatoire', 'GCE A Level', 'BTS', 'Concours (ENS…)'];
+  static const _fields  = [
+    'Santé / Médecine', 'Ingénierie / Tech', 'Droit / Sciences Po',
+    'Commerce / Gestion', 'Sciences', 'Lettres / Langues', 'Arts / Design',
+    'Encore indécis·e',
+  ];
+  static const _destinations = [
+    'Cameroun', 'Afrique', 'France', 'Amérique du N.', 'Europe', 'Pas encore décidé',
+  ];
   static const _genders = ['Fille', 'Garçon', 'Autre'];
 
   @override
   void dispose() {
     _serieCtrl.dispose();
+    _careerCtrl.dispose();
     _ecoleCtrl.dispose();
     _villeCtrl.dispose();
     _phoneCtrl.dispose();
     super.dispose();
   }
 
+  // ── Navigation entre sections ─────────────────────────────────────────────
+  void _next() {
+    if (_section < _sectionCount - 1) {
+      setState(() { _dir = 1; _section++; });
+    } else {
+      _saveAndContinue();
+    }
+  }
+
+  void _back() {
+    if (_section > 0) {
+      setState(() { _dir = -1; _section--; });
+    } else if (context.canPop()) {
+      context.pop();
+    }
+  }
+
+  // ── Sauvegarde ─────────────────────────────────────────────────────────────
   Future<void> _saveAndContinue() async {
     final user = await _authService.getCurrentUser();
     if (user == null) {
@@ -47,31 +87,47 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
     }
 
     setState(() => _saving = true);
+
+    final serie = _serieCtrl.text.trim();
+    final career = _careerCtrl.text.trim();
+    final ecole = _ecoleCtrl.text.trim();
+    final ville = _villeCtrl.text.trim();
+    final phone = _phoneCtrl.text.trim();
+
+    // Champs « cœur » (attributs déjà présents dans la collection `users`).
+    final core = <String, dynamic>{
+      ...DatabaseService.splitFullName(user.name),
+      'email': user.email,
+      'classe': _classe,
+      'examen': _examen,
+      if (serie.isNotEmpty) 'serie': serie,
+      if (ecole.isNotEmpty) 'school': ecole,
+      if (ville.isNotEmpty) 'city': ville,
+      if (phone.isNotEmpty) 'phoneNumber': phone,
+      if (_gender != null) 'gender': _gender,
+    };
+
+    // Champs « ambitions » (nouveaux attributs — voir
+    // tools/setup_users_profile_attributes.sh). Optionnels.
+    final aspirations = <String, dynamic>{
+      if (_studyField != null) 'studyField': _studyField,
+      if (career.isNotEmpty) 'careerGoal': career,
+      if (_destination != null) 'studyDestination': _destination,
+    };
+
     try {
-      // On inclut l'identité (firstName/lastName/email) en plus des champs
-      // profil : ainsi le document est valide même s'il doit être créé ici
-      // (champs requis de la collection `users`), pas seulement mis à jour.
-      final serie = _serieCtrl.text.trim();
-      final ecole = _ecoleCtrl.text.trim();
-      final ville = _villeCtrl.text.trim();
-      final phone = _phoneCtrl.text.trim();
-      await _databaseService.createUserProfile(
-        user.$id,
-        {
-          ...DatabaseService.splitFullName(user.name),
-          'email': user.email,
-          'classe': _levels[_level],
-          'examen': _exams[_exam],
-          if (serie.isNotEmpty) 'serie': serie,
-          if (ecole.isNotEmpty) 'school': ecole,
-          if (ville.isNotEmpty) 'city': ville,
-          if (phone.isNotEmpty) 'phoneNumber': phone,
-          if (_gender != null) 'gender': _gender,
-        },
-      );
+      try {
+        await _databaseService.createUserProfile(user.$id, {...core, ...aspirations});
+      } catch (_) {
+        // La collection n'a peut-être pas encore les attributs d'ambitions :
+        // on ne bloque jamais la création de compte pour autant.
+        if (aspirations.isEmpty) rethrow;
+        await _databaseService.createUserProfile(user.$id, core);
+      }
       if (mounted) context.go('/welcome');
     } catch (e) {
       if (!mounted) return;
+      setState(() => _saving = false);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Erreur lors de la sauvegarde : $e'),
@@ -81,9 +137,206 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
           margin: const EdgeInsets.all(12),
         ),
       );
-    } finally {
-      if (mounted) setState(() => _saving = false);
     }
+  }
+
+  // ── Léo + intro par section ────────────────────────────────────────────────
+  ({LeoMood mood, String line, String title}) get _intro => switch (_section) {
+        0 => (
+            mood: LeoMood.wave,
+            title: 'Ton parcours',
+            line: 'Salut, moi c\'est Léo ! 🦁 Dis-moi où tu en es dans tes études.',
+          ),
+        1 => (
+            mood: LeoMood.encourage,
+            title: 'Tes ambitions',
+            line: 'Et après ? Vise haut — ça peut toujours évoluer, aucune pression.',
+          ),
+        _ => (
+            mood: LeoMood.celebrate,
+            title: 'Toi & ton école',
+            line: 'Dernière ligne droite ! Quelques infos et on entre dans OnBuch.',
+          ),
+      };
+
+  @override
+  Widget build(BuildContext context) {
+    final intro = _intro;
+    final isLast = _section == _sectionCount - 1;
+    return Scaffold(
+      backgroundColor: OC.bg,
+      body: SafeArea(
+        child: Column(children: [
+          // En-tête : retour + progression des sous-étapes.
+          Padding(
+            padding: const EdgeInsets.fromLTRB(8, 8, 20, 0),
+            child: Row(children: [
+              IconButton(
+                onPressed: _saving ? null : _back,
+                icon: const Icon(Icons.arrow_back_rounded, color: OC.ink, size: 22),
+                tooltip: 'Retour',
+              ),
+              ProgressDots(count: _sectionCount, active: _section),
+              const Spacer(),
+              Text('Profil · ${_section + 1}/$_sectionCount',
+                  style: body(13, weight: FontWeight.w700, color: OC.muted)),
+            ]),
+          ),
+
+          // Bandeau Léo : mascotte + phrase contextuelle.
+          Padding(
+            padding: const EdgeInsets.fromLTRB(24, 8, 24, 4),
+            child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+              LeoMascot(size: 56, mood: intro.mood),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 11),
+                  decoration: BoxDecoration(
+                    color: OC.paper,
+                    borderRadius: BorderRadius.circular(16),
+                    border: Border.all(color: OC.line, width: 1.5),
+                  ),
+                  child: Text(intro.line,
+                      style: body(13, color: OC.ink2, weight: FontWeight.w600).copyWith(height: 1.35)),
+                ),
+              ),
+            ]),
+          ),
+
+          // Contenu de la section (transition douce gauche/droite).
+          Expanded(
+            child: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 260),
+              switchInCurve: Curves.easeOut,
+              switchOutCurve: Curves.easeIn,
+              transitionBuilder: (child, anim) {
+                final offset = Tween<Offset>(
+                  begin: Offset(0.12 * _dir, 0), end: Offset.zero,
+                ).animate(anim);
+                return FadeTransition(
+                  opacity: anim,
+                  child: SlideTransition(position: offset, child: child),
+                );
+              },
+              child: SingleChildScrollView(
+                key: ValueKey(_section),
+                padding: const EdgeInsets.fromLTRB(24, 16, 24, 8),
+                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Text(intro.title, style: display(23, weight: FontWeight.w700)),
+                  const SizedBox(height: 16),
+                  ..._sectionBody(),
+                  const SizedBox(height: 8),
+                ]),
+              ),
+            ),
+          ),
+
+          // Pied : bouton principal + « Plus tard ».
+          Container(
+            padding: const EdgeInsets.fromLTRB(24, 10, 24, 14),
+            decoration: const BoxDecoration(
+              color: OC.paper,
+              border: Border(top: BorderSide(color: OC.line, width: 1.5)),
+            ),
+            child: Column(children: [
+              GestureDetector(
+                onTap: _saving ? null : _next,
+                child: Container(
+                  width: double.infinity, height: 50,
+                  decoration: BoxDecoration(
+                    gradient: OC.grad,
+                    borderRadius: BorderRadius.circular(14),
+                    boxShadow: [BoxShadow(color: OC.o500.withValues(alpha: 0.30), blurRadius: 14, offset: const Offset(0, 6))],
+                  ),
+                  child: _saving
+                      ? const Center(child: SizedBox(
+                          width: 22, height: 22,
+                          child: CircularProgressIndicator(strokeWidth: 2.5, color: Colors.white),
+                        ))
+                      : Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                          Text(isLast ? 'Entrer dans OnBuch' : 'Continuer',
+                              style: body(14, weight: FontWeight.w700, color: Colors.white)),
+                          const SizedBox(width: 8),
+                          Icon(isLast ? Icons.arrow_forward_rounded : Icons.arrow_forward_ios_rounded,
+                              color: Colors.white, size: isLast ? 17 : 14),
+                        ]),
+                ),
+              ),
+              const SizedBox(height: 8),
+              GestureDetector(
+                onTap: _saving ? null : () => context.go('/home'),
+                child: Center(child: Text('Plus tard', style: body(13.5, weight: FontWeight.w600, color: OC.muted))),
+              ),
+            ]),
+          ),
+        ]),
+      ),
+    );
+  }
+
+  // ── Corps de chaque section ────────────────────────────────────────────────
+  List<Widget> _sectionBody() => switch (_section) {
+        0 => [
+            _groupLabel('Ta classe / niveau'),
+            _choice(_classes, _classe, (v) => setState(() => _classe = v!)),
+            const SizedBox(height: 20),
+            _groupLabel('Examen / concours visé'),
+            _choice(_exams, _examen, (v) => setState(() => _examen = v!)),
+            const SizedBox(height: 20),
+            _field('Série (optionnel)', _serieCtrl, 'D — Sciences & Mathématiques',
+                Icons.workspace_premium_outlined),
+          ],
+        1 => [
+            _groupLabel('Quel domaine te fait vibrer ?'),
+            _choice(_fields, _studyField, (v) => setState(() => _studyField = v), allowUnset: true),
+            const SizedBox(height: 20),
+            _field('Ton métier de rêve (optionnel)', _careerCtrl,
+                'Médecin, ingénieur·e, avocat·e…', Icons.auto_awesome_outlined),
+            const SizedBox(height: 20),
+            _groupLabel('Où aimerais-tu étudier ?'),
+            _choice(_destinations, _destination, (v) => setState(() => _destination = v), allowUnset: true),
+          ],
+        _ => [
+            _field('Établissement (optionnel)', _ecoleCtrl, 'Lycée de Bonabéri',
+                Icons.account_balance_outlined),
+            const SizedBox(height: 16),
+            _field('Ville (optionnel)', _villeCtrl, 'Douala', Icons.location_on_outlined),
+            const SizedBox(height: 16),
+            _field('Numéro WhatsApp (optionnel)', _phoneCtrl, '+237 6XX XX XX XX',
+                Icons.chat_rounded, keyboard: TextInputType.phone),
+            const SizedBox(height: 20),
+            _groupLabel('Sexe (optionnel)'),
+            _choice(_genders, _gender, (v) => setState(() => _gender = v), allowUnset: true),
+          ],
+      };
+
+  // ── Widgets utilitaires ────────────────────────────────────────────────────
+  Widget _groupLabel(String t) => Padding(
+        padding: const EdgeInsets.only(bottom: 11),
+        child: Text(t, style: body(13.5, weight: FontWeight.w800, color: OC.ink2)),
+      );
+
+  /// Groupe de puces à sélection unique. [allowUnset] permet de désélectionner
+  /// (champ optionnel) ; sinon une valeur reste toujours active.
+  Widget _choice(List<String> opts, String? value, ValueChanged<String?> onChanged,
+      {bool allowUnset = false}) {
+    return Wrap(spacing: 9, runSpacing: 9, children: opts.map((o) {
+      final on = value == o;
+      return GestureDetector(
+        onTap: () => onChanged(on && allowUnset ? null : o),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 140),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+          decoration: BoxDecoration(
+            color: on ? OC.o50 : OC.paper,
+            borderRadius: BorderRadius.circular(999),
+            border: Border.all(color: on ? OC.o500 : OC.line2, width: 1.5),
+          ),
+          child: Text(o, style: body(13.5, weight: FontWeight.w700, color: on ? OC.o700 : OC.ink2)),
+        ),
+      );
+    }).toList());
   }
 
   Widget _field(String label, TextEditingController c, String hint, IconData icon,
@@ -111,145 +364,5 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
         ),
       ),
     ]);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: OC.bg,
-      body: SafeArea(
-        child: Column(children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(24, 12, 24, 0),
-            child: Row(children: [
-              ProgressDots(count: 3, active: 2),
-              const Spacer(),
-              Text('Étape 3/3', style: body(13, weight: FontWeight.w700, color: OC.muted)),
-            ]),
-          ),
-          Expanded(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.fromLTRB(24, 18, 24, 0),
-              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text('Parle-nous de toi', style: display(25, weight: FontWeight.w700)),
-                const SizedBox(height: 7),
-                Text('Pour adapter ton tuteur et tes alertes. Modifiable à tout moment.',
-                    style: body(14.5, color: OC.ink2).copyWith(height: 1.4)),
-                const SizedBox(height: 22),
-
-                // Level picker
-                Text('Ta classe / niveau', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
-                const SizedBox(height: 11),
-                Wrap(spacing: 9, runSpacing: 9, children: List.generate(_levels.length, (i) {
-                  final on = i == _level;
-                  return GestureDetector(
-                    onTap: () => setState(() => _level = i),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                      decoration: BoxDecoration(
-                        color: on ? OC.o50 : OC.paper,
-                        borderRadius: BorderRadius.circular(999),
-                        border: Border.all(color: on ? OC.o500 : OC.line2, width: 1.5),
-                      ),
-                      child: Text(_levels[i], style: body(13.5, weight: FontWeight.w700, color: on ? OC.o700 : OC.ink2)),
-                    ),
-                  );
-                })),
-                const SizedBox(height: 22),
-
-                // Exam picker
-                Text('Examen / concours visé', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
-                const SizedBox(height: 11),
-                Wrap(spacing: 9, runSpacing: 9, children: List.generate(_exams.length, (i) {
-                  final on = i == _exam;
-                  return GestureDetector(
-                    onTap: () => setState(() => _exam = i),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                      decoration: BoxDecoration(
-                        color: on ? OC.o50 : OC.paper,
-                        borderRadius: BorderRadius.circular(999),
-                        border: Border.all(color: on ? OC.o500 : OC.line2, width: 1.5),
-                      ),
-                      child: Text(_exams[i], style: body(13.5, weight: FontWeight.w700, color: on ? OC.o700 : OC.ink2)),
-                    ),
-                  );
-                })),
-                const SizedBox(height: 22),
-
-                // Infos complémentaires (optionnel)
-                Text('Infos complémentaires (optionnel)', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
-                const SizedBox(height: 4),
-                Text('Ça nous aide à améliorer OnBuch pour les élèves comme toi.',
-                    style: body(12, color: OC.muted, weight: FontWeight.w500)),
-                const SizedBox(height: 12),
-                _field('Numéro WhatsApp', _phoneCtrl, '+237 6XX XX XX XX', Icons.chat_rounded,
-                    keyboard: TextInputType.phone),
-                const SizedBox(height: 14),
-                _field('Série', _serieCtrl, 'D — Sciences & Mathématiques', Icons.workspace_premium_outlined),
-                const SizedBox(height: 14),
-                _field('Établissement', _ecoleCtrl, 'Lycée de Bonabéri', Icons.account_balance_outlined),
-                const SizedBox(height: 14),
-                _field('Ville', _villeCtrl, 'Douala', Icons.location_on_outlined),
-                const SizedBox(height: 16),
-                Text('Sexe', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
-                const SizedBox(height: 10),
-                Wrap(spacing: 9, runSpacing: 9, children: List.generate(_genders.length, (i) {
-                  final on = _gender == _genders[i];
-                  return GestureDetector(
-                    onTap: () => setState(() => _gender = on ? null : _genders[i]),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                      decoration: BoxDecoration(
-                        color: on ? OC.o50 : OC.paper,
-                        borderRadius: BorderRadius.circular(999),
-                        border: Border.all(color: on ? OC.o500 : OC.line2, width: 1.5),
-                      ),
-                      child: Text(_genders[i], style: body(13.5, weight: FontWeight.w700, color: on ? OC.o700 : OC.ink2)),
-                    ),
-                  );
-                })),
-                const SizedBox(height: 24),
-              ]),
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.fromLTRB(24, 10, 24, 16),
-            decoration: const BoxDecoration(
-              color: OC.paper,
-              border: Border(top: BorderSide(color: OC.line, width: 1.5)),
-            ),
-            child: Column(children: [
-              GestureDetector(
-                onTap: _saving ? null : _saveAndContinue,
-                child: Container(
-                  width: double.infinity, height: 50,
-                  decoration: BoxDecoration(
-                    gradient: OC.grad,
-                    borderRadius: BorderRadius.circular(14),
-                    boxShadow: [BoxShadow(color: OC.o500.withValues(alpha:0.30), blurRadius: 14, offset: const Offset(0, 6))],
-                  ),
-                  child: _saving
-                      ? const Center(child: SizedBox(
-                          width: 22, height: 22,
-                          child: CircularProgressIndicator(strokeWidth: 2.5, color: Colors.white),
-                        ))
-                      : Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                          Text('Entrer dans OnBuch', style: body(14, weight: FontWeight.w700, color: Colors.white)),
-                          const SizedBox(width: 8),
-                          const Icon(Icons.arrow_forward_rounded, color: Colors.white, size: 17),
-                        ]),
-                ),
-              ),
-              const SizedBox(height: 10),
-              GestureDetector(
-                onTap: () => context.go('/home'),
-                child: Center(child: Text('Plus tard', style: body(13.5, weight: FontWeight.w600, color: OC.muted))),
-              ),
-            ]),
-          ),
-        ]),
-      ),
-    );
   }
 }
