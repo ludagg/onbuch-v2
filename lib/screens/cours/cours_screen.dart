@@ -276,7 +276,7 @@ class _CoursScreenState extends State<CoursScreen> {
             Container(
               width: 44, height: 44,
               decoration: BoxDecoration(color: s.color.withValues(alpha: 0.14), borderRadius: BorderRadius.circular(13)),
-              child: Center(child: Text(s.code, style: display(16, weight: FontWeight.w700, color: s.color))),
+              child: Center(child: Icon(s.icon, size: 23, color: s.color)),
             ),
             const Spacer(),
             OBRing(
