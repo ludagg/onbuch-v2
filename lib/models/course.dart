@@ -19,6 +19,23 @@ class Subject {
     this.order = 0,
   });
 
+  /// Icône représentative de la matière (déduite du nom) — plus parlante que
+  /// les initiales sur les tuiles.
+  IconData get icon {
+    final n = name.toLowerCase();
+    if (n.contains('math')) return Icons.calculate_rounded;
+    if (n.contains('phys') || n.contains('chim')) return Icons.science_rounded;
+    if (n.contains('svt') || n.contains('vie') || n.contains('bio') || n.contains('nature')) return Icons.biotech_rounded;
+    if (n.contains('philo')) return Icons.psychology_rounded;
+    if (n.contains('franç') || n.contains('france') || n.contains('lettre')) return Icons.menu_book_rounded;
+    if (n.contains('angl') || n.contains('espagnol') || n.contains('allemand') || n.contains('langue')) return Icons.translate_rounded;
+    if (n.contains('hist') || n.contains('géo') || n.contains('geo')) return Icons.public_rounded;
+    if (n.contains('info') || n.contains('numér') || n.contains('numer')) return Icons.computer_rounded;
+    if (n.contains('éco') || n.contains('eco') || n.contains('gestion') || n.contains('compta')) return Icons.trending_up_rounded;
+    if (n.contains('sport') || n.contains('eps')) return Icons.fitness_center_rounded;
+    return Icons.auto_stories_rounded;
+  }
+
   /// Vrai si la matière concerne la [classe] de l'élève (ou s'applique à toutes).
   bool appliesTo(String? classe) {
     if (levels.trim().isEmpty || classe == null || classe.trim().isEmpty) return true;

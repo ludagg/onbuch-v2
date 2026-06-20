@@ -94,7 +94,7 @@ class _ChaptersScreenState extends State<ChaptersScreen> {
                       Container(
                         width: 48, height: 48,
                         decoration: BoxDecoration(color: _accent.withValues(alpha: 0.14), borderRadius: BorderRadius.circular(14)),
-                        child: Center(child: Text(sub?.code ?? '?', style: display(18, weight: FontWeight.w700, color: _accent))),
+                        child: Center(child: Icon(sub?.icon ?? Icons.auto_stories_rounded, size: 25, color: _accent)),
                       ),
                       const SizedBox(width: 13),
                       Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
