@@ -56,6 +56,20 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
   void _start() {
     final r = widget.request;
     if (r == null) return;
+
+    // Mode « Résumer un cours » : plusieurs pages → fiche de révision.
+    if (r.mode == 'summary' && (r.summaryImages?.isNotEmpty ?? false)) {
+      final pages = r.summaryImages!;
+      _msgs.add(_Msg.user(
+        image: pages.first,
+        text: pages.length > 1
+            ? '${pages.length} pages de cours · génère une fiche'
+            : 'Génère une fiche de révision',
+      ));
+      _addAi(_service.summarizeCourse(images: pages, subject: r.subject));
+      return;
+    }
+
     // Bulle utilisateur initiale (photo ou texte)
     if (r.image != null) {
       _msgs.add(_Msg.user(image: r.image, text: r.question));

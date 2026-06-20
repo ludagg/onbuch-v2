@@ -19,6 +19,20 @@ class CaptureService {
     return null;
   }
 
+  /// Rend **toutes les pages** d'un PDF en images PNG (bornées à [maxPages]),
+  /// pour le résumé de cours. Densité modérée pour limiter la RAM.
+  static Future<List<Uint8List>> pdfAllPagesToImages(Uint8List pdfBytes,
+      {double dpi = 130, int maxPages = 8}) async {
+    final out = <Uint8List>[];
+    try {
+      await for (final page in Printing.raster(pdfBytes, dpi: dpi)) {
+        out.add(await page.toPng());
+        if (out.length >= maxPages) break;
+      }
+    } catch (_) {}
+    return out;
+  }
+
   /// Dimensions (largeur, hauteur) en px d'une image encodée, via le décodeur
   /// natif (léger, pas de chargement complet en Dart).
   static Future<(double, double)> imageSize(Uint8List bytes) async {

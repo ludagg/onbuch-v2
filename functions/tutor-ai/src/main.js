@@ -56,6 +56,27 @@ Règles :
 - Questions variées et pertinentes, niveau secondaire, en français.
 - Pas de LaTeX ni de symbole "$" ; écris les maths simplement (x^2, racine de, etc.).`;
 
+// Transcription FIDÈLE de plusieurs pages de cours (pas de résumé à ce stade).
+const COURSE_TRANSCRIBE_PROMPT = `Tu transcris fidèlement le contenu de pages de cours scolaire (manuscrit ou imprimé) en texte structuré.
+- Restitue TOUT le contenu pédagogique dans l'ordre : titres, définitions, propriétés, formules (écris les maths simplement : x^2, sqrt(...), <=, >=), exemples, et décris brièvement schémas/figures.
+- Conserve la structure. Ne résume pas, ne corrige pas, n'ajoute rien.
+- Si une page est illisible ou n'est pas un cours, ignore-la. Si AUCUNE page n'est exploitable, réponds exactement : ILLISIBLE`;
+
+// Fiche de révision synthétique à partir d'un contenu de cours.
+const SUMMARY_PROMPT = `Tu es le Tuteur IA d'OnBuch. On te donne le contenu d'un cours (programme scolaire camerounais). Rédige une FICHE DE RÉVISION synthétique, claire et mémorisable, en français :
+1. Un titre court et une phrase qui situe le chapitre.
+2. **L'essentiel à retenir** : les idées-clés en puces courtes.
+3. **Définitions** importantes.
+4. **Formules / propriétés / méthodes** clés (en LaTeX).
+5. Un mini-exemple ou cas typique si utile.
+6. **Pièges à éviter** ou moyen mnémotechnique.
+7. **À retenir** : 3 à 5 points ultra-condensés.
+
+FORMAT — l'app rend du Markdown enrichi :
+- Markdown : titres courts, listes, **gras**, tableaux si utile.
+- Maths en LaTeX : en ligne \\( ... \\) et en bloc \\[ ... \\]. N'utilise PAS le symbole "$".
+C'est une FICHE, pas un cours complet : va à l'essentiel, sois condensé et structuré.`;
+
 class NvError extends Error {
   constructor(status) {
     super(`nvidia_${status}`);
@@ -197,6 +218,10 @@ export default async ({ req, res, error }) => {
     input = {};
   }
   const image = (typeof input.image === 'string' && input.image) ? input.image : null;
+  // Plusieurs pages (mode résumé de cours). Borné à 8 pages pour le payload.
+  const imageList = (Array.isArray(input.images) ? input.images : (image ? [image] : []))
+    .filter((s) => typeof s === 'string' && s)
+    .slice(0, 8);
   const question = (input.question || '').toString().trim();
   const mode = (input.mode || '').toString();
   const chapterId = (input.chapterId || '').toString() || null;
@@ -220,7 +245,7 @@ export default async ({ req, res, error }) => {
     error('NVIDIA_API_KEY absente.');
     return finish({ status: 'error', error: 'Tuteur IA non configuré côté serveur.' });
   }
-  if (!image && !question && !(messages && messages.length)) {
+  if (!image && !imageList.length && !question && !(messages && messages.length)) {
     return finish({ status: 'error', error: 'Aucun exercice fourni (photo ou texte).' });
   }
 
@@ -228,8 +253,8 @@ export default async ({ req, res, error }) => {
   const db = process.env.DATABASE_ID;
   const freeDaily = parseInt(process.env.FREE_DAILY || '3', 10);
   let quota = null;
-  // Les cours et quiz (mode lesson/quiz) sont gratuits et mutualisés : pas de quota.
-  const isFree = mode === 'lesson' || mode === 'quiz';
+  // Cours, quiz et fiches de révision (lesson/quiz/summary) sont gratuits : pas de quota.
+  const isFree = mode === 'lesson' || mode === 'quiz' || mode === 'summary';
   if (db && uid && !isFree) {
     quota = await readQuota(db, uid);
     if (quota.freeResetDate !== todayStr()) {
@@ -253,6 +278,39 @@ export default async ({ req, res, error }) => {
   };
 
   try {
+    // ── Résumé de cours → fiche de révision (multi-pages) ───────────────────
+    if (mode === 'summary') {
+      let courseText = '';
+      if (imageList.length) {
+        const content = [{
+          type: 'text',
+          text: `Transcris fidèlement le contenu de cours de ces ${imageList.length} page(s), dans l'ordre.`,
+        }];
+        for (const im of imageList) {
+          content.push({ type: 'image_url', image_url: { url: `data:image/jpeg;base64,${im}` } });
+        }
+        courseText = await callNvidia(apiKey, visionModel, [
+          { role: 'system', content: COURSE_TRANSCRIBE_PROMPT },
+          { role: 'user', content },
+        ], 2400);
+        if (!courseText || /^illisible/i.test(courseText.trim())) {
+          return finish({ status: 'error', error: 'Pages illisibles. Reprends des photos nettes et bien cadrées du cours.' });
+        }
+      }
+      if (question) courseText = courseText ? `${courseText}\n\n${question}` : question;
+      if (!courseText.trim()) {
+        return finish({ status: 'error', error: 'Aucun contenu de cours fourni.' });
+      }
+      const fiche = await callNvidia(apiKey, reasoningModel, [
+        { role: 'system', content: SUMMARY_PROMPT },
+        { role: 'user', content: courseText.slice(0, 24000) },
+      ], 3600);
+      if (!fiche) {
+        return finish({ status: 'error', error: "Le Tuteur n'a pas pu rédiger la fiche. Réessaie." });
+      }
+      return finish({ status: 'done', correction: fiche, title: subject ? `Fiche : ${subject}` : 'Fiche de révision', subject });
+    }
+
     // Suivi de conversation (texte uniquement, pas de vision).
     if (messages && messages.length) {
       const reply = await callNvidia(apiKey, reasoningModel, [
