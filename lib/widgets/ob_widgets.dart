@@ -1,4 +1,5 @@
 // Shared UI primitives for OnBuch V2
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../theme/app_theme.dart';
@@ -658,4 +659,44 @@ class PillBadge extends StatelessWidget {
       ),
     );
   }
+}
+
+// ─── Anneau de progression réutilisable ───────────────────────────────────────
+class OBRing extends StatelessWidget {
+  final double pct; // 0..1
+  final double size;
+  final Color color;
+  final Color track;
+  final Widget? center;
+  const OBRing({super.key, required this.pct, this.size = 40, this.color = OC.o500, this.track = OC.line, this.center});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: size, height: size,
+      child: Stack(alignment: Alignment.center, children: [
+        CustomPaint(size: Size.square(size), painter: _OBRingPainter(pct.clamp(0.0, 1.0), color, track)),
+        if (center != null) center!,
+      ]),
+    );
+  }
+}
+
+class _OBRingPainter extends CustomPainter {
+  final double pct;
+  final Color color, track;
+  _OBRingPainter(this.pct, this.color, this.track);
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final stroke = size.width * 0.12;
+    final rect = Offset(stroke / 2, stroke / 2) & Size(size.width - stroke, size.height - stroke);
+    final bg = Paint()..style = PaintingStyle.stroke..strokeWidth = stroke..color = track;
+    final fg = Paint()..style = PaintingStyle.stroke..strokeWidth = stroke..color = color..strokeCap = StrokeCap.round;
+    canvas.drawArc(rect, 0, 2 * math.pi, false, bg);
+    if (pct > 0) canvas.drawArc(rect, -math.pi / 2, 2 * math.pi * pct, false, fg);
+  }
+
+  @override
+  bool shouldRepaint(covariant _OBRingPainter old) => old.pct != pct || old.color != color || old.track != track;
 }

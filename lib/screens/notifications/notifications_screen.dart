@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
+import '../../widgets/skeletons.dart';
 import '../../models/app_notification.dart';
 import '../../services/notifications_service.dart';
 
@@ -92,10 +93,8 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
   Widget _buildBody() {
     if (_loading) {
       return ListView(
-        children: const [
-          SizedBox(height: 200),
-          Center(child: CircularProgressIndicator(color: OC.o500)),
-        ],
+        padding: const EdgeInsets.fromLTRB(20, 14, 20, 28),
+        children: const [SkeletonList(count: 6)],
       );
     }
     final items = _items ?? const <AppNotification>[];

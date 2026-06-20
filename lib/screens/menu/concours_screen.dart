@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import '../../theme/app_theme.dart';
+import '../../widgets/skeletons.dart';
+import '../../widgets/states.dart';
 import '../../models/concours.dart';
 import '../../services/database_service.dart';
 
@@ -60,7 +62,14 @@ class _ConcoursScreenState extends State<ConcoursScreen> {
         future: _future,
         builder: (context, snap) {
           if (snap.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator(color: OC.o500));
+            return ListView(
+              padding: const EdgeInsets.fromLTRB(20, 16, 20, 28),
+              children: const [
+                Skeleton(width: double.infinity, height: 150, radius: 24),
+                SizedBox(height: 22),
+                SkeletonList(count: 4),
+              ],
+            );
           }
           final all = snap.data ?? const <Concours>[];
           // Clôture la plus proche → carte vedette.
@@ -104,10 +113,11 @@ class _ConcoursScreenState extends State<ConcoursScreen> {
 
               _label('Concours ouverts · ${all.length}'),
               const SizedBox(height: 12),
-              ...rest.map((c) => Padding(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    child: _ConcoursRow(c),
-                  )),
+              for (var i = 0; i < rest.length; i++)
+                Appear(index: i, child: Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: _ConcoursRow(rest[i]),
+                )),
 
               const SizedBox(height: 8),
               _nativeAd(context),
