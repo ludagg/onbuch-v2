@@ -99,7 +99,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
           onPressed: () => context.go('/home'),
         ),
         actions: [
-          IconButton(icon: const Icon(Icons.edit_outlined, size: 19), color: OC.ink2, onPressed: () {}),
+          IconButton(
+            icon: const Icon(Icons.edit_outlined, size: 19),
+            color: OC.ink2,
+            tooltip: 'Modifier mon profil',
+            onPressed: () async {
+              await context.push('/edit-profile');
+              if (mounted) _load();
+            },
+          ),
         ],
       ),
       body: SingleChildScrollView(

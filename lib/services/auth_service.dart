@@ -101,6 +101,14 @@ class AuthService extends ChangeNotifier {
     }
   }
 
+  /// Met à jour le nom affiché du compte (et le cache local du prénom).
+  Future<void> updateName(String name) async {
+    await AppwriteClient.account.updateName(name: name.trim());
+    _userCache = null;
+    await _persistName(name);
+    notifyListeners();
+  }
+
   /// Connecté ? Tolérant au hors-ligne : un échec **réseau** ne déconnecte pas
   /// l'utilisateur (on garde le dernier état connu) ; seul un vrai 401 le fait.
   Future<bool> isLoggedIn() async {
