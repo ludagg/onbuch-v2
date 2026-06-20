@@ -1,0 +1,23 @@
+# Le déploiement Vercel ne concerne que le back-office (admin/).
+# On exclut tout le projet Flutter et les artefacts pour un upload léger.
+/android
+/ios
+/linux
+/macos
+/windows
+/web
+/lib
+/test
+/assets
+/functions
+/tools
+/build
+/.dart_tool
+/.github
+**/node_modules
+admin/build
+admin/.svelte-kit
+*.iml
+*.lock
+pubspec.yaml
+analysis_options.yaml
