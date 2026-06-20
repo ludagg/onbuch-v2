@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
 import '../../services/database_service.dart';
+import '../../services/analytics_service.dart';
 
 // (libellé, sous-titre, examType côté backend, libellé champ, exemple)
 const _exams = [
@@ -47,6 +48,7 @@ class _ResultsSearchScreenState extends State<ResultsSearchScreen> {
       examType: _exams[_examIdx].$3,
       tableNumber: table,
     );
+    AnalyticsService.logEvent('result_search', {'exam': _exams[_examIdx].$3, 'found': result != null});
     if (!mounted) return;
     setState(() => _loading = false);
 
