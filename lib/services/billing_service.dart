@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:in_app_purchase/in_app_purchase.dart';
 import 'appwrite_client.dart';
+import 'analytics_service.dart';
 
 /// Achats intégrés via Google Play Billing, pour les **crédits Tuteur**
 /// (biens numériques — exigés par les règles du Play Store).
@@ -80,6 +81,7 @@ class BillingService {
           // « possédé » et bloque un nouvel achat).
           if (p.pendingCompletePurchase) await _iap.completePurchase(p);
           if (ok) {
+            AnalyticsService.logEvent('credits_purchased', {'product': p.productID, 'credits': creditProducts[p.productID] ?? 0});
             onCredited?.call(creditProducts[p.productID] ?? 0);
           } else {
             onError?.call('Paiement reçu mais vérification échouée. Réessaie ou contacte le support.');

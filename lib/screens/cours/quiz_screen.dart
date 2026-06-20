@@ -6,6 +6,7 @@ import '../../models/course.dart';
 import '../../models/quiz.dart';
 import '../../services/database_service.dart';
 import '../../services/tutor_service.dart';
+import '../../services/analytics_service.dart';
 
 /// Quiz/QCM (refonte « Nomad Educ ») : une question à la fois, minuteur, barre
 /// de progression, puis écran de résultat.
@@ -79,6 +80,9 @@ class _QuizScreenState extends State<QuizScreen> {
     _timer?.cancel();
     final c = widget.chapter;
     if (c != null) _db.markChapterViewed(c.id);
+    final qs = _questions ?? const <QuizQuestion>[];
+    final correct = [for (var i = 0; i < qs.length; i++) if (_answers[i] == qs[i].answer) 1].length;
+    AnalyticsService.logEvent('quiz_completed', {'total': qs.length, 'correct': correct});
     context.pushReplacement('/cours-quiz-result', extra: {
       'questions': _questions,
       'answers': Map<int, int>.from(_answers),

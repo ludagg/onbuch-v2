@@ -7,6 +7,7 @@ import '../../theme/app_theme.dart';
 import '../../models/concours.dart';
 import '../../services/auth_service.dart';
 import '../../services/database_service.dart';
+import '../../services/analytics_service.dart';
 
 /// Parcours d'inscription à un concours (section C des wireframes) :
 /// éligibilité → infos → documents → paiement Mobile Money → confirmation.
@@ -100,6 +101,7 @@ class _ConcoursInscriptionScreenState extends State<ConcoursInscriptionScreen> {
           receiptNo: receipt,
         );
         _saved = true;
+        AnalyticsService.logEvent('concours_apply', {'concours': c.name});
       }
     } catch (_) {
       _saved = false;

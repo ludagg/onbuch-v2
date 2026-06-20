@@ -7,6 +7,7 @@ import '../../widgets/leo_mascot.dart';
 import '../../models/course.dart';
 import '../../services/database_service.dart';
 import '../../services/tutor_service.dart';
+import '../../services/analytics_service.dart';
 import '../../utils/launch.dart';
 
 /// Lecteur de leçon (refonte « Nomad Educ ») : vidéo + fiche de cours générée
@@ -29,6 +30,7 @@ class _ChapterDetailScreenState extends State<ChapterDetailScreen> {
     final c = widget.chapter;
     if (c == null) throw 'Chapitre introuvable.';
     _db.markChapterViewed(c.id); // progression (non bloquant)
+    AnalyticsService.logEvent('lesson_open', {'chapter': c.title, 'subject': widget.subjectName ?? ''});
     final cached = await _db.getLesson(c.id);
     if (cached != null && cached.trim().isNotEmpty) return cached;
     final subj = widget.subjectName ?? '';
