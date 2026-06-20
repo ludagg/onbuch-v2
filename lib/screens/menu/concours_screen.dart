@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/skeletons.dart';
+import '../../widgets/states.dart';
 import '../../models/concours.dart';
 import '../../services/database_service.dart';
 
@@ -112,10 +113,11 @@ class _ConcoursScreenState extends State<ConcoursScreen> {
 
               _label('Concours ouverts · ${all.length}'),
               const SizedBox(height: 12),
-              ...rest.map((c) => Padding(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    child: _ConcoursRow(c),
-                  )),
+              for (var i = 0; i < rest.length; i++)
+                Appear(index: i, child: Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: _ConcoursRow(rest[i]),
+                )),
 
               const SizedBox(height: 8),
               _nativeAd(context),

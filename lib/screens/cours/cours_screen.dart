@@ -131,7 +131,10 @@ class _CoursScreenState extends State<CoursScreen> {
                 const SizedBox(height: 12),
                 Wrap(
                   spacing: 12, runSpacing: 12,
-                  children: _visible.map((s) => _subjectCard(s, w)).toList(),
+                  children: [
+                    for (var i = 0; i < _visible.length; i++)
+                      Appear(index: i, child: _subjectCard(_visible[i], w)),
+                  ],
                 ),
               ],
             ]),
