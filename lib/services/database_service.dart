@@ -13,6 +13,7 @@ import '../models/quiz.dart';
 import '../models/affiche.dart';
 import '../models/app_notification.dart';
 import '../models/exam_result.dart';
+import '../models/exam_series.dart';
 import 'appwrite_client.dart';
 
 class DatabaseService {
@@ -122,6 +123,28 @@ class DatabaseService {
   /// Vérifie si le profil d'un utilisateur existe déjà.
   Future<bool> profileExists(String uid) async {
     return await getUserProfile(uid) != null;
+  }
+
+  /// Catalogue des séries / filières (toutes confondues, filtrées par cursus
+  /// côté UI). Configuré par l'admin dans la collection `exam_series`.
+  /// Tolérant hors-ligne (cache mémoire) ; renvoie une liste vide en cas
+  /// d'échec pour laisser l'UI basculer sur une saisie libre.
+  Future<List<ExamSeries>> getExamSeries({bool force = false}) {
+    return _cachedList<ExamSeries>('exam_series', () async {
+      try {
+        final res = await AppwriteClient.databases.listDocuments(
+          databaseId: appwriteDatabaseId,
+          collectionId: appwriteExamSeriesCollectionId,
+          queries: [Query.limit(500)],
+        );
+        return res.documents
+            .map((d) => ExamSeries.fromMap(d.data))
+            .where((s) => s.active && s.name.isNotEmpty)
+            .toList();
+      } on AppwriteException {
+        return <ExamSeries>[];
+      }
+    }, force: force);
   }
 
   // ── Résultats d'examens ──────────────────────────────────────────────────
