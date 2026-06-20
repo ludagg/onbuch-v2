@@ -68,6 +68,32 @@ class TutorService {
     return _run(payload, jobId);
   }
 
+  /// Résume un cours (plusieurs pages photo et/ou texte) en **fiche de
+  /// révision**. Mode `summary` (gratuit, hors quota). Renvoie la fiche en
+  /// Markdown. Lève une [String] lisible en cas d'erreur.
+  Future<String> summarizeCourse({
+    List<Uint8List> images = const [],
+    String? text,
+    String? subject,
+  }) async {
+    if (images.isEmpty && (text == null || text.trim().isEmpty)) {
+      throw 'Ajoute au moins une page de cours (photo ou PDF).';
+    }
+    final b64s = <String>[];
+    for (final im in images.take(8)) {
+      b64s.add(await compute(_compressToBase64, im));
+    }
+    final jobId = ID.unique();
+    final payload = <String, dynamic>{
+      'jobId': jobId,
+      if (b64s.isNotEmpty) 'images': b64s,
+      if (text != null && text.trim().isNotEmpty) 'question': text.trim(),
+      if (subject != null && subject.trim().isNotEmpty) 'subject': subject.trim(),
+      'mode': 'summary',
+    };
+    return _run(payload, jobId);
+  }
+
   /// Question de suivi dans une conversation. [messages] = historique
   /// [{role:'user'|'assistant', content}]. Renvoie la réponse de l'assistant.
   Future<String> continueConversation(List<Map<String, String>> messages) async {

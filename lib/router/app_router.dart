@@ -23,6 +23,7 @@ import '../screens/tutor/tutor_correction_screen.dart';
 import '../screens/tutor/tutor_similar_screen.dart';
 import '../screens/tutor/tutor_mode_screens.dart';
 import '../screens/tutor/camera_capture_screen.dart';
+import '../screens/tutor/course_summary_screen.dart';
 import '../screens/tutor/crop_screen.dart';
 import '../screens/profile/profile_screen.dart';
 import '../screens/profile/edit_profile_screen.dart';
@@ -180,6 +181,7 @@ final appRouter = GoRouter(
             GoRoute(path: 'expliquer', builder: (_, __) => const TutorExpliquerScreen()),
             GoRoute(path: 'entrainer', builder: (_, __) => const TutorEntrainerScreen()),
             GoRoute(path: 'capture', builder: (_, s) => CameraCaptureScreen(subject: s.extra as String?)),
+            GoRoute(path: 'resume', builder: (_, s) => CourseSummaryScreen(subject: s.extra as String?)),
             GoRoute(
               path: 'crop',
               builder: (_, s) {

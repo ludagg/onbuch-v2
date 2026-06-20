@@ -158,6 +158,8 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
             const SizedBox(width: 11),
             _mode('S\'entraîner', Icons.fitness_center_rounded, () => context.push('/tutor/entrainer')),
           ]),
+          const SizedBox(height: 12),
+          _summaryCard(),
           const SizedBox(height: 24),
 
           // ── Reprendre ─────────────────────────────────────────────────────
@@ -244,6 +246,47 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
           const SizedBox(width: 12),
           Expanded(child: Text('« $text »', style: body(13, weight: FontWeight.w600, color: OC.ink2))),
           const Icon(Icons.north_east_rounded, size: 16, color: OC.muted),
+        ]),
+      ),
+    );
+  }
+
+  // Carte « Résumer un cours » → fiche de révision (gratuit).
+  Widget _summaryCard() {
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () async {
+        await context.push('/tutor/resume');
+        if (mounted) setState(() => _recent = _service.recentJobs());
+      },
+      child: Container(
+        padding: const EdgeInsets.all(14),
+        decoration: BoxDecoration(
+          color: OC.o50,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: OC.o100, width: 1.5),
+        ),
+        child: Row(children: [
+          Container(
+            width: 44, height: 44,
+            decoration: BoxDecoration(color: OC.paper, borderRadius: BorderRadius.circular(13), border: Border.all(color: OC.o100, width: 1.5)),
+            child: const Icon(Icons.auto_stories_outlined, size: 22, color: OC.o600),
+          ),
+          const SizedBox(width: 12),
+          Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Row(children: [
+              Text('Résumer un cours', style: body(14.5, weight: FontWeight.w700, color: OC.ink)),
+              const SizedBox(width: 8),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
+                decoration: BoxDecoration(color: OC.good.withValues(alpha: 0.14), borderRadius: BorderRadius.circular(999)),
+                child: Text('Gratuit', style: body(10.5, weight: FontWeight.w800, color: OC.good)),
+              ),
+            ]),
+            const SizedBox(height: 3),
+            Text('Photos ou PDF → fiche de révision', style: body(12, color: OC.o700, weight: FontWeight.w600)),
+          ])),
+          const Icon(Icons.chevron_right_rounded, color: OC.o600, size: 22),
         ]),
       ),
     );

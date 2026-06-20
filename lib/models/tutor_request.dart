@@ -12,9 +12,10 @@ class TutorRequest {
   final String? subject;
   final String? jobId;
   final String? titleHint;
-  final String? mode; // ex. 'lesson' pour générer un cours
+  final String? mode; // ex. 'lesson' pour générer un cours, 'summary' pour une fiche
   final String? chapterId; // pour la mise en cache d'une fiche de cours
   final String? presetAnswer; // contenu déjà disponible (cache) -> pas d'appel IA
+  final List<Uint8List>? summaryImages; // pages à résumer en fiche (mode 'summary')
 
   const TutorRequest({
     this.image,
@@ -25,5 +26,6 @@ class TutorRequest {
     this.mode,
     this.chapterId,
     this.presetAnswer,
+    this.summaryImages,
   });
 }
