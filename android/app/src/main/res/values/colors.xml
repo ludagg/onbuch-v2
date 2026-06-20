@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Couleur de marque OnBuch (orange) pour les notifications push. -->
+    <color name="ob_notif">#FFF59321</color>
+</resources>
