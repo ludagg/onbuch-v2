@@ -39,11 +39,33 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
   final _inputCtrl = TextEditingController();
   final _scroll = ScrollController();
   final List<_Msg> _msgs = [];
+  bool _bgNotice = false; // génération en arrière-plan → message « tu peux quitter »
 
   @override
   void initState() {
     super.initState();
     _start();
+    if (_bgNotice) {
+      WidgetsBinding.instance.addPostFrameCallback((_) => _showBgNotice());
+    }
+  }
+
+  void _showBgNotice() {
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      duration: const Duration(seconds: 5),
+      backgroundColor: OC.ink,
+      behavior: SnackBarBehavior.floating,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+      content: Row(children: [
+        const Icon(Icons.notifications_active_outlined, color: Colors.white, size: 18),
+        const SizedBox(width: 10),
+        Expanded(
+          child: Text('Tu peux fermer l\'app : Léo te préviendra dès que c\'est prêt.',
+              style: body(12.5, weight: FontWeight.w600, color: Colors.white)),
+        ),
+      ]),
+    ));
   }
 
   @override
@@ -66,6 +88,7 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
             ? '${pages.length} pages de cours · génère une fiche'
             : 'Génère une fiche de révision',
       ));
+      _bgNotice = true;
       _addAi(_service.summarizeCourse(images: pages, subject: r.subject));
       return;
     }
@@ -85,9 +108,15 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
     } else if (r.jobId != null) {
       fut = _service.getJobCorrection(r.jobId!);
     } else if (r.image != null) {
-      fut = _service.analyzeExercise(image: r.image, subject: r.subject);
+      _bgNotice = true;
+      fut = _service.analyzeExercise(image: r.image, subject: r.subject, notify: true);
     } else if (r.question != null && r.question!.trim().isNotEmpty) {
-      fut = _service.analyzeExercise(text: r.question, subject: r.subject, mode: r.mode, chapterId: r.chapterId);
+      // Les corrections (mode libre) tournent en arrière-plan + push ; les
+      // modes cachés (lesson/quiz) restent silencieux.
+      final bg = r.mode == null || r.mode!.isEmpty;
+      _bgNotice = bg;
+      fut = _service.analyzeExercise(
+          text: r.question, subject: r.subject, mode: r.mode, chapterId: r.chapterId, notify: bg);
     }
     if (fut != null) _addAi(fut);
   }

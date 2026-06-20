@@ -182,6 +182,13 @@ final appRouter = GoRouter(
             GoRoute(path: 'entrainer', builder: (_, __) => const TutorEntrainerScreen()),
             GoRoute(path: 'capture', builder: (_, s) => CameraCaptureScreen(subject: s.extra as String?)),
             GoRoute(path: 'resume', builder: (_, s) => CourseSummaryScreen(subject: s.extra as String?)),
+            // Ouverture d'un job terminé par tap sur une notification push.
+            GoRoute(
+              path: 'job/:id',
+              builder: (_, s) => TutorCorrectionScreen(
+                request: TutorRequest(jobId: s.pathParameters['id']),
+              ),
+            ),
             GoRoute(
               path: 'crop',
               builder: (_, s) {
