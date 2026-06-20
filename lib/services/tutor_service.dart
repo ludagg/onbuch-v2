@@ -48,6 +48,7 @@ class TutorService {
     String? subject,
     String? mode,
     String? chapterId,
+    bool notify = false,
   }) async {
     if (image == null && (text == null || text.trim().isEmpty)) {
       throw 'Fournis une photo ou écris ton exercice.';
@@ -63,6 +64,7 @@ class TutorService {
       if (subject != null && subject.trim().isNotEmpty) 'subject': subject.trim(),
       if (mode != null && mode.isNotEmpty) 'mode': mode,
       if (chapterId != null && chapterId.isNotEmpty) 'chapterId': chapterId,
+      if (notify) 'notify': true,
     };
 
     return _run(payload, jobId);
@@ -75,6 +77,7 @@ class TutorService {
     List<Uint8List> images = const [],
     String? text,
     String? subject,
+    bool notify = true,
   }) async {
     if (images.isEmpty && (text == null || text.trim().isEmpty)) {
       throw 'Ajoute au moins une page de cours (photo ou PDF).';
@@ -90,6 +93,7 @@ class TutorService {
       if (text != null && text.trim().isNotEmpty) 'question': text.trim(),
       if (subject != null && subject.trim().isNotEmpty) 'subject': subject.trim(),
       'mode': 'summary',
+      if (notify) 'notify': true,
     };
     return _run(payload, jobId);
   }

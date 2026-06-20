@@ -196,6 +196,23 @@ async function writeQuiz(chapterId, content) {
   }
 }
 
+// Envoi d'un push à l'utilisateur (via Appwrite Messaging + provider FCM).
+// L'app a enregistré le token FCM comme cible (account.createPushTarget), donc
+// on cible par `users: [uid]`. `route` arrive dans data → navigation au tap.
+function genId() {
+  return ('job' + Date.now().toString(36) + Math.random().toString(36).slice(2, 10)).slice(0, 36);
+}
+async function sendPush(uid, title, body, route) {
+  const payload = { messageId: genId(), title, body, users: [uid] };
+  if (route) payload.data = { route };
+  const r = await awFetch('POST', '/messaging/messages/push', payload);
+  if (!r.ok) {
+    const t = await r.text();
+    throw new Error(`push ${r.status}: ${t.slice(0, 160)}`);
+  }
+  return true;
+}
+
 async function writeQuota(db, uid, q) {
   const data = { freeUsedToday: q.freeUsedToday, freeResetDate: q.freeResetDate, credits: q.credits };
   let r = await awFetch('POST', `/databases/${db}/collections/${QUOTA_COL}/documents`,
@@ -228,6 +245,12 @@ export default async ({ req, res, error }) => {
   const subject = (input.subject || '').toString().trim().slice(0, 40);
   const jobId = (input.jobId || '').toString() || null;
   const uid = req.headers['x-appwrite-user-id'] || null;
+  // Si true : prévenir l'utilisateur par push quand le job est prêt (génération
+  // en arrière-plan ; il peut quitter l'app).
+  const notify = input.notify === true || input.notify === 'true';
+  // Activé seulement une fois la génération réellement lancée (pas sur les
+  // erreurs précoces type quota dépassé).
+  let willNotify = false;
   // Historique de conversation (suivi) : [{role:'user'|'assistant', content}]
   const messages = Array.isArray(input.messages)
     ? input.messages
@@ -238,6 +261,20 @@ export default async ({ req, res, error }) => {
 
   const finish = async (result) => {
     await writeJob(jobId, uid, result, error);
+    if (willNotify && uid) {
+      try {
+        if (result.status === 'done') {
+          const body = mode === 'summary'
+            ? 'Ta fiche de révision est prête ✅'
+            : 'Ta correction est prête ✅';
+          await sendPush(uid, 'Léo a terminé', body, jobId ? `/tutor/job/${jobId}` : '/tutor');
+        } else if (result.status === 'error') {
+          await sendPush(uid, 'Génération interrompue', result.error || 'Réessaie depuis le Tuteur.', '/tutor');
+        }
+      } catch (e) {
+        error(`sendPush: ${String(e)}`);
+      }
+    }
     return res.json(result);
   };
 
@@ -276,6 +313,9 @@ export default async ({ req, res, error }) => {
       try { await writeQuota(db, uid, quota); } catch (e) { error(`writeQuota: ${String(e)}`); }
     }
   };
+
+  // Le quota est validé : la génération démarre → on préviendra par push.
+  if (notify && uid) willNotify = true;
 
   try {
     // ── Résumé de cours → fiche de révision (multi-pages) ───────────────────
