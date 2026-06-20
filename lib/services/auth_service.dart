@@ -109,6 +109,27 @@ class AuthService extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// Change le mot de passe (nécessite l'ancien).
+  Future<void> updatePassword(String newPassword, String oldPassword) async {
+    try {
+      await AppwriteClient.account.updatePassword(password: newPassword, oldPassword: oldPassword);
+    } on AppwriteException catch (e) {
+      throw _mapError(e, action: _AuthAction.login);
+    }
+  }
+
+  /// Désactive (supprime) le compte courant puis déconnecte. Irréversible côté
+  /// utilisateur (le compte est bloqué côté Appwrite).
+  Future<void> deleteAccount() async {
+    try {
+      await AppwriteClient.account.updateStatus();
+    } on AppwriteException catch (e) {
+      throw _mapError(e, action: _AuthAction.login);
+    } finally {
+      await signOut();
+    }
+  }
+
   /// Connecté ? Tolérant au hors-ligne : un échec **réseau** ne déconnecte pas
   /// l'utilisateur (on garde le dernier état connu) ; seul un vrai 401 le fait.
   Future<bool> isLoggedIn() async {
