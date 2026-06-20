@@ -1,14 +1,25 @@
 import 'package:flutter/material.dart';
 
+/// Humeurs disponibles de Léo (chaque humeur = un asset transparent).
+enum LeoMood { idle, thinking, celebrate, encourage, wave }
+
+const Map<LeoMood, String> _leoAssets = {
+  LeoMood.idle: 'assets/images/leo.png',
+  LeoMood.thinking: 'assets/images/leo_thinking.png',
+  LeoMood.celebrate: 'assets/images/leo_celebrate.png',
+  LeoMood.encourage: 'assets/images/leo_encourage.png',
+  LeoMood.wave: 'assets/images/leo_wave.png',
+};
+
 /// Léo, la mascotte OnBuch (petit lion). Affiché **animé** (léger flottement
-/// + respiration) pour le rendre vivant, jamais figé. Image transparente
-/// réutilisable partout.
+/// + respiration) pour le rendre vivant, jamais figé. [mood] choisit l'humeur.
 class LeoMascot extends StatefulWidget {
   final double size;
+  final LeoMood mood;
 
   /// Décalage de phase pour désynchroniser plusieurs mascottes à l'écran.
   final double phase;
-  const LeoMascot({super.key, this.size = 64, this.phase = 0});
+  const LeoMascot({super.key, this.size = 64, this.mood = LeoMood.idle, this.phase = 0});
 
   @override
   State<LeoMascot> createState() => _LeoMascotState();
@@ -17,7 +28,8 @@ class LeoMascot extends StatefulWidget {
 class _LeoMascotState extends State<LeoMascot> with SingleTickerProviderStateMixin {
   late final AnimationController _c = AnimationController(
     vsync: this,
-    duration: const Duration(milliseconds: 2800),
+    // Léo « réfléchit » bouge un peu plus vite (effet vivant pendant l'attente).
+    duration: Duration(milliseconds: widget.mood == LeoMood.thinking ? 1700 : 2800),
   )..repeat(reverse: true);
 
   @override
@@ -28,10 +40,10 @@ class _LeoMascotState extends State<LeoMascot> with SingleTickerProviderStateMix
 
   @override
   Widget build(BuildContext context) {
+    final asset = _leoAssets[widget.mood] ?? _leoAssets[LeoMood.idle]!;
     return AnimatedBuilder(
       animation: _c,
       builder: (context, child) {
-        // Valeur 0→1→0 douce, décalée par `phase`.
         final raw = (_c.value + widget.phase) % 1.0;
         final t = Curves.easeInOut.transform(raw <= 0.5 ? raw * 2 : (1 - raw) * 2);
         final dy = -widget.size * 0.05 * t; // flottement vertical
@@ -46,7 +58,7 @@ class _LeoMascotState extends State<LeoMascot> with SingleTickerProviderStateMix
         );
       },
       child: Image.asset(
-        'assets/images/leo.png',
+        asset,
         width: widget.size,
         height: widget.size,
         fit: BoxFit.contain,

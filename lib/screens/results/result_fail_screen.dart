@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
+import '../../widgets/leo_mascot.dart';
 import '../../models/exam_result.dart';
 
 class ResultFailScreen extends StatelessWidget {
@@ -31,12 +32,8 @@ class ResultFailScreen extends StatelessWidget {
       body: SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
         child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-          Container(
-            width: 60, height: 60,
-            decoration: const BoxDecoration(color: Color(0xFFFBEFE4), shape: BoxShape.circle),
-            child: const Icon(Icons.favorite_border_rounded, size: 30, color: OC.warn),
-          ),
-          const SizedBox(height: 12),
+          const LeoMascot(size: 104, mood: LeoMood.encourage),
+          const SizedBox(height: 6),
           Text('Ce n\'est qu\'une étape', style: display(23, weight: FontWeight.w700), textAlign: TextAlign.center),
           const SizedBox(height: 6),
           const Text(

@@ -10,6 +10,9 @@ class EmptyState extends StatelessWidget {
   final String? actionLabel;
   final VoidCallback? onAction;
   final EdgeInsets padding;
+
+  /// Illustration optionnelle (ex. `LeoMascot`) affichée à la place de l'icône.
+  final Widget? art;
   const EmptyState({
     super.key,
     required this.icon,
@@ -18,6 +21,7 @@ class EmptyState extends StatelessWidget {
     this.actionLabel,
     this.onAction,
     this.padding = const EdgeInsets.fromLTRB(32, 60, 32, 40),
+    this.art,
   });
 
   @override
@@ -26,11 +30,12 @@ class EmptyState extends StatelessWidget {
       child: Padding(
         padding: padding,
         child: Column(mainAxisSize: MainAxisSize.min, children: [
-          Container(
-            width: 76, height: 76,
-            decoration: BoxDecoration(color: OC.o50, shape: BoxShape.circle),
-            child: Icon(icon, size: 36, color: OC.o500),
-          ),
+          art ??
+              Container(
+                width: 76, height: 76,
+                decoration: BoxDecoration(color: OC.o50, shape: BoxShape.circle),
+                child: Icon(icon, size: 36, color: OC.o500),
+              ),
           const SizedBox(height: 16),
           Text(title, textAlign: TextAlign.center, style: display(18, weight: FontWeight.w700)),
           if (message != null) ...[

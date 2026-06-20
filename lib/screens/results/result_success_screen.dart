@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
+import '../../widgets/leo_mascot.dart';
 import '../../models/exam_result.dart';
 
 class ResultSuccessScreen extends StatelessWidget {
@@ -48,12 +49,8 @@ class ResultSuccessScreen extends StatelessWidget {
       body: SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
         child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-          Container(
-            width: 60, height: 60,
-            decoration: const BoxDecoration(color: OC.goodBg, shape: BoxShape.circle),
-            child: const Icon(Icons.check_circle_outline_rounded, size: 34, color: OC.good),
-          ),
-          const SizedBox(height: 12),
+          const LeoMascot(size: 104, mood: LeoMood.celebrate),
+          const SizedBox(height: 6),
           Text('Félicitations, tu es admis·e ! 🎉', style: display(24, weight: FontWeight.w700), textAlign: TextAlign.center),
           const SizedBox(height: 6),
           Text('Partage la bonne nouvelle avec ta famille.', style: body(14, color: OC.ink2, weight: FontWeight.w500)),

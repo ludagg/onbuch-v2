@@ -211,7 +211,7 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
         // Mascotte Léo, animée (jamais figée).
         const SizedBox(
           width: 64, height: 64,
-          child: Center(child: LeoMascot(size: 64)),
+          child: Center(child: LeoMascot(size: 64, mood: LeoMood.wave)),
         ),
         const SizedBox(width: 12),
         Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

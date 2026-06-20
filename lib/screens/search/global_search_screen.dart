@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/states.dart';
+import '../../widgets/leo_mascot.dart';
 import '../../models/article.dart';
 import '../../models/course.dart';
 import '../../models/concours.dart';
@@ -186,7 +187,12 @@ class _GlobalSearchScreenState extends State<GlobalSearchScreen> {
           Expanded(child: _loading
               ? const Center(child: CircularProgressIndicator(color: OC.o500))
               : _query.trim().isEmpty
-                  ? const EmptyState(icon: Icons.search_rounded, title: 'Cherche dans OnBuch', message: 'Cours, actualités, concours — tout au même endroit.')
+                  ? const EmptyState(
+                      art: LeoMascot(size: 104, mood: LeoMood.wave),
+                      icon: Icons.search_rounded,
+                      title: 'Cherche dans OnBuch',
+                      message: 'Cours, actualités, concours — tout au même endroit.',
+                    )
                   : hits.isEmpty
                       ? EmptyState(icon: Icons.search_off_rounded, title: 'Aucun résultat', message: 'Rien pour « $_query ».')
                       : ListView(
