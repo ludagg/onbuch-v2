@@ -42,7 +42,10 @@ class HomeScreen extends StatelessWidget {
               // Search bar
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Container(
+                child: GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onTap: () => context.push('/search'),
+                  child: Container(
                   decoration: BoxDecoration(
                     color: OC.paper,
                     borderRadius: BorderRadius.circular(999),
@@ -56,16 +59,20 @@ class HomeScreen extends StatelessWidget {
                     const Icon(Icons.search_rounded, size: 21, color: OC.muted),
                     const SizedBox(width: 13),
                     Expanded(child: Text('Rechercher…', style: body(15, color: OC.muted, weight: FontWeight.w500))),
-                    Container(
-                      width: 42, height: 42, margin: const EdgeInsets.all(6),
-                      decoration: BoxDecoration(
-                        gradient: OC.grad,
-                        shape: BoxShape.circle,
-                        boxShadow: [BoxShadow(color: OC.o500.withValues(alpha:0.34), blurRadius: 14, offset: const Offset(0, 6))],
+                    GestureDetector(
+                      onTap: () => context.push('/tutor/capture'),
+                      child: Container(
+                        width: 42, height: 42, margin: const EdgeInsets.all(6),
+                        decoration: BoxDecoration(
+                          gradient: OC.grad,
+                          shape: BoxShape.circle,
+                          boxShadow: [BoxShadow(color: OC.o500.withValues(alpha:0.34), blurRadius: 14, offset: const Offset(0, 6))],
+                        ),
+                        child: const Icon(Icons.camera_alt_outlined, color: Colors.white, size: 20),
                       ),
-                      child: const Icon(Icons.camera_alt_outlined, color: Colors.white, size: 20),
                     ),
                   ]),
+                ),
                 ),
               ),
               const SizedBox(height: 22),

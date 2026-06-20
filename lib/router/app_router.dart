@@ -26,6 +26,7 @@ import '../screens/tutor/camera_capture_screen.dart';
 import '../screens/tutor/crop_screen.dart';
 import '../screens/profile/profile_screen.dart';
 import '../screens/profile/edit_profile_screen.dart';
+import '../screens/search/global_search_screen.dart';
 import '../screens/news/article_detail_screen.dart';
 import '../screens/news/news_screen.dart';
 import '../screens/notifications/notifications_screen.dart';
@@ -104,6 +105,7 @@ final appRouter = GoRouter(
     GoRoute(path: '/parametres', builder: (_, __) => const ParametresScreen()),
     GoRoute(path: '/aide', builder: (_, __) => const AideScreen()),
     GoRoute(path: '/edit-profile', builder: (_, __) => const EditProfileScreen()),
+    GoRoute(path: '/search', builder: (_, __) => const GlobalSearchScreen()),
     GoRoute(
       path: '/cours-subject',
       builder: (_, s) => ChaptersScreen(subject: s.extra as Subject?),
