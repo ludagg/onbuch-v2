@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
+import '../../utils/launch.dart';
 
 class CommunauteScreen extends StatelessWidget {
   const CommunauteScreen({super.key});
@@ -25,6 +26,32 @@ class CommunauteScreen extends StatelessWidget {
           const SizedBox(height: 4),
           Text('Rejoins des milliers d\'élèves camerounais sur OnBuch.',
               style: body(13, color: OC.ink2, weight: FontWeight.w500)),
+          const SizedBox(height: 16),
+          GestureDetector(
+            onTap: () => shareApp(context),
+            child: Container(
+              padding: const EdgeInsets.all(14),
+              decoration: BoxDecoration(
+                gradient: OC.grad,
+                borderRadius: BorderRadius.circular(16),
+                boxShadow: [BoxShadow(color: OC.o500.withValues(alpha: 0.28), blurRadius: 14, offset: const Offset(0, 6))],
+              ),
+              child: Row(children: [
+                Container(
+                  width: 42, height: 42,
+                  decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.2), borderRadius: BorderRadius.circular(12)),
+                  child: const Icon(Icons.group_add_rounded, color: Colors.white, size: 22),
+                ),
+                const SizedBox(width: 12),
+                Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Text('Inviter des amis', style: body(14.5, weight: FontWeight.w700, color: Colors.white)),
+                  const SizedBox(height: 2),
+                  Text('Fais grandir ta classe avec OnBuch', style: body(12, color: Colors.white.withValues(alpha: 0.9), weight: FontWeight.w500)),
+                ])),
+                const Icon(Icons.ios_share_rounded, color: Colors.white, size: 18),
+              ]),
+            ),
+          ),
           const SizedBox(height: 18),
           ..._socials.map((s) => Container(
                 margin: const EdgeInsets.only(bottom: 11),

@@ -1,6 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../theme/app_theme.dart';
+
+/// Partage OnBuch (boucle de croissance) : copie le lien et propose WhatsApp.
+Future<void> shareApp(BuildContext context) async {
+  const link = 'https://onbuch.cm';
+  const msg = 'Rejoins-moi sur OnBuch — résultats d\'examens, Tuteur IA, annales '
+      'et cours pour réussir au Cameroun 🎓 $link';
+  try {
+    await Clipboard.setData(const ClipboardData(text: link));
+  } catch (_) {}
+  if (context.mounted) {
+    await openUrl(context, 'https://wa.me/?text=${Uri.encodeComponent(msg)}');
+  }
+}
 
 /// Ouvre un lien externe (http, tel, mailto…) ou affiche un message si échec.
 Future<void> openUrl(BuildContext context, String? url) async {

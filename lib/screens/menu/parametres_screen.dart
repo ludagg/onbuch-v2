@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
 import '../../services/auth_service.dart';
+import '../../utils/launch.dart';
 
 class ParametresScreen extends StatefulWidget {
   const ParametresScreen({super.key});
@@ -74,6 +75,7 @@ class _ParametresScreenState extends State<ParametresScreen> {
           ]),
           const SizedBox(height: 16),
           _section('À propos', [
+            _row(Icons.ios_share_rounded, 'Inviter des amis', 'Partager OnBuch', onTap: () => shareApp(context)),
             _row(Icons.help_outline_rounded, 'Aide & support', 'Contact & FAQ', onTap: () => context.push('/aide')),
             _row(Icons.shield_outlined, 'Confidentialité', 'Tes données restent privées'),
             _row(Icons.info_outline_rounded, 'Version', 'OnBuch 1.0.0'),
