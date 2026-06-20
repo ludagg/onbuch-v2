@@ -24,10 +24,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   final _ecoleCtrl = TextEditingController();
   final _villeCtrl = TextEditingController();
   final _phoneCtrl = TextEditingController();
+  final _careerCtrl = TextEditingController();
 
   int _level = 3;
   int _exam = 0;
   String? _gender;
+  String? _studyField;
+  String? _destination;
   String _email = '';
   bool _loading = true;
   bool _saving = false;
@@ -35,6 +38,14 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   static const _levels = ['3ème', '2nde', '1ère', 'Terminale', 'Sup. / Fac'];
   static const _exams = ['Baccalauréat', 'Probatoire', 'GCE A Level', 'BTS', 'Concours (ENS…)'];
   static const _genders = ['Fille', 'Garçon', 'Autre'];
+  static const _fields = [
+    'Santé / Médecine', 'Ingénierie / Tech', 'Droit / Sciences Po',
+    'Commerce / Gestion', 'Sciences', 'Lettres / Langues', 'Arts / Design',
+    'Encore indécis·e',
+  ];
+  static const _destinations = [
+    'Cameroun', 'Afrique', 'France', 'Amérique du N.', 'Europe', 'Pas encore décidé',
+  ];
 
   @override
   void initState() {
@@ -44,7 +55,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
   @override
   void dispose() {
-    for (final c in [_nameCtrl, _serieCtrl, _ecoleCtrl, _villeCtrl, _phoneCtrl]) {
+    for (final c in [_nameCtrl, _serieCtrl, _ecoleCtrl, _villeCtrl, _phoneCtrl, _careerCtrl]) {
       c.dispose();
     }
     super.dispose();
@@ -63,14 +74,19 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         _ecoleCtrl.text = (p['school'] ?? '').toString();
         _villeCtrl.text = (p['city'] ?? '').toString();
         _phoneCtrl.text = (p['phoneNumber'] ?? '').toString();
+        _careerCtrl.text = (p['careerGoal'] ?? '').toString();
         final classe = (p['classe'] ?? '').toString();
         final examen = (p['examen'] ?? '').toString();
         final g = (p['gender'] ?? '').toString();
+        final sf = (p['studyField'] ?? '').toString();
+        final dest = (p['studyDestination'] ?? '').toString();
         final li = _levels.indexOf(classe);
         final ei = _exams.indexOf(examen);
         if (li >= 0) _level = li;
         if (ei >= 0) _exam = ei;
         if (_genders.contains(g)) _gender = g;
+        if (_fields.contains(sf)) _studyField = sf;
+        if (_destinations.contains(dest)) _destination = dest;
       }
       _loading = false;
     });
@@ -99,6 +115,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         'school': _ecoleCtrl.text.trim(),
         'city': _villeCtrl.text.trim(),
         'phoneNumber': _phoneCtrl.text.trim(),
+        'careerGoal': _careerCtrl.text.trim(),
+        'studyField': _studyField ?? '',
+        'studyDestination': _destination ?? '',
         if (_gender != null) 'gender': _gender,
       });
       if (!mounted) return;
@@ -148,6 +167,22 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 _field('Établissement', _ecoleCtrl, 'Lycée de Bonabéri', Icons.account_balance_outlined),
                 const SizedBox(height: 14),
                 _field('Ville', _villeCtrl, 'Douala', Icons.location_on_outlined),
+                const SizedBox(height: 22),
+                Row(children: [
+                  const Icon(Icons.auto_awesome_outlined, size: 18, color: OC.o600),
+                  const SizedBox(width: 7),
+                  Text('Tes ambitions', style: body(14, weight: FontWeight.w800, color: OC.ink)),
+                ]),
+                const SizedBox(height: 14),
+                _label('Quel domaine te fait vibrer ?'),
+                const SizedBox(height: 10),
+                _schips(_fields, _studyField, (v) => setState(() => _studyField = v)),
+                const SizedBox(height: 16),
+                _field('Ton métier de rêve', _careerCtrl, 'Médecin, ingénieur·e, avocat·e…', Icons.workspace_premium_outlined),
+                const SizedBox(height: 16),
+                _label('Où aimerais-tu étudier ?'),
+                const SizedBox(height: 10),
+                _schips(_destinations, _destination, (v) => setState(() => _destination = v)),
                 const SizedBox(height: 18),
                 _label('Sexe'),
                 const SizedBox(height: 10),
@@ -189,6 +224,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   Widget _chips(List<String> items, int active, ValueChanged<int> onTap) => Wrap(
         spacing: 9, runSpacing: 9,
         children: List.generate(items.length, (i) => _chip(items[i], i == active, () => onTap(i))),
+      );
+
+  /// Puces à sélection unique sur des valeurs `String` (re-cliquer = désélectionner).
+  Widget _schips(List<String> items, String? value, ValueChanged<String?> onChanged) => Wrap(
+        spacing: 9, runSpacing: 9,
+        children: items.map((o) => _chip(o, value == o, () => onChanged(value == o ? null : o))).toList(),
       );
 
   Widget _chip(String label, bool on, VoidCallback onTap) => GestureDetector(
