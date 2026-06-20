@@ -279,14 +279,25 @@ class _CoursScreenState extends State<CoursScreen> {
               child: Center(child: Text(s.code, style: display(16, weight: FontWeight.w700, color: s.color))),
             ),
             const Spacer(),
-            OBRing(pct: pct, size: 36, color: s.color, track: OC.line,
-                center: Text('${(pct * 100).round()}', style: mono(10.5, weight: FontWeight.w800, color: s.color))),
+            OBRing(
+              pct: pct, size: 36,
+              color: total == 0 ? OC.line2 : s.color,
+              track: OC.line,
+              center: total == 0
+                  ? Text('–', style: mono(11, weight: FontWeight.w800, color: OC.muted))
+                  : Text('${(pct * 100).round()}%', style: mono(9, weight: FontWeight.w800, color: s.color)),
+            ),
           ]),
           const SizedBox(height: 11),
-          Text(s.name, maxLines: 2, overflow: TextOverflow.ellipsis,
-              style: body(14.5, weight: FontWeight.w700).copyWith(height: 1.15)),
+          // Hauteur fixe (2 lignes) pour que toutes les cartes s'alignent.
+          SizedBox(
+            height: 38,
+            child: Text(s.name, maxLines: 2, overflow: TextOverflow.ellipsis,
+                style: body(14.5, weight: FontWeight.w700).copyWith(height: 1.15)),
+          ),
           const SizedBox(height: 4),
-          Text('$total chapitre${total > 1 ? 's' : ''}', style: body(12, color: OC.muted, weight: FontWeight.w600)),
+          Text(total == 0 ? 'Bientôt disponible' : '$total chapitre${total > 1 ? 's' : ''}',
+              style: body(12, color: OC.muted, weight: FontWeight.w600)),
         ]),
       ),
     );
