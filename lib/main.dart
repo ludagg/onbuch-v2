@@ -25,9 +25,12 @@ void main() async {
   // absent), l'app démarre quand même, simplement sans push.
   try {
     await Firebase.initializeApp();
+    firebaseReady = true;
     FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
     await PushService.instance.init();
-  } catch (_) {}
+  } catch (_) {
+    firebaseReady = false;
+  }
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(const OnBuchApp());
