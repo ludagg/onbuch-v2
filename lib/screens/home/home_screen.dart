@@ -37,7 +37,14 @@ class HomeScreen extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 4),
                 child: Center(child: _Greeting()),
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 14),
+
+              // Bandeau de stats (examen · rang · XP · crédits) — en dur pour l'instant
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: _HeaderStats(),
+              ),
+              const SizedBox(height: 18),
 
               // Search bar
               Padding(
@@ -181,6 +188,78 @@ class _GreetingState extends State<_Greeting> {
     final text = (first == null || first.isEmpty) ? 'Bonjour 👋' : 'Bonjour, $first 👋';
     return Text(text, style: display(24, weight: FontWeight.w600));
   }
+}
+
+// ─── Bandeau de stats (examen · rang · XP · crédits) ─────────────────────────
+// Valeurs EN DUR pour l'instant — à brancher plus tard sur le profil + la
+// gamification (XP/rang/division) et le quota Tuteur (crédits).
+class _HeaderStats extends StatelessWidget {
+  const _HeaderStats();
+
+  static const _exam = 'Baccalauréat · Série D'; // TODO: profil utilisateur
+  static const _xp = '0';
+  static const _rank = '#65';
+  static const _division = 'Recrue';
+  static const _credits = '0';
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: OC.paper,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: OC.line, width: 1.5),
+        boxShadow: [BoxShadow(color: OC.ink.withValues(alpha: 0.04), blurRadius: 12, offset: const Offset(0, 5))],
+      ),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        // Examen visé
+        Padding(
+          padding: const EdgeInsets.fromLTRB(14, 13, 14, 0),
+          child: Row(children: [
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+              decoration: BoxDecoration(color: OC.o50, borderRadius: BorderRadius.circular(999), border: Border.all(color: OC.o100, width: 1.5)),
+              child: Row(mainAxisSize: MainAxisSize.min, children: [
+                Icon(Icons.school_rounded, size: 14, color: OC.o600),
+                const SizedBox(width: 6),
+                Text(_exam, style: body(12, weight: FontWeight.w800, color: OC.o700)),
+              ]),
+            ),
+            const Spacer(),
+            Icon(Icons.emoji_events_rounded, size: 18, color: OC.warn),
+          ]),
+        ),
+        const SizedBox(height: 12),
+        // Stats
+        IntrinsicHeight(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(4, 0, 4, 12),
+            child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+              _stat(_xp, 'XP total', OC.warn),
+              _div(),
+              _stat(_rank, 'Rang national', OC.blue),
+              _div(),
+              _stat(_division, 'Division', const Color(0xFF7A5AE0)),
+              _div(),
+              _stat(_credits, 'Crédits', OC.good),
+            ]),
+          ),
+        ),
+      ]),
+    );
+  }
+
+  Widget _div() => Container(width: 1, color: OC.line, margin: const EdgeInsets.symmetric(vertical: 2));
+
+  Widget _stat(String value, String label, Color accent) => Expanded(
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Text(value, maxLines: 1, overflow: TextOverflow.ellipsis,
+              style: display(18, weight: FontWeight.w800, color: accent)),
+          const SizedBox(height: 3),
+          Text(label, maxLines: 1, overflow: TextOverflow.ellipsis,
+              style: body(10.5, color: OC.muted, weight: FontWeight.w600)),
+        ]),
+      );
 }
 
 // ─── Hero carousel (examens — états & compteurs) ──────────────────────────────
