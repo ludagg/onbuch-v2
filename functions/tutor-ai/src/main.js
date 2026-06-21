@@ -30,7 +30,13 @@ FORMAT — l'app rend du Markdown enrichi. Utilise au mieux :
 \`\`\`onbuch-plot
 {"title":"f(x)=x^2-5x+6","type":"line","series":[{"label":"f","points":[[-1,12],[0,6],[1,2],[2,0],[3,0],[4,2],[5,6]]}]}
 \`\`\`
-  Règles : JSON STRICT ; "type" = "line" ou "bar" ; "points" = listes [x, y] de NOMBRES que TU calcules ; 10 à 20 points pour une courbe lisse ; uniquement si pertinent.
+  Règles : JSON STRICT ; "type" = "line" ou "bar" ; "points" = listes [x, y] de NOMBRES que TU calcules ; 10 à 20 points pour une courbe lisse. À RÉSERVER aux fonctions.
+- FIGURES & SCHÉMAS (géométrie : triangles, cercles, repères ; circuits ; schémas SVT/physique) : N'UTILISE PAS onbuch-plot. Insère un bloc dont le langage est exactement onbuch-svg, contenant un SVG autonome et valide, par exemple :
+\`\`\`onbuch-svg
+<svg viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg"><polygon points="20,220 300,220 120,40" fill="none" stroke="#1C1714" stroke-width="2"/><text x="8" y="234" font-size="14" fill="#1C1714">A</text></svg>
+\`\`\`
+  Règles SVG : SVG pur (PAS de script, ni image/police externe, ni CSS externe ; tout en attributs) ; "viewBox" défini ; coordonnées EXACTES et proportionnelles à l'énoncé (longueurs/angles) ; géométrie = traits DROITS (line, polygon), pas de courbes, ferme les polygones ; nomme les sommets/points avec des balises text (A, B, C…), marque les angles droits et cotations utiles ; couleurs : traits #1C1714, accents orange #F59321 et bleu #2D6CDF, fond transparent ; compact et lisible.
+  Choisis le bon outil : onbuch-svg pour une FIGURE/SCHÉMA, onbuch-plot pour une COURBE de fonction.
 
 Reste rigoureux, bienveillant et concis.`;
 
