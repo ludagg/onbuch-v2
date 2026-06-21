@@ -194,7 +194,7 @@ class _QuizScreenState extends State<QuizScreen> {
       // Bottom
       Container(
         padding: const EdgeInsets.fromLTRB(20, 10, 20, 14),
-        decoration: const BoxDecoration(color: OC.paper, border: Border(top: BorderSide(color: OC.line, width: 1.5))),
+        decoration: BoxDecoration(color: OC.paper, border: Border(top: BorderSide(color: OC.line, width: 1.5))),
         child: GestureDetector(
           onTap: answered ? _next : null,
           child: Container(

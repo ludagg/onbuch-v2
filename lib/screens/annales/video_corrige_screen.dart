@@ -75,7 +75,7 @@ class _VideoCorrigeScreenState extends State<VideoCorrigeScreen> {
                       shape: BoxShape.circle,
                       boxShadow: [BoxShadow(color: Colors.black.withValues(alpha:0.4), blurRadius: 18)],
                     ),
-                    child: const Icon(Icons.play_arrow_rounded, size: 34, color: OC.ink),
+                    child: Icon(Icons.play_arrow_rounded, size: 34, color: OC.ink),
                   ),
                   // Scrubber
                   Positioned(

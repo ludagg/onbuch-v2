@@ -209,8 +209,8 @@ class _SchoolLifeScreenState extends State<SchoolLifeScreen> {
             formatButtonVisible: false,
             titleCentered: true,
             titleTextStyle: display(15, weight: FontWeight.w700),
-            leftChevronIcon: const Icon(Icons.chevron_left_rounded, color: OC.ink2),
-            rightChevronIcon: const Icon(Icons.chevron_right_rounded, color: OC.ink2),
+            leftChevronIcon: Icon(Icons.chevron_left_rounded, color: OC.ink2),
+            rightChevronIcon: Icon(Icons.chevron_right_rounded, color: OC.ink2),
           ),
           daysOfWeekStyle: DaysOfWeekStyle(
             weekdayStyle: body(11, weight: FontWeight.w700, color: OC.muted),
@@ -303,7 +303,7 @@ class _SchoolLifeScreenState extends State<SchoolLifeScreen> {
           color: OC.paper, borderRadius: BorderRadius.circular(14), border: Border.all(color: OC.line, width: 1.5),
         ),
         child: Row(children: [
-          const Icon(Icons.event_available_rounded, size: 18, color: OC.muted),
+          Icon(Icons.event_available_rounded, size: 18, color: OC.muted),
           const SizedBox(width: 10),
           Expanded(child: Text(text, style: body(13, color: OC.muted, weight: FontWeight.w500))),
         ]),

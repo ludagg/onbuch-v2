@@ -246,7 +246,7 @@ class _Section extends StatelessWidget {
       OBCard(
         padding: EdgeInsets.zero,
         child: Column(children: rows.asMap().entries.map((e) => Column(children: [
-          if (e.key > 0) const Divider(height: 1, color: OC.line, thickness: 1),
+          if (e.key > 0) Divider(height: 1, color: OC.line, thickness: 1),
           e.value,
         ])).toList()),
       ),
@@ -275,7 +275,7 @@ class _ProfileRow extends StatelessWidget {
           Text(label, style: body(14, weight: FontWeight.w700)),
           Text(sub, style: body(12, color: OC.muted, weight: FontWeight.w500)),
         ])),
-        const Icon(Icons.chevron_right_rounded, size: 18, color: OC.muted),
+        Icon(Icons.chevron_right_rounded, size: 18, color: OC.muted),
       ]),
     );
   }

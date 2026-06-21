@@ -138,7 +138,7 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
                   borderRadius: BorderRadius.circular(16),
                   border: Border.all(color: OC.line2, width: 1.5),
                 ),
-                child: const Icon(Icons.image_outlined, color: OC.ink2, size: 23),
+                child: Icon(Icons.image_outlined, color: OC.ink2, size: 23),
               ),
             ),
           ]),
@@ -184,7 +184,7 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
                     border: Border.all(color: OC.line, width: 1.5),
                   ),
                   child: Row(children: [
-                    const Icon(Icons.history_rounded, size: 18, color: OC.muted),
+                    Icon(Icons.history_rounded, size: 18, color: OC.muted),
                     const SizedBox(width: 10),
                     Expanded(child: Text('Tes corrections apparaîtront ici.',
                         style: body(13, color: OC.muted, weight: FontWeight.w500))),
@@ -245,7 +245,7 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
           ),
           const SizedBox(width: 12),
           Expanded(child: Text('« $text »', style: body(13, weight: FontWeight.w600, color: OC.ink2))),
-          const Icon(Icons.north_east_rounded, size: 16, color: OC.muted),
+          Icon(Icons.north_east_rounded, size: 16, color: OC.muted),
         ]),
       ),
     );
@@ -380,7 +380,7 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
             Text(job.subject.isNotEmpty ? '${job.subject} · résolu' : 'résolu',
                 style: body(11.5, color: OC.muted, weight: FontWeight.w500)),
           ])),
-          const Icon(Icons.chevron_right_rounded, size: 18, color: OC.muted),
+          Icon(Icons.chevron_right_rounded, size: 18, color: OC.muted),
         ]),
       ),
     );

@@ -183,7 +183,7 @@ class _PaywallSheetState extends State<PaywallSheet> {
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(color: OC.panel, borderRadius: BorderRadius.circular(16)),
       child: Column(children: [
-        const Icon(Icons.storefront_outlined, size: 26, color: OC.muted),
+        Icon(Icons.storefront_outlined, size: 26, color: OC.muted),
         const SizedBox(height: 10),
         Text('Achats indisponibles', style: body(14, weight: FontWeight.w700)),
         const SizedBox(height: 6),

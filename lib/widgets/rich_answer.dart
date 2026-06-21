@@ -10,8 +10,8 @@ import '../theme/app_theme.dart';
 /// - Graphiques décrits par des blocs ```onbuch-plot { ...json... } ```
 class RichAnswer extends StatelessWidget {
   final String text;
-  final Color textColor;
-  const RichAnswer(this.text, {super.key, this.textColor = OC.ink});
+  final Color? textColor; // défaut résolu au build (OC.ink dépend du thème)
+  const RichAnswer(this.text, {super.key, this.textColor});
 
   static final _plotRe =
       RegExp(r'```onbuch-plot\s*([\s\S]*?)```', multiLine: true);
@@ -41,7 +41,7 @@ class RichAnswer extends StatelessWidget {
 
   Widget _markdown(String md) => GptMarkdown(
         _normalizeMath(md),
-        style: body(13.5, color: textColor).copyWith(height: 1.5),
+        style: body(13.5, color: textColor ?? OC.ink).copyWith(height: 1.5),
       );
 
   /// `gpt_markdown` rend les maths avec \( \) (en ligne) et \[ \] (bloc), pas
@@ -181,7 +181,7 @@ class _PlotBlock extends StatelessWidget {
         rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
       );
 
-  FlLine _grid(double v) => const FlLine(color: OC.line, strokeWidth: 1);
+  FlLine _grid(double v) => FlLine(color: OC.line, strokeWidth: 1);
 
   Widget _legend(List<_Series> series) {
     final items = <Widget>[];
@@ -224,7 +224,7 @@ class _PlotUnavailable extends StatelessWidget {
           border: Border.all(color: OC.line, width: 1.5),
         ),
         child: Row(children: [
-          const Icon(Icons.show_chart_rounded, size: 16, color: OC.muted),
+          Icon(Icons.show_chart_rounded, size: 16, color: OC.muted),
           const SizedBox(width: 8),
           Text('Graphique indisponible', style: body(12, color: OC.muted, weight: FontWeight.w600)),
         ]),

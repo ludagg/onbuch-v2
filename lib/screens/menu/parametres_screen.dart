@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
 import '../../services/auth_service.dart';
+import '../../services/theme_controller.dart';
 import '../../utils/launch.dart';
 
 class ParametresScreen extends StatefulWidget {
@@ -70,6 +71,8 @@ class _ParametresScreenState extends State<ParametresScreen> {
           ]),
           const SizedBox(height: 16),
           _section('Préférences', [
+            _row(_themeIcon(ThemeController.instance.mode), 'Thème',
+                _themeLabel(ThemeController.instance.mode), onTap: _pickTheme),
             _row(Icons.language_rounded, 'Langue', 'Français'),
             _row(Icons.straighten_rounded, 'Programme', 'MINESEC · francophone'),
           ]),
@@ -107,6 +110,51 @@ class _ParametresScreenState extends State<ParametresScreen> {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  // ── Thème (clair / sombre / système) ───────────────────────────────────────
+  String _themeLabel(ThemeMode m) => switch (m) {
+        ThemeMode.light => 'Clair',
+        ThemeMode.dark => 'Sombre',
+        ThemeMode.system => 'Système (auto)',
+      };
+
+  IconData _themeIcon(ThemeMode m) => switch (m) {
+        ThemeMode.light => Icons.light_mode_outlined,
+        ThemeMode.dark => Icons.dark_mode_outlined,
+        ThemeMode.system => Icons.brightness_auto_outlined,
+      };
+
+  Future<void> _pickTheme() async {
+    final current = ThemeController.instance.mode;
+    await showModalBottomSheet<void>(
+      context: context,
+      backgroundColor: OC.paper,
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(22))),
+      builder: (ctx) => SafeArea(
+        child: Column(mainAxisSize: MainAxisSize.min, children: [
+          const SizedBox(height: 14),
+          Container(width: 38, height: 4, decoration: BoxDecoration(color: OC.line2, borderRadius: BorderRadius.circular(2))),
+          const SizedBox(height: 14),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(20, 0, 20, 4),
+            child: Align(alignment: Alignment.centerLeft,
+                child: Text('Thème', style: display(17, weight: FontWeight.w700))),
+          ),
+          for (final m in ThemeMode.values)
+            ListTile(
+              leading: Icon(_themeIcon(m), color: m == current ? OC.o600 : OC.ink2),
+              title: Text(_themeLabel(m), style: body(14.5, weight: FontWeight.w600, color: OC.ink)),
+              trailing: m == current ? const Icon(Icons.check_rounded, color: OC.o600) : null,
+              onTap: () {
+                ThemeController.instance.setMode(m);
+                Navigator.pop(ctx);
+              },
+            ),
+          const SizedBox(height: 8),
+        ]),
       ),
     );
   }
@@ -149,7 +197,7 @@ class _ParametresScreenState extends State<ParametresScreen> {
           hintText: hint,
           hintStyle: body(13.5, color: OC.muted),
           contentPadding: const EdgeInsets.symmetric(horizontal: 13, vertical: 12),
-          enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: OC.line2, width: 1.5)),
+          enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide(color: OC.line2, width: 1.5)),
           focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: OC.o500, width: 2)),
         ),
       );
@@ -201,7 +249,7 @@ class _ParametresScreenState extends State<ParametresScreen> {
           decoration: BoxDecoration(color: OC.paper, borderRadius: BorderRadius.circular(18), border: Border.all(color: OC.line, width: 1.5)),
           child: Column(children: [
             for (var i = 0; i < rows.length; i++) ...[
-              if (i > 0) const Divider(height: 1, color: OC.line, thickness: 1),
+              if (i > 0) Divider(height: 1, color: OC.line, thickness: 1),
               rows[i],
             ],
           ]),
@@ -221,7 +269,7 @@ class _ParametresScreenState extends State<ParametresScreen> {
               Text(label, style: body(14, weight: FontWeight.w700)),
               Text(sub, style: body(12, color: OC.muted, weight: FontWeight.w500)),
             ])),
-            if (onTap != null) const Icon(Icons.chevron_right_rounded, size: 18, color: OC.muted),
+            if (onTap != null) Icon(Icons.chevron_right_rounded, size: 18, color: OC.muted),
           ]),
         ),
       );

@@ -34,7 +34,7 @@ class _AfficheScreenState extends State<AfficheScreen> {
               child: Padding(
                 padding: const EdgeInsets.all(32),
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
-                  const Icon(Icons.campaign_outlined, size: 46, color: OC.faint),
+                  Icon(Icons.campaign_outlined, size: 46, color: OC.faint),
                   const SizedBox(height: 12),
                   Text('Rien à l\'affiche pour le moment', style: display(18, weight: FontWeight.w700)),
                 ]),
@@ -74,7 +74,7 @@ class _AfficheScreenState extends State<AfficheScreen> {
                     errorBuilder: (_, __, ___) => Container(color: OC.panel),
                     loadingBuilder: (_, c, p) => p == null ? c : Container(color: OC.panel))
               else
-                Container(color: OC.panel, child: const Center(child: Icon(Icons.image_outlined, color: OC.faint, size: 40))),
+                Container(color: OC.panel, child: Center(child: Icon(Icons.image_outlined, color: OC.faint, size: 40))),
               Positioned(top: 12, left: 12, child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 4),
                 decoration: BoxDecoration(color: a.badgeColor, borderRadius: BorderRadius.circular(999)),

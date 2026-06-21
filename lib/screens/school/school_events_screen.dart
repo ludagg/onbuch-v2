@@ -71,7 +71,7 @@ class _SchoolEventsScreenState extends State<SchoolEventsScreen> {
                       child: Padding(
                         padding: const EdgeInsets.all(28),
                         child: Column(mainAxisSize: MainAxisSize.min, children: [
-                          const Icon(Icons.event_busy_rounded, size: 42, color: OC.muted),
+                          Icon(Icons.event_busy_rounded, size: 42, color: OC.muted),
                           const SizedBox(height: 12),
                           Text('Aucun évènement', style: display(18, weight: FontWeight.w700)),
                           const SizedBox(height: 6),
@@ -182,7 +182,7 @@ class _SchoolEventsScreenState extends State<SchoolEventsScreen> {
                   style: body(12, color: OC.ink2, weight: FontWeight.w500).copyWith(height: 1.3)),
             ],
           ])),
-          if (e.link != null) const Icon(Icons.open_in_new_rounded, size: 16, color: OC.muted),
+          if (e.link != null) Icon(Icons.open_in_new_rounded, size: 16, color: OC.muted),
         ]),
       ),
     );

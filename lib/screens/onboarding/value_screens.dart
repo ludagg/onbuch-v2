@@ -164,7 +164,7 @@ class _MiniResult extends StatelessWidget {
               const SizedBox(width: 12),
               Text('Mention\nBien', style: display(26, weight: FontWeight.w700)),
             ]),
-            const Divider(height: 28, color: OC.line, thickness: 1.5),
+            Divider(height: 28, color: OC.line, thickness: 1.5),
             Row(children: [
               const OBWordmark(size: 14),
               const SizedBox(width: 6),

@@ -40,7 +40,7 @@ class AuthOtpScreen extends StatelessWidget {
                 const OTPRow(),
                 const SizedBox(height: 20),
                 Row(children: [
-                  const Icon(Icons.access_time_rounded, size: 16, color: OC.muted),
+                  Icon(Icons.access_time_rounded, size: 16, color: OC.muted),
                   const SizedBox(width: 7),
                   Text('Renvoyer le code dans ', style: body(13.5, color: OC.muted)),
                   Text('0:42', style: mono(13.5, weight: FontWeight.w700, color: OC.ink2)),

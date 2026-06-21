@@ -173,7 +173,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
             child: Row(children: [
               IconButton(
                 onPressed: _saving ? null : _back,
-                icon: const Icon(Icons.arrow_back_rounded, color: OC.ink, size: 22),
+                icon: Icon(Icons.arrow_back_rounded, color: OC.ink, size: 22),
                 tooltip: 'Retour',
               ),
               ProgressDots(count: _sectionCount, active: _section),
@@ -235,7 +235,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
           // Pied : bouton principal + « Plus tard ».
           Container(
             padding: const EdgeInsets.fromLTRB(24, 10, 24, 14),
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               color: OC.paper,
               border: Border(top: BorderSide(color: OC.line, width: 1.5)),
             ),
@@ -362,8 +362,8 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
           filled: true,
           fillColor: OC.paper,
           contentPadding: const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(14), borderSide: const BorderSide(color: OC.line2, width: 1.5)),
-          enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(14), borderSide: const BorderSide(color: OC.line2, width: 1.5)),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(14), borderSide: BorderSide(color: OC.line2, width: 1.5)),
+          enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(14), borderSide: BorderSide(color: OC.line2, width: 1.5)),
           focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(14), borderSide: const BorderSide(color: OC.o500, width: 2)),
         ),
       ),

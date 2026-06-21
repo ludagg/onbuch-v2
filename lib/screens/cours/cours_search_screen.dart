@@ -101,7 +101,7 @@ class _CoursSearchScreenState extends State<CoursSearchScreen> {
                 decoration: BoxDecoration(color: OC.paper, borderRadius: BorderRadius.circular(999), border: Border.all(color: OC.ink, width: 1.6)),
                 padding: const EdgeInsets.symmetric(horizontal: 14),
                 child: Row(children: [
-                  const Icon(Icons.search_rounded, size: 18, color: OC.ink2),
+                  Icon(Icons.search_rounded, size: 18, color: OC.ink2),
                   const SizedBox(width: 9),
                   Expanded(child: TextField(
                     controller: _ctrl,
@@ -120,7 +120,7 @@ class _CoursSearchScreenState extends State<CoursSearchScreen> {
                   if (_query.isNotEmpty)
                     GestureDetector(
                       onTap: () => setState(() { _ctrl.clear(); _query = ''; }),
-                      child: const Icon(Icons.close_rounded, size: 18, color: OC.muted),
+                      child: Icon(Icons.close_rounded, size: 18, color: OC.muted),
                     ),
                 ]),
               )),
@@ -197,7 +197,7 @@ class _CoursSearchScreenState extends State<CoursSearchScreen> {
             const SizedBox(height: 2),
             Text(r.subtitle, style: body(11.5, color: OC.muted, weight: FontWeight.w500)),
           ])),
-          const Icon(Icons.chevron_right_rounded, size: 18, color: OC.muted),
+          Icon(Icons.chevron_right_rounded, size: 18, color: OC.muted),
         ]),
       ),
     );
@@ -207,7 +207,7 @@ class _CoursSearchScreenState extends State<CoursSearchScreen> {
         child: Padding(
           padding: const EdgeInsets.all(40),
           child: Column(mainAxisSize: MainAxisSize.min, children: [
-            const Icon(Icons.search_rounded, size: 40, color: OC.faint),
+            Icon(Icons.search_rounded, size: 40, color: OC.faint),
             const SizedBox(height: 12),
             Text(t, textAlign: TextAlign.center, style: body(13.5, color: OC.muted, weight: FontWeight.w500).copyWith(height: 1.4)),
           ]),

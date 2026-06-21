@@ -357,7 +357,7 @@ class _ConcoursInscriptionScreenState extends State<ConcoursInscriptionScreen> {
       Row(children: [
         Expanded(child: OutlinedButton.icon(
           style: OutlinedButton.styleFrom(
-            side: const BorderSide(color: OC.line2, width: 1.5),
+            side: BorderSide(color: OC.line2, width: 1.5),
             foregroundColor: OC.ink,
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
             padding: const EdgeInsets.symmetric(vertical: 14),
@@ -453,7 +453,7 @@ class _ConcoursInscriptionScreenState extends State<ConcoursInscriptionScreen> {
             fillColor: OC.paper,
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
-              borderSide: const BorderSide(color: OC.line2, width: 1.5),
+              borderSide: BorderSide(color: OC.line2, width: 1.5),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),

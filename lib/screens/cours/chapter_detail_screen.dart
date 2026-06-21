@@ -126,7 +126,7 @@ class _ChapterDetailScreenState extends State<ChapterDetailScreen> {
                       child: const Icon(Icons.picture_as_pdf_rounded, size: 21, color: Color(0xFFC0392B))),
                   const SizedBox(width: 12),
                   Expanded(child: Text('Fiche PDF', style: body(14, weight: FontWeight.w700))),
-                  const Icon(Icons.open_in_new_rounded, size: 17, color: OC.muted),
+                  Icon(Icons.open_in_new_rounded, size: 17, color: OC.muted),
                 ]),
               ),
             ),
@@ -137,7 +137,7 @@ class _ChapterDetailScreenState extends State<ChapterDetailScreen> {
         top: false,
         child: Container(
           padding: const EdgeInsets.fromLTRB(20, 10, 20, 12),
-          decoration: const BoxDecoration(color: OC.paper, border: Border(top: BorderSide(color: OC.line, width: 1.5))),
+          decoration: BoxDecoration(color: OC.paper, border: Border(top: BorderSide(color: OC.line, width: 1.5))),
           child: Row(children: [
             GestureDetector(
               onTap: () => ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -148,7 +148,7 @@ class _ChapterDetailScreenState extends State<ChapterDetailScreen> {
               child: Container(
                 width: 50, height: 50,
                 decoration: BoxDecoration(color: OC.paper, borderRadius: BorderRadius.circular(13), border: Border.all(color: OC.line2, width: 1.5)),
-                child: const Icon(Icons.download_for_offline_outlined, size: 22, color: OC.ink2),
+                child: Icon(Icons.download_for_offline_outlined, size: 22, color: OC.ink2),
               ),
             ),
             const SizedBox(width: 10),

@@ -229,7 +229,7 @@ class _ConcoursBlancScreenState extends State<ConcoursBlancScreen> {
               hintStyle: body(13.5, color: OC.muted),
               filled: true, fillColor: OC.paper,
               contentPadding: const EdgeInsets.all(14),
-              enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(14), borderSide: const BorderSide(color: OC.line2, width: 1.5)),
+              enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(14), borderSide: BorderSide(color: OC.line2, width: 1.5)),
               focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(14), borderSide: const BorderSide(color: OC.o500, width: 2)),
             ),
           ),
@@ -237,7 +237,7 @@ class _ConcoursBlancScreenState extends State<ConcoursBlancScreen> {
           Row(children: [
             Expanded(child: OutlinedButton.icon(
               style: OutlinedButton.styleFrom(
-                side: const BorderSide(color: OC.line2, width: 1.5), foregroundColor: OC.ink2,
+                side: BorderSide(color: OC.line2, width: 1.5), foregroundColor: OC.ink2,
                 padding: const EdgeInsets.symmetric(vertical: 13),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(13)),
               ),
@@ -320,7 +320,7 @@ class _ConcoursBlancScreenState extends State<ConcoursBlancScreen> {
           padding: const EdgeInsets.all(11),
           decoration: BoxDecoration(color: OC.panel, borderRadius: BorderRadius.circular(11)),
           child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            const Icon(Icons.info_outline_rounded, size: 15, color: OC.muted),
+            Icon(Icons.info_outline_rounded, size: 15, color: OC.muted),
             const SizedBox(width: 8),
             Expanded(child: Text(
               'Score indicatif (V2.1). La correction détaillée est faite par le Tuteur sur ta vraie copie.',

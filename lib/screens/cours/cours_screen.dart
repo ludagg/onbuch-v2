@@ -104,7 +104,7 @@ class _CoursScreenState extends State<CoursScreen> {
                     border: Border.all(color: OC.line2, width: 1.5),
                   ),
                   child: Row(children: [
-                    const Icon(Icons.search_rounded, size: 19, color: OC.muted),
+                    Icon(Icons.search_rounded, size: 19, color: OC.muted),
                     const SizedBox(width: 11),
                     Text('Chercher un cours, une vidéo, un quiz…', style: body(13.5, color: OC.muted, weight: FontWeight.w500)),
                   ]),

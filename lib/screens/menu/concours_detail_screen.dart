@@ -238,7 +238,7 @@ class _ConcoursDetailScreenState extends State<ConcoursDetailScreen> {
       ...docs.map((t) => Padding(
             padding: const EdgeInsets.only(bottom: 8),
             child: Row(children: [
-              const Icon(Icons.insert_drive_file_outlined, size: 15, color: OC.muted),
+              Icon(Icons.insert_drive_file_outlined, size: 15, color: OC.muted),
               const SizedBox(width: 9),
               Text(t, style: body(12.5, color: OC.ink2, weight: FontWeight.w500)),
             ]),
@@ -337,7 +337,7 @@ class _ConcoursDetailScreenState extends State<ConcoursDetailScreen> {
       top: false,
       child: Container(
         padding: const EdgeInsets.fromLTRB(20, 10, 20, 12),
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           color: OC.paper,
           border: Border(top: BorderSide(color: OC.line, width: 1.5)),
         ),
@@ -346,7 +346,7 @@ class _ConcoursDetailScreenState extends State<ConcoursDetailScreen> {
             width: 50, height: 50,
             decoration: BoxDecoration(color: OC.paper, borderRadius: BorderRadius.circular(13),
                 border: Border.all(color: OC.line2, width: 1.5)),
-            child: const Icon(Icons.bookmark_border_rounded, size: 22, color: OC.ink2),
+            child: Icon(Icons.bookmark_border_rounded, size: 22, color: OC.ink2),
           ),
           const SizedBox(width: 10),
           Expanded(child: GestureDetector(
@@ -395,7 +395,7 @@ class _ConcoursDetailScreenState extends State<ConcoursDetailScreen> {
             Icon(icon, size: 18, color: OC.o600),
             const SizedBox(width: 11),
             Expanded(child: Text(label, style: body(13, weight: FontWeight.w700))),
-            const Icon(Icons.open_in_new_rounded, size: 16, color: OC.muted),
+            Icon(Icons.open_in_new_rounded, size: 16, color: OC.muted),
           ]),
         ),
       );

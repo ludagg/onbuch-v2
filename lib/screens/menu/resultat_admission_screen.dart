@@ -69,7 +69,7 @@ class ResultatAdmissionScreen extends StatelessWidget {
       Row(children: [
         Expanded(child: OutlinedButton.icon(
           style: OutlinedButton.styleFrom(
-            side: const BorderSide(color: OC.line2, width: 1.5), foregroundColor: OC.ink,
+            side: BorderSide(color: OC.line2, width: 1.5), foregroundColor: OC.ink,
             padding: const EdgeInsets.symmetric(vertical: 14),
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
           ),

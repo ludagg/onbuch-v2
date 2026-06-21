@@ -105,7 +105,7 @@ class ResultFailScreen extends StatelessWidget {
               const Icon(Icons.calendar_today_outlined, size: 20, color: OC.blue),
               const SizedBox(width: 11),
               Expanded(child: Text('Sessions de rattrapage & concours ouverts', style: body(13.5, weight: FontWeight.w700))),
-              const Icon(Icons.chevron_right_rounded, size: 18, color: OC.muted),
+              Icon(Icons.chevron_right_rounded, size: 18, color: OC.muted),
             ]),
           ),
         ]),

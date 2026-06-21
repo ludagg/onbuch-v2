@@ -133,7 +133,7 @@ class _GlobalSearchScreenState extends State<GlobalSearchScreen> {
                 decoration: BoxDecoration(color: OC.paper, borderRadius: BorderRadius.circular(999), border: Border.all(color: OC.ink, width: 1.6)),
                 padding: const EdgeInsets.symmetric(horizontal: 14),
                 child: Row(children: [
-                  const Icon(Icons.search_rounded, size: 18, color: OC.ink2),
+                  Icon(Icons.search_rounded, size: 18, color: OC.ink2),
                   const SizedBox(width: 9),
                   Expanded(child: TextField(
                     controller: _ctrl,
@@ -152,7 +152,7 @@ class _GlobalSearchScreenState extends State<GlobalSearchScreen> {
                   if (_query.isNotEmpty)
                     GestureDetector(
                       onTap: () => setState(() { _ctrl.clear(); _query = ''; }),
-                      child: const Icon(Icons.close_rounded, size: 18, color: OC.muted),
+                      child: Icon(Icons.close_rounded, size: 18, color: OC.muted),
                     ),
                 ]),
               )),
@@ -232,7 +232,7 @@ class _GlobalSearchScreenState extends State<GlobalSearchScreen> {
             const SizedBox(height: 2),
             Text(h.subtitle, style: body(11.5, color: OC.muted, weight: FontWeight.w500)),
           ])),
-          const Icon(Icons.chevron_right_rounded, size: 18, color: OC.muted),
+          Icon(Icons.chevron_right_rounded, size: 18, color: OC.muted),
         ]),
       ),
     );

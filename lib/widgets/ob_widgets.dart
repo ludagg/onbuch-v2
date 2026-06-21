@@ -215,7 +215,7 @@ class SecHead extends StatelessWidget {
         if (action != null)
           Row(children: [
             Text(action!, style: body(12.5, weight: FontWeight.w700, color: OC.ink2)),
-            const Icon(Icons.chevron_right, size: 15, color: OC.ink2),
+            Icon(Icons.chevron_right, size: 15, color: OC.ink2),
           ]),
       ],
     );
@@ -314,7 +314,7 @@ class OBNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         color: OC.paper,
         border: Border(top: BorderSide(color: OC.line, width: 1.5)),
       ),
@@ -384,7 +384,7 @@ List<Widget> obTopActions(BuildContext context, {bool showProfile = true}) {
             shape: BoxShape.circle,
             border: Border.all(color: OC.line2, width: 1.5),
           ),
-          child: const Icon(Icons.person_outline_rounded, size: 22, color: OC.ink),
+          child: Icon(Icons.person_outline_rounded, size: 22, color: OC.ink),
         ),
       ),
     const SizedBox(width: 10),
@@ -488,7 +488,7 @@ class OBTopMenu extends StatelessWidget {
       constraints: const BoxConstraints(minWidth: 204, maxWidth: 240),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
-        side: const BorderSide(color: OC.line2, width: 1.5),
+        side: BorderSide(color: OC.line2, width: 1.5),
       ),
       itemBuilder: (context) => [
         for (int i = 0; i < entries.length; i++)
@@ -528,7 +528,7 @@ class OBTopMenu extends StatelessWidget {
           shape: BoxShape.circle,
           border: Border.all(color: OC.line2, width: 1.5),
         ),
-        child: const Icon(Icons.menu_rounded, size: 21, color: OC.ink),
+        child: Icon(Icons.menu_rounded, size: 21, color: OC.ink),
       ),
     );
   }
@@ -666,16 +666,16 @@ class OBRing extends StatelessWidget {
   final double pct; // 0..1
   final double size;
   final Color color;
-  final Color track;
+  final Color? track; // défaut résolu au build (OC.line dépend du thème)
   final Widget? center;
-  const OBRing({super.key, required this.pct, this.size = 40, this.color = OC.o500, this.track = OC.line, this.center});
+  const OBRing({super.key, required this.pct, this.size = 40, this.color = OC.o500, this.track, this.center});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: size, height: size,
       child: Stack(alignment: Alignment.center, children: [
-        CustomPaint(size: Size.square(size), painter: _OBRingPainter(pct.clamp(0.0, 1.0), color, track)),
+        CustomPaint(size: Size.square(size), painter: _OBRingPainter(pct.clamp(0.0, 1.0), color, track ?? OC.line)),
         if (center != null) center!,
       ]),
     );
