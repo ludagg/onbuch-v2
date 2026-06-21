@@ -304,11 +304,11 @@ class OBNavBar extends StatelessWidget {
   const OBNavBar({super.key, required this.currentIndex, required this.onTap});
 
   static const _tabs = [
-    _NavTab(icon: Icons.dashboard_rounded, label: 'Tableau'),
-    _NavTab(icon: Icons.track_changes_rounded, label: 'Concours'),
+    _NavTab(icon: Icons.dashboard_rounded, label: 'Accueil'),
+    _NavTab(icon: Icons.play_lesson_rounded, label: 'Cours'),
     _NavTab(icon: Icons.auto_awesome_rounded, label: 'Tuteur'),
     _NavTab(icon: Icons.menu_book_rounded, label: 'Annales'),
-    _NavTab(icon: Icons.play_lesson_rounded, label: 'Cours'),
+    _NavTab(icon: Icons.track_changes_rounded, label: 'Concours'),
   ];
 
   @override
