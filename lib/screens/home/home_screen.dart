@@ -37,7 +37,14 @@ class HomeScreen extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 4),
                 child: Center(child: _Greeting()),
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 14),
+
+              // Stats (sans conteneur — directement sur le fond)
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: _HeaderStats(),
+              ),
+              const SizedBox(height: 18),
 
               // Search bar
               Padding(
@@ -181,6 +188,44 @@ class _GreetingState extends State<_Greeting> {
     final text = (first == null || first.isEmpty) ? 'Bonjour 👋' : 'Bonjour, $first 👋';
     return Text(text, style: display(24, weight: FontWeight.w600));
   }
+}
+
+// ─── Stats d'en-tête (XP · Rang · Examen · Crédits) — SANS conteneur ─────────
+// Valeurs EN DUR pour l'instant (TODO : profil + gamification + quota Tuteur).
+class _HeaderStats extends StatelessWidget {
+  const _HeaderStats();
+
+  static const _xp = '0';
+  static const _rank = '#65';
+  static const _examShort = 'Bac D';
+  static const _credits = '0';
+
+  @override
+  Widget build(BuildContext context) {
+    return IntrinsicHeight(
+      child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        _stat(_xp, 'XP total', OC.warn),
+        _div(),
+        _stat(_rank, 'Rang national', OC.blue),
+        _div(),
+        _stat(_examShort, 'Examen', const Color(0xFF7A5AE0)),
+        _div(),
+        _stat(_credits, 'Crédits', OC.good),
+      ]),
+    );
+  }
+
+  Widget _div() => Container(width: 1, color: OC.line, margin: const EdgeInsets.symmetric(vertical: 4));
+
+  Widget _stat(String value, String label, Color accent) => Expanded(
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Text(value, maxLines: 1, overflow: TextOverflow.ellipsis,
+              style: display(19, weight: FontWeight.w800, color: accent)),
+          const SizedBox(height: 3),
+          Text(label, maxLines: 1, overflow: TextOverflow.ellipsis,
+              style: body(10.5, color: OC.muted, weight: FontWeight.w600)),
+        ]),
+      );
 }
 
 // ─── Hero carousel (examens — états & compteurs) ──────────────────────────────
