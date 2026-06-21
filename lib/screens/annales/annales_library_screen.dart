@@ -20,9 +20,10 @@ class AnnalesLibraryScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: OC.bg,
       appBar: AppBar(
-        title: Text('Bibliothèque', style: display(17, weight: FontWeight.w700)),
         backgroundColor: OC.bg,
         surfaceTintColor: Colors.transparent,
+        titleSpacing: 18,
+        title: const OBWordmark(size: 23),
         actions: obTopActions(context),
       ),
       body: SingleChildScrollView(
