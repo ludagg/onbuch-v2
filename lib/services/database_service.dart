@@ -548,6 +548,99 @@ class DatabaseService {
     }
   }
 
+  /// Enregistre une tentative de QCM (`quiz_attempts`) et met à jour la maîtrise
+  /// dérivée du chapitre (`topic_mastery`). Fondations de l'« agent d'études »
+  /// (Phase 0) : on arrête de perdre les signaux d'apprentissage. Non bloquant.
+  Future<void> recordQuizAttempt({
+    required String chapterId,
+    required String subject,
+    String topic = '',
+    required int score,
+    required int total,
+    List<int> wrong = const [],
+  }) async {
+    if (total <= 0) return;
+    try {
+      final user = await AppwriteClient.account.get();
+      final uid = user.$id;
+      final perms = [
+        Permission.read(Role.user(uid)),
+        Permission.update(Role.user(uid)),
+        Permission.delete(Role.user(uid)),
+      ];
+      await AppwriteClient.databases.createDocument(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteQuizAttemptsCollectionId,
+        documentId: ID.unique(),
+        data: {
+          'userId': uid,
+          'subject': subject,
+          'chapterId': chapterId,
+          'topic': topic,
+          'score': score,
+          'total': total,
+          'wrong': wrong.join(','),
+          'createdAt': DateTime.now().toIso8601String(),
+        },
+        permissions: perms,
+      );
+      await _upsertMastery(uid, chapterId, subject, topic, score / total, perms);
+    } on AppwriteException {
+      // non bloquant
+    }
+  }
+
+  /// Met à jour (ou crée) la maîtrise d'un chapitre par moyenne glissante.
+  Future<void> _upsertMastery(
+    String uid,
+    String chapterId,
+    String subject,
+    String topic,
+    double current,
+    List<String> perms,
+  ) async {
+    final now = DateTime.now().toIso8601String();
+    try {
+      final list = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteTopicMasteryCollectionId,
+        queries: [Query.equal('userId', uid), Query.limit(200)],
+      );
+      final existing = list.documents.where((d) => d.data['chapterId'] == chapterId);
+      if (existing.isNotEmpty) {
+        final doc = existing.first;
+        final prevAttempts = (doc.data['attempts'] as num?)?.toInt() ?? 0;
+        final prevMastery = (doc.data['mastery'] as num?)?.toDouble() ?? 0.0;
+        // Moyenne glissante : pondère l'historique et la dernière tentative.
+        final blended = prevAttempts == 0 ? current : (prevMastery * 0.6 + current * 0.4);
+        await AppwriteClient.databases.updateDocument(
+          databaseId: appwriteDatabaseId,
+          collectionId: appwriteTopicMasteryCollectionId,
+          documentId: doc.$id,
+          data: {'mastery': blended, 'attempts': prevAttempts + 1, 'lastReviewedAt': now},
+        );
+      } else {
+        await AppwriteClient.databases.createDocument(
+          databaseId: appwriteDatabaseId,
+          collectionId: appwriteTopicMasteryCollectionId,
+          documentId: ID.unique(),
+          data: {
+            'userId': uid,
+            'chapterId': chapterId,
+            'subject': subject,
+            'topic': topic,
+            'mastery': current,
+            'attempts': 1,
+            'lastReviewedAt': now,
+          },
+          permissions: perms,
+        );
+      }
+    } on AppwriteException {
+      // non bloquant
+    }
+  }
+
   // ── À l'affiche (événements & partenaires) ────────────────────────────────
 
   /// Éléments « À l'affiche », triés par `order`. Liste vide en cas d'erreur.

@@ -5,16 +5,55 @@ import '../../widgets/ob_widgets.dart';
 import '../../widgets/leo_mascot.dart';
 import '../../models/course.dart';
 import '../../models/quiz.dart';
+import '../../services/database_service.dart';
 
 /// Résultat d'un quiz (section E) : score visuel, statistiques, questions à
 /// revoir, et relances (revoir le cours / recommencer).
-class QuizResultScreen extends StatelessWidget {
+class QuizResultScreen extends StatefulWidget {
   final Map<String, dynamic>? data;
   const QuizResultScreen({super.key, this.data});
 
   @override
+  State<QuizResultScreen> createState() => _QuizResultScreenState();
+}
+
+class _QuizResultScreenState extends State<QuizResultScreen> {
+  @override
+  void initState() {
+    super.initState();
+    _recordAttempt();
+  }
+
+  /// Persiste le résultat (`quiz_attempts` + `topic_mastery`) — non bloquant.
+  void _recordAttempt() {
+    final d = widget.data ?? const {};
+    final questions = (d['questions'] as List?)?.cast<QuizQuestion>() ?? const <QuizQuestion>[];
+    final answers = (d['answers'] as Map?)?.cast<int, int>() ?? const <int, int>{};
+    final chapter = d['chapter'] as Chapter?;
+    final subject = (d['subject'] as String?) ?? '';
+    if (chapter == null || questions.isEmpty) return;
+    var correct = 0;
+    final wrong = <int>[];
+    for (var i = 0; i < questions.length; i++) {
+      if (answers[i] == questions[i].answer) {
+        correct++;
+      } else {
+        wrong.add(i);
+      }
+    }
+    DatabaseService().recordQuizAttempt(
+      chapterId: chapter.id,
+      subject: subject,
+      topic: chapter.title,
+      score: correct,
+      total: questions.length,
+      wrong: wrong,
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final d = data ?? const {};
+    final d = widget.data ?? const {};
     final questions = (d['questions'] as List?)?.cast<QuizQuestion>() ?? const <QuizQuestion>[];
     final answers = (d['answers'] as Map?)?.cast<int, int>() ?? const <int, int>{};
     final seconds = (d['seconds'] as int?) ?? 0;
