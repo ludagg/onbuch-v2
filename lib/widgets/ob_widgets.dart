@@ -305,7 +305,7 @@ class OBNavBar extends StatelessWidget {
 
   static const _tabs = [
     _NavTab(icon: Icons.dashboard_rounded, label: 'Tableau'),
-    _NavTab(icon: Icons.school_rounded, label: 'Campus'),
+    _NavTab(icon: Icons.track_changes_rounded, label: 'Concours'),
     _NavTab(icon: Icons.auto_awesome_rounded, label: 'Tuteur'),
     _NavTab(icon: Icons.menu_book_rounded, label: 'Annales'),
     _NavTab(icon: Icons.play_lesson_rounded, label: 'Cours'),
@@ -469,7 +469,7 @@ class OBTopMenu extends StatelessWidget {
   const OBTopMenu({super.key, this.entries = _defaults});
 
   static const List<OBMenuEntry> _defaults = [
-    OBMenuEntry(Icons.track_changes_rounded, 'Concours', '/concours'),
+    OBMenuEntry(Icons.event_note_rounded, 'Campus & agenda', '/campus'),
     OBMenuEntry(Icons.paid_outlined, 'Crédits', '/credits'),
     OBMenuEntry(Icons.groups_rounded, 'Communauté', '/communaute'),
     OBMenuEntry(Icons.settings_outlined, 'Paramètres', '/parametres'),
