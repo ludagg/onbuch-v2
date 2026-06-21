@@ -94,11 +94,7 @@ class _ConcoursScreenState extends State<ConcoursScreen> {
               ]),
               const SizedBox(height: 18),
 
-              // Emplacement partenaire (sponsorisé)
-              _sponsoredBanner(context),
-              const SizedBox(height: 16),
-
-              // Vedette — clôture proche
+              // Vedette — clôture proche (seul bloc « héros » de la page)
               if (featured != null) ...[
                 _FeaturedCard(featured),
                 const SizedBox(height: 18),
@@ -172,39 +168,6 @@ class _ConcoursScreenState extends State<ConcoursScreen> {
           ]),
         ),
       ),
-    );
-  }
-
-  Widget _sponsoredBanner(BuildContext context) {
-    return Container(
-      clipBehavior: Clip.antiAlias,
-      decoration: BoxDecoration(
-        color: OC.panel,
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: OC.line, width: 1.5),
-      ),
-      child: Column(children: [
-        Container(
-          height: 78,
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight,
-                colors: [Color(0xFF2A1E12), Color(0xFF7A4A1E)]),
-          ),
-          child: Center(child: Text('Prépa ENS · Stages intensifs',
-              style: display(15, weight: FontWeight.w700, color: Colors.white))),
-        ),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(12, 9, 12, 9),
-          child: Row(children: [
-            _pill('Sponsorisé', OC.o50, OC.o700),
-            const SizedBox(width: 8),
-            Expanded(child: Text('Réussis ton concours avec un accompagnement dédié.',
-                maxLines: 1, overflow: TextOverflow.ellipsis,
-                style: body(11, color: OC.ink2, weight: FontWeight.w500))),
-            const Icon(Icons.chevron_right_rounded, size: 18, color: OC.muted),
-          ]),
-        ),
-      ]),
     );
   }
 
@@ -369,40 +332,76 @@ class _ConcoursRow extends StatelessWidget {
   final Concours c;
   const _ConcoursRow(this.c);
 
+  static const _avatarColors = [
+    OC.o600, OC.blue, OC.good, Color(0xFF7A5AE0), Color(0xFF0E9AA0), Color(0xFFD2462E),
+  ];
+  Color get _accent => _avatarColors[c.name.hashCode.abs() % _avatarColors.length];
+
+  /// Sigle de l'école si présent dans le nom (ENS, ENSP, FMSB, ENAM…), sinon
+  /// les 2 premières lettres.
+  String get _badge {
+    final caps = RegExp(r'\b[A-Z]{2,6}\b').allMatches(c.name).map((m) => m.group(0)!).toList()
+      ..sort((a, b) => b.length.compareTo(a.length));
+    if (caps.isNotEmpty) return caps.first;
+    final w = c.name.trim();
+    return w.isEmpty ? 'C' : w.substring(0, w.length >= 2 ? 2 : 1).toUpperCase();
+  }
+
   @override
   Widget build(BuildContext context) {
     final dl = c.registrationDeadline;
     final days = dl == null ? null : dl.difference(DateTime.now()).inDays;
     final open = days == null || days >= 0;
+    final urgent = days != null && days >= 0 && days <= 7;
+    final accent = _accent;
+
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () => context.push('/concours-detail', extra: c),
       child: Container(
-        padding: const EdgeInsets.all(11),
+        padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
           color: OC.paper,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(color: OC.line, width: 1.5),
         ),
         child: Row(children: [
+          // Avatar sigle coloré (identité de l'école)
           Container(
-            width: 42, height: 42,
-            decoration: BoxDecoration(color: OC.o50, borderRadius: BorderRadius.circular(11)),
-            child: const Icon(Icons.account_balance_outlined, size: 21, color: OC.o600),
+            width: 46, height: 46,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(color: accent.withValues(alpha: 0.12), borderRadius: BorderRadius.circular(13)),
+            child: Text(_badge, style: display(_badge.length >= 4 ? 12 : 15, weight: FontWeight.w800, color: accent)),
           ),
           const SizedBox(width: 12),
           Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text(c.name, maxLines: 1, overflow: TextOverflow.ellipsis, style: body(13, weight: FontWeight.w700)),
+            Text(c.name, maxLines: 1, overflow: TextOverflow.ellipsis, style: body(13.5, weight: FontWeight.w700)),
             const SizedBox(height: 2),
             Text(c.organizer.isNotEmpty ? c.organizer : (c.description ?? ''),
                 maxLines: 1, overflow: TextOverflow.ellipsis,
                 style: body(11.5, color: OC.muted, weight: FontWeight.w500)),
+            if (dl != null) ...[
+              const SizedBox(height: 5),
+              Row(children: [
+                Icon(Icons.event_outlined, size: 12.5, color: urgent ? OC.bad : OC.muted),
+                const SizedBox(width: 4),
+                Text('Clôture ${_frShort(dl)}',
+                    style: body(11, weight: FontWeight.w700, color: urgent ? OC.bad : OC.ink2)),
+              ]),
+            ],
           ])),
           const SizedBox(width: 8),
-          _pill(
-            days != null && days >= 0 && days <= 9 ? 'J-$days' : (open ? 'Ouvert' : 'Clos'),
-            open ? OC.o50 : OC.panel,
-            open ? OC.o700 : OC.muted,
+          // Statut / compte à rebours
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 5),
+            decoration: BoxDecoration(
+              color: !open ? OC.panel : (urgent ? OC.bad.withValues(alpha: 0.12) : OC.o50),
+              borderRadius: BorderRadius.circular(9),
+            ),
+            child: Text(
+              days != null && days >= 0 ? (days == 0 ? "Auj." : 'J-$days') : (open ? 'Ouvert' : 'Clos'),
+              style: mono(11.5, weight: FontWeight.w800, color: !open ? OC.muted : (urgent ? OC.bad : OC.o700)),
+            ),
           ),
         ]),
       ),
