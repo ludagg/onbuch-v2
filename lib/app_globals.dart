@@ -6,6 +6,10 @@ import 'package:flutter/material.dart';
 final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey =
     GlobalKey<ScaffoldMessengerState>();
 
+/// Clé du Scaffold de la coque principale (MainShell) : permet d'ouvrir le
+/// tiroir (menu hamburger) depuis le bouton des en-têtes d'onglets.
+final GlobalKey<ScaffoldState> shellScaffoldKey = GlobalKey<ScaffoldState>();
+
 /// Vrai uniquement si `Firebase.initializeApp()` a réussi (faux sur le web sans
 /// config Firebase). Garde tout accès à FirebaseMessaging pour éviter le crash
 /// « No Firebase app has been created ».

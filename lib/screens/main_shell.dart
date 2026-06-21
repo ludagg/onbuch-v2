@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../app_globals.dart';
 import '../widgets/ob_widgets.dart';
 import '../services/push_service.dart';
 
@@ -33,7 +34,9 @@ class _MainShellState extends State<MainShell> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: shellScaffoldKey,
       body: widget.child,
+      endDrawer: const AppDrawer(),
       bottomNavigationBar: OBNavBar(
         currentIndex: _index,
         onTap: (i) => context.go(_routes[i]),
