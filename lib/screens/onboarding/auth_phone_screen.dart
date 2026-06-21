@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
+import '../../widgets/leo_mascot.dart';
 import '../../services/auth_service.dart';
 import '../../services/database_service.dart';
 
@@ -136,17 +137,9 @@ class _AuthPhoneScreenState extends State<AuthPhoneScreen> {
               child: Form(
                 key: _formKey,
                 child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  // Logo
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(18),
-                    child: Image.asset(
-                      'assets/images/logo.png',
-                      width: 56,
-                      height: 56,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  const SizedBox(height: 22),
+                  // Léo, la mascotte (accueil chaleureux)
+                  const LeoMascot(size: 72, mood: LeoMood.wave),
+                  const SizedBox(height: 14),
 
                   // Titre
                   Text(
