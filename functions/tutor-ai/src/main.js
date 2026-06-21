@@ -227,6 +227,47 @@ async function writeQuota(db, uid, q) {
   return r.ok;
 }
 
+// ── Contexte élève (Phase 1 « agent qui connaît l'élève ») ────────────────────
+// Lit le profil (`users/{uid}`) + la mémoire longue (`student_memory/{uid}`) et
+// renvoie un bloc texte compact pour personnaliser les réponses. Toujours
+// tolérant : en cas d'échec, renvoie '' (la correction n'est jamais bloquée).
+async function readStudentContext(db, uid) {
+  if (!db || !uid) return '';
+  try {
+    const parts = [];
+    const ru = await awFetch('GET', `/databases/${db}/collections/users/documents/${uid}`);
+    if (ru.status === 200) {
+      const u = await ru.json();
+      const bits = [];
+      if (u.classe) bits.push(`classe : ${u.classe}`);
+      if (u.examen) bits.push(`examen visé : ${u.examen}`);
+      if (u.serie) bits.push(`série : ${u.serie}`);
+      if (u.studyField) bits.push(`filière souhaitée : ${u.studyField}`);
+      if (u.careerGoal) bits.push(`objectif d'orientation : ${u.careerGoal}`);
+      if (bits.length) parts.push(bits.join(' · '));
+    }
+    const rm = await awFetch('GET', `/databases/${db}/collections/student_memory/documents/${uid}`);
+    if (rm.status === 200) {
+      const m = await rm.json();
+      if (m.weaknesses) parts.push(`points faibles connus : ${String(m.weaknesses).slice(0, 400)}`);
+      if (m.strengths) parts.push(`points forts : ${String(m.strengths).slice(0, 400)}`);
+      if (m.goals) parts.push(`objectifs de révision : ${String(m.goals).slice(0, 300)}`);
+    }
+    return parts.join('\n');
+  } catch (_) {
+    return '';
+  }
+}
+
+// Greffe le contexte élève sur un prompt système (sans le faire réciter).
+function withStudent(basePrompt, ctx) {
+  if (!ctx) return basePrompt;
+  return `${basePrompt}
+
+CONTEXTE ÉLÈVE (utilise-le pour adapter le NIVEAU, les EXEMPLES et le TON ; ne le récite jamais explicitement) :
+${ctx}`;
+}
+
 export default async ({ req, res, error }) => {
   const apiKey = process.env.NVIDIA_API_KEY;
   const visionModel = process.env.VISION_MODEL || 'meta/llama-4-maverick-17b-128e-instruct';
@@ -322,6 +363,11 @@ export default async ({ req, res, error }) => {
   if (notify && uid) willNotify = true;
 
   try {
+    // Contexte élève (personnalisation) — uniquement pour les réponses de type
+    // correction / explication / suivi (SOLVE_PROMPT), pas pour cours/quiz/fiche.
+    const usesSolve = mode !== 'summary' && mode !== 'lesson' && mode !== 'quiz';
+    const studentCtx = usesSolve ? await readStudentContext(db, uid) : '';
+
     // ── Résumé de cours → fiche de révision (multi-pages) ───────────────────
     if (mode === 'summary') {
       let courseText = '';
@@ -358,7 +404,7 @@ export default async ({ req, res, error }) => {
     // Suivi de conversation (texte uniquement, pas de vision).
     if (messages && messages.length) {
       const reply = await callNvidia(apiKey, reasoningModel, [
-        { role: 'system', content: SOLVE_PROMPT },
+        { role: 'system', content: withStudent(SOLVE_PROMPT, studentCtx) },
         ...messages,
       ], 3200);
       if (!reply) {
@@ -393,7 +439,7 @@ export default async ({ req, res, error }) => {
 
     const isLesson = mode === 'lesson';
     const isQuiz = mode === 'quiz';
-    const sysPrompt = isLesson ? LESSON_PROMPT : (isQuiz ? QUIZ_PROMPT : SOLVE_PROMPT);
+    const sysPrompt = isLesson ? LESSON_PROMPT : (isQuiz ? QUIZ_PROMPT : withStudent(SOLVE_PROMPT, studentCtx));
     const userMsg = (isLesson || isQuiz)
       ? enonce
       : (instruction ? `${instruction}\n\nÉnoncé :\n${enonce}` : `Voici l'énoncé d'un exercice. Corrige-le.\n\n${enonce}`);
