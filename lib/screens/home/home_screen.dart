@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
+import '../../widgets/leo_mascot.dart';
 import '../../services/auth_service.dart';
 import '../../services/database_service.dart';
 import '../../services/tutor_service.dart';
@@ -511,76 +512,104 @@ class _TuteurCardState extends State<_TuteurCard> {
     final daily = AIConfig.freeDaily;
     final free = q?.freeRemaining ?? daily;
     final credits = q?.credits ?? 0;
-    final progress = daily > 0 ? (free / daily).clamp(0.0, 1.0) : 0.0;
-    final String label;
-    if (free > 0) {
-      label = '$free / $daily correction${daily > 1 ? 's' : ''} gratuite${daily > 1 ? 's' : ''} aujourd\'hui';
-    } else if (credits > 0) {
-      label = '$credits crédit${credits > 1 ? 's' : ''} Tuteur disponible${credits > 1 ? 's' : ''}';
-    } else {
-      label = 'Quota du jour épuisé — recharge des crédits';
-    }
+
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
         color: OC.o50,
         borderRadius: BorderRadius.circular(22),
         border: Border.all(color: OC.o100, width: 1.5),
       ),
       child: Column(children: [
-        Row(children: [
-          Container(
-            width: 52, height: 52,
-            decoration: BoxDecoration(
-              gradient: OC.grad,
-              borderRadius: BorderRadius.circular(16),
-              boxShadow: [BoxShadow(color: OC.o500.withValues(alpha:0.30), blurRadius: 14, offset: const Offset(0, 6))],
-            ),
-            child: const Icon(Icons.auto_awesome_rounded, color: Colors.white, size: 26),
-          ),
-          const SizedBox(width: 14),
-          Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text('Tuteur IA', style: display(17, weight: FontWeight.w700)),
-            const SizedBox(height: 4),
-            Text('Photographie un exercice, reçois la correction', style: body(12.5, color: OC.o700, weight: FontWeight.w500)),
-          ])),
-        ]),
-        const SizedBox(height: 14),
-        Row(children: [
-          Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(4),
-              child: LinearProgressIndicator(
-                value: progress,
-                minHeight: 7,
-                backgroundColor: OC.o100,
-                valueColor: const AlwaysStoppedAnimation(OC.o500),
-              ),
-            ),
-            const SizedBox(height: 6),
-            Text(label, style: body(11, color: OC.o700, weight: FontWeight.w600)),
-          ])),
-          const SizedBox(width: 12),
-          GestureDetector(
-            onTap: () => context.go('/tutor/capture'),
+        // ── Léo + bulle de dialogue ───────────────────────────────────────
+        Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+          const LeoMascot(size: 60, mood: LeoMood.wave),
+          const SizedBox(width: 10),
+          Expanded(
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              padding: const EdgeInsets.fromLTRB(13, 11, 13, 12),
               decoration: BoxDecoration(
-                color: OC.o500,
-                borderRadius: BorderRadius.circular(13),
-                boxShadow: [BoxShadow(color: OC.o500.withValues(alpha:0.28), blurRadius: 14, offset: const Offset(0, 6))],
+                color: OC.paper,
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: OC.o100, width: 1.5),
               ),
-              child: Row(children: [
-                const Icon(Icons.camera_alt_outlined, color: Colors.white, size: 18),
-                const SizedBox(width: 7),
-                Text('Scanner', style: body(13.5, weight: FontWeight.w700, color: Colors.white)),
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Text('LÉO · TUTEUR IA',
+                    style: body(9.5, weight: FontWeight.w800, color: OC.o600).copyWith(letterSpacing: 0.1 * 9.5)),
+                const SizedBox(height: 4),
+                Text('Bloqué sur un exo ?', style: display(16.5, weight: FontWeight.w700)),
+                const SizedBox(height: 2),
+                Text('Montre-le-moi en photo, je te le corrige 📸',
+                    style: body(12, color: OC.ink2, weight: FontWeight.w500).copyWith(height: 1.3)),
               ]),
             ),
           ),
         ]),
+        const SizedBox(height: 12),
+
+        // ── Quota (jetons) + CTA pleine largeur ───────────────────────────
+        Row(children: [
+          if (free > 0) ...[
+            _tokens(free, daily),
+            const SizedBox(width: 8),
+            Flexible(child: Text('gratuit${free > 1 ? 's' : ''} aujourd\'hui',
+                maxLines: 1, overflow: TextOverflow.ellipsis,
+                style: body(11.5, color: OC.o700, weight: FontWeight.w600))),
+          ] else if (credits > 0) ...[
+            Icon(Icons.paid_rounded, size: 15, color: OC.o600),
+            const SizedBox(width: 6),
+            Text('$credits crédit${credits > 1 ? 's' : ''} Tuteur',
+                style: body(11.5, color: OC.o700, weight: FontWeight.w700)),
+          ] else ...[
+            Icon(Icons.bolt_rounded, size: 15, color: OC.muted),
+            const SizedBox(width: 6),
+            Flexible(child: Text('Quota épuisé · recharge des crédits',
+                maxLines: 1, overflow: TextOverflow.ellipsis,
+                style: body(11.5, color: OC.muted, weight: FontWeight.w600))),
+          ],
+        ]),
+        const SizedBox(height: 11),
+        GestureDetector(
+          onTap: () => context.go('/tutor/capture'),
+          child: Container(
+            width: double.infinity, height: 48,
+            decoration: BoxDecoration(
+              gradient: OC.grad,
+              borderRadius: BorderRadius.circular(14),
+              boxShadow: [BoxShadow(color: OC.o500.withValues(alpha: 0.30), blurRadius: 14, offset: const Offset(0, 6))],
+            ),
+            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              const Icon(Icons.camera_alt_rounded, color: Colors.white, size: 19),
+              const SizedBox(width: 8),
+              Text('Scanner un exercice', style: body(14, weight: FontWeight.w700, color: Colors.white)),
+            ]),
+          ),
+        ),
       ]),
     );
   }
+
+  // Quota sous forme de jetons (●●○) — plus parlant qu'une barre.
+  Widget _tokens(int free, int daily) => Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          for (var i = 0; i < daily; i++)
+            Padding(
+              padding: const EdgeInsets.only(right: 6),
+              child: Container(
+                width: 11, height: 11,
+                decoration: BoxDecoration(
+                  color: i < free ? OC.o500 : Colors.transparent,
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    color: i < free ? OC.o500 : OC.o600.withValues(alpha: 0.4),
+                    width: 1.6,
+                  ),
+                ),
+              ),
+            ),
+        ],
+      );
 }
 
 // ─── Raccourcis ───────────────────────────────────────────────────────────────
