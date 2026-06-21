@@ -1,6 +1,6 @@
 {
-    "name": "onbuch",
-    "short_name": "onbuch",
+    "name": "OnBuch",
+    "short_name": "OnBuch",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
