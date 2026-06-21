@@ -53,11 +53,14 @@ class AnnalesLibraryScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Row(children: [
-              _QuickCard(Icons.download_rounded, 'Hors-ligne', '12', OC.waInk, OC.goodBg),
+              _QuickCard(Icons.download_rounded, 'Hors-ligne', '12', OC.waInk, OC.goodBg,
+                  () => context.push('/annales/offline')),
               const SizedBox(width: 11),
-              _QuickCard(Icons.access_time_rounded, 'Récents', '8', OC.blue, OC.blueBg),
+              _QuickCard(Icons.access_time_rounded, 'Récents', '8', OC.blue, OC.blueBg,
+                  () => context.push('/annales/recent')),
               const SizedBox(width: 11),
-              _QuickCard(Icons.bookmark_outline_rounded, 'Favoris', '5', const Color(0xFFA6701A), const Color(0xFFFBF0DD)),
+              _QuickCard(Icons.bookmark_outline_rounded, 'Favoris', '5', const Color(0xFFA6701A), const Color(0xFFFBF0DD),
+                  () => context.push('/annales/favorites')),
             ]),
           ),
           const SizedBox(height: 18),
@@ -100,11 +103,15 @@ class _QuickCard extends StatelessWidget {
   final IconData icon;
   final String label, count;
   final Color c, bg;
-  const _QuickCard(this.icon, this.label, this.count, this.c, this.bg);
+  final VoidCallback onTap;
+  const _QuickCard(this.icon, this.label, this.count, this.c, this.bg, this.onTap);
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(child: Container(
+    return Expanded(child: GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: onTap,
+      child: Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: OC.paper,
@@ -122,7 +129,7 @@ class _QuickCard extends StatelessWidget {
         const SizedBox(height: 1),
         Text('$count fichiers', style: body(10.5, color: OC.muted, weight: FontWeight.w600)),
       ]),
-    ));
+    )));
   }
 }
 
