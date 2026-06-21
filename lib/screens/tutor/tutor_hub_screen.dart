@@ -23,6 +23,7 @@ class TutorHubScreen extends StatefulWidget {
 class _TutorHubScreenState extends State<TutorHubScreen> {
   final _service = TutorService();
   late Future<List<TutorJob>> _recent = _service.recentJobs();
+  late Future<List<TutorThread>> _threads = _service.recentThreads(limit: 6);
   TutorQuota? _quota;
   String? _firstName = AuthService.cachedFirstName;
   final _ctrl = TextEditingController();
@@ -151,9 +152,23 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
   Future<void> _open(TutorRequest req) async {
     await context.push('/tutor/correction', extra: req);
     if (mounted) {
-      setState(() => _recent = _service.recentJobs());
+      setState(() {
+        _recent = _service.recentJobs();
+        _threads = _service.recentThreads(limit: 6);
+      });
       _loadQuota();
     }
+  }
+
+  Future<void> _openThread(TutorThread t) async {
+    final messages = await _service.getThreadMessages(t.id);
+    if (!mounted) return;
+    _open(TutorRequest(
+      threadId: t.id,
+      threadMessages: messages,
+      subject: t.subject,
+      titleHint: t.title,
+    ));
   }
 
   bool _blockedByQuota() {
@@ -265,6 +280,21 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
           const SizedBox(height: 12),
           _summaryCard(),
           const SizedBox(height: 24),
+
+          // ── Mes discussions (mémoire conversationnelle) ───────────────────
+          FutureBuilder<List<TutorThread>>(
+            future: _threads,
+            builder: (context, snap) {
+              final threads = snap.data ?? const <TutorThread>[];
+              if (threads.isEmpty) return const SizedBox.shrink();
+              return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Text('Mes discussions', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
+                const SizedBox(height: 10),
+                ...threads.map(_threadTile),
+                const SizedBox(height: 22),
+              ]);
+            },
+          ),
 
           // ── Reprendre ─────────────────────────────────────────────────────
           Text('Reprendre', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
@@ -449,6 +479,35 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
           ),
         ),
       ]),
+    );
+  }
+
+  Widget _threadTile(TutorThread t) {
+    return GestureDetector(
+      onTap: () => _openThread(t),
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 9),
+        padding: const EdgeInsets.all(11),
+        decoration: BoxDecoration(
+          color: OC.paper, borderRadius: BorderRadius.circular(14),
+          border: Border.all(color: OC.line, width: 1.5),
+        ),
+        child: Row(children: [
+          Container(
+            width: 38, height: 38,
+            decoration: BoxDecoration(color: OC.o50, borderRadius: BorderRadius.circular(11)),
+            child: Icon(Icons.forum_outlined, size: 19, color: OC.o600),
+          ),
+          const SizedBox(width: 12),
+          Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(t.title, maxLines: 1, overflow: TextOverflow.ellipsis, style: body(13.5, weight: FontWeight.w700)),
+            const SizedBox(height: 2),
+            Text(t.subject.isNotEmpty ? '${t.subject} · reprendre' : 'reprendre la discussion',
+                style: body(11.5, color: OC.muted, weight: FontWeight.w500)),
+          ])),
+          Icon(Icons.chevron_right_rounded, size: 18, color: OC.muted),
+        ]),
+      ),
     );
   }
 

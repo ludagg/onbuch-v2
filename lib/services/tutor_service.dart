@@ -31,6 +31,22 @@ class TutorQuota {
   int get freeDaily => AIConfig.freeDaily;
 }
 
+/// Un fil de conversation persisté avec le Tuteur (mémoire des échanges).
+class TutorThread {
+  final String id;
+  final String title;
+  final String subject;
+  final DateTime updatedAt;
+  const TutorThread({required this.id, required this.title, required this.subject, required this.updatedAt});
+
+  factory TutorThread.fromDoc(String id, Map<String, dynamic> d) => TutorThread(
+        id: id,
+        title: (d['title'] ?? 'Discussion').toString(),
+        subject: (d['subject'] ?? '').toString(),
+        updatedAt: DateTime.tryParse((d['updatedAt'] ?? d['\$updatedAt'] ?? '').toString()) ?? DateTime.now(),
+      );
+}
+
 /// Service du Tuteur IA.
 ///
 /// La photo (ou le texte) d'un exercice est envoyé à la fonction Appwrite
@@ -230,6 +246,88 @@ class TutorService {
           .map((d) => TutorJob.fromDoc(d.$id, d.data))
           .toList();
     } on AppwriteException {
+      return const [];
+    }
+  }
+
+  // ── Mémoire conversationnelle (tutor_threads) ───────────────────────────────
+
+  /// Crée ou met à jour un fil de conversation (mémoire). Renvoie l'id du fil
+  /// (ou l'id reçu en cas d'échec). Non bloquant.
+  Future<String?> saveThread({
+    String? threadId,
+    required List<Map<String, String>> messages,
+    String? title,
+    String? subject,
+  }) async {
+    if (messages.isEmpty) return threadId;
+    try {
+      final user = await AppwriteClient.account.get();
+      final uid = user.$id;
+      final t = (title ?? '').trim();
+      final data = {
+        'userId': uid,
+        'title': t.isEmpty ? 'Discussion' : (t.length > 200 ? t.substring(0, 200) : t),
+        'subject': subject ?? '',
+        'messages': jsonEncode(messages),
+        'updatedAt': DateTime.now().toIso8601String(),
+      };
+      if (threadId == null) {
+        final doc = await AppwriteClient.databases.createDocument(
+          databaseId: appwriteDatabaseId,
+          collectionId: appwriteTutorThreadsCollectionId,
+          documentId: ID.unique(),
+          data: data,
+          permissions: [
+            Permission.read(Role.user(uid)),
+            Permission.update(Role.user(uid)),
+            Permission.delete(Role.user(uid)),
+          ],
+        );
+        return doc.$id;
+      }
+      await AppwriteClient.databases.updateDocument(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteTutorThreadsCollectionId,
+        documentId: threadId,
+        data: data,
+      );
+      return threadId;
+    } on AppwriteException {
+      return threadId;
+    }
+  }
+
+  /// Fils récents (mémoire) — les plus récents d'abord.
+  Future<List<TutorThread>> recentThreads({int limit = 20}) async {
+    try {
+      final res = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteTutorThreadsCollectionId,
+        queries: [Query.orderDesc('\$updatedAt'), Query.limit(limit)],
+      );
+      return res.documents.map((d) => TutorThread.fromDoc(d.$id, d.data)).toList();
+    } on AppwriteException {
+      return const [];
+    }
+  }
+
+  /// Charge les messages d'un fil pour le reprendre.
+  Future<List<Map<String, String>>> getThreadMessages(String threadId) async {
+    try {
+      final doc = await AppwriteClient.databases.getDocument(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteTutorThreadsCollectionId,
+        documentId: threadId,
+      );
+      final raw = (doc.data['messages'] ?? '[]').toString();
+      final list = (jsonDecode(raw) as List?) ?? const [];
+      return list
+          .whereType<Map>()
+          .map((m) => {'role': (m['role'] ?? '').toString(), 'content': (m['content'] ?? '').toString()})
+          .where((m) => m['content']!.isNotEmpty)
+          .toList();
+    } catch (_) {
       return const [];
     }
   }

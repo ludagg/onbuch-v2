@@ -16,6 +16,8 @@ class TutorRequest {
   final String? chapterId; // pour la mise en cache d'une fiche de cours
   final String? presetAnswer; // contenu déjà disponible (cache) -> pas d'appel IA
   final List<Uint8List>? summaryImages; // pages à résumer en fiche (mode 'summary')
+  final String? threadId; // fil de conversation à reprendre (mémoire)
+  final List<Map<String, String>>? threadMessages; // messages préchargés du fil
 
   const TutorRequest({
     this.image,
@@ -27,5 +29,7 @@ class TutorRequest {
     this.chapterId,
     this.presetAnswer,
     this.summaryImages,
+    this.threadId,
+    this.threadMessages,
   });
 }

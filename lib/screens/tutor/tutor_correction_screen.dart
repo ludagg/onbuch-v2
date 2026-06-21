@@ -40,6 +40,7 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
   final _scroll = ScrollController();
   final List<_Msg> _msgs = [];
   bool _bgNotice = false; // génération en arrière-plan → message « tu peux quitter »
+  String? _threadId; // fil de conversation persisté (mémoire)
 
   @override
   void initState() {
@@ -78,6 +79,20 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
   void _start() {
     final r = widget.request;
     if (r == null) return;
+
+    // Reprise d'un fil de conversation (mémoire) : on précharge les messages,
+    // sans relancer d'appel IA. L'élève peut poursuivre la discussion.
+    if (r.threadMessages != null && r.threadMessages!.isNotEmpty) {
+      _threadId = r.threadId;
+      for (final m in r.threadMessages!) {
+        if (m['role'] == 'user') {
+          _msgs.add(_Msg.user(text: m['content']));
+        } else {
+          _msgs.add(_Msg.ai(Future.value(m['content'] ?? ''))..resolved = m['content']);
+        }
+      }
+      return;
+    }
 
     // Mode « Résumer un cours » : plusieurs pages → fiche de révision.
     if (r.mode == 'summary' && (r.summaryImages?.isNotEmpty ?? false)) {
@@ -129,6 +144,7 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
       if (!mounted) return;
       setState(() => m.resolved = t);
       _scrollToBottom();
+      _persistThread();
     }).catchError((_) {
       if (!mounted) return;
       setState(() => m.failed = true);
@@ -148,6 +164,27 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
       }
     }
     return out;
+  }
+
+  /// Persiste la conversation dans `tutor_threads` (mémoire) : crée le fil au
+  /// 1er échange, le met à jour ensuite. Non bloquant.
+  void _persistThread() {
+    final history = _history();
+    if (history.isEmpty) return;
+    final hint = widget.request?.titleHint?.trim();
+    String? title = (hint != null && hint.isNotEmpty) ? hint : null;
+    if (title == null) {
+      final firstUser = _msgs.where((m) => m.isUser && (m.text?.trim().isNotEmpty ?? false));
+      if (firstUser.isNotEmpty) title = firstUser.first.text!.trim();
+    }
+    _service.saveThread(
+      threadId: _threadId,
+      messages: history,
+      title: title,
+      subject: widget.request?.subject,
+    ).then((id) {
+      if (id != null) _threadId = id;
+    });
   }
 
   bool get _canSend {
