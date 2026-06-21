@@ -206,7 +206,7 @@ class _ChaptersScreenState extends State<ChaptersScreen> {
                   const SizedBox(height: 3),
                   Text(_meta(c, done, now), style: body(11.5, color: OC.muted, weight: FontWeight.w500)),
                 ])),
-                const Icon(Icons.chevron_right_rounded, size: 18, color: OC.muted),
+                Icon(Icons.chevron_right_rounded, size: 18, color: OC.muted),
               ]),
             ),
           ),
@@ -249,7 +249,7 @@ class _ChaptersScreenState extends State<ChaptersScreen> {
             Text(sub, style: body(11.5, color: OC.muted, weight: FontWeight.w500)),
           ])),
           if (_viewed.contains(c.id)) const Icon(Icons.check_circle_rounded, size: 18, color: OC.good)
-          else const Icon(Icons.chevron_right_rounded, size: 18, color: OC.muted),
+          else Icon(Icons.chevron_right_rounded, size: 18, color: OC.muted),
         ]),
       ),
     );
@@ -259,7 +259,7 @@ class _ChaptersScreenState extends State<ChaptersScreen> {
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(color: OC.paper, borderRadius: BorderRadius.circular(14), border: Border.all(color: OC.line, width: 1.5)),
         child: Row(children: [
-          const Icon(Icons.menu_book_rounded, size: 18, color: OC.muted),
+          Icon(Icons.menu_book_rounded, size: 18, color: OC.muted),
           const SizedBox(width: 10),
           Expanded(child: Text(t, style: body(13, color: OC.muted, weight: FontWeight.w500))),
         ]),

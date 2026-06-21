@@ -288,12 +288,12 @@ class _AuthPhoneScreenState extends State<AuthPhoneScreen> {
 
                   // Séparateur
                   Row(children: [
-                    const Expanded(child: Divider(color: OC.line, thickness: 1.5)),
+                    Expanded(child: Divider(color: OC.line, thickness: 1.5)),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 12),
                       child: Text('OU', style: body(12, weight: FontWeight.w700, color: OC.muted)),
                     ),
-                    const Expanded(child: Divider(color: OC.line, thickness: 1.5)),
+                    Expanded(child: Divider(color: OC.line, thickness: 1.5)),
                   ]),
                   const SizedBox(height: 18),
 
@@ -345,11 +345,11 @@ class _AuthPhoneScreenState extends State<AuthPhoneScreen> {
       contentPadding: const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(14),
-        borderSide: const BorderSide(color: OC.line2, width: 1.5),
+        borderSide: BorderSide(color: OC.line2, width: 1.5),
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(14),
-        borderSide: const BorderSide(color: OC.line2, width: 1.5),
+        borderSide: BorderSide(color: OC.line2, width: 1.5),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(14),

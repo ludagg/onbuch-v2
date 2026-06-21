@@ -85,7 +85,7 @@ class ResultSuccessScreen extends StatelessWidget {
           Row(children: [
             Expanded(child: OutlinedButton.icon(
               style: OutlinedButton.styleFrom(
-                side: const BorderSide(color: OC.line2, width: 1.5),
+                side: BorderSide(color: OC.line2, width: 1.5),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
                 foregroundColor: OC.ink,
               ),
@@ -96,7 +96,7 @@ class ResultSuccessScreen extends StatelessWidget {
             const SizedBox(width: 11),
             Expanded(child: OutlinedButton.icon(
               style: OutlinedButton.styleFrom(
-                side: const BorderSide(color: OC.line2, width: 1.5),
+                side: BorderSide(color: OC.line2, width: 1.5),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
                 foregroundColor: OC.ink,
               ),

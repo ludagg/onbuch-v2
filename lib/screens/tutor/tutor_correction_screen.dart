@@ -411,7 +411,7 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
     final enabled = _canSend;
     return Container(
       padding: const EdgeInsets.fromLTRB(14, 10, 14, 14),
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         color: OC.paper,
         border: Border(top: BorderSide(color: OC.line, width: 1.5)),
       ),

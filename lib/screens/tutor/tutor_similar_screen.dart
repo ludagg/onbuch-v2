@@ -94,7 +94,7 @@ class TutorSimilarScreen extends StatelessWidget {
                           border: Border.all(color: OC.line2, width: 1.5),
                         ),
                         child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                          const Icon(Icons.visibility_outlined, size: 16, color: OC.ink2),
+                          Icon(Icons.visibility_outlined, size: 16, color: OC.ink2),
                           const SizedBox(width: 7),
                           Text('Corrigé', style: body(13, weight: FontWeight.w700, color: OC.ink2)),
                         ]),

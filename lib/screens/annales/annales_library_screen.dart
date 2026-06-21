@@ -39,7 +39,7 @@ class AnnalesLibraryScreen extends StatelessWidget {
                 boxShadow: [BoxShadow(color: OC.ink.withValues(alpha:0.05), blurRadius: 5)],
               ),
               child: Row(children: [
-                const Icon(Icons.search_rounded, size: 20, color: OC.muted),
+                Icon(Icons.search_rounded, size: 20, color: OC.muted),
                 const SizedBox(width: 11),
                 Expanded(child: Text('Matière, examen, année…', style: body(14.5, color: OC.muted, weight: FontWeight.w500))),
                 const Icon(Icons.tune_rounded, size: 19, color: OC.o500),
@@ -181,7 +181,7 @@ class _FolderCard extends StatelessWidget {
             const SizedBox(height: 3),
             Text('$count épreuves', style: body(11.5, color: OC.muted, weight: FontWeight.w600)),
           ]),
-          Positioned(right: 0, top: 0, child: const Icon(Icons.chevron_right_rounded, color: OC.faint, size: 18)),
+          Positioned(right: 0, top: 0, child: Icon(Icons.chevron_right_rounded, color: OC.faint, size: 18)),
         ]),
       ),
     );

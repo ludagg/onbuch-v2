@@ -57,7 +57,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   child: Row(children: [
                     const SizedBox(width: 20),
-                    const Icon(Icons.search_rounded, size: 21, color: OC.muted),
+                    Icon(Icons.search_rounded, size: 21, color: OC.muted),
                     const SizedBox(width: 13),
                     Expanded(child: Text('Rechercher…', style: body(15, color: OC.muted, weight: FontWeight.w500))),
                     GestureDetector(
@@ -430,7 +430,7 @@ class _HeroFooter extends StatelessWidget {
           child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             Text(ctaLabel, style: body(13, weight: FontWeight.w700, color: OC.ink)),
             const SizedBox(width: 6),
-            const Icon(Icons.arrow_forward_rounded, size: 16, color: OC.ink),
+            Icon(Icons.arrow_forward_rounded, size: 16, color: OC.ink),
           ]),
         ),
       );
@@ -450,7 +450,7 @@ class _HeroFooter extends StatelessWidget {
           child: Row(mainAxisSize: MainAxisSize.min, children: [
             Text(ctaLabel, style: body(12.5, weight: FontWeight.w700, color: OC.ink)),
             const SizedBox(width: 5),
-            const Icon(Icons.arrow_forward_rounded, size: 15, color: OC.ink),
+            Icon(Icons.arrow_forward_rounded, size: 15, color: OC.ink),
           ]),
         ),
       ),
@@ -695,7 +695,7 @@ class _SavedSection extends StatelessWidget {
                     style: body(12, color: OC.muted, weight: FontWeight.w500).copyWith(height: 1.35)),
               ])),
               const SizedBox(width: 8),
-              const Icon(Icons.chevron_right_rounded, size: 20, color: OC.muted),
+              Icon(Icons.chevron_right_rounded, size: 20, color: OC.muted),
             ]),
           ),
         ),
@@ -1025,7 +1025,7 @@ Widget _afficheCard(BuildContext context, AfficheItem a) {
               errorBuilder: (_, __, ___) => Container(color: OC.panel),
               loadingBuilder: (_, c, p) => p == null ? c : Container(color: OC.panel))
         else
-          Container(color: OC.panel, child: const Center(child: Icon(Icons.image_outlined, color: OC.faint, size: 48))),
+          Container(color: OC.panel, child: Center(child: Icon(Icons.image_outlined, color: OC.faint, size: 48))),
         DecoratedBox(
           decoration: BoxDecoration(
             gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter,

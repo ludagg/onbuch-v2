@@ -40,7 +40,7 @@ class AnnalesFolderScreen extends StatelessWidget {
           // Breadcrumb
           Row(children: [
             Text('Bibliothèque', style: body(12, color: OC.muted, weight: FontWeight.w600)),
-            const Icon(Icons.chevron_right_rounded, size: 13, color: OC.faint),
+            Icon(Icons.chevron_right_rounded, size: 13, color: OC.faint),
             Text(folderName, style: body(12, weight: FontWeight.w600, color: OC.ink)),
           ]),
           const SizedBox(height: 14),

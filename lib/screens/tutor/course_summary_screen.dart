@@ -190,7 +190,7 @@ class _CourseSummaryScreenState extends State<CourseSummaryScreen> {
                 border: Border.all(color: OC.line, width: 1.5),
               ),
               child: Column(children: [
-                const Icon(Icons.collections_bookmark_outlined, size: 30, color: OC.muted),
+                Icon(Icons.collections_bookmark_outlined, size: 30, color: OC.muted),
                 const SizedBox(height: 8),
                 Text('Ajoute des pages à résumer', style: body(13, color: OC.muted, weight: FontWeight.w600)),
               ]),

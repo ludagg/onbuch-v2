@@ -38,7 +38,7 @@ class AnnaleDetailScreen extends StatelessWidget {
             child: Stack(children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(17),
-                child: const Center(child: Icon(Icons.description_outlined, size: 60, color: OC.faint)),
+                child: Center(child: Icon(Icons.description_outlined, size: 60, color: OC.faint)),
               ),
               Positioned(top: 10, left: 10,
                 child: Container(
@@ -62,7 +62,7 @@ class AnnaleDetailScreen extends StatelessWidget {
                       boxShadow: [BoxShadow(color: Colors.black.withValues(alpha:0.16), blurRadius: 10)],
                     ),
                     child: Row(mainAxisSize: MainAxisSize.min, children: [
-                      const Icon(Icons.visibility_outlined, size: 17, color: OC.ink),
+                      Icon(Icons.visibility_outlined, size: 17, color: OC.ink),
                       const SizedBox(width: 7),
                       Text('Ouvrir le PDF', style: body(12.5, weight: FontWeight.w700)),
                     ]),
@@ -161,7 +161,7 @@ class AnnaleDetailScreen extends StatelessWidget {
                 ),
               ])),
               c.$2
-                  ? const Icon(Icons.chevron_right_rounded, size: 18, color: OC.muted)
+                  ? Icon(Icons.chevron_right_rounded, size: 18, color: OC.muted)
                   : Text('Premium', style: body(10.5, weight: FontWeight.w800, color: Color(0xFFA6701A))),
             ]),
           )),

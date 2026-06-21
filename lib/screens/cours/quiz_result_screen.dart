@@ -103,11 +103,11 @@ class QuizResultScreen extends StatelessWidget {
         top: false,
         child: Container(
           padding: const EdgeInsets.fromLTRB(20, 10, 20, 12),
-          decoration: const BoxDecoration(color: OC.paper, border: Border(top: BorderSide(color: OC.line, width: 1.5))),
+          decoration: BoxDecoration(color: OC.paper, border: Border(top: BorderSide(color: OC.line, width: 1.5))),
           child: Row(children: [
             Expanded(child: OutlinedButton(
               style: OutlinedButton.styleFrom(
-                side: const BorderSide(color: OC.line2, width: 1.5), foregroundColor: OC.ink,
+                side: BorderSide(color: OC.line2, width: 1.5), foregroundColor: OC.ink,
                 padding: const EdgeInsets.symmetric(vertical: 14),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
               ),

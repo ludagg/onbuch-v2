@@ -101,7 +101,7 @@ class ConcoursPrepScreen extends StatelessWidget {
                           child: Text(p.$3, style: body(10.5, weight: FontWeight.w800, color: OC.o700)),
                         ),
                       const SizedBox(width: 6),
-                      const Icon(Icons.chevron_right_rounded, size: 18, color: OC.muted),
+                      Icon(Icons.chevron_right_rounded, size: 18, color: OC.muted),
                     ]),
                   ),
                 ),

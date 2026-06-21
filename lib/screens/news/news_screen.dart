@@ -33,7 +33,7 @@ class _NewsScreenState extends State<NewsScreen> {
               child: Padding(
                 padding: const EdgeInsets.all(32),
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
-                  const Icon(Icons.feed_outlined, size: 46, color: OC.faint),
+                  Icon(Icons.feed_outlined, size: 46, color: OC.faint),
                   const SizedBox(height: 12),
                   Text('Aucune actualité pour le moment', style: display(18, weight: FontWeight.w700)),
                   const SizedBox(height: 6),

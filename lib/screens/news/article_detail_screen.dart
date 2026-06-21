@@ -201,7 +201,7 @@ class _ArticleNotFound extends StatelessWidget {
         backgroundColor: OC.bg,
         surfaceTintColor: Colors.transparent,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 20, color: OC.ink),
+          icon: Icon(Icons.arrow_back_ios_new_rounded, size: 20, color: OC.ink),
           onPressed: () => context.go('/home'),
         ),
       ),
@@ -209,7 +209,7 @@ class _ArticleNotFound extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(32),
           child: Column(mainAxisSize: MainAxisSize.min, children: [
-            const Icon(Icons.article_outlined, size: 48, color: OC.faint),
+            Icon(Icons.article_outlined, size: 48, color: OC.faint),
             const SizedBox(height: 14),
             Text('Article introuvable', style: display(18, weight: FontWeight.w700)),
             const SizedBox(height: 6),

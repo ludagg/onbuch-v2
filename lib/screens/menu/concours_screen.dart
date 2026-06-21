@@ -170,7 +170,7 @@ class _ConcoursScreenState extends State<ConcoursScreen> {
                     border: Border.all(color: OC.line, width: 1.5),
                   ),
                   child: Row(children: [
-                    const Icon(Icons.search_off_rounded, size: 18, color: OC.muted),
+                    Icon(Icons.search_off_rounded, size: 18, color: OC.muted),
                     const SizedBox(width: 10),
                     Expanded(child: Text('Aucun concours pour cette recherche.',
                         style: body(13, color: OC.muted, weight: FontWeight.w500))),
@@ -204,7 +204,7 @@ class _ConcoursScreenState extends State<ConcoursScreen> {
         boxShadow: [BoxShadow(color: OC.ink.withValues(alpha: 0.04), blurRadius: 10, offset: const Offset(0, 4))],
       ),
       child: Row(children: [
-        const Icon(Icons.search_rounded, size: 19, color: OC.muted),
+        Icon(Icons.search_rounded, size: 19, color: OC.muted),
         const SizedBox(width: 11),
         Expanded(
           child: TextField(
@@ -227,7 +227,7 @@ class _ConcoursScreenState extends State<ConcoursScreen> {
               _searchCtrl.clear();
               setState(() => _query = '');
             },
-            child: const Padding(
+            child: Padding(
               padding: EdgeInsets.all(4),
               child: Icon(Icons.close_rounded, size: 18, color: OC.muted),
             ),
@@ -303,7 +303,7 @@ class _ConcoursScreenState extends State<ConcoursScreen> {
         Container(
           width: 40, height: 40,
           decoration: BoxDecoration(color: OC.panel, borderRadius: BorderRadius.circular(10)),
-          child: const Icon(Icons.account_balance_rounded, size: 20, color: OC.muted),
+          child: Icon(Icons.account_balance_rounded, size: 20, color: OC.muted),
         ),
         const SizedBox(width: 11),
         Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
