@@ -4,6 +4,8 @@ import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
 import '../../ai_config.dart';
 import '../../models/tutor_request.dart';
+import '../../models/review.dart';
+import '../../models/course.dart';
 import '../../services/tutor_service.dart';
 import '../../services/auth_service.dart';
 import '../../services/database_service.dart';
@@ -22,7 +24,10 @@ class TutorHubScreen extends StatefulWidget {
 
 class _TutorHubScreenState extends State<TutorHubScreen> {
   final _service = TutorService();
+  final _db = DatabaseService();
   late Future<List<TutorJob>> _recent = _service.recentJobs();
+  late Future<List<TutorThread>> _threads = _service.recentThreads(limit: 6);
+  late Future<List<ReviewItem>> _due = _db.dueReviews();
   TutorQuota? _quota;
   String? _firstName = AuthService.cachedFirstName;
   final _ctrl = TextEditingController();
@@ -151,9 +156,23 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
   Future<void> _open(TutorRequest req) async {
     await context.push('/tutor/correction', extra: req);
     if (mounted) {
-      setState(() => _recent = _service.recentJobs());
+      setState(() {
+        _recent = _service.recentJobs();
+        _threads = _service.recentThreads(limit: 6);
+      });
       _loadQuota();
     }
+  }
+
+  Future<void> _openThread(TutorThread t) async {
+    final messages = await _service.getThreadMessages(t.id);
+    if (!mounted) return;
+    _open(TutorRequest(
+      threadId: t.id,
+      threadMessages: messages,
+      subject: t.subject,
+      titleHint: t.title,
+    ));
   }
 
   bool _blockedByQuota() {
@@ -264,7 +283,47 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
           ]),
           const SizedBox(height: 12),
           _summaryCard(),
+          const SizedBox(height: 12),
+          _coachCard(),
           const SizedBox(height: 24),
+
+          // ── Révisions du jour (révision espacée) ──────────────────────────
+          FutureBuilder<List<ReviewItem>>(
+            future: _due,
+            builder: (context, snap) {
+              final due = snap.data ?? const <ReviewItem>[];
+              if (due.isEmpty) return const SizedBox.shrink();
+              return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Row(children: [
+                  Text('Révisions du jour', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
+                  const SizedBox(width: 8),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                    decoration: BoxDecoration(color: OC.o50, borderRadius: BorderRadius.circular(999)),
+                    child: Text('${due.length}', style: body(11, weight: FontWeight.w800, color: OC.o700)),
+                  ),
+                ]),
+                const SizedBox(height: 10),
+                ...due.take(4).map(_reviewTile),
+                const SizedBox(height: 22),
+              ]);
+            },
+          ),
+
+          // ── Mes discussions (mémoire conversationnelle) ───────────────────
+          FutureBuilder<List<TutorThread>>(
+            future: _threads,
+            builder: (context, snap) {
+              final threads = snap.data ?? const <TutorThread>[];
+              if (threads.isEmpty) return const SizedBox.shrink();
+              return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Text('Mes discussions', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
+                const SizedBox(height: 10),
+                ...threads.map(_threadTile),
+                const SizedBox(height: 22),
+              ]);
+            },
+          ),
 
           // ── Reprendre ─────────────────────────────────────────────────────
           Text('Reprendre', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
@@ -449,6 +508,108 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
           ),
         ),
       ]),
+    );
+  }
+
+  Future<void> _openReview(ReviewItem r) async {
+    final chapters = await _db.getChapters();
+    Chapter? ch;
+    for (final c in chapters) {
+      if (c.id == r.chapterId) { ch = c; break; }
+    }
+    if (!mounted || ch == null) return;
+    await context.push('/cours-quiz', extra: {'chapter': ch, 'subject': r.subject});
+    if (mounted) setState(() => _due = _db.dueReviews());
+  }
+
+  // Carte « Mon coach » → tableau de bord (compte à rebours, points faibles…).
+  Widget _coachCard() {
+    return GestureDetector(
+      onTap: () async {
+        await context.push('/tutor/coach');
+        if (mounted) setState(() => _due = _db.dueReviews());
+      },
+      child: Container(
+        padding: const EdgeInsets.all(14),
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [OC.darkHero, OC.darkHero2]),
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Row(children: [
+          Container(
+            width: 44, height: 44,
+            decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.12), borderRadius: BorderRadius.circular(13)),
+            child: const Icon(Icons.insights_rounded, size: 22, color: Colors.white),
+          ),
+          const SizedBox(width: 12),
+          Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text('Mon coach', style: body(14.5, weight: FontWeight.w700, color: Colors.white)),
+            const SizedBox(height: 3),
+            Text('Compte à rebours, points faibles, plan de révision',
+                style: body(12, color: Colors.white.withValues(alpha: 0.8), weight: FontWeight.w500)),
+          ])),
+          Icon(Icons.chevron_right_rounded, color: Colors.white.withValues(alpha: 0.8), size: 22),
+        ]),
+      ),
+    );
+  }
+
+  Widget _reviewTile(ReviewItem r) {
+    final label = r.topic.isNotEmpty ? r.topic : 'Chapitre à réviser';
+    return GestureDetector(
+      onTap: () => _openReview(r),
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 9),
+        padding: const EdgeInsets.all(11),
+        decoration: BoxDecoration(
+          color: OC.paper, borderRadius: BorderRadius.circular(14),
+          border: Border.all(color: OC.line, width: 1.5),
+        ),
+        child: Row(children: [
+          Container(
+            width: 38, height: 38,
+            decoration: BoxDecoration(color: OC.o50, borderRadius: BorderRadius.circular(11)),
+            child: Icon(Icons.refresh_rounded, size: 19, color: OC.o600),
+          ),
+          const SizedBox(width: 12),
+          Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(label, maxLines: 1, overflow: TextOverflow.ellipsis, style: body(13.5, weight: FontWeight.w700)),
+            const SizedBox(height: 2),
+            Text(r.subject.isNotEmpty ? '${r.subject} · à réviser' : 'à réviser',
+                style: body(11.5, color: OC.muted, weight: FontWeight.w500)),
+          ])),
+          Icon(Icons.chevron_right_rounded, size: 18, color: OC.muted),
+        ]),
+      ),
+    );
+  }
+
+  Widget _threadTile(TutorThread t) {
+    return GestureDetector(
+      onTap: () => _openThread(t),
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 9),
+        padding: const EdgeInsets.all(11),
+        decoration: BoxDecoration(
+          color: OC.paper, borderRadius: BorderRadius.circular(14),
+          border: Border.all(color: OC.line, width: 1.5),
+        ),
+        child: Row(children: [
+          Container(
+            width: 38, height: 38,
+            decoration: BoxDecoration(color: OC.o50, borderRadius: BorderRadius.circular(11)),
+            child: Icon(Icons.forum_outlined, size: 19, color: OC.o600),
+          ),
+          const SizedBox(width: 12),
+          Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(t.title, maxLines: 1, overflow: TextOverflow.ellipsis, style: body(13.5, weight: FontWeight.w700)),
+            const SizedBox(height: 2),
+            Text(t.subject.isNotEmpty ? '${t.subject} · reprendre' : 'reprendre la discussion',
+                style: body(11.5, color: OC.muted, weight: FontWeight.w500)),
+          ])),
+          Icon(Icons.chevron_right_rounded, size: 18, color: OC.muted),
+        ]),
+      ),
     );
   }
 

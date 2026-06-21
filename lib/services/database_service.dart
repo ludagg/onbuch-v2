@@ -10,6 +10,7 @@ import '../models/prep_center.dart';
 import '../models/concours_resource.dart';
 import '../models/course.dart';
 import '../models/quiz.dart';
+import '../models/review.dart';
 import '../models/affiche.dart';
 import '../models/app_notification.dart';
 import '../models/exam_result.dart';
@@ -78,6 +79,12 @@ class DatabaseService {
             ...data,
             'createdAt': DateTime.now().toIso8601String(),
           },
+          // Profil privé : seul son propriétaire le lit/modifie. Les admins y
+          // accèdent via les permissions d'équipe au niveau de la collection.
+          permissions: [
+            Permission.read(Role.user(uid)),
+            Permission.update(Role.user(uid)),
+          ],
         );
       }
       _cache.remove('profile:$uid');
@@ -543,6 +550,213 @@ class DatabaseService {
           Permission.delete(Role.user(user.$id)),
         ],
       );
+    } on AppwriteException {
+      // non bloquant
+    }
+  }
+
+  /// Enregistre une tentative de QCM (`quiz_attempts`) et met à jour la maîtrise
+  /// dérivée du chapitre (`topic_mastery`). Fondations de l'« agent d'études »
+  /// (Phase 0) : on arrête de perdre les signaux d'apprentissage. Non bloquant.
+  Future<void> recordQuizAttempt({
+    required String chapterId,
+    required String subject,
+    String topic = '',
+    required int score,
+    required int total,
+    List<int> wrong = const [],
+  }) async {
+    if (total <= 0) return;
+    try {
+      final user = await AppwriteClient.account.get();
+      final uid = user.$id;
+      final perms = [
+        Permission.read(Role.user(uid)),
+        Permission.update(Role.user(uid)),
+        Permission.delete(Role.user(uid)),
+      ];
+      await AppwriteClient.databases.createDocument(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteQuizAttemptsCollectionId,
+        documentId: ID.unique(),
+        data: {
+          'userId': uid,
+          'subject': subject,
+          'chapterId': chapterId,
+          'topic': topic,
+          'score': score,
+          'total': total,
+          'wrong': wrong.join(','),
+          'createdAt': DateTime.now().toIso8601String(),
+        },
+        permissions: perms,
+      );
+      await _upsertMastery(uid, chapterId, subject, topic, score / total, perms);
+      await _scheduleReview(uid, chapterId, subject, topic, score / total, perms);
+    } on AppwriteException {
+      // non bloquant
+    }
+  }
+
+  /// Programme la prochaine révision du chapitre (algorithme SM-2 simplifié) :
+  /// plus le quiz est réussi, plus l'échéance est éloignée ; un échec ramène à
+  /// demain. Stocké dans `review_queue` (un item par chapitre). Non bloquant.
+  Future<void> _scheduleReview(
+    String uid,
+    String chapterId,
+    String subject,
+    String topic,
+    double ratio,
+    List<String> perms,
+  ) async {
+    // Qualité SM-2 (2..5) déduite du taux de réussite.
+    final q = ratio >= 0.8 ? 5 : (ratio >= 0.6 ? 4 : (ratio >= 0.5 ? 3 : 2));
+    try {
+      final list = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteReviewQueueCollectionId,
+        queries: [Query.equal('userId', uid), Query.limit(200)],
+      );
+      final existing = list.documents.where((d) => d.data['chapterId'] == chapterId);
+      String? docId;
+      int reps = 0;
+      double ease = 2.5;
+      int prevInterval = 1;
+      if (existing.isNotEmpty) {
+        final d = existing.first;
+        docId = d.$id;
+        reps = (d.data['reps'] as num?)?.toInt() ?? 0;
+        ease = (d.data['ease'] as num?)?.toDouble() ?? 2.5;
+        prevInterval = (d.data['interval'] as num?)?.toInt() ?? 1;
+      }
+      int interval;
+      if (q < 3) {
+        reps = 0;
+        interval = 1;
+      } else {
+        reps += 1;
+        interval = reps == 1 ? 1 : (reps == 2 ? 3 : (prevInterval * ease).round().clamp(1, 365));
+      }
+      ease = (ease + (0.1 - (5 - q) * (0.08 + (5 - q) * 0.02)));
+      if (ease < 1.3) ease = 1.3;
+      final data = {
+        'userId': uid,
+        'chapterId': chapterId,
+        'subject': subject,
+        'topic': topic,
+        'dueAt': DateTime.now().add(Duration(days: interval)).toIso8601String(),
+        'interval': interval,
+        'ease': ease,
+        'reps': reps,
+        'lastGrade': q,
+        'status': 'active',
+      };
+      if (docId != null) {
+        await AppwriteClient.databases.updateDocument(
+          databaseId: appwriteDatabaseId,
+          collectionId: appwriteReviewQueueCollectionId,
+          documentId: docId,
+          data: data,
+        );
+      } else {
+        data['createdAt'] = DateTime.now().toIso8601String();
+        await AppwriteClient.databases.createDocument(
+          databaseId: appwriteDatabaseId,
+          collectionId: appwriteReviewQueueCollectionId,
+          documentId: ID.unique(),
+          data: data,
+          permissions: perms,
+        );
+      }
+    } on AppwriteException {
+      // non bloquant
+    }
+  }
+
+  /// Révisions dues aujourd'hui (échéance passée), les plus urgentes d'abord.
+  Future<List<ReviewItem>> dueReviews({int limit = 20}) async {
+    try {
+      final res = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteReviewQueueCollectionId,
+        queries: [Query.orderAsc('dueAt'), Query.limit(100)],
+      );
+      final now = DateTime.now();
+      return res.documents
+          .map((d) => ReviewItem.fromDoc(d.$id, d.data))
+          .where((r) => !r.dueAt.isAfter(now) && r.chapterId.isNotEmpty)
+          .take(limit)
+          .toList();
+    } on AppwriteException {
+      return const [];
+    }
+  }
+
+  /// Chapitres les moins maîtrisés (depuis `topic_mastery`), pour le coach.
+  Future<List<MasteryItem>> weakChapters({int limit = 5}) async {
+    try {
+      final res = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteTopicMasteryCollectionId,
+        queries: [Query.limit(200)],
+      );
+      final items = res.documents
+          .map((d) => MasteryItem.fromDoc(d.data))
+          .where((m) => m.chapterId.isNotEmpty)
+          .toList()
+        ..sort((a, b) => a.mastery.compareTo(b.mastery));
+      return items.take(limit).toList();
+    } on AppwriteException {
+      return const [];
+    }
+  }
+
+  /// Met à jour (ou crée) la maîtrise d'un chapitre par moyenne glissante.
+  Future<void> _upsertMastery(
+    String uid,
+    String chapterId,
+    String subject,
+    String topic,
+    double current,
+    List<String> perms,
+  ) async {
+    final now = DateTime.now().toIso8601String();
+    try {
+      final list = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteTopicMasteryCollectionId,
+        queries: [Query.equal('userId', uid), Query.limit(200)],
+      );
+      final existing = list.documents.where((d) => d.data['chapterId'] == chapterId);
+      if (existing.isNotEmpty) {
+        final doc = existing.first;
+        final prevAttempts = (doc.data['attempts'] as num?)?.toInt() ?? 0;
+        final prevMastery = (doc.data['mastery'] as num?)?.toDouble() ?? 0.0;
+        // Moyenne glissante : pondère l'historique et la dernière tentative.
+        final blended = prevAttempts == 0 ? current : (prevMastery * 0.6 + current * 0.4);
+        await AppwriteClient.databases.updateDocument(
+          databaseId: appwriteDatabaseId,
+          collectionId: appwriteTopicMasteryCollectionId,
+          documentId: doc.$id,
+          data: {'mastery': blended, 'attempts': prevAttempts + 1, 'lastReviewedAt': now},
+        );
+      } else {
+        await AppwriteClient.databases.createDocument(
+          databaseId: appwriteDatabaseId,
+          collectionId: appwriteTopicMasteryCollectionId,
+          documentId: ID.unique(),
+          data: {
+            'userId': uid,
+            'chapterId': chapterId,
+            'subject': subject,
+            'topic': topic,
+            'mastery': current,
+            'attempts': 1,
+            'lastReviewedAt': now,
+          },
+          permissions: perms,
+        );
+      }
     } on AppwriteException {
       // non bloquant
     }

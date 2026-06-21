@@ -1,0 +1,7 @@
+{
+  "name": "review-nudge",
+  "version": "1.0.0",
+  "description": "Cron OnBuch — push « révisions du jour » (review_queue)",
+  "type": "module",
+  "main": "src/main.js"
+}

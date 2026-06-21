@@ -1,5 +1,4 @@
 import 'dart:typed_data';
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../screens/onboarding/splash_screen.dart';
 import '../screens/onboarding/value_screens.dart';
@@ -20,6 +19,7 @@ import '../screens/annales/annale_detail_screen.dart';
 import '../screens/annales/pdf_reader_screen.dart';
 import '../screens/annales/video_corrige_screen.dart';
 import '../screens/tutor/tutor_hub_screen.dart';
+import '../screens/tutor/tutor_coach_screen.dart';
 import '../screens/tutor/tutor_camera_screen.dart';
 import '../screens/tutor/tutor_correction_screen.dart';
 import '../screens/tutor/tutor_similar_screen.dart';
@@ -184,6 +184,7 @@ final appRouter = GoRouter(
               },
             ),
             GoRoute(path: 'similar', builder: (_, __) => const TutorSimilarScreen()),
+            GoRoute(path: 'coach', builder: (_, __) => const TutorCoachScreen()),
             GoRoute(path: 'corriger', builder: (_, __) => const TutorCorrigerScreen()),
             GoRoute(path: 'expliquer', builder: (_, __) => const TutorExpliquerScreen()),
             GoRoute(path: 'entrainer', builder: (_, __) => const TutorEntrainerScreen()),

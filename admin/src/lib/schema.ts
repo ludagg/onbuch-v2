@@ -28,6 +28,33 @@ const order: Field = { key: 'order', label: 'Ordre', type: 'number', help: 'Tri 
 
 export const RESOURCES: Resource[] = [
   {
+    id: 'users',
+    collectionId: 'users',
+    label: 'Utilisateurs',
+    singular: 'utilisateur',
+    icon: '👤',
+    titleField: 'firstName',
+    subtitleField: 'email',
+    orderBy: { field: '$createdAt', dir: 'desc' },
+    fields: [
+      { key: 'firstName', label: 'Prénom', type: 'text' },
+      { key: 'lastName', label: 'Nom', type: 'text' },
+      { key: 'email', label: 'E-mail', type: 'text', help: 'Identifiant de connexion (ne pas modifier à la légère).' },
+      { key: 'phoneNumber', label: 'Téléphone', type: 'text' },
+      { key: 'classe', label: 'Classe', type: 'text', help: 'ex. Terminale, 1ère, 3ème' },
+      { key: 'examen', label: 'Examen visé', type: 'text', help: 'ex. Baccalauréat' },
+      { key: 'serie', label: 'Série', type: 'text', help: 'ex. D' },
+      { key: 'school', label: 'Établissement', type: 'text' },
+      { key: 'city', label: 'Ville', type: 'text' },
+      { key: 'gender', label: 'Genre', type: 'select', options: ['', 'Fille', 'Garçon', 'Autre'] },
+      { key: 'birthYear', label: 'Année de naissance', type: 'number' },
+      { key: 'studyField', label: 'Filière souhaitée', type: 'text' },
+      { key: 'careerGoal', label: 'Objectif (métier)', type: 'text' },
+      { key: 'studyDestination', label: 'Destination d’études', type: 'text' },
+      { key: 'role', label: 'Rôle', type: 'select', options: ['', 'user', 'admin'], help: 'Rôle applicatif (informatif).' }
+    ]
+  },
+  {
     id: 'social_links',
     collectionId: 'social_links',
     label: 'Réseaux sociaux',
