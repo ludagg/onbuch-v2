@@ -268,6 +268,99 @@ CONTEXTE ÉLÈVE (utilise-le pour adapter le NIVEAU, les EXEMPLES et le TON ; ne
 ${ctx}`;
 }
 
+// ── Phase 2 : skills + boucle d'agent (RAG sur le programme OnBuch) ────────────
+async function awGetJson(path) {
+  try {
+    const r = await awFetch('GET', path);
+    if (r.status !== 200) return null;
+    return await r.json();
+  } catch (_) {
+    return null;
+  }
+}
+function _norm(s) {
+  return (s || '').toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
+// search_courses : retrouve les chapitres OnBuch pertinents (recherche mots-clés).
+async function skillSearchCourses(db, query, subject) {
+  const cj = await awGetJson(`/databases/${db}/collections/chapters/documents`);
+  const sj = await awGetJson(`/databases/${db}/collections/subjects/documents`);
+  const subjects = {};
+  if (sj && Array.isArray(sj.documents)) for (const d of sj.documents) subjects[d.$id] = d.name || '';
+  const chapters = (cj && Array.isArray(cj.documents)) ? cj.documents : [];
+  const terms = _norm(query).split(/\s+/).filter((t) => t.length > 2);
+  const scored = chapters.map((c) => {
+    const hay = _norm(`${c.title} ${c.description || ''} ${subjects[c.subjectId] || ''}`);
+    let score = 0;
+    for (const t of terms) if (hay.includes(t)) score += 1;
+    if (subject && _norm(subjects[c.subjectId] || '').includes(_norm(subject))) score += 0.5;
+    return { c, score, subject: subjects[c.subjectId] || '?' };
+  }).filter((x) => x.score > 0).sort((a, b) => b.score - a.score).slice(0, 5);
+  if (!scored.length) return 'Aucun chapitre OnBuch correspondant.';
+  return scored.map((x) => `- chapterId=${x.c.$id} | ${x.subject} › ${x.c.title}`).join('\n');
+}
+// get_chapter : renvoie le contenu de cours mis en cache (collection lessons).
+async function skillGetChapter(db, chapterId) {
+  if (!chapterId) return 'chapterId manquant.';
+  const j = await awGetJson(`/databases/${db}/collections/lessons/documents/${encodeURIComponent(chapterId)}`);
+  if (!j || !j.content) return 'Pas de contenu de cours en cache pour ce chapitre (réponds avec tes connaissances).';
+  return String(j.content).slice(0, 3500);
+}
+
+const TOOLS_PROMPT = `
+OUTILS — tu peux CONSULTER le programme OnBuch (cours camerounais) avant de répondre, UNIQUEMENT si cela ancre vraiment ta réponse dans le cours de l'élève. N'utilise PAS d'outil pour une question triviale ou un simple calcul.
+Pour appeler un outil, réponds EXCLUSIVEMENT par ce bloc, SANS aucun texte autour :
+\`\`\`onbuch-action
+{"tool":"search_courses","args":{"query":"limites de fonctions","subject":"Maths"}}
+\`\`\`
+Outils :
+- search_courses(query, subject?) → chapitres OnBuch pertinents (avec leur chapterId).
+- get_chapter(chapterId) → contenu du cours de ce chapitre, pour t'appuyer dessus.
+Après un résultat d'outil, soit tu appelles un autre outil, soit tu donnes ta RÉPONSE FINALE (texte normal, JAMAIS de bloc onbuch-action). Quand tu utilises un chapitre, cite-le naturellement (« d'après ton cours « … » »). 3 consultations maximum.`;
+
+function parseAction(text) {
+  if (!text) return null;
+  const m = text.match(/```onbuch-action\s*([\s\S]*?)```/);
+  let raw = m ? m[1] : null;
+  if (!raw) {
+    const t = text.trim();
+    if (t.startsWith('{') && t.includes('"tool"')) raw = t;
+    else return null;
+  }
+  try {
+    const obj = JSON.parse(raw.trim());
+    if (obj && typeof obj.tool === 'string') return obj;
+  } catch (_) {}
+  return null;
+}
+
+// Boucle d'agent : le modèle peut appeler des skills (max 3) avant de répondre.
+async function solveWithTools(apiKey, model, messages, db) {
+  const convo = [...messages];
+  for (let step = 0; step < 3; step++) {
+    const out = await callNvidia(apiKey, model, convo, 3200);
+    const action = parseAction(out);
+    if (!action) return out; // réponse finale
+    let result;
+    try {
+      if (action.tool === 'search_courses') {
+        result = await skillSearchCourses(db, (action.args && action.args.query) || '', (action.args && action.args.subject) || '');
+      } else if (action.tool === 'get_chapter') {
+        result = await skillGetChapter(db, (action.args && action.args.chapterId) || '');
+      } else {
+        result = 'Outil inconnu.';
+      }
+    } catch (_) {
+      result = 'Erreur lors de la consultation du cours.';
+    }
+    convo.push({ role: 'assistant', content: out });
+    convo.push({ role: 'user', content: `RÉSULTAT OUTIL (${action.tool}) :\n${result}\n\nUtilise ce résultat. Réponds maintenant à l'élève, ou appelle un autre outil si vraiment nécessaire.` });
+  }
+  // Budget épuisé → forcer une réponse finale, sans outil.
+  convo.push({ role: 'user', content: 'Donne maintenant ta réponse finale à l\'élève (texte normal, pas de bloc onbuch-action).' });
+  return callNvidia(apiKey, model, convo, 3200);
+}
+
 export default async ({ req, res, error }) => {
   const apiKey = process.env.NVIDIA_API_KEY;
   const visionModel = process.env.VISION_MODEL || 'meta/llama-4-maverick-17b-128e-instruct';
@@ -367,6 +460,12 @@ export default async ({ req, res, error }) => {
     // correction / explication / suivi (SOLVE_PROMPT), pas pour cours/quiz/fiche.
     const usesSolve = mode !== 'summary' && mode !== 'lesson' && mode !== 'quiz';
     const studentCtx = usesSolve ? await readStudentContext(db, uid) : '';
+    // Boucle d'agent (RAG) seulement pour les réponses SOLVE et si la base est
+    // accessible. Sinon, comportement direct (inchangé).
+    const wantTools = usesSolve && !!db;
+    const solveSys = wantTools
+      ? `${withStudent(SOLVE_PROMPT, studentCtx)}\n\n${TOOLS_PROMPT}`
+      : withStudent(SOLVE_PROMPT, studentCtx);
 
     // ── Résumé de cours → fiche de révision (multi-pages) ───────────────────
     if (mode === 'summary') {
@@ -403,10 +502,10 @@ export default async ({ req, res, error }) => {
 
     // Suivi de conversation (texte uniquement, pas de vision).
     if (messages && messages.length) {
-      const reply = await callNvidia(apiKey, reasoningModel, [
-        { role: 'system', content: withStudent(SOLVE_PROMPT, studentCtx) },
-        ...messages,
-      ], 3200);
+      const convo = [{ role: 'system', content: solveSys }, ...messages];
+      const reply = wantTools
+        ? await solveWithTools(apiKey, reasoningModel, convo, db)
+        : await callNvidia(apiKey, reasoningModel, convo, 3200);
       if (!reply) {
         return finish({ status: 'error', error: "Le Tuteur n'a pas pu répondre. Réessaie." });
       }
@@ -439,15 +538,22 @@ export default async ({ req, res, error }) => {
 
     const isLesson = mode === 'lesson';
     const isQuiz = mode === 'quiz';
-    const sysPrompt = isLesson ? LESSON_PROMPT : (isQuiz ? QUIZ_PROMPT : withStudent(SOLVE_PROMPT, studentCtx));
     const userMsg = (isLesson || isQuiz)
       ? enonce
       : (instruction ? `${instruction}\n\nÉnoncé :\n${enonce}` : `Voici l'énoncé d'un exercice. Corrige-le.\n\n${enonce}`);
 
-    const correction = await callNvidia(apiKey, reasoningModel, [
-      { role: 'system', content: sysPrompt },
-      { role: 'user', content: userMsg },
-    ], 3200);
+    let correction;
+    if (isLesson || isQuiz) {
+      correction = await callNvidia(apiKey, reasoningModel, [
+        { role: 'system', content: isLesson ? LESSON_PROMPT : QUIZ_PROMPT },
+        { role: 'user', content: userMsg },
+      ], 3200);
+    } else {
+      const convo = [{ role: 'system', content: solveSys }, { role: 'user', content: userMsg }];
+      correction = wantTools
+        ? await solveWithTools(apiKey, reasoningModel, convo, db)
+        : await callNvidia(apiKey, reasoningModel, convo, 3200);
+    }
 
     if (!correction) {
       return finish({ status: 'error', error: "Le Tuteur n'a pas pu rédiger la correction. Réessaie." });
