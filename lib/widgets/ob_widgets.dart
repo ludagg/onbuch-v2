@@ -2,6 +2,7 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../app_globals.dart';
 import '../theme/app_theme.dart';
 import '../services/notifications_service.dart';
 
@@ -461,14 +462,34 @@ class OBMenuEntry {
   const OBMenuEntry(this.icon, this.label, [this.route]);
 }
 
-/// Bouton « trois traits » de la barre supérieure : ouvre un petit menu
-/// contextuel juste sous le bouton (pas un tiroir latéral). Pensé pour
-/// accueillir les onglets/sections qui s'ajouteront.
+/// Bouton hamburger de la barre supérieure : ouvre le tiroir latéral (menu)
+/// de la coque principale (MainShell), via `shellScaffoldKey`.
 class OBTopMenu extends StatelessWidget {
-  final List<OBMenuEntry> entries;
-  const OBTopMenu({super.key, this.entries = _defaults});
+  const OBTopMenu({super.key});
 
-  static const List<OBMenuEntry> _defaults = [
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () => shellScaffoldKey.currentState?.openEndDrawer(),
+      child: Container(
+        width: 40, height: 40,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          border: Border.all(color: OC.line2, width: 1.5),
+        ),
+        child: Icon(Icons.menu_rounded, size: 21, color: OC.ink),
+      ),
+    );
+  }
+}
+
+/// Tiroir latéral (menu hamburger) de la coque principale.
+class AppDrawer extends StatelessWidget {
+  const AppDrawer({super.key});
+
+  static const _entries = [
+    OBMenuEntry(Icons.person_outline_rounded, 'Mon profil', '/profile'),
     OBMenuEntry(Icons.event_note_rounded, 'Campus & agenda', '/campus'),
     OBMenuEntry(Icons.paid_outlined, 'Crédits', '/credits'),
     OBMenuEntry(Icons.groups_rounded, 'Communauté', '/communaute'),
@@ -478,57 +499,69 @@ class OBTopMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PopupMenuButton<int>(
-      tooltip: 'Menu',
-      position: PopupMenuPosition.under,
-      offset: const Offset(0, 8),
-      color: OC.paper,
-      elevation: 10,
-      shadowColor: OC.ink.withValues(alpha: 0.20),
-      constraints: const BoxConstraints(minWidth: 204, maxWidth: 240),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-        side: BorderSide(color: OC.line2, width: 1.5),
+    return Drawer(
+      backgroundColor: OC.bg,
+      surfaceTintColor: Colors.transparent,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.horizontal(left: Radius.circular(24)),
       ),
-      itemBuilder: (context) => [
-        for (int i = 0; i < entries.length; i++)
-          PopupMenuItem<int>(
-            value: i,
-            height: 46,
-            padding: const EdgeInsets.symmetric(horizontal: 12),
+      child: SafeArea(
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(20, 18, 12, 10),
             child: Row(children: [
-              Container(
-                width: 30, height: 30,
-                decoration: BoxDecoration(color: OC.o50, borderRadius: BorderRadius.circular(9)),
-                child: Icon(entries[i].icon, size: 17, color: OC.o600),
+              const OBWordmark(size: 22),
+              const Spacer(),
+              GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTap: () => shellScaffoldKey.currentState?.closeEndDrawer(),
+                child: Container(
+                  width: 34, height: 34, alignment: Alignment.center,
+                  decoration: BoxDecoration(color: OC.paper, shape: BoxShape.circle, border: Border.all(color: OC.line2, width: 1.5)),
+                  child: Icon(Icons.close_rounded, size: 18, color: OC.ink2),
+                ),
               ),
-              const SizedBox(width: 12),
-              Text(entries[i].label, style: body(13.5, weight: FontWeight.w600, color: OC.ink)),
             ]),
           ),
-      ],
-      onSelected: (i) {
-        final e = entries[i];
+          const SizedBox(height: 6),
+          Expanded(
+            child: ListView(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              children: [for (final e in _entries) _row(context, e)],
+            ),
+          ),
+          Divider(height: 1, thickness: 1, color: OC.line),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(20, 12, 20, 8),
+            child: Text('OnBuch 1.0.0', style: body(11.5, color: OC.muted, weight: FontWeight.w600)),
+          ),
+        ]),
+      ),
+    );
+  }
+
+  Widget _row(BuildContext context, OBMenuEntry e) {
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () {
+        shellScaffoldKey.currentState?.closeEndDrawer();
         if (e.route != null) {
           context.push(e.route!);
-        } else {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text('${e.label} — bientôt disponible',
-                style: body(13, weight: FontWeight.w600, color: Colors.white)),
-            backgroundColor: OC.ink,
-            behavior: SnackBarBehavior.floating,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-            duration: const Duration(seconds: 2),
-          ));
         }
       },
       child: Container(
-        width: 40, height: 40,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          border: Border.all(color: OC.line2, width: 1.5),
-        ),
-        child: Icon(Icons.menu_rounded, size: 21, color: OC.ink),
+        margin: const EdgeInsets.only(bottom: 4),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 11),
+        child: Row(children: [
+          Container(
+            width: 38, height: 38, alignment: Alignment.center,
+            decoration: BoxDecoration(color: OC.o50, borderRadius: BorderRadius.circular(11)),
+            child: Icon(e.icon, size: 19, color: OC.o600),
+          ),
+          const SizedBox(width: 13),
+          Expanded(child: Text(e.label, style: body(14, weight: FontWeight.w700, color: OC.ink))),
+          Icon(Icons.chevron_right_rounded, size: 18, color: OC.muted),
+        ]),
       ),
     );
   }
