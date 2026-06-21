@@ -5,7 +5,7 @@
     <!-- Caméra intégrée (scan d'exercices) -->
     <uses-permission android:name="android.permission.CAMERA"/>
     <application
-        android:label="onbuch"
+        android:label="OnBuch"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
