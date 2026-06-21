@@ -248,7 +248,7 @@ class _ChaptersScreenState extends State<ChaptersScreen> {
             const SizedBox(height: 2),
             Text(sub, style: body(11.5, color: OC.muted, weight: FontWeight.w500)),
           ])),
-          if (_viewed.contains(c.id)) const Icon(Icons.check_circle_rounded, size: 18, color: OC.good)
+          if (_viewed.contains(c.id)) Icon(Icons.check_circle_rounded, size: 18, color: OC.good)
           else Icon(Icons.chevron_right_rounded, size: 18, color: OC.muted),
         ]),
       ),

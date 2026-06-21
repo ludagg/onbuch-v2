@@ -90,7 +90,7 @@ class _ValueScreen extends StatelessWidget {
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
                   decoration: BoxDecoration(
-                    gradient: const LinearGradient(colors: [Color(0xFFFFB347), OC.o500, OC.o600]),
+                    gradient: LinearGradient(colors: [Color(0xFFFFB347), OC.o500, OC.o600]),
                     borderRadius: BorderRadius.circular(14),
                     boxShadow: [BoxShadow(color: OC.o500.withValues(alpha:0.30), blurRadius: 14, offset: const Offset(0, 6))],
                   ),
@@ -159,7 +159,7 @@ class _MiniResult extends StatelessWidget {
               Container(
                 width: 54, height: 54,
                 decoration: BoxDecoration(color: OC.goodBg, shape: BoxShape.circle),
-                child: const Icon(Icons.check_circle_outline_rounded, size: 30, color: OC.good),
+                child: Icon(Icons.check_circle_outline_rounded, size: 30, color: OC.good),
               ),
               const SizedBox(width: 12),
               Text('Mention\nBien', style: display(26, weight: FontWeight.w700)),
@@ -205,7 +205,7 @@ class _MiniTutor extends StatelessWidget {
               gradient: const LinearGradient(colors: [Colors.white, Color(0xFFFFE9DC)]),
             ),
             child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              const Icon(Icons.camera_alt_outlined, color: OC.o600, size: 20),
+              Icon(Icons.camera_alt_outlined, color: OC.o600, size: 20),
               const SizedBox(width: 7),
               Text('Mon exercice', style: body(12, weight: FontWeight.w700, color: OC.o700)),
             ]),

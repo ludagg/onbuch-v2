@@ -91,7 +91,7 @@ class QuizResultScreen extends StatelessWidget {
               padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(color: OC.goodBg, borderRadius: BorderRadius.circular(14)),
               child: Row(children: [
-                const Icon(Icons.emoji_events_rounded, size: 20, color: OC.good),
+                Icon(Icons.emoji_events_rounded, size: 20, color: OC.good),
                 const SizedBox(width: 10),
                 Expanded(child: Text('Sans-faute ! Tu maîtrises ce chapitre.',
                     style: body(13, weight: FontWeight.w700, color: OC.waInk))),
@@ -156,7 +156,7 @@ class QuizResultScreen extends StatelessWidget {
         Text('Q$num · ${q.question}', style: body(13, weight: FontWeight.w700).copyWith(height: 1.3)),
         const SizedBox(height: 8),
         Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          const Icon(Icons.check_circle_rounded, size: 16, color: OC.good),
+          Icon(Icons.check_circle_rounded, size: 16, color: OC.good),
           const SizedBox(width: 7),
           Expanded(child: Text('Réponse : $correct', style: body(12.5, weight: FontWeight.w700, color: OC.waInk))),
         ]),

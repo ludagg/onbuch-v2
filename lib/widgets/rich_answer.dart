@@ -198,7 +198,7 @@ class _PlotBlock extends StatelessWidget {
     return Wrap(spacing: 14, runSpacing: 6, children: items);
   }
 
-  static const _palette = [OC.o500, OC.blue, OC.good, OC.warn, Color(0xFF7A5AE0)];
+  static List<Color> get _palette => [OC.o500, OC.blue, OC.good, OC.warn, const Color(0xFF7A5AE0)];
 }
 
 double? _toD(dynamic v) {

@@ -400,7 +400,7 @@ class _ConcoursRow extends StatelessWidget {
   final Concours c;
   const _ConcoursRow(this.c);
 
-  static const _avatarColors = [
+  static final _avatarColors = [
     OC.o600, OC.blue, OC.good, Color(0xFF7A5AE0), Color(0xFF0E9AA0), Color(0xFFD2462E),
   ];
   Color get _accent => _avatarColors[c.name.hashCode.abs() % _avatarColors.length];

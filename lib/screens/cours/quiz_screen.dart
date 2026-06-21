@@ -120,7 +120,7 @@ class _QuizScreenState extends State<QuizScreen> {
         child: Padding(
           padding: const EdgeInsets.all(32),
           child: Column(mainAxisSize: MainAxisSize.min, children: [
-            const Icon(Icons.error_outline_rounded, size: 42, color: OC.bad),
+            Icon(Icons.error_outline_rounded, size: 42, color: OC.bad),
             const SizedBox(height: 12),
             Text('$_error', textAlign: TextAlign.center, style: body(14, color: OC.ink2).copyWith(height: 1.4)),
             const SizedBox(height: 16),
@@ -155,7 +155,7 @@ class _QuizScreenState extends State<QuizScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 6),
             decoration: BoxDecoration(color: OC.o50, borderRadius: BorderRadius.circular(999)),
             child: Row(mainAxisSize: MainAxisSize.min, children: [
-              const Icon(Icons.timer_outlined, size: 14, color: OC.o600),
+              Icon(Icons.timer_outlined, size: 14, color: OC.o600),
               const SizedBox(width: 5),
               Text(_fmt(_seconds), style: mono(12.5, weight: FontWeight.w700, color: OC.o700)),
             ]),

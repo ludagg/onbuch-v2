@@ -46,7 +46,7 @@ class ConcoursProgressScreen extends StatelessWidget {
             padding: const EdgeInsets.all(14),
             decoration: BoxDecoration(color: OC.o50, borderRadius: BorderRadius.circular(14)),
             child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              const Icon(Icons.lightbulb_outline_rounded, size: 18, color: OC.o600),
+              Icon(Icons.lightbulb_outline_rounded, size: 18, color: OC.o600),
               const SizedBox(width: 10),
               Expanded(child: Text(
                 'Point faible détecté : Chimie. Le Tuteur peut te proposer 3 exercices ciblés.',

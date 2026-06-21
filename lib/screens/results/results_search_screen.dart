@@ -119,7 +119,7 @@ class _ResultsSearchScreenState extends State<ResultsSearchScreen> {
                 ])),
                 Row(children: [
                   Text('Changer', style: body(12.5, weight: FontWeight.w700, color: OC.o600)),
-                  const Icon(Icons.keyboard_arrow_down_rounded, color: OC.o600, size: 17),
+                  Icon(Icons.keyboard_arrow_down_rounded, color: OC.o600, size: 17),
                 ]),
               ]),
             ),
@@ -176,14 +176,14 @@ class _ResultsSearchScreenState extends State<ResultsSearchScreen> {
                   color: OC.o50, borderRadius: BorderRadius.circular(12),
                   border: Border.all(color: OC.o100, width: 1.5),
                 ),
-                child: const Icon(Icons.school_outlined, color: OC.o600, size: 21),
+                child: Icon(Icons.school_outlined, color: OC.o600, size: 21),
               ),
               const SizedBox(width: 12),
               Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 Text('Baccalauréat 2026', style: body(14, weight: FontWeight.w700)),
                 const SizedBox(height: 3),
                 Row(children: [
-                  Container(width: 7, height: 7, decoration: const BoxDecoration(color: OC.warn, shape: BoxShape.circle)),
+                  Container(width: 7, height: 7, decoration: BoxDecoration(color: OC.warn, shape: BoxShape.circle)),
                   const SizedBox(width: 6),
                   Text('Tu seras alerté·e dès la publication', style: body(12, color: OC.ink2, weight: FontWeight.w500)),
                 ]),
@@ -192,7 +192,7 @@ class _ResultsSearchScreenState extends State<ResultsSearchScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 6),
                 decoration: BoxDecoration(color: OC.o50, borderRadius: BorderRadius.circular(999), border: Border.all(color: OC.o100, width: 1.5)),
                 child: Row(mainAxisSize: MainAxisSize.min, children: [
-                  const Icon(Icons.notifications_outlined, size: 14, color: OC.o600),
+                  Icon(Icons.notifications_outlined, size: 14, color: OC.o600),
                   const SizedBox(width: 5),
                   Text('Alerte', style: body(11.5, weight: FontWeight.w700, color: OC.o700)),
                 ]),

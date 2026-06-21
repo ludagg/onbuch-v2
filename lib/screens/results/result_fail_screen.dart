@@ -102,7 +102,7 @@ class ResultFailScreen extends StatelessWidget {
               border: Border.all(color: OC.line, width: 1.5),
             ),
             child: Row(children: [
-              const Icon(Icons.calendar_today_outlined, size: 20, color: OC.blue),
+              Icon(Icons.calendar_today_outlined, size: 20, color: OC.blue),
               const SizedBox(width: 11),
               Expanded(child: Text('Sessions de rattrapage & concours ouverts', style: body(13.5, weight: FontWeight.w700))),
               Icon(Icons.chevron_right_rounded, size: 18, color: OC.muted),
@@ -143,7 +143,7 @@ class _FailResultCard extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
               decoration: BoxDecoration(color: const Color(0xFFFBEFE4), borderRadius: BorderRadius.circular(999)),
               child: Row(mainAxisSize: MainAxisSize.min, children: [
-                const Icon(Icons.info_outline_rounded, size: 16, color: OC.warn),
+                Icon(Icons.info_outline_rounded, size: 16, color: OC.warn),
                 const SizedBox(width: 6),
                 Text('NON ADMIS', style: body(12, weight: FontWeight.w800, color: Color(0xFF9A5B3A))),
               ]),
@@ -187,7 +187,7 @@ class _FailResultCard extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.fromLTRB(18, 12, 18, 12),
           child: Row(children: [
-            const Icon(Icons.verified_outlined, size: 17, color: OC.o600),
+            Icon(Icons.verified_outlined, size: 17, color: OC.o600),
             const SizedBox(width: 8),
             Text('Résultat vérifié OnBuch', style: body(11.5, color: OC.ink2, weight: FontWeight.w600)),
             const Spacer(),

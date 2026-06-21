@@ -155,7 +155,7 @@ class _ConcoursBlancScreenState extends State<ConcoursBlancScreen> {
           decoration: BoxDecoration(color: OC.o50, borderRadius: BorderRadius.circular(20),
               border: Border.all(color: OC.o100, width: 1.5)),
           child: Column(children: [
-            const Icon(Icons.edit_note_rounded, size: 34, color: OC.o600),
+            Icon(Icons.edit_note_rounded, size: 34, color: OC.o600),
             const SizedBox(height: 8),
             Text('Épreuve de $_subject', style: display(20, weight: FontWeight.w700), textAlign: TextAlign.center),
             const SizedBox(height: 4),

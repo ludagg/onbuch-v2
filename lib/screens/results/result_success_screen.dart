@@ -215,7 +215,7 @@ class _ResultCard extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.fromLTRB(18, 12, 18, 12),
           child: Row(children: [
-            const Icon(Icons.verified_outlined, size: 17, color: OC.o600),
+            Icon(Icons.verified_outlined, size: 17, color: OC.o600),
             const SizedBox(width: 8),
             Text('Résultat vérifié OnBuch', style: body(11.5, color: OC.ink2, weight: FontWeight.w600)),
             const Spacer(),

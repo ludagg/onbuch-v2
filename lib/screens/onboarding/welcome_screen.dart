@@ -111,7 +111,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                     child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                       Text('Voir mes résultats', style: body(14, weight: FontWeight.w700, color: OC.o600)),
                       const SizedBox(width: 8),
-                      const Icon(Icons.arrow_forward_rounded, color: OC.o600, size: 17),
+                      Icon(Icons.arrow_forward_rounded, color: OC.o600, size: 17),
                     ]),
                   ),
                 ),

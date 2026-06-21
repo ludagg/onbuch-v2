@@ -6,7 +6,7 @@ import '../../widgets/ob_widgets.dart';
 class TutorSimilarScreen extends StatelessWidget {
   const TutorSimilarScreen({super.key});
 
-  static const _exercises = [
+  static final _exercises = [
     ('x² − 7x + 12 = 0', 'Facile', OC.good, OC.goodBg),
     ('2x² + 3x − 5 = 0', 'Moyen', OC.warn, OC.warnBg),
     ('x² + 4x + 4 = 0 (racine double)', 'Difficile', OC.bad, OC.badBg),
@@ -40,7 +40,7 @@ class TutorSimilarScreen extends StatelessWidget {
               border: Border.all(color: OC.o100, width: 1.5),
             ),
             child: Row(children: [
-              const Icon(Icons.auto_awesome_rounded, size: 20, color: OC.o600),
+              Icon(Icons.auto_awesome_rounded, size: 20, color: OC.o600),
               const SizedBox(width: 10),
               Expanded(child: Text(
                 '3 exercices sur les équations du 2nd degré, niveau Terminale.',
@@ -80,7 +80,7 @@ class TutorSimilarScreen extends StatelessWidget {
                           border: Border.all(color: OC.o100, width: 1.5),
                         ),
                         child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                          const Icon(Icons.edit_outlined, size: 16, color: OC.o600),
+                          Icon(Icons.edit_outlined, size: 16, color: OC.o600),
                           const SizedBox(width: 7),
                           Text('Composer', style: body(13, weight: FontWeight.w700, color: OC.o700)),
                         ]),
