@@ -4,6 +4,8 @@ import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
 import '../../ai_config.dart';
 import '../../models/tutor_request.dart';
+import '../../models/review.dart';
+import '../../models/course.dart';
 import '../../services/tutor_service.dart';
 import '../../services/auth_service.dart';
 import '../../services/database_service.dart';
@@ -22,8 +24,10 @@ class TutorHubScreen extends StatefulWidget {
 
 class _TutorHubScreenState extends State<TutorHubScreen> {
   final _service = TutorService();
+  final _db = DatabaseService();
   late Future<List<TutorJob>> _recent = _service.recentJobs();
   late Future<List<TutorThread>> _threads = _service.recentThreads(limit: 6);
+  late Future<List<ReviewItem>> _due = _db.dueReviews();
   TutorQuota? _quota;
   String? _firstName = AuthService.cachedFirstName;
   final _ctrl = TextEditingController();
@@ -281,6 +285,29 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
           _summaryCard(),
           const SizedBox(height: 24),
 
+          // ── Révisions du jour (révision espacée) ──────────────────────────
+          FutureBuilder<List<ReviewItem>>(
+            future: _due,
+            builder: (context, snap) {
+              final due = snap.data ?? const <ReviewItem>[];
+              if (due.isEmpty) return const SizedBox.shrink();
+              return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Row(children: [
+                  Text('Révisions du jour', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
+                  const SizedBox(width: 8),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                    decoration: BoxDecoration(color: OC.o50, borderRadius: BorderRadius.circular(999)),
+                    child: Text('${due.length}', style: body(11, weight: FontWeight.w800, color: OC.o700)),
+                  ),
+                ]),
+                const SizedBox(height: 10),
+                ...due.take(4).map(_reviewTile),
+                const SizedBox(height: 22),
+              ]);
+            },
+          ),
+
           // ── Mes discussions (mémoire conversationnelle) ───────────────────
           FutureBuilder<List<TutorThread>>(
             future: _threads,
@@ -479,6 +506,47 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
           ),
         ),
       ]),
+    );
+  }
+
+  Future<void> _openReview(ReviewItem r) async {
+    final chapters = await _db.getChapters();
+    Chapter? ch;
+    for (final c in chapters) {
+      if (c.id == r.chapterId) { ch = c; break; }
+    }
+    if (!mounted || ch == null) return;
+    await context.push('/cours-quiz', extra: {'chapter': ch, 'subject': r.subject});
+    if (mounted) setState(() => _due = _db.dueReviews());
+  }
+
+  Widget _reviewTile(ReviewItem r) {
+    final label = r.topic.isNotEmpty ? r.topic : 'Chapitre à réviser';
+    return GestureDetector(
+      onTap: () => _openReview(r),
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 9),
+        padding: const EdgeInsets.all(11),
+        decoration: BoxDecoration(
+          color: OC.paper, borderRadius: BorderRadius.circular(14),
+          border: Border.all(color: OC.line, width: 1.5),
+        ),
+        child: Row(children: [
+          Container(
+            width: 38, height: 38,
+            decoration: BoxDecoration(color: OC.o50, borderRadius: BorderRadius.circular(11)),
+            child: Icon(Icons.refresh_rounded, size: 19, color: OC.o600),
+          ),
+          const SizedBox(width: 12),
+          Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(label, maxLines: 1, overflow: TextOverflow.ellipsis, style: body(13.5, weight: FontWeight.w700)),
+            const SizedBox(height: 2),
+            Text(r.subject.isNotEmpty ? '${r.subject} · à réviser' : 'à réviser',
+                style: body(11.5, color: OC.muted, weight: FontWeight.w500)),
+          ])),
+          Icon(Icons.chevron_right_rounded, size: 18, color: OC.muted),
+        ]),
+      ),
     );
   }
 

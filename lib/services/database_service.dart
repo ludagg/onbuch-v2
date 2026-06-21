@@ -10,6 +10,7 @@ import '../models/prep_center.dart';
 import '../models/concours_resource.dart';
 import '../models/course.dart';
 import '../models/quiz.dart';
+import '../models/review.dart';
 import '../models/affiche.dart';
 import '../models/app_notification.dart';
 import '../models/exam_result.dart';
@@ -585,8 +586,103 @@ class DatabaseService {
         permissions: perms,
       );
       await _upsertMastery(uid, chapterId, subject, topic, score / total, perms);
+      await _scheduleReview(uid, chapterId, subject, topic, score / total, perms);
     } on AppwriteException {
       // non bloquant
+    }
+  }
+
+  /// Programme la prochaine révision du chapitre (algorithme SM-2 simplifié) :
+  /// plus le quiz est réussi, plus l'échéance est éloignée ; un échec ramène à
+  /// demain. Stocké dans `review_queue` (un item par chapitre). Non bloquant.
+  Future<void> _scheduleReview(
+    String uid,
+    String chapterId,
+    String subject,
+    String topic,
+    double ratio,
+    List<String> perms,
+  ) async {
+    // Qualité SM-2 (2..5) déduite du taux de réussite.
+    final q = ratio >= 0.8 ? 5 : (ratio >= 0.6 ? 4 : (ratio >= 0.5 ? 3 : 2));
+    try {
+      final list = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteReviewQueueCollectionId,
+        queries: [Query.equal('userId', uid), Query.limit(200)],
+      );
+      final existing = list.documents.where((d) => d.data['chapterId'] == chapterId);
+      String? docId;
+      int reps = 0;
+      double ease = 2.5;
+      int prevInterval = 1;
+      if (existing.isNotEmpty) {
+        final d = existing.first;
+        docId = d.$id;
+        reps = (d.data['reps'] as num?)?.toInt() ?? 0;
+        ease = (d.data['ease'] as num?)?.toDouble() ?? 2.5;
+        prevInterval = (d.data['interval'] as num?)?.toInt() ?? 1;
+      }
+      int interval;
+      if (q < 3) {
+        reps = 0;
+        interval = 1;
+      } else {
+        reps += 1;
+        interval = reps == 1 ? 1 : (reps == 2 ? 3 : (prevInterval * ease).round().clamp(1, 365));
+      }
+      ease = (ease + (0.1 - (5 - q) * (0.08 + (5 - q) * 0.02)));
+      if (ease < 1.3) ease = 1.3;
+      final data = {
+        'userId': uid,
+        'chapterId': chapterId,
+        'subject': subject,
+        'topic': topic,
+        'dueAt': DateTime.now().add(Duration(days: interval)).toIso8601String(),
+        'interval': interval,
+        'ease': ease,
+        'reps': reps,
+        'lastGrade': q,
+        'status': 'active',
+      };
+      if (docId != null) {
+        await AppwriteClient.databases.updateDocument(
+          databaseId: appwriteDatabaseId,
+          collectionId: appwriteReviewQueueCollectionId,
+          documentId: docId,
+          data: data,
+        );
+      } else {
+        data['createdAt'] = DateTime.now().toIso8601String();
+        await AppwriteClient.databases.createDocument(
+          databaseId: appwriteDatabaseId,
+          collectionId: appwriteReviewQueueCollectionId,
+          documentId: ID.unique(),
+          data: data,
+          permissions: perms,
+        );
+      }
+    } on AppwriteException {
+      // non bloquant
+    }
+  }
+
+  /// Révisions dues aujourd'hui (échéance passée), les plus urgentes d'abord.
+  Future<List<ReviewItem>> dueReviews({int limit = 20}) async {
+    try {
+      final res = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteReviewQueueCollectionId,
+        queries: [Query.orderAsc('dueAt'), Query.limit(100)],
+      );
+      final now = DateTime.now();
+      return res.documents
+          .map((d) => ReviewItem.fromDoc(d.$id, d.data))
+          .where((r) => !r.dueAt.isAfter(now) && r.chapterId.isNotEmpty)
+          .take(limit)
+          .toList();
+    } on AppwriteException {
+      return const [];
     }
   }
 

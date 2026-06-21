@@ -110,6 +110,20 @@ str   student_memory tone       200  false
 str   student_memory notes      4000 false
 dtime student_memory lastSeen   false
 
+# ─── review_queue (révision espacée SM-2) ─────────────────────────────────────
+make_collection review_queue "Review queue"
+str   review_queue userId    64  true
+str   review_queue chapterId 64  false
+str   review_queue subject   100 false
+str   review_queue topic     200 false
+dtime review_queue dueAt     true
+intg  review_queue interval  false   # jours jusqu'à la prochaine révision
+flt   review_queue ease      false   # facteur SM-2 (>= 1.3)
+intg  review_queue reps      false
+intg  review_queue lastGrade false   # 2..5
+str   review_queue status    20  false active
+dtime review_queue createdAt false
+
 # ─── Index (best-effort : on attend que les attributs soient « available ») ───
 echo "── Index (attente de la disponibilité des attributs) ──"
 sleep 8
@@ -117,5 +131,7 @@ index quiz_attempts idx_user      userId
 index quiz_attempts idx_user_chap userId,chapterId
 index topic_mastery idx_user      userId
 index tutor_threads idx_user      userId
+index review_queue  idx_user      userId
+index review_queue  idx_due       dueAt
 
 echo "── Terminé. (409 = déjà existant ; un index en 400 = attribut pas encore prêt, relancer le script) ──"

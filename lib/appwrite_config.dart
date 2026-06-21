@@ -31,6 +31,7 @@ const appwriteQuizAttemptsCollectionId = 'quiz_attempts';
 const appwriteTopicMasteryCollectionId = 'topic_mastery';
 const appwriteTutorThreadsCollectionId = 'tutor_threads';
 const appwriteStudentMemoryCollectionId = 'student_memory';
+const appwriteReviewQueueCollectionId = 'review_queue';
 
 // ── Push (FCM via Appwrite Messaging) ───────────────────────────────────────
 // Optionnels. Laisser vide fonctionne tant qu'il n'y a qu'un seul provider push
