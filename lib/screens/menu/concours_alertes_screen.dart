@@ -86,7 +86,7 @@ class _ConcoursAlertesScreenState extends State<ConcoursAlertesScreen> {
                   padding: const EdgeInsets.all(13),
                   decoration: BoxDecoration(color: OC.o50, borderRadius: BorderRadius.circular(14)),
                   child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                    const Icon(Icons.notifications_active_outlined, size: 18, color: OC.o600),
+                    Icon(Icons.notifications_active_outlined, size: 18, color: OC.o600),
                     const SizedBox(width: 10),
                     Expanded(child: Text(
                       'Active un rappel pour ne rater aucune ouverture ni clôture de concours.',
@@ -113,7 +113,7 @@ class _ConcoursAlertesScreenState extends State<ConcoursAlertesScreen> {
                           Container(
                             width: 38, height: 38,
                             decoration: BoxDecoration(color: OC.o50, borderRadius: BorderRadius.circular(11)),
-                            child: const Icon(Icons.notifications_outlined, size: 19, color: OC.o600),
+                            child: Icon(Icons.notifications_outlined, size: 19, color: OC.o600),
                           ),
                           const SizedBox(width: 11),
                           Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

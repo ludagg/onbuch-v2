@@ -270,7 +270,7 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
           Container(
             width: 44, height: 44,
             decoration: BoxDecoration(color: OC.paper, borderRadius: BorderRadius.circular(13), border: Border.all(color: OC.o100, width: 1.5)),
-            child: const Icon(Icons.auto_stories_outlined, size: 22, color: OC.o600),
+            child: Icon(Icons.auto_stories_outlined, size: 22, color: OC.o600),
           ),
           const SizedBox(width: 12),
           Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -286,7 +286,7 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
             const SizedBox(height: 3),
             Text('Photos ou PDF → fiche de révision', style: body(12, color: OC.o700, weight: FontWeight.w600)),
           ])),
-          const Icon(Icons.chevron_right_rounded, color: OC.o600, size: 22),
+          Icon(Icons.chevron_right_rounded, color: OC.o600, size: 22),
         ]),
       ),
     );
@@ -371,7 +371,7 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
           Container(
             width: 38, height: 38,
             decoration: BoxDecoration(color: OC.goodBg, borderRadius: BorderRadius.circular(11)),
-            child: const Icon(Icons.check_circle_outline_rounded, size: 19, color: OC.good),
+            child: Icon(Icons.check_circle_outline_rounded, size: 19, color: OC.good),
           ),
           const SizedBox(width: 12),
           Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

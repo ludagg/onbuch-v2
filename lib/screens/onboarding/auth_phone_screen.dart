@@ -306,7 +306,7 @@ class _AuthPhoneScreenState extends State<AuthPhoneScreen> {
                       border: Border.all(color: OC.line2, width: 1.5),
                     ),
                     child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                      const Icon(Icons.g_mobiledata_rounded, size: 22, color: OC.blue),
+                      Icon(Icons.g_mobiledata_rounded, size: 22, color: OC.blue),
                       const SizedBox(width: 8),
                       Text('Continuer avec Google', style: body(14, weight: FontWeight.w700, color: OC.ink)),
                     ]),
@@ -357,11 +357,11 @@ class _AuthPhoneScreenState extends State<AuthPhoneScreen> {
       ),
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(14),
-        borderSide: const BorderSide(color: OC.bad, width: 1.5),
+        borderSide: BorderSide(color: OC.bad, width: 1.5),
       ),
       focusedErrorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(14),
-        borderSide: const BorderSide(color: OC.bad, width: 2),
+        borderSide: BorderSide(color: OC.bad, width: 2),
       ),
     );
   }

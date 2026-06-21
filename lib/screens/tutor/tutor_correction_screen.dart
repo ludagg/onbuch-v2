@@ -392,7 +392,7 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
                 }
                 if (snap.hasError) {
                   return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                    const Icon(Icons.error_outline_rounded, size: 18, color: OC.bad),
+                    Icon(Icons.error_outline_rounded, size: 18, color: OC.bad),
                     const SizedBox(width: 9),
                     Flexible(child: Text('${snap.error}',
                         style: body(13, color: OC.ink2, weight: FontWeight.w500).copyWith(height: 1.4))),

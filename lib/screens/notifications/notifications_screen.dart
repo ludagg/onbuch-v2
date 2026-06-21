@@ -150,17 +150,17 @@ class _NotifStyle {
 _NotifStyle _styleFor(String type) {
   switch (type) {
     case 'result':
-      return const _NotifStyle(Icons.celebration_rounded, OC.good, OC.goodBg);
+      return _NotifStyle(Icons.celebration_rounded, OC.good, OC.goodBg);
     case 'exam':
-      return const _NotifStyle(Icons.event_available_rounded, OC.o600, OC.o50);
+      return _NotifStyle(Icons.event_available_rounded, OC.o600, OC.o50);
     case 'credit':
-      return const _NotifStyle(Icons.paid_rounded, OC.warn, OC.warnBg);
+      return _NotifStyle(Icons.paid_rounded, OC.warn, OC.warnBg);
     case 'course':
-      return const _NotifStyle(Icons.menu_book_rounded, OC.waInk, OC.goodBg);
+      return _NotifStyle(Icons.menu_book_rounded, OC.waInk, OC.goodBg);
     case 'promo':
-      return const _NotifStyle(Icons.local_offer_rounded, OC.blue, OC.blueBg);
+      return _NotifStyle(Icons.local_offer_rounded, OC.blue, OC.blueBg);
     default:
-      return const _NotifStyle(Icons.notifications_rounded, OC.o500, OC.o50);
+      return _NotifStyle(Icons.notifications_rounded, OC.o500, OC.o50);
   }
 }
 

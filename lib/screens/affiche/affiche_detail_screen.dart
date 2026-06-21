@@ -113,8 +113,8 @@ class AfficheDetailScreen extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       child: has
           ? Image.network(a.partnerLogo!, fit: BoxFit.cover,
-              errorBuilder: (_, __, ___) => const Icon(Icons.handshake_outlined, color: OC.o600, size: 24))
-          : const Icon(Icons.handshake_outlined, color: OC.o600, size: 24),
+              errorBuilder: (_, __, ___) => Icon(Icons.handshake_outlined, color: OC.o600, size: 24))
+          : Icon(Icons.handshake_outlined, color: OC.o600, size: 24),
     );
   }
 

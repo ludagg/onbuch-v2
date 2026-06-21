@@ -73,7 +73,7 @@ class OBButton extends StatelessWidget {
     if (isPrimary) {
       fg = Colors.white;
       dec = BoxDecoration(
-        gradient: const LinearGradient(colors: [Color(0xFFFFB347), OC.o500, OC.o600]),
+        gradient: LinearGradient(colors: [Color(0xFFFFB347), OC.o500, OC.o600]),
         borderRadius: BorderRadius.circular(14),
         boxShadow: [BoxShadow(color: OC.o500.withValues(alpha:0.30), blurRadius: 14, offset: const Offset(0, 6))],
       );
@@ -159,17 +159,17 @@ class CatStyle {
 CatStyle categoryStyle(String category) {
   switch (category.toLowerCase()) {
     case 'examens':
-      return const CatStyle(OC.o600, OC.o50);
+      return CatStyle(OC.o600, OC.o50);
     case 'bourses':
-      return const CatStyle(OC.blue, OC.blueBg);
+      return CatStyle(OC.blue, OC.blueBg);
     case 'conseil':
-      return const CatStyle(OC.waInk, OC.goodBg);
+      return CatStyle(OC.waInk, OC.goodBg);
     case 'concours':
-      return const CatStyle(OC.blue, OC.blueBg);
+      return CatStyle(OC.blue, OC.blueBg);
     case 'alerte':
-      return const CatStyle(OC.bad, OC.badBg);
+      return CatStyle(OC.bad, OC.badBg);
     default:
-      return const CatStyle(OC.o600, OC.o50);
+      return CatStyle(OC.o600, OC.o50);
   }
 }
 

@@ -206,7 +206,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 border: Border.all(color: OC.bad.withValues(alpha:0.3), width: 1.5),
               ),
               child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                const Icon(Icons.logout_rounded, color: OC.bad, size: 18),
+                Icon(Icons.logout_rounded, color: OC.bad, size: 18),
                 const SizedBox(width: 8),
                 Text('Se déconnecter', style: body(14, weight: FontWeight.w700, color: OC.bad)),
               ]),

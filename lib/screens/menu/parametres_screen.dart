@@ -96,7 +96,7 @@ class _ParametresScreenState extends State<ParametresScreen> {
                 border: Border.all(color: OC.bad.withValues(alpha: 0.3), width: 1.5),
               ),
               child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                const Icon(Icons.logout_rounded, color: OC.bad, size: 18),
+                Icon(Icons.logout_rounded, color: OC.bad, size: 18),
                 const SizedBox(width: 8),
                 Text('Se déconnecter', style: body(14, weight: FontWeight.w700, color: OC.bad)),
               ]),
@@ -147,7 +147,7 @@ class _ParametresScreenState extends State<ParametresScreen> {
             ListTile(
               leading: Icon(_themeIcon(m), color: m == current ? OC.o600 : OC.ink2),
               title: Text(_themeLabel(m), style: body(14.5, weight: FontWeight.w600, color: OC.ink)),
-              trailing: m == current ? const Icon(Icons.check_rounded, color: OC.o600) : null,
+              trailing: m == current ? Icon(Icons.check_rounded, color: OC.o600) : null,
               onTap: () {
                 ThemeController.instance.setMode(m);
                 Navigator.pop(ctx);

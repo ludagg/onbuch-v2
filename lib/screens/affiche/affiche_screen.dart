@@ -93,7 +93,7 @@ class _AfficheScreenState extends State<AfficheScreen> {
               if (a.partnerName != null) ...[
                 const SizedBox(height: 8),
                 Row(children: [
-                  const Icon(Icons.handshake_outlined, size: 14, color: OC.o600),
+                  Icon(Icons.handshake_outlined, size: 14, color: OC.o600),
                   const SizedBox(width: 5),
                   Text(a.partnerName!, style: body(12, weight: FontWeight.w700, color: OC.o700)),
                 ]),

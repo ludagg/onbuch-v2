@@ -175,7 +175,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 _field('Ville', _villeCtrl, 'Douala', Icons.location_on_outlined),
                 const SizedBox(height: 22),
                 Row(children: [
-                  const Icon(Icons.auto_awesome_outlined, size: 18, color: OC.o600),
+                  Icon(Icons.auto_awesome_outlined, size: 18, color: OC.o600),
                   const SizedBox(width: 7),
                   Text('Tes ambitions', style: body(14, weight: FontWeight.w800, color: OC.ink)),
                 ]),

@@ -120,7 +120,7 @@ class AnnaleDetailScreen extends StatelessWidget {
                   const SizedBox(height: 2),
                   Text('Corrige-le pas-à-pas avec le Tuteur IA', style: body(12, color: OC.o700, weight: FontWeight.w500)),
                 ])),
-                const Icon(Icons.chevron_right_rounded, size: 20, color: OC.o600),
+                Icon(Icons.chevron_right_rounded, size: 20, color: OC.o600),
               ]),
             ),
           ),

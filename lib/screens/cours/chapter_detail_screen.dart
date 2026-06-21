@@ -96,7 +96,7 @@ class _ChapterDetailScreenState extends State<ChapterDetailScreen> {
 
           // La fiche de cours (IA)
           Row(children: [
-            const Icon(Icons.menu_book_rounded, size: 18, color: OC.o600),
+            Icon(Icons.menu_book_rounded, size: 18, color: OC.o600),
             const SizedBox(width: 8),
             Text('Le cours', style: body(13.5, weight: FontWeight.w800, color: OC.ink2)),
           ]),
@@ -188,7 +188,7 @@ class _ChapterDetailScreenState extends State<ChapterDetailScreen> {
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(color: OC.paper, borderRadius: BorderRadius.circular(18), border: Border.all(color: OC.line, width: 1.5)),
         child: Column(children: [
-          const Icon(Icons.error_outline_rounded, size: 30, color: OC.bad),
+          Icon(Icons.error_outline_rounded, size: 30, color: OC.bad),
           const SizedBox(height: 8),
           Text('$e', textAlign: TextAlign.center, style: body(13, color: OC.ink2).copyWith(height: 1.4)),
           const SizedBox(height: 14),

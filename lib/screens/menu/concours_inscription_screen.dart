@@ -198,7 +198,7 @@ class _ConcoursInscriptionScreenState extends State<ConcoursInscriptionScreen> {
         padding: const EdgeInsets.all(18),
         decoration: BoxDecoration(color: OC.goodBg, borderRadius: BorderRadius.circular(18)),
         child: Column(children: [
-          const Icon(Icons.verified_rounded, size: 36, color: OC.good),
+          Icon(Icons.verified_rounded, size: 36, color: OC.good),
           const SizedBox(height: 8),
           Text('Profil éligible', style: display(20, weight: FontWeight.w700, color: OC.waInk)),
           const SizedBox(height: 4),
@@ -325,8 +325,8 @@ class _ConcoursInscriptionScreenState extends State<ConcoursInscriptionScreen> {
       const SizedBox(height: 8),
       Container(
         width: 64, height: 64,
-        decoration: const BoxDecoration(color: OC.goodBg, shape: BoxShape.circle),
-        child: const Icon(Icons.check_rounded, size: 36, color: OC.good),
+        decoration: BoxDecoration(color: OC.goodBg, shape: BoxShape.circle),
+        child: Icon(Icons.check_rounded, size: 36, color: OC.good),
       ),
       const SizedBox(height: 14),
       Text('Candidature envoyée !', style: display(22, weight: FontWeight.w700), textAlign: TextAlign.center),
@@ -470,7 +470,7 @@ class _ConcoursInscriptionScreenState extends State<ConcoursInscriptionScreen> {
         padding: const EdgeInsets.all(11),
         decoration: BoxDecoration(color: OC.o50, borderRadius: BorderRadius.circular(11)),
         child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          const Icon(Icons.info_outline_rounded, size: 15, color: OC.o600),
+          Icon(Icons.info_outline_rounded, size: 15, color: OC.o600),
           const SizedBox(width: 8),
           Expanded(child: Text(t, style: body(11.5, color: OC.o700, weight: FontWeight.w600).copyWith(height: 1.35))),
         ]),

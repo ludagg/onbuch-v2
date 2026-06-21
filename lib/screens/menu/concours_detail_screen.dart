@@ -321,7 +321,7 @@ class _ConcoursDetailScreenState extends State<ConcoursDetailScreen> {
       ...filieres.map((t) => Padding(
             padding: const EdgeInsets.only(bottom: 8),
             child: Row(children: [
-              const Icon(Icons.school_outlined, size: 15, color: OC.o600),
+              Icon(Icons.school_outlined, size: 15, color: OC.o600),
               const SizedBox(width: 9),
               Text(t, style: body(12.5, color: OC.ink2, weight: FontWeight.w500)),
             ]),
@@ -379,7 +379,7 @@ class _ConcoursDetailScreenState extends State<ConcoursDetailScreen> {
         padding: const EdgeInsets.all(11),
         decoration: BoxDecoration(color: OC.o50, borderRadius: BorderRadius.circular(11)),
         child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          const Icon(Icons.info_outline_rounded, size: 15, color: OC.o600),
+          Icon(Icons.info_outline_rounded, size: 15, color: OC.o600),
           const SizedBox(width: 8),
           Expanded(child: Text(t, style: body(11.5, color: OC.o700, weight: FontWeight.w600).copyWith(height: 1.35))),
         ]),

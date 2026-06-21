@@ -125,7 +125,7 @@ class _SchoolLifeScreenState extends State<SchoolLifeScreen> {
                     onTap: () => context.push('/agenda'),
                     child: Row(children: [
                       Text('Voir tout', style: body(12.5, weight: FontWeight.w700, color: OC.o600)),
-                      const Icon(Icons.chevron_right_rounded, size: 18, color: OC.o600),
+                      Icon(Icons.chevron_right_rounded, size: 18, color: OC.o600),
                     ]),
                   ),
                 ]),
@@ -220,7 +220,7 @@ class _SchoolLifeScreenState extends State<SchoolLifeScreen> {
             outsideDaysVisible: false,
             defaultTextStyle: body(13, color: OC.ink),
             weekendTextStyle: body(13, color: OC.ink2),
-            todayDecoration: const BoxDecoration(color: OC.o100, shape: BoxShape.circle),
+            todayDecoration: BoxDecoration(color: OC.o100, shape: BoxShape.circle),
             todayTextStyle: body(13, weight: FontWeight.w700, color: OC.o700),
             selectedDecoration: const BoxDecoration(color: OC.o500, shape: BoxShape.circle),
             selectedTextStyle: body(13, weight: FontWeight.w700, color: Colors.white),

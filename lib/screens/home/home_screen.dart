@@ -586,7 +586,7 @@ class _TuteurCardState extends State<_TuteurCard> {
 // ─── Raccourcis ───────────────────────────────────────────────────────────────
 class _Shortcuts extends StatelessWidget {
   // [icône, libellé, accent, fond pastille, route (ou null si à venir)]
-  static const _items = [
+  static final _items = [
     [Icons.description_outlined, 'Résultats', OC.o600, OC.o50, '/results'],
     [Icons.event_note_rounded, 'Campus', OC.blue, OC.blueBg, '/campus'],
     [Icons.paid_outlined, 'Crédits', OC.warn, OC.warnBg, '/credits'],
@@ -685,7 +685,7 @@ class _SavedSection extends StatelessWidget {
               Container(
                 width: 46, height: 46,
                 decoration: BoxDecoration(color: OC.goodBg, borderRadius: BorderRadius.circular(13)),
-                child: const Icon(Icons.download_for_offline_outlined, size: 24, color: OC.waInk),
+                child: Icon(Icons.download_for_offline_outlined, size: 24, color: OC.waInk),
               ),
               const SizedBox(width: 13),
               Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

@@ -83,7 +83,7 @@ class ErrorState extends StatelessWidget {
           Container(
             width: 72, height: 72,
             decoration: BoxDecoration(color: OC.badBg, shape: BoxShape.circle),
-            child: const Icon(Icons.wifi_off_rounded, size: 32, color: OC.bad),
+            child: Icon(Icons.wifi_off_rounded, size: 32, color: OC.bad),
           ),
           const SizedBox(height: 14),
           Text('Oups', style: display(18, weight: FontWeight.w700)),
