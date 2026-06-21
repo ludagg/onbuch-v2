@@ -196,7 +196,6 @@ class _GreetingState extends State<_Greeting> {
 class _HeaderStats extends StatelessWidget {
   const _HeaderStats();
 
-  static const _exam = 'Baccalauréat · Série D'; // TODO: profil utilisateur
   static const _xp = '0';
   static const _rank = '#65';
   static const _examShort = 'Bac D';
@@ -211,41 +210,20 @@ class _HeaderStats extends StatelessWidget {
         border: Border.all(color: OC.line, width: 1.5),
         boxShadow: [BoxShadow(color: OC.ink.withValues(alpha: 0.04), blurRadius: 12, offset: const Offset(0, 5))],
       ),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        // Examen visé
-        Padding(
-          padding: const EdgeInsets.fromLTRB(14, 13, 14, 0),
-          child: Row(children: [
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-              decoration: BoxDecoration(color: OC.o50, borderRadius: BorderRadius.circular(999), border: Border.all(color: OC.o100, width: 1.5)),
-              child: Row(mainAxisSize: MainAxisSize.min, children: [
-                Icon(Icons.school_rounded, size: 14, color: OC.o600),
-                const SizedBox(width: 6),
-                Text(_exam, style: body(12, weight: FontWeight.w800, color: OC.o700)),
-              ]),
-            ),
-            const Spacer(),
-            Icon(Icons.emoji_events_rounded, size: 18, color: OC.warn),
+      child: IntrinsicHeight(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 14),
+          child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+            _stat(_xp, 'XP total', OC.warn),
+            _div(),
+            _stat(_rank, 'Rang national', OC.blue),
+            _div(),
+            _stat(_examShort, 'Examen', const Color(0xFF7A5AE0)),
+            _div(),
+            _stat(_credits, 'Crédits', OC.good),
           ]),
         ),
-        const SizedBox(height: 12),
-        // Stats
-        IntrinsicHeight(
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(4, 0, 4, 12),
-            child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-              _stat(_xp, 'XP total', OC.warn),
-              _div(),
-              _stat(_rank, 'Rang national', OC.blue),
-              _div(),
-              _stat(_examShort, 'Examen', const Color(0xFF7A5AE0)),
-              _div(),
-              _stat(_credits, 'Crédits', OC.good),
-            ]),
-          ),
-        ),
-      ]),
+      ),
     );
   }
 
