@@ -686,6 +686,25 @@ class DatabaseService {
     }
   }
 
+  /// Chapitres les moins maîtrisés (depuis `topic_mastery`), pour le coach.
+  Future<List<MasteryItem>> weakChapters({int limit = 5}) async {
+    try {
+      final res = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteTopicMasteryCollectionId,
+        queries: [Query.limit(200)],
+      );
+      final items = res.documents
+          .map((d) => MasteryItem.fromDoc(d.data))
+          .where((m) => m.chapterId.isNotEmpty)
+          .toList()
+        ..sort((a, b) => a.mastery.compareTo(b.mastery));
+      return items.take(limit).toList();
+    } on AppwriteException {
+      return const [];
+    }
+  }
+
   /// Met à jour (ou crée) la maîtrise d'un chapitre par moyenne glissante.
   Future<void> _upsertMastery(
     String uid,

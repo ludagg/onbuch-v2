@@ -283,6 +283,8 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
           ]),
           const SizedBox(height: 12),
           _summaryCard(),
+          const SizedBox(height: 12),
+          _coachCard(),
           const SizedBox(height: 24),
 
           // ── Révisions du jour (révision espacée) ──────────────────────────
@@ -518,6 +520,38 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
     if (!mounted || ch == null) return;
     await context.push('/cours-quiz', extra: {'chapter': ch, 'subject': r.subject});
     if (mounted) setState(() => _due = _db.dueReviews());
+  }
+
+  // Carte « Mon coach » → tableau de bord (compte à rebours, points faibles…).
+  Widget _coachCard() {
+    return GestureDetector(
+      onTap: () async {
+        await context.push('/tutor/coach');
+        if (mounted) setState(() => _due = _db.dueReviews());
+      },
+      child: Container(
+        padding: const EdgeInsets.all(14),
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [OC.darkHero, OC.darkHero2]),
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Row(children: [
+          Container(
+            width: 44, height: 44,
+            decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.12), borderRadius: BorderRadius.circular(13)),
+            child: const Icon(Icons.insights_rounded, size: 22, color: Colors.white),
+          ),
+          const SizedBox(width: 12),
+          Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text('Mon coach', style: body(14.5, weight: FontWeight.w700, color: Colors.white)),
+            const SizedBox(height: 3),
+            Text('Compte à rebours, points faibles, plan de révision',
+                style: body(12, color: Colors.white.withValues(alpha: 0.8), weight: FontWeight.w500)),
+          ])),
+          Icon(Icons.chevron_right_rounded, color: Colors.white.withValues(alpha: 0.8), size: 22),
+        ]),
+      ),
+    );
   }
 
   Widget _reviewTile(ReviewItem r) {
