@@ -205,11 +205,8 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
           // ── Suggestions (option A) ────────────────────────────────────────
           Text('Essaie de demander', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
           const SizedBox(height: 10),
-          _suggestion(Icons.fact_check_outlined, 'Corrige cet exercice de maths', _scan),
           _suggestion(Icons.school_outlined, 'Explique-moi le théorème de Thalès',
               () => _ask('Explique-moi clairement, avec un exemple : le théorème de Thalès.', title: 'Théorème de Thalès')),
-          _suggestion(Icons.bolt_rounded, 'Génère 5 exercices similaires',
-              () => _ask('Génère 5 exercices de maths de niveau lycée, variés, avec un corrigé détaillé pour chacun.', title: 'Exercices générés')),
           const SizedBox(height: 20),
 
           // ── Scan (action primaire) ────────────────────────────────────────
