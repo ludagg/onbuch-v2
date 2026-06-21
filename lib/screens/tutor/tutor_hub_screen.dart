@@ -25,12 +25,115 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
   late Future<List<TutorJob>> _recent = _service.recentJobs();
   TutorQuota? _quota;
   String? _firstName = AuthService.cachedFirstName;
+  final _ctrl = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     _loadQuota();
     if (_firstName == null) _loadName();
+  }
+
+  @override
+  void dispose() {
+    _ctrl.dispose();
+    super.dispose();
+  }
+
+  void _sendTyped() {
+    final q = _ctrl.text.trim();
+    if (q.isEmpty) return;
+    _ctrl.clear();
+    FocusScope.of(context).unfocus();
+    _ask(q, title: q);
+  }
+
+  void _openPlus() {
+    showModalBottomSheet<void>(
+      context: context,
+      backgroundColor: OC.paper,
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(22))),
+      builder: (ctx) => SafeArea(
+        child: Column(mainAxisSize: MainAxisSize.min, children: [
+          const SizedBox(height: 12),
+          Container(width: 38, height: 4, decoration: BoxDecoration(color: OC.line2, borderRadius: BorderRadius.circular(2))),
+          const SizedBox(height: 10),
+          _plusOption(Icons.camera_alt_rounded, 'Scanner un exercice', 'Photo ou galerie', () { Navigator.pop(ctx); _scan(); }),
+          _plusOption(Icons.auto_stories_outlined, 'Résumer un cours', 'Photos / PDF → fiche', () { Navigator.pop(ctx); context.push('/tutor/resume'); }),
+          const SizedBox(height: 8),
+        ]),
+      ),
+    );
+  }
+
+  Widget _plusOption(IconData icon, String title, String sub, VoidCallback onTap) => ListTile(
+        leading: Container(
+          width: 40, height: 40, alignment: Alignment.center,
+          decoration: BoxDecoration(color: OC.o50, borderRadius: BorderRadius.circular(12)),
+          child: Icon(icon, size: 20, color: OC.o600),
+        ),
+        title: Text(title, style: body(14.5, weight: FontWeight.w700, color: OC.ink)),
+        subtitle: Text(sub, style: body(12, color: OC.muted, weight: FontWeight.w500)),
+        onTap: onTap,
+      );
+
+  // Composeur de saisie (style chat) : tape ta question, « + » pour scanner.
+  Widget _composer() {
+    return Container(
+      padding: const EdgeInsets.fromLTRB(16, 14, 12, 12),
+      decoration: BoxDecoration(
+        color: OC.paper,
+        borderRadius: BorderRadius.circular(22),
+        border: Border.all(color: OC.line2, width: 1.5),
+        boxShadow: [BoxShadow(color: OC.ink.withValues(alpha: 0.05), blurRadius: 14, offset: const Offset(0, 6))],
+      ),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        TextField(
+          controller: _ctrl,
+          minLines: 1, maxLines: 5,
+          style: body(15, color: OC.ink),
+          onSubmitted: (_) => _sendTyped(),
+          decoration: InputDecoration(
+            isDense: true,
+            border: InputBorder.none,
+            hintText: 'Pose ta question à Léo…',
+            hintStyle: body(15, color: OC.muted, weight: FontWeight.w500),
+            contentPadding: EdgeInsets.zero,
+          ),
+        ),
+        const SizedBox(height: 10),
+        Row(children: [
+          GestureDetector(
+            onTap: _openPlus,
+            child: Container(
+              width: 38, height: 38, alignment: Alignment.center,
+              decoration: BoxDecoration(color: OC.bg, shape: BoxShape.circle, border: Border.all(color: OC.line2, width: 1.5)),
+              child: Icon(Icons.add_rounded, size: 22, color: OC.ink2),
+            ),
+          ),
+          const Spacer(),
+          ValueListenableBuilder<TextEditingValue>(
+            valueListenable: _ctrl,
+            builder: (_, val, __) {
+              final on = val.text.trim().isNotEmpty;
+              return GestureDetector(
+                onTap: on ? _sendTyped : null,
+                child: Container(
+                  width: 40, height: 40, alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    gradient: on ? OC.grad : null,
+                    color: on ? null : OC.line2,
+                    shape: BoxShape.circle,
+                    boxShadow: on ? [BoxShadow(color: OC.o500.withValues(alpha: 0.30), blurRadius: 12, offset: const Offset(0, 5))] : null,
+                  ),
+                  child: const Icon(Icons.arrow_upward_rounded, color: Colors.white, size: 21),
+                ),
+              );
+            },
+          ),
+        ]),
+      ]),
+    );
   }
 
   Future<void> _loadQuota() async {
@@ -93,7 +196,11 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           // ── Salut + mascotte (option A) ───────────────────────────────────
           _greeting(),
-          const SizedBox(height: 18),
+          const SizedBox(height: 16),
+
+          // ── Composeur (saisie directe d'une question) ─────────────────────
+          _composer(),
+          const SizedBox(height: 20),
 
           // ── Suggestions (option A) ────────────────────────────────────────
           Text('Essaie de demander', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
