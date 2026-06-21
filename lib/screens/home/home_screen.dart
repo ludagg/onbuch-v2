@@ -32,6 +32,7 @@ class HomeScreen extends StatelessWidget {
           ),
           SliverToBoxAdapter(
             child: Column(children: [
+              const SizedBox(height: 16),
               // Greeting
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 4),
