@@ -24,6 +24,14 @@ const appwriteTutorJobsCollectionId = 'tutor_jobs';
 const appwriteTutorQuotaCollectionId = 'tutor_quota';
 const appwriteNotificationsCollectionId = 'notifications';
 
+// ── Agent d'études Léo (Phase 0 — fondations data) ──────────────────────────
+// Données utilisateur (documentSecurity : chaque doc est restreint à son
+// propriétaire). Créées par `tools/setup_agent_collections.sh`.
+const appwriteQuizAttemptsCollectionId = 'quiz_attempts';
+const appwriteTopicMasteryCollectionId = 'topic_mastery';
+const appwriteTutorThreadsCollectionId = 'tutor_threads';
+const appwriteStudentMemoryCollectionId = 'student_memory';
+
 // ── Push (FCM via Appwrite Messaging) ───────────────────────────────────────
 // Optionnels. Laisser vide fonctionne tant qu'il n'y a qu'un seul provider push
 // côté Appwrite. Renseigner si tu veux cibler un provider/topic précis.
