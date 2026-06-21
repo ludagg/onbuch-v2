@@ -26,6 +26,7 @@ import '../screens/tutor/tutor_similar_screen.dart';
 import '../screens/tutor/tutor_mode_screens.dart';
 import '../screens/tutor/camera_capture_screen.dart';
 import '../screens/tutor/course_summary_screen.dart';
+import '../screens/tutor/course_summary_result_screen.dart';
 import '../screens/tutor/crop_screen.dart';
 import '../screens/profile/profile_screen.dart';
 import '../screens/profile/edit_profile_screen.dart';
@@ -188,6 +189,7 @@ final appRouter = GoRouter(
             GoRoute(path: 'entrainer', builder: (_, __) => const TutorEntrainerScreen()),
             GoRoute(path: 'capture', builder: (_, s) => CameraCaptureScreen(subject: s.extra as String?)),
             GoRoute(path: 'resume', builder: (_, s) => CourseSummaryScreen(subject: s.extra as String?)),
+            GoRoute(path: 'fiche', builder: (_, s) => CourseSummaryResultScreen(request: s.extra as TutorRequest?)),
             // Ouverture d'un job terminé par tap sur une notification push.
             GoRoute(
               path: 'job/:id',

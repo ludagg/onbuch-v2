@@ -205,11 +205,8 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
           // ── Suggestions (option A) ────────────────────────────────────────
           Text('Essaie de demander', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
           const SizedBox(height: 10),
-          _suggestion(Icons.fact_check_outlined, 'Corrige cet exercice de maths', _scan),
           _suggestion(Icons.school_outlined, 'Explique-moi le théorème de Thalès',
               () => _ask('Explique-moi clairement, avec un exemple : le théorème de Thalès.', title: 'Théorème de Thalès')),
-          _suggestion(Icons.bolt_rounded, 'Génère 5 exercices similaires',
-              () => _ask('Génère 5 exercices de maths de niveau lycée, variés, avec un corrigé détaillé pour chacun.', title: 'Exercices générés')),
           const SizedBox(height: 20),
 
           // ── Scan (action primaire) ────────────────────────────────────────
@@ -308,26 +305,17 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
 
   // ── Salut + mascotte ─────────────────────────────────────────────────────
   Widget _greeting() {
-    final hello = _firstName == null ? 'Bonjour 👋' : 'Bonjour, $_firstName 👋';
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: OC.o50,
-        borderRadius: BorderRadius.circular(22),
-        border: Border.all(color: OC.o100, width: 1.5),
-      ),
-      child: Row(children: [
+    final hello = _firstName == null ? 'Salut 👋' : 'Salut, $_firstName 👋';
+    return SizedBox(
+      width: double.infinity,
+      child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
         // Mascotte Léo, animée (jamais figée).
-        const SizedBox(
-          width: 64, height: 64,
-          child: Center(child: LeoMascot(size: 64, mood: LeoMood.wave)),
-        ),
-        const SizedBox(width: 12),
-        Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text(hello, style: display(20, weight: FontWeight.w700)),
-          const SizedBox(height: 4),
-          Text('Sur quoi bloques-tu ?', style: body(13, color: OC.o700, weight: FontWeight.w600)),
-        ])),
+        const LeoMascot(size: 72, mood: LeoMood.wave),
+        const SizedBox(height: 10),
+        Text(hello, textAlign: TextAlign.center, style: display(20, weight: FontWeight.w700)),
+        const SizedBox(height: 4),
+        Text('Sur quoi bloques-tu ?', textAlign: TextAlign.center,
+            style: body(13, color: OC.o700, weight: FontWeight.w600)),
       ]),
     );
   }

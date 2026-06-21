@@ -116,7 +116,7 @@ class _CourseSummaryScreenState extends State<CourseSummaryScreen> {
       _toast('Ajoute au moins une page de cours.');
       return;
     }
-    context.pushReplacement('/tutor/correction',
+    context.pushReplacement('/tutor/fiche',
         extra: TutorRequest(summaryImages: List.of(_pages), subject: _subject, mode: 'summary'));
   }
 
