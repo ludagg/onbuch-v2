@@ -28,6 +28,24 @@ const order: Field = { key: 'order', label: 'Ordre', type: 'number', help: 'Tri 
 
 export const RESOURCES: Resource[] = [
   {
+    id: 'social_links',
+    collectionId: 'social_links',
+    label: 'Réseaux sociaux',
+    singular: 'lien',
+    icon: '🔗',
+    titleField: 'label',
+    subtitleField: 'url',
+    orderBy: { field: 'order', dir: 'asc' },
+    fields: [
+      { key: 'platform', label: 'Plateforme', type: 'select', options: ['whatsapp', 'telegram', 'tiktok', 'facebook', 'youtube', 'instagram', 'other'], help: 'Pilote l’icône et la couleur dans l’app.' },
+      { key: 'label', label: 'Nom affiché', type: 'text', required: true, help: 'ex. WhatsApp' },
+      { key: 'description', label: 'Description', type: 'text', help: 'ex. Groupe d’entraide · 12k membres' },
+      { key: 'url', label: 'Lien', type: 'text', required: true, help: 'https://, wa.me/…, t.me/…' },
+      order,
+      { key: 'active', label: 'Actif (cocher pour afficher)', type: 'boolean' }
+    ]
+  },
+  {
     id: 'notifications',
     collectionId: 'notifications',
     label: 'Notifications',

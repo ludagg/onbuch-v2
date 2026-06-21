@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
 import '../../models/article.dart';
+import '../../utils/launch.dart';
 
 /// Page de détail d'une actualité du fil OnBuch.
 class ArticleDetailScreen extends StatelessWidget {
@@ -41,16 +42,7 @@ class ArticleDetailScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(8),
                 child: _RoundIcon(
                   icon: Icons.share_outlined,
-                  onTap: () => ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text('Partage — bientôt disponible',
-                          style: body(13, weight: FontWeight.w600, color: Colors.white)),
-                      backgroundColor: OC.ink,
-                      behavior: SnackBarBehavior.floating,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                      duration: const Duration(seconds: 2),
-                    ),
-                  ),
+                  onTap: () => shareArticle(context, a.title),
                 ),
               ),
             ],

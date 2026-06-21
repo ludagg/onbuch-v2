@@ -12,6 +12,7 @@ import '../../ai_config.dart';
 import '../../models/article.dart';
 import '../../models/exam.dart';
 import '../../models/affiche.dart';
+import '../../models/social_link.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -1055,61 +1056,75 @@ Widget _afficheCard(BuildContext context, AfficheItem a) {
 }
 
 // ─── Community ────────────────────────────────────────────────────────────────
-class _CommunitySection extends StatelessWidget {
+class _CommunitySection extends StatefulWidget {
+  @override
+  State<_CommunitySection> createState() => _CommunitySectionState();
+}
+
+class _CommunitySectionState extends State<_CommunitySection> {
+  final Future<List<SocialLink>> _future = DatabaseService().getSocialLinks();
+
   @override
   Widget build(BuildContext context) {
-    const socials = [
-      [FontAwesomeIcons.whatsapp, 'WhatsApp', '12k', Color(0xFF25D366)],
-      [FontAwesomeIcons.telegram, 'Telegram', '8k', Color(0xFF2AABEE)],
-      [FontAwesomeIcons.tiktok, 'TikTok', '@onbuch', Color(0xFF111111)],
-      [FontAwesomeIcons.facebookF, 'Facebook', 'Page', Color(0xFF1877F2)],
-    ];
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      SecHead(eyebrow: 'Reste connectée', title: 'La communauté', action: null),
-      const SizedBox(height: 14),
-      Row(
-        children: List.generate(socials.length, (i) {
-          final s = socials[i];
-          final color = s[3] as Color;
-          return Expanded(
-            child: Padding(
-              padding: EdgeInsets.only(left: i > 0 ? 11 : 0),
-              child: Column(children: [
-                AspectRatio(
-                  aspectRatio: 1,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: OC.paper,
-                      borderRadius: BorderRadius.circular(18),
-                      border: Border.all(color: OC.line, width: 1.5),
-                      boxShadow: [
-                        BoxShadow(color: OC.ink.withValues(alpha: 0.04), blurRadius: 10, offset: const Offset(0, 4)),
-                      ],
-                    ),
-                    child: Center(
-                      child: Container(
-                        width: 44, height: 44,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          color: color.withValues(alpha: 0.12),
-                          borderRadius: BorderRadius.circular(13),
+    return FutureBuilder<List<SocialLink>>(
+      future: _future,
+      builder: (context, snap) {
+        final links = (snap.data ?? const <SocialLink>[]).take(4).toList();
+        if (links.isEmpty) return const SizedBox.shrink();
+        return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          SecHead(eyebrow: 'Reste connectée', title: 'La communauté', action: null),
+          const SizedBox(height: 14),
+          Row(
+            children: List.generate(links.length, (i) {
+              final s = links[i];
+              return Expanded(
+                child: Padding(
+                  padding: EdgeInsets.only(left: i > 0 ? 11 : 0),
+                  child: GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onTap: () => openUrl(context, s.url),
+                    child: Column(children: [
+                      AspectRatio(
+                        aspectRatio: 1,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: OC.paper,
+                            borderRadius: BorderRadius.circular(18),
+                            border: Border.all(color: OC.line, width: 1.5),
+                            boxShadow: [
+                              BoxShadow(color: OC.ink.withValues(alpha: 0.04), blurRadius: 10, offset: const Offset(0, 4)),
+                            ],
+                          ),
+                          child: Center(
+                            child: Container(
+                              width: 44, height: 44,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                color: s.color.withValues(alpha: 0.12),
+                                borderRadius: BorderRadius.circular(13),
+                              ),
+                              child: FaIcon(s.faIcon, color: s.color, size: 20),
+                            ),
+                          ),
                         ),
-                        child: FaIcon(s[0] as FaIconData, color: color, size: 20),
                       ),
-                    ),
+                      const SizedBox(height: 9),
+                      Text(s.label,
+                          style: body(11.5, weight: FontWeight.w700, color: OC.ink),
+                          textAlign: TextAlign.center, maxLines: 1, overflow: TextOverflow.ellipsis),
+                      if (s.description != null) ...[
+                        const SizedBox(height: 2),
+                        Text(s.description!, style: body(10, weight: FontWeight.w600, color: OC.muted),
+                            textAlign: TextAlign.center, maxLines: 1, overflow: TextOverflow.ellipsis),
+                      ],
+                    ]),
                   ),
                 ),
-                const SizedBox(height: 9),
-                Text(s[1] as String,
-                    style: body(11.5, weight: FontWeight.w700, color: OC.ink),
-                    textAlign: TextAlign.center, maxLines: 1, overflow: TextOverflow.ellipsis),
-                const SizedBox(height: 2),
-                Text(s[2] as String, style: body(10, weight: FontWeight.w600, color: OC.muted)),
-              ]),
-            ),
-          );
-        }),
-      ),
-    ]);
+              );
+            }),
+          ),
+        ]);
+      },
+    );
   }
 }
