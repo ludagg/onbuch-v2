@@ -28,12 +28,14 @@ class PushService {
 
   static const _targetKey = 'ob_push_target_id';
 
-  final FirebaseMessaging _fcm = FirebaseMessaging.instance;
+  // Accès paresseux : ne touche FirebaseMessaging que si Firebase est prêt
+  // (sinon « No Firebase app has been created », notamment sur le web).
+  FirebaseMessaging get _fcm => FirebaseMessaging.instance;
   bool _inited = false;
 
   /// Initialise les écouteurs (une seule fois, après `Firebase.initializeApp`).
   Future<void> init() async {
-    if (_inited) return;
+    if (_inited || !firebaseReady) return;
     _inited = true;
 
     await _fcm.requestPermission(alert: true, badge: true, sound: true);
@@ -62,6 +64,7 @@ class PushService {
 
   /// À appeler après une connexion réussie (et au démarrage si déjà connecté).
   Future<void> registerForCurrentUser() async {
+    if (!firebaseReady) return; // pas de push sur le web / sans Firebase
     try {
       final token = await _fcm.getToken();
       if (token == null || token.isEmpty) return;
@@ -123,6 +126,7 @@ class PushService {
 
   /// À la déconnexion : retire la cible push de ce compte.
   Future<void> unregister() async {
+    if (!firebaseReady) return;
     try {
       final prefs = await SharedPreferences.getInstance();
       final targetId = prefs.getString(_targetKey);
