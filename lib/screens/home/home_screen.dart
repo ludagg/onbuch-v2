@@ -7,9 +7,7 @@ import '../../widgets/ob_widgets.dart';
 import '../../widgets/leo_mascot.dart';
 import '../../services/auth_service.dart';
 import '../../services/database_service.dart';
-import '../../services/tutor_service.dart';
 import '../../utils/launch.dart';
-import '../../ai_config.dart';
 import '../../models/article.dart';
 import '../../models/exam.dart';
 import '../../models/affiche.dart';
@@ -86,7 +84,7 @@ class HomeScreen extends StatelessWidget {
               // Tuteur CTA
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: _TuteurCard(),
+                child: const _TuteurCard(),
               ),
               const SizedBox(height: 22),
 
@@ -487,32 +485,11 @@ class _CountUnit extends StatelessWidget {
 }
 
 // ─── Tuteur CTA card ──────────────────────────────────────────────────────────
-class _TuteurCard extends StatefulWidget {
-  @override
-  State<_TuteurCard> createState() => _TuteurCardState();
-}
-
-class _TuteurCardState extends State<_TuteurCard> {
-  TutorQuota? _quota;
-
-  @override
-  void initState() {
-    super.initState();
-    _load();
-  }
-
-  Future<void> _load() async {
-    final q = await TutorService().getQuota();
-    if (mounted) setState(() => _quota = q);
-  }
+class _TuteurCard extends StatelessWidget {
+  const _TuteurCard();
 
   @override
   Widget build(BuildContext context) {
-    final q = _quota;
-    final daily = AIConfig.freeDaily;
-    final free = q?.freeRemaining ?? daily;
-    final credits = q?.credits ?? 0;
-
     return Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
@@ -547,29 +524,7 @@ class _TuteurCardState extends State<_TuteurCard> {
         ]),
         const SizedBox(height: 12),
 
-        // ── Quota (jetons) + CTA pleine largeur ───────────────────────────
-        Row(children: [
-          if (free > 0) ...[
-            Icon(Icons.auto_awesome_rounded, size: 15, color: OC.o600),
-            const SizedBox(width: 6),
-            Flexible(child: Text(
-                '$free correction${free > 1 ? 's' : ''} gratuite${free > 1 ? 's' : ''} aujourd\'hui',
-                maxLines: 1, overflow: TextOverflow.ellipsis,
-                style: body(11.5, color: OC.o700, weight: FontWeight.w600))),
-          ] else if (credits > 0) ...[
-            Icon(Icons.paid_rounded, size: 15, color: OC.o600),
-            const SizedBox(width: 6),
-            Text('$credits crédit${credits > 1 ? 's' : ''} Tuteur',
-                style: body(11.5, color: OC.o700, weight: FontWeight.w700)),
-          ] else ...[
-            Icon(Icons.bolt_rounded, size: 15, color: OC.muted),
-            const SizedBox(width: 6),
-            Flexible(child: Text('Quota épuisé · recharge des crédits',
-                maxLines: 1, overflow: TextOverflow.ellipsis,
-                style: body(11.5, color: OC.muted, weight: FontWeight.w600))),
-          ],
-        ]),
-        const SizedBox(height: 11),
+        // ── CTA pleine largeur ────────────────────────────────────────────
         GestureDetector(
           onTap: () => context.go('/tutor/capture'),
           child: Container(
@@ -589,7 +544,6 @@ class _TuteurCardState extends State<_TuteurCard> {
       ]),
     );
   }
-
 }
 
 // ─── Raccourcis ───────────────────────────────────────────────────────────────
