@@ -1,31 +1,36 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gpt_markdown/gpt_markdown.dart';
 import '../theme/app_theme.dart';
 
 /// Rendu riche d'une réponse du Tuteur :
 /// - Markdown (titres, listes, **gras**, tableaux)
 /// - Maths LaTeX (`$...$`, `$$...$$`)
-/// - Graphiques décrits par des blocs ```onbuch-plot { ...json... } ```
+/// - Graphiques de fonction : blocs ```onbuch-plot { ...json... } ```
+/// - Figures / schémas vectoriels exacts : blocs ```onbuch-svg <svg…/> ```
 class RichAnswer extends StatelessWidget {
   final String text;
   final Color? textColor; // défaut résolu au build (OC.ink dépend du thème)
   const RichAnswer(this.text, {super.key, this.textColor});
 
-  static final _plotRe =
-      RegExp(r'```onbuch-plot\s*([\s\S]*?)```', multiLine: true);
+  // Capture un bloc onbuch-plot OU onbuch-svg. group(1) = type, group(2) = contenu.
+  static final _blockRe =
+      RegExp(r'```onbuch-(plot|svg)\s*([\s\S]*?)```', multiLine: true);
 
   @override
   Widget build(BuildContext context) {
     final children = <Widget>[];
     var last = 0;
-    for (final m in _plotRe.allMatches(text)) {
+    for (final m in _blockRe.allMatches(text)) {
       final before = text.substring(last, m.start).trim();
       if (before.isNotEmpty) children.add(_markdown(before));
+      final kind = m.group(1);
+      final content = m.group(2)?.trim() ?? '';
       children.add(Padding(
         padding: const EdgeInsets.symmetric(vertical: 10),
-        child: _PlotBlock(m.group(1)?.trim() ?? ''),
+        child: kind == 'svg' ? _SvgBlock(content) : _PlotBlock(content),
       ));
       last = m.end;
     }
@@ -211,6 +216,39 @@ class _Series {
   final String label;
   final List<FlSpot> points;
   const _Series(this.label, this.points);
+}
+
+// ─── Figure / schéma vectoriel (SVG) ─────────────────────────────────────────
+class _SvgBlock extends StatelessWidget {
+  final String code;
+  const _SvgBlock(this.code);
+
+  @override
+  Widget build(BuildContext context) {
+    final svg = code.trim();
+    if (!svg.contains('<svg')) return const _PlotUnavailable();
+    // Toujours sur fond blanc (les figures ont des traits sombres) → lisible
+    // aussi en mode sombre.
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: OC.line, width: 1.5),
+      ),
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxHeight: 340),
+        child: SvgPicture.string(
+          svg,
+          fit: BoxFit.contain,
+          placeholderBuilder: (_) => const SizedBox(height: 80,
+              child: Center(child: SizedBox(width: 18, height: 18,
+                  child: CircularProgressIndicator(strokeWidth: 2, color: OC.o500)))),
+        ),
+      ),
+    );
+  }
 }
 
 class _PlotUnavailable extends StatelessWidget {
