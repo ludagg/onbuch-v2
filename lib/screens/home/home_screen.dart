@@ -550,9 +550,10 @@ class _TuteurCardState extends State<_TuteurCard> {
         // ── Quota (jetons) + CTA pleine largeur ───────────────────────────
         Row(children: [
           if (free > 0) ...[
-            _tokens(free, daily),
-            const SizedBox(width: 8),
-            Flexible(child: Text('gratuit${free > 1 ? 's' : ''} aujourd\'hui',
+            Icon(Icons.auto_awesome_rounded, size: 15, color: OC.o600),
+            const SizedBox(width: 6),
+            Flexible(child: Text(
+                '$free correction${free > 1 ? 's' : ''} gratuite${free > 1 ? 's' : ''} aujourd\'hui',
                 maxLines: 1, overflow: TextOverflow.ellipsis,
                 style: body(11.5, color: OC.o700, weight: FontWeight.w600))),
           ] else if (credits > 0) ...[
@@ -589,27 +590,6 @@ class _TuteurCardState extends State<_TuteurCard> {
     );
   }
 
-  // Quota sous forme de jetons (●●○) — plus parlant qu'une barre.
-  Widget _tokens(int free, int daily) => Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          for (var i = 0; i < daily; i++)
-            Padding(
-              padding: const EdgeInsets.only(right: 6),
-              child: Container(
-                width: 11, height: 11,
-                decoration: BoxDecoration(
-                  color: i < free ? OC.o500 : Colors.transparent,
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    color: i < free ? OC.o500 : OC.o600.withValues(alpha: 0.4),
-                    width: 1.6,
-                  ),
-                ),
-              ),
-            ),
-        ],
-      );
 }
 
 // ─── Raccourcis ───────────────────────────────────────────────────────────────
