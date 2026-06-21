@@ -33,11 +33,8 @@ class _ConcoursScreenState extends State<ConcoursScreen> {
       appBar: AppBar(
         backgroundColor: OC.bg,
         surfaceTintColor: Colors.transparent,
-        titleSpacing: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 20),
-          onPressed: () => context.canPop() ? context.pop() : context.go('/home'),
-        ),
+        titleSpacing: 18,
+        automaticallyImplyLeading: false,
         title: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text('Concours', style: display(17, weight: FontWeight.w700)),
           Text('Grandes écoles & admissions', style: body(11, color: OC.muted, weight: FontWeight.w500)),

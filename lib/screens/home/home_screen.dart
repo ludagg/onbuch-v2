@@ -587,9 +587,9 @@ class _Shortcuts extends StatelessWidget {
   // [icône, libellé, accent, fond pastille, route (ou null si à venir)]
   static const _items = [
     [Icons.description_outlined, 'Résultats', OC.o600, OC.o50, '/results'],
-    [Icons.menu_book_rounded, 'Annales', OC.waInk, OC.goodBg, '/annales'],
-    [Icons.track_changes_rounded, 'Concours', OC.blue, OC.blueBg, '/concours'],
+    [Icons.event_note_rounded, 'Campus', OC.blue, OC.blueBg, '/campus'],
     [Icons.paid_outlined, 'Crédits', OC.warn, OC.warnBg, '/credits'],
+    [Icons.groups_outlined, 'Communauté', OC.good, OC.goodBg, '/communaute'],
   ];
 
   void _onTap(BuildContext context, String label, String? route) {

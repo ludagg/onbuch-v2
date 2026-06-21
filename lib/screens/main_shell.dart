@@ -13,7 +13,7 @@ class MainShell extends StatefulWidget {
 }
 
 class _MainShellState extends State<MainShell> {
-  static const _routes = ['/home', '/campus', '/tutor', '/annales', '/cours'];
+  static const _routes = ['/home', '/concours', '/tutor', '/annales', '/cours'];
 
   @override
   void initState() {

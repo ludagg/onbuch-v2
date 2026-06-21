@@ -136,18 +136,6 @@ class _SchoolLifeScreenState extends State<SchoolLifeScreen> {
                   _hintBox('Rien à l\'horizon pour le moment.')
                 else
                   ..._upcoming.map((e) => _eventTile(e, showDate: true)),
-                const SizedBox(height: 18),
-
-                // Outils (accès secondaire)
-                Text('Outils', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
-                const SizedBox(height: 10),
-                Row(children: [
-                  _tool(Icons.badge_outlined, 'Matricule', OC.o600),
-                  const SizedBox(width: 11),
-                  _tool(Icons.groups_rounded, 'Répétiteurs', OC.blue),
-                  const SizedBox(width: 11),
-                  _tool(Icons.insights_rounded, 'Ma progression', OC.good),
-                ]),
               ]),
             ),
           ),
@@ -306,30 +294,6 @@ class _SchoolLifeScreenState extends State<SchoolLifeScreen> {
               style: body(11.5, color: OC.muted, weight: FontWeight.w500)),
         ])),
       ]),
-    );
-  }
-
-  Widget _tool(IconData icon, String label, Color color) {
-    return Expanded(
-      child: GestureDetector(
-        onTap: () => ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('$label — bientôt disponible', style: body(13, weight: FontWeight.w600, color: Colors.white)),
-          backgroundColor: OC.ink, behavior: SnackBarBehavior.floating,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)), duration: const Duration(seconds: 2),
-        )),
-        child: Column(children: [
-          Container(
-            height: 58,
-            decoration: BoxDecoration(
-              color: OC.paper, borderRadius: BorderRadius.circular(16), border: Border.all(color: OC.line, width: 1.5),
-            ),
-            child: Center(child: Icon(icon, size: 23, color: color)),
-          ),
-          const SizedBox(height: 7),
-          Text(label, textAlign: TextAlign.center, maxLines: 1, overflow: TextOverflow.ellipsis,
-              style: body(11, weight: FontWeight.w700, color: OC.ink2)),
-        ]),
-      ),
     );
   }
 

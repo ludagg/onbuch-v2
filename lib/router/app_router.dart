@@ -93,7 +93,6 @@ final appRouter = GoRouter(
     GoRoute(path: '/notifications', builder: (_, __) => const NotificationsScreen()),
     GoRoute(path: '/affiche', builder: (_, __) => const AfficheScreen()),
     GoRoute(path: '/affiche-detail', builder: (_, s) => AfficheDetailScreen(item: s.extra as AfficheItem?)),
-    GoRoute(path: '/concours', builder: (_, __) => const ConcoursScreen()),
     GoRoute(path: '/concours-detail', builder: (_, s) => ConcoursDetailScreen(concours: s.extra as Concours?)),
     GoRoute(path: '/concours-inscription', builder: (_, s) => ConcoursInscriptionScreen(concours: s.extra as Concours?)),
     GoRoute(path: '/mes-candidatures', builder: (_, __) => const MesCandidaturesScreen()),
@@ -143,6 +142,7 @@ final appRouter = GoRouter(
       builder: (_, state, child) => MainShell(location: state.uri.path, child: child),
       routes: [
         GoRoute(path: '/home', builder: (_, __) => const HomeScreen()),
+        GoRoute(path: '/concours', builder: (_, __) => const ConcoursScreen()),
         GoRoute(path: '/campus', builder: (_, __) => const SchoolLifeScreen()),
         GoRoute(path: '/agenda', builder: (_, __) => const SchoolEventsScreen()),
         GoRoute(
