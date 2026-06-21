@@ -16,6 +16,18 @@ Future<void> shareApp(BuildContext context) async {
   }
 }
 
+/// Partage une actualité : copie le lien et propose WhatsApp avec le titre.
+Future<void> shareArticle(BuildContext context, String title, {String? url}) async {
+  final link = (url != null && url.trim().isNotEmpty) ? url.trim() : 'https://onbuch.cm';
+  final msg = '📰 $title — à lire sur OnBuch 🎓 $link';
+  try {
+    await Clipboard.setData(ClipboardData(text: link));
+  } catch (_) {}
+  if (context.mounted) {
+    await openUrl(context, 'https://wa.me/?text=${Uri.encodeComponent(msg)}');
+  }
+}
+
 /// Ouvre un lien externe (http, tel, mailto…) ou affiche un message si échec.
 Future<void> openUrl(BuildContext context, String? url) async {
   final raw = (url ?? '').trim();

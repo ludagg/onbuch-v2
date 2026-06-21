@@ -14,6 +14,7 @@ import '../models/affiche.dart';
 import '../models/app_notification.dart';
 import '../models/exam_result.dart';
 import '../models/exam_series.dart';
+import '../models/social_link.dart';
 import 'appwrite_client.dart';
 
 class DatabaseService {
@@ -143,6 +144,28 @@ class DatabaseService {
             .toList();
       } on AppwriteException {
         return <ExamSeries>[];
+      }
+    }, force: force);
+  }
+
+  /// Liens des réseaux sociaux (configurés par l'admin dans `social_links`).
+  /// Triés par `order`, actifs uniquement, tolérant (liste vide si échec).
+  Future<List<SocialLink>> getSocialLinks({bool force = false}) {
+    return _cachedList<SocialLink>('social_links', () async {
+      try {
+        final res = await AppwriteClient.databases.listDocuments(
+          databaseId: appwriteDatabaseId,
+          collectionId: appwriteSocialLinksCollectionId,
+          queries: [Query.limit(50)],
+        );
+        final list = res.documents
+            .map((d) => SocialLink.fromMap(d.data))
+            .where((s) => s.active && s.url.isNotEmpty && s.label.isNotEmpty)
+            .toList()
+          ..sort((a, b) => a.order.compareTo(b.order));
+        return list;
+      } on AppwriteException {
+        return <SocialLink>[];
       }
     }, force: force);
   }

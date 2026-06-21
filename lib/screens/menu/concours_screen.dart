@@ -16,14 +16,51 @@ class ConcoursScreen extends StatefulWidget {
   State<ConcoursScreen> createState() => _ConcoursScreenState();
 }
 
+enum _CFilter { tous, ouverts, cloture, resultats }
+
+extension _CFilterX on _CFilter {
+  String get label => switch (this) {
+        _CFilter.tous => 'Tous',
+        _CFilter.ouverts => 'Ouverts',
+        _CFilter.cloture => 'Clôture proche',
+        _CFilter.resultats => 'Résultats',
+      };
+}
+
 class _ConcoursScreenState extends State<ConcoursScreen> {
   final _db = DatabaseService();
-  late final Future<List<Concours>> _future = _load();
-  int _cat = 0;
+  late final Future<List<Concours>> _future = _db.getConcours();
+  final _searchCtrl = TextEditingController();
+  String _query = '';
+  _CFilter _filter = _CFilter.tous;
 
-  Future<List<Concours>> _load() async {
-    final list = await _db.getConcours();
-    return list.isEmpty ? _sample() : list;
+  @override
+  void dispose() {
+    _searchCtrl.dispose();
+    super.dispose();
+  }
+
+  bool _matchesQuery(Concours c) {
+    if (_query.isEmpty) return true;
+    bool has(String? s) => s != null && s.toLowerCase().contains(_query);
+    return has(c.name) || has(c.organizer) || has(c.description) || has(c.audience);
+  }
+
+  bool _matchesFilter(Concours c) {
+    final now = DateTime.now();
+    switch (_filter) {
+      case _CFilter.tous:
+        return true;
+      case _CFilter.ouverts:
+        return c.registrationDeadline == null || c.registrationDeadline!.isAfter(now);
+      case _CFilter.cloture:
+        final dl = c.registrationDeadline;
+        if (dl == null) return false;
+        final d = dl.difference(now).inDays;
+        return d >= 0 && d <= 14;
+      case _CFilter.resultats:
+        return c.resultsAvailable;
+    }
   }
 
   @override
@@ -69,17 +106,36 @@ class _ConcoursScreenState extends State<ConcoursScreen> {
             );
           }
           final all = snap.data ?? const <Concours>[];
-          // Clôture la plus proche → carte vedette.
+
+          // Aucune donnée réelle → vrai état vide (plus de faux concours).
+          if (all.isEmpty) {
+            return const EmptyState(
+              icon: Icons.track_changes_rounded,
+              title: 'Aucun concours pour le moment',
+              message: 'Les concours et admissions apparaîtront ici dès leur ouverture. Reviens bientôt !',
+            );
+          }
+
+          final searching = _query.isNotEmpty || _filter != _CFilter.tous;
+
+          // Clôture la plus proche → carte vedette (hors recherche/filtre).
           final upcoming = all.where((c) => c.registrationDeadline != null &&
               c.registrationDeadline!.isAfter(DateTime.now())).toList()
             ..sort((a, b) => a.registrationDeadline!.compareTo(b.registrationDeadline!));
-          final featured = upcoming.isNotEmpty ? upcoming.first : (all.isNotEmpty ? all.first : null);
-          final rest = all.where((c) => c.id != featured?.id).toList();
+          final featured = upcoming.isNotEmpty ? upcoming.first : all.first;
+
+          final list = searching
+              ? all.where((c) => _matchesQuery(c) && _matchesFilter(c)).toList()
+              : all.where((c) => c.id != featured.id).toList();
+
+          final headerLabel = searching
+              ? '${list.length} résultat${list.length > 1 ? 's' : ''}'
+              : 'Tous les concours · ${all.length}';
 
           return ListView(
             padding: const EdgeInsets.fromLTRB(20, 6, 20, 32),
             children: [
-              _searchBar(),
+              _searchField(),
               const SizedBox(height: 22),
 
               // Raccourcis prépa
@@ -94,23 +150,38 @@ class _ConcoursScreenState extends State<ConcoursScreen> {
               ]),
               const SizedBox(height: 18),
 
-              // Vedette — clôture proche (seul bloc « héros » de la page)
-              if (featured != null) ...[
+              // Vedette — clôture proche (seul bloc « héros », masqué en recherche)
+              if (!searching) ...[
                 _FeaturedCard(featured),
                 const SizedBox(height: 18),
               ],
 
-              // Filtres rapides
-              _categoryChips(),
+              // Filtres de statut (réels)
+              _statusChips(),
               const SizedBox(height: 16),
 
-              _label('Concours ouverts · ${all.length}'),
+              _label(headerLabel),
               const SizedBox(height: 12),
-              for (var i = 0; i < rest.length; i++)
-                Appear(index: i, child: Padding(
-                  padding: const EdgeInsets.only(bottom: 10),
-                  child: _ConcoursRow(rest[i]),
-                )),
+              if (list.isEmpty)
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: OC.paper, borderRadius: BorderRadius.circular(14),
+                    border: Border.all(color: OC.line, width: 1.5),
+                  ),
+                  child: Row(children: [
+                    const Icon(Icons.search_off_rounded, size: 18, color: OC.muted),
+                    const SizedBox(width: 10),
+                    Expanded(child: Text('Aucun concours pour cette recherche.',
+                        style: body(13, color: OC.muted, weight: FontWeight.w500))),
+                  ]),
+                )
+              else
+                for (var i = 0; i < list.length; i++)
+                  Appear(index: i, child: Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: _ConcoursRow(list[i]),
+                  )),
 
               const SizedBox(height: 8),
               _nativeAd(context),
@@ -123,24 +194,45 @@ class _ConcoursScreenState extends State<ConcoursScreen> {
 
   Widget _label(String t) => Text(t, style: body(13, weight: FontWeight.w800, color: OC.ink2));
 
-  Widget _searchBar() {
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: () => _soon(context),
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-        decoration: BoxDecoration(
-          color: OC.paper,
-          borderRadius: BorderRadius.circular(999),
-          border: Border.all(color: OC.line2, width: 1.5),
-          boxShadow: [BoxShadow(color: OC.ink.withValues(alpha: 0.04), blurRadius: 10, offset: const Offset(0, 4))],
-        ),
-        child: Row(children: [
-          const Icon(Icons.search_rounded, size: 19, color: OC.muted),
-          const SizedBox(width: 11),
-          Text('École, filière, ville…', style: body(14, color: OC.muted, weight: FontWeight.w500)),
-        ]),
+  Widget _searchField() {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
+      decoration: BoxDecoration(
+        color: OC.paper,
+        borderRadius: BorderRadius.circular(999),
+        border: Border.all(color: OC.line2, width: 1.5),
+        boxShadow: [BoxShadow(color: OC.ink.withValues(alpha: 0.04), blurRadius: 10, offset: const Offset(0, 4))],
       ),
+      child: Row(children: [
+        const Icon(Icons.search_rounded, size: 19, color: OC.muted),
+        const SizedBox(width: 11),
+        Expanded(
+          child: TextField(
+            controller: _searchCtrl,
+            onChanged: (v) => setState(() => _query = v.trim().toLowerCase()),
+            textInputAction: TextInputAction.search,
+            style: body(14, color: OC.ink),
+            decoration: InputDecoration(
+              isDense: true,
+              border: InputBorder.none,
+              hintText: 'École, filière, ville…',
+              hintStyle: body(14, color: OC.muted, weight: FontWeight.w500),
+              contentPadding: const EdgeInsets.symmetric(vertical: 13),
+            ),
+          ),
+        ),
+        if (_query.isNotEmpty)
+          GestureDetector(
+            onTap: () {
+              _searchCtrl.clear();
+              setState(() => _query = '');
+            },
+            child: const Padding(
+              padding: EdgeInsets.all(4),
+              child: Icon(Icons.close_rounded, size: 18, color: OC.muted),
+            ),
+          ),
+      ]),
     );
   }
 
@@ -171,18 +263,18 @@ class _ConcoursScreenState extends State<ConcoursScreen> {
     );
   }
 
-  Widget _categoryChips() {
-    const cats = ['Tous', 'Sciences', 'Santé', 'Éducation', 'Éco/Gestion'];
+  Widget _statusChips() {
     return SizedBox(
       height: 34,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
-        itemCount: cats.length,
+        itemCount: _CFilter.values.length,
         separatorBuilder: (_, __) => const SizedBox(width: 8),
         itemBuilder: (_, i) {
-          final on = i == _cat;
+          final f = _CFilter.values[i];
+          final on = f == _filter;
           return GestureDetector(
-            onTap: () => setState(() => _cat = i),
+            onTap: () => setState(() => _filter = f),
             child: Container(
               alignment: Alignment.center,
               padding: const EdgeInsets.symmetric(horizontal: 14),
@@ -191,7 +283,7 @@ class _ConcoursScreenState extends State<ConcoursScreen> {
                 borderRadius: BorderRadius.circular(999),
                 border: Border.all(color: on ? OC.ink : OC.line2, width: 1.5),
               ),
-              child: Text(cats[i], style: body(12.5, weight: FontWeight.w700, color: on ? Colors.white : OC.ink2)),
+              child: Text(f.label, style: body(12.5, weight: FontWeight.w700, color: on ? Colors.white : OC.ink2)),
             ),
           );
         },
@@ -224,30 +316,6 @@ class _ConcoursScreenState extends State<ConcoursScreen> {
     );
   }
 
-  void _soon(BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text('Bientôt disponible', style: body(13, weight: FontWeight.w600, color: Colors.white)),
-      backgroundColor: OC.ink,
-      behavior: SnackBarBehavior.floating,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      duration: const Duration(seconds: 2),
-    ));
-  }
-
-  static List<Concours> _sample() {
-    final now = DateTime.now();
-    return [
-      Concours(id: 's1', name: 'Concours ENS Yaoundé', organizer: 'MINESUP · École Normale Supérieure',
-          description: 'Cycle 1 · 1 200 places', registrationDeadline: now.add(const Duration(days: 14)),
-          examDate: now.add(const Duration(days: 48))),
-      Concours(id: 's2', name: 'Polytechnique (ENSP)', organizer: 'Génie · Yaoundé',
-          description: '850 places', registrationDeadline: now.add(const Duration(days: 30))),
-      Concours(id: 's3', name: 'FMSB — Médecine', organizer: 'Médecine · Yaoundé I',
-          description: 'Faculté de Médecine', registrationDeadline: now.add(const Duration(days: 5))),
-      Concours(id: 's4', name: 'ENAM', organizer: 'Administration & Magistrature',
-          description: 'Cycle A & B', examDate: now.add(const Duration(days: 70))),
-    ];
-  }
 }
 
 Widget _pill(String t, Color bg, Color fg) => Container(
