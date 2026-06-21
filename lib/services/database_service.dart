@@ -79,6 +79,12 @@ class DatabaseService {
             ...data,
             'createdAt': DateTime.now().toIso8601String(),
           },
+          // Profil privé : seul son propriétaire le lit/modifie. Les admins y
+          // accèdent via les permissions d'équipe au niveau de la collection.
+          permissions: [
+            Permission.read(Role.user(uid)),
+            Permission.update(Role.user(uid)),
+          ],
         );
       }
       _cache.remove('profile:$uid');

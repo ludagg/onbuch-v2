@@ -1,6 +1,6 @@
 <script lang="ts">
   import { page } from '$app/stores';
-  import { databases, ID, Query } from '$lib/appwrite';
+  import { databases, functions, ADMIN_FUNCTION_ID, ID, Query } from '$lib/appwrite';
   import { APPWRITE_DATABASE } from '$lib/config';
   import { resourceById, type Resource, type Field } from '$lib/schema';
 
@@ -142,6 +142,38 @@
     }
   }
 
+  let busyId = '';
+  // Actions sur le COMPTE Auth (bloquer / débloquer / supprimer), via la
+  // fonction serveur « ops » qui vérifie que l'appelant est admin.
+  async function accountAction(action: 'block' | 'unblock' | 'delete', doc: any) {
+    if (action === 'delete' && !confirm('Supprimer DÉFINITIVEMENT ce compte et son profil ? Action irréversible.')) return;
+    if (action === 'block' && !confirm('Bloquer ce compte ? L’utilisateur ne pourra plus se connecter.')) return;
+    busyId = doc.$id;
+    try {
+      const exec = await functions.createExecution(
+        ADMIN_FUNCTION_ID,
+        JSON.stringify({ action, userId: doc.$id }),
+        false
+      );
+      let body: any = {};
+      try { body = JSON.parse(exec.responseBody || '{}'); } catch { /* ignore */ }
+      if (!body.ok) {
+        flash(body.error ?? 'Action refusée.', true);
+        return;
+      }
+      if (action === 'delete') {
+        await load();
+        flash('Compte supprimé ✓');
+      } else {
+        flash(action === 'block' ? 'Compte bloqué ✓' : 'Compte débloqué ✓');
+      }
+    } catch (e: any) {
+      flash(e?.message ?? 'Action impossible.', true);
+    } finally {
+      busyId = '';
+    }
+  }
+
   function title(doc: any) {
     return resource ? doc[resource.titleField] || '(sans titre)' : '';
   }
@@ -184,7 +216,13 @@
           <div class="row-actions">
             <button class="btn-ghost btn-sm" title="Copier l'ID du document" on:click={() => navigator.clipboard?.writeText(doc.$id)}>ID</button>
             <button class="btn-ghost btn-sm" on:click={() => openEdit(doc)}>Modifier</button>
-            <button class="btn-danger btn-sm" on:click={() => remove(doc)}>Suppr.</button>
+            {#if resource.id === 'users'}
+              <button class="btn-ghost btn-sm" disabled={busyId === doc.$id} on:click={() => accountAction('block', doc)}>Bloquer</button>
+              <button class="btn-ghost btn-sm" disabled={busyId === doc.$id} on:click={() => accountAction('unblock', doc)}>Débloquer</button>
+              <button class="btn-danger btn-sm" disabled={busyId === doc.$id} on:click={() => accountAction('delete', doc)}>Suppr. compte</button>
+            {:else}
+              <button class="btn-danger btn-sm" on:click={() => remove(doc)}>Suppr.</button>
+            {/if}
           </div>
         </div>
       {/each}
