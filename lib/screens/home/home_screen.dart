@@ -186,7 +186,7 @@ class _GreetingState extends State<_Greeting> {
   @override
   Widget build(BuildContext context) {
     final first = _first;
-    final text = (first == null || first.isEmpty) ? 'Bonjour 👋' : 'Bonjour, $first 👋';
+    final text = (first == null || first.isEmpty) ? 'Salut 👋' : 'Salut, $first 👋';
     return Text(text, style: display(24, weight: FontWeight.w600));
   }
 }
