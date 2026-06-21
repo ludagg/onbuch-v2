@@ -199,7 +199,7 @@ class _HeaderStats extends StatelessWidget {
   static const _exam = 'Baccalauréat · Série D'; // TODO: profil utilisateur
   static const _xp = '0';
   static const _rank = '#65';
-  static const _division = 'Recrue';
+  static const _examShort = 'Bac D';
   static const _credits = '0';
 
   @override
@@ -239,7 +239,7 @@ class _HeaderStats extends StatelessWidget {
               _div(),
               _stat(_rank, 'Rang national', OC.blue),
               _div(),
-              _stat(_division, 'Division', const Color(0xFF7A5AE0)),
+              _stat(_examShort, 'Examen', const Color(0xFF7A5AE0)),
               _div(),
               _stat(_credits, 'Crédits', OC.good),
             ]),
