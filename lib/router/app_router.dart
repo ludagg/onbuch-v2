@@ -14,6 +14,7 @@ import '../screens/results/results_search_screen.dart';
 import '../screens/results/result_success_screen.dart';
 import '../screens/results/result_fail_screen.dart';
 import '../screens/annales/annales_library_screen.dart';
+import '../screens/annales/annales_collection_screen.dart';
 import '../screens/annales/annales_folder_screen.dart';
 import '../screens/annales/annale_detail_screen.dart';
 import '../screens/annales/pdf_reader_screen.dart';
@@ -161,6 +162,9 @@ final appRouter = GoRouter(
             GoRoute(path: 'detail', builder: (_, __) => const AnnaleDetailScreen()),
             GoRoute(path: 'pdf', builder: (_, __) => const PdfReaderScreen()),
             GoRoute(path: 'video', builder: (_, __) => const VideoCorrigeScreen()),
+            GoRoute(path: 'offline', builder: (_, __) => const AnnalesCollectionScreen(kind: AnnaleCollection.offline)),
+            GoRoute(path: 'recent', builder: (_, __) => const AnnalesCollectionScreen(kind: AnnaleCollection.recent)),
+            GoRoute(path: 'favorites', builder: (_, __) => const AnnalesCollectionScreen(kind: AnnaleCollection.favorites)),
           ],
         ),
         GoRoute(
