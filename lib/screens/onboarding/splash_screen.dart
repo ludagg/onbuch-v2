@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
+import '../../widgets/leo_mascot.dart';
 import '../../services/auth_service.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -79,16 +80,12 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                 ),
                 const Spacer(),
                 Column(children: [
-                  SizedBox(
-                    width: 26, height: 26,
-                    child: CircularProgressIndicator(
-                      color: Colors.white,
-                      strokeWidth: 2.6,
-                      backgroundColor: Colors.white.withValues(alpha:0.28),
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Text('By Ludovic Aggaï', style: body(12, weight: FontWeight.w600, color: Colors.white.withValues(alpha:0.75))),
+                  const LeoMascot(size: 58, mood: LeoMood.wave),
+                  const SizedBox(height: 10),
+                  Text('Préparation de ton espace…',
+                      style: body(12.5, weight: FontWeight.w600, color: Colors.white.withValues(alpha: 0.85))),
+                  const SizedBox(height: 12),
+                  Text('By Ludovic Aggaï', style: body(12, weight: FontWeight.w600, color: Colors.white.withValues(alpha: 0.75))),
                   const SizedBox(height: 40),
                 ]),
               ]),
