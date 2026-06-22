@@ -5,6 +5,7 @@ import '../../theme/app_theme.dart';
 import '../../models/tutor_request.dart';
 import '../../services/tutor_service.dart';
 import '../../services/analytics_service.dart';
+import '../../services/gamification_service.dart';
 import '../../widgets/rich_answer.dart';
 import '../../widgets/leo_mascot.dart';
 import '../../utils/tutor_pdf.dart';
@@ -145,6 +146,7 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
     _msgs.add(m);
     fut.then((t) {
       AnalyticsService.logEvent('tutor_correction', {'subject': widget.request?.subject ?? ''});
+      GamificationService.instance.addXp(15, tutorUses: 1);
       if (!mounted) return;
       setState(() => m.resolved = t);
       _scrollToBottom();

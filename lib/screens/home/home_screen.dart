@@ -8,6 +8,8 @@ import '../../widgets/leo_mascot.dart';
 import '../../services/auth_service.dart';
 import '../../services/database_service.dart';
 import '../../services/annale_store.dart';
+import '../../services/gamification_service.dart';
+import '../../services/tutor_service.dart';
 import '../../widgets/annale_actions.dart';
 import '../../utils/launch.dart';
 import '../../models/article.dart';
@@ -196,39 +198,94 @@ class _GreetingState extends State<_Greeting> {
 
 // ─── Stats d'en-tête (XP · Rang · Examen · Crédits) — SANS conteneur ─────────
 // Valeurs EN DUR pour l'instant (TODO : profil + gamification + quota Tuteur).
-class _HeaderStats extends StatelessWidget {
+class _HeaderStats extends StatefulWidget {
   const _HeaderStats();
 
-  static const _xp = '0';
-  static const _rank = '#65';
-  static const _examShort = 'Bac D';
-  static const _credits = '0';
+  @override
+  State<_HeaderStats> createState() => _HeaderStatsState();
+}
+
+class _HeaderStatsState extends State<_HeaderStats> {
+  String _examShort = '—';
+  String _credits = '—';
+
+  @override
+  void initState() {
+    super.initState();
+    // Pointe la présence du jour (streak + bonus quotidien) puis charge les infos.
+    GamificationService.instance.recordActivity();
+    _loadProfile();
+    _loadCredits();
+  }
+
+  Future<void> _loadProfile() async {
+    final user = await AuthService().getCurrentUser();
+    if (user == null) return;
+    final p = await DatabaseService().getUserProfile(user.$id);
+    if (!mounted || p == null) return;
+    final s = _shortExam((p['examen'] ?? '').toString(), (p['serie'] ?? '').toString());
+    setState(() => _examShort = s);
+  }
+
+  Future<void> _loadCredits() async {
+    final q = await TutorService().getQuota();
+    if (mounted) setState(() => _credits = '${q.credits}');
+  }
+
+  String _shortExam(String examen, String serie) {
+    const abbr = {
+      'Baccalauréat': 'Bac', 'Probatoire': 'Prob', 'BEPC': 'BEPC', 'CAP': 'CAP', 'BT': 'BT',
+      'BTS': 'BTS', 'HND': 'HND', 'GCE O Level': 'GCE O', 'GCE A Level': 'GCE A', 'Concours': 'Concours',
+    };
+    final e = abbr[examen] ?? (examen.isNotEmpty ? examen.split(' ').first : '');
+    var code = '';
+    final s = serie.trim();
+    if (s.contains('—')) {
+      code = s.split('—').first.trim();
+    } else if (s.contains('-')) {
+      code = s.split('-').first.trim();
+    } else if (s.isNotEmpty && s.length <= 5) {
+      code = s;
+    }
+    final out = [e, code].where((x) => x.isNotEmpty).join(' ');
+    return out.isEmpty ? '—' : out;
+  }
 
   @override
   Widget build(BuildContext context) {
-    return IntrinsicHeight(
-      child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-        _stat(_xp, 'XP total', OC.warn),
-        _div(),
-        _stat(_rank, 'Rang national', OC.blue),
-        _div(),
-        _stat(_examShort, 'Examen', const Color(0xFF7A5AE0)),
-        _div(),
-        _stat(_credits, 'Crédits', OC.good),
-      ]),
+    return ValueListenableBuilder<GamificationState>(
+      valueListenable: GamificationService.instance.state,
+      builder: (context, g, _) {
+        return IntrinsicHeight(
+          child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+            _stat('${g.xp}', 'XP total', OC.warn),
+            _div(),
+            _stat('—', 'Rang national', OC.blue),
+            _div(),
+            _stat(_examShort, 'Examen', const Color(0xFF7A5AE0)),
+            _div(),
+            // Seul « Crédits » est cliquable → page Crédits.
+            _stat(_credits, 'Crédits', OC.good, onTap: () => context.push('/credits')),
+          ]),
+        );
+      },
     );
   }
 
   Widget _div() => Container(width: 1, color: OC.line, margin: const EdgeInsets.symmetric(vertical: 4));
 
-  Widget _stat(String value, String label, Color accent) => Expanded(
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Text(value, maxLines: 1, overflow: TextOverflow.ellipsis,
-              style: display(19, weight: FontWeight.w800, color: accent)),
-          const SizedBox(height: 3),
-          Text(label, maxLines: 1, overflow: TextOverflow.ellipsis,
-              style: body(10.5, color: OC.muted, weight: FontWeight.w600)),
-        ]),
+  Widget _stat(String value, String label, Color accent, {VoidCallback? onTap}) => Expanded(
+        child: GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: onTap,
+          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            Text(value, maxLines: 1, overflow: TextOverflow.ellipsis,
+                style: display(19, weight: FontWeight.w800, color: accent)),
+            const SizedBox(height: 3),
+            Text(label, maxLines: 1, overflow: TextOverflow.ellipsis,
+                style: body(10.5, color: OC.muted, weight: FontWeight.w600)),
+          ]),
+        ),
       );
 }
 
