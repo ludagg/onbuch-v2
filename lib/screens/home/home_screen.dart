@@ -253,38 +253,39 @@ class _HeaderStatsState extends State<_HeaderStats> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: () => context.push('/progress'),
-      child: ValueListenableBuilder<GamificationState>(
-        valueListenable: GamificationService.instance.state,
-        builder: (context, g, _) {
-          return IntrinsicHeight(
-            child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-              _stat('${g.xp}', 'XP total', OC.warn),
-              _div(),
-              _stat('—', 'Rang national', OC.blue),
-              _div(),
-              _stat(_examShort, 'Examen', const Color(0xFF7A5AE0)),
-              _div(),
-              _stat(_credits, 'Crédits', OC.good),
-            ]),
-          );
-        },
-      ),
+    return ValueListenableBuilder<GamificationState>(
+      valueListenable: GamificationService.instance.state,
+      builder: (context, g, _) {
+        return IntrinsicHeight(
+          child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+            _stat('${g.xp}', 'XP total', OC.warn),
+            _div(),
+            _stat('—', 'Rang national', OC.blue),
+            _div(),
+            _stat(_examShort, 'Examen', const Color(0xFF7A5AE0)),
+            _div(),
+            // Seul « Crédits » est cliquable → page Crédits.
+            _stat(_credits, 'Crédits', OC.good, onTap: () => context.push('/credits')),
+          ]),
+        );
+      },
     );
   }
 
   Widget _div() => Container(width: 1, color: OC.line, margin: const EdgeInsets.symmetric(vertical: 4));
 
-  Widget _stat(String value, String label, Color accent) => Expanded(
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Text(value, maxLines: 1, overflow: TextOverflow.ellipsis,
-              style: display(19, weight: FontWeight.w800, color: accent)),
-          const SizedBox(height: 3),
-          Text(label, maxLines: 1, overflow: TextOverflow.ellipsis,
-              style: body(10.5, color: OC.muted, weight: FontWeight.w600)),
-        ]),
+  Widget _stat(String value, String label, Color accent, {VoidCallback? onTap}) => Expanded(
+        child: GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: onTap,
+          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            Text(value, maxLines: 1, overflow: TextOverflow.ellipsis,
+                style: display(19, weight: FontWeight.w800, color: accent)),
+            const SizedBox(height: 3),
+            Text(label, maxLines: 1, overflow: TextOverflow.ellipsis,
+                style: body(10.5, color: OC.muted, weight: FontWeight.w600)),
+          ]),
+        ),
       );
 }
 
