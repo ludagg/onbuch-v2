@@ -6,6 +6,10 @@ const appwriteExamSeriesCollectionId = 'exam_series';
 const appwriteSocialLinksCollectionId = 'social_links';
 const appwriteResultsCollectionId = 'results';
 const appwriteExamResultsCollectionId = 'exam_results';
+// Sources de résultats configurables par l'admin (manuel / PDF / API).
+const appwriteResultSourcesCollectionId = 'result_sources';
+// Bucket Storage des PDF de résultats chargés par l'admin.
+const appwriteResultPdfsBucketId = 'result_pdfs';
 const appwriteAnalyticsCollectionId = 'analytics_events';
 const appwriteArticlesCollectionId = 'articles';
 const appwriteExamsCollectionId = 'exams';
@@ -26,6 +30,11 @@ const appwriteNotificationsCollectionId = 'notifications';
 const appwriteAnnalesCollectionId = 'annales';
 const appwriteAppConfigCollectionId = 'app_config';
 const appwriteGamificationCollectionId = 'gamification';
+
+// Fonction Appwrite qui résout une recherche de résultat pour les sources
+// `pdf` (extraction texte serveur) et `api` (proxy externe). Le type `manual`
+// est résolu côté app directement sur la collection `exam_results`.
+const resultLookupFunctionId = 'result-lookup';
 
 // Page d'atterrissage des liens de partage (ouvre l'app si installée, sinon
 // propose le téléchargement). Projet Vercel dédié.

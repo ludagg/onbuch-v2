@@ -65,7 +65,12 @@ carte d'accueil + menu).
   quotas (3 gratuits/jour) + crédits Google Play.
 - **Cours** : matières → chapitres → leçons + quiz (anneaux de progression).
 - **Concours** : recherche live + filtres statut, fiche, inscription, prépa, blanc.
-- **Résultats** : recherche réelle Bac/BEPC/Probatoire + partage.
+- **Résultats** : **entièrement configurable par l'admin** via `result_sources`
+  (back-office « Résultats — sources »). Chaque source a un mode : `manual`
+  (saisie ligne par ligne dans `exam_results`), `pdf` (l'admin charge le PDF, on
+  cherche le nom/numéro dedans via la fonction `result-lookup`), ou `api` (proxy
+  vers une API externe). Libellés/champ de recherche/message pilotés par l'admin.
+  Repli sur une liste par défaut si aucune source n'est créée. Partage carte vérifiée.
 - **Annales** : ⚠️ **encore en démo** (pas de backend/lecteur PDF réel).
 - **Campus/Agenda** : calendrier scolaire (`school_calendar`) + page Agenda.
 - **Accueil** : hero examens, actus, à l'affiche, communauté (liens admin).
@@ -78,7 +83,7 @@ carte d'accueil + menu).
 - **Region** : NYC. **Version** : 1.9.x.
 
 **Collections** (toutes dans `lib/appwrite_config.dart`) : `users`,
-`exam_series`, `social_links`, `results`, `exam_results`, `analytics_events`,
+`exam_series`, `social_links`, `results`, `exam_results`, `result_sources`, `analytics_events`,
 `articles`, `exams`, `school_calendar`, `concours`, `prep_centers`,
 `concours_resources`, `concours_applications`, `subjects`, `chapters`, `lessons`,
 `chapter_progress`, `quizzes`, `affiche`, `tutor_jobs`, `tutor_quota`,
@@ -99,6 +104,14 @@ Console → Auth → Teams → `admins` → Create membership (email).
   `JOBS_COLLECTION`, `FREE_DAILY`, `VISION_MODEL`, `NVIDIA_MODEL`. Modes :
   défaut (correction), `lesson`, `quiz`, `summary` (tous gratuits sauf correction).
 - `verify-purchase` : vérifie les achats Google Play et crédite `tutor_quota`.
+- `result-lookup` (node-22) : résout une recherche de résultat pour les sources
+  `pdf` (télécharge le PDF du bucket `result_pdfs`, extrait le texte via
+  `pdf-parse`, cherche nom/numéro) et `api` (proxy vers une API externe). Le type
+  `manual` est résolu côté app (lecture directe d'`exam_results`). **Variable** :
+  `APPWRITE_API_KEY` (scope `databases.read`).
+
+**Storage** : bucket `result_pdfs` (PDF de résultats chargés par l'admin, lecture
+publique, écriture `team:admins`). Créé par `tools/setup_result_sources.sh`.
 
 **Web platforms déclarées** (CORS) : `onbuch-v2.vercel.app`,
 `onbuch-app.vercel.app` (+ alias d'équipe), `localhost`. Tout nouveau domaine web

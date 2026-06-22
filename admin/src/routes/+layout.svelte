@@ -48,6 +48,9 @@
           <span class="nav-ico">📊</span> Tableau de bord
         </a>
         <div class="nav-sep">Contenus</div>
+        <a class="nav-item" class:active={path.startsWith('/results')} href="/results">
+          <span class="nav-ico">🎓</span> Résultats — sources
+        </a>
         <a class="nav-item" class:active={path.startsWith('/annales')} href="/annales">
           <span class="nav-ico">🗂️</span> Annales & documents
         </a>
