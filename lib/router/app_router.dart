@@ -174,8 +174,28 @@ final appRouter = GoRouter(
               },
             ),
             GoRoute(path: 'detail', builder: (_, __) => const AnnaleDetailScreen()),
-            GoRoute(path: 'pdf', builder: (_, __) => const PdfReaderScreen()),
-            GoRoute(path: 'video', builder: (_, __) => const VideoCorrigeScreen()),
+            GoRoute(
+              path: 'pdf',
+              builder: (_, s) {
+                final m = s.extra is Map ? s.extra as Map : const {};
+                return PdfReaderScreen(
+                  url: (m['url'] ?? '').toString(),
+                  title: m['title'] as String?,
+                  subtitle: m['subtitle'] as String?,
+                );
+              },
+            ),
+            GoRoute(
+              path: 'video',
+              builder: (_, s) {
+                final m = s.extra is Map ? s.extra as Map : const {};
+                return VideoCorrigeScreen(
+                  url: (m['url'] ?? '').toString(),
+                  title: m['title'] as String?,
+                  subtitle: m['subtitle'] as String?,
+                );
+              },
+            ),
             GoRoute(path: 'offline', builder: (_, __) => const AnnalesCollectionScreen(kind: AnnaleCollection.offline)),
             GoRoute(path: 'recent', builder: (_, __) => const AnnalesCollectionScreen(kind: AnnaleCollection.recent)),
             GoRoute(path: 'favorites', builder: (_, __) => const AnnalesCollectionScreen(kind: AnnaleCollection.favorites)),

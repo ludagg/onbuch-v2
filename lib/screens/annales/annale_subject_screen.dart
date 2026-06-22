@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:url_launcher/url_launcher.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
 import '../../widgets/skeletons.dart';
@@ -90,25 +89,18 @@ class _AnnaleSubjectScreenState extends State<AnnaleSubjectScreen> {
 
   void _resetPaging() => _shown = _pageSize;
 
-  Future<void> _openUrl(String url) async {
-    final uri = Uri.tryParse(url.trim());
-    if (uri == null || url.trim().isEmpty) return;
-    try {
-      await launchUrl(uri, mode: LaunchMode.externalApplication);
-    } catch (_) {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Impossible d\'ouvrir le document.', style: body(13, color: Colors.white)), backgroundColor: OC.bad),
-        );
-      }
-    }
+  // Ouvre une ressource dans le lecteur intégré (PDF ou vidéo).
+  void _openResource(String kind, String url, Annale a) {
+    final subtitle = [widget.exam, widget.filiere].where((e) => (e ?? '').isNotEmpty).join(' · ');
+    final extra = {'url': url, 'title': a.title, 'subtitle': subtitle};
+    context.push(kind == 'video' ? '/annales/video' : '/annales/pdf', extra: extra);
   }
 
   void _openResources(Annale a) {
-    final res = <(IconData, String, Color, String)>[
-      if (a.hasPdf) (Icons.picture_as_pdf_rounded, 'Sujet (PDF)', const Color(0xFFC0392B), a.fileUrl),
-      if (a.hasCorrige) (Icons.check_circle_rounded, 'Corrigé (PDF)', const Color(0xFF1E9E63), a.corrigeUrl),
-      if (a.hasVideo) (Icons.play_circle_rounded, 'Vidéo corrigée', const Color(0xFF7A5AE0), a.videoUrl),
+    final res = <(IconData, String, Color, String, String)>[
+      if (a.hasPdf) (Icons.picture_as_pdf_rounded, 'Sujet (PDF)', const Color(0xFFC0392B), 'pdf', a.fileUrl),
+      if (a.hasCorrige) (Icons.check_circle_rounded, 'Corrigé (PDF)', const Color(0xFF1E9E63), 'pdf', a.corrigeUrl),
+      if (a.hasVideo) (Icons.play_circle_rounded, 'Vidéo corrigée', const Color(0xFF7A5AE0), 'video', a.videoUrl),
     ];
     if (res.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -117,7 +109,7 @@ class _AnnaleSubjectScreenState extends State<AnnaleSubjectScreen> {
       return;
     }
     if (res.length == 1) {
-      _openUrl(res.first.$4);
+      _openResource(res.first.$4, res.first.$5, a);
       return;
     }
     showModalBottomSheet(
@@ -141,10 +133,10 @@ class _AnnaleSubjectScreenState extends State<AnnaleSubjectScreen> {
                 child: Icon(r.$1, color: r.$3, size: 21),
               ),
               title: Text(r.$2, style: body(14, weight: FontWeight.w700)),
-              trailing: Icon(Icons.open_in_new_rounded, size: 18, color: OC.muted),
+              trailing: Icon(Icons.chevron_right_rounded, size: 18, color: OC.muted),
               onTap: () {
                 Navigator.pop(context);
-                _openUrl(r.$4);
+                _openResource(r.$4, r.$5, a);
               },
             ),
           const SizedBox(height: 12),
