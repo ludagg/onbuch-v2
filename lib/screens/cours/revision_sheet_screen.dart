@@ -1,22 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
+import '../../widgets/rich_answer.dart';
+import '../../models/course.dart';
+import '../../services/database_service.dart';
 
-// ── MOCK (valeurs/libellés EXACTS du wireframe — écran 8). Aucune API. ────────
-const _kSheet = (title: 'Nombres complexes', sub: 'Résumé 1 page · Tle D');
-const _kEssentiel = <({String label, String f})>[
-  (label: 'Module', f: '|z| = √(a² + b²)'),
-  (label: 'Argument', f: 'arg(z) = θ'),
-  (label: 'Forme expo.', f: 'z = r · e^(iθ)'),
-];
-const _kErreur = 'Erreur fréquente : oublier le signe de θ selon le quadrant.';
-
-/// Fiche de révision (résumé « 1 page ») — écran 8.
+/// Fiche de révision (résumé « 1 page ») — contenu réel du chapitre.
 class RevisionSheetScreen extends StatelessWidget {
-  const RevisionSheetScreen({super.key});
+  final String? chapterId;
+  final String? title;
+  const RevisionSheetScreen({super.key, this.chapterId, this.title});
 
   @override
   Widget build(BuildContext context) {
+    final t = (title ?? '').trim().isEmpty ? 'Chapitre' : title!.trim();
     return Scaffold(
       backgroundColor: OC.bg,
       appBar: AppBar(
@@ -24,57 +21,37 @@ class RevisionSheetScreen extends StatelessWidget {
         surfaceTintColor: Colors.transparent,
         leading: IconButton(icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 20), onPressed: () => context.pop()),
         title: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text('Fiche · ${_kSheet.title}', style: display(16, weight: FontWeight.w700), maxLines: 1, overflow: TextOverflow.ellipsis),
-          Text(_kSheet.sub, style: body(11, color: OC.muted, weight: FontWeight.w600)),
+          Text('Fiche · $t', style: display(16, weight: FontWeight.w700), maxLines: 1, overflow: TextOverflow.ellipsis),
+          Text('Résumé 1 page', style: body(11, color: OC.muted, weight: FontWeight.w600)),
         ]),
-        actions: [IconButton(icon: Icon(Icons.star_border_rounded, color: OC.ink), onPressed: () {/* TODO nav */})],
+        actions: [IconButton(icon: Icon(Icons.star_border_rounded, color: OC.ink), onPressed: () {})],
       ),
       body: ListView(
         padding: const EdgeInsets.fromLTRB(20, 4, 20, 120),
         children: [
-          // L'essentiel
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(color: OC.paper, borderRadius: BorderRadius.circular(16), border: Border.all(color: OC.line, width: 1.5)),
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text('L\'essentiel', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
               const SizedBox(height: 12),
-              for (final e in _kEssentiel) Padding(
-                padding: const EdgeInsets.only(bottom: 12),
-                child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  Container(margin: const EdgeInsets.only(top: 5), width: 7, height: 7, decoration: const BoxDecoration(color: OC.o500, shape: BoxShape.circle)),
-                  const SizedBox(width: 11),
-                  Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                    Text(e.label, style: body(13, weight: FontWeight.w700)),
-                    const SizedBox(height: 3),
-                    Text(e.f, style: mono(14, weight: FontWeight.w600, color: OC.o700)),
-                  ])),
-                ]),
+              FutureBuilder<String?>(
+                future: DatabaseService().getLesson(chapterId ?? ''),
+                builder: (context, snap) {
+                  if (snap.connectionState == ConnectionState.waiting) {
+                    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                      for (final _ in [0, 1, 2])
+                        Container(height: 10, width: double.infinity, margin: const EdgeInsets.only(bottom: 8),
+                            decoration: BoxDecoration(color: OC.line, borderRadius: BorderRadius.circular(5))),
+                    ]);
+                  }
+                  final content = (snap.data ?? '').trim();
+                  if (content.isEmpty) {
+                    return Text('La fiche de ce chapitre sera ajoutée prochainement.', style: body(13, color: OC.muted));
+                  }
+                  return RichAnswer(content);
+                },
               ),
-            ]),
-          ),
-          const SizedBox(height: 12),
-          // Formules à connaître
-          Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(color: OC.paper, borderRadius: BorderRadius.circular(16), border: Border.all(color: OC.line, width: 1.5)),
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text('Formules à connaître', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
-              const SizedBox(height: 12),
-              for (final _ in [0, 1, 2])
-                Container(height: 10, width: double.infinity, margin: const EdgeInsets.only(bottom: 8),
-                    decoration: BoxDecoration(color: OC.line, borderRadius: BorderRadius.circular(5))),
-            ]),
-          ),
-          const SizedBox(height: 12),
-          // Erreur fréquente
-          Container(
-            padding: const EdgeInsets.all(13),
-            decoration: BoxDecoration(color: OC.warnBg, borderRadius: BorderRadius.circular(13)),
-            child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Icon(Icons.bolt_rounded, size: 18, color: OC.warn),
-              const SizedBox(width: 9),
-              Expanded(child: Text(_kErreur, style: body(13, weight: FontWeight.w700, color: OC.ink2))),
             ]),
           ),
         ],
@@ -83,18 +60,21 @@ class RevisionSheetScreen extends StatelessWidget {
         padding: EdgeInsets.fromLTRB(20, 12, 20, 12 + MediaQuery.of(context).padding.bottom),
         decoration: BoxDecoration(color: OC.bg, border: Border(top: BorderSide(color: OC.line, width: 1.5))),
         child: Row(children: [
-          Expanded(child: _foot(Icons.picture_as_pdf_rounded, 'PDF', false)),
+          Expanded(child: _foot(Icons.picture_as_pdf_rounded, 'PDF', false, () {})),
           const SizedBox(width: 10),
-          Expanded(child: _foot(Icons.style_rounded, 'Flashcards', false)),
+          Expanded(child: _foot(Icons.style_rounded, 'Flashcards', false, () {})),
           const SizedBox(width: 10),
-          Expanded(child: _foot(Icons.quiz_rounded, 'Quiz', true)),
+          Expanded(child: _foot(Icons.quiz_rounded, 'Quiz', true, () => context.push('/cours-quiz', extra: {
+            'chapter': Chapter(id: chapterId ?? '', subjectId: '', title: t),
+            'subject': t,
+          }))),
         ]),
       ),
     );
   }
 
-  Widget _foot(IconData icon, String label, bool primary) => GestureDetector(
-        onTap: () {/* TODO nav */},
+  Widget _foot(IconData icon, String label, bool primary, VoidCallback onTap) => GestureDetector(
+        onTap: onTap,
         child: Container(
           height: 50,
           decoration: BoxDecoration(

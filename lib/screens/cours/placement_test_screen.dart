@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
-
-// ── MOCK (valeurs/libellés EXACTS du wireframe — écran 7). Aucune API. ────────
-const _kTest = (pack: 'Pack Maths · Tle D', q: '8 questions · 5 min', sub: 'On repère ce que tu maîtrises déjà.');
+import '../../models/course.dart';
+import '../../services/cours_packs_service.dart';
 
 const _kOutcomes = <({IconData icon, String title, String sub, int kind})>[
-  (icon: Icons.check_circle_rounded, title: 'Acquis', sub: 'Tu sautes 4 chapitres', kind: 0),
-  (icon: Icons.edit_rounded, title: 'À renforcer', sub: 'Démarre au ch. 3', kind: 1),
-  (icon: Icons.article_outlined, title: 'À découvrir', sub: '5 nouveaux chapitres', kind: 2),
+  (icon: Icons.check_circle_rounded, title: 'Acquis', sub: 'Tu sautes les chapitres maîtrisés', kind: 0),
+  (icon: Icons.edit_rounded, title: 'À renforcer', sub: 'On reprend là où ça coince', kind: 1),
+  (icon: Icons.article_outlined, title: 'À découvrir', sub: 'Les nouveaux chapitres', kind: 2),
 ];
 
-/// Test de positionnement (à l'ouverture d'un pack) — écran 7.
+/// Test de positionnement (à l'ouverture d'un pack) — lance le moteur QCM réel.
 class PlacementTestScreen extends StatelessWidget {
-  const PlacementTestScreen({super.key});
+  final String? subjectId;
+  const PlacementTestScreen({super.key, this.subjectId});
 
   @override
   Widget build(BuildContext context) {
+    final p = CoursPacks.instance.byId(subjectId ?? '');
+    final reader = '/cours/lecon?id=${subjectId ?? ''}';
     return Scaffold(
       backgroundColor: OC.bg,
       appBar: AppBar(
@@ -25,7 +27,7 @@ class PlacementTestScreen extends StatelessWidget {
         leading: IconButton(icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 20), onPressed: () => context.pop()),
         title: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text('Test de niveau', style: display(16, weight: FontWeight.w700)),
-          Text(_kTest.pack, style: body(11, color: OC.muted, weight: FontWeight.w600)),
+          Text(p == null ? 'Pack' : 'Pack ${p.name}', style: body(11, color: OC.muted, weight: FontWeight.w600)),
         ]),
       ),
       body: ListView(
@@ -39,9 +41,9 @@ class PlacementTestScreen extends StatelessWidget {
                   child: Icon(Icons.my_location_rounded, color: OC.o500, size: 24)),
               const SizedBox(width: 14),
               Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text(_kTest.q, style: display(17, weight: FontWeight.w700)),
+                Text('Quelques questions · 5 min', style: display(17, weight: FontWeight.w700)),
                 const SizedBox(height: 2),
-                Text(_kTest.sub, style: body(12.5, color: OC.muted, weight: FontWeight.w500)),
+                Text('On repère ce que tu maîtrises déjà.', style: body(12.5, color: OC.muted, weight: FontWeight.w500)),
               ])),
             ]),
           ),
@@ -56,23 +58,22 @@ class PlacementTestScreen extends StatelessWidget {
         decoration: BoxDecoration(color: OC.bg, border: Border(top: BorderSide(color: OC.line, width: 1.5))),
         child: Row(children: [
           Expanded(child: GestureDetector(
-            onTap: () => context.push('/cours/lecon'),
-            child: Container(
-              height: 52,
-              decoration: BoxDecoration(color: OC.paper, borderRadius: BorderRadius.circular(14), border: Border.all(color: OC.line, width: 1.5)),
-              alignment: Alignment.center,
-              child: Text('Passer', style: body(14, weight: FontWeight.w700, color: OC.ink2)),
-            ),
+            onTap: () => context.push(reader),
+            child: Container(height: 52, decoration: BoxDecoration(color: OC.paper, borderRadius: BorderRadius.circular(14), border: Border.all(color: OC.line, width: 1.5)),
+                alignment: Alignment.center, child: Text('Passer', style: body(14, weight: FontWeight.w700, color: OC.ink2))),
           )),
           const SizedBox(width: 12),
           Expanded(flex: 2, child: GestureDetector(
-            onTap: () => context.push('/cours/lecon'),
-            child: Container(
-              height: 52,
-              decoration: BoxDecoration(gradient: OC.grad, borderRadius: BorderRadius.circular(14)),
-              alignment: Alignment.center,
-              child: Text('Commencer le test', style: body(14, weight: FontWeight.w700, color: Colors.white)),
-            ),
+            onTap: () {
+              final m = (p != null && p.modules.isNotEmpty) ? p.modules.first : null;
+              if (m == null) { context.push(reader); return; }
+              context.push('/cours-quiz', extra: {
+                'chapter': Chapter(id: m.id, subjectId: p!.id, title: m.title),
+                'subject': p.name,
+              });
+            },
+            child: Container(height: 52, decoration: BoxDecoration(gradient: OC.grad, borderRadius: BorderRadius.circular(14)),
+                alignment: Alignment.center, child: Text('Commencer le test', style: body(14, weight: FontWeight.w700, color: Colors.white))),
           )),
         ]),
       ),

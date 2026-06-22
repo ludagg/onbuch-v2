@@ -98,7 +98,7 @@ class PackDetailScreen extends StatelessWidget {
         : Container(width: 30, height: 30, decoration: BoxDecoration(color: locked ? OC.panel : OC.o50, borderRadius: BorderRadius.circular(9)),
             alignment: Alignment.center, child: Text('${i + 1}', style: body(13, weight: FontWeight.w800, color: locked ? OC.muted : OC.o600)));
     return GestureDetector(
-      onTap: open ? () => context.push('/cours/lecon') : null,
+      onTap: open ? () => context.push('/cours/lecon?id=${p.id}&i=$i') : null,
       child: Container(
         margin: const EdgeInsets.only(bottom: 9),
         padding: const EdgeInsets.all(13),
@@ -129,7 +129,7 @@ class PackDetailScreen extends StatelessWidget {
     late String label; late VoidCallback onTap;
     if (owned) {
       label = 'Commencer le pack';
-      onTap = () => context.push('/cours/lecon');
+      onTap = () => context.push('/cours/lecon?id=${p.id}');
     } else if (p.premium && inCart) {
       label = 'Voir le panier';
       onTap = () => context.push('/cours/panier');

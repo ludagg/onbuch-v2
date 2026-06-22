@@ -82,7 +82,7 @@ class _CoursLibraryScreenState extends State<CoursLibraryScreen> {
     final pct = _store.progress(p.id);
     final lesson = p.firstLesson ?? 'Première leçon';
     return GestureDetector(
-      onTap: () => context.push('/cours/lecon'),
+      onTap: () => context.push('/cours/lecon?id=${p.id}'),
       child: Container(
         padding: const EdgeInsets.all(14),
         decoration: BoxDecoration(
@@ -109,7 +109,7 @@ class _CoursLibraryScreenState extends State<CoursLibraryScreen> {
   Widget _packRow(Pack p) {
     final pct = _store.progress(p.id);
     return GestureDetector(
-      onTap: () => context.push('/cours/test'),
+      onTap: () => context.push('/cours/test?id=${p.id}'),
       child: Container(
         margin: const EdgeInsets.only(bottom: 10),
         padding: const EdgeInsets.all(13),
