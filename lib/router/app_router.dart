@@ -197,7 +197,6 @@ final appRouter = GoRouter(
                 );
               },
             ),
-            GoRoute(path: 'offline', builder: (_, __) => const AnnalesCollectionScreen(kind: AnnaleCollection.offline)),
             GoRoute(path: 'recent', builder: (_, __) => const AnnalesCollectionScreen(kind: AnnaleCollection.recent)),
             GoRoute(path: 'favorites', builder: (_, __) => const AnnalesCollectionScreen(kind: AnnaleCollection.favorites)),
           ],

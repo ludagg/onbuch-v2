@@ -2,29 +2,62 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../models/annale.dart';
+import '../../services/annale_store.dart';
 
 /// Page d'un document (épreuve/cours/fiche) : aperçu + ressources (Sujet PDF,
 /// Corrigé, Vidéo) ouvertes dans les lecteurs intégrés, + passerelle Tuteur IA.
 /// Données réelles passées via `extra` (un [Annale]).
-class AnnaleDetailScreen extends StatelessWidget {
+class AnnaleDetailScreen extends StatefulWidget {
   final Annale? annale;
   const AnnaleDetailScreen({super.key, this.annale});
 
+  @override
+  State<AnnaleDetailScreen> createState() => _AnnaleDetailScreenState();
+}
+
+class _AnnaleDetailScreenState extends State<AnnaleDetailScreen> {
+  bool _fav = false;
+
+  @override
+  void initState() {
+    super.initState();
+    final a = widget.annale;
+    if (a != null) {
+      AnnaleStore.instance.recordRecent(a);
+      AnnaleStore.instance.isFavorite(a.id).then((v) {
+        if (mounted) setState(() => _fav = v);
+      });
+    }
+  }
+
+  Future<void> _toggleFav() async {
+    final a = widget.annale;
+    if (a == null) return;
+    final now = await AnnaleStore.instance.toggleFavorite(a);
+    if (mounted) setState(() => _fav = now);
+  }
+
   String get _subtitle {
-    final a = annale;
+    final a = widget.annale;
     if (a == null) return '';
     return [a.track, a.year].where((e) => e.isNotEmpty).join(' · ');
   }
 
-  Map<String, dynamic> _extra(String url) =>
-      {'url': url, 'title': annale?.title ?? 'Document', 'subtitle': [annale?.exam ?? '', annale?.track ?? ''].where((e) => e.isNotEmpty).join(' · ')};
+  Map<String, dynamic> _extra(String url) {
+    final a = widget.annale;
+    return {
+      'url': url,
+      'title': a?.title ?? 'Document',
+      'subtitle': [a?.exam ?? '', a?.track ?? ''].where((e) => e.isNotEmpty).join(' · '),
+    };
+  }
 
-  void _openPdf(BuildContext c, String url) => c.push('/annales/pdf', extra: _extra(url));
-  void _openVideo(BuildContext c, String url) => c.push('/annales/video', extra: _extra(url));
+  void _openPdf(String url) => context.push('/annales/pdf', extra: _extra(url));
+  void _openVideo(String url) => context.push('/annales/video', extra: _extra(url));
 
   @override
   Widget build(BuildContext context) {
-    final a = annale;
+    final a = widget.annale;
     if (a == null) {
       return Scaffold(
         backgroundColor: OC.bg,
@@ -40,37 +73,35 @@ class AnnaleDetailScreen extends StatelessWidget {
       );
     }
 
-    // Action principale du « cover » : PDF si dispo, sinon vidéo, sinon corrigé.
     void Function()? primary;
     String primaryLabel = 'Ouvrir';
     IconData primaryIcon = Icons.visibility_outlined;
     if (a.hasPdf) {
-      primary = () => _openPdf(context, a.fileUrl);
+      primary = () => _openPdf(a.fileUrl);
       primaryLabel = 'Ouvrir le PDF';
     } else if (a.hasVideo) {
-      primary = () => _openVideo(context, a.videoUrl);
+      primary = () => _openVideo(a.videoUrl);
       primaryLabel = 'Lire la vidéo';
       primaryIcon = Icons.play_arrow_rounded;
     } else if (a.hasCorrige) {
-      primary = () => _openPdf(context, a.corrigeUrl);
+      primary = () => _openPdf(a.corrigeUrl);
       primaryLabel = 'Ouvrir le corrigé';
     }
 
-    // Ressources disponibles → onglets.
     final tabs = <Widget>[
       if (a.hasPdf)
         Expanded(child: GestureDetector(
-          onTap: () => _openPdf(context, a.fileUrl),
+          onTap: () => _openPdf(a.fileUrl),
           child: const _ResourceTab(icon: Icons.picture_as_pdf_rounded, label: 'Sujet', sub: 'PDF', iconC: Color(0xFFC0392B), iconBg: Color(0xFFFAE7E4)),
         )),
       if (a.hasCorrige)
         Expanded(child: GestureDetector(
-          onTap: () => _openPdf(context, a.corrigeUrl),
+          onTap: () => _openPdf(a.corrigeUrl),
           child: _ResourceTab(icon: Icons.check_circle_outline_rounded, label: 'Corrigé', sub: 'PDF', iconC: OC.good, iconBg: OC.goodBg),
         )),
       if (a.hasVideo)
         Expanded(child: GestureDetector(
-          onTap: () => _openVideo(context, a.videoUrl),
+          onTap: () => _openVideo(a.videoUrl),
           child: const _ResourceTab(icon: Icons.play_circle_outline_rounded, label: 'Vidéo', sub: 'Corrigé', iconC: Color(0xFF7A5AE0), iconBg: Color(0xFFEEE9FA)),
         )),
     ];
@@ -94,13 +125,17 @@ class AnnaleDetailScreen extends StatelessWidget {
           onPressed: () => context.canPop() ? context.pop() : context.go('/annales'),
         ),
         actions: [
-          IconButton(icon: const Icon(Icons.bookmark_border_rounded, size: 19), color: OC.ink2, onPressed: () {}),
+          IconButton(
+            icon: Icon(_fav ? Icons.bookmark_rounded : Icons.bookmark_border_rounded, size: 20),
+            color: _fav ? OC.o600 : OC.ink2,
+            tooltip: _fav ? 'Retirer des favoris' : 'Ajouter aux favoris',
+            onPressed: _toggleFav,
+          ),
         ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(20, 4, 20, 24),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          // Cover
           Container(
             height: 150,
             decoration: BoxDecoration(color: OC.panel, borderRadius: BorderRadius.circular(18), border: Border.all(color: OC.line, width: 1.5)),
@@ -147,13 +182,11 @@ class AnnaleDetailScreen extends StatelessWidget {
           Text(a.title, style: body(14.5, weight: FontWeight.w700).copyWith(height: 1.3)),
           const SizedBox(height: 15),
 
-          // Ressources
           if (tabsRow.isNotEmpty) ...[
             Row(children: tabsRow),
             const SizedBox(height: 15),
           ],
 
-          // Tuteur bridge
           GestureDetector(
             onTap: () => context.go('/tutor'),
             child: Container(

@@ -14,6 +14,7 @@ class Annale {
   final String corrigeUrl; // facultatif
   final String videoUrl; // facultatif
   final bool premium;
+  final DateTime createdAt;
 
   const Annale({
     required this.id,
@@ -28,6 +29,7 @@ class Annale {
     required this.corrigeUrl,
     required this.videoUrl,
     required this.premium,
+    required this.createdAt,
   });
 
   bool get hasPdf => fileUrl.trim().isNotEmpty;
@@ -41,9 +43,28 @@ class Annale {
         if (hasVideo) 'video',
       ];
 
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'exam': exam,
+        'track': track,
+        'subject': subject,
+        'category': category,
+        'year': year,
+        'session': session,
+        'title': title,
+        'fileUrl': fileUrl,
+        'corrigeUrl': corrigeUrl,
+        'videoUrl': videoUrl,
+        'premium': premium,
+        'createdAt': createdAt.toIso8601String(),
+      };
+
+  factory Annale.fromJson(Map<String, dynamic> j) =>
+      Annale.fromMap(j, id: (j['id'] ?? '').toString(), createdAt: (j['createdAt'] ?? '').toString());
+
   static String _s(dynamic v) => (v ?? '').toString().trim();
 
-  factory Annale.fromMap(Map<String, dynamic> d, {required String id}) => Annale(
+  factory Annale.fromMap(Map<String, dynamic> d, {required String id, String? createdAt}) => Annale(
         id: id,
         exam: _s(d['exam']),
         track: _s(d['track']),
@@ -56,5 +77,6 @@ class Annale {
         corrigeUrl: _s(d['corrigeUrl']),
         videoUrl: _s(d['videoUrl']),
         premium: d['premium'] == true,
+        createdAt: DateTime.tryParse(_s(createdAt)) ?? DateTime.fromMillisecondsSinceEpoch(0),
       );
 }
