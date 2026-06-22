@@ -62,6 +62,7 @@ import '../screens/cours/cours_search_screen.dart';
 import '../models/article.dart';
 import '../models/exam_result.dart';
 import '../models/concours.dart';
+import '../models/annale.dart';
 import '../models/tutor_request.dart';
 import '../models/course.dart';
 import '../services/auth_service.dart';
@@ -173,7 +174,7 @@ final appRouter = GoRouter(
                 );
               },
             ),
-            GoRoute(path: 'detail', builder: (_, __) => const AnnaleDetailScreen()),
+            GoRoute(path: 'detail', builder: (_, s) => AnnaleDetailScreen(annale: s.extra is Annale ? s.extra as Annale : null)),
             GoRoute(
               path: 'pdf',
               builder: (_, s) {

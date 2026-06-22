@@ -89,62 +89,6 @@ class _AnnaleSubjectScreenState extends State<AnnaleSubjectScreen> {
 
   void _resetPaging() => _shown = _pageSize;
 
-  // Ouvre une ressource dans le lecteur intégré (PDF ou vidéo).
-  void _openResource(String kind, String url, Annale a) {
-    final subtitle = [widget.exam, widget.filiere].where((e) => (e ?? '').isNotEmpty).join(' · ');
-    final extra = {'url': url, 'title': a.title, 'subtitle': subtitle};
-    context.push(kind == 'video' ? '/annales/video' : '/annales/pdf', extra: extra);
-  }
-
-  void _openResources(Annale a) {
-    final res = <(IconData, String, Color, String, String)>[
-      if (a.hasPdf) (Icons.picture_as_pdf_rounded, 'Sujet (PDF)', const Color(0xFFC0392B), 'pdf', a.fileUrl),
-      if (a.hasCorrige) (Icons.check_circle_rounded, 'Corrigé (PDF)', const Color(0xFF1E9E63), 'pdf', a.corrigeUrl),
-      if (a.hasVideo) (Icons.play_circle_rounded, 'Vidéo corrigée', const Color(0xFF7A5AE0), 'video', a.videoUrl),
-    ];
-    if (res.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Document bientôt disponible.', style: body(13, color: Colors.white)), backgroundColor: OC.ink),
-      );
-      return;
-    }
-    if (res.length == 1) {
-      _openResource(res.first.$4, res.first.$5, a);
-      return;
-    }
-    showModalBottomSheet(
-      context: context,
-      backgroundColor: OC.paper,
-      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(22))),
-      builder: (_) => SafeArea(
-        child: Column(mainAxisSize: MainAxisSize.min, children: [
-          const SizedBox(height: 14),
-          Container(width: 40, height: 4, decoration: BoxDecoration(color: OC.line2, borderRadius: BorderRadius.circular(2))),
-          const SizedBox(height: 12),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20, 0, 20, 6),
-            child: Align(alignment: Alignment.centerLeft, child: Text(a.title, style: display(15, weight: FontWeight.w700))),
-          ),
-          for (final r in res)
-            ListTile(
-              leading: Container(
-                width: 40, height: 40,
-                decoration: BoxDecoration(color: r.$3.withValues(alpha: 0.13), borderRadius: BorderRadius.circular(11)),
-                child: Icon(r.$1, color: r.$3, size: 21),
-              ),
-              title: Text(r.$2, style: body(14, weight: FontWeight.w700)),
-              trailing: Icon(Icons.chevron_right_rounded, size: 18, color: OC.muted),
-              onTap: () {
-                Navigator.pop(context);
-                _openResource(r.$4, r.$5, a);
-              },
-            ),
-          const SizedBox(height: 12),
-        ]),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final filtered = _filtered;
@@ -235,7 +179,7 @@ class _AnnaleSubjectScreenState extends State<AnnaleSubjectScreen> {
   Widget _card(Annale a) {
     final sub = [a.category, if (a.session.isNotEmpty) a.session].join(' · ');
     return GestureDetector(
-      onTap: () => _openResources(a),
+      onTap: () => context.push('/annales/detail', extra: a),
       child: Container(
         margin: const EdgeInsets.only(bottom: 11),
         padding: const EdgeInsets.all(12),
