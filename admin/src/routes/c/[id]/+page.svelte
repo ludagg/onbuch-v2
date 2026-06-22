@@ -33,16 +33,26 @@
     loading = true;
     error = '';
     try {
-      const queries = [Query.limit(100)];
-      if (resource.orderBy) {
-        queries.push(
-          resource.orderBy.dir === 'desc'
-            ? Query.orderDesc(resource.orderBy.field)
-            : Query.orderAsc(resource.orderBy.field)
-        );
+      // Chargement paginé : on récupère TOUS les documents (la limite Appwrite
+      // par requête est de 100), pas seulement la première page.
+      const all: any[] = [];
+      const batch = 100;
+      let offset = 0;
+      while (true) {
+        const queries = [Query.limit(batch), Query.offset(offset)];
+        if (resource.orderBy) {
+          queries.push(
+            resource.orderBy.dir === 'desc'
+              ? Query.orderDesc(resource.orderBy.field)
+              : Query.orderAsc(resource.orderBy.field)
+          );
+        }
+        const res = await databases.listDocuments(APPWRITE_DATABASE, resource.collectionId, queries);
+        all.push(...res.documents);
+        if (res.documents.length < batch || offset > 5000) break;
+        offset += batch;
       }
-      const res = await databases.listDocuments(APPWRITE_DATABASE, resource.collectionId, queries);
-      docs = res.documents;
+      docs = all;
     } catch (e: any) {
       error = e?.message ?? 'Chargement impossible.';
       docs = [];
