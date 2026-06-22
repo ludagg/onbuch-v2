@@ -40,7 +40,7 @@ class _PdfReaderScreenState extends State<PdfReaderScreen> {
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 4, 16, 10),
             child: Row(children: [
-              _DarkBtn(Icons.arrow_back_ios_new_rounded, () => context.go('/annales/detail')),
+              _DarkBtn(Icons.arrow_back_ios_new_rounded, () => context.canPop() ? context.pop() : context.go('/annales')),
               const SizedBox(width: 10),
               Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 Text('Maths · Bac D 2025', style: body(14, weight: FontWeight.w700, color: Colors.white)),

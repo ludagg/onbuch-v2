@@ -93,7 +93,7 @@ class AnnalesLibraryScreen extends StatelessWidget {
                 count: f.$2,
                 c: f.$3,
                 bg: f.$4,
-                onTap: () => context.go('/annales/folder/${f.$1}'),
+                onTap: () => context.push('/annales/folder/${Uri.encodeComponent(f.$1)}'),
               )).toList(),
             ),
           ),

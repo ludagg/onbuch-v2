@@ -18,7 +18,7 @@ class AnnaleDetailScreen extends StatelessWidget {
         surfaceTintColor: Colors.transparent,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 20),
-          onPressed: () => context.go('/annales/folder/Baccalauréat'),
+          onPressed: () => context.canPop() ? context.pop() : context.go('/annales'),
         ),
         actions: [
           IconButton(icon: const Icon(Icons.bookmark_border_rounded, size: 19), color: OC.ink2, onPressed: () {}),
@@ -53,7 +53,7 @@ class AnnaleDetailScreen extends StatelessWidget {
               ),
               Positioned(right: 12, bottom: 12,
                 child: GestureDetector(
-                  onTap: () => context.go('/annales/pdf'),
+                  onTap: () => context.push('/annales/pdf'),
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 9),
                     decoration: BoxDecoration(
@@ -77,7 +77,7 @@ class AnnaleDetailScreen extends StatelessWidget {
           Row(children: [
             Expanded(
               child: GestureDetector(
-                onTap: () => context.go('/annales/pdf'),
+                onTap: () => context.push('/annales/pdf'),
                 child: _ResourceTab(icon: Icons.picture_as_pdf_rounded, label: 'Sujet', sub: 'PDF',
                     iconC: const Color(0xFFC0392B), iconBg: const Color(0xFFFAE7E4), selected: true),
               ),
@@ -90,7 +90,7 @@ class AnnaleDetailScreen extends StatelessWidget {
             const SizedBox(width: 9),
             Expanded(
               child: GestureDetector(
-                onTap: () => context.go('/annales/video'),
+                onTap: () => context.push('/annales/video'),
                 child: _ResourceTab(icon: Icons.play_circle_outline_rounded, label: 'Vidéo', sub: '8 min',
                     iconC: const Color(0xFF7A5AE0), iconBg: const Color(0xFFEEE9FA)),
               ),

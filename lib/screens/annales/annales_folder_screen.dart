@@ -200,7 +200,7 @@ class _AnnalesFolderScreenState extends State<AnnalesFolderScreen> {
         Text('Récemment ajoutés', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
         const SizedBox(height: 11),
         ..._recent.map((a) => GestureDetector(
-              onTap: () => context.go('/annales/detail'),
+              onTap: () => context.push('/annales/detail'),
               child: Container(
                 margin: const EdgeInsets.only(bottom: 9),
                 padding: const EdgeInsets.all(10),
