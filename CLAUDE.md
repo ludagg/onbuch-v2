@@ -105,13 +105,14 @@ Console → Auth → Teams → `admins` → Create membership (email).
   défaut (correction), `lesson`, `quiz`, `summary` (tous gratuits sauf correction).
 - `verify-purchase` : vérifie les achats Google Play et crédite `tutor_quota`.
 - `result-lookup` (node-22) : résout une recherche de résultat pour les sources
-  `pdf` (télécharge le PDF du bucket `result_pdfs`, extrait le texte via
+  `pdf` (télécharge le PDF chargé par l'admin, extrait le texte via
   `pdf-parse`, cherche nom/numéro) et `api` (proxy vers une API externe). Le type
   `manual` est résolu côté app (lecture directe d'`exam_results`). **Variable** :
   `APPWRITE_API_KEY` (scope `databases.read`).
 
-**Storage** : bucket `result_pdfs` (PDF de résultats chargés par l'admin, lecture
-publique, écriture `team:admins`). Créé par `tools/setup_result_sources.sh`.
+**Storage** : les PDF de résultats chargés par l'admin sont stockés dans le
+bucket **`annales_files`** (réutilisé — le plan Appwrite limite le nombre de
+buckets ; lecture publique, écriture `team:admins`, PDF autorisés).
 
 **Web platforms déclarées** (CORS) : `onbuch-v2.vercel.app`,
 `onbuch-app.vercel.app` (+ alias d'équipe), `localhost`. Tout nouveau domaine web

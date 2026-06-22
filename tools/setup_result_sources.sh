@@ -69,11 +69,14 @@ echo "── Index (tri par ordre) ──"
 api POST "/databases/$DB/collections/$COLLECTION/indexes" \
   "{\"key\":\"idx_order\",\"type\":\"key\",\"attributes\":[\"order\"],\"orders\":[\"ASC\"]}" >/dev/null || true
 
-echo "── Bucket Storage '$BUCKET' (PDF de résultats) ──"
-# Lecture publique (la fonction result-lookup et l'app y accèdent), écriture admins.
-# 30 Mo max, PDF uniquement.
+echo "── Bucket Storage des PDF de résultats ──"
+# Le plan Appwrite limite le nombre de buckets : on RÉUTILISE le bucket existant
+# `annales_files` (lecture publique, écriture admins, PDF autorisés). L'admin y
+# charge les PDF de résultats depuis le back-office. Rien à créer ici ; on tente
+# seulement une création (ignorée si le bucket existe déjà ou si la limite est
+# atteinte) au cas où le projet n'aurait pas encore `annales_files`.
 api POST "/storage/buckets" \
-  "{\"bucketId\":\"$BUCKET\",\"name\":\"Result PDFs\",\"permissions\":[\"read(\\\"any\\\")\",\"create(\\\"team:admins\\\")\",\"update(\\\"team:admins\\\")\",\"delete(\\\"team:admins\\\")\"],\"fileSecurity\":false,\"enabled\":true,\"maximumFileSize\":31457280,\"allowedFileExtensions\":[\"pdf\"]}" >/dev/null || true
+  "{\"bucketId\":\"$BUCKET\",\"name\":\"Result PDFs\",\"permissions\":[\"read(\\\"any\\\")\",\"create(\\\"team:admins\\\")\",\"update(\\\"team:admins\\\")\",\"delete(\\\"team:admins\\\")\"],\"fileSecurity\":false,\"enabled\":true,\"maximumFileSize\":31457280,\"allowedFileExtensions\":[\"pdf\"]}" >/dev/null 2>&1 || true
 
 echo
 echo "Terminé. Déploie ensuite la fonction 'result-lookup' (functions/result-lookup)"
