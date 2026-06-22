@@ -56,6 +56,7 @@ import '../screens/menu/communaute_screen.dart';
 import '../screens/menu/parametres_screen.dart';
 import '../screens/menu/aide_screen.dart';
 import '../screens/cours/cours_screen.dart';
+import '../screens/cours/cours_catalogue_screen.dart';
 import '../screens/cours/chapters_screen.dart';
 import '../screens/cours/chapter_detail_screen.dart';
 import '../screens/cours/quiz_screen.dart';
@@ -250,7 +251,8 @@ final appRouter = GoRouter(
             ),
           ],
         ),
-        GoRoute(path: '/cours', builder: (_, __) => const CoursScreen()),
+        // TEST : onglet Cours branché temporairement sur le nouveau Catalogue.
+        GoRoute(path: '/cours', builder: (_, __) => const CoursCatalogueScreen()),
         GoRoute(path: '/profile', builder: (_, __) => const ProfileScreen()),
       ],
     ),
