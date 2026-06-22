@@ -1,17 +1,21 @@
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../theme/app_theme.dart';
+import '../../services/offline_cache.dart';
 
-/// Lecteur PDF intégré (sujet / corrigé / cours / fiche). Affiche un PDF distant
-/// via [SfPdfViewer]. Le lien et les libellés arrivent par `extra`.
+/// Lecteur PDF intégré (sujet / corrigé / cours / fiche). Affiche un PDF mis en
+/// cache hors-ligne (si dispo) sinon distant via [SfPdfViewer]. Le lien, les
+/// libellés et l'id (pour le cache offline) arrivent par `extra`.
 class PdfReaderScreen extends StatefulWidget {
   final String url;
   final String? title;
   final String? subtitle;
-  const PdfReaderScreen({super.key, required this.url, this.title, this.subtitle});
+  final String? offlineId;
+  const PdfReaderScreen({super.key, required this.url, this.title, this.subtitle, this.offlineId});
 
   @override
   State<PdfReaderScreen> createState() => _PdfReaderScreenState();
@@ -19,11 +23,22 @@ class PdfReaderScreen extends StatefulWidget {
 
 class _PdfReaderScreenState extends State<PdfReaderScreen> {
   String? _error;
+  Uint8List? _offlineBytes;
+  bool _checking = true;
 
   @override
   void initState() {
     super.initState();
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(statusBarIconBrightness: Brightness.light));
+    _checkOffline();
+  }
+
+  Future<void> _checkOffline() async {
+    Uint8List? bytes;
+    if (widget.offlineId != null && widget.offlineId!.isNotEmpty) {
+      bytes = await OfflineCache.readBytes(widget.offlineId!);
+    }
+    if (mounted) setState(() { _offlineBytes = bytes; _checking = false; });
   }
 
   @override
@@ -63,16 +78,20 @@ class _PdfReaderScreenState extends State<PdfReaderScreen> {
             ]),
           ),
           Expanded(
-            child: !hasUrl
-                ? _msg('Document indisponible.')
-                : _error != null
-                    ? _msg(_error!)
-                    : SfPdfViewer.network(
-                        widget.url,
-                        onDocumentLoadFailed: (details) {
-                          if (mounted) setState(() => _error = 'Impossible d\'ouvrir ce PDF.');
-                        },
-                      ),
+            child: _checking
+                ? const Center(child: CircularProgressIndicator(color: Colors.white))
+                : _offlineBytes != null
+                    ? SfPdfViewer.memory(_offlineBytes!)
+                    : !hasUrl
+                        ? _msg('Document indisponible.')
+                        : _error != null
+                            ? _msg(_error!)
+                            : SfPdfViewer.network(
+                                widget.url,
+                                onDocumentLoadFailed: (details) {
+                                  if (mounted) setState(() => _error = 'Impossible d\'ouvrir ce PDF.');
+                                },
+                              ),
           ),
         ]),
       ),

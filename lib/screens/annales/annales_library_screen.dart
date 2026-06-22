@@ -30,6 +30,7 @@ class _AnnalesLibraryScreenState extends State<AnnalesLibraryScreen> {
   bool _loaded = false;
   int _recents = 0;
   int _favs = 0;
+  int _off = 0;
 
   @override
   void initState() {
@@ -41,7 +42,8 @@ class _AnnalesLibraryScreenState extends State<AnnalesLibraryScreen> {
     final counts = await DatabaseService().annalesCountByExam(_examFolders.map((f) => f.$1).toList());
     final recents = (await AnnaleStore.instance.recents()).length;
     final favs = (await AnnaleStore.instance.favorites()).length;
-    if (mounted) setState(() { _counts = counts; _recents = recents; _favs = favs; _loaded = true; });
+    final off = (await AnnaleStore.instance.offline()).length;
+    if (mounted) setState(() { _counts = counts; _recents = recents; _favs = favs; _off = off; _loaded = true; });
   }
 
   @override
@@ -88,6 +90,9 @@ class _AnnalesLibraryScreenState extends State<AnnalesLibraryScreen> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(children: [
+                _QuickCard(Icons.download_done_rounded, 'Hors-ligne', _loaded ? '$_off' : '…', OC.waInk, OC.goodBg,
+                    () async { await context.push('/annales/offline'); _load(); }),
+                const SizedBox(width: 11),
                 _QuickCard(Icons.access_time_rounded, 'Récents', _loaded ? '$_recents' : '…', OC.blue, OC.blueBg,
                     () async { await context.push('/annales/recent'); _load(); }),
                 const SizedBox(width: 11),
@@ -141,20 +146,18 @@ class _QuickCard extends StatelessWidget {
       behavior: HitTestBehavior.opaque,
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.all(13),
+        padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(color: OC.paper, borderRadius: BorderRadius.circular(16), border: Border.all(color: OC.line, width: 1.5)),
-        child: Row(children: [
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Container(
-            width: 38, height: 38,
-            decoration: BoxDecoration(color: bg, borderRadius: BorderRadius.circular(11)),
-            child: Icon(icon, size: 19, color: c),
+            width: 34, height: 34,
+            decoration: BoxDecoration(color: bg, borderRadius: BorderRadius.circular(10)),
+            child: Icon(icon, size: 18, color: c),
           ),
-          const SizedBox(width: 11),
-          Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.center, children: [
-            Text(label, style: body(13, weight: FontWeight.w700)),
-            const SizedBox(height: 1),
-            Text('$count élément${count == '1' ? '' : 's'}', style: body(10.5, color: OC.muted, weight: FontWeight.w600)),
-          ]),
+          const SizedBox(height: 9),
+          Text(label, style: body(12.5, weight: FontWeight.w700), maxLines: 1, overflow: TextOverflow.ellipsis),
+          const SizedBox(height: 1),
+          Text('$count élément${count == '1' ? '' : 's'}', style: body(10.5, color: OC.muted, weight: FontWeight.w600)),
         ]),
       ),
     ));

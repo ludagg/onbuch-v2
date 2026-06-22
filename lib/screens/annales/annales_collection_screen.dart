@@ -3,11 +3,12 @@ import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
 import '../../widgets/states.dart';
+import '../../widgets/annale_actions.dart';
 import '../../models/annale.dart';
 import '../../services/annale_store.dart';
 
 /// Type de collection d'annales (accès rapides de la bibliothèque).
-enum AnnaleCollection { recent, favorites }
+enum AnnaleCollection { recent, favorites, offline }
 
 /// Page « Récents / Favoris » des annales, alimentée par le stockage local.
 class AnnalesCollectionScreen extends StatefulWidget {
@@ -29,28 +30,40 @@ class _AnnalesCollectionScreenState extends State<AnnalesCollectionScreen> {
   }
 
   Future<void> _load() async {
-    final items = widget.kind == AnnaleCollection.favorites
-        ? await AnnaleStore.instance.favorites()
-        : await AnnaleStore.instance.recents();
+    final items = switch (widget.kind) {
+      AnnaleCollection.favorites => await AnnaleStore.instance.favorites(),
+      AnnaleCollection.offline => await AnnaleStore.instance.offline(),
+      AnnaleCollection.recent => await AnnaleStore.instance.recents(),
+    };
     if (mounted) setState(() { _items = items; _loading = false; });
   }
 
-  String get _title => widget.kind == AnnaleCollection.favorites ? 'Favoris' : 'Récents';
+  String get _title => switch (widget.kind) {
+        AnnaleCollection.favorites => 'Favoris',
+        AnnaleCollection.offline => 'Hors-ligne',
+        AnnaleCollection.recent => 'Récents',
+      };
 
-  ({IconData icon, Color color, String empty, String emptyMsg}) get _cfg =>
-      widget.kind == AnnaleCollection.favorites
-          ? (
-              icon: Icons.bookmark_rounded,
-              color: const Color(0xFFA6701A),
-              empty: 'Aucun favori',
-              emptyMsg: 'Mets une épreuve en favori (icône signet) pour la retrouver vite.',
-            )
-          : (
-              icon: Icons.access_time_rounded,
-              color: OC.blue,
-              empty: 'Aucun récent',
-              emptyMsg: 'Les documents que tu ouvres apparaîtront ici.',
-            );
+  ({IconData icon, Color color, String empty, String emptyMsg}) get _cfg => switch (widget.kind) {
+        AnnaleCollection.favorites => (
+            icon: Icons.bookmark_rounded,
+            color: const Color(0xFFA6701A),
+            empty: 'Aucun favori',
+            emptyMsg: 'Mets une épreuve en favori (icône signet) pour la retrouver vite.',
+          ),
+        AnnaleCollection.offline => (
+            icon: Icons.download_done_rounded,
+            color: OC.waInk,
+            empty: 'Rien hors-ligne',
+            emptyMsg: 'Rends une épreuve dispo hors-ligne pour la consulter sans réseau, dans l\'app.',
+          ),
+        AnnaleCollection.recent => (
+            icon: Icons.access_time_rounded,
+            color: OC.blue,
+            empty: 'Aucun récent',
+            emptyMsg: 'Les documents que tu ouvres apparaîtront ici.',
+          ),
+      };
 
   @override
   Widget build(BuildContext context) {
@@ -77,6 +90,7 @@ class _AnnalesCollectionScreenState extends State<AnnalesCollectionScreen> {
                         await context.push('/annales/detail', extra: a);
                         if (mounted) _load(); // rafraîchit (favori retiré, récent màj)
                       },
+                      onLongPress: () => showAnnaleActions(context, a, onChanged: _load),
                     );
                   },
                 ),
@@ -89,7 +103,8 @@ class _AnnaleTile extends StatelessWidget {
   final IconData trailingIcon;
   final Color trailingColor;
   final VoidCallback onTap;
-  const _AnnaleTile({required this.annale, required this.trailingIcon, required this.trailingColor, required this.onTap});
+  final VoidCallback? onLongPress;
+  const _AnnaleTile({required this.annale, required this.trailingIcon, required this.trailingColor, required this.onTap, this.onLongPress});
 
   @override
   Widget build(BuildContext context) {
@@ -97,6 +112,7 @@ class _AnnaleTile extends StatelessWidget {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: onTap,
+      onLongPress: onLongPress,
       child: Container(
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(color: OC.paper, borderRadius: BorderRadius.circular(16), border: Border.all(color: OC.line, width: 1.5)),

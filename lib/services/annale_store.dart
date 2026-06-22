@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/annale.dart';
+import 'offline_cache.dart';
 
 /// Stockage local (hors-ligne) des **favoris** et **récents** d'annales.
 /// On mémorise le document complet (JSON) → consultable même sans réseau.
@@ -11,6 +13,7 @@ class AnnaleStore {
 
   static const _favKey = 'annale_favs_v1';
   static const _recKey = 'annale_recents_v1';
+  static const _offKey = 'annale_offline_v1';
   static const _maxRecents = 30;
 
   Future<List<Annale>> _load(String key) async {
@@ -47,6 +50,29 @@ class AnnaleStore {
     }
     await _save(_favKey, list);
     return !exists;
+  }
+
+  // ── Hors-ligne (consultation dans l'app sans réseau) ──────────────────────
+  Future<List<Annale>> offline() => _load(_offKey);
+  Future<bool> isOffline(String id) async => (await offline()).any((a) => a.id == id);
+
+  /// Active/désactive le hors-ligne. À l'activation (mobile), télécharge le PDF
+  /// dans le cache de l'app. Renvoie l'état effectif (true = dispo hors-ligne).
+  Future<bool> setOffline(Annale a, bool on) async {
+    final list = await offline();
+    if (on) {
+      final ok = await OfflineCache.save(a.id, a.fileUrl.isNotEmpty ? a.fileUrl : a.corrigeUrl);
+      // Web : pas de cache fichier (toujours en ligne) → on garde la métadonnée.
+      if (kIsWeb || ok) {
+        if (!list.any((x) => x.id == a.id)) list.insert(0, a);
+        await _save(_offKey, list);
+      }
+      return kIsWeb ? true : ok;
+    }
+    list.removeWhere((x) => x.id == a.id);
+    await _save(_offKey, list);
+    await OfflineCache.remove(a.id);
+    return false;
   }
 
   /// Mémorise un document ouvert (en tête, sans doublon, borné).

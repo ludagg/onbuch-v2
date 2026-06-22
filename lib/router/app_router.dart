@@ -183,6 +183,7 @@ final appRouter = GoRouter(
                   url: (m['url'] ?? '').toString(),
                   title: m['title'] as String?,
                   subtitle: m['subtitle'] as String?,
+                  offlineId: m['offlineId'] as String?,
                 );
               },
             ),
@@ -198,6 +199,7 @@ final appRouter = GoRouter(
               },
             ),
             GoRoute(path: 'recent', builder: (_, __) => const AnnalesCollectionScreen(kind: AnnaleCollection.recent)),
+            GoRoute(path: 'offline', builder: (_, __) => const AnnalesCollectionScreen(kind: AnnaleCollection.offline)),
             GoRoute(path: 'favorites', builder: (_, __) => const AnnalesCollectionScreen(kind: AnnaleCollection.favorites)),
           ],
         ),

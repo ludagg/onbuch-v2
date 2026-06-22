@@ -167,6 +167,55 @@
     }
   }
 
+  // ── Édition d'un document existant ────────────────────────────────────────
+  let editDoc: any = null;
+  let ed = { exam: '', track: '', subject: '', category: 'Épreuve', year: '', session: '', title: '', fileUrl: '', corrigeUrl: '', videoUrl: '', premium: false };
+
+  function openEdit(d: any) {
+    editDoc = d;
+    ed = {
+      exam: (d.exam ?? '').toString(),
+      track: (d.track ?? '').toString(),
+      subject: (d.subject ?? '').toString(),
+      category: (d.category ?? 'Épreuve').toString(),
+      year: (d.year ?? '').toString(),
+      session: (d.session ?? '').toString(),
+      title: (d.title ?? '').toString(),
+      fileUrl: (d.fileUrl ?? '').toString(),
+      corrigeUrl: (d.corrigeUrl ?? '').toString(),
+      videoUrl: (d.videoUrl ?? '').toString(),
+      premium: !!d.premium
+    };
+  }
+  function closeEdit() { editDoc = null; }
+
+  async function saveEdit() {
+    if (!ed.subject.trim() || !ed.title.trim()) { flash('Matière et titre requis.', true); return; }
+    saving = true;
+    try {
+      await databases.updateDocument(APPWRITE_DATABASE, 'annales', editDoc.$id, {
+        exam: ed.exam,
+        track: ed.track.trim(),
+        subject: ed.subject.trim(),
+        category: ed.category,
+        year: ed.year.trim(),
+        session: ed.session.trim(),
+        title: ed.title.trim(),
+        fileUrl: ed.fileUrl.trim(),
+        corrigeUrl: ed.corrigeUrl.trim(),
+        videoUrl: ed.videoUrl.trim(),
+        premium: ed.premium
+      });
+      closeEdit();
+      await loadAll();
+      flash('Document modifié ✓');
+    } catch (e: any) {
+      flash(e?.message ?? 'Échec de la modification.', true);
+    } finally {
+      saving = false;
+    }
+  }
+
   async function del(d: any) {
     if (!confirm('Supprimer ce document ?')) return;
     try {
@@ -326,13 +375,56 @@
                   {#if d.premium}<span class="badge prem">PREMIUM</span>{/if}
                 </div>
               </div>
-              <button class="btn-danger btn-sm" on:click={() => del(d)}>Suppr.</button>
+              <div class="doc-acts">
+                <button class="btn-ghost btn-sm" on:click={() => openEdit(d)}>Modifier</button>
+                <button class="btn-danger btn-sm" on:click={() => del(d)}>Suppr.</button>
+              </div>
             </div>
           {/each}
         </div>
       </details>
     {/each}
   {/if}
+{/if}
+
+<!-- Tiroir d'édition d'un document -->
+{#if editDoc}
+  <div class="overlay" on:click={closeEdit} role="presentation"></div>
+  <aside class="drawer">
+    <div class="drawer-head">
+      <h2>Modifier le document</h2>
+      <button class="btn-ghost btn-sm" on:click={closeEdit}>Fermer</button>
+    </div>
+    <div class="drawer-body">
+      <div class="field">
+        <label for="e-exam">Examen</label>
+        <select id="e-exam" bind:value={ed.exam}>
+          {#each exams as ex}<option value={ex}>{ex}</option>{/each}
+        </select>
+      </div>
+      <div class="field"><label for="e-track">Série / filière</label><input id="e-track" type="text" bind:value={ed.track} /></div>
+      <div class="field"><label for="e-subject">Matière</label><input id="e-subject" type="text" bind:value={ed.subject} /></div>
+      <div class="field">
+        <label for="e-cat">Type de document</label>
+        <select id="e-cat" bind:value={ed.category}>
+          {#each ['Épreuve', 'Cours', 'Fiche de révision', 'TD', 'Autre'] as c}<option value={c}>{c}</option>{/each}
+        </select>
+      </div>
+      <div class="grid2">
+        <div class="field"><label for="e-year">Année</label><input id="e-year" type="text" bind:value={ed.year} /></div>
+        <div class="field"><label for="e-session">Session</label><input id="e-session" type="text" bind:value={ed.session} /></div>
+      </div>
+      <div class="field"><label for="e-title">Titre</label><input id="e-title" type="text" bind:value={ed.title} /></div>
+      <div class="field"><label for="e-pdf">Document principal (PDF)</label><input id="e-pdf" type="text" bind:value={ed.fileUrl} /></div>
+      <div class="field"><label for="e-cor">Corrigé (PDF)</label><input id="e-cor" type="text" bind:value={ed.corrigeUrl} /></div>
+      <div class="field"><label for="e-vid">Vidéo corrigée</label><input id="e-vid" type="text" bind:value={ed.videoUrl} /></div>
+      <label class="switch"><input type="checkbox" bind:checked={ed.premium} /><span>{ed.premium ? 'Premium' : 'Gratuit'}</span></label>
+    </div>
+    <div class="drawer-foot">
+      <button class="btn-ghost" on:click={closeEdit}>Annuler</button>
+      <button class="btn-primary" on:click={saveEdit} disabled={saving}>{saving ? 'Enregistrement…' : 'Enregistrer'}</button>
+    </div>
+  </aside>
 {/if}
 
 {#if toast}<div class="toast" class:bad={toastBad}>{toast}</div>{/if}
@@ -373,9 +465,18 @@
   .rows { padding: 0 12px 12px; display: flex; flex-direction: column; gap: 8px; }
   .doc { display: flex; align-items: center; gap: 12px; padding: 11px 12px; background: var(--bg); border: 1px solid var(--line); border-radius: 11px; }
   .doc-main { flex: 1; min-width: 0; }
+  .doc-acts { display: flex; gap: 8px; flex-shrink: 0; }
   .doc-title { font-weight: 700; font-size: 13.5px; }
   .doc-sub { font-size: 12px; margin-top: 2px; }
   .badges { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
   .badge { font-size: 10px; font-weight: 800; color: var(--ink2); background: var(--panel); border-radius: 6px; padding: 2px 7px; }
   .badge.prem { color: #a6701a; background: #fbf0dd; }
+
+  .overlay { position: fixed; inset: 0; background: rgba(20, 15, 11, 0.4); z-index: 40; }
+  .drawer { position: fixed; top: 0; right: 0; bottom: 0; width: 440px; max-width: 92vw; background: var(--bg); z-index: 50; display: flex; flex-direction: column; box-shadow: -16px 0 40px rgba(20, 15, 11, 0.18); }
+  .drawer-head, .drawer-foot { padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; background: var(--paper); }
+  .drawer-head { border-bottom: 1.5px solid var(--line); }
+  .drawer-head h2 { font-size: 16px; }
+  .drawer-foot { border-top: 1.5px solid var(--line); gap: 10px; }
+  .drawer-body { flex: 1; overflow-y: auto; padding: 20px; }
 </style>

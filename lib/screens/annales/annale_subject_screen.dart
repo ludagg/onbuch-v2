@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
 import '../../widgets/skeletons.dart';
+import '../../widgets/annale_actions.dart';
 import '../../models/annale.dart';
 import '../../services/database_service.dart';
 
@@ -180,6 +181,7 @@ class _AnnaleSubjectScreenState extends State<AnnaleSubjectScreen> {
     final sub = [a.category, if (a.session.isNotEmpty) a.session].join(' · ');
     return GestureDetector(
       onTap: () => context.push('/annales/detail', extra: a),
+      onLongPress: () => showAnnaleActions(context, a),
       child: Container(
         margin: const EdgeInsets.only(bottom: 11),
         padding: const EdgeInsets.all(12),

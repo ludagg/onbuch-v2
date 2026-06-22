@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
+import '../../widgets/annale_actions.dart';
 import '../../data/exam_taxonomy.dart';
 import '../../services/exam_structure_service.dart';
 import '../../services/database_service.dart';
@@ -172,6 +173,7 @@ class _AnnalesFolderScreenState extends State<AnnalesFolderScreen> {
           const SizedBox(height: 11),
           ...recents.map((a) => GestureDetector(
                 onTap: () => context.push('/annales/detail', extra: a),
+                onLongPress: () => showAnnaleActions(context, a),
                 child: Container(
                   margin: const EdgeInsets.only(bottom: 9),
                   padding: const EdgeInsets.all(10),
