@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 /// Humeurs disponibles de Léo (chaque humeur = un asset transparent).
-enum LeoMood { idle, thinking, celebrate, encourage, wave }
+enum LeoMood { idle, thinking, celebrate, encourage, wave, lab }
 
 const Map<LeoMood, String> _leoAssets = {
   LeoMood.idle: 'assets/images/leo.png',
@@ -9,6 +9,7 @@ const Map<LeoMood, String> _leoAssets = {
   LeoMood.celebrate: 'assets/images/leo_celebrate.png',
   LeoMood.encourage: 'assets/images/leo_encourage.png',
   LeoMood.wave: 'assets/images/leo_wave.png',
+  LeoMood.lab: 'assets/images/leo_lab.png',
 };
 
 /// Léo, la mascotte OnBuch (petit lion). Affiché **animé** (léger flottement
