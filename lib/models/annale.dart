@@ -45,16 +45,32 @@ class Annale {
 
   /// Le document concerne-t-il une série donnée ? Tolérant aux imports : le
   /// `track` peut être le **code** (« D »), le **libellé complet** (« D — … »),
-  /// ou **vide** (document général, applicable à toutes les séries).
-  bool appliesToSerie(String code, String label) {
-    final t = track.trim().toLowerCase();
-    if (t.isEmpty) return true; // général
+  /// **vide** (document général, applicable à toutes les séries), ou un nom de
+  /// **subdivision** (« INDUSTRIEL », « COMMERCIAL », « STT ») — ces épreuves de
+  /// tronc commun (Maths, Physique, Français…) sont partagées par TOUTES les
+  /// séries de la subdivision, donc visibles sous chacune d'elles.
+  bool appliesToSerie(String code, String label, {String subdivision = ''}) {
+    final raw = track.trim().toLowerCase();
+    if (raw.isEmpty) return true; // général
     final c = code.trim().toLowerCase();
     final l = label.trim().toLowerCase();
-    if (c.isNotEmpty && t == c) return true;
-    if (l.isNotEmpty && t == l) return true;
-    // « D — … » : le libellé commence par le code du track.
-    if (t.length <= 4 && (l.startsWith('$t ') || l.startsWith('$t—') || l.startsWith('$t —'))) return true;
+    final s = subdivision.trim().toLowerCase();
+    // Le track peut lister plusieurs séries (« C,D », « A4/SES ») — match si l'UNE
+    // d'elles correspond.
+    for (final t in raw.split(RegExp(r'[,/]')).map((e) => e.trim()).where((e) => e.isNotEmpty)) {
+      if (c.isNotEmpty && t == c) return true;
+      if (l.isNotEmpty && t == l) return true;
+      // « D — … » : le libellé commence par le code du track.
+      if (t.length <= 4 && (l.startsWith('$t ') || l.startsWith('$t—') || l.startsWith('$t —'))) return true;
+      // Tracks « subdivision » (imports) : rattachés à toute la filière technique.
+      if (s.isNotEmpty) {
+        if (t == 'industriel' && s.contains('industriel')) return true;
+        if ((t == 'commercial' || t == 'stt') &&
+            (s.contains('commercial') || s.contains('stt') || s.contains('tertiaire'))) {
+          return true;
+        }
+      }
+    }
     return false;
   }
 
