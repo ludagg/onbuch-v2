@@ -36,10 +36,11 @@ class _AnnalesFolderScreenState extends State<AnnalesFolderScreen> {
 
   ExamNode? get _node => widget.node ?? examTaxonomy[widget.folderName];
 
-  // Niveau de subdivisions : au moins un enfant a lui-même des enfants.
+  // Tout nœud ayant des enfants (subdivisions OU séries) → liste. On ne montre
+  // la page matières/documents qu'une fois arrivé sur une FEUILLE (série, etc.).
   bool get _isGroupLevel {
     final n = _node;
-    return n != null && n.children.isNotEmpty && n.children.any((c) => !c.isLeaf);
+    return n != null && n.children.isNotEmpty;
   }
 
   // Séries (feuilles AVEC code) → chips de filtre.
