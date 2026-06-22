@@ -94,3 +94,70 @@ class SkeletonList extends StatelessWidget {
   Widget build(BuildContext context) =>
       Column(children: List.generate(count, (_) => const SkeletonRow()));
 }
+
+/// Ligne squelette avec vignette à gauche (actualités, annales…).
+class SkeletonMediaRow extends StatelessWidget {
+  final double height;
+  const SkeletonMediaRow({super.key, this.height = 92});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 14),
+      height: height,
+      clipBehavior: Clip.antiAlias,
+      decoration: BoxDecoration(
+        color: OC.paper,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: OC.line, width: 1.5),
+      ),
+      child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        Skeleton(width: 96, height: height, radius: 0),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(12),
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.center, children: const [
+              Skeleton(width: 64, height: 14, radius: 7),
+              SizedBox(height: 9),
+              Skeleton(width: double.infinity, height: 12),
+              SizedBox(height: 7),
+              Skeleton(width: 150, height: 10),
+            ]),
+          ),
+        ),
+      ]),
+    );
+  }
+}
+
+/// Carte squelette « média » : visuel en haut + deux lignes (affiche, héros…).
+class SkeletonCard extends StatelessWidget {
+  final double imageHeight;
+  const SkeletonCard({super.key, this.imageHeight = 120});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 14),
+      clipBehavior: Clip.antiAlias,
+      decoration: BoxDecoration(
+        color: OC.paper,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: OC.line, width: 1.5),
+      ),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Skeleton(width: double.infinity, height: imageHeight, radius: 0),
+        Padding(
+          padding: const EdgeInsets.all(13),
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: const [
+            Skeleton(width: 90, height: 14, radius: 7),
+            SizedBox(height: 9),
+            Skeleton(width: double.infinity, height: 13),
+            SizedBox(height: 8),
+            Skeleton(width: 160, height: 11),
+          ]),
+        ),
+      ]),
+    );
+  }
+}

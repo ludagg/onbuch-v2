@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
+import '../../widgets/skeletons.dart';
 import '../../models/calendar_event.dart';
 import '../../services/database_service.dart';
 import '../../utils/launch.dart';
@@ -55,7 +56,10 @@ class _SchoolEventsScreenState extends State<SchoolEventsScreen> {
       backgroundColor: OC.bg,
       appBar: obBackAppBar(context, 'Agenda'),
       body: _loading
-          ? const Center(child: CircularProgressIndicator(color: OC.o500))
+          ? ListView(
+              padding: const EdgeInsets.fromLTRB(20, 16, 20, 28),
+              children: List.generate(6, (_) => const SkeletonRow()),
+            )
           : RefreshIndicator(
               color: OC.o500,
               onRefresh: () async {
