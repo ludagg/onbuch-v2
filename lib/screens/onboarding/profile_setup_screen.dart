@@ -3,7 +3,8 @@ import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
 import '../../widgets/leo_mascot.dart';
-import '../../widgets/series_picker.dart';
+import '../../widgets/exam_path_picker.dart';
+import '../../data/exam_taxonomy.dart';
 import '../../services/auth_service.dart';
 import '../../services/database_service.dart';
 
@@ -41,7 +42,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
   String? _gender;
 
   static const _classes = ['3ème', '2nde', '1ère', 'Terminale', 'Sup. / Fac'];
-  static const _exams   = ['Baccalauréat', 'Probatoire', 'GCE A Level', 'BTS', 'Concours (ENS…)'];
+  static const _exams   = examOrder; // examens de la taxonomie, ordonnés
   static const _fields  = [
     'Santé / Médecine', 'Ingénierie / Tech', 'Droit / Sciences Po',
     'Commerce / Gestion', 'Sciences', 'Lettres / Langues', 'Arts / Design',
@@ -284,10 +285,9 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
             _groupLabel('Examen / concours visé'),
             _choice(_exams, _examen, (v) => setState(() { _examen = v!; _serie = null; })),
             const SizedBox(height: 20),
-            SeriesPicker(
+            ExamPathPicker(
               exam: _examen,
               value: _serie,
-              label: 'Série / filière (optionnel)',
               onChanged: (v) => setState(() => _serie = v),
             ),
           ],

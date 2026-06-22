@@ -362,6 +362,14 @@ List<ExamNode> _concoursSecurite() => [
       _n('', 'Armée', subjects: ['Culture générale', 'Dissertation', 'Mathématiques']),
     ];
 
+/// Ordre d'affichage des examens (création de compte, sélecteurs) — du plus
+/// courant au plus spécifique. Chaque entrée est une clé de [examTaxonomy].
+const List<String> examOrder = [
+  'Baccalauréat', 'Probatoire', 'BEPC',
+  'GCE A Level', 'GCE O Level',
+  'CAP', 'BT', 'BTS', 'HND', 'Concours',
+];
+
 /// Taxonomie — clés = libellés des cartes de la page d'accueil Annales.
 final Map<String, ExamNode> examTaxonomy = {
   // ── BEPC : pas de subdivision ni de série — épreuves par matière ───────────

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
+import '../../widgets/skeletons.dart';
 import '../../models/article.dart';
 import '../../services/database_service.dart';
 
@@ -25,7 +26,10 @@ class _NewsScreenState extends State<NewsScreen> {
         future: _future,
         builder: (context, snap) {
           if (snap.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator(color: OC.o500));
+            return ListView(
+              padding: const EdgeInsets.fromLTRB(20, 12, 20, 28),
+              children: List.generate(6, (_) => const SkeletonMediaRow()),
+            );
           }
           final articles = snap.data ?? const <Article>[];
           if (articles.isEmpty) {

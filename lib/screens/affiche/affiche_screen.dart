@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
+import '../../widgets/skeletons.dart';
 import '../../models/affiche.dart';
 import '../../services/database_service.dart';
 
@@ -26,7 +27,10 @@ class _AfficheScreenState extends State<AfficheScreen> {
         future: _future,
         builder: (context, snap) {
           if (snap.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator(color: OC.o500));
+            return ListView(
+              padding: const EdgeInsets.fromLTRB(20, 12, 20, 28),
+              children: List.generate(4, (_) => const SkeletonCard()),
+            );
           }
           final items = snap.data ?? const <AfficheItem>[];
           if (items.isEmpty) {

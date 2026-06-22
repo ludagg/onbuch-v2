@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
+import '../../widgets/leo_mascot.dart';
 
 // ─── Shared value screen template ────────────────────────────────────────────
 class _ValueScreen extends StatelessWidget {
@@ -110,70 +111,65 @@ class _ValueScreen extends StatelessWidget {
   }
 }
 
-// ─── Vignette 1 — Mini result card ───────────────────────────────────────────
-class _MiniResult extends StatelessWidget {
-  const _MiniResult();
+// ─── Vignette 1 — Léo + univers OnBuch (accueil engageant) ───────────────────
+class _MiniWelcome extends StatelessWidget {
+  const _MiniWelcome();
 
   @override
   Widget build(BuildContext context) {
     return Stack(alignment: Alignment.center, children: [
       // confetti dots
       ...[
-        [0.08, 0.12, OC.o500, 9.0],
-        [0.86, 0.06, OC.wa, 7.0],
-        [0.18, 0.78, OC.blue, 7.0],
-        [0.90, 0.64, OC.o500, 8.0],
-        [0.72, 0.88, OC.o200, 10.0],
+        [0.10, 0.12, OC.o500, 9.0],
+        [0.85, 0.08, OC.blue, 7.0],
+        [0.15, 0.80, OC.wa, 8.0],
+        [0.89, 0.70, OC.o200, 10.0],
+        [0.74, 0.90, OC.o500, 7.0],
+        [0.06, 0.46, OC.o200, 6.0],
       ].map((p) => Positioned(
         left: (p[0] as double) * 300,
-        top: (p[1] as double) * 200,
+        top: (p[1] as double) * 210,
         child: Container(
           width: p[3] as double, height: p[3] as double,
           decoration: BoxDecoration(color: p[2] as Color, shape: BoxShape.circle),
         ),
       )),
-      // card
-      Transform.rotate(
-        angle: -0.05,
-        child: Container(
-          width: 230,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(22),
-            border: Border.all(color: OC.line, width: 1.5),
-            boxShadow: [BoxShadow(color: Colors.black.withValues(alpha:0.12), blurRadius: 30, offset: const Offset(0, 12))],
-          ),
-          padding: const EdgeInsets.all(18),
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Row(children: [
-              Text('Baccalauréat 2026', style: body(12, weight: FontWeight.w700, color: OC.ink2)),
-              const Spacer(),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                decoration: BoxDecoration(color: OC.goodBg, borderRadius: BorderRadius.circular(999)),
-                child: Text('ADMIS', style: body(11, weight: FontWeight.w800, color: OC.waInk)),
-              ),
-            ]),
-            const SizedBox(height: 12),
-            Row(children: [
-              Container(
-                width: 54, height: 54,
-                decoration: BoxDecoration(color: OC.goodBg, shape: BoxShape.circle),
-                child: Icon(Icons.check_circle_outline_rounded, size: 30, color: OC.good),
-              ),
-              const SizedBox(width: 12),
-              Text('Mention\nBien', style: display(26, weight: FontWeight.w700)),
-            ]),
-            Divider(height: 28, color: OC.line, thickness: 1.5),
-            Row(children: [
-              const OBWordmark(size: 14),
-              const SizedBox(width: 6),
-              Expanded(child: Text('Vérifié OnBuch · NDJAMÉ Aïcha', style: body(11, weight: FontWeight.w600, color: OC.muted))),
-            ]),
-          ]),
-        ),
-      ),
+      // Léo en héros + raccourcis vers l'univers OnBuch
+      Column(mainAxisAlignment: MainAxisAlignment.center, mainAxisSize: MainAxisSize.min, children: [
+        LeoMascot(size: 118, mood: LeoMood.celebrate),
+        const SizedBox(height: 20),
+        Wrap(alignment: WrapAlignment.center, spacing: 9, runSpacing: 9, children: const [
+          _FeaturePill(Icons.auto_awesome, 'Tuteur IA'),
+          _FeaturePill(Icons.menu_book_rounded, 'Cours'),
+          _FeaturePill(Icons.description_rounded, 'Annales'),
+          _FeaturePill(Icons.emoji_events_rounded, 'Concours'),
+        ]),
+      ]),
     ]);
+  }
+}
+
+class _FeaturePill extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  const _FeaturePill(this.icon, this.label);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 9),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(999),
+        border: Border.all(color: OC.line, width: 1.5),
+        boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.05), blurRadius: 8, offset: const Offset(0, 3))],
+      ),
+      child: Row(mainAxisSize: MainAxisSize.min, children: [
+        Icon(icon, size: 15, color: OC.o600),
+        const SizedBox(width: 6),
+        Text(label, style: body(12, weight: FontWeight.w700, color: OC.ink2)),
+      ]),
+    );
   }
 }
 
@@ -328,11 +324,11 @@ class Value1Screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) => _ValueScreen(
     idx: 0,
-    vignette: const _MiniResult(),
-    eyebrow: 'Le moment qui compte',
-    title: 'Tes résultats,',
-    titleAccent: 'dès la seconde où ils tombent',
-    description: 'GCE, Probatoire, BEPC, Bac, BTS, fac. Une alerte instantanée, puis ta carte de résultat à partager sur WhatsApp en un tap.',
+    vignette: const _MiniWelcome(),
+    eyebrow: 'Bienvenue 👋',
+    title: 'Réussis ton année,',
+    titleAccent: 'avec Léo 🦁',
+    description: 'Cours, tuteur IA, annales et concours réunis dans une appli pensée pour toi. Pose une question, révise, progresse — Léo t\'accompagne à chaque étape, du collège à la fac.',
     nextRoute: '/onboarding/2',
   );
 }
