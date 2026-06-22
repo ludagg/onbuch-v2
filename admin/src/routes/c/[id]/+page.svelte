@@ -33,16 +33,26 @@
     loading = true;
     error = '';
     try {
-      const queries = [Query.limit(100)];
-      if (resource.orderBy) {
-        queries.push(
-          resource.orderBy.dir === 'desc'
-            ? Query.orderDesc(resource.orderBy.field)
-            : Query.orderAsc(resource.orderBy.field)
-        );
+      // Chargement paginé : on récupère TOUS les documents (la limite Appwrite
+      // par requête est de 100), pas seulement la première page.
+      const all: any[] = [];
+      const batch = 100;
+      let offset = 0;
+      while (true) {
+        const queries = [Query.limit(batch), Query.offset(offset)];
+        if (resource.orderBy) {
+          queries.push(
+            resource.orderBy.dir === 'desc'
+              ? Query.orderDesc(resource.orderBy.field)
+              : Query.orderAsc(resource.orderBy.field)
+          );
+        }
+        const res = await databases.listDocuments(APPWRITE_DATABASE, resource.collectionId, queries);
+        all.push(...res.documents);
+        if (res.documents.length < batch || offset > 5000) break;
+        offset += batch;
       }
-      const res = await databases.listDocuments(APPWRITE_DATABASE, resource.collectionId, queries);
-      docs = res.documents;
+      docs = all;
     } catch (e: any) {
       error = e?.message ?? 'Chargement impossible.';
       docs = [];
@@ -174,6 +184,33 @@
     }
   }
 
+  // ── Arborescence (séries/filières) : examen → subdivision → filière → matières
+  $: examTree = resource?.tree ? buildExamTree(docs) : null;
+
+  function splitCsv(v: any): string[] {
+    return String(v ?? '')
+      .split(',')
+      .map((s) => s.trim())
+      .filter((s) => s.length > 0);
+  }
+
+  function buildExamTree(list: any[]) {
+    const exams = new Map<string, Map<string, any[]>>();
+    for (const d of list) {
+      const ex = (d.exam ?? '—').toString() || '—';
+      if (!exams.has(ex)) exams.set(ex, new Map());
+      const cats = exams.get(ex)!;
+      const cat = (d.category ?? '').toString(); // '' = pas de subdivision
+      if (!cats.has(cat)) cats.set(cat, []);
+      cats.get(cat)!.push(d);
+    }
+    return [...exams.entries()].map(([exam, cats]) => ({
+      exam,
+      total: [...cats.values()].reduce((n, a) => n + a.length, 0),
+      cats: [...cats.entries()].map(([cat, items]) => ({ cat, items }))
+    }));
+  }
+
   function title(doc: any) {
     return resource ? doc[resource.titleField] || '(sans titre)' : '';
   }
@@ -204,6 +241,59 @@
       <div class="empty-ico">{resource.icon}</div>
       <p>Aucun élément pour le moment.</p>
       <button class="btn-primary" on:click={openNew}>Créer le premier</button>
+    </div>
+  {:else if resource.tree && examTree}
+    <!-- Arborescence repliable : examen → subdivision → filière → matières -->
+    <div class="tree">
+      {#each examTree as g (g.exam)}
+        <details class="t-exam">
+          <summary><span class="t-name">{g.exam}</span><span class="t-count">{g.total}</span></summary>
+          <div class="t-body">
+            {#each g.cats as c (c.cat)}
+              {#if c.cat}
+                <details class="t-cat">
+                  <summary><span class="t-name">{c.cat}</span><span class="t-count">{c.items.length}</span></summary>
+                  <div class="t-body">
+                    {#each c.items as doc (doc.$id)}
+                      <details class="t-leaf">
+                        <summary>
+                          <span class="t-leaf-name">{doc.name}</span>
+                          {#if doc.code}<span class="t-code">{doc.code}</span>{/if}
+                          <span class="t-acts">
+                            <button class="btn-ghost btn-sm" on:click|preventDefault|stopPropagation={() => openEdit(doc)}>Modifier</button>
+                            <button class="btn-danger btn-sm" on:click|preventDefault|stopPropagation={() => remove(doc)}>Suppr.</button>
+                          </span>
+                        </summary>
+                        <div class="chips">
+                          {#each splitCsv(doc.subjects) as s}<span class="chip">{s}</span>{/each}
+                          {#if splitCsv(doc.subjects).length === 0}<span class="muted">Aucune matière renseignée.</span>{/if}
+                        </div>
+                      </details>
+                    {/each}
+                  </div>
+                </details>
+              {:else}
+                {#each c.items as doc (doc.$id)}
+                  <details class="t-leaf">
+                    <summary>
+                      <span class="t-leaf-name">{doc.name}</span>
+                      {#if doc.code}<span class="t-code">{doc.code}</span>{/if}
+                      <span class="t-acts">
+                        <button class="btn-ghost btn-sm" on:click|preventDefault|stopPropagation={() => openEdit(doc)}>Modifier</button>
+                        <button class="btn-danger btn-sm" on:click|preventDefault|stopPropagation={() => remove(doc)}>Suppr.</button>
+                      </span>
+                    </summary>
+                    <div class="chips">
+                      {#each splitCsv(doc.subjects) as s}<span class="chip">{s}</span>{/each}
+                      {#if splitCsv(doc.subjects).length === 0}<span class="muted">Aucune matière renseignée.</span>{/if}
+                    </div>
+                  </details>
+                {/each}
+              {/if}
+            {/each}
+          </div>
+        </details>
+      {/each}
     </div>
   {:else}
     <div class="list">
@@ -297,6 +387,42 @@
   .row-title { font-weight: 700; font-size: 14.5px; }
   .row-sub { font-size: 12.5px; margin-top: 2px; }
   .row-actions { display: flex; gap: 8px; flex-shrink: 0; }
+
+  /* Arborescence séries/filières */
+  .tree { display: flex; flex-direction: column; gap: 8px; }
+  .tree details { border-radius: 12px; }
+  .tree summary {
+    list-style: none; cursor: pointer; display: flex; align-items: center; gap: 10px;
+    padding: 11px 14px; user-select: none;
+  }
+  .tree summary::-webkit-details-marker { display: none; }
+  .tree summary::before {
+    content: '▸'; color: var(--muted); font-size: 12px; transition: transform 0.15s; flex-shrink: 0;
+  }
+  .tree details[open] > summary::before { transform: rotate(90deg); }
+  .t-name { font-weight: 700; }
+  .t-count {
+    margin-left: auto; font-size: 11.5px; font-weight: 700; color: var(--muted);
+    background: var(--panel); border-radius: 999px; padding: 2px 9px;
+  }
+  .t-exam { background: var(--paper); border: 1.5px solid var(--line); }
+  .t-exam > summary { font-size: 15px; }
+  .t-body { padding: 2px 10px 10px 22px; display: flex; flex-direction: column; gap: 6px; }
+  .t-cat { background: var(--bg); border: 1px solid var(--line); }
+  .t-cat > summary { font-size: 13.5px; color: var(--ink2); }
+  .t-leaf { background: var(--paper); border: 1px solid var(--line); }
+  .t-leaf > summary { font-size: 13px; padding: 9px 12px; }
+  .t-leaf-name { font-weight: 600; }
+  .t-code {
+    font-size: 11px; font-weight: 800; color: var(--accent, #c2620f);
+    background: var(--panel); border-radius: 6px; padding: 1px 7px;
+  }
+  .t-acts { margin-left: auto; display: flex; gap: 6px; flex-shrink: 0; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; padding: 4px 12px 12px 30px; }
+  .chip {
+    font-size: 12px; font-weight: 600; color: var(--ink2);
+    background: var(--panel); border: 1px solid var(--line); border-radius: 999px; padding: 4px 11px;
+  }
 
   .overlay { position: fixed; inset: 0; background: rgba(20, 15, 11, 0.4); z-index: 40; }
   .drawer {

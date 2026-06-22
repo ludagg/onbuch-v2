@@ -22,6 +22,9 @@ export interface Resource {
   subtitleField?: string; // champ secondaire
   orderBy?: { field: string; dir: 'asc' | 'desc' };
   fields: Field[];
+  // Affichage en arborescence repliable (examen → subdivision → filière →
+  // matières) au lieu d'une liste plate. Spécifique aux séries/filières.
+  tree?: boolean;
 }
 
 const order: Field = { key: 'order', label: 'Ordre', type: 'number', help: 'Tri croissant (0 en premier).' };
@@ -246,17 +249,20 @@ export const RESOURCES: Resource[] = [
     id: 'exam_series',
     collectionId: 'exam_series',
     label: 'Séries / filières',
-    singular: 'série',
+    singular: 'filière',
     icon: '🧩',
     titleField: 'name',
-    subtitleField: 'exam',
+    subtitleField: 'subjects',
     orderBy: { field: 'sortOrder', dir: 'asc' },
+    tree: true,
     fields: [
-      { key: 'exam', label: 'Cursus', type: 'text', required: true, help: 'EXACT : Baccalauréat, Probatoire, BTS, GCE A Level, Concours (ENS…)' },
-      { key: 'category', label: 'Regroupement', type: 'text', help: 'ex. Enseignement général / Enseignement technique / Filière' },
-      { key: 'name', label: 'Libellé', type: 'text', required: true, help: 'Affiché ET stocké, ex. « C — Maths & Sciences physiques »' },
+      { key: 'exam', label: 'Examen', type: 'select', required: true, options: ['Baccalauréat', 'Probatoire', 'BEPC', 'GCE A Level', 'GCE O Level', 'CAP', 'BT', 'BTS', 'HND', 'Concours'], help: 'Cursus (même liste que les Annales).' },
+      { key: 'category', label: 'Subdivision', type: 'text', help: 'ex. « Enseignement général (ESG) », « Industriel », « Écoles normales ». Vide si l’examen n’a pas de subdivision (BEPC, GCE).' },
+      { key: 'name', label: 'Série / filière', type: 'text', required: true, help: 'Libellé EXACT, ex. « D — Mathématiques & Sciences de la vie », « Génie Civil », « Science ».' },
+      { key: 'code', label: 'Code', type: 'text', help: 'Code éventuel de la série, ex. « D », « F2 », « ACA ». Vide pour les spécialités.' },
+      { key: 'subjects', label: 'Matières', type: 'textarea', help: 'Matières de la filière, séparées par des virgules — ce sont elles qui serviront à classer les épreuves. Ex. : Mathématiques, Physique, Chimie, SVT, …' },
       { key: 'sortOrder', label: 'Ordre', type: 'number', help: 'Tri croissant.' },
-      { key: 'active', label: 'Active (cocher pour afficher)', type: 'boolean', help: 'Décochée = masquée dans l’app.' }
+      { key: 'active', label: 'Active (cocher pour afficher)', type: 'boolean', help: 'Décochée = masquée.' }
     ]
   },
   {
