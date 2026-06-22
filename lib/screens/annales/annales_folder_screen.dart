@@ -36,11 +36,15 @@ class _AnnalesFolderScreenState extends State<AnnalesFolderScreen> {
 
   ExamNode? get _node => widget.node ?? examTaxonomy[widget.folderName];
 
-  // Tout nœud ayant des enfants (subdivisions OU séries) → liste. On ne montre
-  // la page matières/documents qu'une fois arrivé sur une FEUILLE (série, etc.).
+  // On affiche une LISTE de dossiers uniquement quand les enfants sont des
+  // subdivisions (sous-dossiers) ou des SÉRIES (feuille AVEC code) : il faut
+  // alors choisir d'abord. Si les enfants sont des MATIÈRES (feuille SANS code,
+  // ex. GCE Science → Mathematics/Physics), on montre directement la grille de
+  // matières — une matière est terminale, pas une série.
   bool get _isGroupLevel {
     final n = _node;
-    return n != null && n.children.isNotEmpty;
+    if (n == null || n.children.isEmpty) return false;
+    return n.children.any((c) => !c.isLeaf || c.code.isNotEmpty);
   }
 
   // Séries (feuilles AVEC code) → chips de filtre.
