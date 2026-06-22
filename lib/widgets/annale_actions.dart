@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 import '../theme/app_theme.dart';
+import '../appwrite_config.dart';
 import '../models/annale.dart';
 import '../services/annale_store.dart';
 
@@ -51,9 +52,8 @@ class _AnnaleActionsSheetState extends State<_AnnaleActionsSheet> {
   Future<void> _share() async {
     Navigator.pop(context);
     final a = widget.annale;
-    final link = a.fileUrl.isNotEmpty ? a.fileUrl : (a.videoUrl.isNotEmpty ? a.videoUrl : a.corrigeUrl);
-    final text = link.isEmpty ? a.title : '${a.title}\n$link';
-    await Share.share(text, subject: a.title);
+    final link = '$onbuchShareBaseUrl/a/${a.id}';
+    await Share.share('${a.title}\n$link', subject: a.title);
   }
 
   Future<void> _toggleFav() async {

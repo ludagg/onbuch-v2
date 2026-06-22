@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>OnBuch — Épreuve partagée</title>
+  <meta name="description" content="Ouvre cette épreuve dans OnBuch — annales, corrigés et tuteur IA pour réussir au Cameroun." />
+  <meta property="og:title" content="OnBuch — Épreuve partagée" />
+  <meta property="og:description" content="Annales, corrigés et tuteur IA. Ouvre l'épreuve dans l'app OnBuch." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23E8590C'/%3E%3Ctext x='50' y='68' font-size='52' font-family='Arial' font-weight='bold' fill='white' text-anchor='middle'%3EOB%3C/text%3E%3C/svg%3E" />
+  <style>
+    :root{
+      --bg:#FBF7F2; --paper:#FFFFFF; --ink:#1B1712; --ink2:#4B433A; --muted:#9B9183;
+      --line:#EDE6DC; --o500:#E8590C; --o600:#D24E08; --o50:#FCEEE2; --good:#1E9E63; --goodbg:#E5F3EB;
+    }
+    *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+    body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+      background:radial-gradient(120% 60% at 50% 0%, #FDF1E6 0%, var(--bg) 55%);color:var(--ink);min-height:100vh}
+    .wrap{max-width:480px;margin:0 auto;padding:28px 22px 40px;min-height:100vh;display:flex;flex-direction:column}
+    .brand{display:flex;align-items:center;gap:10px;margin-bottom:30px}
+    .logo{width:40px;height:40px;border-radius:11px;background:var(--o500);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px}
+    .brand b{font-size:19px;letter-spacing:-0.02em}
+    .brand b span{color:var(--o500)}
+    .card{background:var(--paper);border:1.5px solid var(--line);border-radius:24px;padding:22px;box-shadow:0 20px 50px rgba(40,25,10,.07)}
+    .eyebrow{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--o600)}
+    .doc-ico{width:58px;height:58px;border-radius:16px;background:var(--o50);display:flex;align-items:center;justify-content:center;margin:14px 0 14px}
+    .doc-ico svg{width:28px;height:28px;fill:var(--o600)}
+    h1{font-size:22px;line-height:1.25;margin:0 0 8px;letter-spacing:-0.01em}
+    .meta{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+    .chip{font-size:12px;font-weight:700;color:var(--ink2);background:#F4EEE6;border-radius:999px;padding:5px 11px}
+    .pills{display:flex;gap:7px;margin-top:14px}
+    .pill{font-size:11px;font-weight:800;border-radius:8px;padding:4px 9px}
+    .pill.pdf{color:#C0392B;background:#FAE7E4}.pill.cor{color:#1E9E63;background:#E5F3EB}.pill.vid{color:#7A5AE0;background:#EEE9FA}
+    .btn{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;border:none;cursor:pointer;
+      font-size:15.5px;font-weight:700;border-radius:15px;padding:16px;margin-top:14px;text-decoration:none}
+    .btn-primary{background:linear-gradient(135deg,#FFB347,var(--o500) 55%,var(--o600));color:#fff;box-shadow:0 10px 22px rgba(232,89,12,.28)}
+    .btn-store{background:var(--ink);color:#fff}
+    .btn-ghost{background:var(--paper);color:var(--ink2);border:1.5px solid var(--line)}
+    .stores{margin-top:18px}
+    .hint{font-size:12.5px;color:var(--muted);text-align:center;margin-top:16px;line-height:1.5}
+    .foot{margin-top:auto;padding-top:26px;text-align:center;font-size:12px;color:var(--muted)}
+    .spinner{width:30px;height:30px;border:3px solid var(--line);border-top-color:var(--o500);border-radius:50%;animation:s 1s linear infinite;margin:40px auto}
+    @keyframes s{to{transform:rotate(360deg)}}
+    .feat{display:flex;gap:14px;justify-content:center;margin-top:18px;flex-wrap:wrap}
+    .feat span{font-size:12px;color:var(--ink2);font-weight:600;display:flex;align-items:center;gap:5px}
+    .dot{width:6px;height:6px;border-radius:50%;background:var(--o500);display:inline-block}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="brand"><div class="logo">OB</div><b>On<span>Buch</span></b></div>
+    <div id="app"><div class="spinner"></div></div>
+    <div class="foot">OnBuch · Annales, corrigés &amp; tuteur IA — pensé pour le Cameroun 🇨🇲</div>
+  </div>
+
+  <script>
+    var ENDPOINT = 'https://nyc.cloud.appwrite.io/v1';
+    var PROJECT = '6a30463b00001375e229';
+    var DB = '6a3047f8001d11d1b3c1';
+
+    function param(){
+      var m = location.pathname.match(/\/a\/([^\/?#]+)/);
+      if (m) return decodeURIComponent(m[1]);
+      return new URLSearchParams(location.search).get('a') || '';
+    }
+    function api(path){
+      return fetch(ENDPOINT + path, { headers: { 'X-Appwrite-Project': PROJECT } })
+        .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); });
+    }
+    function esc(s){ var d=document.createElement('div'); d.textContent=s==null?'':String(s); return d.innerHTML; }
+
+    var id = param();
+    var stores = {};
+
+    Promise.all([
+      api('/databases/'+DB+'/collections/app_config/documents').then(function(j){
+        (j.documents||[]).forEach(function(d){ stores[d.key]=d.value; });
+      }).catch(function(){}),
+      id ? api('/databases/'+DB+'/collections/annales/documents/'+encodeURIComponent(id)) : Promise.resolve(null)
+    ]).then(function(res){
+      render(res[1]);
+    }).catch(function(){ render(null); });
+
+    function storeButtons(){
+      var html = '';
+      if (stores.playStoreUrl) html += '<a class="btn btn-store" href="'+esc(stores.playStoreUrl)+'">▶ Télécharger sur Google Play</a>';
+      if (stores.appStoreUrl) html += '<a class="btn btn-store" href="'+esc(stores.appStoreUrl)+'"> Télécharger sur l\'App Store</a>';
+      if (!html) html = '<a class="btn btn-store" href="https://onbuch-app.vercel.app">Ouvrir la version web</a>';
+      return html;
+    }
+
+    function render(doc){
+      var app = document.getElementById('app');
+      if (!doc){
+        app.innerHTML =
+          '<div class="card">'+
+            '<div class="eyebrow">OnBuch</div>'+
+            '<h1 style="margin-top:10px">Réussis tes examens avec OnBuch</h1>'+
+            '<p style="color:var(--ink2);line-height:1.55;font-size:14.5px">Annales &amp; corrigés, tuteur IA, cours et concours — tout pour cartonner, dans une seule app.</p>'+
+            '<div class="stores">'+storeButtons()+'</div>'+
+          '</div>'+
+          '<div class="feat"><span><i class="dot"></i>Annales + corrigés</span><span><i class="dot"></i>Tuteur IA</span><span><i class="dot"></i>Hors-ligne</span></div>';
+        return;
+      }
+      var pills='';
+      if ((doc.fileUrl||'').trim()) pills+='<span class="pill pdf">SUJET PDF</span>';
+      if ((doc.corrigeUrl||'').trim()) pills+='<span class="pill cor">CORRIGÉ</span>';
+      if ((doc.videoUrl||'').trim()) pills+='<span class="pill vid">VIDÉO</span>';
+      var meta='';
+      [doc.category,doc.subject,doc.track,doc.session,doc.year].forEach(function(v){ if(v&&String(v).trim()) meta+='<span class="chip">'+esc(v)+'</span>'; });
+
+      app.innerHTML =
+        '<div class="card">'+
+          '<div class="eyebrow">Épreuve partagée</div>'+
+          '<div class="doc-ico"><svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm8 1.5V8h4.5z"/></svg></div>'+
+          '<h1>'+esc(doc.title||'Épreuve')+'</h1>'+
+          '<div class="meta">'+meta+'</div>'+
+          (pills?('<div class="pills">'+pills+'</div>'):'')+
+          '<button class="btn btn-primary" id="open">📲 Ouvrir dans l\'app OnBuch</button>'+
+          '<div class="stores" id="dl" style="display:none">'+
+            '<p class="hint">Tu n\'as pas encore l\'app ? Installe-la pour ouvrir cette épreuve :</p>'+
+            storeButtons()+
+          '</div>'+
+        '</div>'+
+        '<p class="hint">Si l\'app ne s\'ouvre pas automatiquement, installe OnBuch puis rouvre ce lien.</p>';
+
+      document.getElementById('open').addEventListener('click', function(){
+        var start = Date.now();
+        document.getElementById('dl').style.display='block';
+        window.location.href = 'onbuch://annale/'+encodeURIComponent(id);
+        setTimeout(function(){
+          if (Date.now()-start < 2000 && stores.playStoreUrl){ /* app absente probable */ }
+        }, 1500);
+      });
+    }
+  </script>
+</body>
+</html>

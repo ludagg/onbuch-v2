@@ -18,6 +18,7 @@ import '../screens/annales/annales_collection_screen.dart';
 import '../screens/annales/annales_folder_screen.dart';
 import '../screens/annales/annale_subject_screen.dart';
 import '../screens/annales/annale_detail_screen.dart';
+import '../screens/annales/annale_open_screen.dart';
 import '../screens/annales/pdf_reader_screen.dart';
 import '../screens/annales/video_corrige_screen.dart';
 import '../screens/tutor/tutor_hub_screen.dart';
@@ -175,6 +176,7 @@ final appRouter = GoRouter(
               },
             ),
             GoRoute(path: 'detail', builder: (_, s) => AnnaleDetailScreen(annale: s.extra is Annale ? s.extra as Annale : null)),
+            GoRoute(path: 'open/:id', builder: (_, s) => AnnaleOpenScreen(id: s.pathParameters['id'] ?? '')),
             GoRoute(
               path: 'pdf',
               builder: (_, s) {

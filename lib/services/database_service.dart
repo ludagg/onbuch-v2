@@ -263,6 +263,20 @@ class DatabaseService {
     return out;
   }
 
+  /// Un document d'annales par son id (pour les liens de partage / deep links).
+  Future<Annale?> getAnnaleById(String id) async {
+    try {
+      final doc = await AppwriteClient.databases.getDocument(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteAnnalesCollectionId,
+        documentId: id,
+      );
+      return Annale.fromMap(doc.data, id: doc.$id, createdAt: doc.$createdAt);
+    } on AppwriteException {
+      return null;
+    }
+  }
+
   /// Tous les documents d'un examen (les plus récents d'abord) — pour compter
   /// par matière et afficher « récemment ajoutés ». Liste vide si erreur.
   Future<List<Annale>> getAnnalesForExam(String exam) async {
