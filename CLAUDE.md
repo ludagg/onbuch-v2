@@ -160,10 +160,13 @@ doit être ajouté : Console → Project → Platforms → Web, **ou** via l'API
 
 ## 8. Conventions de code
 
-- **Couleurs** : classe `OC` (`lib/theme/app_theme.dart`). Les **neutres**
-  (`bg/paper/panel/ink/ink2/muted/faint/line/line2`) sont **mutables** (dark mode,
-  via `OC.applyBrightness`) ⇒ **ne pas les utiliser dans un contexte `const`**.
-  L'orange/accents (`o50…o700`, `good/bad/blue/warn`, gradients) restent `const`.
+- **Couleurs** : classe `OC` (`lib/theme/app_theme.dart`). Tout ce qui est
+  basculé par `OC.applyBrightness` est **mutable** ⇒ **interdit dans un contexte
+  `const`** : neutres (`bg/paper/panel/ink/ink2/muted/faint/line/line2`), teintes
+  de marque (`o50/o100/o600/o700`) **et accents** (`good/goodBg/bad/badBg/blue/
+  blueBg/warn/warnBg/waInk`, `gradSoft`). Seuls restent `const` : `o200`, `o500`,
+  les couleurs de marque/support fixes (`wa`, …). En cas de doute, ne pas mettre
+  `const` sur un `BoxDecoration`/`TextStyle` qui référence une couleur `OC`.
 - **Typo** : `display()`, `body()`, `mono()` (Google Fonts) — pas de `TextStyle` brut.
 - **Widgets réutilisables** : `EmptyState`, `ErrorState`, `Appear`, `Skeleton`,
   `OBRing`, `OBCard`, `obBackAppBar`, `LeoMascot`, `RichAnswer`, `SeriesPicker`.
