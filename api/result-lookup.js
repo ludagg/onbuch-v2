@@ -1,34 +1,29 @@
-// result-lookup — résout une recherche de résultat pour une source configurée
-// par l'admin (collection `result_sources`).
+// /api/result-lookup — fonction serverless Vercel (zéro-config /api).
 //
-// Flux : l'app envoie { configId, query } en SYNCHRONE. La fonction :
-//   1. charge la source `result_sources/{configId}` ;
-//   2. selon `sourceType` :
-//        - `pdf` : télécharge le PDF (pdfUrl), en extrait le texte et y cherche
-//                  le numéro / le nom du candidat ;
-//        - `api` : interroge l'API externe configurée (apiUrl) et normalise la
-//                  réponse ;
-//   3. renvoie un résultat NORMALISÉ : { ok, found, result|null, message }.
+// Résout une recherche de résultat pour une source configurée par l'admin
+// (collection `result_sources`). Remplace la fonction Appwrite `result-lookup`
+// (le plan Appwrite a atteint sa limite de fonctions).
 //
-// Le type `manual` est résolu côté app (lecture directe d'`exam_results`) ;
-// s'il arrive ici, on le résout aussi par sécurité.
+// Aucun secret nécessaire : `result_sources` et `exam_results` sont en lecture
+// publique (read("any")) → on lit via l'API REST Appwrite avec le seul header
+// projet. Modes :
+//   - `pdf` : télécharge le PDF (pdfUrl), en extrait le texte, cherche nom/num.
+//   - `api` : interroge l'API externe configurée (apiUrl) et normalise.
+//   - `manual` : lecture directe d'`exam_results` (fallback ; l'app le fait déjà).
 //
-// Variables d'environnement à définir sur la fonction :
-//   - APPWRITE_API_KEY : clé serveur Appwrite (scope databases.read).
-//   - DATABASE_ID (optionnel, défaut ci-dessous).
-// Appwrite injecte APPWRITE_FUNCTION_API_ENDPOINT et APPWRITE_FUNCTION_PROJECT_ID.
+// Requête : POST JSON { configId, query }  (ou GET ?configId=…&query=…).
+// Réponse : { ok, found, result|null, message }.
 
-import { Client, Databases, Query } from 'node-appwrite';
-import PdfParse from 'pdf-parse';
+const PdfParse = require('pdf-parse');
 
+const APPWRITE_ENDPOINT = process.env.APPWRITE_ENDPOINT || 'https://nyc.cloud.appwrite.io/v1';
+const APPWRITE_PROJECT = process.env.APPWRITE_PROJECT || '6a30463b00001375e229';
 const DATABASE_ID = process.env.DATABASE_ID || '6a3047f8001d11d1b3c1';
 const SOURCES_COLLECTION = 'result_sources';
 const EXAM_RESULTS_COLLECTION = 'exam_results';
 
-// Mots-clés de mention reconnus dans un PDF (du plus fort au plus faible).
 const MENTIONS = ['EXCELLENT', 'TRES BIEN', 'TRÈS BIEN', 'BIEN', 'ASSEZ BIEN', 'PASSABLE'];
 
-// Normalise pour comparaison : majuscules, sans accents, alphanumérique espacé.
 function norm(s) {
   return String(s ?? '')
     .normalize('NFD')
@@ -43,8 +38,16 @@ function isNumeric(s) {
   return /^[0-9][0-9\s-]*$/.test(String(s ?? '').trim());
 }
 
-// ── Recherche dans un PDF ────────────────────────────────────────────────────
-async function searchPdf(source, rawQuery, log) {
+// Lit un document Appwrite en lecture publique (sans clé serveur).
+async function getSource(configId) {
+  const url = `${APPWRITE_ENDPOINT}/databases/${DATABASE_ID}/collections/${SOURCES_COLLECTION}/documents/${configId}`;
+  const resp = await fetch(url, { headers: { 'X-Appwrite-Project': APPWRITE_PROJECT } });
+  if (!resp.ok) throw new Error('source HTTP ' + resp.status);
+  return resp.json();
+}
+
+// ── PDF ──────────────────────────────────────────────────────────────────────
+async function searchPdf(source, rawQuery) {
   const url = (source.pdfUrl || '').trim();
   if (!url) return { found: false, message: 'Aucun PDF configuré pour cet examen.' };
 
@@ -54,7 +57,6 @@ async function searchPdf(source, rawQuery, log) {
     if (!resp.ok) throw new Error('HTTP ' + resp.status);
     buffer = Buffer.from(await resp.arrayBuffer());
   } catch (e) {
-    log && log('PDF fetch failed: ' + e.message);
     return { found: false, error: true, message: 'Document de résultats inaccessible. Réessaie plus tard.' };
   }
 
@@ -63,7 +65,6 @@ async function searchPdf(source, rawQuery, log) {
     const parsed = await PdfParse(buffer);
     text = parsed.text || '';
   } catch (e) {
-    log && log('PDF parse failed: ' + e.message);
     return { found: false, error: true, message: 'Lecture du document impossible.' };
   }
 
@@ -73,14 +74,11 @@ async function searchPdf(source, rawQuery, log) {
 
   let matched = null;
   if (isNumeric(rawQuery)) {
-    // Recherche par numéro : on veut le numéro comme TOKEN entier dans la ligne.
     const num = q.replace(/\s+/g, '');
     for (const line of lines) {
-      const tokens = norm(line).split(' ');
-      if (tokens.includes(num)) { matched = line; break; }
+      if (norm(line).split(' ').includes(num)) { matched = line; break; }
     }
   } else {
-    // Recherche par nom : tous les mots du nom doivent figurer dans la ligne.
     const words = q.split(' ').filter((w) => w.length > 1);
     for (const line of lines) {
       const nl = norm(line);
@@ -89,17 +87,12 @@ async function searchPdf(source, rawQuery, log) {
   }
 
   if (!matched) {
-    return {
-      found: false,
-      message: source.notFoundMessage || 'Nom / numéro introuvable dans la liste publiée.',
-    };
+    return { found: false, message: source.notFoundMessage || 'Nom / numéro introuvable dans la liste publiée.' };
   }
 
-  // Tente d'extraire nom, numéro et mention de la ligne trouvée.
   const numToken = (matched.match(/\b\d{3,}\b/) || [])[0] || '';
   const upperMention = norm(matched);
   const mention = MENTIONS.find((m) => upperMention.includes(norm(m))) || '';
-  // Le nom = portion alphabétique la plus longue de la ligne.
   const alpha = matched
     .replace(/[0-9]+/g, ' ')
     .split(/\s{2,}|\t|\|/)
@@ -114,13 +107,13 @@ async function searchPdf(source, rawQuery, log) {
       year: source.year || '',
       tableNumber: isNumeric(rawQuery) ? rawQuery.trim() : numToken,
       candidateName: alpha,
-      admitted: true, // un PDF de résultats liste les admis
+      admitted: true,
       mention: mention ? mention.replace(/\b\w/g, (c) => c.toUpperCase()) : '',
     },
   };
 }
 
-// ── Recherche via API externe ────────────────────────────────────────────────
+// ── API externe ───────────────────────────────────────────────────────────────
 function pick(obj, keys) {
   for (const k of keys) {
     if (obj && obj[k] != null && String(obj[k]).trim() !== '') return obj[k];
@@ -134,7 +127,7 @@ function toBool(v) {
   return ['true', '1', 'admis', 'admise', 'pass', 'passed', 'oui', 'yes'].includes(s);
 }
 
-async function searchApi(source, rawQuery, log) {
+async function searchApi(source, rawQuery) {
   let url = (source.apiUrl || '').trim();
   if (!url) return { found: false, error: true, message: 'API non configurée pour cet examen.' };
   const enc = encodeURIComponent(rawQuery.trim());
@@ -149,11 +142,9 @@ async function searchApi(source, rawQuery, log) {
     if (!resp.ok) throw new Error('HTTP ' + resp.status);
     json = await resp.json();
   } catch (e) {
-    log && log('API call failed: ' + e.message);
     return { found: false, error: true, message: 'Service de résultats indisponible. Réessaie plus tard.' };
   }
 
-  // Déballe les enveloppes courantes puis prend le 1er élément d'un tableau.
   let r = json;
   if (r && typeof r === 'object' && !Array.isArray(r)) {
     r = r.result ?? r.data ?? r.candidate ?? r;
@@ -182,17 +173,22 @@ async function searchApi(source, rawQuery, log) {
   };
 }
 
-// ── Recherche manuelle (exam_results) ────────────────────────────────────────
-async function searchManual(databases, source, rawQuery) {
+// ── Manuel (exam_results, lecture publique) ───────────────────────────────────
+async function searchManual(source, rawQuery) {
   try {
-    const res = await databases.listDocuments(DATABASE_ID, EXAM_RESULTS_COLLECTION, [
-      Query.equal('examType', source.examType || ''),
-      Query.equal('tableNumber', rawQuery.trim()),
-      ...(source.year ? [Query.equal('year', source.year)] : []),
-      Query.limit(1),
-    ]);
-    if (!res.documents.length) return { found: false };
-    const d = res.documents[0];
+    const base = `${APPWRITE_ENDPOINT}/databases/${DATABASE_ID}/collections/${EXAM_RESULTS_COLLECTION}/documents`;
+    const queries = [
+      JSON.stringify({ method: 'equal', attribute: 'examType', values: [source.examType || ''] }),
+      JSON.stringify({ method: 'equal', attribute: 'tableNumber', values: [rawQuery.trim()] }),
+      ...(source.year ? [JSON.stringify({ method: 'equal', attribute: 'year', values: [source.year] })] : []),
+      JSON.stringify({ method: 'limit', values: [1] }),
+    ];
+    const qs = queries.map((q) => 'queries[]=' + encodeURIComponent(q)).join('&');
+    const resp = await fetch(`${base}?${qs}`, { headers: { 'X-Appwrite-Project': APPWRITE_PROJECT } });
+    if (!resp.ok) return { found: false };
+    const data = await resp.json();
+    if (!data.documents || !data.documents.length) return { found: false };
+    const d = data.documents[0];
     return {
       found: true,
       result: {
@@ -215,45 +211,43 @@ async function searchManual(databases, source, rawQuery) {
   }
 }
 
-export default async ({ req, res, log, error }) => {
-  const reply = (obj, code = 200) => res.json({ ok: true, ...obj }, code);
-  const fail = (msg) => res.json({ ok: false, message: msg }, 200);
+module.exports = async (req, res) => {
+  // CORS (l'app web onbuch-app.vercel.app appelle ce domaine).
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  if (req.method === 'OPTIONS') { res.status(204).end(); return; }
 
-  let payload;
-  try {
-    payload = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : (req.body || {});
-  } catch {
-    return fail('Requête invalide.');
+  const reply = (obj) => res.status(200).json({ ok: true, ...obj });
+  const fail = (msg) => res.status(200).json({ ok: false, message: msg });
+
+  let body = {};
+  if (req.method === 'POST') {
+    body = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : (req.body || {});
+  } else {
+    body = req.query || {};
   }
-  const configId = (payload.configId || '').toString().trim();
-  const query = (payload.query || '').toString().trim();
+  const configId = (body.configId || '').toString().trim();
+  const query = (body.query || '').toString().trim();
   if (!configId || !query) return fail('Paramètres manquants.');
-
-  const client = new Client()
-    .setEndpoint(process.env.APPWRITE_FUNCTION_API_ENDPOINT || process.env.APPWRITE_ENDPOINT)
-    .setProject(process.env.APPWRITE_FUNCTION_PROJECT_ID || process.env.APPWRITE_PROJECT)
-    .setKey(process.env.APPWRITE_API_KEY || '');
-  const databases = new Databases(client);
 
   let source;
   try {
-    source = await databases.getDocument(DATABASE_ID, SOURCES_COLLECTION, configId);
+    source = await getSource(configId);
   } catch (e) {
-    error && error('config load failed: ' + e.message);
     return fail('Examen introuvable ou non configuré.');
   }
 
   const type = (source.sourceType || 'manual').toString().toLowerCase();
   try {
     let out;
-    if (type === 'pdf') out = await searchPdf(source, query, log);
-    else if (type === 'api') out = await searchApi(source, query, log);
-    else out = await searchManual(databases, source, query);
+    if (type === 'pdf') out = await searchPdf(source, query);
+    else if (type === 'api') out = await searchApi(source, query);
+    else out = await searchManual(source, query);
 
     if (out.error) return fail(out.message || 'Recherche indisponible.');
     return reply({ found: !!out.found, result: out.result || null, message: out.message || '' });
   } catch (e) {
-    error && error('lookup failed: ' + e.message);
     return fail('Recherche indisponible. Réessaie plus tard.');
   }
 };

@@ -79,6 +79,6 @@ api POST "/storage/buckets" \
   "{\"bucketId\":\"$BUCKET\",\"name\":\"Result PDFs\",\"permissions\":[\"read(\\\"any\\\")\",\"create(\\\"team:admins\\\")\",\"update(\\\"team:admins\\\")\",\"delete(\\\"team:admins\\\")\"],\"fileSecurity\":false,\"enabled\":true,\"maximumFileSize\":31457280,\"allowedFileExtensions\":[\"pdf\"]}" >/dev/null 2>&1 || true
 
 echo
-echo "Terminé. Déploie ensuite la fonction 'result-lookup' (functions/result-lookup)"
-echo "avec la variable APPWRITE_API_KEY (scope databases.read), puis configure les"
-echo "sources depuis le back-office (« Résultats — sources »)."
+echo "Terminé. La recherche PDF/API est servie par l'endpoint Vercel"
+echo "'api/result-lookup.js' (déployé avec le projet onbuch-v2 — aucun secret)."
+echo "Configure ensuite les sources depuis le back-office (« Résultats — sources »)."
