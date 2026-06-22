@@ -13,7 +13,6 @@ import '../screens/results/results_search_screen.dart';
 import '../screens/results/result_success_screen.dart';
 import '../screens/results/result_fail_screen.dart';
 import '../screens/annales/annales_library_screen.dart';
-import '../data/exam_taxonomy.dart';
 import '../screens/annales/annales_collection_screen.dart';
 import '../screens/annales/annales_folder_screen.dart';
 import '../screens/annales/annale_detail_screen.dart';
@@ -160,7 +159,7 @@ final appRouter = GoRouter(
           path: '/annales',
           builder: (_, __) => const AnnalesLibraryScreen(),
           routes: [
-            GoRoute(path: 'folder/:name', builder: (_, s) => AnnalesFolderScreen(folderName: s.pathParameters['name'] ?? '', node: s.extra as ExamNode?)),
+            GoRoute(path: 'folder/:name', builder: (_, s) => AnnalesFolderScreen(folderName: s.pathParameters['name'] ?? '')),
             GoRoute(path: 'detail', builder: (_, __) => const AnnaleDetailScreen()),
             GoRoute(path: 'pdf', builder: (_, __) => const PdfReaderScreen()),
             GoRoute(path: 'video', builder: (_, __) => const VideoCorrigeScreen()),
