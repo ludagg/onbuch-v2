@@ -174,6 +174,7 @@ final appRouter = GoRouter(
                   subject: (m['subject'] ?? '').toString(),
                   exam: m['exam'] as String?,
                   filiere: m['filiere'] as String?,
+                  code: m['code'] as String?,
                 );
               },
             ),

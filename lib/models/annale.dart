@@ -43,6 +43,21 @@ class Annale {
         if (hasVideo) 'video',
       ];
 
+  /// Le document concerne-t-il une série donnée ? Tolérant aux imports : le
+  /// `track` peut être le **code** (« D »), le **libellé complet** (« D — … »),
+  /// ou **vide** (document général, applicable à toutes les séries).
+  bool appliesToSerie(String code, String label) {
+    final t = track.trim().toLowerCase();
+    if (t.isEmpty) return true; // général
+    final c = code.trim().toLowerCase();
+    final l = label.trim().toLowerCase();
+    if (c.isNotEmpty && t == c) return true;
+    if (l.isNotEmpty && t == l) return true;
+    // « D — … » : le libellé commence par le code du track.
+    if (t.length <= 4 && (l.startsWith('$t ') || l.startsWith('$t—') || l.startsWith('$t —'))) return true;
+    return false;
+  }
+
   Map<String, dynamic> toJson() => {
         'id': id,
         'exam': exam,
