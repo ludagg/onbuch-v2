@@ -1,0 +1,235 @@
+{
+  "subject": "Anglais",
+  "code": "An",
+  "series": "toutes séries",
+  "chapters": [
+    {
+      "title": "Verb Tenses and Aspects",
+      "lesson": "# Verb Tenses and Aspects\n\n## Objectives\nBy the end of this lesson you will be able to:\n- Use the present, past and future correctly, with their **simple**, **continuous** and **perfect** forms.\n- Avoid the tense mistakes that French speakers make most often.\n- Choose the right tense in an essay or an exam answer.\n\n## Why tense is hard for Cameroonian francophones\nIn French there is **one present** (*je mange*). In English there are **two**: *I eat* (simple) and *I am eating* (continuous). French speakers tend to use the simple form everywhere. English forces you to ask two questions: **WHEN** does the action happen, and **HOW** do I see it (finished? in progress? connected to now?).\n\n## The rules\n\n### 1. Present Simple — facts, habits, general truths\nUse it for routines, scientific facts and timetables.\n- *Water **boils** at 100 degrees.*\n- *She **goes** to school every day.*\nRemember the **-s** in the third person singular (he/she/it). This is the single most frequent error: *he go* is wrong, *he goes* is correct.\n\n### 2. Present Continuous — actions happening now or around now\n- *Look! The teacher **is writing** on the board.*\n- *I **am reading** a novel this week.*\n\n### 3. Present Perfect — past action connected to the present\nForm: **have/has + past participle**.\n- *I **have lived** in Yaoundé for ten years.* (I still live there.)\n- *She **has just finished** her homework.*\n**French trap:** French uses the *passé composé* for finished past events (*J'ai mangé hier*), but English uses the **past simple** with a finished time word: *I ate yesterday* — NOT *I have eaten yesterday*. Use the present perfect only when there is **a link to now** (*ever, never, just, already, yet, since, for*).\n\n### 4. Past Simple — finished actions at a definite past time\n- *We **visited** Limbe last year.*\nRegular verbs add **-ed**; irregular verbs must be memorised (*go → went*, *see → saw*).\n\n### 5. Past Continuous — an action in progress in the past\n- *I **was sleeping** when the phone rang.*\n\n### 6. Past Perfect — the past before the past\n- *When I arrived, the bus **had already left**.*\n\n### 7. Future\n- **will** for decisions, predictions, promises: *I **will help** you.*\n- **be going to** for plans and intentions: *I **am going to** study medicine.*\n- Present continuous for fixed arrangements: *I **am meeting** her tomorrow.*\n\n## Examples in context\n- *Since 2020, the school **has built** three new classrooms.* (perfect — link to now)\n- *Yesterday the headmaster **opened** the new library.* (past simple — finished time)\n- *While the students **were writing**, the bell **rang**.* (continuous + simple)\n\n## Common mistakes (francophone traps)\n1. *I have seen him yesterday.* ❌ → *I **saw** him yesterday.* ✅\n2. *He **don't** like maths.* ❌ → *He **doesn't** like maths.* ✅\n3. *Since three years* ❌ → *for three years* ✅ (use **for** + duration, **since** + starting point).\n4. *I am agreeing with you.* ❌ → *I **agree** with you.* ✅ (state verbs like *know, want, agree, believe* are not used in the continuous).\n5. Forgetting the **-s**: *She **play** football* ❌ → *She **plays**.* ✅\n\n## Practice tips\n- For every new verb, learn its **three forms**: base / past / past participle (*write, wrote, written*).\n- Build a personal table of irregular verbs and revise five a day.\n- When you write a sentence, ask: *finished time word?* → past simple. *Link to now?* → present perfect.\n\n## Key points\n- English present = simple (habits) **or** continuous (now).\n- **Present perfect** needs a link to the present; with a finished time, use **past simple**.\n- Use **for** + duration, **since** + a point in time.\n- Never forget the third-person **-s**.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Choose the correct sentence.",
+            "options": ["She go to school every day.", "She goes to school every day.", "She going to school every day.", "She is go to school every day."],
+            "answer": 1,
+            "explanation": "In the present simple, the third person singular (she) takes the ending -s: 'She goes'."
+          },
+          {
+            "q": "Complete: 'I ___ in Douala for five years and I still live there.'",
+            "options": ["live", "lived", "have lived", "am living"],
+            "answer": 2,
+            "explanation": "The action started in the past and continues now, so we use the present perfect 'have lived' with 'for'."
+          },
+          {
+            "q": "Which sentence is correct?",
+            "options": ["I have seen him yesterday.", "I saw him yesterday.", "I have see him yesterday.", "I seeing him yesterday."],
+            "answer": 1,
+            "explanation": "With a finished time word like 'yesterday', English uses the past simple 'saw', not the present perfect."
+          },
+          {
+            "q": "Complete: 'When I arrived at the station, the train ___ already ___.'",
+            "options": ["has / left", "had / left", "was / leaving", "did / leave"],
+            "answer": 1,
+            "explanation": "The train left before another past action (arriving), so we use the past perfect 'had already left'."
+          },
+          {
+            "q": "Choose the correct form: 'Listen! The baby ___.'",
+            "options": ["cries", "cry", "is crying", "cried"],
+            "answer": 2,
+            "explanation": "'Listen!' signals an action happening right now, so we use the present continuous 'is crying'."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Reported (Indirect) Speech",
+      "lesson": "# Reported (Indirect) Speech\n\n## Objectives\n- Transform direct speech into reported speech.\n- Apply the **backshift** of tenses correctly.\n- Change pronouns, time words and place words.\n- Report questions, commands and requests.\n\n## What is reported speech?\n**Direct speech** repeats the exact words: *She said, \"I am tired.\"*\n**Reported (indirect) speech** tells what someone said without quotation marks: *She said (that) she **was** tired.*\n\n## Rule 1 — The tense moves back (backshift)\nWhen the reporting verb is in the past (*said, told, asked*), the verb in the quotation usually moves **one step into the past**:\n\n| Direct | Reported |\n|---|---|\n| present simple → | past simple |\n| present continuous → | past continuous |\n| present perfect → | past perfect |\n| past simple → | past perfect |\n| will → | would |\n| can → | could |\n| may → | might |\n| must → | had to |\n\n- *\"I **work** hard.\"* → *He said he **worked** hard.*\n- *\"I **will** call you.\"* → *She said she **would** call me.*\n- *\"I **can** swim.\"* → *He said he **could** swim.*\n\n**No backshift** is needed for general truths: *\"The earth is round\"* → *He said the earth **is** round.*\n\n## Rule 2 — Change pronouns\nPronouns shift to match the new speaker: *\"**I** like **my** book\"* → *She said **she** liked **her** book.*\n\n## Rule 3 — Change time and place words\n| Direct | Reported |\n|---|---|\n| now → | then |\n| today → | that day |\n| tomorrow → | the next day |\n| yesterday → | the day before |\n| here → | there |\n| this → | that |\n\n*\"I will see you **tomorrow**.\"* → *He said he would see me **the next day**.*\n\n## Rule 4 — Reporting questions\nUse **ask** and put the words in **statement order** (subject + verb), with **no** auxiliary *do/does/did* and **no** question mark.\n- **Yes/No questions** → use **if** or **whether**: *\"Are you ready?\"* → *She asked **if** I **was** ready.*\n- **Wh- questions** → keep the question word: *\"Where do you live?\"* → *He asked **where I lived**.*\n\n**French trap:** Do not keep the inverted order. *He asked where did I live* ❌ → *He asked where I lived* ✅.\n\n## Rule 5 — Reporting commands and requests\nUse **tell/ask + object + to-infinitive**:\n- *\"Sit down.\"* → *The teacher told us **to sit down**.*\n- *\"Please help me.\"* → *She asked me **to help** her.*\n- Negative: *\"Don't be late.\"* → *He told me **not to be** late.*\n\n## say vs tell\n- **say** is not followed by a person: *He **said that** he was busy.*\n- **tell** needs a person: *He **told me** that he was busy.*\nDo not write *He said me* ❌.\n\n## Common mistakes (francophone traps)\n1. *He said me...* ❌ → *He **told** me...* ✅\n2. Keeping question inversion: *She asked what was the time* ❌ → *She asked **what the time was**.* ✅\n3. Forgetting backshift: *He said he **is** tired* (when reporting later) → *He said he **was** tired.* ✅\n\n## Practice tips\n- Always do three steps in order: **1) shift the tense, 2) shift the pronouns, 3) shift the time/place words.**\n- Read the reported sentence aloud to check it sounds natural.\n\n## Key points\n- Past reporting verb → backshift the tense one step.\n- **say** (no person) vs **tell** (+ person).\n- Reported questions use statement order, no auxiliary, no question mark.\n- Commands → **tell/ask + to + infinitive**.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Report this sentence: She said, \"I am studying English.\"",
+            "options": ["She said she is studying English.", "She said she was studying English.", "She said I was studying English.", "She told she was studying English."],
+            "answer": 1,
+            "explanation": "Present continuous backshifts to past continuous ('was studying') and the pronoun 'I' becomes 'she'."
+          },
+          {
+            "q": "Which verb is correct? 'He ___ me that he was hungry.'",
+            "options": ["said", "told", "asked", "spoke"],
+            "answer": 1,
+            "explanation": "'Tell' is followed by a person (me); 'say' is not. So we use 'told me'."
+          },
+          {
+            "q": "Report: He asked, \"Where do you live?\"",
+            "options": ["He asked where do I live.", "He asked where did I live.", "He asked where I lived.", "He asked where live I."],
+            "answer": 2,
+            "explanation": "Reported questions use statement order (subject + verb) with no auxiliary 'do': 'where I lived'."
+          },
+          {
+            "q": "Report the command: \"Don't open the door.\"",
+            "options": ["She told me don't open the door.", "She told me not to open the door.", "She said me to not open the door.", "She told me to don't open the door."],
+            "answer": 1,
+            "explanation": "Negative commands become 'tell/ask + object + not to + infinitive': 'told me not to open'."
+          },
+          {
+            "q": "Report: \"I will come tomorrow,\" he said.",
+            "options": ["He said he will come tomorrow.", "He said he would come the next day.", "He said he would come tomorrow.", "He told he would come the next day."],
+            "answer": 1,
+            "explanation": "'will' becomes 'would' and 'tomorrow' becomes 'the next day' in reported speech."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Conditional Sentences",
+      "lesson": "# Conditional Sentences\n\n## Objectives\n- Recognise and use the **zero, first, second and third** conditionals.\n- Match each conditional to its meaning (real, possible, unreal, impossible).\n- Avoid the classic francophone mistake of putting *would* in the *if*-clause.\n\n## What is a conditional?\nA conditional sentence has two parts: an **if-clause** (the condition) and a **main clause** (the result). *If it rains, we will stay home.*\n\n## The four conditionals\n\n### Zero conditional — general truths / scientific facts\n**if + present simple, present simple**\n- *If you **heat** ice, it **melts**.*\n- *If the sun **sets**, it **gets** dark.*\nUse it for things that are always true. *If* here means *whenever*.\n\n### First conditional — real future possibility\n**if + present simple, will + base verb**\n- *If I **study** hard, I **will pass** the Bac.*\n- *If it **rains**, we **will cancel** the match.*\nUse it for things that may really happen in the future.\n**French trap:** Never use *will* in the if-clause. *If it will rain* ❌ → *If it **rains*** ✅.\n\n### Second conditional — unreal or unlikely present/future\n**if + past simple, would + base verb**\n- *If I **had** money, I **would buy** a car.* (but I don't have money)\n- *If I **were** you, I **would study** medicine.* (advice)\nNote: with *I/he/she/it* we use **were** (not *was*) in formal English: *If I **were** rich...*\n\n### Third conditional — impossible past (regret)\n**if + past perfect, would have + past participle**\n- *If I **had studied**, I **would have passed**.* (but I didn't study, so I failed)\n- *If she **had left** earlier, she **would have caught** the bus.*\nUse it to talk about the past that cannot change.\n\n## Quick comparison\n| Type | If-clause | Main clause | Meaning |\n|---|---|---|---|\n| Zero | present | present | always true |\n| First | present | will + verb | real future |\n| Second | past | would + verb | unreal now |\n| Third | past perfect | would have + p.p. | impossible past |\n\n## Examples in context\n- *If you **mix** blue and yellow, you **get** green.* (zero)\n- *If you **revise** tonight, you **will feel** confident tomorrow.* (first)\n- *If I **knew** her number, I **would call** her.* (second — I don't know it)\n- *If we **had booked** earlier, we **would have got** cheaper tickets.* (third)\n\n## Common mistakes (francophone traps)\n1. *If I **will** have time, I will help.* ❌ → *If I **have** time, I will help.* ✅\n2. *If I **would** be rich...* ❌ → *If I **were** rich...* ✅ (no *would* in the if-clause).\n3. Mixing forms: *If I had studied, I **would pass**.* ❌ → *I **would have passed**.* ✅\n4. *If I **would have** known...* ❌ → *If I **had** known...* ✅\n\n## Practice tips\n- The trick: **the *if*-clause never takes *will* or *would*.** Put the modal only in the main clause.\n- To choose between first and second, ask: *Is it really possible?* Yes → first. Imaginary → second.\n- The comma is used when the if-clause comes first; not needed when it comes second: *We will stay home if it rains.*\n\n## Key points\n- Zero: present + present (facts).\n- First: present + will (real future).\n- Second: past + would (unreal now); use **were** for all persons.\n- Third: past perfect + would have (impossible past).\n- **No *will/would* inside the if-clause.**",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Complete: 'If you heat water to 100°C, it ___.'",
+            "options": ["will boil", "boils", "would boil", "boiled"],
+            "answer": 1,
+            "explanation": "This is a scientific fact, so we use the zero conditional: present simple in both clauses ('boils')."
+          },
+          {
+            "q": "Choose the correct first conditional sentence.",
+            "options": ["If it will rain, we will stay home.", "If it rains, we will stay home.", "If it rains, we stay home.", "If it would rain, we will stay home."],
+            "answer": 1,
+            "explanation": "First conditional: present simple in the if-clause ('rains') and will + verb in the main clause. Never put 'will' in the if-clause."
+          },
+          {
+            "q": "Complete: 'If I ___ you, I would accept the offer.'",
+            "options": ["am", "was", "were", "would be"],
+            "answer": 2,
+            "explanation": "In the second conditional, formal English uses 'were' for all persons, especially in the advice form 'If I were you'."
+          },
+          {
+            "q": "Which is a correct third conditional?",
+            "options": ["If I had studied, I would pass.", "If I would have studied, I would have passed.", "If I had studied, I would have passed.", "If I studied, I would have passed."],
+            "answer": 2,
+            "explanation": "Third conditional: 'if + past perfect (had studied), would have + past participle (would have passed)'."
+          },
+          {
+            "q": "Find the mistake-free sentence.",
+            "options": ["If I will have time, I will call you.", "If I would have time, I will call you.", "If I have time, I will call you.", "If I had time, I will call you."],
+            "answer": 2,
+            "explanation": "The if-clause never takes 'will' or 'would'. The correct first conditional is 'If I have time, I will call you.'"
+          }
+        ]
+      }
+    },
+    {
+      "title": "The Passive Voice",
+      "lesson": "# The Passive Voice\n\n## Objectives\n- Form the passive in all tenses.\n- Decide **when** the passive is better than the active.\n- Transform active sentences into passive ones and back.\n\n## Active vs passive\nIn the **active** voice, the subject does the action: *The teacher **marked** the exams.*\nIn the **passive** voice, the subject **receives** the action: *The exams **were marked** by the teacher.*\n\n## How to form the passive\nThe formula is always: **the right tense of *be* + past participle**. The object of the active sentence becomes the subject of the passive.\n\n| Tense | Active | Passive |\n|---|---|---|\n| Present simple | They clean the room. | The room **is cleaned**. |\n| Present continuous | They are cleaning the room. | The room **is being cleaned**. |\n| Past simple | They cleaned the room. | The room **was cleaned**. |\n| Past continuous | They were cleaning the room. | The room **was being cleaned**. |\n| Present perfect | They have cleaned the room. | The room **has been cleaned**. |\n| Past perfect | They had cleaned the room. | The room **had been cleaned**. |\n| Future (will) | They will clean the room. | The room **will be cleaned**. |\n| Modal | They must clean the room. | The room **must be cleaned**. |\n\nNotice the pattern: only the form of **be** changes; the **past participle stays the same**.\n\n## The agent (by + doer)\nIf you want to mention who did the action, add **by + agent**: *The novel **was written by** Ferdinand Oyono.*\nLeave it out when the doer is unknown, obvious or unimportant: *English **is spoken** in Cameroon.* (we don't say *by people*).\n\n## When do we use the passive?\n1. When the **doer is unknown**: *My phone **was stolen**.*\n2. When the **doer is obvious**: *The thief **was arrested**.* (by the police, obviously).\n3. In **formal, scientific and official writing**: *The water **was heated** to 90°C.*\n4. To focus on the **action or the receiver**, not the doer: *Many trees **were planted** last year.*\n\n## Examples in context\n- Active: *The MINESEC **organises** the Baccalauréat.* → Passive: *The Baccalauréat **is organised** by the MINESEC.*\n- Active: *Someone **has broken** the window.* → Passive: *The window **has been broken**.*\n- Active: *They **will announce** the results tomorrow.* → Passive: *The results **will be announced** tomorrow.*\n\n## Common mistakes (francophone traps)\n1. Forgetting **be**: *The letter **written** yesterday* ❌ → *The letter **was written** yesterday.* ✅\n2. Wrong participle: *The work was **do**.* ❌ → *The work was **done**.* ✅ (learn the third form of irregular verbs).\n3. Using *by* where French uses *par* but English prefers another preposition: *covered **with** snow*, *known **for** its beaches*.\n4. Confusing *been* and *being*: *is **being** cleaned* (in progress) vs *has **been** cleaned* (finished).\n\n## Practice tips\n- To make a passive, find the **object** of the active sentence — it becomes the subject.\n- Keep the **tense** of the original verb when you choose the form of *be*.\n- Master irregular past participles; they are the heart of the passive.\n\n## Key points\n- Passive = **be (in the correct tense) + past participle**.\n- The object becomes the subject; add **by + agent** only if useful.\n- Use the passive when the doer is unknown, obvious, or in formal writing.\n- Only *be* changes tense — the participle is fixed.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Put into the passive: 'They build many houses every year.'",
+            "options": ["Many houses build every year.", "Many houses are built every year.", "Many houses are building every year.", "Many houses were built every year."],
+            "answer": 1,
+            "explanation": "Present simple passive = is/are + past participle: 'Many houses are built every year.'"
+          },
+          {
+            "q": "Which sentence is correct?",
+            "options": ["The window has been broken.", "The window has being broken.", "The window have been broken.", "The window has broken."],
+            "answer": 0,
+            "explanation": "Present perfect passive = has/have been + past participle. With singular 'window' it is 'has been broken'."
+          },
+          {
+            "q": "Choose the correct passive of 'They will announce the results.'",
+            "options": ["The results will announced.", "The results will be announced.", "The results will being announced.", "The results are announced."],
+            "answer": 1,
+            "explanation": "Future passive = will be + past participle: 'The results will be announced.'"
+          },
+          {
+            "q": "Complete: 'The room ___ at the moment, so we cannot use it.'",
+            "options": ["is cleaned", "is being cleaned", "has been cleaned", "was cleaned"],
+            "answer": 1,
+            "explanation": "An action in progress now uses the present continuous passive: 'is being cleaned'."
+          },
+          {
+            "q": "Find the correct sentence.",
+            "options": ["The novel was wrote by Mongo Beti.", "The novel was written by Mongo Beti.", "The novel was write by Mongo Beti.", "The novel written by Mongo Beti."],
+            "answer": 1,
+            "explanation": "The passive needs 'be' + the correct past participle of 'write', which is 'written': 'was written by'."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Essay Writing: Method and Structure",
+      "lesson": "# Essay Writing: Method and Structure\n\n## Objectives\n- Plan and write a clear argumentative essay for the Baccalauréat.\n- Build a strong **introduction, body and conclusion**.\n- Use linking words to connect ideas.\n- Write in good academic English and avoid translating from French.\n\n## Understand the question first\nBefore writing, read the topic two or three times. Underline the **key words** and the **instruction verb**:\n- *Discuss* → give both sides.\n- *Do you agree?* → take a position and defend it.\n- *To what extent...?* → measure how much you agree.\nA common cause of low marks is **answering off-topic**. Always answer the exact question asked.\n\n## The three-part structure\n\n### 1. Introduction (one paragraph)\n- **Hook / general statement** about the topic.\n- **Rephrase the topic** in your own words.\n- **Thesis statement**: your main idea or position.\n- Optional: announce your plan.\n*Example:* *Education is often described as the key to development. This essay will argue that free secondary education would greatly benefit Cameroon, for three main reasons.*\n\n### 2. Body (two or three paragraphs)\nUse the **PEEL** method for each paragraph:\n- **P**oint — the main idea (topic sentence).\n- **E**xplain — develop it.\n- **E**xample — give evidence or an illustration.\n- **L**ink — connect to the next paragraph.\nEach paragraph = **one main idea**. Do not mix several arguments in one paragraph.\n\n### 3. Conclusion (one paragraph)\n- **Restate your thesis** in different words.\n- **Summarise** your main points.\n- End with a **final thought**, recommendation or opinion.\nNever introduce a **new argument** in the conclusion.\n\n## Linking words (connectors)\n- **Adding:** moreover, furthermore, in addition, besides.\n- **Contrasting:** however, nevertheless, on the other hand, although.\n- **Cause/effect:** therefore, consequently, as a result, because of.\n- **Examples:** for instance, for example, such as.\n- **Concluding:** in conclusion, to sum up, all in all.\nThese connectors make your text flow and show the examiner you can organise ideas.\n\n## Style rules for the Bac\n1. Write in **formal English**: avoid contractions (*do not* instead of *don't*), avoid slang.\n2. **Vary your sentences**: mix short and long ones.\n3. Be **clear**: one idea per sentence is safer than a long, confusing one.\n4. **Proofread**: check tenses, subject–verb agreement and the third-person -s.\n\n## Common mistakes (francophone traps)\n1. **Word-for-word translation** from French: *I am agree* ❌ → *I agree* ✅; *Actually* does not mean *actuellement* (it means *in fact*; use *currently* for *actuellement*).\n2. **False friends:** *sensible* = *reasonable* (not *sensible* = sentimental, which is *sensitive*); *library* = *bibliothèque* (a *librairie* is a *bookshop*).\n3. Starting too many sentences with *And* or *But*.\n4. Writing one huge paragraph with no structure.\n5. Forgetting to **answer the question** directly.\n\n## Practice tips\n- Spend **5 minutes planning** before writing: jot down your thesis and three arguments.\n- Keep a personal list of useful connectors and learn them by heart.\n- Practise writing one essay a week and check it with a teacher or model answer.\n- Count your words: an exam essay is usually **200–300 words**; respect the limit.\n\n## Key points\n- Structure: **introduction (thesis) → body (PEEL paragraphs) → conclusion**.\n- One main idea per paragraph; support it with an example.\n- Use **connectors** to link ideas.\n- Write **formal** English and avoid false friends and direct translation.\n- Always **answer the exact question**.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Where should the thesis statement appear in an essay?",
+            "options": ["In the introduction", "In every body paragraph", "Only in the conclusion", "In the title"],
+            "answer": 0,
+            "explanation": "The thesis statement, which presents your main idea or position, belongs in the introduction."
+          },
+          {
+            "q": "In the PEEL method, what does the second E stand for?",
+            "options": ["Ending", "Example", "Explanation only", "Emphasis"],
+            "answer": 1,
+            "explanation": "PEEL = Point, Explain, Example, Link. The second E is the Example that supports your point."
+          },
+          {
+            "q": "Which connector is used to introduce a contrast?",
+            "options": ["Moreover", "Therefore", "However", "For instance"],
+            "answer": 2,
+            "explanation": "'However' introduces a contrast. 'Moreover' adds, 'therefore' shows result, 'for instance' gives an example."
+          },
+          {
+            "q": "What should you NEVER do in a conclusion?",
+            "options": ["Restate the thesis", "Summarise the main points", "Introduce a brand-new argument", "Give a final thought"],
+            "answer": 2,
+            "explanation": "A conclusion should restate and summarise; introducing a new argument there confuses the reader."
+          },
+          {
+            "q": "The English word 'library' means:",
+            "options": ["a bookshop", "a library (place to borrow books)", "a librarian", "a notebook"],
+            "answer": 1,
+            "explanation": "'Library' is a false friend: it means a place where you read or borrow books (bibliothèque), not a bookshop (librairie)."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Phrasal Verbs and Collocations",
+      "lesson": "# Phrasal Verbs and Collocations\n\n## Objectives\n- Understand what phrasal verbs and collocations are.\n- Learn the most common ones used in everyday and exam English.\n- Sound natural and avoid word-for-word translation from French.\n\n## What is a phrasal verb?\nA **phrasal verb** is a verb + a particle (a preposition or adverb) that together have a **new meaning**, often different from the original verb.\n- *look* = regarder, but *look **after*** = to take care of, *look **for*** = to search, *look **up*** = to check in a dictionary.\nFrench has no exact equivalent, so these must be **learned as whole units**.\n\n## Common phrasal verbs to know\n| Phrasal verb | Meaning | Example |\n|---|---|---|\n| give up | stop trying | *Never **give up** on your dreams.* |\n| find out | discover | *I **found out** the truth.* |\n| put off | postpone | *They **put off** the exam.* |\n| carry on | continue | *Please **carry on** working.* |\n| look after | take care of | *She **looks after** her brother.* |\n| run out of | have no more | *We **ran out of** time.* |\n| turn down | refuse / lower | *He **turned down** the offer.* |\n| bring up | raise (a child / a topic) | *They **brought up** five children.* |\n| get on (with) | have a good relationship | *I **get on** with my classmates.* |\n| take after | resemble (family) | *She **takes after** her mother.* |\n\n## Separable vs inseparable\nSome phrasal verbs can be **separated** by the object:\n- *Turn **off** the light.* / *Turn the light **off**.* (both correct)\n- But with a pronoun, you **must** separate: *Turn **it** off.* (NOT *turn off it*).\nOthers are **inseparable**: *look after the baby* (NOT *look the baby after*).\n\n## What is a collocation?\nA **collocation** is a pair (or group) of words that naturally go together. English speakers say one combination and not another, even if both seem logical.\n- We say *make a mistake* (not *do a mistake*).\n- We say *do homework* (not *make homework*).\n- We say *take a photo*, *have a shower*, *pay attention*, *catch a cold*, *strong coffee* (not *powerful coffee*).\n\n## make vs do (a classic problem)\n- **make** = create / produce: *make a decision, make a noise, make progress, make an effort, make money.*\n- **do** = perform an action / task: *do your homework, do the dishes, do a favour, do business, do exercise.*\n\n## Examples in context\n- *If you **make an effort** and **do your homework**, you will **make progress**.*\n- *I **ran out of** ideas, so I **looked up** some examples and **carried on** writing.*\n\n## Common mistakes (francophone traps)\n1. Direct translation: *make a mistake*, not *do a mistake* (French *faire une erreur*).\n2. *I have 15 years* ❌ → *I **am** 15 years old.* ✅ (collocation with *be*).\n3. *take a decision* (British/French style) is accepted, but *make a decision* is more standard in exams.\n4. Putting the pronoun in the wrong place: *turn off it* ❌ → *turn **it** off* ✅.\n5. *powerful coffee* ❌ → *strong coffee* ✅.\n\n## Practice tips\n- Learn phrasal verbs and collocations in **full sentences**, not as isolated words.\n- Keep a vocabulary notebook grouped by theme (school, family, travel).\n- When you read English texts, underline word pairs that go together and copy them.\n- Test yourself: cover the meaning and try to recall it.\n\n## Key points\n- A **phrasal verb** = verb + particle with a new meaning; learn it as one unit.\n- With a **pronoun**, separable phrasal verbs must be split: *turn it off*.\n- A **collocation** is a natural word partnership: *make a mistake*, *do homework*.\n- Master **make vs do** — it is a frequent exam point.\n- Never translate these expressions word for word from French.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Choose the correct collocation: 'You should not ___ a mistake in the exam.'",
+            "options": ["do", "make", "take", "have"],
+            "answer": 1,
+            "explanation": "The correct collocation is 'make a mistake', not 'do a mistake' (a common francophone error)."
+          },
+          {
+            "q": "What does the phrasal verb 'give up' mean?",
+            "options": ["to continue", "to stop trying", "to take care of", "to discover"],
+            "answer": 1,
+            "explanation": "'Give up' means to stop trying or to quit: 'Never give up on your dreams.'"
+          },
+          {
+            "q": "Which sentence is correct with a pronoun?",
+            "options": ["Turn off it.", "Turn it off.", "Turn off it please.", "Off turn it."],
+            "answer": 1,
+            "explanation": "When the object is a pronoun, separable phrasal verbs must be split: 'turn it off'."
+          },
+          {
+            "q": "Complete: 'She ___ her mother; they have the same smile.'",
+            "options": ["looks after", "takes after", "runs out of", "puts off"],
+            "answer": 1,
+            "explanation": "'Take after' means to resemble a family member. 'Look after' means to take care of someone."
+          },
+          {
+            "q": "Choose the natural collocation: 'I have to ___ my homework tonight.'",
+            "options": ["make", "do", "take", "give"],
+            "answer": 1,
+            "explanation": "We say 'do homework' (a task), not 'make homework'. 'Make' is used for creating things."
+          }
+        ]
+      }
+    }
+  ]
+}

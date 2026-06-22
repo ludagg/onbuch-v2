@@ -1,0 +1,235 @@
+{
+  "subject": "Philosophie",
+  "code": "Ph",
+  "series": "toutes séries",
+  "chapters": [
+    {
+      "title": "La conscience et l'inconscient",
+      "lesson": "# La conscience et l'inconscient\n\n## Problématique\n\n« Connais-toi toi-même », exhortait Socrate. Mais le moi est-il transparent à lui-même ? L'homme se définit traditionnellement comme un être conscient, capable de se prendre lui-même pour objet de pensée. Pourtant, si une part de nous-mêmes échappe à notre regard, la conscience perd son privilège de souveraineté. La question est donc : la conscience suffit-elle à définir la subjectivité humaine, ou faut-il admettre l'existence d'un inconscient psychique ?\n\n## Définitions\n\nLa **conscience** est le savoir immédiat que le sujet a de lui-même et du monde. On distingue la *conscience spontanée* (présence à soi dans l'action) et la *conscience réfléchie* (retour de la pensée sur elle-même). L'**inconscient**, au sens fort, désigne un ensemble de représentations refoulées, actives bien qu'ignorées du sujet.\n\n## La conscience comme fondement du sujet : Descartes\n\nDescartes, dans les *Méditations métaphysiques*, fait de la conscience le roc indubitable : je puis douter de tout, mais non du fait que je pense. Le *cogito* — « je pense, donc je suis » — pose la conscience comme certitude première. La pensée est ainsi entièrement transparente à elle-même : rien dans l'esprit n'échappe à l'esprit. Kant prolongera cette intuition avec le « Je pense » qui doit pouvoir accompagner toutes mes représentations et fonde l'unité de l'expérience.\n\n## La conscience morale et l'existence : Sartre\n\nÊtre conscient, c'est aussi être responsable. La conscience morale, voix intérieure qui juge, fait de l'homme un être de devoir (Rousseau). Pour Sartre, la conscience est liberté : l'homme « est condamné à être libre », il se choisit à chaque instant. Nier sa liberté en se réfugiant derrière un déterminisme, c'est tomber dans la *mauvaise foi*. Sartre refuse précisément l'inconscient freudien, qui serait pour lui une excuse, une façon de se déresponsabiliser.\n\n## La découverte de l'inconscient : Freud\n\nFreud opère une « blessure narcissique » : après Copernic (la Terre n'est pas le centre) et Darwin (l'homme est un animal), il montre que « le moi n'est pas maître dans sa propre maison ». Les actes manqués, les lapsus, les rêves, les symptômes névrotiques révèlent un sens caché. L'appareil psychique se structure en *ça* (pulsions), *moi* (instance de réalité) et *surmoi* (interdits intériorisés). Le **refoulement** chasse hors de la conscience des désirs inacceptables, qui continuent pourtant d'agir. L'inconscient n'est donc pas une simple absence de conscience, mais un système dynamique régi par ses propres lois.\n\n## Critiques et enjeux\n\nL'inconscient menace-t-il la liberté ? Alain et Sartre y voient un risque de fatalisme. Mais Freud rétorque que la cure analytique vise précisément à élargir le champ de la conscience : « Là où était le ça, le moi doit advenir. » Connaître son inconscient, c'est gagner en liberté, non la perdre.\n\n## Ancrage africain\n\nDans plusieurs traditions camerounaises et africaines, la personne ne se réduit pas à une conscience individuelle isolée : elle s'inscrit dans une communauté, une lignée, un rapport aux ancêtres. La sagesse *ubuntu* — « je suis parce que nous sommes » — rappelle que le sujet se constitue dans la relation. Les rêves, les rites de divination témoignent aussi d'une attention ancienne à ce qui, en l'homme, dépasse la conscience claire. La psychanalyse africaine cherche ainsi à articuler l'inconscient freudien et les représentations culturelles du sujet.\n\n## Ouverture\n\nLa conscience demeure le lieu de la responsabilité et de la dignité humaine ; mais reconnaître l'inconscient invite à plus d'humilité et de lucidité. Loin de s'opposer, conscience et inconscient dessinent ensemble la profondeur du sujet humain.\n\n> **Méthode** : pour une dissertation (« La conscience suffit-elle à se connaître ? »), construire un plan dialectique — thèse (la conscience fonde le sujet), antithèse (l'inconscient la limite), synthèse (la connaissance de soi comme tâche). Pour une explication de texte de Freud, dégager la thèse, expliquer les concepts, puis discuter.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Quel philosophe fait du « je pense, donc je suis » le fondement indubitable du sujet ?",
+            "options": ["Freud", "Descartes", "Sartre", "Marx"],
+            "answer": 1,
+            "explanation": "Le cogito (« je pense, donc je suis ») est l'argument central de Descartes dans les Méditations métaphysiques."
+          },
+          {
+            "q": "Selon Freud, qu'est-ce que le refoulement ?",
+            "options": ["L'oubli volontaire d'un souvenir", "Le mécanisme qui chasse hors de la conscience des désirs inacceptables", "La maîtrise rationnelle des passions", "La disparition définitive d'une pulsion"],
+            "answer": 1,
+            "explanation": "Le refoulement écarte de la conscience des représentations inacceptables, qui continuent d'agir dans l'inconscient."
+          },
+          {
+            "q": "Quelles sont les trois instances de l'appareil psychique selon Freud ?",
+            "options": ["Corps, âme, esprit", "Raison, volonté, désir", "Ça, moi, surmoi", "Conscient, préconscient, perception"],
+            "answer": 2,
+            "explanation": "Freud distingue le ça (pulsions), le moi (réalité) et le surmoi (interdits intériorisés)."
+          },
+          {
+            "q": "Pour Sartre, se réfugier derrière un déterminisme inconscient relève de :",
+            "options": ["La bonne foi", "La mauvaise foi", "La conscience réfléchie", "Le surmoi"],
+            "answer": 1,
+            "explanation": "Sartre nomme « mauvaise foi » le refus de sa liberté et de sa responsabilité."
+          },
+          {
+            "q": "Que désigne l'expression « le moi n'est pas maître dans sa propre maison » ?",
+            "options": ["La toute-puissance de la conscience", "La limitation de la conscience par l'inconscient", "La supériorité de la raison", "L'autonomie absolue du sujet"],
+            "answer": 1,
+            "explanation": "Cette formule de Freud souligne que la conscience ne contrôle pas tout : l'inconscient la déborde."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La liberté",
+      "lesson": "# La liberté\n\n## Problématique\n\nL'homme se croit spontanément libre : il décide, choisit, agit. Pourtant les sciences (physiques, biologiques, sociales) montrent partout des causes qui déterminent les phénomènes. L'homme échappe-t-il à ce déterminisme universel ? Être libre, est-ce faire ce que l'on veut, ou bien obéir à une loi que l'on se donne ? La liberté est-elle un fait ou une conquête ?\n\n## Définitions\n\nAu sens commun, la **liberté** est l'absence de contrainte : pouvoir agir selon ses désirs. Philosophiquement, on distingue la *liberté d'indifférence* (choisir indépendamment de toute raison), la *liberté politique* (n'obéir qu'aux lois) et la *liberté morale* (autonomie de la volonté). Son contraire est le **déterminisme**, thèse selon laquelle tout effet a une cause nécessaire.\n\n## L'illusion du libre arbitre : Spinoza\n\nSpinoza conteste le sentiment de liberté : « Les hommes se croient libres parce qu'ils ont conscience de leurs actions, mais ignorent les causes qui les déterminent. » La pierre qui tombe, si elle pensait, croirait choisir sa chute. La vraie liberté, pour Spinoza, n'est pas l'absence de cause mais la connaissance de la nécessité : comprendre ce qui nous détermine pour cesser d'en être esclave.\n\n## La liberté comme autonomie : Kant et Rousseau\n\nRousseau distingue la liberté naturelle (faire ce qu'on veut) et la liberté civile, qui naît du contrat social : « l'obéissance à la loi qu'on s'est prescrite est liberté ». Kant approfondit : est libre la volonté qui se donne à elle-même sa loi morale (autonomie), par opposition à la volonté soumise à ses penchants (hétéronomie). La liberté n'est donc pas le caprice mais la capacité d'agir par devoir.\n\n## La liberté comme condition humaine : Sartre\n\nPour Sartre, l'homme « est condamné à être libre » : il n'a pas de nature préalable, « l'existence précède l'essence ». Même contraint, l'homme choisit son attitude. Cette liberté est angoissante car totalement responsable : « nous sommes seuls, sans excuses ». Refuser cette liberté, c'est la mauvaise foi.\n\n## Les obstacles : déterminismes sociaux et historiques\n\nMarx rappelle que « les hommes font leur histoire, mais dans des conditions qu'ils n'ont pas choisies ». Les déterminismes économiques et sociaux pèsent sur les individus. Bourdieu montrera le poids des habitus. La liberté n'est donc pas un don, mais une libération à conquérir contre l'aliénation.\n\n## Ancrage africain\n\nLes indépendances africaines des années 1960 incarnent une exigence collective de liberté contre la domination coloniale. Mais penseurs comme Frantz Fanon (*Les Damnés de la terre*) montrent que la liberté politique formelle ne suffit pas : il faut une libération économique, culturelle et mentale réelle. Au Cameroun, l'enjeu de la liberté se joue aussi dans l'articulation entre traditions communautaires et droits individuels modernes : être libre, est-ce s'émanciper de la communauté, ou s'y accomplir ?\n\n## Ouverture\n\nLa liberté n'est ni une pure illusion ni un fait donné : elle est un projet, une tâche. Comprendre nos déterminismes (Spinoza), se donner une loi (Kant), assumer nos choix (Sartre), lutter contre l'aliénation (Marx) : autant de chemins d'une libération jamais achevée.\n\n> **Méthode** : pour « Sommes-nous vraiment libres ? », éviter le piège du sentiment immédiat. Plan possible : la liberté comme sentiment vécu, sa remise en cause par les déterminismes, la liberté comme conquête de l'autonomie.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Selon Spinoza, pourquoi les hommes se croient-ils libres ?",
+            "options": ["Parce qu'ils connaissent les causes de leurs actes", "Parce qu'ils ont conscience de leurs actions mais ignorent leurs causes", "Parce qu'ils obéissent à la loi morale", "Parce qu'ils sont déterminés par Dieu"],
+            "answer": 1,
+            "explanation": "Pour Spinoza, le sentiment de liberté vient de l'ignorance des causes qui nous déterminent."
+          },
+          {
+            "q": "Chez Kant, l'autonomie de la volonté désigne :",
+            "options": ["Faire ce que l'on désire", "Obéir à ses penchants", "Se donner à soi-même sa loi morale", "Suivre les coutumes"],
+            "answer": 2,
+            "explanation": "L'autonomie kantienne est la volonté qui se prescrit sa propre loi morale, par opposition à l'hétéronomie."
+          },
+          {
+            "q": "Quelle formule résume la conception sartrienne de la liberté ?",
+            "options": ["L'homme est un loup pour l'homme", "L'homme est condamné à être libre", "La liberté est la connaissance de la nécessité", "Le moi n'est pas maître dans sa maison"],
+            "answer": 1,
+            "explanation": "Sartre affirme que l'homme, sans nature préalable, est « condamné à être libre »."
+          },
+          {
+            "q": "Pour Rousseau, la liberté civile consiste à :",
+            "options": ["Faire tout ce que l'on veut", "Obéir à la loi qu'on s'est prescrite", "Vivre sans aucune loi", "Suivre la force du plus fort"],
+            "answer": 1,
+            "explanation": "Rousseau définit la liberté civile comme l'obéissance à la loi qu'on s'est donnée par le contrat social."
+          },
+          {
+            "q": "Quel auteur a écrit Les Damnés de la terre, ouvrage majeur sur la libération coloniale ?",
+            "options": ["Karl Marx", "Frantz Fanon", "Jean-Paul Sartre", "Léopold Sédar Senghor"],
+            "answer": 1,
+            "explanation": "Frantz Fanon, dans Les Damnés de la terre, analyse la libération réelle au-delà de l'indépendance formelle."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La vérité",
+      "lesson": "# La vérité\n\n## Problématique\n\nChacun prétend dire vrai, mais les opinions se contredisent. Qu'est-ce qui distingue une vérité d'une simple croyance ? La vérité est-elle accessible à l'homme, ou condamné à l'erreur et au doute ? Existe-t-il une vérité absolue, ou seulement des vérités relatives à chaque culture, époque ou individu ?\n\n## Définitions\n\nLa **vérité** se définit classiquement comme l'*adéquation* (correspondance) entre la pensée et son objet, ou entre le discours et la réalité (*adaequatio rei et intellectus*). On distingue la *vérité-correspondance* (un énoncé est vrai s'il correspond aux faits), la *vérité-cohérence* (s'il s'accorde sans contradiction avec d'autres énoncés) et la vérité comme dévoilement. Son contraire : l'**erreur** (croire vrai ce qui est faux) et le **mensonge** (dire faux sciemment).\n\n## Le doute comme chemin vers le vrai : Descartes\n\nPour atteindre une vérité certaine, Descartes pratique le *doute méthodique* : rejeter comme faux tout ce qui peut être mis en doute. Les sens trompent, les raisonnements peuvent errer, le rêve imite la veille, et un « malin génie » pourrait nous abuser. Mais une certitude résiste : je ne puis douter que je doute, donc que je pense, donc que je suis. Le *cogito* devient le critère de toute vérité : est vrai ce qui se présente « clairement et distinctement ».\n\n## Vérités de raison et vérités de fait : Leibniz et l'expérience\n\nLeibniz distingue les *vérités de raison* (nécessaires, comme les mathématiques, dont le contraire est impossible) et les *vérités de fait* (contingentes, vérifiées par l'expérience). Les premières relèvent de la démonstration, les secondes de l'observation. La science combine les deux : Bachelard montrera que la vérité scientifique se construit contre l'opinion première, par rupture épistémologique.\n\n## La vérité a-t-elle une histoire ?\n\nHegel pense la vérité comme un processus : le vrai est le résultat d'un développement dialectique, « le vrai est le tout ». Pour Nietzsche au contraire, les « vérités » ne sont que des illusions utiles, des métaphores oubliées au service de la vie. Cette critique invite à la prudence sans nécessairement sombrer dans le relativisme : reconnaître que nos vérités sont historiques n'interdit pas de chercher mieux.\n\n## Vérité et utilité\n\nLe pragmatisme (James) définit le vrai par ses effets : est vrai ce qui réussit, ce qui est utile. Mais cette thèse est dangereuse : une croyance fausse peut être utile, et une vérité dérangeante reste vraie. La vérité ne se réduit pas à l'efficacité.\n\n## Ancrage africain\n\nLes traditions orales africaines transmettent la vérité par les proverbes, les contes, la parole des anciens : « la vérité est comme l'or, elle ne rouille pas ». La sagesse y est validée par l'expérience collective et la cohérence avec l'ordre du monde. La rencontre avec la science moderne pose la question : comment articuler vérités traditionnelles et vérités scientifiques sans mépriser ni absolutiser ni l'une ni l'autre ? Le philosophe camerounais doit penser ce dialogue des savoirs.\n\n## Ouverture\n\nLa vérité est exigeante : elle suppose le courage de douter, la rigueur de la démonstration et l'humilité face à ses propres limites. Loin d'être un trésor possédé, elle est une recherche infinie. « La vérité vous rendra libres » : chercher le vrai est aussi un devoir moral.\n\n> **Méthode** : pour « Toutes les opinions se valent-elles ? », ne pas confondre tolérance et relativisme. Distinguer opinion, croyance et savoir, puis montrer que la vérité se construit par la raison et la preuve.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "La définition classique de la vérité comme « adéquation » désigne :",
+            "options": ["L'accord entre les hommes", "La correspondance entre la pensée et son objet", "L'utilité d'une croyance", "La cohérence des sentiments"],
+            "answer": 1,
+            "explanation": "La vérité-correspondance est l'adéquation entre la pensée (ou le discours) et la réalité."
+          },
+          {
+            "q": "En quoi consiste le doute méthodique de Descartes ?",
+            "options": ["Douter par scepticisme définitif", "Rejeter comme faux tout ce qui peut être mis en doute pour trouver le certain", "Croire tout ce que disent les sens", "Suivre l'opinion commune"],
+            "answer": 1,
+            "explanation": "Le doute méthodique est provisoire : il sert à atteindre une vérité indubitable, le cogito."
+          },
+          {
+            "q": "Selon Leibniz, les vérités de raison sont :",
+            "options": ["Contingentes et vérifiées par l'expérience", "Nécessaires et démontrables, leur contraire étant impossible", "Toujours fausses", "Des illusions utiles"],
+            "answer": 1,
+            "explanation": "Les vérités de raison (mathématiques) sont nécessaires ; les vérités de fait sont contingentes."
+          },
+          {
+            "q": "Quel philosophe considère les « vérités » comme des illusions, des métaphores au service de la vie ?",
+            "options": ["Hegel", "Descartes", "Nietzsche", "Leibniz"],
+            "answer": 2,
+            "explanation": "Nietzsche critique la prétention de la vérité, qu'il rapporte à des métaphores oubliées utiles à la vie."
+          },
+          {
+            "q": "Pourquoi la thèse pragmatiste (le vrai = l'utile) est-elle critiquable ?",
+            "options": ["Parce qu'une croyance fausse peut être utile", "Parce que l'expérience ne prouve rien", "Parce que les mathématiques sont inutiles", "Parce que la vérité n'existe pas"],
+            "answer": 0,
+            "explanation": "Une croyance peut être utile sans être vraie, donc utilité et vérité ne se confondent pas."
+          }
+        ]
+      }
+    },
+    {
+      "title": "L'État et la société",
+      "lesson": "# L'État et la société\n\n## Problématique\n\nLes hommes vivent en société, mais pourquoi obéissent-ils à un pouvoir, l'État ? Celui-ci est-il un instrument de libération ou d'oppression ? L'autorité politique repose-t-elle sur la force ou sur le droit ? Existe-t-il un État légitime, et à quelles conditions ?\n\n## Définitions\n\nLa **société** est l'ensemble des individus liés par des rapports d'échange et de coopération. L'**État** est l'institution qui détient, sur un territoire, le pouvoir politique, le droit et — selon Max Weber — « le monopole de la violence physique légitime ». On distingue le pouvoir *de fait* (la force) et le pouvoir *de droit* (l'autorité légitime).\n\n## L'État né du contrat : Hobbes, Locke, Rousseau\n\nLes théories du contrat social imaginent un *état de nature* précédant l'État. Pour **Hobbes** (*Léviathan*), cet état est une « guerre de tous contre tous » où « l'homme est un loup pour l'homme » : les hommes, par peur, cèdent leurs droits à un souverain absolu garant de la paix. **Locke** voit dans l'état de nature des droits naturels (vie, liberté, propriété) que l'État doit protéger, sous peine de résistance légitime. **Rousseau** (*Du contrat social*) fonde l'État sur la *volonté générale* : le peuple souverain n'obéit qu'à lui-même ; la souveraineté appartient au peuple.\n\n## L'État, instrument de domination : Marx\n\nMarx renverse la perspective : l'État n'est pas neutre, il est « le comité qui gère les affaires communes de la classe dominante ». Il sert à maintenir l'ordre social favorable aux possédants. Dans la société communiste sans classes, l'État devrait « dépérir ». Cette critique reste précieuse pour interroger les inégalités derrière l'apparente neutralité du droit.\n\n## La séparation des pouvoirs et l'État de droit\n\nMontesquieu (*De l'esprit des lois*) montre que « le pouvoir arrête le pouvoir » : pour éviter le despotisme, il faut séparer les pouvoirs législatif, exécutif et judiciaire. L'**État de droit** soumet le pouvoir lui-même à la loi et garantit les libertés, par opposition à l'arbitraire.\n\n## Ancrage africain et camerounais\n\nL'État africain post-colonial hérite de frontières et d'institutions importées, qui ne recoupent pas toujours les solidarités ethniques et communautaires précoloniales. Penseurs comme Achille Mbembe analysent la « postcolonie » et les rapports de pouvoir qui en découlent. Au Cameroun, l'enjeu est de construire un État de droit qui articule l'unité nationale, la diversité culturelle (plus de 250 communautés), et la tradition des chefferies. La légitimité de l'État ne se décrète pas : elle se construit par la justice, le service du bien commun et la participation citoyenne.\n\n## Ouverture\n\nL'État est nécessaire pour sortir de la violence et garantir le droit, mais il peut devenir oppresseur. La question n'est donc pas seulement « faut-il un État ? » mais « quel État, au service de qui ? ». Un État légitime est celui qui, soumis au droit, vise le bien commun et respecte la liberté des citoyens.\n\n> **Méthode** : pour « L'État est-il l'ennemi de la liberté ? », opposer la vision libérale (l'État protège la liberté) et la critique (il peut l'opprimer), puis distinguer État de droit et État despotique.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Selon Max Weber, l'État détient :",
+            "options": ["Le monopole de la richesse", "Le monopole de la violence physique légitime", "Le monopole de la vérité", "Le monopole de la religion"],
+            "answer": 1,
+            "explanation": "Weber définit l'État par le monopole de la violence physique légitime sur un territoire."
+          },
+          {
+            "q": "Pour Hobbes, l'état de nature se caractérise par :",
+            "options": ["La paix et l'abondance", "La guerre de tous contre tous", "La volonté générale", "La séparation des pouvoirs"],
+            "answer": 1,
+            "explanation": "Hobbes décrit l'état de nature comme une guerre de tous contre tous, où l'homme est un loup pour l'homme."
+          },
+          {
+            "q": "Sur quoi Rousseau fonde-t-il la souveraineté de l'État ?",
+            "options": ["La force du plus fort", "Le droit divin", "La volonté générale du peuple", "La classe dominante"],
+            "answer": 2,
+            "explanation": "Dans Du contrat social, Rousseau fonde la souveraineté sur la volonté générale du peuple."
+          },
+          {
+            "q": "Selon Marx, l'État est :",
+            "options": ["Neutre et au-dessus des classes", "Un instrument au service de la classe dominante", "Une institution divine", "Inutile dès l'origine"],
+            "answer": 1,
+            "explanation": "Marx voit l'État comme le « comité gérant les affaires de la classe dominante »."
+          },
+          {
+            "q": "Quel penseur a théorisé la séparation des pouvoirs dans De l'esprit des lois ?",
+            "options": ["Hobbes", "Montesquieu", "Locke", "Weber"],
+            "answer": 1,
+            "explanation": "Montesquieu défend la séparation des pouvoirs : « le pouvoir arrête le pouvoir »."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Le travail et la technique",
+      "lesson": "# Le travail et la technique\n\n## Problématique\n\nLe travail est souvent vécu comme une peine, un fardeau : « tu gagneras ton pain à la sueur de ton front ». Pourtant il est aussi ce par quoi l'homme transforme le monde et se réalise. Le travail est-il une malédiction ou une source de dignité et d'humanité ? Et la technique, qui prolonge le travail, libère-t-elle l'homme ou l'asservit-elle ?\n\n## Définitions\n\nLe **travail** est l'activité par laquelle l'homme transforme la nature pour satisfaire ses besoins, en y déployant un effort. La **technique** est l'ensemble des procédés et outils permettant cette transformation efficace. À distinguer du *jeu* (gratuit) et de la *praxis* pure.\n\n## Le travail humanise : Hegel et Marx\n\nDans la *dialectique du maître et de l'esclave* (Hegel), c'est paradoxalement l'esclave, par le travail, qui s'élève : en transformant la nature, il se transforme lui-même, prend conscience de soi et acquiert une maîtrise que le maître oisif n'a pas. **Marx** reprend cette idée : le travail est l'activité par laquelle l'homme se produit lui-même, « l'homme se reconnaît dans un monde qu'il a créé ». Le travail est donc proprement humain : l'abeille fait des alvéoles, mais l'architecte conçoit d'abord son œuvre en idée.\n\n## L'aliénation du travail : Marx\n\nMais dans le système capitaliste, le travail se retourne contre le travailleur : c'est l'**aliénation**. L'ouvrier ne possède ni ses outils ni le produit de son travail ; il est dépossédé, réduit à une marchandise, séparé de son activité. Le travail, qui devrait épanouir, abrutit. Marx appelle à dépasser cette aliénation pour rendre au travail son sens humain.\n\n## La technique : libération ou menace ?\n\nBergson voit dans l'homme un « *Homo faber* », fabricant d'outils : l'intelligence est d'abord faculté de fabriquer. Descartes promettait, grâce à la science, de nous rendre « comme maîtres et possesseurs de la nature ». La technique libère du besoin, allège la peine. Mais Heidegger met en garde : la technique moderne « arraisonne » la nature, la réduit à un stock à exploiter, et risque de transformer l'homme lui-même en ressource. Hans Jonas (*Le Principe responsabilité*) insiste : la puissance technique impose une éthique nouvelle, tournée vers l'avenir et la planète.\n\n## Ancrage africain et camerounais\n\nDans de nombreuses sociétés africaines, le travail n'est pas seulement individuel mais communautaire et solidaire : les travaux champêtres collectifs, l'entraide, structurent le lien social. Le développement du Cameroun pose la question de la technique : comment intégrer les innovations (numérique, agriculture moderne) sans détruire les savoir-faire artisanaux et l'équilibre écologique ? Le défi est d'un développement qui valorise le travail comme dignité et non comme simple exploitation des ressources et des hommes.\n\n## Ouverture\n\nLe travail est à la fois contrainte et accomplissement : il peut aliéner ou humaniser, selon les rapports sociaux qui l'organisent. La technique décuple notre pouvoir, mais ce pouvoir exige une responsabilité accrue. La vraie question n'est pas de fuir le travail, mais de le rendre digne, et de maîtriser la technique au lieu d'en être l'esclave.\n\n> **Méthode** : pour « Le travail n'est-il qu'une contrainte ? », montrer d'abord le travail comme peine, puis comme humanisation, enfin comme réalité ambivalente selon son organisation sociale.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Dans la dialectique hégélienne du maître et de l'esclave, qui s'élève par le travail ?",
+            "options": ["Le maître", "L'esclave", "Aucun des deux", "L'État"],
+            "answer": 1,
+            "explanation": "C'est l'esclave qui, en transformant la nature par le travail, accède à la conscience de soi."
+          },
+          {
+            "q": "Qu'appelle Marx l'aliénation du travail ?",
+            "options": ["Le repos du travailleur", "La dépossession du travailleur séparé de son activité et de son produit", "La fierté de l'ouvrier", "L'absence de travail"],
+            "answer": 1,
+            "explanation": "L'aliénation est la dépossession du travailleur, réduit à une marchandise dans le système capitaliste."
+          },
+          {
+            "q": "Bergson définit l'homme comme « Homo faber », c'est-à-dire :",
+            "options": ["L'homme qui pense", "L'homme qui joue", "L'homme qui fabrique des outils", "L'homme religieux"],
+            "answer": 2,
+            "explanation": "Pour Bergson, l'intelligence est d'abord faculté de fabriquer : l'homme est Homo faber."
+          },
+          {
+            "q": "Quelle promesse Descartes associe-t-il à la science et à la technique ?",
+            "options": ["Rendre l'homme immortel", "Rendre l'homme comme maître et possesseur de la nature", "Supprimer tout travail", "Abolir l'État"],
+            "answer": 1,
+            "explanation": "Descartes annonce que la science nous rendra « comme maîtres et possesseurs de la nature »."
+          },
+          {
+            "q": "Selon Heidegger, le danger de la technique moderne est de :",
+            "options": ["Supprimer la pauvreté", "Réduire la nature et l'homme à un simple stock à exploiter", "Libérer totalement l'homme", "Rendre le travail inutile"],
+            "answer": 1,
+            "explanation": "Heidegger critique l'« arraisonnement » : la technique réduit la nature, et l'homme, à une ressource exploitable."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Le bonheur",
+      "lesson": "# Le bonheur\n\n## Problématique\n\nTous les hommes recherchent le bonheur : il semble être la fin ultime de l'existence. Mais qu'est-ce que le bonheur ? Est-ce le plaisir, la satisfaction des désirs, ou autre chose ? Peut-on l'atteindre, et par quels moyens ? Le bonheur dépend-il de nous ou des circonstances ? Et faut-il rechercher le bonheur, ou plutôt agir bien ?\n\n## Définitions\n\nLe **bonheur** est un état de satisfaction durable et complète, à distinguer du *plaisir* (satisfaction passagère et sensible) et de la *joie* (émotion vive). Étymologiquement, *bonheur* vient de « bon » et « heur » (la chance), ce qui suggère une part de hasard. La recherche du bonheur s'appelle l'*eudémonisme*.\n\n## Le bonheur comme plaisir : l'hédonisme et l'épicurisme\n\nPour les hédonistes, le bonheur réside dans le plaisir. Mais **Épicure** raffine cette thèse : tous les plaisirs ne se valent pas. Il distingue les désirs *naturels et nécessaires* (manger, boire), *naturels non nécessaires* (les raffinements) et *vains* (la gloire, la richesse). Le sage limite ses désirs pour atteindre l'*ataraxie* : l'absence de trouble du corps et de l'âme. Le bonheur épicurien est sobriété, non débauche.\n\n## Le bonheur comme maîtrise de soi : le stoïcisme\n\nPour les stoïciens (Épictète, Sénèque, Marc Aurèle), le bonheur réside dans la vertu et l'accord avec la raison. Il faut distinguer « ce qui dépend de nous » (nos jugements, nos désirs) et « ce qui ne dépend pas de nous » (la richesse, la maladie, la mort). Le sage ne désire que ce qui dépend de lui : il atteint ainsi la tranquillité, quelles que soient les circonstances. « Ne demande pas que les choses arrivent comme tu le veux, mais veuille-les comme elles arrivent. »\n\n## Le bonheur comme accomplissement : Aristote\n\nPour **Aristote**, le bonheur (*eudaimonia*) n'est pas le plaisir mais le « bien vivre » conforme à la fonction propre de l'homme : la vie selon la raison et la vertu. Le bonheur suppose une vie entière, des amis, certains biens extérieurs, et l'exercice de l'excellence. Il est activité, non passivité.\n\n## Bonheur et morale : Kant\n\nKant opère une rupture : la morale ne commande pas de rechercher le bonheur, mais d'agir par devoir. Au lieu de chercher à être heureux, il faut « se rendre digne du bonheur ». Le bonheur ne peut être le fondement de la morale car il est trop variable et subjectif. Freud, plus pessimiste, doute même que le bonheur durable soit possible : le « malaise dans la civilisation » naît du renoncement pulsionnel exigé par la vie sociale.\n\n## Ancrage africain\n\nDans la sagesse africaine et camerounaise, le bonheur n'est pas d'abord individuel : il se vit dans la communauté, la famille élargie, la solidarité (*ubuntu*). Être heureux, c'est être en harmonie avec les autres, les ancêtres et la nature, et accomplir son rôle dans le groupe. Cette conception communautaire offre une alternative à l'individualisme du bonheur-consommation : le bonheur s'y pense comme lien et non comme possession.\n\n## Ouverture\n\nLe bonheur n'est ni une simple chance ni un pur état de plaisir : il se construit par la sagesse, la maîtrise de ses désirs, la vertu et la qualité des liens. Peut-être faut-il, plutôt que de courir après le bonheur, vivre bien — et le bonheur viendra de surcroît.\n\n> **Méthode** : pour « Le bonheur dépend-il de nous ? », opposer les conceptions stoïcienne (le bonheur dépend de nos jugements) et plus réaliste (le bonheur dépend aussi des circonstances), puis nuancer.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Qu'est-ce que l'ataraxie chez Épicure ?",
+            "options": ["La recherche de tous les plaisirs", "L'absence de trouble du corps et de l'âme", "La richesse et la gloire", "La souffrance volontaire"],
+            "answer": 1,
+            "explanation": "L'ataraxie est la tranquillité, l'absence de trouble, obtenue par la limitation des désirs."
+          },
+          {
+            "q": "La distinction stoïcienne fondamentale oppose :",
+            "options": ["Le plaisir et la douleur", "Ce qui dépend de nous et ce qui n'en dépend pas", "Le corps et l'âme", "La vertu et le vice"],
+            "answer": 1,
+            "explanation": "Les stoïciens distinguent ce qui dépend de nous (nos jugements) de ce qui n'en dépend pas."
+          },
+          {
+            "q": "Pour Aristote, le bonheur (eudaimonia) est :",
+            "options": ["Le plaisir des sens", "L'absence de tout désir", "L'activité de l'âme selon la raison et la vertu", "La richesse matérielle"],
+            "answer": 2,
+            "explanation": "Aristote définit le bonheur comme le bien vivre conforme à la raison et à la vertu."
+          },
+          {
+            "q": "Selon Kant, la morale commande de :",
+            "options": ["Rechercher le bonheur avant tout", "Se rendre digne du bonheur en agissant par devoir", "Fuir tout plaisir", "Satisfaire tous ses désirs"],
+            "answer": 1,
+            "explanation": "Kant subordonne le bonheur au devoir : il faut d'abord se rendre digne du bonheur."
+          },
+          {
+            "q": "Quels désirs Épicure juge-t-il vains ?",
+            "options": ["Manger et boire", "Les désirs naturels et nécessaires", "La gloire et la richesse illimitée", "Le repos"],
+            "answer": 2,
+            "explanation": "Pour Épicure, les désirs de gloire et de richesse illimitée sont vains et sources de trouble."
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -320,6 +320,12 @@ export const RESOURCES: Resource[] = [
       { key: 'code', label: 'Code', type: 'text', help: 'Initiales, ex. Ma (l’icône est déduite du nom).' },
       { key: 'color', label: 'Couleur', type: 'text', help: 'Hex, ex. #F59321' },
       { key: 'levels', label: 'Classes concernées', type: 'text', help: 'ex. Terminale,1ère — vide = toutes' },
+      { key: 'exam', label: 'Examen', type: 'text', help: 'Rattachement (comme les annales). ex. Baccalauréat — vide = tous' },
+      { key: 'track', label: 'Série', type: 'text', help: 'Série/filière, ex. D — vide = toutes les séries' },
+      { key: 'premium', label: 'Pack premium', type: 'boolean', help: 'Coché = payant (en crédits). Décoché = gratuit.' },
+      { key: 'priceCredits', label: 'Prix (crédits)', type: 'number', help: 'Prix du pack en crédits OnBuch (si premium).' },
+      { key: 'coef', label: 'Coefficient', type: 'number', help: 'Coef de la matière (affiché sur la fiche).' },
+      { key: 'freeChapters', label: 'Chapitres en aperçu', type: 'number', help: 'Nb de chapitres consultables gratuitement avant achat.' },
       order
     ]
   },

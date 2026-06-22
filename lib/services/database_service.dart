@@ -691,6 +691,43 @@ class DatabaseService {
     }
   }
 
+  /// IDs des matières (packs) possédées par l'utilisateur — achats premium +
+  /// ajouts de packs gratuits (`pack_purchases`).
+  Future<Set<String>> getOwnedSubjectIds() async {
+    try {
+      final res = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwritePackPurchasesCollectionId,
+        queries: [Query.limit(200)],
+      );
+      return res.documents.map((d) => d.data['subjectId']?.toString() ?? '').where((s) => s.isNotEmpty).toSet();
+    } on AppwriteException {
+      return <String>{};
+    }
+  }
+
+  /// Ajoute un pack GRATUIT à la bibliothèque (création directe, sans paiement).
+  Future<bool> addFreePack(String subjectId) async {
+    try {
+      final user = await AppwriteClient.account.get();
+      await AppwriteClient.databases.createDocument(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwritePackPurchasesCollectionId,
+        documentId: ID.unique(),
+        data: {
+          'uid': user.$id,
+          'subjectId': subjectId,
+          'priceCredits': 0,
+          'createdAt': DateTime.now().toIso8601String(),
+        },
+        permissions: [Permission.read(Role.user(user.$id))],
+      );
+      return true;
+    } on AppwriteException {
+      return false;
+    }
+  }
+
   /// IDs des chapitres déjà consultés par l'utilisateur.
   Future<Set<String>> getViewedChapterIds() async {
     try {

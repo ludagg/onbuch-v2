@@ -9,6 +9,13 @@ class Subject {
   final Color color;
   final String levels; // classes concernées (ex. "Terminale,1ère"), vide = toutes
   final int order;
+  // ── Pack (lié à la classe comme les annales + paiement en crédits) ──
+  final String exam; // ex. "Baccalauréat" — vide = tous examens
+  final String track; // série (code/libellé) — vide = toutes séries
+  final bool premium;
+  final int priceCredits; // prix du pack en crédits (0 si gratuit)
+  final int coef;
+  final int freeChapters; // nb de chapitres en aperçu gratuit
 
   const Subject({
     required this.id,
@@ -17,7 +24,27 @@ class Subject {
     required this.color,
     this.levels = '',
     this.order = 0,
+    this.exam = '',
+    this.track = '',
+    this.premium = false,
+    this.priceCredits = 0,
+    this.coef = 0,
+    this.freeChapters = 2,
   });
+
+  /// Le pack concerne-t-il l'examen + la série de l'élève ? (logique annales :
+  /// exam vide = tous ; track vide = toutes séries ; sinon correspondance souple).
+  bool appliesToClass(String? exam, String? serie) {
+    final e = (exam ?? '').trim().toLowerCase();
+    if (this.exam.trim().isNotEmpty && e.isNotEmpty && this.exam.trim().toLowerCase() != e) return false;
+    final t = track.trim().toLowerCase();
+    if (t.isEmpty) return true; // toutes séries
+    final s = (serie ?? '').trim().toLowerCase();
+    if (s.isEmpty) return true;
+    if (t == s) return true;
+    if (t.length <= 4 && (s.startsWith(t) || t.startsWith(s))) return true;
+    return false;
+  }
 
   /// Icône représentative de la matière (déduite du nom) — plus parlante que
   /// les initiales sur les tuiles.
@@ -53,6 +80,12 @@ class Subject {
       color: _parseColor(d['color']) ?? OC.o500,
       levels: (d['levels'] ?? '').toString(),
       order: d['order'] is int ? d['order'] as int : int.tryParse('${d['order']}') ?? 0,
+      exam: (d['exam'] ?? '').toString(),
+      track: (d['track'] ?? '').toString(),
+      premium: d['premium'] == true,
+      priceCredits: d['priceCredits'] is int ? d['priceCredits'] as int : int.tryParse('${d['priceCredits']}') ?? 0,
+      coef: d['coef'] is int ? d['coef'] as int : int.tryParse('${d['coef']}') ?? 0,
+      freeChapters: d['freeChapters'] is int ? d['freeChapters'] as int : int.tryParse('${d['freeChapters']}') ?? 2,
     );
   }
 
