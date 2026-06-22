@@ -14,7 +14,8 @@ class AnnaleSubjectScreen extends StatefulWidget {
   final String subject;
   final String? exam;
   final String? filiere;
-  const AnnaleSubjectScreen({super.key, required this.subject, this.exam, this.filiere});
+  final String? code; // code de la série (pour filtrer les imports « D », « C »…)
+  const AnnaleSubjectScreen({super.key, required this.subject, this.exam, this.filiere, this.code});
 
   @override
   State<AnnaleSubjectScreen> createState() => _AnnaleSubjectScreenState();
@@ -48,9 +49,15 @@ class _AnnaleSubjectScreenState extends State<AnnaleSubjectScreen> {
 
   Future<void> _load() async {
     final exam = (widget.exam ?? '').trim();
-    final items = exam.isEmpty
+    var items = exam.isEmpty
         ? <Annale>[]
         : await DatabaseService().getAnnales(exam: exam, subject: widget.subject);
+    // Filtre série (cohérent avec le compteur de la page filière).
+    final code = (widget.code ?? '').trim();
+    final filiere = (widget.filiere ?? '').trim();
+    if (code.isNotEmpty || filiere.isNotEmpty) {
+      items = items.where((a) => a.appliesToSerie(code, filiere)).toList();
+    }
     if (!mounted) return;
     setState(() {
       _all = items;

@@ -130,8 +130,9 @@ class _AnnalesFolderScreenState extends State<AnnalesFolderScreen> {
     final items = _items;
     final subjects = n.subjects.isNotEmpty ? n.subjects : items.map((e) => e.label).toList();
 
-    // Documents réels de cette filière (track == libellé du nœud).
-    final docs = _docs.where((d) => d.track == n.label).toList();
+    // Documents réels de cette filière (correspondance souple : code / libellé /
+    // général) — robuste face aux imports (track = « D », « D — … » ou vide).
+    final docs = _docs.where((d) => d.appliesToSerie(n.code, n.label)).toList();
     final counts = <String, int>{};
     for (final d in docs) {
       counts[d.subject] = (counts[d.subject] ?? 0) + 1;
@@ -161,7 +162,7 @@ class _AnnalesFolderScreenState extends State<AnnalesFolderScreen> {
             crossAxisSpacing: 10,
             childAspectRatio: 2.4,
             children: subjects
-                .map((s) => _subjectTile(context, s, _docsLoaded ? (counts[s] ?? 0) : null, n.label))
+                .map((s) => _subjectTile(context, s, _docsLoaded ? (counts[s] ?? 0) : null, n.label, n.code))
                 .toList(),
           ),
           const SizedBox(height: 18),
@@ -197,13 +198,13 @@ class _AnnalesFolderScreenState extends State<AnnalesFolderScreen> {
     );
   }
 
-  Widget _subjectTile(BuildContext context, String name, int? count, String filiere) {
+  Widget _subjectTile(BuildContext context, String name, int? count, String filiere, String code) {
     final label = count == null
         ? 'Ouvrir'
         : (count == 0 ? 'Bientôt' : '$count document${count > 1 ? 's' : ''}');
     return GestureDetector(
       onTap: () => context.push('/annales/subject',
-          extra: {'subject': name, 'exam': _exam, 'filiere': filiere}),
+          extra: {'subject': name, 'exam': _exam, 'filiere': filiere, 'code': code}),
       child: Container(
         padding: const EdgeInsets.fromLTRB(11, 11, 12, 11),
         decoration: BoxDecoration(color: OC.paper, borderRadius: BorderRadius.circular(14), border: Border.all(color: OC.line, width: 1.5)),
