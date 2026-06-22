@@ -1,0 +1,7 @@
+{
+  "name": "onbuch-credits-bot",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Bot Telegram d'achat de crédits OnBuch (webhook Vercel)."
+}

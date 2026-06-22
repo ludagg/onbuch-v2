@@ -1,8 +1,12 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
 import '../../widgets/paywall_sheet.dart';
+import '../../widgets/redeem_code_sheet.dart';
 import '../../services/tutor_service.dart';
+import '../../appwrite_config.dart';
+import '../../utils/launch.dart';
 
 class CreditsScreen extends StatefulWidget {
   const CreditsScreen({super.key});
@@ -59,18 +63,39 @@ class _CreditsScreenState extends State<CreditsScreen> {
             ]),
           ),
           const SizedBox(height: 16),
+          // Recharge : sur le web → Mobile Money (bot Telegram) ; sur mobile →
+          // Google Play Billing. (Conformité Play : aucun lien de paiement
+          // externe affiché dans le build mobile.)
+          if (kIsWeb)
+            _cta(
+              icon: Icons.account_balance_wallet_rounded,
+              label: 'Recharger via Orange / MTN',
+              onTap: () => openUrl(context, onbuchCreditsBotUrl),
+            )
+          else
+            _cta(
+              icon: Icons.bolt_rounded,
+              label: 'Recharger des crédits',
+              onTap: () async { await PaywallSheet.show(context); if (mounted) _load(); },
+            ),
+          const SizedBox(height: 10),
+          // « J'ai un code » : disponible partout (rachat d'un code obtenu
+          // hors-app). Ne sollicite aucun paiement → conforme Play.
           GestureDetector(
-            onTap: () async { await PaywallSheet.show(context); if (mounted) _load(); },
+            onTap: () async {
+              final added = await RedeemCodeSheet.show(context);
+              if (added != null && added > 0 && mounted) _load();
+            },
             child: Container(
-              width: double.infinity, height: 52,
+              width: double.infinity, height: 50,
               decoration: BoxDecoration(
-                gradient: OC.grad, borderRadius: BorderRadius.circular(14),
-                boxShadow: [BoxShadow(color: OC.o500.withValues(alpha: 0.30), blurRadius: 14, offset: const Offset(0, 6))],
+                color: OC.paper, borderRadius: BorderRadius.circular(14),
+                border: Border.all(color: OC.line, width: 1.5),
               ),
               child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                const Icon(Icons.bolt_rounded, color: Colors.white, size: 19),
+                Icon(Icons.confirmation_number_outlined, color: OC.o600, size: 19),
                 const SizedBox(width: 8),
-                Text('Recharger des crédits', style: body(14, weight: FontWeight.w700, color: Colors.white)),
+                Text('J\'ai un code', style: body(14, weight: FontWeight.w700, color: OC.ink)),
               ]),
             ),
           ),
@@ -78,12 +103,32 @@ class _CreditsScreenState extends State<CreditsScreen> {
           Text('Comment ça marche', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
           const SizedBox(height: 10),
           _info(Icons.bolt_rounded, '3 corrections gratuites par jour', 'Réinitialisées chaque jour, sans rien payer.'),
-          _info(Icons.shopping_bag_outlined, 'Des crédits à la demande', 'Recharge en un tap via Google Play, paiement sécurisé.'),
+          if (kIsWeb)
+            _info(Icons.account_balance_wallet_rounded, 'Recharge par Mobile Money', 'Paie en Orange Money ou MTN MoMo, reçois un code et saisis-le ici.')
+          else
+            _info(Icons.shopping_bag_outlined, 'Des crédits à la demande', 'Recharge en un tap via Google Play, paiement sécurisé.'),
+          _info(Icons.confirmation_number_outlined, 'Un code à échanger', 'Reçu un code ? Saisis-le via « J\'ai un code » pour créditer ton compte.'),
           _info(Icons.lock_outline_rounded, 'Sans abonnement', 'Tu paies seulement quand tu en as besoin.'),
         ],
       ),
     );
   }
+
+  Widget _cta({required IconData icon, required String label, required VoidCallback onTap}) => GestureDetector(
+        onTap: onTap,
+        child: Container(
+          width: double.infinity, height: 52,
+          decoration: BoxDecoration(
+            gradient: OC.grad, borderRadius: BorderRadius.circular(14),
+            boxShadow: [BoxShadow(color: OC.o500.withValues(alpha: 0.30), blurRadius: 14, offset: const Offset(0, 6))],
+          ),
+          child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            Icon(icon, color: Colors.white, size: 19),
+            const SizedBox(width: 8),
+            Text(label, style: body(14, weight: FontWeight.w700, color: Colors.white)),
+          ]),
+        ),
+      );
 
   Widget _info(IconData icon, String title, String sub) => Container(
         margin: const EdgeInsets.only(bottom: 9),
