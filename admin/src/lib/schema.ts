@@ -22,6 +22,9 @@ export interface Resource {
   subtitleField?: string; // champ secondaire
   orderBy?: { field: string; dir: 'asc' | 'desc' };
   fields: Field[];
+  // Affichage en arborescence repliable (examen → subdivision → filière →
+  // matières) au lieu d'une liste plate. Spécifique aux séries/filières.
+  tree?: boolean;
 }
 
 const order: Field = { key: 'order', label: 'Ordre', type: 'number', help: 'Tri croissant (0 en premier).' };
@@ -251,6 +254,7 @@ export const RESOURCES: Resource[] = [
     titleField: 'name',
     subtitleField: 'subjects',
     orderBy: { field: 'sortOrder', dir: 'asc' },
+    tree: true,
     fields: [
       { key: 'exam', label: 'Examen', type: 'select', required: true, options: ['Baccalauréat', 'Probatoire', 'BEPC', 'GCE A Level', 'GCE O Level', 'CAP', 'BT', 'BTS', 'HND', 'Concours'], help: 'Cursus (même liste que les Annales).' },
       { key: 'category', label: 'Subdivision', type: 'text', help: 'ex. « Enseignement général (ESG) », « Industriel », « Écoles normales ». Vide si l’examen n’a pas de subdivision (BEPC, GCE).' },
