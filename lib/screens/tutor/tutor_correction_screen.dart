@@ -41,6 +41,10 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
   final List<_Msg> _msgs = [];
   bool _bgNotice = false; // génération en arrière-plan → message « tu peux quitter »
   String? _threadId; // fil de conversation persisté (mémoire)
+  // Sauvegardes du fil SÉRIALISÉES : garantit que la création (1er tour) fixe
+  // `_threadId` avant tout tour suivant → on met à jour le même fil au lieu d'en
+  // créer un nouveau à chaque message.
+  Future<void> _saveChain = Future.value();
 
   @override
   void initState() {
@@ -177,12 +181,14 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
       final firstUser = _msgs.where((m) => m.isUser && (m.text?.trim().isNotEmpty ?? false));
       if (firstUser.isNotEmpty) title = firstUser.first.text!.trim();
     }
-    _service.saveThread(
-      threadId: _threadId,
-      messages: history,
-      title: title,
-      subject: widget.request?.subject,
-    ).then((id) {
+    final subject = widget.request?.subject;
+    _saveChain = _saveChain.then((_) async {
+      final id = await _service.saveThread(
+        threadId: _threadId,
+        messages: history,
+        title: title,
+        subject: subject,
+      );
       if (id != null) _threadId = id;
     });
   }
