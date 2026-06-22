@@ -673,64 +673,79 @@ class SubjLogo extends StatelessWidget {
 
   static (IconData, Color) visual(String name) {
     final n = name.toLowerCase();
-    if (n.contains('phys') && n.contains('chim')) return (Icons.science_rounded, const Color(0xFF1E9E63));
+    bool has(List<String> ks) => ks.any(n.contains);
+
+    // Santé / médical (avant « phys » pour ne pas confondre physiologie/physique).
+    if (has(['anatom', 'physiolog', 'soin', 'pharmac', 'clinique', 'nursing', 'infirm',
+        'médic', 'medic', 'santé', 'sante', 'sanitaire', 'haemat', 'hématolog', 'hematolog'])) {
+      return (Icons.local_hospital_rounded, const Color(0xFFC0392B));
+    }
+    if (n.contains('phys') && (n.contains('chim') || n.contains('chem'))) return (Icons.science_rounded, const Color(0xFF1E9E63));
     if (n.contains('math')) return (Icons.calculate_rounded, const Color(0xFF2D6CDF));
     if (n.contains('phys')) return (Icons.bolt_rounded, const Color(0xFF4257B2));
-    if (n.contains('chim')) return (Icons.science_rounded, const Color(0xFF1E9E63));
-    if (n.contains('svt') || n.contains('bio') || n.contains('vie') || n.contains('micro') || n.contains('nature')) {
-      return (Icons.biotech_rounded, const Color(0xFF0E9AA0));
+    if (has(['chim', 'chem'])) return (Icons.science_rounded, const Color(0xFF1E9E63));
+    if (has(['svt', 'biolog', 'biochim', 'micro', ' vie', 'nature'])) return (Icons.biotech_rounded, const Color(0xFF0E9AA0));
+    // Agriculture / élevage (avant « techn » pour zootechnie, phytotechnie).
+    if (has(['agri', 'agro', 'aqua', 'zoo', 'phyto', 'végétal', 'animal', 'crop', 'fish', 'élevage'])) {
+      return (Icons.agriculture_rounded, const Color(0xFF558B2F));
     }
-    if (n.contains('philo')) return (Icons.psychology_rounded, const Color(0xFF7A5AE0));
-    if (n.contains('litt')) return (Icons.auto_stories_rounded, const Color(0xFFB23E8E));
-    if (n.contains('franç') || n.contains('franc') || n.contains('lettre')) {
-      return (Icons.menu_book_rounded, const Color(0xFFDB4F12));
-    }
-    if (n.contains('angl') || n.contains('bilingual')) return (Icons.translate_rounded, const Color(0xFFC0392B));
-    if (n.contains('lv2') || n.contains('lv3') || n.contains('espagnol') || n.contains('allemand') ||
-        n.contains('latin') || n.contains('grec') || n.contains('langue')) {
+    if (has(['philo', 'logic', 'logique'])) return (Icons.psychology_rounded, const Color(0xFF7A5AE0));
+    if (has(['litt', 'liter', 'religi'])) return (Icons.auto_stories_rounded, const Color(0xFFB23E8E));
+    if (has(['culture g'])) return (Icons.lightbulb_rounded, const Color(0xFF7A5AE0));
+    if (has(['franç', 'francais', 'lettre', 'rédaction', 'redaction'])) return (Icons.menu_book_rounded, const Color(0xFFDB4F12));
+    if (has(['angl', 'english', 'bilingual'])) return (Icons.translate_rounded, const Color(0xFFC0392B));
+    if (has(['lv2', 'lv3', 'espagnol', 'allemand', 'latin', 'grec', 'langue', 'french'])) {
       return (Icons.language_rounded, const Color(0xFFC0392B));
     }
     if (n.contains('hist')) return (Icons.account_balance_rounded, const Color(0xFFA6651E));
-    if (n.contains('géo') || n.contains('geo') || n.contains('topo')) return (Icons.public_rounded, const Color(0xFF1E7E5A));
-    if (n.contains('ecm') || n.contains('citoyen') || n.contains('moral')) return (Icons.diversity_3_rounded, const Color(0xFF00897B));
-    if (n.contains('info') || n.contains('numér') || n.contains('ict') || n.contains('logiciel') ||
-        n.contains('réseau') || n.contains('reseau')) {
+    if (has(['géo', 'geo', 'topo', 'survey', 'cartograph'])) return (Icons.public_rounded, const Color(0xFF1E7E5A));
+    if (has(['ecm', 'citoyen', 'citizen', 'moral'])) return (Icons.diversity_3_rounded, const Color(0xFF00897B));
+    if (has(['info', 'numér', 'ict', 'logiciel', 'software', 'réseau', 'reseau', 'network', 'comput',
+        'programm', 'algorith', 'données', 'database', 'embarqué', 'embedded', 'operating', 'télécom', 'telecom', 'transmission'])) {
       return (Icons.computer_rounded, const Color(0xFF3F51B5));
     }
-    if (n.contains('droit') || n.contains('fiscal')) return (Icons.gavel_rounded, const Color(0xFF6D4C41));
-    if (n.contains('électro') || n.contains('electro') || n.contains('électr') || n.contains('electr') || n.contains('mesur')) {
+    if (has(['droit', 'fiscal', ' law', 'légal', 'legal'])) return (Icons.gavel_rounded, const Color(0xFF6D4C41));
+    if (has(['dessin', 'drawing'])) return (Icons.architecture_rounded, const Color(0xFF6D4C41));
+    if (has(['électro', 'electro', 'électr', 'electr', 'mesur', 'power', 'machine élec'])) {
       return (Icons.electric_bolt_rounded, const Color(0xFFEF6C00));
     }
-    if (n.contains('froid') || n.contains('clim') || n.contains('thermo')) return (Icons.ac_unit_rounded, const Color(0xFF0277BD));
-    if (n.contains('méca') || n.contains('meca') || n.contains('fabric') || n.contains('automat') ||
-        n.contains('mainten') || n.contains('usinage')) {
+    if (has(['froid', 'clim', 'thermo', 'refriger', 'hvac'])) return (Icons.ac_unit_rounded, const Color(0xFF0277BD));
+    if (has(['méca', 'meca', 'mecha', 'fabric', 'automat', 'mainten', 'usinage', 'manufactur', 'productique'])) {
       return (Icons.settings_rounded, const Color(0xFF455A64));
     }
-    if (n.contains('génie civ') || n.contains('béton') || n.contains('beton') || n.contains('construct') ||
-        n.contains('bâtiment') || n.contains('batiment') || n.contains('résistance') || n.contains('resistance')) {
+    if (has(['génie civ', 'béton', 'beton', 'concrete', 'construct', 'bâtiment', 'batiment', 'building',
+        'résistance', 'resistance', 'structural', 'ouvrage'])) {
       return (Icons.architecture_rounded, const Color(0xFF6D4C41));
     }
-    if (n.contains('génie') || n.contains('genie') || n.contains('technolog') || n.contains('industr')) {
+    if (has(['génie', 'genie', 'technolog', 'industr', 'engineering', 'procédé', 'process'])) {
       return (Icons.engineering_rounded, const Color(0xFF455A64));
     }
-    if (n.contains('compta') || n.contains('financ') || n.contains('banqu') || n.contains('gestion') ||
-        n.contains('mercat') || n.contains('commerc') || n.contains('éco') || n.contains('eco') || n.contains('assur')) {
-      return (Icons.trending_up_rounded, const Color(0xFF2E7D32));
-    }
-    if (n.contains('admin') || n.contains('organis') || n.contains('communic') || n.contains('secrét') || n.contains('bureau')) {
-      return (Icons.badge_rounded, const Color(0xFF5E35B1));
-    }
-    if (n.contains('hôtel') || n.contains('hotel') || n.contains('restaur') || n.contains('cuisine')) {
+    if (has(['hôtel', 'hotel', 'restaur', 'cuisine', 'culinaire', 'catering', 'hospitality', 'nutrition', 'food', 'aliment'])) {
       return (Icons.restaurant_rounded, const Color(0xFFC2185B));
     }
-    if (n.contains('santé') || n.contains('sante') || n.contains('sanitaire') || n.contains('infirm') ||
-        n.contains('médic') || n.contains('medic')) {
-      return (Icons.local_hospital_rounded, const Color(0xFFC0392B));
+    if (has(['compta', 'account', 'financ', 'banqu', 'banking', 'gestion', 'manage', 'mercat', 'marketing',
+        'commerc', 'commerce', 'vente', 'sales', 'éco', 'eco', 'econom', 'assur', 'insurance', 'entrep',
+        'logist', 'supply', 'procure', 'transport', 'bancaire', 'business'])) {
+      return (Icons.trending_up_rounded, const Color(0xFF2E7D32));
     }
+    if (has(['admin', 'organis', 'communic', 'secrét', 'secret', 'bureau', 'office', 'sténo', 'steno',
+        'dactylo', 'correspond', 'relation', 'public relation'])) {
+      return (Icons.badge_rounded, const Color(0xFF5E35B1));
+    }
+    if (has(['sécur', 'secur', 'prévention', 'prevention', 'hygiène', 'hygiene', 'safety'])) {
+      return (Icons.health_and_safety_rounded, const Color(0xFF00897B));
+    }
+    if (has(['travaux', 'pratiq', 'practical', 'atelier', 'usinage', 'soudure', 'chaudronn', 'confection', 'couture'])) {
+      return (Icons.handyman_rounded, const Color(0xFF8D6E63));
+    }
+    if (has(['projet', 'project', 'étude de cas', 'etude de cas', 'research', 'synthèse', 'synthese', 'mémoire', 'memoire'])) {
+      return (Icons.assignment_rounded, const Color(0xFF455A64));
+    }
+    if (has(['dissert'])) return (Icons.edit_note_rounded, const Color(0xFF5E35B1));
     if (n.contains('social')) return (Icons.groups_rounded, const Color(0xFF00838F));
-    if (n.contains('art') || n.contains('musi') || n.contains('dessin')) return (Icons.palette_rounded, const Color(0xFFB23E8E));
-    if (n.contains('agri') || n.contains('agro') || n.contains('aqua')) return (Icons.agriculture_rounded, const Color(0xFF558B2F));
-    if (n.contains('sport') || n.contains('eps')) return (Icons.fitness_center_rounded, const Color(0xFFD84315));
+    if (has(['art', 'musi', 'dessin'])) return (Icons.palette_rounded, const Color(0xFFB23E8E));
+    if (has(['bois', 'wood', 'menuis', 'ébénist', 'ebenist'])) return (Icons.carpenter_rounded, const Color(0xFF8D6E63));
+    if (has(['sport', 'eps'])) return (Icons.fitness_center_rounded, const Color(0xFFD84315));
     return (Icons.description_rounded, const Color(0xFF6B7280));
   }
 

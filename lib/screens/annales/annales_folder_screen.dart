@@ -36,15 +36,17 @@ class _AnnalesFolderScreenState extends State<AnnalesFolderScreen> {
 
   ExamNode? get _node => widget.node ?? examTaxonomy[widget.folderName];
 
-  // On affiche une LISTE de dossiers uniquement quand les enfants sont des
-  // subdivisions (sous-dossiers) ou des SÉRIES (feuille AVEC code) : il faut
-  // alors choisir d'abord. Si les enfants sont des MATIÈRES (feuille SANS code,
-  // ex. GCE Science → Mathematics/Physics), on montre directement la grille de
-  // matières — une matière est terminale, pas une série.
+  // On affiche une LISTE de dossiers quand les enfants sont des subdivisions
+  // (sous-dossiers), des SÉRIES (feuille AVEC code) ou des SPÉCIALITÉS (feuille
+  // avec ses propres matières) : il faut alors choisir d'abord, puis on ouvre la
+  // grille de matières du nœud choisi. Si les enfants sont des MATIÈRES
+  // terminales (feuille sans code ni matières propres, ex. GCE Science →
+  // Mathematics/Physics), on montre directement la grille — une matière mène aux
+  // documents, pas à une autre grille.
   bool get _isGroupLevel {
     final n = _node;
     if (n == null || n.children.isEmpty) return false;
-    return n.children.any((c) => !c.isLeaf || c.code.isNotEmpty);
+    return n.children.any((c) => !c.isLeaf || c.code.isNotEmpty || c.subjects.isNotEmpty);
   }
 
   // Séries (feuilles AVEC code) → chips de filtre.
@@ -91,31 +93,37 @@ class _AnnalesFolderScreenState extends State<AnnalesFolderScreen> {
             style: body(12.5, color: OC.muted, weight: FontWeight.w700)),
         const SizedBox(height: 12),
         for (final child in n.children)
-          GestureDetector(
-            onTap: () => context.push('/annales/folder/${Uri.encodeComponent(child.label)}', extra: child),
-            child: Container(
-              margin: const EdgeInsets.only(bottom: 10),
-              padding: const EdgeInsets.all(13),
-              decoration: BoxDecoration(color: OC.paper, borderRadius: BorderRadius.circular(15), border: Border.all(color: OC.line, width: 1.5)),
-              child: Row(children: [
-                Container(
-                  width: 42, height: 42,
-                  decoration: BoxDecoration(color: OC.o50, borderRadius: BorderRadius.circular(12)),
-                  child: Icon(child.isLeaf ? Icons.description_outlined : Icons.folder_rounded, size: 21, color: OC.o600),
-                ),
-                const SizedBox(width: 12),
-                Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  Text(child.label, style: body(13.5, weight: FontWeight.w700)),
-                  if (!child.isLeaf) ...[
-                    const SizedBox(height: 2),
-                    Text('${child.children.length} élément${child.children.length > 1 ? 's' : ''}',
-                        style: body(11, color: OC.muted, weight: FontWeight.w600)),
-                  ],
-                ])),
-                Icon(Icons.chevron_right_rounded, size: 18, color: OC.muted),
-              ]),
-            ),
-          ),
+          Builder(builder: (context) {
+            // Un enfant « enterable » mène à une grille : sous-dossier ou
+            // spécialité/série porteuse de matières → icône dossier + compteur.
+            final count = child.children.isNotEmpty ? child.children.length : child.subjects.length;
+            final unit = child.children.isNotEmpty ? 'élément' : 'matière';
+            return GestureDetector(
+              onTap: () => context.push('/annales/folder/${Uri.encodeComponent(child.label)}', extra: child),
+              child: Container(
+                margin: const EdgeInsets.only(bottom: 10),
+                padding: const EdgeInsets.all(13),
+                decoration: BoxDecoration(color: OC.paper, borderRadius: BorderRadius.circular(15), border: Border.all(color: OC.line, width: 1.5)),
+                child: Row(children: [
+                  Container(
+                    width: 42, height: 42,
+                    decoration: BoxDecoration(color: OC.o50, borderRadius: BorderRadius.circular(12)),
+                    child: Icon(Icons.folder_rounded, size: 21, color: OC.o600),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    Text(child.label, style: body(13.5, weight: FontWeight.w700)),
+                    if (count > 0) ...[
+                      const SizedBox(height: 2),
+                      Text('$count $unit${count > 1 ? 's' : ''}',
+                          style: body(11, color: OC.muted, weight: FontWeight.w600)),
+                    ],
+                  ])),
+                  Icon(Icons.chevron_right_rounded, size: 18, color: OC.muted),
+                ]),
+              ),
+            );
+          }),
       ],
     );
   }
