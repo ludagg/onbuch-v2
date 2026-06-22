@@ -1,0 +1,235 @@
+{
+  "subject": "SVT",
+  "code": "SV",
+  "series": "C, D",
+  "chapters": [
+    {
+      "title": "Le brassage génétique et les lois de Mendel",
+      "lesson": "# Le brassage génétique et les lois de Mendel\n\n## Introduction\n\nLa **génétique** est la science qui étudie l'hérédité, c'est-à-dire la transmission des caractères des parents à leur descendance. À la méiose, lors de la formation des gamètes, les chromosomes (et donc les **gènes** qu'ils portent) sont redistribués : c'est le **brassage génétique**, à l'origine de la diversité des individus. Comprendre ce brassage permet d'expliquer la répartition des caractères dans les croisements, formalisée dès le XIXẛ siècle par le moine **Gregor Mendel** chez le pois.\n\n## I. Définitions essentielles\n\n- **Gène** : unité d'information héréditaire occupant une position précise (le **locus**) sur un chromosome.\n- **Allèle** : version d'un gène (ex. allèle « grain lisse » / allèle « grain ridé »).\n- **Génotype** : ensemble des allèles d'un individu (ex. *Aa*).\n- **Phénotype** : caractère observable résultant du génotype et du milieu.\n- **Homozygote** : deux allèles identiques (*AA* ou *aa*) ; **hétérozygote** : deux allèles différents (*Aa*).\n- **Allèle dominant** (noté en majuscule) : s'exprime même à l'état hétérozygote ; **allèle récessif** (minuscule) : ne s'exprime qu'à l'état homozygote.\n\n## II. La première loi de Mendel : uniformité de la F1\n\nEn croisant deux lignées pures (homozygotes) qui diffèrent par un caractère, on obtient une **première génération (F1) uniforme**. Exemple : pois à fleurs pourpres ($PP$) × pois à fleurs blanches ($pp$). Tous les descendants F1 sont $Pp$ : ils portent les deux allèles mais n'expriment que le caractère **dominant** (pourpre). C'est la **loi d'uniformité des hybrides de première génération**.\n\n## III. La deuxième loi de Mendel : disjonction des allèles\n\nEn croisant deux individus F1 entre eux ($Pp × Pp$), les allèles se **séparent** lors de la méiose (un gamète ne reçoit qu'un seul allèle). On obtient en F2 la proportion caractéristique **3/4 dominant : 1/4 récessif**, soit $\\frac{3}{4}$ de pourpres et $\\frac{1}{4}$ de blancs. Le tableau de croisement (échiquier de Punnett) donne les génotypes : $\\frac{1}{4} PP$, $\\frac{1}{2} Pp$, $\\frac{1}{4} pp$.\n\n## IV. La troisième loi : indépendance des caractères\n\nQuand deux gènes sont situés sur des **chromosomes différents** (non liés), leurs allèles se transmettent de façon **indépendante**. Le dihybridisme donne en F2 la proportion $9 : 3 : 3 : 1$. C'est le **brassage interchromosomique** : à la méiose, les paires de chromosomes homologues se répartissent au hasard. Quand deux gènes sont sur le **même chromosome** (gènes liés), le **brassage intrachromosomique** (crossing-over) peut recombiner les allèles, mais en proportions inégales.\n\n## V. Application : la drépanocytose\n\nLa **drépanocytose**, fréquente en Afrique centrale et au Cameroun, illustre la génétique humaine. Elle est due à un allèle récessif $S$ de l'hémoglobine. Un individu $SS$ est malade ; un individu $AS$ est sain mais **porteur sain** (hétérozygote). Le croisement de deux porteurs sains $AS × AS$ donne : $\\frac{1}{4} AA$ (sain), $\\frac{1}{2} AS$ (porteur), $\\frac{1}{4} SS$ (malade). Fait remarquable : l'allèle $S$ confère une **résistance au paludisme** à l'état hétérozygote, ce qui explique sa fréquence dans les zones impaludées.\n\n## VI. Schéma fonctionnel de la méiose et du brassage\n\nLors de la méiose, une cellule mère (2n) subit deux divisions successives donnant quatre gamètes (n). En première division, les chromosomes homologues se séparent (brassage interchromosomique) après d'éventuels crossing-over (brassage intrachromosomique). La **fécondation** combine ensuite au hasard gamète mâle et gamète femelle : c'est le brassage de la fécondation, source supplémentaire de diversité.\n\n## À retenir\n\n> - **3 lois de Mendel** : uniformité de la F1, disjonction (3:1), indépendance (9:3:3:1).\n> - Le brassage génétique a trois sources : **interchromosomique**, **intrachromosomique** (crossing-over), et **fécondation**.\n> - La drépanocytose ($AS × AS \\rightarrow \\frac{1}{4} SS$) est un exemple local de transmission d'un allèle récessif, lié à la résistance au paludisme.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Un individu hétérozygote possède :",
+            "options": ["Deux allèles identiques", "Deux allèles différents pour un même gène", "Un seul chromosome", "Aucun allèle"],
+            "answer": 1,
+            "explanation": "Hétérozygote signifie que les deux allèles d'un même gène sont différents (ex. Aa)."
+          },
+          {
+            "q": "La proportion phénotypique attendue en F2 lors d'un monohybridisme est :",
+            "options": ["1:1", "3:1", "9:3:3:1", "1:2:1"],
+            "answer": 1,
+            "explanation": "En F2 du croisement Aa x Aa, on obtient 3/4 dominants et 1/4 récessifs, soit 3:1."
+          },
+          {
+            "q": "Le croisement de deux porteurs sains AS x AS donne quelle proportion d'enfants malades (SS) ?",
+            "options": ["0", "1/4", "1/2", "3/4"],
+            "answer": 1,
+            "explanation": "AS x AS donne 1/4 AA, 1/2 AS, 1/4 SS : un quart des enfants sont drépanocytaires."
+          },
+          {
+            "q": "Le brassage intrachromosomique est dû à :",
+            "options": ["La fécondation", "La répartition au hasard des chromosomes homologues", "Le crossing-over", "La mitose"],
+            "answer": 2,
+            "explanation": "Le crossing-over (échange entre chromosomes homologues) réalise le brassage intrachromosomique."
+          },
+          {
+            "q": "La première loi de Mendel concerne :",
+            "options": ["L'uniformité de la F1", "La disjonction des allèles", "L'indépendance des gènes", "Le crossing-over"],
+            "answer": 0,
+            "explanation": "La première loi de Mendel est la loi d'uniformité des hybrides de première génération."
+          }
+        ]
+      }
+    },
+    {
+      "title": "L'immunologie : défenses de l'organisme",
+      "lesson": "# L'immunologie : les défenses de l'organisme\n\n## Introduction\n\nL'organisme est constamment exposé à des agents pathogènes (bactéries, virus, parasites comme le *Plasmodium* du paludisme). Le **système immunitaire** est l'ensemble des cellules et molécules qui protègent l'organisme en distinguant le **soi** du **non-soi**. On distingue deux grandes lignes de défense : l'**immunité innée** (immédiate, non spécifique) et l'**immunité adaptative** (spécifique, à mémoire).\n\n## I. Le soi et le non-soi\n\nChaque cellule porte à sa surface des marqueurs du **soi**, notamment les molécules du **CMH** (Complexe Majeur d'Histocompatibilité, ou système HLA chez l'homme). Toute molécule reconnue comme étrangère (**non-soi**) est un **antigène** capable de déclencher une réponse immunitaire. Cette reconnaissance est la base du rejet de greffe et de la tolérance.\n\n## II. L'immunité innée (non spécifique)\n\nC'est la **première ligne de défense**, immédiate et identique quel que soit l'agresseur. Elle comprend :\n- les **barrières naturelles** : peau, muqueuses, larmes, acidité gastrique ;\n- la **réaction inflammatoire** : rougeur, chaleur, gonflement, douleur, due à la libération d'**histamine** et à l'afflux de sang ;\n- la **phagocytose** : des cellules comme les **macrophages** et les **granulocytes** ingèrent et digèrent les microbes. La phagocytose se déroule en quatre étapes : adhésion, ingestion, digestion, rejet des déchets.\n\n## III. L'immunité adaptative (spécifique)\n\nQuand l'immunité innée est dépassée, l'immunité adaptative entre en jeu. Elle est **spécifique** d'un antigène donné et garde une **mémoire**. Elle repose sur les **lymphocytes**, produits dans la moelle osseuse.\n\n### 1. La réponse à médiation humorale (lymphocytes B)\n\nLes **lymphocytes B**, activés par un antigène, se multiplient et se différencient en **plasmocytes** sécrétant des **anticorps** (immunoglobulines). L'anticorps a une structure en Y avec des sites de fixation spécifiques de l'antigène. Le complexe **antigène-anticorps** neutralise l'agent pathogène et favorise sa destruction (complexe immun).\n\n### 2. La réponse à médiation cellulaire (lymphocytes T)\n\nLes **lymphocytes T cytotoxiques (LT8)** détruisent directement les cellules infectées (par un virus) ou cancéreuses. Les **lymphocytes T auxiliaires (LT4)**, véritables chefs d'orchestre, sécrètent des **interleukines** qui stimulent les LB et les LT8.\n\n## IV. Le VIH/SIDA : un enjeu de santé publique au Cameroun\n\nLe **VIH** (virus de l'immunodéficience humaine) infecte et détruit les **LT4**. Sans ces cellules coordinatrices, tout le système immunitaire s'effondre : c'est le **SIDA**, où l'organisme succombe à des **infections opportunistes** (tuberculose, candidoses). Cet exemple illustre le rôle central des LT4 et l'importance de la prévention.\n\n## V. La mémoire immunitaire et la vaccination\n\nAprès une première rencontre avec l'antigène, des **lymphocytes mémoire** persistent. Lors d'un second contact, la réponse est plus **rapide et plus intense** : c'est la base de la **vaccination**. Le vaccin (antigène atténué ou fragment) provoque une réponse primaire sans maladie, préparant l'organisme. Les campagnes camerounaises (rougeole, fièvre jaune, hépatite B) reposent sur ce principe.\n\n## À retenir\n\n> - Le système immunitaire distingue le **soi** (CMH) du **non-soi** (antigène).\n> - **Immunité innée** : immédiate, non spécifique (barrières, inflammation, phagocytose).\n> - **Immunité adaptative** : spécifique et à mémoire ; LB → anticorps (humorale), LT8 → cytotoxicité, LT4 → coordination.\n> - Le **VIH** détruit les LT4 → effondrement immunitaire (SIDA). La **vaccination** exploite la mémoire immunitaire.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Les molécules du CMH (HLA) servent à reconnaître :",
+            "options": ["Le non-soi uniquement", "Le soi de l'organisme", "Les anticorps", "Les virus seulement"],
+            "answer": 1,
+            "explanation": "Le CMH porte les marqueurs du soi, permettant à l'organisme de distinguer ses propres cellules."
+          },
+          {
+            "q": "La phagocytose fait partie de :",
+            "options": ["L'immunité adaptative", "L'immunité innée non spécifique", "La réponse humorale", "La vaccination"],
+            "answer": 1,
+            "explanation": "La phagocytose par les macrophages est une défense de l'immunité innée, non spécifique."
+          },
+          {
+            "q": "Les anticorps sont sécrétés par :",
+            "options": ["Les macrophages", "Les plasmocytes (issus des LB)", "Les LT8", "Les hématies"],
+            "answer": 1,
+            "explanation": "Les lymphocytes B se différencient en plasmocytes qui sécrètent les anticorps."
+          },
+          {
+            "q": "Le VIH détruit principalement :",
+            "options": ["Les hématies", "Les lymphocytes T4 auxiliaires", "Les plasmocytes", "Les neurones"],
+            "answer": 1,
+            "explanation": "Le VIH infecte les LT4, désorganisant la coordination immunitaire et conduisant au SIDA."
+          },
+          {
+            "q": "La vaccination repose sur :",
+            "options": ["La phagocytose immédiate", "La mémoire immunitaire", "Le rejet de greffe", "L'inflammation"],
+            "answer": 1,
+            "explanation": "Le vaccin déclenche une réponse primaire et la formation de lymphocytes mémoire."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La communication nerveuse : neurone et réflexe",
+      "lesson": "# La communication nerveuse : neurone et réflexe\n\n## Introduction\n\nLe système nerveux assure la **coordination** de l'organisme : il reçoit des informations, les traite et commande des réponses. Son unité fonctionnelle est le **neurone**, cellule spécialisée dans la conduction de messages sous forme de signaux électriques. L'exemple le plus simple de réponse coordonnée est le **réflexe**, comme le retrait rapide de la main qui touche une marmite brûlante.\n\n## I. Le neurone : structure et fonction\n\nLe neurone comprend :\n- un **corps cellulaire** (péricaryon) contenant le noyau ;\n- des **dendrites**, prolongements courts qui reçoivent l'information ;\n- un **axone**, prolongement long qui conduit le message vers d'autres cellules, souvent gainé de **myéline** (qui accélère la conduction).\n\nLes neurones communiquent entre eux au niveau des **synapses**.\n\n## II. Le message nerveux : nature électrique\n\nAu repos, la membrane du neurone présente une **polarisation** : l'intérieur est négatif par rapport à l'extérieur (potentiel de repos d'environ $-70$ mV). Une stimulation suffisante (au-delà d'un **seuil**) déclenche un **potentiel d'action** (PA) : inversion brutale et transitoire de la polarité (**dépolarisation**) suivie d'un retour au repos (**repolarisation**).\n\nLe message nerveux obéit à la **loi du tout ou rien** : soit le seuil est atteint et un PA d'amplitude constante naît, soit rien ne se passe. L'intensité du stimulus est codée par la **fréquence** des PA, non par leur amplitude. Le PA se propage le long de l'axone sans s'affaiblir.\n\n## III. La synapse : transmission chimique\n\nLa synapse est la zone de jonction entre deux neurones. Le message électrique ne traverse pas la **fente synaptique** : il est relayé par un **neurotransmetteur** (acétylcholine, par exemple). À l'arrivée du PA, des vésicules libèrent le neurotransmetteur, qui se fixe sur des récepteurs de la membrane post-synaptique, générant un nouveau message. La transmission est donc **unidirectionnelle**.\n\n## IV. L'arc réflexe\n\nLe **réflexe myotatique** (réflexe rotulien) illustre la voie nerveuse la plus simple. Il met en jeu un **arc réflexe** comprenant cinq éléments :\n1. le **récepteur** sensoriel (fuseau neuromusculaire) ;\n2. la **voie afférente** (nerf sensitif) qui conduit le message vers le centre ;\n3. le **centre nerveux** (moelle épinière) qui traite l'information ;\n4. la **voie efférente** (nerf moteur) qui conduit la commande ;\n5. l'**effecteur** (muscle) qui exécute la réponse.\n\nLe réflexe est **involontaire**, **rapide** et **stéréotypé** : il assure une protection immédiate (retrait face à la douleur).\n\n## V. Exemple fonctionnel\n\nLorsqu'un élève marche pieds nus et pose le pied sur une épine, le récepteur cutané transmet le message par le nerf sensitif jusqu'à la moelle épinière, qui commande aussitôt le muscle fléchisseur : le pied se retire avant même que la douleur soit consciemment perçue par le cerveau. Le centre nerveux médullaire suffit ; le cerveau n'intervient qu'ensuite (perception de la douleur).\n\n## À retenir\n\n> - Le **neurone** (corps cellulaire, dendrites, axone) conduit un message électrique.\n> - Le **potentiel d'action** obéit à la **loi du tout ou rien** ; l'intensité est codée par la **fréquence**.\n> - La **synapse** assure une transmission **chimique** et **unidirectionnelle** via un neurotransmetteur.\n> - L'**arc réflexe** comporte 5 éléments : récepteur, voie afférente, centre nerveux, voie efférente, effecteur.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Le potentiel de repos d'un neurone est d'environ :",
+            "options": ["+70 mV", "-70 mV", "0 mV", "-30 mV"],
+            "answer": 1,
+            "explanation": "Au repos, l'intérieur du neurone est négatif, soit environ -70 mV."
+          },
+          {
+            "q": "La loi du tout ou rien signifie que :",
+            "options": ["Le PA varie en amplitude selon le stimulus", "Le PA naît seulement si le seuil est atteint, avec une amplitude constante", "Tous les neurones réagissent ensemble", "Le message est chimique"],
+            "answer": 1,
+            "explanation": "Si le seuil est atteint, un PA d'amplitude constante apparaît ; sinon rien ne se passe."
+          },
+          {
+            "q": "Au niveau de la synapse, le message est transmis par :",
+            "options": ["Un courant électrique direct", "Un neurotransmetteur chimique", "La myéline", "Le sang"],
+            "answer": 1,
+            "explanation": "La transmission synaptique est chimique : un neurotransmetteur traverse la fente synaptique."
+          },
+          {
+            "q": "Quel est le centre nerveux du réflexe myotatique ?",
+            "options": ["Le cerveau", "Le cervelet", "La moelle épinière", "Le muscle"],
+            "answer": 2,
+            "explanation": "Le réflexe myotatique est un réflexe médullaire : son centre est la moelle épinière."
+          },
+          {
+            "q": "Dans l'arc réflexe, la voie efférente conduit le message :",
+            "options": ["Du récepteur vers le centre", "Du centre vers l'effecteur", "Entre deux récepteurs", "Du cerveau vers la peau"],
+            "answer": 1,
+            "explanation": "La voie efférente (motrice) conduit la commande du centre nerveux vers l'effecteur (muscle)."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La reproduction humaine et la régulation hormonale",
+      "lesson": "# La reproduction humaine et la régulation hormonale\n\n## Introduction\n\nLa **reproduction** assure la perpétuation de l'espèce. Chez l'homme, elle est étroitement contrôlée par des **hormones**, messagers chimiques transportés par le sang. La compréhension de cette régulation éclaire la **contraception**, la **procréation** et la santé reproductive, enjeux importants au Cameroun.\n\n## I. Les hormones : définition\n\nUne **hormone** est une substance sécrétée par une **glande endocrine**, déversée dans le sang et agissant à distance sur des **cellules cibles** porteuses de récepteurs spécifiques. La régulation hormonale repose souvent sur un système de **rétrocontrôle** (feedback) qui stabilise les taux.\n\n## II. L'appareil reproducteur masculin\n\nLes **testicules** assurent une double fonction :\n- la fonction **exocrine** : production continue de **spermatozoïdes** (spermatogenèse) ;\n- la fonction **endocrine** : sécrétion de **testostérone** par les cellules de Leydig.\n\nLa testostérone développe les caractères sexuels secondaires et entretient la production de spermatozoïdes. Le **complexe hypothalamo-hypophysaire** contrôle les testicules via les hormones **FSH** et **LH**. Un **rétrocontrôle négatif** de la testostérone maintient une production stable.\n\n## III. L'appareil reproducteur féminin et le cycle\n\nLes **ovaires** assurent aussi une double fonction : production des **ovocytes** et sécrétion des hormones **œstrogènes** et **progestérone**. L'activité ovarienne est **cyclique** (cycle d'environ 28 jours).\n\n### 1. Le cycle ovarien\n\nIl comprend une **phase folliculaire** (maturation d'un follicule sécrétant des œstrogènes), l'**ovulation** vers le 14ṉ jour (expulsion de l'ovocyte), puis la **phase lutéale** (le corps jaune sécrète progestérone et œstrogènes).\n\n### 2. Le cycle utérin\n\nLa muqueuse utérine (**endomètre**) s'épaissit sous l'effet des hormones ovariennes pour préparer une éventuelle nidation. En l'absence de fécondation, le corps jaune régresse, les hormones chutent et la muqueuse se desquame : ce sont les **règles** (menstruations).\n\n## IV. La régulation par rétrocontrôle\n\nLe complexe hypothalamo-hypophysaire sécrète FSH et LH qui stimulent les ovaires. En retour, les hormones ovariennes exercent un **rétrocontrôle** sur l'hypophyse : négatif pendant l'essentiel du cycle, il devient **positif** juste avant l'ovulation (le taux élevé d'œstrogènes provoque un pic de **LH** déclenchant l'ovulation). C'est un bel exemple de boucle de régulation.\n\n## V. Maîtrise de la procréation\n\n- La **contraception hormonale** (pilule) apporte œstrogènes et progestérone de synthèse qui, par rétrocontrôle négatif, **bloquent l'ovulation**.\n- La **fécondation** unit spermatozoïde et ovocyte dans la trompe, formant un **zygote** qui s'implante dans l'endomètre (**nidation**).\n- La compréhension du cycle permet aussi la prévention des grossesses précoces et des IST, sujets de santé publique au Cameroun.\n\n## À retenir\n\n> - Une **hormone** agit à distance sur des cellules cibles via le sang.\n> - **Testicules** : spermatozoïdes + testostérone ; **ovaires** : ovocytes + œstrogènes/progestérone.\n> - Le cycle féminin : phase folliculaire → **ovulation** (J14, pic de LH) → phase lutéale → règles.\n> - La régulation se fait par **rétrocontrôle** (négatif, puis positif avant l'ovulation). La pilule bloque l'ovulation par rétrocontrôle négatif.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "L'hormone masculine sécrétée par les testicules est :",
+            "options": ["La progestérone", "La testostérone", "L'œstrogène", "L'insuline"],
+            "answer": 1,
+            "explanation": "Les cellules de Leydig des testicules sécrètent la testostérone."
+          },
+          {
+            "q": "L'ovulation se produit généralement vers :",
+            "options": ["Le 1er jour du cycle", "Le 7e jour", "Le 14e jour", "Le 28e jour"],
+            "answer": 2,
+            "explanation": "Dans un cycle de 28 jours, l'ovulation a lieu vers le 14e jour."
+          },
+          {
+            "q": "Le pic de quelle hormone déclenche l'ovulation ?",
+            "options": ["La FSH", "La LH", "La progestérone", "L'insuline"],
+            "answer": 1,
+            "explanation": "Un taux élevé d'œstrogènes provoque un pic de LH qui déclenche l'ovulation."
+          },
+          {
+            "q": "Les règles (menstruations) correspondent à :",
+            "options": ["La maturation du follicule", "La desquamation de l'endomètre", "L'ovulation", "La nidation"],
+            "answer": 1,
+            "explanation": "En l'absence de fécondation, la chute hormonale entraîne la desquamation de la muqueuse utérine : les règles."
+          },
+          {
+            "q": "La pilule contraceptive bloque l'ovulation par :",
+            "options": ["Un rétrocontrôle négatif sur l'hypophyse", "La destruction des ovaires", "L'augmentation de la FSH", "Un effet sur les testicules"],
+            "answer": 0,
+            "explanation": "Les hormones de synthèse exercent un rétrocontrôle négatif qui empêche le pic de LH et donc l'ovulation."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La tectonique des plaques et la géologie",
+      "lesson": "# La tectonique des plaques et la géologie\n\n## Introduction\n\nLa **géologie** étudie la structure de la Terre et son histoire. La **théorie de la tectonique des plaques**, élaborée au XXṉ siècle à partir de la **dérive des continents** d'Alfred Wegener, explique de nombreux phénomènes : séismes, volcanisme, formation des montagnes. Le Cameroun, traversé par la **« ligne du Cameroun »** (chaîne volcanique du mont Cameroun à l'île de Bioko), en est une illustration vivante.\n\n## I. La structure interne de la Terre\n\nLa Terre est formée de couches concentriques :\n- la **croûte** (continentale ou océanique), mince et rigide ;\n- le **manteau**, épais, en partie ductile ;\n- le **noyau** (externe liquide, interne solide).\n\nLa **lithosphère** (croûte + partie supérieure rigide du manteau) repose sur l'**asthénosphère**, plus ductile, sur laquelle elle peut « glisser ».\n\n## II. Les plaques lithosphériques\n\nLa lithosphère est fragmentée en une douzaine de **plaques** rigides qui se déplacent de quelques centimètres par an. Ce mouvement est entraîné par les **courants de convection** du manteau. Les frontières entre plaques sont les zones les plus actives du globe.\n\n## III. Les trois types de frontières\n\n### 1. Les frontières divergentes (dorsales)\n\nDeux plaques s'**écartent** ; le magma remonte et crée de la nouvelle croûte océanique : c'est l'**accrétion** (ex. dorsale médio-atlantique). On y observe l'**expansion océanique**.\n\n### 2. Les frontières convergentes (subduction et collision)\n\nDeux plaques se **rapprochent**. Si une plaque océanique dense plonge sous une autre, c'est la **subduction**, qui engendre volcans et séismes profonds. Si deux continents se rencontrent, c'est la **collision**, qui forme des chaînes de montagnes (ex. Himalaya).\n\n### 3. Les frontières transformantes (coulissage)\n\nDeux plaques **glissent** l'une contre l'autre, provoquant de violents séismes (ex. faille de San Andreas).\n\n## IV. Preuves de la tectonique des plaques\n\nWegener et ses successeurs ont rassemblé plusieurs **preuves** :\n- la **complémentarité des côtes** (Afrique et Amérique du Sud s'emboîtent) ;\n- les **fossiles identiques** de part et d'autre de l'Atlantique ;\n- la continuité des **chaînes de montagnes** entre continents ;\n- les **anomalies magnétiques** symétriques de part et d'autre des dorsales, qui datent la croûte océanique et prouvent l'expansion.\n\n## V. Application : la ligne du Cameroun\n\nLa **ligne volcanique du Cameroun** est un alignement de volcans (mont Cameroun, mont Manengouba, monts Bamboutos) et de lacs de cratère. Le **mont Cameroun**, encore actif, témoigne d'un **volcanisme** intraplaque lié à un point chaud. La catastrophe du **lac Nyos** (1986), où un dégagement de CO₂ d'origine volcanique fit de nombreuses victimes, rappelle l'importance de la surveillance géologique.\n\n## À retenir\n\n> - La **lithosphère** (rigide) est fragmentée en **plaques** mobiles glissant sur l'**asthénosphère**, mues par la **convection** mantellique.\n> - Trois types de frontières : **divergentes** (dorsales, accrétion), **convergentes** (subduction/collision), **transformantes** (coulissage).\n> - Les **preuves** : emboîtement des côtes, fossiles communs, anomalies magnétiques.\n> - Le **mont Cameroun** et le **lac Nyos** illustrent le volcanisme local.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "La lithosphère repose et se déplace sur :",
+            "options": ["Le noyau", "L'asthénosphère", "La croûte océanique", "Le manteau inférieur solide"],
+            "answer": 1,
+            "explanation": "La lithosphère rigide glisse sur l'asthénosphère plus ductile."
+          },
+          {
+            "q": "Le moteur du déplacement des plaques est :",
+            "options": ["Le vent", "Les marées", "Les courants de convection du manteau", "La rotation de la Lune"],
+            "answer": 2,
+            "explanation": "Les courants de convection dans le manteau entraînent le mouvement des plaques."
+          },
+          {
+            "q": "À une dorsale océanique, les plaques :",
+            "options": ["Se rapprochent", "S'écartent et créent de la croûte", "Glissent latéralement", "Sont immobiles"],
+            "answer": 1,
+            "explanation": "Aux dorsales (frontières divergentes), les plaques s'écartent et une nouvelle croûte se forme par accrétion."
+          },
+          {
+            "q": "La subduction correspond à :",
+            "options": ["L'écartement de deux plaques", "Une plaque océanique plongeant sous une autre", "Le glissement horizontal", "La formation d'une dorsale"],
+            "answer": 1,
+            "explanation": "La subduction est l'enfoncement d'une plaque océanique dense sous une autre plaque."
+          },
+          {
+            "q": "Quelle preuve appuie l'expansion océanique ?",
+            "options": ["La couleur des roches", "Les anomalies magnétiques symétriques de part et d'autre des dorsales", "La hauteur des montagnes", "La salinité de la mer"],
+            "answer": 1,
+            "explanation": "Les bandes d'anomalies magnétiques symétriques datent la croûte et prouvent l'expansion à partir des dorsales."
+          }
+        ]
+      }
+    },
+    {
+      "title": "L'évolution des espèces et les mécanismes de la spéciation",
+      "lesson": "# L'évolution des espèces et les mécanismes de la spéciation\n\n## Introduction\n\nL'**évolution** est la transformation des espèces vivantes au cours du temps. Loin d'être figé, le monde vivant change : des espèces apparaissent, se transforment, ou disparaissent. La théorie de l'évolution, fondée par **Charles Darwin** (1859) avec le concept de **sélection naturelle**, est aujourd'hui au cœur de la biologie. Elle s'appuie sur de nombreuses preuves, dont l'exemple local de la **drépanocytose** et de la résistance au paludisme.\n\n## I. Les preuves de l'évolution\n\nPlusieurs faisceaux d'arguments établissent la réalité de l'évolution :\n- les **fossiles** (paléontologie) montrent une succession des formes au fil des âges et des **formes intermédiaires** ;\n- l'**anatomie comparée** révèle des **organes homologues** : même plan d'organisation, origine commune (ex. membre antérieur de l'homme, de la chauve-souris et de la baleine) ;\n- l'**embryologie comparée** : les embryons de vertébrés se ressemblent fortement à un stade précoce ;\n- la **biologie moléculaire** : l'universalité de l'ADN et du code génétique, et la comparaison des séquences, indiquent une **parenté** entre tous les êtres vivants.\n\n## II. La variabilité, matière première de l'évolution\n\nLes individus d'une même espèce présentent des **variations** héréditaires. Leur source est double :\n- les **mutations**, modifications de l'ADN qui créent de nouveaux **allèles** ;\n- le **brassage génétique** lors de la méiose et de la fécondation, qui recombine ces allèles.\n\nC'est sur cette **diversité génétique** que les mécanismes évolutifs vont agir.\n\n## III. Les mécanismes de l'évolution\n\n### 1. La sélection naturelle (Darwin)\n\nDans un milieu donné, les individus les mieux **adaptés** survivent et se reproduisent davantage : ils transmettent plus leurs allèles. Au fil des générations, la fréquence des allèles favorables augmente. C'est la **sélection naturelle**.\n\nExemple local : dans les zones impaludées du Cameroun, les porteurs sains $AS$ de la drépanocytose résistent mieux au paludisme que les individus $AA$. L'allèle $S$ est donc maintenu dans la population malgré le désavantage des malades $SS$ : c'est un **avantage sélectif de l'hétérozygote**.\n\n### 2. La dérive génétique\n\nDans une **petite population**, le hasard peut modifier la fréquence des allèles d'une génération à l'autre, indépendamment de leur valeur adaptative : c'est la **dérive génétique**.\n\n## IV. La notion d'espèce et la spéciation\n\nUne **espèce** est un ensemble d'individus **interféconds** donnant une descendance elle-même féconde. Deux populations d'une même espèce peuvent être séparées (par une barrière géographique, par exemple). **Isolées**, elles accumulent des différences génétiques jusqu'à devenir **incapables de se reproduire entre elles** : une nouvelle espèce naît. C'est la **spéciation**. L'**isolement reproductif** est le critère fondamental de la séparation des espèces.\n\n## V. L'origine commune et l'arbre du vivant\n\nL'ensemble de ces mécanismes conduit à une **diversification** progressive à partir d'ancêtres communs. On représente ces parentés par un **arbre phylogénétique** (arbre du vivant), où chaque branchement correspond à un ancêtre commun. L'homme partage ainsi un ancêtre commun récent avec les autres **primates**, comme le montrent les similitudes anatomiques et moléculaires.\n\n## À retenir\n\n> - L'**évolution** est prouvée par les fossiles, l'anatomie et l'embryologie comparées, et la biologie moléculaire (universalité de l'ADN).\n> - La **variabilité** provient des **mutations** et du **brassage génétique**.\n> - Deux moteurs : la **sélection naturelle** (Darwin) et la **dérive génétique** (hasard, petites populations).\n> - La **spéciation** repose sur l'**isolement reproductif**. Tous les vivants partagent une **origine commune** (arbre phylogénétique).",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Des organes homologues sont des organes :",
+            "options": ["De fonctions identiques mais d'origines différentes", "De même plan d'organisation et d'origine commune", "Présents uniquement chez les plantes", "Sans rapport entre espèces"],
+            "answer": 1,
+            "explanation": "Les organes homologues ont le même plan d'organisation et témoignent d'une origine commune."
+          },
+          {
+            "q": "La matière première de l'évolution provient surtout :",
+            "options": ["De la respiration", "Des mutations et du brassage génétique", "De la photosynthèse", "De la digestion"],
+            "answer": 1,
+            "explanation": "Les mutations créent de nouveaux allèles et le brassage les recombine : c'est la source de variabilité."
+          },
+          {
+            "q": "Pourquoi l'allèle S de la drépanocytose se maintient-il en zone impaludée ?",
+            "options": ["Il n'a aucun effet", "Les porteurs sains AS résistent mieux au paludisme", "Il rend immortel", "Il empêche toute maladie"],
+            "answer": 1,
+            "explanation": "L'hétérozygote AS résiste mieux au paludisme : c'est un avantage sélectif qui maintient l'allèle S."
+          },
+          {
+            "q": "Le critère fondamental qui définit une espèce est :",
+            "options": ["La couleur", "La taille", "L'interfécondité (descendance féconde)", "Le lieu de vie"],
+            "answer": 2,
+            "explanation": "Une espèce regroupe des individus interféconds donnant une descendance elle-même féconde."
+          },
+          {
+            "q": "La dérive génétique agit surtout :",
+            "options": ["Dans les très grandes populations", "Dans les petites populations, par le hasard", "Uniquement par sélection", "Sur les organes homologues"],
+            "answer": 1,
+            "explanation": "La dérive génétique modifie les fréquences alléliques par hasard, surtout dans les petites populations."
+          }
+        ]
+      }
+    }
+  ]
+}

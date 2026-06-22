@@ -1,0 +1,235 @@
+{
+  "subject": "Physique-Chimie",
+  "code": "PC",
+  "series": "C, D, E",
+  "chapters": [
+    {
+      "title": "Lois de Newton et applications à la mécanique",
+      "lesson": "# Lois de Newton et applications à la mécanique\n\n## Introduction\n\nLa mécanique newtonienne décrit le mouvement des corps soumis à des forces. Au Cameroun, ce chapitre est central au programme MINESEC de Terminale (séries C, D, E) car il fonde l'étude des mouvements (chute libre, mouvement d'un projectile, satellites). Comprendre pourquoi un fruit tombe d'un manguier ou comment lancer une pierre exige les trois lois de Newton.\n\n## 1. Référentiel et système\n\nUn **système** est le corps (ou ensemble de corps) que l'on étudie. Un **référentiel** est un solide de référence muni d'une horloge. Le référentiel **terrestre** (lié à la Terre) est galiléen pour les mouvements de courte durée. Le **centre d'inertie** $G$ d'un système est son barycentre, où l'on applique le principe fondamental.\n\n## 2. Première loi : principe d'inertie\n\nDans un référentiel galiléen, si la somme des forces extérieures appliquées à un système est nulle, son centre d'inertie est soit au repos, soit en **mouvement rectiligne uniforme** :\n\n$$\\sum \\vec{F}_{ext} = \\vec{0} \\iff \\vec{v}_G = \\overrightarrow{cste}$$\n\n## 3. Deuxième loi : principe fondamental de la dynamique (PFD)\n\nDans un référentiel galiléen, la somme des forces extérieures est égale au produit de la masse par l'accélération du centre d'inertie :\n\n$$\\sum \\vec{F}_{ext} = m\\,\\vec{a}_G$$\n\nL'accélération $\\vec{a}_G$ s'exprime en $m\\cdot s^{-2}$, la masse $m$ en $kg$, et les forces en newtons $N$.\n\n## 4. Troisième loi : actions réciproques\n\nSi un corps A exerce sur un corps B une force $\\vec{F}_{A/B}$, alors B exerce sur A une force opposée :\n\n$$\\vec{F}_{A/B} = -\\vec{F}_{B/A}$$\n\n## 5. Chute libre verticale\n\nUn corps en **chute libre** n'est soumis qu'à son poids $\\vec{P} = m\\vec{g}$. Le PFD donne :\n\n$$m\\vec{g} = m\\vec{a} \\implies \\vec{a} = \\vec{g}$$\n\nL'accélération est donc indépendante de la masse (au Cameroun, $g \\approx 9{,}8\\ m\\cdot s^{-2}$). Avec un axe vertical orienté vers le bas et un lâcher sans vitesse initiale :\n\n$$v(t) = g\\,t \\qquad y(t) = \\frac{1}{2} g\\,t^2$$\n\n## 6. Exemple résolu : chute d'une noix de coco\n\nUne noix se détache d'un cocotier à une hauteur $h = 20\\ m$. Déterminons la durée de chute et la vitesse au sol ($g = 9{,}8\\ m\\cdot s^{-2}$).\n\nDe $h = \\frac{1}{2} g\\,t^2$, on tire :\n\n$$t = \\sqrt{\\frac{2h}{g}} = \\sqrt{\\frac{2 \\times 20}{9{,}8}} \\approx 2{,}0\\ s$$\n\nLa vitesse au sol :\n\n$$v = g\\,t = 9{,}8 \\times 2{,}0 \\approx 19{,}6\\ m\\cdot s^{-1}$$\n\n## 7. Exemple résolu : projectile\n\nUn élève lance une pierre avec une vitesse initiale $v_0 = 15\\ m\\cdot s^{-1}$ faisant un angle $\\alpha = 30°$ avec l'horizontale. Les équations horaires (origine au point de lancer) sont :\n\n$$x(t) = v_0\\cos\\alpha \\cdot t \\qquad y(t) = -\\frac{1}{2} g\\,t^2 + v_0\\sin\\alpha \\cdot t$$\n\nLa trajectoire obtenue en éliminant $t$ est une **parabole** :\n\n$$y = -\\frac{g}{2 v_0^2 \\cos^2\\alpha}\\,x^2 + x\\tan\\alpha$$\n\n## Schéma décrit\n\nImaginez un axe vertical (Oy) et horizontal (Ox). Le vecteur poids $\\vec{P}$ pointe toujours vers le bas. Pour le projectile, la vitesse initiale part du point O en faisant l'angle $\\alpha$, et la trajectoire dessine un arc de parabole qui retombe au sol.\n\n## À retenir\n\n> - **1ère loi** : $\\sum \\vec{F}_{ext} = \\vec{0} \\iff \\vec{v}_G = \\overrightarrow{cste}$.\n> - **2ème loi (PFD)** : $\\sum \\vec{F}_{ext} = m\\vec{a}_G$.\n> - **3ème loi** : $\\vec{F}_{A/B} = -\\vec{F}_{B/A}$.\n> - En chute libre, $\\vec{a} = \\vec{g}$, indépendante de la masse.\n> - Un projectile décrit une parabole dans le champ de pesanteur uniforme.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Que stipule le principe fondamental de la dynamique dans un référentiel galiléen ?",
+            "options": ["La somme des forces est nulle", "La somme des forces extérieures égale m·a du centre d'inertie", "La vitesse est constante", "L'énergie cinétique se conserve"],
+            "answer": 1,
+            "explanation": "Le PFD (2ème loi de Newton) s'écrit ∑F_ext = m·a_G : la somme des forces extérieures égale le produit de la masse par l'accélération du centre d'inertie."
+          },
+          {
+            "q": "En chute libre, l'accélération d'un corps dépend de :",
+            "options": ["Sa masse", "Sa forme uniquement", "Rien : elle vaut g pour tous les corps", "Sa vitesse initiale"],
+            "answer": 2,
+            "explanation": "En chute libre, seul le poids agit : mg = ma donc a = g. L'accélération est indépendante de la masse."
+          },
+          {
+            "q": "Une noix tombe d'une hauteur de 20 m. Sa durée de chute (g = 9,8 m/s²) est environ :",
+            "options": ["1,0 s", "2,0 s", "4,0 s", "0,5 s"],
+            "answer": 1,
+            "explanation": "h = ½gt² donne t = √(2h/g) = √(40/9,8) ≈ 2,0 s."
+          },
+          {
+            "q": "Selon la troisième loi de Newton, si A exerce F sur B, alors B exerce sur A :",
+            "options": ["La même force F", "Une force opposée -F", "Une force deux fois plus grande", "Aucune force"],
+            "answer": 1,
+            "explanation": "Principe des actions réciproques : F(A/B) = -F(B/A), forces opposées de même intensité."
+          },
+          {
+            "q": "La trajectoire d'un projectile dans le champ de pesanteur uniforme est :",
+            "options": ["Un cercle", "Une droite", "Une parabole", "Une hyperbole"],
+            "answer": 2,
+            "explanation": "En éliminant le temps entre x(t) et y(t), on obtient une équation du second degré en x : la trajectoire est une parabole."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Champ électrostatique et champ magnétique",
+      "lesson": "# Champ électrostatique et champ magnétique\n\n## Introduction\n\nLes champs sont des régions de l'espace où une grandeur physique est définie en tout point. En Terminale (MINESEC), on étudie le **champ électrostatique** (créé par des charges) et le **champ magnétique** (créé par des aimants ou des courants). Ces notions expliquent le fonctionnement des moteurs, des téléviseurs et des accélérateurs de particules.\n\n## 1. Champ électrostatique\n\nUne charge ponctuelle $Q$ crée en un point M situé à la distance $r$ un champ électrostatique :\n\n$$E = \\frac{1}{4\\pi\\varepsilon_0} \\cdot \\frac{|Q|}{r^2} = k\\frac{|Q|}{r^2}$$\n\navec $k = 9 \\times 10^9\\ N\\cdot m^2\\cdot C^{-2}$. Le champ $\\vec{E}$ s'exprime en $V\\cdot m^{-1}$ (ou $N\\cdot C^{-1}$).\n\nUne charge $q$ placée dans ce champ subit la **force de Coulomb** :\n\n$$\\vec{F} = q\\,\\vec{E}$$\n\n## 2. Champ uniforme entre armatures\n\nEntre deux plaques planes parallèles séparées d'une distance $d$ et soumises à une tension $U$, le champ est uniforme :\n\n$$E = \\frac{U}{d}$$\n\nLe vecteur $\\vec{E}$ est dirigé de la plaque positive vers la plaque négative.\n\n## 3. Mouvement d'une particule chargée\n\nUne particule de charge $q$ et de masse $m$, soumise au seul champ $\\vec{E}$, a une accélération :\n\n$$\\vec{a} = \\frac{q\\,\\vec{E}}{m}$$\n\nC'est le principe de la déviation des électrons dans un tube cathodique.\n\n## 4. Champ magnétique\n\nUn aimant ou un courant crée un champ magnétique $\\vec{B}$ (en tesla, $T$). Les lignes de champ vont du pôle Nord vers le pôle Sud à l'extérieur de l'aimant. Pour une bobine plate de $N$ spires de rayon $R$ parcourue par un courant $I$, au centre :\n\n$$B = \\frac{\\mu_0 N I}{2R}$$\n\navec $\\mu_0 = 4\\pi \\times 10^{-7}\\ T\\cdot m\\cdot A^{-1}$.\n\n## 5. Force de Laplace\n\nUn conducteur de longueur $\\ell$ parcouru par un courant $I$ et placé dans un champ $\\vec{B}$ subit la force de Laplace :\n\n$$F = B\\,I\\,\\ell\\,\\sin\\theta$$\n\noù $\\theta$ est l'angle entre le conducteur et $\\vec{B}$. Le sens est donné par la **règle des trois doigts de la main droite**.\n\n## 6. Force de Lorentz\n\nUne particule de charge $q$ se déplaçant à la vitesse $\\vec{v}$ dans $\\vec{B}$ subit :\n\n$$\\vec{F} = q\\,\\vec{v} \\wedge \\vec{B} \\qquad F = |q|\\,v\\,B\\,\\sin\\alpha$$\n\nQuand $\\vec{v} \\perp \\vec{B}$, la trajectoire est un **cercle** de rayon :\n\n$$R = \\frac{m\\,v}{|q|\\,B}$$\n\n## 7. Exemple résolu\n\nUn proton ($q = 1{,}6\\times10^{-19}\\ C$, $m = 1{,}67\\times10^{-27}\\ kg$) entre perpendiculairement dans un champ $B = 0{,}5\\ T$ à la vitesse $v = 10^6\\ m\\cdot s^{-1}$. Le rayon de sa trajectoire circulaire :\n\n$$R = \\frac{m\\,v}{q\\,B} = \\frac{1{,}67\\times10^{-27} \\times 10^6}{1{,}6\\times10^{-19} \\times 0{,}5} \\approx 2{,}1\\times10^{-2}\\ m$$\n\nsoit environ $2{,}1\\ cm$.\n\n## Schéma décrit\n\nPour la force de Laplace : pouce = sens du courant $I$, index = champ $\\vec{B}$, majeur = force $\\vec{F}$, les trois doigts de la main droite étant perpendiculaires entre eux.\n\n## À retenir\n\n> - Champ d'une charge : $E = k\\dfrac{|Q|}{r^2}$ ; force : $\\vec{F} = q\\vec{E}$.\n> - Champ uniforme : $E = \\dfrac{U}{d}$.\n> - Force de Laplace : $F = B\\,I\\,\\ell\\sin\\theta$.\n> - Force de Lorentz : $\\vec{F} = q\\,\\vec{v}\\wedge\\vec{B}$, trajectoire circulaire si $\\vec{v}\\perp\\vec{B}$, de rayon $R = \\dfrac{mv}{|q|B}$.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Le champ électrostatique entre deux armatures planes séparées de d sous tension U vaut :",
+            "options": ["E = U·d", "E = U/d", "E = d/U", "E = U²/d"],
+            "answer": 1,
+            "explanation": "Pour un champ uniforme entre deux plaques parallèles, E = U/d, exprimé en V/m."
+          },
+          {
+            "q": "La force de Laplace sur un conducteur de longueur ℓ parcouru par I dans B (angle θ) est :",
+            "options": ["F = B·I·ℓ·sinθ", "F = B/(I·ℓ)", "F = B·I/ℓ", "F = I·ℓ/B"],
+            "answer": 0,
+            "explanation": "La force de Laplace vaut F = B·I·ℓ·sinθ, maximale quand le conducteur est perpendiculaire à B."
+          },
+          {
+            "q": "Une particule chargée entrant perpendiculairement dans un champ magnétique uniforme décrit :",
+            "options": ["Une droite", "Une parabole", "Un cercle", "Une ellipse"],
+            "answer": 2,
+            "explanation": "La force de Lorentz est perpendiculaire à la vitesse : la trajectoire est circulaire de rayon R = mv/(qB)."
+          },
+          {
+            "q": "La force subie par une charge q dans un champ électrostatique E est :",
+            "options": ["F = q/E", "F = E/q", "F = q·E", "F = q·E²"],
+            "answer": 2,
+            "explanation": "La force électrostatique (de Coulomb) sur une charge q vaut F = q·E."
+          },
+          {
+            "q": "L'unité du champ magnétique B dans le système international est :",
+            "options": ["Le volt par mètre", "Le tesla", "Le newton", "Le weber"],
+            "answer": 1,
+            "explanation": "Le champ magnétique B s'exprime en tesla (T). Le V/m est l'unité du champ électrique."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Oscillations électriques : le circuit RLC",
+      "lesson": "# Oscillations électriques : le circuit RLC\n\n## Introduction\n\nUn circuit comportant une bobine d'inductance $L$, un condensateur de capacité $C$ et un conducteur ohmique de résistance $R$ est le siège d'**oscillations électriques**. Ce chapitre du programme MINESEC de Terminale relie l'électricité aux phénomènes oscillatoires et prépare à l'étude des ondes radio, fondamentales pour les télécommunications au Cameroun.\n\n## 1. Le condensateur\n\nUn condensateur stocke une charge $q$ proportionnelle à la tension $u_C$ à ses bornes :\n\n$$q = C\\,u_C$$\n\nL'intensité du courant est $i = \\dfrac{dq}{dt} = C\\dfrac{du_C}{dt}$. L'énergie emmagasinée :\n\n$$E_C = \\frac{1}{2} C\\,u_C^2$$\n\n## 2. La bobine\n\nUne bobine idéale d'inductance $L$ s'oppose aux variations de courant. La tension à ses bornes :\n\n$$u_L = L\\frac{di}{dt}$$\n\nL'énergie stockée dans la bobine :\n\n$$E_L = \\frac{1}{2} L\\,i^2$$\n\n## 3. Oscillations libres dans le circuit LC (R = 0)\n\nEn appliquant la loi des mailles à un circuit LC idéal, on obtient l'équation différentielle :\n\n$$\\frac{d^2 u_C}{dt^2} + \\frac{1}{LC}\\,u_C = 0$$\n\nLa solution est une oscillation sinusoïdale :\n\n$$u_C(t) = U_m \\cos\\left(\\frac{2\\pi}{T_0}\\,t + \\varphi\\right)$$\n\nde **période propre** :\n\n$$T_0 = 2\\pi\\sqrt{LC}$$\n\n## 4. Conservation de l'énergie\n\nDans le circuit LC idéal, l'énergie totale se conserve, oscillant entre le condensateur et la bobine :\n\n$$E = \\frac{1}{2} C\\,u_C^2 + \\frac{1}{2} L\\,i^2 = \\text{constante}$$\n\n## 5. Le circuit RLC : oscillations amorties\n\nAvec une résistance $R$, l'équation devient :\n\n$$L\\frac{d^2 q}{dt^2} + R\\frac{dq}{dt} + \\frac{q}{C} = 0$$\n\nSelon la valeur de $R$, on distingue trois régimes :\n- **pseudo-périodique** (faible $R$) : oscillations dont l'amplitude décroît ;\n- **critique** (R = R critique) : retour à l'équilibre le plus rapide sans oscillation ;\n- **apériodique** (forte $R$) : retour lent sans oscillation.\n\nL'énergie est dissipée par effet Joule dans la résistance.\n\n## 6. Exemple résolu\n\nUn circuit LC comporte $L = 0{,}10\\ H$ et $C = 10\\ \\mu F = 10^{-5}\\ F$. Calculons la période propre :\n\n$$T_0 = 2\\pi\\sqrt{LC} = 2\\pi\\sqrt{0{,}10 \\times 10^{-5}} = 2\\pi\\sqrt{10^{-6}}$$\n\n$$T_0 = 2\\pi \\times 10^{-3} \\approx 6{,}3\\times10^{-3}\\ s = 6{,}3\\ ms$$\n\nLa fréquence propre :\n\n$$f_0 = \\frac{1}{T_0} \\approx 159\\ Hz$$\n\n## Schéma décrit\n\nDans le circuit LC, imaginez le condensateur initialement chargé. Il se décharge dans la bobine (le courant croît), puis la bobine recharge le condensateur en sens inverse : l'énergie oscille en permanence, comme un pendule électrique.\n\n## À retenir\n\n> - Condensateur : $q = Cu_C$, $E_C = \\frac{1}{2}Cu_C^2$.\n> - Bobine : $u_L = L\\frac{di}{dt}$, $E_L = \\frac{1}{2}Li^2$.\n> - Période propre LC : $T_0 = 2\\pi\\sqrt{LC}$.\n> - Énergie totale conservée dans LC idéal ; dissipée par effet Joule dans RLC.\n> - Trois régimes RLC : pseudo-périodique, critique, apériodique.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "La période propre d'un circuit LC idéal est donnée par :",
+            "options": ["T₀ = 2π·LC", "T₀ = 2π√(LC)", "T₀ = 2π/√(LC)", "T₀ = √(2πLC)"],
+            "answer": 1,
+            "explanation": "La période propre d'un oscillateur LC vaut T₀ = 2π√(LC)."
+          },
+          {
+            "q": "L'énergie emmagasinée dans une bobine d'inductance L parcourue par un courant i est :",
+            "options": ["E = ½L·i", "E = ½L·i²", "E = L·i²", "E = ½i²/L"],
+            "answer": 1,
+            "explanation": "L'énergie magnétique stockée dans une bobine vaut E_L = ½L·i²."
+          },
+          {
+            "q": "Dans un circuit RLC, lorsque R est faible, le régime observé est :",
+            "options": ["Apériodique", "Critique", "Pseudo-périodique", "Sinusoïdal entretenu"],
+            "answer": 2,
+            "explanation": "Pour une faible résistance, le régime est pseudo-périodique : oscillations dont l'amplitude décroît exponentiellement."
+          },
+          {
+            "q": "Pour L = 0,10 H et C = 10 µF, la période propre vaut environ :",
+            "options": ["6,3 ms", "63 ms", "0,63 ms", "6,3 s"],
+            "answer": 0,
+            "explanation": "T₀ = 2π√(0,10 × 10⁻⁵) = 2π√(10⁻⁶) = 2π × 10⁻³ ≈ 6,3 ms."
+          },
+          {
+            "q": "Dans un circuit RLC, l'énergie est dissipée par :",
+            "options": ["Le condensateur", "La bobine", "Effet Joule dans la résistance", "Rayonnement de la bobine"],
+            "answer": 2,
+            "explanation": "La résistance dissipe l'énergie sous forme de chaleur par effet Joule, ce qui amortit les oscillations."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Phénomènes ondulatoires : propagation et interférences",
+      "lesson": "# Phénomènes ondulatoires : propagation et interférences\n\n## Introduction\n\nUne **onde** est la propagation d'une perturbation sans transport de matière, mais avec transport d'énergie. Le son d'un balafon, les rides à la surface de l'eau d'un fleuve, la lumière : tous sont des ondes. Ce chapitre du programme MINESEC de Terminale étudie la propagation, la périodicité et les interférences.\n\n## 1. Onde progressive\n\nUne onde mécanique progressive se propage dans un milieu matériel à la **célérité** $v$. La perturbation au point M à la distance $x$ de la source reproduit, avec un **retard** $\\tau$, le mouvement de la source :\n\n$$\\tau = \\frac{x}{v}$$\n\nOn distingue les ondes **transversales** (perturbation perpendiculaire à la propagation, ex. corde) et **longitudinales** (perturbation parallèle, ex. son).\n\n## 2. Onde progressive périodique\n\nUne onde périodique se reproduit identique à elle-même après une **période** $T$. Sa **fréquence** est :\n\n$$f = \\frac{1}{T}$$\n\nLa **longueur d'onde** $\\lambda$ est la distance parcourue pendant une période :\n\n$$\\lambda = v\\,T = \\frac{v}{f}$$\n\nC'est la plus petite distance séparant deux points vibrant en phase.\n\n## 3. Notion de phase\n\nDeux points distants de $d$ vibrent :\n- **en phase** si $d = k\\lambda$ ($k$ entier),\n- **en opposition de phase** si $d = (2k+1)\\dfrac{\\lambda}{2}$.\n\n## 4. Diffraction\n\nQuand une onde rencontre une ouverture ou un obstacle de taille comparable à $\\lambda$, elle est **diffractée** (elle s'étale). Le phénomène est d'autant plus marqué que $\\lambda$ est grande devant la taille de l'ouverture. La diffraction prouve la nature ondulatoire de la lumière.\n\n## 5. Interférences\n\nDeux ondes de même fréquence issues de sources **cohérentes** se superposent. Au point M, la **différence de marche** est :\n\n$$\\delta = d_2 - d_1$$\n\n- **Interférence constructive** (amplitude maximale) : $\\delta = k\\lambda$.\n- **Interférence destructive** (amplitude minimale) : $\\delta = (2k+1)\\dfrac{\\lambda}{2}$.\n\nDans le dispositif des fentes de Young, l'**interfrange** (distance entre deux franges brillantes consécutives) sur un écran à la distance $D$ pour des fentes séparées de $a$ est :\n\n$$i = \\frac{\\lambda D}{a}$$\n\n## 6. Exemple résolu\n\nLe son se propage dans l'air à $v = 340\\ m\\cdot s^{-1}$. Pour une note de fréquence $f = 440\\ Hz$ (le « la »), la longueur d'onde est :\n\n$$\\lambda = \\frac{v}{f} = \\frac{340}{440} \\approx 0{,}77\\ m$$\n\n**Young** : avec $\\lambda = 600\\ nm = 6\\times10^{-7}\\ m$, $a = 0{,}5\\ mm = 5\\times10^{-4}\\ m$, $D = 2\\ m$ :\n\n$$i = \\frac{\\lambda D}{a} = \\frac{6\\times10^{-7} \\times 2}{5\\times10^{-4}} = 2{,}4\\times10^{-3}\\ m = 2{,}4\\ mm$$\n\n## Schéma décrit\n\nFentes de Young : une source lumineuse éclaire deux fentes fines très proches ; sur un écran lointain apparaissent des franges alternativement brillantes et sombres, régulièrement espacées de l'interfrange $i$.\n\n## À retenir\n\n> - Onde = propagation d'une perturbation sans transport de matière.\n> - $\\lambda = vT = \\dfrac{v}{f}$ : longueur d'onde.\n> - Interférence constructive : $\\delta = k\\lambda$ ; destructive : $\\delta = (2k+1)\\frac{\\lambda}{2}$.\n> - Interfrange de Young : $i = \\dfrac{\\lambda D}{a}$.\n> - Diffraction et interférences prouvent la nature ondulatoire de la lumière.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "La longueur d'onde λ d'une onde périodique est reliée à la célérité v et à la période T par :",
+            "options": ["λ = v/T", "λ = v·T", "λ = T/v", "λ = v·T²"],
+            "answer": 1,
+            "explanation": "La longueur d'onde est la distance parcourue pendant une période : λ = v·T = v/f."
+          },
+          {
+            "q": "Un son de fréquence 440 Hz se propage à 340 m/s. Sa longueur d'onde vaut environ :",
+            "options": ["0,77 m", "1,3 m", "7,7 m", "0,077 m"],
+            "answer": 0,
+            "explanation": "λ = v/f = 340/440 ≈ 0,77 m."
+          },
+          {
+            "q": "Une interférence est constructive lorsque la différence de marche δ vaut :",
+            "options": ["δ = (2k+1)λ/2", "δ = kλ", "δ = λ/4", "δ = kλ/3"],
+            "answer": 1,
+            "explanation": "L'interférence est constructive (amplitude maximale) quand δ = kλ, avec k entier."
+          },
+          {
+            "q": "Dans le dispositif des fentes de Young, l'interfrange est donné par :",
+            "options": ["i = a·D/λ", "i = λ·a/D", "i = λ·D/a", "i = λ/(a·D)"],
+            "answer": 2,
+            "explanation": "L'interfrange vaut i = λD/a, où D est la distance à l'écran et a l'écartement des fentes."
+          },
+          {
+            "q": "Le phénomène de diffraction est d'autant plus marqué que :",
+            "options": ["La longueur d'onde est petite devant l'ouverture", "La longueur d'onde est grande devant l'ouverture", "La fréquence est élevée", "Le milieu est dense"],
+            "answer": 1,
+            "explanation": "La diffraction est notable quand λ est comparable ou grande devant la taille de l'ouverture."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Physique nucléaire : radioactivité et réactions nucléaires",
+      "lesson": "# Physique nucléaire : radioactivité et réactions nucléaires\n\n## Introduction\n\nLe noyau atomique, malgré sa petitesse, recèle une énergie colossale. La **radioactivité**, découverte par Becquerel et les Curie, explique la datation des fossiles, la médecine nucléaire et la production d'énergie. Ce chapitre clôt souvent le programme MINESEC de Physique de Terminale.\n\n## 1. Constitution du noyau\n\nUn noyau est noté $^{A}_{Z}X$ où :\n- $Z$ = nombre de **protons** (numéro atomique),\n- $A$ = nombre de **nucléons** (protons + neutrons),\n- $N = A - Z$ = nombre de **neutrons**.\n\nDes **isotopes** ont le même $Z$ mais des $A$ différents.\n\n## 2. Lois de conservation (lois de Soddy)\n\nLors d'une réaction nucléaire, il y a conservation du nombre de nucléons $A$ et de la charge $Z$ :\n\n$$\\sum A_{\\text{avant}} = \\sum A_{\\text{après}} \\qquad \\sum Z_{\\text{avant}} = \\sum Z_{\\text{après}}$$\n\n## 3. Types de radioactivité\n\n- **Radioactivité $\\alpha$** : émission d'un noyau d'hélium $^{4}_{2}He$ :\n\n$$^{A}_{Z}X \\rightarrow\\ ^{A-4}_{Z-2}Y +\\ ^{4}_{2}He$$\n\n- **Radioactivité $\\beta^-$** : un neutron se transforme en proton avec émission d'un électron :\n\n$$^{A}_{Z}X \\rightarrow\\ ^{A}_{Z+1}Y +\\ ^{0}_{-1}e$$\n\n- **Radioactivité $\\beta^+$** : un proton devient neutron avec émission d'un positon :\n\n$$^{A}_{Z}X \\rightarrow\\ ^{A}_{Z-1}Y +\\ ^{0}_{+1}e$$\n\n- L'émission $\\gamma$ accompagne ces désintégrations (désexcitation du noyau).\n\n## 4. Loi de décroissance radioactive\n\nLe nombre de noyaux $N$ restant à l'instant $t$ décroît exponentiellement :\n\n$$N(t) = N_0\\,e^{-\\lambda t}$$\n\noù $\\lambda$ est la **constante radioactive** ($s^{-1}$). La **demi-vie** (période radioactive) $t_{1/2}$ est le temps au bout duquel la moitié des noyaux s'est désintégrée :\n\n$$t_{1/2} = \\frac{\\ln 2}{\\lambda} \\approx \\frac{0{,}693}{\\lambda}$$\n\nL'**activité** (en becquerels, $Bq$) : $\\mathcal{A} = \\lambda N$.\n\n## 5. Énergie de liaison et équivalence masse-énergie\n\nLa relation d'Einstein lie masse et énergie :\n\n$$E = m\\,c^2$$\n\nLe **défaut de masse** $\\Delta m$ d'un noyau libère l'énergie de liaison :\n\n$$E_\\ell = \\Delta m\\,c^2$$\n\nLes réactions de **fission** (noyau lourd qui se brise) et de **fusion** (noyaux légers qui s'unissent) libèrent d'énormes énergies.\n\n## 6. Exemple résolu\n\nLe carbone 14 a une demi-vie $t_{1/2} = 5730\\ ans$. Un fossile contient $N = N_0/4$. Déterminons son âge.\n\nComme $N = N_0/4 = N_0/2^2$, deux demi-vies se sont écoulées :\n\n$$t = 2 \\times t_{1/2} = 2 \\times 5730 = 11460\\ ans$$\n\nCalcul de la constante radioactive :\n\n$$\\lambda = \\frac{\\ln 2}{t_{1/2}} = \\frac{0{,}693}{5730} \\approx 1{,}21\\times10^{-4}\\ \\text{an}^{-1}$$\n\n## Schéma décrit\n\nLa courbe de décroissance $N(t)$ part de $N_0$ et décroît exponentiellement : à $t_{1/2}$ il reste $N_0/2$, à $2t_{1/2}$ il reste $N_0/4$, et ainsi de suite, sans jamais atteindre exactement zéro.\n\n## À retenir\n\n> - Noyau $^{A}_{Z}X$ : $Z$ protons, $A$ nucléons, $N = A-Z$ neutrons.\n> - Lois de Soddy : conservation de $A$ et de $Z$.\n> - Décroissance : $N(t) = N_0 e^{-\\lambda t}$ ; demi-vie $t_{1/2} = \\dfrac{\\ln 2}{\\lambda}$.\n> - Équivalence masse-énergie : $E = mc^2$ ; énergie de liaison $E_\\ell = \\Delta m\\,c^2$.\n> - Fission et fusion libèrent une énergie nucléaire considérable.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Dans le noyau noté ⁴²₂₀Ca, le nombre de neutrons est :",
+            "options": ["20", "22", "42", "62"],
+            "answer": 1,
+            "explanation": "N = A - Z = 42 - 20 = 22 neutrons."
+          },
+          {
+            "q": "Lors d'une radioactivité α, le noyau émet :",
+            "options": ["Un électron", "Un positon", "Un noyau d'hélium ⁴₂He", "Un photon gamma"],
+            "answer": 2,
+            "explanation": "La radioactivité α correspond à l'émission d'un noyau d'hélium ⁴₂He."
+          },
+          {
+            "q": "La demi-vie t₁/₂ est reliée à la constante radioactive λ par :",
+            "options": ["t₁/₂ = λ·ln2", "t₁/₂ = ln2/λ", "t₁/₂ = λ/ln2", "t₁/₂ = 1/λ²"],
+            "answer": 1,
+            "explanation": "La demi-vie vaut t₁/₂ = ln2/λ ≈ 0,693/λ."
+          },
+          {
+            "q": "Un fossile contient N₀/4 de carbone 14 (t₁/₂ = 5730 ans). Son âge est :",
+            "options": ["5730 ans", "11460 ans", "2865 ans", "22920 ans"],
+            "answer": 1,
+            "explanation": "N₀/4 = N₀/2² correspond à 2 demi-vies : t = 2 × 5730 = 11460 ans."
+          },
+          {
+            "q": "La relation d'Einstein liant masse et énergie s'écrit :",
+            "options": ["E = mc", "E = mc²", "E = m²c", "E = ½mc²"],
+            "answer": 1,
+            "explanation": "L'équivalence masse-énergie s'écrit E = mc², où c est la célérité de la lumière."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Acides, bases et dosages acido-basiques",
+      "lesson": "# Acides, bases et dosages acido-basiques\n\n## Introduction\n\nLa chimie des acides et des bases gouverne d'innombrables phénomènes : l'acidité des sols agricoles au Cameroun, la conservation des aliments, la digestion. Ce chapitre du programme MINESEC de Terminale (séries C, D, E) introduit le pH, les couples acido-basiques et la technique du dosage.\n\n## 1. Définitions de Brønsted\n\nUn **acide** est une espèce capable de **céder un proton** $H^+$ ; une **base** est une espèce capable de **capter un proton**. À chaque acide correspond une base conjuguée, formant un **couple acide/base** $AH/A^-$ :\n\n$$AH \\rightleftharpoons A^- + H^+$$\n\n## 2. Le pH d'une solution\n\nLe pH mesure l'acidité d'une solution aqueuse :\n\n$$pH = -\\log[H_3O^+] \\qquad [H_3O^+] = 10^{-pH}$$\n\n- Solution **acide** : $pH < 7$ ;\n- **neutre** : $pH = 7$ ;\n- **basique** : $pH > 7$ (à 25 °C).\n\n## 3. Produit ionique de l'eau\n\nDans toute solution aqueuse à 25 °C :\n\n$$K_e = [H_3O^+][OH^-] = 10^{-14} \\qquad pK_e = 14$$\n\n## 4. Acides forts et acides faibles\n\nUn **acide fort** (ex. $HCl$) se dissocie totalement : $[H_3O^+] = C$, donc $pH = -\\log C$. Un **acide faible** (ex. acide éthanoïque $CH_3COOH$) ne se dissocie que partiellement ; on définit alors la **constante d'acidité** :\n\n$$K_a = \\frac{[A^-][H_3O^+]}{[AH]} \\qquad pK_a = -\\log K_a$$\n\nL'équation de Henderson-Hasselbalch :\n\n$$pH = pK_a + \\log\\frac{[A^-]}{[AH]}$$\n\n## 5. Dosage acido-basique\n\nDoser, c'est déterminer la concentration inconnue d'une espèce en la faisant réagir avec une solution de concentration connue (le titrant). À l'**équivalence**, les réactifs sont en proportions stœchiométriques :\n\n$$C_A V_A = C_B V_{B,eq}$$\n\n(pour un acide et une base monovalents). L'équivalence se repère par un saut de pH (suivi pH-métrique) ou un changement de couleur d'un **indicateur coloré** approprié.\n\n## 6. Exemple résolu\n\nOn dose $V_A = 20\\ mL$ d'acide chlorhydrique par une solution de soude $C_B = 0{,}10\\ mol\\cdot L^{-1}$. L'équivalence est atteinte pour $V_{B,eq} = 15\\ mL$. Calculons $C_A$ :\n\n$$C_A = \\frac{C_B\\,V_{B,eq}}{V_A} = \\frac{0{,}10 \\times 15}{20} = 0{,}075\\ mol\\cdot L^{-1}$$\n\nLe pH initial de cet acide fort :\n\n$$pH = -\\log C_A = -\\log(0{,}075) \\approx 1{,}1$$\n\n## Schéma décrit\n\nCourbe de dosage acide fort/base forte : le pH part d'une valeur basse (≈ 1), augmente lentement, puis fait un **saut brusque et vertical** au voisinage de l'équivalence (pH = 7 pour acide fort/base forte), avant de se stabiliser à une valeur élevée.\n\n## À retenir\n\n> - Acide = donneur de $H^+$ ; base = accepteur de $H^+$ (Brønsted).\n> - $pH = -\\log[H_3O^+]$ ; $[H_3O^+] = 10^{-pH}$.\n> - Produit ionique : $K_e = [H_3O^+][OH^-] = 10^{-14}$ à 25 °C.\n> - Constante d'acidité : $K_a = \\dfrac{[A^-][H_3O^+]}{[AH]}$ ; $pH = pK_a + \\log\\dfrac{[A^-]}{[AH]}$.\n> - À l'équivalence d'un dosage : $C_A V_A = C_B V_{B,eq}$.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Selon Brønsted, un acide est une espèce capable de :",
+            "options": ["Capter un proton H⁺", "Céder un proton H⁺", "Céder un électron", "Capter un électron"],
+            "answer": 1,
+            "explanation": "Selon Brønsted, un acide cède un proton H⁺ ; une base le capte."
+          },
+          {
+            "q": "Une solution a un pH = 3. La concentration en ions H₃O⁺ vaut :",
+            "options": ["10⁻³ mol/L", "3 mol/L", "10³ mol/L", "10⁻¹¹ mol/L"],
+            "answer": 0,
+            "explanation": "[H₃O⁺] = 10⁻ᵖᴴ = 10⁻³ mol/L."
+          },
+          {
+            "q": "Le produit ionique de l'eau Ke à 25 °C vaut :",
+            "options": ["10⁻⁷", "10⁻¹⁴", "10⁻⁷ × 2", "14"],
+            "answer": 1,
+            "explanation": "Ke = [H₃O⁺][OH⁻] = 10⁻¹⁴ à 25 °C, soit pKe = 14."
+          },
+          {
+            "q": "À l'équivalence d'un dosage acide fort/base forte (espèces monovalentes) :",
+            "options": ["C_A·V_A = C_B·V_B,eq", "C_A·V_B = C_B·V_A", "C_A = C_B", "V_A = V_B"],
+            "answer": 0,
+            "explanation": "À l'équivalence, les réactifs sont en proportions stœchiométriques : C_A·V_A = C_B·V_B,eq."
+          },
+          {
+            "q": "On dose 20 mL d'acide par de la soude à 0,10 mol/L ; équivalence à 15 mL. La concentration de l'acide vaut :",
+            "options": ["0,075 mol/L", "0,10 mol/L", "0,13 mol/L", "0,15 mol/L"],
+            "answer": 0,
+            "explanation": "C_A = C_B·V_B,eq/V_A = (0,10 × 15)/20 = 0,075 mol/L."
+          }
+        ]
+      }
+    }
+  ]
+}

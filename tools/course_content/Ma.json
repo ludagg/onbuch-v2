@@ -1,0 +1,235 @@
+{
+  "subject": "Mathématiques",
+  "code": "Ma",
+  "series": "C, D, E, TI",
+  "chapters": [
+    {
+      "title": "Nombres complexes",
+      "lesson": "# Nombres complexes\n\n## Introduction\n\nCertaines équations comme $x^2 + 1 = 0$ n'ont pas de solution dans $\\mathbb{R}$. Pour y remédier, on introduit un nombre imaginaire $i$ vérifiant $i^2 = -1$. On construit alors l'ensemble des **nombres complexes** $\\mathbb{C}$, outil fondamental en Terminale C, D, E et TI, utilisé en géométrie, trigonométrie et en sciences de l'ingénieur.\n\n## 1. Forme algébrique\n\nTout nombre complexe $z$ s'écrit de façon unique sous la forme :\n$$z = a + ib \\quad \\text{avec } a, b \\in \\mathbb{R}$$\n- $a = \\operatorname{Re}(z)$ est la **partie réelle**,\n- $b = \\operatorname{Im}(z)$ est la **partie imaginaire**.\n\nSi $b = 0$, $z$ est réel ; si $a = 0$, $z$ est un **imaginaire pur**.\n\n**Conjugué** : $\\bar{z} = a - ib$. On a $z\\bar{z} = a^2 + b^2$, $\\overline{z+z'} = \\bar{z} + \\bar{z'}$ et $\\overline{zz'} = \\bar{z}\\,\\bar{z'}$.\n\n**Module** : $|z| = \\sqrt{a^2 + b^2}$. Il vérifie $|z|^2 = z\\bar{z}$, $|zz'| = |z||z'|$ et l'inégalité triangulaire $|z+z'| \\le |z| + |z'|$.\n\n## 2. Représentation géométrique\n\nDans le plan muni d'un repère orthonormé $(O, \\vec{u}, \\vec{v})$, à $z = a + ib$ on associe le **point image** $M(a, b)$ et le **vecteur** $\\overrightarrow{OM}$. Le module $|z|$ est la distance $OM$.\n\n## 3. Forme trigonométrique et exponentielle\n\nPour $z \\neq 0$, on appelle **argument** de $z$ tout réel $\\theta$ tel que :\n$$\\cos\\theta = \\frac{a}{|z|}, \\qquad \\sin\\theta = \\frac{b}{|z|}$$\nOn note $\\theta = \\arg(z)$ (modulo $2\\pi$). Alors :\n$$z = |z|(\\cos\\theta + i\\sin\\theta) = |z|\\,e^{i\\theta}$$\n\n**Propriétés des arguments** : $\\arg(zz') = \\arg(z) + \\arg(z')$ et $\\arg\\left(\\dfrac{z}{z'}\\right) = \\arg(z) - \\arg(z')$.\n\n**Formule de Moivre** : pour tout $n \\in \\mathbb{Z}$,\n$$\\big(\\cos\\theta + i\\sin\\theta\\big)^n = \\cos(n\\theta) + i\\sin(n\\theta)$$\n\n## 4. Exemple résolu\n\nSoit $z = 1 + i\\sqrt{3}$. Déterminons sa forme trigonométrique.\n\n$|z| = \\sqrt{1^2 + (\\sqrt{3})^2} = \\sqrt{4} = 2$.\n\n$\\cos\\theta = \\dfrac{1}{2}$ et $\\sin\\theta = \\dfrac{\\sqrt{3}}{2}$, donc $\\theta = \\dfrac{\\pi}{3}$.\n\nAinsi $z = 2\\left(\\cos\\dfrac{\\pi}{3} + i\\sin\\dfrac{\\pi}{3}\\right) = 2e^{i\\pi/3}$.\n\nCalculons $z^6$ avec Moivre : $z^6 = 2^6 e^{i\\,6\\cdot \\pi/3} = 64\\,e^{i2\\pi} = 64$.\n\n## 5. Équations du second degré\n\nL'équation $az^2 + bz + c = 0$ ($a \\neq 0$, coefficients réels) de discriminant $\\Delta = b^2 - 4ac < 0$ admet deux solutions complexes conjuguées :\n$$z = \\frac{-b \\pm i\\sqrt{-\\Delta}}{2a}$$\n\n**Exemple** : $z^2 - 2z + 5 = 0$. Ici $\\Delta = 4 - 20 = -16 < 0$, donc $z = \\dfrac{2 \\pm i\\sqrt{16}}{2} = 1 \\pm 2i$.\n\n> **À retenir**\n> - $i^2 = -1$ ; $z = a + ib$ (forme algébrique).\n> - $|z| = \\sqrt{a^2+b^2}$, $z\\bar{z} = |z|^2$.\n> - Forme exponentielle $z = re^{i\\theta}$ ; Moivre pour les puissances.\n> - Si $\\Delta < 0$, deux racines complexes conjuguées.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Quel est le module du nombre complexe $z = 3 + 4i$ ?",
+            "options": ["5", "7", "25", "\\sqrt{7}"],
+            "answer": 0,
+            "explanation": "|z| = sqrt(3^2 + 4^2) = sqrt(9+16) = sqrt(25) = 5."
+          },
+          {
+            "q": "Le conjugué de $z = -2 + 5i$ est :",
+            "options": ["2 - 5i", "-2 - 5i", "2 + 5i", "-2 + 5i"],
+            "answer": 1,
+            "explanation": "Le conjugué de a + ib est a - ib, donc -2 - 5i."
+          },
+          {
+            "q": "Une solution de l'équation $z^2 + 9 = 0$ est :",
+            "options": ["3", "-3", "3i", "9i"],
+            "answer": 2,
+            "explanation": "z^2 = -9 donne z = ±3i (car (3i)^2 = -9)."
+          },
+          {
+            "q": "Un argument de $z = 1 + i$ est :",
+            "options": ["\\pi/6", "\\pi/4", "\\pi/3", "\\pi/2"],
+            "answer": 1,
+            "explanation": "|z| = sqrt(2), cos(theta)=sin(theta)=1/sqrt(2), donc theta = pi/4."
+          },
+          {
+            "q": "D'après la formule de Moivre, $(\\cos\\theta + i\\sin\\theta)^3$ vaut :",
+            "options": ["\\cos(3\\theta) + i\\sin(3\\theta)", "3\\cos\\theta + 3i\\sin\\theta", "\\cos\\theta^3 + i\\sin\\theta^3", "\\cos(\\theta/3) + i\\sin(\\theta/3)"],
+            "answer": 0,
+            "explanation": "Moivre : (cos theta + i sin theta)^n = cos(n theta) + i sin(n theta), ici n = 3."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Suites numériques",
+      "lesson": "# Suites numériques\n\n## Introduction\n\nUne **suite numérique** est une fonction de $\\mathbb{N}$ (ou d'une partie de $\\mathbb{N}$) vers $\\mathbb{R}$ qui à chaque entier $n$ associe un réel noté $u_n$. Les suites modélisent des phénomènes d'évolution discrète : croissance démographique d'une ville comme Douala, remboursement d'un prêt, intérêts d'une épargne.\n\n## 1. Définitions et modes de génération\n\n- **Explicite** : $u_n = f(n)$, par exemple $u_n = 2n + 1$.\n- **Récurrente** : $u_{n+1} = f(u_n)$ avec un terme initial $u_0$.\n\nUne suite est **majorée** s'il existe $M$ tel que $u_n \\le M$ pour tout $n$ ; **minorée** si $u_n \\ge m$ ; **bornée** si elle est majorée et minorée.\n\n**Monotonie** : la suite est croissante si $u_{n+1} \\ge u_n$ pour tout $n$, décroissante si $u_{n+1} \\le u_n$. On étudie le signe de $u_{n+1} - u_n$.\n\n## 2. Suites arithmétiques\n\nUne suite est **arithmétique** de raison $r$ si $u_{n+1} = u_n + r$. Terme général :\n$$u_n = u_0 + nr = u_p + (n-p)r$$\nSomme des termes :\n$$S = u_0 + u_1 + \\dots + u_n = (n+1)\\,\\frac{u_0 + u_n}{2}$$\n\n## 3. Suites géométriques\n\nUne suite est **géométrique** de raison $q$ si $u_{n+1} = q\\,u_n$. Terme général :\n$$u_n = u_0\\,q^n = u_p\\,q^{n-p}$$\nSomme (si $q \\neq 1$) :\n$$S = u_0 + u_1 + \\dots + u_n = u_0\\,\\frac{1 - q^{n+1}}{1 - q}$$\n\n## 4. Limite d'une suite\n\nLa suite $(u_n)$ **converge** vers $\\ell$ si $u_n$ se rapproche autant qu'on veut de $\\ell$ quand $n \\to +\\infty$ ; on note $\\lim u_n = \\ell$. Sinon elle **diverge**.\n\n**Résultat fondamental** : pour une suite géométrique de raison $q$,\n$$\\lim_{n\\to+\\infty} q^n = \\begin{cases} 0 & \\text{si } -1 < q < 1 \\\\ 1 & \\text{si } q = 1 \\\\ +\\infty & \\text{si } q > 1 \\end{cases}$$\n\n**Théorème de convergence monotone** : toute suite croissante et majorée converge ; toute suite décroissante et minorée converge.\n\n## 5. Exemple résolu\n\nUne population de poissons dans un étang à Maroua croît de $5\\%$ par an et perd $200$ poissons par pêche. Si $u_n$ est l'effectif l'année $n$ avec $u_0 = 10000$ :\n$$u_{n+1} = 1{,}05\\,u_n - 200$$\n\nPosons $v_n = u_n - 4000$ (point fixe : $x = 1{,}05x - 200 \\Rightarrow x = 4000$). Alors :\n$$v_{n+1} = u_{n+1} - 4000 = 1{,}05u_n - 200 - 4000 = 1{,}05(u_n - 4000) = 1{,}05\\,v_n$$\n$(v_n)$ est géométrique de raison $1{,}05$, $v_0 = 6000$. Donc $v_n = 6000 \\times 1{,}05^n$ et :\n$$u_n = 4000 + 6000 \\times 1{,}05^n$$\nComme $1{,}05 > 1$, $\\lim u_n = +\\infty$ : la population croît indéfiniment.\n\n## 6. Raisonnement par récurrence\n\nPour démontrer qu'une propriété $P(n)$ est vraie pour tout $n \\ge n_0$ :\n1. **Initialisation** : vérifier $P(n_0)$.\n2. **Hérédité** : supposer $P(n)$ vraie et démontrer $P(n+1)$.\n\n> **À retenir**\n> - Arithmétique : $u_n = u_0 + nr$. Géométrique : $u_n = u_0 q^n$.\n> - $\\lim q^n = 0$ si $|q| < 1$, $+\\infty$ si $q > 1$.\n> - Suite croissante majorée (ou décroissante minorée) ⇒ convergente.\n> - La récurrence repose sur initialisation + hérédité.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Pour une suite arithmétique de premier terme $u_0 = 3$ et de raison $r = 2$, $u_5$ vaut :",
+            "options": ["10", "11", "13", "15"],
+            "answer": 2,
+            "explanation": "u_5 = u_0 + 5r = 3 + 5×2 = 13."
+          },
+          {
+            "q": "Une suite géométrique de raison $q = 2$ et $u_0 = 1$ a pour terme $u_4$ :",
+            "options": ["8", "16", "9", "32"],
+            "answer": 1,
+            "explanation": "u_4 = u_0 × q^4 = 1 × 2^4 = 16."
+          },
+          {
+            "q": "Pour une suite géométrique de raison $q = 0{,}5$, $\\lim_{n\\to+\\infty} q^n$ vaut :",
+            "options": ["0", "1", "0,5", "+\\infty"],
+            "answer": 0,
+            "explanation": "Comme -1 < 0,5 < 1, q^n tend vers 0."
+          },
+          {
+            "q": "La somme $1 + 2 + 3 + \\dots + 100$ vaut :",
+            "options": ["5050", "5000", "10100", "2550"],
+            "answer": 0,
+            "explanation": "Somme arithmétique : 100×(1+100)/2 = 5050."
+          },
+          {
+            "q": "Toute suite croissante et majorée est :",
+            "options": ["divergente", "constante", "convergente", "géométrique"],
+            "answer": 2,
+            "explanation": "D'après le théorème de convergence monotone, elle converge."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Limites et continuité",
+      "lesson": "# Limites et continuité\n\n## Introduction\n\nL'étude des **limites** précise le comportement d'une fonction au voisinage d'un point ou à l'infini ; la **continuité** traduit l'idée d'une courbe « sans saut ». Ces notions sont la base du calcul différentiel et intégral en Terminale.\n\n## 1. Limite en un point et à l'infini\n\nSoit $f$ une fonction et $a$ un réel. On dit que $f$ admet pour limite $\\ell$ en $a$, noté $\\lim_{x\\to a} f(x) = \\ell$, si $f(x)$ se rapproche de $\\ell$ quand $x$ se rapproche de $a$.\n\nLimites à l'infini : $\\lim_{x\\to +\\infty} f(x) = \\ell$ signifie que $f(x)$ tend vers $\\ell$ quand $x$ devient très grand. Si $f(x)$ croît sans borne, $\\lim_{x\\to+\\infty} f(x) = +\\infty$.\n\n## 2. Opérations sur les limites\n\nSi $\\lim f = \\ell$ et $\\lim g = \\ell'$ (limites finies) :\n$$\\lim (f+g) = \\ell + \\ell', \\quad \\lim (fg) = \\ell\\ell', \\quad \\lim \\frac{f}{g} = \\frac{\\ell}{\\ell'}\\ (\\ell' \\neq 0)$$\n\n**Formes indéterminées** : $\\dfrac{0}{0}$, $\\dfrac{\\infty}{\\infty}$, $\\infty - \\infty$, $0 \\times \\infty$. Il faut alors lever l'indétermination (factorisation, conjugaison, terme dominant).\n\n## 3. Limites de fonctions usuelles\n\nPour une fonction polynôme ou rationnelle, **la limite à l'infini est celle du terme de plus haut degré** :\n$$\\lim_{x\\to+\\infty} \\frac{2x^2 + 3x - 1}{x^2 - 5} = \\lim_{x\\to+\\infty} \\frac{2x^2}{x^2} = 2$$\n\n## 4. Continuité\n\nUne fonction $f$ est **continue en $a$** si :\n$$\\lim_{x\\to a} f(x) = f(a)$$\nElle est continue sur un intervalle $I$ si elle l'est en tout point de $I$. Les polynômes, fonctions rationnelles (sur leur domaine), racines, sinus, cosinus, exponentielle et logarithme sont continues sur leur ensemble de définition.\n\n## 5. Théorème des valeurs intermédiaires (TVI)\n\nSi $f$ est continue sur $[a, b]$ et si $k$ est compris entre $f(a)$ et $f(b)$, alors il existe au moins un réel $c \\in [a, b]$ tel que $f(c) = k$.\n\n**Corollaire (bijection)** : si de plus $f$ est strictement monotone, ce $c$ est unique. C'est l'outil pour prouver l'existence et l'unicité d'une solution d'une équation $f(x) = 0$.\n\n## 6. Exemple résolu\n\nMontrons que l'équation $x^3 + x - 1 = 0$ admet une unique solution dans $[0, 1]$.\n\nSoit $f(x) = x^3 + x - 1$. $f$ est un polynôme donc continue sur $[0, 1]$.\n- $f(0) = -1 < 0$ et $f(1) = 1 + 1 - 1 = 1 > 0$.\n- $0$ est compris entre $f(0)$ et $f(1)$, donc par le TVI il existe $c \\in [0,1]$ avec $f(c) = 0$.\n- $f'(x) = 3x^2 + 1 > 0$, donc $f$ est strictement croissante : la solution est **unique**.\n\nPar balayage, $f(0{,}6) \\approx -0{,}18$ et $f(0{,}7) \\approx 0{,}04$, donc $c \\in [0{,}6\\,;\\,0{,}7]$.\n\n## 7. Asymptotes\n\n- **Asymptote horizontale** : si $\\lim_{x\\to+\\infty} f(x) = \\ell$, la droite $y = \\ell$ est asymptote.\n- **Asymptote verticale** : si $\\lim_{x\\to a} f(x) = \\pm\\infty$, la droite $x = a$ est asymptote.\n\n> **À retenir**\n> - $f$ continue en $a$ ⟺ $\\lim_{x\\to a} f(x) = f(a)$.\n> - Limite à l'infini d'un quotient de polynômes = quotient des termes de plus haut degré.\n> - TVI + stricte monotonie ⇒ existence ET unicité d'une racine.\n> - Repérer les formes indéterminées et les lever.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "$\\lim_{x\\to+\\infty} \\dfrac{3x^2 + x}{x^2 - 1}$ vaut :",
+            "options": ["0", "1", "3", "+\\infty"],
+            "answer": 2,
+            "explanation": "On garde les termes de plus haut degré : 3x^2/x^2 = 3."
+          },
+          {
+            "q": "Une fonction $f$ est continue en $a$ si et seulement si :",
+            "options": ["f(a) = 0", "\\lim_{x\\to a} f(x) = f(a)", "f est croissante", "f(a) > 0"],
+            "answer": 1,
+            "explanation": "La continuité en a se définit par lim f(x) = f(a) quand x tend vers a."
+          },
+          {
+            "q": "Si $f$ est continue sur $[a,b]$, $f(a) = -2$ et $f(b) = 3$, alors l'équation $f(x) = 0$ :",
+            "options": ["n'a pas de solution", "a au moins une solution dans [a,b]", "a exactement deux solutions", "a une infinité de solutions"],
+            "answer": 1,
+            "explanation": "0 est entre -2 et 3, le TVI garantit au moins une solution."
+          },
+          {
+            "q": "$\\lim_{x\\to+\\infty} \\dfrac{1}{x}$ vaut :",
+            "options": ["0", "1", "+\\infty", "-\\infty"],
+            "answer": 0,
+            "explanation": "Quand x tend vers l'infini, 1/x tend vers 0."
+          },
+          {
+            "q": "Quelle expression est une forme indéterminée ?",
+            "options": ["2 + \\infty", "\\dfrac{\\infty}{\\infty}", "\\dfrac{1}{0^+}", "0 \\times 5"],
+            "answer": 1,
+            "explanation": "infini/infini est une forme indéterminée à lever."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Dérivation et étude de fonctions",
+      "lesson": "# Dérivation et étude de fonctions\n\n## Introduction\n\nLa **dérivée** mesure le taux de variation instantané d'une fonction : pente de la tangente, vitesse, sens de variation. C'est l'outil central pour l'étude complète des fonctions au programme de Terminale.\n\n## 1. Nombre dérivé et tangente\n\nLe **nombre dérivé** de $f$ en $a$ est, lorsqu'elle existe, la limite :\n$$f'(a) = \\lim_{h\\to 0} \\frac{f(a+h) - f(a)}{h}$$\nGéométriquement, $f'(a)$ est le coefficient directeur de la **tangente** à la courbe au point d'abscisse $a$, d'équation :\n$$y = f'(a)(x - a) + f(a)$$\n\n## 2. Fonction dérivée et formules\n\n| $f(x)$ | $f'(x)$ |\n|---|---|\n| $x^n$ | $n x^{n-1}$ |\n| $\\sqrt{x}$ | $\\dfrac{1}{2\\sqrt{x}}$ |\n| $\\dfrac{1}{x}$ | $-\\dfrac{1}{x^2}$ |\n| $\\cos x$ | $-\\sin x$ |\n| $\\sin x$ | $\\cos x$ |\n| $e^x$ | $e^x$ |\n| $\\ln x$ | $\\dfrac{1}{x}$ |\n\n**Opérations** :\n$$(u+v)' = u' + v', \\quad (uv)' = u'v + uv', \\quad \\left(\\frac{u}{v}\\right)' = \\frac{u'v - uv'}{v^2}$$\n**Composée** : $(g \\circ u)'(x) = u'(x)\\,g'(u(x))$. En particulier $\\big(u^n\\big)' = n u' u^{n-1}$ et $\\big(e^{u}\\big)' = u' e^{u}$.\n\n## 3. Sens de variation\n\nSur un intervalle $I$ :\n- si $f'(x) > 0$, alors $f$ est **strictement croissante** ;\n- si $f'(x) < 0$, alors $f$ est **strictement décroissante** ;\n- si $f'(x) = 0$ en changeant de signe, $f$ présente un **extremum local**.\n\n## 4. Méthode d'étude complète d'une fonction\n\n1. Déterminer l'ensemble de définition $D_f$.\n2. Calculer les limites aux bornes de $D_f$ et les asymptotes.\n3. Calculer $f'(x)$ et étudier son signe.\n4. Dresser le **tableau de variations**.\n5. Tracer la courbe (tangentes, points remarquables).\n\n## 5. Exemple résolu\n\nÉtudions $f(x) = x^3 - 3x + 2$ sur $\\mathbb{R}$.\n\n**Dérivée** : $f'(x) = 3x^2 - 3 = 3(x-1)(x+1)$.\n\n**Signe** : $f'(x) > 0$ pour $x < -1$ ou $x > 1$ ; $f'(x) < 0$ pour $-1 < x < 1$.\n\n**Extrema** : en $x = -1$, $f(-1) = -1 + 3 + 2 = 4$ (maximum local) ; en $x = 1$, $f(1) = 1 - 3 + 2 = 0$ (minimum local).\n\n**Limites** : $\\lim_{x\\to-\\infty} f(x) = -\\infty$ et $\\lim_{x\\to+\\infty} f(x) = +\\infty$.\n\nTableau de variations : $f$ croît sur $]-\\infty,-1]$, décroît sur $[-1,1]$, croît sur $[1,+\\infty[$.\n\n**Tangente en $x = 0$** : $f(0) = 2$, $f'(0) = -3$, d'où $y = -3x + 2$.\n\n## 6. Application : optimisation\n\nUn menuisier de Bafoussam veut fabriquer une boîte sans couvercle de volume maximal à partir d'un carton carré. La dérivation permet de trouver la dimension qui annule $V'(x)$ et maximise le volume : on cherche $x$ tel que $V'(x) = 0$ et $V'$ change de signe.\n\n> **À retenir**\n> - $f'(a)$ = pente de la tangente en $a$ ; tangente : $y = f'(a)(x-a) + f(a)$.\n> - Signe de $f'$ ⇒ sens de variation de $f$.\n> - $(uv)' = u'v + uv'$, $\\left(\\frac{u}{v}\\right)' = \\frac{u'v-uv'}{v^2}$.\n> - L'optimisation cherche les valeurs annulant $f'$.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "La dérivée de $f(x) = x^3$ est :",
+            "options": ["3x^2", "x^2", "3x", "x^4/4"],
+            "answer": 0,
+            "explanation": "(x^n)' = n x^(n-1), donc (x^3)' = 3x^2."
+          },
+          {
+            "q": "Si $f'(x) < 0$ sur un intervalle $I$, alors sur $I$ la fonction $f$ est :",
+            "options": ["croissante", "décroissante", "constante", "nulle"],
+            "answer": 1,
+            "explanation": "Une dérivée strictement négative implique une fonction décroissante."
+          },
+          {
+            "q": "L'équation de la tangente à $C_f$ au point d'abscisse $a$ est :",
+            "options": ["y = f(a)x + f'(a)", "y = f'(a)(x-a) + f(a)", "y = f'(a)x", "y = f(a)(x-a)"],
+            "answer": 1,
+            "explanation": "La tangente a pour équation y = f'(a)(x-a) + f(a)."
+          },
+          {
+            "q": "La dérivée de $f(x) = e^{2x}$ est :",
+            "options": ["e^{2x}", "2e^{2x}", "2x e^{2x}", "e^{2x}/2"],
+            "answer": 1,
+            "explanation": "(e^u)' = u' e^u avec u = 2x, donc f'(x) = 2 e^(2x)."
+          },
+          {
+            "q": "Pour $f(x) = x^2 - 4x + 1$, l'extremum est atteint en :",
+            "options": ["x = 1", "x = 2", "x = 4", "x = -2"],
+            "answer": 1,
+            "explanation": "f'(x) = 2x - 4 = 0 donne x = 2 (minimum)."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Fonctions logarithme et exponentielle",
+      "lesson": "# Fonctions logarithme et exponentielle\n\n## Introduction\n\nLes fonctions **logarithme népérien** et **exponentielle** sont indispensables pour modéliser des croissances ou décroissances (population, radioactivité, intérêts composés, pH en chimie). Elles sont réciproques l'une de l'autre.\n\n## 1. Fonction logarithme népérien\n\nLa fonction $\\ln$ est définie sur $]0, +\\infty[$, c'est l'unique primitive de $x \\mapsto \\dfrac{1}{x}$ qui s'annule en $1$ :\n$$\\ln(1) = 0, \\qquad (\\ln x)' = \\frac{1}{x}$$\n\n**Propriétés algébriques** (pour $a, b > 0$) :\n$$\\ln(ab) = \\ln a + \\ln b, \\quad \\ln\\!\\left(\\frac{a}{b}\\right) = \\ln a - \\ln b, \\quad \\ln(a^n) = n\\ln a$$\n$$\\ln(\\sqrt{a}) = \\frac{1}{2}\\ln a$$\n\n**Variations** : $\\ln$ est strictement croissante. Limites :\n$$\\lim_{x\\to 0^+} \\ln x = -\\infty, \\qquad \\lim_{x\\to+\\infty} \\ln x = +\\infty$$\nLe réel $e \\approx 2{,}718$ vérifie $\\ln(e) = 1$.\n\n## 2. Fonction exponentielle\n\nL'**exponentielle** $\\exp$ est la fonction réciproque de $\\ln$ ; on note $\\exp(x) = e^x$. Elle est définie sur $\\mathbb{R}$ à valeurs dans $]0, +\\infty[$.\n$$e^0 = 1, \\qquad (e^x)' = e^x$$\n\n**Relations fondamentales** :\n$$\\ln(e^x) = x \\ (\\forall x \\in \\mathbb{R}), \\qquad e^{\\ln x} = x \\ (\\forall x > 0)$$\n\n**Propriétés algébriques** :\n$$e^{a+b} = e^a e^b, \\quad e^{-a} = \\frac{1}{e^a}, \\quad (e^a)^n = e^{na}$$\n\n**Limites** :\n$$\\lim_{x\\to-\\infty} e^x = 0, \\qquad \\lim_{x\\to+\\infty} e^x = +\\infty$$\n\n## 3. Croissances comparées\n\nL'exponentielle « l'emporte » sur toute puissance, et toute puissance sur le logarithme :\n$$\\lim_{x\\to+\\infty} \\frac{e^x}{x^n} = +\\infty, \\qquad \\lim_{x\\to+\\infty} \\frac{\\ln x}{x} = 0$$\n\n## 4. Résolution d'équations\n\nGrâce à la stricte monotonie :\n$$\\ln a = \\ln b \\iff a = b \\ (a,b>0), \\qquad e^a = e^b \\iff a = b$$\n\n**Exemple 1** : résoudre $\\ln(x) + \\ln(x - 1) = \\ln 6$.\nDomaine : $x > 1$. On a $\\ln\\big(x(x-1)\\big) = \\ln 6$, donc $x^2 - x - 6 = 0$, soit $(x-3)(x+2) = 0$. Seul $x = 3$ convient (car $x > 1$).\n\n**Exemple 2** : résoudre $e^{2x} - 3e^x + 2 = 0$.\nPosons $X = e^x > 0$ : $X^2 - 3X + 2 = 0$ donne $X = 1$ ou $X = 2$. Donc $e^x = 1 \\Rightarrow x = 0$, ou $e^x = 2 \\Rightarrow x = \\ln 2$.\n\n## 5. Application camerounaise\n\nUn capital de $500\\,000$ FCFA placé à $4\\%$ d'intérêts composés par an donne après $n$ années $C_n = 500000 \\times 1{,}04^n$. Pour qu'il double :\n$$1{,}04^n = 2 \\iff n\\ln(1{,}04) = \\ln 2 \\iff n = \\frac{\\ln 2}{\\ln 1{,}04} \\approx 17{,}7$$\nIl faut donc environ $18$ ans.\n\n> **À retenir**\n> - $\\ln(ab) = \\ln a + \\ln b$ ; $(\\ln x)' = 1/x$.\n> - $e^{a+b} = e^a e^b$ ; $(e^x)' = e^x$ ; $\\ln$ et $\\exp$ réciproques.\n> - $\\ln(e^x) = x$ et $e^{\\ln x} = x$.\n> - Croissances comparées : $e^x$ domine $x^n$ qui domine $\\ln x$.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "$\\ln(e^3)$ vaut :",
+            "options": ["3", "e^3", "1", "\\ln 3"],
+            "answer": 0,
+            "explanation": "ln(e^x) = x, donc ln(e^3) = 3."
+          },
+          {
+            "q": "$\\ln(6) = \\ln 2 + \\ln 3$ car :",
+            "options": ["\\ln(a+b) = \\ln a + \\ln b", "\\ln(ab) = \\ln a + \\ln b", "\\ln(a/b) = \\ln a + \\ln b", "6 = 2+3"],
+            "answer": 1,
+            "explanation": "ln(ab) = ln a + ln b, ici 6 = 2×3."
+          },
+          {
+            "q": "La dérivée de $f(x) = \\ln x$ est :",
+            "options": ["1/x", "x", "e^x", "-1/x^2"],
+            "answer": 0,
+            "explanation": "(ln x)' = 1/x."
+          },
+          {
+            "q": "L'équation $e^x = 5$ a pour solution :",
+            "options": ["x = 5", "x = \\ln 5", "x = e^5", "x = 1/5"],
+            "answer": 1,
+            "explanation": "e^x = 5 équivaut à x = ln 5."
+          },
+          {
+            "q": "$\\lim_{x\\to+\\infty} e^x$ vaut :",
+            "options": ["0", "1", "+\\infty", "e"],
+            "answer": 2,
+            "explanation": "L'exponentielle tend vers +infini quand x tend vers +infini."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Calcul intégral",
+      "lesson": "# Calcul intégral\n\n## Introduction\n\nLe **calcul intégral** permet de calculer des aires, des volumes, des valeurs moyennes et de « remonter » d'une dérivée vers la fonction initiale. Il est étroitement lié à la dérivation par le théorème fondamental de l'analyse.\n\n## 1. Primitives\n\nUne fonction $F$ est une **primitive** de $f$ sur un intervalle $I$ si $F'(x) = f(x)$ pour tout $x \\in I$. Deux primitives diffèrent d'une constante : si $F$ est une primitive, toutes les primitives sont $F(x) + k$, $k \\in \\mathbb{R}$.\n\n| $f(x)$ | Une primitive $F(x)$ |\n|---|---|\n| $x^n\\ (n\\neq -1)$ | $\\dfrac{x^{n+1}}{n+1}$ |\n| $\\dfrac{1}{x}$ | $\\ln|x|$ |\n| $e^x$ | $e^x$ |\n| $\\cos x$ | $\\sin x$ |\n| $\\sin x$ | $-\\cos x$ |\n| $u' e^{u}$ | $e^{u}$ |\n| $\\dfrac{u'}{u}$ | $\\ln|u|$ |\n\n## 2. Intégrale définie\n\nSi $F$ est une primitive de $f$ sur $[a, b]$, l'**intégrale** de $f$ sur $[a,b]$ est :\n$$\\int_a^b f(x)\\,dx = \\big[F(x)\\big]_a^b = F(b) - F(a)$$\n\n**Propriétés** :\n$$\\int_a^b (f+g) = \\int_a^b f + \\int_a^b g, \\quad \\int_a^b \\lambda f = \\lambda \\int_a^b f$$\n$$\\int_a^b f = -\\int_b^a f, \\qquad \\int_a^c f = \\int_a^b f + \\int_b^c f \\ \\text{(relation de Chasles)}$$\n\n## 3. Interprétation géométrique\n\nSi $f(x) \\ge 0$ sur $[a,b]$, alors $\\int_a^b f(x)\\,dx$ est l'**aire**, en unités d'aire, du domaine compris entre la courbe, l'axe des abscisses et les droites $x = a$ et $x = b$.\n\n## 4. Intégration par parties\n\nPour $u$ et $v$ dérivables à dérivées continues :\n$$\\int_a^b u(x)v'(x)\\,dx = \\big[u(x)v(x)\\big]_a^b - \\int_a^b u'(x)v(x)\\,dx$$\n\n## 5. Valeur moyenne\n\nLa **valeur moyenne** de $f$ sur $[a,b]$ est :\n$$\\mu = \\frac{1}{b-a}\\int_a^b f(x)\\,dx$$\n\n## 6. Exemples résolus\n\n**Exemple 1** : $\\displaystyle\\int_0^2 (3x^2 + 1)\\,dx$.\nUne primitive : $F(x) = x^3 + x$. Donc $\\int_0^2 = F(2) - F(0) = (8 + 2) - 0 = 10$.\n\n**Exemple 2 (par parties)** : $\\displaystyle\\int_0^1 x e^x\\,dx$.\nPosons $u = x$, $v' = e^x$, d'où $u' = 1$, $v = e^x$ :\n$$\\int_0^1 x e^x\\,dx = \\big[x e^x\\big]_0^1 - \\int_0^1 e^x\\,dx = e - \\big[e^x\\big]_0^1 = e - (e - 1) = 1$$\n\n**Exemple 3 (aire)** : aire sous $f(x) = x^2$ entre $0$ et $3$ :\n$$\\int_0^3 x^2\\,dx = \\left[\\frac{x^3}{3}\\right]_0^3 = \\frac{27}{3} = 9 \\text{ u.a.}$$\n\n> **À retenir**\n> - $F$ primitive de $f$ ⟺ $F' = f$ ; les primitives diffèrent d'une constante.\n> - $\\int_a^b f = F(b) - F(a)$.\n> - Si $f \\ge 0$, l'intégrale est une aire.\n> - Intégration par parties : $\\int uv' = [uv] - \\int u'v$.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Une primitive de $f(x) = x^2$ est :",
+            "options": ["2x", "x^3/3", "3x^3", "x^3"],
+            "answer": 1,
+            "explanation": "Primitive de x^n est x^(n+1)/(n+1), donc x^3/3."
+          },
+          {
+            "q": "$\\displaystyle\\int_0^1 2x\\,dx$ vaut :",
+            "options": ["1", "2", "0", "1/2"],
+            "answer": 0,
+            "explanation": "Primitive x^2, donc [x^2] de 0 à 1 = 1 - 0 = 1."
+          },
+          {
+            "q": "Une primitive de $f(x) = e^x$ est :",
+            "options": ["e^x", "x e^x", "e^x/x", "\\ln x"],
+            "answer": 0,
+            "explanation": "La primitive de e^x est e^x (à une constante près)."
+          },
+          {
+            "q": "La relation de Chasles s'écrit :",
+            "options": ["\\int_a^b f = \\int_a^c f + \\int_c^b f", "\\int_a^b f = \\int_a^b f \\times \\int_b^c f", "\\int_a^b f = f(b)-f(a)", "\\int_a^b f = \\int_b^a f"],
+            "answer": 0,
+            "explanation": "Chasles : l'intégrale de a à b est la somme de a à c et de c à b."
+          },
+          {
+            "q": "Si $f(x) \\ge 0$ sur $[a,b]$, alors $\\int_a^b f(x)\\,dx$ représente :",
+            "options": ["la pente de f", "l'aire sous la courbe", "le maximum de f", "la dérivée de f"],
+            "answer": 1,
+            "explanation": "Pour une fonction positive, l'intégrale est l'aire entre la courbe et l'axe des abscisses."
+          }
+        ]
+      }
+    }
+  ]
+}
