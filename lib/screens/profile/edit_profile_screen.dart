@@ -3,7 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
-import '../../widgets/series_picker.dart';
+import '../../widgets/exam_path_picker.dart';
+import '../../data/exam_taxonomy.dart';
 import '../../services/auth_service.dart';
 import '../../services/database_service.dart';
 
@@ -37,7 +38,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   bool _saving = false;
 
   static const _levels = ['3ème', '2nde', '1ère', 'Terminale', 'Sup. / Fac'];
-  static const _exams = ['Baccalauréat', 'Probatoire', 'GCE A Level', 'BTS', 'Concours (ENS…)'];
+  static const _exams = examOrder; // examens de la taxonomie, ordonnés
   static const _genders = ['Fille', 'Garçon', 'Autre'];
   static const _fields = [
     'Santé / Médecine', 'Ingénierie / Tech', 'Droit / Sciences Po',
@@ -164,7 +165,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 const SizedBox(height: 10),
                 _chips(_exams, _exam, (i) => setState(() { _exam = i; _serie = null; })),
                 const SizedBox(height: 18),
-                SeriesPicker(
+                ExamPathPicker(
                   exam: _exams[_exam],
                   value: _serie,
                   onChanged: (v) => setState(() => _serie = v),
