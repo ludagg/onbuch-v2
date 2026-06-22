@@ -16,6 +16,7 @@ import '../screens/annales/annales_library_screen.dart';
 import '../data/exam_taxonomy.dart';
 import '../screens/annales/annales_collection_screen.dart';
 import '../screens/annales/annales_folder_screen.dart';
+import '../screens/annales/annale_subject_screen.dart';
 import '../screens/annales/annale_detail_screen.dart';
 import '../screens/annales/pdf_reader_screen.dart';
 import '../screens/annales/video_corrige_screen.dart';
@@ -61,6 +62,7 @@ import '../screens/cours/cours_search_screen.dart';
 import '../models/article.dart';
 import '../models/exam_result.dart';
 import '../models/concours.dart';
+import '../models/annale.dart';
 import '../models/tutor_request.dart';
 import '../models/course.dart';
 import '../services/auth_service.dart';
@@ -161,11 +163,43 @@ final appRouter = GoRouter(
           builder: (_, __) => const AnnalesLibraryScreen(),
           routes: [
             GoRoute(path: 'folder/:name', builder: (_, s) => AnnalesFolderScreen(folderName: s.pathParameters['name'] ?? '', node: s.extra as ExamNode?, exam: s.uri.queryParameters['exam'])),
-            GoRoute(path: 'detail', builder: (_, __) => const AnnaleDetailScreen()),
-            GoRoute(path: 'pdf', builder: (_, __) => const PdfReaderScreen()),
-            GoRoute(path: 'video', builder: (_, __) => const VideoCorrigeScreen()),
-            GoRoute(path: 'offline', builder: (_, __) => const AnnalesCollectionScreen(kind: AnnaleCollection.offline)),
+            GoRoute(
+              path: 'subject',
+              builder: (_, s) {
+                final m = s.extra is Map ? s.extra as Map : const {};
+                return AnnaleSubjectScreen(
+                  subject: (m['subject'] ?? '').toString(),
+                  exam: m['exam'] as String?,
+                  filiere: m['filiere'] as String?,
+                );
+              },
+            ),
+            GoRoute(path: 'detail', builder: (_, s) => AnnaleDetailScreen(annale: s.extra is Annale ? s.extra as Annale : null)),
+            GoRoute(
+              path: 'pdf',
+              builder: (_, s) {
+                final m = s.extra is Map ? s.extra as Map : const {};
+                return PdfReaderScreen(
+                  url: (m['url'] ?? '').toString(),
+                  title: m['title'] as String?,
+                  subtitle: m['subtitle'] as String?,
+                  offlineId: m['offlineId'] as String?,
+                );
+              },
+            ),
+            GoRoute(
+              path: 'video',
+              builder: (_, s) {
+                final m = s.extra is Map ? s.extra as Map : const {};
+                return VideoCorrigeScreen(
+                  url: (m['url'] ?? '').toString(),
+                  title: m['title'] as String?,
+                  subtitle: m['subtitle'] as String?,
+                );
+              },
+            ),
             GoRoute(path: 'recent', builder: (_, __) => const AnnalesCollectionScreen(kind: AnnaleCollection.recent)),
+            GoRoute(path: 'offline', builder: (_, __) => const AnnalesCollectionScreen(kind: AnnaleCollection.offline)),
             GoRoute(path: 'favorites', builder: (_, __) => const AnnalesCollectionScreen(kind: AnnaleCollection.favorites)),
           ],
         ),

@@ -302,28 +302,6 @@ export const RESOURCES: Resource[] = [
     ]
   },
   {
-    id: 'annales',
-    collectionId: 'annales',
-    label: 'Annales (épreuves)',
-    singular: 'épreuve',
-    icon: '🗂️',
-    titleField: 'title',
-    subtitleField: 'subject',
-    orderBy: { field: 'order', dir: 'asc' },
-    fields: [
-      { key: 'exam', label: 'Examen', type: 'select', required: true, options: ['BEPC', 'CAP', 'Probatoire', 'Baccalauréat', 'BT', 'BTS', 'HND', 'GCE O Level', 'GCE A Level', 'Concours'], help: 'Catégorie de la page Annales.' },
-      { key: 'track', label: 'Série / spécialité', type: 'text', help: 'Libellé EXACT de la feuille, ex. « D — Maths & Sciences de la vie », « Génie Civil », « Science ». Vide pour BEPC.' },
-      { key: 'subject', label: 'Matière', type: 'text', required: true, help: 'ex. Mathématiques (doit matcher une matière de la série).' },
-      { key: 'year', label: 'Année', type: 'text', help: 'ex. 2024' },
-      { key: 'session', label: 'Session', type: 'text', help: 'ex. Juin, Session normale' },
-      { key: 'type', label: 'Type', type: 'select', options: ['sujet', 'corrige', 'video'], help: 'Sujet, corrigé ou vidéo.' },
-      { key: 'title', label: 'Titre', type: 'text', required: true, help: 'ex. Bac D — Mathématiques 2024' },
-      { key: 'fileUrl', label: 'Lien du document', type: 'text', help: 'PDF / vidéo (Appwrite Storage ou lien externe).' },
-      { key: 'premium', label: 'Premium (payant)', type: 'boolean' },
-      order
-    ]
-  },
-  {
     id: 'school_calendar',
     collectionId: 'school_calendar',
     label: 'Calendrier (Campus)',

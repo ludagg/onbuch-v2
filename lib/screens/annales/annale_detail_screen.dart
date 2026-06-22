@@ -1,113 +1,257 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:share_plus/share_plus.dart';
 import '../../theme/app_theme.dart';
+import '../../models/annale.dart';
+import '../../services/annale_store.dart';
 
-class AnnaleDetailScreen extends StatelessWidget {
-  const AnnaleDetailScreen({super.key});
+/// Page d'un document (épreuve/cours/fiche) : aperçu + ressources (Sujet PDF,
+/// Corrigé, Vidéo) ouvertes dans les lecteurs intégrés, + passerelle Tuteur IA.
+/// Données réelles passées via `extra` (un [Annale]).
+class AnnaleDetailScreen extends StatefulWidget {
+  final Annale? annale;
+  const AnnaleDetailScreen({super.key, this.annale});
+
+  @override
+  State<AnnaleDetailScreen> createState() => _AnnaleDetailScreenState();
+}
+
+class _AnnaleDetailScreenState extends State<AnnaleDetailScreen> {
+  bool _fav = false;
+  bool _off = false;
+  bool _busy = false;
+
+  @override
+  void initState() {
+    super.initState();
+    final a = widget.annale;
+    if (a != null) {
+      AnnaleStore.instance.recordRecent(a);
+      AnnaleStore.instance.isFavorite(a.id).then((v) { if (mounted) setState(() => _fav = v); });
+      AnnaleStore.instance.isOffline(a.id).then((v) { if (mounted) setState(() => _off = v); });
+    }
+  }
+
+  void _toast(String m) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(m, style: body(13, color: Colors.white)), backgroundColor: OC.ink,
+          behavior: SnackBarBehavior.floating, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
+    );
+  }
+
+  Future<void> _toggleFav() async {
+    final a = widget.annale;
+    if (a == null) return;
+    final now = await AnnaleStore.instance.toggleFavorite(a);
+    if (mounted) setState(() => _fav = now);
+  }
+
+  Future<void> _share() async {
+    final a = widget.annale;
+    if (a == null) return;
+    final link = a.fileUrl.isNotEmpty ? a.fileUrl : (a.videoUrl.isNotEmpty ? a.videoUrl : a.corrigeUrl);
+    await Share.share(link.isEmpty ? a.title : '${a.title}\n$link', subject: a.title);
+  }
+
+  Future<void> _toggleOffline() async {
+    final a = widget.annale;
+    if (a == null) return;
+    setState(() => _busy = true);
+    final target = !_off;
+    final ok = await AnnaleStore.instance.setOffline(a, target);
+    if (!mounted) return;
+    setState(() { _off = target && ok; _busy = false; });
+    _toast(target ? (ok ? 'Disponible hors-ligne ✓' : 'Téléchargement impossible.') : 'Retiré du hors-ligne');
+  }
+
+  String get _subtitle {
+    final a = widget.annale;
+    if (a == null) return '';
+    return [a.track, a.year].where((e) => e.isNotEmpty).join(' · ');
+  }
+
+  Map<String, dynamic> _extra(String url, {bool offline = false}) {
+    final a = widget.annale;
+    return {
+      'url': url,
+      'title': a?.title ?? 'Document',
+      'subtitle': [a?.exam ?? '', a?.track ?? ''].where((e) => e.isNotEmpty).join(' · '),
+      // Seul le PDF principal est mis en cache hors-ligne → on transmet l'id.
+      if (offline) 'offlineId': a?.id,
+    };
+  }
+
+  // Le sujet (fileUrl) est mis en cache offline → on passe l'offlineId pour lui.
+  void _openPdf(String url, {bool main = false}) =>
+      context.push('/annales/pdf', extra: _extra(url, offline: main));
+  void _openVideo(String url) => context.push('/annales/video', extra: _extra(url));
 
   @override
   Widget build(BuildContext context) {
+    final a = widget.annale;
+    if (a == null) {
+      return Scaffold(
+        backgroundColor: OC.bg,
+        appBar: AppBar(
+          backgroundColor: OC.bg,
+          surfaceTintColor: Colors.transparent,
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 20),
+            onPressed: () => context.canPop() ? context.pop() : context.go('/annales'),
+          ),
+        ),
+        body: Center(child: Text('Document indisponible.', style: body(14, color: OC.muted))),
+      );
+    }
+
+    void Function()? primary;
+    String primaryLabel = 'Ouvrir';
+    IconData primaryIcon = Icons.visibility_outlined;
+    if (a.hasPdf) {
+      primary = () => _openPdf(a.fileUrl, main: true);
+      primaryLabel = 'Ouvrir le PDF';
+    } else if (a.hasVideo) {
+      primary = () => _openVideo(a.videoUrl);
+      primaryLabel = 'Lire la vidéo';
+      primaryIcon = Icons.play_arrow_rounded;
+    } else if (a.hasCorrige) {
+      primary = () => _openPdf(a.corrigeUrl);
+      primaryLabel = 'Ouvrir le corrigé';
+    }
+
+    final tabs = <Widget>[
+      if (a.hasPdf)
+        Expanded(child: GestureDetector(
+          onTap: () => _openPdf(a.fileUrl, main: true),
+          child: const _ResourceTab(icon: Icons.picture_as_pdf_rounded, label: 'Sujet', sub: 'PDF', iconC: Color(0xFFC0392B), iconBg: Color(0xFFFAE7E4)),
+        )),
+      if (a.hasCorrige)
+        Expanded(child: GestureDetector(
+          onTap: () => _openPdf(a.corrigeUrl),
+          child: _ResourceTab(icon: Icons.check_circle_outline_rounded, label: 'Corrigé', sub: 'PDF', iconC: OC.good, iconBg: OC.goodBg),
+        )),
+      if (a.hasVideo)
+        Expanded(child: GestureDetector(
+          onTap: () => _openVideo(a.videoUrl),
+          child: const _ResourceTab(icon: Icons.play_circle_outline_rounded, label: 'Vidéo', sub: 'Corrigé', iconC: Color(0xFF7A5AE0), iconBg: Color(0xFFEEE9FA)),
+        )),
+    ];
+    final tabsRow = <Widget>[];
+    for (var i = 0; i < tabs.length; i++) {
+      tabsRow.add(tabs[i]);
+      if (i < tabs.length - 1) tabsRow.add(const SizedBox(width: 9));
+    }
+
     return Scaffold(
       backgroundColor: OC.bg,
       appBar: AppBar(
         title: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text('Mathématiques', style: display(17, weight: FontWeight.w700)),
-          Text('Bac D · 2025', style: body(12, color: OC.muted, weight: FontWeight.w500)),
+          Text(a.subject.isEmpty ? a.title : a.subject, style: display(17, weight: FontWeight.w700), maxLines: 1, overflow: TextOverflow.ellipsis),
+          if (_subtitle.isNotEmpty) Text(_subtitle, style: body(12, color: OC.muted, weight: FontWeight.w500)),
         ]),
         backgroundColor: OC.bg,
         surfaceTintColor: Colors.transparent,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 20),
-          onPressed: () => context.go('/annales/folder/Baccalauréat'),
+          onPressed: () => context.canPop() ? context.pop() : context.go('/annales'),
         ),
         actions: [
-          IconButton(icon: const Icon(Icons.bookmark_border_rounded, size: 19), color: OC.ink2, onPressed: () {}),
+          IconButton(
+            icon: Icon(_fav ? Icons.bookmark_rounded : Icons.bookmark_border_rounded, size: 20),
+            color: _fav ? OC.o600 : OC.ink2,
+            tooltip: _fav ? 'Retirer des favoris' : 'Ajouter aux favoris',
+            onPressed: _toggleFav,
+          ),
         ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(20, 4, 20, 24),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          // Cover
           Container(
             height: 150,
-            decoration: BoxDecoration(
-              color: OC.panel,
-              borderRadius: BorderRadius.circular(18),
-              border: Border.all(color: OC.line, width: 1.5),
-            ),
+            decoration: BoxDecoration(color: OC.panel, borderRadius: BorderRadius.circular(18), border: Border.all(color: OC.line, width: 1.5)),
             child: Stack(children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(17),
-                child: Center(child: Icon(Icons.description_outlined, size: 60, color: OC.faint)),
-              ),
+              Center(child: Icon(a.hasVideo && !a.hasPdf ? Icons.play_circle_outline_rounded : Icons.description_outlined, size: 60, color: OC.faint)),
               Positioned(top: 10, left: 10,
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 5),
-                  decoration: BoxDecoration(color: Colors.black.withValues(alpha:0.72), borderRadius: BorderRadius.circular(8)),
-                  child: Row(mainAxisSize: MainAxisSize.min, children: [
-                    const Icon(Icons.access_time_rounded, color: Colors.white, size: 13),
-                    const SizedBox(width: 4),
-                    Text('4 h · coef 4', style: body(11, weight: FontWeight.w700, color: Colors.white)),
-                  ]),
+                  decoration: BoxDecoration(color: Colors.black.withValues(alpha: 0.72), borderRadius: BorderRadius.circular(8)),
+                  child: Text(a.category, style: body(11, weight: FontWeight.w700, color: Colors.white)),
                 ),
               ),
-              Positioned(right: 12, bottom: 12,
-                child: GestureDetector(
-                  onTap: () => context.go('/annales/pdf'),
+              if (a.premium)
+                Positioned(top: 10, right: 10,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 9),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                      boxShadow: [BoxShadow(color: Colors.black.withValues(alpha:0.16), blurRadius: 10)],
-                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 5),
+                    decoration: BoxDecoration(color: const Color(0xFFFBF0DD), borderRadius: BorderRadius.circular(8)),
                     child: Row(mainAxisSize: MainAxisSize.min, children: [
-                      Icon(Icons.visibility_outlined, size: 17, color: OC.ink),
-                      const SizedBox(width: 7),
-                      Text('Ouvrir le PDF', style: body(12.5, weight: FontWeight.w700)),
+                      const Icon(Icons.lock_outline_rounded, size: 12, color: Color(0xFFA6701A)),
+                      const SizedBox(width: 4),
+                      Text('PREMIUM', style: body(10, weight: FontWeight.w800, color: const Color(0xFFA6701A))),
                     ]),
                   ),
                 ),
-              ),
+              if (primary != null)
+                Positioned(right: 12, bottom: 12,
+                  child: GestureDetector(
+                    onTap: primary,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 9),
+                      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(12),
+                          boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.16), blurRadius: 10)]),
+                      child: Row(mainAxisSize: MainAxisSize.min, children: [
+                        Icon(primaryIcon, size: 17, color: OC.ink),
+                        const SizedBox(width: 7),
+                        Text(primaryLabel, style: body(12.5, weight: FontWeight.w700)),
+                      ]),
+                    ),
+                  ),
+                ),
             ]),
           ),
-          const SizedBox(height: 15),
+          const SizedBox(height: 8),
+          Text(a.title, style: body(14.5, weight: FontWeight.w700).copyWith(height: 1.3)),
+          const SizedBox(height: 9),
 
-          // Resource tabs
+          // Méta : type · matière · filière · session · année
+          Wrap(spacing: 7, runSpacing: 7, children: [
+            for (final m in [a.category, a.subject, a.track, a.session, a.year].where((e) => e.isNotEmpty))
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                decoration: BoxDecoration(color: OC.panel, borderRadius: BorderRadius.circular(999)),
+                child: Text(m, style: body(11, weight: FontWeight.w700, color: OC.ink2)),
+              ),
+          ]),
+          const SizedBox(height: 14),
+
+          // Actions : Favori · Partager · Hors-ligne
           Row(children: [
-            Expanded(
-              child: GestureDetector(
-                onTap: () => context.go('/annales/pdf'),
-                child: _ResourceTab(icon: Icons.picture_as_pdf_rounded, label: 'Sujet', sub: 'PDF',
-                    iconC: const Color(0xFFC0392B), iconBg: const Color(0xFFFAE7E4), selected: true),
-              ),
-            ),
+            _ActionBtn(icon: _fav ? Icons.bookmark_rounded : Icons.bookmark_border_rounded,
+                label: 'Favori', active: _fav, onTap: _toggleFav),
             const SizedBox(width: 9),
-            Expanded(
-              child: _ResourceTab(icon: Icons.check_circle_outline_rounded, label: 'Corrigé', sub: 'Texte',
-                  iconC: OC.good, iconBg: OC.goodBg),
-            ),
+            _ActionBtn(icon: Icons.ios_share_rounded, label: 'Partager', onTap: _share),
             const SizedBox(width: 9),
-            Expanded(
-              child: GestureDetector(
-                onTap: () => context.go('/annales/video'),
-                child: _ResourceTab(icon: Icons.play_circle_outline_rounded, label: 'Vidéo', sub: '8 min',
-                    iconC: const Color(0xFF7A5AE0), iconBg: const Color(0xFFEEE9FA)),
-              ),
+            _ActionBtn(
+              icon: _busy ? Icons.hourglass_top_rounded : (_off ? Icons.download_done_rounded : Icons.download_rounded),
+              label: _off ? 'Hors-ligne' : 'Télécharger',
+              active: _off,
+              onTap: _busy ? null : _toggleOffline,
             ),
           ]),
-          const SizedBox(height: 15),
+          const SizedBox(height: 16),
 
-          // Tuteur bridge
+          if (tabsRow.isNotEmpty) ...[
+            Text('Ressources', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
+            const SizedBox(height: 10),
+            Row(children: tabsRow),
+            const SizedBox(height: 15),
+          ],
+
           GestureDetector(
             onTap: () => context.go('/tutor'),
             child: Container(
               padding: const EdgeInsets.all(14),
-              decoration: BoxDecoration(
-                color: OC.o50,
-                borderRadius: BorderRadius.circular(18),
-                border: Border.all(color: OC.o100, width: 1.5),
-              ),
+              decoration: BoxDecoration(color: OC.o50, borderRadius: BorderRadius.circular(18), border: Border.all(color: OC.o100, width: 1.5)),
               child: Row(children: [
                 Container(
                   width: 44, height: 44,
@@ -124,65 +268,37 @@ class AnnaleDetailScreen extends StatelessWidget {
               ]),
             ),
           ),
-          const SizedBox(height: 15),
-
-          // Corrigés list
-          Text('Corrigés · 4 exercices', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
-          const SizedBox(height: 10),
-          ...[
-            ('Exercice 1 — Nombres complexes', true, true),
-            ('Exercice 2 — Probabilités', true, false),
-            ('Exercice 3 — Fonctions', false, false),
-            ('Problème — Étude de fonction', false, true),
-          ].map((c) => Container(
-            margin: const EdgeInsets.only(bottom: 9),
-            padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              color: OC.paper,
-              borderRadius: BorderRadius.circular(14),
-              border: Border.all(color: OC.line, width: 1.5),
-            ),
-            child: Row(children: [
-              Container(
-                width: 34, height: 34,
-                decoration: BoxDecoration(
-                  color: c.$2 ? OC.goodBg : OC.panel,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Icon(c.$2 ? Icons.article_outlined : Icons.lock_outline_rounded,
-                    size: 17, color: c.$2 ? OC.waInk : OC.muted),
-              ),
-              const SizedBox(width: 12),
-              Expanded(child: Row(children: [
-                Expanded(child: Text(c.$1, style: body(13.5, weight: FontWeight.w700, color: c.$2 ? OC.ink : OC.ink2))),
-                if (c.$3) const Padding(
-                  padding: EdgeInsets.only(left: 7),
-                  child: Icon(Icons.play_circle_outline_rounded, size: 14, color: Color(0xFF7A5AE0)),
-                ),
-              ])),
-              c.$2
-                  ? Icon(Icons.chevron_right_rounded, size: 18, color: OC.muted)
-                  : Text('Premium', style: body(10.5, weight: FontWeight.w800, color: Color(0xFFA6701A))),
-            ]),
-          )),
-          const SizedBox(height: 4),
-
-          // Unlock
-          Container(
-            width: double.infinity, height: 50,
-            decoration: BoxDecoration(
-              gradient: const LinearGradient(colors: [Color(0xFF2A2238), Color(0xFF171019)]),
-              borderRadius: BorderRadius.circular(14),
-            ),
-            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              const Icon(Icons.star_outline_rounded, color: Colors.white, size: 18),
-              const SizedBox(width: 8),
-              Text('Débloquer tous les corrigés · 500 F', style: body(14, weight: FontWeight.w700, color: Colors.white)),
-            ]),
-          ),
         ]),
       ),
     );
+  }
+}
+
+class _ActionBtn extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final bool active;
+  final VoidCallback? onTap;
+  const _ActionBtn({required this.icon, required this.label, this.active = false, this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(child: GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 11),
+        decoration: BoxDecoration(
+          color: active ? OC.o50 : OC.paper,
+          borderRadius: BorderRadius.circular(13),
+          border: Border.all(color: active ? OC.o500 : OC.line, width: 1.5),
+        ),
+        child: Column(children: [
+          Icon(icon, size: 19, color: active ? OC.o700 : OC.ink2),
+          const SizedBox(height: 5),
+          Text(label, style: body(11.5, weight: FontWeight.w700, color: active ? OC.o700 : OC.ink2)),
+        ]),
+      ),
+    ));
   }
 }
 
@@ -190,19 +306,13 @@ class _ResourceTab extends StatelessWidget {
   final IconData icon;
   final String label, sub;
   final Color iconC, iconBg;
-  final bool selected;
-  const _ResourceTab({required this.icon, required this.label, required this.sub,
-      required this.iconC, required this.iconBg, this.selected = false});
+  const _ResourceTab({required this.icon, required this.label, required this.sub, required this.iconC, required this.iconBg});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.fromLTRB(10, 13, 10, 13),
-      decoration: BoxDecoration(
-        color: OC.paper,
-        borderRadius: BorderRadius.circular(15),
-        border: Border.all(color: selected ? OC.line2 : OC.line, width: 1.5),
-      ),
+      decoration: BoxDecoration(color: OC.paper, borderRadius: BorderRadius.circular(15), border: Border.all(color: OC.line, width: 1.5)),
       child: Column(children: [
         Container(
           width: 38, height: 38,

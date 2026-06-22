@@ -48,6 +48,9 @@
           <span class="nav-ico">📊</span> Tableau de bord
         </a>
         <div class="nav-sep">Contenus</div>
+        <a class="nav-item" class:active={path.startsWith('/annales')} href="/annales">
+          <span class="nav-ico">🗂️</span> Annales & documents
+        </a>
         {#each RESOURCES as r}
           <a class="nav-item" class:active={path.startsWith('/c/' + r.id)} href={'/c/' + r.id}>
             <span class="nav-ico">{r.icon}</span> {r.label}
