@@ -1,4 +1,5 @@
 // ignore_for_file: deprecated_member_use
+import 'dart:convert';
 import 'package:appwrite/appwrite.dart';
 import '../appwrite_config.dart';
 import '../models/article.dart';
@@ -14,6 +15,7 @@ import '../models/review.dart';
 import '../models/affiche.dart';
 import '../models/app_notification.dart';
 import '../models/exam_result.dart';
+import '../models/result_source.dart';
 import '../models/exam_series.dart';
 import '../models/social_link.dart';
 import '../models/annale.dart';
@@ -219,6 +221,83 @@ class DatabaseService {
       return ExamResult.fromMap(d.data, id: d.$id);
     } on AppwriteException {
       return null;
+    }
+  }
+
+  // ── Sources de résultats (configurées par l'admin) ───────────────────────
+
+  /// Sources de résultats actives (manuel / PDF / API), triées par `order`.
+  /// Tolérant : liste vide si erreur/hors-ligne ou collection absente.
+  Future<List<ResultSource>> getResultSources({bool force = false}) {
+    return _cachedList<ResultSource>('result_sources', () async {
+      try {
+        final res = await AppwriteClient.databases.listDocuments(
+          databaseId: appwriteDatabaseId,
+          collectionId: appwriteResultSourcesCollectionId,
+          queries: [Query.limit(100)],
+        );
+        final list = res.documents
+            .map((d) => ResultSource.fromMap(d.data, id: d.$id))
+            .where((s) => s.active && s.label.isNotEmpty)
+            .toList()
+          ..sort((a, b) => a.order.compareTo(b.order));
+        return list;
+      } on AppwriteException {
+        return <ResultSource>[];
+      }
+    }, force: force);
+  }
+
+  /// Résultat d'une recherche dans une source : soit un [ExamResult] trouvé,
+  /// soit `found == false` avec un éventuel message à afficher.
+  /// `error == true` signale un problème technique (réseau, source mal
+  /// configurée…) distinct d'un simple « introuvable ».
+  Future<ResultLookup> searchResultSource({
+    required ResultSource source,
+    required String query,
+  }) async {
+    final q = query.trim();
+    if (q.isEmpty) return const ResultLookup.notFound();
+
+    // Type `manual` : lecture directe de `exam_results` (tolérant hors-ligne).
+    if (source.type == ResultSourceType.manual) {
+      final r = await lookupResult(
+        examType: source.examType,
+        tableNumber: q,
+        year: source.year.isEmpty ? null : source.year,
+      );
+      return r == null ? const ResultLookup.notFound() : ResultLookup.found(r);
+    }
+
+    // Types `pdf` / `api` : résolus par la fonction serveur `result-lookup`.
+    try {
+      final exec = await AppwriteClient.functions.createExecution(
+        functionId: resultLookupFunctionId,
+        body: jsonEncode({'configId': source.id, 'query': q}),
+        xasync: false,
+      );
+      final body = exec.responseBody.isEmpty ? '{}' : exec.responseBody;
+      final data = jsonDecode(body) as Map<String, dynamic>;
+      if (data['ok'] != true) {
+        return ResultLookup.error(
+            (data['message'] ?? 'Recherche indisponible. Réessaie.').toString());
+      }
+      if (data['found'] != true || data['result'] == null) {
+        return ResultLookup(
+          found: false,
+          message: (data['message'] ?? '').toString(),
+        );
+      }
+      final result = ExamResult.fromMap(
+        Map<String, dynamic>.from(data['result'] as Map),
+        id: (data['result']['id'] ?? source.id).toString(),
+      );
+      return ResultLookup.found(result);
+    } on AppwriteException {
+      return const ResultLookup.error(
+          'Recherche indisponible pour le moment. Vérifie ta connexion.');
+    } catch (_) {
+      return const ResultLookup.error('Réponse inattendue du serveur.');
     }
   }
 

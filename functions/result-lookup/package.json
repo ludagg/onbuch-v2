@@ -1,0 +1,11 @@
+{
+  "name": "result-lookup",
+  "version": "1.0.0",
+  "description": "Résout une recherche de résultat OnBuch : PDF (extraction texte) ou API externe.",
+  "type": "module",
+  "main": "src/main.js",
+  "dependencies": {
+    "node-appwrite": "^14.0.0",
+    "pdf-parse": "^1.1.1"
+  }
+}
