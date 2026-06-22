@@ -7,11 +7,14 @@ import '../../widgets/ob_widgets.dart';
 import '../../widgets/leo_mascot.dart';
 import '../../services/auth_service.dart';
 import '../../services/database_service.dart';
+import '../../services/annale_store.dart';
+import '../../widgets/annale_actions.dart';
 import '../../utils/launch.dart';
 import '../../models/article.dart';
 import '../../models/exam.dart';
 import '../../models/affiche.dart';
 import '../../models/social_link.dart';
+import '../../models/annale.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -667,49 +670,109 @@ class _Shortcuts extends StatelessWidget {
 }
 
 // ─── Saved papers (hors-ligne) ────────────────────────────────────────────────
-class _SavedSection extends StatelessWidget {
+class _SavedSection extends StatefulWidget {
   const _SavedSection();
 
   @override
+  State<_SavedSection> createState() => _SavedSectionState();
+}
+
+class _SavedSectionState extends State<_SavedSection> {
+  List<Annale> _items = const [];
+  bool _loaded = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _load();
+  }
+
+  Future<void> _load() async {
+    final items = await AnnaleStore.instance.offline();
+    if (mounted) setState(() { _items = items; _loaded = true; });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final has = _items.isNotEmpty;
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: SecHead(eyebrow: 'Hors-ligne', title: 'Tes épreuves', action: null),
-      ),
-      const SizedBox(height: 14),
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: GestureDetector(
           behavior: HitTestBehavior.opaque,
-          onTap: () => context.go('/annales'),
-          child: Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: OC.paper,
-              borderRadius: BorderRadius.circular(18),
-              border: Border.all(color: OC.line, width: 1.5),
-            ),
-            child: Row(children: [
-              Container(
-                width: 46, height: 46,
-                decoration: BoxDecoration(color: OC.goodBg, borderRadius: BorderRadius.circular(13)),
-                child: Icon(Icons.download_for_offline_outlined, size: 24, color: OC.waInk),
-              ),
-              const SizedBox(width: 13),
-              Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text('Aucune épreuve hors-ligne', style: body(14, weight: FontWeight.w700)),
-                const SizedBox(height: 3),
-                Text('Télécharge des annales pour les consulter sans connexion.',
-                    style: body(12, color: OC.muted, weight: FontWeight.w500).copyWith(height: 1.35)),
-              ])),
-              const SizedBox(width: 8),
-              Icon(Icons.chevron_right_rounded, size: 20, color: OC.muted),
-            ]),
-          ),
+          onTap: has ? () async { await context.push('/annales/offline'); _load(); } : null,
+          child: SecHead(eyebrow: 'Hors-ligne', title: 'Tes épreuves', action: has ? 'Tout voir' : null),
         ),
       ),
+      const SizedBox(height: 14),
+      if (!has)
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: () => context.go('/annales'),
+            child: Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: OC.paper,
+                borderRadius: BorderRadius.circular(18),
+                border: Border.all(color: OC.line, width: 1.5),
+              ),
+              child: Row(children: [
+                Container(
+                  width: 46, height: 46,
+                  decoration: BoxDecoration(color: OC.goodBg, borderRadius: BorderRadius.circular(13)),
+                  child: Icon(Icons.download_for_offline_outlined, size: 24, color: OC.waInk),
+                ),
+                const SizedBox(width: 13),
+                Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Text(_loaded ? 'Aucune épreuve hors-ligne' : 'Tes épreuves hors-ligne', style: body(14, weight: FontWeight.w700)),
+                  const SizedBox(height: 3),
+                  Text('Rends une épreuve dispo hors-ligne pour la consulter sans connexion, dans l\'app.',
+                      style: body(12, color: OC.muted, weight: FontWeight.w500).copyWith(height: 1.35)),
+                ])),
+                const SizedBox(width: 8),
+                Icon(Icons.chevron_right_rounded, size: 20, color: OC.muted),
+              ]),
+            ),
+          ),
+        )
+      else
+        SizedBox(
+          height: 128,
+          child: ListView.separated(
+            scrollDirection: Axis.horizontal,
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            itemCount: _items.length,
+            separatorBuilder: (_, __) => const SizedBox(width: 11),
+            itemBuilder: (_, i) => _offlineCard(_items[i]),
+          ),
+        ),
     ]);
+  }
+
+  Widget _offlineCard(Annale a) {
+    return GestureDetector(
+      onTap: () async { await context.push('/annales/detail', extra: a); _load(); },
+      onLongPress: () => showAnnaleActions(context, a, onChanged: _load),
+      child: Container(
+        width: 168,
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(color: OC.paper, borderRadius: BorderRadius.circular(16), border: Border.all(color: OC.line, width: 1.5)),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Row(children: [
+            SubjLogo(a.subject, size: 34),
+            const Spacer(),
+            Icon(Icons.download_done_rounded, size: 17, color: OC.waInk),
+          ]),
+          const SizedBox(height: 10),
+          Text(a.title, maxLines: 2, overflow: TextOverflow.ellipsis, style: body(13, weight: FontWeight.w700).copyWith(height: 1.2)),
+          const Spacer(),
+          Text([a.subject, if (a.year.isNotEmpty) a.year].join(' · '),
+              maxLines: 1, overflow: TextOverflow.ellipsis, style: body(11, color: OC.muted, weight: FontWeight.w600)),
+        ]),
+      ),
+    );
   }
 }
 
