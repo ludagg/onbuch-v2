@@ -21,7 +21,13 @@ Usage :
   APPWRITE_API_KEY=standard_xxx python3 tools/import_annales_from_ol.py \
       --db ... --insert [--limit N]
 """
-import argparse, json, os, re, sqlite3, sys, time, urllib.request, urllib.error
+import argparse, hashlib, json, os, re, sqlite3, sys, time, urllib.request, urllib.error
+
+
+def doc_id(link):
+    """ID Appwrite déterministe (≤36 car., commence par une lettre) dérivé du lien.
+    Rend l'insertion idempotente : re-run ⇒ 409 (déjà présent) au lieu de doublon."""
+    return 'a' + hashlib.sha1(link.encode()).hexdigest()[:35]
 
 # ── Taxonomie : sous-ensembles VALIDES de matières par examen ────────────────
 # Repris fidèlement de lib/data/exam_taxonomy.dart (union des matières de toutes
@@ -282,7 +288,9 @@ def classify(row):
         'title': title[:200],
         'fileUrl': '' if is_corrige else url,
         'corrigeUrl': url if is_corrige else '',
-        'videoUrl': '', 'premium': False,
+        'videoUrl': '',
+        # Sujets gratuits ; corrigés (et futures vidéos) en premium.
+        'premium': bool(is_corrige),
     }
     return doc, None
 
@@ -358,29 +366,43 @@ def insert_appwrite(docs, args):
                'Content-Type': 'application/json'}
     if args.limit:
         docs = docs[:args.limit]
-    ok = err = 0
+    ok = skip = err = 0
+    delay = args.delay
     t0 = time.time()
     for i, d in enumerate(docs):
-        body = json.dumps({'documentId': 'unique()', 'data': d}).encode()
-        req = urllib.request.Request(url, data=body, headers=headers, method='POST')
-        try:
-            urllib.request.urlopen(req, timeout=30)
-            ok += 1
-        except urllib.error.HTTPError as e:
-            err += 1
-            if err <= 5:
-                print('  HTTP', e.code, e.read()[:200])
-            if e.code == 429:
-                time.sleep(2)
-        except Exception as e:
-            err += 1
-            if err <= 5:
-                print('  ERR', e)
-            time.sleep(1)
+        link = d['fileUrl'] or d['corrigeUrl']
+        body = json.dumps({'documentId': doc_id(link), 'data': d}).encode()
+        for attempt in range(6):
+            req = urllib.request.Request(url, data=body, headers=headers, method='POST')
+            try:
+                urllib.request.urlopen(req, timeout=30)
+                ok += 1
+                break
+            except urllib.error.HTTPError as e:
+                if e.code == 409:        # déjà inséré (idempotent) → on passe
+                    skip += 1
+                    break
+                if e.code == 429:        # rate limit → backoff exponentiel
+                    wait = min(2 ** attempt, 30)
+                    time.sleep(wait)
+                    continue
+                err += 1
+                if err <= 8:
+                    print('  HTTP', e.code, e.read()[:160])
+                break
+            except Exception as e:
+                if attempt < 5:
+                    time.sleep(2 ** attempt)
+                    continue
+                err += 1
+                if err <= 8:
+                    print('  ERR', e)
+                break
+        time.sleep(delay)
         if (i + 1) % 250 == 0:
             rate = (i + 1) / (time.time() - t0)
-            print(f'  …{i+1}/{len(docs)}  ok={ok} err={err}  {rate:.1f}/s')
-    print(f'\n  Insertion terminée : ok={ok} err={err} en {time.time()-t0:.0f}s')
+            print(f'  …{i+1}/{len(docs)}  ok={ok} skip={skip} err={err}  {rate:.1f}/s', flush=True)
+    print(f'\n  Insertion terminée : ok={ok} skip(déjà présent)={skip} err={err} en {time.time()-t0:.0f}s')
 
 
 if __name__ == '__main__':
@@ -391,4 +413,6 @@ if __name__ == '__main__':
     ap.add_argument('--sample', action='store_true')
     ap.add_argument('--insert', action='store_true')
     ap.add_argument('--limit', type=int)
+    ap.add_argument('--delay', type=float, default=0.08,
+                    help='pause (s) entre écritures — ménage les limites Appwrite')
     run(ap.parse_args())
