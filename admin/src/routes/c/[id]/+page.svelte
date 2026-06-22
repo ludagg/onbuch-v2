@@ -258,7 +258,9 @@
           {:else if f.type === 'select'}
             <select id={'f-' + f.key} bind:value={editing[f.key]}>
               {#each f.options ?? [] as opt}
-                <option value={opt}>{opt === '' ? '(aucun)' : opt}</option>
+                {@const val = opt.split('|')[0]}
+                {@const lbl = opt.split('|')[1] ?? opt}
+                <option value={val}>{val === '' ? '(aucun)' : lbl}</option>
               {/each}
             </select>
           {:else}
