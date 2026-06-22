@@ -153,7 +153,7 @@ final appRouter = GoRouter(
       ),
     ),
     GoRoute(path: '/cours-search', builder: (_, __) => const CoursSearchScreen()),
-    // TEST : écrans Cours (packs) — maquettes navigables (mock, sans backend).
+    // Écrans Cours (packs) — plein écran (hors coque), données réelles.
     GoRoute(path: '/cours/pack', builder: (_, s) => PackDetailScreen(subjectId: s.uri.queryParameters['id'])),
     GoRoute(path: '/cours/bibliotheque', builder: (_, __) => const CoursLibraryScreen()),
     GoRoute(path: '/cours/lecon', builder: (_, s) => LessonReaderScreen(subjectId: s.uri.queryParameters['id'], startIndex: int.tryParse(s.uri.queryParameters['i'] ?? '') ?? 0)),
@@ -265,7 +265,7 @@ final appRouter = GoRouter(
             ),
           ],
         ),
-        // TEST : onglet Cours branché temporairement sur le nouveau Catalogue.
+        // Onglet Cours = Catalogue de packs (vision Nomad).
         GoRoute(path: '/cours', builder: (_, __) => const CoursCatalogueScreen()),
         GoRoute(path: '/profile', builder: (_, __) => const ProfileScreen()),
       ],
