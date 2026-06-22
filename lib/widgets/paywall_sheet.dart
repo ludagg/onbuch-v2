@@ -1,7 +1,11 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 import '../theme/app_theme.dart';
 import '../services/billing_service.dart';
+import '../appwrite_config.dart';
+import '../utils/launch.dart';
+import 'redeem_code_sheet.dart';
 
 /// Feuille de recharge de crédits Tuteur via **Google Play Billing**.
 /// Les crédits sont des biens numériques : le Play Store impose son système
@@ -121,6 +125,8 @@ class _PaywallSheetState extends State<PaywallSheet> {
         const SizedBox(height: 18),
         if (_loading)
           const Padding(padding: EdgeInsets.all(28), child: CircularProgressIndicator(color: OC.o500))
+        else if (kIsWeb)
+          _webPurchase()
         else if (!_available || _products.isEmpty)
           _unavailable()
         else ...[
@@ -149,8 +155,43 @@ class _PaywallSheetState extends State<PaywallSheet> {
           Text('Paiement sécurisé via Google Play · sans abonnement',
               textAlign: TextAlign.center, style: body(11, color: OC.muted, weight: FontWeight.w500)),
         ],
+        const SizedBox(height: 14),
+        // « J'ai un code » : disponible partout (rachat d'un code obtenu
+        // hors-app). Ne sollicite aucun paiement externe → conforme Play.
+        GestureDetector(
+          onTap: () async {
+            final nav = Navigator.of(context);
+            final added = await RedeemCodeSheet.show(context);
+            if (added != null && added > 0 && mounted) nav.pop(true);
+          },
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 6),
+            child: Text('J\'ai un code', style: body(13, weight: FontWeight.w700, color: OC.o600)),
+          ),
+        ),
       ]),
     );
+  }
+
+  // Web : le paiement passe par Mobile Money (bot Telegram) → on émet un code.
+  Widget _webPurchase() {
+    return Column(children: [
+      GestureDetector(
+        onTap: () => openUrl(context, onbuchCreditsBotUrl),
+        child: Container(
+          width: double.infinity, height: 50,
+          decoration: BoxDecoration(
+            gradient: OC.grad,
+            borderRadius: BorderRadius.circular(14),
+            boxShadow: [BoxShadow(color: OC.o500.withValues(alpha: 0.30), blurRadius: 14, offset: const Offset(0, 6))],
+          ),
+          child: Center(child: Text('Recharger via Orange / MTN', style: body(14, weight: FontWeight.w700, color: Colors.white))),
+        ),
+      ),
+      const SizedBox(height: 10),
+      Text('Paie en Mobile Money, reçois un code et saisis-le ci-dessous.',
+          textAlign: TextAlign.center, style: body(11, color: OC.muted, weight: FontWeight.w500)),
+    ]);
   }
 
   Widget _packTile(ProductDetails p) {

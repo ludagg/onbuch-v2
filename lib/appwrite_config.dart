@@ -47,3 +47,11 @@ const appwriteReviewQueueCollectionId = 'review_queue';
 // permet à l'admin d'envoyer un push « à tous » en une fois.
 const appwriteFcmProviderId = '';
 const appwritePushTopicId = '';
+
+// ── Crédits via Mobile Money (bot Telegram + rachat de code) ─────────────────
+// Le paiement Orange/MTN passe par le bot @OnBuchCreditsBot (achat « hors-app »,
+// positionné côté web) ; l'app ne fait que **racheter un code**. Conformité
+// Play : le build mobile n'affiche AUCUN lien de paiement externe — uniquement
+// le champ « J'ai un code ». Le CTA Telegram n'apparaît que sur le web.
+const onbuchRedeemUrl = 'https://telegram-bot-nine-henna.vercel.app/api/redeem';
+const onbuchCreditsBotUrl = 'https://t.me/OnBuchCreditsBot';

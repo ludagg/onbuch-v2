@@ -45,6 +45,33 @@ export const RESOURCES: Resource[] = [
     ]
   },
   {
+    id: 'payment_requests',
+    collectionId: 'payment_requests',
+    label: 'Paiements (crédits)',
+    singular: 'paiement',
+    icon: '💳',
+    titleField: 'telegramUsername',
+    subtitleField: 'status',
+    orderBy: { field: '$createdAt', dir: 'desc' },
+    fields: [
+      { key: 'status', label: 'Statut', type: 'select', options: ['draft', 'pending', 'approved', 'rejected', 'redeemed', 'expired'], help: 'Audit fraude : tu peux rejeter manuellement une demande approuvée à tort (avant rachat).' },
+      { key: 'operator', label: 'Opérateur', type: 'text' },
+      { key: 'amount', label: 'Montant (FCFA)', type: 'number' },
+      { key: 'credits', label: 'Crédits', type: 'number' },
+      { key: 'telegramUsername', label: 'Telegram @', type: 'text' },
+      { key: 'telegramUserId', label: 'Telegram ID', type: 'text' },
+      { key: 'code', label: 'Code émis', type: 'text' },
+      { key: 'txnId', label: 'ID transaction', type: 'text' },
+      { key: 'senderNumber', label: 'Numéro émetteur', type: 'text' },
+      { key: 'rawMessage', label: 'SMS collé (preuve)', type: 'textarea' },
+      { key: 'reviewedBy', label: 'Validé par', type: 'text' },
+      { key: 'reviewedAt', label: 'Validé le', type: 'text' },
+      { key: 'redeemedByUid', label: 'Racheté par (UID)', type: 'text' },
+      { key: 'redeemedAt', label: 'Racheté le', type: 'text' },
+      { key: 'expiresAt', label: 'Expire le', type: 'text' }
+    ]
+  },
+  {
     id: 'users',
     collectionId: 'users',
     label: 'Utilisateurs',

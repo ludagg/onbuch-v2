@@ -24,10 +24,15 @@ KEY="${APPWRITE_API_KEY:?Définis APPWRITE_API_KEY (clé serveur databases.write
 H=(-H "X-Appwrite-Project: $PROJECT" -H "X-Appwrite-Key: $KEY" -H "Content-Type: application/json")
 api() { curl -sS -X "$1" "$ENDPOINT$2" "${H[@]}" ${3:+-d "$3"} -w $'\n[HTTP %{http_code}]\n'; }
 
-echo "── Collection '$COLLECTION' (verrouillée serveur) ──"
-# Aucune permission → accès réservé à la clé serveur. documentSecurity=false.
+echo "── Collection '$COLLECTION' (lecture admins, écriture serveur) ──"
+# Lecture/écriture réservées aux admins (back-office) + clé serveur (bot/redeem).
+# Les utilisateurs normaux n'y ont AUCUN accès → codes non énumérables.
+PERMS='["read(\"team:admins\")","update(\"team:admins\")"]'
 api POST "/databases/$DB/collections" \
-  "{\"collectionId\":\"$COLLECTION\",\"name\":\"Paiements (crédits)\",\"permissions\":[],\"documentSecurity\":false}" >/dev/null || true
+  "{\"collectionId\":\"$COLLECTION\",\"name\":\"Paiements (crédits)\",\"permissions\":$PERMS,\"documentSecurity\":false}" >/dev/null || true
+# Idempotent : remet les permissions à jour si la collection existait déjà.
+api PUT "/databases/$DB/collections/$COLLECTION" \
+  "{\"name\":\"Paiements (crédits)\",\"permissions\":$PERMS,\"documentSecurity\":false}" >/dev/null || true
 
 str() { echo "• attr $1 (string $2)"; api POST "/databases/$DB/collections/$COLLECTION/attributes/string" \
   "{\"key\":\"$1\",\"size\":$2,\"required\":$3}" >/dev/null || true; }
