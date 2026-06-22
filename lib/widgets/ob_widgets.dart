@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../app_globals.dart';
 import '../theme/app_theme.dart';
+import '../models/course.dart';
 import '../services/notifications_service.dart';
 
 // ─── Wordmark ─────────────────────────────────────────────────────────────────
@@ -831,4 +832,75 @@ class _OBRingPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant _OBRingPainter old) => old.pct != pct || old.color != color || old.track != track;
+}
+
+// ─── Couverture de pack (matière) ─────────────────────────────────────────────
+/// Couverture visuelle d'un « pack » de cours. Comme aucune image n'est encore
+/// stockée en base, on génère un dégradé à partir de la couleur de la matière,
+/// avec l'icône en filigrane et les initiales en surimpression. Réutilisée par
+/// l'accueil Cours (cartes) et la fiche pack (hero).
+class PackCover extends StatelessWidget {
+  final Subject subject;
+  final double height;
+  final BorderRadius radius;
+
+  /// Affiche un grand bloc « hero » (icône + initiales plus imposantes) plutôt
+  /// qu'une vignette compacte.
+  final bool hero;
+  const PackCover({
+    super.key,
+    required this.subject,
+    this.height = 96,
+    this.radius = const BorderRadius.all(Radius.circular(16)),
+    this.hero = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final c = subject.color;
+    final dark = Color.lerp(c, Colors.black, 0.42)!;
+    // TODO: si subject.coverUrl != null → remplacer le dégradé par
+    // Image.network(subject.coverUrl) en arrière-plan.
+    return ClipRRect(
+      borderRadius: radius,
+      child: SizedBox(
+        height: height,
+        width: double.infinity,
+        child: Stack(children: [
+          Positioned.fill(
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft, end: Alignment.bottomRight,
+                  colors: [c, dark],
+                ),
+              ),
+            ),
+          ),
+          // Icône en filigrane, débordant en bas à droite.
+          Positioned(
+            right: hero ? -8 : -10,
+            bottom: hero ? -18 : -12,
+            child: Icon(subject.icon, size: hero ? 130 : 84,
+                color: Colors.white.withValues(alpha: 0.16)),
+          ),
+          Padding(
+            padding: EdgeInsets.all(hero ? 16 : 11),
+            child: Align(
+              alignment: Alignment.topLeft,
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: hero ? 10 : 8, vertical: hero ? 6 : 4),
+                decoration: BoxDecoration(
+                  color: Colors.white.withValues(alpha: 0.22),
+                  borderRadius: BorderRadius.circular(9),
+                ),
+                child: Text(subject.code.toUpperCase(),
+                    style: mono(hero ? 14 : 11, weight: FontWeight.w800, color: Colors.white)),
+              ),
+            ),
+          ),
+        ]),
+      ),
+    );
+  }
 }

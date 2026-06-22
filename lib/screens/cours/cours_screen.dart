@@ -9,8 +9,9 @@ import '../../models/course.dart';
 import '../../services/auth_service.dart';
 import '../../services/database_service.dart';
 
-/// Accueil du module Cours (refonte « Nomad Educ ») : progression, reprise de
-/// la dernière leçon, grille de matières avec anneaux de progression.
+/// Accueil du module Cours, réorganisé autour des « packs » (matières) :
+/// recherche, catégories (niveaux), carrousel des packs populaires et liste
+/// complète des packs avec anneaux de progression.
 class CoursScreen extends StatefulWidget {
   const CoursScreen({super.key});
 
@@ -25,6 +26,7 @@ class _CoursScreenState extends State<CoursScreen> {
   Set<String> _viewed = {};
   String? _classe;
   bool _loading = true;
+  String _cat = 'Tout';
 
   @override
   void initState() {
@@ -58,6 +60,35 @@ class _CoursScreenState extends State<CoursScreen> {
     return v.isEmpty ? _subjects : v;
   }
 
+  /// Catégories dérivées des niveaux des matières visibles (ordre d'apparition).
+  List<String> get _categories {
+    final out = <String>['Tout'];
+    for (final s in _visible) {
+      for (final raw in s.levels.split(RegExp(r'[,;]'))) {
+        final l = raw.trim();
+        if (l.isNotEmpty && !out.any((e) => e.toLowerCase() == l.toLowerCase())) {
+          out.add(l);
+        }
+      }
+    }
+    return out;
+  }
+
+  /// Packs filtrés par la catégorie active.
+  List<Subject> get _filtered {
+    if (_cat == 'Tout') return _visible;
+    final c = _cat.toLowerCase();
+    return _visible.where((s) => s.levels.toLowerCase().contains(c)).toList();
+  }
+
+  /// Packs « populaires » : ceux qui ont le plus de chapitres (proxy, en
+  /// l'absence d'un champ de popularité réel).
+  List<Subject> get _popular {
+    final l = _visible.where((s) => _chaptersOf(s.id).isNotEmpty).toList();
+    l.sort((a, b) => _chaptersOf(b.id).length.compareTo(_chaptersOf(a.id).length));
+    return l.take(5).toList();
+  }
+
   List<Chapter> _chaptersOf(String subjectId) {
     final l = _chapters.where((c) => c.subjectId == subjectId).toList();
     l.sort((a, b) => a.order.compareTo(b.order));
@@ -66,9 +97,18 @@ class _CoursScreenState extends State<CoursScreen> {
 
   int _doneOf(List<Chapter> chs) => chs.where((c) => _viewed.contains(c.id)).length;
 
+  Future<void> _openPack(Subject s) async {
+    await context.push('/cours-subject', extra: s);
+    if (mounted) _load();
+  }
+
+  String? _level(Subject s) {
+    final parts = s.levels.split(RegExp(r'[,;]')).map((e) => e.trim()).where((e) => e.isNotEmpty);
+    return parts.isEmpty ? null : parts.first;
+  }
+
   @override
   Widget build(BuildContext context) {
-    final w = (MediaQuery.of(context).size.width - 40 - 12) / 2;
     final totalCh = _chapters.length;
     final doneCh = _chapters.where((c) => _viewed.contains(c.id)).length;
     return Scaffold(
@@ -106,16 +146,18 @@ class _CoursScreenState extends State<CoursScreen> {
                   child: Row(children: [
                     Icon(Icons.search_rounded, size: 19, color: OC.muted),
                     const SizedBox(width: 11),
-                    Text('Chercher un cours, une vidéo, un quiz…', style: body(13.5, color: OC.muted, weight: FontWeight.w500)),
+                    Text('Trouve un pack ou une matière…', style: body(13.5, color: OC.muted, weight: FontWeight.w500)),
                   ]),
                 ),
               ),
-              const SizedBox(height: 18),
+              const SizedBox(height: 16),
 
               if (_loading)
                 Column(children: const [
-                  Skeleton(width: double.infinity, height: 80, radius: 20),
-                  SizedBox(height: 20),
+                  Skeleton(width: double.infinity, height: 64, radius: 20),
+                  SizedBox(height: 18),
+                  SkeletonCard(),
+                  SizedBox(height: 18),
                   SkeletonList(count: 3),
                 ])
               else if (_subjects.isEmpty)
@@ -128,20 +170,75 @@ class _CoursScreenState extends State<CoursScreen> {
               else ...[
                 _progressStrip(totalCh, doneCh),
                 const SizedBox(height: 20),
-                ..._resumeBlock(),
-                Text('Mes matières', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
-                const SizedBox(height: 12),
-                Wrap(
-                  spacing: 12, runSpacing: 12,
-                  children: [
-                    for (var i = 0; i < _visible.length; i++)
-                      Appear(index: i, child: _subjectCard(_visible[i], w)),
-                  ],
-                ),
               ],
             ]),
           ),
         ),
+
+        if (!_loading && _subjects.isNotEmpty) ...[
+          // Catégories
+          if (_categories.length > 1)
+            SliverToBoxAdapter(
+              child: SizedBox(
+                height: 38,
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  itemCount: _categories.length,
+                  separatorBuilder: (_, __) => const SizedBox(width: 8),
+                  itemBuilder: (_, i) {
+                    final cat = _categories[i];
+                    return GestureDetector(
+                      onTap: () => setState(() => _cat = cat),
+                      child: OBChip(cat, active: cat == _cat),
+                    );
+                  },
+                ),
+              ),
+            ),
+
+          // Packs populaires
+          if (_popular.isNotEmpty) ...[
+            const SliverToBoxAdapter(child: SizedBox(height: 22)),
+            const SliverToBoxAdapter(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: SecHead(title: 'Packs populaires', action: null),
+              ),
+            ),
+            const SliverToBoxAdapter(child: SizedBox(height: 14)),
+            SliverToBoxAdapter(
+              child: SizedBox(
+                height: 192,
+                child: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  itemCount: _popular.length,
+                  separatorBuilder: (_, __) => const SizedBox(width: 12),
+                  itemBuilder: (_, i) => _popularCard(_popular[i]),
+                ),
+              ),
+            ),
+          ],
+
+          // Tous les packs (filtrés par catégorie)
+          const SliverToBoxAdapter(child: SizedBox(height: 24)),
+          const SliverToBoxAdapter(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: SecHead(title: 'Tous les packs', action: null),
+            ),
+          ),
+          const SliverToBoxAdapter(child: SizedBox(height: 12)),
+          SliverPadding(
+            padding: const EdgeInsets.fromLTRB(20, 0, 20, 28),
+            sliver: SliverList.separated(
+              itemCount: _filtered.length,
+              separatorBuilder: (_, __) => const SizedBox(height: 12),
+              itemBuilder: (_, i) => Appear(index: i, child: _packRow(_filtered[i])),
+            ),
+          ),
+        ],
       ]),
     );
   }
@@ -170,101 +267,16 @@ class _CoursScreenState extends State<CoursScreen> {
     );
   }
 
-  // ── Reprendre ─────────────────────────────────────────────────────────────
-  List<Widget> _resumeBlock() {
-    final r = _resume();
-    if (r == null) return const [];
-    final (chapter, subject, idx, total) = r;
-    final done = _doneOf(_chaptersOf(subject.id));
-    final pct = total == 0 ? 0.0 : done / total;
-    return [
-      Text('Reprendre', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
-      const SizedBox(height: 10),
-      GestureDetector(
-        onTap: () async {
-          await context.push('/cours-chapter', extra: {'chapter': chapter, 'subject': subject.name});
-          if (mounted) _load();
-        },
-        child: Container(
-          padding: const EdgeInsets.all(14),
-          decoration: BoxDecoration(
-            color: OC.paper,
-            borderRadius: BorderRadius.circular(18),
-            border: Border.all(color: OC.line, width: 1.5),
-            boxShadow: [BoxShadow(color: OC.ink.withValues(alpha: 0.04), blurRadius: 10, offset: const Offset(0, 4))],
-          ),
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Row(children: [
-              Container(
-                width: 44, height: 44,
-                decoration: BoxDecoration(color: subject.color.withValues(alpha: 0.14), borderRadius: BorderRadius.circular(13)),
-                child: Center(child: Icon(Icons.play_arrow_rounded, color: subject.color, size: 26)),
-              ),
-              const SizedBox(width: 12),
-              Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                  decoration: BoxDecoration(color: OC.o50, borderRadius: BorderRadius.circular(6)),
-                  child: Text('REPRENDRE', style: body(8.5, weight: FontWeight.w800, color: OC.o700).copyWith(letterSpacing: 0.04 * 8.5)),
-                ),
-                const SizedBox(height: 6),
-                Text(chapter.title, maxLines: 1, overflow: TextOverflow.ellipsis, style: body(14, weight: FontWeight.w700)),
-                const SizedBox(height: 2),
-                Text('${subject.name} · Chapitre $idx/$total', style: body(11.5, color: OC.muted, weight: FontWeight.w500)),
-              ])),
-            ]),
-            const SizedBox(height: 12),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(4),
-              child: LinearProgressIndicator(value: pct, minHeight: 6, backgroundColor: OC.line, valueColor: AlwaysStoppedAnimation(subject.color)),
-            ),
-          ]),
-        ),
-      ),
-      const SizedBox(height: 22),
-    ];
-  }
-
-  /// Choisit la prochaine leçon à reprendre : 1re matière en cours, sinon 1re
-  /// leçon non vue, sinon la première leçon.
-  (Chapter, Subject, int, int)? _resume() {
-    Chapter? fallbackCh;
-    Subject? fallbackSub;
-    int fIdx = 0, fTotal = 0;
-    for (final s in _visible) {
-      final chs = _chaptersOf(s.id);
-      if (chs.isEmpty) continue;
-      final done = _doneOf(chs);
-      final firstNot = chs.indexWhere((c) => !_viewed.contains(c.id));
-      if (done > 0 && done < chs.length && firstNot >= 0) {
-        return (chs[firstNot], s, firstNot + 1, chs.length);
-      }
-      if (fallbackCh == null) {
-        final i = firstNot >= 0 ? firstNot : 0;
-        fallbackCh = chs[i];
-        fallbackSub = s;
-        fIdx = i + 1;
-        fTotal = chs.length;
-      }
-    }
-    if (fallbackCh != null) return (fallbackCh, fallbackSub!, fIdx, fTotal);
-    return null;
-  }
-
-  // ── Carte matière (avec anneau) ───────────────────────────────────────────
-  Widget _subjectCard(Subject s, double w) {
+  // ── Carte « pack populaire » (carrousel horizontal) ───────────────────────
+  Widget _popularCard(Subject s) {
     final chs = _chaptersOf(s.id);
     final total = chs.length;
-    final done = _doneOf(chs);
-    final pct = total == 0 ? 0.0 : done / total;
+    final pct = total == 0 ? 0.0 : _doneOf(chs) / total;
+    final lvl = _level(s);
     return GestureDetector(
-      onTap: () async {
-        await context.push('/cours-subject', extra: s);
-        if (mounted) _load();
-      },
+      onTap: () => _openPack(s),
       child: Container(
-        width: w,
-        padding: const EdgeInsets.all(14),
+        width: 224,
         decoration: BoxDecoration(
           color: OC.paper,
           borderRadius: BorderRadius.circular(18),
@@ -272,35 +284,80 @@ class _CoursScreenState extends State<CoursScreen> {
           boxShadow: [BoxShadow(color: OC.ink.withValues(alpha: 0.04), blurRadius: 10, offset: const Offset(0, 4))],
         ),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Row(children: [
-            Container(
-              width: 44, height: 44,
-              decoration: BoxDecoration(color: s.color.withValues(alpha: 0.14), borderRadius: BorderRadius.circular(13)),
-              child: Center(child: Icon(s.icon, size: 23, color: s.color)),
-            ),
-            const Spacer(),
-            OBRing(
-              pct: pct, size: 36,
-              color: total == 0 ? OC.line2 : s.color,
-              track: OC.line,
-              center: total == 0
-                  ? Text('–', style: mono(11, weight: FontWeight.w800, color: OC.muted))
-                  : Text('${(pct * 100).round()}%', style: mono(9, weight: FontWeight.w800, color: s.color)),
-            ),
-          ]),
-          const SizedBox(height: 11),
-          // Hauteur fixe (2 lignes) pour que toutes les cartes s'alignent.
-          SizedBox(
-            height: 38,
-            child: Text(s.name, maxLines: 2, overflow: TextOverflow.ellipsis,
-                style: body(14.5, weight: FontWeight.w700).copyWith(height: 1.15)),
+          PackCover(subject: s, height: 96,
+              radius: const BorderRadius.vertical(top: Radius.circular(17))),
+          Padding(
+            padding: const EdgeInsets.all(12),
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(lvl != null ? '${s.name} · $lvl' : s.name,
+                  maxLines: 1, overflow: TextOverflow.ellipsis,
+                  style: body(14, weight: FontWeight.w700)),
+              const SizedBox(height: 8),
+              Row(children: [
+                Expanded(child: Text(total == 0 ? 'Bientôt' : '$total chapitre${total > 1 ? 's' : ''}',
+                    style: body(11.5, color: OC.muted, weight: FontWeight.w600))),
+                OBRing(
+                  pct: pct, size: 30,
+                  color: total == 0 ? OC.line2 : s.color,
+                  track: OC.line,
+                  center: total == 0
+                      ? Text('–', style: mono(9, weight: FontWeight.w800, color: OC.muted))
+                      : Text('${(pct * 100).round()}', style: mono(8, weight: FontWeight.w800, color: s.color)),
+                ),
+              ]),
+            ]),
           ),
-          const SizedBox(height: 4),
-          Text(total == 0 ? 'Bientôt disponible' : '$total chapitre${total > 1 ? 's' : ''}',
-              style: body(12, color: OC.muted, weight: FontWeight.w600)),
         ]),
       ),
     );
   }
 
+  // ── Ligne « pack » (liste « Tous les packs ») ─────────────────────────────
+  Widget _packRow(Subject s) {
+    final chs = _chaptersOf(s.id);
+    final total = chs.length;
+    final pct = total == 0 ? 0.0 : _doneOf(chs) / total;
+    final lvl = _level(s);
+    return GestureDetector(
+      onTap: () => _openPack(s),
+      child: Container(
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: OC.paper,
+          borderRadius: BorderRadius.circular(18),
+          border: Border.all(color: OC.line, width: 1.5),
+          boxShadow: [BoxShadow(color: OC.ink.withValues(alpha: 0.04), blurRadius: 10, offset: const Offset(0, 4))],
+        ),
+        child: Row(children: [
+          SizedBox(width: 64, child: PackCover(subject: s, height: 64)),
+          const SizedBox(width: 12),
+          Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(s.name, maxLines: 1, overflow: TextOverflow.ellipsis, style: body(14.5, weight: FontWeight.w700)),
+            const SizedBox(height: 3),
+            Row(children: [
+              if (lvl != null) ...[
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
+                  decoration: BoxDecoration(color: OC.o50, borderRadius: BorderRadius.circular(6)),
+                  child: Text(lvl, style: body(10, weight: FontWeight.w800, color: OC.o700)),
+                ),
+                const SizedBox(width: 8),
+              ],
+              Text(total == 0 ? 'Bientôt disponible' : '$total chapitre${total > 1 ? 's' : ''}',
+                  style: body(11.5, color: OC.muted, weight: FontWeight.w600)),
+            ]),
+          ])),
+          const SizedBox(width: 10),
+          OBRing(
+            pct: pct, size: 36,
+            color: total == 0 ? OC.line2 : s.color,
+            track: OC.line,
+            center: total == 0
+                ? Text('–', style: mono(11, weight: FontWeight.w800, color: OC.muted))
+                : Text('${(pct * 100).round()}%', style: mono(9, weight: FontWeight.w800, color: s.color)),
+          ),
+        ]),
+      ),
+    );
+  }
 }

@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
 import '../../widgets/rich_answer.dart';
+import '../../widgets/states.dart';
 import '../../widgets/leo_mascot.dart';
 import '../../models/course.dart';
 import '../../services/database_service.dart';
@@ -10,8 +11,8 @@ import '../../services/tutor_service.dart';
 import '../../services/analytics_service.dart';
 import '../../utils/launch.dart';
 
-/// Lecteur de leçon (refonte « Nomad Educ ») : vidéo + fiche de cours générée
-/// par l'IA (affichée dans l'écran) + accès au quiz. Mène au QCM du chapitre.
+/// Lecteur de chapitre à onglets : Cours (fiche IA) · Résumé (fiche de
+/// révision) · Exercices · Vidéo · Exam PDF. Mène au QCM du chapitre.
 class ChapterDetailScreen extends StatefulWidget {
   final Chapter? chapter;
   final String? subjectName;
@@ -25,6 +26,10 @@ class _ChapterDetailScreenState extends State<ChapterDetailScreen> {
   final _db = DatabaseService();
   final _tutor = TutorService();
   late Future<String> _lesson = _loadLesson();
+  Future<String>? _summary; // chargé paresseusement à l'ouverture de l'onglet
+  int _tab = 0;
+
+  static const _tabs = ['Cours', 'Résumé', 'Exercices', 'Vidéo', 'Exam PDF'];
 
   Future<String> _loadLesson() async {
     final c = widget.chapter;
@@ -42,7 +47,25 @@ class _ChapterDetailScreenState extends State<ChapterDetailScreen> {
     );
   }
 
-  void _retry() => setState(() => _lesson = _loadLesson());
+  Future<String> _loadSummary() {
+    final c = widget.chapter!;
+    final subj = widget.subjectName ?? '';
+    return _tutor.summarizeCourse(
+      text: 'Chapitre : ${c.title}${subj.isNotEmpty ? ' ($subj, Terminale)' : ''}',
+      subject: subj,
+      notify: false,
+    );
+  }
+
+  void _retryLesson() => setState(() => _lesson = _loadLesson());
+  void _retrySummary() => setState(() => _summary = _loadSummary());
+
+  void _select(int i) {
+    setState(() {
+      _tab = i;
+      if (i == 1 && _summary == null) _summary = _loadSummary();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,68 +92,12 @@ class _ChapterDetailScreenState extends State<ChapterDetailScreen> {
             const SizedBox(height: 8),
             Text(c.description!, style: body(13.5, color: OC.ink2).copyWith(height: 1.5)),
           ],
-          const SizedBox(height: 18),
+          const SizedBox(height: 16),
 
-          // Vidéo de cours (si fournie)
-          if (c.videoUrl != null) ...[
-            GestureDetector(
-              onTap: () => openUrl(context, c.videoUrl),
-              child: Container(
-                height: 120,
-                decoration: BoxDecoration(
-                  gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [OC.darkHero, OC.darkHero2]),
-                  borderRadius: BorderRadius.circular(18),
-                ),
-                child: Center(
-                  child: Container(
-                    width: 52, height: 52,
-                    decoration: BoxDecoration(color: OC.o500, shape: BoxShape.circle,
-                        boxShadow: [BoxShadow(color: OC.o500.withValues(alpha: 0.4), blurRadius: 16)]),
-                    child: const Icon(Icons.play_arrow_rounded, color: Colors.white, size: 30),
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 18),
-          ],
+          _tabBar(),
+          const SizedBox(height: 16),
 
-          // La fiche de cours (IA)
-          Row(children: [
-            Icon(Icons.menu_book_rounded, size: 18, color: OC.o600),
-            const SizedBox(width: 8),
-            Text('Le cours', style: body(13.5, weight: FontWeight.w800, color: OC.ink2)),
-          ]),
-          const SizedBox(height: 12),
-          FutureBuilder<String>(
-            future: _lesson,
-            builder: (context, snap) {
-              if (snap.connectionState == ConnectionState.waiting) return _lessonLoading();
-              if (snap.hasError) return _lessonError(snap.error);
-              return Container(
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(color: OC.paper, borderRadius: BorderRadius.circular(18), border: Border.all(color: OC.line, width: 1.5)),
-                child: RichAnswer(snap.data ?? ''),
-              );
-            },
-          ),
-
-          if (c.pdfUrl != null) ...[
-            const SizedBox(height: 14),
-            GestureDetector(
-              onTap: () => openUrl(context, c.pdfUrl),
-              child: Container(
-                padding: const EdgeInsets.all(13),
-                decoration: BoxDecoration(color: OC.paper, borderRadius: BorderRadius.circular(14), border: Border.all(color: OC.line, width: 1.5)),
-                child: Row(children: [
-                  Container(width: 40, height: 40, decoration: BoxDecoration(color: const Color(0xFFC0392B).withValues(alpha: 0.12), borderRadius: BorderRadius.circular(11)),
-                      child: const Icon(Icons.picture_as_pdf_rounded, size: 21, color: Color(0xFFC0392B))),
-                  const SizedBox(width: 12),
-                  Expanded(child: Text('Fiche PDF', style: body(14, weight: FontWeight.w700))),
-                  Icon(Icons.open_in_new_rounded, size: 17, color: OC.muted),
-                ]),
-              ),
-            ),
-          ],
+          _tabContent(c),
         ],
       ),
       bottomNavigationBar: SafeArea(
@@ -171,20 +138,138 @@ class _ChapterDetailScreenState extends State<ChapterDetailScreen> {
     );
   }
 
-  Widget _lessonLoading() => Container(
+  // ── Onglets ───────────────────────────────────────────────────────────────
+  Widget _tabBar() {
+    return SizedBox(
+      height: 36,
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        itemCount: _tabs.length,
+        separatorBuilder: (_, __) => const SizedBox(width: 8),
+        itemBuilder: (_, i) {
+          final on = i == _tab;
+          return GestureDetector(
+            onTap: () => _select(i),
+            child: Container(
+              alignment: Alignment.center,
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              decoration: BoxDecoration(
+                color: on ? OC.o500 : OC.paper,
+                borderRadius: BorderRadius.circular(999),
+                border: Border.all(color: on ? OC.o500 : OC.line2, width: 1.5),
+              ),
+              child: Text(_tabs[i], style: body(12.5, weight: FontWeight.w700, color: on ? Colors.white : OC.ink2)),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _tabContent(Chapter c) {
+    switch (_tab) {
+      case 1: // Résumé
+        return FutureBuilder<String>(
+          future: _summary,
+          builder: (context, snap) {
+            if (snap.connectionState == ConnectionState.waiting) {
+              return _loadingCard('Léo rédige ta fiche…', 'Points clés, formules et à-retenir.');
+            }
+            if (snap.hasError) return _errorCard(snap.error, _retrySummary);
+            return _answerCard(snap.data ?? '');
+          },
+        );
+      case 2: // Exercices (hors scope pour l'instant)
+        return const EmptyState(
+          icon: Icons.fitness_center_rounded,
+          title: 'Bientôt disponible',
+          message: 'Les exercices de ce chapitre arrivent.',
+          padding: EdgeInsets.fromLTRB(8, 30, 8, 20),
+        );
+      case 3: // Vidéo
+        if (c.videoUrl == null) {
+          return const EmptyState(
+            icon: Icons.play_circle_outline_rounded,
+            title: 'Pas de vidéo',
+            message: 'Aucune vidéo pour ce chapitre.',
+            padding: EdgeInsets.fromLTRB(8, 30, 8, 20),
+          );
+        }
+        return GestureDetector(
+          onTap: () => openUrl(context, c.videoUrl),
+          child: Container(
+            height: 150,
+            decoration: BoxDecoration(
+              gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [OC.darkHero, OC.darkHero2]),
+              borderRadius: BorderRadius.circular(18),
+            ),
+            child: Center(
+              child: Container(
+                width: 56, height: 56,
+                decoration: BoxDecoration(color: OC.o500, shape: BoxShape.circle,
+                    boxShadow: [BoxShadow(color: OC.o500.withValues(alpha: 0.4), blurRadius: 16)]),
+                child: const Icon(Icons.play_arrow_rounded, color: Colors.white, size: 32),
+              ),
+            ),
+          ),
+        );
+      case 4: // Exam PDF
+        if (c.pdfUrl == null) {
+          return const EmptyState(
+            icon: Icons.picture_as_pdf_rounded,
+            title: 'Pas de PDF',
+            message: 'Aucun document PDF pour ce chapitre.',
+            padding: EdgeInsets.fromLTRB(8, 30, 8, 20),
+          );
+        }
+        return GestureDetector(
+          onTap: () => openUrl(context, c.pdfUrl),
+          child: Container(
+            padding: const EdgeInsets.all(13),
+            decoration: BoxDecoration(color: OC.paper, borderRadius: BorderRadius.circular(14), border: Border.all(color: OC.line, width: 1.5)),
+            child: Row(children: [
+              Container(width: 40, height: 40, decoration: BoxDecoration(color: const Color(0xFFC0392B).withValues(alpha: 0.12), borderRadius: BorderRadius.circular(11)),
+                  child: const Icon(Icons.picture_as_pdf_rounded, size: 21, color: Color(0xFFC0392B))),
+              const SizedBox(width: 12),
+              Expanded(child: Text('Fiche PDF', style: body(14, weight: FontWeight.w700))),
+              Icon(Icons.open_in_new_rounded, size: 17, color: OC.muted),
+            ]),
+          ),
+        );
+      default: // Cours
+        return FutureBuilder<String>(
+          future: _lesson,
+          builder: (context, snap) {
+            if (snap.connectionState == ConnectionState.waiting) {
+              return _loadingCard('Léo prépare ta fiche…', 'Définitions, formules et exemples clairs.');
+            }
+            if (snap.hasError) return _errorCard(snap.error, _retryLesson);
+            return _answerCard(snap.data ?? '');
+          },
+        );
+    }
+  }
+
+  // ── Cartes utilitaires ────────────────────────────────────────────────────
+  Widget _answerCard(String content) => Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(color: OC.paper, borderRadius: BorderRadius.circular(18), border: Border.all(color: OC.line, width: 1.5)),
+        child: RichAnswer(content),
+      );
+
+  Widget _loadingCard(String title, String subtitle) => Container(
         padding: const EdgeInsets.all(22),
         decoration: BoxDecoration(color: OC.paper, borderRadius: BorderRadius.circular(18), border: Border.all(color: OC.line, width: 1.5)),
         child: Column(children: [
           const LeoMascot(size: 64, mood: LeoMood.thinking),
           const SizedBox(height: 10),
-          Text('Léo prépare ta fiche…', style: body(13.5, weight: FontWeight.w600, color: OC.ink2)),
+          Text(title, style: body(13.5, weight: FontWeight.w600, color: OC.ink2)),
           const SizedBox(height: 4),
-          Text('Définitions, formules et exemples clairs.',
-              textAlign: TextAlign.center, style: body(12, color: OC.muted, weight: FontWeight.w500)),
+          Text(subtitle, textAlign: TextAlign.center, style: body(12, color: OC.muted, weight: FontWeight.w500)),
         ]),
       );
 
-  Widget _lessonError(Object? e) => Container(
+  Widget _errorCard(Object? e, VoidCallback onRetry) => Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(color: OC.paper, borderRadius: BorderRadius.circular(18), border: Border.all(color: OC.line, width: 1.5)),
         child: Column(children: [
@@ -193,7 +278,7 @@ class _ChapterDetailScreenState extends State<ChapterDetailScreen> {
           Text('$e', textAlign: TextAlign.center, style: body(13, color: OC.ink2).copyWith(height: 1.4)),
           const SizedBox(height: 14),
           GestureDetector(
-            onTap: _retry,
+            onTap: onRetry,
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
               decoration: BoxDecoration(gradient: OC.grad, borderRadius: BorderRadius.circular(12)),
