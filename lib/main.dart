@@ -9,12 +9,18 @@ import 'router/app_router.dart';
 import 'services/auth_service.dart';
 import 'services/push_service.dart';
 import 'services/theme_controller.dart';
+import 'services/exam_structure_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initializeDateFormatting('fr_FR', null);
   // Amorce le prénom mis en cache pour l'afficher dès la première frame.
   await AuthService.primeNameCache();
+
+  // Structure des examens : on restaure la dernière connue (cache disque) avant
+  // le 1ᵉʳ build (offline-first), puis on rafraîchit en arrière-plan si réseau.
+  await ExamStructureService.instance.loadFromCache();
+  ExamStructureService.instance.refresh();
 
   // Thème : charge le mode choisi et applique la bonne palette AVANT le 1er build.
   await ThemeController.instance.load();

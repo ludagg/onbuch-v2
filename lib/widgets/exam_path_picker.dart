@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../theme/app_theme.dart';
 import '../data/exam_taxonomy.dart';
+import '../services/exam_structure_service.dart';
 
 /// Sélecteur **en cascade** de la filière, piloté par la taxonomie statique
 /// ([examTaxonomy]). À partir de l'examen choisi ([exam]), il déroule
@@ -30,7 +31,7 @@ class _ExamPathPickerState extends State<ExamPathPicker> {
   final List<ExamNode> _groups = []; // subdivisions choisies (chemin de drill)
   ExamNode? _leaf; // série / spécialité finale choisie
 
-  ExamNode? get _root => examTaxonomy[widget.exam];
+  ExamNode? get _root => ExamStructureService.instance.taxonomy[widget.exam];
 
   @override
   void initState() {

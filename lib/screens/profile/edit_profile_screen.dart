@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
 import '../../widgets/exam_path_picker.dart';
-import '../../data/exam_taxonomy.dart';
+import '../../services/exam_structure_service.dart';
 import '../../services/auth_service.dart';
 import '../../services/database_service.dart';
 
@@ -38,7 +38,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   bool _saving = false;
 
   static const _levels = ['3ème', '2nde', '1ère', 'Terminale', 'Sup. / Fac'];
-  static const _exams = examOrder; // examens de la taxonomie, ordonnés
+  final List<String> _exams = ExamStructureService.instance.order; // structure base/cache
   static const _genders = ['Fille', 'Garçon', 'Autre'];
   static const _fields = [
     'Santé / Médecine', 'Ingénierie / Tech', 'Droit / Sciences Po',
