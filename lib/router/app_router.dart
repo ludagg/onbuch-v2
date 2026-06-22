@@ -55,8 +55,14 @@ import '../screens/menu/credits_screen.dart';
 import '../screens/menu/communaute_screen.dart';
 import '../screens/menu/parametres_screen.dart';
 import '../screens/menu/aide_screen.dart';
-import '../screens/cours/cours_screen.dart';
 import '../screens/cours/cours_catalogue_screen.dart';
+import '../screens/cours/pack_detail_screen.dart';
+import '../screens/cours/cours_library_screen.dart';
+import '../screens/cours/lesson_reader_screen.dart';
+import '../screens/cours/placement_test_screen.dart';
+import '../screens/cours/revision_sheet_screen.dart';
+import '../screens/cours/pack_offline_screen.dart';
+import '../screens/cours/cours_cart_screen.dart';
 import '../screens/cours/chapters_screen.dart';
 import '../screens/cours/chapter_detail_screen.dart';
 import '../screens/cours/quiz_screen.dart';
@@ -147,6 +153,14 @@ final appRouter = GoRouter(
       ),
     ),
     GoRoute(path: '/cours-search', builder: (_, __) => const CoursSearchScreen()),
+    // TEST : écrans Cours (packs) — maquettes navigables (mock, sans backend).
+    GoRoute(path: '/cours/pack', builder: (_, __) => const PackDetailScreen()),
+    GoRoute(path: '/cours/bibliotheque', builder: (_, __) => const CoursLibraryScreen()),
+    GoRoute(path: '/cours/lecon', builder: (_, __) => const LessonReaderScreen()),
+    GoRoute(path: '/cours/test', builder: (_, __) => const PlacementTestScreen()),
+    GoRoute(path: '/cours/fiche', builder: (_, __) => const RevisionSheetScreen()),
+    GoRoute(path: '/cours/hors-ligne', builder: (_, __) => const PackOfflineScreen()),
+    GoRoute(path: '/cours/panier', builder: (_, __) => const CoursCartScreen()),
     ShellRoute(
       builder: (_, state, child) => MainShell(location: state.uri.path, child: child),
       routes: [

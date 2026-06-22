@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
 
@@ -69,6 +70,7 @@ class _CoursCatalogueScreenState extends State<CoursCatalogueScreen> {
           Text('Bac · Série D', style: body(11.5, color: OC.muted, weight: FontWeight.w600)),
         ]),
         actions: [
+          IconButton(icon: Icon(Icons.auto_stories_rounded, color: OC.ink), onPressed: () => context.push('/cours/bibliotheque')),
           IconButton(icon: Icon(Icons.search_rounded, color: OC.ink), onPressed: () {/* TODO nav */}),
           IconButton(icon: Icon(Icons.tune_rounded, color: OC.ink), onPressed: () {/* TODO nav */}),
           const SizedBox(width: 4),
@@ -166,7 +168,7 @@ class _CoursCatalogueScreenState extends State<CoursCatalogueScreen> {
     final p = _kPacks[i];
     final added = _added[i];
     return GestureDetector(
-      onTap: () {/* TODO nav */},
+      onTap: () => context.push('/cours/pack'),
       child: Container(
         padding: const EdgeInsets.all(13),
         decoration: BoxDecoration(color: OC.paper, borderRadius: BorderRadius.circular(18), border: Border.all(color: OC.line, width: 1.5)),
