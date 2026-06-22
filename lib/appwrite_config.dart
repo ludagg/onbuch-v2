@@ -24,6 +24,11 @@ const appwriteTutorJobsCollectionId = 'tutor_jobs';
 const appwriteTutorQuotaCollectionId = 'tutor_quota';
 const appwriteNotificationsCollectionId = 'notifications';
 const appwriteAnnalesCollectionId = 'annales';
+const appwriteAppConfigCollectionId = 'app_config';
+
+// Page d'atterrissage des liens de partage (ouvre l'app si installée, sinon
+// propose le téléchargement). Projet Vercel dédié.
+const onbuchShareBaseUrl = 'https://onbuch-go.vercel.app';
 
 // ── Agent d'études Léo (Phase 0 — fondations data) ──────────────────────────
 // Données utilisateur (documentSecurity : chaque doc est restreint à son

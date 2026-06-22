@@ -31,6 +31,20 @@ const order: Field = { key: 'order', label: 'Ordre', type: 'number', help: 'Tri 
 
 export const RESOURCES: Resource[] = [
   {
+    id: 'app_config',
+    collectionId: 'app_config',
+    label: 'Configuration',
+    singular: 'paramètre',
+    icon: '⚙️',
+    titleField: 'key',
+    subtitleField: 'value',
+    orderBy: { field: 'key', dir: 'asc' },
+    fields: [
+      { key: 'key', label: 'Clé', type: 'text', required: true, help: 'ex. playStoreUrl, appStoreUrl (ne pas renommer les clés existantes).' },
+      { key: 'value', label: 'Valeur', type: 'text', help: 'ex. lien Google Play / App Store de l’app.' }
+    ]
+  },
+  {
     id: 'users',
     collectionId: 'users',
     label: 'Utilisateurs',

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:share_plus/share_plus.dart';
 import '../../theme/app_theme.dart';
+import '../../appwrite_config.dart';
 import '../../models/annale.dart';
 import '../../services/annale_store.dart';
 
@@ -49,8 +50,7 @@ class _AnnaleDetailScreenState extends State<AnnaleDetailScreen> {
   Future<void> _share() async {
     final a = widget.annale;
     if (a == null) return;
-    final link = a.fileUrl.isNotEmpty ? a.fileUrl : (a.videoUrl.isNotEmpty ? a.videoUrl : a.corrigeUrl);
-    await Share.share(link.isEmpty ? a.title : '${a.title}\n$link', subject: a.title);
+    await Share.share('${a.title}\n$onbuchShareBaseUrl/a/${a.id}', subject: a.title);
   }
 
   Future<void> _toggleOffline() async {
