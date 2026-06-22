@@ -48,6 +48,13 @@ const appwriteReviewQueueCollectionId = 'review_queue';
 const appwriteFcmProviderId = '';
 const appwritePushTopicId = '';
 
+// ── Packs de cours (paiement en crédits OnBuch) ─────────────────────────────
+// Un pack = une matière (`subjects`), rattachée examen→série comme les annales.
+// Propriété dans `pack_purchases`. L'achat (déduction de crédits) passe par
+// l'endpoint serveur du projet Vercel du bot.
+const appwritePackPurchasesCollectionId = 'pack_purchases';
+const onbuchBuyPackUrl = 'https://telegram-bot-nine-henna.vercel.app/api/buy-pack';
+
 // ── Crédits via Mobile Money (bot Telegram + rachat de code) ─────────────────
 // Le paiement Orange/MTN passe par le bot @OnBuchCreditsBot (achat « hors-app »,
 // positionné côté web) ; l'app ne fait que **racheter un code**. Conformité

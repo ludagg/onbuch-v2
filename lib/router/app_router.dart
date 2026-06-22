@@ -154,7 +154,7 @@ final appRouter = GoRouter(
     ),
     GoRoute(path: '/cours-search', builder: (_, __) => const CoursSearchScreen()),
     // TEST : écrans Cours (packs) — maquettes navigables (mock, sans backend).
-    GoRoute(path: '/cours/pack', builder: (_, __) => const PackDetailScreen()),
+    GoRoute(path: '/cours/pack', builder: (_, s) => PackDetailScreen(subjectId: s.uri.queryParameters['id'])),
     GoRoute(path: '/cours/bibliotheque', builder: (_, __) => const CoursLibraryScreen()),
     GoRoute(path: '/cours/lecon', builder: (_, __) => const LessonReaderScreen()),
     GoRoute(path: '/cours/test', builder: (_, __) => const PlacementTestScreen()),
