@@ -25,6 +25,7 @@ const appwriteTutorQuotaCollectionId = 'tutor_quota';
 const appwriteNotificationsCollectionId = 'notifications';
 const appwriteAnnalesCollectionId = 'annales';
 const appwriteAppConfigCollectionId = 'app_config';
+const appwriteGamificationCollectionId = 'gamification';
 
 // Page d'atterrissage des liens de partage (ouvre l'app si installée, sinon
 // propose le téléchargement). Projet Vercel dédié.

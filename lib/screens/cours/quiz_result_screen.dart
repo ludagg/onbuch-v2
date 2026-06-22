@@ -6,6 +6,7 @@ import '../../widgets/leo_mascot.dart';
 import '../../models/course.dart';
 import '../../models/quiz.dart';
 import '../../services/database_service.dart';
+import '../../services/gamification_service.dart';
 
 /// Résultat d'un quiz (section E) : score visuel, statistiques, questions à
 /// revoir, et relances (revoir le cours / recommencer).
@@ -49,6 +50,8 @@ class _QuizResultScreenState extends State<QuizResultScreen> {
       total: questions.length,
       wrong: wrong,
     );
+    // XP : 5 par bonne réponse + 10 de bonus quiz terminé.
+    GamificationService.instance.addXp(correct * 5 + 10, quizzes: 1);
   }
 
   @override
