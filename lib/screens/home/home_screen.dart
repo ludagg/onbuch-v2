@@ -9,6 +9,7 @@ import '../../services/auth_service.dart';
 import '../../services/database_service.dart';
 import '../../services/annale_store.dart';
 import '../../services/gamification_service.dart';
+import '../../services/tutor_service.dart';
 import '../../widgets/annale_actions.dart';
 import '../../utils/launch.dart';
 import '../../models/article.dart';
@@ -88,13 +89,6 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 22),
-
-              // Progression (streak / niveau / XP)
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                child: _GamificationBanner(),
-              ),
-              const SizedBox(height: 18),
 
               // Hero — carrousel d'examens (compte à rebours résultats)
               _HeroCarousel(),
@@ -204,26 +198,80 @@ class _GreetingState extends State<_Greeting> {
 
 // ─── Stats d'en-tête (XP · Rang · Examen · Crédits) — SANS conteneur ─────────
 // Valeurs EN DUR pour l'instant (TODO : profil + gamification + quota Tuteur).
-class _HeaderStats extends StatelessWidget {
+class _HeaderStats extends StatefulWidget {
   const _HeaderStats();
 
-  static const _xp = '0';
-  static const _rank = '#65';
-  static const _examShort = 'Bac D';
-  static const _credits = '0';
+  @override
+  State<_HeaderStats> createState() => _HeaderStatsState();
+}
+
+class _HeaderStatsState extends State<_HeaderStats> {
+  String _examShort = '—';
+  String _credits = '—';
+
+  @override
+  void initState() {
+    super.initState();
+    // Pointe la présence du jour (streak + bonus quotidien) puis charge les infos.
+    GamificationService.instance.recordActivity();
+    _loadProfile();
+    _loadCredits();
+  }
+
+  Future<void> _loadProfile() async {
+    final user = await AuthService().getCurrentUser();
+    if (user == null) return;
+    final p = await DatabaseService().getUserProfile(user.$id);
+    if (!mounted || p == null) return;
+    final s = _shortExam((p['examen'] ?? '').toString(), (p['serie'] ?? '').toString());
+    setState(() => _examShort = s);
+  }
+
+  Future<void> _loadCredits() async {
+    final q = await TutorService().getQuota();
+    if (mounted) setState(() => _credits = '${q.credits}');
+  }
+
+  String _shortExam(String examen, String serie) {
+    const abbr = {
+      'Baccalauréat': 'Bac', 'Probatoire': 'Prob', 'BEPC': 'BEPC', 'CAP': 'CAP', 'BT': 'BT',
+      'BTS': 'BTS', 'HND': 'HND', 'GCE O Level': 'GCE O', 'GCE A Level': 'GCE A', 'Concours': 'Concours',
+    };
+    final e = abbr[examen] ?? (examen.isNotEmpty ? examen.split(' ').first : '');
+    var code = '';
+    final s = serie.trim();
+    if (s.contains('—')) {
+      code = s.split('—').first.trim();
+    } else if (s.contains('-')) {
+      code = s.split('-').first.trim();
+    } else if (s.isNotEmpty && s.length <= 5) {
+      code = s;
+    }
+    final out = [e, code].where((x) => x.isNotEmpty).join(' ');
+    return out.isEmpty ? '—' : out;
+  }
 
   @override
   Widget build(BuildContext context) {
-    return IntrinsicHeight(
-      child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-        _stat(_xp, 'XP total', OC.warn),
-        _div(),
-        _stat(_rank, 'Rang national', OC.blue),
-        _div(),
-        _stat(_examShort, 'Examen', const Color(0xFF7A5AE0)),
-        _div(),
-        _stat(_credits, 'Crédits', OC.good),
-      ]),
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () => context.push('/progress'),
+      child: ValueListenableBuilder<GamificationState>(
+        valueListenable: GamificationService.instance.state,
+        builder: (context, g, _) {
+          return IntrinsicHeight(
+            child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+              _stat('${g.xp}', 'XP total', OC.warn),
+              _div(),
+              _stat('—', 'Rang national', OC.blue),
+              _div(),
+              _stat(_examShort, 'Examen', const Color(0xFF7A5AE0)),
+              _div(),
+              _stat(_credits, 'Crédits', OC.good),
+            ]),
+          );
+        },
+      ),
     );
   }
 
@@ -673,73 +721,6 @@ class _Shortcuts extends StatelessWidget {
           ),
         );
       }),
-    );
-  }
-}
-
-// ─── Progression (gamification) ───────────────────────────────────────────────
-class _GamificationBanner extends StatefulWidget {
-  const _GamificationBanner();
-
-  @override
-  State<_GamificationBanner> createState() => _GamificationBannerState();
-}
-
-class _GamificationBannerState extends State<_GamificationBanner> {
-  @override
-  void initState() {
-    super.initState();
-    // Pointe la présence du jour (streak + bonus quotidien).
-    GamificationService.instance.recordActivity();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return ValueListenableBuilder<GamificationState>(
-      valueListenable: GamificationService.instance.state,
-      builder: (context, s, _) {
-        return GestureDetector(
-          behavior: HitTestBehavior.opaque,
-          onTap: () => context.push('/progress'),
-          child: Container(
-            padding: const EdgeInsets.fromLTRB(16, 14, 16, 14),
-            decoration: BoxDecoration(
-              gradient: OC.gradSoft,
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: OC.o100, width: 1.5),
-            ),
-            child: Row(children: [
-              OBRing(
-                pct: s.levelProgress,
-                size: 52,
-                color: OC.o500,
-                center: Text('${s.level}', style: display(17, weight: FontWeight.w800, color: OC.o700)),
-              ),
-              const SizedBox(width: 14),
-              Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Row(children: [
-                  Text('Niveau ${s.level}', style: body(14.5, weight: FontWeight.w800)),
-                  const SizedBox(width: 8),
-                  Text('· ${s.xp} XP', style: body(12.5, weight: FontWeight.w700, color: OC.muted)),
-                ]),
-                const SizedBox(height: 3),
-                Text('Encore ${(s.xpForLevel - s.xpInLevel).clamp(0, 999999)} XP pour le niveau ${s.level + 1}',
-                    style: body(11.5, color: OC.ink2, weight: FontWeight.w600)),
-              ])),
-              const SizedBox(width: 10),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 7),
-                decoration: BoxDecoration(color: OC.paper, borderRadius: BorderRadius.circular(999), border: Border.all(color: OC.line, width: 1.5)),
-                child: Row(mainAxisSize: MainAxisSize.min, children: [
-                  const Text('🔥', style: TextStyle(fontSize: 14)),
-                  const SizedBox(width: 4),
-                  Text('${s.streak}', style: body(13, weight: FontWeight.w800, color: OC.o700)),
-                ]),
-              ),
-            ]),
-          ),
-        );
-      },
     );
   }
 }
