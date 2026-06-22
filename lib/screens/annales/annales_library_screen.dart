@@ -4,12 +4,16 @@ import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
 
 const _examFolders = [
-  ('Baccalauréat', 320, Color(0xFFDB4F12), Color(0xFFFDEBE2)),
-  ('Probatoire', 244, Color(0xFF2D6CDF), Color(0xFFE7EEFB)),
   ('BEPC', 198, Color(0xFF1E9E63), Color(0xFFE5F3EB)),
-  ('GCE O / A Level', 176, Color(0xFF7A5AE0), Color(0xFFEEE9FA)),
-  ('BTS', 132, Color(0xFF0E9AA0), Color(0xFFE1F2F2)),
-  ('Université', 90, Color(0xFFA6651E), Color(0xFFF6ECDC)),
+  ('Probatoire', 156, Color(0xFF2D6CDF), Color(0xFFE7EEFB)),
+  ('Baccalauréat', 320, Color(0xFFDB4F12), Color(0xFFFDEBE2)),
+  ('CAP', 64, Color(0xFF0E9AA0), Color(0xFFE1F2F2)),
+  ('BT', 72, Color(0xFF7A5AE0), Color(0xFFEEE9FA)),
+  ('BTS', 132, Color(0xFF3F51B5), Color(0xFFE8EAF6)),
+  ('HND', 48, Color(0xFFA6651E), Color(0xFFF6ECDC)),
+  ('GCE O Level', 120, Color(0xFF00897B), Color(0xFFE0F2F1)),
+  ('GCE A Level', 96, Color(0xFF5E35B1), Color(0xFFEDE7F6)),
+  ('Concours', 140, Color(0xFFC0392B), Color(0xFFFBEAE5)),
 ];
 
 class AnnalesLibraryScreen extends StatelessWidget {
