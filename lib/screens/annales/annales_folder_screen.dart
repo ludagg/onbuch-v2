@@ -120,7 +120,9 @@ class _AnnalesFolderScreenState extends State<AnnalesFolderScreen> {
   Widget _library(BuildContext context, ExamNode n) {
     final series = _series;
     final items = _items;
-    final useRealGrid = items.isNotEmpty; // GCE/CAP/BTS/HND : feuilles = matières réelles
+    final subjects = n.subjects; // séries (Bac/Probatoire/BEPC) : matières réelles
+    final useSubjects = subjects.isNotEmpty;
+    final useRealGrid = !useSubjects && items.isNotEmpty; // GCE/CAP/BTS/HND : feuilles = matières
     return SingleChildScrollView(
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -165,9 +167,11 @@ class _AnnalesFolderScreenState extends State<AnnalesFolderScreen> {
           mainAxisSpacing: 10,
           crossAxisSpacing: 10,
           childAspectRatio: 2.4,
-          children: useRealGrid
-              ? items.map((it) => _subjectTile(context, it.label, null)).toList()
-              : _demoSubjects.map((s) => _subjectTile(context, s.$1, s.$2)).toList(),
+          children: useSubjects
+              ? subjects.map((s) => _subjectTile(context, s, null)).toList()
+              : useRealGrid
+                  ? items.map((it) => _subjectTile(context, it.label, null)).toList()
+                  : _demoSubjects.map((s) => _subjectTile(context, s.$1, s.$2)).toList(),
         ),
         const SizedBox(height: 18),
 
@@ -181,7 +185,7 @@ class _AnnalesFolderScreenState extends State<AnnalesFolderScreen> {
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(color: OC.paper, borderRadius: BorderRadius.circular(14), border: Border.all(color: OC.line, width: 1.5)),
                 child: Row(children: [
-                  SubjTile(a.$1, size: 40),
+                  SubjLogo(a.$1, size: 40),
                   const SizedBox(width: 12),
                   Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                     Text(a.$2, style: body(13.5, weight: FontWeight.w700)),
@@ -211,7 +215,7 @@ class _AnnalesFolderScreenState extends State<AnnalesFolderScreen> {
         padding: const EdgeInsets.fromLTRB(11, 11, 12, 11),
         decoration: BoxDecoration(color: OC.paper, borderRadius: BorderRadius.circular(14), border: Border.all(color: OC.line, width: 1.5)),
         child: Row(children: [
-          SubjTile(name, size: 36),
+          SubjLogo(name, size: 36),
           const SizedBox(width: 11),
           Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.center, children: [
             Text(name, style: body(13, weight: FontWeight.w700), maxLines: 1, overflow: TextOverflow.ellipsis),

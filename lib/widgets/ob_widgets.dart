@@ -662,6 +662,90 @@ class SubjTile extends StatelessWidget {
   }
 }
 
+// ─── Logo de matière (icône adaptée + couleur) ─────────────────────────────────
+// Mappe n'importe quel nom de matière (FR/EN) vers une icône Material et une
+// couleur d'accent. Utilisé par la bibliothèque d'annales (matières réelles par
+// série). Le fond est dérivé de l'accent (stable en mode sombre, accents fixes).
+class SubjLogo extends StatelessWidget {
+  final String subject;
+  final double size;
+  const SubjLogo(this.subject, {super.key, this.size = 40});
+
+  static (IconData, Color) visual(String name) {
+    final n = name.toLowerCase();
+    if (n.contains('phys') && n.contains('chim')) return (Icons.science_rounded, const Color(0xFF1E9E63));
+    if (n.contains('math')) return (Icons.calculate_rounded, const Color(0xFF2D6CDF));
+    if (n.contains('phys')) return (Icons.bolt_rounded, const Color(0xFF4257B2));
+    if (n.contains('chim')) return (Icons.science_rounded, const Color(0xFF1E9E63));
+    if (n.contains('svt') || n.contains('bio') || n.contains('vie') || n.contains('micro') || n.contains('nature')) {
+      return (Icons.biotech_rounded, const Color(0xFF0E9AA0));
+    }
+    if (n.contains('philo')) return (Icons.psychology_rounded, const Color(0xFF7A5AE0));
+    if (n.contains('litt')) return (Icons.auto_stories_rounded, const Color(0xFFB23E8E));
+    if (n.contains('franç') || n.contains('franc') || n.contains('lettre')) {
+      return (Icons.menu_book_rounded, const Color(0xFFDB4F12));
+    }
+    if (n.contains('angl') || n.contains('bilingual')) return (Icons.translate_rounded, const Color(0xFFC0392B));
+    if (n.contains('lv2') || n.contains('lv3') || n.contains('espagnol') || n.contains('allemand') ||
+        n.contains('latin') || n.contains('grec') || n.contains('langue')) {
+      return (Icons.language_rounded, const Color(0xFFC0392B));
+    }
+    if (n.contains('hist')) return (Icons.account_balance_rounded, const Color(0xFFA6651E));
+    if (n.contains('géo') || n.contains('geo') || n.contains('topo')) return (Icons.public_rounded, const Color(0xFF1E7E5A));
+    if (n.contains('ecm') || n.contains('citoyen') || n.contains('moral')) return (Icons.diversity_3_rounded, const Color(0xFF00897B));
+    if (n.contains('info') || n.contains('numér') || n.contains('ict') || n.contains('logiciel') ||
+        n.contains('réseau') || n.contains('reseau')) {
+      return (Icons.computer_rounded, const Color(0xFF3F51B5));
+    }
+    if (n.contains('droit') || n.contains('fiscal')) return (Icons.gavel_rounded, const Color(0xFF6D4C41));
+    if (n.contains('électro') || n.contains('electro') || n.contains('électr') || n.contains('electr') || n.contains('mesur')) {
+      return (Icons.electric_bolt_rounded, const Color(0xFFEF6C00));
+    }
+    if (n.contains('froid') || n.contains('clim') || n.contains('thermo')) return (Icons.ac_unit_rounded, const Color(0xFF0277BD));
+    if (n.contains('méca') || n.contains('meca') || n.contains('fabric') || n.contains('automat') ||
+        n.contains('mainten') || n.contains('usinage')) {
+      return (Icons.settings_rounded, const Color(0xFF455A64));
+    }
+    if (n.contains('génie civ') || n.contains('béton') || n.contains('beton') || n.contains('construct') ||
+        n.contains('bâtiment') || n.contains('batiment') || n.contains('résistance') || n.contains('resistance')) {
+      return (Icons.architecture_rounded, const Color(0xFF6D4C41));
+    }
+    if (n.contains('génie') || n.contains('genie') || n.contains('technolog') || n.contains('industr')) {
+      return (Icons.engineering_rounded, const Color(0xFF455A64));
+    }
+    if (n.contains('compta') || n.contains('financ') || n.contains('banqu') || n.contains('gestion') ||
+        n.contains('mercat') || n.contains('commerc') || n.contains('éco') || n.contains('eco') || n.contains('assur')) {
+      return (Icons.trending_up_rounded, const Color(0xFF2E7D32));
+    }
+    if (n.contains('admin') || n.contains('organis') || n.contains('communic') || n.contains('secrét') || n.contains('bureau')) {
+      return (Icons.badge_rounded, const Color(0xFF5E35B1));
+    }
+    if (n.contains('hôtel') || n.contains('hotel') || n.contains('restaur') || n.contains('cuisine')) {
+      return (Icons.restaurant_rounded, const Color(0xFFC2185B));
+    }
+    if (n.contains('santé') || n.contains('sante') || n.contains('sanitaire') || n.contains('infirm') ||
+        n.contains('médic') || n.contains('medic')) {
+      return (Icons.local_hospital_rounded, const Color(0xFFC0392B));
+    }
+    if (n.contains('social')) return (Icons.groups_rounded, const Color(0xFF00838F));
+    if (n.contains('art') || n.contains('musi') || n.contains('dessin')) return (Icons.palette_rounded, const Color(0xFFB23E8E));
+    if (n.contains('agri') || n.contains('agro') || n.contains('aqua')) return (Icons.agriculture_rounded, const Color(0xFF558B2F));
+    if (n.contains('sport') || n.contains('eps')) return (Icons.fitness_center_rounded, const Color(0xFFD84315));
+    return (Icons.description_rounded, const Color(0xFF6B7280));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final (icon, c) = visual(subject);
+    return Container(
+      width: size,
+      height: size,
+      decoration: BoxDecoration(color: c.withValues(alpha: 0.13), borderRadius: BorderRadius.circular(size * 0.29)),
+      child: Icon(icon, size: size * 0.52, color: c),
+    );
+  }
+}
+
 // ─── Dot separator ────────────────────────────────────────────────────────────
 class HRule extends StatelessWidget {
   const HRule({super.key});
