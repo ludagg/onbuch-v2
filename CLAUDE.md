@@ -104,11 +104,13 @@ Console → Auth → Teams → `admins` → Create membership (email).
   `JOBS_COLLECTION`, `FREE_DAILY`, `VISION_MODEL`, `NVIDIA_MODEL`. Modes :
   défaut (correction), `lesson`, `quiz`, `summary` (tous gratuits sauf correction).
 - `verify-purchase` : vérifie les achats Google Play et crédite `tutor_quota`.
-- `result-lookup` (node-22) : résout une recherche de résultat pour les sources
-  `pdf` (télécharge le PDF chargé par l'admin, extrait le texte via
-  `pdf-parse`, cherche nom/numéro) et `api` (proxy vers une API externe). Le type
-  `manual` est résolu côté app (lecture directe d'`exam_results`). **Variable** :
-  `APPWRITE_API_KEY` (scope `databases.read`).
+- **`result-lookup`** : hébergé sur **Vercel** (`api/result-lookup.js`), pas sur
+  Appwrite (plan = limite de fonctions atteinte). Résout les sources `pdf`
+  (télécharge le PDF chargé par l'admin, extrait le texte via `pdf-parse`,
+  cherche nom/numéro) et `api` (proxy vers une API externe). Le type `manual`
+  est résolu côté app (lecture directe d'`exam_results`). **Aucun secret** : les
+  collections lues sont en `read("any")`. URL : `…/api/result-lookup` (constante
+  `resultLookupUrl`). Déployé avec le projet Vercel `onbuch-v2`.
 
 **Storage** : les PDF de résultats chargés par l'admin sont stockés dans le
 bucket **`annales_files`** (réutilisé — le plan Appwrite limite le nombre de

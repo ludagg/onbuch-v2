@@ -1,0 +1,8 @@
+{
+  "name": "onbuch-vercel-api",
+  "private": true,
+  "description": "Fonctions serverless Vercel pour OnBuch (recherche de résultats).",
+  "dependencies": {
+    "pdf-parse": "^1.1.1"
+  }
+}

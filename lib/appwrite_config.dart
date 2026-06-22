@@ -32,10 +32,12 @@ const appwriteAnnalesCollectionId = 'annales';
 const appwriteAppConfigCollectionId = 'app_config';
 const appwriteGamificationCollectionId = 'gamification';
 
-// Fonction Appwrite qui résout une recherche de résultat pour les sources
-// `pdf` (extraction texte serveur) et `api` (proxy externe). Le type `manual`
-// est résolu côté app directement sur la collection `exam_results`.
-const resultLookupFunctionId = 'result-lookup';
+// Endpoint serverless (Vercel) qui résout une recherche de résultat pour les
+// sources `pdf` (extraction texte) et `api` (proxy externe). Hébergé sur Vercel
+// car le plan Appwrite a atteint sa limite de fonctions. Aucun secret requis :
+// les collections lues (`result_sources`, `exam_results`) sont en lecture
+// publique. Le type `manual` est résolu côté app directement.
+const resultLookupUrl = 'https://onbuch-v2.vercel.app/api/result-lookup';
 
 // Page d'atterrissage des liens de partage (ouvre l'app si installée, sinon
 // propose le téléchargement). Projet Vercel dédié.

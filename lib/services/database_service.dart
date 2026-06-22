@@ -1,6 +1,7 @@
 // ignore_for_file: deprecated_member_use
 import 'dart:convert';
 import 'package:appwrite/appwrite.dart';
+import 'package:http/http.dart' as http;
 import '../appwrite_config.dart';
 import '../models/article.dart';
 import '../models/exam.dart';
@@ -269,14 +270,20 @@ class DatabaseService {
       return r == null ? const ResultLookup.notFound() : ResultLookup.found(r);
     }
 
-    // Types `pdf` / `api` : résolus par la fonction serveur `result-lookup`.
+    // Types `pdf` / `api` : résolus par l'endpoint serverless (Vercel).
     try {
-      final exec = await AppwriteClient.functions.createExecution(
-        functionId: resultLookupFunctionId,
-        body: jsonEncode({'configId': source.id, 'query': q}),
-        xasync: false,
-      );
-      final body = exec.responseBody.isEmpty ? '{}' : exec.responseBody;
+      final resp = await http
+          .post(
+            Uri.parse(resultLookupUrl),
+            headers: const {'Content-Type': 'application/json'},
+            body: jsonEncode({'configId': source.id, 'query': q}),
+          )
+          .timeout(const Duration(seconds: 30));
+      if (resp.statusCode != 200) {
+        return const ResultLookup.error(
+            'Recherche indisponible pour le moment. Réessaie.');
+      }
+      final body = resp.body.isEmpty ? '{}' : resp.body;
       final data = jsonDecode(body) as Map<String, dynamic>;
       if (data['ok'] != true) {
         return ResultLookup.error(
@@ -293,11 +300,9 @@ class DatabaseService {
         id: (data['result']['id'] ?? source.id).toString(),
       );
       return ResultLookup.found(result);
-    } on AppwriteException {
+    } catch (_) {
       return const ResultLookup.error(
           'Recherche indisponible pour le moment. Vérifie ta connexion.');
-    } catch (_) {
-      return const ResultLookup.error('Réponse inattendue du serveur.');
     }
   }
 
