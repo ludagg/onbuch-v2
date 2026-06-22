@@ -1,18 +1,31 @@
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
+import '../../models/annale.dart';
 import '../../theme/app_theme.dart';
+import '../../utils/launch.dart';
+import '../../services/annale_download_stub.dart'
+    if (dart.library.io) '../../services/annale_download_io.dart' as dl;
 
+/// Lecteur PDF intégré (Syncfusion). Charge un fichier local téléchargé
+/// (hors-ligne) ou un lien réseau (Appwrite Storage / externe).
 class PdfReaderScreen extends StatefulWidget {
-  const PdfReaderScreen({super.key});
+  final PdfArgs? args;
+  const PdfReaderScreen({super.key, this.args});
 
   @override
   State<PdfReaderScreen> createState() => _PdfReaderScreenState();
 }
 
 class _PdfReaderScreenState extends State<PdfReaderScreen> {
-  final _currentPage = 1;
-  final _totalPages = 6;
+  final _controller = PdfViewerController();
+  int _page = 1;
+  int _total = 0;
+
+  Uint8List? _localBytes;
+  bool _loadingLocal = false;
 
   @override
   void initState() {
@@ -20,6 +33,17 @@ class _PdfReaderScreenState extends State<PdfReaderScreen> {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarIconBrightness: Brightness.light,
     ));
+    final path = widget.args?.localPath;
+    if (path != null && path.isNotEmpty) {
+      _loadingLocal = true;
+      dl.readLocalBytes(path).then((b) {
+        if (!mounted) return;
+        setState(() {
+          _localBytes = b;
+          _loadingLocal = false;
+        });
+      });
+    }
   }
 
   @override
@@ -27,117 +51,119 @@ class _PdfReaderScreenState extends State<PdfReaderScreen> {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarIconBrightness: Brightness.dark,
     ));
+    _controller.dispose();
     super.dispose();
   }
 
+  void _back() => context.canPop() ? context.pop() : context.go('/annales');
+
   @override
   Widget build(BuildContext context) {
+    final args = widget.args;
+    final url = args?.url;
+    final title = args?.title ?? 'Document';
+    final subtitle = (args?.subtitle ?? '').isEmpty ? 'Annale · PDF' : args!.subtitle;
+
     return Scaffold(
       backgroundColor: const Color(0xFF1A1410),
       body: SafeArea(
         child: Column(children: [
-          // Top bar
+          // Barre supérieure
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 4, 16, 10),
             child: Row(children: [
-              _DarkBtn(Icons.arrow_back_ios_new_rounded, () => context.go('/annales/detail')),
+              _DarkBtn(Icons.arrow_back_ios_new_rounded, _back),
               const SizedBox(width: 10),
               Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text('Maths · Bac D 2025', style: body(14, weight: FontWeight.w700, color: Colors.white)),
-                Text('Sujet officiel · PDF', style: body(11, color: Colors.white.withValues(alpha:0.55))),
+                Text(title, maxLines: 1, overflow: TextOverflow.ellipsis,
+                    style: body(14, weight: FontWeight.w700, color: Colors.white)),
+                Text(subtitle, maxLines: 1, overflow: TextOverflow.ellipsis,
+                    style: body(11, color: Colors.white.withValues(alpha: 0.55))),
               ])),
-              _DarkBtn(Icons.download_outlined, () {}),
-              const SizedBox(width: 8),
-              _DarkBtn(Icons.share_outlined, () {}),
+              if (url != null && url.isNotEmpty) ...[
+                _DarkBtn(Icons.open_in_new_rounded, () => openUrl(context, url)),
+                const SizedBox(width: 8),
+                _DarkBtn(Icons.share_outlined, () => shareArticle(context, title, url: url)),
+              ],
             ]),
           ),
-          // Page content
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 22),
-              child: Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(6),
-                  boxShadow: [BoxShadow(color: Colors.black.withValues(alpha:0.5), blurRadius: 30, offset: const Offset(0, 10))],
+          // Contenu
+          Expanded(child: _viewer(args, url)),
+          // Pagination
+          if (_total > 0)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+              child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                _DarkBtn(Icons.chevron_left_rounded, () => _controller.previousPage()),
+                const SizedBox(width: 10),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 7),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withValues(alpha: 0.12),
+                    borderRadius: BorderRadius.circular(999),
+                  ),
+                  child: Text('$_page / $_total',
+                      style: mono(13, weight: FontWeight.w700, color: Colors.white)),
                 ),
-                padding: const EdgeInsets.all(24),
-                child: SingleChildScrollView(
-                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                    Center(child: Column(children: [
-                      Text('RÉPUBLIQUE DU CAMEROUN · OBC',
-                          style: body(9, weight: FontWeight.w700, color: const Color(0xFF999999))
-                              .copyWith(letterSpacing: 0.1 * 9)),
-                      const SizedBox(height: 6),
-                      Text('Baccalauréat — Série D', style: display(15, weight: FontWeight.w700, color: const Color(0xFF222222))),
-                      const SizedBox(height: 2),
-                      Text('Épreuve de Mathématiques · 2025', style: body(11, color: const Color(0xFF666666))),
-                    ])),
-                    const Divider(height: 24, color: Color(0xFFEEEEEE), thickness: 1.5),
-                    Text('EXERCICE 1 (5 points)', style: body(11.5, weight: FontWeight.w700, color: const Color(0xFF333333))),
-                    const SizedBox(height: 10),
-                    ...['100%', '96%', '88%', '93%', '70%'].map((w) => Padding(
-                      padding: const EdgeInsets.only(bottom: 7),
-                      child: FractionallySizedBox(
-                        widthFactor: double.parse(w.replaceAll('%', '')) / 100,
-                        child: Container(height: 6, decoration: BoxDecoration(
-                            color: const Color(0xFFE8E8E8), borderRadius: BorderRadius.circular(3))),
-                      ),
-                    )),
-                    const SizedBox(height: 12),
-                    Text('EXERCICE 2 (4 points)', style: body(11.5, weight: FontWeight.w700, color: const Color(0xFF333333))),
-                    const SizedBox(height: 10),
-                    ...['100%', '90%', '82%'].map((w) => Padding(
-                      padding: const EdgeInsets.only(bottom: 7),
-                      child: FractionallySizedBox(
-                        widthFactor: double.parse(w.replaceAll('%', '')) / 100,
-                        child: Container(height: 6, decoration: BoxDecoration(
-                            color: const Color(0xFFE8E8E8), borderRadius: BorderRadius.circular(3))),
-                      ),
-                    )),
-                    const SizedBox(height: 12),
-                    Container(
-                      height: 72,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(6),
-                        border: Border.all(color: const Color(0xFFEEEEEE), width: 1.5),
-                        color: const Color(0xFFFAFAFA),
-                      ),
-                      child: Center(child: Text('Figure 1', style: body(10, color: const Color(0xFFBBBBBB), weight: FontWeight.w700))),
-                    ),
-                  ]),
-                ),
-              ),
+                const SizedBox(width: 10),
+                _DarkBtn(Icons.chevron_right_rounded, () => _controller.nextPage()),
+              ]),
             ),
-          ),
-          // Bottom controls
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
-            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              const Icon(Icons.chevron_left_rounded, size: 22, color: Color(0x66FFFFFF)),
-              const SizedBox(width: 8),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 7),
-                decoration: BoxDecoration(
-                  color: Colors.white.withValues(alpha:0.12),
-                  borderRadius: BorderRadius.circular(999),
-                ),
-                child: Text('$_currentPage / $_totalPages',
-                    style: mono(13, weight: FontWeight.w700, color: Colors.white)),
-              ),
-              const SizedBox(width: 8),
-              const Icon(Icons.chevron_right_rounded, size: 22, color: Colors.white),
-              const SizedBox(width: 8),
-              Container(width: 1, height: 22, color: Colors.white.withValues(alpha:0.18)),
-              const SizedBox(width: 8),
-              _DarkBtn(Icons.fullscreen_rounded, () {}),
-            ]),
-          ),
         ]),
       ),
     );
   }
+
+  void _onChanged(PdfPageChangedDetails d) {
+    if (!mounted) return;
+    setState(() => _page = d.newPageNumber);
+  }
+
+  void _onLoaded(PdfDocumentLoadedDetails d) {
+    if (!mounted) return;
+    setState(() => _total = d.document.pages.count);
+  }
+
+  Widget _viewer(PdfArgs? args, String? url) {
+    // Fichier local (hors-ligne) prioritaire.
+    if ((args?.localPath ?? '').isNotEmpty) {
+      if (_loadingLocal) return const _Loading();
+      if (_localBytes != null) {
+        return SfPdfViewer.memory(
+          _localBytes!,
+          controller: _controller,
+          onPageChanged: _onChanged,
+          onDocumentLoaded: _onLoaded,
+        );
+      }
+      // Fichier illisible → on tente le réseau si dispo.
+    }
+
+    if (url != null && url.isNotEmpty) {
+      return SfPdfViewer.network(
+        url,
+        controller: _controller,
+        onPageChanged: _onChanged,
+        onDocumentLoaded: _onLoaded,
+      );
+    }
+
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(28),
+        child: Text('Document indisponible.',
+            textAlign: TextAlign.center,
+            style: body(14, color: Colors.white.withValues(alpha: 0.7))),
+      ),
+    );
+  }
+}
+
+class _Loading extends StatelessWidget {
+  const _Loading();
+  @override
+  Widget build(BuildContext context) =>
+      const Center(child: CircularProgressIndicator(color: Colors.white));
 }
 
 class _DarkBtn extends StatelessWidget {
@@ -152,7 +178,7 @@ class _DarkBtn extends StatelessWidget {
       child: Container(
         width: 38, height: 38,
         decoration: BoxDecoration(
-          color: Colors.white.withValues(alpha:0.10),
+          color: Colors.white.withValues(alpha: 0.10),
           borderRadius: BorderRadius.circular(12),
         ),
         child: Icon(icon, color: Colors.white, size: 19),

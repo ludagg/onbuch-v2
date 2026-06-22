@@ -16,6 +16,7 @@ import '../models/app_notification.dart';
 import '../models/exam_result.dart';
 import '../models/exam_series.dart';
 import '../models/social_link.dart';
+import '../models/annale.dart';
 import 'appwrite_client.dart';
 
 class DatabaseService {
@@ -776,6 +777,36 @@ class DatabaseService {
         return res.documents.map((d) => AfficheItem.fromMap(d.data, id: d.$id)).toList();
       } on AppwriteException {
         return const <AfficheItem>[];
+      }
+    });
+  }
+
+  // ── Annales (épreuves) ─────────────────────────────────────────────────────
+
+  /// Toutes les épreuves d'un examen donné (ex. « Baccalauréat »), triées par
+  /// `order`. Le filtrage fin (série/matière/année) se fait côté UI à partir de
+  /// cette liste — l'index `idx_exam` couvre la requête. Liste vide en cas
+  /// d'erreur (collection absente, hors-ligne…).
+  Future<List<Annale>> getAnnales(String exam, {int limit = 500}) {
+    return _cachedList<Annale>('annales:$exam', () async {
+      try {
+        final res = await AppwriteClient.databases.listDocuments(
+          databaseId: appwriteDatabaseId,
+          collectionId: appwriteAnnalesCollectionId,
+          queries: [Query.equal('exam', exam), Query.limit(limit)],
+        );
+        final list =
+            res.documents.map((d) => Annale.fromMap(d.data, id: d.$id)).toList();
+        list.sort((a, b) {
+          final o = a.order.compareTo(b.order);
+          if (o != 0) return o;
+          final y = b.year.compareTo(a.year); // années récentes d'abord
+          if (y != 0) return y;
+          return a.title.compareTo(b.title);
+        });
+        return list;
+      } on AppwriteException {
+        return const <Annale>[];
       }
     });
   }

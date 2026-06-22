@@ -100,6 +100,10 @@ Console → Auth → Teams → `admins` → Create membership (email).
   défaut (correction), `lesson`, `quiz`, `summary` (tous gratuits sauf correction).
 - `verify-purchase` : vérifie les achats Google Play et crédite `tutor_quota`.
 
+**Storage (buckets)** : `annales_files` — fichiers (PDF/vidéo) des épreuves,
+téléversés depuis l'admin (lecture `any`, écriture `team:admins`). Créé par
+`tools/setup_annales_bucket.sh`.
+
 **Web platforms déclarées** (CORS) : `onbuch-v2.vercel.app`,
 `onbuch-app.vercel.app` (+ alias d'équipe), `localhost`. Tout nouveau domaine web
 doit être ajouté : Console → Project → Platforms → Web, **ou** via l'API
@@ -183,8 +187,13 @@ doit être ajouté : Console → Project → Platforms → Web, **ou** via l'API
 - ✅ Faits récemment : dark mode, fiche de révision Tuteur, PDF LaTeX compilé,
   push « c'est prêt », séries configurables, liens réseaux pilotés par l'admin,
   Concours fonctionnel, page Agenda, back-office + web déployés.
-- 🔴 **Annales** : encore 100 % démo (à faire : collection + vrai lecteur PDF →
-  release car plugins natifs).
+- 🟢 **Annales** : branché sur la collection `annales` + bucket `annales_files`
+  (upload PDF/URL externe depuis l'admin), **lecteur PDF intégré**
+  (`syncfusion_flutter_pdfviewer`), collections perso locales (Favoris / Récents /
+  Hors-ligne via `AnnalesStore` + `shared_preferences`). ⚠️ Le lecteur natif impose
+  une **release** Shorebird (pas un patch). Reste à faire : lancer les scripts
+  (`setup_annales_collection.sh`, `setup_annales_bucket.sh`), peupler le contenu,
+  vrai lecteur vidéo (ouverture externe pour l'instant), entitlement premium réel.
 - ⬜ **Gamification** (streak/XP/badges) : absente — fort levier de rétention.
 - ⬜ **i18n FR/EN** : absente (sélecteur de langue Paramètres = informatif).
 - ⬜ **Auto-deploy** Vercel (git) ; **crashlytics** ; **cache disque** ; teintes

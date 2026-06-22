@@ -3,59 +3,89 @@ import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
 import '../../data/exam_taxonomy.dart';
+import '../../models/annale.dart';
+import '../../services/database_service.dart';
 
 /// Navigation des annales dans la taxonomie (profondeur variable).
 /// - Niveau de SUBDIVISIONS (ex. Bac → ESG / STT / Industriel) → liste de dossiers.
-/// - Niveau TERMINAL (séries / matières) → page « bibliothèque » : filtres
-///   (séries de la taxonomie) + grille matières + récemment ajoutés.
+/// - Niveau TERMINAL (séries / matières) → page « bibliothèque » alimentée par la
+///   collection `annales` : filtres années + grille matières + récemment ajoutés.
 class AnnalesFolderScreen extends StatefulWidget {
   final String folderName;
   final ExamNode? node;
-  const AnnalesFolderScreen({super.key, required this.folderName, this.node});
+  final String examRoot; // examen de tête (clé de la collection `annales`)
+  const AnnalesFolderScreen({
+    super.key,
+    required this.folderName,
+    this.node,
+    this.examRoot = '',
+  });
 
   @override
   State<AnnalesFolderScreen> createState() => _AnnalesFolderScreenState();
 }
 
 class _AnnalesFolderScreenState extends State<AnnalesFolderScreen> {
-  int _serie = 0;
-  int _year = 0;
-
-  static const _years = ['2025', '2024', '2023', '2022'];
-
-  // Matières démo (en attendant la collection `annales`).
-  static const _demoSubjects = [
-    ('Maths', 18), ('Phys-Chimie', 16), ('SVT', 14),
-    ('Philo', 12), ('Français', 10), ('Anglais', 8),
-  ];
-  static const _recent = [
-    ('Maths', 'Mathématiques', true, ['pdf', 'corrige', 'video']),
-    ('Phys-Chimie', 'Physique-Chimie', true, ['pdf', 'corrige']),
-    ('SVT', 'Sciences de la vie', false, ['pdf', 'corrige', 'video']),
-  ];
+  final _db = DatabaseService();
+  int _yearIdx = 0; // 0 = « Toutes »
+  bool _loading = true;
+  List<Annale> _all = const []; // annales de l'examen de tête
 
   ExamNode? get _node => widget.node ?? examTaxonomy[widget.folderName];
+  String get _exam => widget.examRoot.isNotEmpty ? widget.examRoot : widget.folderName;
 
-  // On affiche une LISTE de dossiers quand les enfants sont des subdivisions
-  // (sous-dossiers), des SÉRIES (feuille AVEC code) ou des SPÉCIALITÉS (feuille
-  // avec ses propres matières) : il faut alors choisir d'abord, puis on ouvre la
-  // grille de matières du nœud choisi. Si les enfants sont des MATIÈRES
-  // terminales (feuille sans code ni matières propres, ex. GCE Science →
-  // Mathematics/Physics), on montre directement la grille — une matière mène aux
-  // documents, pas à une autre grille.
+  @override
+  void initState() {
+    super.initState();
+    _load();
+  }
+
+  Future<void> _load() async {
+    final list = await _db.getAnnales(_exam);
+    if (!mounted) return;
+    setState(() {
+      _all = list;
+      _loading = false;
+    });
+  }
+
   bool get _isGroupLevel {
     final n = _node;
     if (n == null || n.children.isEmpty) return false;
     return n.children.any((c) => !c.isLeaf || c.code.isNotEmpty || c.subjects.isNotEmpty);
   }
 
-  // Séries (feuilles AVEC code) → chips de filtre.
-  List<ExamNode> get _series =>
-      _node?.children.where((c) => c.isLeaf && c.code.isNotEmpty).toList() ?? const [];
-
-  // Matières/spécialités (feuilles SANS code) → grille de dossiers réels.
+  // Matières/spécialités terminales (feuilles SANS code) → grille de dossiers.
   List<ExamNode> get _items =>
       _node?.children.where((c) => c.isLeaf && c.code.isEmpty).toList() ?? const [];
+
+  // Libellé de série/spécialité à enregistrer comme `track` (vide à la racine).
+  String _trackOf(ExamNode n) => n.label == _exam ? '' : n.label;
+
+  // Documents de la série courante (filtrés par track + année sélectionnée).
+  List<Annale> _docsFor(String track) {
+    final year = _selectedYear;
+    return _all.where((a) {
+      if (track.isNotEmpty && a.track != track) return false;
+      if (year.isNotEmpty && a.year != year) return false;
+      return true;
+    }).toList();
+  }
+
+  // Années réellement disponibles pour la série courante.
+  List<String> _yearsFor(String track) {
+    final s = <String>{};
+    for (final a in _all) {
+      if (track.isNotEmpty && a.track != track) continue;
+      if (a.year.isNotEmpty) s.add(a.year);
+    }
+    final list = s.toList()..sort((x, y) => y.compareTo(x));
+    return list;
+  }
+
+  List<String> _yearOptions = const ['Toutes'];
+  String get _selectedYear =>
+      (_yearIdx <= 0 || _yearIdx >= _yearOptions.length) ? '' : _yearOptions[_yearIdx];
 
   @override
   Widget build(BuildContext context) {
@@ -70,9 +100,6 @@ class _AnnalesFolderScreenState extends State<AnnalesFolderScreen> {
           icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 20),
           onPressed: () => context.canPop() ? context.pop() : context.go('/annales'),
         ),
-        actions: [
-          IconButton(icon: const Icon(Icons.sort_rounded, size: 19), color: OC.ink2, onPressed: () {}),
-        ],
       ),
       body: n == null
           ? Center(child: Text('Catégorie inconnue.', style: body(14, color: OC.muted)))
@@ -94,12 +121,13 @@ class _AnnalesFolderScreenState extends State<AnnalesFolderScreen> {
         const SizedBox(height: 12),
         for (final child in n.children)
           Builder(builder: (context) {
-            // Un enfant « enterable » mène à une grille : sous-dossier ou
-            // spécialité/série porteuse de matières → icône dossier + compteur.
             final count = child.children.isNotEmpty ? child.children.length : child.subjects.length;
             final unit = child.children.isNotEmpty ? 'élément' : 'matière';
             return GestureDetector(
-              onTap: () => context.push('/annales/folder/${Uri.encodeComponent(child.label)}', extra: child),
+              onTap: () => context.push(
+                '/annales/folder/${Uri.encodeComponent(child.label)}?exam=${Uri.encodeComponent(_exam)}',
+                extra: child,
+              ),
               child: Container(
                 margin: const EdgeInsets.only(bottom: 10),
                 padding: const EdgeInsets.all(13),
@@ -130,99 +158,131 @@ class _AnnalesFolderScreenState extends State<AnnalesFolderScreen> {
 
   // ── Niveau terminal : page « bibliothèque » ───────────────────────────────
   Widget _library(BuildContext context, ExamNode n) {
-    final series = _series;
-    final items = _items;
-    final subjects = n.subjects; // séries (Bac/Probatoire/BEPC) : matières réelles
-    final useSubjects = subjects.isNotEmpty;
-    final useRealGrid = !useSubjects && items.isNotEmpty; // GCE/CAP/BTS/HND : feuilles = matières
-    return SingleChildScrollView(
-      padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        // Fil d'Ariane
-        Row(children: [
-          Text('Bibliothèque', style: body(12, color: OC.muted, weight: FontWeight.w600)),
-          Icon(Icons.chevron_right_rounded, size: 13, color: OC.faint),
-          Flexible(child: Text(n.label, maxLines: 1, overflow: TextOverflow.ellipsis,
-              style: body(12, weight: FontWeight.w600, color: OC.ink))),
-        ]),
-        const SizedBox(height: 14),
+    final track = _trackOf(n);
+    _yearOptions = ['Toutes', ..._yearsFor(track)];
+    if (_yearIdx >= _yearOptions.length) _yearIdx = 0;
 
-        // Filtres : séries (si disponibles) puis années
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(children: [
-            for (var i = 0; i < series.length; i++) ...[
-              GestureDetector(
-                onTap: () => setState(() => _serie = i),
-                child: OBChip(_chipLabel(series[i]), active: i == _serie),
-              ),
-              const SizedBox(width: 9),
-            ],
-            for (var i = 0; i < _years.length; i++) ...[
-              GestureDetector(
-                onTap: () => setState(() => _year = i),
-                child: OBChip(_years[i], active: i == _year),
-              ),
-              if (i < _years.length - 1) const SizedBox(width: 9),
-            ],
+    // Source des matières : matières de série, sinon spécialités-feuilles.
+    final useSubjects = n.subjects.isNotEmpty;
+    final subjectNames = useSubjects
+        ? n.subjects
+        : _items.isNotEmpty
+            ? _items.map((it) => it.label).toList()
+            : _subjectsFromData(track); // repli : matières présentes dans les données
+
+    final docs = _docsFor(track);
+
+    return RefreshIndicator(
+      onRefresh: () async {
+        DatabaseService.clearCache();
+        await _load();
+      },
+      child: SingleChildScrollView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          // Fil d'Ariane
+          Row(children: [
+            Text('Bibliothèque', style: body(12, color: OC.muted, weight: FontWeight.w600)),
+            Icon(Icons.chevron_right_rounded, size: 13, color: OC.faint),
+            Flexible(child: Text(n.label, maxLines: 1, overflow: TextOverflow.ellipsis,
+                style: body(12, weight: FontWeight.w600, color: OC.ink))),
           ]),
-        ),
-        const SizedBox(height: 18),
+          const SizedBox(height: 14),
 
-        // Grille « Dossiers · matières »
-        Text('Dossiers · matières', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
-        const SizedBox(height: 11),
-        GridView.count(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          crossAxisCount: 2,
-          mainAxisSpacing: 10,
-          crossAxisSpacing: 10,
-          childAspectRatio: 2.4,
-          children: useSubjects
-              ? subjects.map((s) => _subjectTile(context, s, null)).toList()
-              : useRealGrid
-                  ? items.map((it) => _subjectTile(context, it.label, null)).toList()
-                  : _demoSubjects.map((s) => _subjectTile(context, s.$1, s.$2)).toList(),
-        ),
-        const SizedBox(height: 18),
+          // Filtres années (réels)
+          if (_yearOptions.length > 1) ...[
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(children: [
+                for (var i = 0; i < _yearOptions.length; i++) ...[
+                  GestureDetector(
+                    onTap: () => setState(() => _yearIdx = i),
+                    child: OBChip(_yearOptions[i], active: i == _yearIdx),
+                  ),
+                  if (i < _yearOptions.length - 1) const SizedBox(width: 9),
+                ],
+              ]),
+            ),
+            const SizedBox(height: 18),
+          ],
 
-        // Récemment ajoutés (démo en attendant la collection annales)
-        Text('Récemment ajoutés', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
-        const SizedBox(height: 11),
-        ..._recent.map((a) => GestureDetector(
-              onTap: () => context.go('/annales/detail'),
-              child: Container(
-                margin: const EdgeInsets.only(bottom: 9),
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(color: OC.paper, borderRadius: BorderRadius.circular(14), border: Border.all(color: OC.line, width: 1.5)),
-                child: Row(children: [
-                  SubjLogo(a.$1, size: 40),
-                  const SizedBox(width: 12),
-                  Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                    Text(a.$2, style: body(13.5, weight: FontWeight.w700)),
-                    const SizedBox(height: 5),
-                    Row(children: a.$4.map((t) => Padding(padding: const EdgeInsets.only(right: 5), child: _TypePill(t))).toList()),
-                  ])),
-                  a.$3
-                      ? PillBadge('GRATUIT', color: OC.waInk, bg: OC.goodBg)
-                      : PillBadge('PREMIUM', color: const Color(0xFFA6701A), bg: const Color(0xFFFBF0DD), icon: Icons.lock_outline_rounded),
-                ]),
-              ),
-            )),
-      ]),
+          // Grille matières
+          Text('Matières', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
+          const SizedBox(height: 11),
+          if (_loading)
+            const Padding(padding: EdgeInsets.symmetric(vertical: 30),
+                child: Center(child: CircularProgressIndicator()))
+          else if (subjectNames.isEmpty)
+            _emptyHint('Aucune matière pour le moment.')
+          else
+            GridView.count(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              crossAxisCount: 2,
+              mainAxisSpacing: 10,
+              crossAxisSpacing: 10,
+              childAspectRatio: 2.4,
+              children: subjectNames
+                  .map((s) => _subjectTile(context, s, track, _countFor(track, s)))
+                  .toList(),
+            ),
+          const SizedBox(height: 18),
+
+          // Récemment ajoutés (réels)
+          if (!_loading && docs.isNotEmpty) ...[
+            Text('Récemment ajoutés', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
+            const SizedBox(height: 11),
+            ..._recentGroups(track).map((g) => _recentTile(context, g, track)),
+          ],
+        ]),
+      ),
     );
   }
 
-  String _chipLabel(ExamNode s) {
-    final c = s.code;
-    // « Série D », « Série F2 », « Série CG »…
-    return c.length <= 3 ? 'Série $c' : c;
+  // Matières distinctes présentes dans les données (repli quand la taxonomie
+  // n'a pas de liste de matières).
+  List<String> _subjectsFromData(String track) {
+    final s = <String>{};
+    for (final a in _all) {
+      if (track.isNotEmpty && a.track != track) continue;
+      if (a.subject.isNotEmpty) s.add(a.subject);
+    }
+    final list = s.toList()..sort();
+    return list;
   }
 
-  Widget _subjectTile(BuildContext context, String name, int? count) {
+  // Nombre d'épreuves (groupes matière+année) pour une matière donnée.
+  int _countFor(String track, String subject) {
+    final years = <String>{};
+    for (final a in _all) {
+      if (track.isNotEmpty && a.track != track) continue;
+      if (a.subject != subject) continue;
+      if (_selectedYear.isNotEmpty && a.year != _selectedYear) continue;
+      years.add(a.year);
+    }
+    return years.where((y) => y.isNotEmpty).length;
+  }
+
+  // Groupes (matière, année) récents pour la section « Récemment ajoutés ».
+  List<_Group> _recentGroups(String track) {
+    final map = <String, _Group>{};
+    for (final a in _docsFor(track)) {
+      final key = '${a.subject}|${a.year}';
+      final g = map.putIfAbsent(key, () => _Group(a.subject, a.year));
+      if (a.isSujet) g.hasSujet = true;
+      if (a.isCorrige) g.hasCorrige = true;
+      if (a.isVideo) g.hasVideo = true;
+      if (a.premium) g.premium = true;
+    }
+    final list = map.values.toList()
+      ..sort((x, y) => y.year.compareTo(x.year));
+    return list.take(6).toList();
+  }
+
+  Widget _subjectTile(BuildContext context, String name, String track, int count) {
     return GestureDetector(
-      onTap: () => context.go('/annales/detail'),
+      onTap: () => _openSubject(context, name, track),
       child: Container(
         padding: const EdgeInsets.fromLTRB(11, 11, 12, 11),
         decoration: BoxDecoration(color: OC.paper, borderRadius: BorderRadius.circular(14), border: Border.all(color: OC.line, width: 1.5)),
@@ -231,13 +291,66 @@ class _AnnalesFolderScreenState extends State<AnnalesFolderScreen> {
           const SizedBox(width: 11),
           Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.center, children: [
             Text(name, style: body(13, weight: FontWeight.w700), maxLines: 1, overflow: TextOverflow.ellipsis),
-            Text(count != null ? '$count épreuves' : 'épreuves bientôt',
+            Text(count > 0 ? '$count épreuve${count > 1 ? 's' : ''}' : 'épreuves bientôt',
                 style: body(10.5, color: OC.muted, weight: FontWeight.w600)),
           ])),
         ]),
       ),
     );
   }
+
+  Widget _recentTile(BuildContext context, _Group g, String track) {
+    final types = <String>[
+      if (g.hasSujet) 'pdf',
+      if (g.hasCorrige) 'corrige',
+      if (g.hasVideo) 'video',
+    ];
+    return GestureDetector(
+      onTap: () => _openSubject(context, g.subject, track, year: g.year),
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 9),
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(color: OC.paper, borderRadius: BorderRadius.circular(14), border: Border.all(color: OC.line, width: 1.5)),
+        child: Row(children: [
+          SubjLogo(g.subject, size: 40),
+          const SizedBox(width: 12),
+          Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(g.year.isEmpty ? g.subject : '${g.subject} · ${g.year}',
+                style: body(13.5, weight: FontWeight.w700)),
+            const SizedBox(height: 5),
+            Row(children: types.map((t) => Padding(padding: const EdgeInsets.only(right: 5), child: _TypePill(t))).toList()),
+          ])),
+          g.premium
+              ? PillBadge('PREMIUM', color: const Color(0xFFA6701A), bg: const Color(0xFFFBF0DD), icon: Icons.lock_outline_rounded)
+              : PillBadge('GRATUIT', color: OC.waInk, bg: OC.goodBg),
+        ]),
+      ),
+    );
+  }
+
+  void _openSubject(BuildContext context, String subject, String track, {String? year}) {
+    context.push('/annales/detail', extra: AnnaleRef(
+      exam: _exam,
+      track: track,
+      subject: subject,
+      year: year ?? _selectedYear,
+      title: '$subject · $_exam',
+    ));
+  }
+
+  Widget _emptyHint(String msg) => Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(color: OC.paper, borderRadius: BorderRadius.circular(14), border: Border.all(color: OC.line, width: 1.5)),
+        child: Text(msg, style: body(13, color: OC.muted, weight: FontWeight.w600)),
+      );
+}
+
+class _Group {
+  final String subject;
+  final String year;
+  bool hasSujet = false, hasCorrige = false, hasVideo = false, premium = false;
+  _Group(this.subject, this.year);
 }
 
 class _TypePill extends StatelessWidget {

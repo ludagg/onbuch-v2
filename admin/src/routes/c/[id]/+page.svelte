@@ -1,7 +1,7 @@
 <script lang="ts">
   import { page } from '$app/stores';
-  import { databases, functions, ADMIN_FUNCTION_ID, ID, Query } from '$lib/appwrite';
-  import { APPWRITE_DATABASE } from '$lib/config';
+  import { databases, functions, storage, ADMIN_FUNCTION_ID, ID, Query } from '$lib/appwrite';
+  import { APPWRITE_DATABASE, ANNALES_BUCKET } from '$lib/config';
   import { resourceById, type Resource, type Field } from '$lib/schema';
 
   let resource: Resource | undefined;
@@ -174,6 +174,28 @@
     }
   }
 
+  // Téléversement d'un fichier (PDF/vidéo) vers Appwrite Storage : remplit le
+  // champ avec l'URL de vue publique. Un lien externe peut aussi être collé.
+  let uploading = false;
+  async function uploadFile(e: Event, key: string) {
+    const input = e.currentTarget as HTMLInputElement;
+    const file = input.files?.[0];
+    if (!file || !editing) return;
+    uploading = true;
+    try {
+      const created = await storage.createFile(ANNALES_BUCKET, ID.unique(), file);
+      const view = storage.getFileView(ANNALES_BUCKET, created.$id);
+      editing[key] = String(view);
+      editing = { ...editing };
+      flash('Fichier téléversé ✓');
+    } catch (err: any) {
+      flash(err?.message ?? 'Téléversement impossible.', true);
+    } finally {
+      uploading = false;
+      input.value = '';
+    }
+  }
+
   function title(doc: any) {
     return resource ? doc[resource.titleField] || '(sans titre)' : '';
   }
@@ -261,6 +283,15 @@
                 <option value={opt}>{opt === '' ? '(aucun)' : opt}</option>
               {/each}
             </select>
+          {:else if f.type === 'file'}
+            <input id={'f-' + f.key} type="text" bind:value={editing[f.key]} placeholder="https://… (lien externe)" />
+            <div class="file-row">
+              <input type="file" accept="application/pdf" on:change={(e) => uploadFile(e, f.key)} disabled={uploading} />
+              {#if uploading}<span class="muted">Téléversement…</span>{/if}
+            </div>
+            {#if editing[f.key]}
+              <a class="file-link" href={editing[f.key]} target="_blank" rel="noopener">Aperçu du document ↗</a>
+            {/if}
           {:else}
             <input id={'f-' + f.key} type="text" bind:value={editing[f.key]} />
           {/if}
@@ -315,4 +346,7 @@
   .help { font-size: 11.5px; margin-top: 5px; }
   .switch { display: flex; align-items: center; gap: 9px; font-weight: 600; color: var(--ink2); }
   .switch input { width: auto; }
+  .file-row { display: flex; align-items: center; gap: 10px; margin-top: 8px; }
+  .file-row input[type='file'] { width: auto; font-size: 12.5px; }
+  .file-link { display: inline-block; margin-top: 8px; font-size: 12.5px; font-weight: 700; color: var(--accent, #db4f12); }
 </style>

@@ -5,3 +5,6 @@ export const APPWRITE_DATABASE = '6a3047f8001d11d1b3c1';
 
 // Équipe Appwrite dont les membres ont accès à l'admin (et le droit d'écrire).
 export const ADMIN_TEAM_ID = 'admins';
+
+// Bucket Storage des fichiers d'annales (PDF/vidéo) téléversés depuis l'admin.
+export const ANNALES_BUCKET = 'annales_files';

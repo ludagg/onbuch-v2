@@ -19,6 +19,7 @@ import '../screens/annales/annales_folder_screen.dart';
 import '../screens/annales/annale_detail_screen.dart';
 import '../screens/annales/pdf_reader_screen.dart';
 import '../screens/annales/video_corrige_screen.dart';
+import '../models/annale.dart';
 import '../screens/tutor/tutor_hub_screen.dart';
 import '../screens/tutor/tutor_coach_screen.dart';
 import '../screens/tutor/tutor_camera_screen.dart';
@@ -160,9 +161,9 @@ final appRouter = GoRouter(
           path: '/annales',
           builder: (_, __) => const AnnalesLibraryScreen(),
           routes: [
-            GoRoute(path: 'folder/:name', builder: (_, s) => AnnalesFolderScreen(folderName: s.pathParameters['name'] ?? '', node: s.extra as ExamNode?)),
-            GoRoute(path: 'detail', builder: (_, __) => const AnnaleDetailScreen()),
-            GoRoute(path: 'pdf', builder: (_, __) => const PdfReaderScreen()),
+            GoRoute(path: 'folder/:name', builder: (_, s) => AnnalesFolderScreen(folderName: s.pathParameters['name'] ?? '', node: s.extra as ExamNode?, examRoot: s.uri.queryParameters['exam'] ?? '')),
+            GoRoute(path: 'detail', builder: (_, s) => AnnaleDetailScreen(ref: s.extra as AnnaleRef?)),
+            GoRoute(path: 'pdf', builder: (_, s) => PdfReaderScreen(args: s.extra as PdfArgs?)),
             GoRoute(path: 'video', builder: (_, __) => const VideoCorrigeScreen()),
             GoRoute(path: 'offline', builder: (_, __) => const AnnalesCollectionScreen(kind: AnnaleCollection.offline)),
             GoRoute(path: 'recent', builder: (_, __) => const AnnalesCollectionScreen(kind: AnnaleCollection.recent)),

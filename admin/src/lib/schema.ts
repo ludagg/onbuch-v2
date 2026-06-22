@@ -1,7 +1,7 @@
 // Schémas des collections gérées par l'admin. Ajouter une collection = ajouter
 // une entrée ici : l'UI de liste + le formulaire sont générés automatiquement.
 
-export type FieldType = 'text' | 'textarea' | 'number' | 'boolean' | 'datetime' | 'select';
+export type FieldType = 'text' | 'textarea' | 'number' | 'boolean' | 'datetime' | 'select' | 'file';
 
 export interface Field {
   key: string;
@@ -284,7 +284,7 @@ export const RESOURCES: Resource[] = [
       { key: 'session', label: 'Session', type: 'text', help: 'ex. Juin, Session normale' },
       { key: 'type', label: 'Type', type: 'select', options: ['sujet', 'corrige', 'video'], help: 'Sujet, corrigé ou vidéo.' },
       { key: 'title', label: 'Titre', type: 'text', required: true, help: 'ex. Bac D — Mathématiques 2024' },
-      { key: 'fileUrl', label: 'Lien du document', type: 'text', help: 'PDF / vidéo (Appwrite Storage ou lien externe).' },
+      { key: 'fileUrl', label: 'Document (PDF/vidéo)', type: 'file', help: 'Téléverse un PDF, ou colle un lien externe (ex. vidéo YouTube).' },
       { key: 'premium', label: 'Premium (payant)', type: 'boolean' },
       order
     ]
