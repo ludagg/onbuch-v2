@@ -189,10 +189,10 @@ class _AnnalesFolderScreenState extends State<AnnalesFolderScreen> {
           crossAxisSpacing: 10,
           childAspectRatio: 2.4,
           children: useSubjects
-              ? subjects.map((s) => _subjectTile(context, s, null)).toList()
+              ? subjects.map((s) => _subjectTile(context, s, null, n.label)).toList()
               : useRealGrid
-                  ? items.map((it) => _subjectTile(context, it.label, null)).toList()
-                  : _demoSubjects.map((s) => _subjectTile(context, s.$1, s.$2)).toList(),
+                  ? items.map((it) => _subjectTile(context, it.label, null, n.label)).toList()
+                  : _demoSubjects.map((s) => _subjectTile(context, s.$1, s.$2, n.label)).toList(),
         ),
         const SizedBox(height: 18),
 
@@ -229,9 +229,10 @@ class _AnnalesFolderScreenState extends State<AnnalesFolderScreen> {
     return c.length <= 3 ? 'Série $c' : c;
   }
 
-  Widget _subjectTile(BuildContext context, String name, int? count) {
+  Widget _subjectTile(BuildContext context, String name, int? count, String filiere) {
     return GestureDetector(
-      onTap: () => context.go('/annales/detail'),
+      onTap: () => context.push('/annales/subject',
+          extra: {'subject': name, 'exam': _exam, 'filiere': filiere}),
       child: Container(
         padding: const EdgeInsets.fromLTRB(11, 11, 12, 11),
         decoration: BoxDecoration(color: OC.paper, borderRadius: BorderRadius.circular(14), border: Border.all(color: OC.line, width: 1.5)),
