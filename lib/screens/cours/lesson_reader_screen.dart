@@ -4,6 +4,7 @@ import '../../theme/app_theme.dart';
 import '../../widgets/rich_answer.dart';
 import '../../models/course.dart';
 import '../../services/cours_packs_service.dart';
+import '../../services/cours_offline_service.dart';
 import '../../services/database_service.dart';
 
 const _kTabs = ['Cours', 'Fiche', 'Exemples', 'Quiz'];
@@ -30,6 +31,7 @@ class _LessonReaderScreenState extends State<LessonReaderScreen> {
     super.initState();
     _i = widget.startIndex;
     _store.load();
+    CoursOffline.instance.init();
   }
 
   // Modules navigables : tous si possédé, sinon seulement les aperçus gratuits.
@@ -149,7 +151,11 @@ class _LessonReaderScreenState extends State<LessonReaderScreen> {
             'subject': p.name,
           })),
         ]));
-      default: // Cours — contenu réel
+      default: // Cours — contenu réel (cache hors-ligne prioritaire)
+        final cached = CoursOffline.instance.offlineLesson(p.id, m.id);
+        if (cached != null && cached.trim().isNotEmpty) {
+          return RichAnswer(cached);
+        }
         return FutureBuilder<String?>(
           future: _db.getLesson(m.id),
           builder: (context, snap) {

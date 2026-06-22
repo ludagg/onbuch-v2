@@ -159,7 +159,7 @@ final appRouter = GoRouter(
     GoRoute(path: '/cours/lecon', builder: (_, s) => LessonReaderScreen(subjectId: s.uri.queryParameters['id'], startIndex: int.tryParse(s.uri.queryParameters['i'] ?? '') ?? 0)),
     GoRoute(path: '/cours/test', builder: (_, s) => PlacementTestScreen(subjectId: s.uri.queryParameters['id'])),
     GoRoute(path: '/cours/fiche', builder: (_, s) => RevisionSheetScreen(chapterId: s.uri.queryParameters['id'], title: s.uri.queryParameters['t'])),
-    GoRoute(path: '/cours/hors-ligne', builder: (_, __) => const PackOfflineScreen()),
+    GoRoute(path: '/cours/hors-ligne', builder: (_, s) => PackOfflineScreen(subjectId: s.uri.queryParameters['id'])),
     GoRoute(path: '/cours/panier', builder: (_, __) => const CoursCartScreen()),
     ShellRoute(
       builder: (_, state, child) => MainShell(location: state.uri.path, child: child),

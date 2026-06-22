@@ -124,7 +124,7 @@ class _CoursLibraryScreenState extends State<CoursLibraryScreen> {
             else
               Text('${p.lessons} leçons', style: body(11, color: OC.muted, weight: FontWeight.w600)),
             const SizedBox(width: 6),
-            GestureDetector(onTap: () => context.push('/cours/hors-ligne'), child: Icon(Icons.download_rounded, size: 18, color: OC.muted)),
+            GestureDetector(onTap: () => context.push('/cours/hors-ligne?id=${p.id}'), child: Icon(Icons.download_rounded, size: 18, color: OC.muted)),
             const SizedBox(width: 6),
             Icon(Icons.chevron_right_rounded, size: 18, color: OC.faint),
           ]),
