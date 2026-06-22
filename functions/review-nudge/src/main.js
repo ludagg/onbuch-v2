@@ -1,9 +1,11 @@
-// Fonction « ops » OnBuch (double rôle — la formule Appwrite limite le nombre
+// Fonction « ops » OnBuch (triple rôle — la formule Appwrite limite le nombre
 // de fonctions, on mutualise) :
 //   1. CRON quotidien (appel sans body) : push « révisions du jour » aux élèves
 //      ayant des révisions dues (collection `review_queue`).
 //   2. ADMIN (appel avec body {action,userId}, exécution réservée à team:admins) :
 //      gestion des comptes Auth — status / block / unblock / delete.
+//   3. ÉVÉNEMENT (création d'un doc `notifications`) : diffuse un push à tous les
+//      élèves (broadcast) reprenant titre/message/route de la notification admin.
 // La clé serveur est en variable d'environnement ; les actions admin vérifient
 // en plus que l'appelant est bien membre de l'équipe `admins`.
 
@@ -86,6 +88,48 @@ async function handleAdmin(req, res, error) {
   }
 }
 
+// ── Rôle 3 : broadcast push à la création d'une notification admin ────────────
+async function listAllUserIds(error) {
+  const ids = [];
+  let offset = 0;
+  for (let page = 0; page < 50; page++) {
+    const ql = encodeURIComponent(JSON.stringify({ method: 'limit', values: [100] }));
+    const qo = encodeURIComponent(JSON.stringify({ method: 'offset', values: [offset] }));
+    const r = await awFetch('GET', `/users?queries[]=${ql}&queries[]=${qo}`);
+    if (!r.ok) { error(`list users ${r.status}`); break; }
+    const j = await r.json();
+    const batch = Array.isArray(j.users) ? j.users : [];
+    for (const u of batch) ids.push(u.$id);
+    if (batch.length < 100) break;
+    offset += 100;
+  }
+  return ids;
+}
+
+async function handleNotificationPush(req, res, log, error) {
+  let doc = {};
+  try { doc = req.bodyJson ?? (req.bodyRaw ? JSON.parse(req.bodyRaw) : {}); } catch (_) { doc = {}; }
+  const title = (doc.title || 'OnBuch').toString().slice(0, 120);
+  const body = (doc.body || doc.title || 'Nouvelle notification').toString().slice(0, 1000);
+  const route = (doc.route || '').toString();
+
+  const ids = await listAllUserIds(error);
+  if (ids.length === 0) { log('notif push: aucun élève ciblé.'); return res.json({ ok: true, users: 0, sent: 0 }); }
+
+  let sent = 0;
+  const chunk = 400; // borne la taille de chaque message push
+  for (let i = 0; i < ids.length; i += chunk) {
+    const slice = ids.slice(i, i + chunk);
+    const payload = { messageId: genId(), title, body, users: slice };
+    if (route) payload.data = { route };
+    const r = await awFetch('POST', '/messaging/messages/push', payload);
+    if (r.ok) sent += slice.length;
+    else error(`push chunk ${r.status}: ${(await r.text()).slice(0, 200)}`);
+  }
+  log(`notif push « ${title} » : ${ids.length} élève(s) ciblé(s), ${sent} OK.`);
+  return res.json({ ok: true, users: ids.length, sent });
+}
+
 // ── Rôle 1 : push « révisions du jour » (cron) ────────────────────────────────
 async function handleNudge(res, log, error) {
   const db = process.env.DATABASE_ID;
@@ -119,7 +163,11 @@ async function handleNudge(res, log, error) {
 }
 
 export default async ({ req, res, log, error }) => {
-  // Si un body avec `action` est fourni → rôle administration ; sinon → cron.
+  // Déclenchement par ÉVÉNEMENT Appwrite (création d'une notification) → broadcast.
+  const event = (req.headers['x-appwrite-event'] || '').toString();
+  if (event) return handleNotificationPush(req, res, log, error);
+
+  // Sinon : body avec `action` → administration ; rien → cron « révisions ».
   let hasAction = false;
   try {
     const b = req.bodyJson ?? (req.bodyRaw ? JSON.parse(req.bodyRaw) : {});

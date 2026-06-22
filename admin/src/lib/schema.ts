@@ -85,9 +85,37 @@ export const RESOURCES: Resource[] = [
       { key: 'title', label: 'Titre', type: 'text', required: true },
       { key: 'body', label: 'Message', type: 'textarea' },
       { key: 'type', label: 'Type', type: 'select', options: ['info', 'result', 'exam', 'credit', 'course', 'promo'] },
-      { key: 'route', label: 'Lien interne', type: 'text', help: 'ex. /results, /notifications, /annales' },
+      {
+        key: 'route',
+        label: 'Ouvrir dans l’app',
+        type: 'select',
+        help: 'Écran ouvert quand l’élève tape la notification.',
+        options: [
+          '',
+          '/home|🏠 Accueil',
+          '/results|🎓 Résultats d’examens',
+          '/annales|🗂️ Annales',
+          '/tutor|🤖 Tuteur IA (Léo)',
+          '/cours|📘 Cours',
+          '/concours|🎯 Concours',
+          '/mes-candidatures|📋 Mes candidatures',
+          '/concours-progress|📈 Progression concours',
+          '/concours-alertes|🔔 Alertes concours',
+          '/campus|🏫 Campus',
+          '/agenda|📆 Agenda scolaire',
+          '/actualites|📰 Actualités',
+          '/affiche|🪧 À l’affiche',
+          '/communaute|💬 Communauté',
+          '/credits|💳 Crédits',
+          '/notifications|🔔 Notifications',
+          '/parametres|⚙️ Paramètres',
+          '/aide|❓ Aide',
+          '/profile|👤 Profil',
+          '/search|🔎 Recherche'
+        ]
+      },
       { key: 'imageUrl', label: "URL d'image", type: 'text' },
-      { key: 'publishedAt', label: 'Publié le', type: 'datetime', help: 'Vide = maintenant.' }
+      { key: 'publishedAt', label: 'Publié le', type: 'datetime', help: 'Vide = maintenant. La notification part en push dès sa création.' }
     ]
   },
   {
