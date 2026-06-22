@@ -16,6 +16,7 @@ import '../models/app_notification.dart';
 import '../models/exam_result.dart';
 import '../models/exam_series.dart';
 import '../models/social_link.dart';
+import '../models/annale.dart';
 import 'appwrite_client.dart';
 
 class DatabaseService {
@@ -229,6 +230,37 @@ class DatabaseService {
       queries: [Query.equal('userId', uid)],
     );
     return result.documents.map((d) => d.data).toList();
+  }
+
+  // ── Annales & documents ──────────────────────────────────────────────────
+
+  /// Documents (épreuves/cours/fiches/TD) d'une matière pour un examen donné.
+  /// Récupère toutes les entrées (paginées en interne, bornées) ; le tri/filtre
+  /// fin se fait côté écran. Tolérant : liste vide si erreur/hors-ligne.
+  Future<List<Annale>> getAnnales({required String exam, required String subject}) async {
+    final out = <Annale>[];
+    try {
+      var offset = 0;
+      while (true) {
+        final res = await AppwriteClient.databases.listDocuments(
+          databaseId: appwriteDatabaseId,
+          collectionId: appwriteAnnalesCollectionId,
+          queries: [
+            Query.equal('exam', exam),
+            Query.equal('subject', subject),
+            Query.orderDesc('year'),
+            Query.limit(100),
+            Query.offset(offset),
+          ],
+        );
+        out.addAll(res.documents.map((d) => Annale.fromMap(d.data, id: d.$id)));
+        if (res.documents.length < 100 || out.length >= 300) break;
+        offset += 100;
+      }
+    } on AppwriteException {
+      return const <Annale>[];
+    }
+    return out;
   }
 
   // ── Fil d'actualités ─────────────────────────────────────────────────────

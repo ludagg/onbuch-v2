@@ -304,8 +304,8 @@ export const RESOURCES: Resource[] = [
   {
     id: 'annales',
     collectionId: 'annales',
-    label: 'Annales (épreuves)',
-    singular: 'épreuve',
+    label: 'Annales & documents',
+    singular: 'document',
     icon: '🗂️',
     titleField: 'title',
     subtitleField: 'subject',
@@ -313,12 +313,14 @@ export const RESOURCES: Resource[] = [
     fields: [
       { key: 'exam', label: 'Examen', type: 'select', required: true, options: ['BEPC', 'CAP', 'Probatoire', 'Baccalauréat', 'BT', 'BTS', 'HND', 'GCE O Level', 'GCE A Level', 'Concours'], help: 'Catégorie de la page Annales.' },
       { key: 'track', label: 'Série / spécialité', type: 'text', help: 'Libellé EXACT de la feuille, ex. « D — Maths & Sciences de la vie », « Génie Civil », « Science ». Vide pour BEPC.' },
-      { key: 'subject', label: 'Matière', type: 'text', required: true, help: 'ex. Mathématiques (doit matcher une matière de la série).' },
-      { key: 'year', label: 'Année', type: 'text', help: 'ex. 2024' },
-      { key: 'session', label: 'Session', type: 'text', help: 'ex. Juin, Session normale' },
-      { key: 'type', label: 'Type', type: 'select', options: ['sujet', 'corrige', 'video'], help: 'Sujet, corrigé ou vidéo.' },
-      { key: 'title', label: 'Titre', type: 'text', required: true, help: 'ex. Bac D — Mathématiques 2024' },
-      { key: 'fileUrl', label: 'Lien du document', type: 'text', help: 'PDF / vidéo (Appwrite Storage ou lien externe).' },
+      { key: 'subject', label: 'Matière', type: 'text', required: true, help: 'ex. Mathématiques (doit matcher une matière de la filière).' },
+      { key: 'category', label: 'Type de document', type: 'select', options: ['Épreuve', 'Cours', 'Fiche de révision', 'TD', 'Autre'], help: 'Épreuve d’examen, cours, fiche, TD…' },
+      { key: 'year', label: 'Année', type: 'text', help: 'ex. 2024 (facultatif pour un cours/une fiche).' },
+      { key: 'session', label: 'Session', type: 'text', help: 'ex. Juin, Session normale (facultatif).' },
+      { key: 'title', label: 'Titre', type: 'text', required: true, help: 'ex. Bac D — Mathématiques 2024, ou « Cours : Limites de fonctions ».' },
+      { key: 'fileUrl', label: 'Document principal (PDF)', type: 'text', help: 'Le sujet / cours / fiche en PDF. Appwrite Storage ou lien externe. Facultatif si tu mets seulement une vidéo.' },
+      { key: 'corrigeUrl', label: 'Corrigé (PDF) — facultatif', type: 'text', help: 'Laisse vide s’il n’y a pas de corrigé.' },
+      { key: 'videoUrl', label: 'Vidéo corrigée — facultatif', type: 'text', help: 'Lien YouTube/MP4. Laisse vide s’il n’y a pas de vidéo.' },
       { key: 'premium', label: 'Premium (payant)', type: 'boolean' },
       order
     ]

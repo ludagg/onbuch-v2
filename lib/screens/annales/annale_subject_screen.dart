@@ -1,13 +1,15 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
 import '../../widgets/skeletons.dart';
+import '../../models/annale.dart';
+import '../../services/database_service.dart';
 
-/// Liste des épreuves d'une matière (FRONT seulement, données simulées).
-/// Filtres par tags (type + année) et pagination au défilement. Le branchement
-/// sur la collection `annales` viendra ensuite.
+/// Liste des documents (épreuves, cours, fiches, TD) d'une matière, depuis la
+/// collection `annales` (admin). Filtres par tags (type + année) et pagination
+/// au défilement. Corrigé/vidéo facultatifs (non bloquant).
 class AnnaleSubjectScreen extends StatefulWidget {
   final String subject;
   final String? exam;
@@ -18,30 +20,23 @@ class AnnaleSubjectScreen extends StatefulWidget {
   State<AnnaleSubjectScreen> createState() => _AnnaleSubjectScreenState();
 }
 
-class _Epreuve {
-  final int year;
-  final String session;
-  final List<String> formats; // 'pdf' | 'corrige' | 'video'
-  final bool premium;
-  _Epreuve(this.year, this.session, this.formats, this.premium);
-}
-
 class _AnnaleSubjectScreenState extends State<AnnaleSubjectScreen> {
   final _scroll = ScrollController();
-  final List<_Epreuve> _all = [];
+  List<Annale> _all = [];
+  bool _loading = true;
 
-  static const _pageSize = 8;
+  static const _pageSize = 10;
   int _shown = _pageSize;
   bool _loadingMore = false;
 
-  String? _type; // null = tous ; sinon 'pdf'|'corrige'|'video'
-  int? _year; // null = toutes
+  String? _type; // null = tous ; 'pdf'|'corrige'|'video'
+  String? _year; // null = toutes
 
   @override
   void initState() {
     super.initState();
-    _generate();
     _scroll.addListener(_onScroll);
+    _load();
   }
 
   @override
@@ -51,29 +46,29 @@ class _AnnaleSubjectScreenState extends State<AnnaleSubjectScreen> {
     super.dispose();
   }
 
-  // Données simulées déterministes (mêmes résultats pour une matière donnée).
-  void _generate() {
-    final rnd = Random(widget.subject.hashCode);
-    const sessions = ['Session normale', 'Rattrapage'];
-    for (var y = 2025; y >= 2014; y--) {
-      final n = 1 + rnd.nextInt(3); // 1 à 3 épreuves / an
-      for (var i = 0; i < n; i++) {
-        final formats = <String>['pdf'];
-        if (rnd.nextBool()) formats.add('corrige');
-        if (rnd.nextInt(3) == 0) formats.add('video');
-        _all.add(_Epreuve(y, sessions[i % sessions.length], formats, rnd.nextInt(3) == 0));
-      }
-    }
+  Future<void> _load() async {
+    final exam = (widget.exam ?? '').trim();
+    final items = exam.isEmpty
+        ? <Annale>[]
+        : await DatabaseService().getAnnales(exam: exam, subject: widget.subject);
+    if (!mounted) return;
+    setState(() {
+      _all = items;
+      _loading = false;
+    });
   }
 
-  List<_Epreuve> get _filtered => _all.where((e) {
-        if (_type != null && !e.formats.contains(_type)) return false;
+  List<Annale> get _filtered => _all.where((e) {
+        if (_type == 'pdf' && !e.hasPdf) return false;
+        if (_type == 'corrige' && !e.hasCorrige) return false;
+        if (_type == 'video' && !e.hasVideo) return false;
         if (_year != null && e.year != _year) return false;
         return true;
       }).toList();
 
-  List<int> get _years {
-    final s = _all.map((e) => e.year).toSet().toList()..sort((a, b) => b.compareTo(a));
+  List<String> get _years {
+    final s = _all.map((e) => e.year).where((y) => y.isNotEmpty).toSet().toList()
+      ..sort((a, b) => b.compareTo(a));
     return s;
   }
 
@@ -83,8 +78,7 @@ class _AnnaleSubjectScreenState extends State<AnnaleSubjectScreen> {
       final total = _filtered.length;
       if (_shown >= total) return;
       setState(() => _loadingMore = true);
-      // Simule un chargement réseau paginé.
-      Future.delayed(const Duration(milliseconds: 550), () {
+      Future.delayed(const Duration(milliseconds: 350), () {
         if (!mounted) return;
         setState(() {
           _shown = (_shown + _pageSize).clamp(0, total);
@@ -95,6 +89,69 @@ class _AnnaleSubjectScreenState extends State<AnnaleSubjectScreen> {
   }
 
   void _resetPaging() => _shown = _pageSize;
+
+  Future<void> _openUrl(String url) async {
+    final uri = Uri.tryParse(url.trim());
+    if (uri == null || url.trim().isEmpty) return;
+    try {
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
+    } catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Impossible d\'ouvrir le document.', style: body(13, color: Colors.white)), backgroundColor: OC.bad),
+        );
+      }
+    }
+  }
+
+  void _openResources(Annale a) {
+    final res = <(IconData, String, Color, String)>[
+      if (a.hasPdf) (Icons.picture_as_pdf_rounded, 'Sujet (PDF)', const Color(0xFFC0392B), a.fileUrl),
+      if (a.hasCorrige) (Icons.check_circle_rounded, 'Corrigé (PDF)', const Color(0xFF1E9E63), a.corrigeUrl),
+      if (a.hasVideo) (Icons.play_circle_rounded, 'Vidéo corrigée', const Color(0xFF7A5AE0), a.videoUrl),
+    ];
+    if (res.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Document bientôt disponible.', style: body(13, color: Colors.white)), backgroundColor: OC.ink),
+      );
+      return;
+    }
+    if (res.length == 1) {
+      _openUrl(res.first.$4);
+      return;
+    }
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: OC.paper,
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(22))),
+      builder: (_) => SafeArea(
+        child: Column(mainAxisSize: MainAxisSize.min, children: [
+          const SizedBox(height: 14),
+          Container(width: 40, height: 4, decoration: BoxDecoration(color: OC.line2, borderRadius: BorderRadius.circular(2))),
+          const SizedBox(height: 12),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(20, 0, 20, 6),
+            child: Align(alignment: Alignment.centerLeft, child: Text(a.title, style: display(15, weight: FontWeight.w700))),
+          ),
+          for (final r in res)
+            ListTile(
+              leading: Container(
+                width: 40, height: 40,
+                decoration: BoxDecoration(color: r.$3.withValues(alpha: 0.13), borderRadius: BorderRadius.circular(11)),
+                child: Icon(r.$1, color: r.$3, size: 21),
+              ),
+              title: Text(r.$2, style: body(14, weight: FontWeight.w700)),
+              trailing: Icon(Icons.open_in_new_rounded, size: 18, color: OC.muted),
+              onTap: () {
+                Navigator.pop(context);
+                _openUrl(r.$4);
+              },
+            ),
+          const SizedBox(height: 12),
+        ]),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -118,31 +175,36 @@ class _AnnaleSubjectScreenState extends State<AnnaleSubjectScreen> {
             Text(crumb, style: body(11, color: OC.muted, weight: FontWeight.w500), maxLines: 1, overflow: TextOverflow.ellipsis),
         ]),
       ),
-      body: Column(children: [
-        _filters(),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(20, 4, 20, 8),
-          child: Row(children: [
-            SubjLogo(widget.subject, size: 26),
-            const SizedBox(width: 9),
-            Text('${filtered.length} épreuve${filtered.length > 1 ? 's' : ''}',
-                style: body(12.5, color: OC.muted, weight: FontWeight.w700)),
-          ]),
-        ),
-        Expanded(
-          child: filtered.isEmpty
-              ? _empty()
-              : ListView.builder(
-                  controller: _scroll,
-                  padding: const EdgeInsets.fromLTRB(20, 4, 20, 24),
-                  itemCount: visible.length + (hasMore ? 1 : 0),
-                  itemBuilder: (_, i) {
-                    if (i >= visible.length) return _loaderFooter();
-                    return _epreuveCard(visible[i]);
-                  },
+      body: _loading
+          ? ListView(padding: const EdgeInsets.fromLTRB(20, 16, 20, 24), children: List.generate(6, (_) => const SkeletonRow()))
+          : Column(children: [
+              if (_all.isNotEmpty) _filters(),
+              if (_all.isNotEmpty)
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 4, 20, 8),
+                  child: Row(children: [
+                    SubjLogo(widget.subject, size: 26),
+                    const SizedBox(width: 9),
+                    Text('${filtered.length} document${filtered.length > 1 ? 's' : ''}',
+                        style: body(12.5, color: OC.muted, weight: FontWeight.w700)),
+                  ]),
                 ),
-        ),
-      ]),
+              Expanded(
+                child: _all.isEmpty
+                    ? _empty()
+                    : filtered.isEmpty
+                        ? _noMatch()
+                        : ListView.builder(
+                            controller: _scroll,
+                            padding: const EdgeInsets.fromLTRB(20, 4, 20, 24),
+                            itemCount: visible.length + (hasMore ? 1 : 0),
+                            itemBuilder: (_, i) {
+                              if (i >= visible.length) return const Padding(padding: EdgeInsets.only(top: 2, bottom: 12), child: SkeletonRow());
+                              return _card(visible[i]);
+                            },
+                          ),
+              ),
+            ]),
     );
   }
 
@@ -163,23 +225,25 @@ class _AnnaleSubjectScreenState extends State<AnnaleSubjectScreen> {
           chip('Vidéos', _type == 'video', () => setState(() { _type = 'video'; _resetPaging(); })),
         ]),
       ),
-      const SizedBox(height: 9),
-      SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.fromLTRB(20, 0, 12, 0),
-        child: Row(children: [
-          chip('Toutes années', _year == null, () => setState(() { _year = null; _resetPaging(); })),
-          for (final y in _years)
-            chip('$y', _year == y, () => setState(() { _year = y; _resetPaging(); })),
-        ]),
-      ),
+      if (_years.isNotEmpty) ...[
+        const SizedBox(height: 9),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          padding: const EdgeInsets.fromLTRB(20, 0, 12, 0),
+          child: Row(children: [
+            chip('Toutes années', _year == null, () => setState(() { _year = null; _resetPaging(); })),
+            for (final y in _years) chip(y, _year == y, () => setState(() { _year = y; _resetPaging(); })),
+          ]),
+        ),
+      ],
       const SizedBox(height: 12),
     ]);
   }
 
-  Widget _epreuveCard(_Epreuve e) {
+  Widget _card(Annale a) {
+    final sub = [a.category, if (a.session.isNotEmpty) a.session].join(' · ');
     return GestureDetector(
-      onTap: () => context.push('/annales/detail'),
+      onTap: () => _openResources(a),
       child: Container(
         margin: const EdgeInsets.only(bottom: 11),
         padding: const EdgeInsets.all(12),
@@ -189,32 +253,34 @@ class _AnnaleSubjectScreenState extends State<AnnaleSubjectScreen> {
           border: Border.all(color: OC.line, width: 1.5),
         ),
         child: Row(children: [
-          // Vignette « année »
           Container(
             width: 52, height: 52,
             decoration: BoxDecoration(color: OC.o50, borderRadius: BorderRadius.circular(13)),
             child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
               Icon(Icons.description_rounded, size: 17, color: OC.o600),
-              const SizedBox(height: 2),
-              Text('${e.year}', style: body(10.5, weight: FontWeight.w800, color: OC.o700)),
+              if (a.year.isNotEmpty) ...[
+                const SizedBox(height: 2),
+                Text(a.year, style: body(10.5, weight: FontWeight.w800, color: OC.o700)),
+              ],
             ]),
           ),
           const SizedBox(width: 12),
           Expanded(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text('${widget.subject} · ${e.year}',
-                  style: body(13.5, weight: FontWeight.w700), maxLines: 1, overflow: TextOverflow.ellipsis),
-              const SizedBox(height: 3),
-              Text(e.session, style: body(11, color: OC.muted, weight: FontWeight.w600)),
+              Text(a.title, style: body(13.5, weight: FontWeight.w700), maxLines: 2, overflow: TextOverflow.ellipsis),
+              if (sub.isNotEmpty) ...[
+                const SizedBox(height: 3),
+                Text(sub, style: body(11, color: OC.muted, weight: FontWeight.w600)),
+              ],
               const SizedBox(height: 7),
               Row(children: [
-                for (final f in e.formats) Padding(padding: const EdgeInsets.only(right: 5), child: _TypePill(f)),
+                for (final f in a.formats) Padding(padding: const EdgeInsets.only(right: 5), child: _TypePill(f)),
               ]),
             ]),
           ),
           const SizedBox(width: 8),
           Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
-            e.premium
+            a.premium
                 ? PillBadge('PREMIUM', color: const Color(0xFFA6701A), bg: const Color(0xFFFBF0DD), icon: Icons.lock_outline_rounded)
                 : PillBadge('GRATUIT', color: OC.waInk, bg: OC.goodBg),
             const SizedBox(height: 12),
@@ -225,21 +291,29 @@ class _AnnaleSubjectScreenState extends State<AnnaleSubjectScreen> {
     );
   }
 
-  Widget _loaderFooter() => const Padding(
-        padding: EdgeInsets.only(top: 2, bottom: 12),
-        child: SkeletonRow(),
+  Widget _empty() => Center(
+        child: Padding(
+          padding: const EdgeInsets.all(32),
+          child: Column(mainAxisSize: MainAxisSize.min, children: [
+            Icon(Icons.folder_open_rounded, size: 46, color: OC.faint),
+            const SizedBox(height: 12),
+            Text('Aucun document pour le moment', style: display(18, weight: FontWeight.w700), textAlign: TextAlign.center),
+            const SizedBox(height: 6),
+            Text('Les épreuves, cours et fiches de ${widget.subject} apparaîtront ici dès qu\'ils seront ajoutés.',
+                textAlign: TextAlign.center, style: body(13.5, color: OC.muted).copyWith(height: 1.4)),
+          ]),
+        ),
       );
 
-  Widget _empty() => Center(
+  Widget _noMatch() => Center(
         child: Padding(
           padding: const EdgeInsets.all(32),
           child: Column(mainAxisSize: MainAxisSize.min, children: [
             Icon(Icons.filter_alt_off_rounded, size: 44, color: OC.faint),
             const SizedBox(height: 12),
-            Text('Aucune épreuve pour ce filtre', style: display(17, weight: FontWeight.w700), textAlign: TextAlign.center),
+            Text('Aucun document pour ce filtre', style: display(17, weight: FontWeight.w700), textAlign: TextAlign.center),
             const SizedBox(height: 6),
-            Text('Essaie une autre année ou un autre type.',
-                textAlign: TextAlign.center, style: body(13.5, color: OC.muted)),
+            Text('Essaie une autre année ou un autre type.', textAlign: TextAlign.center, style: body(13.5, color: OC.muted)),
           ]),
         ),
       );
