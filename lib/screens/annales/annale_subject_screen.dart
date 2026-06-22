@@ -15,7 +15,8 @@ class AnnaleSubjectScreen extends StatefulWidget {
   final String? exam;
   final String? filiere;
   final String? code; // code de la série (pour filtrer les imports « D », « C »…)
-  const AnnaleSubjectScreen({super.key, required this.subject, this.exam, this.filiere, this.code});
+  final String? subdivision; // filière parente (pour les imports « INDUSTRIEL »…)
+  const AnnaleSubjectScreen({super.key, required this.subject, this.exam, this.filiere, this.code, this.subdivision});
 
   @override
   State<AnnaleSubjectScreen> createState() => _AnnaleSubjectScreenState();
@@ -55,8 +56,9 @@ class _AnnaleSubjectScreenState extends State<AnnaleSubjectScreen> {
     // Filtre série (cohérent avec le compteur de la page filière).
     final code = (widget.code ?? '').trim();
     final filiere = (widget.filiere ?? '').trim();
-    if (code.isNotEmpty || filiere.isNotEmpty) {
-      items = items.where((a) => a.appliesToSerie(code, filiere)).toList();
+    final sub = (widget.subdivision ?? '').trim();
+    if (code.isNotEmpty || filiere.isNotEmpty || sub.isNotEmpty) {
+      items = items.where((a) => a.appliesToSerie(code, filiere, subdivision: sub)).toList();
     }
     if (!mounted) return;
     setState(() {

@@ -16,7 +16,8 @@ class AnnalesFolderScreen extends StatefulWidget {
   final String folderName;
   final ExamNode? node;
   final String? exam; // examen racine (propagé pour retrouver les matières en base)
-  const AnnalesFolderScreen({super.key, required this.folderName, this.node, this.exam});
+  final String? subdivision; // filière parente (« Technique industriel »…) pour les imports
+  const AnnalesFolderScreen({super.key, required this.folderName, this.node, this.exam, this.subdivision});
 
   @override
   State<AnnalesFolderScreen> createState() => _AnnalesFolderScreenState();
@@ -93,9 +94,13 @@ class _AnnalesFolderScreenState extends State<AnnalesFolderScreen> {
           Builder(builder: (context) {
             final count = child.children.isNotEmpty ? child.children.length : child.subjects.length;
             final unit = child.children.isNotEmpty ? 'élément' : 'matière';
+            // Si l'enfant est une SÉRIE terminale, on lui transmet la subdivision
+            // courante (n.label) — sert à rattacher les imports « INDUSTRIEL »…
+            final childIsSerie = child.isLeaf && (child.code.isNotEmpty || child.subjects.isNotEmpty);
+            final sub = childIsSerie ? n.label : (widget.subdivision ?? '');
             return GestureDetector(
               onTap: () => context.push(
-                  '/annales/folder/${Uri.encodeComponent(child.label)}?exam=${Uri.encodeComponent(_exam)}',
+                  '/annales/folder/${Uri.encodeComponent(child.label)}?exam=${Uri.encodeComponent(_exam)}&sub=${Uri.encodeComponent(sub)}',
                   extra: child),
               child: Container(
                 margin: const EdgeInsets.only(bottom: 10),
@@ -132,7 +137,7 @@ class _AnnalesFolderScreenState extends State<AnnalesFolderScreen> {
 
     // Documents réels de cette filière (correspondance souple : code / libellé /
     // général) — robuste face aux imports (track = « D », « D — … » ou vide).
-    final docs = _docs.where((d) => d.appliesToSerie(n.code, n.label)).toList();
+    final docs = _docs.where((d) => d.appliesToSerie(n.code, n.label, subdivision: widget.subdivision ?? '')).toList();
     final counts = <String, int>{};
     for (final d in docs) {
       counts[d.subject] = (counts[d.subject] ?? 0) + 1;
@@ -204,7 +209,7 @@ class _AnnalesFolderScreenState extends State<AnnalesFolderScreen> {
         : (count == 0 ? 'Bientôt' : '$count document${count > 1 ? 's' : ''}');
     return GestureDetector(
       onTap: () => context.push('/annales/subject',
-          extra: {'subject': name, 'exam': _exam, 'filiere': filiere, 'code': code}),
+          extra: {'subject': name, 'exam': _exam, 'filiere': filiere, 'code': code, 'subdivision': widget.subdivision ?? ''}),
       child: Container(
         padding: const EdgeInsets.fromLTRB(11, 11, 12, 11),
         decoration: BoxDecoration(color: OC.paper, borderRadius: BorderRadius.circular(14), border: Border.all(color: OC.line, width: 1.5)),

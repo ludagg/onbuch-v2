@@ -165,7 +165,7 @@ final appRouter = GoRouter(
           path: '/annales',
           builder: (_, __) => const AnnalesLibraryScreen(),
           routes: [
-            GoRoute(path: 'folder/:name', builder: (_, s) => AnnalesFolderScreen(folderName: s.pathParameters['name'] ?? '', node: s.extra as ExamNode?, exam: s.uri.queryParameters['exam'])),
+            GoRoute(path: 'folder/:name', builder: (_, s) => AnnalesFolderScreen(folderName: s.pathParameters['name'] ?? '', node: s.extra as ExamNode?, exam: s.uri.queryParameters['exam'], subdivision: s.uri.queryParameters['sub'])),
             GoRoute(
               path: 'subject',
               builder: (_, s) {
@@ -175,6 +175,7 @@ final appRouter = GoRouter(
                   exam: m['exam'] as String?,
                   filiere: m['filiere'] as String?,
                   code: m['code'] as String?,
+                  subdivision: m['subdivision'] as String?,
                 );
               },
             ),
