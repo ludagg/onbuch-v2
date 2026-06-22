@@ -50,21 +50,25 @@ class Annale {
   /// tronc commun (Maths, Physique, Français…) sont partagées par TOUTES les
   /// séries de la subdivision, donc visibles sous chacune d'elles.
   bool appliesToSerie(String code, String label, {String subdivision = ''}) {
-    final t = track.trim().toLowerCase();
-    if (t.isEmpty) return true; // général
+    final raw = track.trim().toLowerCase();
+    if (raw.isEmpty) return true; // général
     final c = code.trim().toLowerCase();
     final l = label.trim().toLowerCase();
-    if (c.isNotEmpty && t == c) return true;
-    if (l.isNotEmpty && t == l) return true;
-    // « D — … » : le libellé commence par le code du track.
-    if (t.length <= 4 && (l.startsWith('$t ') || l.startsWith('$t—') || l.startsWith('$t —'))) return true;
-    // Tracks « subdivision » (imports) : rattachés à toute la filière technique.
     final s = subdivision.trim().toLowerCase();
-    if (s.isNotEmpty) {
-      if (t == 'industriel' && s.contains('industriel')) return true;
-      if ((t == 'commercial' || t == 'stt') &&
-          (s.contains('commercial') || s.contains('stt') || s.contains('tertiaire'))) {
-        return true;
+    // Le track peut lister plusieurs séries (« C,D », « A4/SES ») — match si l'UNE
+    // d'elles correspond.
+    for (final t in raw.split(RegExp(r'[,/]')).map((e) => e.trim()).where((e) => e.isNotEmpty)) {
+      if (c.isNotEmpty && t == c) return true;
+      if (l.isNotEmpty && t == l) return true;
+      // « D — … » : le libellé commence par le code du track.
+      if (t.length <= 4 && (l.startsWith('$t ') || l.startsWith('$t—') || l.startsWith('$t —'))) return true;
+      // Tracks « subdivision » (imports) : rattachés à toute la filière technique.
+      if (s.isNotEmpty) {
+        if (t == 'industriel' && s.contains('industriel')) return true;
+        if ((t == 'commercial' || t == 'stt') &&
+            (s.contains('commercial') || s.contains('stt') || s.contains('tertiaire'))) {
+          return true;
+        }
       }
     }
     return false;
