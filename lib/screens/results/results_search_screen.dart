@@ -231,7 +231,7 @@ class _ResultsSearchScreenState extends State<ResultsSearchScreen> {
                 Text(s.label, style: body(14, weight: FontWeight.w700)),
                 const SizedBox(height: 3),
                 Row(children: [
-                  Container(width: 7, height: 7, decoration: const BoxDecoration(color: OC.warn, shape: BoxShape.circle)),
+                  Container(width: 7, height: 7, decoration: BoxDecoration(color: OC.warn, shape: BoxShape.circle)),
                   const SizedBox(width: 6),
                   Text('Tu seras alerté·e dès la publication', style: body(12, color: OC.ink2, weight: FontWeight.w500)),
                 ]),
