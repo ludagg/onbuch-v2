@@ -662,6 +662,105 @@ class SubjTile extends StatelessWidget {
   }
 }
 
+// ─── Logo de matière (icône adaptée + couleur) ─────────────────────────────────
+// Mappe n'importe quel nom de matière (FR/EN) vers une icône Material et une
+// couleur d'accent. Utilisé par la bibliothèque d'annales (matières réelles par
+// série). Le fond est dérivé de l'accent (stable en mode sombre, accents fixes).
+class SubjLogo extends StatelessWidget {
+  final String subject;
+  final double size;
+  const SubjLogo(this.subject, {super.key, this.size = 40});
+
+  static (IconData, Color) visual(String name) {
+    final n = name.toLowerCase();
+    bool has(List<String> ks) => ks.any(n.contains);
+
+    // Santé / médical (avant « phys » pour ne pas confondre physiologie/physique).
+    if (has(['anatom', 'physiolog', 'soin', 'pharmac', 'clinique', 'nursing', 'infirm',
+        'médic', 'medic', 'santé', 'sante', 'sanitaire', 'haemat', 'hématolog', 'hematolog'])) {
+      return (Icons.local_hospital_rounded, const Color(0xFFC0392B));
+    }
+    if (n.contains('phys') && (n.contains('chim') || n.contains('chem'))) return (Icons.science_rounded, const Color(0xFF1E9E63));
+    if (n.contains('math')) return (Icons.calculate_rounded, const Color(0xFF2D6CDF));
+    if (n.contains('phys')) return (Icons.bolt_rounded, const Color(0xFF4257B2));
+    if (has(['chim', 'chem'])) return (Icons.science_rounded, const Color(0xFF1E9E63));
+    if (has(['svt', 'biolog', 'biochim', 'micro', ' vie', 'nature'])) return (Icons.biotech_rounded, const Color(0xFF0E9AA0));
+    // Agriculture / élevage (avant « techn » pour zootechnie, phytotechnie).
+    if (has(['agri', 'agro', 'aqua', 'zoo', 'phyto', 'végétal', 'animal', 'crop', 'fish', 'élevage'])) {
+      return (Icons.agriculture_rounded, const Color(0xFF558B2F));
+    }
+    if (has(['philo', 'logic', 'logique'])) return (Icons.psychology_rounded, const Color(0xFF7A5AE0));
+    if (has(['litt', 'liter', 'religi'])) return (Icons.auto_stories_rounded, const Color(0xFFB23E8E));
+    if (has(['culture g'])) return (Icons.lightbulb_rounded, const Color(0xFF7A5AE0));
+    if (has(['franç', 'francais', 'lettre', 'rédaction', 'redaction'])) return (Icons.menu_book_rounded, const Color(0xFFDB4F12));
+    if (has(['angl', 'english', 'bilingual'])) return (Icons.translate_rounded, const Color(0xFFC0392B));
+    if (has(['lv2', 'lv3', 'espagnol', 'allemand', 'latin', 'grec', 'langue', 'french'])) {
+      return (Icons.language_rounded, const Color(0xFFC0392B));
+    }
+    if (n.contains('hist')) return (Icons.account_balance_rounded, const Color(0xFFA6651E));
+    if (has(['géo', 'geo', 'topo', 'survey', 'cartograph'])) return (Icons.public_rounded, const Color(0xFF1E7E5A));
+    if (has(['ecm', 'citoyen', 'citizen', 'moral'])) return (Icons.diversity_3_rounded, const Color(0xFF00897B));
+    if (has(['info', 'numér', 'ict', 'logiciel', 'software', 'réseau', 'reseau', 'network', 'comput',
+        'programm', 'algorith', 'données', 'database', 'embarqué', 'embedded', 'operating', 'télécom', 'telecom', 'transmission'])) {
+      return (Icons.computer_rounded, const Color(0xFF3F51B5));
+    }
+    if (has(['droit', 'fiscal', ' law', 'légal', 'legal'])) return (Icons.gavel_rounded, const Color(0xFF6D4C41));
+    if (has(['dessin', 'drawing'])) return (Icons.architecture_rounded, const Color(0xFF6D4C41));
+    if (has(['électro', 'electro', 'électr', 'electr', 'mesur', 'power', 'machine élec'])) {
+      return (Icons.electric_bolt_rounded, const Color(0xFFEF6C00));
+    }
+    if (has(['froid', 'clim', 'thermo', 'refriger', 'hvac'])) return (Icons.ac_unit_rounded, const Color(0xFF0277BD));
+    if (has(['méca', 'meca', 'mecha', 'fabric', 'automat', 'mainten', 'usinage', 'manufactur', 'productique'])) {
+      return (Icons.settings_rounded, const Color(0xFF455A64));
+    }
+    if (has(['génie civ', 'béton', 'beton', 'concrete', 'construct', 'bâtiment', 'batiment', 'building',
+        'résistance', 'resistance', 'structural', 'ouvrage'])) {
+      return (Icons.architecture_rounded, const Color(0xFF6D4C41));
+    }
+    if (has(['génie', 'genie', 'technolog', 'industr', 'engineering', 'procédé', 'process'])) {
+      return (Icons.engineering_rounded, const Color(0xFF455A64));
+    }
+    if (has(['hôtel', 'hotel', 'restaur', 'cuisine', 'culinaire', 'catering', 'hospitality', 'nutrition', 'food', 'aliment'])) {
+      return (Icons.restaurant_rounded, const Color(0xFFC2185B));
+    }
+    if (has(['compta', 'account', 'financ', 'banqu', 'banking', 'gestion', 'manage', 'mercat', 'marketing',
+        'commerc', 'commerce', 'vente', 'sales', 'éco', 'eco', 'econom', 'assur', 'insurance', 'entrep',
+        'logist', 'supply', 'procure', 'transport', 'bancaire', 'business'])) {
+      return (Icons.trending_up_rounded, const Color(0xFF2E7D32));
+    }
+    if (has(['admin', 'organis', 'communic', 'secrét', 'secret', 'bureau', 'office', 'sténo', 'steno',
+        'dactylo', 'correspond', 'relation', 'public relation'])) {
+      return (Icons.badge_rounded, const Color(0xFF5E35B1));
+    }
+    if (has(['sécur', 'secur', 'prévention', 'prevention', 'hygiène', 'hygiene', 'safety'])) {
+      return (Icons.health_and_safety_rounded, const Color(0xFF00897B));
+    }
+    if (has(['travaux', 'pratiq', 'practical', 'atelier', 'usinage', 'soudure', 'chaudronn', 'confection', 'couture'])) {
+      return (Icons.handyman_rounded, const Color(0xFF8D6E63));
+    }
+    if (has(['projet', 'project', 'étude de cas', 'etude de cas', 'research', 'synthèse', 'synthese', 'mémoire', 'memoire'])) {
+      return (Icons.assignment_rounded, const Color(0xFF455A64));
+    }
+    if (has(['dissert'])) return (Icons.edit_note_rounded, const Color(0xFF5E35B1));
+    if (n.contains('social')) return (Icons.groups_rounded, const Color(0xFF00838F));
+    if (has(['art', 'musi', 'dessin'])) return (Icons.palette_rounded, const Color(0xFFB23E8E));
+    if (has(['bois', 'wood', 'menuis', 'ébénist', 'ebenist'])) return (Icons.carpenter_rounded, const Color(0xFF8D6E63));
+    if (has(['sport', 'eps'])) return (Icons.fitness_center_rounded, const Color(0xFFD84315));
+    return (Icons.description_rounded, const Color(0xFF6B7280));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final (icon, c) = visual(subject);
+    return Container(
+      width: size,
+      height: size,
+      decoration: BoxDecoration(color: c.withValues(alpha: 0.13), borderRadius: BorderRadius.circular(size * 0.29)),
+      child: Icon(icon, size: size * 0.52, color: c),
+    );
+  }
+}
+
 // ─── Dot separator ────────────────────────────────────────────────────────────
 class HRule extends StatelessWidget {
   const HRule({super.key});

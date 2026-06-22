@@ -23,6 +23,7 @@ const appwriteAfficheCollectionId = 'affiche';
 const appwriteTutorJobsCollectionId = 'tutor_jobs';
 const appwriteTutorQuotaCollectionId = 'tutor_quota';
 const appwriteNotificationsCollectionId = 'notifications';
+const appwriteAnnalesCollectionId = 'annales';
 
 // ── Agent d'études Léo (Phase 0 — fondations data) ──────────────────────────
 // Données utilisateur (documentSecurity : chaque doc est restreint à son
