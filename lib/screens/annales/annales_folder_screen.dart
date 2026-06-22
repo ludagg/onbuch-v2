@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
 import '../../data/exam_taxonomy.dart';
-import '../../services/database_service.dart';
+import '../../services/exam_structure_service.dart';
 
 /// Navigation des annales dans la taxonomie (profondeur variable).
 /// - Niveau de SUBDIVISIONS (ex. Bac → ESG / STT / Industriel) → liste de dossiers.
@@ -23,10 +23,6 @@ class _AnnalesFolderScreenState extends State<AnnalesFolderScreen> {
   int _serie = 0;
   int _year = 0;
 
-  // Matières chargées depuis la base (`exam_series`, éditable par l'admin).
-  // `null` tant qu'on n'a pas (encore) de réponse → on garde le statique en repli.
-  List<String>? _dbSubjects;
-
   // Examen racine : au 1ᵉʳ niveau, le nom du dossier EST l'examen.
   String get _exam => widget.exam ?? widget.folderName;
 
@@ -43,26 +39,8 @@ class _AnnalesFolderScreenState extends State<AnnalesFolderScreen> {
     ('SVT', 'Sciences de la vie', false, ['pdf', 'corrige', 'video']),
   ];
 
-  ExamNode? get _node => widget.node ?? examTaxonomy[widget.folderName];
-
-  @override
-  void initState() {
-    super.initState();
-    _loadDbSubjects();
-  }
-
-  // Sur la page « bibliothèque » d'une filière, on tente de charger SES matières
-  // depuis `exam_series` (admin) — elles priment sur la liste codée en dur, ce
-  // qui permet d'ajuster/compléter les matières sans mettre à jour l'app.
-  Future<void> _loadDbSubjects() async {
-    final n = _node;
-    if (n == null || _isGroupLevel) return; // uniquement au niveau filière (feuille)
-    try {
-      final all = await DatabaseService().getExamSeries();
-      final match = all.where((s) => s.exam == _exam && s.name == n.label && s.subjects.isNotEmpty);
-      if (match.isNotEmpty && mounted) setState(() => _dbSubjects = match.first.subjects);
-    } catch (_) {/* hors-ligne → on garde le statique */}
-  }
+  // Structure (taxonomie) pilotée par la base + cache disque (offline-first).
+  ExamNode? get _node => widget.node ?? ExamStructureService.instance.taxonomy[widget.folderName];
 
   // On affiche une LISTE de dossiers quand les enfants sont des subdivisions
   // (sous-dossiers), des SÉRIES (feuille AVEC code) ou des SPÉCIALITÉS (feuille
@@ -162,9 +140,8 @@ class _AnnalesFolderScreenState extends State<AnnalesFolderScreen> {
   Widget _library(BuildContext context, ExamNode n) {
     final series = _series;
     final items = _items;
-    // Matières : la base (admin) prime, sinon la liste statique de la taxonomie,
-    // sinon les feuilles-matières (GCE…), sinon la démo.
-    final subjects = (_dbSubjects != null && _dbSubjects!.isNotEmpty) ? _dbSubjects! : n.subjects;
+    // Matières de la filière (issues de la structure base/cache, ou statique).
+    final subjects = n.subjects;
     final useSubjects = subjects.isNotEmpty;
     final useRealGrid = !useSubjects && items.isNotEmpty; // GCE/CAP/BTS/HND : feuilles = matières
     return SingleChildScrollView(
