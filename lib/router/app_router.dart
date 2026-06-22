@@ -160,7 +160,7 @@ final appRouter = GoRouter(
           path: '/annales',
           builder: (_, __) => const AnnalesLibraryScreen(),
           routes: [
-            GoRoute(path: 'folder/:name', builder: (_, s) => AnnalesFolderScreen(folderName: s.pathParameters['name'] ?? '', node: s.extra as ExamNode?)),
+            GoRoute(path: 'folder/:name', builder: (_, s) => AnnalesFolderScreen(folderName: s.pathParameters['name'] ?? '', node: s.extra as ExamNode?, exam: s.uri.queryParameters['exam'])),
             GoRoute(path: 'detail', builder: (_, __) => const AnnaleDetailScreen()),
             GoRoute(path: 'pdf', builder: (_, __) => const PdfReaderScreen()),
             GoRoute(path: 'video', builder: (_, __) => const VideoCorrigeScreen()),
