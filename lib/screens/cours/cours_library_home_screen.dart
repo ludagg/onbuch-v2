@@ -5,6 +5,8 @@ import '../../widgets/ob_widgets.dart';
 import '../../widgets/skeletons.dart';
 import '../../data/exam_taxonomy.dart';
 import '../../services/cours_packs_service.dart';
+import '../../services/database_service.dart';
+import '../../models/annale.dart';
 
 /// Séries ESG retenues pour le Bac / Probatoire (libellé court → code).
 /// « A » est une série unique qui regroupe toutes les sous-séries A.
@@ -60,6 +62,8 @@ class _CoursLibraryHomeScreenState extends State<CoursLibraryHomeScreen> {
 
   // Packs regroupés par examen (libellé carte → packs triés par nom).
   Map<String, List<Pack>> _byExam = const {};
+  // Cours PDF (course_docs) regroupés par examen, dans l'ordre d'affichage.
+  List<MapEntry<String, List<Annale>>> _coursePdf = const [];
   bool _loaded = false;
 
   @override
@@ -73,13 +77,52 @@ class _CoursLibraryHomeScreenState extends State<CoursLibraryHomeScreen> {
     final bepc = await _packs.packsForExam('BEPC');
     final bac = await _packs.packsForExamSeries('Baccalauréat', _esgHeads);
     final prob = await _packs.packsForExamSeries('Probatoire', _esgHeads);
+    final docs = await DatabaseService().getCourseDocs();
     int byName(Pack a, Pack b) => a.name.toLowerCase().compareTo(b.name.toLowerCase());
     final map = {
       'BEPC': bepc..sort(byName),
       'Bac ESG': bac..sort(byName),
       'Probatoire ESG': prob..sort(byName),
     };
-    if (mounted) setState(() { _byExam = map; _loaded = true; });
+    if (mounted) setState(() { _byExam = map; _coursePdf = _groupCoursePdf(docs); _loaded = true; });
+  }
+
+  /// Regroupe les cours PDF par examen (ordre Bac → Probatoire → BEPC → … →
+  /// reste alpha), triés par matière puis titre à l'intérieur.
+  static List<MapEntry<String, List<Annale>>> _groupCoursePdf(List<Annale> docs) {
+    const order = ['Baccalauréat', 'Probatoire', 'BEPC', 'CAP', 'BT', 'BTS', 'HND'];
+    final map = <String, List<Annale>>{};
+    for (final d in docs) {
+      final e = d.exam.trim().isEmpty ? 'Autres' : d.exam.trim();
+      (map[e] ??= []).add(d);
+    }
+    int subjThenTitle(Annale a, Annale b) {
+      final s = a.subject.toLowerCase().compareTo(b.subject.toLowerCase());
+      return s != 0 ? s : a.title.toLowerCase().compareTo(b.title.toLowerCase());
+    }
+    final keys = map.keys.toList()
+      ..sort((a, b) {
+        final ia = order.indexOf(a), ib = order.indexOf(b);
+        if (ia != -1 || ib != -1) return (ia == -1 ? 99 : ia).compareTo(ib == -1 ? 99 : ib);
+        return a.toLowerCase().compareTo(b.toLowerCase());
+      });
+    return [for (final k in keys) MapEntry(k, map[k]!..sort(subjThenTitle))];
+  }
+
+  // Couleur d'accent par examen pour les en-têtes « Cours PDF ».
+  static Color _examColor(String exam) {
+    switch (exam) {
+      case 'Baccalauréat':
+        return const Color(0xFFDB4F12);
+      case 'Probatoire':
+        return const Color(0xFF2D6CDF);
+      case 'BEPC':
+        return const Color(0xFF1E9E63);
+      case 'CAP':
+        return const Color(0xFF0E9AA0);
+      default:
+        return const Color(0xFF7A5AE0);
+    }
   }
 
   int _countFor(String name) => _byExam[name]?.length ?? 0;
@@ -179,10 +222,21 @@ class _CoursLibraryHomeScreenState extends State<CoursLibraryHomeScreen> {
               ),
               const SizedBox(height: 22),
 
-              // ── Zone dédiée : tous les cours des 3 examens, triés ───────────
+              // ── Zone dédiée : Cours en PDF (collectés depuis la base) ───────
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Text('Tous les cours', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
+                child: Row(children: [
+                  Text('Cours PDF', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
+                  const SizedBox(width: 8),
+                  if (_loaded)
+                    Text('${_coursePdf.fold<int>(0, (n, e) => n + e.value.length)}',
+                        style: body(12, weight: FontWeight.w700, color: OC.muted)),
+                  const Spacer(),
+                  GestureDetector(
+                    onTap: () => context.push('/search?scope=annales'),
+                    child: Text('Rechercher', style: body(12, weight: FontWeight.w700, color: OC.o600)),
+                  ),
+                ]),
               ),
               const SizedBox(height: 11),
               if (!_loaded)
@@ -190,24 +244,27 @@ class _CoursLibraryHomeScreenState extends State<CoursLibraryHomeScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Column(children: List.generate(4, (_) => const SkeletonRow())),
                 )
-              else if (_byExam.values.every((l) => l.isEmpty))
-                _emptyAll()
+              else if (_coursePdf.isEmpty)
+                _emptyCoursePdf()
               else
-                ..._exams.where((e) => _countFor(e.name) > 0).expand((e) => [
+                ..._coursePdf.expand((g) => [
                       Padding(
                         padding: const EdgeInsets.fromLTRB(20, 6, 20, 8),
                         child: Row(children: [
-                          Container(width: 9, height: 9, decoration: BoxDecoration(color: e.c, shape: BoxShape.circle)),
+                          Container(width: 9, height: 9, decoration: BoxDecoration(color: _examColor(g.key), shape: BoxShape.circle)),
                           const SizedBox(width: 8),
-                          Text(e.name, style: body(12.5, weight: FontWeight.w800, color: OC.ink)),
+                          Text(g.key, style: body(12.5, weight: FontWeight.w800, color: OC.ink)),
                           const SizedBox(width: 6),
-                          Text('· ${_countFor(e.name)}', style: body(12, weight: FontWeight.w600, color: OC.muted)),
+                          Text('· ${g.value.length}', style: body(12, weight: FontWeight.w600, color: OC.muted)),
                         ]),
                       ),
-                      for (final p in _byExam[e.name]!)
+                      for (final d in g.value)
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: _PackRow(pack: p, onChanged: () { if (mounted) setState(() {}); }),
+                          child: _CourseDocRow(
+                            doc: d,
+                            onTap: () => context.push('/annales/detail', extra: d),
+                          ),
                         ),
                       const SizedBox(height: 6),
                     ]),
@@ -218,17 +275,64 @@ class _CoursLibraryHomeScreenState extends State<CoursLibraryHomeScreen> {
     );
   }
 
-  Widget _emptyAll() => Padding(
+  Widget _emptyCoursePdf() => Padding(
         padding: const EdgeInsets.fromLTRB(20, 24, 20, 8),
         child: Column(children: [
-          Icon(Icons.auto_stories_rounded, size: 44, color: OC.faint),
+          Icon(Icons.picture_as_pdf_rounded, size: 44, color: OC.faint),
           const SizedBox(height: 12),
-          Text('Aucun cours pour le moment', style: display(17, weight: FontWeight.w700), textAlign: TextAlign.center),
+          Text('Aucun cours PDF pour le moment', style: display(17, weight: FontWeight.w700), textAlign: TextAlign.center),
           const SizedBox(height: 6),
-          Text('Les packs de cours (BEPC, Bac ESG, Probatoire ESG) apparaîtront ici dès qu\'ils seront ajoutés.',
+          Text('Les cours en PDF apparaîtront ici dès qu\'ils seront collectés et publiés.',
               textAlign: TextAlign.center, style: body(13, color: OC.muted).copyWith(height: 1.4)),
         ]),
       );
+}
+
+/// Ligne d'un cours en PDF (section « Cours PDF »). Ouvre la fiche du document.
+class _CourseDocRow extends StatelessWidget {
+  final Annale doc;
+  final VoidCallback onTap;
+  const _CourseDocRow({required this.doc, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    final d = doc;
+    final sub = [d.subject, d.track, if (d.year.isNotEmpty) d.year]
+        .where((e) => e.trim().isNotEmpty)
+        .join(' · ');
+    final (icon, c) = d.hasVideo && !d.hasPdf
+        ? (Icons.play_circle_outline_rounded, const Color(0xFF7A5AE0))
+        : (Icons.picture_as_pdf_rounded, const Color(0xFFC0392B));
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 11),
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: OC.paper,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: OC.line, width: 1.5),
+        ),
+        child: Row(children: [
+          Container(
+            width: 44, height: 44,
+            decoration: BoxDecoration(color: c.withValues(alpha: 0.12), borderRadius: BorderRadius.circular(12)),
+            child: Icon(icon, size: 21, color: c),
+          ),
+          const SizedBox(width: 12),
+          Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(d.title.isEmpty ? (d.subject.isEmpty ? 'Cours' : d.subject) : d.title,
+                style: body(13.5, weight: FontWeight.w700), maxLines: 2, overflow: TextOverflow.ellipsis),
+            const SizedBox(height: 3),
+            Text(sub.isEmpty ? 'Cours' : sub, style: body(11, color: OC.muted, weight: FontWeight.w600),
+                maxLines: 1, overflow: TextOverflow.ellipsis),
+          ])),
+          const SizedBox(width: 8),
+          Icon(Icons.chevron_right_rounded, size: 18, color: OC.faint),
+        ]),
+      ),
+    );
+  }
 }
 
 class _QuickCard extends StatelessWidget {
@@ -320,56 +424,3 @@ class _FolderCard extends StatelessWidget {
   }
 }
 
-/// Ligne de pack pour la zone « Tous les cours » (même style que la page dossier).
-class _PackRow extends StatelessWidget {
-  final Pack pack;
-  final VoidCallback onChanged;
-  const _PackRow({required this.pack, required this.onChanged});
-
-  @override
-  Widget build(BuildContext context) {
-    final p = pack;
-    final sub = [p.lessons > 0 ? '${p.lessons} leçons' : null, p.level.isEmpty ? null : p.level]
-        .whereType<String>()
-        .join(' · ');
-    final owned = CoursPacks.instance.isOwned(p.id);
-    return GestureDetector(
-      onTap: () async { await context.push('/cours/pack?id=${p.id}'); onChanged(); },
-      child: Container(
-        margin: const EdgeInsets.only(bottom: 11),
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: OC.paper,
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: OC.line, width: 1.5),
-        ),
-        child: Row(children: [
-          Container(
-            width: 52, height: 52,
-            decoration: BoxDecoration(color: OC.o50, borderRadius: BorderRadius.circular(13)),
-            alignment: Alignment.center,
-            child: Text(p.code, style: display(15, weight: FontWeight.w800, color: OC.o600)),
-          ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text(p.name, style: body(13.5, weight: FontWeight.w700), maxLines: 2, overflow: TextOverflow.ellipsis),
-              const SizedBox(height: 3),
-              Text(sub.isEmpty ? 'Pack de cours' : sub, style: body(11, color: OC.muted, weight: FontWeight.w600)),
-            ]),
-          ),
-          const SizedBox(width: 8),
-          Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
-            owned
-                ? PillBadge('AJOUTÉ', color: OC.waInk, bg: OC.goodBg, icon: Icons.check_rounded)
-                : p.premium
-                    ? PillBadge('PREMIUM', color: const Color(0xFFA6701A), bg: const Color(0xFFFBF0DD), icon: Icons.lock_outline_rounded)
-                    : PillBadge('GRATUIT', color: OC.waInk, bg: OC.goodBg),
-            const SizedBox(height: 12),
-            Icon(Icons.chevron_right_rounded, size: 18, color: OC.faint),
-          ]),
-        ]),
-      ),
-    );
-  }
-}

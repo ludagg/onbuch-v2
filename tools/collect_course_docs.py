@@ -24,11 +24,17 @@ PROJ = os.environ.get('APPWRITE_PROJECT', '6a30463b00001375e229')
 DB = os.environ.get('APPWRITE_DATABASE', '6a3047f8001d11d1b3c1')
 KEY = os.environ.get('APPWRITE_API_KEY') or sys.exit('Définis APPWRITE_API_KEY (clé serveur, scope databases.read)')
 COL = os.environ.get('ANNALES_COLLECTION', 'annales')
-OUT = sys.argv[1] if len(sys.argv) > 1 else 'course_docs_export'
+COURSE_COL = os.environ.get('COURSE_DOCS_COLLECTION', 'course_docs')
+
+# Arguments : [DOSSIER_SORTIE] et option --write (alimente aussi course_docs).
+_ARGS = sys.argv[1:]
+WRITE = '--write' in _ARGS
+_POS = [a for a in _ARGS if not a.startswith('-')]
+OUT = _POS[0] if _POS else 'course_docs_export'
 
 # Champs récupérés (Query.select → payload réduit = scan plus rapide).
 FIELDS = ['title', 'subject', 'exam', 'track', 'category', 'year', 'session',
-          'fileUrl', 'corrigeUrl', 'videoUrl']
+          'fileUrl', 'corrigeUrl', 'videoUrl', 'premium']
 
 # Mots-clés « cours » (normalisés : majuscules, sans accent). On cible le COURS,
 # pas les fiches ni les TD (exclus par le choix produit).
@@ -58,6 +64,47 @@ def curl(url):
 
 def q(obj):
     return 'queries[]=' + urllib.parse.quote(json.dumps(obj))
+
+
+def aw_write(method, path, body=None):
+    cmd = ['curl', '-sS', '-m', '40', '-X', method, f'{EP}{path}',
+           '-H', f'X-Appwrite-Project: {PROJ}', '-H', f'X-Appwrite-Key: {KEY}',
+           '-H', 'Content-Type: application/json']
+    if body is not None:
+        cmd += ['-d', json.dumps(body)]
+    cmd += ['-w', '\n%{http_code}']
+    out = subprocess.run(cmd, capture_output=True, text=True).stdout
+    return out.rsplit('\n', 1)[-1].strip()
+
+
+def write_to_course_docs(matches):
+    """Upsert (idempotent) des cours dans la collection `course_docs`.
+    documentId = id du document annale source → re-runs = mise à jour en place."""
+    print(f'\n── Écriture dans « {COURSE_COL} » (upsert par id source) ──')
+    keep = ['title', 'subject', 'exam', 'track', 'category', 'year', 'session',
+            'fileUrl', 'corrigeUrl', 'videoUrl']
+    ok = fail = 0
+    for i, m in enumerate(matches):
+        data = {k: m.get(k, '') for k in keep}
+        data['sourceId'] = m['id']
+        data['detect'] = m['detect']
+        data['premium'] = bool(m.get('premium'))
+        data['order'] = i
+        code = aw_write('POST', f'/databases/{DB}/collections/{COURSE_COL}/documents',
+                        {'documentId': m['id'], 'data': data})
+        if code == '409':
+            code = aw_write('PATCH', f'/databases/{DB}/collections/{COURSE_COL}/documents/{m["id"]}',
+                            {'data': data})
+        if code in ('200', '201'):
+            ok += 1
+        else:
+            fail += 1
+        if i % 20 == 0:
+            sys.stdout.write(f'\r  {i + 1}/{len(matches)}')
+            sys.stdout.flush()
+    print(f'\r  écrits / à jour : {ok}  ·  échecs : {fail}            ')
+    if fail:
+        print('  (échecs possibles si la collection n\'existe pas encore : lance d\'abord tools/setup_course_docs.sh)')
 
 
 def detect(doc):
@@ -103,7 +150,7 @@ def main():
                     'year': d.get('year', ''), 'session': d.get('session', ''),
                     'title': d.get('title', ''),
                     'fileUrl': d.get('fileUrl', ''), 'corrigeUrl': d.get('corrigeUrl', ''),
-                    'videoUrl': d.get('videoUrl', ''),
+                    'videoUrl': d.get('videoUrl', ''), 'premium': bool(d.get('premium')),
                 })
         cursor = batch[-1]['$id']
         sys.stdout.write(f'\r  scannés: {scanned}  ·  cours trouvés: {len(matches)}')
@@ -123,7 +170,7 @@ def main():
     with open(jpath, 'w', encoding='utf-8') as f:
         json.dump(matches, f, ensure_ascii=False, indent=2)
     cols = ['id', 'detect', 'category', 'exam', 'track', 'subject', 'year', 'session',
-            'title', 'fileUrl', 'corrigeUrl', 'videoUrl']
+            'premium', 'title', 'fileUrl', 'corrigeUrl', 'videoUrl']
     with open(cpath, 'w', encoding='utf-8', newline='') as f:
         w = csv.DictWriter(f, fieldnames=cols)
         w.writeheader()
@@ -140,6 +187,11 @@ def main():
     print('  par examen    : ' + ', '.join(f'{k}={v}' for k, v in by_exam.most_common()))
     print('  top matières  : ' + ', '.join(f'{k}={v}' for k, v in by_subj.most_common(10)))
     print(f'\n  → {jpath}\n  → {cpath}')
+
+    if WRITE:
+        write_to_course_docs(matches)
+    else:
+        print('\n  (ajoute --write pour alimenter la collection course_docs lue par l\'app)')
 
 
 if __name__ == '__main__':
