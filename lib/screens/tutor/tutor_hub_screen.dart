@@ -30,13 +30,22 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
   late Future<List<ReviewItem>> _due = _db.dueReviews();
   TutorQuota? _quota;
   String? _firstName = AuthService.cachedFirstName;
+  Map<String, String> _memory = const {};
   final _ctrl = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     _loadQuota();
+    _loadMemory();
     if (_firstName == null) _loadName();
+  }
+
+  /// Rafraîchit la mémoire longue de Léo (throttlé) puis la lit pour l'afficher.
+  Future<void> _loadMemory() async {
+    await _db.syncStudentMemory();
+    final m = await _db.getStudentMemory();
+    if (mounted) setState(() => _memory = m);
   }
 
   @override
@@ -288,6 +297,9 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
           const SizedBox(height: 24),
 
           // ── Révisions du jour (révision espacée) ──────────────────────────
+          // ── Ce que Léo retient de toi (mémoire longue) ────────────────────
+          _memoryCard(),
+
           FutureBuilder<List<ReviewItem>>(
             future: _due,
             builder: (context, snap) {
@@ -552,6 +564,53 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
         ]),
       ),
     );
+  }
+
+  /// Carte « Léo te connaît » : reflète la mémoire longue (objectif / points à
+  /// renforcer / points forts) que Léo utilise pour personnaliser ses réponses.
+  Widget _memoryCard() {
+    final goals = _memory['goals'] ?? '';
+    final weak = _memory['weaknesses'] ?? '';
+    final strong = _memory['strengths'] ?? '';
+    if (goals.isEmpty && weak.isEmpty && strong.isEmpty) return const SizedBox.shrink();
+
+    Widget line(IconData ic, Color c, String label, String value) => Padding(
+          padding: const EdgeInsets.only(top: 8),
+          child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Icon(ic, size: 15, color: c),
+            const SizedBox(width: 8),
+            Expanded(
+              child: RichText(
+                text: TextSpan(children: [
+                  TextSpan(text: '$label ', style: body(12.5, weight: FontWeight.w800, color: OC.ink2)),
+                  TextSpan(text: value, style: body(12.5, color: OC.ink2, weight: FontWeight.w500)),
+                ]),
+              ),
+            ),
+          ]),
+        );
+
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Container(
+        padding: const EdgeInsets.fromLTRB(14, 13, 14, 14),
+        decoration: BoxDecoration(
+          color: OC.o50,
+          borderRadius: BorderRadius.circular(18),
+          border: Border.all(color: OC.o100, width: 1.5),
+        ),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Row(children: [
+            const LeoMascot(size: 30, mood: LeoMood.idle),
+            const SizedBox(width: 9),
+            Text('Léo te connaît', style: body(13.5, weight: FontWeight.w800, color: OC.ink)),
+          ]),
+          if (goals.isNotEmpty) line(Icons.flag_rounded, OC.o600, 'Objectif :', goals),
+          if (weak.isNotEmpty) line(Icons.bolt_rounded, OC.bad, 'À renforcer :', weak),
+          if (strong.isNotEmpty) line(Icons.verified_rounded, OC.good, 'Points forts :', strong),
+        ]),
+      ),
+      const SizedBox(height: 22),
+    ]);
   }
 
   Widget _reviewTile(ReviewItem r) {
