@@ -22,6 +22,9 @@ export interface Resource {
   subtitleField?: string; // champ secondaire
   orderBy?: { field: string; dir: 'asc' | 'desc' };
   fields: Field[];
+  // Champs interrogés par la recherche (substring, sans index). Par défaut :
+  // [titleField, subtitleField]. Mettre [] pour désactiver la recherche.
+  searchFields?: string[];
   // Affichage en arborescence repliable (examen → subdivision → filière →
   // matières) au lieu d'une liste plate. Spécifique aux séries/filières.
   tree?: boolean;
@@ -80,6 +83,7 @@ export const RESOURCES: Resource[] = [
     titleField: 'firstName',
     subtitleField: 'email',
     orderBy: { field: '$createdAt', dir: 'desc' },
+    searchFields: ['firstName', 'lastName', 'email', 'phoneNumber', 'school', 'city'],
     fields: [
       { key: 'firstName', label: 'Prénom', type: 'text' },
       { key: 'lastName', label: 'Nom', type: 'text' },

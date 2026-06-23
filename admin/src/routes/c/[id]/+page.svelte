@@ -15,10 +15,25 @@
   let toast = '';
   let toastBad = false;
 
+  // Pagination + recherche (évite de tout charger → plus de plantage).
+  const PAGE = 20;
+  let pageIndex = 0;
+  let total = 0;
+  let search = '';
+  let searchTerm = '';
+
   let loadedId = '';
   $: resource = resourceById($page.params.id);
+  $: searchableFields = resource
+    ? (resource.searchFields ?? [resource.titleField, resource.subtitleField].filter(Boolean) as string[])
+    : [];
+  $: canSearch = !!resource && !resource.tree && searchableFields.length > 0;
+  $: pageCount = Math.max(1, Math.ceil(total / PAGE));
   $: if (resource && resource.id !== loadedId) {
     loadedId = resource.id;
+    pageIndex = 0;
+    search = '';
+    searchTerm = '';
     load();
   }
 
@@ -28,36 +43,70 @@
     setTimeout(() => (toast = ''), 2600);
   }
 
+  function orderQ() {
+    if (!resource?.orderBy) return null;
+    return resource.orderBy.dir === 'desc'
+      ? Query.orderDesc(resource.orderBy.field)
+      : Query.orderAsc(resource.orderBy.field);
+  }
+
   async function load() {
     if (!resource) return;
     loading = true;
     error = '';
     try {
-      // Chargement paginé : on récupère TOUS les documents (la limite Appwrite
-      // par requête est de 100), pas seulement la première page.
-      const all: any[] = [];
-      const batch = 100;
-      let offset = 0;
-      while (true) {
-        const queries = [Query.limit(batch), Query.offset(offset)];
-        if (resource.orderBy) {
-          queries.push(
-            resource.orderBy.dir === 'desc'
-              ? Query.orderDesc(resource.orderBy.field)
-              : Query.orderAsc(resource.orderBy.field)
-          );
+      if (resource.tree) {
+        // Arbre (séries/filières) : petite collection → on charge tout.
+        const all: any[] = [];
+        let offset = 0;
+        while (true) {
+          const q = [Query.limit(100), Query.offset(offset)];
+          const o = orderQ();
+          if (o) q.push(o);
+          const res = await databases.listDocuments(APPWRITE_DATABASE, resource.collectionId, q);
+          all.push(...res.documents);
+          if (res.documents.length < 100 || offset > 5000) break;
+          offset += 100;
         }
-        const res = await databases.listDocuments(APPWRITE_DATABASE, resource.collectionId, queries);
-        all.push(...res.documents);
-        if (res.documents.length < batch || offset > 5000) break;
-        offset += batch;
+        docs = all;
+        total = all.length;
+      } else {
+        // Liste plate : une page à la fois (+ recherche substring sans index).
+        const q: any[] = [Query.limit(PAGE), Query.offset(pageIndex * PAGE)];
+        const o = orderQ();
+        if (o) q.push(o);
+        if (searchTerm && searchableFields.length) {
+          const conds = searchableFields.map((f) => Query.contains(f, searchTerm));
+          q.push(conds.length > 1 ? Query.or(conds) : conds[0]);
+        }
+        const res = await databases.listDocuments(APPWRITE_DATABASE, resource.collectionId, q);
+        docs = res.documents;
+        total = res.total;
       }
-      docs = all;
     } catch (e: any) {
       error = e?.message ?? 'Chargement impossible.';
       docs = [];
     } finally {
       loading = false;
+    }
+  }
+
+  function applySearch() {
+    searchTerm = search.trim();
+    pageIndex = 0;
+    load();
+  }
+  function clearSearch() {
+    search = '';
+    searchTerm = '';
+    pageIndex = 0;
+    load();
+  }
+  function goPage(delta: number) {
+    const ni = pageIndex + delta;
+    if (ni >= 0 && ni * PAGE < total) {
+      pageIndex = ni;
+      load();
     }
   }
 
@@ -227,10 +276,25 @@
   <header class="head">
     <div>
       <h1>{resource.icon} {resource.label}</h1>
-      <p class="muted">{docs.length} élément{docs.length > 1 ? 's' : ''}</p>
+      <p class="muted">
+        {total} élément{total > 1 ? 's' : ''}{searchTerm ? ` · recherche « ${searchTerm} »` : ''}
+      </p>
     </div>
     <button class="btn-primary" on:click={openNew}>+ Nouveau {resource.singular}</button>
   </header>
+
+  {#if canSearch}
+    <div class="searchbar">
+      <input
+        type="search"
+        placeholder="Rechercher ({searchableFields.join(', ')})…"
+        bind:value={search}
+        on:keydown={(e) => e.key === 'Enter' && applySearch()}
+      />
+      <button class="btn-primary btn-sm" on:click={applySearch}>Rechercher</button>
+      {#if searchTerm}<button class="btn-ghost btn-sm" on:click={clearSearch}>Effacer</button>{/if}
+    </div>
+  {/if}
 
   {#if loading}
     <div class="center"><div class="spinner"></div></div>
@@ -238,9 +302,14 @@
     <div class="card err">{error}</div>
   {:else if docs.length === 0}
     <div class="card empty">
-      <div class="empty-ico">{resource.icon}</div>
-      <p>Aucun élément pour le moment.</p>
-      <button class="btn-primary" on:click={openNew}>Créer le premier</button>
+      <div class="empty-ico">{searchTerm ? '🔍' : resource.icon}</div>
+      {#if searchTerm}
+        <p>Aucun résultat pour « {searchTerm} ».</p>
+        <button class="btn-ghost" on:click={clearSearch}>Effacer la recherche</button>
+      {:else}
+        <p>Aucun élément pour le moment.</p>
+        <button class="btn-primary" on:click={openNew}>Créer le premier</button>
+      {/if}
     </div>
   {:else if resource.tree && examTree}
     <!-- Arborescence repliable : examen → subdivision → filière → matières -->
@@ -317,6 +386,13 @@
         </div>
       {/each}
     </div>
+    {#if !resource.tree && total > PAGE}
+      <div class="pager">
+        <button class="btn-ghost btn-sm" disabled={pageIndex === 0} on:click={() => goPage(-1)}>← Précédent</button>
+        <span class="muted">Page {pageIndex + 1} / {pageCount}</span>
+        <button class="btn-ghost btn-sm" disabled={(pageIndex + 1) * PAGE >= total} on:click={() => goPage(1)}>Suivant →</button>
+      </div>
+    {/if}
   {/if}
 {/if}
 
@@ -382,6 +458,9 @@
   .empty { text-align: center; padding: 44px; }
   .empty-ico { font-size: 38px; margin-bottom: 8px; }
   .empty p { color: var(--muted); margin: 0 0 16px; }
+  .searchbar { display: flex; gap: 10px; align-items: center; margin-bottom: 16px; }
+  .searchbar input { flex: 1; }
+  .pager { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 18px; font-size: 13px; }
   .list { display: flex; flex-direction: column; gap: 10px; }
   .row { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 14px 16px; }
   .row-title { font-weight: 700; font-size: 14.5px; }

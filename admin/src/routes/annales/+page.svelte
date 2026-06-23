@@ -48,11 +48,23 @@
     return out;
   }
 
-  async function loadAll() {
+  // Pagination + recherche (12k+ documents → on ne charge jamais tout).
+  const PAGE = 20;
+  let pageIndex = 0;
+  let total = 0;
+  let search = '';
+  let searchTerm = '';
+  const SEARCH_FIELDS = ['title', 'subject', 'track', 'year'];
+  $: pageCount = Math.max(1, Math.ceil(total / PAGE));
+
+  async function loadAnnales() {
     loading = true;
     try {
-      series = await fetchAll('exam_series', [Query.orderAsc('sortOrder')]);
-      annales = await fetchAll('annales');
+      const q: any[] = [Query.orderDesc('$createdAt'), Query.limit(PAGE), Query.offset(pageIndex * PAGE)];
+      if (searchTerm) q.push(Query.or(SEARCH_FIELDS.map((f) => Query.contains(f, searchTerm))));
+      const res = await databases.listDocuments(APPWRITE_DATABASE, 'annales', q);
+      annales = res.documents;
+      total = res.total;
     } catch (e: any) {
       flash(e?.message ?? 'Chargement impossible.', true);
     } finally {
@@ -60,7 +72,18 @@
     }
   }
 
-  onMount(loadAll);
+  function applySearch() { searchTerm = search.trim(); pageIndex = 0; loadAnnales(); }
+  function clearSearch() { search = ''; searchTerm = ''; pageIndex = 0; loadAnnales(); }
+  function goPage(d: number) { const ni = pageIndex + d; if (ni >= 0 && ni * PAGE < total) { pageIndex = ni; loadAnnales(); } }
+
+  onMount(async () => {
+    try {
+      series = await fetchAll('exam_series', [Query.orderAsc('sortOrder')]);
+    } catch (e: any) {
+      flash(e?.message ?? 'Chargement des séries impossible.', true);
+    }
+    await loadAnnales();
+  });
 
   // Arbre : examen -> subdivision -> [filières {name, subjects}]
   $: byExam = (() => {
@@ -159,7 +182,7 @@
       corrigeUrl = '';
       videoUrl = '';
       premium = false;
-      await loadAll();
+      await loadAnnales();
     } catch (e: any) {
       flash(e?.message ?? 'Échec de la publication.', true);
     } finally {
@@ -207,7 +230,7 @@
         premium: ed.premium
       });
       closeEdit();
-      await loadAll();
+      await loadAnnales();
       flash('Document modifié ✓');
     } catch (e: any) {
       flash(e?.message ?? 'Échec de la modification.', true);
@@ -220,18 +243,23 @@
     if (!confirm('Supprimer ce document ?')) return;
     try {
       await databases.deleteDocument(APPWRITE_DATABASE, 'annales', d.$id);
-      await loadAll();
+      await loadAnnales();
       flash('Supprimé');
     } catch (e: any) {
       flash(e?.message ?? 'Suppression impossible.', true);
     }
   }
 
-  // Liste existante regroupée par examen.
-  $: annByExam = (() => {
-    const m: Record<string, any[]> = {};
-    for (const d of annales) (m[(d.exam ?? '—').toString()] ??= []).push(d);
-    return m;
+  // Suggestions pour l'édition (filières/matières de l'examen du document édité).
+  $: edFilOptions = (() => {
+    const s = new Set<string>();
+    for (const sub of Object.values(byExam[ed.exam] ?? {})) for (const f of sub) s.add(f.name);
+    return [...s];
+  })();
+  $: edSubjOptions = (() => {
+    const s = new Set<string>();
+    for (const sub of Object.values(byExam[ed.exam] ?? {})) for (const f of sub) f.subjects.forEach((x) => s.add(x));
+    return [...s];
   })();
 
   function formats(d: any): string[] {
@@ -246,7 +274,9 @@
 <header class="head">
   <div>
     <h1>🗂️ Annales & documents</h1>
-    <p class="muted">{annales.length} document{annales.length > 1 ? 's' : ''} publié{annales.length > 1 ? 's' : ''}</p>
+    <p class="muted">
+      {total} document{total > 1 ? 's' : ''} publié{total > 1 ? 's' : ''}{searchTerm ? ` · recherche « ${searchTerm} »` : ''}
+    </p>
   </div>
 </header>
 
@@ -355,35 +385,50 @@
     </div>
   </div>
 
-  <!-- Documents existants -->
+  <!-- Documents existants : recherche + liste paginée -->
+  <div class="searchbar">
+    <input
+      type="search"
+      placeholder="Rechercher (titre, matière, série, année)…"
+      bind:value={search}
+      on:keydown={(e) => e.key === 'Enter' && applySearch()}
+    />
+    <button class="btn-primary btn-sm" on:click={applySearch}>Rechercher</button>
+    {#if searchTerm}<button class="btn-ghost btn-sm" on:click={clearSearch}>Effacer</button>{/if}
+  </div>
+
   {#if annales.length === 0}
-    <div class="card empty"><p class="muted">Aucun document publié pour le moment.</p></div>
+    <div class="card empty">
+      <p class="muted">{searchTerm ? `Aucun résultat pour « ${searchTerm} ».` : 'Aucun document publié pour le moment.'}</p>
+    </div>
   {:else}
-    {#each Object.entries(annByExam) as [ex, docs]}
-      <details class="exam-block" open>
-        <summary><span class="t-name">{ex}</span><span class="t-count">{docs.length}</span></summary>
-        <div class="rows">
-          {#each docs as d (d.$id)}
-            <div class="doc">
-              <div class="doc-main">
-                <div class="doc-title">{d.title || '(sans titre)'}</div>
-                <div class="doc-sub muted">
-                  {d.subject}{d.track ? ' · ' + d.track : ''}{d.year ? ' · ' + d.year : ''}{d.category ? ' · ' + d.category : ''}
-                </div>
-                <div class="badges">
-                  {#each formats(d) as f}<span class="badge">{f}</span>{/each}
-                  {#if d.premium}<span class="badge prem">PREMIUM</span>{/if}
-                </div>
-              </div>
-              <div class="doc-acts">
-                <button class="btn-ghost btn-sm" on:click={() => openEdit(d)}>Modifier</button>
-                <button class="btn-danger btn-sm" on:click={() => del(d)}>Suppr.</button>
-              </div>
+    <div class="rows">
+      {#each annales as d (d.$id)}
+        <div class="doc">
+          <div class="doc-main">
+            <div class="doc-title">{d.title || '(sans titre)'}</div>
+            <div class="doc-sub muted">
+              {d.exam}{d.track ? ' · ' + d.track : ''} · {d.subject}{d.year ? ' · ' + d.year : ''}{d.category ? ' · ' + d.category : ''}
             </div>
-          {/each}
+            <div class="badges">
+              {#each formats(d) as f}<span class="badge">{f}</span>{/each}
+              {#if d.premium}<span class="badge prem">PREMIUM</span>{/if}
+            </div>
+          </div>
+          <div class="doc-acts">
+            <button class="btn-ghost btn-sm" on:click={() => openEdit(d)}>Modifier</button>
+            <button class="btn-danger btn-sm" on:click={() => del(d)}>Suppr.</button>
+          </div>
         </div>
-      </details>
-    {/each}
+      {/each}
+    </div>
+    {#if total > PAGE}
+      <div class="pager">
+        <button class="btn-ghost btn-sm" disabled={pageIndex === 0} on:click={() => goPage(-1)}>← Précédent</button>
+        <span class="muted">Page {pageIndex + 1} / {pageCount}</span>
+        <button class="btn-ghost btn-sm" disabled={(pageIndex + 1) * PAGE >= total} on:click={() => goPage(1)}>Suivant →</button>
+      </div>
+    {/if}
   {/if}
 {/if}
 
@@ -402,8 +447,16 @@
           {#each exams as ex}<option value={ex}>{ex}</option>{/each}
         </select>
       </div>
-      <div class="field"><label for="e-track">Série / filière</label><input id="e-track" type="text" bind:value={ed.track} /></div>
-      <div class="field"><label for="e-subject">Matière</label><input id="e-subject" type="text" bind:value={ed.subject} /></div>
+      <div class="field">
+        <label for="e-track">Série / filière</label>
+        <input id="e-track" type="text" list="ed-fils" bind:value={ed.track} placeholder="ex. D — ou vide = toutes séries" />
+        <datalist id="ed-fils">{#each edFilOptions as f}<option value={f}></option>{/each}</datalist>
+      </div>
+      <div class="field">
+        <label for="e-subject">Matière</label>
+        <input id="e-subject" type="text" list="ed-subjs" bind:value={ed.subject} />
+        <datalist id="ed-subjs">{#each edSubjOptions as s}<option value={s}></option>{/each}</datalist>
+      </div>
       <div class="field">
         <label for="e-cat">Type de document</label>
         <select id="e-cat" bind:value={ed.category}>
@@ -456,13 +509,11 @@
   .switch input { width: auto; }
   .form-foot { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: 18px; border-top: 1.5px solid var(--line); padding-top: 14px; }
 
+  .searchbar { display: flex; gap: 10px; align-items: center; margin-bottom: 14px; }
+  .searchbar input { flex: 1; }
+  .pager { display: flex; align-items: center; justify-content: center; gap: 16px; margin-top: 16px; font-size: 13px; }
+  .rows { padding: 0; display: flex; flex-direction: column; gap: 8px; }
   .empty { text-align: center; padding: 30px; }
-  .exam-block { margin-bottom: 10px; border: 1.5px solid var(--line); border-radius: 12px; background: var(--paper); }
-  .exam-block > summary { cursor: pointer; padding: 12px 14px; display: flex; align-items: center; gap: 10px; list-style: none; }
-  .exam-block > summary::-webkit-details-marker { display: none; }
-  .t-name { font-weight: 800; }
-  .t-count { margin-left: auto; font-size: 11.5px; font-weight: 700; color: var(--muted); background: var(--panel); border-radius: 999px; padding: 2px 9px; }
-  .rows { padding: 0 12px 12px; display: flex; flex-direction: column; gap: 8px; }
   .doc { display: flex; align-items: center; gap: 12px; padding: 11px 12px; background: var(--bg); border: 1px solid var(--line); border-radius: 11px; }
   .doc-main { flex: 1; min-width: 0; }
   .doc-acts { display: flex; gap: 8px; flex-shrink: 0; }
