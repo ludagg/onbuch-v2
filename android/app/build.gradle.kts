@@ -1,3 +1,6 @@
+import java.util.Properties
+import java.io.FileInputStream
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
@@ -5,6 +8,14 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
     // Google Services : lit android/app/google-services.json (FCM / push).
     id("com.google.gms.google-services")
+}
+
+// Signature release : lue depuis android/key.properties (git-ignoré, hors repo).
+// Voir docs/PLAY_STORE.md pour générer le keystore et créer ce fichier.
+val keystoreProperties = Properties()
+val keystorePropertiesFile = rootProject.file("key.properties")
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(FileInputStream(keystorePropertiesFile))
 }
 
 android {
@@ -32,11 +43,38 @@ android {
         versionName = flutter.versionName
     }
 
+    signingConfigs {
+        create("release") {
+            if (keystorePropertiesFile.exists()) {
+                keyAlias = keystoreProperties["keyAlias"] as String
+                keyPassword = keystoreProperties["keyPassword"] as String
+                // storeFile résolu depuis le dossier android/ (rootProject).
+                storeFile = (keystoreProperties["storeFile"] as String?)?.let { rootProject.file(it) }
+                storePassword = keystoreProperties["storePassword"] as String
+            }
+        }
+    }
+
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
+            // Si key.properties existe → signature de prod (Play Store).
+            // Sinon repli sur la clé debug pour que `flutter run --release` marche en local.
+            signingConfig = if (keystorePropertiesFile.exists()) {
+                signingConfigs.getByName("release")
+            } else {
+                signingConfigs.getByName("debug")
+            }
+
+            // R8/shrink désactivé par défaut : l'app utilise de nombreux plugins natifs
+            // (firebase, in_app_purchase, syncfusion pdf, camera…) et un AAB est déjà
+            // optimisé/splitté par Play. Pour réduire la taille, passer à `true` APRÈS
+            // avoir testé un build release sur appareil (proguard-rules.pro fourni).
+            isMinifyEnabled = false
+            isShrinkResources = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro",
+            )
         }
     }
 }

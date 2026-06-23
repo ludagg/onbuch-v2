@@ -2,4 +2,6 @@
 <resources>
     <!-- Couleur de marque OnBuch (orange) pour les notifications push. -->
     <color name="ob_notif">#FFF59321</color>
+    <!-- Fond de l'icône adaptative (blanc, le logo orange est posé dessus). -->
+    <color name="ic_launcher_background">#FFFFFFFF</color>
 </resources>

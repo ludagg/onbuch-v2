@@ -1,0 +1,12 @@
+# Template de signature release OnBuch.
+# 1. Copier ce fichier en `android/key.properties` (qui est git-ignoré, NE PAS committer).
+# 2. Remplir avec les valeurs du keystore généré (voir docs/PLAY_STORE.md §2).
+# 3. `storeFile` = chemin vers le .jks, relatif au dossier android/ (ex: upload-keystore.jks).
+#
+# ⚠️ Ce keystore est IRREMPLAÇABLE : sa perte empêche toute mise à jour de l'app.
+#    Le sauvegarder hors repo (gestionnaire de mots de passe / coffre).
+
+storePassword=CHANGEME
+keyPassword=CHANGEME
+keyAlias=upload
+storeFile=upload-keystore.jks
