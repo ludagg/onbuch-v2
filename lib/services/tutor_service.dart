@@ -86,6 +86,29 @@ class TutorService {
     return _run(payload, jobId);
   }
 
+  /// Aide sur une **épreuve** (mode `exam_help`) : la fonction télécharge le PDF
+  /// ([examUrl]) côté serveur (pas de CORS) et en extrait le texte ; repli sur la
+  /// vision si une [image] (1ʳᵉ page rendue sur mobile) est jointe. [question] =
+  /// l'exercice précisé par l'élève. Renvoie la correction (Markdown + LaTeX).
+  Future<String> analyzeExam({
+    String examUrl = '',
+    Uint8List? image,
+    required String question,
+    String? subject,
+  }) async {
+    final b64 = image != null ? await compute(_compressToBase64, image) : null;
+    final jobId = ID.unique();
+    final payload = <String, dynamic>{
+      'jobId': jobId,
+      'mode': 'exam_help',
+      if (examUrl.trim().isNotEmpty) 'examUrl': examUrl.trim(),
+      if (b64 != null) 'image': b64,
+      if (question.trim().isNotEmpty) 'question': question.trim(),
+      if (subject != null && subject.trim().isNotEmpty) 'subject': subject.trim(),
+    };
+    return _run(payload, jobId);
+  }
+
   /// Résume un cours (plusieurs pages photo et/ou texte) en **fiche de
   /// révision**. Mode `summary` (gratuit, hors quota). Renvoie la fiche en
   /// Markdown. Lève une [String] lisible en cas d'erreur.

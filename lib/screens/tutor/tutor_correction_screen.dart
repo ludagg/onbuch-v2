@@ -47,6 +47,7 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
   // envoyée à l'IA dès que l'élève précise l'exercice.
   bool _awaitingExamExercise = false;
   Uint8List? _examImage;
+  String _examUrl = '';
   // Sauvegardes du fil SÉRIALISÉES : garantit que la création (1er tour) fixe
   // `_threadId` avant tout tour suivant → on met à jour le même fil au lieu d'en
   // créer un nouveau à chaque message.
@@ -116,6 +117,7 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
       _msgs.add(_Msg.ai(Future.value(preset))..resolved = preset);
       _awaitingExamExercise = true;
       _examImage = r.image;
+      _examUrl = r.examUrl ?? '';
       return;
     }
 
@@ -227,18 +229,20 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
     _inputCtrl.clear();
     FocusScope.of(context).unfocus();
 
-    // 1re réponse en mode « épreuve » : on envoie l'épreuve (image) + l'exercice
-    // précisé à l'IA, qui voit alors réellement l'énoncé et aide pas-à-pas.
+    // 1re réponse en mode « épreuve » : la fonction lit l'épreuve (PDF côté
+    // serveur, ou image 1ʳᵉ page sur mobile) et corrige l'exercice précisé.
     if (_awaitingExamExercise) {
       _awaitingExamExercise = false;
       final examImg = _examImage;
+      final examUrl = _examUrl;
       _examImage = null;
+      _examUrl = '';
       final title = (widget.request?.titleHint ?? '').trim();
       final ctx = title.isEmpty ? '' : ' de l\'épreuve « $title »';
       final text = 'Je bloque sur : $q$ctx. Aide-moi à le résoudre étape par étape.';
       setState(() {
         _msgs.add(_Msg.user(text: q));
-        _addAi(_service.analyzeExercise(image: examImg, text: text, subject: widget.request?.subject, notify: false));
+        _addAi(_service.analyzeExam(examUrl: examUrl, image: examImg, question: text, subject: widget.request?.subject));
       });
       _scrollToBottom();
       return;

@@ -8,6 +8,12 @@
 // La fonction est appelée en ASYNCHRONE (les corrections prennent 20-30 s, au
 // delà de la limite des exécutions synchrones d'Appwrite). Elle écrit le
 // résultat dans `tutor_jobs/{jobId}` ; l'app interroge ce document.
+//
+// Mode `exam_help` : l'app envoie l'URL d'une épreuve (PDF). La fonction la
+// télécharge côté serveur (pas de blocage CORS comme dans le navigateur) et en
+// extrait le texte (pdf-parse) ; repli sur la vision si une image est jointe.
+
+import pdfParse from 'pdf-parse/lib/pdf-parse.js';
 
 const NVIDIA_ENDPOINT = 'https://integrate.api.nvidia.com/v1/chat/completions';
 
@@ -378,6 +384,8 @@ export default async ({ req, res, error }) => {
     .filter((s) => typeof s === 'string' && s)
     .slice(0, 8);
   const question = (input.question || '').toString().trim();
+  // URL d'une épreuve (PDF) à lire côté serveur — mode `exam_help`.
+  const examUrl = (input.examUrl || '').toString().trim();
   const mode = (input.mode || '').toString();
   const chapterId = (input.chapterId || '').toString() || null;
   const subject = (input.subject || '').toString().trim().slice(0, 40);
@@ -420,7 +428,7 @@ export default async ({ req, res, error }) => {
     error('NVIDIA_API_KEY absente.');
     return finish({ status: 'error', error: 'Tuteur IA non configuré côté serveur.' });
   }
-  if (!image && !imageList.length && !question && !(messages && messages.length)) {
+  if (!image && !imageList.length && !question && !examUrl && !(messages && messages.length)) {
     return finish({ status: 'error', error: 'Aucun exercice fourni (photo ou texte).' });
   }
 
@@ -514,10 +522,30 @@ export default async ({ req, res, error }) => {
       return finish({ status: 'done', correction: reply, title: makeTitle(lastUser ? lastUser.content : 'Question'), subject });
     }
 
-    // Énoncé : transcrit depuis la photo, ou directement le texte saisi.
+    // Énoncé : texte d'une épreuve PDF (examUrl, lue côté serveur), sinon
+    // transcrit depuis la photo, sinon directement le texte saisi.
     let enonce;
     let instruction = '';
-    if (image) {
+    let examText = '';
+    if (examUrl) {
+      try {
+        const r = await fetch(examUrl);
+        if (r.ok) {
+          const buf = Buffer.from(await r.arrayBuffer());
+          const parsed = await pdfParse(buf);
+          examText = (parsed && parsed.text ? parsed.text : '').replace(/[ \t]+\n/g, '\n').trim();
+        } else {
+          error(`examUrl HTTP ${r.status}`);
+        }
+      } catch (e) {
+        error(`examUrl fetch/parse: ${String(e)}`);
+      }
+    }
+    if (examText && examText.length >= 200) {
+      // Épreuve numérique lisible → on passe TOUT le sujet (toutes pages).
+      enonce = examText.slice(0, 20000);
+      instruction = question || "Aide-moi sur cette épreuve.";
+    } else if (image) {
       enonce = await callNvidia(apiKey, visionModel, [
         { role: 'system', content: TRANSCRIBE_PROMPT },
         {
@@ -532,6 +560,9 @@ export default async ({ req, res, error }) => {
         return finish({ status: 'error', error: "Photo illisible. Reprends une photo nette et bien cadrée de l'exercice." });
       }
       instruction = question; // question = instruction optionnelle en mode photo
+    } else if (examUrl) {
+      // PDF non extractible (probablement scanné) et aucune image fournie.
+      return finish({ status: 'error', error: "Je n'ai pas réussi à lire le PDF de l'épreuve (sans doute scanné). Recopie ici l'énoncé de l'exercice et je te le corrige étape par étape." });
     } else {
       enonce = question; // mode texte : l'énoncé est le texte saisi
     }

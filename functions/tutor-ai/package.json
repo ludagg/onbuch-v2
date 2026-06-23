@@ -3,5 +3,8 @@
   "version": "1.0.0",
   "description": "Proxy serveur OnBuch -> API vision NVIDIA (Tuteur IA)",
   "type": "module",
-  "main": "src/main.js"
+  "main": "src/main.js",
+  "dependencies": {
+    "pdf-parse": "^1.1.1"
+  }
 }

@@ -1,11 +1,15 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import '../../theme/app_theme.dart';
+import '../../widgets/ob_widgets.dart';
 import '../../widgets/skeletons.dart';
 import '../../widgets/states.dart';
 import '../../models/concours.dart';
+import '../../models/prep_center.dart';
 import '../../services/database_service.dart';
+import '../../utils/launch.dart';
 
 /// Catalogue Concours (section A des wireframes) : recherche, raccourcis prépa,
 /// emplacements partenaires, concours dont la clôture approche, et liste.
@@ -30,6 +34,7 @@ extension _CFilterX on _CFilter {
 class _ConcoursScreenState extends State<ConcoursScreen> {
   final _db = DatabaseService();
   late final Future<List<Concours>> _future = _db.getConcours();
+  late final Future<List<PrepCenter>> _prepFuture = _db.getPrepCenters();
   final _searchCtrl = TextEditingController();
   String _query = '';
   _CFilter _filter = _CFilter.tous;
@@ -72,25 +77,8 @@ class _ConcoursScreenState extends State<ConcoursScreen> {
         surfaceTintColor: Colors.transparent,
         titleSpacing: 18,
         automaticallyImplyLeading: false,
-        title: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text('Concours', style: display(17, weight: FontWeight.w700)),
-          Text('Grandes écoles & admissions', style: body(11, color: OC.muted, weight: FontWeight.w500)),
-        ]),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.track_changes_rounded, size: 21),
-            color: OC.ink,
-            tooltip: 'Mes candidatures',
-            onPressed: () => context.push('/mes-candidatures'),
-          ),
-          IconButton(
-            icon: const Icon(Icons.notifications_active_outlined, size: 21),
-            color: OC.ink,
-            tooltip: 'Alertes & échéances',
-            onPressed: () => context.push('/concours-alertes'),
-          ),
-          const SizedBox(width: 4),
-        ],
+        title: const OBWordmark(size: 23),
+        actions: obTopActions(context),
       ),
       body: FutureBuilder<List<Concours>>(
         future: _future,
@@ -136,19 +124,18 @@ class _ConcoursScreenState extends State<ConcoursScreen> {
             padding: const EdgeInsets.fromLTRB(20, 6, 20, 32),
             children: [
               _searchField(),
-              const SizedBox(height: 22),
+              const SizedBox(height: 14),
 
-              // Raccourcis prépa
-              _label('Préparer mon concours'),
-              const SizedBox(height: 10),
+              // Accès rapides (repris de l'ancienne barre supérieure)
               Row(children: [
-                _shortcut(Icons.bolt_rounded, 'Préparation', () => context.push('/concours-prep')),
+                _miniBtn(Icons.track_changes_rounded, 'Mes candidatures', () => context.push('/mes-candidatures')),
                 const SizedBox(width: 9),
-                _shortcut(Icons.description_outlined, 'Anciens sujets', () => context.go('/annales')),
-                const SizedBox(width: 9),
-                _shortcut(Icons.edit_note_rounded, 'Concours blanc', () => context.push('/concours-blanc')),
+                _miniBtn(Icons.notifications_active_outlined, 'Alertes', () => context.push('/concours-alertes')),
               ]),
-              const SizedBox(height: 18),
+              const SizedBox(height: 20),
+
+              // Carrousel publicitaire — meilleurs centres de prépa (données admin)
+              _PrepCenterCarousel(future: _prepFuture),
 
               // Vedette — clôture proche (seul bloc « héros », masqué en recherche)
               if (!searching) ...[
@@ -236,27 +223,23 @@ class _ConcoursScreenState extends State<ConcoursScreen> {
     );
   }
 
-  Widget _shortcut(IconData icon, String label, VoidCallback onTap) {
+  Widget _miniBtn(IconData icon, String label, VoidCallback onTap) {
     return Expanded(
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTap: onTap,
         child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 6),
+          padding: const EdgeInsets.symmetric(vertical: 11, horizontal: 12),
           decoration: BoxDecoration(
             color: OC.paper,
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(13),
             border: Border.all(color: OC.line, width: 1.5),
           ),
-          child: Column(children: [
-            Container(
-              width: 40, height: 40,
-              decoration: BoxDecoration(color: OC.o50, borderRadius: BorderRadius.circular(12)),
-              child: Icon(icon, size: 21, color: OC.o600),
-            ),
-            const SizedBox(height: 8),
-            Text(label, textAlign: TextAlign.center, maxLines: 1, overflow: TextOverflow.ellipsis,
-                style: body(11, weight: FontWeight.w700, color: OC.ink2)),
+          child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            Icon(icon, size: 17, color: OC.o600),
+            const SizedBox(width: 7),
+            Flexible(child: Text(label, maxLines: 1, overflow: TextOverflow.ellipsis,
+                style: body(12.5, weight: FontWeight.w700, color: OC.ink2))),
           ]),
         ),
       ),
@@ -325,6 +308,149 @@ Widget _pill(String t, Color bg, Color fg) => Container(
     );
 
 String _frShort(DateTime d) => DateFormat('d MMM', 'fr_FR').format(d);
+
+// ─── Carrousel publicitaire — meilleurs centres de prépa ─────────────────────
+class _PrepCenterCarousel extends StatefulWidget {
+  final Future<List<PrepCenter>> future;
+  const _PrepCenterCarousel({required this.future});
+
+  @override
+  State<_PrepCenterCarousel> createState() => _PrepCenterCarouselState();
+}
+
+class _PrepCenterCarouselState extends State<_PrepCenterCarousel> {
+  final _pc = PageController(viewportFraction: 0.9);
+  Timer? _timer;
+  List<PrepCenter> _items = const [];
+  int _page = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    widget.future.then((l) {
+      if (!mounted) return;
+      setState(() => _items = l);
+      if (l.length > 1) _startAuto();
+    });
+  }
+
+  void _startAuto() {
+    _timer?.cancel();
+    _timer = Timer.periodic(const Duration(seconds: 4), (_) {
+      if (!_pc.hasClients || _items.length < 2) return;
+      _pc.animateToPage((_page + 1) % _items.length,
+          duration: const Duration(milliseconds: 450), curve: Curves.easeOut);
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    _pc.dispose();
+    super.dispose();
+  }
+
+  void _open(PrepCenter p) {
+    final link = (p.link ?? '').trim();
+    if (link.isNotEmpty) { openUrl(context, link); return; }
+    final phone = (p.phone ?? '').trim();
+    if (phone.isNotEmpty) openUrl(context, 'tel:$phone');
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (_items.isEmpty) return const SizedBox.shrink();
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Row(children: [
+        Text('Centres de prépa recommandés', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
+        const SizedBox(width: 8),
+        _pill('Sponsorisé', OC.panel, OC.muted),
+      ]),
+      const SizedBox(height: 10),
+      SizedBox(
+        height: 160,
+        child: PageView.builder(
+          controller: _pc,
+          itemCount: _items.length,
+          onPageChanged: (i) => setState(() => _page = i),
+          itemBuilder: (_, i) => _card(_items[i]),
+        ),
+      ),
+      if (_items.length > 1) ...[
+        const SizedBox(height: 10),
+        Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          for (var i = 0; i < _items.length; i++)
+            AnimatedContainer(
+              duration: const Duration(milliseconds: 250),
+              margin: const EdgeInsets.symmetric(horizontal: 3),
+              width: i == _page ? 18 : 6, height: 6,
+              decoration: BoxDecoration(
+                color: i == _page ? OC.o500 : OC.line2,
+                borderRadius: BorderRadius.circular(3),
+              ),
+            ),
+        ]),
+      ],
+      const SizedBox(height: 18),
+    ]);
+  }
+
+  Widget _card(PrepCenter p) {
+    final specials = p.specialtyList.take(2).join(' · ');
+    final meta = [p.city, if (specials.isNotEmpty) specials].where((e) => e.isNotEmpty).join(' · ');
+    return Padding(
+      padding: const EdgeInsets.only(right: 12),
+      child: GestureDetector(
+        onTap: () => _open(p),
+        child: Container(
+          clipBehavior: Clip.antiAlias,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            gradient: const LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight,
+                colors: [OC.darkHero, OC.darkHero2]),
+          ),
+          child: Stack(fit: StackFit.expand, children: [
+            if (p.imageUrl != null)
+              Image.network(p.imageUrl!, fit: BoxFit.cover,
+                  errorBuilder: (_, __, ___) => const SizedBox.shrink()),
+            DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter, end: Alignment.bottomCenter,
+                  colors: [Colors.black.withValues(alpha: 0.18), Colors.black.withValues(alpha: 0.74)],
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(15),
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Row(children: [_pill('Pub', Colors.white24, Colors.white)]),
+                const Spacer(),
+                Text(p.name, maxLines: 2, overflow: TextOverflow.ellipsis,
+                    style: display(18, weight: FontWeight.w700, color: Colors.white).copyWith(height: 1.1)),
+                if (meta.isNotEmpty) ...[
+                  const SizedBox(height: 4),
+                  Text(meta, maxLines: 1, overflow: TextOverflow.ellipsis,
+                      style: body(12, color: Colors.white.withValues(alpha: 0.82), weight: FontWeight.w500)),
+                ],
+                const SizedBox(height: 11),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 8),
+                  decoration: BoxDecoration(color: OC.o500, borderRadius: BorderRadius.circular(11)),
+                  child: Row(mainAxisSize: MainAxisSize.min, children: [
+                    Text('Découvrir', style: body(12.5, weight: FontWeight.w700, color: Colors.white)),
+                    const SizedBox(width: 6),
+                    const Icon(Icons.arrow_forward_rounded, size: 15, color: Colors.white),
+                  ]),
+                ),
+              ]),
+            ),
+          ]),
+        ),
+      ),
+    );
+  }
+}
 
 // ─── Carte vedette (clôture proche) ──────────────────────────────────────────
 class _FeaturedCard extends StatelessWidget {
