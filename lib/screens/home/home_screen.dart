@@ -232,8 +232,8 @@ class _GreetingState extends State<_Greeting> {
   }
 }
 
-// ─── Stats d'en-tête (XP · Rang · Examen · Crédits) — SANS conteneur ─────────
-// Valeurs EN DUR pour l'instant (TODO : profil + gamification + quota Tuteur).
+// ─── Stats d'en-tête (XP · Niveau · Examen · Crédits) — SANS conteneur ───────
+// Valeurs réelles : XP & Niveau (gamification), Examen (profil), Crédits (quota).
 class _HeaderStats extends StatefulWidget {
   const _HeaderStats();
 
@@ -296,7 +296,8 @@ class _HeaderStatsState extends State<_HeaderStats> {
           child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
             _stat('${g.xp}', 'XP total', OC.warn),
             _div(),
-            _stat('—', 'Rang national', OC.blue),
+            // Niveau dérivé de l'XP — cliquable vers l'écran Progrès (badges, streak).
+            _stat('${g.level}', 'Niveau', OC.blue, onTap: () => context.push('/progress')),
             _div(),
             _stat(_examShort, 'Examen', const Color(0xFF7A5AE0)),
             _div(),

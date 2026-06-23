@@ -42,7 +42,9 @@ class _LeoMascotState extends State<LeoMascot> with SingleTickerProviderStateMix
   @override
   Widget build(BuildContext context) {
     final asset = _leoAssets[widget.mood] ?? _leoAssets[LeoMood.idle]!;
-    return AnimatedBuilder(
+    // Mascotte purement décorative : on l'exclut du lecteur d'écran pour éviter
+    // le bruit (le texte adjacent porte déjà le sens).
+    return ExcludeSemantics(child: AnimatedBuilder(
       animation: _c,
       builder: (context, child) {
         final raw = (_c.value + widget.phase) % 1.0;
@@ -65,6 +67,6 @@ class _LeoMascotState extends State<LeoMascot> with SingleTickerProviderStateMix
         fit: BoxFit.contain,
         filterQuality: FilterQuality.medium,
       ),
-    );
+    ));
   }
 }

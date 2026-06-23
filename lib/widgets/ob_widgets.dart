@@ -110,13 +110,18 @@ class OBButton extends StatelessWidget {
       ],
     );
 
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        height: 50,
-        decoration: dec,
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: child,
+    return Semantics(
+      button: true,
+      enabled: onTap != null,
+      label: label,
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          height: 50,
+          decoration: dec,
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: ExcludeSemantics(child: child),
+        ),
       ),
     );
   }
@@ -133,19 +138,22 @@ class OBChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 9),
-      decoration: BoxDecoration(
-        color: active ? OC.o50 : OC.paper,
-        borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: active ? OC.o500 : OC.line2, width: 1.5),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (icon != null) ...[Icon(icon, size: 14, color: active ? OC.o600 : OC.ink2), const SizedBox(width: 5)],
-          Text(label, style: body(13, weight: FontWeight.w700, color: active ? OC.o700 : OC.ink2)),
-        ],
+    return Semantics(
+      selected: active,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 9),
+        decoration: BoxDecoration(
+          color: active ? OC.o50 : OC.paper,
+          borderRadius: BorderRadius.circular(999),
+          border: Border.all(color: active ? OC.o500 : OC.line2, width: 1.5),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (icon != null) ...[Icon(icon, size: 14, color: active ? OC.o600 : OC.ink2), const SizedBox(width: 5)],
+            Text(label, style: body(13, weight: FontWeight.w700, color: active ? OC.o700 : OC.ink2)),
+          ],
+        ),
       ),
     );
   }
@@ -328,10 +336,14 @@ class OBNavBar extends StatelessWidget {
             children: List.generate(_tabs.length, (i) {
               final on = i == currentIndex;
               final tab = _tabs[i];
-              return GestureDetector(
+              return Semantics(
+                button: true,
+                selected: on,
+                label: tab.label,
+                child: GestureDetector(
                 onTap: () => onTap(i),
                 behavior: HitTestBehavior.opaque,
-                child: Column(
+                child: ExcludeSemantics(child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     AnimatedContainer(
@@ -354,7 +366,8 @@ class OBNavBar extends StatelessWidget {
                       style: body(10.5, weight: on ? FontWeight.w700 : FontWeight.w600, color: on ? OC.o700 : OC.muted),
                     ),
                   ],
-                ),
+                )),
+              ),
               );
             }),
           ),
@@ -377,15 +390,19 @@ List<Widget> obTopActions(BuildContext context, {bool showProfile = true}) {
   return [
     const _NotifBell(),
     if (showProfile)
-      GestureDetector(
-        onTap: () => context.go('/profile'),
-        child: Container(
-          width: 40, height: 40,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            border: Border.all(color: OC.line2, width: 1.5),
+      Semantics(
+        button: true,
+        label: 'Profil',
+        child: GestureDetector(
+          onTap: () => context.go('/profile'),
+          child: Container(
+            width: 40, height: 40,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              border: Border.all(color: OC.line2, width: 1.5),
+            ),
+            child: Icon(Icons.person_outline_rounded, size: 22, color: OC.ink),
           ),
-          child: Icon(Icons.person_outline_rounded, size: 22, color: OC.ink),
         ),
       ),
     const SizedBox(width: 10),
@@ -420,6 +437,7 @@ class _NotifBellState extends State<_NotifBell> {
   Widget build(BuildContext context) {
     return Stack(alignment: Alignment.center, children: [
       IconButton(
+        tooltip: _hasUnread ? 'Notifications · non lues' : 'Notifications',
         icon: const Icon(Icons.notifications_outlined, size: 23),
         color: OC.ink,
         onPressed: () async {
@@ -469,16 +487,20 @@ class OBTopMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: () => shellScaffoldKey.currentState?.openEndDrawer(),
-      child: Container(
-        width: 40, height: 40,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          border: Border.all(color: OC.line2, width: 1.5),
+    return Semantics(
+      button: true,
+      label: 'Menu',
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: () => shellScaffoldKey.currentState?.openEndDrawer(),
+        child: Container(
+          width: 40, height: 40,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(color: OC.line2, width: 1.5),
+          ),
+          child: Icon(Icons.menu_rounded, size: 21, color: OC.ink),
         ),
-        child: Icon(Icons.menu_rounded, size: 21, color: OC.ink),
       ),
     );
   }
@@ -512,13 +534,17 @@ class AppDrawer extends StatelessWidget {
             child: Row(children: [
               const OBWordmark(size: 22),
               const Spacer(),
-              GestureDetector(
-                behavior: HitTestBehavior.opaque,
-                onTap: () => shellScaffoldKey.currentState?.closeEndDrawer(),
-                child: Container(
-                  width: 34, height: 34, alignment: Alignment.center,
-                  decoration: BoxDecoration(color: OC.paper, shape: BoxShape.circle, border: Border.all(color: OC.line2, width: 1.5)),
-                  child: Icon(Icons.close_rounded, size: 18, color: OC.ink2),
+              Semantics(
+                button: true,
+                label: 'Fermer le menu',
+                child: GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onTap: () => shellScaffoldKey.currentState?.closeEndDrawer(),
+                  child: Container(
+                    width: 34, height: 34, alignment: Alignment.center,
+                    decoration: BoxDecoration(color: OC.paper, shape: BoxShape.circle, border: Border.all(color: OC.line2, width: 1.5)),
+                    child: Icon(Icons.close_rounded, size: 18, color: OC.ink2),
+                  ),
                 ),
               ),
             ]),
@@ -541,7 +567,10 @@ class AppDrawer extends StatelessWidget {
   }
 
   Widget _row(BuildContext context, OBMenuEntry e) {
-    return GestureDetector(
+    return Semantics(
+      button: true,
+      label: e.label,
+      child: GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () {
         shellScaffoldKey.currentState?.closeEndDrawer();
@@ -549,7 +578,7 @@ class AppDrawer extends StatelessWidget {
           context.push(e.route!);
         }
       },
-      child: Container(
+      child: ExcludeSemantics(child: Container(
         margin: const EdgeInsets.only(bottom: 4),
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 11),
         child: Row(children: [
@@ -562,7 +591,8 @@ class AppDrawer extends StatelessWidget {
           Expanded(child: Text(e.label, style: body(14, weight: FontWeight.w700, color: OC.ink))),
           Icon(Icons.chevron_right_rounded, size: 18, color: OC.muted),
         ]),
-      ),
+      )),
+    ),
     );
   }
 }

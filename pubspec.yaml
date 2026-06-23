@@ -70,6 +70,19 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
 
+  # Génère les icônes d'app (Android adaptatif + iOS) depuis la mascotte Léo.
+  # Régénérer : dart run tools/make_app_icon.dart && dart run flutter_launcher_icons
+  flutter_launcher_icons: ^0.14.3
+
+# Icône d'app — mascotte Léo (sources produites par tools/make_app_icon.dart).
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon/leo_icon.png"
+  adaptive_icon_background: "#FFF6E8"
+  adaptive_icon_foreground: "assets/icon/leo_adaptive_fg.png"
+  remove_alpha_ios: true
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

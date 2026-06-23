@@ -54,9 +54,16 @@ class _CoursCatalogueScreenState extends State<CoursCatalogueScreen> {
           ]),
         ),
         actions: [
-          IconButton(icon: Icon(Icons.auto_stories_rounded, color: OC.ink), onPressed: () => context.push('/cours/bibliotheque')),
-          IconButton(icon: Icon(Icons.search_rounded, color: OC.ink), onPressed: () {/* TODO nav */}),
-          IconButton(icon: Icon(Icons.tune_rounded, color: OC.ink), onPressed: () {/* TODO nav */}),
+          IconButton(
+            tooltip: 'Bibliothèque',
+            icon: Icon(Icons.auto_stories_rounded, color: OC.ink),
+            onPressed: () => context.push('/cours/bibliotheque'),
+          ),
+          IconButton(
+            tooltip: 'Rechercher un cours',
+            icon: Icon(Icons.search_rounded, color: OC.ink),
+            onPressed: () => context.push('/cours-search'),
+          ),
           const SizedBox(width: 4),
         ],
       ),
