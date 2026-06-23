@@ -55,7 +55,10 @@ import '../screens/menu/credits_screen.dart';
 import '../screens/menu/communaute_screen.dart';
 import '../screens/menu/parametres_screen.dart';
 import '../screens/menu/aide_screen.dart';
-import '../screens/cours/cours_catalogue_screen.dart';
+import '../screens/cours/v2/cours_home_screen.dart';
+import '../screens/cours/v2/all_packs_screen.dart';
+import '../screens/cours/v2/pack_detail_v2_screen.dart';
+import '../screens/cours/v2/chapter_screen.dart';
 import '../screens/cours/pack_detail_screen.dart';
 import '../screens/cours/cours_library_screen.dart';
 import '../screens/cours/lesson_reader_screen.dart';
@@ -153,6 +156,11 @@ final appRouter = GoRouter(
       ),
     ),
     GoRoute(path: '/cours-search', builder: (_, __) => const CoursSearchScreen()),
+    // ── Cours v2 (Packs → Détail → Chapitre) — données fictives ─────────────
+    GoRoute(path: '/cours/tous-les-packs', builder: (_, __) => const AllPacksScreen()),
+    GoRoute(path: '/cours/detail/:id', builder: (_, s) => PackDetailV2Screen(packId: s.pathParameters['id'] ?? '')),
+    GoRoute(path: '/cours/chapitre/:packId/:chapterId',
+        builder: (_, s) => ChapterScreen(packId: s.pathParameters['packId'] ?? '', chapterId: s.pathParameters['chapterId'] ?? '')),
     // Écrans Cours (packs) — plein écran (hors coque), données réelles.
     GoRoute(path: '/cours/pack', builder: (_, s) => PackDetailScreen(subjectId: s.uri.queryParameters['id'])),
     GoRoute(path: '/cours/bibliotheque', builder: (_, __) => const CoursLibraryScreen()),
@@ -265,8 +273,8 @@ final appRouter = GoRouter(
             ),
           ],
         ),
-        // Onglet Cours = Catalogue de packs (vision Nomad).
-        GoRoute(path: '/cours', builder: (_, __) => const CoursCatalogueScreen()),
+        // Onglet Cours = accueil v2 (Packs → Détail → Chapitre).
+        GoRoute(path: '/cours', builder: (_, __) => const CoursHomeScreen()),
         GoRoute(path: '/profile', builder: (_, __) => const ProfileScreen()),
       ],
     ),
