@@ -174,6 +174,30 @@ export const RESOURCES: Resource[] = [
     ]
   },
   {
+    id: 'home_announcements',
+    collectionId: 'home_announcements',
+    label: 'Annonces (Accueil)',
+    singular: 'annonce',
+    icon: '📣',
+    titleField: 'title',
+    subtitleField: 'eyebrow',
+    orderBy: { field: 'order', dir: 'asc' },
+    fields: [
+      { key: 'active', label: 'Active (cocher pour afficher)', type: 'boolean', help: 'Décochée = masquée du carrousel.' },
+      { key: 'order', label: 'Ordre', type: 'number', help: 'Tri croissant. Les annonces s’affichent AVANT les examens (position 1, 2, …).' },
+      { key: 'eyebrow', label: 'Sur-titre', type: 'text', help: 'Petit label en capitales, ex. « NOUVEAU », « ANNONCE », « PROMO ». Optionnel.' },
+      { key: 'title', label: 'Titre', type: 'text', required: true, help: 'Titre principal (2 lignes max).' },
+      { key: 'body', label: 'Texte', type: 'textarea', help: 'Texte de soutien (3 lignes max). Optionnel.' },
+      { key: 'imageUrl', label: "Image de fond (URL)", type: 'text', help: 'Image plein cadre (un voile sombre est ajouté pour la lisibilité si texte clair). Optionnel — sinon couleur de fond.' },
+      { key: 'bgColor', label: 'Couleur de fond (hex)', type: 'text', help: 'ex. #1B1712, #E8590C. Utilisée si pas d’image. Vide = dégradé sombre par défaut.' },
+      { key: 'textColor', label: 'Couleur du texte', type: 'select', options: ['light', 'dark'], help: '« light » (texte blanc, fonds sombres/images) ou « dark » (texte foncé, fonds clairs).' },
+      { key: 'ctaLabel', label: 'Bouton — texte', type: 'text', help: 'ex. « Découvrir », « J’en profite ». Vide = pas de bouton.' },
+      { key: 'ctaTarget', label: 'Bouton — destination', type: 'text', help: 'Route interne (ex. /annales, /concours, /credits) OU lien externe (https://…, wa.me/…, tel:…, onbuch://…).' },
+      { key: 'startAt', label: 'Afficher à partir du', type: 'datetime', help: 'Optionnel — l’annonce n’apparaît qu’à partir de cette date.' },
+      { key: 'endAt', label: 'Masquer après le', type: 'datetime', help: 'Optionnel — l’annonce disparaît après cette date.' }
+    ]
+  },
+  {
     id: 'articles',
     collectionId: 'articles',
     label: 'Actualités',

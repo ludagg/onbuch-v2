@@ -14,6 +14,7 @@ import '../../widgets/annale_actions.dart';
 import '../../utils/launch.dart';
 import '../../models/article.dart';
 import '../../models/exam.dart';
+import '../../models/home_announcement.dart';
 import '../../models/affiche.dart';
 import '../../models/social_link.dart';
 import '../../models/annale.dart';
@@ -334,7 +335,11 @@ class _HeroCarousel extends StatefulWidget {
 class _HeroCarouselState extends State<_HeroCarousel> {
   final _ctrl = PageController();
   int _page = 0;
-  late final Future<List<Exam>> _future = DatabaseService().getExams();
+  // Annonces admin (en tête) + examens, chargés ensemble.
+  late final Future<List<dynamic>> _future = Future.wait([
+    DatabaseService().getHomeAnnouncements(),
+    DatabaseService().getExams(),
+  ]);
   Timer? _timer;
 
   @override
@@ -367,31 +372,146 @@ class _HeroCarouselState extends State<_HeroCarousel> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<Exam>>(
+    return FutureBuilder<List<dynamic>>(
       future: _future,
       builder: (context, snap) {
         if (snap.connectionState == ConnectionState.waiting) {
           return const _HeroSkeleton();
         }
-        var exams = snap.data ?? const <Exam>[];
+        final announcements =
+            (snap.data?[0] as List<HomeAnnouncement>?) ?? const <HomeAnnouncement>[];
+        var exams = (snap.data?[1] as List<Exam>?) ?? const <Exam>[];
         if (exams.isEmpty) exams = _sample();
+
+        // Cartes : annonces admin en tête (position 1+), puis examens.
+        final cards = <Widget>[
+          for (final a in announcements) _AnnouncementCard(a),
+          for (final e in exams) _HeroCard(e),
+        ];
+
         return Column(children: [
           SizedBox(
             height: 210,
             child: PageView.builder(
               controller: _ctrl,
-              itemCount: exams.length,
+              itemCount: cards.length,
               onPageChanged: (i) => setState(() => _page = i),
               itemBuilder: (_, i) => Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: _HeroCard(exams[i]),
+                child: cards[i],
               ),
             ),
           ),
           const SizedBox(height: 12),
-          ProgressDots(count: exams.length, active: _page.clamp(0, exams.length - 1).toInt()),
+          ProgressDots(count: cards.length, active: _page.clamp(0, cards.length - 1).toInt()),
         ]);
       },
+    );
+  }
+}
+
+// ─── Annonce configurable (admin) — carte en tête du carrousel ────────────────
+class _AnnouncementCard extends StatelessWidget {
+  final HomeAnnouncement a;
+  const _AnnouncementCard(this.a);
+
+  void _open(BuildContext context) {
+    final t = a.ctaTarget.trim();
+    if (t.isEmpty) return;
+    if (t.startsWith('/')) {
+      context.go(t); // route interne
+    } else {
+      openUrl(context, t); // http(s), onbuch://, tel:, wa.me…
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final light = a.isLightText;
+    final fg = light ? Colors.white : OC.ink;
+    final fgSoft = light ? Colors.white.withValues(alpha: 0.88) : OC.ink2;
+    final base = a.bgColorValue ?? OC.darkHero;
+
+    return GestureDetector(
+      onTap: a.hasCta ? () => _open(context) : null,
+      child: Container(
+        clipBehavior: Clip.antiAlias,
+        decoration: BoxDecoration(
+          color: base,
+          gradient: a.bgColorValue == null && !a.hasImage
+              ? const LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [OC.darkHero, OC.darkHero2],
+                )
+              : null,
+          borderRadius: BorderRadius.circular(22),
+        ),
+        child: Stack(fit: StackFit.expand, children: [
+          // Image de fond (couvrante) + repli silencieux sur le fond coloré.
+          if (a.hasImage)
+            Image.network(a.imageUrl, fit: BoxFit.cover,
+                errorBuilder: (_, __, ___) => const SizedBox.shrink()),
+          // Voile pour la lisibilité du texte clair sur image.
+          if (a.hasImage && light)
+            DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [Colors.black.withValues(alpha: 0.18), Colors.black.withValues(alpha: 0.62)],
+                ),
+              ),
+            ),
+          Padding(
+            padding: const EdgeInsets.all(18),
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              if (a.eyebrow.isNotEmpty)
+                Text(a.eyebrow.toUpperCase(),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: body(10.5, weight: FontWeight.w800, color: light ? const Color(0xFFFFB489) : OC.o600)
+                        .copyWith(letterSpacing: 0.12 * 10.5)),
+              if (a.eyebrow.isNotEmpty) const SizedBox(height: 9),
+              if (a.title.isNotEmpty)
+                Text(a.title,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: display(19, weight: FontWeight.w700, color: fg)),
+              if (a.body.isNotEmpty) ...[
+                const SizedBox(height: 7),
+                Flexible(
+                  child: Text(a.body,
+                      maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
+                      style: body(13, weight: FontWeight.w500, color: fgSoft).copyWith(height: 1.35)),
+                ),
+              ],
+              const Spacer(),
+              if (a.hasCta)
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: GestureDetector(
+                    onTap: () => _open(context),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                      decoration: BoxDecoration(
+                        color: light ? Colors.white : OC.ink,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Row(mainAxisSize: MainAxisSize.min, children: [
+                        Text(a.ctaLabel,
+                            style: body(12.5, weight: FontWeight.w700, color: light ? OC.ink : Colors.white)),
+                        const SizedBox(width: 6),
+                        Icon(Icons.arrow_forward_rounded, size: 15, color: light ? OC.ink : Colors.white),
+                      ]),
+                    ),
+                  ),
+                ),
+            ]),
+          ),
+        ]),
+      ),
     );
   }
 }
