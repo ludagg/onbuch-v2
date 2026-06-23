@@ -17,7 +17,7 @@ class ConcoursDetailScreen extends StatefulWidget {
 
 class _ConcoursDetailScreenState extends State<ConcoursDetailScreen> {
   int _tab = 0;
-  static const _tabs = ['Aperçu', 'Dates', 'Conditions', 'Épreuves', 'Débouchés'];
+  static const _tabs = ['Aperçu', 'Dates'];
 
   Concours get c => widget.concours ?? const Concours(id: '-', name: 'Concours', organizer: '');
 
@@ -140,51 +140,58 @@ class _ConcoursDetailScreenState extends State<ConcoursDetailScreen> {
     switch (_tab) {
       case 1:
         return _datesTab();
-      case 2:
-        return _conditionsTab();
-      case 3:
-        return _epreuvesTab();
-      case 4:
-        return _deboucheTab();
       default:
         return _apercuTab();
     }
   }
 
-  // ── Aperçu ──
+  // ── Aperçu (données réelles) ──
   Widget _apercuTab() {
-    final about = (c.description != null && c.description!.trim().isNotEmpty)
-        ? c.description!.trim()
-        : 'Ce concours ouvre l\'accès à une formation sélective. Consulte les onglets Dates, Conditions et Épreuves pour préparer ta candidature.';
+    final hasAbout = c.description != null && c.description!.trim().isNotEmpty;
+    final links = <Widget>[];
+    if ((c.link ?? '').trim().isNotEmpty) {
+      links.add(_linkRow(context, Icons.public_rounded, 'Site officiel / infos', c.link!.trim()));
+    }
+    if (c.resultsAvailable && (c.resultsLink ?? '').trim().isNotEmpty) {
+      links.add(_linkRow(context, Icons.workspace_premium_outlined, 'Résultats', c.resultsLink!.trim()));
+    }
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      _h('À propos'),
-      const SizedBox(height: 8),
-      Text(about, style: body(13, color: OC.ink2, weight: FontWeight.w500).copyWith(height: 1.5)),
-      if (c.audience != null) ...[
+      if (hasAbout) ...[
+        _h('À propos'),
+        const SizedBox(height: 8),
+        Text(c.description!.trim(), style: body(13, color: OC.ink2, weight: FontWeight.w500).copyWith(height: 1.5)),
         const SizedBox(height: 16),
+      ],
+      if (c.audience != null) ...[
         _h('Public visé'),
         const SizedBox(height: 8),
         Text(c.audience!, style: body(13, color: OC.ink2, weight: FontWeight.w500).copyWith(height: 1.45)),
+        const SizedBox(height: 16),
       ],
-      const SizedBox(height: 18),
-      if (c.communique != null)
-        _linkRow(context, Icons.description_outlined, 'Communiqué officiel', c.communique!),
+      if (links.isNotEmpty) ...[
+        _h('Liens officiels'),
+        const SizedBox(height: 10),
+        for (final w in links) Padding(padding: const EdgeInsets.only(bottom: 9), child: w),
+      ],
+      if (!hasAbout && c.audience == null && links.isEmpty)
+        Text('Consulte les dates clés et le communiqué officiel pour les détails de ce concours.',
+            style: body(13, color: OC.muted, weight: FontWeight.w500).copyWith(height: 1.5)),
     ]);
   }
 
-  // ── Dates ──
+  // ── Dates (données réelles) ──
   Widget _datesTab() {
-    final steps = <(String, DateTime?, bool)>[
-      ('Ouverture des inscriptions', null, true),
-      ('Clôture des dossiers', c.registrationDeadline, false),
-      ('Épreuves écrites', c.examDate, false),
-      ('Résultats', c.resultsDate, false),
+    final steps = <(String, DateTime?)>[
+      ('Clôture des inscriptions', c.registrationDeadline),
+      ('Épreuves écrites', c.examDate),
+      ('Résultats', c.resultsDate),
     ];
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       for (var i = 0; i < steps.length; i++)
-        _timelineRow(steps[i].$1, steps[i].$2, i == steps.length - 1, isNow: steps[i].$1.startsWith('Clôture')),
+        _timelineRow(steps[i].$1, steps[i].$2, i == steps.length - 1,
+            isNow: i == 0 && c.registrationDeadline != null),
       const SizedBox(height: 8),
-      _note('Calendrier indicatif — les dates officielles font foi.'),
+      _note('Dates officielles — vérifie le communiqué pour toute mise à jour.'),
     ]);
   }
 
@@ -210,112 +217,6 @@ class _ConcoursDetailScreenState extends State<ConcoursDetailScreen> {
         )),
       ]),
     );
-  }
-
-  // ── Conditions ──
-  Widget _conditionsTab() {
-    const criteria = [
-      'Être titulaire du diplôme requis (ou en cours)',
-      'Respecter la limite d\'âge fixée par le règlement',
-      'Série / filière compatible avec le concours',
-      'Dossier complet déposé avant la clôture',
-    ];
-    const docs = ['Acte de naissance', 'Relevé de notes', 'Photos d\'identité', 'Reçu de paiement'];
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      _h('Critères d\'éligibilité'),
-      const SizedBox(height: 10),
-      ...criteria.map((t) => Padding(
-            padding: const EdgeInsets.only(bottom: 9),
-            child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              const Icon(Icons.check_circle_rounded, size: 17, color: OC.o500),
-              const SizedBox(width: 9),
-              Expanded(child: Text(t, style: body(12.5, color: OC.ink2, weight: FontWeight.w500).copyWith(height: 1.35))),
-            ]),
-          )),
-      const SizedBox(height: 12),
-      _h('Pièces à fournir'),
-      const SizedBox(height: 10),
-      ...docs.map((t) => Padding(
-            padding: const EdgeInsets.only(bottom: 8),
-            child: Row(children: [
-              Icon(Icons.insert_drive_file_outlined, size: 15, color: OC.muted),
-              const SizedBox(width: 9),
-              Text(t, style: body(12.5, color: OC.ink2, weight: FontWeight.w500)),
-            ]),
-          )),
-      const SizedBox(height: 6),
-      _note('Indicatif — vérifie le communiqué officiel du concours.'),
-    ]);
-  }
-
-  // ── Épreuves ──
-  Widget _epreuvesTab() {
-    const epreuves = [
-      ('Culture générale', 'coef 2'),
-      ('Épreuve de spécialité', 'coef 4'),
-      ('Logique / raisonnement', 'coef 2'),
-      ('Entretien / oral', 'coef 1'),
-    ];
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      _h('Épreuves'),
-      const SizedBox(height: 10),
-      ...epreuves.map((ep) => Container(
-            margin: const EdgeInsets.only(bottom: 9),
-            padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(color: OC.paper, borderRadius: BorderRadius.circular(13),
-                border: Border.all(color: OC.line, width: 1.5)),
-            child: Row(children: [
-              Expanded(child: Text(ep.$1, style: body(13, weight: FontWeight.w700))),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                decoration: BoxDecoration(color: OC.panel, borderRadius: BorderRadius.circular(7)),
-                child: Text(ep.$2, style: body(10.5, weight: FontWeight.w700, color: OC.ink2)),
-              ),
-            ]),
-          )),
-      const SizedBox(height: 8),
-      _note('Format indicatif — adapte selon le concours visé.'),
-    ]);
-  }
-
-  // ── Débouchés ──
-  Widget _deboucheTab() {
-    const bars = [40, 55, 35, 60, 48, 70];
-    const filieres = ['Filières d\'excellence', 'Emplois qualifiés', 'Poursuite d\'études', 'Réseau d\'alumni'];
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      _h('Tendance des admissions'),
-      const SizedBox(height: 12),
-      Container(
-        height: 96,
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(color: OC.panel, borderRadius: BorderRadius.circular(14)),
-        child: Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
-          for (var i = 0; i < bars.length; i++) ...[
-            if (i > 0) const SizedBox(width: 8),
-            Expanded(child: Container(
-              height: bars[i].toDouble(),
-              decoration: BoxDecoration(
-                color: i == bars.length - 1 ? OC.o500 : OC.line2,
-                borderRadius: const BorderRadius.vertical(top: Radius.circular(4)),
-              ),
-            )),
-          ],
-        ]),
-      ),
-      const SizedBox(height: 16),
-      _h('Débouchés'),
-      const SizedBox(height: 10),
-      ...filieres.map((t) => Padding(
-            padding: const EdgeInsets.only(bottom: 8),
-            child: Row(children: [
-              Icon(Icons.school_outlined, size: 15, color: OC.o600),
-              const SizedBox(width: 9),
-              Text(t, style: body(12.5, color: OC.ink2, weight: FontWeight.w500)),
-            ]),
-          )),
-      const SizedBox(height: 6),
-      _note('Données illustratives — à compléter par concours.'),
-    ]);
   }
 
   // ── Bas de page : lien vers le communiqué officiel (affichage seulement —
