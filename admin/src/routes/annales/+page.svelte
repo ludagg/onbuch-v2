@@ -192,14 +192,15 @@
 
   // ── Édition d'un document existant ────────────────────────────────────────
   let editDoc: any = null;
-  let ed = { exam: '', track: '', subject: '', category: 'Épreuve', year: '', session: '', title: '', fileUrl: '', corrigeUrl: '', videoUrl: '', premium: false };
+  let ed = { exam: '', category: 'Épreuve', year: '', session: '', title: '', fileUrl: '', corrigeUrl: '', videoUrl: '', premium: false };
+  // Séries / matières sélectionnées (multi). Plusieurs combinaisons ⇒ duplication.
+  let edSelFil: string[] = [];
+  let edSelSubj: string[] = [];
 
   function openEdit(d: any) {
     editDoc = d;
     ed = {
       exam: (d.exam ?? '').toString(),
-      track: (d.track ?? '').toString(),
-      subject: (d.subject ?? '').toString(),
       category: (d.category ?? 'Épreuve').toString(),
       year: (d.year ?? '').toString(),
       session: (d.session ?? '').toString(),
@@ -209,17 +210,31 @@
       videoUrl: (d.videoUrl ?? '').toString(),
       premium: !!d.premium
     };
+    const t = (d.track ?? '').toString().trim();
+    const s = (d.subject ?? '').toString().trim();
+    edSelFil = t ? [t] : [];
+    edSelSubj = s ? [s] : [];
   }
   function closeEdit() { editDoc = null; }
 
+  // Combinaisons (série × matière) résultant des sélections.
+  // Aucune série ⇒ document général (track vide). Produit cartésien des sélections.
+  $: edCombos = (() => {
+    const tracks = edSelFil.length ? edSelFil : [''];
+    const out: { track: string; subject: string }[] = [];
+    for (const t of tracks) for (const s of edSelSubj) out.push({ track: t, subject: s });
+    return out;
+  })();
+
   async function saveEdit() {
-    if (!ed.subject.trim() || !ed.title.trim()) { flash('Matière et titre requis.', true); return; }
+    if (edSelSubj.length === 0 || !ed.title.trim()) {
+      flash('Au moins une matière + un titre sont requis.', true);
+      return;
+    }
     saving = true;
     try {
-      await databases.updateDocument(APPWRITE_DATABASE, 'annales', editDoc.$id, {
+      const base = {
         exam: ed.exam,
-        track: ed.track.trim(),
-        subject: ed.subject.trim(),
         category: ed.category,
         year: ed.year.trim(),
         session: ed.session.trim(),
@@ -228,10 +243,30 @@
         corrigeUrl: ed.corrigeUrl.trim(),
         videoUrl: ed.videoUrl.trim(),
         premium: ed.premium
+      };
+      const [first, ...rest] = edCombos;
+      // 1ʳᵉ combinaison → mise à jour du document courant.
+      await databases.updateDocument(APPWRITE_DATABASE, 'annales', editDoc.$id, {
+        ...base,
+        track: first.track,
+        subject: first.subject
       });
+      // Combinaisons supplémentaires → nouveaux documents (duplication).
+      let created = 0;
+      for (const c of rest) {
+        await databases.createDocument(APPWRITE_DATABASE, 'annales', ID.unique(), {
+          ...base,
+          track: c.track,
+          subject: c.subject,
+          order: 0
+        });
+        created++;
+      }
       closeEdit();
       await loadAnnales();
-      flash('Document modifié ✓');
+      flash(created > 0
+        ? `Document modifié ✓ · ${created} copie${created > 1 ? 's' : ''} créée${created > 1 ? 's' : ''}`
+        : 'Document modifié ✓');
     } catch (e: any) {
       flash(e?.message ?? 'Échec de la modification.', true);
     } finally {
@@ -264,15 +299,30 @@
 
   // Arbre de taxonomie du document édité : filières groupées par subdivision.
   $: edGroups = Object.entries(byExam[ed.exam] ?? {}) as [string, Fil[]][];
-  // Matières disponibles selon la série choisie (union de tout l'examen si « toutes séries »).
-  $: edAvailSubjects = (() => {
-    if (!ed.track) return edSubjOptions;
-    for (const [, fils] of edGroups) {
-      const f = fils.find((x) => x.name === ed.track);
-      if (f) return f.subjects;
-    }
-    return edSubjOptions;
+  // Filières (à plat) de l'examen édité + noms en taxonomie.
+  $: edFilObjs = (() => {
+    const all: Fil[] = [];
+    for (const sub of Object.values(byExam[ed.exam] ?? {})) all.push(...sub);
+    return all;
   })();
+  $: edTaxoFils = new Set(edFilObjs.map((f) => f.name));
+  // Séries sélectionnées hors taxonomie (anciens imports) — affichées à part.
+  $: edExtraFils = edSelFil.filter((n) => n && !edTaxoFils.has(n));
+  // Matières disponibles = union des matières des filières sélectionnées
+  // (toutes les matières de l'examen si « toutes séries »).
+  $: edAvailSubjects = (() => {
+    if (edSelFil.length === 0) return edSubjOptions;
+    const set = new Set<string>();
+    for (const f of edFilObjs) if (edSelFil.includes(f.name)) f.subjects.forEach((s) => set.add(s));
+    return [...set];
+  })();
+  // Matières affichées = disponibles + déjà sélectionnées hors-liste (legacy).
+  $: edSubjDisplay = [...new Set([...edAvailSubjects, ...edSelSubj])];
+
+  function addManual(arr: string[], v: string): string[] {
+    const t = v.trim();
+    return t && !arr.includes(t) ? [...arr, t] : arr;
+  }
 
   function formats(d: any): string[] {
     return [
@@ -460,35 +510,45 @@
         </select>
       </div>
       <div class="field">
-        <label>Série / filière</label>
-        {#if edGroups.length}
-          {#each edGroups as [sub, fils]}
-            {#if sub}<div class="grp-row"><span class="grp">{sub}</span></div>{/if}
-            <div class="picks">
-              {#each fils as f}
-                <button type="button" class="pick" class:on={ed.track === f.name} on:click={() => (ed.track = ed.track === f.name ? '' : f.name)}>{f.name}</button>
-              {/each}
-            </div>
-          {/each}
-          <div class="picks" style="margin-top:8px">
-            <button type="button" class="pick alt" class:on={!ed.track} on:click={() => (ed.track = '')}>Toutes séries</button>
+        <label>Série(s) / filière(s)</label>
+        <p class="muted small">Plusieurs séries ou matières ⇒ le document est dupliqué pour chaque combinaison.</p>
+        {#each edGroups as [sub, fils]}
+          <div class="grp-row">
+            {#if sub}<span class="grp">{sub}</span>{/if}
+            <button type="button" class="link-sm" on:click={() => { const names = fils.map((f) => f.name); const allOn = names.every((n) => edSelFil.includes(n)); edSelFil = allOn ? edSelFil.filter((n) => !names.includes(n)) : [...new Set([...edSelFil, ...names])]; }}>tout</button>
           </div>
-        {:else}
-          <p class="muted small">Aucune taxonomie pour cet examen — utilise la saisie manuelle ci-dessous.</p>
-        {/if}
-        <input class="manual" id="e-track" type="text" list="ed-fils" bind:value={ed.track} placeholder="Saisie manuelle (avancé) — vide = toutes séries" />
-        <datalist id="ed-fils">{#each edFilOptions as f}<option value={f}></option>{/each}</datalist>
-      </div>
-      <div class="field">
-        <label>Matière</label>
-        {#if edAvailSubjects.length}
           <div class="picks">
-            {#each edAvailSubjects as s}
-              <button type="button" class="pick" class:on={ed.subject === s} on:click={() => (ed.subject = s)}>{s}</button>
+            {#each fils as f}
+              <button type="button" class="pick" class:on={edSelFil.includes(f.name)} on:click={() => (edSelFil = toggle(edSelFil, f.name))}>{f.name}</button>
+            {/each}
+          </div>
+        {/each}
+        {#if edExtraFils.length}
+          <div class="grp-row"><span class="grp">Hors taxonomie</span></div>
+          <div class="picks">
+            {#each edExtraFils as f}
+              <button type="button" class="pick" class:on={edSelFil.includes(f)} on:click={() => (edSelFil = toggle(edSelFil, f))}>{f}</button>
             {/each}
           </div>
         {/if}
-        <input class="manual" id="e-subject" type="text" list="ed-subjs" bind:value={ed.subject} placeholder="Saisie manuelle (avancé)" />
+        <div class="picks" style="margin-top:8px">
+          <button type="button" class="pick alt" class:on={edSelFil.length === 0} on:click={() => (edSelFil = [])}>Toutes séries (général)</button>
+        </div>
+        <input class="manual" type="text" list="ed-fils" placeholder="Ajouter une série puis Entrée"
+          on:keydown={(e) => { if (e.key === 'Enter') { e.preventDefault(); edSelFil = addManual(edSelFil, e.currentTarget.value); e.currentTarget.value = ''; } }} />
+        <datalist id="ed-fils">{#each edFilOptions as f}<option value={f}></option>{/each}</datalist>
+      </div>
+      <div class="field">
+        <label>Matière(s)</label>
+        {#if edSubjDisplay.length}
+          <div class="picks">
+            {#each edSubjDisplay as s}
+              <button type="button" class="pick" class:on={edSelSubj.includes(s)} on:click={() => (edSelSubj = toggle(edSelSubj, s))}>{s}</button>
+            {/each}
+          </div>
+        {/if}
+        <input class="manual" type="text" list="ed-subjs" placeholder="Ajouter une matière puis Entrée"
+          on:keydown={(e) => { if (e.key === 'Enter') { e.preventDefault(); edSelSubj = addManual(edSelSubj, e.currentTarget.value); e.currentTarget.value = ''; } }} />
         <datalist id="ed-subjs">{#each edSubjOptions as s}<option value={s}></option>{/each}</datalist>
       </div>
       <div class="field">
@@ -508,8 +568,15 @@
       <label class="switch"><input type="checkbox" bind:checked={ed.premium} /><span>{ed.premium ? 'Premium' : 'Gratuit'}</span></label>
     </div>
     <div class="drawer-foot">
-      <button class="btn-ghost" on:click={closeEdit}>Annuler</button>
-      <button class="btn-primary" on:click={saveEdit} disabled={saving}>{saving ? 'Enregistrement…' : 'Enregistrer'}</button>
+      <span class="muted small">
+        {#if edCombos.length > 1}1 mis à jour + {edCombos.length - 1} créé{edCombos.length - 1 > 1 ? 's' : ''}{:else if edCombos.length === 1}1 document{:else}Sélectionne une matière{/if}
+      </span>
+      <div class="foot-acts">
+        <button class="btn-ghost" on:click={closeEdit}>Annuler</button>
+        <button class="btn-primary" on:click={saveEdit} disabled={saving || edCombos.length === 0}>
+          {saving ? 'Enregistrement…' : (edCombos.length > 1 ? `Enregistrer (${edCombos.length})` : 'Enregistrer')}
+        </button>
+      </div>
     </div>
   </aside>
 {/if}
@@ -540,6 +607,7 @@
   .pick.on { background: var(--o50); border-color: var(--o500); color: var(--o700); }
   .pick.alt { background: var(--panel); }
   .manual { margin-top: 9px; font-size: 12.5px; }
+  .foot-acts { display: flex; gap: 10px; }
   .switch { display: flex; align-items: center; gap: 9px; font-weight: 600; color: var(--ink2); margin-top: 12px; }
   .switch input { width: auto; }
   .form-foot { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: 18px; border-top: 1.5px solid var(--line); padding-top: 14px; }
