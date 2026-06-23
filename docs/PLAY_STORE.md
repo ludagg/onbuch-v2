@@ -105,7 +105,7 @@ Config dans `pubspec.yaml` (section `flutter_launcher_icons`).
 | Asset | Format | Statut |
 |---|---|---|
 | Icône appli | 512×512 PNG 32 bits | ✅ `docs/store-assets/play_icon_512.png` |
-| Feature graphic | 1024×500 PNG/JPG | ⬜ à créer (bannière de marque) |
+| Feature graphic | 1024×500 PNG/JPG | ✅ `docs/store-assets/feature_graphic.png` (v1) + `feature_graphic_v2.png` (v2) — en choisir un |
 | Captures téléphone | min. 2, 16:9 ou 9:16, 320–3840 px | ⬜ à faire (Tableau, Tuteur, Cours, Résultats) |
 | Captures tablette (option.) | 7" / 10" | ⬜ optionnel |
 
