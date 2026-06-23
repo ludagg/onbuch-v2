@@ -50,6 +50,27 @@
       : Query.orderAsc(resource.orderBy.field);
   }
 
+  // Solde de crédits Tuteur par utilisateur (collection tutor_quota, keyée par
+  // uid = $id du profil). Chargé en plus sur la page Utilisateurs.
+  let creditsByUid: Record<string, number> = {};
+
+  async function loadCredits(userDocs: any[]) {
+    creditsByUid = {};
+    const ids = userDocs.map((d) => d.$id).filter(Boolean);
+    if (ids.length === 0) return;
+    try {
+      const res = await databases.listDocuments(APPWRITE_DATABASE, 'tutor_quota', [
+        Query.equal('$id', ids),
+        Query.limit(ids.length)
+      ]);
+      const map: Record<string, number> = {};
+      for (const q of res.documents) map[q.$id] = Number(q.credits ?? 0);
+      creditsByUid = map;
+    } catch {
+      creditsByUid = {}; // lecture indisponible → on n'affiche rien plutôt que de bloquer
+    }
+  }
+
   async function load() {
     if (!resource) return;
     loading = true;
@@ -83,6 +104,7 @@
         docs = res.documents;
         total = res.total;
       }
+      if (resource.id === 'users') await loadCredits(docs);
     } catch (e: any) {
       error = e?.message ?? 'Chargement impossible.';
       docs = [];
@@ -250,7 +272,8 @@
   // Crédits Tuteur : ajoute (ou retire) des crédits au solde de l'utilisateur,
   // via la même fonction serveur « ops » (seule habilitée à écrire tutor_quota).
   async function addCredits(doc: any) {
-    const raw = prompt(`Crédits à ajouter à ${title(doc)} ?\n(nombre négatif pour en retirer)`, '10');
+    const current = creditsByUid[doc.$id] ?? 0;
+    const raw = prompt(`Solde actuel de ${title(doc)} : ${current} crédits.\nCombien en ajouter ? (nombre négatif pour en retirer)`, '10');
     if (raw === null) return;
     const amount = Math.trunc(Number(raw.trim().replace(',', '.')));
     if (!Number.isFinite(amount) || amount === 0) {
@@ -270,6 +293,8 @@
         flash(body.error ?? 'Crédit refusé.', true);
         return;
       }
+      // Met à jour le badge de solde sans recharger toute la liste.
+      if (typeof body.credits === 'number') creditsByUid = { ...creditsByUid, [doc.$id]: body.credits };
       flash(`${amount > 0 ? '+' : ''}${amount} crédit${Math.abs(amount) > 1 ? 's' : ''} ✓ — solde : ${body.credits}`);
     } catch (e: any) {
       flash(e?.message ?? 'Crédit impossible.', true);
@@ -420,6 +445,9 @@
             {#if subtitle(doc)}<div class="row-sub muted">{subtitle(doc)}</div>{/if}
           </div>
           <div class="row-actions">
+            {#if resource.id === 'users'}
+              <span class="credits-badge" title="Solde de crédits Tuteur">💳 {creditsByUid[doc.$id] ?? 0}</span>
+            {/if}
             <button class="btn-ghost btn-sm" title="Copier l'ID du document" on:click={() => navigator.clipboard?.writeText(doc.$id)}>ID</button>
             <button class="btn-ghost btn-sm" on:click={() => openEdit(doc)}>{resource.readOnly ? 'Voir' : 'Modifier'}</button>
             {#if resource.id === 'users'}
@@ -517,7 +545,12 @@
   .row { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 14px 16px; }
   .row-title { font-weight: 700; font-size: 14.5px; }
   .row-sub { font-size: 12.5px; margin-top: 2px; }
-  .row-actions { display: flex; gap: 8px; flex-shrink: 0; }
+  .row-actions { display: flex; gap: 8px; flex-shrink: 0; align-items: center; }
+  .credits-badge {
+    font-size: 12.5px; font-weight: 800; color: var(--o700);
+    background: var(--o50); border: 1.5px solid var(--o100);
+    border-radius: 999px; padding: 4px 10px; white-space: nowrap;
+  }
 
   /* Arborescence séries/filières */
   .tree { display: flex; flex-direction: column; gap: 8px; }
