@@ -450,6 +450,24 @@ class DatabaseService {
         .toList());
   }
 
+  /// Les épreuves ajoutées le plus récemment, tous examens confondus
+  /// (section « Ajoutées récemment » de la page Annales). Cache 5 min.
+  Future<List<Annale>> recentAnnales({int limit = 8}) {
+    return _cachedList<Annale>('annales:recent:$limit', () async {
+      final res = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteAnnalesCollectionId,
+        queries: [
+          Query.orderDesc('\$createdAt'),
+          Query.limit(limit),
+        ],
+      );
+      return res.documents.map((d) => {...d.data, '\$id': d.$id, '\$createdAt': d.$createdAt}).toList();
+    }, (raw) => raw
+        .map((m) => Annale.fromMap(m, id: m['\$id'] as String, createdAt: m['\$createdAt'] as String?))
+        .toList());
+  }
+
   /// Nombre de documents par examen (compteurs de la page Annales).
   Future<Map<String, int>> annalesCountByExam(List<String> exams) async {
     final key = 'annales:counts';
