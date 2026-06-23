@@ -68,15 +68,18 @@ export default async function handler(req, res) {
   });
   if (!claim.ok) return res.status(200).json({ ok: false, error: 'Réessaie dans un instant.' });
 
-  // 4) Créditer tutor_quota/{uid} (même schéma que verify-purchase).
+  // 4) Créditer tutor_quota/{uid} (même schéma que verify-purchase). On pose
+  // TOUJOURS read("user:<uid>") — y compris au PATCH — sinon l'élève ne peut pas
+  // lire son propre solde dans l'app (il verrait « 0 crédits »).
+  const perms = [`read("user:${uid}")`];
   const cur = await aw('GET', `/databases/${DB}/collections/${QUOTA}/documents/${uid}`);
   let credited;
   if (cur.ok) {
     const total = Number(cur.j.credits || 0) + credits;
-    credited = await aw('PATCH', `/databases/${DB}/collections/${QUOTA}/documents/${uid}`, { body: { data: { credits: total } } });
+    credited = await aw('PATCH', `/databases/${DB}/collections/${QUOTA}/documents/${uid}`, { body: { data: { credits: total }, permissions: perms } });
   } else if (cur.status === 404) {
     credited = await aw('POST', `/databases/${DB}/collections/${QUOTA}/documents`, {
-      body: { documentId: uid, data: { credits, freeUsedToday: 0, freeResetDate: '' } },
+      body: { documentId: uid, data: { credits, freeUsedToday: 0, freeResetDate: '' }, permissions: perms },
     });
   } else {
     credited = { ok: false };
