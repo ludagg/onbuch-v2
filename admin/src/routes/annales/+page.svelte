@@ -262,6 +262,18 @@
     return [...s];
   })();
 
+  // Arbre de taxonomie du document édité : filières groupées par subdivision.
+  $: edGroups = Object.entries(byExam[ed.exam] ?? {}) as [string, Fil[]][];
+  // Matières disponibles selon la série choisie (union de tout l'examen si « toutes séries »).
+  $: edAvailSubjects = (() => {
+    if (!ed.track) return edSubjOptions;
+    for (const [, fils] of edGroups) {
+      const f = fils.find((x) => x.name === ed.track);
+      if (f) return f.subjects;
+    }
+    return edSubjOptions;
+  })();
+
   function formats(d: any): string[] {
     return [
       ...(String(d.fileUrl ?? '').trim() ? ['PDF'] : []),
@@ -448,13 +460,35 @@
         </select>
       </div>
       <div class="field">
-        <label for="e-track">Série / filière</label>
-        <input id="e-track" type="text" list="ed-fils" bind:value={ed.track} placeholder="ex. D — ou vide = toutes séries" />
+        <label>Série / filière</label>
+        {#if edGroups.length}
+          {#each edGroups as [sub, fils]}
+            {#if sub}<div class="grp-row"><span class="grp">{sub}</span></div>{/if}
+            <div class="picks">
+              {#each fils as f}
+                <button type="button" class="pick" class:on={ed.track === f.name} on:click={() => (ed.track = ed.track === f.name ? '' : f.name)}>{f.name}</button>
+              {/each}
+            </div>
+          {/each}
+          <div class="picks" style="margin-top:8px">
+            <button type="button" class="pick alt" class:on={!ed.track} on:click={() => (ed.track = '')}>Toutes séries</button>
+          </div>
+        {:else}
+          <p class="muted small">Aucune taxonomie pour cet examen — utilise la saisie manuelle ci-dessous.</p>
+        {/if}
+        <input class="manual" id="e-track" type="text" list="ed-fils" bind:value={ed.track} placeholder="Saisie manuelle (avancé) — vide = toutes séries" />
         <datalist id="ed-fils">{#each edFilOptions as f}<option value={f}></option>{/each}</datalist>
       </div>
       <div class="field">
-        <label for="e-subject">Matière</label>
-        <input id="e-subject" type="text" list="ed-subjs" bind:value={ed.subject} />
+        <label>Matière</label>
+        {#if edAvailSubjects.length}
+          <div class="picks">
+            {#each edAvailSubjects as s}
+              <button type="button" class="pick" class:on={ed.subject === s} on:click={() => (ed.subject = s)}>{s}</button>
+            {/each}
+          </div>
+        {/if}
+        <input class="manual" id="e-subject" type="text" list="ed-subjs" bind:value={ed.subject} placeholder="Saisie manuelle (avancé)" />
         <datalist id="ed-subjs">{#each edSubjOptions as s}<option value={s}></option>{/each}</datalist>
       </div>
       <div class="field">
@@ -505,6 +539,7 @@
   .pick:hover { border-color: var(--o500); }
   .pick.on { background: var(--o50); border-color: var(--o500); color: var(--o700); }
   .pick.alt { background: var(--panel); }
+  .manual { margin-top: 9px; font-size: 12.5px; }
   .switch { display: flex; align-items: center; gap: 9px; font-weight: 600; color: var(--ink2); margin-top: 12px; }
   .switch input { width: auto; }
   .form-foot { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: 18px; border-top: 1.5px solid var(--line); padding-top: 14px; }
