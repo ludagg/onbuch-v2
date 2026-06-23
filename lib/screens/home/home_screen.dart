@@ -752,7 +752,21 @@ class _Shortcuts extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 9),
-                Text(it[1] as String, style: body(12, weight: FontWeight.w700, color: OC.ink2)),
+                // Libellé sur une seule ligne, centré, qui s'ajuste pour ne
+                // jamais se couper (ex. « Communauté » ne déborde plus).
+                SizedBox(
+                  width: double.infinity,
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    alignment: Alignment.center,
+                    child: Text(
+                      it[1] as String,
+                      maxLines: 1,
+                      softWrap: false,
+                      style: body(12, weight: FontWeight.w700, color: OC.ink2),
+                    ),
+                  ),
+                ),
               ]),
             ),
           ),
