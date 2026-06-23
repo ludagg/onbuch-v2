@@ -468,6 +468,22 @@ class DatabaseService {
         .toList());
   }
 
+  /// Documents de cours (PDF) collectés depuis `annales` (section « Cours PDF »
+  /// de la page Cours). Petite collection → on lit tout et on trie côté app.
+  /// Réutilise le modèle [Annale] (mêmes champs). Cache 5 min, tolérant.
+  Future<List<Annale>> getCourseDocs({int limit = 1000}) {
+    return _cachedList<Annale>('course_docs:$limit', () async {
+      final res = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteCourseDocsCollectionId,
+        queries: [Query.limit(limit)],
+      );
+      return res.documents.map((d) => {...d.data, '\$id': d.$id, '\$createdAt': d.$createdAt}).toList();
+    }, (raw) => raw
+        .map((m) => Annale.fromMap(m, id: m['\$id'] as String, createdAt: m['\$createdAt'] as String?))
+        .toList());
+  }
+
   /// Nombre de documents par examen (compteurs de la page Annales).
   Future<Map<String, int>> annalesCountByExam(List<String> exams) async {
     final key = 'annales:counts';

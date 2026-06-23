@@ -29,6 +29,8 @@ const appwriteTutorJobsCollectionId = 'tutor_jobs';
 const appwriteTutorQuotaCollectionId = 'tutor_quota';
 const appwriteNotificationsCollectionId = 'notifications';
 const appwriteAnnalesCollectionId = 'annales';
+// Documents de cours (PDF) collectés depuis `annales` — section « Cours PDF ».
+const appwriteCourseDocsCollectionId = 'course_docs';
 const appwriteAppConfigCollectionId = 'app_config';
 // Annonces configurables affichées en tête du carrousel d'accueil.
 const appwriteHomeAnnouncementsCollectionId = 'home_announcements';
