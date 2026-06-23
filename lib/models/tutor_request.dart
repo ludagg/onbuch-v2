@@ -18,6 +18,7 @@ class TutorRequest {
   final List<Uint8List>? summaryImages; // pages à résumer en fiche (mode 'summary')
   final String? threadId; // fil de conversation à reprendre (mémoire)
   final List<Map<String, String>>? threadMessages; // messages préchargés du fil
+  final String? examUrl; // PDF d'une épreuve (mode 'exam_help'), lu côté serveur
 
   const TutorRequest({
     this.image,
@@ -31,5 +32,6 @@ class TutorRequest {
     this.summaryImages,
     this.threadId,
     this.threadMessages,
+    this.examUrl,
   });
 }

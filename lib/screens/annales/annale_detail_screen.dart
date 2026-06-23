@@ -108,16 +108,23 @@ class _AnnaleDetailScreenState extends State<AnnaleDetailScreen> {
     setState(() => _askingLeo = false);
 
     // Premier message de Léo (préchargé, garanti) : il demande d'abord QUEL
-    // exercice bloque. L'épreuve est envoyée à l'IA dès la réponse de l'élève.
-    final preset = 'Salut 👋 J\'ai ouvert ton épreuve « ${a.title} ». '
-        'Sur **quel exercice** ou **quelle question** bloques-tu ? '
-        'Indique-moi le numéro (ex. « Exercice 2 ») et ce que tu as déjà essayé — '
-        'on le résout ensemble, pas à pas.';
+    // exercice bloque. L'épreuve est lue par la fonction `tutor-ai` (PDF
+    // téléchargé côté serveur via examUrl — fonctionne web + mobile), avec repli
+    // sur l'image de la 1ʳᵉ page (rendue sur mobile) pour les PDF scannés.
+    final preset = a.hasPdf
+        ? 'Salut 👋 J\'ai ouvert ton épreuve « ${a.title} ». '
+            'Sur **quel exercice** ou **quelle question** bloques-tu ? '
+            'Indique-moi le numéro (ex. « Exercice 2 ») et ce que tu as déjà essayé — '
+            'on le résout ensemble, pas à pas.'
+        : 'Salut 👋 Tu bloques sur l\'épreuve « ${a.title} » ? '
+            'Dis-moi **quel exercice** te pose problème et **recopie son énoncé** ici '
+            '(quelques lignes suffisent) — je te le corrige étape par étape.';
 
     context.push('/tutor/correction',
         extra: TutorRequest(
           mode: 'exam_help',
           image: page,
+          examUrl: a.fileUrl,
           presetAnswer: preset,
           subject: a.subject.isEmpty ? a.exam : a.subject,
           titleHint: a.title,
