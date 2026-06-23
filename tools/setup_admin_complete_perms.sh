@@ -35,4 +35,9 @@ APPS_PERMS="[\"create(\\\"users\\\")\",\"read(\\\"team:$TEAM\\\")\"]"
 update_collection concours_applications "Concours applications" "$APPS_PERMS" true
 update_collection pack_purchases "Achats de packs" "$APPS_PERMS" true
 
+echo "── tutor_quota : lecture admin (voir le solde de crédits des élèves) ──"
+# Pas de create/update : seuls les serveurs (clé API) écrivent le quota.
+# documentSecurity gardé → chaque élève lit toujours son propre solde (perm/doc).
+update_collection tutor_quota "Tutor quota" "[\"read(\\\"team:$TEAM\\\")\"]" true
+
 echo "── Terminé. (Redéploie ensuite le back-office admin.) ──"
