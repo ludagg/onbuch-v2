@@ -2,27 +2,44 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
+import '../../widgets/skeletons.dart';
+import '../../data/exam_taxonomy.dart';
 import '../../services/cours_packs_service.dart';
 
-/// Examens de la grille « Parcourir par examen » (mêmes libellés/couleurs que la
-/// page Annales — clés de la taxonomie `examTaxonomy`).
-const _examFolders = [
-  ('BEPC', Color(0xFF1E9E63), Color(0xFFE5F3EB)),
-  ('Probatoire', Color(0xFF2D6CDF), Color(0xFFE7EEFB)),
-  ('Baccalauréat', Color(0xFFDB4F12), Color(0xFFFDEBE2)),
-  ('CAP', Color(0xFF0E9AA0), Color(0xFFE1F2F2)),
-  ('BT', Color(0xFF7A5AE0), Color(0xFFEEE9FA)),
-  ('BTS', Color(0xFF3F51B5), Color(0xFFE8EAF6)),
-  ('HND', Color(0xFFA6651E), Color(0xFFF6ECDC)),
-  ('GCE O Level', Color(0xFF00897B), Color(0xFFE0F2F1)),
-  ('GCE A Level', Color(0xFF5E35B1), Color(0xFFEDE7F6)),
-  ('Concours', Color(0xFFC0392B), Color(0xFFFBEAE5)),
+/// Séries ESG retenues pour le Bac / Probatoire (libellé court → code).
+/// « A » est une série unique qui regroupe toutes les sous-séries A.
+const _esgSeries = [
+  ('A', 'A — Littéraire'),
+  ('C', 'C — Maths & Sciences physiques'),
+  ('D', 'D — Maths & Sciences de la vie'),
+  ('TI', 'TI — Technologies de l\'Information'),
+  ('E', 'E — Maths & Techniques'),
 ];
 
-/// Accueil du module Cours — calque exact de la page Annales : barre de
-/// recherche, accès rapides (Mes cours · Panier · Catalogue), puis grille
-/// « Parcourir par examen ». La seule différence avec les annales : le contenu
-/// terminal liste des **packs de cours** au lieu de documents.
+/// Têtes de track rattachées à l'ESG (le compteur/zone considère « A » comme
+/// couvrant A1..A5 et ABI). Correspondance exacte sur la tête du track.
+const _esgHeads = {'a', 'a1', 'a2', 'a3', 'a4', 'a5', 'abi', 'c', 'd', 'e', 'ti'};
+
+/// Nœud ESG (Bac / Probatoire) limité aux séries A · C · D · TI · E.
+ExamNode _esgNode(String label) => ExamNode(
+      label,
+      children: [for (final s in _esgSeries) ExamNode(s.$2, code: s.$1)],
+    );
+
+/// Les 3 examens proposés dans les Cours : BEPC, Bac ESG, Probatoire ESG.
+/// `node` = nœud de taxonomie à ouvrir (null → BEPC, pris dans la taxonomie).
+class _CoursExam {
+  final String name; // libellé carte
+  final String exam; // clé examen racine
+  final ExamNode? node; // nœud custom (drill ESG)
+  final Color c, bg;
+  const _CoursExam(this.name, this.exam, this.node, this.c, this.bg);
+}
+
+/// Accueil du module Cours — calque de la page Annales : recherche, accès
+/// rapides (Mes cours · Panier · Catalogue), grille « Parcourir par examen »
+/// (limitée à BEPC · Bac ESG · Probatoire ESG) puis une zone « Tous les cours »
+/// qui liste directement les packs de ces examens, triés.
 class CoursLibraryHomeScreen extends StatefulWidget {
   const CoursLibraryHomeScreen({super.key});
 
@@ -32,7 +49,17 @@ class CoursLibraryHomeScreen extends StatefulWidget {
 
 class _CoursLibraryHomeScreenState extends State<CoursLibraryHomeScreen> {
   final _packs = CoursPacks.instance;
-  Map<String, int> _counts = const {};
+
+  late final List<_CoursExam> _exams = [
+    _CoursExam('BEPC', 'BEPC', null, const Color(0xFF1E9E63), const Color(0xFFE5F3EB)),
+    _CoursExam('Bac ESG', 'Baccalauréat', _esgNode('Baccalauréat ESG'),
+        const Color(0xFFDB4F12), const Color(0xFFFDEBE2)),
+    _CoursExam('Probatoire ESG', 'Probatoire', _esgNode('Probatoire ESG'),
+        const Color(0xFF2D6CDF), const Color(0xFFE7EEFB)),
+  ];
+
+  // Packs regroupés par examen (libellé carte → packs triés par nom).
+  Map<String, List<Pack>> _byExam = const {};
   bool _loaded = false;
 
   @override
@@ -43,8 +70,29 @@ class _CoursLibraryHomeScreenState extends State<CoursLibraryHomeScreen> {
 
   Future<void> _load() async {
     await _packs.load();
-    final counts = await _packs.countByExam(_examFolders.map((f) => f.$1).toList());
-    if (mounted) setState(() { _counts = counts; _loaded = true; });
+    final bepc = await _packs.packsForExam('BEPC');
+    final bac = await _packs.packsForExamSeries('Baccalauréat', _esgHeads);
+    final prob = await _packs.packsForExamSeries('Probatoire', _esgHeads);
+    int byName(Pack a, Pack b) => a.name.toLowerCase().compareTo(b.name.toLowerCase());
+    final map = {
+      'BEPC': bepc..sort(byName),
+      'Bac ESG': bac..sort(byName),
+      'Probatoire ESG': prob..sort(byName),
+    };
+    if (mounted) setState(() { _byExam = map; _loaded = true; });
+  }
+
+  int _countFor(String name) => _byExam[name]?.length ?? 0;
+
+  void _openExam(_CoursExam e) {
+    if (e.node == null) {
+      context.push('/cours/folder/${Uri.encodeComponent(e.name)}');
+    } else {
+      context.push(
+        '/cours/folder/${Uri.encodeComponent(e.node!.label)}?exam=${Uri.encodeComponent(e.exam)}',
+        extra: e.node,
+      );
+    }
   }
 
   @override
@@ -119,22 +167,68 @@ class _CoursLibraryHomeScreenState extends State<CoursLibraryHomeScreen> {
                   mainAxisSpacing: 12,
                   crossAxisSpacing: 12,
                   childAspectRatio: 1.3,
-                  children: _examFolders.map((f) => _FolderCard(
-                    name: f.$1,
-                    count: _counts[f.$1] ?? 0,
+                  children: _exams.map((e) => _FolderCard(
+                    name: e.name,
+                    count: _countFor(e.name),
                     loaded: _loaded,
-                    c: f.$2,
-                    bg: f.$3,
-                    onTap: () => context.push('/cours/folder/${Uri.encodeComponent(f.$1)}'),
+                    c: e.c,
+                    bg: e.bg,
+                    onTap: () => _openExam(e),
                   )).toList(),
                 ),
               ),
+              const SizedBox(height: 22),
+
+              // ── Zone dédiée : tous les cours des 3 examens, triés ───────────
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Text('Tous les cours', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
+              ),
+              const SizedBox(height: 11),
+              if (!_loaded)
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(children: List.generate(4, (_) => const SkeletonRow())),
+                )
+              else if (_byExam.values.every((l) => l.isEmpty))
+                _emptyAll()
+              else
+                ..._exams.where((e) => _countFor(e.name) > 0).expand((e) => [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 6, 20, 8),
+                        child: Row(children: [
+                          Container(width: 9, height: 9, decoration: BoxDecoration(color: e.c, shape: BoxShape.circle)),
+                          const SizedBox(width: 8),
+                          Text(e.name, style: body(12.5, weight: FontWeight.w800, color: OC.ink)),
+                          const SizedBox(width: 6),
+                          Text('· ${_countFor(e.name)}', style: body(12, weight: FontWeight.w600, color: OC.muted)),
+                        ]),
+                      ),
+                      for (final p in _byExam[e.name]!)
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: _PackRow(pack: p, onChanged: () { if (mounted) setState(() {}); }),
+                        ),
+                      const SizedBox(height: 6),
+                    ]),
             ],
           ),
         ),
       ),
     );
   }
+
+  Widget _emptyAll() => Padding(
+        padding: const EdgeInsets.fromLTRB(20, 24, 20, 8),
+        child: Column(children: [
+          Icon(Icons.auto_stories_rounded, size: 44, color: OC.faint),
+          const SizedBox(height: 12),
+          Text('Aucun cours pour le moment', style: display(17, weight: FontWeight.w700), textAlign: TextAlign.center),
+          const SizedBox(height: 6),
+          Text('Les packs de cours (BEPC, Bac ESG, Probatoire ESG) apparaîtront ici dès qu\'ils seront ajoutés.',
+              textAlign: TextAlign.center, style: body(13, color: OC.muted).copyWith(height: 1.4)),
+        ]),
+      );
 }
 
 class _QuickCard extends StatelessWidget {
@@ -220,6 +314,60 @@ class _FolderCard extends StatelessWidget {
                 style: body(11.5, color: OC.muted, weight: FontWeight.w600)),
           ]),
           Positioned(right: 0, top: 0, child: Icon(Icons.chevron_right_rounded, color: OC.faint, size: 18)),
+        ]),
+      ),
+    );
+  }
+}
+
+/// Ligne de pack pour la zone « Tous les cours » (même style que la page dossier).
+class _PackRow extends StatelessWidget {
+  final Pack pack;
+  final VoidCallback onChanged;
+  const _PackRow({required this.pack, required this.onChanged});
+
+  @override
+  Widget build(BuildContext context) {
+    final p = pack;
+    final sub = [p.lessons > 0 ? '${p.lessons} leçons' : null, p.level.isEmpty ? null : p.level]
+        .whereType<String>()
+        .join(' · ');
+    final owned = CoursPacks.instance.isOwned(p.id);
+    return GestureDetector(
+      onTap: () async { await context.push('/cours/pack?id=${p.id}'); onChanged(); },
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 11),
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: OC.paper,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: OC.line, width: 1.5),
+        ),
+        child: Row(children: [
+          Container(
+            width: 52, height: 52,
+            decoration: BoxDecoration(color: OC.o50, borderRadius: BorderRadius.circular(13)),
+            alignment: Alignment.center,
+            child: Text(p.code, style: display(15, weight: FontWeight.w800, color: OC.o600)),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(p.name, style: body(13.5, weight: FontWeight.w700), maxLines: 2, overflow: TextOverflow.ellipsis),
+              const SizedBox(height: 3),
+              Text(sub.isEmpty ? 'Pack de cours' : sub, style: body(11, color: OC.muted, weight: FontWeight.w600)),
+            ]),
+          ),
+          const SizedBox(width: 8),
+          Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
+            owned
+                ? PillBadge('AJOUTÉ', color: OC.waInk, bg: OC.goodBg, icon: Icons.check_rounded)
+                : p.premium
+                    ? PillBadge('PREMIUM', color: const Color(0xFFA6701A), bg: const Color(0xFFFBF0DD), icon: Icons.lock_outline_rounded)
+                    : PillBadge('GRATUIT', color: OC.waInk, bg: OC.goodBg),
+            const SizedBox(height: 12),
+            Icon(Icons.chevron_right_rounded, size: 18, color: OC.faint),
+          ]),
         ]),
       ),
     );
