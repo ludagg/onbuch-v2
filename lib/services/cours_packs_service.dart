@@ -194,6 +194,38 @@ class CoursPacks extends ChangeNotifier {
     return out;
   }
 
+  /// Tête de la série d'un track : « D — Sciences » → "d", « C,D » → "c",
+  /// « A4/SES » → "a4". Renvoie le track entier si aucun séparateur.
+  static String _serieHead(String track) {
+    final t = track.trim().toLowerCase();
+    if (t.isEmpty) return '';
+    final parts = t.split(RegExp(r'[\s,/—–-]+')).where((x) => x.isNotEmpty);
+    return parts.isEmpty ? t : parts.first;
+  }
+
+  /// Packs d'un examen restreints à un jeu de séries (têtes de track, ex.
+  /// {'a','a1','a2','a3','a4','a5','abi','c','d','e','ti'} pour l'ESG où « A »
+  /// regroupe toutes les séries A). Correspondance exacte sur la tête du track
+  /// pour éviter les faux positifs (ex. 'CG' commercial ≠ série 'C').
+  Future<List<Pack>> packsForExamSeries(String exam, Set<String> serieHeads) async {
+    final db = DatabaseService();
+    final subjects = await db.getSubjects();
+    final chapters = await db.getChapters();
+    final e = exam.trim().toLowerCase();
+    final wanted = serieHeads.map((s) => s.trim().toLowerCase()).where((s) => s.isNotEmpty).toSet();
+    final out = <Pack>[];
+    for (final s in subjects) {
+      final se = s.exam.trim().toLowerCase();
+      if (se.isNotEmpty && e.isNotEmpty && se != e && !_examAlias(se, e)) continue;
+      final head = _serieHead(s.track);
+      if (head.isEmpty || !wanted.contains(head)) continue;
+      final chs = chapters.where((c) => c.subjectId == s.id).toList()
+        ..sort((a, b) => a.order.compareTo(b.order));
+      out.add(Pack.fromSubject(s, chs));
+    }
+    return out;
+  }
+
   /// Nombre de packs par examen (compteurs de la grille « Parcourir par examen »).
   Future<Map<String, int>> countByExam(List<String> exams) async {
     final subjects = await DatabaseService().getSubjects();
