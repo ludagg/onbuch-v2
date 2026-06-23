@@ -4,6 +4,7 @@ import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
 import '../../services/database_service.dart';
 import '../../services/annale_store.dart';
+import '../../models/annale.dart';
 
 const _examFolders = [
   ('BEPC', Color(0xFF1E9E63), Color(0xFFE5F3EB)),
@@ -31,6 +32,7 @@ class _AnnalesLibraryScreenState extends State<AnnalesLibraryScreen> {
   int _recents = 0;
   int _favs = 0;
   int _off = 0;
+  List<Annale> _recentlyAdded = const [];
 
   @override
   void initState() {
@@ -40,10 +42,20 @@ class _AnnalesLibraryScreenState extends State<AnnalesLibraryScreen> {
 
   Future<void> _load() async {
     final counts = await DatabaseService().annalesCountByExam(_examFolders.map((f) => f.$1).toList());
+    final recentlyAdded = await DatabaseService().recentAnnales(limit: 8);
     final recents = (await AnnaleStore.instance.recents()).length;
     final favs = (await AnnaleStore.instance.favorites()).length;
     final off = (await AnnaleStore.instance.offline()).length;
-    if (mounted) setState(() { _counts = counts; _recents = recents; _favs = favs; _off = off; _loaded = true; });
+    if (mounted) {
+      setState(() {
+        _counts = counts;
+        _recentlyAdded = recentlyAdded;
+        _recents = recents;
+        _favs = favs;
+        _off = off;
+        _loaded = true;
+      });
+    }
   }
 
   @override
@@ -126,8 +138,84 @@ class _AnnalesLibraryScreenState extends State<AnnalesLibraryScreen> {
                 )).toList(),
               ),
             ),
+
+            // Ajoutées récemment (global, tous examens confondus)
+            if (_recentlyAdded.isNotEmpty) ...[
+              const SizedBox(height: 24),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Row(children: [
+                  Text('Ajoutées récemment', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
+                  const Spacer(),
+                  GestureDetector(
+                    onTap: () => context.push('/search?scope=annales'),
+                    child: Text('Tout voir', style: body(12, weight: FontWeight.w700, color: OC.o600)),
+                  ),
+                ]),
+              ),
+              const SizedBox(height: 12),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  children: [
+                    for (final a in _recentlyAdded)
+                      _RecentAnnaleRow(
+                        annale: a,
+                        onTap: () async { await context.push('/annales/detail', extra: a); _load(); },
+                      ),
+                  ],
+                ),
+              ),
+            ],
           ],
         ),
+      ),
+    );
+  }
+}
+
+/// Ligne compacte d'une épreuve récemment ajoutée (page Annales).
+class _RecentAnnaleRow extends StatelessWidget {
+  final Annale annale;
+  final VoidCallback onTap;
+  const _RecentAnnaleRow({required this.annale, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    final a = annale;
+    final sub = [a.subject, a.exam, if (a.year.isNotEmpty) a.year]
+        .where((e) => e.isNotEmpty)
+        .join(' · ');
+    final (icon, c) = a.hasVideo && !a.hasPdf
+        ? (Icons.play_circle_outline_rounded, const Color(0xFF7A5AE0))
+        : (Icons.description_rounded, const Color(0xFFC0392B));
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 10),
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: OC.paper,
+          borderRadius: BorderRadius.circular(14),
+          border: Border.all(color: OC.line, width: 1.5),
+        ),
+        child: Row(children: [
+          Container(
+            width: 42, height: 42,
+            decoration: BoxDecoration(color: c.withValues(alpha: 0.12), borderRadius: BorderRadius.circular(11)),
+            child: Icon(icon, size: 21, color: c),
+          ),
+          const SizedBox(width: 12),
+          Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(a.title.isEmpty ? (a.subject.isEmpty ? 'Épreuve' : a.subject) : a.title,
+                maxLines: 1, overflow: TextOverflow.ellipsis, style: body(13.5, weight: FontWeight.w700)),
+            const SizedBox(height: 2),
+            Text(sub.isEmpty ? a.category : sub,
+                maxLines: 1, overflow: TextOverflow.ellipsis,
+                style: body(11.5, color: OC.muted, weight: FontWeight.w500)),
+          ])),
+          Icon(Icons.chevron_right_rounded, size: 18, color: OC.muted),
+        ]),
       ),
     );
   }
