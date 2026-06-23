@@ -233,6 +233,37 @@
     }
   }
 
+  // Crédits Tuteur : ajoute (ou retire) des crédits au solde de l'utilisateur,
+  // via la même fonction serveur « ops » (seule habilitée à écrire tutor_quota).
+  async function addCredits(doc: any) {
+    const raw = prompt(`Crédits à ajouter à ${title(doc)} ?\n(nombre négatif pour en retirer)`, '10');
+    if (raw === null) return;
+    const amount = Math.trunc(Number(raw.trim().replace(',', '.')));
+    if (!Number.isFinite(amount) || amount === 0) {
+      flash('Montant invalide.', true);
+      return;
+    }
+    busyId = doc.$id;
+    try {
+      const exec = await functions.createExecution(
+        ADMIN_FUNCTION_ID,
+        JSON.stringify({ action: 'addCredits', userId: doc.$id, amount }),
+        false
+      );
+      let body: any = {};
+      try { body = JSON.parse(exec.responseBody || '{}'); } catch { /* ignore */ }
+      if (!body.ok) {
+        flash(body.error ?? 'Crédit refusé.', true);
+        return;
+      }
+      flash(`${amount > 0 ? '+' : ''}${amount} crédit${Math.abs(amount) > 1 ? 's' : ''} ✓ — solde : ${body.credits}`);
+    } catch (e: any) {
+      flash(e?.message ?? 'Crédit impossible.', true);
+    } finally {
+      busyId = '';
+    }
+  }
+
   // ── Arborescence (séries/filières) : examen → subdivision → filière → matières
   $: examTree = resource?.tree ? buildExamTree(docs) : null;
 
@@ -376,6 +407,7 @@
             <button class="btn-ghost btn-sm" title="Copier l'ID du document" on:click={() => navigator.clipboard?.writeText(doc.$id)}>ID</button>
             <button class="btn-ghost btn-sm" on:click={() => openEdit(doc)}>Modifier</button>
             {#if resource.id === 'users'}
+              <button class="btn-ghost btn-sm" disabled={busyId === doc.$id} on:click={() => addCredits(doc)}>+ Crédits</button>
               <button class="btn-ghost btn-sm" disabled={busyId === doc.$id} on:click={() => accountAction('block', doc)}>Bloquer</button>
               <button class="btn-ghost btn-sm" disabled={busyId === doc.$id} on:click={() => accountAction('unblock', doc)}>Débloquer</button>
               <button class="btn-danger btn-sm" disabled={busyId === doc.$id} on:click={() => accountAction('delete', doc)}>Suppr. compte</button>
