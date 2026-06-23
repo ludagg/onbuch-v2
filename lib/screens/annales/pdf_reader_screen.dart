@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
-import 'package:url_launcher/url_launcher.dart';
 import '../../theme/app_theme.dart';
 import '../../services/offline_cache.dart';
 
@@ -47,14 +46,6 @@ class _PdfReaderScreenState extends State<PdfReaderScreen> {
     super.dispose();
   }
 
-  Future<void> _openExternal() async {
-    final uri = Uri.tryParse(widget.url.trim());
-    if (uri == null) return;
-    try {
-      await launchUrl(uri, mode: LaunchMode.externalApplication);
-    } catch (_) {}
-  }
-
   @override
   Widget build(BuildContext context) {
     final hasUrl = widget.url.trim().isNotEmpty;
@@ -74,7 +65,7 @@ class _PdfReaderScreenState extends State<PdfReaderScreen> {
                   Text(widget.subtitle!, maxLines: 1, overflow: TextOverflow.ellipsis,
                       style: body(11, color: Colors.white.withValues(alpha: 0.55))),
               ])),
-              _DarkBtn(Icons.open_in_new_rounded, _openExternal),
+              const SizedBox(width: 38),
             ]),
           ),
           Expanded(
@@ -105,19 +96,6 @@ class _PdfReaderScreenState extends State<PdfReaderScreen> {
             const Icon(Icons.picture_as_pdf_rounded, size: 46, color: Color(0x55FFFFFF)),
             const SizedBox(height: 12),
             Text(text, textAlign: TextAlign.center, style: body(14, color: Colors.white.withValues(alpha: 0.8))),
-            const SizedBox(height: 16),
-            GestureDetector(
-              onTap: _openExternal,
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 11),
-                decoration: BoxDecoration(gradient: OC.grad, borderRadius: BorderRadius.circular(12)),
-                child: Row(mainAxisSize: MainAxisSize.min, children: [
-                  const Icon(Icons.open_in_new_rounded, color: Colors.white, size: 17),
-                  const SizedBox(width: 8),
-                  Text('Ouvrir dans le navigateur', style: body(13, weight: FontWeight.w700, color: Colors.white)),
-                ]),
-              ),
-            ),
           ]),
         ),
       );

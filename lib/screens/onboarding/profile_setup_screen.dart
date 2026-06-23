@@ -125,6 +125,7 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
         if (aspirations.isEmpty) rethrow;
         await _databaseService.createUserProfile(user.$id, core);
       }
+      await _authService.markProfileDone();
       if (mounted) context.go('/welcome');
     } catch (e) {
       if (!mounted) return;

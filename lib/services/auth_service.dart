@@ -5,12 +5,14 @@ import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'appwrite_client.dart';
 import 'database_service.dart';
+import 'disk_cache.dart';
 import 'push_service.dart';
 import 'analytics_service.dart';
 
 class AuthService extends ChangeNotifier {
   static const _loggedInKey = 'ob_logged_in';
   static const _nameKey = 'ob_user_name';
+  static const _profileDoneKey = 'ob_profile_done';
 
   // ── Cache utilisateur (mémoire) ────────────────────────────────────────────
   // Conserve l'utilisateur courant et son prénom le temps de la session, pour
@@ -74,6 +76,30 @@ class AuthService extends ChangeNotifier {
       return false;
     }
   }
+
+  // ── État « profil complété » (persisté, tolérant hors-ligne) ───────────────
+  // Mémorise localement que l'utilisateur a terminé son profil, pour ne PAS le
+  // renvoyer sur l'écran d'inscription quand il ouvre l'app **hors-ligne**.
+
+  Future<void> _setProfileDone(bool v) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setBool(_profileDoneKey, v);
+    } catch (_) {}
+  }
+
+  Future<bool> _cachedProfileDone() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      return prefs.getBool(_profileDoneKey) ?? false;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  /// À appeler juste après la création/validation du profil (onboarding ou
+  /// connexion), pour que l'app sache que l'étape est faite, même hors-ligne.
+  Future<void> markProfileDone() => _setProfileDone(true);
 
   // ── Utilisateur courant ──────────────────────────────────────────────────
 
@@ -149,10 +175,23 @@ class AuthService extends ChangeNotifier {
     }
   }
 
+  /// Profil complété ? Tolérant au hors-ligne : si on ne peut pas joindre le
+  /// serveur (utilisateur courant introuvable ou erreur réseau), on se fie au
+  /// dernier état connu localement — l'élève ne repasse pas par l'inscription.
   Future<bool> hasProfile() async {
     final user = await getCurrentUser();
-    if (user == null) return false;
-    return DatabaseService().profileExists(user.$id);
+    if (user == null) {
+      // Hors-ligne au démarrage : on ne sait pas joindre le compte → état local.
+      return _cachedProfileDone();
+    }
+    try {
+      final exists = await DatabaseService().profileExists(user.$id);
+      await _setProfileDone(exists);
+      return exists;
+    } catch (_) {
+      // Erreur réseau pendant la vérification → dernier état connu.
+      return _cachedProfileDone();
+    }
   }
 
   // ── Connexion email / mot de passe ───────────────────────────────────────
@@ -238,8 +277,10 @@ class AuthService extends ChangeNotifier {
       throw _mapError(e, action: _AuthAction.login);
     } finally {
       await _setLoggedIn(false);
+      await _setProfileDone(false);
       await _clearNameCache();
       DatabaseService.clearCache();
+      await DiskCache.clear();
       await PushService.instance.unregister();
       notifyListeners();
     }

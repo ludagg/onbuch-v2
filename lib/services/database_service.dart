@@ -1,8 +1,10 @@
 // ignore_for_file: deprecated_member_use
+import 'dart:async';
 import 'dart:convert';
 import 'package:appwrite/appwrite.dart';
 import 'package:http/http.dart' as http;
 import '../appwrite_config.dart';
+import 'disk_cache.dart';
 import '../models/article.dart';
 import '../models/exam.dart';
 import '../models/calendar_event.dart';
@@ -27,21 +29,60 @@ class DatabaseService {
   static final Map<String, _CacheEntry> _cache = {};
   static const _cacheTtl = Duration(minutes: 5);
 
-  /// Renvoie le contenu depuis le cache (si frais) ou via [fetch]. Ne met pas
-  /// en cache un résultat vide (souvent un échec réseau).
-  Future<List<T>> _cachedList<T>(String key, Future<List<T>> Function() fetch,
-      {bool force = false}) async {
+  /// Renvoie le contenu depuis le cache mémoire (si frais), sinon le récupère
+  /// via [fetchRaw] (documents bruts) et le construit avec [build].
+  ///
+  /// Stratégie hors-ligne en 3 couches : **mémoire** (5 min) → **réseau** →
+  /// **disque** (dernier contenu connu). Le résultat réseau (même vide) fait
+  /// autorité ; on ne bascule sur le disque qu'en cas d'**échec réseau**, pour
+  /// que l'app reste utilisable sans connexion, y compris après redémarrage.
+  Future<List<T>> _cachedList<T>(
+    String key,
+    Future<List<Map<String, dynamic>>> Function() fetchRaw,
+    List<T> Function(List<Map<String, dynamic>> raw) build, {
+    bool force = false,
+  }) async {
     final e = _cache[key];
     if (!force && e != null && DateTime.now().difference(e.at) < _cacheTtl) {
       return (e.data as List).cast<T>();
     }
-    final data = await fetch();
-    if (data.isNotEmpty) _cache[key] = _CacheEntry(data, DateTime.now());
-    return data;
+    try {
+      final raw = await fetchRaw();
+      final built = build(raw);
+      if (raw.isNotEmpty) {
+        _cache[key] = _CacheEntry(built, DateTime.now());
+        unawaited(DiskCache.writeList(key, raw));
+      }
+      return built; // succès (même vide) → fait autorité
+    } catch (_) {
+      // Échec réseau : on sert le dernier contenu connu (mémoire puis disque).
+      if (e != null) return (e.data as List).cast<T>();
+      final disk = await DiskCache.readList(key);
+      if (disk != null && disk.isNotEmpty) {
+        final built = build(disk);
+        _cache[key] = _CacheEntry(built, DateTime.now());
+        return built;
+      }
+      return <T>[];
+    }
   }
 
-  /// Vide le cache (ex. rafraîchissement manuel).
+  /// Vide le cache mémoire (ex. rafraîchissement manuel). Le cache disque, lui,
+  /// est conservé (repli hors-ligne) et n'est purgé qu'à la déconnexion.
   static void clearCache() => _cache.clear();
+
+  /// Connecté à Internet ? Sonde légère via Appwrite : une réponse serveur
+  /// (même 401) prouve la connectivité ; seule une erreur réseau = hors-ligne.
+  static Future<bool> isOnline() async {
+    try {
+      await AppwriteClient.account.get().timeout(const Duration(seconds: 6));
+      return true;
+    } on AppwriteException catch (e) {
+      return e.code != null; // réponse du serveur reçue → en ligne
+    } catch (_) {
+      return false; // timeout / pas de réseau
+    }
+  }
 
   // ── Profil utilisateur ───────────────────────────────────────────────────
 
@@ -112,11 +153,18 @@ class DatabaseService {
         documentId: uid,
       );
       _cache[key] = _CacheEntry(doc.data, DateTime.now());
+      unawaited(DiskCache.writeMap(key, doc.data));
       return doc.data;
     } on AppwriteException catch (e) {
       if (e.code == 404) return null;
-      // Hors-ligne / erreur : on sert le dernier profil connu s'il existe.
+      // Hors-ligne / erreur : on sert le dernier profil connu (mémoire puis
+      // disque) afin que le profil reste lisible sans connexion.
       if (cached != null) return cached.data as Map<String, dynamic>?;
+      final disk = await DiskCache.readMap(key);
+      if (disk != null) {
+        _cache[key] = _CacheEntry(disk, DateTime.now());
+        return disk;
+      }
       rethrow;
     }
   }
@@ -143,42 +191,33 @@ class DatabaseService {
   /// d'échec pour laisser l'UI basculer sur une saisie libre.
   Future<List<ExamSeries>> getExamSeries({bool force = false}) {
     return _cachedList<ExamSeries>('exam_series', () async {
-      try {
-        final res = await AppwriteClient.databases.listDocuments(
-          databaseId: appwriteDatabaseId,
-          collectionId: appwriteExamSeriesCollectionId,
-          queries: [Query.limit(500)],
-        );
-        return res.documents
-            .map((d) => ExamSeries.fromMap(d.data))
-            .where((s) => s.active && s.name.isNotEmpty)
-            .toList();
-      } on AppwriteException {
-        return <ExamSeries>[];
-      }
-    }, force: force);
+      final res = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteExamSeriesCollectionId,
+        queries: [Query.limit(500)],
+      );
+      return res.documents.map((d) => d.data).toList();
+    }, (raw) => raw
+        .map((m) => ExamSeries.fromMap(m))
+        .where((s) => s.active && s.name.isNotEmpty)
+        .toList(), force: force);
   }
 
   /// Liens des réseaux sociaux (configurés par l'admin dans `social_links`).
   /// Triés par `order`, actifs uniquement, tolérant (liste vide si échec).
   Future<List<SocialLink>> getSocialLinks({bool force = false}) {
     return _cachedList<SocialLink>('social_links', () async {
-      try {
-        final res = await AppwriteClient.databases.listDocuments(
-          databaseId: appwriteDatabaseId,
-          collectionId: appwriteSocialLinksCollectionId,
-          queries: [Query.limit(50)],
-        );
-        final list = res.documents
-            .map((d) => SocialLink.fromMap(d.data))
-            .where((s) => s.active && s.url.isNotEmpty && s.label.isNotEmpty)
-            .toList()
-          ..sort((a, b) => a.order.compareTo(b.order));
-        return list;
-      } on AppwriteException {
-        return <SocialLink>[];
-      }
-    }, force: force);
+      final res = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteSocialLinksCollectionId,
+        queries: [Query.limit(50)],
+      );
+      return res.documents.map((d) => d.data).toList();
+    }, (raw) => raw
+        .map((m) => SocialLink.fromMap(m))
+        .where((s) => s.active && s.url.isNotEmpty && s.label.isNotEmpty)
+        .toList()
+      ..sort((a, b) => a.order.compareTo(b.order)), force: force);
   }
 
   // ── Résultats d'examens ──────────────────────────────────────────────────
@@ -231,22 +270,17 @@ class DatabaseService {
   /// Tolérant : liste vide si erreur/hors-ligne ou collection absente.
   Future<List<ResultSource>> getResultSources({bool force = false}) {
     return _cachedList<ResultSource>('result_sources', () async {
-      try {
-        final res = await AppwriteClient.databases.listDocuments(
-          databaseId: appwriteDatabaseId,
-          collectionId: appwriteResultSourcesCollectionId,
-          queries: [Query.limit(100)],
-        );
-        final list = res.documents
-            .map((d) => ResultSource.fromMap(d.data, id: d.$id))
-            .where((s) => s.active && s.label.isNotEmpty)
-            .toList()
-          ..sort((a, b) => a.order.compareTo(b.order));
-        return list;
-      } on AppwriteException {
-        return <ResultSource>[];
-      }
-    }, force: force);
+      final res = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteResultSourcesCollectionId,
+        queries: [Query.limit(100)],
+      );
+      return res.documents.map((d) => {...d.data, '\$id': d.$id}).toList();
+    }, (raw) => raw
+        .map((m) => ResultSource.fromMap(m, id: m['\$id'] as String))
+        .where((s) => s.active && s.label.isNotEmpty)
+        .toList()
+      ..sort((a, b) => a.order.compareTo(b.order)), force: force);
   }
 
   /// Résultat d'une recherche dans une source : soit un [ExamResult] trouvé,
@@ -321,9 +355,9 @@ class DatabaseService {
   /// Documents (épreuves/cours/fiches/TD) d'une matière pour un examen donné.
   /// Récupère toutes les entrées (paginées en interne, bornées) ; le tri/filtre
   /// fin se fait côté écran. Tolérant : liste vide si erreur/hors-ligne.
-  Future<List<Annale>> getAnnales({required String exam, required String subject}) async {
-    final out = <Annale>[];
-    try {
+  Future<List<Annale>> getAnnales({required String exam, required String subject}) {
+    return _cachedList<Annale>('annales:$exam:$subject', () async {
+      final out = <Map<String, dynamic>>[];
       var offset = 0;
       while (true) {
         final res = await AppwriteClient.databases.listDocuments(
@@ -337,14 +371,14 @@ class DatabaseService {
             Query.offset(offset),
           ],
         );
-        out.addAll(res.documents.map((d) => Annale.fromMap(d.data, id: d.$id, createdAt: d.$createdAt)));
+        out.addAll(res.documents.map((d) => {...d.data, '\$id': d.$id, '\$createdAt': d.$createdAt}));
         if (res.documents.length < 100 || out.length >= 300) break;
         offset += 100;
       }
-    } on AppwriteException {
-      return const <Annale>[];
-    }
-    return out;
+      return out;
+    }, (raw) => raw
+        .map((m) => Annale.fromMap(m, id: m['\$id'] as String, createdAt: m['\$createdAt'] as String?))
+        .toList());
   }
 
   /// Un document d'annales par son id (pour les liens de partage / deep links).
@@ -363,9 +397,9 @@ class DatabaseService {
 
   /// Tous les documents d'un examen (les plus récents d'abord) — pour compter
   /// par matière et afficher « récemment ajoutés ». Liste vide si erreur.
-  Future<List<Annale>> getAnnalesForExam(String exam) async {
-    final out = <Annale>[];
-    try {
+  Future<List<Annale>> getAnnalesForExam(String exam) {
+    return _cachedList<Annale>('annales:exam:$exam', () async {
+      final out = <Map<String, dynamic>>[];
       var offset = 0;
       while (true) {
         final res = await AppwriteClient.databases.listDocuments(
@@ -378,14 +412,14 @@ class DatabaseService {
             Query.offset(offset),
           ],
         );
-        out.addAll(res.documents.map((d) => Annale.fromMap(d.data, id: d.$id, createdAt: d.$createdAt)));
+        out.addAll(res.documents.map((d) => {...d.data, '\$id': d.$id, '\$createdAt': d.$createdAt}));
         if (res.documents.length < 100 || out.length >= 500) break;
         offset += 100;
       }
-    } on AppwriteException {
-      return const <Annale>[];
-    }
-    return out;
+      return out;
+    }, (raw) => raw
+        .map((m) => Annale.fromMap(m, id: m['\$id'] as String, createdAt: m['\$createdAt'] as String?))
+        .toList());
   }
 
   /// Annales les plus récentes, tous examens confondus — pour la **recherche**
@@ -393,33 +427,33 @@ class DatabaseService {
   /// borné ; mis en cache 5 min. Liste vide si erreur/hors-ligne.
   Future<List<Annale>> searchAnnales({int limit = 400}) {
     return _cachedList<Annale>('annales:search:$limit', () async {
-      final out = <Annale>[];
-      try {
-        var offset = 0;
-        while (true) {
-          final res = await AppwriteClient.databases.listDocuments(
-            databaseId: appwriteDatabaseId,
-            collectionId: appwriteAnnalesCollectionId,
-            queries: [
-              Query.orderDesc('\$createdAt'),
-              Query.limit(100),
-              Query.offset(offset),
-            ],
-          );
-          out.addAll(res.documents.map((d) => Annale.fromMap(d.data, id: d.$id, createdAt: d.$createdAt)));
-          if (res.documents.length < 100 || out.length >= limit) break;
-          offset += 100;
-        }
-      } on AppwriteException {
-        return const <Annale>[];
+      final out = <Map<String, dynamic>>[];
+      var offset = 0;
+      while (true) {
+        final res = await AppwriteClient.databases.listDocuments(
+          databaseId: appwriteDatabaseId,
+          collectionId: appwriteAnnalesCollectionId,
+          queries: [
+            Query.orderDesc('\$createdAt'),
+            Query.limit(100),
+            Query.offset(offset),
+          ],
+        );
+        out.addAll(res.documents.map((d) => {...d.data, '\$id': d.$id, '\$createdAt': d.$createdAt}));
+        if (res.documents.length < 100 || out.length >= limit) break;
+        offset += 100;
       }
       return out;
-    });
+    }, (raw) => raw
+        .map((m) => Annale.fromMap(m, id: m['\$id'] as String, createdAt: m['\$createdAt'] as String?))
+        .toList());
   }
 
   /// Nombre de documents par examen (compteurs de la page Annales).
   Future<Map<String, int>> annalesCountByExam(List<String> exams) async {
+    final key = 'annales:counts';
     final out = <String, int>{};
+    var anyError = false;
     for (final ex in exams) {
       try {
         final res = await AppwriteClient.databases.listDocuments(
@@ -429,7 +463,19 @@ class DatabaseService {
         );
         out[ex] = res.total;
       } on AppwriteException {
+        anyError = true;
         out[ex] = 0;
+      }
+    }
+    if (!anyError) {
+      unawaited(DiskCache.writeMap(key, out.map((k, v) => MapEntry(k, v))));
+      return out;
+    }
+    // Hors-ligne : on complète avec les derniers compteurs connus (disque).
+    final disk = await DiskCache.readMap(key);
+    if (disk != null) {
+      for (final ex in exams) {
+        if (out[ex] == 0 && disk[ex] is num) out[ex] = (disk[ex] as num).toInt();
       }
     }
     return out;
@@ -442,27 +488,19 @@ class DatabaseService {
   /// Renvoie une liste vide en cas d'erreur (collection absente, réseau…) afin
   /// que l'écran d'accueil puisse afficher un contenu de repli sans planter.
   Future<List<Article>> getArticles({int limit = 6}) {
-    return _cachedList('articles:$limit', () async {
-      try {
-        final res = await AppwriteClient.databases.listDocuments(
-          databaseId: appwriteDatabaseId,
-          collectionId: appwriteArticlesCollectionId,
-          queries: [
-            Query.orderDesc('\$createdAt'),
-            Query.limit(limit),
-          ],
-        );
-        return res.documents
-            .map((d) => Article.fromMap(
-                  d.data,
-                  id: d.$id,
-                  createdAtFallback: d.$createdAt,
-                ))
-            .toList();
-      } on AppwriteException {
-        return const <Article>[];
-      }
-    });
+    return _cachedList<Article>('articles:$limit', () async {
+      final res = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteArticlesCollectionId,
+        queries: [
+          Query.orderDesc('\$createdAt'),
+          Query.limit(limit),
+        ],
+      );
+      return res.documents.map((d) => {...d.data, '\$id': d.$id, '\$createdAt': d.$createdAt}).toList();
+    }, (raw) => raw
+        .map((m) => Article.fromMap(m, id: m['\$id'] as String, createdAtFallback: m['\$createdAt'] as String))
+        .toList());
   }
 
   /// Retourne un article par son ID, ou null s'il est introuvable.
@@ -485,27 +523,19 @@ class DatabaseService {
   /// Liste vide en cas d'erreur (collection absente, réseau…), pour ne pas
   /// planter l'écran.
   Future<List<AppNotification>> getNotifications({int limit = 30}) {
-    return _cachedList('notifications:$limit', () async {
-      try {
-        final res = await AppwriteClient.databases.listDocuments(
-          databaseId: appwriteDatabaseId,
-          collectionId: appwriteNotificationsCollectionId,
-          queries: [
-            Query.orderDesc('\$createdAt'),
-            Query.limit(limit),
-          ],
-        );
-        return res.documents
-            .map((d) => AppNotification.fromMap(
-                  d.data,
-                  id: d.$id,
-                  createdAtFallback: d.$createdAt,
-                ))
-            .toList();
-      } on AppwriteException {
-        return const <AppNotification>[];
-      }
-    });
+    return _cachedList<AppNotification>('notifications:$limit', () async {
+      final res = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteNotificationsCollectionId,
+        queries: [
+          Query.orderDesc('\$createdAt'),
+          Query.limit(limit),
+        ],
+      );
+      return res.documents.map((d) => {...d.data, '\$id': d.$id, '\$createdAt': d.$createdAt}).toList();
+    }, (raw) => raw
+        .map((m) => AppNotification.fromMap(m, id: m['\$id'] as String, createdAtFallback: m['\$createdAt'] as String))
+        .toList());
   }
 
   // ── Examens (carrousel d'accueil) ─────────────────────────────────────────
@@ -513,23 +543,19 @@ class DatabaseService {
   /// Retourne les examens configurés, triés par `order` croissant.
   /// Liste vide en cas d'erreur (l'accueil affiche alors un repli).
   Future<List<Exam>> getExams({int limit = 20}) {
-    return _cachedList('exams:$limit', () async {
-      try {
-        final res = await AppwriteClient.databases.listDocuments(
-          databaseId: appwriteDatabaseId,
-          collectionId: appwriteExamsCollectionId,
-          queries: [
-            Query.orderAsc('order'),
-            Query.limit(limit),
-          ],
-        );
-        return res.documents
-            .map((d) => Exam.fromMap(d.data, id: d.$id, createdAtFallback: d.$createdAt))
-            .toList();
-      } on AppwriteException {
-        return const <Exam>[];
-      }
-    });
+    return _cachedList<Exam>('exams:$limit', () async {
+      final res = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteExamsCollectionId,
+        queries: [
+          Query.orderAsc('order'),
+          Query.limit(limit),
+        ],
+      );
+      return res.documents.map((d) => {...d.data, '\$id': d.$id, '\$createdAt': d.$createdAt}).toList();
+    }, (raw) => raw
+        .map((m) => Exam.fromMap(m, id: m['\$id'] as String, createdAtFallback: m['\$createdAt'] as String))
+        .toList());
   }
 
   // ── Calendrier scolaire ───────────────────────────────────────────────────
@@ -537,76 +563,58 @@ class DatabaseService {
   /// Retourne les événements du calendrier scolaire, du plus ancien au plus
   /// récent. Liste vide en cas d'erreur.
   Future<List<CalendarEvent>> getCalendarEvents({int limit = 100}) {
-    return _cachedList('calendar:$limit', () async {
-      try {
-        final res = await AppwriteClient.databases.listDocuments(
-          databaseId: appwriteDatabaseId,
-          collectionId: appwriteSchoolCalendarCollectionId,
-          queries: [
-            Query.orderAsc('startDate'),
-            Query.limit(limit),
-          ],
-        );
-        return res.documents
-            .map((d) => CalendarEvent.fromMap(d.data, id: d.$id))
-            .toList();
-      } on AppwriteException {
-        return const <CalendarEvent>[];
-      }
-    });
+    return _cachedList<CalendarEvent>('calendar:$limit', () async {
+      final res = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteSchoolCalendarCollectionId,
+        queries: [
+          Query.orderAsc('startDate'),
+          Query.limit(limit),
+        ],
+      );
+      return res.documents.map((d) => {...d.data, '\$id': d.$id}).toList();
+    }, (raw) => raw.map((m) => CalendarEvent.fromMap(m, id: m['\$id'] as String)).toList());
   }
 
   // ── Concours ──────────────────────────────────────────────────────────────
 
   /// Retourne les concours (triés par `order`). Liste vide en cas d'erreur.
   Future<List<Concours>> getConcours({int limit = 50}) {
-    return _cachedList('concours:$limit', () async {
-      try {
-        final res = await AppwriteClient.databases.listDocuments(
-          databaseId: appwriteDatabaseId,
-          collectionId: appwriteConcoursCollectionId,
-          queries: [
-            Query.orderAsc('order'),
-            Query.limit(limit),
-          ],
-        );
-        return res.documents.map((d) => Concours.fromMap(d.data, id: d.$id)).toList();
-      } on AppwriteException {
-        return const <Concours>[];
-      }
-    });
+    return _cachedList<Concours>('concours:$limit', () async {
+      final res = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteConcoursCollectionId,
+        queries: [
+          Query.orderAsc('order'),
+          Query.limit(limit),
+        ],
+      );
+      return res.documents.map((d) => {...d.data, '\$id': d.$id}).toList();
+    }, (raw) => raw.map((m) => Concours.fromMap(m, id: m['\$id'] as String)).toList());
   }
 
   /// Centres de préparation aux concours (triés par `order`).
   Future<List<PrepCenter>> getPrepCenters({int limit = 30}) {
-    return _cachedList('prep_centers:$limit', () async {
-      try {
-        final res = await AppwriteClient.databases.listDocuments(
-          databaseId: appwriteDatabaseId,
-          collectionId: appwritePrepCentersCollectionId,
-          queries: [Query.orderAsc('order'), Query.limit(limit)],
-        );
-        return res.documents.map((d) => PrepCenter.fromMap(d.data, id: d.$id)).toList();
-      } on AppwriteException {
-        return const <PrepCenter>[];
-      }
-    });
+    return _cachedList<PrepCenter>('prep_centers:$limit', () async {
+      final res = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwritePrepCentersCollectionId,
+        queries: [Query.orderAsc('order'), Query.limit(limit)],
+      );
+      return res.documents.map((d) => {...d.data, '\$id': d.$id}).toList();
+    }, (raw) => raw.map((m) => PrepCenter.fromMap(m, id: m['\$id'] as String)).toList());
   }
 
   /// Ressources de préparation aux concours (triées par `order`).
   Future<List<ConcoursResource>> getConcoursResources({int limit = 40}) {
-    return _cachedList('concours_resources:$limit', () async {
-      try {
-        final res = await AppwriteClient.databases.listDocuments(
-          databaseId: appwriteDatabaseId,
-          collectionId: appwriteConcoursResourcesCollectionId,
-          queries: [Query.orderAsc('order'), Query.limit(limit)],
-        );
-        return res.documents.map((d) => ConcoursResource.fromMap(d.data, id: d.$id)).toList();
-      } on AppwriteException {
-        return const <ConcoursResource>[];
-      }
-    });
+    return _cachedList<ConcoursResource>('concours_resources:$limit', () async {
+      final res = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteConcoursResourcesCollectionId,
+        queries: [Query.orderAsc('order'), Query.limit(limit)],
+      );
+      return res.documents.map((d) => {...d.data, '\$id': d.$id}).toList();
+    }, (raw) => raw.map((m) => ConcoursResource.fromMap(m, id: m['\$id'] as String)).toList());
   }
 
   /// Enregistre une candidature de l'utilisateur à un concours (privée).
@@ -660,34 +668,26 @@ class DatabaseService {
 
   /// Matières, triées par `order`.
   Future<List<Subject>> getSubjects({int limit = 50}) {
-    return _cachedList('subjects:$limit', () async {
-      try {
-        final res = await AppwriteClient.databases.listDocuments(
-          databaseId: appwriteDatabaseId,
-          collectionId: appwriteSubjectsCollectionId,
-          queries: [Query.orderAsc('order'), Query.limit(limit)],
-        );
-        return res.documents.map((d) => Subject.fromMap(d.data, id: d.$id)).toList();
-      } on AppwriteException {
-        return const <Subject>[];
-      }
-    });
+    return _cachedList<Subject>('subjects:$limit', () async {
+      final res = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteSubjectsCollectionId,
+        queries: [Query.orderAsc('order'), Query.limit(limit)],
+      );
+      return res.documents.map((d) => {...d.data, '\$id': d.$id}).toList();
+    }, (raw) => raw.map((m) => Subject.fromMap(m, id: m['\$id'] as String)).toList());
   }
 
   /// Tous les chapitres (filtrés côté app par matière), triés par `order`.
   Future<List<Chapter>> getChapters({int limit = 500}) {
-    return _cachedList('chapters:$limit', () async {
-      try {
-        final res = await AppwriteClient.databases.listDocuments(
-          databaseId: appwriteDatabaseId,
-          collectionId: appwriteChaptersCollectionId,
-          queries: [Query.orderAsc('order'), Query.limit(limit)],
-        );
-        return res.documents.map((d) => Chapter.fromMap(d.data, id: d.$id)).toList();
-      } on AppwriteException {
-        return const <Chapter>[];
-      }
-    });
+    return _cachedList<Chapter>('chapters:$limit', () async {
+      final res = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteChaptersCollectionId,
+        queries: [Query.orderAsc('order'), Query.limit(limit)],
+      );
+      return res.documents.map((d) => {...d.data, '\$id': d.$id}).toList();
+    }, (raw) => raw.map((m) => Chapter.fromMap(m, id: m['\$id'] as String)).toList());
   }
 
   /// Fiche de cours mise en cache pour un chapitre, ou null si non générée.
@@ -1007,18 +1007,14 @@ class DatabaseService {
 
   /// Éléments « À l'affiche », triés par `order`. Liste vide en cas d'erreur.
   Future<List<AfficheItem>> getAffiche({int limit = 30}) {
-    return _cachedList('affiche:$limit', () async {
-      try {
-        final res = await AppwriteClient.databases.listDocuments(
-          databaseId: appwriteDatabaseId,
-          collectionId: appwriteAfficheCollectionId,
-          queries: [Query.orderAsc('order'), Query.limit(limit)],
-        );
-        return res.documents.map((d) => AfficheItem.fromMap(d.data, id: d.$id)).toList();
-      } on AppwriteException {
-        return const <AfficheItem>[];
-      }
-    });
+    return _cachedList<AfficheItem>('affiche:$limit', () async {
+      final res = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteAfficheCollectionId,
+        queries: [Query.orderAsc('order'), Query.limit(limit)],
+      );
+      return res.documents.map((d) => {...d.data, '\$id': d.$id}).toList();
+    }, (raw) => raw.map((m) => AfficheItem.fromMap(m, id: m['\$id'] as String)).toList());
   }
 
   // ── Analytics ────────────────────────────────────────────────────────────
