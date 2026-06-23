@@ -301,7 +301,7 @@ class _AuthPhoneScreenState extends State<AuthPhoneScreen> {
                     child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                       Icon(Icons.g_mobiledata_rounded, size: 22, color: OC.blue),
                       const SizedBox(width: 8),
-                      Text('Continuer avec Google', style: body(14, weight: FontWeight.w700, color: OC.ink)),
+                      Text('Continuer avec Google · bientôt', style: body(14, weight: FontWeight.w700, color: OC.ink)),
                     ]),
                   ),
                   const SizedBox(height: 24),
