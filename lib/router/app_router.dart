@@ -80,9 +80,26 @@ import '../services/auth_service.dart';
 
 final _authService = AuthService();
 
+/// Extrait l'id d'annale d'un lien de partage entrant, ou null si ce n'en est
+/// pas un. Couvre le schéma app `onbuch://annale/{id}` et le lien web `…/a/{id}`.
+String? _shareAnnaleId(Uri uri) {
+  if (uri.scheme == 'onbuch' && uri.host == 'annale' && uri.pathSegments.isNotEmpty) {
+    return uri.pathSegments.first;
+  }
+  final segs = uri.pathSegments;
+  final i = segs.indexOf('a');
+  if (i >= 0 && i + 1 < segs.length && segs[i + 1].isNotEmpty) return segs[i + 1];
+  return null;
+}
+
 final appRouter = GoRouter(
   initialLocation: '/splash',
   redirect: (context, state) async {
+    // Liens de partage entrants (onbuch://annale/{id} ou …/a/{id}) : Flutter les
+    // remet directement à go_router → on les convertit en route interne.
+    final shareId = _shareAnnaleId(state.uri);
+    if (shareId != null) return '/annales/open/$shareId';
+
     final path = state.uri.path;
     final isPublic = path == '/splash' ||
         path.startsWith('/onboarding') ||
