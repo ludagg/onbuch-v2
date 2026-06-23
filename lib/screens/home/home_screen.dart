@@ -18,15 +18,47 @@ import '../../models/affiche.dart';
 import '../../models/social_link.dart';
 import '../../models/annale.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  // Change de clé pour forcer toutes les sections à se reconstruire (et donc à
+  // recharger leurs données) lors d'un « tirer pour rafraîchir ».
+  Key _contentKey = UniqueKey();
+
+  Future<void> _refresh() async {
+    final online = await DatabaseService.isOnline();
+    DatabaseService.clearCache(); // force le rechargement (réseau, sinon disque)
+    if (mounted) setState(() => _contentKey = UniqueKey());
+    if (!mounted) return;
+    if (!online) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(
+          'Tu es hors ligne — affichage des dernières données enregistrées.',
+          style: body(13.5, color: Colors.white, weight: FontWeight.w600),
+        ),
+        backgroundColor: OC.ink,
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        margin: const EdgeInsets.all(12),
+      ));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: OC.bg,
-      body: CustomScrollView(
-        slivers: [
+      body: RefreshIndicator(
+        color: OC.o500,
+        onRefresh: _refresh,
+        child: CustomScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          slivers: [
           SliverAppBar(
             pinned: true,
             backgroundColor: OC.bg,
@@ -36,7 +68,9 @@ class HomeScreen extends StatelessWidget {
             actions: obTopActions(context),
           ),
           SliverToBoxAdapter(
-            child: Column(children: [
+            child: KeyedSubtree(
+              key: _contentKey,
+              child: Column(children: [
               const SizedBox(height: 16),
               // Greeting
               const Padding(
@@ -151,8 +185,10 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
             ]),
+            ),
           ),
         ],
+        ),
       ),
     );
   }

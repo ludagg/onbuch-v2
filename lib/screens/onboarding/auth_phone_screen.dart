@@ -50,6 +50,7 @@ class _AuthPhoneScreenState extends State<AuthPhoneScreen> {
 
         // Vérifier si le profil existe
         final hasProfile = await _databaseService.profileExists(uid);
+        if (hasProfile) await _authService.markProfileDone();
         if (!mounted) return;
         context.go(hasProfile ? '/home' : '/auth/profile');
       } else {
