@@ -150,6 +150,76 @@ class CoursPacks extends ChangeNotifier {
 
   Future<void> refresh() => load(force: true);
 
+  /// Récupère un pack par son id, même s'il n'est pas dans le catalogue de la
+  /// classe de l'élève (navigation « par examen », comme les annales). Construit
+  /// le pack depuis la base (matière + chapitres, déjà en cache 5 min).
+  Future<Pack?> fetchPack(String id) async {
+    final inStore = byId(id);
+    if (inStore != null) return inStore;
+    final db = DatabaseService();
+    final subjects = await db.getSubjects();
+    Subject? s;
+    for (final x in subjects) {
+      if (x.id == id) { s = x; break; }
+    }
+    if (s == null) return null;
+    final chs = (await db.getChapters()).where((c) => c.subjectId == id).toList()
+      ..sort((a, b) => a.order.compareTo(b.order));
+    return Pack.fromSubject(s, chs);
+  }
+
+  /// Tous les packs (matières) d'un examen donné — navigation « par examen ».
+  /// Filtre souple sur la série (code/libellé), comme les annales.
+  Future<List<Pack>> packsForExam(String exam, {String serie = ''}) async {
+    final db = DatabaseService();
+    final subjects = await db.getSubjects();
+    final chapters = await db.getChapters();
+    final e = exam.trim().toLowerCase();
+    final ser = serie.trim().toLowerCase();
+    final out = <Pack>[];
+    for (final s in subjects) {
+      final se = s.exam.trim().toLowerCase();
+      // Examen : vide = tous ; sinon égalité (ou alias Bac/Baccalauréat).
+      if (se.isNotEmpty && e.isNotEmpty && se != e && !_examAlias(se, e)) continue;
+      // Série : track vide = toutes ; sinon correspondance souple (cf. appliesToClass).
+      final t = s.track.trim().toLowerCase();
+      if (t.isNotEmpty && ser.isNotEmpty) {
+        final loose = t == ser || (t.length <= 4 && (ser.startsWith(t) || t.startsWith(ser)));
+        if (!loose) continue;
+      }
+      final chs = chapters.where((c) => c.subjectId == s.id).toList()
+        ..sort((a, b) => a.order.compareTo(b.order));
+      out.add(Pack.fromSubject(s, chs));
+    }
+    return out;
+  }
+
+  /// Nombre de packs par examen (compteurs de la grille « Parcourir par examen »).
+  Future<Map<String, int>> countByExam(List<String> exams) async {
+    final subjects = await DatabaseService().getSubjects();
+    final out = {for (final ex in exams) ex: 0};
+    for (final s in subjects) {
+      final se = s.exam.trim();
+      if (se.isEmpty) continue;
+      for (final ex in exams) {
+        if (se.toLowerCase() == ex.toLowerCase() || _examAlias(se.toLowerCase(), ex.toLowerCase())) {
+          out[ex] = (out[ex] ?? 0) + 1;
+        }
+      }
+    }
+    return out;
+  }
+
+  /// Correspondance souple « Bac » ↔ « Baccalauréat », « Prob » ↔ « Probatoire ».
+  static bool _examAlias(String a, String b) {
+    String norm(String x) {
+      if (x.startsWith('bacc') || x == 'bac') return 'bac';
+      if (x.startsWith('prob')) return 'prob';
+      return x;
+    }
+    return norm(a) == norm(b);
+  }
+
   bool isOwned(String id) => _owned.contains(id);
   bool inCart(String id) => _cart.contains(id);
   double progress(String id) => _progress[id] ?? 0;

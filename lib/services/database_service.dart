@@ -388,6 +388,35 @@ class DatabaseService {
     return out;
   }
 
+  /// Annales les plus récentes, tous examens confondus — pour la **recherche**
+  /// (filtrage côté écran : titre/matière/examen/catégorie/année). Paginé et
+  /// borné ; mis en cache 5 min. Liste vide si erreur/hors-ligne.
+  Future<List<Annale>> searchAnnales({int limit = 400}) {
+    return _cachedList<Annale>('annales:search:$limit', () async {
+      final out = <Annale>[];
+      try {
+        var offset = 0;
+        while (true) {
+          final res = await AppwriteClient.databases.listDocuments(
+            databaseId: appwriteDatabaseId,
+            collectionId: appwriteAnnalesCollectionId,
+            queries: [
+              Query.orderDesc('\$createdAt'),
+              Query.limit(100),
+              Query.offset(offset),
+            ],
+          );
+          out.addAll(res.documents.map((d) => Annale.fromMap(d.data, id: d.$id, createdAt: d.$createdAt)));
+          if (res.documents.length < 100 || out.length >= limit) break;
+          offset += 100;
+        }
+      } on AppwriteException {
+        return const <Annale>[];
+      }
+      return out;
+    });
+  }
+
   /// Nombre de documents par examen (compteurs de la page Annales).
   Future<Map<String, int>> annalesCountByExam(List<String> exams) async {
     final out = <String, int>{};

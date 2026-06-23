@@ -55,6 +55,8 @@ import '../screens/menu/credits_screen.dart';
 import '../screens/menu/communaute_screen.dart';
 import '../screens/menu/parametres_screen.dart';
 import '../screens/menu/aide_screen.dart';
+import '../screens/cours/cours_library_home_screen.dart';
+import '../screens/cours/cours_folder_screen.dart';
 import '../screens/cours/cours_catalogue_screen.dart';
 import '../screens/cours/pack_detail_screen.dart';
 import '../screens/cours/cours_library_screen.dart';
@@ -78,9 +80,26 @@ import '../services/auth_service.dart';
 
 final _authService = AuthService();
 
+/// Extrait l'id d'annale d'un lien de partage entrant, ou null si ce n'en est
+/// pas un. Couvre le schéma app `onbuch://annale/{id}` et le lien web `…/a/{id}`.
+String? _shareAnnaleId(Uri uri) {
+  if (uri.scheme == 'onbuch' && uri.host == 'annale' && uri.pathSegments.isNotEmpty) {
+    return uri.pathSegments.first;
+  }
+  final segs = uri.pathSegments;
+  final i = segs.indexOf('a');
+  if (i >= 0 && i + 1 < segs.length && segs[i + 1].isNotEmpty) return segs[i + 1];
+  return null;
+}
+
 final appRouter = GoRouter(
   initialLocation: '/splash',
   redirect: (context, state) async {
+    // Liens de partage entrants (onbuch://annale/{id} ou …/a/{id}) : Flutter les
+    // remet directement à go_router → on les convertit en route interne.
+    final shareId = _shareAnnaleId(state.uri);
+    if (shareId != null) return '/annales/open/$shareId';
+
     final path = state.uri.path;
     final isPublic = path == '/splash' ||
         path.startsWith('/onboarding') ||
@@ -120,7 +139,7 @@ final appRouter = GoRouter(
     GoRoute(path: '/parametres', builder: (_, __) => const ParametresScreen()),
     GoRoute(path: '/aide', builder: (_, __) => const AideScreen()),
     GoRoute(path: '/edit-profile', builder: (_, __) => const EditProfileScreen()),
-    GoRoute(path: '/search', builder: (_, __) => const GlobalSearchScreen()),
+    GoRoute(path: '/search', builder: (_, s) => GlobalSearchScreen(scope: s.uri.queryParameters['scope'])),
     GoRoute(path: '/progress', builder: (_, __) => const ProgressScreen()),
     GoRoute(
       path: '/cours-subject',
@@ -154,6 +173,7 @@ final appRouter = GoRouter(
     ),
     GoRoute(path: '/cours-search', builder: (_, __) => const CoursSearchScreen()),
     // Écrans Cours (packs) — plein écran (hors coque), données réelles.
+    GoRoute(path: '/cours/catalogue', builder: (_, __) => const CoursCatalogueScreen()),
     GoRoute(path: '/cours/pack', builder: (_, s) => PackDetailScreen(subjectId: s.uri.queryParameters['id'])),
     GoRoute(path: '/cours/bibliotheque', builder: (_, __) => const CoursLibraryScreen()),
     GoRoute(path: '/cours/lecon', builder: (_, s) => LessonReaderScreen(subjectId: s.uri.queryParameters['id'], startIndex: int.tryParse(s.uri.queryParameters['i'] ?? '') ?? 0)),
@@ -265,8 +285,23 @@ final appRouter = GoRouter(
             ),
           ],
         ),
-        // Onglet Cours = Catalogue de packs (vision Nomad).
-        GoRoute(path: '/cours', builder: (_, __) => const CoursCatalogueScreen()),
+        // Onglet Cours = bibliothèque par examen (calque de la page Annales),
+        // contenu terminal = packs de cours.
+        GoRoute(
+          path: '/cours',
+          builder: (_, __) => const CoursLibraryHomeScreen(),
+          routes: [
+            GoRoute(
+              path: 'folder/:name',
+              builder: (_, s) => CoursFolderScreen(
+                folderName: s.pathParameters['name'] ?? '',
+                node: s.extra as ExamNode?,
+                exam: s.uri.queryParameters['exam'],
+                subdivision: s.uri.queryParameters['sub'],
+              ),
+            ),
+          ],
+        ),
         GoRoute(path: '/profile', builder: (_, __) => const ProfileScreen()),
       ],
     ),

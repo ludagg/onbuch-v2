@@ -10,7 +10,6 @@ import 'services/auth_service.dart';
 import 'services/push_service.dart';
 import 'services/theme_controller.dart';
 import 'services/exam_structure_service.dart';
-import 'services/deep_link_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -40,8 +39,8 @@ void main() async {
   }
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  // Liens de partage / deep links (onbuch://annale/{id} ou …/a/{id}).
-  DeepLinkService.instance.init();
+  // Liens de partage / deep links (onbuch://annale/{id} ou …/a/{id}) : gérés
+  // directement par go_router (redirect → /annales/open/{id}).
   runApp(const OnBuchApp());
 }
 

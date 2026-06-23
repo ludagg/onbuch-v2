@@ -42,6 +42,11 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
   final List<_Msg> _msgs = [];
   bool _bgNotice = false; // génération en arrière-plan → message « tu peux quitter »
   String? _threadId; // fil de conversation persisté (mémoire)
+  // Mode « aide sur une épreuve » : le 1er message de Léo (préchargé) demande
+  // QUEL exercice bloque (garanti, pas d'IA). L'épreuve est retenue ici puis
+  // envoyée à l'IA dès que l'élève précise l'exercice.
+  bool _awaitingExamExercise = false;
+  Uint8List? _examImage;
   // Sauvegardes du fil SÉRIALISÉES : garantit que la création (1er tour) fixe
   // `_threadId` avant tout tour suivant → on met à jour le même fil au lieu d'en
   // créer un nouveau à chaque message.
@@ -96,6 +101,21 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
           _msgs.add(_Msg.ai(Future.value(m['content'] ?? ''))..resolved = m['content']);
         }
       }
+      return;
+    }
+
+    // Mode « aide sur une épreuve » : Léo demande D'ABORD quel exercice bloque.
+    // Premier message de Léo PRÉCHARGÉ (déterministe → garanti à 100 %), sans
+    // appel IA. L'épreuve (image) est retenue et envoyée à l'IA au 1er message
+    // de l'élève (cf. `_send`).
+    if (r.mode == 'exam_help') {
+      _msgs.add(_Msg.user(image: r.image, text: r.image == null ? r.titleHint : (r.titleHint ?? 'Épreuve')));
+      final preset = (r.presetAnswer != null && r.presetAnswer!.trim().isNotEmpty)
+          ? r.presetAnswer!.trim()
+          : 'Sur quel exercice (ou quelle question) bloques-tu ? Donne-moi le numéro et ce que tu as déjà essayé.';
+      _msgs.add(_Msg.ai(Future.value(preset))..resolved = preset);
+      _awaitingExamExercise = true;
+      _examImage = r.image;
       return;
     }
 
@@ -206,6 +226,24 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
     if (q.isEmpty || !_canSend) return;
     _inputCtrl.clear();
     FocusScope.of(context).unfocus();
+
+    // 1re réponse en mode « épreuve » : on envoie l'épreuve (image) + l'exercice
+    // précisé à l'IA, qui voit alors réellement l'énoncé et aide pas-à-pas.
+    if (_awaitingExamExercise) {
+      _awaitingExamExercise = false;
+      final examImg = _examImage;
+      _examImage = null;
+      final title = (widget.request?.titleHint ?? '').trim();
+      final ctx = title.isEmpty ? '' : ' de l\'épreuve « $title »';
+      final text = 'Je bloque sur : $q$ctx. Aide-moi à le résoudre étape par étape.';
+      setState(() {
+        _msgs.add(_Msg.user(text: q));
+        _addAi(_service.analyzeExercise(image: examImg, text: text, subject: widget.request?.subject, notify: false));
+      });
+      _scrollToBottom();
+      return;
+    }
+
     final history = _history()..add({'role': 'user', 'content': q});
     setState(() {
       _msgs.add(_Msg.user(text: q));
