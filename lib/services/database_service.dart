@@ -889,6 +889,8 @@ class DatabaseService {
       );
       await _upsertMastery(uid, chapterId, subject, topic, score / total, perms);
       await _scheduleReview(uid, chapterId, subject, topic, score / total, perms);
+      // Rafraîchit la mémoire longue de Léo avec ce nouveau signal.
+      await syncStudentMemory(force: true);
     } on AppwriteException {
       // non bloquant
     }
@@ -1004,6 +1006,120 @@ class DatabaseService {
       return items.take(limit).toList();
     } on AppwriteException {
       return const [];
+    }
+  }
+
+  // ── Mémoire longue de Léo (student_memory) ─────────────────────────────────
+  static DateTime? _lastMemorySync;
+
+  /// Met à jour la **mémoire longue** de Léo (`student_memory/{uid}`) à partir
+  /// des signaux déjà collectés : points faibles/forts (`topic_mastery`) +
+  /// objectifs (profil). La fonction `tutor-ai` lit cette mémoire à chaque
+  /// correction → Léo personnalise (« tu prépares le Bac D, tu bloques sur les
+  /// dérivées… »). Best-effort, non bloquant ; n'écrase jamais avec du vide.
+  /// `force` contourne l'anti-rebond (30 min) — utilisé après un quiz.
+  Future<void> syncStudentMemory({bool force = false}) async {
+    if (!force &&
+        _lastMemorySync != null &&
+        DateTime.now().difference(_lastMemorySync!) < const Duration(minutes: 30)) {
+      return;
+    }
+    _lastMemorySync = DateTime.now();
+    try {
+      final user = await AppwriteClient.account.get();
+      final uid = user.$id;
+
+      // 1) Maîtrise par thème → faiblesses (<0,6) et forces (>=0,8).
+      final res = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteTopicMasteryCollectionId,
+        queries: [Query.limit(200)],
+      );
+      final items = res.documents
+          .map((d) => MasteryItem.fromDoc(d.data))
+          .where((m) => m.attempts > 0 && (m.subject.isNotEmpty || m.topic.isNotEmpty))
+          .toList();
+      String label(MasteryItem m) => m.topic.isNotEmpty
+          ? '${m.topic}${m.subject.isNotEmpty ? ' (${m.subject})' : ''}'
+          : m.subject;
+      final weak = items.where((m) => m.mastery < 0.6).toList()
+        ..sort((a, b) => a.mastery.compareTo(b.mastery));
+      final strong = items.where((m) => m.mastery >= 0.8).toList()
+        ..sort((a, b) => b.mastery.compareTo(a.mastery));
+      final weaknesses = weak.take(6).map(label).toSet().join(', ');
+      final strengths = strong.take(6).map(label).toSet().join(', ');
+
+      // 2) Objectifs depuis le profil.
+      final p = await getUserProfile(uid) ?? const <String, dynamic>{};
+      String s(dynamic v) => (v ?? '').toString().trim();
+      final examen = s(p['examen']);
+      final serie = s(p['serie']);
+      final classe = s(p['classe']);
+      final career = s(p['careerGoal']);
+      final goalParts = <String>[];
+      if (examen.isNotEmpty) {
+        goalParts.add('préparer le $examen${serie.isNotEmpty ? ' série $serie' : ''}');
+      } else if (classe.isNotEmpty) {
+        goalParts.add('réussir en $classe');
+      }
+      if (career.isNotEmpty) goalParts.add('vise : $career');
+      final goals = goalParts.join(' · ');
+
+      if (weaknesses.isEmpty && strengths.isEmpty && goals.isEmpty) return;
+
+      String cap(String v, int n) => v.length > n ? v.substring(0, n) : v;
+      final data = <String, dynamic>{
+        'userId': uid,
+        if (weaknesses.isNotEmpty) 'weaknesses': cap(weaknesses, 2000),
+        if (strengths.isNotEmpty) 'strengths': cap(strengths, 2000),
+        if (goals.isNotEmpty) 'goals': cap(goals, 1000),
+        'lastSeen': DateTime.now().toIso8601String(),
+      };
+      try {
+        await AppwriteClient.databases.updateDocument(
+          databaseId: appwriteDatabaseId,
+          collectionId: appwriteStudentMemoryCollectionId,
+          documentId: uid,
+          data: data,
+        );
+      } on AppwriteException catch (e) {
+        if (e.code == 404) {
+          await AppwriteClient.databases.createDocument(
+            databaseId: appwriteDatabaseId,
+            collectionId: appwriteStudentMemoryCollectionId,
+            documentId: uid,
+            data: data,
+            permissions: [
+              Permission.read(Role.user(uid)),
+              Permission.update(Role.user(uid)),
+              Permission.delete(Role.user(uid)),
+            ],
+          );
+        }
+      }
+    } catch (_) {
+      // best-effort : la mémoire ne doit jamais bloquer l'app.
+    }
+  }
+
+  /// Mémoire longue de Léo pour l'utilisateur courant (pour l'afficher).
+  /// Clés : `weaknesses`, `strengths`, `goals` (vides si rien).
+  Future<Map<String, String>> getStudentMemory() async {
+    try {
+      final user = await AppwriteClient.account.get();
+      final doc = await AppwriteClient.databases.getDocument(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteStudentMemoryCollectionId,
+        documentId: user.$id,
+      );
+      String s(dynamic v) => (v ?? '').toString().trim();
+      return {
+        'weaknesses': s(doc.data['weaknesses']),
+        'strengths': s(doc.data['strengths']),
+        'goals': s(doc.data['goals']),
+      };
+    } catch (_) {
+      return const {};
     }
   }
 
