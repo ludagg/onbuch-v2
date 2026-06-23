@@ -30,6 +30,8 @@ const appwriteTutorQuotaCollectionId = 'tutor_quota';
 const appwriteNotificationsCollectionId = 'notifications';
 const appwriteAnnalesCollectionId = 'annales';
 const appwriteAppConfigCollectionId = 'app_config';
+// Annonces configurables affichées en tête du carrousel d'accueil.
+const appwriteHomeAnnouncementsCollectionId = 'home_announcements';
 const appwriteGamificationCollectionId = 'gamification';
 
 // Endpoint serverless (Vercel) qui résout une recherche de résultat pour les

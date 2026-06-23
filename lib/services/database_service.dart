@@ -7,6 +7,7 @@ import '../appwrite_config.dart';
 import 'disk_cache.dart';
 import '../models/article.dart';
 import '../models/exam.dart';
+import '../models/home_announcement.dart';
 import '../models/calendar_event.dart';
 import '../models/concours.dart';
 import '../models/concours_application.dart';
@@ -555,6 +556,26 @@ class DatabaseService {
       return res.documents.map((d) => {...d.data, '\$id': d.$id, '\$createdAt': d.$createdAt}).toList();
     }, (raw) => raw
         .map((m) => Exam.fromMap(m, id: m['\$id'] as String, createdAtFallback: m['\$createdAt'] as String))
+        .toList());
+  }
+
+  /// Annonces configurables du carrousel d'accueil (les actives, dans leur
+  /// fenêtre de programmation, triées par `order`). Tolérant : collection
+  /// absente / hors-ligne → liste vide.
+  Future<List<HomeAnnouncement>> getHomeAnnouncements({int limit = 10}) {
+    return _cachedList<HomeAnnouncement>('home_announcements:$limit', () async {
+      final res = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteHomeAnnouncementsCollectionId,
+        queries: [
+          Query.orderAsc('order'),
+          Query.limit(limit),
+        ],
+      );
+      return res.documents.map((d) => {...d.data, '\$id': d.$id}).toList();
+    }, (raw) => raw
+        .map((m) => HomeAnnouncement.fromMap(m, id: m['\$id'] as String))
+        .where((a) => a.isLive)
         .toList());
   }
 
