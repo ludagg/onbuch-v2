@@ -107,17 +107,18 @@ class _AnnaleDetailScreenState extends State<AnnaleDetailScreen> {
     if (!mounted) return;
     setState(() => _askingLeo = false);
 
-    final ctx = [a.subject, a.exam, if (a.year.isNotEmpty) a.year].where((e) => e.isNotEmpty).join(' · ');
-    final directive = 'Je bloque sur cette épreuve : « ${a.title} »'
-        '${ctx.isEmpty ? '' : ' ($ctx)'}.\n'
-        'Sois mon tuteur : ne corrige pas tout de suite. Demande-moi d\'abord sur '
-        'quel exercice (ou quelle question) précis je suis bloqué·e et ce que j\'ai '
-        'déjà essayé, puis aide-moi à le résoudre pas à pas.';
+    // Premier message de Léo (préchargé, garanti) : il demande d'abord QUEL
+    // exercice bloque. L'épreuve est envoyée à l'IA dès la réponse de l'élève.
+    final preset = 'Salut 👋 J\'ai ouvert ton épreuve « ${a.title} ». '
+        'Sur **quel exercice** ou **quelle question** bloques-tu ? '
+        'Indique-moi le numéro (ex. « Exercice 2 ») et ce que tu as déjà essayé — '
+        'on le résout ensemble, pas à pas.';
 
     context.push('/tutor/correction',
         extra: TutorRequest(
+          mode: 'exam_help',
           image: page,
-          question: directive,
+          presetAnswer: preset,
           subject: a.subject.isEmpty ? a.exam : a.subject,
           titleHint: a.title,
         ));
