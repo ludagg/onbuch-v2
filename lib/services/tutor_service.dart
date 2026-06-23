@@ -160,11 +160,16 @@ class TutorService {
     }
 
     final deadline = DateTime.now().add(const Duration(seconds: 110));
+    var tries = 0;
     while (true) {
       if (DateTime.now().isAfter(deadline)) {
         throw 'Le Tuteur met trop de temps à répondre. Réessaie.';
       }
-      await Future.delayed(const Duration(milliseconds: 1800));
+      // Sondage adaptatif : rapide au début (réponses courtes affichées sans
+      // délai), puis on espace pour ménager le réseau sur les réponses longues.
+      final waitMs = tries < 10 ? 600 : 1600;
+      tries++;
+      await Future.delayed(Duration(milliseconds: waitMs));
       try {
         final doc = await AppwriteClient.databases.getDocument(
           databaseId: appwriteDatabaseId,

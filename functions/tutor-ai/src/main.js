@@ -245,7 +245,11 @@ async function readStudentContext(db, uid) {
   if (!db || !uid) return '';
   try {
     const parts = [];
-    const ru = await awFetch('GET', `/databases/${db}/collections/users/documents/${uid}`);
+    // Les deux lectures sont indépendantes → en parallèle (gain de latence).
+    const [ru, rm] = await Promise.all([
+      awFetch('GET', `/databases/${db}/collections/users/documents/${uid}`),
+      awFetch('GET', `/databases/${db}/collections/student_memory/documents/${uid}`),
+    ]);
     if (ru.status === 200) {
       const u = await ru.json();
       const bits = [];
@@ -256,7 +260,6 @@ async function readStudentContext(db, uid) {
       if (u.careerGoal) bits.push(`objectif d'orientation : ${u.careerGoal}`);
       if (bits.length) parts.push(bits.join(' · '));
     }
-    const rm = await awFetch('GET', `/databases/${db}/collections/student_memory/documents/${uid}`);
     if (rm.status === 200) {
       const m = await rm.json();
       if (m.weaknesses) parts.push(`points faibles connus : ${String(m.weaknesses).slice(0, 400)}`);
@@ -326,7 +329,7 @@ Pour appeler un outil, réponds EXCLUSIVEMENT par ce bloc, SANS aucun texte auto
 Outils :
 - search_courses(query, subject?) → chapitres OnBuch pertinents (avec leur chapterId).
 - get_chapter(chapterId) → contenu du cours de ce chapitre, pour t'appuyer dessus.
-Après un résultat d'outil, soit tu appelles un autre outil, soit tu donnes ta RÉPONSE FINALE (texte normal, JAMAIS de bloc onbuch-action). Quand tu utilises un chapitre, cite-le naturellement (« d'après ton cours « … » »). 3 consultations maximum.`;
+Après un résultat d'outil, soit tu appelles un autre outil, soit tu donnes ta RÉPONSE FINALE (texte normal, JAMAIS de bloc onbuch-action). Quand tu utilises un chapitre, cite-le naturellement (« d'après ton cours « … » »). N'utilise un outil que si c'est vraiment utile — 2 consultations maximum, sinon réponds directement.`;
 
 function parseAction(text) {
   if (!text) return null;
@@ -344,10 +347,11 @@ function parseAction(text) {
   return null;
 }
 
-// Boucle d'agent : le modèle peut appeler des skills (max 3) avant de répondre.
+// Boucle d'agent : le modèle peut appeler des skills (max 2) avant de répondre.
+// Borne volontairement basse pour la latence (chaque tour = un appel modèle).
 async function solveWithTools(apiKey, model, messages, db) {
   const convo = [...messages];
-  for (let step = 0; step < 3; step++) {
+  for (let step = 0; step < 2; step++) {
     const out = await callNvidia(apiKey, model, convo, 3200);
     const action = parseAction(out);
     if (!action) return out; // réponse finale
