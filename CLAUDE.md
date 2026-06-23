@@ -199,13 +199,21 @@ doit être ajouté : Console → Project → Platforms → Web, **ou** via l'API
 
 ## 11. État & chantiers restants
 
-- ✅ Faits récemment : dark mode, fiche de révision Tuteur, PDF LaTeX compilé,
-  push « c'est prêt », séries configurables, liens réseaux pilotés par l'admin,
-  Concours fonctionnel, page Agenda, back-office + web déployés.
-- 🔴 **Annales** : encore 100 % démo (à faire : collection + vrai lecteur PDF →
-  release car plugins natifs).
-- ⬜ **Gamification** (streak/XP/badges) : absente — fort levier de rétention.
+> Feuille de route détaillée et priorisée : **`ROADMAP.md`** (racine).
+
+- ✅ **Faits** : dark mode, fiche de révision Tuteur, PDF LaTeX compilé, push
+  « c'est prêt », séries configurables, liens réseaux admin, Concours, Agenda,
+  back-office + web déployés. **Annales** (lecteur PDF Syncfusion + vidéo
+  YouTube/MP4/HLS, favoris, offline, admin multi-sélection — *plus une démo*).
+  **Gamification** (XP/streak/badges/niveaux, `gamification_service.dart` câblé
+  dans accueil/quiz/tuteur + écran Progrès).
+- 🔴 **Observabilité** : crash reporting **absent** (pas de Crashlytics/Sentry,
+  ni `FlutterError.onError`/`runZonedGuarded`) → prod « aveugle ». Priorité 1.
+- 🔴 **Tests + CI** : ~0 couverture (1 smoke test) ; pas de gate `analyze`/`test`
+  sur PR (seul `shorebird.yml` existe, builds manuels).
+- ⬜ **Cache images disque** : 8 `Image.network` sans `cached_network_image`.
+- ⬜ **Accessibilité** : 0 `Semantics` (blocage WCAG).
 - ⬜ **i18n FR/EN** : absente (sélecteur de langue Paramètres = informatif).
-- ⬜ **Auto-deploy** Vercel (git) ; **crashlytics** ; **cache disque** ; teintes
-  pastel du dark mode à affiner ; **app icon** Léo.
+- ⬜ **Divers** : auto-deploy Vercel (git) ; teintes pastel dark mode ; app icon
+  Léo ; TODO non câblés (recherche/filtre Cours).
 - 🔐 **Sécurité** : régénérer la clé Appwrite exposée ; restreindre la clé Firebase.
