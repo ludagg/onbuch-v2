@@ -377,8 +377,11 @@ async function solveWithTools(apiKey, model, messages, db) {
 
 export default async ({ req, res, error }) => {
   const apiKey = process.env.NVIDIA_API_KEY;
-  const visionModel = process.env.VISION_MODEL || 'meta/llama-4-maverick-17b-128e-instruct';
-  const reasoningModel = process.env.NVIDIA_MODEL || 'deepseek-ai/deepseek-v4-pro';
+  // Modèle Omni multimodal de NVIDIA (texte + image en un seul appel) — défaut
+  // unifié pour la vision et le raisonnement. Surchargé par les variables d'env
+  // VISION_MODEL / NVIDIA_MODEL si renseignées.
+  const visionModel = process.env.VISION_MODEL || 'nvidia/nemotron-3-nano-omni-30b-a3b-reasoning';
+  const reasoningModel = process.env.NVIDIA_MODEL || 'nvidia/nemotron-3-nano-omni-30b-a3b-reasoning';
 
   let input = {};
   try {
@@ -535,6 +538,9 @@ export default async ({ req, res, error }) => {
     let enonce;
     let instruction = '';
     let examText = '';
+    // Photo envoyée directement au modèle Omni (lecture + correction en UN seul
+    // appel, au lieu de transcrire puis raisonner).
+    let imageForSolve = null;
     if (examUrl) {
       try {
         const r = await fetch(examUrl);
@@ -554,19 +560,9 @@ export default async ({ req, res, error }) => {
       enonce = examText.slice(0, 20000);
       instruction = question || "Aide-moi sur cette épreuve.";
     } else if (image) {
-      enonce = await callNvidia(apiKey, visionModel, [
-        { role: 'system', content: TRANSCRIBE_PROMPT },
-        {
-          role: 'user',
-          content: [
-            { type: 'text', text: "Transcris fidèlement l'exercice de cette image." },
-            { type: 'image_url', image_url: { url: `data:image/jpeg;base64,${image}` } },
-          ],
-        },
-      ], 800);
-      if (!enonce || /^illisible/i.test(enonce.trim())) {
-        return finish({ status: 'error', error: "Photo illisible. Reprends une photo nette et bien cadrée de l'exercice." });
-      }
+      // Omni : pas de transcription séparée — l'image part directement au solveur.
+      imageForSolve = image;
+      enonce = '';
       instruction = question; // question = instruction optionnelle en mode photo
     } else if (examUrl) {
       // PDF non extractible (probablement scanné) et aucune image fournie.
@@ -581,6 +577,19 @@ export default async ({ req, res, error }) => {
       ? enonce
       : (instruction ? `${instruction}\n\nÉnoncé :\n${enonce}` : `Voici l'énoncé d'un exercice. Corrige-le.\n\n${enonce}`);
 
+    // Contenu du message élève : image directe (Omni) ou texte.
+    const solveUserContent = imageForSolve
+        ? [
+            {
+              type: 'text',
+              text: (instruction && instruction.trim())
+                  ? `${instruction.trim()}\n\nVoici la photo de l'exercice. Lis-la puis corrige-le étape par étape. Si la photo est illisible, dis-le et demande une photo plus nette.`
+                  : "Voici la photo d'un exercice. Lis-la puis corrige-le étape par étape. Si la photo est illisible, dis-le et demande une photo plus nette.",
+            },
+            { type: 'image_url', image_url: { url: `data:image/jpeg;base64,${imageForSolve}` } },
+          ]
+        : userMsg;
+
     let correction;
     if (isLesson || isQuiz) {
       correction = await callNvidia(apiKey, reasoningModel, [
@@ -588,7 +597,7 @@ export default async ({ req, res, error }) => {
         { role: 'user', content: userMsg },
       ], 3200);
     } else {
-      const convo = [{ role: 'system', content: solveSys }, { role: 'user', content: userMsg }];
+      const convo = [{ role: 'system', content: solveSys }, { role: 'user', content: solveUserContent }];
       correction = wantTools
         ? await solveWithTools(apiKey, reasoningModel, convo, db)
         : await callNvidia(apiKey, reasoningModel, convo, 3200);
@@ -605,7 +614,7 @@ export default async ({ req, res, error }) => {
     if (isQuiz && chapterId) {
       try { await writeQuiz(chapterId, correction); } catch (e) { error(`writeQuiz: ${String(e)}`); }
     }
-    return finish({ status: 'done', correction, title: makeTitle(enonce), subject });
+    return finish({ status: 'done', correction, title: makeTitle(enonce || instruction || subject || 'Correction'), subject });
   } catch (e) {
     if (e instanceof NvError) {
       error(`NVIDIA ${e.status}`);

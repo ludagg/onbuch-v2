@@ -21,8 +21,9 @@ IA (Léo)**, **cours**, **concours**, **annales**, **actus**, **agenda scolaire*
 
 - **Mobile** : Flutter (Dart `^3.8.1`), Flutter **3.44.2** (Dart 3.12.2).
 - **Backend** : **Appwrite Cloud** (auth, databases, functions, messaging/FCM).
-- **IA** : fonction Appwrite `tutor-ai` → modèles **NVIDIA** (vision Llama 4
-  Maverick + raisonnement DeepSeek). La clé NVIDIA est **uniquement serveur**.
+- **IA** : fonction Appwrite `tutor-ai` → **NVIDIA Nemotron 3 Nano Omni**
+  (multimodal : lit la photo **et** corrige en un seul appel, rapide). Clé NVIDIA
+  **uniquement serveur**. Modèle surchargeable via `NVIDIA_MODEL`/`VISION_MODEL`.
 - **Code-push** : **Shorebird** (patch pour le Dart/asset ; release pour le natif).
 - **Nav** : `go_router` · **State** : StatefulWidget + services singletons · **Prefs** :
   `shared_preferences` · **Push** : `firebase_messaging` + cibles Appwrite Messaging.
