@@ -4,9 +4,32 @@ import '../../theme/app_theme.dart';
 import '../../services/cours_packs_service.dart';
 
 /// Détail d'un pack (fiche produit) — données réelles. `subjectId` via la route.
-class PackDetailScreen extends StatelessWidget {
+class PackDetailScreen extends StatefulWidget {
   final String? subjectId;
   const PackDetailScreen({super.key, this.subjectId});
+
+  @override
+  State<PackDetailScreen> createState() => _PackDetailScreenState();
+}
+
+class _PackDetailScreenState extends State<PackDetailScreen> {
+  // Pack résolu depuis la base si absent du catalogue de la classe (navigation
+  // « par examen »). Null tant qu'il n'est pas chargé / introuvable.
+  Pack? _fetched;
+  bool _fetching = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _resolve();
+  }
+
+  Future<void> _resolve() async {
+    final p = await CoursPacks.instance.fetchPack(widget.subjectId ?? '');
+    if (mounted) setState(() { _fetched = p; _fetching = false; });
+  }
+
+  Pack? _packOf(CoursPacks store) => store.byId(widget.subjectId ?? '') ?? _fetched;
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +39,11 @@ class PackDetailScreen extends StatelessWidget {
       body: ListenableBuilder(
         listenable: store,
         builder: (context, _) {
-          final p = store.byId(subjectId ?? '');
+          final p = _packOf(store);
           if (p == null) {
-            return Center(child: Text('Pack introuvable.', style: body(14, color: OC.muted)));
+            return _fetching
+                ? const Center(child: CircularProgressIndicator(color: OC.o500))
+                : Center(child: Text('Pack introuvable.', style: body(14, color: OC.muted)));
           }
           final owned = store.isOwned(p.id);
           return CustomScrollView(slivers: [
@@ -79,7 +104,7 @@ class PackDetailScreen extends StatelessWidget {
       bottomSheet: ListenableBuilder(
         listenable: store,
         builder: (context, _) {
-          final p = store.byId(subjectId ?? '');
+          final p = _packOf(store);
           if (p == null) return const SizedBox.shrink();
           return _footer(context, p, store);
         },

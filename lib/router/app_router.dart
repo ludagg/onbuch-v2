@@ -55,6 +55,8 @@ import '../screens/menu/credits_screen.dart';
 import '../screens/menu/communaute_screen.dart';
 import '../screens/menu/parametres_screen.dart';
 import '../screens/menu/aide_screen.dart';
+import '../screens/cours/cours_library_home_screen.dart';
+import '../screens/cours/cours_folder_screen.dart';
 import '../screens/cours/cours_catalogue_screen.dart';
 import '../screens/cours/pack_detail_screen.dart';
 import '../screens/cours/cours_library_screen.dart';
@@ -154,6 +156,7 @@ final appRouter = GoRouter(
     ),
     GoRoute(path: '/cours-search', builder: (_, __) => const CoursSearchScreen()),
     // Écrans Cours (packs) — plein écran (hors coque), données réelles.
+    GoRoute(path: '/cours/catalogue', builder: (_, __) => const CoursCatalogueScreen()),
     GoRoute(path: '/cours/pack', builder: (_, s) => PackDetailScreen(subjectId: s.uri.queryParameters['id'])),
     GoRoute(path: '/cours/bibliotheque', builder: (_, __) => const CoursLibraryScreen()),
     GoRoute(path: '/cours/lecon', builder: (_, s) => LessonReaderScreen(subjectId: s.uri.queryParameters['id'], startIndex: int.tryParse(s.uri.queryParameters['i'] ?? '') ?? 0)),
@@ -265,8 +268,23 @@ final appRouter = GoRouter(
             ),
           ],
         ),
-        // Onglet Cours = Catalogue de packs (vision Nomad).
-        GoRoute(path: '/cours', builder: (_, __) => const CoursCatalogueScreen()),
+        // Onglet Cours = bibliothèque par examen (calque de la page Annales),
+        // contenu terminal = packs de cours.
+        GoRoute(
+          path: '/cours',
+          builder: (_, __) => const CoursLibraryHomeScreen(),
+          routes: [
+            GoRoute(
+              path: 'folder/:name',
+              builder: (_, s) => CoursFolderScreen(
+                folderName: s.pathParameters['name'] ?? '',
+                node: s.extra as ExamNode?,
+                exam: s.uri.queryParameters['exam'],
+                subdivision: s.uri.queryParameters['sub'],
+              ),
+            ),
+          ],
+        ),
         GoRoute(path: '/profile', builder: (_, __) => const ProfileScreen()),
       ],
     ),
