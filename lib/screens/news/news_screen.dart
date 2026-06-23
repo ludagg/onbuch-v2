@@ -76,40 +76,42 @@ class _ArticleItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           border: Border.all(color: OC.line, width: 1.5),
         ),
-        child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-          ClipRRect(
-            borderRadius: const BorderRadius.horizontal(left: Radius.circular(15)),
-            child: SizedBox(
-              width: 96,
-              child: hasImg
-                  ? Image.network(article.imageUrl!, fit: BoxFit.cover,
-                      errorBuilder: (_, __, ___) => Container(color: cat.tint,
-                          child: Center(child: Icon(Icons.article_outlined, color: cat.accent, size: 26))),
-                      loadingBuilder: (_, child, p) => p == null ? child : Container(color: OC.panel))
-                  : Container(color: cat.tint,
-                      child: Center(child: Icon(Icons.article_outlined, color: cat.accent, size: 26))),
+        child: IntrinsicHeight(
+          child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+            ClipRRect(
+              borderRadius: const BorderRadius.horizontal(left: Radius.circular(15)),
+              child: SizedBox(
+                width: 96,
+                child: hasImg
+                    ? Image.network(article.imageUrl!, fit: BoxFit.cover,
+                        errorBuilder: (_, __, ___) => Container(color: cat.tint,
+                            child: Center(child: Icon(Icons.article_outlined, color: cat.accent, size: 26))),
+                        loadingBuilder: (_, child, p) => p == null ? child : Container(color: OC.panel))
+                    : Container(color: cat.tint,
+                        child: Center(child: Icon(Icons.article_outlined, color: cat.accent, size: 26))),
+              ),
             ),
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(12),
-              child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.center, children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                  decoration: BoxDecoration(color: cat.tint, borderRadius: BorderRadius.circular(7)),
-                  child: Text(article.category.toUpperCase(),
-                      style: body(9.5, weight: FontWeight.w800, color: cat.accent)),
-                ),
-                const SizedBox(height: 7),
-                Text(article.title, maxLines: 2, overflow: TextOverflow.ellipsis,
-                    style: body(13.5, weight: FontWeight.w700).copyWith(height: 1.25)),
-                const SizedBox(height: 5),
-                Text('${article.source} · ${timeAgo(article.publishedAt)}',
-                    style: body(11, color: OC.muted, weight: FontWeight.w500)),
-              ]),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(12),
+                child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.center, children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                    decoration: BoxDecoration(color: cat.tint, borderRadius: BorderRadius.circular(7)),
+                    child: Text(article.category.toUpperCase(),
+                        style: body(9.5, weight: FontWeight.w800, color: cat.accent)),
+                  ),
+                  const SizedBox(height: 7),
+                  Text(article.title, maxLines: 2, overflow: TextOverflow.ellipsis,
+                      style: body(13.5, weight: FontWeight.w700).copyWith(height: 1.25)),
+                  const SizedBox(height: 5),
+                  Text('${article.source} · ${timeAgo(article.publishedAt)}',
+                      style: body(11, color: OC.muted, weight: FontWeight.w500)),
+                ]),
+              ),
             ),
-          ),
-        ]),
+          ]),
+        ),
       ),
     );
   }
