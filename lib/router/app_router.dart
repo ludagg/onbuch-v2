@@ -1,4 +1,5 @@
 import 'dart:typed_data';
+import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import '../screens/onboarding/splash_screen.dart';
 import '../screens/onboarding/value_screens.dart';
@@ -80,6 +81,13 @@ import '../services/auth_service.dart';
 
 final _authService = AuthService();
 
+/// Navigator racine : les pages « viewer » d'annales (détail, PDF, vidéo, lien
+/// de partage) s'y affichent en plein écran, qu'on les ouvre depuis l'intérieur
+/// de la coque (onglet Annales) ou depuis une route hors coque (recherche
+/// globale). Sans cela, un `push` depuis `/search` viserait le Navigator du
+/// `ShellRoute` qui n'est pas monté → écran noir.
+final _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
+
 /// Extrait l'id d'annale d'un lien de partage entrant, ou null si ce n'en est
 /// pas un. Couvre le schéma app `onbuch://annale/{id}` et le lien web `…/a/{id}`.
 String? _shareAnnaleId(Uri uri) {
@@ -93,6 +101,7 @@ String? _shareAnnaleId(Uri uri) {
 }
 
 final appRouter = GoRouter(
+  navigatorKey: _rootNavigatorKey,
   initialLocation: '/splash',
   redirect: (context, state) async {
     // Liens de partage entrants (onbuch://annale/{id} ou …/a/{id}) : Flutter les
@@ -214,10 +223,11 @@ final appRouter = GoRouter(
                 );
               },
             ),
-            GoRoute(path: 'detail', builder: (_, s) => AnnaleDetailScreen(annale: s.extra is Annale ? s.extra as Annale : null)),
-            GoRoute(path: 'open/:id', builder: (_, s) => AnnaleOpenScreen(id: s.pathParameters['id'] ?? '')),
+            GoRoute(path: 'detail', parentNavigatorKey: _rootNavigatorKey, builder: (_, s) => AnnaleDetailScreen(annale: s.extra is Annale ? s.extra as Annale : null)),
+            GoRoute(path: 'open/:id', parentNavigatorKey: _rootNavigatorKey, builder: (_, s) => AnnaleOpenScreen(id: s.pathParameters['id'] ?? '')),
             GoRoute(
               path: 'pdf',
+              parentNavigatorKey: _rootNavigatorKey,
               builder: (_, s) {
                 final m = s.extra is Map ? s.extra as Map : const {};
                 return PdfReaderScreen(
@@ -230,6 +240,7 @@ final appRouter = GoRouter(
             ),
             GoRoute(
               path: 'video',
+              parentNavigatorKey: _rootNavigatorKey,
               builder: (_, s) {
                 final m = s.extra is Map ? s.extra as Map : const {};
                 return VideoCorrigeScreen(
