@@ -103,11 +103,16 @@ async function handleAdmin(req, res, error) {
         return res.json({ ok: false, error: `Échec lecture du solde (${gr.status}).` }, 500);
       }
       const next = Math.max(0, current + amount);
-      // Créer (POST) ou, si déjà présent (409), mettre à jour (PATCH).
+      // Créer (POST) ou, si déjà présent (409), mettre à jour (PATCH). On
+      // (re)pose toujours la permission de lecture du propriétaire : certains
+      // docs créés ailleurs (bot de rachat) arrivaient sans permission, rendant
+      // le solde invisible dans l'app (→ « 0 crédits »). On l'auto-répare ici.
+      const perms = [`read("user:${userId}")`];
       let wr = await awFetch('POST', `/databases/${db}/collections/tutor_quota/documents`,
-        { documentId: userId, data: { credits: next, freeUsedToday: 0, freeResetDate: '' }, permissions: [`read("user:${userId}")`] });
+        { documentId: userId, data: { credits: next, freeUsedToday: 0, freeResetDate: '' }, permissions: perms });
       if (wr.status === 409) {
-        wr = await awFetch('PATCH', `/databases/${db}/collections/tutor_quota/documents/${encodeURIComponent(userId)}`, { data: { credits: next } });
+        wr = await awFetch('PATCH', `/databases/${db}/collections/tutor_quota/documents/${encodeURIComponent(userId)}`,
+          { data: { credits: next }, permissions: perms });
       }
       if (!wr.ok) { error(`quota write ${wr.status}`); return res.json({ ok: false, error: `Échec du crédit (${wr.status}).` }, 500); }
       // Notifier l'élève (best-effort) quand on ajoute des crédits.
