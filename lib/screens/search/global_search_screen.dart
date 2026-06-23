@@ -6,22 +6,25 @@ import '../../widgets/leo_mascot.dart';
 import '../../models/article.dart';
 import '../../models/course.dart';
 import '../../models/concours.dart';
+import '../../models/annale.dart';
 import '../../services/database_service.dart';
 
-/// Recherche globale transverse : actualités, cours et concours.
+/// Recherche globale transverse : annales, cours, actualités et concours.
 class GlobalSearchScreen extends StatefulWidget {
-  const GlobalSearchScreen({super.key});
+  /// Filtre initial (ex. `annales` depuis la page Annales). Null = « Tout ».
+  final String? scope;
+  const GlobalSearchScreen({super.key, this.scope});
 
   @override
   State<GlobalSearchScreen> createState() => _GlobalSearchScreenState();
 }
 
-enum _Kind { cours, actu, concours }
+enum _Kind { annale, cours, actu, concours }
 
 class _Hit {
   final String title, subtitle;
   final _Kind kind;
-  final Object payload; // Chapter / Article / Concours
+  final Object payload; // Annale / Chapter / Article / Concours
   final String? subjectName;
   const _Hit(this.title, this.subtitle, this.kind, this.payload, {this.subjectName});
 }
@@ -33,17 +36,21 @@ class _GlobalSearchScreenState extends State<GlobalSearchScreen> {
 
   List<Article> _articles = [];
   List<Concours> _concours = [];
+  List<Annale> _annales = [];
   Map<String, Subject> _subjectById = {};
   List<Chapter> _chapters = [];
   bool _loading = true;
   String _query = '';
-  int _filter = 0; // 0 Tout, 1 Cours, 2 Actus, 3 Concours
+  int _filter = 0; // 0 Tout, 1 Annales, 2 Cours, 3 Actus, 4 Concours
 
-  static const _filters = ['Tout', 'Cours', 'Actus', 'Concours'];
+  static const _filters = ['Tout', 'Annales', 'Cours', 'Actus', 'Concours'];
+
+  static const _scopeFilter = {'annales': 1, 'cours': 2, 'actus': 3, 'concours': 4};
 
   @override
   void initState() {
     super.initState();
+    _filter = _scopeFilter[widget.scope] ?? 0;
     _load();
     WidgetsBinding.instance.addPostFrameCallback((_) => _focus.requestFocus());
   }
@@ -61,6 +68,7 @@ class _GlobalSearchScreenState extends State<GlobalSearchScreen> {
       _db.getSubjects(),
       _db.getChapters(),
       _db.getConcours(),
+      _db.searchAnnales(),
     ]);
     if (!mounted) return;
     setState(() {
@@ -68,6 +76,7 @@ class _GlobalSearchScreenState extends State<GlobalSearchScreen> {
       _subjectById = {for (final s in results[1] as List<Subject>) s.id: s};
       _chapters = results[2] as List<Chapter>;
       _concours = results[3] as List<Concours>;
+      _annales = results[4] as List<Annale>;
       _loading = false;
     });
   }
@@ -77,6 +86,14 @@ class _GlobalSearchScreenState extends State<GlobalSearchScreen> {
     if (q.isEmpty) return const [];
     final out = <_Hit>[];
     if (_filter == 0 || _filter == 1) {
+      for (final a in _annales) {
+        if ('${a.title} ${a.subject} ${a.exam} ${a.category} ${a.year}'.toLowerCase().contains(q)) {
+          final sub = [a.subject, a.exam, if (a.year.isNotEmpty) a.year].where((e) => e.isNotEmpty).join(' · ');
+          out.add(_Hit(a.title.isEmpty ? a.subject : a.title, sub.isEmpty ? 'annale' : sub, _Kind.annale, a));
+        }
+      }
+    }
+    if (_filter == 0 || _filter == 2) {
       for (final c in _chapters) {
         final sub = _subjectById[c.subjectId];
         if ('${c.title} ${sub?.name ?? ''}'.toLowerCase().contains(q)) {
@@ -84,14 +101,14 @@ class _GlobalSearchScreenState extends State<GlobalSearchScreen> {
         }
       }
     }
-    if (_filter == 0 || _filter == 2) {
+    if (_filter == 0 || _filter == 3) {
       for (final a in _articles) {
         if ('${a.title} ${a.category}'.toLowerCase().contains(q)) {
           out.add(_Hit(a.title, '${a.category} · actualité', _Kind.actu, a));
         }
       }
     }
-    if (_filter == 0 || _filter == 3) {
+    if (_filter == 0 || _filter == 4) {
       for (final c in _concours) {
         if ('${c.name} ${c.organizer}'.toLowerCase().contains(q)) {
           out.add(_Hit(c.name, '${c.organizer.isEmpty ? 'Concours' : c.organizer} · concours', _Kind.concours, c));
@@ -103,6 +120,9 @@ class _GlobalSearchScreenState extends State<GlobalSearchScreen> {
 
   void _open(_Hit h) {
     switch (h.kind) {
+      case _Kind.annale:
+        context.push('/annales/detail', extra: h.payload as Annale);
+        break;
       case _Kind.cours:
         context.push('/cours-chapter', extra: {'chapter': h.payload as Chapter, 'subject': h.subjectName ?? ''});
         break;
@@ -145,7 +165,7 @@ class _GlobalSearchScreenState extends State<GlobalSearchScreen> {
                       isCollapsed: true,
                       contentPadding: const EdgeInsets.symmetric(vertical: 12),
                       border: InputBorder.none,
-                      hintText: 'Cours, actu, concours…',
+                      hintText: 'Annale, cours, actu, concours…',
                       hintStyle: body(14, color: OC.muted),
                     ),
                   )),
@@ -191,7 +211,7 @@ class _GlobalSearchScreenState extends State<GlobalSearchScreen> {
                       art: LeoMascot(size: 104, mood: LeoMood.wave),
                       icon: Icons.search_rounded,
                       title: 'Cherche dans OnBuch',
-                      message: 'Cours, actualités, concours — tout au même endroit.',
+                      message: 'Annales, cours, actualités, concours — tout au même endroit.',
                     )
                   : hits.isEmpty
                       ? EmptyState(icon: Icons.search_off_rounded, title: 'Aucun résultat', message: 'Rien pour « $_query ».')
@@ -210,6 +230,7 @@ class _GlobalSearchScreenState extends State<GlobalSearchScreen> {
 
   Widget _hitRow(_Hit h) {
     final (icon, c) = switch (h.kind) {
+      _Kind.annale => (Icons.description_rounded, const Color(0xFFC0392B)),
       _Kind.actu => (Icons.article_outlined, OC.blue),
       _Kind.concours => (Icons.track_changes_rounded, const Color(0xFF0E9AA0)),
       _Kind.cours => (Icons.menu_book_rounded, OC.o600),

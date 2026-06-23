@@ -122,7 +122,7 @@ final appRouter = GoRouter(
     GoRoute(path: '/parametres', builder: (_, __) => const ParametresScreen()),
     GoRoute(path: '/aide', builder: (_, __) => const AideScreen()),
     GoRoute(path: '/edit-profile', builder: (_, __) => const EditProfileScreen()),
-    GoRoute(path: '/search', builder: (_, __) => const GlobalSearchScreen()),
+    GoRoute(path: '/search', builder: (_, s) => GlobalSearchScreen(scope: s.uri.queryParameters['scope'])),
     GoRoute(path: '/progress', builder: (_, __) => const ProgressScreen()),
     GoRoute(
       path: '/cours-subject',

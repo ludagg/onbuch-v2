@@ -67,7 +67,7 @@ class _AnnalesLibraryScreenState extends State<AnnalesLibraryScreen> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: GestureDetector(
-                onTap: () => context.push('/search'),
+                onTap: () => context.push('/search?scope=annales'),
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 13),
                   decoration: BoxDecoration(
