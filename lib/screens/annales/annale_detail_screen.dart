@@ -1,10 +1,15 @@
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:http/http.dart' as http;
 import 'package:share_plus/share_plus.dart';
 import '../../theme/app_theme.dart';
 import '../../appwrite_config.dart';
 import '../../models/annale.dart';
+import '../../models/tutor_request.dart';
 import '../../services/annale_store.dart';
+import '../../services/capture_service.dart';
+import '../../widgets/leo_mascot.dart';
 
 /// Page d'un document (épreuve/cours/fiche) : aperçu + ressources (Sujet PDF,
 /// Corrigé, Vidéo) ouvertes dans les lecteurs intégrés, + passerelle Tuteur IA.
@@ -21,6 +26,7 @@ class _AnnaleDetailScreenState extends State<AnnaleDetailScreen> {
   bool _fav = false;
   bool _off = false;
   bool _busy = false;
+  bool _askingLeo = false;
 
   @override
   void initState() {
@@ -79,6 +85,42 @@ class _AnnaleDetailScreenState extends State<AnnaleDetailScreen> {
       // Seul le PDF principal est mis en cache hors-ligne → on transmet l'id.
       if (offline) 'offlineId': a?.id,
     };
+  }
+
+  /// Ouvre une conversation avec Léo, l'épreuve **préchargée** : on télécharge le
+  /// sujet PDF, on en rend la 1ʳᵉ page en image envoyée au Tuteur, avec une
+  /// consigne pour que Léo demande d'abord sur quel exercice l'élève bloque.
+  Future<void> _askLeo() async {
+    final a = widget.annale;
+    if (a == null || _askingLeo) return;
+    setState(() => _askingLeo = true);
+
+    Uint8List? page;
+    if (a.hasPdf) {
+      try {
+        final res = await http.get(Uri.parse(a.fileUrl)).timeout(const Duration(seconds: 25));
+        if (res.statusCode == 200 && res.bodyBytes.isNotEmpty) {
+          page = await CaptureService.pdfFirstPageToImage(res.bodyBytes);
+        }
+      } catch (_) {/* hors-ligne / URL invalide → on continue en texte seul */}
+    }
+    if (!mounted) return;
+    setState(() => _askingLeo = false);
+
+    final ctx = [a.subject, a.exam, if (a.year.isNotEmpty) a.year].where((e) => e.isNotEmpty).join(' · ');
+    final directive = 'Je bloque sur cette épreuve : « ${a.title} »'
+        '${ctx.isEmpty ? '' : ' ($ctx)'}.\n'
+        'Sois mon tuteur : ne corrige pas tout de suite. Demande-moi d\'abord sur '
+        'quel exercice (ou quelle question) précis je suis bloqué·e et ce que j\'ai '
+        'déjà essayé, puis aide-moi à le résoudre pas à pas.';
+
+    context.push('/tutor/correction',
+        extra: TutorRequest(
+          image: page,
+          question: directive,
+          subject: a.subject.isEmpty ? a.exam : a.subject,
+          titleHint: a.title,
+        ));
   }
 
   // Le sujet (fileUrl) est mis en cache offline → on passe l'offlineId pour lui.
@@ -248,21 +290,23 @@ class _AnnaleDetailScreenState extends State<AnnaleDetailScreen> {
           ],
 
           GestureDetector(
-            onTap: () => context.go('/tutor'),
+            onTap: _askingLeo ? null : _askLeo,
             child: Container(
               padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(color: OC.o50, borderRadius: BorderRadius.circular(18), border: Border.all(color: OC.o100, width: 1.5)),
               child: Row(children: [
-                Container(
-                  width: 44, height: 44,
-                  decoration: BoxDecoration(gradient: OC.grad, borderRadius: BorderRadius.circular(13)),
-                  child: const Icon(Icons.auto_awesome_rounded, color: Colors.white, size: 23),
+                SizedBox(
+                  width: 46, height: 46,
+                  child: _askingLeo
+                      ? const Center(child: SizedBox(width: 22, height: 22, child: CircularProgressIndicator(strokeWidth: 2.4, color: OC.o500)))
+                      : const LeoMascot(size: 46, mood: LeoMood.encourage),
                 ),
                 const SizedBox(width: 12),
                 Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                   Text('Bloqué·e sur un exercice ?', style: body(14, weight: FontWeight.w700)),
                   const SizedBox(height: 2),
-                  Text('Corrige-le pas-à-pas avec le Tuteur IA', style: body(12, color: OC.o700, weight: FontWeight.w500)),
+                  Text(_askingLeo ? 'Léo ouvre l\'épreuve…' : 'Discute avec Léo : il ouvre l\'épreuve et t\'aide pas-à-pas',
+                      style: body(12, color: OC.o700, weight: FontWeight.w500)),
                 ])),
                 Icon(Icons.chevron_right_rounded, size: 20, color: OC.o600),
               ]),
