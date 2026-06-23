@@ -273,19 +273,6 @@ class _ConcoursDetailScreenState extends State<ConcoursDetailScreen> {
               ),
             ]),
           )),
-      const SizedBox(height: 10),
-      SizedBox(
-        width: double.infinity, height: 48,
-        child: ElevatedButton.icon(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: OC.o500, foregroundColor: Colors.white, elevation: 0,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-          ),
-          icon: const Icon(Icons.bolt_rounded, size: 18),
-          label: const Text('Préparer ces épreuves', style: TextStyle(fontWeight: FontWeight.w700)),
-          onPressed: () => context.push('/concours-prep', extra: c),
-        ),
-      ),
       const SizedBox(height: 8),
       _note('Format indicatif — adapte selon le concours visé.'),
     ]);
@@ -331,8 +318,11 @@ class _ConcoursDetailScreenState extends State<ConcoursDetailScreen> {
     ]);
   }
 
-  // ── Bottom CTA ──
+  // ── Bas de page : lien vers le communiqué officiel (affichage seulement —
+  // l'app ne gère ni la préparation ni les inscriptions). Masqué sans lien.
   Widget _bottomBar(BuildContext context) {
+    final link = (c.communique ?? '').trim();
+    if (link.isEmpty) return const SizedBox.shrink();
     return SafeArea(
       top: false,
       child: Container(
@@ -341,32 +331,22 @@ class _ConcoursDetailScreenState extends State<ConcoursDetailScreen> {
           color: OC.paper,
           border: Border(top: BorderSide(color: OC.line, width: 1.5)),
         ),
-        child: Row(children: [
-          Container(
-            width: 50, height: 50,
-            decoration: BoxDecoration(color: OC.paper, borderRadius: BorderRadius.circular(13),
-                border: Border.all(color: OC.line2, width: 1.5)),
-            child: Icon(Icons.bookmark_border_rounded, size: 22, color: OC.ink2),
-          ),
-          const SizedBox(width: 10),
-          Expanded(child: GestureDetector(
-            onTap: () => context.push('/concours-inscription', extra: c),
-            child: Container(
-              height: 50,
-              decoration: BoxDecoration(
-                gradient: OC.grad,
-                borderRadius: BorderRadius.circular(14),
-                boxShadow: [BoxShadow(color: OC.o500.withValues(alpha: 0.3), blurRadius: 14, offset: const Offset(0, 6))],
-              ),
-              child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                const Icon(Icons.verified_outlined, size: 18, color: Colors.white),
-                const SizedBox(width: 8),
-                Text('Vérifier mon éligibilité',
-                    style: body(14, weight: FontWeight.w700, color: Colors.white)),
-              ]),
+        child: GestureDetector(
+          onTap: () => openUrl(context, link),
+          child: Container(
+            height: 50,
+            decoration: BoxDecoration(
+              gradient: OC.grad,
+              borderRadius: BorderRadius.circular(14),
+              boxShadow: [BoxShadow(color: OC.o500.withValues(alpha: 0.3), blurRadius: 14, offset: const Offset(0, 6))],
             ),
-          )),
-        ]),
+            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              const Icon(Icons.open_in_new_rounded, size: 18, color: Colors.white),
+              const SizedBox(width: 8),
+              Text('Communiqué officiel', style: body(14, weight: FontWeight.w700, color: Colors.white)),
+            ]),
+          ),
+        ),
       ),
     );
   }

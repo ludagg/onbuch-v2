@@ -20,24 +20,12 @@ class ConcoursScreen extends StatefulWidget {
   State<ConcoursScreen> createState() => _ConcoursScreenState();
 }
 
-enum _CFilter { tous, ouverts, cloture, resultats }
-
-extension _CFilterX on _CFilter {
-  String get label => switch (this) {
-        _CFilter.tous => 'Tous',
-        _CFilter.ouverts => 'Ouverts',
-        _CFilter.cloture => 'Clôture proche',
-        _CFilter.resultats => 'Résultats',
-      };
-}
-
 class _ConcoursScreenState extends State<ConcoursScreen> {
   final _db = DatabaseService();
   late final Future<List<Concours>> _future = _db.getConcours();
   late final Future<List<PrepCenter>> _prepFuture = _db.getPrepCenters();
   final _searchCtrl = TextEditingController();
   String _query = '';
-  _CFilter _filter = _CFilter.tous;
 
   @override
   void dispose() {
@@ -51,22 +39,10 @@ class _ConcoursScreenState extends State<ConcoursScreen> {
     return has(c.name) || has(c.organizer) || has(c.description) || has(c.audience);
   }
 
-  bool _matchesFilter(Concours c) {
-    final now = DateTime.now();
-    switch (_filter) {
-      case _CFilter.tous:
-        return true;
-      case _CFilter.ouverts:
-        return c.registrationDeadline == null || c.registrationDeadline!.isAfter(now);
-      case _CFilter.cloture:
-        final dl = c.registrationDeadline;
-        if (dl == null) return false;
-        final d = dl.difference(now).inDays;
-        return d >= 0 && d <= 14;
-      case _CFilter.resultats:
-        return c.resultsAvailable;
-    }
-  }
+  /// Concours OUVERTS uniquement (échéance absente ou à venir) — l'app se limite
+  /// à l'affichage des concours ouverts (préparation et inscriptions hors scope).
+  bool _isOpen(Concours c) =>
+      c.registrationDeadline == null || c.registrationDeadline!.isAfter(DateTime.now());
 
   @override
   Widget build(BuildContext context) {
@@ -94,58 +70,48 @@ class _ConcoursScreenState extends State<ConcoursScreen> {
             );
           }
           final all = snap.data ?? const <Concours>[];
+          // On ne montre QUE les concours ouverts.
+          final open = all.where(_isOpen).toList()
+            ..sort((a, b) {
+              final da = a.registrationDeadline, db = b.registrationDeadline;
+              if (da == null && db == null) return 0;
+              if (da == null) return 1; // sans échéance → après ceux datés
+              if (db == null) return -1;
+              return da.compareTo(db);
+            });
 
-          // Aucune donnée réelle → vrai état vide (plus de faux concours).
-          if (all.isEmpty) {
+          if (open.isEmpty) {
             return const EmptyState(
               icon: Icons.track_changes_rounded,
-              title: 'Aucun concours pour le moment',
-              message: 'Les concours et admissions apparaîtront ici dès leur ouverture. Reviens bientôt !',
+              title: 'Aucun concours ouvert',
+              message: 'Les concours apparaîtront ici dès l’ouverture des inscriptions. Reviens bientôt !',
             );
           }
 
-          final searching = _query.isNotEmpty || _filter != _CFilter.tous;
-
-          // Clôture la plus proche → carte vedette (hors recherche/filtre).
-          final upcoming = all.where((c) => c.registrationDeadline != null &&
-              c.registrationDeadline!.isAfter(DateTime.now())).toList()
-            ..sort((a, b) => a.registrationDeadline!.compareTo(b.registrationDeadline!));
-          final featured = upcoming.isNotEmpty ? upcoming.first : all.first;
-
+          final searching = _query.isNotEmpty;
+          final featured = open.first; // clôture la plus proche
           final list = searching
-              ? all.where((c) => _matchesQuery(c) && _matchesFilter(c)).toList()
-              : all.where((c) => c.id != featured.id).toList();
+              ? open.where(_matchesQuery).toList()
+              : open.where((c) => c.id != featured.id).toList();
 
           final headerLabel = searching
               ? '${list.length} résultat${list.length > 1 ? 's' : ''}'
-              : 'Tous les concours · ${all.length}';
+              : 'Concours ouverts · ${open.length}';
 
           return ListView(
             padding: const EdgeInsets.fromLTRB(20, 6, 20, 32),
             children: [
               _searchField(),
-              const SizedBox(height: 14),
-
-              // Accès rapides (repris de l'ancienne barre supérieure)
-              Row(children: [
-                _miniBtn(Icons.track_changes_rounded, 'Mes candidatures', () => context.push('/mes-candidatures')),
-                const SizedBox(width: 9),
-                _miniBtn(Icons.notifications_active_outlined, 'Alertes', () => context.push('/concours-alertes')),
-              ]),
-              const SizedBox(height: 20),
+              const SizedBox(height: 18),
 
               // Carrousel publicitaire — meilleurs centres de prépa (données admin)
               _PrepCenterCarousel(future: _prepFuture),
 
-              // Vedette — clôture proche (seul bloc « héros », masqué en recherche)
+              // Vedette — clôture la plus proche (masquée en recherche)
               if (!searching) ...[
                 _FeaturedCard(featured),
                 const SizedBox(height: 18),
               ],
-
-              // Filtres de statut (réels)
-              _statusChips(),
-              const SizedBox(height: 16),
 
               _label(headerLabel),
               const SizedBox(height: 12),
@@ -169,9 +135,6 @@ class _ConcoursScreenState extends State<ConcoursScreen> {
                     padding: const EdgeInsets.only(bottom: 10),
                     child: _ConcoursRow(list[i]),
                   )),
-
-              const SizedBox(height: 8),
-              _nativeAd(context),
             ],
           );
         },
@@ -219,82 +182,6 @@ class _ConcoursScreenState extends State<ConcoursScreen> {
               child: Icon(Icons.close_rounded, size: 18, color: OC.muted),
             ),
           ),
-      ]),
-    );
-  }
-
-  Widget _miniBtn(IconData icon, String label, VoidCallback onTap) {
-    return Expanded(
-      child: GestureDetector(
-        behavior: HitTestBehavior.opaque,
-        onTap: onTap,
-        child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 11, horizontal: 12),
-          decoration: BoxDecoration(
-            color: OC.paper,
-            borderRadius: BorderRadius.circular(13),
-            border: Border.all(color: OC.line, width: 1.5),
-          ),
-          child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Icon(icon, size: 17, color: OC.o600),
-            const SizedBox(width: 7),
-            Flexible(child: Text(label, maxLines: 1, overflow: TextOverflow.ellipsis,
-                style: body(12.5, weight: FontWeight.w700, color: OC.ink2))),
-          ]),
-        ),
-      ),
-    );
-  }
-
-  Widget _statusChips() {
-    return SizedBox(
-      height: 34,
-      child: ListView.separated(
-        scrollDirection: Axis.horizontal,
-        itemCount: _CFilter.values.length,
-        separatorBuilder: (_, __) => const SizedBox(width: 8),
-        itemBuilder: (_, i) {
-          final f = _CFilter.values[i];
-          final on = f == _filter;
-          return GestureDetector(
-            onTap: () => setState(() => _filter = f),
-            child: Container(
-              alignment: Alignment.center,
-              padding: const EdgeInsets.symmetric(horizontal: 14),
-              decoration: BoxDecoration(
-                color: on ? OC.ink : OC.paper,
-                borderRadius: BorderRadius.circular(999),
-                border: Border.all(color: on ? OC.ink : OC.line2, width: 1.5),
-              ),
-              child: Text(f.label, style: body(12.5, weight: FontWeight.w700, color: on ? Colors.white : OC.ink2)),
-            ),
-          );
-        },
-      ),
-    );
-  }
-
-  Widget _nativeAd(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(11),
-      decoration: BoxDecoration(
-        color: OC.paper,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: OC.line2, width: 1.5),
-      ),
-      child: Row(children: [
-        Container(
-          width: 40, height: 40,
-          decoration: BoxDecoration(color: OC.panel, borderRadius: BorderRadius.circular(10)),
-          child: Icon(Icons.account_balance_rounded, size: 20, color: OC.muted),
-        ),
-        const SizedBox(width: 11),
-        Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text('Institut Saint-Jean — Prépa', style: body(12, weight: FontWeight.w700)),
-          const SizedBox(height: 2),
-          Text('Inscriptions ouvertes', style: body(10.5, color: OC.muted, weight: FontWeight.w500)),
-        ])),
-        _pill('Pub', OC.panel, OC.muted),
       ]),
     );
   }
