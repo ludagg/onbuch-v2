@@ -225,10 +225,14 @@ async function sendPush(uid, title, body, route) {
 
 async function writeQuota(db, uid, q) {
   const data = { freeUsedToday: q.freeUsedToday, freeResetDate: q.freeResetDate, credits: q.credits };
+  // On (re)pose toujours la permission de lecture du propriétaire, même au PATCH :
+  // auto-répare les docs créés ailleurs (bot de rachat) sans permission, qui
+  // rendaient le solde invisible dans l'app (« 0 crédits »).
+  const permissions = [`read("user:${uid}")`];
   let r = await awFetch('POST', `/databases/${db}/collections/${QUOTA_COL}/documents`,
-    { documentId: uid, data, permissions: [`read("user:${uid}")`] });
+    { documentId: uid, data, permissions });
   if (r.status === 409) {
-    r = await awFetch('PATCH', `/databases/${db}/collections/${QUOTA_COL}/documents/${uid}`, { data });
+    r = await awFetch('PATCH', `/databases/${db}/collections/${QUOTA_COL}/documents/${uid}`, { data, permissions });
   }
   return r.ok;
 }

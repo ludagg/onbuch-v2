@@ -176,6 +176,20 @@
       const data = buildPayload(resource.fields, editing);
       if (editingId) {
         await databases.updateDocument(APPWRITE_DATABASE, resource.collectionId, editingId, data);
+      } else if (resource.idField) {
+        // ID métier (ex. chapterId) : crée le doc avec cet ID, ou remplace la
+        // version existante (souvent générée par l'IA) si elle existe déjà.
+        const docId = String(editing[resource.idField] ?? '').trim();
+        if (!docId) { flash('L’ID du document est requis.', true); saving = false; return; }
+        try {
+          await databases.createDocument(APPWRITE_DATABASE, resource.collectionId, docId, data);
+        } catch (err: any) {
+          if (err?.code === 409) {
+            await databases.updateDocument(APPWRITE_DATABASE, resource.collectionId, docId, data);
+          } else {
+            throw err;
+          }
+        }
       } else {
         await databases.createDocument(APPWRITE_DATABASE, resource.collectionId, ID.unique(), data);
       }
@@ -233,6 +247,37 @@
     }
   }
 
+  // Crédits Tuteur : ajoute (ou retire) des crédits au solde de l'utilisateur,
+  // via la même fonction serveur « ops » (seule habilitée à écrire tutor_quota).
+  async function addCredits(doc: any) {
+    const raw = prompt(`Crédits à ajouter à ${title(doc)} ?\n(nombre négatif pour en retirer)`, '10');
+    if (raw === null) return;
+    const amount = Math.trunc(Number(raw.trim().replace(',', '.')));
+    if (!Number.isFinite(amount) || amount === 0) {
+      flash('Montant invalide.', true);
+      return;
+    }
+    busyId = doc.$id;
+    try {
+      const exec = await functions.createExecution(
+        ADMIN_FUNCTION_ID,
+        JSON.stringify({ action: 'addCredits', userId: doc.$id, amount }),
+        false
+      );
+      let body: any = {};
+      try { body = JSON.parse(exec.responseBody || '{}'); } catch { /* ignore */ }
+      if (!body.ok) {
+        flash(body.error ?? 'Crédit refusé.', true);
+        return;
+      }
+      flash(`${amount > 0 ? '+' : ''}${amount} crédit${Math.abs(amount) > 1 ? 's' : ''} ✓ — solde : ${body.credits}`);
+    } catch (e: any) {
+      flash(e?.message ?? 'Crédit impossible.', true);
+    } finally {
+      busyId = '';
+    }
+  }
+
   // ── Arborescence (séries/filières) : examen → subdivision → filière → matières
   $: examTree = resource?.tree ? buildExamTree(docs) : null;
 
@@ -280,7 +325,9 @@
         {total} élément{total > 1 ? 's' : ''}{searchTerm ? ` · recherche « ${searchTerm} »` : ''}
       </p>
     </div>
-    <button class="btn-primary" on:click={openNew}>+ Nouveau {resource.singular}</button>
+    {#if !resource.readOnly}
+      <button class="btn-primary" on:click={openNew}>+ Nouveau {resource.singular}</button>
+    {/if}
   </header>
 
   {#if canSearch}
@@ -308,7 +355,7 @@
         <button class="btn-ghost" on:click={clearSearch}>Effacer la recherche</button>
       {:else}
         <p>Aucun élément pour le moment.</p>
-        <button class="btn-primary" on:click={openNew}>Créer le premier</button>
+        {#if !resource.readOnly}<button class="btn-primary" on:click={openNew}>Créer le premier</button>{/if}
       {/if}
     </div>
   {:else if resource.tree && examTree}
@@ -374,12 +421,13 @@
           </div>
           <div class="row-actions">
             <button class="btn-ghost btn-sm" title="Copier l'ID du document" on:click={() => navigator.clipboard?.writeText(doc.$id)}>ID</button>
-            <button class="btn-ghost btn-sm" on:click={() => openEdit(doc)}>Modifier</button>
+            <button class="btn-ghost btn-sm" on:click={() => openEdit(doc)}>{resource.readOnly ? 'Voir' : 'Modifier'}</button>
             {#if resource.id === 'users'}
+              <button class="btn-ghost btn-sm" disabled={busyId === doc.$id} on:click={() => addCredits(doc)}>+ Crédits</button>
               <button class="btn-ghost btn-sm" disabled={busyId === doc.$id} on:click={() => accountAction('block', doc)}>Bloquer</button>
               <button class="btn-ghost btn-sm" disabled={busyId === doc.$id} on:click={() => accountAction('unblock', doc)}>Débloquer</button>
               <button class="btn-danger btn-sm" disabled={busyId === doc.$id} on:click={() => accountAction('delete', doc)}>Suppr. compte</button>
-            {:else}
+            {:else if !resource.readOnly}
               <button class="btn-danger btn-sm" on:click={() => remove(doc)}>Suppr.</button>
             {/if}
           </div>
@@ -401,7 +449,7 @@
   <div class="overlay" on:click={close} role="presentation"></div>
   <aside class="drawer">
     <div class="drawer-head">
-      <h2>{editingId ? 'Modifier' : 'Nouveau'} · {resource.singular}</h2>
+      <h2>{resource.readOnly ? 'Détails' : editingId ? 'Modifier' : 'Nouveau'} · {resource.singular}</h2>
       <button class="btn-ghost btn-sm" on:click={close}>Fermer</button>
     </div>
     <div class="drawer-body">
@@ -411,18 +459,18 @@
             {f.label}{#if f.required}<span class="req"> *</span>{/if}
           </label>
           {#if f.type === 'textarea'}
-            <textarea id={'f-' + f.key} bind:value={editing[f.key]}></textarea>
+            <textarea id={'f-' + f.key} bind:value={editing[f.key]} readonly={resource.readOnly}></textarea>
           {:else if f.type === 'boolean'}
             <label class="switch">
-              <input type="checkbox" bind:checked={editing[f.key]} />
+              <input type="checkbox" bind:checked={editing[f.key]} disabled={resource.readOnly} />
               <span>{editing[f.key] ? 'Oui' : 'Non'}</span>
             </label>
           {:else if f.type === 'number'}
-            <input id={'f-' + f.key} type="number" bind:value={editing[f.key]} />
+            <input id={'f-' + f.key} type="number" bind:value={editing[f.key]} readonly={resource.readOnly} />
           {:else if f.type === 'datetime'}
-            <input id={'f-' + f.key} type="datetime-local" bind:value={editing[f.key]} />
+            <input id={'f-' + f.key} type="datetime-local" bind:value={editing[f.key]} readonly={resource.readOnly} />
           {:else if f.type === 'select'}
-            <select id={'f-' + f.key} bind:value={editing[f.key]}>
+            <select id={'f-' + f.key} bind:value={editing[f.key]} disabled={resource.readOnly}>
               {#each f.options ?? [] as opt}
                 {@const val = opt.split('|')[0]}
                 {@const lbl = opt.split('|')[1] ?? opt}
@@ -430,17 +478,21 @@
               {/each}
             </select>
           {:else}
-            <input id={'f-' + f.key} type="text" bind:value={editing[f.key]} />
+            <input id={'f-' + f.key} type="text" bind:value={editing[f.key]} readonly={resource.readOnly} />
           {/if}
           {#if f.help}<div class="help muted">{f.help}</div>{/if}
         </div>
       {/each}
     </div>
     <div class="drawer-foot">
-      <button class="btn-ghost" on:click={close}>Annuler</button>
-      <button class="btn-primary" on:click={save} disabled={saving}>
-        {saving ? 'Enregistrement…' : 'Enregistrer'}
-      </button>
+      {#if resource.readOnly}
+        <button class="btn-primary" on:click={close}>Fermer</button>
+      {:else}
+        <button class="btn-ghost" on:click={close}>Annuler</button>
+        <button class="btn-primary" on:click={save} disabled={saving}>
+          {saving ? 'Enregistrement…' : 'Enregistrer'}
+        </button>
+      {/if}
     </div>
   </aside>
 {/if}

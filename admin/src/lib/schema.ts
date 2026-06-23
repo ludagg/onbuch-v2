@@ -28,6 +28,13 @@ export interface Resource {
   // Affichage en arborescence repliable (examen → subdivision → filière →
   // matières) au lieu d'une liste plate. Spécifique aux séries/filières.
   tree?: boolean;
+  // ID de document = valeur de ce champ à la création (au lieu d'un ID auto).
+  // Utile quand l'app retrouve le doc par une clé métier (ex. lessons/quizzes
+  // keyés par `chapterId`).
+  idField?: string;
+  // Vue lecture seule : pas de création / édition / suppression (suivi/audit de
+  // données utilisateur comme les candidatures ou les achats).
+  readOnly?: boolean;
 }
 
 const order: Field = { key: 'order', label: 'Ordre', type: 'number', help: 'Tri croissant (0 en premier).' };
@@ -179,6 +186,7 @@ export const RESOURCES: Resource[] = [
       { key: 'title', label: 'Titre', type: 'text', required: true },
       { key: 'category', label: 'Catégorie', type: 'text', help: 'Examens, Bourses, Conseil…' },
       { key: 'source', label: 'Source', type: 'text', help: 'Défaut : OnBuch' },
+      { key: 'excerpt', label: 'Aperçu', type: 'textarea', help: 'Court résumé affiché dans la liste (optionnel ; sinon début du contenu).' },
       { key: 'imageUrl', label: "URL d'image", type: 'text' },
       { key: 'body', label: 'Contenu', type: 'textarea' },
       { key: 'featured', label: 'Mis en avant', type: 'boolean' },
@@ -393,6 +401,77 @@ export const RESOURCES: Resource[] = [
       { key: 'partnerDescription', label: 'Partenaire — description', type: 'textarea' },
       { key: 'link', label: 'Lien', type: 'text' },
       order
+    ]
+  },
+  {
+    id: 'lessons',
+    collectionId: 'lessons',
+    label: 'Leçons (Cours)',
+    singular: 'leçon',
+    icon: '📖',
+    titleField: 'chapterId',
+    subtitleField: 'content',
+    orderBy: { field: '$createdAt', dir: 'desc' },
+    idField: 'chapterId',
+    searchFields: ['chapterId'],
+    fields: [
+      { key: 'chapterId', label: 'ID du chapitre', type: 'text', required: true, help: 'Copie l’ID depuis « Chapitres » (bouton ID). Une seule leçon par chapitre — réenregistrer remplace la version IA.' },
+      { key: 'content', label: 'Contenu (Markdown)', type: 'textarea', help: 'Texte de la leçon en Markdown (titres ##, listes -, **gras**, formules). C’est ce que l’élève lit.' }
+    ]
+  },
+  {
+    id: 'quizzes',
+    collectionId: 'quizzes',
+    label: 'Quiz (Cours)',
+    singular: 'quiz',
+    icon: '❓',
+    titleField: 'chapterId',
+    subtitleField: 'content',
+    orderBy: { field: '$createdAt', dir: 'desc' },
+    idField: 'chapterId',
+    searchFields: ['chapterId'],
+    fields: [
+      { key: 'chapterId', label: 'ID du chapitre', type: 'text', required: true, help: 'Copie l’ID depuis « Chapitres » (bouton ID). Un seul quiz par chapitre.' },
+      { key: 'content', label: 'Questions (JSON)', type: 'textarea', required: true, help: 'Format : {"questions":[{"q":"Énoncé ?","options":["A","B","C","D"],"answer":0,"explanation":"Pourquoi"}]}. « answer » = index (0 = 1ʳᵉ option) de la bonne réponse.' }
+    ]
+  },
+  {
+    id: 'concours_applications',
+    collectionId: 'concours_applications',
+    label: 'Candidatures concours',
+    singular: 'candidature',
+    icon: '📋',
+    titleField: 'concoursName',
+    subtitleField: 'status',
+    orderBy: { field: '$createdAt', dir: 'desc' },
+    readOnly: true,
+    searchFields: ['concoursName', 'userId', 'examLabel', 'receiptNo'],
+    fields: [
+      { key: 'concoursName', label: 'Concours', type: 'text' },
+      { key: 'status', label: 'Statut', type: 'text', help: 'submitted · validated · exam · result' },
+      { key: 'userId', label: 'Utilisateur (UID)', type: 'text' },
+      { key: 'examLabel', label: 'Centre / épreuve', type: 'text' },
+      { key: 'receiptNo', label: 'N° de reçu', type: 'text' },
+      { key: 'concoursId', label: 'ID concours', type: 'text' },
+      { key: 'createdAt', label: 'Déposée le', type: 'text' }
+    ]
+  },
+  {
+    id: 'pack_purchases',
+    collectionId: 'pack_purchases',
+    label: 'Achats de packs',
+    singular: 'achat',
+    icon: '🧾',
+    titleField: 'subjectId',
+    subtitleField: 'uid',
+    orderBy: { field: '$createdAt', dir: 'desc' },
+    readOnly: true,
+    searchFields: ['uid', 'subjectId'],
+    fields: [
+      { key: 'subjectId', label: 'ID de la matière (pack)', type: 'text' },
+      { key: 'uid', label: 'Utilisateur (UID)', type: 'text' },
+      { key: 'priceCredits', label: 'Prix (crédits)', type: 'number' },
+      { key: 'createdAt', label: 'Acheté le', type: 'text' }
     ]
   }
 ];

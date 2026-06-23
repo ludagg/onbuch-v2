@@ -81,6 +81,49 @@ async function handleAdmin(req, res, error) {
       if (db) { try { await awFetch('DELETE', `/databases/${db}/collections/users/documents/${encodeURIComponent(userId)}`); } catch (_) {} }
       return res.json({ ok: true, deleted: true });
     }
+    if (action === 'addCredits') {
+      // Crédit manuel par l'admin : ajoute (ou retire si négatif) des crédits au
+      // solde Tuteur de l'utilisateur (tutor_quota/{userId}). Le solde ne descend
+      // jamais sous 0. La collection est en `read("user:<uid>")` → seule cette
+      // fonction (clé serveur) peut y écrire.
+      const amount = Math.trunc(Number(input.amount));
+      if (!Number.isFinite(amount) || amount === 0) {
+        return res.json({ ok: false, error: 'Montant de crédits invalide.' }, 400);
+      }
+      const db = process.env.DATABASE_ID;
+      if (!db) return res.json({ ok: false, error: 'DATABASE_ID manquant.' }, 500);
+      // Solde courant (le doc peut ne pas exister encore).
+      let current = 0;
+      const gr = await awFetch('GET', `/databases/${db}/collections/tutor_quota/documents/${encodeURIComponent(userId)}`);
+      if (gr.ok) {
+        const d = await gr.json();
+        current = Number(d.credits || 0);
+      } else if (gr.status !== 404) {
+        error(`quota get ${gr.status}`);
+        return res.json({ ok: false, error: `Échec lecture du solde (${gr.status}).` }, 500);
+      }
+      const next = Math.max(0, current + amount);
+      // Créer (POST) ou, si déjà présent (409), mettre à jour (PATCH). On
+      // (re)pose toujours la permission de lecture du propriétaire : certains
+      // docs créés ailleurs (bot de rachat) arrivaient sans permission, rendant
+      // le solde invisible dans l'app (→ « 0 crédits »). On l'auto-répare ici.
+      const perms = [`read("user:${userId}")`];
+      let wr = await awFetch('POST', `/databases/${db}/collections/tutor_quota/documents`,
+        { documentId: userId, data: { credits: next, freeUsedToday: 0, freeResetDate: '' }, permissions: perms });
+      if (wr.status === 409) {
+        wr = await awFetch('PATCH', `/databases/${db}/collections/tutor_quota/documents/${encodeURIComponent(userId)}`,
+          { data: { credits: next }, permissions: perms });
+      }
+      if (!wr.ok) { error(`quota write ${wr.status}`); return res.json({ ok: false, error: `Échec du crédit (${wr.status}).` }, 500); }
+      // Notifier l'élève (best-effort) quand on ajoute des crédits.
+      if (amount > 0) {
+        try {
+          await sendPush(userId, 'Crédits ajoutés 🎁',
+            `Tu as reçu ${amount} crédit${amount > 1 ? 's' : ''} Tuteur. Nouveau solde : ${next}.`, '/credits');
+        } catch (_) {/* push best-effort */}
+      }
+      return res.json({ ok: true, credits: next, added: amount });
+    }
     return res.json({ ok: false, error: 'Action inconnue.' }, 400);
   } catch (e) {
     error(String(e));

@@ -77,8 +77,9 @@ export default async function handler(req, res) {
   const balance = qd.ok ? Number(qd.j.credits || 0) : 0;
   if (balance < total) return fail(res, 'Crédits insuffisants.', { need: total, balance });
 
-  // 4) Débiter puis enregistrer la propriété.
-  const debit = await aw('PATCH', `/databases/${DB}/collections/${QUOTA}/documents/${uid}`, { body: { data: { credits: balance - total } } });
+  // 4) Débiter puis enregistrer la propriété. On (re)pose read("user:<uid>") pour
+  // que l'élève puisse toujours lire son solde après l'achat (auto-réparation).
+  const debit = await aw('PATCH', `/databases/${DB}/collections/${QUOTA}/documents/${uid}`, { body: { data: { credits: balance - total }, permissions: [`read("user:${uid}")`] } });
   if (!debit.ok) return fail(res, 'Débit impossible, réessaie.');
 
   const owned = [];
