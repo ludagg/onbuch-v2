@@ -88,9 +88,19 @@ class CoursPacks extends ChangeNotifier {
 
   String get classLabel {
     final e = _short(examLabel);
-    final s = serieLabel.trim();
+    final s = _shortSerie(serieLabel);
     if (e.isEmpty) return s.isEmpty ? '' : 'Série $s';
     return s.isEmpty ? e : '$e · Série $s';
+  }
+
+  /// Série courte : on garde le code (avant le tiret), ex.
+  /// « C — Mathématiques & Sciences physiques » → « C ».
+  static String _shortSerie(String serie) {
+    var s = serie.trim();
+    if (s.isEmpty) return '';
+    final dash = RegExp(r'\s*[—–-]\s*').firstMatch(s);
+    if (dash != null) s = s.substring(0, dash.start).trim();
+    return s;
   }
 
   static String _short(String exam) {
