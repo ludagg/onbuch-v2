@@ -4,7 +4,6 @@
   "installCommand": "cd admin && npm install",
   "buildCommand": "cd admin && npm run build",
   "outputDirectory": "admin/build",
-  "functions": { "api/nv.js": { "maxDuration": 60 } },
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
   "git": {
     "deploymentEnabled": {
