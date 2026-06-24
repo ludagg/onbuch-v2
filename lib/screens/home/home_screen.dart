@@ -124,6 +124,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 ),
               ),
+              const SizedBox(height: 18),
+
+              // Raccourcis rapides (juste sous la recherche)
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: const _QuickLinks(),
+              ),
               const SizedBox(height: 22),
 
               // Hero — carrousel d'examens (compte à rebours résultats)
@@ -813,6 +820,80 @@ class _TuteurCard extends StatelessWidget {
 }
 
 // ─── Raccourcis ───────────────────────────────────────────────────────────────
+// ─── Raccourcis rapides (rangée d'icônes colorées sous la recherche) ─────────
+class _QuickLinks extends StatelessWidget {
+  const _QuickLinks();
+
+  // [icône, libellé, couleur, action ("go:" = onglet, "push:" = écran)]
+  static const _items = <List<Object>>[
+    [Icons.menu_book_rounded, 'Cours', Color(0xFF22A55B), 'go:/cours'],
+    [Icons.article_rounded, 'Annales', Color(0xFF8E5CF7), 'go:/annales'],
+    [Icons.edit_rounded, 'Exercices', Color(0xFF2D7CF0), 'go:/tutor'],
+    [Icons.emoji_events_rounded, 'Concours', Color(0xFFEF4F43), 'go:/concours'],
+    [Icons.photo_camera_rounded, 'Scanner', Color(0xFFF6921E), 'push:/tutor/capture'],
+  ];
+
+  void _tap(BuildContext context, String action) {
+    final i = action.indexOf(':');
+    final kind = action.substring(0, i);
+    final route = action.substring(i + 1);
+    if (kind == 'push') {
+      context.push(route);
+    } else {
+      context.go(route);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: List.generate(_items.length, (i) {
+        final it = _items[i];
+        final color = it[2] as Color;
+        return Expanded(
+          child: GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: () => _tap(context, it[3] as String),
+            child: Column(children: [
+              Container(
+                width: 54,
+                height: 54,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [Color.lerp(color, Colors.white, 0.18)!, color],
+                  ),
+                  borderRadius: BorderRadius.circular(16),
+                  boxShadow: [
+                    BoxShadow(color: color.withValues(alpha: 0.32), blurRadius: 12, offset: const Offset(0, 5)),
+                  ],
+                ),
+                child: Icon(it[0] as IconData, color: Colors.white, size: 26),
+              ),
+              const SizedBox(height: 7),
+              SizedBox(
+                width: double.infinity,
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  alignment: Alignment.center,
+                  child: Text(
+                    it[1] as String,
+                    maxLines: 1,
+                    softWrap: false,
+                    style: body(12, weight: FontWeight.w700, color: OC.ink2),
+                  ),
+                ),
+              ),
+            ]),
+          ),
+        );
+      }),
+    );
+  }
+}
+
 class _Shortcuts extends StatelessWidget {
   // [icône, libellé, accent, fond pastille, route (ou null si à venir)]
   static final _items = [
