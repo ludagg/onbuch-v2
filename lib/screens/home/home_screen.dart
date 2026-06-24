@@ -830,7 +830,7 @@ class _QuickLinks extends StatelessWidget {
     [Icons.article_rounded, 'Annales', Color(0xFF8E5CF7), 'go:/annales'],
     [Icons.edit_rounded, 'Exercices', Color(0xFF2D7CF0), 'go:/tutor'],
     [Icons.emoji_events_rounded, 'Concours', Color(0xFFEF4F43), 'go:/concours'],
-    [Icons.photo_camera_rounded, 'Scanner', Color(0xFFF6921E), 'push:/tutor/capture'],
+    [Icons.camera_alt_rounded, 'Scanner', Color(0xFFF6921E), 'push:/tutor/capture'],
   ];
 
   void _tap(BuildContext context, String action) {
