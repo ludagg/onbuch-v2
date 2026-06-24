@@ -3,108 +3,62 @@
 \noindent\textit{Réciproque de la fonction logarithme népérien, la fonction exponentielle
 transforme les sommes en produits et reste égale à sa propre dérivée. Elle modélise toutes
 les évolutions « à taux constant » : croissance d'une population, désintégration radioactive,
-charge d'un condensateur. Ce chapitre l'étudie, généralise aux exponentielles de base $a$ et
-aux fonctions puissances $x^{\alpha}$, et établit le résultat-clé des \textbf{croissances comparées}.}
+charge d'un condensateur, propagation d'une épidémie. Ce chapitre la construit de deux façons
+(réciproque de $\ln$ et solution de l'équation $y'=y$), établit ses propriétés algébriques,
+sa dérivée, ses limites et le résultat-clé des \textbf{croissances comparées}, mène l'étude
+complète de sa courbe, puis généralise aux exponentielles de base $a$ ($a^{x}$), aux fonctions
+$\mathrm{e}^{u(x)}$ et aux fonctions puissances $x^{\alpha}$. On y traite enfin équations et
+inéquations exponentielles.}
 \vspace{8pt}
 
 % ═══════════════════════════════════════════════════════════════
-\section{La fonction exponentielle népérienne}
+\section{Définition de la fonction exponentielle}
 
-\begin{definition}[Fonction exponentielle]
-La fonction logarithme népérien $\ln$ étant continue et strictement croissante de $]0,+\infty[$
-sur $\R$, elle admet une fonction \textbf{réciproque} appelée \textbf{exponentielle népérienne},
-notée $\exp$. Pour tout réel $x$,
+\begin{definition}[Fonction exponentielle népérienne]
+La fonction logarithme népérien $\ln$ est continue et strictement croissante de $]0,+\infty[$
+\emph{sur} $\R$ (bijection). Elle admet donc une fonction \textbf{réciproque}, appelée
+\textbf{exponentielle népérienne}, notée $\exp$. Pour tout réel $x$ on pose
 \[
-\exp(x)=\mathrm{e}^{x},\qquad\text{où}\quad \mathrm{e}=\exp(1)\approx 2{,}718.
+\exp(x)=\mathrm{e}^{x},\qquad\text{où}\quad \mathrm{e}=\exp(1)\approx 2{,}71828.
 \]
-Elle est définie sur $\R$, à valeurs dans $]0,+\infty[$, et caractérisée par :
+Elle est définie sur $\R$, à valeurs dans $]0,+\infty[$, et caractérisée par l'équivalence
 \[
 y=\mathrm{e}^{x}\iff\big(x=\ln y\ \text{et}\ y>0\big).
 \]
 \end{definition}
 
-\begin{propriete}[Relations fondamentales]
+\begin{propriete}[Relations fondamentales $\exp$ / $\ln$]
 Pour tout $x\in\R$ et tout $y>0$ :
 \[
 \ln\!\big(\mathrm{e}^{x}\big)=x,\qquad \mathrm{e}^{\ln y}=y,\qquad
 \mathrm{e}^{0}=1,\qquad \mathrm{e}^{1}=\mathrm{e}.
 \]
-De plus $\mathrm{e}^{x}>0$ pour tout $x$ : l'exponentielle ne s'annule jamais.
+De plus $\mathrm{e}^{x}>0$ pour tout $x$ : l'exponentielle \textbf{ne s'annule jamais} et reste
+strictement positive.
 \end{propriete}
 
-\begin{theoreme}[Propriétés algébriques]
-Pour tous réels $a$, $b$ et tout entier relatif $n$ :
+\begin{remarque}
+Réciproque signifie que $\exp$ « défait » $\ln$ et inversement : appliquer $\ln$ puis $\exp$
+(ou l'inverse) ramène au point de départ. Comme pour toute paire de fonctions réciproques,
+les courbes de $\exp$ et de $\ln$ sont \textbf{symétriques par rapport à la première bissectrice}
+$y=x$ (figure 1).
+\end{remarque}
+
+\begin{theoreme}[Caractérisation par l'équation $y'=y$]
+La fonction $\exp$ est l'\textbf{unique} fonction $f$ dérivable sur $\R$ vérifiant
 \[
-\mathrm{e}^{a+b}=\mathrm{e}^{a}\,\mathrm{e}^{b},\qquad
-\mathrm{e}^{-a}=\frac{1}{\mathrm{e}^{a}},\qquad
-\mathrm{e}^{a-b}=\frac{\mathrm{e}^{a}}{\mathrm{e}^{b}},\qquad
-\big(\mathrm{e}^{a}\big)^{n}=\mathrm{e}^{na}.
+f'=f\qquad\text{et}\qquad f(0)=1.
 \]
 \end{theoreme}
 
 \begin{remarque}
-Ces formules se déduisent de celles du logarithme : en posant $a=\ln A$ et $b=\ln B$
-(avec $A,B>0$), la relation $\ln(AB)=\ln A+\ln B$ donne $\mathrm{e}^{a+b}=AB=\mathrm{e}^{a}\mathrm{e}^{b}$.
-L'exponentielle \emph{transforme les sommes en produits}, là où le logarithme fait l'inverse.
+C'est le second point de vue, fondamental en sciences : $\exp$ est la fonction qui est
+\emph{égale à sa propre vitesse de variation}. Si une grandeur $f$ vérifie $f'=k\,f$ (taux de
+croissance proportionnel à la quantité présente), alors $f(t)=f(0)\,\mathrm{e}^{kt}$ : c'est le
+modèle de toute évolution exponentielle. \emph{Esquisse d'unicité} : si $g'=g$ et $g(0)=1$,
+posons $h(x)=g(x)\,\mathrm{e}^{-x}$ ; alors $h'(x)=g'(x)\mathrm{e}^{-x}-g(x)\mathrm{e}^{-x}=0$,
+donc $h$ est constante égale à $h(0)=1$, d'où $g(x)=\mathrm{e}^{x}$.
 \end{remarque}
-
-\begin{propriete}[Équivalences utiles]
-Pour tous réels $a$ et $b$ :
-\[
-\mathrm{e}^{a}=\mathrm{e}^{b}\iff a=b,\qquad\qquad
-\mathrm{e}^{a}<\mathrm{e}^{b}\iff a<b.
-\]
-(La fonction $\exp$ est strictement croissante : elle conserve l'ordre.)
-\end{propriete}
-
-\subsection*{Dérivée et variations}
-
-\begin{theoreme}[Dérivée de l'exponentielle]
-La fonction $\exp$ est dérivable sur $\R$ et égale à sa propre dérivée :
-\[
-\big(\mathrm{e}^{x}\big)'=\mathrm{e}^{x}.
-\]
-Plus généralement, si $u$ est dérivable sur $I$, alors $\mathrm{e}^{u}$ est dérivable sur $I$ et
-\[
-\big(\mathrm{e}^{u}\big)'=u'\,\mathrm{e}^{u}.
-\]
-\end{theoreme}
-
-\begin{remarque}
-Comme $\mathrm{e}^{x}>0$, la dérivée $(\mathrm{e}^{x})'=\mathrm{e}^{x}$ est strictement positive :
-$\exp$ est \textbf{strictement croissante} sur $\R$. C'est aussi une fonction \textbf{convexe}
-(sa dérivée seconde $\mathrm{e}^{x}$ est positive), donc sa courbe est au-dessus de chacune de ses
-tangentes — en particulier au-dessus de la tangente en $0$ d'équation $y=x+1$.
-\end{remarque}
-
-\begin{exemple}
-Dérivée de $f(x)=\mathrm{e}^{-3x+1}$ : avec $u(x)=-3x+1$, $u'(x)=-3$, donc
-$f'(x)=-3\,\mathrm{e}^{-3x+1}$.\\
-Dérivée de $g(x)=\mathrm{e}^{x^{2}}$ : ici $u(x)=x^{2}$, $u'(x)=2x$, donc $g'(x)=2x\,\mathrm{e}^{x^{2}}$.
-\end{exemple}
-
-\subsection*{Limites de référence}
-
-\begin{theoreme}[Limites à connaître]
-\[
-\lim_{x\to+\infty}\mathrm{e}^{x}=+\infty,\qquad
-\lim_{x\to-\infty}\mathrm{e}^{x}=0^{+},\qquad
-\lim_{x\to0}\frac{\mathrm{e}^{x}-1}{x}=1.
-\]
-\textbf{Croissances comparées (l'exponentielle l'emporte sur la puissance)} : pour tout entier
-$n\ge 1$,
-\[
-\lim_{x\to+\infty}\frac{\mathrm{e}^{x}}{x^{n}}=+\infty,\qquad
-\lim_{x\to-\infty}x^{n}\,\mathrm{e}^{x}=0.
-\]
-\end{theoreme}
-
-\begin{aretenir}
-\textbf{En $+\infty$, l'exponentielle « écrase » toute puissance} : $\mathrm{e}^{x}$ tend vers
-$+\infty$ infiniment plus vite que $x$, $x^{2}$, $x^{100}$\dots\ Le quotient $\dfrac{\mathrm{e}^{x}}{x^{n}}$
-tend vers $+\infty$. Symétriquement, en $-\infty$, $\mathrm{e}^{x}$ tend vers $0$ si vite que
-$x^{n}\mathrm{e}^{x}\to 0$ malgré $x^{n}\to\pm\infty$.
-\end{aretenir}
 
 % ── FIGURE 1 : exp et ln symétriques par rapport à y=x ──────────
 \begin{illus}
@@ -129,6 +83,185 @@ $x^{n}\mathrm{e}^{x}\to 0$ malgré $x^{n}\to\pm\infty$.
 \end{illus}
 
 % ═══════════════════════════════════════════════════════════════
+\section{Propriétés algébriques}
+
+\begin{theoreme}[Propriétés algébriques]
+Pour tous réels $a$, $b$ et tout entier relatif $n$ :
+\[
+\mathrm{e}^{a+b}=\mathrm{e}^{a}\,\mathrm{e}^{b},\qquad
+\mathrm{e}^{-a}=\frac{1}{\mathrm{e}^{a}},\qquad
+\mathrm{e}^{a-b}=\frac{\mathrm{e}^{a}}{\mathrm{e}^{b}},\qquad
+\big(\mathrm{e}^{a}\big)^{n}=\mathrm{e}^{na}.
+\]
+\end{theoreme}
+
+\begin{remarque}
+Ces formules se déduisent de celles du logarithme : en posant $a=\ln A$ et $b=\ln B$
+(avec $A,B>0$), la relation $\ln(AB)=\ln A+\ln B$ donne
+$\mathrm{e}^{a+b}=AB=\mathrm{e}^{a}\mathrm{e}^{b}$. L'exponentielle \emph{transforme les sommes
+en produits}, là où le logarithme fait l'inverse. C'est la propriété historique qui a permis
+de remplacer des multiplications par des additions (tables, règle à calcul).
+\end{remarque}
+
+\begin{propriete}[Équivalences avec l'ordre]
+Comme $\exp$ est strictement croissante, pour tous réels $a$ et $b$ :
+\[
+\mathrm{e}^{a}=\mathrm{e}^{b}\iff a=b,\qquad\qquad
+\mathrm{e}^{a}<\mathrm{e}^{b}\iff a<b,\qquad\qquad
+\mathrm{e}^{a}\le\mathrm{e}^{b}\iff a\le b.
+\]
+\end{propriete}
+
+\begin{aretenir}
+\textbf{Le réflexe de calcul.} Pour comparer ou résoudre, on « passe les exposants » :
+$\mathrm{e}^{A}=\mathrm{e}^{B}\iff A=B$ et $\mathrm{e}^{A}<\mathrm{e}^{B}\iff A<B$.
+Et l'on n'oublie jamais que $\mathrm{e}^{x}>0$ : une équation $\mathrm{e}^{x}=k$ n'a de solution
+que si $k>0$, et alors $x=\ln k$.
+\end{aretenir}
+
+\begin{exemple}
+Simplifier $\dfrac{\mathrm{e}^{2x}\,\mathrm{e}^{3-x}}{\mathrm{e}^{x+1}}$. On additionne et
+soustrait les exposants : $\mathrm{e}^{2x+(3-x)-(x+1)}=\mathrm{e}^{2x+3-x-x-1}=\mathrm{e}^{2}$.
+\end{exemple}
+
+\begin{exemple}
+Montrer que pour tout $x\in\R$, $\dfrac{\mathrm{e}^{x}}{1+\mathrm{e}^{x}}=\dfrac{1}{1+\mathrm{e}^{-x}}$.
+On multiplie haut et bas du membre de gauche par $\mathrm{e}^{-x}$ :
+$\dfrac{\mathrm{e}^{x}\mathrm{e}^{-x}}{(1+\mathrm{e}^{x})\mathrm{e}^{-x}}
+=\dfrac{1}{\mathrm{e}^{-x}+1}$. C'est bien le membre de droite.
+\end{exemple}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Dérivée, variations et limites}
+
+\subsection*{Dérivée}
+
+\begin{theoreme}[Dérivée de l'exponentielle]
+La fonction $\exp$ est dérivable sur $\R$ et égale à sa propre dérivée :
+\[
+\big(\mathrm{e}^{x}\big)'=\mathrm{e}^{x}.
+\]
+Plus généralement, si $u$ est dérivable sur un intervalle $I$, alors $\mathrm{e}^{u}$ est
+dérivable sur $I$ et
+\[
+\big(\mathrm{e}^{u}\big)'=u'\,\mathrm{e}^{u}.
+\]
+\end{theoreme}
+
+\begin{remarque}
+Comme $\mathrm{e}^{x}>0$, la dérivée $(\mathrm{e}^{x})'=\mathrm{e}^{x}$ est strictement positive :
+$\exp$ est \textbf{strictement croissante} sur $\R$. C'est aussi une fonction \textbf{convexe}
+(sa dérivée seconde $\mathrm{e}^{x}$ est positive), donc sa courbe est au-dessus de chacune de ses
+tangentes — en particulier au-dessus de la tangente en $0$ d'équation $y=x+1$. On a ainsi
+l'inégalité utile $\mathrm{e}^{x}\ge x+1$ pour tout $x$.
+\end{remarque}
+
+\begin{exemple}
+Dérivée de $f(x)=\mathrm{e}^{-3x+1}$ : avec $u(x)=-3x+1$, $u'(x)=-3$, donc
+$f'(x)=-3\,\mathrm{e}^{-3x+1}$.\\
+Dérivée de $g(x)=\mathrm{e}^{x^{2}}$ : ici $u(x)=x^{2}$, $u'(x)=2x$, donc
+$g'(x)=2x\,\mathrm{e}^{x^{2}}$.\\
+Dérivée de $h(x)=x\,\mathrm{e}^{x}$ : produit, $h'(x)=\mathrm{e}^{x}+x\,\mathrm{e}^{x}=(1+x)\mathrm{e}^{x}$.
+\end{exemple}
+
+\subsection*{Limites de référence}
+
+\begin{theoreme}[Limites à connaître]
+\[
+\lim_{x\to+\infty}\mathrm{e}^{x}=+\infty,\qquad
+\lim_{x\to-\infty}\mathrm{e}^{x}=0^{+},\qquad
+\lim_{x\to0}\frac{\mathrm{e}^{x}-1}{x}=1.
+\]
+La dernière limite est le \textbf{nombre dérivé de $\exp$ en $0$} : $\exp'(0)=\mathrm{e}^{0}=1$.
+\end{theoreme}
+
+\begin{theoreme}[Croissances comparées — l'exponentielle l'emporte sur la puissance]
+Pour tout entier $n\ge 1$ (et plus généralement tout réel $\alpha>0$) :
+\[
+\lim_{x\to+\infty}\frac{\mathrm{e}^{x}}{x^{n}}=+\infty,\qquad
+\lim_{x\to-\infty}x^{n}\,\mathrm{e}^{x}=0,\qquad
+\lim_{x\to+\infty}\frac{\mathrm{e}^{x}}{x^{\alpha}}=+\infty.
+\]
+\end{theoreme}
+
+\begin{aretenir}
+\textbf{En $+\infty$, l'exponentielle « écrase » toute puissance} : $\mathrm{e}^{x}$ tend vers
+$+\infty$ infiniment plus vite que $x$, $x^{2}$, $x^{100}$\dots\ Le quotient
+$\dfrac{\mathrm{e}^{x}}{x^{n}}$ tend vers $+\infty$. Symétriquement, en $-\infty$, $\mathrm{e}^{x}$
+tend vers $0$ si vite que $x^{n}\mathrm{e}^{x}\to 0$ malgré $x^{n}\to\pm\infty$.
+\end{aretenir}
+
+\subsection*{Étude et courbe de $\exp$}
+
+D'après ce qui précède, $\exp$ est définie, continue, dérivable et strictement croissante sur
+$\R$, de $0^{+}$ (en $-\infty$) vers $+\infty$. Son tableau de variations est :
+\[
+\begin{array}{c|ccccc}
+x & -\infty & & & & +\infty\\\hline
+\big(\mathrm{e}^{x}\big)'=\mathrm{e}^{x} & & + & & + & \\\hline
+\mathrm{e}^{x} & 0 & & \nearrow & & +\infty
+\end{array}
+\]
+La droite $y=0$ (axe des abscisses) est asymptote horizontale en $-\infty$. La courbe coupe
+l'axe des ordonnées en $(0,1)$, de tangente $y=x+1$ ; elle reste partout au-dessus de cette
+tangente (convexité).
+
+% ── FIGURE 2 : courbe de exp avec tangente en 0 ───────────────
+\begin{illus}
+\begin{tikzpicture}[>=Stealth]
+\begin{axis}[width=8.8cm,height=6cm,axis lines=middle,xlabel={\small $x$},ylabel={\small $y$},
+  xmin=-3.2,xmax=2.3,ymin=-1.2,ymax=7,xtick={-2,-1,1,2},ytick={1,2,4,6},
+  xticklabel style={font=\tiny},yticklabel style={font=\tiny}]
+\addplot[onbo,line width=1.2pt,domain=-3.2:1.95,samples=90]{exp(x)};
+\addplot[onbblue,dashed,line width=0.8pt,domain=-2.2:1.6]{x+1};
+\filldraw[onbink](axis cs:0,1)circle(1.6pt);
+\node[onbo,anchor=west] at (axis cs:1.0,5.6){\small $y=\mathrm{e}^{x}$};
+\node[onbblue,anchor=west] at (axis cs:1.0,2.0){\small $y=x+1$};
+\node[onbmuted,anchor=north] at (axis cs:-2.6,0.05){\small asymptote $y=0$};
+\end{axis}
+\end{tikzpicture}
+\fig{Figure 2 — Courbe de $\exp$ : convexe, asymptote $y=0$ en $-\infty$, au-dessus de sa tangente $y=x+1$.}
+\end{illus}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Fonctions du type $\mathrm{e}^{u(x)}$}
+
+\begin{propriete}[Composition $\mathrm{e}^{u}$]
+Soit $u$ dérivable sur $I$. La fonction $f=\mathrm{e}^{u}$ est dérivable sur $I$ et
+$f'=u'\,\mathrm{e}^{u}$. Comme $\mathrm{e}^{u}>0$, \textbf{le signe de $f'$ est celui de $u'$} :
+$\mathrm{e}^{u}$ a exactement les mêmes variations que $u$. De plus, pour les limites :
+$\displaystyle\lim_{x\to a}u(x)=+\infty\Rightarrow\lim\mathrm{e}^{u}=+\infty$, et
+$\lim u=-\infty\Rightarrow\lim\mathrm{e}^{u}=0^{+}$.
+\end{propriete}
+
+\begin{exemple}
+Étude du signe des variations de $f(x)=\mathrm{e}^{x^{2}-2x}$. On a $u(x)=x^{2}-2x$,
+$u'(x)=2x-2=2(x-1)$, donc $f'(x)=2(x-1)\mathrm{e}^{x^{2}-2x}$ a le signe de $x-1$ :
+$f$ décroît sur $]-\infty,1]$, croît sur $[1,+\infty[$, avec un minimum
+$f(1)=\mathrm{e}^{-1}$.
+\end{exemple}
+
+\begin{remarque}
+On utilise sans cesse, dans les exemples physiques, la fonction $t\mapsto \mathrm{e}^{-kt}$
+($k>0$) : strictement décroissante, de limite $0$ en $+\infty$. C'est le modèle de
+décroissance (radioactivité, décharge d'un condensateur, refroidissement).
+\end{remarque}
+
+% ── FIGURE 3 : e^{-x^2} cloche (gaussienne simplifiée) ──────────
+\begin{illus}
+\begin{tikzpicture}[>=Stealth]
+\begin{axis}[width=8.8cm,height=4.8cm,axis lines=middle,xlabel={\small $x$},ylabel={\small $y$},
+  xmin=-3,xmax=3,ymin=-0.2,ymax=1.25,xtick={-2,-1,1,2},ytick={0.5,1},
+  xticklabel style={font=\tiny},yticklabel style={font=\tiny}]
+\addplot[onbo,line width=1.2pt,domain=-3:3,samples=120]{exp(-x^2)};
+\filldraw[onbink](axis cs:0,1)circle(1.6pt);
+\node[onbo,anchor=west] at (axis cs:0.9,0.85){\small $y=\mathrm{e}^{-x^{2}}$};
+\end{axis}
+\end{tikzpicture}
+\fig{Figure 3 — La fonction $x\mapsto\mathrm{e}^{-x^{2}}$ : « cloche » paire, maximum $1$ en $0$.}
+\end{illus}
+
+% ═══════════════════════════════════════════════════════════════
 \section{Exponentielle de base $a$ et fonctions puissances}
 
 \begin{definition}[Exponentielle de base $a$]
@@ -141,12 +274,20 @@ pour $a=1$ elle est constante égale à $1$. Sa dérivée est $\big(a^{x}\big)'=
 \end{definition}
 
 \begin{remarque}
-On retrouve toutes les règles des puissances : $a^{x+y}=a^{x}a^{y}$, $a^{x-y}=\dfrac{a^{x}}{a^{y}}$,
-$(a^{x})^{y}=a^{xy}$ et $(ab)^{x}=a^{x}b^{x}$. L'exponentielle népérienne est le cas $a=\mathrm{e}$.
+On retrouve toutes les règles des puissances : $a^{x+y}=a^{x}a^{y}$,
+$a^{x-y}=\dfrac{a^{x}}{a^{y}}$, $(a^{x})^{y}=a^{xy}$ et $(ab)^{x}=a^{x}b^{x}$.
+L'exponentielle népérienne est le cas $a=\mathrm{e}$ (alors $\ln a=1$).
 \end{remarque}
 
+\begin{exemple}
+Croissance d'une population qui double chaque année : $N(t)=N_0\,2^{t}=N_0\,\mathrm{e}^{t\ln 2}$.
+Son taux instantané de croissance est $N'(t)=N_0(\ln 2)\,2^{t}=(\ln 2)\,N(t)$, proportionnel
+à la population présente.
+\end{exemple}
+
 \begin{definition}[Fonction puissance]
-Soit $\alpha\in\R$. La fonction \textbf{puissance} d'exposant $\alpha$ est définie sur $]0,+\infty[$ par
+Soit $\alpha\in\R$. La fonction \textbf{puissance} d'exposant $\alpha$ est définie sur
+$]0,+\infty[$ par
 \[
 x^{\alpha}=\mathrm{e}^{\alpha\ln x}.
 \]
@@ -157,7 +298,8 @@ Elle est strictement croissante si $\alpha>0$, strictement décroissante si $\al
 \begin{remarque}
 Ne pas confondre la \emph{fonction puissance} $x\mapsto x^{\alpha}$ (la base varie, l'exposant
 est fixe) et la \emph{fonction exponentielle de base $a$} $x\mapsto a^{x}$ (la base est fixe,
-l'exposant varie). Par exemple $x\mapsto x^{3}$ est une puissance, $x\mapsto 2^{x}$ une exponentielle.
+l'exposant varie). Par exemple $x\mapsto x^{3}$ est une puissance, $x\mapsto 2^{x}$ une
+exponentielle.
 \end{remarque}
 
 \subsection*{Croissances comparées (synthèse)}
@@ -183,7 +325,7 @@ Cette règle lève à elle seule la plupart des indéterminations $\dfrac{\infty
 et $0\times\infty$ de ce chapitre.
 \end{aretenir}
 
-% ── FIGURE 2 : comparaison e^x, x^2, ln x ───────────────────────
+% ── FIGURE 4 : comparaison e^x, x^2, ln x ───────────────────────
 \begin{illus}
 \begin{tikzpicture}[>=Stealth]
 \begin{axis}[width=9cm,height=6cm,axis lines=middle,xlabel={\small $x$},ylabel={\small $y$},
@@ -200,8 +342,52 @@ et $0\times\infty$ de ce chapitre.
 \node[align=left,text width=3.2cm,anchor=west] at (9.1,2.8)
 {\small Dès que $x$ grandit, $\mathrm{e}^{x}$ dépasse $x^{2}$, qui dépasse $\ln x$.};
 \end{tikzpicture}
-\fig{Figure 2 — Croissances comparées : $\mathrm{e}^{x}$ l'emporte sur $x^{2}$, qui l'emporte sur $\ln x$.}
+\fig{Figure 4 — Croissances comparées : $\mathrm{e}^{x}$ l'emporte sur $x^{2}$, qui l'emporte sur $\ln x$.}
 \end{illus}
+
+% ── FIGURE 5 : a^x selon la base ────────────────────────────────
+\begin{illus}
+\begin{tikzpicture}[>=Stealth]
+\begin{axis}[width=8.8cm,height=5.6cm,axis lines=middle,xlabel={\small $x$},ylabel={\small $y$},
+  xmin=-2.6,xmax=2.6,ymin=-0.4,ymax=5,xtick={-2,-1,1,2},ytick={1,2,3,4},
+  xticklabel style={font=\tiny},yticklabel style={font=\tiny}]
+\addplot[onbo,line width=1.1pt,domain=-2.6:2.1,samples=80]{2^x};
+\addplot[onbblue,line width=1.1pt,domain=-2.1:2.6,samples=80]{(0.5)^x};
+\addplot[onbmuted,dashed,line width=0.6pt,domain=-2.6:2.6]{1};
+\filldraw[onbink](axis cs:0,1)circle(1.4pt);
+\node[onbo,anchor=west] at (axis cs:1.2,4.1){\small $y=2^{x}$};
+\node[onbblue,anchor=east] at (axis cs:-1.2,4.1){\small $y=\big(\tfrac12\big)^{x}$};
+\end{axis}
+\end{tikzpicture}
+\fig{Figure 5 — Exponentielles de base $a$ : croissante si $a>1$, décroissante si $0<a<1$ ; toutes passent par $(0,1)$.}
+\end{illus}
+
+% ═══════════════════════════════════════════════════════════════
+\section{L'essentiel à retenir}
+
+\begin{synthese}
+\textbf{Définition.} $\exp$ = réciproque de $\ln$ : $y=\mathrm{e}^{x}\iff(x=\ln y\ \text{et}\ y>0)$.
+Aussi : unique fonction avec $f'=f$ et $f(0)=1$. $\mathrm{e}\approx2{,}718$.\\[4pt]
+\textbf{Relations.} $\ln(\mathrm{e}^{x})=x$,\ $\mathrm{e}^{\ln y}=y$ ($y>0$),\
+$\mathrm{e}^{0}=1$,\ $\mathrm{e}^{x}>0$ toujours.\\[4pt]
+\textbf{Algèbre.} $\mathrm{e}^{a+b}=\mathrm{e}^{a}\mathrm{e}^{b}$,\
+$\mathrm{e}^{-a}=\tfrac1{\mathrm{e}^{a}}$,\ $\mathrm{e}^{a-b}=\tfrac{\mathrm{e}^{a}}{\mathrm{e}^{b}}$,\
+$(\mathrm{e}^{a})^{n}=\mathrm{e}^{na}$.\\[4pt]
+\textbf{Ordre.} $\mathrm{e}^{a}=\mathrm{e}^{b}\iff a=b$ ;\ $\mathrm{e}^{a}<\mathrm{e}^{b}\iff a<b$.\\[4pt]
+\textbf{Dérivée.} $(\mathrm{e}^{x})'=\mathrm{e}^{x}$ ;\ $(\mathrm{e}^{u})'=u'\mathrm{e}^{u}$.
+$\exp$ strictement croissante et convexe ; $\mathrm{e}^{x}\ge x+1$.\\[4pt]
+\textbf{Limites.} $\lim_{+\infty}\mathrm{e}^{x}=+\infty$,\ $\lim_{-\infty}\mathrm{e}^{x}=0^{+}$,\
+$\lim_{0}\tfrac{\mathrm{e}^{x}-1}{x}=1$.\\[4pt]
+\textbf{Croissances comparées.} $\mathrm{e}^{x}\ggg x^{\alpha}\ggg\ln x$ ($\alpha>0$) :\
+$\lim_{+\infty}\tfrac{\mathrm{e}^{x}}{x^{n}}=+\infty$,\ $\lim_{-\infty}x^{n}\mathrm{e}^{x}=0$.\\[4pt]
+\textbf{Base $a$ et puissance.} $a^{x}=\mathrm{e}^{x\ln a}$, $(a^{x})'=(\ln a)a^{x}$ ;\
+$x^{\alpha}=\mathrm{e}^{\alpha\ln x}$ sur $]0,+\infty[$, $(x^{\alpha})'=\alpha x^{\alpha-1}$.\\[4pt]
+\textbf{Plan de résolution.}
+équation $\mathrm{e}^{A}=\mathrm{e}^{B}\Rightarrow A=B$ ;\ $\mathrm{e}^{x}=k\Rightarrow x=\ln k$ (si $k>0$) ;\
+si $\mathrm{e}^{2x},\mathrm{e}^{x}$ : poser $X=\mathrm{e}^{x}>0$.\\[4pt]
+\textbf{Pièges.} oublier que $\mathrm{e}^{x}>0$ (rejeter les racines $X\le0$) ; oublier le $u'$
+dans $(\mathrm{e}^{u})'$ ; croire que $\mathrm{e}^{x}$ s'annule ; confondre $a^{x}$ et $x^{\alpha}$.
+\end{synthese}
 
 % ═══════════════════════════════════════════════════════════════
 \section{Méthodes \& savoir-faire}
@@ -215,14 +401,15 @@ Résoudre $\mathrm{e}^{2x-1}=\mathrm{e}^{x+3}$. On a $2x-1=x+3$, soit $x=4$. \;$
 Résoudre $\mathrm{e}^{x}\ge 5$. Comme $\ln$ est croissante : $x\ge\ln 5$. \;$S=[\ln 5,+\infty[$.
 \end{exemple}
 
-\methode{Changement de variable de type second degré}
+\methode{Changement de variable de type second degré ($X=\mathrm{e}^{x}$)}
 Devant une équation où apparaissent $\mathrm{e}^{2x}$ et $\mathrm{e}^{x}$ (ou $\mathrm{e}^{-x}$),
 poser $X=\mathrm{e}^{x}$ \textbf{avec $X>0$}. On obtient une équation du second degré en $X$ ;
 ne garder que les racines strictement positives, puis revenir à $x=\ln X$.
 \begin{exemple}
 Résoudre $\mathrm{e}^{2x}-3\,\mathrm{e}^{x}+2=0$. Posons $X=\mathrm{e}^{x}>0$ :
 $X^{2}-3X+2=0$ donne $X=1$ ou $X=2$ (toutes deux $>0$).
-Donc $\mathrm{e}^{x}=1\Rightarrow x=0$, ou $\mathrm{e}^{x}=2\Rightarrow x=\ln 2$. \;$S=\{0,\ln 2\}$.
+Donc $\mathrm{e}^{x}=1\Rightarrow x=0$, ou $\mathrm{e}^{x}=2\Rightarrow x=\ln 2$.
+\;$S=\{0,\ln 2\}$.
 \end{exemple}
 
 \methode{Dériver et étudier une fonction comportant $\exp$}
@@ -245,9 +432,20 @@ $\dfrac{x^{3}}{\mathrm{e}^{x}}\to 0$, donc la parenthèse tend vers $1$ et $\mat
 la limite vaut $+\infty$.
 \end{exemple}
 
+\methode{Étudier une limite de la forme $\mathrm{e}^{u}$}
+Calculer d'abord $\displaystyle\lim u$, puis composer : si $u\to+\infty$ alors
+$\mathrm{e}^{u}\to+\infty$ ; si $u\to-\infty$ alors $\mathrm{e}^{u}\to0^{+}$ ; si $u\to\ell$ fini
+alors $\mathrm{e}^{u}\to\mathrm{e}^{\ell}$.
+\begin{exemple}
+$\displaystyle\lim_{x\to+\infty}\mathrm{e}^{-1/x}$. Ici $u(x)=-1/x\to0^{-}$, donc
+$\mathrm{e}^{u}\to\mathrm{e}^{0}=1$. \;$\displaystyle\lim_{x\to0^{+}}\mathrm{e}^{-1/x}$ : $u=-1/x\to-\infty$,
+donc la limite vaut $0$.
+\end{exemple}
+
 \methode{Dérivation logarithmique d'une fonction $u^{v}$}
 Pour dériver $f(x)=u(x)^{v(x)}$ (avec $u>0$), écrire $f(x)=\mathrm{e}^{v(x)\ln u(x)}$ puis dériver
-le produit en exposant. De façon équivalente, $\ln f=v\ln u$ donne $\dfrac{f'}{f}=v'\ln u+v\dfrac{u'}{u}$.
+le produit en exposant. De façon équivalente, $\ln f=v\ln u$ donne
+$\dfrac{f'}{f}=v'\ln u+v\dfrac{u'}{u}$.
 \begin{exemple}
 Soit $f(x)=x^{x}$ sur $]0,+\infty[$. On écrit $f(x)=\mathrm{e}^{x\ln x}$. La dérivée de l'exposant
 $x\ln x$ est $\ln x+1$, donc
@@ -257,14 +455,37 @@ f'(x)=(\ln x+1)\,\mathrm{e}^{x\ln x}=(\ln x+1)\,x^{x}.
 $f'$ s'annule en $x=\mathrm{e}^{-1}$ : $f$ admet un minimum en $\dfrac1{\mathrm{e}}$.
 \end{exemple}
 
+\methode{Dériver $a^{x}$ et résoudre $a^{x}=k$}
+Écrire $a^{x}=\mathrm{e}^{x\ln a}$ : la dérivée est $(\ln a)\,a^{x}$ ; pour résoudre, prendre le
+$\ln$ : $a^{x}=k\iff x\ln a=\ln k\iff x=\dfrac{\ln k}{\ln a}$ (avec $k>0$, $a>0$, $a\ne1$).
+\begin{exemple}
+Résoudre $3^{x}=20$. On a $x=\dfrac{\ln 20}{\ln 3}\approx 2{,}73$. \;Dérivée de
+$g(x)=5\cdot3^{x}$ : $g'(x)=5(\ln 3)\,3^{x}$.
+\end{exemple}
+
+\methode{Étudier une fonction $\mathrm{e}^{u}$ par les variations de $u$}
+Puisque $\exp$ est croissante, $\mathrm{e}^{u}$ a exactement les variations de $u$ et ses
+extremums aux mêmes abscisses. On étudie donc $u$, puis on en déduit $\mathrm{e}^{u}$.
+\begin{exemple}
+$f(x)=\mathrm{e}^{-x^{2}+1}$. Ici $u(x)=-x^{2}+1$ croît sur $]-\infty,0]$ et décroît sur
+$[0,+\infty[$, maximum $u(0)=1$. Donc $f$ croît puis décroît, avec un maximum
+$f(0)=\mathrm{e}^{1}=\mathrm{e}$, et $\lim_{\pm\infty}f=0$.
+\end{exemple}
+
 % ═══════════════════════════════════════════════════════════════
-\section{Exercices}
+\section{Exercices d'application}
 
 \rubrique{Calcul et propriétés algébriques}
 \exo{}\diff{1} Simplifier : a) $\dfrac{\mathrm{e}^{5}\,\mathrm{e}^{-2}}{\mathrm{e}^{3}}$ \quad
-b) $\big(\mathrm{e}^{2}\big)^{3}\mathrm{e}^{-4}$ \quad c) $\dfrac{\mathrm{e}^{2x}\mathrm{e}^{-x}}{\mathrm{e}^{x+1}}$.
+b) $\big(\mathrm{e}^{2}\big)^{3}\mathrm{e}^{-4}$ \quad
+c) $\dfrac{\mathrm{e}^{2x}\mathrm{e}^{-x}}{\mathrm{e}^{x+1}}$.
 
-\exo{}\diff{1} Démontrer que pour tout réel $x$, $\dfrac{\mathrm{e}^{x}}{1+\mathrm{e}^{x}}+\dfrac{1}{1+\mathrm{e}^{x}}=1$.
+\exo{}\diff{1} Démontrer que pour tout réel $x$,
+$\dfrac{\mathrm{e}^{x}}{1+\mathrm{e}^{x}}+\dfrac{1}{1+\mathrm{e}^{x}}=1$.
+
+\exo{}\diff{2} On pose $\mathrm{ch}\,x=\dfrac{\mathrm{e}^{x}+\mathrm{e}^{-x}}{2}$ et
+$\mathrm{sh}\,x=\dfrac{\mathrm{e}^{x}-\mathrm{e}^{-x}}{2}$. Montrer que
+$(\mathrm{ch}\,x)^{2}-(\mathrm{sh}\,x)^{2}=1$ pour tout $x\in\R$.
 
 \rubrique{Équations et inéquations}
 \exo{}\diff{1} Résoudre dans $\R$ : a) $\mathrm{e}^{3x-2}=1$ \quad b) $\mathrm{e}^{x}=7$ \quad
@@ -275,13 +496,19 @@ c) $\mathrm{e}^{2x+1}<\mathrm{e}^{x-1}$.
 \exo{}\diff{2} Résoudre dans $\R$ : $\mathrm{e}^{x}+\mathrm{e}^{-x}=\dfrac{5}{2}$.
 (\textit{Indication : poser $X=\mathrm{e}^{x}$.})
 
+\exo{}\diff{2} Résoudre dans $\R$ l'inéquation
+$(\mathrm{e}^{x}-1)(\mathrm{e}^{x}-3)\le 0$.
+
 \rubrique{Limites et croissances comparées}
 \exo{}\diff{2} Calculer : a) $\displaystyle\lim_{x\to+\infty}\dfrac{\mathrm{e}^{x}}{x^{2}+1}$ \quad
 b) $\displaystyle\lim_{x\to-\infty}x^{2}\mathrm{e}^{x}$ \quad
-c) $\displaystyle\lim_{x\to+\infty}\dfrac{\mathrm{e}^{x}-1}{x}$.
+c) $\displaystyle\lim_{x\to0}\dfrac{\mathrm{e}^{x}-1}{x}$.
 
 \exo{}\diff{3} Étudier $\displaystyle\lim_{x\to+\infty}\big(\mathrm{e}^{x}-x^{2}-1\big)$ et
 $\displaystyle\lim_{x\to+\infty}\dfrac{\mathrm{e}^{x}+x}{\mathrm{e}^{x}-x}$.
+
+\exo{}\diff{2} Calculer $\displaystyle\lim_{x\to+\infty}\dfrac{\mathrm{e}^{x}-1}{\mathrm{e}^{x}+x}$
+et $\displaystyle\lim_{x\to0}\dfrac{\mathrm{e}^{2x}-1}{x}$.
 
 \rubrique{Études de fonctions et puissances}
 \exo{}\diff{2} Soit $f(x)=(2-x)\mathrm{e}^{x}$. Calculer $f'$, dresser le tableau de variations,
@@ -290,24 +517,168 @@ préciser les limites en $\pm\infty$.
 \exo{}\diff{2} On considère $g(x)=x-\ln x$ sur $]0,+\infty[$ et $h(x)=x^{x}$ sur $]0,+\infty[$.
 Étudier les variations de chacune et préciser leur minimum.
 
-\exo{}\diff{3} \textbf{Modèle de désintégration.} La masse (en grammes) d'un échantillon radioactif
-au temps $t$ (en années) est $m(t)=20\,\mathrm{e}^{-0{,}05t}$. a) Quelle est la masse initiale ?
+\exo{}\diff{2} Étudier les variations de $f(x)=\mathrm{e}^{x^{2}-2x}$ et préciser son extremum.
+
+\exo{}\diff{2} Soit $\varphi(x)=\mathrm{e}^{x}-x-1$. Étudier ses variations et en déduire
+que $\mathrm{e}^{x}\ge x+1$ pour tout réel $x$.
+
+\rubrique{Exponentielle de base $a$}
+\exo{}\diff{1} Résoudre dans $\R$ : a) $2^{x}=8$ \quad b) $3^{x}=20$ \quad
+c) $\big(\tfrac12\big)^{x}>4$.
+
+\exo{}\diff{2} Dériver $f(x)=5\cdot 2^{x}$ et $g(x)=x\cdot 3^{x}$.
+
+\rubrique{Modélisation}
+\exo{}\diff{3} \textbf{Modèle de désintégration.} La masse (en grammes) d'un échantillon
+radioactif au temps $t$ (en années) est $m(t)=20\,\mathrm{e}^{-0{,}05t}$.
+a) Quelle est la masse initiale ?
 b) Au bout de combien d'années la masse a-t-elle été divisée par deux (\textit{demi-vie}) ?
 c) Étudier le sens de variation de $m$ et sa limite en $+\infty$.
 
-\rubrique{Problème type Baccalauréat}
-\exo{}\diff{3} On considère la fonction $f$ définie sur $\R$ par
+\exo{}\diff{2} \textbf{Épargne.} Un capital placé à intérêts continus suit
+$C(t)=C_0\,\mathrm{e}^{0{,}06t}$ ($t$ en années, taux $6\%$). Avec $C_0=500\,000$ FCFA,
+calculer $C(5)$ (valeur approchée) et le temps de doublement du capital.
+
+% ═══════════════════════════════════════════════════════════════
+\section{Exercices d'entraînement}
+
+\rubrique{Calcul et propriétés algébriques}
+\exo{}\diff{1} Simplifier : a) $\mathrm{e}^{3}\mathrm{e}^{-3}$ \quad
+b) $\dfrac{\mathrm{e}^{x+2}}{\mathrm{e}^{2}}$ \quad c) $\big(\mathrm{e}^{-x}\big)^{2}\mathrm{e}^{2x}$.
+
+\exo{}\diff{1} Écrire sous la forme $\mathrm{e}^{kx}$ :
+$\dfrac{\mathrm{e}^{4x}\,\mathrm{e}^{-x}}{(\mathrm{e}^{x})^{2}}$.
+
+\exo{}\diff{2} Montrer que pour tout $x$,
+$\dfrac{1}{1+\mathrm{e}^{x}}+\dfrac{1}{1+\mathrm{e}^{-x}}=1$.
+
+\exo{}\diff{2} Avec $\mathrm{ch}$ et $\mathrm{sh}$ définies à l'exercice d'application,
+montrer que $\mathrm{ch}(2x)=(\mathrm{ch}\,x)^{2}+(\mathrm{sh}\,x)^{2}$.
+
+\exo{}\diff{1} Comparer sans calculatrice $\mathrm{e}^{2}$ et $\mathrm{e}^{\sqrt5}$, puis
+$\mathrm{e}^{-3}$ et $\mathrm{e}^{-\pi}$.
+
+\rubrique{Équations}
+\exo{}\diff{1} Résoudre : a) $\mathrm{e}^{x-1}=\mathrm{e}^{3}$ \quad b) $\mathrm{e}^{2x}=\mathrm{e}$ \quad
+c) $\mathrm{e}^{x^{2}}=\mathrm{e}^{4}$.
+
+\exo{}\diff{2} Résoudre $\mathrm{e}^{2x}-7\,\mathrm{e}^{x}+12=0$.
+
+\exo{}\diff{2} Résoudre $\mathrm{e}^{2x}-\mathrm{e}^{x}-6=0$.
+
+\exo{}\diff{2} Résoudre $2\,\mathrm{e}^{2x}-3\,\mathrm{e}^{x}-2=0$.
+
+\exo{}\diff{2} Résoudre $\mathrm{e}^{x}-3+2\,\mathrm{e}^{-x}=0$.
+
+\exo{}\diff{3} Résoudre $\mathrm{e}^{x}+\mathrm{e}^{-x}=2$. Combien de solutions ?
+
+\exo{}\diff{2} Résoudre $(x-1)\mathrm{e}^{x}=0$ puis $x\,\mathrm{e}^{x}=\mathrm{e}^{x}$.
+
+\rubrique{Inéquations}
+\exo{}\diff{1} Résoudre : a) $\mathrm{e}^{x}\le 1$ \quad b) $\mathrm{e}^{2x-3}>1$ \quad
+c) $\mathrm{e}^{-x}\ge \mathrm{e}^{2}$.
+
+\exo{}\diff{2} Résoudre $\mathrm{e}^{2x}-4\,\mathrm{e}^{x}+3\ge 0$.
+(\textit{Poser $X=\mathrm{e}^{x}$.})
+
+\exo{}\diff{2} Résoudre $\dfrac{\mathrm{e}^{x}-2}{\mathrm{e}^{x}+1}\le 0$.
+
+\exo{}\diff{2} Résoudre $(\mathrm{e}^{x}-1)(\mathrm{e}^{x}-2)>0$.
+
+\rubrique{Limites et croissances comparées}
+\exo{}\diff{1} Calculer : a) $\displaystyle\lim_{x\to+\infty}\mathrm{e}^{-x}+3$ \quad
+b) $\displaystyle\lim_{x\to-\infty}\mathrm{e}^{2x}$ \quad
+c) $\displaystyle\lim_{x\to+\infty}(1-\mathrm{e}^{x})$.
+
+\exo{}\diff{2} Calculer : a) $\displaystyle\lim_{x\to+\infty}x\,\mathrm{e}^{-x}$ \quad
+b) $\displaystyle\lim_{x\to+\infty}\dfrac{\mathrm{e}^{x}}{x^{3}}$ \quad
+c) $\displaystyle\lim_{x\to-\infty}(x^{3}+1)\mathrm{e}^{x}$.
+
+\exo{}\diff{2} Calculer $\displaystyle\lim_{x\to0}\dfrac{\mathrm{e}^{3x}-1}{x}$ et
+$\displaystyle\lim_{x\to0}\dfrac{\mathrm{e}^{x}-1}{\mathrm{e}^{2x}-1}$.
+
+\exo{}\diff{3} Calculer $\displaystyle\lim_{x\to+\infty}\big(\mathrm{e}^{x}-x\big)$ et
+$\displaystyle\lim_{x\to+\infty}\dfrac{2\mathrm{e}^{x}-x^{2}}{\mathrm{e}^{x}+x}$.
+
+\exo{}\diff{3} Calculer $\displaystyle\lim_{x\to+\infty}\dfrac{\mathrm{e}^{x}-\mathrm{e}^{-x}}{\mathrm{e}^{x}+\mathrm{e}^{-x}}$.
+
+\rubrique{Études de fonctions}
+\exo{}\diff{2} Étudier $f(x)=x\,\mathrm{e}^{-x}$ : limites, variations, tableau.
+
+\exo{}\diff{2} Étudier $f(x)=(x^{2}-2)\mathrm{e}^{x}$ : dérivée, variations, limites.
+
+\exo{}\diff{2} Étudier $f(x)=\dfrac{\mathrm{e}^{x}}{x}$ sur $]0,+\infty[$ : limites, variations,
+minimum.
+
+\exo{}\diff{2} Étudier $f(x)=\mathrm{e}^{x}-x$ : variations et signe (montrer $f>0$).
+
+\exo{}\diff{3} Soit $f(x)=\dfrac{1}{1+\mathrm{e}^{-x}}$ (fonction « logistique »). Déterminer
+les limites en $\pm\infty$, montrer que $f$ est strictement croissante, et que la courbe
+admet le point $(0,\tfrac12)$ comme centre de symétrie.
+
+\exo{}\diff{3} Étudier $f(x)=\mathrm{e}^{x}+\mathrm{e}^{-x}$ : parité, variations, minimum,
+limites, convexité.
+
+\rubrique{Base $a$, puissances et modélisation}
+\exo{}\diff{1} Résoudre : a) $5^{x}=125$ \quad b) $2^{x}=0{,}25$ \quad c) $7^{x}=1$.
+
+\exo{}\diff{2} Une population de Douala croît selon $P(t)=2{,}5\,(1{,}03)^{t}$ (millions, $t$ en
+années depuis 2020). Estimer la population en 2030 et le temps pour qu'elle augmente de moitié.
+
+\exo{}\diff{2} Dériver : a) $f(x)=4^{x}$ \quad b) $g(x)=x^{2}\,2^{x}$ \quad
+c) $h(x)=\dfrac{3^{x}}{x}$.
+
+\exo{}\diff{3} La charge d'un condensateur vaut $q(t)=Q_0\big(1-\mathrm{e}^{-t/\tau}\big)$
+($\tau>0$). Calculer $\lim_{t\to+\infty}q(t)$, étudier le sens de variation de $q$, et le temps
+au bout duquel la charge atteint $90\%$ de $Q_0$ (en fonction de $\tau$).
+
+\exo{}\diff{2} Soit $f(x)=x^{\alpha}$ sur $]0,+\infty[$ avec $\alpha=\tfrac13$. Calculer $f'$,
+préciser le sens de variation et $\lim_{0^{+}}f$, $\lim_{+\infty}f$.
+
+% ═══════════════════════════════════════════════════════════════
+\section{Sujets type Baccalauréat}
+
+\sujetbac[étude d'une fonction $(x+1)\mathrm{e}^{-x}$, tangente et point d'inflexion]
+On considère la fonction $f$ définie sur $\R$ par
 \[
 f(x)=(x+1)\,\mathrm{e}^{-x},
 \]
 de courbe $\mathcal C_f$ dans un repère orthonormé.
 \begin{enumerate}[label=\arabic*)]
-\item Déterminer les limites de $f$ en $-\infty$ et en $+\infty$. En déduire une asymptote à $\mathcal C_f$.
-\item Calculer $f'(x)$ et montrer que $f'(x)=-x\,\mathrm{e}^{-x}$. Dresser le tableau de variations de $f$.
+\item Déterminer les limites de $f$ en $-\infty$ et en $+\infty$. En déduire une asymptote à
+$\mathcal C_f$.
+\item Calculer $f'(x)$ et montrer que $f'(x)=-x\,\mathrm{e}^{-x}$. Dresser le tableau de
+variations de $f$.
 \item Déterminer l'équation de la tangente $T$ à $\mathcal C_f$ au point d'abscisse $0$.
 \item Étudier la position de $\mathcal C_f$ par rapport à l'axe des abscisses (signe de $f$).
-\item Montrer que $f''(x)=(x-1)\mathrm{e}^{-x}$ et en déduire que $\mathcal C_f$ admet un point d'inflexion
-dont on précisera l'abscisse.
+\item Montrer que $f''(x)=(x-1)\mathrm{e}^{-x}$ et en déduire que $\mathcal C_f$ admet un point
+d'inflexion dont on précisera l'abscisse.
+\end{enumerate}
+
+\sujetbac[étude complète avec changement de variable et aire]
+Soit $f$ la fonction définie sur $\R$ par $f(x)=\mathrm{e}^{2x}-2\,\mathrm{e}^{x}$, de courbe
+$\mathcal C_f$.
+\begin{enumerate}[label=\arabic*)]
+\item Calculer $\displaystyle\lim_{x\to-\infty}f(x)$ et $\displaystyle\lim_{x\to+\infty}f(x)$.
+\item Calculer $f'(x)$, l'étudier (on pourra factoriser par $\mathrm{e}^{x}$) et dresser le
+tableau de variations de $f$. Préciser le minimum.
+\item Déterminer les points d'intersection de $\mathcal C_f$ avec l'axe des abscisses
+(résoudre $f(x)=0$).
+\item Étudier le signe de $f(x)$ selon $x$.
+\item Tracer l'allure de $\mathcal C_f$.
+\end{enumerate}
+
+\sujetbac[fonction avec paramètre et étude de famille]
+Pour tout réel $m$, on pose $f_m(x)=\mathrm{e}^{x}-m\,x$, définie sur $\R$.
+\begin{enumerate}[label=\arabic*)]
+\item Cas $m=1$ : étudier $f_1(x)=\mathrm{e}^{x}-x$ (variations, minimum, limites) et en déduire
+que $f_1(x)>0$ pour tout $x$.
+\item Cas général $m>0$ : calculer $f_m'(x)$, montrer que $f_m$ admet un unique minimum atteint
+en $x_0=\ln m$, et calculer la valeur $f_m(x_0)$.
+\item En déduire, selon le signe de $m(1-\ln m)$, le nombre de solutions de l'équation
+$\mathrm{e}^{x}=m\,x$ (on discutera suivant $m$).
+\item Pour $m=\mathrm{e}$, montrer que la droite $y=\mathrm{e}\,x$ est tangente à la courbe de
+$\exp$ et préciser le point de contact.
 \end{enumerate}
 
 % ═══════════════════════════════════════════════════════════════
@@ -316,71 +687,119 @@ dont on précisera l'abscisse.
 \corrige{de l'exercice 1}
 a) $\dfrac{\mathrm{e}^{5}\mathrm{e}^{-2}}{\mathrm{e}^{3}}=\mathrm{e}^{5-2-3}=\mathrm{e}^{0}=1$. \quad
 b) $(\mathrm{e}^{2})^{3}\mathrm{e}^{-4}=\mathrm{e}^{6}\mathrm{e}^{-4}=\mathrm{e}^{2}$. \quad
-c) $\dfrac{\mathrm{e}^{2x}\mathrm{e}^{-x}}{\mathrm{e}^{x+1}}=\mathrm{e}^{2x-x-(x+1)}=\mathrm{e}^{-1}=\dfrac1{\mathrm{e}}$.
+c) $\dfrac{\mathrm{e}^{2x}\mathrm{e}^{-x}}{\mathrm{e}^{x+1}}=\mathrm{e}^{2x-x-(x+1)}=\mathrm{e}^{-1}
+=\dfrac1{\mathrm{e}}$.
 
 \corrige{de l'exercice 2}
 Les deux fractions ont le même dénominateur $1+\mathrm{e}^{x}>0$ ; leur somme est
 $\dfrac{\mathrm{e}^{x}+1}{1+\mathrm{e}^{x}}=1$. L'égalité est donc vraie pour tout $x\in\R$.
 
 \corrige{de l'exercice 3}
+$\mathrm{ch}^{2}x-\mathrm{sh}^{2}x
+=\Big(\dfrac{\mathrm{e}^{x}+\mathrm{e}^{-x}}{2}\Big)^{2}-\Big(\dfrac{\mathrm{e}^{x}-\mathrm{e}^{-x}}{2}\Big)^{2}$.
+Or $A^{2}-B^{2}=(A+B)(A-B)$ avec $A+B=\mathrm{e}^{x}$ et $A-B=\mathrm{e}^{-x}$, donc le produit
+vaut $\dfrac{\mathrm{e}^{x}\cdot\mathrm{e}^{-x}}{1}=\mathrm{e}^{0}=1$ (en tenant compte du facteur
+$\tfrac12\cdot\tfrac12$ : développons plutôt directement)
+$=\dfrac{(\mathrm{e}^{2x}+2+\mathrm{e}^{-2x})-(\mathrm{e}^{2x}-2+\mathrm{e}^{-2x})}{4}
+=\dfrac{4}{4}=1$.
+
+\corrige{de l'exercice 4}
 a) $\mathrm{e}^{3x-2}=1=\mathrm{e}^{0}\iff 3x-2=0\iff x=\dfrac23$. \quad
 b) $\mathrm{e}^{x}=7\iff x=\ln 7$. \quad
 c) $\mathrm{e}^{2x+1}<\mathrm{e}^{x-1}\iff 2x+1<x-1\iff x<-2$. \;$S=]-\infty,-2[$.
 
-\corrige{de l'exercice 4}
+\corrige{de l'exercice 5}
 Poser $X=\mathrm{e}^{x}>0$ : $X^{2}-5X+6=0$, de discriminant $\Delta=25-24=1$, racines
 $X=\dfrac{5\pm1}{2}$, soit $X=3$ ou $X=2$ (toutes deux $>0$). Donc $\mathrm{e}^{x}=2$ ou
 $\mathrm{e}^{x}=3$, d'où $x=\ln 2$ ou $x=\ln 3$. \;$S=\{\ln 2,\ln 3\}$.
 
-\corrige{de l'exercice 5}
+\corrige{de l'exercice 6}
 Avec $X=\mathrm{e}^{x}>0$, l'équation $\mathrm{e}^{x}+\mathrm{e}^{-x}=\dfrac52$ devient
 $X+\dfrac1X=\dfrac52$, soit $2X^{2}-5X+2=0$. Discriminant $\Delta=25-16=9$, racines
 $X=\dfrac{5\pm3}{4}$, donc $X=2$ ou $X=\dfrac12$ (positives). Ainsi $\mathrm{e}^{x}=2$ ou
 $\mathrm{e}^{x}=\dfrac12$, d'où $x=\ln 2$ ou $x=-\ln 2$. \;$S=\{-\ln 2,\ln 2\}$.
 
-\corrige{de l'exercice 6}
-a) $\dfrac{\mathrm{e}^{x}}{x^{2}+1}\sim\dfrac{\mathrm{e}^{x}}{x^{2}}\to+\infty$ par croissances comparées,
-donc la limite est $+\infty$. \quad
-b) $x^{2}\mathrm{e}^{x}\to 0$ quand $x\to-\infty$ (croissances comparées). \quad
-c) $\dfrac{\mathrm{e}^{x}-1}{x}=\dfrac{\mathrm{e}^{x}}{x}-\dfrac1x$ ; or $\dfrac{\mathrm{e}^{x}}{x}\to+\infty$
-et $\dfrac1x\to 0$, donc la limite est $+\infty$.
-
 \corrige{de l'exercice 7}
+Posons $X=\mathrm{e}^{x}>0$ : l'inéquation $(\mathrm{e}^{x}-1)(\mathrm{e}^{x}-3)\le0$ devient
+$(X-1)(X-3)\le0$, vérifiée pour $1\le X\le3$. Comme $X=\mathrm{e}^{x}$ est croissante,
+$1\le\mathrm{e}^{x}\le3\iff 0\le x\le\ln 3$. \;$S=[0,\ln 3]$.
+
+\corrige{de l'exercice 8}
+a) $\dfrac{\mathrm{e}^{x}}{x^{2}+1}\sim\dfrac{\mathrm{e}^{x}}{x^{2}}\to+\infty$ par croissances
+comparées, donc la limite est $+\infty$. \quad
+b) $x^{2}\mathrm{e}^{x}\to 0$ quand $x\to-\infty$ (croissances comparées). \quad
+c) $\dfrac{\mathrm{e}^{x}-1}{x}\to 1$ quand $x\to0$ (limite de référence, $\exp'(0)=1$).
+
+\corrige{de l'exercice 9}
 $\bullet$ $\mathrm{e}^{x}-x^{2}-1=\mathrm{e}^{x}\Big(1-\dfrac{x^{2}}{\mathrm{e}^{x}}-\dfrac1{\mathrm{e}^{x}}\Big)$.
-Comme $\dfrac{x^{2}}{\mathrm{e}^{x}}\to0$ et $\dfrac1{\mathrm{e}^{x}}\to0$, la parenthèse tend vers $1$
-et $\mathrm{e}^{x}\to+\infty$ : la limite est $+\infty$.\\
+Comme $\dfrac{x^{2}}{\mathrm{e}^{x}}\to0$ et $\dfrac1{\mathrm{e}^{x}}\to0$, la parenthèse tend
+vers $1$ et $\mathrm{e}^{x}\to+\infty$ : la limite est $+\infty$.\\
 $\bullet$ On factorise par $\mathrm{e}^{x}$ haut et bas :
 $\dfrac{\mathrm{e}^{x}+x}{\mathrm{e}^{x}-x}=\dfrac{1+x/\mathrm{e}^{x}}{1-x/\mathrm{e}^{x}}$. Or
 $\dfrac{x}{\mathrm{e}^{x}}\to0$, donc le quotient tend vers $\dfrac{1+0}{1-0}=1$.
 
-\corrige{de l'exercice 8}
+\corrige{de l'exercice 10}
+$\bullet$ $\dfrac{\mathrm{e}^{x}-1}{\mathrm{e}^{x}+x}=\dfrac{1-\mathrm{e}^{-x}}{1+x\,\mathrm{e}^{-x}}$
+(division par $\mathrm{e}^{x}$). Quand $x\to+\infty$, $\mathrm{e}^{-x}\to0$ et
+$x\,\mathrm{e}^{-x}\to0$, donc la limite vaut $\dfrac{1-0}{1+0}=1$.\\
+$\bullet$ $\dfrac{\mathrm{e}^{2x}-1}{x}=2\cdot\dfrac{\mathrm{e}^{2x}-1}{2x}$ ; en posant $u=2x\to0$,
+$\dfrac{\mathrm{e}^{u}-1}{u}\to1$, donc la limite est $2\times1=2$.
+
+\corrige{de l'exercice 11}
 $f(x)=(2-x)\mathrm{e}^{x}$ : $f'(x)=-\mathrm{e}^{x}+(2-x)\mathrm{e}^{x}=(1-x)\mathrm{e}^{x}$.
 Comme $\mathrm{e}^{x}>0$, $f'(x)$ a le signe de $1-x$ : $f$ croît sur $]-\infty,1]$, décroît sur
 $[1,+\infty[$, maximum $f(1)=\mathrm{e}$.
 Limites : en $-\infty$, $f(x)=2\mathrm{e}^{x}-x\mathrm{e}^{x}\to 0$ (car $\mathrm{e}^{x}\to0$ et
 $x\mathrm{e}^{x}\to0$) ; en $+\infty$, $f(x)=(2-x)\mathrm{e}^{x}\to-\infty$.
 
-\corrige{de l'exercice 9}
-$\bullet$ $g(x)=x-\ln x$ : $g'(x)=1-\dfrac1x=\dfrac{x-1}{x}$ sur $]0,+\infty[$. $g'<0$ sur $]0,1[$,
-$g'>0$ sur $]1,+\infty[$ : minimum $g(1)=1$.\\
+\corrige{de l'exercice 12}
+$\bullet$ $g(x)=x-\ln x$ : $g'(x)=1-\dfrac1x=\dfrac{x-1}{x}$ sur $]0,+\infty[$. $g'<0$ sur
+$]0,1[$, $g'>0$ sur $]1,+\infty[$ : minimum $g(1)=1$.\\
 $\bullet$ $h(x)=x^{x}=\mathrm{e}^{x\ln x}$ : $h'(x)=(\ln x+1)\mathrm{e}^{x\ln x}$. $h'<0$ pour
-$\ln x<-1$ soit $x<\mathrm{e}^{-1}$, $h'>0$ pour $x>\mathrm{e}^{-1}$ : minimum en $x=\dfrac1{\mathrm{e}}$,
-de valeur $h\!\big(\tfrac1{\mathrm{e}}\big)=\mathrm{e}^{-1/\mathrm{e}}$.
+$\ln x<-1$ soit $x<\mathrm{e}^{-1}$, $h'>0$ pour $x>\mathrm{e}^{-1}$ : minimum en
+$x=\dfrac1{\mathrm{e}}$, de valeur $h\!\big(\tfrac1{\mathrm{e}}\big)=\mathrm{e}^{-1/\mathrm{e}}$.
 
-\corrige{de l'exercice 10}
+\corrige{de l'exercice 13}
+$f(x)=\mathrm{e}^{x^{2}-2x}$ : avec $u=x^{2}-2x$, $u'=2x-2=2(x-1)$, donc
+$f'(x)=2(x-1)\mathrm{e}^{x^{2}-2x}$, du signe de $x-1$. $f$ décroît sur $]-\infty,1]$, croît sur
+$[1,+\infty[$ ; minimum $f(1)=\mathrm{e}^{1-2}=\mathrm{e}^{-1}=\dfrac1{\mathrm{e}}$.
+
+\corrige{de l'exercice 14}
+$\varphi(x)=\mathrm{e}^{x}-x-1$ : $\varphi'(x)=\mathrm{e}^{x}-1$, qui s'annule en $0$, négatif
+avant, positif après. Donc $\varphi$ décroît sur $]-\infty,0]$, croît sur $[0,+\infty[$, et son
+minimum est $\varphi(0)=\mathrm{e}^{0}-0-1=0$. Ainsi $\varphi(x)\ge0$ pour tout $x$, c'est-à-dire
+$\mathrm{e}^{x}\ge x+1$.
+
+\corrige{de l'exercice 15}
+a) $2^{x}=8=2^{3}\iff x=3$. \quad
+b) $3^{x}=20\iff x\ln3=\ln20\iff x=\dfrac{\ln20}{\ln3}\approx2{,}73$. \quad
+c) $\big(\tfrac12\big)^{x}>4\iff 2^{-x}>2^{2}\iff -x>2\iff x<-2$. \;$S=]-\infty,-2[$.
+
+\corrige{de l'exercice 16}
+$f(x)=5\cdot2^{x}=5\,\mathrm{e}^{x\ln2}$ : $f'(x)=5(\ln2)\,\mathrm{e}^{x\ln2}=5(\ln2)\,2^{x}$.\\
+$g(x)=x\cdot3^{x}$ : produit, $g'(x)=3^{x}+x(\ln3)3^{x}=\big(1+x\ln3\big)3^{x}$.
+
+\corrige{de l'exercice 17}
 $m(t)=20\,\mathrm{e}^{-0{,}05t}$.
 a) Masse initiale $m(0)=20\,\mathrm{e}^{0}=20$ g.\\
-b) On cherche $t$ tel que $m(t)=10$ : $20\,\mathrm{e}^{-0{,}05t}=10\iff\mathrm{e}^{-0{,}05t}=\dfrac12
-\iff -0{,}05\,t=\ln\dfrac12=-\ln 2\iff t=\dfrac{\ln 2}{0{,}05}=20\ln 2\approx 13{,}9$ ans.\\
+b) On cherche $t$ tel que $m(t)=10$ :
+$20\,\mathrm{e}^{-0{,}05t}=10\iff\mathrm{e}^{-0{,}05t}=\dfrac12
+\iff -0{,}05\,t=-\ln 2\iff t=\dfrac{\ln 2}{0{,}05}=20\ln 2\approx 13{,}9$ ans.\\
 c) $m'(t)=20\times(-0{,}05)\,\mathrm{e}^{-0{,}05t}=-\,\mathrm{e}^{-0{,}05t}<0$ : $m$ est strictement
 décroissante. Comme $-0{,}05t\to-\infty$, $\displaystyle\lim_{t\to+\infty}m(t)=0$ : l'échantillon
 se désintègre asymptotiquement.
 
-\corrige{du problème}
+\corrige{de l'exercice 18}
+$C(t)=500\,000\,\mathrm{e}^{0{,}06t}$.
+$C(5)=500\,000\,\mathrm{e}^{0{,}3}\approx500\,000\times1{,}3499\approx674\,929$ FCFA.
+Doublement : $\mathrm{e}^{0{,}06t}=2\iff0{,}06t=\ln2\iff t=\dfrac{\ln2}{0{,}06}\approx11{,}55$ ans.
+
+\corrige{du sujet 1}
 $f(x)=(x+1)\mathrm{e}^{-x}$ sur $\R$.\\
 \textbf{1)} En $-\infty$ : $\mathrm{e}^{-x}\to+\infty$ et $x+1\to-\infty$, donc $f(x)\to-\infty$.
 En $+\infty$ : $f(x)=(x+1)\mathrm{e}^{-x}=\dfrac{x+1}{\mathrm{e}^{x}}=\dfrac{x}{\mathrm{e}^{x}}+\dfrac1{\mathrm{e}^{x}}\to0$
-par croissances comparées. La droite $y=0$ (axe des abscisses) est asymptote horizontale en $+\infty$.\\
+par croissances comparées. La droite $y=0$ (axe des abscisses) est asymptote horizontale en
+$+\infty$.\\
 \textbf{2)} $f'(x)=\mathrm{e}^{-x}+(x+1)(-\mathrm{e}^{-x})=\mathrm{e}^{-x}\big(1-(x+1)\big)=-x\,\mathrm{e}^{-x}$.
 Comme $\mathrm{e}^{-x}>0$, $f'(x)$ a le signe de $-x$ : $f'>0$ sur $]-\infty,0[$, $f'<0$ sur
 $]0,+\infty[$. Donc $f$ croît jusqu'en $0$ puis décroît ; maximum $f(0)=1$.\\
@@ -389,7 +808,48 @@ $]0,+\infty[$. Donc $f$ croît jusqu'en $0$ puis décroît ; maximum $f(0)=1$.\\
 \textbf{4)} $\mathrm{e}^{-x}>0$, donc $f(x)$ a le signe de $x+1$ : $f(x)<0$ sur $]-\infty,-1[$,
 $f(-1)=0$, $f(x)>0$ sur $]-1,+\infty[$. La courbe coupe l'axe des abscisses en $x=-1$, passe
 au-dessus ensuite.\\
-\textbf{5)} $f''(x)=\big(-x\mathrm{e}^{-x}\big)'=-\mathrm{e}^{-x}+(-x)(-\mathrm{e}^{-x})=-\mathrm{e}^{-x}+x\mathrm{e}^{-x}=(x-1)\mathrm{e}^{-x}$.
+\textbf{5)} $f''(x)=\big(-x\mathrm{e}^{-x}\big)'=-\mathrm{e}^{-x}+(-x)(-\mathrm{e}^{-x})
+=-\mathrm{e}^{-x}+x\mathrm{e}^{-x}=(x-1)\mathrm{e}^{-x}$.
 Le facteur $\mathrm{e}^{-x}>0$, donc $f''$ a le signe de $x-1$ : $f''<0$ sur $]-\infty,1[$
 (concave), $f''>0$ sur $]1,+\infty[$ (convexe). $f''$ change de signe en $x=1$ :
-$\mathcal C_f$ admet un \textbf{point d'inflexion} d'abscisse $x=1$, d'ordonnée $f(1)=2\mathrm{e}^{-1}=\dfrac2{\mathrm{e}}$.
+$\mathcal C_f$ admet un \textbf{point d'inflexion} d'abscisse $x=1$, d'ordonnée
+$f(1)=2\mathrm{e}^{-1}=\dfrac2{\mathrm{e}}$.
+
+\corrige{du sujet 2}
+$f(x)=\mathrm{e}^{2x}-2\,\mathrm{e}^{x}$.\\
+\textbf{1)} En $-\infty$ : $\mathrm{e}^{2x}\to0$ et $\mathrm{e}^{x}\to0$, donc $f(x)\to0$.
+En $+\infty$ : $f(x)=\mathrm{e}^{x}(\mathrm{e}^{x}-2)\to+\infty$ (les deux facteurs tendent vers
+$+\infty$).\\
+\textbf{2)} $f'(x)=2\mathrm{e}^{2x}-2\mathrm{e}^{x}=2\mathrm{e}^{x}(\mathrm{e}^{x}-1)$. Comme
+$2\mathrm{e}^{x}>0$, le signe de $f'$ est celui de $\mathrm{e}^{x}-1$, c'est-à-dire de $x$
+(car $\mathrm{e}^{x}\ge1\iff x\ge0$). Donc $f'<0$ sur $]-\infty,0[$, $f'>0$ sur $]0,+\infty[$ :
+$f$ décroît puis croît, minimum $f(0)=\mathrm{e}^{0}-2\mathrm{e}^{0}=1-2=-1$.\\
+\textbf{3)} $f(x)=0\iff\mathrm{e}^{x}(\mathrm{e}^{x}-2)=0\iff\mathrm{e}^{x}=2$ (car $\mathrm{e}^{x}\ne0$),
+soit $x=\ln2$. Unique point d'intersection $(\ln2,0)$.\\
+\textbf{4)} $f(x)=\mathrm{e}^{x}(\mathrm{e}^{x}-2)$, et $\mathrm{e}^{x}>0$, donc $f(x)$ a le signe de
+$\mathrm{e}^{x}-2$ : $f(x)<0$ pour $x<\ln2$, $f(x)>0$ pour $x>\ln2$.\\
+\textbf{5)} Allure : courbe partant de $0^{-}$ en $-\infty$ (asymptote $y=0$), descendant jusqu'au
+minimum $(0,-1)$, remontant en coupant l'axe en $(\ln2,0)$ puis croissant vers $+\infty$.
+
+\corrige{du sujet 3}
+$f_m(x)=\mathrm{e}^{x}-mx$.\\
+\textbf{1)} $m=1$ : $f_1(x)=\mathrm{e}^{x}-x$, $f_1'(x)=\mathrm{e}^{x}-1$, nul en $0$, négatif
+avant, positif après : minimum $f_1(0)=1-0=1>0$. Donc $f_1(x)\ge1>0$ pour tout $x$. (Limites :
+$+\infty$ aux deux bornes par croissances comparées.)\\
+\textbf{2)} $m>0$ : $f_m'(x)=\mathrm{e}^{x}-m$, nul ssi $\mathrm{e}^{x}=m$, soit $x_0=\ln m$.
+$f_m'<0$ pour $x<\ln m$, $>0$ pour $x>\ln m$ : minimum unique en $x_0=\ln m$, de valeur
+$f_m(\ln m)=\mathrm{e}^{\ln m}-m\ln m=m-m\ln m=m(1-\ln m)$.\\
+\textbf{3)} L'équation $\mathrm{e}^{x}=mx$ équivaut à $f_m(x)=0$. Le minimum de $f_m$ vaut
+$m(1-\ln m)$ (avec $m>0$, le signe est celui de $1-\ln m$).
+\begin{itemize}
+\item Si $m(1-\ln m)>0$, c.-à-d. $\ln m<1$ soit $0<m<\mathrm{e}$ : $f_m>0$ partout,
+\textbf{aucune solution}.
+\item Si $m(1-\ln m)=0$, c.-à-d. $m=\mathrm{e}$ : le minimum est nul, \textbf{une solution unique}
+($x=\ln m=1$).
+\item Si $m(1-\ln m)<0$, c.-à-d. $m>\mathrm{e}$ : le minimum est négatif et $f_m\to+\infty$ aux
+deux bornes, donc \textbf{deux solutions}.
+\end{itemize}
+\textbf{4)} Pour $m=\mathrm{e}$, le minimum nul est atteint en $x=1$ : $f_{\mathrm{e}}(1)=0$ et
+$f_{\mathrm{e}}'(1)=\mathrm{e}^{1}-\mathrm{e}=0$. Donc en $x=1$ la courbe de $\exp$ et la droite
+$y=\mathrm{e}\,x$ ont même valeur ($\mathrm{e}$) et même pente ($\mathrm{e}$) : la droite
+$y=\mathrm{e}\,x$ est \textbf{tangente} à la courbe de $\exp$ au point de contact $(1,\mathrm{e})$.
