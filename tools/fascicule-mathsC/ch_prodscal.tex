@@ -1,68 +1,339 @@
 \chapter{Produit scalaire et géométrie de l'espace}
 
-\noindent\textit{Le produit scalaire mesure « combien deux vecteurs vont dans la même direction » :
-il relie longueurs et angles, et caractérise l'orthogonalité. En série C, on l'étend à l'espace
-et on lui adjoint le \textbf{produit vectoriel}, qui fournit une normale et mesure des aires.
-Ces outils permettent d'écrire les équations des plans, des droites et des sphères, et de
-résoudre les configurations de l'espace : intersections, distances, tétraèdres.}
+\noindent\textit{Le produit scalaire mesure « combien deux vecteurs vont dans la même
+direction » : c'est l'outil qui relie \textbf{longueurs} et \textbf{angles}, et qui
+caractérise l'\textbf{orthogonalité}. Dans le plan, il permet de calculer des distances,
+des angles, et de décrire les \textbf{lignes de niveau} (droites, cercles) ; dans l'espace,
+on l'étend coordonnée par coordonnée et on lui adjoint le \textbf{produit vectoriel}, qui
+fournit une normale et mesure des aires. Ces outils donnent les équations des \textbf{droites},
+des \textbf{plans}, des \textbf{cercles} et des \textbf{sphères}, et résolvent toutes les
+configurations métriques du Baccalauréat : projeté orthogonal, distances, angles, intersections,
+tétraèdres.}
 \vspace{8pt}
 
 % ═══════════════════════════════════════════════════════════════
-\section{Produit scalaire dans le plan et l'espace}
+\section{Produit scalaire : définition et expressions}
 
-\begin{definition}[Produit scalaire]
-Pour deux vecteurs $\vec u$ et $\vec v$, le \textbf{produit scalaire} est le nombre réel
+\begin{definition}[Produit scalaire — définition géométrique]
+Pour deux vecteurs $\vec u$ et $\vec v$ du plan ou de l'espace, le \textbf{produit scalaire}
+est le nombre réel
 \[
-\vec u\cdot\vec v=\|\vec u\|\,\|\vec v\|\,\cos\big(\vec u,\vec v\big).
+\vec u\cdot\vec v=\|\vec u\|\,\|\vec v\|\,\cos\big(\widehat{\vec u,\vec v}\big).
 \]
-Si $\vec u=\vec 0$ ou $\vec v=\vec 0$, on pose $\vec u\cdot\vec v=0$. En particulier $\vec u\cdot\vec u=\|\vec u\|^{2}$, noté $\vec u^{\,2}$.
+Si $\vec u=\vec 0$ ou $\vec v=\vec 0$, on pose $\vec u\cdot\vec v=0$. En particulier
+\[
+\vec u\cdot\vec u=\|\vec u\|^{2}\ \ (\text{noté }\vec u^{\,2}),\qquad\text{donc}\qquad \|\vec u\|=\sqrt{\vec u\cdot\vec u}.
+\]
 \end{definition}
 
-\begin{propriete}[Expression analytique]
+\begin{remarque}
+Le résultat d'un produit scalaire est un \textbf{nombre} (un scalaire), pas un vecteur :
+c'est ce qui le distingue du produit vectoriel. Le signe de $\vec u\cdot\vec v$ est celui
+de $\cos(\widehat{\vec u,\vec v})$ : positif si l'angle est aigu, nul s'il est droit,
+négatif s'il est obtus.
+\end{remarque}
+
+\begin{propriete}[Expression par la projection orthogonale]
+Soit $\vec u=\overrightarrow{AB}$ et $\vec v=\overrightarrow{AC}$. Si $H$ est le projeté
+orthogonal de $C$ sur la droite $(AB)$, alors
+\[
+\vec u\cdot\vec v=\overrightarrow{AB}\cdot\overrightarrow{AH}=\pm\,AB\times AH,
+\]
+le signe étant $+$ si $\overrightarrow{AH}$ et $\overrightarrow{AB}$ ont le même sens,
+$-$ sinon. Le produit scalaire « projette » donc un vecteur sur l'autre.
+\end{propriete}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth,scale=1.05]
+\coordinate (A) at (0,0);
+\coordinate (B) at (4.2,0);
+\coordinate (C) at (2.7,2.0);
+\coordinate (H) at (2.7,0);
+\draw[onbo,->,line width=1pt] (A)--(B) node[below right]{\small $\vec u=\overrightarrow{AB}$};
+\draw[onbgreen,->,line width=1pt] (A)--(C) node[above left]{\small $\vec v=\overrightarrow{AC}$};
+\draw[onbline,dashed] (C)--(H);
+\draw[onbblue,->,line width=1pt] (A)--(H) node[below,yshift=-2pt]{};
+\node[onbblue] at (1.35,-0.32){\small $\overrightarrow{AH}$};
+\draw[onbink] (H)++(-0.22,0)--++(0,0.22)--++(0.22,0);
+\filldraw[onbink] (A) circle (1.3pt) node[below left]{\small $A$};
+\filldraw[onbink] (B) circle (1.3pt) node[below right]{\small $B$};
+\filldraw[onbink] (C) circle (1.3pt) node[above]{\small $C$};
+\filldraw[onbink] (H) circle (1.3pt) node[below]{\small $H$};
+\node[align=left,text width=4.1cm,anchor=west] at (4.7,1.2)
+{\small $\vec u\cdot\vec v=AB\times AH$ : on \textbf{projette} $C$ en $H$ sur $(AB)$,
+puis on multiplie les longueurs (avec le signe du sens).};
+\end{tikzpicture}
+\fig{Figure — Le produit scalaire comme produit d'une longueur par une projection.}
+\end{illus}
+
+\begin{theoreme}[Expression analytique en base orthonormée]
 Dans une base orthonormée, si $\vec u\,(x,y,z)$ et $\vec v\,(x',y',z')$ :
 \[
 \vec u\cdot\vec v=xx'+yy'+zz',\qquad \|\vec u\|=\sqrt{x^{2}+y^{2}+z^{2}}.
 \]
-Dans le plan, on retrouve $\vec u\cdot\vec v=xx'+yy'$ avec $\vec u\,(x,y)$, $\vec v\,(x',y')$.
+Dans le plan, $\vec u\,(x,y)$ et $\vec v\,(x',y')$ donnent $\vec u\cdot\vec v=xx'+yy'$ et
+$\|\vec u\|=\sqrt{x^{2}+y^{2}}$.
+\end{theoreme}
+
+\begin{exemple}
+$\vec u\,(2,-1,3)$ et $\vec v\,(1,4,1)$ : $\vec u\cdot\vec v=2\cdot1+(-1)\cdot4+3\cdot1=2-4+3=1$.
+Et $\|\vec u\|=\sqrt{4+1+9}=\sqrt{14}$.
+\end{exemple}
+
+\begin{propriete}[Expression par les normes (polarisation)]
+Pour tous vecteurs $\vec u,\vec v$ :
+\[
+\vec u\cdot\vec v=\tfrac12\Big(\|\vec u+\vec v\|^{2}-\|\vec u\|^{2}-\|\vec v\|^{2}\Big)
+=\tfrac12\Big(\|\vec u\|^{2}+\|\vec v\|^{2}-\|\vec u-\vec v\|^{2}\Big).
+\]
 \end{propriete}
 
-\begin{propriete}[Règles de calcul]
+\begin{remarque}
+On dispose donc de \textbf{trois} expressions du produit scalaire : géométrique
+($\|\vec u\|\,\|\vec v\|\cos\theta$), analytique ($xx'+yy'+zz'$) et par les normes.
+Selon les données de l'énoncé, on choisit la plus commode. La formule de polarisation
+est précieuse quand on connaît seulement des \emph{longueurs}.
+\end{remarque}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Règles de calcul et identités}
+
+\begin{propriete}[Symétrie et bilinéarité]
 Le produit scalaire est \textbf{symétrique} et \textbf{bilinéaire} :
 \[
 \vec u\cdot\vec v=\vec v\cdot\vec u,\qquad
 \vec u\cdot(\vec v+\vec w)=\vec u\cdot\vec v+\vec u\cdot\vec w,\qquad
-(\lambda\vec u)\cdot\vec v=\lambda\,(\vec u\cdot\vec v).
+(\lambda\vec u)\cdot\vec v=\lambda\,(\vec u\cdot\vec v)=\vec u\cdot(\lambda\vec v).
 \]
-On en déduit les identités $\|\vec u+\vec v\|^{2}=\|\vec u\|^{2}+2\,\vec u\cdot\vec v+\|\vec v\|^{2}$ et
-$\vec u\cdot\vec v=\tfrac12\big(\|\vec u+\vec v\|^{2}-\|\vec u\|^{2}-\|\vec v\|^{2}\big)$.
 \end{propriete}
 
-\begin{definition}[Orthogonalité]
-Deux vecteurs $\vec u$ et $\vec v$ sont \textbf{orthogonaux} (noté $\vec u\perp\vec v$) lorsque $\vec u\cdot\vec v=0$. Deux droites de vecteurs directeurs $\vec u,\vec v$ sont orthogonales si $\vec u\cdot\vec v=0$ ; deux vecteurs non nuls orthogonaux sont en particulier non colinéaires.
+\begin{propriete}[Identités remarquables vectorielles]
+\[
+\|\vec u+\vec v\|^{2}=\|\vec u\|^{2}+2\,\vec u\cdot\vec v+\|\vec v\|^{2},\qquad
+\|\vec u-\vec v\|^{2}=\|\vec u\|^{2}-2\,\vec u\cdot\vec v+\|\vec v\|^{2},
+\]
+\[
+(\vec u+\vec v)\cdot(\vec u-\vec v)=\|\vec u\|^{2}-\|\vec v\|^{2}.
+\]
+\end{propriete}
+
+\begin{exemple}
+Si $\|\vec u\|=3$, $\|\vec v\|=5$ et $\vec u\cdot\vec v=-4$, alors
+$\|\vec u+\vec v\|^{2}=9+2(-4)+25=26$, donc $\|\vec u+\vec v\|=\sqrt{26}$.
+\end{exemple}
+
+\begin{aretenir}
+Les vecteurs se manipulent comme des nombres pour les sommes et les multiples,
+\textbf{mais} $\vec u\cdot\vec v$ est un nombre : une expression comme « $\vec u\cdot\vec v\cdot\vec w$ »
+n'a aucun sens. Les identités remarquables vectorielles sont la clé pour passer des
+\emph{longueurs} aux \emph{produits scalaires} et réciproquement.
+\end{aretenir}
+
+\begin{propriete}[Inégalité de Cauchy--Schwarz]
+Pour tous $\vec u,\vec v$ : $\ |\vec u\cdot\vec v|\le\|\vec u\|\,\|\vec v\|$, avec égalité si
+et seulement si $\vec u$ et $\vec v$ sont colinéaires. (C'est immédiat sur la définition
+géométrique puisque $|\cos\theta|\le1$.)
+\end{propriete}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Orthogonalité}
+
+\begin{definition}[Vecteurs orthogonaux]
+Deux vecteurs $\vec u$ et $\vec v$ sont \textbf{orthogonaux} (noté $\vec u\perp\vec v$) lorsque
+\[
+\vec u\cdot\vec v=0.
+\]
+Le vecteur nul est orthogonal à tout vecteur. Deux droites de vecteurs directeurs
+$\vec u,\vec v$ sont orthogonales lorsque $\vec u\cdot\vec v=0$.
 \end{definition}
 
 \begin{exemple}
 $\vec u\,(1,2,-1)$ et $\vec v\,(3,-1,1)$ : $\vec u\cdot\vec v=3-2-1=0$, donc $\vec u\perp\vec v$.
 \end{exemple}
 
-\begin{propriete}[Angle de deux vecteurs]
-Pour $\vec u,\vec v$ non nuls,
-\[
-\cos\big(\vec u,\vec v\big)=\frac{\vec u\cdot\vec v}{\|\vec u\|\,\|\vec v\|}.
-\]
-L'angle est aigu si $\vec u\cdot\vec v>0$, obtus si $\vec u\cdot\vec v<0$.
+\begin{theoreme}[Théorème de Pythagore]
+$\vec u\perp\vec v\iff\|\vec u+\vec v\|^{2}=\|\vec u\|^{2}+\|\vec v\|^{2}$.
+En particulier, le triangle $ABC$ est rectangle en $A$ si et seulement si
+$\overrightarrow{AB}\cdot\overrightarrow{AC}=0$, et alors $BC^{2}=AB^{2}+AC^{2}$.
+\end{theoreme}
+
+\begin{remarque}
+C'est l'identité $\|\vec u+\vec v\|^{2}=\|\vec u\|^{2}+2\,\vec u\cdot\vec v+\|\vec v\|^{2}$
+qui montre Pythagore : le « terme du milieu » $2\,\vec u\cdot\vec v$ disparaît exactement
+lorsque $\vec u\perp\vec v$.
+\end{remarque}
+
+\begin{propriete}[Vecteur normal d'une droite du plan]
+Dans le plan rapporté à un repère orthonormé, la droite d'équation $ax+by+c=0$
+admet pour \textbf{vecteur normal} $\vec n\,(a,b)$ et pour vecteur directeur $\vec u\,(-b,a)$
+(on a bien $\vec n\cdot\vec u=0$).
 \end{propriete}
 
 % ═══════════════════════════════════════════════════════════════
-\section{Produit vectoriel}
+\section{Projeté orthogonal et applications métriques}
+
+\begin{definition}[Projeté orthogonal d'un point sur une droite]
+Le \textbf{projeté orthogonal} de $M$ sur une droite $\mathcal D$ est l'unique point $H\in\mathcal D$
+tel que $\overrightarrow{HM}$ soit orthogonal à $\mathcal D$. C'est le point de $\mathcal D$
+le \emph{plus proche} de $M$, et $MH=d(M,\mathcal D)$.
+\end{definition}
+
+\begin{theoreme}[Distance d'un point à une droite du plan]
+La distance du point $M(x_0,y_0)$ à la droite $\mathcal D:\ ax+by+c=0$ vaut
+\[
+d(M,\mathcal D)=\frac{|a x_0+b y_0+c|}{\sqrt{a^{2}+b^{2}}}.
+\]
+\end{theoreme}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth,scale=1.0]
+\draw[onbo,line width=1pt] (-0.6,-0.4)--(5,2.6) node[right]{\small $\mathcal D$};
+\coordinate (M) at (1.4,2.7);
+\coordinate (H) at (2.55,1.49);
+\filldraw[onbink] (M) circle (1.4pt) node[above]{\small $M$};
+\filldraw[onbink] (H) circle (1.4pt) node[below right]{\small $H$};
+\draw[onbblue,->,line width=1pt] (M)--(H);
+\node[onbblue] at (1.55,1.95){\small $d(M,\mathcal D)$};
+\draw[onbink] ($(H)+(-0.2,0.0)$)++(0.0,0.0) -- ($(H)+(-0.17,0.12)$) -- ($(H)+(-0.05,0.18)$);
+\node[align=left,text width=4.2cm,anchor=west] at (5.2,1.2)
+{\small $H$ est le \textbf{projeté orthogonal} de $M$ sur $\mathcal D$ : c'est le point de $\mathcal D$
+le plus proche de $M$, et $MH=d(M,\mathcal D)$.};
+\end{tikzpicture}
+\fig{Figure — Projeté orthogonal et distance d'un point à une droite.}
+\end{illus}
+
+\begin{propriete}[Angle de deux vecteurs, angle géométrique]
+Pour $\vec u,\vec v$ non nuls,
+\[
+\cos\big(\widehat{\vec u,\vec v}\big)=\frac{\vec u\cdot\vec v}{\|\vec u\|\,\|\vec v\|}\in[-1,1].
+\]
+L'angle est aigu si $\vec u\cdot\vec v>0$, droit si $\vec u\cdot\vec v=0$, obtus si $\vec u\cdot\vec v<0$.
+\end{propriete}
+
+\begin{theoreme}[Théorème d'Al-Kashi (loi des cosinus)]
+Dans un triangle $ABC$, en notant $a=BC$, $b=CA$, $c=AB$ :
+\[
+a^{2}=b^{2}+c^{2}-2bc\cos\widehat A.
+\]
+\end{theoreme}
+
+\begin{remarque}
+Démonstration éclair : $a^{2}=\|\overrightarrow{BC}\|^{2}=\|\overrightarrow{AC}-\overrightarrow{AB}\|^{2}
+=AC^{2}+AB^{2}-2\,\overrightarrow{AB}\cdot\overrightarrow{AC}=b^{2}+c^{2}-2bc\cos\widehat A$.
+Le produit scalaire « contient » donc la loi des cosinus. Si $\widehat A=90^\circ$, on
+retrouve Pythagore.
+\end{remarque}
+
+\begin{exemple}
+Triangle $ABC$ avec $AB=4$, $AC=3$ et $\widehat A=60^\circ$ :
+$BC^{2}=16+9-2\cdot4\cdot3\cdot\tfrac12=25-12=13$, donc $BC=\sqrt{13}$.
+\end{exemple}
+
+\begin{aretenir}
+Avec le produit scalaire, on calcule \textbf{toutes} les grandeurs métriques :
+longueurs ($\|\vec u\|=\sqrt{\vec u\cdot\vec u}$), angles ($\cos\theta=\frac{\vec u\cdot\vec v}{\|\vec u\|\|\vec v\|}$),
+orthogonalité ($\vec u\cdot\vec v=0$), distances (projeté orthogonal). C'est l'outil
+métrique central de la géométrie.
+\end{aretenir}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Lignes de niveau}
+
+\begin{definition}[Ligne de niveau]
+Étant donnée une fonction $f$ qui à tout point $M$ du plan associe un réel $f(M)$,
+la \textbf{ligne de niveau} $k$ est l'ensemble des points $M$ tels que $f(M)=k$.
+Les produits scalaires fournissent les exemples fondamentaux.
+\end{definition}
+
+\begin{theoreme}[Lignes de niveau usuelles]
+Soient $A,B$ deux points fixes et $\vec u$ un vecteur fixe non nul.
+\begin{itemize}
+\item \textbf{$M\mapsto\overrightarrow{AM}\cdot\vec u=k$} : la ligne de niveau est une \textbf{droite}
+orthogonale à $\vec u$.
+\item \textbf{$M\mapsto MA=k$} ($k>0$) : un \textbf{cercle} de centre $A$, de rayon $k$.
+\item \textbf{$M\mapsto MA^{2}-MB^{2}=k$} : une \textbf{droite} orthogonale à $(AB)$.
+\item \textbf{$M\mapsto\overrightarrow{MA}\cdot\overrightarrow{MB}=k$} : un \textbf{cercle}
+de centre le milieu $I$ de $[AB]$ (lorsque l'ensemble est non vide). En particulier
+$\overrightarrow{MA}\cdot\overrightarrow{MB}=0$ est le \textbf{cercle de diamètre} $[AB]$.
+\end{itemize}
+\end{theoreme}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth,scale=1.0]
+\coordinate (A) at (-1.4,0);
+\coordinate (B) at (1.4,0);
+\coordinate (I) at (0,0);
+\draw[onbline] (A)--(B);
+\draw[onbo,line width=1pt] (I) circle (1.4);
+\filldraw[onbink] (A) circle (1.3pt) node[below]{\small $A$};
+\filldraw[onbink] (B) circle (1.3pt) node[below]{\small $B$};
+\filldraw[onbink] (I) circle (1.1pt) node[below right]{\small $I$};
+\coordinate (M) at (0.6,1.27);
+\filldraw[onbblue] (M) circle (1.3pt) node[above]{\small $M$};
+\draw[onbgreen,->] (M)--(A);
+\draw[onbgreen,->] (M)--(B);
+\draw[onbink] ($(M)+(-0.62,-0.13)$)--($(M)+(-0.5,-0.31)$)--($(M)+(-0.32,-0.19)$);
+\node[align=left,text width=4.0cm,anchor=west] at (1.9,0.9)
+{\small $\overrightarrow{MA}\cdot\overrightarrow{MB}=0$ : l'angle $\widehat{AMB}$ est droit
+$\Rightarrow$ $M$ décrit le \textbf{cercle de diamètre} $[AB]$.};
+\end{tikzpicture}
+\fig{Figure — Ligne de niveau $\overrightarrow{MA}\cdot\overrightarrow{MB}=0$ : cercle de diamètre $[AB]$.}
+\end{illus}
+
+\begin{remarque}
+Pour la quatrième ligne de niveau, on utilise l'identité, avec $I$ milieu de $[AB]$ :
+\[
+\overrightarrow{MA}\cdot\overrightarrow{MB}=MI^{2}-\tfrac14 AB^{2}.
+\]
+Ainsi $\overrightarrow{MA}\cdot\overrightarrow{MB}=k\iff MI^{2}=k+\tfrac14 AB^{2}$ :
+cercle de centre $I$ et de rayon $\sqrt{k+\frac14 AB^{2}}$ (si le second membre est $>0$).
+\end{remarque}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Équations de cercles (dans le plan)}
+
+\begin{theoreme}[Équation d'un cercle]
+Dans un repère orthonormé du plan, le cercle de centre $\Omega(x_0,y_0)$ et de rayon $R>0$
+a pour équation
+\[
+(x-x_0)^{2}+(y-y_0)^{2}=R^{2}.
+\]
+Développée : $x^{2}+y^{2}+\alpha x+\beta y+\gamma=0$. Réciproquement, cette dernière est
+un cercle ssi $\dfrac{\alpha^{2}+\beta^{2}}4-\gamma>0$, de centre $\big(-\tfrac\alpha2,-\tfrac\beta2\big)$
+et de rayon $R=\sqrt{\tfrac{\alpha^{2}+\beta^{2}}4-\gamma}$.
+\end{theoreme}
+
+\begin{propriete}[Cercle de diamètre {$[AB]$}]
+Le cercle de diamètre $[AB]$ est l'ensemble des points $M$ tels que
+$\overrightarrow{MA}\cdot\overrightarrow{MB}=0$, ce qui donne directement son équation
+cartésienne :
+\[
+(x-x_A)(x-x_B)+(y-y_A)(y-y_B)=0.
+\]
+\end{propriete}
+
+\begin{exemple}
+$x^{2}+y^{2}-4x+2y-4=0$ : on complète les carrés,
+$(x-2)^{2}+(y+1)^{2}=4+1+4=9$. Centre $\Omega(2,-1)$, rayon $R=3$.
+\end{exemple}
+
+\begin{aretenir}
+Pour reconnaître un cercle, on \textbf{complète les carrés}. Le signe du second membre
+décide : $>0$ vrai cercle, $=0$ un point, $<0$ ensemble vide. La tangente en un point
+$A$ du cercle est la droite passant par $A$ orthogonale à $\overrightarrow{\Omega A}$.
+\end{aretenir}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Produit vectoriel (dans l'espace)}
 
 \begin{definition}[Produit vectoriel]
 Le \textbf{produit vectoriel} de $\vec u$ et $\vec v$ de l'espace est le vecteur $\vec u\wedge\vec v$ tel que :
 \begin{itemize}
 \item si $\vec u,\vec v$ sont colinéaires, $\vec u\wedge\vec v=\vec 0$ ;
-\item sinon, $\vec u\wedge\vec v$ est orthogonal à $\vec u$ et à $\vec v$, $(\vec u,\vec v,\vec u\wedge\vec v)$ est une base \textbf{directe}, et
+\item sinon, $\vec u\wedge\vec v$ est orthogonal à $\vec u$ et à $\vec v$, $(\vec u,\vec v,\vec u\wedge\vec v)$
+est une base \textbf{directe}, et
 \[
-\|\vec u\wedge\vec v\|=\|\vec u\|\,\|\vec v\|\,\big|\sin(\vec u,\vec v)\big|.
+\|\vec u\wedge\vec v\|=\|\vec u\|\,\|\vec v\|\,\big|\sin(\widehat{\vec u,\vec v})\big|.
 \]
 \end{itemize}
 \end{definition}
@@ -81,28 +352,28 @@ $\vec u\wedge(\vec v+\vec w)=\vec u\wedge\vec v+\vec u\wedge\vec w$.
 De plus $\vec u\wedge\vec v=\vec 0 \iff \vec u,\vec v$ colinéaires.
 \end{propriete}
 
-\begin{theoreme}[Aire et colinéarité]
-L'aire du parallélogramme construit sur $\vec u$ et $\vec v$ vaut $\|\vec u\wedge\vec v\|$ ; celle du triangle $ABC$ est
+\begin{theoreme}[Aire, normale et volume]
+L'aire du parallélogramme construit sur $\vec u,\vec v$ vaut $\|\vec u\wedge\vec v\|$, et
+l'aire du triangle $ABC$ est $\mathcal A_{ABC}=\tfrac12\big\|\overrightarrow{AB}\wedge\overrightarrow{AC}\big\|$.
+Le volume du tétraèdre $ABCD$ vaut
 \[
-\mathcal A_{ABC}=\tfrac12\,\big\|\overrightarrow{AB}\wedge\overrightarrow{AC}\big\|.
+V=\tfrac16\big|(\overrightarrow{AB}\wedge\overrightarrow{AC})\cdot\overrightarrow{AD}\big|
+\quad(\text{produit mixte}).
 \]
 \end{theoreme}
 
 \begin{illus}
 \begin{tikzpicture}[>=Stealth,scale=1.0]
-% repère perspective
 \coordinate (O) at (0,0);
 \coordinate (U) at (2.6,-0.2);
 \coordinate (V) at (1.1,1.7);
 \coordinate (W) at (-0.5,3.0);
-% parallélogramme u,v
 \fill[onbsoft] (O)--(U)--($(U)+(V)$)--(V)--cycle;
 \draw[onbline] (O)--(U)--($(U)+(V)$)--(V)--cycle;
 \draw[onbo,->,line width=1pt] (O)--(U) node[below right]{\small $\vec u$};
 \draw[onbgreen,->,line width=1pt] (O)--(V) node[left]{\small $\vec v$};
 \draw[onbblue,->,line width=1.1pt] (O)--(W) node[above]{\small $\vec u\wedge\vec v$};
 \node[onbmuted] at (1.7,0.75){\footnotesize aire $=\|\vec u\wedge\vec v\|$};
-% petit carré d'orthogonalité
 \draw[onbblue] ($(O)+(-0.13,0.18)$)--($(O)+(0.0,0.31)$)--($(O)+(0.13,0.13)$);
 \node[align=left,text width=4.3cm,anchor=west] at (3.4,1.5)
 {\small $\vec u\wedge\vec v$ est \textbf{perpendiculaire} au plan de $\vec u$ et $\vec v$ ;
@@ -111,64 +382,76 @@ sa norme est l'\textbf{aire} du parallélogramme construit sur $\vec u$ et $\vec
 \fig{Figure — Produit vectoriel : direction normale et norme = aire.}
 \end{illus}
 
-\begin{remarque}
-Le produit vectoriel n'existe que dans l'espace. On l'utilise pour obtenir une \textbf{normale} à un plan (à partir de deux vecteurs du plan) et pour calculer des aires et des volumes.
-\end{remarque}
-
 \begin{exemple}
-$\vec u\,(1,0,1)$, $\vec v\,(0,2,1)$ : $\vec u\wedge\vec v=(0\cdot1-1\cdot2,\ 1\cdot0-1\cdot1,\ 1\cdot2-0\cdot0)=(-2,-1,2)$, de norme $\sqrt{4+1+4}=3$.
+$\vec u\,(1,0,1)$, $\vec v\,(0,2,1)$ : $\vec u\wedge\vec v=(0\cdot1-1\cdot2,\ 1\cdot0-1\cdot1,\ 1\cdot2-0\cdot0)=(-2,-1,2)$,
+de norme $\sqrt{4+1+4}=3$. L'aire du parallélogramme construit sur $\vec u,\vec v$ vaut $3$.
 \end{exemple}
 
-% ═══════════════════════════════════════════════════════════════
-\section{Repérage et équation cartésienne d'un plan}
+\begin{remarque}
+Le produit vectoriel n'existe que dans l'espace. On l'utilise pour obtenir une
+\textbf{normale} à un plan (à partir de deux vecteurs du plan) et pour calculer des aires
+et des volumes. À ne pas confondre : $\vec u\cdot\vec v$ est un \emph{nombre},
+$\vec u\wedge\vec v$ est un \emph{vecteur}.
+\end{remarque}
 
-\begin{definition}[Repère de l'espace]
-Un \textbf{repère orthonormé} $(O,\vec\imath,\vec\jmath,\vec k)$ associe à tout point $M$ le triplet $(x,y,z)$ tel que $\overrightarrow{OM}=x\vec\imath+y\vec\jmath+z\vec k$. Pour $A(x_A,y_A,z_A)$ et $B(x_B,y_B,z_B)$ :
+% ═══════════════════════════════════════════════════════════════
+\section{Plans : équation cartésienne}
+
+\begin{definition}[Repère orthonormé de l'espace]
+Un repère orthonormé $(O,\vec\imath,\vec\jmath,\vec k)$ associe à tout point $M$ le triplet
+$(x,y,z)$ tel que $\overrightarrow{OM}=x\vec\imath+y\vec\jmath+z\vec k$. Pour
+$A(x_A,y_A,z_A)$ et $B(x_B,y_B,z_B)$ :
 \[
-\overrightarrow{AB}\,(x_B-x_A,\ y_B-y_A,\ z_B-z_A),\qquad AB=\sqrt{(x_B-x_A)^{2}+(y_B-y_A)^{2}+(z_B-z_A)^{2}}.
+\overrightarrow{AB}\,(x_B-x_A,\ y_B-y_A,\ z_B-z_A),\quad
+AB=\sqrt{(x_B-x_A)^{2}+(y_B-y_A)^{2}+(z_B-z_A)^{2}}.
 \]
 \end{definition}
 
 \begin{theoreme}[Équation cartésienne d'un plan]
-Un plan $\mathcal P$ de \textbf{vecteur normal} $\vec n\,(a,b,c)\neq\vec 0$ passant par $A(x_A,y_A,z_A)$ admet pour équation
+Un plan $\mathcal P$ de \textbf{vecteur normal} $\vec n\,(a,b,c)\neq\vec 0$ passant par
+$A(x_A,y_A,z_A)$ est l'ensemble des points $M$ tels que $\overrightarrow{AM}\cdot\vec n=0$, soit
 \[
-a(x-x_A)+b(y-y_A)+c(z-z_A)=0,\quad\text{soit}\quad ax+by+cz+d=0.
+a(x-x_A)+b(y-y_A)+c(z-z_A)=0,\quad\text{c.-à-d.}\quad ax+by+cz+d=0.
 \]
-Réciproquement, $ax+by+cz+d=0$ (avec $(a,b,c)\neq(0,0,0)$) est l'équation d'un plan de vecteur normal $\vec n\,(a,b,c)$.
+Réciproquement, $ax+by+cz+d=0$ (avec $(a,b,c)\neq(0,0,0)$) est l'équation d'un plan
+de vecteur normal $\vec n\,(a,b,c)$.
 \end{theoreme}
 
 \begin{illus}
 \begin{tikzpicture}[>=Stealth,scale=1.0]
-% plan en perspective (parallélogramme incliné)
 \fill[onbsoft] (-2.2,-0.9)--(2.4,-1.5)--(3.4,0.7)--(-1.2,1.3)--cycle;
 \draw[onbline] (-2.2,-0.9)--(2.4,-1.5)--(3.4,0.7)--(-1.2,1.3)--cycle;
 \node[onbmuted] at (2.6,-1.05){\small $\mathcal P$};
-% point A dans le plan
 \coordinate (A) at (0.6,-0.1);
 \filldraw[onbink] (A) circle (1.5pt) node[below right]{\small $A$};
-% vecteur normal
 \draw[onbblue,->,line width=1.1pt] (A)--($(A)+(0.5,1.9)$) node[above]{\small $\vec n$};
-% petit carré d'orthogonalité
 \draw[onbblue] ($(A)+(0.12,0.45)$)--($(A)+(0.27,0.40)$)--($(A)+(0.21,0.22)$);
-% droite dans le plan
 \draw[onbo,line width=1pt] (-1.6,-0.55)--(2.8,-0.3);
 \node[onbo] at (2.7,-0.05){\small $\Delta$};
 \node[align=left,text width=3.9cm,anchor=west] at (4.0,0.2)
-{\small Le plan $\mathcal P$ est l'ensemble des points $M$ tels que $\overrightarrow{AM}\cdot\vec n=0$.
+{\small Le plan $\mathcal P$ est l'ensemble des $M$ tels que $\overrightarrow{AM}\cdot\vec n=0$.
 La droite $\Delta$ tracée dans $\mathcal P$ a son vecteur directeur orthogonal à $\vec n$.};
 \end{tikzpicture}
 \fig{Figure — Plan en perspective, vecteur normal $\vec n$ et droite $\Delta$ du plan.}
 \end{illus}
 
 \begin{aretenir}
-Les \textbf{coefficients} $a,b,c$ de l'équation $ax+by+cz+d=0$ \emph{sont} les coordonnées d'un vecteur normal. Pour trouver l'équation d'un plan : un point $+$ une normale (souvent obtenue par $\overrightarrow{AB}\wedge\overrightarrow{AC}$).
+Les \textbf{coefficients} $a,b,c$ de l'équation $ax+by+cz+d=0$ \emph{sont} les coordonnées
+d'un vecteur normal. Pour trouver l'équation d'un plan : un point $+$ une normale
+(souvent obtenue par $\overrightarrow{AB}\wedge\overrightarrow{AC}$ pour le plan $(ABC)$).
 \end{aretenir}
 
+\begin{exemple}
+Plan par $A(1,2,-1)$ normal à $\vec n\,(2,-1,3)$ : $2x-y+3z+d=0$ ; en $A$ :
+$2-2-3+d=0$, $d=3$. Équation : $2x-y+3z+3=0$.
+\end{exemple}
+
 % ═══════════════════════════════════════════════════════════════
-\section{Représentation paramétrique d'une droite}
+\section{Droites de l'espace : représentation paramétrique}
 
 \begin{theoreme}[Droite de l'espace]
-La droite passant par $A(x_A,y_A,z_A)$ de vecteur directeur $\vec u\,(\alpha,\beta,\gamma)$ est l'ensemble des points $M(x,y,z)$ tels que, pour un paramètre $t\in\R$ :
+La droite passant par $A(x_A,y_A,z_A)$ de vecteur directeur $\vec u\,(\alpha,\beta,\gamma)$
+est l'ensemble des points $M(x,y,z)$ tels que, pour un paramètre $t\in\R$ :
 \[
 \begin{cases}
 x=x_A+\alpha\,t\\
@@ -179,7 +462,9 @@ z=z_A+\gamma\,t
 \end{theoreme}
 
 \begin{remarque}
-Un plan peut aussi se paramétrer avec deux paramètres : $M=A+s\,\vec u+t\,\vec v$, où $\vec u,\vec v$ sont deux vecteurs non colinéaires du plan. L'équation cartésienne est en général plus commode pour étudier les positions relatives.
+Un plan peut aussi se paramétrer avec deux paramètres : $M=A+s\,\vec u+t\,\vec v$, où
+$\vec u,\vec v$ sont deux vecteurs non colinéaires du plan. L'équation cartésienne reste
+en général plus commode pour étudier les positions relatives et les distances.
 \end{remarque}
 
 % ═══════════════════════════════════════════════════════════════
@@ -187,8 +472,11 @@ Un plan peut aussi se paramétrer avec deux paramètres : $M=A+s\,\vec u+t\,\vec
 
 \begin{propriete}[Positions relatives]
 \begin{itemize}
-\item \textbf{Droite et plan} ($\vec u$ directeur, $\vec n$ normal) : si $\vec u\cdot\vec n\neq0$, la droite \textbf{perce} le plan en un point ; si $\vec u\cdot\vec n=0$, elle est \textbf{parallèle} au plan (incluse si un point lui appartient).
-\item \textbf{Deux plans} (normales $\vec n,\vec n'$) : parallèles si $\vec n,\vec n'$ colinéaires ; sinon ils se coupent selon une droite.
+\item \textbf{Droite et plan} ($\vec u$ directeur, $\vec n$ normal) : si $\vec u\cdot\vec n\neq0$,
+la droite \textbf{perce} le plan en un point ; si $\vec u\cdot\vec n=0$, elle est
+\textbf{parallèle} au plan (incluse si un point lui appartient).
+\item \textbf{Deux plans} (normales $\vec n,\vec n'$) : parallèles si $\vec n,\vec n'$ colinéaires ;
+sinon ils se coupent selon une droite.
 \item \textbf{Deux droites} : coplanaires (sécantes ou parallèles) ou \textbf{non coplanaires}.
 \end{itemize}
 \end{propriete}
@@ -198,25 +486,36 @@ La distance du point $M(x_0,y_0,z_0)$ au plan $\mathcal P:\ ax+by+cz+d=0$ vaut
 \[
 d(M,\mathcal P)=\frac{|a x_0+b y_0+c z_0+d|}{\sqrt{a^{2}+b^{2}+c^{2}}}.
 \]
+Le projeté orthogonal $H$ de $M$ sur $\mathcal P$ s'obtient en suivant la normale :
+$H$ est sur la droite passant par $M$ de direction $\vec n$, et appartient à $\mathcal P$.
 \end{theoreme}
 
 \begin{exemple}
-Distance de $M(1,2,3)$ au plan $2x-y+2z-1=0$ : $d=\dfrac{|2-2+6-1|}{\sqrt{4+1+4}}=\dfrac{5}{3}$.
+Distance de $M(1,2,3)$ au plan $2x-y+2z-1=0$ :
+$d=\dfrac{|2-2+6-1|}{\sqrt{4+1+4}}=\dfrac{5}{3}$.
 \end{exemple}
 
 % ═══════════════════════════════════════════════════════════════
 \section{Sphères}
 
 \begin{definition}[Sphère]
-La \textbf{sphère} de centre $\Omega(x_0,y_0,z_0)$ et de rayon $R>0$ est l'ensemble des points $M$ tels que $\Omega M=R$. Son équation est
+La \textbf{sphère} de centre $\Omega(x_0,y_0,z_0)$ et de rayon $R>0$ est l'ensemble des
+points $M$ tels que $\Omega M=R$. Son équation est
 \[
 (x-x_0)^{2}+(y-y_0)^{2}+(z-z_0)^{2}=R^{2}.
 \]
 Développée : $x^{2}+y^{2}+z^{2}+\alpha x+\beta y+\gamma z+\delta=0$ (réciproque sous condition $R^{2}>0$).
 \end{definition}
 
-\begin{propriete}[Plan tangent et intersection sphère–plan]
-Le \textbf{plan tangent} à la sphère en un point $A$ est le plan passant par $A$ de vecteur normal $\overrightarrow{\Omega A}$. Pour un plan $\mathcal P$, en posant $h=d(\Omega,\mathcal P)$ :
+\begin{propriete}[Sphère de diamètre {$[AB]$}]
+La sphère de diamètre $[AB]$ est l'ensemble des $M$ tels que
+$\overrightarrow{MA}\cdot\overrightarrow{MB}=0$ : c'est l'analogue spatial du cercle de
+diamètre. Son centre est le milieu de $[AB]$, son rayon $\tfrac12 AB$.
+\end{propriete}
+
+\begin{propriete}[Plan tangent et intersection sphère--plan]
+Le \textbf{plan tangent} à la sphère en un point $A$ est le plan passant par $A$ de vecteur
+normal $\overrightarrow{\Omega A}$. Pour un plan $\mathcal P$, en posant $h=d(\Omega,\mathcal P)$ :
 \begin{itemize}
 \item si $h>R$ : pas d'intersection ; \quad si $h=R$ : $\mathcal P$ est tangent (un seul point) ;
 \item si $h<R$ : l'intersection est un \textbf{cercle} de rayon $r=\sqrt{R^{2}-h^{2}}$.
@@ -224,74 +523,254 @@ Le \textbf{plan tangent} à la sphère en un point $A$ est le plan passant par $
 \end{propriete}
 
 \begin{aretenir}
-Pour reconnaître une sphère dans $x^{2}+y^{2}+z^{2}+\alpha x+\beta y+\gamma z+\delta=0$, on \textbf{complète les carrés} : le centre est $\big(-\tfrac\alpha2,-\tfrac\beta2,-\tfrac\gamma2\big)$ et $R^{2}=\tfrac{\alpha^{2}+\beta^{2}+\gamma^{2}}4-\delta$.
+Pour reconnaître une sphère dans $x^{2}+y^{2}+z^{2}+\alpha x+\beta y+\gamma z+\delta=0$,
+on \textbf{complète les carrés} : le centre est $\big(-\tfrac\alpha2,-\tfrac\beta2,-\tfrac\gamma2\big)$
+et $R^{2}=\tfrac{\alpha^{2}+\beta^{2}+\gamma^{2}}4-\delta$.
 \end{aretenir}
+
+\begin{exemple}
+$x^{2}+y^{2}+z^{2}-2x-4y=4$ : $(x-1)^{2}+(y-2)^{2}+z^{2}=4+1+4=9$, centre $\Omega(1,2,0)$, $R=3$.
+\end{exemple}
+
+% ═══════════════════════════════════════════════════════════════
+\section{L'essentiel à retenir}
+
+\begin{synthese}
+\textbf{Produit scalaire.}
+$\vec u\cdot\vec v=\|\vec u\|\,\|\vec v\|\cos(\widehat{\vec u,\vec v})=xx'+yy'+zz'$
+(b.o.n.). $\vec u\cdot\vec u=\|\vec u\|^{2}$, donc $\|\vec u\|=\sqrt{\vec u\cdot\vec u}$.
+Polarisation : $\vec u\cdot\vec v=\tfrac12(\|\vec u+\vec v\|^{2}-\|\vec u\|^{2}-\|\vec v\|^{2})$.\\[4pt]
+\textbf{Règles.} Symétrique, bilinéaire.
+$\|\vec u\pm\vec v\|^{2}=\|\vec u\|^{2}\pm2\,\vec u\cdot\vec v+\|\vec v\|^{2}$ ;\
+$(\vec u+\vec v)\cdot(\vec u-\vec v)=\|\vec u\|^{2}-\|\vec v\|^{2}$.
+Cauchy--Schwarz : $|\vec u\cdot\vec v|\le\|\vec u\|\,\|\vec v\|$.\\[4pt]
+\textbf{Orthogonalité.} $\vec u\perp\vec v\iff\vec u\cdot\vec v=0$. Pythagore :
+$ABC$ rectangle en $A\iff\overrightarrow{AB}\cdot\overrightarrow{AC}=0$.\\[4pt]
+\textbf{Angles, distances.} $\cos(\widehat{\vec u,\vec v})=\frac{\vec u\cdot\vec v}{\|\vec u\|\|\vec v\|}$.
+Al-Kashi : $a^{2}=b^{2}+c^{2}-2bc\cos\widehat A$.
+Distance point–droite (plan) : $\frac{|ax_0+by_0+c|}{\sqrt{a^{2}+b^{2}}}$ ;
+point–plan (espace) : $\frac{|ax_0+by_0+cz_0+d|}{\sqrt{a^{2}+b^{2}+c^{2}}}$.\\[4pt]
+\textbf{Lignes de niveau.} $\overrightarrow{AM}\cdot\vec u=k$ : droite $\perp\vec u$ ;
+$MA^{2}-MB^{2}=k$ : droite $\perp(AB)$ ;
+$\overrightarrow{MA}\cdot\overrightarrow{MB}=k$ : cercle de centre $I$ (milieu de $[AB]$),
+$\overrightarrow{MA}\cdot\overrightarrow{MB}=0$ : cercle de diamètre $[AB]$.\\[4pt]
+\textbf{Cercle / sphère.} $(x-x_0)^{2}+(y-y_0)^{2}=R^{2}$ ;
+$(x-x_0)^{2}+(y-y_0)^{2}+(z-z_0)^{2}=R^{2}$. Reconnaître : compléter les carrés.\\[4pt]
+\textbf{Produit vectoriel (espace).} $\vec u\wedge\vec v=(yz'-zy',\ zx'-xz',\ xy'-yx')$,
+$\perp$ à $\vec u$ et $\vec v$, $\|\vec u\wedge\vec v\|=\|\vec u\|\|\vec v\||\sin\theta|$ = aire.
+Triangle : $\tfrac12\|\overrightarrow{AB}\wedge\overrightarrow{AC}\|$ ;
+tétraèdre : $V=\tfrac16|(\overrightarrow{AB}\wedge\overrightarrow{AC})\cdot\overrightarrow{AD}|$.\\[4pt]
+\textbf{Plan / droite.} Plan : $ax+by+cz+d=0$, normale $\vec n(a,b,c)$.
+Droite : $(x,y,z)=(x_A+\alpha t,\,y_A+\beta t,\,z_A+\gamma t)$.
+Intersection sphère–plan : $h=d(\Omega,\mathcal P)$, cercle de rayon $\sqrt{R^{2}-h^{2}}$ si $h<R$.\\[4pt]
+\textbf{Pièges.} confondre $\cdot$ (nombre) et $\wedge$ (vecteur) ; oublier la valeur absolue
+dans une distance ; oublier le signe de la projection ; n'utiliser l'expression
+$xx'+yy'+zz'$ qu'en base \emph{orthonormée}.
+\end{synthese}
 
 % ═══════════════════════════════════════════════════════════════
 \section{Méthodes \& savoir-faire}
 
-\methode{Produit scalaire : orthogonalité et angles}
-Calculer $\vec u\cdot\vec v$ analytiquement ; nul $\Rightarrow$ orthogonaux ; sinon $\cos(\vec u,\vec v)=\dfrac{\vec u\cdot\vec v}{\|\vec u\|\,\|\vec v\|}$.
+\methode{Calculer un produit scalaire selon les données}
+Si on a les coordonnées : $xx'+yy'+zz'$. Si on a longueurs et angle :
+$\|\vec u\|\|\vec v\|\cos\theta$. Si on a seulement des longueurs de sommes/différences :
+la polarisation.
 \begin{exemple}
-$\vec u\,(1,1,0)$, $\vec v\,(1,0,1)$ : $\vec u\cdot\vec v=1$, $\|\vec u\|=\|\vec v\|=\sqrt2$, donc $\cos(\vec u,\vec v)=\tfrac12$ : l'angle vaut $60^{\circ}$.
+$ABCD$ losange de côté $4$ et d'angle $\widehat A=60^\circ$ :
+$\overrightarrow{AB}\cdot\overrightarrow{AD}=4\cdot4\cdot\cos60^\circ=16\cdot\tfrac12=8$.
+\end{exemple}
+
+\methode{Tester l'orthogonalité et calculer un angle}
+Calculer $\vec u\cdot\vec v$ : nul $\Rightarrow$ orthogonaux ; sinon
+$\cos\theta=\dfrac{\vec u\cdot\vec v}{\|\vec u\|\,\|\vec v\|}$.
+\begin{exemple}
+$\vec u\,(1,1,0)$, $\vec v\,(1,0,1)$ : $\vec u\cdot\vec v=1$, $\|\vec u\|=\|\vec v\|=\sqrt2$,
+donc $\cos\theta=\tfrac12$ : l'angle vaut $60^\circ$.
+\end{exemple}
+
+\methode{Déterminer un projeté orthogonal et une distance}
+Pour le projeté $H$ de $M$ sur une droite/un plan : paramétrer la perpendiculaire
+issue de $M$ (de direction le directeur de la droite, ou la normale du plan) et imposer
+l'orthogonalité (ou l'appartenance).
+\begin{exemple}
+Projeté de $M(4,0)$ sur $\mathcal D:y=x$ (directeur $\vec u(1,1)$). $H=(t,t)$,
+$\overrightarrow{MH}\cdot\vec u=0$ : $(t-4)+(t-0)=0\Rightarrow t=2$, donc $H(2,2)$ et
+$MH=\sqrt{4+4}=2\sqrt2$.
+\end{exemple}
+
+\methode{Reconnaître une ligne de niveau}
+Identifier la forme : $\overrightarrow{AM}\cdot\vec u=k$ (droite),
+$MA^{2}-MB^{2}=k$ (droite), $\overrightarrow{MA}\cdot\overrightarrow{MB}=k$ (cercle de
+centre le milieu). Au besoin, réduire avec $\overrightarrow{MA}\cdot\overrightarrow{MB}=MI^{2}-\tfrac14 AB^{2}$.
+\begin{exemple}
+$A(-1,0)$, $B(1,0)$ : $\overrightarrow{MA}\cdot\overrightarrow{MB}=0\iff(x+1)(x-1)+y^{2}=0\iff x^{2}+y^{2}=1$ :
+cercle de centre $O$, rayon $1$ (= cercle de diamètre $[AB]$).
+\end{exemple}
+
+\methode{Reconnaître un cercle / une sphère et ses éléments}
+Compléter les carrés pour lire le centre et le rayon ; vérifier que le rayon au carré est
+$>0$.
+\begin{exemple}
+$x^{2}+y^{2}-6x+4y+9=0$ : $(x-3)^{2}+(y+2)^{2}=9+4-9=4$, centre $(3,-2)$, rayon $2$.
 \end{exemple}
 
 \methode{Produit vectoriel : normale, aire, volume}
-$\overrightarrow{AB}\wedge\overrightarrow{AC}$ donne une normale au plan $(ABC)$ ; sa demi-norme est l'aire de $ABC$. Le volume du tétraèdre $ABCD$ est $V=\tfrac16\big|(\overrightarrow{AB}\wedge\overrightarrow{AC})\cdot\overrightarrow{AD}\big|$.
+$\overrightarrow{AB}\wedge\overrightarrow{AC}$ donne une normale au plan $(ABC)$ ; sa
+demi-norme est l'aire de $ABC$. Le volume du tétraèdre $ABCD$ est
+$V=\tfrac16|(\overrightarrow{AB}\wedge\overrightarrow{AC})\cdot\overrightarrow{AD}|$.
 \begin{exemple}
-$A(0,0,0)$, $B(1,0,0)$, $C(0,1,0)$, $D(0,0,1)$ : $\overrightarrow{AB}\wedge\overrightarrow{AC}=(0,0,1)$, aire $ABC=\tfrac12$ ; $V=\tfrac16|(0,0,1)\cdot(0,0,1)|=\tfrac16$.
+$A(0,0,0)$, $B(1,0,0)$, $C(0,1,0)$, $D(0,0,1)$ :
+$\overrightarrow{AB}\wedge\overrightarrow{AC}=(0,0,1)$, aire $ABC=\tfrac12$ ;
+$V=\tfrac16|(0,0,1)\cdot(0,0,1)|=\tfrac16$.
 \end{exemple}
 
 \methode{Déterminer l'équation d'un plan}
-Choisir une normale $\vec n\,(a,b,c)$, écrire $ax+by+cz+d=0$, et fixer $d$ avec un point du plan.
+Choisir une normale $\vec n\,(a,b,c)$, écrire $ax+by+cz+d=0$, et fixer $d$ avec un point.
+Pour le plan $(ABC)$ : $\vec n=\overrightarrow{AB}\wedge\overrightarrow{AC}$.
 \begin{exemple}
-Plan par $A(1,2,-1)$ normal à $\vec n\,(2,-1,3)$ : $2x-y+3z+d=0$ ; en $A$ : $2-2-3+d=0$, $d=3$. Équation : $2x-y+3z+3=0$.
+Plan par $A(0,1,2)$ normal à $\vec n\,(1,-2,2)$ : $x-2y+2z+d=0$ ; en $A$ :
+$0-2+4+d=0$, $d=-2$, donc $x-2y+2z-2=0$.
 \end{exemple}
 
-\methode{Étudier les positions relatives et intersections}
-Comparer directions et normales ; pour une intersection droite/plan, substituer la paramétrisation dans l'équation du plan et résoudre en $t$.
+\methode{Étudier positions relatives et intersections}
+Comparer directions et normales ; pour une intersection droite/plan, substituer la
+paramétrisation dans l'équation du plan et résoudre en $t$.
 \begin{exemple}
-Droite $\,(x,y,z)=(1+t,\ -t,\ 2t)$ et plan $x+y+z-4=0$ : $(1+t)+(-t)+2t-4=0\Rightarrow 2t-3=0\Rightarrow t=\tfrac32$, point d'intersection $\big(\tfrac52,-\tfrac32,3\big)$.
+Droite $(x,y,z)=(1+t,\ -t,\ 2t)$ et plan $x+y+z-4=0$ :
+$(1+t)+(-t)+2t-4=0\Rightarrow 2t-3=0\Rightarrow t=\tfrac32$, point $\big(\tfrac52,-\tfrac32,3\big)$.
 \end{exemple}
 
-\methode{Calculer une distance}
-Point à plan : formule $\dfrac{|ax_0+by_0+cz_0+d|}{\sqrt{a^{2}+b^{2}+c^{2}}}$.
+\methode{Sphère et plan : nature de l'intersection}
+Comparer $h=d(\Omega,\mathcal P)$ à $R$ ; si $h<R$, l'intersection est un cercle de rayon
+$\sqrt{R^{2}-h^{2}}$.
 \begin{exemple}
-Distance de $O(0,0,0)$ au plan $x+2y+2z-6=0$ : $\dfrac{|-6|}{\sqrt{1+4+4}}=\dfrac{6}{3}=2$.
-\end{exemple}
-
-\methode{Sphères : équation et intersection avec un plan}
-Compléter les carrés pour le centre et le rayon ; comparer $d(\Omega,\mathcal P)$ à $R$ pour la nature de l'intersection.
-\begin{exemple}
-$x^{2}+y^{2}+z^{2}-2x-4y=4$ : $(x-1)^{2}+(y-2)^{2}+z^{2}=9$, centre $\Omega(1,2,0)$, $R=3$.
+$\Omega(0,0,0)$, $R=5$, $\mathcal P:z=3$ : $h=3<5$, cercle de rayon $\sqrt{25-9}=4$.
 \end{exemple}
 
 % ═══════════════════════════════════════════════════════════════
-\section{Exercices}
+\section{Exercices d'application}
 
-\rubrique{Produit scalaire et produit vectoriel}
-\exo{}\diff{1} On donne $\vec u\,(2,-1,3)$ et $\vec v\,(1,4,1)$. Calculer $\vec u\cdot\vec v$ et dire si $\vec u\perp\vec v$.
+\rubrique{Produit scalaire, normes et angles}
+\exo{}\diff{1} On donne $\vec u\,(2,-1,3)$ et $\vec v\,(1,4,1)$. Calculer $\vec u\cdot\vec v$, $\|\vec u\|$, $\|\vec v\|$ et dire si $\vec u\perp\vec v$.
 
+\exo{}\diff{2} $\vec u$ et $\vec v$ vérifient $\|\vec u\|=2$, $\|\vec v\|=3$ et $\widehat{(\vec u,\vec v)}=120^\circ$. Calculer $\vec u\cdot\vec v$, puis $\|\vec u+\vec v\|$ et $\|\vec u-\vec v\|$.
+
+\exo{}\diff{2} Dans un repère orthonormé du plan, $A(1,2)$, $B(4,3)$, $C(2,5)$. Le triangle $ABC$ est-il rectangle ? Calculer la mesure de l'angle $\widehat{A}$ (arrondie au degré).
+
+\rubrique{Orthogonalité et projeté orthogonal}
+\exo{}\diff{1} Déterminer $m$ pour que $\vec u\,(m,2,-1)$ et $\vec v\,(3,m,1)$ soient orthogonaux.
+
+\exo{}\diff{2} Dans le plan, déterminer le projeté orthogonal $H$ du point $M(5,1)$ sur la droite $\mathcal D:\ 2x+y-3=0$, puis la distance $d(M,\mathcal D)$.
+
+\exo{}\diff{2} Soit $A(1,0,2)$, $B(3,2,4)$ et $\vec n\,(1,-1,1)$. Déterminer le projeté orthogonal de $B$ sur la droite passant par $A$ de direction $\vec n$.
+
+\rubrique{Lignes de niveau, cercles}
+\exo{}\diff{2} $A(-2,1)$ et $B(4,3)$. Déterminer et caractériser l'ensemble des points $M$ tels que $\overrightarrow{MA}\cdot\overrightarrow{MB}=0$.
+
+\exo{}\diff{2} Déterminer la nature et les éléments de l'ensemble $\{M:\ MA^{2}-MB^{2}=10\}$ avec $A(0,0)$ et $B(2,0)$.
+
+\exo{}\diff{2} Donner le centre et le rayon du cercle d'équation $x^{2}+y^{2}-4x+6y-3=0$.
+
+\exo{}\diff{3} $A(1,2)$ et $B(5,-2)$. Déterminer l'ensemble des points $M$ tels que $\overrightarrow{MA}\cdot\overrightarrow{MB}=-4$ et préciser sa nature.
+
+\rubrique{Produit vectoriel, aires et plans}
 \exo{}\diff{2} Soit $\vec u\,(1,1,0)$ et $\vec v\,(0,1,1)$. Calculer $\vec u\wedge\vec v$, sa norme, puis l'aire du parallélogramme construit sur $\vec u,\vec v$.
 
-\exo{}\diff{2} Dans le repère orthonormé, $A(1,0,2)$, $B(2,1,2)$, $C(1,2,3)$. Calculer l'aire du triangle $ABC$.
+\exo{}\diff{2} $A(1,0,2)$, $B(2,1,2)$, $C(1,2,3)$. Calculer l'aire du triangle $ABC$.
 
-\rubrique{Plans et droites}
 \exo{}\diff{1} Déterminer une équation cartésienne du plan passant par $A(0,1,2)$ de vecteur normal $\vec n\,(1,-2,2)$.
 
 \exo{}\diff{2} Déterminer une représentation paramétrique de la droite passant par $A(1,-1,0)$ et $B(3,0,2)$.
 
-\exo{}\diff{2} Trouver le point d'intersection de la droite $(x,y,z)=(2-t,\ 1+t,\ t)$ et du plan $2x+y-z-3=0$.
-
 \rubrique{Distances et sphères}
 \exo{}\diff{1} Calculer la distance du point $M(3,-1,2)$ au plan $x-2y+2z+1=0$.
+
+\exo{}\diff{2} Trouver le point d'intersection de la droite $(x,y,z)=(2-t,\ 1+t,\ t)$ et du plan $2x+y-z-3=0$.
 
 \exo{}\diff{2} Donner le centre et le rayon de la sphère $x^{2}+y^{2}+z^{2}-4x+2y-6z+5=0$.
 
 \exo{}\diff{3} Soit la sphère $\mathcal S$ de centre $\Omega(1,1,1)$ et de rayon $R=3$, et le plan $\mathcal P:\ 2x+2y+z-3=0$. Montrer que $\mathcal P$ coupe $\mathcal S$ et déterminer le rayon du cercle d'intersection.
 
-\rubrique{Problème type Baccalauréat}
-\exo{}\diff{3} L'espace est rapporté à un repère orthonormé. On considère les points
+% ═══════════════════════════════════════════════════════════════
+\section{Exercices d'entraînement}
+
+\rubrique{Produit scalaire, normes, angles}
+\exo{}\diff{1} Calculer $\vec u\cdot\vec v$ pour $\vec u\,(3,-2)$, $\vec v\,(1,5)$, puis pour $\vec u\,(1,-1,2)$, $\vec v\,(2,2,0)$.
+
+\exo{}\diff{1} On donne $\|\vec u\|=5$, $\|\vec v\|=2$, $\vec u\cdot\vec v=6$. Calculer $\cos(\widehat{\vec u,\vec v})$.
+
+\exo{}\diff{2} $\|\vec u\|=4$, $\|\vec v\|=3$, $\|\vec u+\vec v\|=\sqrt{37}$. Calculer $\vec u\cdot\vec v$ puis l'angle $(\widehat{\vec u,\vec v})$.
+
+\exo{}\diff{2} Dans un triangle $ABC$, $AB=7$, $AC=5$, $\widehat A=60^\circ$. Calculer $BC$ (Al-Kashi).
+
+\exo{}\diff{2} Calculer $\overrightarrow{AB}\cdot\overrightarrow{AC}$ pour $A(2,-1)$, $B(5,1)$, $C(0,4)$, et en déduire la nature de l'angle $\widehat A$.
+
+\exo{}\diff{3} Soit $ABCD$ un carré de côté $a$. Calculer $\overrightarrow{AC}\cdot\overrightarrow{BD}$ et interpréter.
+
+\rubrique{Orthogonalité et projetés}
+\exo{}\diff{1} Pour quel(s) réel(s) $m$ les vecteurs $\vec u\,(m,1,2)$ et $\vec v\,(1,m,-1)$ sont-ils orthogonaux ?
+
+\exo{}\diff{2} Trouver un vecteur orthogonal à la fois à $\vec u\,(1,2,1)$ et $\vec v\,(2,-1,0)$.
+
+\exo{}\diff{2} Dans le plan, déterminer le projeté orthogonal de $M(3,4)$ sur la droite $\mathcal D:\ x-y+1=0$.
+
+\exo{}\diff{2} Déterminer une équation de la droite passant par $A(1,2)$ et orthogonale à $\vec n\,(3,-1)$.
+
+\exo{}\diff{3} $A(0,0,0)$, $B(2,0,0)$, $C(0,2,0)$. Déterminer le projeté orthogonal de $D(1,1,3)$ sur le plan $(ABC)$.
+
+\rubrique{Lignes de niveau et cercles}
+\exo{}\diff{1} Donner le centre et le rayon du cercle $x^{2}+y^{2}-2x-8=0$.
+
+\exo{}\diff{2} Déterminer l'ensemble $\{M:\ \overrightarrow{MA}\cdot\overrightarrow{MB}=0\}$ pour $A(1,1)$, $B(5,3)$ (donner son équation).
+
+\exo{}\diff{2} $A(-1,2)$, $\vec u\,(2,-1)$. Décrire l'ensemble $\{M:\ \overrightarrow{AM}\cdot\vec u=5\}$ et donner son équation.
+
+\exo{}\diff{2} Déterminer l'ensemble $\{M:\ MA^{2}+MB^{2}=20\}$ pour $A(0,0)$, $B(4,0)$.
+
+\exo{}\diff{2} Donner une équation cartésienne du cercle de diamètre $[AB]$ avec $A(2,3)$, $B(-2,1)$.
+
+\exo{}\diff{3} Déterminer l'ensemble des points $M$ tels que $\dfrac{MA}{MB}=2$ avec $A(0,0)$, $B(3,0)$ (cercle d'Apollonius).
+
+\rubrique{Produit vectoriel, aires, plans}
+\exo{}\diff{1} Calculer $\vec u\wedge\vec v$ pour $\vec u\,(2,0,1)$, $\vec v\,(1,3,0)$.
+
+\exo{}\diff{2} $A(1,0,0)$, $B(0,1,0)$, $C(0,0,1)$. Déterminer une équation du plan $(ABC)$ et l'aire de $ABC$.
+
+\exo{}\diff{2} Déterminer une équation du plan passant par $A(2,1,-1)$ et parallèle au plan $x-2y+z=0$.
+
+\exo{}\diff{2} Déterminer une représentation paramétrique de la droite d'intersection des plans $x+y+z=1$ et $x-y+2z=0$.
+
+\exo{}\diff{3} $A(1,1,0)$, $B(2,0,1)$, $C(0,2,1)$, $D(1,1,2)$. Calculer le volume du tétraèdre $ABCD$.
+
+\rubrique{Distances et sphères}
+\exo{}\diff{1} Calculer la distance de $O(0,0,0)$ au plan $2x-y+2z-9=0$.
+
+\exo{}\diff{2} Donner le centre et le rayon de la sphère $x^{2}+y^{2}+z^{2}+2x-4z-4=0$.
+
+\exo{}\diff{2} Déterminer l'intersection de la sphère de centre $\Omega(0,0,0)$, rayon $3$, avec le plan $z=2$.
+
+\exo{}\diff{2} Déterminer l'équation de la sphère de diamètre $[AB]$ avec $A(1,0,1)$, $B(3,2,1)$.
+
+\exo{}\diff{2} La droite $(x,y,z)=(t,\ 1+t,\ 2-t)$ est-elle parallèle au plan $x+y+2z=5$, sécante, ou incluse ?
+
+\exo{}\diff{3} Soit $\mathcal S:\ x^{2}+y^{2}+z^{2}-2x-2y-2z-6=0$ et $\mathcal P:\ x+y+z-1=0$. Montrer que $\mathcal P$ coupe $\mathcal S$ et donner le rayon du cercle d'intersection.
+
+\exo{}\diff{3} Déterminer le(s) plan(s) tangent(s) à la sphère de centre $\Omega(1,2,0)$, rayon $3$, parallèles au plan $2x+2y+z=0$.
+
+% ═══════════════════════════════════════════════════════════════
+\section{Sujets type Baccalauréat}
+
+\sujetbac[produit scalaire dans le plan, lignes de niveau et cercle]
+Le plan est rapporté à un repère orthonormé. On donne $A(-1,0)$ et $B(3,2)$.
+\begin{enumerate}[label=\arabic*)]
+\item Calculer $\overrightarrow{AB}$ et $AB$.
+\item Déterminer l'ensemble $(\mathcal E_1)$ des points $M$ tels que $\overrightarrow{AM}\cdot\overrightarrow{AB}=0$, et en donner une équation cartésienne.
+\item On note $I$ le milieu de $[AB]$. Déterminer l'ensemble $(\mathcal E_2)$ des points $M$ tels que $\overrightarrow{MA}\cdot\overrightarrow{MB}=0$ ; préciser son centre et son rayon, et donner son équation.
+\item Déterminer l'ensemble $(\mathcal E_3)$ des points $M$ tels que $MA^{2}-MB^{2}=8$ ; reconnaître sa nature.
+\end{enumerate}
+
+\sujetbac[géométrie de l'espace : plan, tétraèdre, distance et projeté]
+L'espace est rapporté à un repère orthonormé. On considère les points
 $A(2,0,0)$, $B(0,2,0)$, $C(0,0,2)$ et $D(2,2,2)$.
 \begin{enumerate}[label=\arabic*)]
 \item Calculer $\overrightarrow{AB}\wedge\overrightarrow{AC}$ et en déduire une équation cartésienne du plan $(ABC)$.
@@ -301,46 +780,142 @@ $A(2,0,0)$, $B(0,2,0)$, $C(0,0,2)$ et $D(2,2,2)$.
 \item Déterminer une représentation paramétrique de la droite $\Delta$ passant par $D$ et orthogonale au plan $(ABC)$, puis les coordonnées du projeté orthogonal $H$ de $D$ sur $(ABC)$.
 \end{enumerate}
 
+\sujetbac[sphère, plan et cercle d'intersection]
+L'espace est muni d'un repère orthonormé. On considère la sphère $\mathcal S$ d'équation
+$x^{2}+y^{2}+z^{2}-2x-4y+2z-3=0$ et le plan $\mathcal P:\ x+2y-2z-3=0$.
+\begin{enumerate}[label=\arabic*)]
+\item Déterminer le centre $\Omega$ et le rayon $R$ de $\mathcal S$.
+\item Calculer la distance $h$ de $\Omega$ à $\mathcal P$. En déduire que $\mathcal P$ coupe $\mathcal S$ selon un cercle $\mathcal C$ et calculer son rayon $r$.
+\item Déterminer les coordonnées du centre $\omega$ du cercle $\mathcal C$ (projeté orthogonal de $\Omega$ sur $\mathcal P$).
+\item Vérifier que le point $E(1,2,2)$ appartient à $\mathcal S$, puis déterminer une équation du plan tangent à $\mathcal S$ en $E$.
+\end{enumerate}
+
 % ═══════════════════════════════════════════════════════════════
 \section{Corrigés}
 
 \corrige{de l'exercice 1}
-$\vec u\cdot\vec v=2\cdot1+(-1)\cdot4+3\cdot1=2-4+3=1\neq0$ : $\vec u$ et $\vec v$ ne sont pas orthogonaux.
+$\vec u\cdot\vec v=2\cdot1+(-1)\cdot4+3\cdot1=2-4+3=1\neq0$ : non orthogonaux.
+$\|\vec u\|=\sqrt{4+1+9}=\sqrt{14}$, $\|\vec v\|=\sqrt{1+16+1}=\sqrt{18}=3\sqrt2$.
 
 \corrige{de l'exercice 2}
-$\vec u\wedge\vec v=(1\cdot1-0\cdot1,\ 0\cdot0-1\cdot1,\ 1\cdot1-1\cdot0)=(1,-1,1)$, de norme $\sqrt{1+1+1}=\sqrt3$ : l'aire du parallélogramme est $\sqrt3$.
+$\vec u\cdot\vec v=2\cdot3\cdot\cos120^\circ=6\cdot(-\tfrac12)=-3$.
+$\|\vec u+\vec v\|^{2}=4+2(-3)+9=7$, donc $\|\vec u+\vec v\|=\sqrt7$.
+$\|\vec u-\vec v\|^{2}=4-2(-3)+9=19$, donc $\|\vec u-\vec v\|=\sqrt{19}$.
 
 \corrige{de l'exercice 3}
-$\overrightarrow{AB}\,(1,1,0)$, $\overrightarrow{AC}\,(0,2,1)$ ; $\overrightarrow{AB}\wedge\overrightarrow{AC}=(1\cdot1-0\cdot2,\ 0\cdot0-1\cdot1,\ 1\cdot2-1\cdot0)=(1,-1,2)$, de norme $\sqrt{1+1+4}=\sqrt6$. Aire $ABC=\tfrac12\sqrt6$.
+$\overrightarrow{AB}\,(3,1)$, $\overrightarrow{AC}\,(1,3)$ ;
+$\overrightarrow{AB}\cdot\overrightarrow{AC}=3+3=6\neq0$ : non rectangle en $A$.
+$\|\overrightarrow{AB}\|=\|\overrightarrow{AC}\|=\sqrt{10}$, donc
+$\cos\widehat A=\dfrac{6}{10}=0{,}6$, d'où $\widehat A\approx 53^\circ$.
+(On vérifie les autres angles : aucun n'est droit.)
 
 \corrige{de l'exercice 4}
-$\vec n\,(1,-2,2)$ donne $x-2y+2z+d=0$ ; en $A(0,1,2)$ : $0-2+4+d=0$, $d=-2$. Équation : $x-2y+2z-2=0$.
+$\vec u\cdot\vec v=3m+2m-1=5m-1=0\Rightarrow m=\tfrac15$.
 
 \corrige{de l'exercice 5}
-$\overrightarrow{AB}\,(2,1,2)$ est directeur. Représentation : $(x,y,z)=(1+2t,\ -1+t,\ 2t)$, $t\in\R$.
+$\mathcal D$ a pour vecteur directeur $\vec u\,(1,-2)$ (car normale $(2,1)$).
+$H=M+\lambda\vec n$ avec $\vec n(2,1)$ normal : $H(5+2\lambda,\ 1+\lambda)$.
+$H\in\mathcal D$ : $2(5+2\lambda)+(1+\lambda)-3=0\Rightarrow 5\lambda+8=0\Rightarrow\lambda=-\tfrac85$.
+$H=\big(5-\tfrac{16}5,\ 1-\tfrac85\big)=\big(\tfrac95,-\tfrac35\big)$.
+$d(M,\mathcal D)=\dfrac{|2\cdot5+1-3|}{\sqrt5}=\dfrac{8}{\sqrt5}=\dfrac{8\sqrt5}5$
+(et $|\lambda|\,\|\vec n\|=\tfrac85\sqrt5=\tfrac{8\sqrt5}5$, cohérent).
 
 \corrige{de l'exercice 6}
-On reporte : $2(2-t)+(1+t)-t-3=4-2t+1+t-t-3=2-2t=0\Rightarrow t=1$. Point : $(2-1,\ 1+1,\ 1)=(1,2,1)$.
+Droite : $P=A+t\vec n=(1+t,\ -t,\ 2+t)$. $\overrightarrow{PB}=(3-(1+t),\ 2+t,\ 4-(2+t))=(2-t,\ 2+t,\ 2-t)$.
+Orthogonalité $\overrightarrow{PB}\cdot\vec n=0$ : $(2-t)-(2+t)+(2-t)=0\Rightarrow 2-3t=0\Rightarrow t=\tfrac23$.
+Projeté : $\big(1+\tfrac23,\ -\tfrac23,\ 2+\tfrac23\big)=\big(\tfrac53,-\tfrac23,\tfrac83\big)$.
 
 \corrige{de l'exercice 7}
-$d=\dfrac{|3-2(-1)+2\cdot2+1|}{\sqrt{1+4+4}}=\dfrac{|3+2+4+1|}{3}=\dfrac{10}{3}$.
+$\overrightarrow{MA}\cdot\overrightarrow{MB}=0$ : c'est le cercle de diamètre $[AB]$.
+Centre $I=\big(\tfrac{-2+4}2,\tfrac{1+3}2\big)=(1,2)$ ; $AB=\sqrt{36+4}=\sqrt{40}=2\sqrt{10}$,
+rayon $\tfrac{AB}2=\sqrt{10}$. Équation : $(x+2)(x-4)+(y-1)(y-3)=0$, soit
+$x^{2}+y^{2}-2x-4y-5=0$.
 
 \corrige{de l'exercice 8}
-On complète les carrés : $(x-2)^{2}+(y+1)^{2}+(z-3)^{2}=4+1+9-5=9$. Centre $\Omega(2,-1,3)$, rayon $R=3$.
+$MA^{2}-MB^{2}=(x^{2}+y^{2})-\big((x-2)^{2}+y^{2}\big)=4x-4$. L'équation $4x-4=10$
+donne $x=\tfrac{14}4=\tfrac72$ : c'est la \textbf{droite} verticale d'équation $x=\tfrac72$
+(orthogonale à $(AB)$, l'axe $Ox$).
 
 \corrige{de l'exercice 9}
-$h=d(\Omega,\mathcal P)=\dfrac{|2\cdot1+2\cdot1+1-3|}{\sqrt{4+4+1}}=\dfrac{2}{3}$. Comme $h=\tfrac23<3=R$, $\mathcal P$ coupe $\mathcal S$ selon un cercle de rayon
+$(x-2)^{2}+(y+3)^{2}=4+9+3=16$. Centre $(2,-3)$, rayon $4$.
+
+\corrige{de l'exercice 10}
+$I=\big(\tfrac{1+5}2,\tfrac{2-2}2\big)=(3,0)$, $AB^{2}=16+16=32$.
+$\overrightarrow{MA}\cdot\overrightarrow{MB}=MI^{2}-\tfrac14 AB^{2}=MI^{2}-8$. L'équation
+$MI^{2}-8=-4$ donne $MI^{2}=4$ : \textbf{cercle} de centre $I(3,0)$, rayon $2$.
+Équation : $(x-3)^{2}+y^{2}=4$.
+
+\corrige{de l'exercice 11}
+$\vec u\wedge\vec v=(1\cdot1-0\cdot1,\ 0\cdot0-1\cdot1,\ 1\cdot1-1\cdot0)=(1,-1,1)$, de
+norme $\sqrt3$ : aire du parallélogramme $=\sqrt3$.
+
+\corrige{de l'exercice 12}
+$\overrightarrow{AB}\,(1,1,0)$, $\overrightarrow{AC}\,(0,2,1)$ ;
+$\overrightarrow{AB}\wedge\overrightarrow{AC}=(1\cdot1-0\cdot2,\ 0\cdot0-1\cdot1,\ 1\cdot2-1\cdot0)=(1,-1,2)$,
+norme $\sqrt6$. Aire $ABC=\tfrac12\sqrt6$.
+
+\corrige{de l'exercice 13}
+$\vec n\,(1,-2,2)$ : $x-2y+2z+d=0$ ; en $A(0,1,2)$ : $-2+4+d=0$, $d=-2$.
+Équation : $x-2y+2z-2=0$.
+
+\corrige{de l'exercice 14}
+$\overrightarrow{AB}\,(2,1,2)$ directeur. Représentation : $(x,y,z)=(1+2t,\ -1+t,\ 2t)$, $t\in\R$.
+
+\corrige{de l'exercice 15}
+$d=\dfrac{|3-2(-1)+2\cdot2+1|}{\sqrt{1+4+4}}=\dfrac{|3+2+4+1|}{3}=\dfrac{10}{3}$.
+
+\corrige{de l'exercice 16}
+$2(2-t)+(1+t)-t-3=4-2t+1+t-t-3=2-2t=0\Rightarrow t=1$. Point : $(2-1,\ 1+1,\ 1)=(1,2,1)$.
+
+\corrige{de l'exercice 17}
+$(x-2)^{2}+(y+1)^{2}+(z-3)^{2}=4+1+9-5=9$. Centre $\Omega(2,-1,3)$, rayon $R=3$.
+
+\corrige{de l'exercice 18}
+$h=d(\Omega,\mathcal P)=\dfrac{|2\cdot1+2\cdot1+1-3|}{\sqrt{4+4+1}}=\dfrac{2}{3}$.
+Comme $h=\tfrac23<3=R$, $\mathcal P$ coupe $\mathcal S$ selon un cercle de rayon
 $r=\sqrt{R^{2}-h^{2}}=\sqrt{9-\tfrac49}=\sqrt{\tfrac{77}{9}}=\dfrac{\sqrt{77}}{3}$.
 
-\corrige{du problème}
+\corrige{du sujet 1}
+1) $\overrightarrow{AB}\,(4,2)$, $AB=\sqrt{16+4}=\sqrt{20}=2\sqrt5$.\\
+2) $\overrightarrow{AM}\cdot\overrightarrow{AB}=0$ : ensemble des $M$ tels que
+$\overrightarrow{AM}\perp\overrightarrow{AB}$, c'est la \textbf{droite} passant par $A(-1,0)$
+orthogonale à $\overrightarrow{AB}\,(4,2)$, donc de vecteur normal $(4,2)\parallel(2,1)$ :
+$2(x+1)+1(y-0)=0$, soit $2x+y+2=0$.\\
+3) $\overrightarrow{MA}\cdot\overrightarrow{MB}=0$ : \textbf{cercle de diamètre} $[AB]$, de
+centre $I=\big(\tfrac{-1+3}2,\tfrac{0+2}2\big)=(1,1)$ et de rayon $\tfrac{AB}2=\sqrt5$.
+Équation : $(x+1)(x-3)+(y-0)(y-2)=0$, soit $x^{2}+y^{2}-2x-2y-3=0$.\\
+4) $MA^{2}-MB^{2}$ : avec $M(x,y)$,
+$MA^{2}=(x+1)^{2}+y^{2}$, $MB^{2}=(x-3)^{2}+(y-2)^{2}$.
+$MA^{2}-MB^{2}=(x+1)^{2}-(x-3)^{2}+y^{2}-(y-2)^{2}=(8x-8)+(4y-4)=8x+4y-12$.
+L'équation $8x+4y-12=8$ donne $8x+4y=20$, soit $2x+y-5=0$ : une \textbf{droite}
+orthogonale à $(AB)$.
+
+\corrige{du sujet 2}
 1) $\overrightarrow{AB}\,(-2,2,0)$, $\overrightarrow{AC}\,(-2,0,2)$.
 $\overrightarrow{AB}\wedge\overrightarrow{AC}=\big(2\cdot2-0\cdot0,\ 0\cdot(-2)-(-2)\cdot2,\ (-2)\cdot0-2\cdot(-2)\big)=(4,4,4)$.
-Une normale est $\vec n\,(1,1,1)$, d'où $(ABC):\ x+y+z+d=0$ ; en $A(2,0,0)$ : $2+d=0$, $d=-2$. Équation : $x+y+z-2=0$.\;
-2) Aire $ABC=\tfrac12\|\overrightarrow{AB}\wedge\overrightarrow{AC}\|=\tfrac12\sqrt{16+16+16}=\tfrac12\cdot4\sqrt3=2\sqrt3$.\;
-3) $d(D,(ABC))=\dfrac{|2+2+2-2|}{\sqrt3}=\dfrac{4}{\sqrt3}=\dfrac{4\sqrt3}{3}$.\;
+Une normale est $\vec n\,(1,1,1)$, d'où $(ABC):\ x+y+z+d=0$ ; en $A(2,0,0)$ : $2+d=0$, $d=-2$.
+Équation : $x+y+z-2=0$.\\
+2) Aire $ABC=\tfrac12\|\overrightarrow{AB}\wedge\overrightarrow{AC}\|=\tfrac12\sqrt{16+16+16}=\tfrac12\cdot4\sqrt3=2\sqrt3$.\\
+3) $d(D,(ABC))=\dfrac{|2+2+2-2|}{\sqrt3}=\dfrac{4}{\sqrt3}=\dfrac{4\sqrt3}{3}$.\\
 4) $V=\tfrac13\times\mathcal A_{ABC}\times d(D,(ABC))=\tfrac13\cdot 2\sqrt3\cdot\dfrac{4\sqrt3}{3}=\tfrac13\cdot\dfrac{8\cdot3}{3}=\dfrac{8}{3}$.
-\;(On vérifie avec le produit mixte : $\overrightarrow{AD}\,(0,2,2)$, $(\overrightarrow{AB}\wedge\overrightarrow{AC})\cdot\overrightarrow{AD}=(4,4,4)\cdot(0,2,2)=16$, et $V=\tfrac16\cdot16=\tfrac83$.)\;
+(Contrôle par le produit mixte : $\overrightarrow{AD}\,(0,2,2)$,
+$(4,4,4)\cdot(0,2,2)=16$, $V=\tfrac16\cdot16=\tfrac83$.)\\
 5) $\Delta$ passe par $D(2,2,2)$ de directeur $\vec n\,(1,1,1)$ : $(x,y,z)=(2+t,\ 2+t,\ 2+t)$.
 Pour $H\in(ABC)$ : $(2+t)+(2+t)+(2+t)-2=0\Rightarrow 4+3t=0\Rightarrow t=-\tfrac43$.
-D'où $H=\big(2-\tfrac43,\ 2-\tfrac43,\ 2-\tfrac43\big)=\big(\tfrac23,\tfrac23,\tfrac23\big)$.
-\;(Contrôle : $DH=\|t\|\,\|\vec n\|=\tfrac43\sqrt3=\tfrac{4\sqrt3}{3}$, cohérent avec la question 3.)
+$H=\big(\tfrac23,\tfrac23,\tfrac23\big)$.
+(Contrôle : $DH=|t|\,\|\vec n\|=\tfrac43\sqrt3=\tfrac{4\sqrt3}{3}$, cohérent avec 3).)
+
+\corrige{du sujet 3}
+1) On complète les carrés : $(x-1)^{2}+(y-2)^{2}+(z+1)^{2}=3+1+4+1=9$.
+Centre $\Omega(1,2,-1)$, rayon $R=3$.\\
+2) Normale de $\mathcal P$ : $\vec n\,(1,2,-2)$, $\|\vec n\|=\sqrt{1+4+4}=3$.
+$h=\dfrac{|1+2\cdot2-2\cdot(-1)-3|}{3}=\dfrac{|1+4+2-3|}{3}=\dfrac{4}{3}$.
+Comme $h=\tfrac43<3=R$, $\mathcal P$ coupe $\mathcal S$ selon un cercle $\mathcal C$ de rayon
+$r=\sqrt{R^{2}-h^{2}}=\sqrt{9-\tfrac{16}9}=\sqrt{\tfrac{65}9}=\dfrac{\sqrt{65}}{3}$.\\
+3) Le centre $\omega$ est le projeté orthogonal de $\Omega$ sur $\mathcal P$ :
+$\omega=\Omega+\lambda\vec n$ avec
+$\lambda=-\dfrac{x_\Omega+2y_\Omega-2z_\Omega-3}{\|\vec n\|^{2}}=-\dfrac{1+4+2-3}{9}=-\dfrac{4}{9}$.
+D'où $\omega=\big(1-\tfrac49,\ 2-\tfrac89,\ -1+\tfrac89\big)=\big(\tfrac59,\ \tfrac{10}9,\ -\tfrac19\big)$.\\
+4) En $E(1,2,2)$ : $1+4+4-2-8+4-3=0$, donc $E\in\mathcal S$. Le plan tangent en $E$ a pour
+normale $\overrightarrow{\Omega E}=(0,0,3)\parallel(0,0,1)$ ; il passe par $E$, d'équation
+$z-2=0$, soit $\boxed{z=2}$.

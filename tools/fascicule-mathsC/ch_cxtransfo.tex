@@ -1,36 +1,135 @@
 \chapter{Nombres complexes et transformations du plan}
 
 \noindent\textit{Le plan complexe transforme la géométrie en calcul : une translation devient
-une addition, une rotation une multiplication par $e^{i\theta}$. Réciproquement, toute écriture
-complexe simple cache une transformation géométrique que l'on sait reconnaître. Ce chapitre,
-emblématique de la série C, fait dialoguer complexes et configurations du plan.}
+une addition, une rotation une multiplication par $e^{i\theta}$, une homothétie une multiplication
+par un réel. Réciproquement, toute écriture complexe simple $z'=az+b$ cache une transformation
+géométrique que l'on sait reconnaître à l'\oe il. Ce chapitre, emblématique de la série C, fait
+dialoguer nombres complexes et configurations du plan : distances et angles, triangles
+particuliers, alignement, orthogonalité, cocyclicité, ensembles de points, et enfin l'étude
+complète des similitudes directes.}
 \vspace{8pt}
 
 % ═══════════════════════════════════════════════════════════════
-\section{Affixes : rappels utiles}
+\section{Affixes, distances et angles : l'outillage de base}
 
-On munit le plan d'un repère orthonormé direct $(O,\vec u,\vec v)$. À tout point $M$ de
-coordonnées $(x,y)$ on associe son \textbf{affixe} $z=x+iy$, et réciproquement.
+On munit le plan d'un repère orthonormé \textbf{direct} $(O,\vec u,\vec v)$. À tout point $M$ de
+coordonnées $(x,y)$ on associe son \textbf{affixe} $z=x+iy$, et réciproquement à tout complexe $z$
+un unique point $M$, dit \emph{image} de $z$. De même, à tout vecteur $\vec w(x,y)$ on associe son
+affixe $z_{\vec w}=x+iy$.
 
-\begin{propriete}[Affixes, distances et angles]
-Pour $A,B,C$ d'affixes $z_A,z_B,z_C$ :
+\begin{definition}[Affixe d'un point, d'un vecteur]
+Si $M$ a pour coordonnées $(x,y)$, son affixe est $z_M=x+iy$. Si $\vec w$ a pour coordonnées
+$(x,y)$, son affixe est $x+iy$. On écrit $M(z)$ pour « $M$ d'affixe $z$ ».
+\end{definition}
+
+\begin{propriete}[Affixe d'un vecteur, d'un milieu, d'un barycentre]
+Pour $A,B$ d'affixes $z_A,z_B$ :
 \[
-\overrightarrow{AB}\ \text{a pour affixe}\ z_B-z_A,\qquad AB=|z_B-z_A|,\qquad (\vec u,\overrightarrow{AB})=\arg(z_B-z_A)\ [2\pi].
+z_{\overrightarrow{AB}}=z_B-z_A,\qquad z_I=\frac{z_A+z_B}2\ \ (I\text{ milieu de }[AB]).
 \]
-De plus, pour $A\neq B$ et $A\neq C$,
-\[
-\frac{z_C-z_A}{z_B-z_A}\quad\text{a pour module}\ \frac{AC}{AB}\quad\text{et pour argument}\quad (\overrightarrow{AB},\overrightarrow{AC})\ [2\pi].
-\]
-L'affixe du milieu $I$ de $[AB]$ est $z_I=\dfrac{z_A+z_B}2$.
+Plus généralement, le barycentre $G$ de $(A_1,\alpha_1),\dots,(A_n,\alpha_n)$ (avec
+$\sum\alpha_k\neq0$) a pour affixe $z_G=\dfrac{\sum_k\alpha_k z_{A_k}}{\sum_k\alpha_k}$.
+En particulier le centre de gravité d'un triangle $ABC$ a pour affixe $\dfrac{z_A+z_B+z_C}3$.
 \end{propriete}
+
+\begin{propriete}[Distances et angles orientés]
+Pour $A,B$ distincts et $A,C$ distincts :
+\[
+AB=|z_B-z_A|,\qquad (\vec u,\overrightarrow{AB})=\arg(z_B-z_A)\ [2\pi].
+\]
+De plus, le quotient $Z=\dfrac{z_C-z_A}{z_B-z_A}$ vérifie
+\[
+|Z|=\frac{AC}{AB},\qquad \arg Z=(\overrightarrow{AB},\overrightarrow{AC})\ [2\pi].
+\]
+\end{propriete}
+
+\noindent\textbf{Justification.} $z_C-z_A$ est l'affixe de $\overrightarrow{AC}$ et $z_B-z_A$
+celle de $\overrightarrow{AB}$. Le module d'un quotient est le quotient des modules :
+$|Z|=\frac{|z_C-z_A|}{|z_B-z_A|}=\frac{AC}{AB}$. L'argument d'un quotient est la différence des
+arguments : $\arg Z=\arg(z_C-z_A)-\arg(z_B-z_A)=(\vec u,\overrightarrow{AC})-(\vec u,\overrightarrow{AB})
+=(\overrightarrow{AB},\overrightarrow{AC})\ [2\pi]$ (relation de Chasles sur les angles). $\hfill\square$
 
 \begin{aretenir}
 Toute la traduction « géométrie $\leftrightarrow$ complexes » repose sur deux idées :
-$|z_B-z_A|$ mesure une \textbf{distance} et $\arg\dfrac{z_C-z_A}{z_B-z_A}$ mesure un \textbf{angle orienté}.
+\[
+\boxed{\ |z_B-z_A|=\text{distance } AB\ }\qquad\text{et}\qquad
+\boxed{\ \arg\dfrac{z_C-z_A}{z_B-z_A}=\text{angle orienté }(\overrightarrow{AB},\overrightarrow{AC})\ }.
+\]
+Un \textbf{module} mesure une longueur ; un \textbf{argument} mesure un angle.
 \end{aretenir}
 
+\begin{illus}
+\begin{tikzpicture}[>=Stealth,scale=1.0]
+\draw[->] (-0.8,0) -- (4.6,0) node[right]{\small $\mathrm{Re}$};
+\draw[->] (0,-0.8) -- (0,3.1) node[above]{\small $\mathrm{Im}$};
+\coordinate (A) at (0.8,0.5);
+\coordinate (B) at (3.6,1.0);
+\coordinate (C) at (1.7,2.6);
+\filldraw[onbink] (A) circle (1.6pt) node[below]{\small $A$};
+\filldraw[onbink] (B) circle (1.6pt) node[right]{\small $B$};
+\filldraw[onbink] (C) circle (1.6pt) node[above]{\small $C$};
+\draw[onbo,->,line width=0.9pt] (A) -- (B) node[midway,below right]{\small $\overrightarrow{AB}$};
+\draw[onbgreen,->,line width=0.9pt] (A) -- (C) node[midway,left]{\small $\overrightarrow{AC}$};
+\pic[draw=onbblue,angle radius=0.7cm,"\small $\theta$"]{angle=B--A--C};
+\node[align=left,text width=3.6cm,anchor=west] at (4.8,1.4)
+{\small $|z_C-z_A|=AC$, et $\theta=\arg\dfrac{z_C-z_A}{z_B-z_A}=(\overrightarrow{AB},\overrightarrow{AC})$.};
+\end{tikzpicture}
+\fig{Figure — Affixe : distance par le module, angle orienté par l'argument du quotient.}
+\end{illus}
+
+\begin{exemple}
+$A(1+i)$, $B(4+i)$, $C(1+3i)$. Alors $z_B-z_A=3$ donc $AB=3$ et
+$\overrightarrow{AB}$ est horizontal. $z_C-z_A=2i$ donc $AC=2$. Le quotient
+$Z=\frac{2i}{3}$ est imaginaire pur d'argument $\frac\pi2$ : $(\overrightarrow{AB},\overrightarrow{AC})=\frac\pi2$,
+le triangle est rectangle en $A$.
+\end{exemple}
+
 % ═══════════════════════════════════════════════════════════════
-\section{Écritures complexes des transformations}
+\section{Interprétation géométrique des opérations complexes}
+
+Les opérations sur les complexes \emph{sont} des transformations du plan. C'est le c\oe ur du chapitre.
+
+\begin{propriete}[Lecture géométrique des opérations]
+Pour $M(z)$, le point image de :
+\begin{itemize}
+\item $z+b$ (où $b$ est l'affixe de $\vec w$) est l'image de $M$ par la \textbf{translation} de vecteur $\vec w$ ;
+\item $kz$ ($k\in\R^*$) est l'image de $M$ par l'\textbf{homothétie} de centre $O$ et de rapport $k$ ;
+\item $e^{i\theta}z$ est l'image de $M$ par la \textbf{rotation} de centre $O$ et d'angle $\theta$ ;
+\item $az$ ($a\in\C^*$) combine les deux précédents : rotation d'angle $\arg a$ et homothétie de rapport $|a|$ (de centre $O$) ;
+\item $\bar z$ est l'image de $M$ par la \textbf{symétrie} d'axe $(O,\vec u)$ (axe des réels).
+\end{itemize}
+\end{propriete}
+
+\begin{remarque}
+\textbf{Additionner, c'est translater ; multiplier par un réel, c'est dilater ; multiplier par
+$e^{i\theta}$, c'est tourner.} La multiplication par $a=|a|\,e^{i\arg a}$ « tourne et agrandit »
+en même temps : c'est l'idée centrale des \emph{similitudes}.
+\end{remarque}
+
+\begin{exemple}
+Multiplier par $i$ revient à tourner de $\frac\pi2$ autour de $O$ (car $i=e^{i\pi/2}$). Ainsi l'image
+de $M(2+3i)$ par $z\mapsto iz$ est $M'(i(2+3i))=M'(-3+2i)$ : on vérifie $OM'=OM=\sqrt{13}$ et
+$(\overrightarrow{OM},\overrightarrow{OM'})$ vaut $\arg\frac{-3+2i}{2+3i}=\arg(i)=\frac\pi2$.
+\end{exemple}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth,scale=0.95]
+\draw[->] (-3.2,0) -- (3.2,0) node[right]{\small $\mathrm{Re}$};
+\draw[->] (0,-0.8) -- (0,3.5) node[above]{\small $\mathrm{Im}$};
+\coordinate (Or) at (0,0);\coordinate (Mp) at (2,3);\coordinate (Mq) at (-3,2);
+\filldraw[onbo] (Mp) circle (1.8pt) node[right]{\small $M(2+3i)$};
+\draw[onbo,->,line width=0.8pt] (Or) -- (Mp);
+\filldraw[onbgreen] (Mq) circle (1.8pt) node[left]{\small $M'(-3+2i)=iz$};
+\draw[onbgreen,->,line width=0.8pt] (Or) -- (Mq);
+\pic[draw=onbblue,angle radius=0.9cm,"\small $\frac\pi2$"]{angle=Mp--Or--Mq};
+\node[align=left,text width=3.0cm,anchor=west] at (2.4,1.0)
+{\small Multiplier par $i$ : rotation de $\frac\pi2$ autour de $O$, même module.};
+\end{tikzpicture}
+\fig{Figure — Multiplier par $i$ tourne de $\frac\pi2$ autour de l'origine.}
+\end{illus}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Écritures complexes des transformations usuelles}
 
 Une transformation $f$ du plan associe à $M(z)$ le point $M'(z')$ ; la relation entre $z'$ et $z$
 est son \textbf{écriture complexe}.
@@ -56,12 +155,19 @@ z'=e^{i\theta}(z-\omega)+\omega,\qquad\text{soit}\qquad z'-\omega=e^{i\theta}\,(
 \]
 \end{definition}
 
+\noindent\textbf{Justification (rotation).} Dire que $M'$ est l'image de $M$ par la rotation de
+centre $\Omega$, d'angle $\theta$, signifie $\Omega M'=\Omega M$ et
+$(\overrightarrow{\Omega M},\overrightarrow{\Omega M'})=\theta$. En termes complexes,
+$\frac{z'-\omega}{z-\omega}$ a pour module $\frac{\Omega M'}{\Omega M}=1$ et pour argument $\theta$ :
+c'est donc $e^{i\theta}$, d'où $z'-\omega=e^{i\theta}(z-\omega)$. $\hfill\square$
+
 \begin{propriete}[Cas particuliers usuels]
 \begin{itemize}
-\item \textbf{Symétrie centrale} de centre $\Omega(\omega)$ : c'est l'homothétie de rapport $-1$, donc $z'=2\omega-z$.
-\item \textbf{Symétrie orthogonale} par rapport à l'axe $(O,\vec u)$ (axe des réels) : $z'=\bar z$.
-\item \textbf{Symétrie orthogonale} par rapport à l'axe $(O,\vec v)$ (axe des imaginaires) : $z'=-\bar z$.
-\item \textbf{Demi-tour} (symétrie centrale de centre $O$) : $z'=-z$ ; c'est aussi la rotation de centre $O$ et d'angle $\pi$.
+\item \textbf{Symétrie centrale} de centre $\Omega(\omega)$ : homothétie de rapport $-1$, donc $z'=2\omega-z$.
+\item \textbf{Symétrie orthogonale} par rapport à l'axe des réels $(O,\vec u)$ : $z'=\bar z$.
+\item \textbf{Symétrie orthogonale} par rapport à l'axe des imaginaires $(O,\vec v)$ : $z'=-\bar z$.
+\item \textbf{Demi-tour} de centre $O$ : $z'=-z$ ; c'est la rotation de centre $O$ et d'angle $\pi$.
+\item \textbf{Quart de tour direct} de centre $O$ : $z'=iz$ (rotation d'angle $\frac\pi2$).
 \end{itemize}
 \end{propriete}
 
@@ -73,26 +179,30 @@ la rotation d'angle $\pi$, toutes deux de centre $\Omega$ : $z'=2\omega-z$.
 \begin{illus}
 \begin{tikzpicture}[>=Stealth,scale=1.0]
 \draw[->] (-1.6,0) -- (3.4,0) node[right]{\small $\mathrm{Re}$};
-\draw[->] (0,-1.6) -- (0,2.8) node[above]{\small $\mathrm{Im}$};
-% centre Omega
+\draw[->] (0,-1.0) -- (0,2.9) node[above]{\small $\mathrm{Im}$};
 \filldraw[onbink] (0.6,0.4) circle (1.6pt) node[below right]{\small $\Omega$};
-% M
 \filldraw[onbo] (2.6,0.9) circle (1.8pt) node[right]{\small $M(z)$};
-% M' = rotation de M autour de Omega d'angle 90°
-% vecteur Omega->M = (2,0.5) ; rotation +90° -> (-0.5,2) ; M' = Omega + (-0.5,2) = (0.1,2.4)
+% rotation +90° de Omega->M : v=(2,0.5)->(-0.5,2), M'=(0.1,2.4)
 \filldraw[onbgreen] (0.1,2.4) circle (1.8pt) node[above right]{\small $M'(z')$};
 \draw[onbo,->,line width=0.8pt] (0.6,0.4) -- (2.6,0.9);
 \draw[onbgreen,->,line width=0.8pt] (0.6,0.4) -- (0.1,2.4);
-% arc d'angle theta
-\draw[onbblue] (1.6,0.65) arc (14:104:1.05);
-\node[onbblue] at (1.55,1.55) {\small $\theta$};
-\node[align=left,text width=4.2cm,anchor=west] at (3.7,1.0)
-{\small Rotation de centre $\Omega$ et d'angle $\theta$ :
-$\overrightarrow{\Omega M'}$ se déduit de $\overrightarrow{\Omega M}$ par
-$z'-\omega=e^{i\theta}(z-\omega)$ (ici $\theta=\frac\pi2$). Le module est conservé ($\Omega M'=\Omega M$).};
+\coordinate (Om) at (0.6,0.4);\coordinate (Mp) at (2.6,0.9);\coordinate (Mq) at (0.1,2.4);
+\pic[draw=onbblue,angle radius=0.85cm,"\small $\theta$"]{angle=Mp--Om--Mq};
+\node[align=left,text width=4.0cm,anchor=west] at (3.6,1.0)
+{\small Rotation de centre $\Omega$, d'angle $\theta=\frac\pi2$ :
+$z'-\omega=e^{i\theta}(z-\omega)$. Le module est conservé : $\Omega M'=\Omega M$.};
 \end{tikzpicture}
-\fig{Figure 17.1 — Rotation d'un point dans le plan complexe.}
+\fig{Figure — Rotation d'un point dans le plan complexe.}
 \end{illus}
+
+\begin{exemple}
+Image de $M(z)$ par l'homothétie de centre $\Omega(1+i)$, rapport $2$ :
+$z'=2(z-(1+i))+(1+i)=2z-(1+i)=2z-1-i$. Pour $M(3)$, on obtient $z'=6-1-i=5-i$ : on vérifie
+$\Omega M'=|5-i-(1+i)|=|4-2i|=2\sqrt5$ et $\Omega M=|3-1-i|=|2-i|=\sqrt5$, rapport bien égal à $2$.
+\end{exemple}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Similitudes directes}
 
 \begin{theoreme}[Similitude directe]
 Une \textbf{similitude directe} est une transformation d'écriture complexe
@@ -100,25 +210,68 @@ Une \textbf{similitude directe} est une transformation d'écriture complexe
 z'=a\,z+b,\qquad a\in\C^{*},\ b\in\C.
 \]
 \begin{itemize}
-\item Si $a=1$ : c'est la \textbf{translation} de vecteur d'affixe $b$.
-\item Si $a\neq1$ : elle admet un \textbf{unique point fixe} (centre) $\Omega$ d'affixe $\omega=\dfrac{b}{1-a}$ ;
-son \textbf{rapport} est $k=|a|$ et son \textbf{angle} est $\theta=\arg(a)$. On a alors
-$z'-\omega=a\,(z-\omega)$ : c'est la composée de la rotation de centre $\Omega$, d'angle $\theta$,
-et de l'homothétie de centre $\Omega$, de rapport $k$.
+\item Si $a=1$ : c'est la \textbf{translation} de vecteur d'affixe $b$ (aucun point fixe si $b\neq0$).
+\item Si $a\neq1$ : elle admet un \textbf{unique point fixe} (centre) $\Omega$ d'affixe
+$\omega=\dfrac{b}{1-a}$. Son \textbf{rapport} est $k=|a|$ et son \textbf{angle} est $\theta=\arg(a)$,
+et l'on a $z'-\omega=a\,(z-\omega)$ : c'est la composée de la rotation de centre $\Omega$, d'angle
+$\theta$, et de l'homothétie de centre $\Omega$, de rapport $k$.
 \end{itemize}
 \end{theoreme}
 
+\noindent\textbf{Justification.} Un point fixe vérifie $z=az+b$, soit $z(1-a)=b$. Si $a\neq1$,
+l'unique solution est $\omega=\frac b{1-a}$. On a alors $b=\omega-a\omega$, donc
+$z'=az+\omega-a\omega=a(z-\omega)+\omega$, c.-à-d. $z'-\omega=a(z-\omega)$. En passant aux modules
+et arguments, $\frac{z'-\omega}{z-\omega}=a$ donne $\Omega M'=|a|\,\Omega M$ et
+$(\overrightarrow{\Omega M},\overrightarrow{\Omega M'})=\arg a$. $\hfill\square$
+
 \begin{aretenir}
-\textbf{Lire une écriture $z'=az+b$ ($a\neq1$)} : rapport $k=|a|$, angle $\theta=\arg a$,
-centre $\omega=\dfrac b{1-a}$. Cas particuliers : $a\in\R^{*}$ donne une homothétie (ou symétrie
-centrale si $a=-1$) ; $|a|=1$ donne une rotation ; $|a|=1$ et $a=1$ une translation.
+\textbf{Lire une écriture $z'=az+b$ ($a\neq1$)} :
+\[
+\text{rapport } k=|a|,\qquad \text{angle } \theta=\arg a,\qquad \text{centre } \omega=\frac b{1-a}.
+\]
+Cas particuliers : $a\in\R^{*}$ $\Rightarrow$ \textbf{homothétie} (symétrie centrale si $a=-1$) ;
+$|a|=1$ et $a\neq1$ $\Rightarrow$ \textbf{rotation} ; $a=1$ $\Rightarrow$ \textbf{translation}.
 \end{aretenir}
 
 \begin{exemple}
-$z'=2iz+1-3i$ : $a=2i$, $|a|=2$, $\arg a=\frac\pi2$. Centre $\omega=\dfrac{1-3i}{1-2i}
-=\dfrac{(1-3i)(1+2i)}{|1-2i|^{2}}=\dfrac{1+2i-3i+6}{5}=\dfrac{7-i}{5}$.
+$z'=2iz+1-3i$ : $a=2i$, $|a|=2$, $\arg a=\frac\pi2$. Centre
+$\omega=\dfrac{1-3i}{1-2i}=\dfrac{(1-3i)(1+2i)}{|1-2i|^{2}}=\dfrac{1+2i-3i+6}{5}=\dfrac{7-i}{5}$.
 C'est la similitude de centre $\Omega\!\left(\frac75-\frac15 i\right)$, de rapport $2$, d'angle $\frac\pi2$.
 \end{exemple}
+
+\begin{propriete}[Propriétés conservées par une similitude directe]
+Une similitude directe $z'=az+b$ multiplie toutes les distances par $k=|a|$, \textbf{conserve les
+angles orientés}, transforme une droite en droite, un cercle de rayon $R$ en cercle de rayon $kR$,
+et conserve l'alignement, le parallélisme, l'orthogonalité, les milieux et les barycentres.
+\end{propriete}
+
+\noindent\textbf{Justification (conservation des angles et du rapport des distances).} Pour
+$M,N$ d'images $M',N'$, $z'_N-z'_M=a(z_N-z_M)$. Donc $M'N'=|a|\,MN$, et pour trois points
+$\frac{z'_C-z'_A}{z'_B-z'_A}=\frac{a(z_C-z_A)}{a(z_B-z_A)}=\frac{z_C-z_A}{z_B-z_A}$ : le quotient,
+donc l'angle orienté, est inchangé. $\hfill\square$
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth,scale=0.95]
+\draw[->] (-0.6,0) -- (5.0,0) node[right]{\small $\mathrm{Re}$};
+\draw[->] (0,-0.6) -- (0,3.4) node[above]{\small $\mathrm{Im}$};
+\filldraw[onbink] (1.0,0.6) circle (1.6pt) node[below]{\small $\Omega$};
+% triangle "petit"
+\coordinate (Om) at (1.0,0.6);
+\coordinate (A) at (2.0,0.6);
+\coordinate (B) at (1.8,1.4);
+\draw[onbo,line width=0.9pt] (Om)--(A)--(B)--cycle;
+\node[onbo] at (1.9,0.4){\small $A$}; \node[onbo] at (2.0,1.5){\small $B$};
+% image : rapport 1.7, angle ~35°
+\coordinate (Ai) at (2.39,1.30);
+\coordinate (Bi) at (1.61,2.32);
+\draw[onbgreen,line width=0.9pt] (Om)--(Ai)--(Bi)--cycle;
+\node[onbgreen] at (2.6,1.25){\small $A'$}; \node[onbgreen] at (1.45,2.45){\small $B'$};
+\node[align=left,text width=3.4cm,anchor=west] at (3.1,2.1)
+{\small La similitude « tourne et agrandit » autour de $\Omega$ : les triangles
+$\Omega A B$ et $\Omega A' B'$ sont semblables.};
+\end{tikzpicture}
+\fig{Figure — Une similitude directe de centre $\Omega$ : rotation + homothétie.}
+\end{illus}
 
 % ═══════════════════════════════════════════════════════════════
 \section{Caractérisations complexes de configurations}
@@ -126,8 +279,8 @@ C'est la similitude de centre $\Omega\!\left(\frac75-\frac15 i\right)$, de rappo
 \begin{propriete}[Alignement et orthogonalité]
 Soient $A,B,C$ deux à deux distincts, et $Z=\dfrac{z_C-z_A}{z_B-z_A}$.
 \begin{itemize}
-\item $A,B,C$ \textbf{alignés} $\iff Z\in\R^{*}\iff \arg Z\in\{0,\pi\}\ [2\pi]\iff \dfrac{z_C-z_A}{z_B-z_A}=\overline{\left(\dfrac{z_C-z_A}{z_B-z_A}\right)}$.
-\item $(AB)\perp(AC)\iff Z\ \text{imaginaire pur}\iff \arg Z=\pm\dfrac\pi2\ [\pi]$.
+\item $A,B,C$ \textbf{alignés} $\iff Z\in\R^{*}\iff \arg Z\in\{0,\pi\}\ [2\pi]\iff Z=\overline{Z}$.
+\item $(AB)\perp(AC)\iff Z\ \text{imaginaire pur}\iff \arg Z=\pm\dfrac\pi2\ [\pi]\iff Z+\overline Z=0$.
 \end{itemize}
 \end{propriete}
 
@@ -136,11 +289,17 @@ Pour un triangle $ABC$ (sommets distincts), avec $Z=\dfrac{z_C-z_A}{z_B-z_A}$ :
 \begin{itemize}
 \item \textbf{isocèle en $A$} $\iff AB=AC\iff |Z|=1$ ;
 \item \textbf{rectangle en $A$} $\iff Z$ imaginaire pur ;
-\item \textbf{rectangle isocèle en $A$} $\iff Z=\pm i$ ;
+\item \textbf{rectangle isocèle en $A$} (direct) $\iff Z=i$ ; (indirect) $\iff Z=-i$ ;
 \item \textbf{équilatéral direct} $\iff \dfrac{z_C-z_A}{z_B-z_A}=e^{i\pi/3}$ ; plus généralement $ABC$ est
 \textbf{équilatéral} $\iff z_A^{2}+z_B^{2}+z_C^{2}=z_Az_B+z_Bz_C+z_Cz_A$.
 \end{itemize}
 \end{propriete}
+
+\begin{remarque}
+Le critère $z_A^2+z_B^2+z_C^2=z_Az_B+z_Bz_C+z_Cz_A$ s'obtient en notant que $ABC$ équilatéral
+$\iff z_C-z_A=e^{\pm i\pi/3}(z_B-z_A)$ ; or $j=e^{2i\pi/3}$ et $1+j+j^2=0$. Ce critère est
+\emph{symétrique} : il ne distingue pas l'orientation (direct/indirect).
+\end{remarque}
 
 \begin{theoreme}[Points cocycliques ou alignés]
 Quatre points $A,B,C,D$ deux à deux distincts sont \textbf{cocycliques ou alignés} si et
@@ -149,17 +308,17 @@ seulement si leur \textbf{birapport} est réel :
 \frac{\;\dfrac{z_C-z_A}{z_C-z_B}\;}{\;\dfrac{z_D-z_A}{z_D-z_B}\;}\in\R.
 \]
 En effet, $A,B,C,D$ sont cocycliques ou alignés $\iff (\overrightarrow{CA},\overrightarrow{CB})=(\overrightarrow{DA},\overrightarrow{DB})\ [\pi]$
-(« angles inscrits » interceptant $[AB]$).
+(théorème de l'angle inscrit : deux angles interceptant la même corde $[AB]$ sont égaux modulo $\pi$).
 \end{theoreme}
 
-\begin{propriete}[Cercle et droite, lieux usuels]
-Soit $M(z)$ un point variable, $A(z_A)$, $B(z_B)$ fixes.
+\begin{propriete}[Cercle et droite : lieux usuels]
+Soit $M(z)$ un point variable, $A(z_A)$, $B(z_B)$ fixes, $R>0$, $\theta\in\R$.
 \begin{itemize}
-\item $|z-z_A|=R$ ($R>0$) : \textbf{cercle} de centre $A$ et de rayon $R$.
+\item $|z-z_A|=R$ : \textbf{cercle} de centre $A$ et de rayon $R$.
 \item $|z-z_A|=|z-z_B|$ : \textbf{médiatrice} de $[AB]$.
-\item $\arg(z-z_A)=\theta\ [2\pi]$ : \textbf{demi-droite} d'origine $A$ (privée de $A$) dirigée par l'angle $\theta$.
+\item $\arg(z-z_A)=\theta\ [2\pi]$ : \textbf{demi-droite} d'origine $A$ (privée de $A$) faisant l'angle $\theta$ avec $\vec u$.
 \item $\dfrac{z-z_A}{z-z_B}\in\R$ : \textbf{droite} $(AB)$ privée de $B$ (alignement de $M,A,B$).
-\item $\dfrac{z-z_A}{z-z_B}$ imaginaire pur : \textbf{cercle} de diamètre $[AB]$ privé de $A$ et $B$.
+\item $\dfrac{z-z_A}{z-z_B}$ imaginaire pur : \textbf{cercle de diamètre} $[AB]$ privé de $A$ et $B$.
 \end{itemize}
 \end{propriete}
 
@@ -167,36 +326,60 @@ Soit $M(z)$ un point variable, $A(z_A)$, $B(z_B)$ fixes.
 \begin{tikzpicture}[>=Stealth,scale=1.0]
 \draw[->] (-1.0,0) -- (4.4,0) node[right]{\small $\mathrm{Re}$};
 \draw[->] (0,-1.2) -- (0,2.9) node[above]{\small $\mathrm{Im}$};
-% cercle de diametre [AB]
 \coordinate (A) at (0.6,0.2);
 \coordinate (B) at (3.4,0.2);
 \coordinate (O) at (2.0,0.2);
 \draw[onbline,line width=0.8pt] (O) circle (1.4);
 \filldraw[onbink] (A) circle (1.6pt) node[below left]{\small $A$};
 \filldraw[onbink] (B) circle (1.6pt) node[below right]{\small $B$};
-% point M sur le cercle
-\coordinate (M) at (1.44,1.47); % approx sur le cercle, angle droit AMB
+\coordinate (M) at (1.44,1.47);
 \filldraw[onbo] (M) circle (1.8pt) node[above]{\small $M$};
 \draw[onbo,line width=0.7pt] (A) -- (M) -- (B);
-% petit carré angle droit en M
 \draw[onbgreen,line width=0.7pt] ($(M)+(-0.18,-0.16)$) -- ($(M)+(-0.02,-0.30)$) -- ($(M)+(0.14,-0.14)$);
 \node[align=left,text width=3.9cm,anchor=west] at (4.6,1.3)
-{\small Si $\dfrac{z-z_A}{z-z_B}$ est imaginaire pur, alors $(MA)\perp(MB)$ : le point $M$ décrit le
+{\small Si $\dfrac{z-z_A}{z-z_B}$ est imaginaire pur, alors $(MA)\perp(MB)$ : $M$ décrit le
 \textbf{cercle de diamètre} $[AB]$.};
 \end{tikzpicture}
-\fig{Figure 17.2 — Lieu : cercle de diamètre $[AB]$ ($\widehat{AMB}=\frac\pi2$).}
+\fig{Figure — Lieu : cercle de diamètre $[AB]$ ($\widehat{AMB}=\frac\pi2$).}
 \end{illus}
+
+% ═══════════════════════════════════════════════════════════════
+\section{L'essentiel à retenir}
+
+\begin{synthese}
+\textbf{Affixes.} $z_{\overrightarrow{AB}}=z_B-z_A$ ; $AB=|z_B-z_A|$ ;
+$(\vec u,\overrightarrow{AB})=\arg(z_B-z_A)$ ; milieu $z_I=\frac{z_A+z_B}2$ ;
+centre de gravité $\frac{z_A+z_B+z_C}3$.\\[4pt]
+\textbf{Outil clé.} $Z=\dfrac{z_C-z_A}{z_B-z_A}$ : $|Z|=\dfrac{AC}{AB}$ et
+$\arg Z=(\overrightarrow{AB},\overrightarrow{AC})$.\\[4pt]
+\textbf{Écritures complexes.} Translation $z'=z+b$ ; homothétie $z'-\omega=k(z-\omega)$ ;
+rotation $z'-\omega=e^{i\theta}(z-\omega)$ ; symétrie centrale $z'=2\omega-z$ ;
+symétrie axe réel $z'=\bar z$.\\[4pt]
+\textbf{Similitude $z'=az+b$ ($a\neq1$).} rapport $k=|a|$, angle $\theta=\arg a$,
+centre $\omega=\dfrac b{1-a}$. $a\in\R^*\Rightarrow$ homothétie ; $|a|=1\Rightarrow$ rotation.\\[4pt]
+\textbf{Configurations} ($Z=\frac{z_C-z_A}{z_B-z_A}$). Alignés $\iff Z\in\R$ ;
+$(AB)\perp(AC)\iff Z$ imaginaire pur ; isocèle en $A\iff|Z|=1$ ; rectangle isocèle en
+$A\iff Z=\pm i$ ; équilatéral direct $\iff Z=e^{i\pi/3}$.\\[4pt]
+\textbf{Cocyclicité.} $A,B,C,D$ cocycliques ou alignés $\iff$ birapport
+$\dfrac{(z_C-z_A)/(z_C-z_B)}{(z_D-z_A)/(z_D-z_B)}\in\R$.\\[4pt]
+\textbf{Lieux.} $|z-z_A|=R$ : cercle ; $|z-z_A|=|z-z_B|$ : médiatrice ;
+$\arg(z-z_A)=\theta$ : demi-droite ; $\frac{z-z_A}{z-z_B}\in\R$ : droite $(AB)$ ;
+$\frac{z-z_A}{z-z_B}\in i\R$ : cercle de diamètre $[AB]$.\\[4pt]
+\textbf{Pièges.} ne pas confondre $|Z|$ (distances) et $\arg Z$ (angles) ;
+$\arg$ d'un quotient $=$ \emph{différence} d'arguments ; le centre se trouve par
+$z=az+b$, pas par $\frac{b}{1+a}$ ; vérifier $a\neq1$ avant d'utiliser $\frac b{1-a}$.
+\end{synthese}
 
 % ═══════════════════════════════════════════════════════════════
 \section{Méthodes \& savoir-faire}
 
 \methode{Reconnaître une transformation par son écriture complexe}
-Mettre l'écriture sous la forme $z'=az+b$. Si $a=1$ : translation de vecteur $b$. Sinon, calculer
-$k=|a|$, $\theta=\arg a$ et $\omega=\frac b{1-a}$, puis conclure (rotation si $|a|=1$, homothétie si
-$a\in\R$, similitude sinon).
+Mettre l'écriture sous la forme $z'=az+b$. Si $a=1$ : translation de vecteur $\vec w(b)$. Sinon,
+calculer $k=|a|$, $\theta=\arg a$ et $\omega=\frac b{1-a}$, puis conclure (rotation si $|a|=1$,
+homothétie si $a\in\R$, similitude sinon).
 \begin{exemple}
-$z'=-z+4+2i$ : $a=-1\in\R$, c'est l'homothétie de rapport $-1$, c.-à-d. la \textbf{symétrie centrale}
-de centre $\omega=\frac{4+2i}{1-(-1)}=\frac{4+2i}2=2+i$.
+$z'=-z+4+2i$ : $a=-1\in\R$, homothétie de rapport $-1$, c.-à-d. la \textbf{symétrie centrale} de
+centre $\omega=\frac{4+2i}{1-(-1)}=\frac{4+2i}2=2+i$.
 \end{exemple}
 
 \methode{Traduire une transformation en écriture complexe}
@@ -208,17 +391,17 @@ $z'-(1+i)=i\big(z-(1+i)\big)$, soit $z'=iz -i(1+i)+1+i=iz +(1-i)+1+i=iz+2$.
 \end{exemple}
 
 \methode{Déterminer la nature d'un triangle avec les complexes}
-Calculer $Z=\dfrac{z_C-z_A}{z_B-z_A}$ ; lire $|Z|$ (isocèle si $=1$) et $\arg Z$ (rectangle si $\pm\frac\pi2$,
-équilatéral si $\pm\frac\pi3$).
+Calculer $Z=\dfrac{z_C-z_A}{z_B-z_A}$ ; lire $|Z|$ (isocèle en $A$ si $=1$) et $\arg Z$ (rectangle en
+$A$ si $\pm\frac\pi2$, équilatéral si $\pm\frac\pi3$ avec $|Z|=1$).
 \begin{exemple}
 $z_A=2$, $z_B=2+2i$, $z_C=4$. $Z=\dfrac{4-2}{(2+2i)-2}=\dfrac{2}{2i}=\dfrac1i=-i$. Comme $Z=-i$,
-le triangle est \textbf{rectangle isocèle en $A$}.
+le triangle est \textbf{rectangle isocèle en $A$} (indirect).
 \end{exemple}
 
 \methode{Déterminer un lieu géométrique avec les complexes}
-Poser $z=x+iy$, traduire la condition par module ($\to$ cercle/médiatrice) ou par argument
-($\to$ droite/demi-droite/cercle), puis identifier l'ensemble. Au besoin, séparer parties réelle
-et imaginaire.
+Reconnaître la forme : $|z-z_A|=R$ (cercle), $|z-z_A|=|z-z_B|$ (médiatrice), $\frac{z-z_A}{z-z_B}$
+réel ou imaginaire pur (droite/cercle). Sinon poser $z=x+iy$ et séparer parties réelle et
+imaginaire pour obtenir une équation cartésienne.
 \begin{exemple}
 Lieu des $M(z)$ tels que $|z-2|=|z+2i|$ : c'est $AM=BM$ avec $A(2)$, $B(-2i)$, donc la
 \textbf{médiatrice} de $[AB]$. En posant $z=x+iy$ : $(x-2)^2+y^2=x^2+(y+2)^2\Rightarrow -4x= 4y\Rightarrow y=-x$.
@@ -228,58 +411,222 @@ Lieu des $M(z)$ tels que $|z-2|=|z+2i|$ : c'est $AM=BM$ avec $A(2)$, $B(-2i)$, d
 Orthogonalité $(AB)\perp(AC)$ : montrer que $\dfrac{z_C-z_A}{z_B-z_A}$ est imaginaire pur (partie
 réelle nulle). Cocyclicité de $A,B,C,D$ : montrer que le birapport est réel.
 \begin{exemple}
-$A(1)$, $B(i)$, $C(-1)$, $D(-i)$ : ce sont les racines $4^{\text e}$ de l'unité, situées sur le cercle
-unité ; ils sont donc cocycliques. On le vérifie : $\dfrac{(z_C-z_A)/(z_C-z_B)}{(z_D-z_A)/(z_D-z_B)}
-=\dfrac{(-2)/(-1-i)}{(-1-i)/(-2i)}$, réel (calcul $=2$).
+$A(1)$, $B(i)$, $C(-1)$, $D(-i)$ : ce sont les racines $4^{\text e}$ de l'unité, sur le cercle
+unité, donc cocycliques. Vérification du birapport :
+$\dfrac{(z_C-z_A)/(z_C-z_B)}{(z_D-z_A)/(z_D-z_B)}=\dfrac{(-2)/(-1-i)}{(-1-i)/(-2i)}=2\in\R$.
 \end{exemple}
 
 \methode{Exploiter une similitude pour calculer distances et angles}
-Sous $z'=az+b$, toute distance est multipliée par $|a|$ et tout angle orienté est inchangé
-(la similitude conserve les angles orientés) ; l'image d'un cercle est un cercle, d'une droite une droite.
+Sous $z'=az+b$, toute distance est multipliée par $|a|$ et tout angle orienté est inchangé.
+L'image d'un cercle de rayon $R$ est un cercle de rayon $|a|R$, l'image d'une droite est une droite.
 \begin{exemple}
-Sous $z'=2iz$, le segment de longueur $3$ a pour image un segment de longueur $|2i|\times3=6$,
+Sous $z'=2iz$, un segment de longueur $3$ a pour image un segment de longueur $|2i|\times3=6$,
 tourné de $\arg(2i)=\frac\pi2$.
 \end{exemple}
 
+\methode{Calculer l'image d'un point ou retrouver un antécédent}
+Image : remplacer $z$ par l'affixe du point dans $z'=az+b$. Antécédent : résoudre $z'=az+b$ en $z$,
+soit $z=\frac{z'-b}{a}$.
+\begin{exemple}
+Pour $f:z'=(1+i)z-i$, l'image de $M(2)$ est $z'=(1+i)\cdot2-i=2+2i-i=2+i$. L'antécédent de
+$P(1)$ est $z=\frac{1+i}{1+i}=1$ : $P$ est l'image de $M_0(1)$.
+\end{exemple}
+
+\methode{Déterminer une similitude par deux points et leurs images}
+Une similitude directe $z'=az+b$ est entièrement déterminée par les images $A',B'$ de deux
+points distincts $A,B$ : on a $a=\dfrac{z_{B'}-z_{A'}}{z_B-z_A}$, puis $b=z_{A'}-a\,z_A$.
+\begin{exemple}
+Si $A(0)\mapsto A'(1)$ et $B(1)\mapsto B'(1+i)$ : $a=\frac{(1+i)-1}{1-0}=i$, $b=z_{A'}-a\cdot0=1$.
+La similitude est $z'=iz+1$ : rotation d'angle $\frac\pi2$, rapport $1$, centre $\omega=\frac1{1-i}=\frac{1+i}2$.
+\end{exemple}
+
+\methode{Composer deux transformations}
+Écrire successivement les deux écritures complexes : si $z_1=a_1z+b_1$ puis $z'=a_2z_1+b_2$, alors
+$z'=a_2a_1\,z+(a_2b_1+b_2)$. Le rapport est $|a_2a_1|$ et l'angle $\arg a_2+\arg a_1$.
+\begin{exemple}
+Rotation $r$ de centre $O$, angle $\frac\pi2$ ($z_1=iz$) suivie de la translation $z'=z_1+2$ :
+$z'=iz+2$. C'est une similitude de rapport $1$, angle $\frac\pi2$, centre $\omega=\frac2{1-i}=1+i$
+(donc en fait une rotation de centre $\Omega(1+i)$, d'angle $\frac\pi2$).
+\end{exemple}
+
 % ═══════════════════════════════════════════════════════════════
-\section{Exercices}
+\section{Exercices d'application}
 
 \rubrique{Reconnaître et écrire une transformation}
-\exo{}\diff{1} Donner la nature et les éléments caractéristiques de la transformation
-$z'=z-3+i$, puis de $z'=3z$.
+\exo{}\diff{1} Donner la nature et les éléments caractéristiques de $z'=z-3+i$, puis de $z'=3z$.
 
-\exo{}\diff{1} Donner l'écriture complexe de la translation de vecteur $\vec w$ d'affixe $-2+5i$,
-et de la symétrie centrale de centre $\Omega(3-i)$.
+\exo{}\diff{1} Donner l'écriture complexe de la translation de vecteur $\vec w(-2+5i)$ et de la
+symétrie centrale de centre $\Omega(3-i)$.
 
 \exo{}\diff{2} Reconnaître la transformation $z'=iz+2-2i$ : nature, centre, rapport, angle.
 
-\exo{}\diff{2} Soit $f:z'=\big(1+i\sqrt3\big)z-2$. Déterminer son rapport, son angle et son centre.
+\exo{}\diff{2} Soit $f:z'=\big(1+i\sqrt3\big)z-2$. Déterminer rapport, angle et centre.
+
+\exo{}\diff{2} Donner l'écriture complexe de la rotation de centre $\Omega(2-i)$ et d'angle
+$-\frac\pi3$, sous la forme $z'=az+b$.
+
+\rubrique{Images, antécédents et composées}
+\exo{}\diff{1} Soit $f:z'=(1+i)z-i$. Calculer l'image de $A(1)$, $B(i)$ et $C(0)$.
+
+\exo{}\diff{2} On donne $A(2)\mapsto A'(3+i)$ et $B(0)\mapsto B'(1-i)$ par une similitude directe.
+Déterminer son écriture complexe $z'=az+b$.
+
+\exo{}\diff{2} Soit $r$ la rotation de centre $O$ d'angle $\frac\pi2$ et $t$ la translation de
+vecteur $\vec w(1+i)$. Déterminer l'écriture complexe de $t\circ r$ et reconnaître cette transformation.
 
 \rubrique{Configurations : triangles, alignement, orthogonalité}
 \exo{}\diff{2} On donne $A(1+i)$, $B(4+i)$, $C(1+5i)$. Déterminer la nature du triangle $ABC$.
 
 \exo{}\diff{2} Montrer que les points $A(2+i)$, $B(4+3i)$ et $C(-2-3i)$ sont alignés.
 
+\exo{}\diff{2} On donne $A(0)$, $B(2)$, $C(1+i\sqrt3)$. Montrer que $ABC$ est équilatéral.
+
 \exo{}\diff{3} Soient $A(3)$, $B(0)$, $C(5+2i)$ et $D$ l'image de $C$ par la rotation de centre $B$
 et d'angle $\frac\pi2$. Montrer que $(AC)\perp(AD)$.
 
+\exo{}\diff{3} Soient $A(1)$, $B(i)$, $C(-1)$, $D(-i)$. Montrer que $A,B,C,D$ sont cocycliques.
+
 \rubrique{Lieux géométriques}
-\exo{}\diff{2} Déterminer l'ensemble des points $M(z)$ tels que $|z-1+2i|=3$.
+\exo{}\diff{1} Déterminer l'ensemble des points $M(z)$ tels que $|z-1+2i|=3$.
 
 \exo{}\diff{2} Déterminer l'ensemble des points $M(z)$ tels que $|z-i|=|z+3|$.
+
+\exo{}\diff{2} Déterminer l'ensemble des points $M(z)$ tels que $|2z-4|=6$.
 
 \exo{}\diff{3} Déterminer l'ensemble des points $M(z)$, $z\neq 2i$ et $z\neq -2$, tels que
 $\dfrac{z-2i}{z+2}$ soit un imaginaire pur.
 
-\rubrique{Problème type Baccalauréat}
-\exo{}\diff{3} Le plan est rapporté à un repère orthonormé direct. On considère la transformation
-$f$ d'écriture complexe $z'=(1+i)\,z-i$, et les points $A(1)$, $B(i)$.
+\exo{}\diff{3} Déterminer l'ensemble des points $M(z)$, $z\neq1$, tels que $\dfrac{z-i}{z-1}$ soit réel.
+
+\rubrique{Problème de synthèse}
+\exo{}\diff{3} Le plan est rapporté à un repère orthonormé direct. On considère $f:z'=(1+i)\,z-i$
+et les points $A(1)$, $B(i)$.
+\begin{enumerate}[label=\arabic*)]
+\item Montrer que $f$ est une similitude directe ; préciser rapport, angle et centre $\Omega$.
+\item Déterminer les affixes $z_{A'}$ et $z_{B'}$ des images $A'$, $B'$ de $A$, $B$.
+\item Calculer $\dfrac{z_{B'}-z_{A'}}{z_B-z_A}$ et interpréter géométriquement.
+\item Montrer que $\Omega B'=\sqrt2\,\Omega B$ et $(\overrightarrow{\Omega B},\overrightarrow{\Omega B'})=\frac\pi4$.
+\end{enumerate}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Exercices d'entraînement}
+
+\rubrique{Reconnaître et écrire des transformations}
+\exo{}\diff{1} Nature et éléments de $z'=z+4-2i$ ; de $z'=-2z$ ; de $z'=iz$.
+
+\exo{}\diff{1} Écriture complexe de l'homothétie de centre $\Omega(1-2i)$, de rapport $3$.
+
+\exo{}\diff{2} Reconnaître $z'=(1-i)z+3$ : nature, rapport, angle, centre.
+
+\exo{}\diff{2} Reconnaître $z'=\dfrac{\sqrt2}{2}(1+i)\,z$ : nature et éléments.
+
+\exo{}\diff{2} Écrire la rotation de centre $\Omega(3+2i)$, d'angle $\frac{2\pi}3$, sous la forme $z'=az+b$.
+
+\exo{}\diff{2} Soit $z'=-3z+8-4i$. Montrer que c'est une homothétie et préciser centre et rapport.
+
+\exo{}\diff{3} Déterminer toutes les similitudes $z'=az+b$ admettant $\Omega(2+i)$ comme centre et
+transformant le point $M_0(0)$ en $M'_0(4-i)$.
+
+\rubrique{Images, antécédents, composées}
+\exo{}\diff{1} Soit $f:z'=2z-1+i$. Calculer l'image de $A(2)$, l'antécédent de $B(5+3i)$.
+
+\exo{}\diff{2} Soit $f:z'=iz+1-i$. Déterminer l'ensemble des points invariants par $f$.
+
+\exo{}\diff{2} On compose la rotation $r$ de centre $O$, angle $\frac\pi3$, et l'homothétie $h$ de
+centre $O$, rapport $2$. Donner l'écriture complexe de $h\circ r$ et sa nature.
+
+\exo{}\diff{3} Soient $r_1$ rotation de centre $O$ d'angle $\frac\pi2$ et $r_2$ rotation de centre
+$A(2)$ d'angle $\frac\pi2$. Déterminer l'écriture complexe et la nature de $r_2\circ r_1$.
+
+\rubrique{Triangles, alignement, orthogonalité}
+\exo{}\diff{1} Nature du triangle $ABC$ avec $A(0)$, $B(3)$, $C(3+3i)$.
+
+\exo{}\diff{2} On donne $A(1)$, $B(3+2i)$, $C(-1+4i)$. Le triangle $ABC$ est-il rectangle ? isocèle ?
+
+\exo{}\diff{2} Montrer que $A(1+2i)$, $B(3+4i)$, $C(5+6i)$ sont alignés.
+
+\exo{}\diff{2} Déterminer $z$ pour que $A(2)$, $B(z)$, $C(2i)$ forment un triangle équilatéral direct.
+
+\exo{}\diff{3} Soient $A(1)$, $B(5+3i)$, $C(2+4i)$. Montrer que le triangle $ABC$ est rectangle et
+calculer l'affixe du centre de son cercle circonscrit.
+
+\exo{}\diff{3} On donne $A(z_A)$, $B(z_B)$, $C(z_C)$. Montrer que si $z_A+z_B+z_C=0$ et
+$|z_A|=|z_B|=|z_C|=1$, alors $ABC$ est équilatéral.
+
+\rubrique{Cocyclicité}
+\exo{}\diff{2} Les points $A(2)$, $B(2i)$, $C(-2)$, $D(-2i)$ sont-ils cocycliques ?
+
+\exo{}\diff{3} Montrer que $A(1)$, $B(1+i)$, $C(i)$, $O(0)$ sont cocycliques et préciser le cercle.
+
+\rubrique{Lieux géométriques}
+\exo{}\diff{1} Ensemble des $M(z)$ tels que $|z+2-i|=2$.
+
+\exo{}\diff{1} Ensemble des $M(z)$ tels que $|z-3|=|z-3i|$.
+
+\exo{}\diff{2} Ensemble des $M(z)$ tels que $|z-1|=|z+1|$, puis tels que $|z-1|=2|z+1|$.
+
+\exo{}\diff{2} Ensemble des $M(z)$ tels que $\arg(z-1)=\frac\pi4\ [2\pi]$.
+
+\exo{}\diff{2} Ensemble des $M(z)$ tels que $z+\bar z=4$, puis tels que $z-\bar z=2i$.
+
+\exo{}\diff{3} Ensemble des $M(z)$, $z\neq i$, tels que $\dfrac{z+i}{z-i}$ soit imaginaire pur.
+
+\exo{}\diff{3} Ensemble des $M(z)$ tels que $|z-2|+|z+2|=6$ (on posera $z=x+iy$).
+
+\exo{}\diff{3} Soit $Z=\dfrac{z-2}{z-2i}$. Déterminer l'ensemble des $M(z)$ tels que $|Z|=1$, puis
+tels que $Z$ soit réel.
+
+\rubrique{Similitudes et applications}
+\exo{}\diff{2} Soit $f:z'=2iz+1$. Déterminer l'image par $f$ du cercle de centre $O$ et de rayon $3$.
+
+\exo{}\diff{2} Soit $f:z'=(1+i)z$. Déterminer l'image par $f$ de la droite d'équation $y=x$.
+
+\exo{}\diff{3} Soit $f:z'=az+b$ telle que $f(0)=2$ et $f(i)=1+i$. Déterminer $f$ et son centre.
+
+\exo{}\diff{3} Une similitude directe transforme $A(1)$ en $B(1+i)$ et a pour centre $\Omega(0)$.
+Déterminer son rapport, son angle et son écriture complexe.
+
+\rubrique{Problèmes}
+\exo{}\diff{3} Soient $A(2)$, $B(2i)$ et $f$ la rotation de centre $A$, d'angle $\frac\pi2$.
+Déterminer l'image $B'$ de $B$, puis la nature du triangle $ABB'$.
+
+\exo{}\diff{3} On considère $f:z'=jz$ avec $j=e^{2i\pi/3}$, et $A(1)$. Déterminer $B=f(A)$ et
+$C=f(B)$ ; montrer que $ABC$ est équilatéral de centre $O$.
+
+% ═══════════════════════════════════════════════════════════════
+\section{Sujets type Baccalauréat}
+
+\sujetbac[similitude, triangle et lieu géométrique]
+Le plan complexe est rapporté à un repère orthonormé direct. On considère la transformation $f$
+d'écriture complexe $z'=(1+i)z-2i$, et les points $A(0)$ et $B(2i)$.
 \begin{enumerate}[label=\arabic*)]
 \item Montrer que $f$ est une similitude directe ; préciser son rapport, son angle et son centre $\Omega$.
-\item Déterminer les affixes $z_{A'}$ et $z_{B'}$ des images $A'$ et $B'$ de $A$ et $B$ par $f$.
-\item Calculer $\dfrac{z_{B'}-z_{A'}}{z_B-z_A}$ et interpréter géométriquement le résultat.
-\item Montrer que $\Omega$, $A$ et $A'$ d'une part vérifient $\Omega A'=\sqrt2\,\Omega A$, et que
-$(\overrightarrow{\Omega A},\overrightarrow{\Omega A'})=\frac\pi4$.
+\item Déterminer les affixes des images $A'$ et $B'$ de $A$ et $B$.
+\item Calculer $\dfrac{z_{A'}-\omega}{z_A-\omega}$ et en déduire la nature du triangle $\Omega A A'$.
+\item Déterminer et représenter l'ensemble $(\Gamma)$ des points $M(z)$ tels que $|z-2i|=|z-2|$.
+\item Montrer que $f$ transforme $(\Gamma)$ en une droite que l'on précisera.
+\end{enumerate}
+
+\sujetbac[rotation, configuration et cocyclicité]
+On donne les points $A(1)$, $B(3)$, $C(3+2i)$, $D(1+2i)$.
+\begin{enumerate}[label=\arabic*)]
+\item Montrer que $ABCD$ est un rectangle.
+\item Soit $r$ la rotation de centre $A$, d'angle $\frac\pi2$. Déterminer l'affixe de $E=r(D)$.
+\item Calculer $\dfrac{z_C-z_A}{z_B-z_A}$ et en déduire la nature du triangle $ABC$.
+\item Montrer que les points $A,B,C,D$ sont cocycliques et déterminer le centre et le rayon du
+cercle circonscrit.
+\end{enumerate}
+
+\sujetbac[rotation d'angle $\frac{2\pi}3$ et triangle équilatéral]
+Le plan est rapporté à un repère orthonormé direct. On considère $f:z'=j\,z+2$ où
+$j=e^{2i\pi/3}=-\dfrac12+\dfrac{\sqrt3}2 i$, et le point $A(1)$.
+\begin{enumerate}[label=\arabic*)]
+\item Vérifier que $1+j+j^2=0$ et que $j^3=1$. Déterminer la nature de $f$, son rapport, son angle
+et son centre $\Omega$.
+\item Déterminer l'affixe de $A_1=f(A)$, puis de $A_2=f(A_1)$. Vérifier que $f(A_2)=A$.
+\item Montrer que $\Omega A=\Omega A_1=\Omega A_2$ et calculer les angles
+$(\overrightarrow{\Omega A},\overrightarrow{\Omega A_1})$ et $(\overrightarrow{\Omega A},\overrightarrow{\Omega A_2})$.
+\item En déduire que $A$, $A_1$, $A_2$ sont les trois sommets d'un même triangle équilatéral de centre $\Omega$.
 \end{enumerate}
 
 % ═══════════════════════════════════════════════════════════════
@@ -287,64 +634,161 @@ $(\overrightarrow{\Omega A},\overrightarrow{\Omega A'})=\frac\pi4$.
 
 \corrige{de l'exercice 1}
 $z'=z-3+i$ : forme $z'=z+b$ avec $b=-3+i$, c'est la \textbf{translation} de vecteur $\vec w(-3+i)$.\;
-$z'=3z$ : $a=3\in\R^{*}$, $\omega=\frac{0}{1-3}=0$, c'est l'\textbf{homothétie} de centre $O$ et de rapport $3$.
+$z'=3z$ : $a=3\in\R^{*}$, $\omega=\frac{0}{1-3}=0$, c'est l'\textbf{homothétie} de centre $O$, rapport $3$.
 
 \corrige{de l'exercice 2}
 Translation : $z'=z+(-2+5i)$.\;
 Symétrie centrale de centre $\Omega(3-i)$ : $z'=2\omega-z=2(3-i)-z=6-2i-z$.
 
 \corrige{de l'exercice 3}
-$a=i$, $|a|=1$ et $\arg a=\frac\pi2$ : c'est une \textbf{rotation} d'angle $\frac\pi2$. Centre :
-$\omega=\dfrac{2-2i}{1-i}=\dfrac{(2-2i)}{(1-i)}=\dfrac{2(1-i)}{1-i}=2$. Donc rotation de centre
-$\Omega(2)$ et d'angle $\frac\pi2$.
+$a=i$, $|a|=1$ et $\arg a=\frac\pi2$ : \textbf{rotation} d'angle $\frac\pi2$. Centre :
+$\omega=\dfrac{2-2i}{1-i}=\dfrac{2(1-i)}{1-i}=2$. Donc rotation de centre $\Omega(2)$, d'angle $\frac\pi2$.
 
 \corrige{de l'exercice 4}
-$a=1+i\sqrt3$ : $|a|=\sqrt{1+3}=2$ (rapport), $\arg a=\frac\pi3$ (angle, car $\cos=\frac12$, $\sin=\frac{\sqrt3}2$).
+$a=1+i\sqrt3$ : $|a|=\sqrt{1+3}=2$ (rapport), $\arg a=\frac\pi3$ (car $\cos=\frac12$, $\sin=\frac{\sqrt3}2$).
 Centre $\omega=\dfrac{b}{1-a}=\dfrac{-2}{1-(1+i\sqrt3)}=\dfrac{-2}{-i\sqrt3}=\dfrac{2}{i\sqrt3}
 =\dfrac{2}{i\sqrt3}\cdot\dfrac{-i}{-i}=\dfrac{-2i}{\sqrt3}=-\dfrac{2\sqrt3}{3}i$.
-C'est la similitude directe de centre $\Omega\!\left(-\frac{2\sqrt3}{3}i\right)$, de rapport $2$, d'angle $\frac\pi3$.
+Similitude directe de centre $\Omega\!\left(-\frac{2\sqrt3}{3}i\right)$, rapport $2$, angle $\frac\pi3$.
 
 \corrige{de l'exercice 5}
-$\dfrac{z_C-z_A}{z_B-z_A}=\dfrac{(1+5i)-(1+i)}{(4+i)-(1+i)}=\dfrac{4i}{3}$. Module $\frac43\neq1$ et
-argument $\frac\pi2$. Donc le triangle est \textbf{rectangle en $A$} (mais non isocèle :
-$AB=3$, $AC=4$, $BC=5$ — c'est le triangle $3$-$4$-$5$).
+Angle $-\frac\pi3$ : $a=e^{-i\pi/3}=\cos\frac\pi3-i\sin\frac\pi3=\frac12-\frac{\sqrt3}2 i$.
+Écriture : $z'-\omega=a(z-\omega)$ avec $\omega=2-i$, donc
+$z'=a z+(1-a)\omega$. On a $1-a=\frac12+\frac{\sqrt3}2 i$, et
+$(1-a)\omega=\big(\tfrac12+\tfrac{\sqrt3}2 i\big)(2-i)=1-\tfrac12 i+\sqrt3\,i+\tfrac{\sqrt3}2
+=\big(1+\tfrac{\sqrt3}2\big)+\big(\sqrt3-\tfrac12\big)i$.
+Donc $z'=\big(\tfrac12-\tfrac{\sqrt3}2 i\big)z+\big(1+\tfrac{\sqrt3}2\big)+\big(\sqrt3-\tfrac12\big)i$.
 
 \corrige{de l'exercice 6}
-$\overrightarrow{AB}$ a pour affixe $(4+3i)-(2+i)=2+2i$ et $\overrightarrow{AC}$ a pour affixe
-$(-2-3i)-(2+i)=-4-4i$. On constate que $-4-4i=-2(2+2i)$, donc $\overrightarrow{AC}=-2\,\overrightarrow{AB}$ :
-les vecteurs sont colinéaires, donc les points $A,B,C$ sont \textbf{alignés}. De façon équivalente,
-$\dfrac{z_C-z_A}{z_B-z_A}=\dfrac{-4-4i}{2+2i}=-2\in\R^{*}$.
+$f:z'=(1+i)z-i$.\;
+$A(1)\mapsto (1+i)-i=1$, donc $A'(1)$.\;
+$B(i)\mapsto (1+i)i-i=i+i^2-i=-1$, donc $B'(-1)$.\;
+$C(0)\mapsto -i$, donc $C'(-i)$.
 
 \corrige{de l'exercice 7}
-$D$ image de $C$ par la rotation de centre $B(0)$, d'angle $\frac\pi2$ : $z_D=e^{i\pi/2}(z_C-0)+0=i\,z_C
-=i(5+2i)=-2+5i$. Alors $\dfrac{z_D-z_A}{z_C-z_A}=\dfrac{(-2+5i)-3}{(5+2i)-3}=\dfrac{-5+5i}{2+2i}
-=\dfrac{5(-1+i)}{2(1+i)}=\dfrac{5(-1+i)(1-i)}{2\cdot2}=\dfrac{5(-1+i+i+1)}{4}=\dfrac{5\cdot2i}{4}=\dfrac{5}{2}i$.
-C'est un imaginaire pur, donc $(AC)\perp(AD)$.
+$a=\dfrac{z_{B'}-z_{A'}}{z_B-z_A}=\dfrac{(1-i)-(3+i)}{0-2}=\dfrac{-2-2i}{-2}=1+i$, puis
+$b=z_{A'}-a\,z_A=(3+i)-(1+i)\cdot2=(3+i)-(2+2i)=1-i$. Écriture : $z'=(1+i)z+1-i$.
 
 \corrige{de l'exercice 8}
-$|z-1+2i|=|z-(1-2i)|=3$ : \textbf{cercle} de centre $A(1-2i)$ et de rayon $3$.
+$r:z_1=iz$ (rotation centre $O$, angle $\frac\pi2$), puis $t:z'=z_1+(1+i)$. Composée :
+$z'=iz+1+i$. C'est une similitude de rapport $|i|=1$ et d'angle $\frac\pi2$ : une \textbf{rotation}
+d'angle $\frac\pi2$, de centre $\omega=\dfrac{1+i}{1-i}=\dfrac{(1+i)^2}{2}=\dfrac{2i}{2}=i$. Donc
+rotation de centre $\Omega(i)$, d'angle $\frac\pi2$.
 
 \corrige{de l'exercice 9}
-$|z-i|=|z+3|$ s'écrit $AM=BM$ avec $A(i)$, $B(-3)$ : c'est la \textbf{médiatrice} de $[AB]$.
-En posant $z=x+iy$ : $x^2+(y-1)^2=(x+3)^2+y^2\Rightarrow -2y+1=6x+9\Rightarrow y=-3x-4$ : une droite.
+$\dfrac{z_C-z_A}{z_B-z_A}=\dfrac{(1+5i)-(1+i)}{(4+i)-(1+i)}=\dfrac{4i}{3}$. Module $\frac43\neq1$,
+argument $\frac\pi2$ : triangle \textbf{rectangle en $A$} (non isocèle : $AB=3$, $AC=4$, $BC=5$,
+c'est le triangle $3$-$4$-$5$).
 
 \corrige{de l'exercice 10}
-Posons $A(2i)$, $B(-2)$. $\dfrac{z-2i}{z+2}$ imaginaire pur signifie
-$\arg\dfrac{z-z_A}{z-z_B}=\pm\frac\pi2$, c'est-à-dire $(\overrightarrow{MB},\overrightarrow{MA})=\pm\frac\pi2$,
-donc $(MA)\perp(MB)$. Le lieu est le \textbf{cercle de diamètre} $[AB]$, privé de $A$ et $B$.
-Son centre est le milieu $I=\frac{2i+(-2)}2=-1+i$ et son rayon $\frac{AB}2=\frac{|2i+2|}2=\frac{2\sqrt2}2=\sqrt2$.
+$\overrightarrow{AB}$ a pour affixe $(4+3i)-(2+i)=2+2i$ et $\overrightarrow{AC}$ a pour affixe
+$(-2-3i)-(2+i)=-4-4i=-2(2+2i)$, donc $\overrightarrow{AC}=-2\,\overrightarrow{AB}$ : les points
+$A,B,C$ sont \textbf{alignés}. De même $\dfrac{z_C-z_A}{z_B-z_A}=-2\in\R^{*}$.
 
-\corrige{du problème}
-1) $a=1+i$, $a\neq1$ donc $f$ est une similitude directe. Rapport $k=|1+i|=\sqrt2$ ;
-angle $\theta=\arg(1+i)=\frac\pi4$ ; centre $\omega=\dfrac{b}{1-a}=\dfrac{-i}{1-(1+i)}=\dfrac{-i}{-i}=1$.
-Donc $\Omega(1)=A$ : le centre de la similitude est le point $A$.\;
-2) $z_{A'}=(1+i)\cdot1-i=1+i-i=1$, donc $A'=A=\Omega$ (cohérent : $A$ est le centre, donc invariant).
-$z_{B'}=(1+i)\cdot i-i=i+i^2-i=-1$, donc $B'(-1)$.\;
-3) $\dfrac{z_{B'}-z_{A'}}{z_B-z_A}=\dfrac{-1-1}{i-1}=\dfrac{-2}{i-1}=\dfrac{-2(i+1)\cdots}{}$ : multiplions par le
-conjugué de $i-1$, soit $-1-i$ : $\dfrac{-2(-1-i)}{(i-1)(-1-i)}=\dfrac{2+2i}{(-i-i^2+1+i)}=\dfrac{2+2i}{(1+1)}
-=\dfrac{2+2i}{2}=1+i$. Ce rapport vaut $a=1+i$ : c'est cohérent, l'image du vecteur
-$\overrightarrow{AB}$ est $\overrightarrow{A'B'}=a\,\overrightarrow{AB}$, multipliée par $\sqrt2$ et tournée de $\frac\pi4$.\;
-4) Comme $A'=\Omega$, prenons plutôt $B$ : $\Omega B'=|z_{B'}-1|=|-1-1|=2$ et $\Omega B=|z_B-1|=|i-1|=\sqrt2$,
-donc $\Omega B'=\sqrt2\,\Omega B$, et $(\overrightarrow{\Omega B},\overrightarrow{\Omega B'})
-=\arg\dfrac{z_{B'}-1}{z_B-1}=\arg\dfrac{-2}{i-1}=\arg(1+i)=\frac\pi4$.
-On retrouve bien le rapport $\sqrt2$ et l'angle $\frac\pi4$ de la similitude.
+\corrige{de l'exercice 11}
+$Z=\dfrac{z_C-z_A}{z_B-z_A}=\dfrac{(1+i\sqrt3)-0}{2-0}=\dfrac{1+i\sqrt3}2$. Or
+$|Z|=\frac12|1+i\sqrt3|=\frac12\cdot2=1$ et $\arg Z=\frac\pi3$ : donc $AC=AB$ et
+$(\overrightarrow{AB},\overrightarrow{AC})=\frac\pi3$, le triangle est \textbf{équilatéral direct}.
+
+\corrige{de l'exercice 12}
+$D$ image de $C$ par la rotation de centre $B(0)$, angle $\frac\pi2$ : $z_D=i\,z_C=i(5+2i)=-2+5i$.
+Alors $\dfrac{z_D-z_A}{z_C-z_A}=\dfrac{(-2+5i)-3}{(5+2i)-3}=\dfrac{-5+5i}{2+2i}
+=\dfrac{5(-1+i)(1-i)}{(2+2i)(1-i)}=\dfrac{5(-1+i+i+1)}{2\cdot2}=\dfrac{5\cdot2i}{4}=\dfrac{5}{2}i$.
+Imaginaire pur, donc $(AC)\perp(AD)$.
+
+\corrige{de l'exercice 13}
+$A(1)$, $B(i)$, $C(-1)$, $D(-i)$ : ce sont les racines $4^{\text e}$ de l'unité, donc $|z|=1$ pour
+chacune : ils sont sur le cercle unité, donc \textbf{cocycliques}. Vérification par le birapport :
+$\dfrac{(z_C-z_A)/(z_C-z_B)}{(z_D-z_A)/(z_D-z_B)}=\dfrac{(-2)/(-1-i)}{(-1-i)/(-2i)}
+=\dfrac{-2}{-1-i}\cdot\dfrac{-2i}{-1-i}=\dfrac{4i}{(1+i)^2}=\dfrac{4i}{2i}=2\in\R$.
+
+\corrige{de l'exercice 14}
+$|z-1+2i|=|z-(1-2i)|=3$ : \textbf{cercle} de centre $A(1-2i)$ et de rayon $3$.
+
+\corrige{de l'exercice 15}
+$|z-i|=|z+3|$ s'écrit $AM=BM$ avec $A(i)$, $B(-3)$ : c'est la \textbf{médiatrice} de $[AB]$.
+En posant $z=x+iy$ : $x^2+(y-1)^2=(x+3)^2+y^2\Rightarrow -2y+1=6x+9\Rightarrow y=-3x-4$ : droite.
+
+\corrige{de l'exercice 16}
+$|2z-4|=6\iff 2|z-2|=6\iff |z-2|=3$ : \textbf{cercle} de centre $A(2)$ et de rayon $3$.
+
+\corrige{de l'exercice 17}
+Posons $A(2i)$, $B(-2)$. $\dfrac{z-2i}{z+2}$ imaginaire pur $\iff
+\arg\dfrac{z-z_A}{z-z_B}=\pm\frac\pi2\iff(MB,MA)=\pm\frac\pi2\iff(MA)\perp(MB)$. Le lieu est le
+\textbf{cercle de diamètre} $[AB]$, privé de $A$ et $B$ : centre $I=\frac{2i-2}2=-1+i$, rayon
+$\frac{AB}2=\frac{|2i+2|}2=\frac{2\sqrt2}2=\sqrt2$.
+
+\corrige{de l'exercice 18}
+Posons $A(i)$, $B(1)$. $\dfrac{z-i}{z-1}\in\R\iff M,A,B$ alignés $\iff M\in(AB)$. Le lieu est la
+\textbf{droite} $(AB)$ privée de $B(1)$. Équation : $A(i)$ et $B(1)$ donnent la droite passant par
+$(0,1)$ et $(1,0)$, soit $x+y=1$ (privée du point $(1,0)$).
+
+\corrige{de l'exercice 19}
+1) $a=1+i\neq1$, donc $f$ est une \textbf{similitude directe}. Rapport $k=|1+i|=\sqrt2$ ;
+angle $\theta=\arg(1+i)=\frac\pi4$ ; centre $\omega=\dfrac{-i}{1-(1+i)}=\dfrac{-i}{-i}=1$, soit $\Omega(1)=A$.\;
+2) $z_{A'}=(1+i)\cdot1-i=1$, donc $A'(1)=\Omega$ (cohérent : $A=\Omega$ est invariant).
+$z_{B'}=(1+i)i-i=i+i^2-i=-1$, donc $B'(-1)$.\;
+3) $\dfrac{z_{B'}-z_{A'}}{z_B-z_A}=\dfrac{-1-1}{i-1}=\dfrac{-2}{i-1}$. Multiplions par $\overline{i-1}=-1-i$ :
+$\dfrac{-2(-1-i)}{(i-1)(-1-i)}=\dfrac{2+2i}{-i-i^2+1+i}=\dfrac{2+2i}{2}=1+i=a$. C'est cohérent :
+$\overrightarrow{A'B'}=a\,\overrightarrow{AB}$ (multiplié par $\sqrt2$, tourné de $\frac\pi4$).\;
+4) Comme $A'=\Omega$, on travaille avec $B$ : $\Omega B'=|z_{B'}-1|=|-1-1|=2$ et
+$\Omega B=|i-1|=\sqrt2$, donc $\Omega B'=\sqrt2\,\Omega B$. De plus
+$(\overrightarrow{\Omega B},\overrightarrow{\Omega B'})=\arg\dfrac{z_{B'}-1}{z_B-1}
+=\arg\dfrac{-2}{i-1}=\arg(1+i)=\frac\pi4$.
+
+\corrige{du sujet 1}
+1) $a=1+i\neq1$ : \textbf{similitude directe}, rapport $k=|1+i|=\sqrt2$, angle $\arg(1+i)=\frac\pi4$,
+centre $\omega=\dfrac{-2i}{1-(1+i)}=\dfrac{-2i}{-i}=2$, soit $\Omega(2)$.\\
+2) $z_{A'}=(1+i)\cdot0-2i=-2i$, donc $A'(-2i)$.\;
+$z_{B'}=(1+i)(2i)-2i=2i+2i^2-2i=-2$, donc $B'(-2)$.\\
+3) $\dfrac{z_{A'}-\omega}{z_A-\omega}=\dfrac{-2i-2}{0-2}=\dfrac{-2-2i}{-2}=1+i$. Donc
+$\Omega A'=\sqrt2\,\Omega A$ et $(\overrightarrow{\Omega A},\overrightarrow{\Omega A'})=\frac\pi4$.
+On calcule alors les côtés : $\Omega A=|0-2|=2$, $\Omega A'=|-2i-2|=2\sqrt2$, $AA'=|-2i-0|=2$.
+On constate $\Omega A=AA'=2$ (isocèle) et $\Omega A'^2=8=4+4=\Omega A^2+AA'^2$ : par la réciproque
+du théorème de Pythagore, le triangle $\Omega A A'$ est \textbf{rectangle isocèle en $A$}.\\
+4) $(\Gamma)$ : $|z-2i|=|z-2|\iff PM=QM$ avec $P(2i)$, $Q(2)$ : c'est la \textbf{médiatrice} de
+$[PQ]$. En posant $z=x+iy$ : $x^2+(y-2)^2=(x-2)^2+y^2\Rightarrow -4y+4=-4x+4\Rightarrow y=x$ : la
+première bissectrice.\\
+5) L'image d'une droite par une similitude est une droite. On paramètre $(\Gamma)$ par $z=t(1+i)$,
+$t\in\R$ (points $y=x$). Alors $z'=(1+i)\,t(1+i)-2i=t(1+i)^2-2i=2ti-2i=2i(t-1)$. Quand $t$ décrit
+$\R$, $z'$ décrit l'ensemble des imaginaires purs : c'est la \textbf{droite des imaginaires purs}
+(l'axe $(O,\vec v)$, d'équation $x=0$).
+
+\corrige{du sujet 2}
+1) $z_B-z_A=2$ (réel), $z_D-z_A=2i$ (imaginaire pur), donc $(AB)\perp(AD)$ et $AB=2$, $AD=2$.
+$\overrightarrow{AB}=\overrightarrow{DC}$ ? $z_C-z_D=(3+2i)-(1+2i)=2=z_B-z_A$ : oui. Donc $ABCD$ est
+un parallélogramme avec un angle droit en $A$ et $AB=AD=2$ : c'est un \textbf{carré} (donc en
+particulier un rectangle).\\
+2) $r$ de centre $A(1)$, angle $\frac\pi2$ : $z_E=i(z_D-1)+1=i((1+2i)-1)+1=i(2i)+1=-2+1=-1$,
+donc $E(-1)$.\\
+3) $\dfrac{z_C-z_A}{z_B-z_A}=\dfrac{(3+2i)-1}{3-1}=\dfrac{2+2i}{2}=1+i$. Module $\sqrt2$,
+argument $\frac\pi4$ : le triangle $ABC$ est tel que $AC=\sqrt2\,AB$ et
+$(\overrightarrow{AB},\overrightarrow{AC})=\frac\pi4$ ; comme $\widehat{BAC}=\frac\pi4$ et que
+dans le carré $\widehat{BCA}=\frac\pi4$, le triangle $ABC$ est \textbf{rectangle isocèle en $B$}.\\
+4) Dans un carré $ABCD$, les quatre sommets sont sur le cercle circonscrit, de centre le point
+d'intersection des diagonales. Centre $=$ milieu de $[AC]=\frac{(1)+(3+2i)}2=2+i$ ; rayon
+$=\frac{AC}2=\frac{|2+2i|}2=\frac{2\sqrt2}2=\sqrt2$. Donc $A,B,C,D$ sont \textbf{cocycliques}, sur
+le cercle de centre $(2+i)$ et de rayon $\sqrt2$.
+
+\corrige{du sujet 3}
+1) $j=e^{2i\pi/3}$ est une racine cubique de l'unité : $j^3=e^{2i\pi}=1$, et
+$1+j+j^2=\dfrac{j^3-1}{j-1}=0$ (somme des racines cubiques de l'unité). On a $a=j$, $|a|=1$ et
+$\arg a=\frac{2\pi}3$ : c'est une \textbf{rotation} d'angle $\frac{2\pi}3$. Centre :
+$\omega=\dfrac{2}{1-j}=\dfrac{2\,\overline{(1-j)}}{|1-j|^2}$. Or $1-j=\frac32-\frac{\sqrt3}2 i$,
+$|1-j|^2=\frac94+\frac34=3$, donc $\omega=\dfrac{2(\frac32+\frac{\sqrt3}2 i)}{3}=\dfrac{3+\sqrt3\,i}3
+=1+\dfrac{\sqrt3}3 i$. Donc rotation de centre $\Omega\!\left(1+\frac{\sqrt3}3 i\right)$, angle $\frac{2\pi}3$.\\
+2) $z_{A_1}=j\cdot1+2=-\frac12+\frac{\sqrt3}2 i+2=\frac32+\frac{\sqrt3}2 i$.\;
+$z_{A_2}=j\,z_{A_1}+2$. Calcul : $j\big(\frac32+\frac{\sqrt3}2 i\big)
+=\big(-\frac12+\frac{\sqrt3}2 i\big)\big(\frac32+\frac{\sqrt3}2 i\big)
+=-\frac34-\frac{\sqrt3}4 i+\frac{3\sqrt3}4 i+\frac{3}4 i^2=-\frac34-\frac34+\frac{2\sqrt3}4 i
+=-\frac32+\frac{\sqrt3}2 i$, donc $z_{A_2}=-\frac32+\frac{\sqrt3}2 i+2=\frac12+\frac{\sqrt3}2 i$.\;
+Vérification : $f(A_2)=j\,z_{A_2}+2$ ; comme $f$ est la rotation d'angle $\frac{2\pi}3$, trois
+applications ramènent au départ ($j^3=1$), donc $f(A_2)=A$ (on a $f^3=\mathrm{id}$).\\
+3) Une rotation conserve les distances au centre, donc $\Omega A=\Omega A_1=\Omega A_2$
+(numériquement $=\frac{\sqrt3}3$). Chaque application de $f$ tourne de $\frac{2\pi}3$ autour de
+$\Omega$, donc $(\overrightarrow{\Omega A},\overrightarrow{\Omega A_1})=\frac{2\pi}3$ et
+$(\overrightarrow{\Omega A},\overrightarrow{\Omega A_2})=\frac{4\pi}3=-\frac{2\pi}3\ [2\pi]$.\\
+4) Les trois points $A$, $A_1$, $A_2$ sont sur le cercle de centre $\Omega$ et de rayon
+$\frac{\sqrt3}3$, et leurs positions angulaires relatives à $\Omega$ sont $0$, $\frac{2\pi}3$,
+$\frac{4\pi}3$ : ils sont \textbf{régulièrement répartis} (écart $\frac{2\pi}3$). Ce sont donc les
+trois sommets d'un \textbf{triangle équilatéral} de centre $\Omega$. (On peut le confirmer par le
+critère $z_A^2+z_{A_1}^2+z_{A_2}^2=z_Az_{A_1}+z_{A_1}z_{A_2}+z_{A_2}z_A$.)
