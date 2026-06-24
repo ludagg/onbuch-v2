@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math' as math;
 import 'dart:ui' show PathOperation;
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -215,9 +216,32 @@ class _Greeting extends StatefulWidget {
 }
 
 class _GreetingState extends State<_Greeting> {
+  // Salutations qui tournent à chaque ouverture (prénom inséré si connu).
+  static final List<String Function(String?)> _greetings = [
+    (n) => n == null ? 'Salut 👋' : 'Salut, $n 👋',
+    (n) => n == null ? 'Le goat est de retour 🐐' : 'Le goat $n est de retour 🐐',
+    (n) => n == null ? 'Content de te revoir ✨' : 'Content de te revoir, $n ✨',
+    (n) => n == null ? 'Prêt à tout déchirer ? 💪' : 'Prêt à tout déchirer, $n ? 💪',
+    (n) => n == null ? 'De retour, boss 👑' : 'De retour, boss $n 👑',
+    (n) => n == null ? 'On déchire aujourd\'hui ? 🔥' : 'On déchire aujourd\'hui, $n ? 🔥',
+  ];
+  // Mémorise le dernier index pour éviter de répéter la même à l'ouverture suivante.
+  static int _last = -1;
+
+  static int _pick() {
+    final n = _greetings.length;
+    if (n <= 1) return 0;
+    var i = math.Random().nextInt(n);
+    if (i == _last) i = (i + 1) % n; // pas deux fois de suite la même
+    _last = i;
+    return i;
+  }
+
   // Valeur initiale lue **de façon synchrone** dans le cache : si le prénom est
   // déjà connu (navigation, redémarrage à chaud), il s'affiche sans clignoter.
   String? _first = AuthService.cachedFirstName;
+  // Choisie une seule fois à la création (= à chaque ouverture de l'accueil).
+  late final int _idx = _pick();
 
   @override
   void initState() {
@@ -238,9 +262,12 @@ class _GreetingState extends State<_Greeting> {
 
   @override
   Widget build(BuildContext context) {
-    final first = _first;
-    final text = (first == null || first.isEmpty) ? 'Salut 👋' : 'Salut, $first 👋';
-    return Text(text, style: display(24, weight: FontWeight.w600));
+    final name = (_first != null && _first!.isNotEmpty) ? _first : null;
+    return Text(
+      _greetings[_idx](name),
+      textAlign: TextAlign.center,
+      style: display(24, weight: FontWeight.w600),
+    );
   }
 }
 
