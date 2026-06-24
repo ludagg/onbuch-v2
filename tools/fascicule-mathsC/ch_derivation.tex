@@ -1,0 +1,173 @@
+\chapter{Dérivation, étude de fonctions et convexité}
+
+\noindent\textit{La dérivée mesure la vitesse de variation d'une fonction : géométriquement,
+c'est la pente de la tangente. Elle permet d'étudier les variations, de rechercher les
+extremums et — spécificité de la série C — d'analyser la \textbf{convexité} d'une courbe.}
+\vspace{8pt}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Dérivabilité et tangente}
+
+\begin{definition}[Nombre dérivé]
+$f$ est \textbf{dérivable en} $a$ si le taux d'accroissement admet une limite finie :
+\[
+f'(a)=\lim_{h\to0}\frac{f(a+h)-f(a)}{h}.
+\]
+Ce nombre $f'(a)$ est la \textbf{pente de la tangente} à la courbe $\mathcal C_f$ au point d'abscisse $a$.
+\end{definition}
+
+\begin{propriete}[Équation de la tangente]
+La tangente à $\mathcal C_f$ au point d'abscisse $a$ a pour équation
+\[
+y=f'(a)\,(x-a)+f(a).
+\]
+\end{propriete}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth]
+\begin{axis}[width=8cm,height=5cm,axis lines=middle,xlabel={\small $x$},ylabel={\small $y$},
+  xmin=-0.4,xmax=4,ymin=-0.5,ymax=4.2,xtick={1.5},xticklabels={$a$},ytick=\empty]
+\addplot[onbo,line width=1pt,domain=0:3.6,samples=60]{0.4*x^2-0.2*x+0.6};
+\addplot[onbblue,line width=0.8pt,domain=0.2:2.9]{(0.8*1.5-0.2)*(x-1.5)+(0.4*1.5^2-0.2*1.5+0.6)};
+\filldraw[onbink](axis cs:1.5,0.4*1.5^2-0.2*1.5+0.6)circle(2pt);
+\node[onbblue,anchor=west] at (axis cs:2.6,3.1){\small tangente};
+\node[onbo,anchor=west] at (axis cs:2.9,2.0){\small $\mathcal C_f$};
+\end{axis}
+\node[align=left,text width=4cm,anchor=west] at (8.1,1.6)
+{\small La tangente « épouse » la courbe au point de contact : sa pente est $f'(a)$.};
+\end{tikzpicture}
+\fig{Figure — Tangente à une courbe : interprétation du nombre dérivé.}
+\end{illus}
+
+\begin{propriete}[Dérivées usuelles et opérations]
+\begin{center}\small
+\begin{tabular}{@{}llll@{}}
+\toprule
+$f(x)$ & $f'(x)$ & $f(x)$ & $f'(x)$\\
+\midrule
+$x^{n}$ & $n\,x^{n-1}$ & $\sqrt x$ & $\dfrac1{2\sqrt x}$\\[3pt]
+$\dfrac1x$ & $-\dfrac1{x^{2}}$ & $\cos x$ & $-\sin x$\\[3pt]
+$\sin x$ & $\cos x$ & $\tan x$ & $1+\tan^{2}x$\\
+\bottomrule
+\end{tabular}
+\end{center}
+$(u+v)'=u'+v'$, $\ (uv)'=u'v+uv'$, $\ \left(\dfrac uv\right)'=\dfrac{u'v-uv'}{v^{2}}$, $\ \big(g\circ u\big)'=u'\times g'\!\circ u$.
+\end{propriete}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Sens de variation et extremums}
+
+\begin{theoreme}[Variations et signe de la dérivée]
+Soit $f$ dérivable sur un intervalle $I$.
+\begin{itemize}
+\item Si $f'>0$ sur $I$, $f$ est \textbf{strictement croissante} sur $I$ ;
+\item si $f'<0$ sur $I$, $f$ est \textbf{strictement décroissante} ;
+\item si $f'$ s'annule en changeant de signe en $x_0$, $f$ présente un \textbf{extremum local} en $x_0$.
+\end{itemize}
+\end{theoreme}
+
+\begin{propriete}[Inégalité des accroissements finis]
+Si pour tout $x\in[a,b]$, $m\le f'(x)\le M$, alors $m(b-a)\le f(b)-f(a)\le M(b-a)$.
+\end{propriete}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Convexité et points d'inflexion}
+
+\begin{definition}[Convexité]
+$f$ (deux fois dérivable) est \textbf{convexe} sur $I$ si $f''\ge0$ sur $I$ (la courbe est « tournée vers le haut », au-dessus de ses tangentes) ; \textbf{concave} si $f''\le0$. Un \textbf{point d'inflexion} est un point où $f''$ \emph{s'annule en changeant de signe} : la courbe y traverse sa tangente.
+\end{definition}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth]
+\begin{axis}[width=8.4cm,height=4.8cm,axis lines=middle,xlabel={\small $x$},ylabel={\small $y$},
+  xmin=-2.4,xmax=2.4,ymin=-2.2,ymax=2.6,xtick={0},xticklabels={$x_0$},ytick=\empty]
+\addplot[onbo,line width=1pt,domain=-2:2,samples=80]{0.5*x^3-0.3*x};
+\filldraw[onbblue](axis cs:0,0)circle(2pt) node[anchor=south west,onbblue]{\small inflexion};
+\node[anchor=west] at (axis cs:-2.3,-1.5){\small \color{onbgreen}concave};
+\node[anchor=west] at (axis cs:1.1,1.4){\small \color{onbo}convexe};
+\end{axis}
+\node[align=left,text width=3.5cm,anchor=west] at (8.5,1.4)
+{\small À gauche $f''<0$ (concave), à droite $f''>0$ (convexe) : $x_0$ est un point d'inflexion.};
+\end{tikzpicture}
+\fig{Figure — Concavité, convexité et point d'inflexion.}
+\end{illus}
+
+\begin{aretenir}
+Le \textbf{signe de $f''$} donne la convexité ; un \textbf{changement de signe de $f''$} signale un point d'inflexion. (À ne pas confondre avec le signe de $f'$, qui donne les variations.)
+\end{aretenir}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Asymptotes et plan d'étude}
+
+\begin{propriete}[Asymptotes]
+Si $\displaystyle\lim_{x\to a}f=\pm\infty$ : asymptote \textbf{verticale} $x=a$. Si $\displaystyle\lim_{x\to\pm\infty}f=\ell$ : asymptote \textbf{horizontale} $y=\ell$. Si $\displaystyle\lim_{x\to\pm\infty}\big(f(x)-(ax+b)\big)=0$ : asymptote \textbf{oblique} $y=ax+b$.
+\end{propriete}
+
+\begin{aretenir}
+\textbf{Plan d'étude d'une fonction} : domaine $\to$ limites et asymptotes $\to$ dérivée et signe $\to$ tableau de variations $\to$ (convexité) $\to$ points particuliers (tangentes) $\to$ tracé.
+\end{aretenir}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Méthodes \& savoir-faire}
+
+\methode{Calculer une dérivée (composée, quotient)}
+Identifier la structure puis appliquer la formule adaptée.
+\begin{exemple}
+$f(x)=\sqrt{x^{2}+1}$ : $f=\sqrt u$ avec $u=x^{2}+1$, donc $f'=\dfrac{u'}{2\sqrt u}=\dfrac{x}{\sqrt{x^{2}+1}}$.
+\end{exemple}
+
+\methode{Déterminer une équation de tangente}
+Calculer $f(a)$ et $f'(a)$, puis $y=f'(a)(x-a)+f(a)$.
+\begin{exemple}
+$f(x)=x^{2}$ en $a=1$ : $f(1)=1$, $f'(1)=2$, tangente $y=2(x-1)+1=2x-1$.
+\end{exemple}
+
+\methode{Étudier les variations et les extremums}
+Calculer $f'$, étudier son signe, dresser le tableau de variations.
+
+\methode{Étudier la convexité}
+Calculer $f''$, étudier son signe ; les changements de signe donnent les points d'inflexion.
+\begin{exemple}
+$f(x)=x^{3}$ : $f''(x)=6x$, négatif puis positif : la courbe est concave sur $]-\infty,0]$, convexe sur $[0,+\infty[$, avec un point d'inflexion en $0$.
+\end{exemple}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Exercices}
+
+\rubrique{Dérivées et tangentes}
+\exo{}\diff{1} Dériver $f(x)=2x^{3}-3x^{2}+1$, $g(x)=\dfrac{x}{x^{2}+1}$, $h(x)=\sqrt{2x+3}$.
+
+\exo{}\diff{2} Déterminer l'équation de la tangente à $\mathcal C_f$ ($f(x)=x^{3}-x$) au point d'abscisse $1$.
+
+\rubrique{Variations et convexité}
+\exo{}\diff{2} Soit $f(x)=x^{3}-3x^{2}+2$. Dresser le tableau de variations et étudier la convexité.
+
+\exo{}\diff{2} Montrer que $f(x)=\dfrac{x^{2}+1}{x}$ admet une asymptote oblique en $\pm\infty$.
+
+\rubrique{Étude complète — Problème type Baccalauréat}
+\exo{}\diff{3} Soit $f(x)=\dfrac{x^{2}-2x+2}{x-1}$.
+\begin{enumerate}[label=\arabic*)]
+\item Déterminer le domaine de définition et les limites aux bornes.
+\item Montrer que $f(x)=x-1+\dfrac{1}{x-1}$ ; en déduire l'asymptote oblique.
+\item Étudier les variations de $f$ et dresser son tableau de variations.
+\end{enumerate}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Corrigés}
+
+\corrige{de l'exercice 1}
+$f'(x)=6x^{2}-6x$ ; $g'(x)=\dfrac{(x^{2}+1)-x(2x)}{(x^{2}+1)^{2}}=\dfrac{1-x^{2}}{(x^{2}+1)^{2}}$ ; $h'(x)=\dfrac{2}{2\sqrt{2x+3}}=\dfrac1{\sqrt{2x+3}}$.
+
+\corrige{de l'exercice 2}
+$f(1)=0$, $f'(x)=3x^{2}-1$ donc $f'(1)=2$ : tangente $y=2(x-1)+0=2x-2$.
+
+\corrige{de l'exercice 3}
+$f'(x)=3x^{2}-6x=3x(x-2)$ : $f$ croît sur $]-\infty,0]$, décroît sur $[0,2]$, croît sur $[2,+\infty[$ ; maximum local $f(0)=2$, minimum local $f(2)=-2$. $f''(x)=6x-6=6(x-1)$ : concave sur $]-\infty,1]$, convexe sur $[1,+\infty[$, point d'inflexion en $x=1$.
+
+\corrige{de l'exercice 4}
+$f(x)=\dfrac{x^{2}+1}{x}=x+\dfrac1x$ et $\displaystyle\lim_{x\to\pm\infty}\big(f(x)-x\big)=\lim\dfrac1x=0$ : asymptote oblique $y=x$.
+
+\corrige{du problème}
+1) $D_f=\R\setminus\{1\}$ ; $\displaystyle\lim_{x\to1^{\pm}}f=\pm\infty$ (asymptote verticale $x=1$) ; $\lim_{\pm\infty}f=\pm\infty$.\;
+2) Division : $\dfrac{x^{2}-2x+2}{x-1}=x-1+\dfrac{1}{x-1}$, et $\displaystyle\lim_{\pm\infty}\big(f-(x-1)\big)=0$ : asymptote oblique $y=x-1$.\;
+3) $f'(x)=1-\dfrac1{(x-1)^{2}}=\dfrac{(x-1)^{2}-1}{(x-1)^{2}}=\dfrac{x(x-2)}{(x-1)^{2}}$ : $f'>0$ sur $]-\infty,0[\cup\,]2,+\infty[$, $f'<0$ sur $]0,1[\cup\,]1,2[$. Maximum local $f(0)=-2$, minimum local $f(2)=2$.
