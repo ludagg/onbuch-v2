@@ -165,6 +165,9 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               const SizedBox(height: 24),
 
+              // Réseaux sociaux — rejoins-nous (icônes rondes)
+              const _SocialIconsRow(),
+
               // Signature
               Padding(
                 padding: const EdgeInsets.fromLTRB(20, 0, 20, 26),
@@ -1423,6 +1426,64 @@ class _CommunitySectionState extends State<_CommunitySection> {
             }),
           ),
         ]);
+      },
+    );
+  }
+}
+
+/// Rangée compacte d'icônes de réseaux sociaux (rondes, couleur de marque) en
+/// bas d'accueil — liens pilotés par l'admin (collection `social_links`).
+class _SocialIconsRow extends StatefulWidget {
+  const _SocialIconsRow();
+  @override
+  State<_SocialIconsRow> createState() => _SocialIconsRowState();
+}
+
+class _SocialIconsRowState extends State<_SocialIconsRow> {
+  final Future<List<SocialLink>> _future = DatabaseService().getSocialLinks();
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<List<SocialLink>>(
+      future: _future,
+      builder: (context, snap) {
+        final links = (snap.data ?? const <SocialLink>[])
+            .where((s) => s.url.isNotEmpty)
+            .toList();
+        if (links.isEmpty) return const SizedBox.shrink();
+        return Padding(
+          padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+          child: Column(children: [
+            Text('REJOINS-NOUS',
+                style: body(10.5, weight: FontWeight.w800, color: OC.muted)
+                    .copyWith(letterSpacing: 0.14 * 10.5)),
+            const SizedBox(height: 13),
+            Wrap(
+              alignment: WrapAlignment.center,
+              spacing: 14,
+              runSpacing: 12,
+              children: [
+                for (final s in links)
+                  GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onTap: () => openUrl(context, s.url),
+                    child: Container(
+                      width: 46,
+                      height: 46,
+                      decoration: BoxDecoration(
+                        color: s.color,
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(color: s.color.withValues(alpha: 0.30), blurRadius: 10, offset: const Offset(0, 4)),
+                        ],
+                      ),
+                      child: Center(child: FaIcon(s.faIcon, color: Colors.white, size: 20)),
+                    ),
+                  ),
+              ],
+            ),
+          ]),
+        );
       },
     );
   }
