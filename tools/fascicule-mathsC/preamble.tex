@@ -13,6 +13,7 @@
 \usepackage{array,booktabs}
 \usepackage{multicol}
 \usepackage{pgffor}
+\usepackage{etoolbox}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,positioning,calc,decorations.pathreplacing,angles,quotes}
 \usepackage{pgfplots}
@@ -109,6 +110,21 @@
 \newtcolorbox{aretenir}{enhanced,colback=onbsoft,colframe=onbo,boxrule=1pt,arc=6pt,
   left=12pt,right=12pt,top=8pt,bottom=8pt,breakable,
   title={\sffamily\bfseries À retenir},coltitle=white,colbacktitle=onbo,fonttitle=\sffamily\bfseries}
+
+% ── Synthèse de fin de chapitre (« L'essentiel — fiche de révision ») ──
+\newtcolorbox{synthese}[1][L'essentiel du chapitre]{enhanced,breakable,
+  colback=onbink,colframe=onbink,boxrule=0pt,arc=6pt,
+  left=14pt,right=14pt,top=10pt,bottom=10pt,
+  fontupper=\color{white},
+  title={\sffamily\bfseries\large #1},coltitle=white,colbacktitle=onbo,
+  fonttitle=\sffamily\bfseries}
+
+% Sujet « type Baccalauréat » (mise en avant)
+\newcounter{sujet}[chapter]
+\newcommand{\sujetbac}[1][]{\par\medskip\noindent
+  {\color{onbo}\sffamily\bfseries\large Sujet \refstepcounter{sujet}\thesujet\ — type Baccalauréat}%
+  \ifstrempty{#1}{}{\;{\sffamily\itshape\color{onbmuted}(#1)}}%
+  \par\vspace{-4pt}\noindent{\color{onbo}\rule{\linewidth}{1.2pt}}\par\smallskip}
 
 % Correction (titre vert, sécable)
 \newcommand{\corrige}[1]{\par\smallskip\noindent{\color{onbgreen}\sffamily\bfseries\small$\blacktriangleright$ Corrigé #1}\par\nopagebreak\smallskip}
