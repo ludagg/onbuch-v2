@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -100,7 +101,16 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
       _threadId = r.threadId;
       for (final m in r.threadMessages!) {
         if (m['role'] == 'user') {
-          _msgs.add(_Msg.user(text: m['content']));
+          // Réaffiche la vraie image si elle a été persistée (base64).
+          Uint8List? bytes;
+          final img64 = m['image'] ?? '';
+          if (img64.isNotEmpty) {
+            try { bytes = base64Decode(img64); } catch (_) {}
+          }
+          final content = m['content'] ?? '';
+          // Si on a l'image, on n'affiche pas le placeholder texte sous la photo.
+          final text = (bytes != null && content == '📷 Photo envoyée') ? null : content;
+          _msgs.add(_Msg.user(image: bytes, text: text));
         } else {
           _msgs.add(_Msg.ai(Future.value(m['content'] ?? ''))..resolved = m['content']);
         }
@@ -212,6 +222,7 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
     });
   }
 
+  // Historique TEXTE (pour le contexte envoyé à l'IA) — sans image.
   List<Map<String, String>> _history() {
     final out = <Map<String, String>>[];
     for (final m in _msgs) {
@@ -227,10 +238,43 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
     return out;
   }
 
+  /// Messages à PERSISTER dans le fil : comme [_history], mais on n'oublie JAMAIS
+  /// un message utilisateur (placeholder « 📷 Photo envoyée » si pas de texte) et
+  /// on embarque l'IMAGE en base64 (plafonnée) pour la réafficher à la réouverture.
+  List<Map<String, String>> _threadMessages() {
+    const fieldBudget = 88000; // marge sous la limite (~100k) du champ `messages`
+    const maxPerImage = 70000;
+    var budget = fieldBudget;
+    final out = <Map<String, String>>[];
+    for (final m in _msgs) {
+      if (m.isUser) {
+        final txt = (m.text != null && m.text!.trim().isNotEmpty) ? m.text!.trim() : '';
+        final hasImg = m.image != null;
+        if (txt.isEmpty && !hasImg) continue; // rien à montrer
+        final entry = <String, String>{
+          'role': 'user',
+          'content': txt.isNotEmpty ? txt : '📷 Photo envoyée',
+        };
+        if (hasImg) {
+          final b64 = base64Encode(m.image!);
+          if (b64.length <= maxPerImage && b64.length + 200 <= budget) {
+            entry['image'] = b64;
+            budget -= b64.length + 200;
+          }
+        }
+        out.add(entry);
+      } else if (m.resolved != null) {
+        out.add({'role': 'assistant', 'content': m.resolved!});
+        budget -= m.resolved!.length;
+      }
+    }
+    return out;
+  }
+
   /// Persiste la conversation dans `tutor_threads` (mémoire) : crée le fil au
   /// 1er échange, le met à jour ensuite. Non bloquant.
   void _persistThread() {
-    final history = _history();
+    final history = _threadMessages();
     if (history.isEmpty) return;
     final hint = widget.request?.titleHint?.trim();
     String? title = (hint != null && hint.isNotEmpty) ? hint : null;
