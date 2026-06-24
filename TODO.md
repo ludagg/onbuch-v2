@@ -4,19 +4,21 @@ Idées et chantiers à réaliser plus tard (notés pour ne pas les perdre).
 
 ---
 
-## 🧩 Exercices — génération IA → PDF (admin) (à faire)
+## ✅ Exercices — atelier de génération IA → PDF (FAIT)
 
-Le module Exercices (collections `exercise_chapters`/`exercise_sheets`/`exercise_progress`,
-écrans app `/exercices`, ressources back-office) est **en place**. L'admin saisit
-aujourd'hui les **URLs de PDF** (énoncé + correction) à la main dans le back-office.
+Back-office → **« Atelier Exercices »** (`admin/src/routes/exercices`) :
+- **appel direct à l'API NVIDIA depuis le navigateur** (clé saisie par l'admin, stockée
+  en localStorage) — pas de fonction serveur, donc **pas de timeout** ; génération
+  **une fiche à la fois** (progression live) ;
+- **rendu LaTeX** (KaTeX) + Markdown (marked) en **prévisualisation éditable** ;
+- **publication** : HTML (template OnBuch, Space Grotesk/Plus Jakarta Sans/orange) → **PDF**
+  client (html2pdf.js) → upload Storage `annales_files` → création des `exercise_sheets`
+  (statementPdfUrl / correctionPdfUrl). Crée aussi le chapitre si « nouveau ».
+- Libs chargées en **CDN** (KaTeX, marked, html2pdf) → aucune dépendance npm ajoutée.
 
-À construire : l'**atelier de génération** côté admin —
-- une **fonction Vercel** `api/generate-exercises` (clé NVIDIA côté serveur) qui appelle
-  **Nemotron Ultra** pour produire 5 énoncés + corrections d'un chapitre ;
-- rendu **HTML (template OnBuch) → PDF** (Puppeteer/Chromium sur un service, ou API HTML→PDF) ;
-- upload des PDF dans Storage Appwrite (bucket `annales_files`) + écriture des `exercise_sheets`
-  (statementPdfUrl / correctionPdfUrl) ;
-- bouton « Générer avec l'IA » dans le back-office (relecture/édition avant publication).
+Améliorations possibles plus tard : upload de la clé via variable d'env protégée ;
+vérifier le CORS de l'endpoint NVIDIA depuis le navigateur (sinon prévoir un proxy) ;
+gestion fine des sauts de page PDF ; bibliothèque de gabarits.
 
 ## 📅 Emploi du temps des élèves + alertes (à faire)
 
