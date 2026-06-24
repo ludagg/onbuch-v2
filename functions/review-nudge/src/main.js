@@ -85,14 +85,18 @@ async function broadcastDailyQuote(log, error) {
     const q = quoteOfTheDay(quotes);
     const title = 'Léo · Citation du jour ✨';
     const body = q.author ? `« ${q.text} » — ${q.author}` : `« ${q.text} »`;
+    // Image illustrant le push (Léo en sage). ID composé Appwrite Storage
+    // `bucket:fichier` (jpeg/png/bmp). Surchargeable par la variable QUOTE_IMAGE.
+    const image = process.env.QUOTE_IMAGE || 'annales_files:daily_quote_leo';
     const ids = await listAllUserIds(error);
     if (!ids.length) { log('citation du jour : aucun élève ciblé.'); return; }
     let sent = 0;
     const chunk = 400;
     for (let i = 0; i < ids.length; i += chunk) {
       const slice = ids.slice(i, i + chunk);
-      const r = await awFetch('POST', '/messaging/messages/push',
-        { messageId: genId(), title, body, users: slice, data: { route: '/tutor' } });
+      const payload = { messageId: genId(), title, body, users: slice, data: { route: '/tutor' } };
+      if (image) payload.image = image;
+      const r = await awFetch('POST', '/messaging/messages/push', payload);
       if (r.ok) sent += slice.length;
       else error(`quote push ${r.status}: ${(await r.text()).slice(0, 160)}`);
     }
