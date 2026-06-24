@@ -21,6 +21,7 @@ import '../models/app_notification.dart';
 import '../models/exam_result.dart';
 import '../models/result_source.dart';
 import '../models/exam_series.dart';
+import '../models/fascicule.dart';
 import '../models/social_link.dart';
 import '../models/annale.dart';
 import 'appwrite_client.dart';
@@ -202,6 +203,28 @@ class DatabaseService {
         .map((m) => ExamSeries.fromMap(m))
         .where((s) => s.active && s.name.isNotEmpty)
         .toList(), force: force);
+  }
+
+  /// Fascicules (livres PDF OnBuch) publiés par l'admin (`fascicules`).
+  /// Actifs uniquement, triés par `order` puis titre. Tolérant (liste vide si échec).
+  Future<List<Fascicule>> getFascicules({bool force = false}) {
+    return _cachedList<Fascicule>('fascicules', () async {
+      final res = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteFasciculesCollectionId,
+        queries: [Query.limit(200)],
+      );
+      return res.documents.map((d) => d.data).toList();
+    }, (raw) {
+      final list = raw
+          .map((m) => Fascicule.fromMap(m))
+          .where((f) => f.active && f.title.isNotEmpty && f.hasPdf)
+          .toList()
+        ..sort((a, b) => a.order != b.order
+            ? a.order.compareTo(b.order)
+            : a.title.compareTo(b.title));
+      return list;
+    }, force: force);
   }
 
   /// Liens des réseaux sociaux (configurés par l'admin dans `social_links`).

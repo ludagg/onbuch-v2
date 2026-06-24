@@ -196,6 +196,45 @@ class _CoursLibraryHomeScreenState extends State<CoursLibraryHomeScreen> {
               ),
               const SizedBox(height: 18),
 
+              // ── Bannière « Nos fascicules » (bibliothèque de livres PDF) ────
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: GestureDetector(
+                  onTap: () => context.push('/fascicules'),
+                  child: Container(
+                    padding: const EdgeInsets.fromLTRB(16, 15, 14, 15),
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft, end: Alignment.bottomRight,
+                        colors: [OC.ink, OC.ink2],
+                      ),
+                      borderRadius: BorderRadius.circular(18),
+                      boxShadow: [BoxShadow(color: OC.ink.withValues(alpha: 0.18), blurRadius: 14, offset: const Offset(0, 6))],
+                    ),
+                    child: Row(children: [
+                      Container(
+                        width: 46, height: 46,
+                        decoration: BoxDecoration(color: OC.o600, borderRadius: BorderRadius.circular(13)),
+                        child: const Icon(Icons.auto_stories_rounded, color: Colors.white, size: 24),
+                      ),
+                      const SizedBox(width: 13),
+                      Expanded(
+                        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                          Text('Nos fascicules', style: display(17, weight: FontWeight.w800).copyWith(color: Colors.white)),
+                          const SizedBox(height: 2),
+                          Text('Les bouquins complets OnBuch — cours + exercices corrigés',
+                              maxLines: 2, overflow: TextOverflow.ellipsis,
+                              style: body(11.5, weight: FontWeight.w500).copyWith(color: Colors.white70, height: 1.25)),
+                        ]),
+                      ),
+                      const SizedBox(width: 8),
+                      const Icon(Icons.arrow_forward_rounded, color: Colors.white, size: 20),
+                    ]),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 22),
+
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Text('Parcourir par examen', style: body(13, weight: FontWeight.w800, color: OC.ink2)),

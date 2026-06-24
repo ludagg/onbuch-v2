@@ -72,6 +72,7 @@ import '../screens/cours/quiz_screen.dart';
 import '../screens/cours/quiz_result_screen.dart';
 import '../screens/cours/cours_search_screen.dart';
 import '../screens/exercices/exercices_screen.dart';
+import '../screens/fascicules/fascicules_library_screen.dart';
 import '../models/exercise.dart';
 import '../models/article.dart';
 import '../models/exam_result.dart';
@@ -151,6 +152,8 @@ final appRouter = GoRouter(
     GoRoute(path: '/aide', builder: (_, __) => const AideScreen()),
     GoRoute(path: '/edit-profile', builder: (_, __) => const EditProfileScreen()),
     GoRoute(path: '/search', builder: (_, s) => GlobalSearchScreen(scope: s.uri.queryParameters['scope'])),
+    // Bibliothèque « Nos fascicules » (hors shell → plein écran).
+    GoRoute(path: '/fascicules', builder: (_, __) => const FasciculesLibraryScreen()),
     // Module Exercices (hors shell → plein écran).
     GoRoute(path: '/exercices', builder: (_, __) => const ExercicesScreen()),
     GoRoute(path: '/exercices/chapitres', builder: (_, s) {
