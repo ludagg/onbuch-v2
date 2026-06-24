@@ -3,11 +3,24 @@
 \noindent\textit{Ce chapitre prolonge l'étude de la divisibilité par les notions de plus
 grand commun diviseur et de plus petit commun multiple, puis introduit les deux théorèmes
 fondamentaux de l'arithmétique de Terminale C — \textbf{Bézout} et \textbf{Gauss} — qui
-permettent de résoudre les équations diophantiennes et les congruences linéaires.}
+permettent de résoudre les équations diophantiennes $ax+by=c$, les congruences linéaires et
+les systèmes de congruences. Ces outils débouchent sur de vraies applications : clés de
+contrôle, calendriers et premiers principes de cryptographie.}
 \vspace{8pt}
 
 % ═══════════════════════════════════════════════════════════════
-\section{PGCD et PPCM}
+\section{Diviseurs communs, PGCD et PPCM}
+
+\begin{definition}[Diviseurs et multiples communs]
+Soient $a$ et $b$ deux entiers naturels non nuls.
+\begin{itemize}
+\item Un entier $d>0$ est un \textbf{diviseur commun} de $a$ et $b$ si $d\mid a$ \emph{et} $d\mid b$.
+\item Un entier $m>0$ est un \textbf{multiple commun} de $a$ et $b$ si $a\mid m$ \emph{et} $b\mid m$.
+\end{itemize}
+L'ensemble des diviseurs communs est fini et non vide ($1$ en fait toujours partie) : il
+admet donc un \textbf{plus grand} élément. L'ensemble des multiples communs strictement
+positifs contient $ab>0$ : il admet donc un \textbf{plus petit} élément.
+\end{definition}
 
 \begin{definition}[PGCD et PPCM]
 Soient $a$ et $b$ deux entiers naturels non nuls.
@@ -15,15 +28,43 @@ Soient $a$ et $b$ deux entiers naturels non nuls.
 \item Le \textbf{PGCD} de $a$ et $b$, noté $\mathrm{pgcd}(a,b)$ ou $a\wedge b$, est le plus grand de leurs diviseurs communs.
 \item Le \textbf{PPCM} de $a$ et $b$, noté $\mathrm{ppcm}(a,b)$ ou $a\vee b$, est le plus petit de leurs multiples communs strictement positifs.
 \end{itemize}
+Par convention $a\wedge a=a$, $a\wedge 1=1$, et l'on étend ces notions aux entiers relatifs
+en posant $a\wedge b=|a|\wedge|b|$.
 \end{definition}
 
-\begin{theoreme}[Algorithme d'Euclide]
-Pour tous entiers $a\ge b>0$, si $r$ est le reste de la division euclidienne de $a$ par $b$, alors
+\begin{remarque}
+Le PGCD se lit aussi sur la \textbf{décomposition en facteurs premiers} : si
+$a=\prod p_i^{\alpha_i}$ et $b=\prod p_i^{\beta_i}$, alors
+\[
+a\wedge b=\prod p_i^{\min(\alpha_i,\beta_i)},\qquad
+a\vee b=\prod p_i^{\max(\alpha_i,\beta_i)}.
+\]
+Par exemple $360=2^3\cdot3^2\cdot5$ et $84=2^2\cdot3\cdot7$, d'où
+$360\wedge84=2^2\cdot3=12$ et $360\vee84=2^3\cdot3^2\cdot5\cdot7=2520$.
+\end{remarque}
+
+\subsection{L'algorithme d'Euclide}
+
+\begin{theoreme}[Lemme d'Euclide]
+Pour tous entiers $a\ge b>0$, si $r$ est le reste de la division euclidienne de $a$ par $b$
+($a=bq+r$ avec $0\le r<b$), alors
 \[
 a\wedge b=b\wedge r.
 \]
-En répétant le procédé, le \textbf{dernier reste non nul} est le PGCD de $a$ et $b$.
 \end{theoreme}
+
+\begin{remarque}
+\textit{Justification.} Tout diviseur commun de $a$ et $b$ divise $r=a-bq$ : c'est donc un
+diviseur commun de $b$ et $r$. Réciproquement, tout diviseur commun de $b$ et $r$ divise
+$a=bq+r$ : c'est un diviseur commun de $a$ et $b$. Les deux paires ont donc \emph{exactement}
+les mêmes diviseurs communs, donc le même plus grand : $a\wedge b=b\wedge r$.
+\end{remarque}
+
+\begin{aretenir}
+\textbf{Algorithme d'Euclide.} On remplace $(a,b)$ par $(b,r)$ et on recommence ; les restes
+décroissent strictement, donc on atteint un reste nul. Le \textbf{dernier reste non nul} est
+$a\wedge b$.
+\end{aretenir}
 
 \begin{illus}
 \begin{tikzpicture}[>=Stealth,node distance=8mm,
@@ -43,152 +84,641 @@ En répétant le procédé, le \textbf{dernier reste non nul} est le PGCD de $a$
 \fig{Figure 2.1 — Algorithme d'Euclide : la descente des restes ; le dernier reste non nul est $252\wedge198=18$.}
 \end{illus}
 
-\begin{propriete}[Propriétés du PGCD et du PPCM]
+\begin{propriete}[Caractérisation du PGCD]
+Soit $d=a\wedge b$.
+\begin{itemize}
+\item Les \textbf{diviseurs communs} de $a$ et $b$ sont exactement les \textbf{diviseurs de $d$}.
+\item Pour tout entier $k>0$ : $(ka)\wedge(kb)=k\,(a\wedge b)$ (homogénéité).
+\item Si $d=a\wedge b$, alors $a=d\,a'$, $b=d\,b'$ avec $a'\wedge b'=1$.
+\end{itemize}
+\end{propriete}
+
+\begin{propriete}[Relation PGCD–PPCM]
 Pour tous entiers naturels non nuls $a,b$ :
 \[
-(a\wedge b)\times(a\vee b)=a\times b,\qquad
-\text{et si } d=a\wedge b,\ \text{alors } a=d\,a',\ b=d\,b'\ \text{avec } a'\wedge b'=1.
+(a\wedge b)\times(a\vee b)=a\times b,\qquad\text{donc}\qquad a\vee b=\frac{a\,b}{a\wedge b}.
 \]
 \end{propriete}
 
 \begin{definition}[Nombres premiers entre eux]
-$a$ et $b$ sont \textbf{premiers entre eux} lorsque $a\wedge b=1$ (leur seul diviseur commun positif est $1$).
+$a$ et $b$ sont \textbf{premiers entre eux} lorsque $a\wedge b=1$ (leur seul diviseur commun
+positif est $1$). On dit aussi qu'ils sont \emph{étrangers}. Dans ce cas $a\vee b=ab$.
 \end{definition}
+
+\begin{exemple}
+$15$ et $28$ sont premiers entre eux : $15=3\cdot5$, $28=2^2\cdot7$ n'ont aucun facteur
+premier commun, donc $15\wedge28=1$ et $15\vee28=420$.
+\end{exemple}
 
 % ═══════════════════════════════════════════════════════════════
 \section{Théorème de Bézout}
 
-\begin{theoreme}[Identité et théorème de Bézout]
+\begin{theoreme}[Identité de Bézout]
 Pour tous entiers relatifs $a,b$ non nuls, il existe des entiers relatifs $u,v$ tels que
 \[
 a\,u+b\,v=a\wedge b.
 \]
-\textbf{En particulier :} $a$ et $b$ sont premiers entre eux \emph{si et seulement si} il existe des entiers $u,v$ tels que $a\,u+b\,v=1$.
 \end{theoreme}
 
+\begin{remarque}
+\textit{Idée de la preuve.} Soit $\delta$ le plus petit entier strictement positif de la forme
+$au+bv$. La division euclidienne de $a$ par $\delta$ donne $a=\delta q+r$ avec
+$r=a-q\delta=a(1-qu)+b(-qv)$, encore de la forme $au'+bv'$. Comme $0\le r<\delta$ et que
+$\delta$ est le plus petit tel entier strictement positif, $r=0$ : donc $\delta\mid a$, et de
+même $\delta\mid b$. Ainsi $\delta$ est un diviseur commun, donc $\delta\le a\wedge b$.
+Réciproquement $a\wedge b$ divise $au+bv=\delta$, donc $a\wedge b\le\delta$. D'où
+$\delta=a\wedge b$.
+\end{remarque}
+
+\begin{theoreme}[Théorème de Bézout]
+Deux entiers $a$ et $b$ sont \textbf{premiers entre eux} \emph{si et seulement si} il existe
+des entiers relatifs $u,v$ tels que
+\[
+a\,u+b\,v=1.
+\]
+\end{theoreme}
+
+\begin{remarque}
+\textit{Pourquoi l'équivalence.} Si $a\wedge b=1$, l'identité de Bézout fournit
+$au+bv=1$. Réciproquement, si $au+bv=1$, tout diviseur commun $d$ de $a$ et $b$ divise
+$au+bv=1$, donc $d=1$ : $a\wedge b=1$. Ce critère est très puissant : pour prouver que deux
+nombres sont premiers entre eux, il suffit d'\textbf{exhiber} une combinaison qui vaut $1$.
+\end{remarque}
+
 \begin{aretenir}
-Pour trouver un couple de Bézout $(u,v)$, on « remonte » l'algorithme d'Euclide : on exprime chaque reste en fonction des deux nombres de départ.
+Pour trouver un couple de Bézout $(u,v)$, on \textbf{remonte} l'algorithme d'Euclide : on
+exprime chaque reste en fonction des deux nombres précédents, jusqu'à écrire le PGCD comme
+combinaison de $a$ et $b$.
 \end{aretenir}
 
 \begin{exemple}
 On a vu $252\wedge198=18$. En remontant :
-$18=54-36=54-(198-3\cdot54)=4\cdot54-198=4(252-198)-198=4\cdot252-5\cdot198.$
+\[
+18=54-36=54-(198-3\cdot54)=4\cdot54-198=4(252-198)-198=4\cdot252-5\cdot198.
+\]
 Donc $\boxed{4\times252+(-5)\times198=18}$.
 \end{exemple}
 
+\begin{illus}
+\begin{tikzpicture}[>=Stealth,node distance=5mm and 10mm,
+  euc/.style={rectangle,draw=onbo,fill=onbsoft,rounded corners=2pt,inner sep=4pt,font=\small},
+  bez/.style={rectangle,draw=onbblue,fill=white,rounded corners=2pt,inner sep=4pt,font=\small}]
+\node[euc] (e1) {$54=252-198$};
+\node[euc,below=of e1] (e2) {$36=198-3\cdot54$};
+\node[euc,below=of e2] (e3) {$18=54-36$};
+\node[bez,right=of e3] (b3) {$18=4\cdot54-198$};
+\node[bez,above=of b3] (b2) {$=4\cdot54-198$};
+\node[bez,above=of b2] (b1) {$18=4\cdot252-5\cdot198$};
+\draw[->,onbmuted] (e3) -- (b3);
+\draw[->,onbmuted] (b3) -- (b2);
+\draw[->,onbmuted] (b2) -- (b1);
+\node[font=\scriptsize\itshape,onbmuted,below=2mm of e3] {descente (Euclide)};
+\node[font=\scriptsize\itshape,onbmuted,below=12mm of b3] {remontée (Bézout)};
+\end{tikzpicture}
+\fig{Figure 2.2 — Descente d'Euclide puis remontée de Bézout : on exprime $18$ comme combinaison de $252$ et $198$.}
+\end{illus}
+
+\begin{propriete}[Inverse modulaire]
+Si $a\wedge n=1$, alors $a$ admet un \textbf{inverse modulo $n$} : il existe un entier $u$ tel
+que $a\,u\equiv1\;[n]$. En effet Bézout donne $au+nv=1$, donc $au\equiv1\;[n]$.
+\end{propriete}
+
 % ═══════════════════════════════════════════════════════════════
-\section{Théorème de Gauss}
+\section{Théorème de Gauss et conséquences}
 
 \begin{theoreme}[Théorème de Gauss]
 Soient $a,b,c$ des entiers. Si $a\mid b\,c$ \textbf{et} $a\wedge b=1$, alors $a\mid c$.
 \end{theoreme}
 
+\begin{remarque}
+\textit{Démonstration.} Comme $a\wedge b=1$, Bézout donne $au+bv=1$. Multiplions par $c$ :
+$acu+bcv=c$. Or $a\mid acu$ (évident) et $a\mid bc$ (hypothèse) donc $a\mid bcv$. Donc $a$
+divise la somme $acu+bcv=c$. C.Q.F.D.
+\end{remarque}
+
 \begin{propriete}[Conséquences utiles]
 \begin{itemize}
 \item Si $b\mid n$, $c\mid n$ et $b\wedge c=1$, alors $b\,c\mid n$.
+\item Si $a\wedge b=1$ et $a\wedge c=1$, alors $a\wedge(bc)=1$.
 \item Si $a\wedge b=1$, alors $a\wedge b^{k}=1$ pour tout $k\in\N$.
+\item \textbf{(Euclide)} Si $p$ est premier et $p\mid ab$, alors $p\mid a$ ou $p\mid b$.
 \end{itemize}
 \end{propriete}
+
+\begin{aretenir}
+Gauss sert à « \textbf{simplifier} » une divisibilité : si $a\mid bc$ et que $a$ n'a aucun
+facteur en commun avec $b$, alors toute la divisibilité « passe » sur $c$. C'est l'outil clé
+pour résoudre les équations diophantiennes et les systèmes de congruences.
+\end{aretenir}
+
+\begin{exemple}
+Montrons que si $7\mid 5n$ alors $7\mid n$. Comme $7\wedge5=1$, le théorème de Gauss donne
+directement $7\mid n$.
+\end{exemple}
 
 % ═══════════════════════════════════════════════════════════════
 \section{Équations diophantiennes $ax+by=c$}
 
+\begin{theoreme}[Existence de solutions]
+L'équation $ax+by=c$ (d'inconnues $x,y\in\Z$) admet des solutions \emph{si et seulement si}
+$d=a\wedge b$ divise $c$.
+\end{theoreme}
+
+\begin{remarque}
+Tout couple $(x,y)$ vérifie $ax+by=$ un multiple de $d$ (car $d\mid a$ et $d\mid b$). Donc si
+$d\nmid c$, aucune solution. Réciproquement si $d\mid c$, on écrit $c=d\,c'$, on prend un
+couple de Bézout $au_0+bv_0=d$, et $(x_0,y_0)=(c'u_0,\,c'v_0)$ convient.
+\end{remarque}
+
 \begin{aretenir}
 \textbf{Résolution de $ax+by=c$ dans $\Z^2$} (avec $d=a\wedge b$) :
 \begin{enumerate}
-\item L'équation admet des solutions \emph{si et seulement si} $d\mid c$ ;
-\item on cherche une \textbf{solution particulière} $(x_0,y_0)$ (via Bézout) ;
-\item la \textbf{solution générale} est $x=x_0+\dfrac{b}{d}\,k,\ \ y=y_0-\dfrac{a}{d}\,k,\ \ k\in\Z$.
+\item L'équation a des solutions \emph{ssi} $d\mid c$ ;
+\item on simplifie par $d$ pour obtenir $a'x+b'y=c'$ avec $a'\wedge b'=1$ ;
+\item on cherche une \textbf{solution particulière} $(x_0,y_0)$ (Bézout) ;
+\item la \textbf{solution générale} est $x=x_0+b'\,k,\ \ y=y_0-a'\,k,\ \ k\in\Z$,
 \end{enumerate}
+où $a'=a/d$ et $b'=b/d$.
 \end{aretenir}
 
+\begin{remarque}
+\textit{Pourquoi cette forme générale.} Si $(x,y)$ et $(x_0,y_0)$ sont deux solutions, alors
+$a'(x-x_0)+b'(y-y_0)=0$, soit $a'(x-x_0)=-b'(y-y_0)$. Comme $a'\wedge b'=1$, Gauss donne
+$b'\mid(x-x_0)$, donc $x-x_0=b'k$ et alors $y-y_0=-a'k$.
+\end{remarque}
+
 \begin{exemple}
-Résoudre $5x+3y=1$. Comme $5\wedge3=1$, il y a des solutions. Solution particulière évidente : $(x_0,y_0)=(2,-3)$ car $10-9=1$. Solution générale : $x=2+3k,\ y=-3-5k,\ k\in\Z$.
+Résoudre $5x+3y=1$. Comme $5\wedge3=1$, il y a des solutions. Une solution évidente :
+$(x_0,y_0)=(2,-3)$ car $10-9=1$. Solution générale : $x=2+3k,\ y=-3-5k,\ k\in\Z$.
 \end{exemple}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth]
+\begin{axis}[width=9cm,height=5.4cm,axis lines=middle,xlabel={\small $x$},ylabel={\small $y$},
+  xmin=-5,xmax=8,ymin=-8,ymax=8,xtick={-4,-1,2,5},ytick={7,2,-3,-8},
+  grid=both,grid style={onbline!60,very thin},tick label style={font=\scriptsize}]
+\addplot[onbo,line width=1pt,domain=-5:8]{(1-5*x)/3};
+\addplot[onbblue,only marks,mark=*,mark size=1.8pt] coordinates {(-4,7) (-1,2) (2,-3) (5,-8)};
+\node[onbo,anchor=west] at (axis cs:5.2,-7){\small $5x+3y=1$};
+\node[onbblue,anchor=south west] at (axis cs:2.2,-3){\scriptsize $(2,\text{-}3)$};
+\end{axis}
+\end{tikzpicture}
+\fig{Figure 2.3 — Les solutions entières de $5x+3y=1$ sont les points à coordonnées entières de la droite, espacés régulièrement (pas $(3,-5)$).}
+\end{illus}
+
+\begin{exemple}
+Résoudre $6x+9y=21$. Ici $d=6\wedge9=3$ et $3\mid21$ : solutions existent. On simplifie :
+$2x+3y=7$. Particulière : $(2,1)$ car $4+3=7$. Générale : $x=2+3k,\ y=1-2k,\ k\in\Z$.
+\end{exemple}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Congruences et systèmes de congruences}
+
+\begin{definition}[Congruence]
+Pour $n\ge1$, on dit que $a\equiv b\;[n]$ (« $a$ congru à $b$ modulo $n$ ») lorsque
+$n\mid(a-b)$. La relation est compatible avec l'addition et la multiplication :
+si $a\equiv a'\;[n]$ et $b\equiv b'\;[n]$, alors $a+b\equiv a'+b'\;[n]$ et
+$ab\equiv a'b'\;[n]$.
+\end{definition}
+
+\begin{theoreme}[{Congruence linéaire $ax\equiv b\;[n]$}]
+L'équation $ax\equiv b\;[n]$ équivaut à l'équation diophantienne $ax-ny=b$. Elle admet des
+solutions \emph{ssi} $(a\wedge n)\mid b$. Si $a\wedge n=1$, l'unique solution modulo $n$ est
+$x\equiv a^{-1}b\;[n]$, où $a^{-1}$ est l'inverse de $a$ modulo $n$.
+\end{theoreme}
+
+\begin{exemple}
+$3x\equiv2\;[5]$. Comme $3\times2=6\equiv1\;[5]$, on a $3^{-1}\equiv2\;[5]$ ; donc
+$x\equiv2\times2=4\;[5]$.
+\end{exemple}
+
+\begin{theoreme}[Théorème des restes chinois]
+Soient $n_1,n_2$ deux entiers \textbf{premiers entre eux} ($n_1\wedge n_2=1$). Pour tous
+$a_1,a_2$, le système
+\[
+\begin{cases}x\equiv a_1\;[n_1]\\ x\equiv a_2\;[n_2]\end{cases}
+\]
+admet une \textbf{unique solution modulo $n_1n_2$}.
+\end{theoreme}
+
+\begin{remarque}
+\textit{Méthode constructive.} On écrit $x=a_1+n_1t$, on injecte dans la deuxième congruence :
+$a_1+n_1t\equiv a_2\;[n_2]$, soit $n_1t\equiv a_2-a_1\;[n_2]$. Comme $n_1\wedge n_2=1$, $n_1$
+est inversible modulo $n_2$, ce qui donne $t$ modulo $n_2$, donc $x$ modulo $n_1n_2$.
+\end{remarque}
+
+\begin{exemple}
+$\begin{cases}x\equiv2\;[3]\\ x\equiv3\;[5]\end{cases}$. Posons $x=2+3t$ :
+$2+3t\equiv3\;[5]\Rightarrow3t\equiv1\;[5]$. Or $3\times2=6\equiv1\;[5]$ donc $t\equiv2\;[5]$,
+$t=2+5s$, et $x=2+3(2+5s)=8+15s$. Solution : $x\equiv8\;[15]$.
+\end{exemple}
+
+\begin{aretenir}
+\textbf{Système de congruences} : on exprime $x$ à partir de la première congruence
+($x=a_1+n_1t$), on reporte dans la suivante, et on résout une congruence linéaire en $t$.
+On recolle modulo le produit des modules (à condition qu'ils soient premiers entre eux).
+\end{aretenir}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Applications : clés, calendriers, cryptographie}
+
+\subsection{Clés de contrôle}
+
+\begin{remarque}
+Beaucoup de numéros officiels comportent une \textbf{clé de contrôle} calculée modulo un
+entier. Par exemple, une clé de la forme $k=97-(N \bmod 97)$ permet de détecter les erreurs de
+saisie : si l'on retape $N$ et la clé $k$, le nombre $N$ « complété » est divisible par $97$.
+Les congruences modulo $9$, $10$, $11$ ou $97$ sont au cœur de ces dispositifs (numéros de
+compte, codes-barres, numéros d'identification).
+\end{remarque}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth]
+\draw[onbline,line width=1pt] (0,0) circle (1.7cm);
+\foreach \a/\h in {90/0,60/1,30/2,0/3,-30/4,-60/5,-90/6}{
+  \node[font=\scriptsize] at (\a:1.95cm) {\h};}
+\foreach \a in {90,60,30,0,-30,-60,-90}{\draw[onbline](\a:1.55cm)--(\a:1.7cm);}
+\draw[->,onbo,line width=1.2pt] (0,0)--(30:1.5cm);
+\node[onbo,font=\small\bfseries] at (0,-2.1) {modulo $7$ : les jours de la semaine};
+\node[onbmuted,font=\scriptsize] at (0,0.0) {$+1$ jour};
+\end{tikzpicture}
+\fig{Figure 2.4 — Calculer un jour de la semaine revient à compter modulo $7$ sur un « cadran » à sept positions.}
+\end{illus}
+
+\subsection{Calendriers}
+
+\begin{exemple}
+Le 24 juin 2026 est un mercredi. Quel jour sera-t-on dans $100$ jours ? On calcule
+$100\equiv2\;[7]$ : on avance de $2$ jours à partir de mercredi, donc ce sera un
+\textbf{vendredi}. Les calculs de calendrier se ramènent à des congruences modulo $7$.
+\end{exemple}
+
+\subsection{Premiers principes de cryptographie}
+
+\begin{remarque}
+Le \textbf{chiffrement affine} transforme chaque lettre (codée $0\le x\le25$) en
+$y\equiv ax+b\;[26]$. Le déchiffrement n'est possible que si $a$ est \textbf{inversible}
+modulo $26$, c'est-à-dire $a\wedge26=1$ : on a alors $x\equiv a^{-1}(y-b)\;[26]$. Bézout
+fournit l'inverse $a^{-1}$. C'est l'embryon des systèmes modernes (RSA), où la difficulté de
+factoriser de très grands nombres garantit la sécurité.
+\end{remarque}
+
+\begin{exemple}
+Chiffrement affine $y\equiv5x+3\;[26]$. Comme $5\wedge26=1$ et $5\times21=105\equiv1\;[26]$,
+on a $5^{-1}\equiv21\;[26]$, donc le déchiffrement est $x\equiv21(y-3)\;[26]$.
+\end{exemple}
+
+% ═══════════════════════════════════════════════════════════════
+\section{L'essentiel à retenir}
+
+\begin{synthese}
+\textbf{PGCD / PPCM.}\;
+$a\wedge b$ = plus grand diviseur commun ; $a\vee b$ = plus petit multiple commun.
+$(a\wedge b)(a\vee b)=ab$. Algorithme d'Euclide : $a\wedge b=b\wedge r$ ; le dernier reste
+non nul est le PGCD. Les diviseurs communs de $a,b$ sont les diviseurs de $a\wedge b$.
+
+\smallskip
+\textbf{Premiers entre eux.}\; $a\wedge b=1$. Alors $a\vee b=ab$.
+
+\smallskip
+\textbf{Bézout.}\; $\exists\,u,v\in\Z,\ au+bv=a\wedge b$. \emph{Et} :
+$a\wedge b=1\iff\exists\,u,v,\ au+bv=1$. On trouve $(u,v)$ en remontant Euclide.
+Conséquence : si $a\wedge n=1$, $a$ a un inverse modulo $n$.
+
+\smallskip
+\textbf{Gauss.}\; $a\mid bc$ et $a\wedge b=1\ \Rightarrow\ a\mid c$. Conséquences :
+$b\mid n,\ c\mid n,\ b\wedge c=1\Rightarrow bc\mid n$ ; $a\wedge b=1\Rightarrow a\wedge b^k=1$.
+
+\smallskip
+\textbf{Diophantienne $ax+by=c$.}\; solutions $\iff (a\wedge b)\mid c$. On simplifie en
+$a'x+b'y=c'$ ($a'\wedge b'=1$), une solution $(x_0,y_0)$, puis
+$x=x_0+b'k,\ y=y_0-a'k,\ k\in\Z$.
+
+\smallskip
+\textbf{Congruences.}\; $ax\equiv b\;[n]$ a des solutions ssi $(a\wedge n)\mid b$ ; si
+$a\wedge n=1$, $x\equiv a^{-1}b\;[n]$. \textbf{Restes chinois} : si $n_1\wedge n_2=1$, le
+système $\{x\equiv a_1[n_1],\,x\equiv a_2[n_2]\}$ a une unique solution modulo $n_1n_2$.
+
+\smallskip
+\textbf{Pièges.}\; (i) ne pas oublier la condition $d\mid c$ ; (ii) simplifier par $d$ AVANT
+d'écrire la solution générale ($a',b'$ et non $a,b$) ; (iii) le théorème chinois exige des
+modules premiers entre eux ; (iv) inverser modulo $n$ n'est possible que si $a\wedge n=1$.
+\end{synthese}
 
 % ═══════════════════════════════════════════════════════════════
 \section{Méthodes \& savoir-faire}
 
 \methode{Calculer un PGCD par l'algorithme d'Euclide}
-Diviser le plus grand par le plus petit, recommencer avec (diviseur, reste) jusqu'à un reste nul ; le dernier reste non nul est le PGCD.
+Diviser le plus grand par le plus petit, recommencer avec (diviseur, reste) jusqu'à un reste
+nul ; le dernier reste non nul est le PGCD.
 \begin{exemple}
-$\mathrm{pgcd}(154,42)$ : $154=3\cdot42+28$ ; $42=1\cdot28+14$ ; $28=2\cdot14+0$. Donc $\mathrm{pgcd}=14$.
+$\mathrm{pgcd}(154,42)$ : $154=3\cdot42+28$ ; $42=1\cdot28+14$ ; $28=2\cdot14+0$. Donc
+$\mathrm{pgcd}=14$.
+\end{exemple}
+
+\methode{Déduire le PPCM du PGCD}
+Calculer $d=a\wedge b$ par Euclide, puis $a\vee b=\dfrac{ab}{d}$.
+\begin{exemple}
+$\mathrm{ppcm}(154,42)=\dfrac{154\times42}{14}=\dfrac{6468}{14}=462$.
 \end{exemple}
 
 \methode{Trouver un couple de Bézout}
 Remonter les égalités de l'algorithme d'Euclide en isolant chaque reste.
 \begin{exemple}
-$\mathrm{pgcd}(154,42)=14$ : $14=42-28=42-(154-3\cdot42)=4\cdot42-154$. Donc $(-1)\cdot154+4\cdot42=14$.
+$\mathrm{pgcd}(154,42)=14$ : $14=42-28=42-(154-3\cdot42)=4\cdot42-154$. Donc
+$(-1)\cdot154+4\cdot42=14$.
+\end{exemple}
+
+\methode{Prouver que deux nombres sont premiers entre eux}
+Exhiber une combinaison entière qui vaut $1$ (critère de Bézout).
+\begin{exemple}
+$n$ et $n+1$ : $1\cdot(n+1)-1\cdot n=1$, donc $n\wedge(n+1)=1$ pour tout $n$.
 \end{exemple}
 
 \methode{Résoudre une équation diophantienne $ax+by=c$}
-Vérifier $d\mid c$ ; trouver $(x_0,y_0)$ (Bézout, puis multiplier par $c/d$) ; écrire la solution générale.
+Vérifier $d\mid c$ ; simplifier par $d$ ; trouver $(x_0,y_0)$ (Bézout puis $\times c'$) ;
+écrire la solution générale $x=x_0+b'k,\ y=y_0-a'k$.
 \begin{exemple}
 $7x+5y=1$ : $(3,-4)$ convient ($21-20=1$). Solutions : $x=3+5k,\ y=-4-7k,\ k\in\Z$.
 \end{exemple}
 
 \methode{Résoudre une congruence linéaire $ax\equiv b\;[n]$}
-Elle équivaut à $ax-ny=b$ : on se ramène à une équation diophantienne (solutions ssi $(a\wedge n)\mid b$).
+Si $a\wedge n=1$, chercher $a^{-1}\;[n]$ (par Bézout ou à la main), puis
+$x\equiv a^{-1}b\;[n]$. Sinon, vérifier $(a\wedge n)\mid b$ et se ramener à une diophantienne.
 \begin{exemple}
-$3x\equiv2\;[5]$. Comme $3\times2=6\equiv1\;[5]$, $3^{-1}\equiv2$ ; donc $x\equiv2\times2=4\;[5]$.
+$3x\equiv2\;[5]$ : $3^{-1}\equiv2$ donc $x\equiv2\times2=4\;[5]$.
+\end{exemple}
+
+\methode{Résoudre un système de congruences (restes chinois)}
+Exprimer $x=a_1+n_1t$, reporter dans la 2\textsuperscript{e} congruence, résoudre en $t$,
+recoller modulo $n_1n_2$ (modules premiers entre eux).
+\begin{exemple}
+$\{x\equiv1[4],\,x\equiv2[7]\}$ : $x=1+4t$, $1+4t\equiv2[7]\Rightarrow4t\equiv1[7]$. Or
+$4\times2=8\equiv1[7]$ donc $t\equiv2[7]$, $x=1+4(2+7s)=9+28s$, soit $x\equiv9\;[28]$.
 \end{exemple}
 
 \methode{Appliquer le théorème de Gauss}
-Lorsqu'on sait que $a\mid bc$ avec $a\wedge b=1$, on conclut $a\mid c$ ; utile pour les problèmes de divisibilité.
+Lorsqu'on sait que $a\mid bc$ avec $a\wedge b=1$, conclure $a\mid c$ ; utile pour résoudre des
+problèmes de divisibilité.
+\begin{exemple}
+Si $9\mid 4n$ et $9\wedge4=1$, alors $9\mid n$.
+\end{exemple}
+
+\methode{Déchiffrer un code affine}
+Vérifier $a\wedge26=1$, calculer $a^{-1}\;[26]$ par Bézout, puis $x\equiv a^{-1}(y-b)\;[26]$.
+\begin{exemple}
+$y\equiv3x+1\;[26]$ : $3\times9=27\equiv1[26]$ donc $3^{-1}\equiv9$, et $x\equiv9(y-1)\;[26]$.
+\end{exemple}
 
 % ═══════════════════════════════════════════════════════════════
-\section{Exercices}
+\section{Exercices d'application}
 
 \rubrique{PGCD, PPCM et nombres premiers entre eux}
 \exo{}\diff{1} Calculer $\mathrm{pgcd}(360,84)$ par l'algorithme d'Euclide, puis $\mathrm{ppcm}(360,84)$.
 
+\exo{}\diff{1} Calculer $\mathrm{pgcd}(1071,462)$ puis $\mathrm{ppcm}(1071,462)$.
+
 \exo{}\diff{2} Montrer que pour tout entier $n$, $n$ et $n+1$ sont premiers entre eux.
 
-\exo{}\diff{2} Déterminer les entiers $n$ tels que $n-2$ divise $n+7$.
+\exo{}\diff{2} Déterminer les entiers relatifs $n$ tels que $n-2$ divise $n+7$.
 
-\rubrique{Identité de Bézout}
+\rubrique{Identité et théorème de Bézout}
 \exo{}\diff{2} Déterminer un couple $(u,v)\in\Z^2$ tel que $17u+5v=1$.
+
+\exo{}\diff{2} Déterminer un couple $(u,v)\in\Z^2$ tel que $40u+63v=1$.
 
 \exo{}\diff{2} Montrer que $n+1$ et $2n+1$ sont premiers entre eux pour tout $n\in\N$.
 
-\rubrique{Équations diophantiennes et congruences}
+\exo{}\diff{2} Déterminer l'inverse de $7$ modulo $26$.
+
+\rubrique{Théorème de Gauss}
+\exo{}\diff{2} Soit $n\in\N$. Montrer que si $5\mid 3n$ alors $5\mid n$.
+
+\exo{}\diff{3} Montrer que pour tout $n\in\N$, $6\mid n(n+1)(n+2)$.
+
+\rubrique{Équations diophantiennes}
 \exo{}\diff{2} Résoudre dans $\Z^2$ l'équation $4x+6y=8$.
 
+\exo{}\diff{2} Résoudre dans $\Z^2$ l'équation $11x+8y=1$.
+
+\exo{}\diff{2} Résoudre dans $\Z^2$ l'équation $15x+21y=12$.
+
+\rubrique{Congruences et systèmes}
 \exo{}\diff{2} Résoudre la congruence $5x\equiv3\;[7]$.
 
-\rubrique{Théorème de Gauss — Problème type Baccalauréat}
-\exo{}\diff{3} On considère l'équation $(E):\ 11x-7y=1$, $(x,y)\in\Z^2$.
+\exo{}\diff{2} Résoudre la congruence $4x\equiv2\;[6]$.
+
+\exo{}\diff{2} Résoudre le système $\begin{cases}x\equiv2\;[3]\\ x\equiv3\;[5]\end{cases}$.
+
+\exo{}\diff{3} Résoudre le système $\begin{cases}x\equiv1\;[5]\\ x\equiv4\;[7]\\ x\equiv2\;[9]\end{cases}$.
+
+\rubrique{Applications}
+\exo{}\diff{2} Un chiffrement affine est défini par $y\equiv5x+8\;[26]$. Déterminer la formule de déchiffrement.
+
+\exo{}\diff{2} Le 1\textsuperscript{er} janvier 2026 est un jeudi. Quel jour de la semaine sera le 1\textsuperscript{er} janvier 2027 (2026 n'est pas bissextile) ?
+
+% ═══════════════════════════════════════════════════════════════
+\section{Exercices d'entraînement}
+
+\rubrique{PGCD, PPCM et divisibilité}
+\exo{}\diff{1} Calculer $\mathrm{pgcd}(840,612)$ et le PPCM correspondant.
+
+\exo{}\diff{1} Calculer $\mathrm{pgcd}(1234,567)$ par l'algorithme d'Euclide.
+
+\exo{}\diff{2} Déterminer tous les entiers naturels $a,b$ tels que $a\wedge b=12$ et $a\vee b=180$.
+
+\exo{}\diff{2} Déterminer tous les couples $(a,b)$ d'entiers naturels tels que $a+b=144$ et $a\wedge b=24$.
+
+\exo{}\diff{2} Montrer que $2n+1$ et $3n+1$ sont premiers entre eux pour tout $n\in\N$.
+
+\exo{}\diff{2} Montrer que la fraction $\dfrac{14n+3}{21n+4}$ est irréductible pour tout $n\in\N$.
+
+\exo{}\diff{2} Déterminer les entiers $n$ tels que $n+3$ divise $n^2+5$.
+
+\exo{}\diff{3} Soit $n\in\N^*$. Calculer $\mathrm{pgcd}(n^2+n,\,2n+1)$.
+
+\rubrique{Bézout}
+\exo{}\diff{2} Déterminer un couple de Bézout pour $(45,28)$.
+
+\exo{}\diff{2} Déterminer un couple de Bézout pour $(101,37)$.
+
+\exo{}\diff{2} Montrer que pour tout $n\in\N$, $3n+2$ et $5n+3$ sont premiers entre eux.
+
+\exo{}\diff{3} Soient $a,b$ premiers entre eux. Montrer que $a+b$ et $ab$ sont premiers entre eux.
+
+\rubrique{Théorème de Gauss}
+\exo{}\diff{2} Soit $n\in\N$. Montrer que si $7\mid 4n$ alors $7\mid n$.
+
+\exo{}\diff{2} Montrer que pour tout $n\in\N$, $n^5-n$ est divisible par $30$.
+
+\exo{}\diff{3} Soit $n\in\N$. Montrer que $n$ et $n^2$ ont les mêmes diviseurs premiers.
+
+\exo{}\diff{3} Soient $a,b,c$ tels que $a\wedge b=1$ et $a\mid c$, $b\mid c$. Montrer que $ab\mid c$.
+
+\rubrique{Équations diophantiennes}
+\exo{}\diff{2} Résoudre dans $\Z^2$ : $9x+12y=21$.
+
+\exo{}\diff{2} Résoudre dans $\Z^2$ : $23x+17y=3$.
+
+\exo{}\diff{2} Résoudre dans $\Z^2$ : $35x+25y=10$.
+
+\exo{}\diff{3} Déterminer les couples d'entiers naturels $(x,y)$ tels que $7x+5y=100$.
+
+\exo{}\diff{3} Un commerçant de Douala vend des sacs à $7000$~F et $11000$~F. Une journée, il encaisse $96000$~F. Combien a-t-il pu vendre de chaque sorte de sac ?
+
+\rubrique{Congruences et systèmes}
+\exo{}\diff{2} Résoudre $7x\equiv4\;[15]$.
+
+\exo{}\diff{2} Résoudre $6x\equiv9\;[15]$.
+
+\exo{}\diff{2} Résoudre le système $\begin{cases}x\equiv3\;[4]\\ x\equiv2\;[5]\end{cases}$.
+
+\exo{}\diff{2} Résoudre le système $\begin{cases}x\equiv1\;[6]\\ x\equiv4\;[11]\end{cases}$.
+
+\exo{}\diff{3} Déterminer le plus petit entier naturel $x>1$ tel que $x\equiv1\;[2]$, $x\equiv1\;[3]$, $x\equiv1\;[5]$ et $x\equiv0\;[7]$.
+
+\exo{}\diff{3} Déterminer le reste de la division de $2^{100}$ par $7$.
+
+\rubrique{Applications}
+\exo{}\diff{2} Un chiffrement affine est $y\equiv7x+2\;[26]$. Donner la formule de déchiffrement.
+
+\exo{}\diff{2} Le 14 juillet 2026 est un mardi. Quel jour était le 14 juillet 2025 ?
+
+\exo{}\diff{3} Des élèves se rangent par $3$ : il reste $2$. Par $4$ : il reste $3$. Par $5$ : il reste $1$. Quel est le plus petit effectif possible (supérieur à $1$) ?
+
+% ═══════════════════════════════════════════════════════════════
+\section{Sujets type Baccalauréat}
+
+\sujetbac[équation diophantienne et système de congruences]
+On considère l'équation $(E):\ 11x-7y=1$, $(x,y)\in\Z^2$.
 \begin{enumerate}[label=\arabic*)]
 \item Justifier que $(E)$ admet des solutions et en trouver une particulière.
 \item Résoudre $(E)$.
 \item En déduire les entiers naturels $n\le 100$ tels que $n\equiv3\;[7]$ et $n\equiv5\;[11]$.
 \end{enumerate}
 
+\sujetbac[divisibilité et théorème de Gauss]
+Soit $n$ un entier naturel.
+\begin{enumerate}[label=\arabic*)]
+\item Montrer que $n\wedge(2n+1)=1$ pour tout $n\in\N$.
+\item Soit $A=n(n+1)(2n+1)$. Montrer que $A$ est divisible par $2$ et par $3$.
+\item En déduire que $A$ est divisible par $6$. \emph{(On rappelle que $1^2+2^2+\dots+n^2=\frac{n(n+1)(2n+1)}{6}$.)}
+\end{enumerate}
+
+\sujetbac[chiffrement affine]
+On code les lettres A$=0$, B$=1$, \dots, Z$=25$. Le chiffrement est $y\equiv3x+5\;[26]$.
+\begin{enumerate}[label=\arabic*)]
+\item Justifier que ce chiffrement est déchiffrable et déterminer $3^{-1}\;[26]$.
+\item Donner la formule de déchiffrement $x$ en fonction de $y$.
+\item La lettre chiffrée est de code $y=0$ (A). Quelle était la lettre d'origine ?
+\end{enumerate}
+
 % ═══════════════════════════════════════════════════════════════
 \section{Corrigés}
 
 \corrige{de l'exercice 1}
-$360=4\cdot84+24$ ; $84=3\cdot24+12$ ; $24=2\cdot12+0$. Donc $\mathrm{pgcd}=12$, et $\mathrm{ppcm}=\dfrac{360\times84}{12}=2520$.
+$360=4\cdot84+24$ ; $84=3\cdot24+12$ ; $24=2\cdot12+0$. Donc $\mathrm{pgcd}=12$, et
+$\mathrm{ppcm}=\dfrac{360\times84}{12}=2520$.
 
 \corrige{de l'exercice 2}
-Un diviseur commun $d$ de $n$ et $n+1$ divise leur différence $(n+1)-n=1$, donc $d=1$ : $n\wedge(n+1)=1$.
+$1071=2\cdot462+147$ ; $462=3\cdot147+21$ ; $147=7\cdot21+0$. Donc $\mathrm{pgcd}=21$ et
+$\mathrm{ppcm}=\dfrac{1071\times462}{21}=23562$.
 
 \corrige{de l'exercice 3}
-$n+7=(n-2)+9$, donc $n-2$ divise $n+7$ ssi $n-2$ divise $9$. Les diviseurs (relatifs) de $9$ donnent $n-2\in\{\pm1,\pm3,\pm9\}$, d'où $n\in\{-7,-1,1,3,5,11\}$.
+Un diviseur commun $d$ de $n$ et $n+1$ divise leur différence $(n+1)-n=1$, donc $d=1$ :
+$n\wedge(n+1)=1$.
 
 \corrige{de l'exercice 4}
-$17=3\cdot5+2$ ; $5=2\cdot2+1$. En remontant : $1=5-2\cdot2=5-2(17-3\cdot5)=7\cdot5-2\cdot17$. Donc $(u,v)=(-2,7)$ : $17\times(-2)+5\times7=1$.
+$n+7=(n-2)+9$, donc $n-2$ divise $n+7$ ssi $n-2$ divise $9$. Les diviseurs relatifs de $9$
+donnent $n-2\in\{\pm1,\pm3,\pm9\}$, d'où $n\in\{-7,-1,1,3,5,11\}$.
 
 \corrige{de l'exercice 5}
-$2(n+1)-(2n+1)=1$ : un diviseur commun de $n+1$ et $2n+1$ divise $1$, donc ils sont premiers entre eux.
+$17=3\cdot5+2$ ; $5=2\cdot2+1$. En remontant : $1=5-2\cdot2=5-2(17-3\cdot5)=7\cdot5-2\cdot17$.
+Donc $(u,v)=(-2,7)$ : $17\times(-2)+5\times7=1$.
 
 \corrige{de l'exercice 6}
-$d=4\wedge6=2$ et $2\mid8$ : il y a des solutions. On simplifie : $2x+3y=4$. Particulière : $(x_0,y_0)=(2,0)$. Générale : $x=2+3k,\ y=-2k,\ k\in\Z$.
+$63=1\cdot40+23$ ; $40=1\cdot23+17$ ; $23=1\cdot17+6$ ; $17=2\cdot6+5$ ; $6=1\cdot5+1$. En
+remontant : $1=6-5=6-(17-2\cdot6)=3\cdot6-17=3(23-17)-17=3\cdot23-4\cdot17
+=3\cdot23-4(40-23)=7\cdot23-4\cdot40=7(63-40)-4\cdot40=7\cdot63-11\cdot40$. Donc
+$40\times(-11)+63\times7=1$, soit $(u,v)=(-11,7)$.
 
 \corrige{de l'exercice 7}
-$5\times3=15\equiv1\;[7]$ donc $5^{-1}\equiv3\;[7]$ ; ainsi $x\equiv3\times3=9\equiv2\;[7]$. Solution : $x\equiv2\;[7]$.
+$2(n+1)-(2n+1)=1$ : un diviseur commun de $n+1$ et $2n+1$ divise $1$, donc ils sont premiers
+entre eux.
 
-\corrige{du problème}
-1) $11\wedge7=1$ divise $1$ : solutions existent. $11\cdot2-7\cdot3=22-21=1$, donc $(x_0,y_0)=(2,3)$.\;
-2) Solution générale : $x=2+7k,\ y=3+11k,\ k\in\Z$.\;
-3) $n\equiv3\;[7]$ et $n\equiv5\;[11]$. Écrivons $n=3+7x=5+11y'$, soit $7x-11y'=2$. D'après 1), $7\cdot(-3)-11\cdot(-2)=-21+22=1$, donc $(x,y')=(-6,-4)$ est solution de $7x-11y'=2$ ; général $x=-6+11k$. Alors $n=3+7x=3+7(-6+11k)=-39+77k$, soit $n\equiv38\;[77]$. Pour $0\le n\le100$ : $n=38$.
+\corrige{de l'exercice 8}
+On cherche $u$ tel que $7u\equiv1\;[26]$. $7\times15=105=4\times26+1\equiv1\;[26]$. Donc
+$7^{-1}\equiv15\;[26]$.
+
+\corrige{de l'exercice 9}
+$5\wedge3=1$ et $5\mid 3n$ : par le théorème de Gauss, $5\mid n$.
+
+\corrige{de l'exercice 10}
+Parmi trois entiers consécutifs $n,n+1,n+2$, l'un est divisible par $2$ et l'un par $3$.
+Comme $2\wedge3=1$, leur produit est divisible par $2\times3=6$ : $6\mid n(n+1)(n+2)$.
+
+\corrige{de l'exercice 11}
+$d=4\wedge6=2$ et $2\mid8$ : il y a des solutions. On simplifie : $2x+3y=4$. Particulière :
+$(x_0,y_0)=(2,0)$. Générale : $x=2+3k,\ y=-2k,\ k\in\Z$.
+
+\corrige{de l'exercice 12}
+$11\wedge8=1$. $11=1\cdot8+3$ ; $8=2\cdot3+2$ ; $3=1\cdot2+1$. Remontée :
+$1=3-2=3-(8-2\cdot3)=3\cdot3-8=3(11-8)-8=3\cdot11-4\cdot8$. Donc $(x_0,y_0)=(3,-4)$.
+Générale : $x=3+8k,\ y=-4-11k,\ k\in\Z$.
+
+\corrige{de l'exercice 13}
+$d=15\wedge21=3$ et $3\mid12$ : solutions. On simplifie : $5x+7y=4$. Comme $5\cdot3-7\cdot2=1$,
+$(3,-2)$ résout $5x+7y=1$ ; en multipliant par $4$ : $(12,-8)$ résout $5x+7y=4$. Générale :
+$x=12+7k,\ y=-8-5k,\ k\in\Z$.
+
+\corrige{de l'exercice 14}
+$5\times3=15\equiv1\;[7]$ donc $5^{-1}\equiv3\;[7]$ ; ainsi $x\equiv3\times3=9\equiv2\;[7]$.
+Solution : $x\equiv2\;[7]$.
+
+\corrige{de l'exercice 15}
+$d=4\wedge6=2$ et $2\mid2$ : solutions. On divise tout par $2$ : $2x\equiv1\;[3]$. Or
+$2\times2=4\equiv1\;[3]$, donc $x\equiv2\;[3]$.
+
+\corrige{de l'exercice 16}
+$3\wedge5=1$. Posons $x=2+3t$ : $2+3t\equiv3\;[5]\Rightarrow3t\equiv1\;[5]$. Comme
+$3\times2=6\equiv1\;[5]$, $t\equiv2\;[5]$, donc $x=2+3(2+5s)=8+15s$ : $x\equiv8\;[15]$.
+
+\corrige{de l'exercice 17}
+On résout par étapes. $x\equiv1\;[5]$ et $x\equiv4\;[7]$ : $x=1+5t$,
+$1+5t\equiv4\;[7]\Rightarrow5t\equiv3\;[7]$ ; $5^{-1}\equiv3\;[7]$ donc
+$t\equiv9\equiv2\;[7]$, $x=1+5(2+7s)=11+35s$, soit $x\equiv11\;[35]$. On ajoute
+$x\equiv2\;[9]$ : $x=11+35s$, $11+35s\equiv2\;[9]\Rightarrow 2+8s\equiv2\;[9]$ (car
+$11\equiv2$, $35\equiv8\;[9]$), donc $8s\equiv0\;[9]$ ; comme $8\wedge9=1$, $s\equiv0\;[9]$.
+Ainsi $x=11+35\cdot9m=11+315m$ : $x\equiv11\;[315]$.
+
+\corrige{de l'exercice 18}
+$5\wedge26=1$ et $5\times21=105\equiv1\;[26]$ donc $5^{-1}\equiv21\;[26]$. De
+$y\equiv5x+8$ on tire $x\equiv21(y-8)\;[26]$.
+
+\corrige{de l'exercice 19}
+De janvier 2026 à janvier 2027 il s'écoule $365$ jours (2026 non bissextile), et
+$365\equiv1\;[7]$. On avance d'un jour à partir de jeudi : ce sera un \textbf{vendredi}.
+
+\corrige{du sujet 1}
+1) $11\wedge7=1$ divise $1$ : solutions existent. $11\cdot2-7\cdot3=22-21=1$, donc
+$(x_0,y_0)=(2,3)$.\;
+2) Solution générale de $(E)$ : $x=2+7k,\ y=3+11k,\ k\in\Z$.\;
+3) $n\equiv3\;[7]$ et $n\equiv5\;[11]$. Écrivons $n=3+7x=5+11y'$, soit $7x-11y'=2$. Or
+$7\cdot(-3)-11\cdot(-2)=-21+22=1$, donc $(x,y')=(-6,-4)$ résout $7x-11y'=2$ ; général
+$x=-6+11k$. Alors $n=3+7x=3+7(-6+11k)=-39+77k$, soit $n\equiv38\;[77]$. Pour $0\le n\le100$ :
+$n=38$.
+
+\corrige{du sujet 2}
+1) $1\cdot(2n+1)-2\cdot n=1$ donc $n\wedge(2n+1)=1$ par Bézout.\;
+2) Parmi $n$ et $n+1$, l'un est pair, donc $2\mid n(n+1)\mid A$. Pour $3$ : modulo $3$,
+$n$ prend les valeurs $0,1,2$. Si $n\equiv0$, $3\mid n$ ; si $n\equiv1$, $2n+1\equiv3\equiv0$ ;
+si $n\equiv2$, $n+1\equiv0$. Dans tous les cas $3\mid A$.\;
+3) Comme $2\mid A$, $3\mid A$ et $2\wedge3=1$, le théorème de Gauss donne $6\mid A$. (Cela
+confirme que $\frac{n(n+1)(2n+1)}{6}$ est bien entier.)
+
+\corrige{du sujet 3}
+1) $3\wedge26=1$ donc le chiffrement est bijectif (déchiffrable). $3\times9=27\equiv1\;[26]$,
+donc $3^{-1}\equiv9\;[26]$.\;
+2) De $y\equiv3x+5$ on tire $3x\equiv y-5$, puis $x\equiv9(y-5)\;[26]$.\;
+3) Pour $y=0$ : $x\equiv9(0-5)=-45\equiv-45+52=7\;[26]$. Le code $7$ correspond à la lettre
+\textbf{H}.

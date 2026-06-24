@@ -4,7 +4,8 @@
 reine de la série C, elle développe la rigueur du raisonnement (récurrence, disjonction
 de cas, raisonnement par l'absurde) et trouve des applications modernes en cryptographie
 et en informatique. Ce premier chapitre pose les fondations : divisibilité, division
-euclidienne, congruences et écriture des nombres dans différentes bases.}
+euclidienne, congruences, PGCD et PPCM, algorithme d'Euclide, théorèmes de Bézout et
+de Gauss, nombres premiers, et écriture des nombres dans différentes bases.}
 \vspace{8pt}
 
 % ═══════════════════════════════════════════════════════════════
@@ -13,11 +14,15 @@ euclidienne, congruences et écriture des nombres dans différentes bases.}
 \subsection{Diviseurs et multiples}
 
 \begin{definition}[Divisibilité]
-Soient $a$ et $b$ deux entiers relatifs. On dit que $b$ \textbf{divise} $a$ (ou que $a$ est un \textbf{multiple} de $b$), et l'on note $b\mid a$, s'il existe un entier relatif $k$ tel que $a=k\,b$.
+Soient $a$ et $b$ deux entiers relatifs. On dit que $b$ \textbf{divise} $a$ (ou que $a$ est un \textbf{multiple} de $b$), et l'on note $b\mid a$, s'il existe un entier relatif $k$ tel que $a=k\,b$. On note $b\nmid a$ lorsque $b$ ne divise pas $a$.
 \end{definition}
 
+\begin{remarque}
+L'ensemble des multiples de $b$ est noté $b\Z=\{k b\,:\,k\in\Z\}$. Ainsi « $b\mid a$ » équivaut à « $a\in b\Z$ ». L'ensemble des diviseurs (positifs) d'un entier $a\neq 0$ est \emph{fini}, car tout diviseur $d$ vérifie $|d|\le |a|$.
+\end{remarque}
+
 \begin{exemple}
-$7\mid 42$ car $42=6\times 7$ ; $\;-3\mid 12$ car $12=(-4)\times(-3)$. Tout entier divise $0$ (car $0=0\times b$), et $1$ divise tout entier.
+$7\mid 42$ car $42=6\times 7$ ; $\;-3\mid 12$ car $12=(-4)\times(-3)$. Tout entier divise $0$ (car $0=0\times b$), et $1$ divise tout entier. En revanche $5\nmid 12$ car $12=5\times 2+2$ avec un reste non nul.
 \end{exemple}
 
 \begin{propriete}[Règles de calcul]
@@ -26,13 +31,18 @@ Pour tous entiers $a,b,c$ :
 \item si $a\mid b$ et $b\mid c$, alors $a\mid c$ \quad(\emph{transitivité}) ;
 \item si $a\mid b$ et $a\mid c$, alors $a\mid (bu+cv)$ pour tous entiers $u,v$ \quad(\emph{combinaison linéaire}) ;
 \item si $a\mid b$ et $b\mid a$, alors $a=b$ ou $a=-b$ ;
-\item si $a\mid b$ et $b\neq 0$, alors $|a|\le |b|$.
+\item si $a\mid b$ et $b\neq 0$, alors $|a|\le |b|$ ;
+\item si $a\mid b$, alors $a\mid bc$ et $ca\mid cb$ pour tout $c$.
 \end{itemize}
 \end{propriete}
 
 \begin{remarque}
-La propriété de combinaison linéaire est un outil \emph{fondamental} : pour montrer qu'un entier $d$ divise une expression, on cherche à l'écrire comme combinaison d'entiers que $d$ divise déjà.
+La propriété de combinaison linéaire est un outil \emph{fondamental} : pour montrer qu'un entier $d$ divise une expression, on cherche à l'écrire comme combinaison d'entiers que $d$ divise déjà. Démonstration de la transitivité : si $b=k a$ et $c=k' b$, alors $c=k'(k a)=(k k')\,a$, donc $a\mid c$.
 \end{remarque}
+
+\begin{exemple}
+Montrons que si $a\mid n$ et $a\mid (n+3)$, alors $a\mid 3$. En effet $a$ divise la combinaison $(n+3)-n=3$. On en déduit $a\in\{-3,-1,1,3\}$.
+\end{exemple}
 
 \subsection{La division euclidienne}
 
@@ -43,6 +53,10 @@ a=b\,q+r \qquad\text{avec}\qquad 0\le r<b.
 \]
 $q$ est le \textbf{quotient} et $r$ le \textbf{reste} de la division euclidienne de $a$ par $b$.
 \end{theoreme}
+
+\begin{remarque}
+\emph{Idée de la preuve.} \textbf{Existence :} on prend $q=\big\lfloor a/b\big\rfloor$ (partie entière), de sorte que $q\le a/b<q+1$, d'où $0\le a-bq<b$ ; on pose $r=a-bq$. \textbf{Unicité :} si $a=bq+r=bq'+r'$ avec $0\le r,r'<b$, alors $b(q-q')=r'-r$ avec $|r'-r|<b$ ; le seul multiple de $b$ de valeur absolue $<b$ étant $0$, on a $r=r'$ puis $q=q'$.
+\end{remarque}
 
 \begin{illus}
 \begin{tikzpicture}[x=1cm,>=Stealth]
@@ -61,20 +75,29 @@ $q$ est le \textbf{quotient} et $r$ le \textbf{reste} de la division euclidienne
 
 \begin{exemple}
 Division de $47$ par $6$ : $47=6\times 7+5$, donc $q=7$ et $r=5$.
-Pour un entier \emph{négatif}, on garde $0\le r<b$ : $-47=6\times(-8)+1$, donc le reste est $1$ (et non $-5$).
+Pour un entier \emph{négatif}, on garde $0\le r<b$ : $-47=6\times(-8)+1$, donc le quotient est $-8$ et le reste est $1$ (et non $-5$).
 \end{exemple}
+
+\begin{aretenir}
+Le reste d'une division euclidienne par $b$ est \emph{toujours} positif : $0\le r<b$. C'est ce reste qui définit la \textbf{classe} d'un entier modulo $b$ et qui sert de base à toute l'étude des congruences.
+\end{aretenir}
 
 \subsection{Critères de divisibilité}
 
-\begin{propriete}[Critères usuels]
+\begin{propriete}[Critères usuels en base dix]
 Un entier écrit en base dix est divisible par :
 \begin{itemize}
 \item \textbf{2} (resp. \textbf{5}) si son chiffre des unités est divisible par $2$ (resp. par $5$) ;
 \item \textbf{4} si le nombre formé par ses deux derniers chiffres l'est ;
+\item \textbf{8} si le nombre formé par ses trois derniers chiffres l'est ;
 \item \textbf{3} (resp. \textbf{9}) si la somme de ses chiffres est divisible par $3$ (resp. par $9$) ;
 \item \textbf{11} si la somme alternée de ses chiffres est divisible par $11$.
 \end{itemize}
 \end{propriete}
+
+\begin{remarque}
+Ces critères se \emph{démontrent} avec les congruences. Comme $10\equiv 1\;[9]$, on a $10^k\equiv 1\;[9]$, donc un nombre est congru à la somme de ses chiffres modulo $9$. De même $10\equiv -1\;[11]$ donne le critère de la somme alternée.
+\end{remarque}
 
 % ═══════════════════════════════════════════════════════════════
 \section{Congruences modulo $n$}
@@ -82,6 +105,16 @@ Un entier écrit en base dix est divisible par :
 \begin{definition}[Congruence]
 Soit $n$ un entier naturel non nul. Deux entiers $a$ et $b$ sont \textbf{congrus modulo} $n$, ce que l'on note $a\equiv b\;[n]$, lorsque $n\mid (a-b)$, c'est-à-dire lorsque $a$ et $b$ ont le \textbf{même reste} dans la division euclidienne par $n$.
 \end{definition}
+
+\begin{propriete}[Congruence : relation d'équivalence]
+Pour tout $n\ge 1$, la congruence modulo $n$ est :
+\begin{itemize}
+\item \textbf{réflexive} : $a\equiv a\;[n]$ ;
+\item \textbf{symétrique} : si $a\equiv b\;[n]$ alors $b\equiv a\;[n]$ ;
+\item \textbf{transitive} : si $a\equiv b\;[n]$ et $b\equiv c\;[n]$, alors $a\equiv c\;[n]$.
+\end{itemize}
+Elle partage $\Z$ en $n$ \textbf{classes de restes} : $\bar0,\bar1,\dots,\overline{n-1}$.
+\end{propriete}
 
 \begin{illus}
 \begin{tikzpicture}[>=Stealth,scale=1]
@@ -100,17 +133,113 @@ Soit $n$ un entier naturel non nul. Deux entiers $a$ et $b$ sont \textbf{congrus
 \begin{theoreme}[Compatibilité avec les opérations]
 Si $a\equiv b\;[n]$ et $c\equiv d\;[n]$, alors :
 \[
-a+c\equiv b+d\;[n],\qquad a\,c\equiv b\,d\;[n],\qquad a^{p}\equiv b^{p}\;[n]\ \ (p\in\N).
+a+c\equiv b+d\;[n],\qquad a-c\equiv b-d\;[n],\qquad a\,c\equiv b\,d\;[n],\qquad a^{p}\equiv b^{p}\;[n]\ \ (p\in\N).
 \]
 \end{theoreme}
 
+\begin{remarque}
+\emph{Preuve du produit.} Si $a-b=n k$ et $c-d=n k'$, alors $ac-bd=ac-bc+bc-bd=c(a-b)+b(c-d)=n(ck+bk')$, donc $n\mid ac-bd$. La règle sur les puissances en découle par récurrence sur $p$.
+\end{remarque}
+
 \begin{aretenir}
-Les congruences sont l'outil idéal pour déterminer un \textbf{reste} ou le \textbf{chiffre des unités} d'un grand nombre, et pour étudier la \textbf{divisibilité} d'une expression dépendant de $n$ : on remplace chaque entier par un représentant simple de sa classe.
+Les congruences sont l'outil idéal pour déterminer un \textbf{reste} ou le \textbf{chiffre des unités} d'un grand nombre, et pour étudier la \textbf{divisibilité} d'une expression dépendant de $n$ : on remplace chaque entier par un représentant simple de sa classe. \textbf{Attention :} on ne peut pas « diviser » librement une congruence (simplifier par un facteur) ; cela n'est légitime que si ce facteur est premier avec $n$.
 \end{aretenir}
 
 \begin{exemple}
 Reste de $2^{2024}$ modulo $7$. On a $2^{3}=8\equiv 1\;[7]$. Comme $2024=3\times 674+2$,
 $2^{2024}=(2^{3})^{674}\times 2^{2}\equiv 1^{674}\times 4\equiv 4\;[7]$. Le reste est $\mathbf{4}$.
+\end{exemple}
+
+\begin{exemple}
+$15\equiv 21\;[3]$, mais on \emph{ne peut pas} simplifier par $3$ pour écrire $5\equiv 7\;[3]$ : c'est pourtant vrai ici, mais la règle générale est qu'on ne simplifie que par un facteur premier avec $n$. Contre-exemple : $6\equiv 0\;[6]$ ne donne pas $3\equiv 0\;[6]$ en simplifiant par $2$.
+\end{exemple}
+
+% ═══════════════════════════════════════════════════════════════
+\section{PGCD, PPCM et algorithme d'Euclide}
+
+\subsection{Plus grand commun diviseur}
+
+\begin{definition}[PGCD]
+Soient $a$ et $b$ deux entiers non tous deux nuls. Le \textbf{plus grand commun diviseur} de $a$ et $b$, noté $\mathrm{PGCD}(a,b)$ ou $a\wedge b$, est le plus grand entier naturel divisant à la fois $a$ et $b$. On dit que $a$ et $b$ sont \textbf{premiers entre eux} lorsque $a\wedge b=1$.
+\end{definition}
+
+\begin{theoreme}[Lemme d'Euclide]
+Pour tous entiers $a$ et $b>0$, si $a=bq+r$ est la division euclidienne, alors
+\[
+\mathrm{PGCD}(a,b)=\mathrm{PGCD}(b,r).
+\]
+\end{theoreme}
+
+\begin{remarque}
+\emph{Preuve.} Tout diviseur commun de $a$ et $b$ divise $r=a-bq$ (combinaison), donc divise $b$ et $r$ ; réciproquement tout diviseur commun de $b$ et $r$ divise $a=bq+r$. Les deux couples ont donc les \emph{mêmes} diviseurs communs, en particulier le même plus grand.
+\end{remarque}
+
+\begin{theoreme}[Algorithme d'Euclide]
+On applique le lemme de proche en proche : $\mathrm{PGCD}(a,b)=\mathrm{PGCD}(b,r_1)=\mathrm{PGCD}(r_1,r_2)=\cdots$ Les restes décroissent strictement et finissent par s'annuler ; le \textbf{dernier reste non nul} est le PGCD.
+\end{theoreme}
+
+\begin{illus}
+\begin{tikzpicture}[font=\small,>=Stealth]
+\node[anchor=west] (a) at (0,0)    {$1\,071=462\times 2+\mathbf{147}$};
+\node[anchor=west] (b) at (0,-0.8) {$462=147\times 3+\mathbf{21}$};
+\node[anchor=west] (c) at (0,-1.6) {$147=21\times 7+\mathbf{0}$};
+\draw[onbo,->,line width=0.8pt] (a.south east) to[bend left=25] ($(b.west)+(0.3,0.15)$);
+\draw[onbo,->,line width=0.8pt] (b.south east) to[bend left=25] ($(c.west)+(0.3,0.15)$);
+\node[onbgreen,anchor=west,align=left] at (5.6,-0.8)
+{dernier reste\\ non nul $=21$};
+\node[onbgreen,anchor=west] at (5.6,-1.6) {$\Rightarrow\ \mathrm{PGCD}(1071,462)=21$};
+\end{tikzpicture}
+\fig{Figure 1.3 — Algorithme d'Euclide : le dernier reste non nul donne le PGCD.}
+\end{illus}
+
+\begin{exemple}
+$\mathrm{PGCD}(1071,462)$ : $1071=462\times2+147$, $462=147\times3+21$, $147=21\times7+0$. Le dernier reste non nul est $21$, donc $\mathrm{PGCD}(1071,462)=21$.
+\end{exemple}
+
+\subsection{Théorèmes de Bézout et de Gauss}
+
+\begin{theoreme}[Identité de Bézout]
+Pour tous entiers $a$ et $b$ non tous deux nuls, en posant $d=a\wedge b$, il existe des entiers $u$ et $v$ tels que
+\[
+a u+b v=d.
+\]
+En particulier, $a$ et $b$ sont \textbf{premiers entre eux} si et seulement s'il existe $u,v\in\Z$ tels que $a u+b v=1$.
+\end{theoreme}
+
+\begin{remarque}
+Les coefficients $(u,v)$ s'obtiennent en « remontant » l'algorithme d'Euclide. Ils ne sont pas uniques.
+\end{remarque}
+
+\begin{theoreme}[Théorème de Gauss]
+Soient $a,b,c$ des entiers. Si $a\mid bc$ et si $a\wedge b=1$, alors $a\mid c$.
+\end{theoreme}
+
+\begin{remarque}
+\emph{Preuve.} Comme $a\wedge b=1$, Bézout donne $au+bv=1$. En multipliant par $c$ : $auc+bvc=c$. Or $a\mid auc$ (évident) et $a\mid bvc$ (car $a\mid bc$), donc $a$ divise la somme $c$.
+\end{remarque}
+
+\begin{propriete}[Conséquences utiles]
+\begin{itemize}
+\item Si $a\mid c$, $b\mid c$ et $a\wedge b=1$, alors $ab\mid c$.
+\item Si $a\wedge b=1$ et $a\wedge c=1$, alors $a\wedge(bc)=1$.
+\end{itemize}
+\end{propriete}
+
+\subsection{Plus petit commun multiple}
+
+\begin{definition}[PPCM]
+Le \textbf{plus petit commun multiple} de deux entiers non nuls $a$ et $b$, noté $\mathrm{PPCM}(a,b)$ ou $a\vee b$, est le plus petit entier naturel non nul multiple à la fois de $a$ et de $b$.
+\end{definition}
+
+\begin{theoreme}[Relation fondamentale]
+Pour tous entiers strictement positifs $a$ et $b$ :
+\[
+\mathrm{PGCD}(a,b)\times\mathrm{PPCM}(a,b)=a\times b.
+\]
+\end{theoreme}
+
+\begin{exemple}
+$\mathrm{PGCD}(12,18)=6$, donc $\mathrm{PPCM}(12,18)=\dfrac{12\times 18}{6}=36$.
 \end{exemple}
 
 % ═══════════════════════════════════════════════════════════════
@@ -119,6 +248,39 @@ $2^{2024}=(2^{3})^{674}\times 2^{2}\equiv 1^{674}\times 4\equiv 4\;[7]$. Le rest
 \begin{definition}[Nombre premier]
 Un entier $p\ge 2$ est \textbf{premier} s'il n'admet que deux diviseurs positifs : $1$ et lui-même. Un entier $\ge 2$ non premier est dit \textbf{composé}.
 \end{definition}
+
+\begin{remarque}
+$2$ est le seul nombre premier pair. Les premiers nombres premiers sont $2,3,5,7,11,13,17,19,23,29,\dots$ Le nombre $1$ n'est \emph{pas} premier (un seul diviseur).
+\end{remarque}
+
+\begin{theoreme}[Critère d'arrêt et infinité]
+Si un entier $n\ge 2$ n'admet aucun diviseur premier $p$ tel que $p\le\sqrt n$, alors $n$ est premier. De plus, \textbf{l'ensemble des nombres premiers est infini} (Euclide).
+\end{theoreme}
+
+\begin{remarque}
+\emph{Preuve de l'infinité (par l'absurde).} S'il n'y avait qu'un nombre fini de premiers $p_1,\dots,p_k$, l'entier $N=p_1 p_2\cdots p_k+1$ admettrait un diviseur premier $p$ ; ce $p$ serait l'un des $p_i$, donc diviserait à la fois $N$ et $p_1\cdots p_k$, donc leur différence $1$ : impossible.
+\end{remarque}
+
+\begin{illus}
+\begin{tikzpicture}[x=0.52cm,y=0.52cm,font=\scriptsize]
+\foreach \r in {0,...,4}{\foreach \c in {1,...,10}{
+  \pgfmathtruncatemacro{\n}{10*\r+\c}
+  \ifnum\n>1
+  \pgfmathtruncatemacro{\prime}{
+    ifthenelse(\n==2||\n==3||\n==5||\n==7||\n==11||\n==13||\n==17||\n==19||\n==23||\n==29
+    ||\n==31||\n==37||\n==41||\n==43||\n==47,1,0)}
+  \ifnum\prime=1
+    \node[draw=onbo,fill=onbsoft,inner sep=1pt,minimum size=4.4mm] at (\c,-\r) {\n};
+  \else
+    \node[draw=onbline,inner sep=1pt,minimum size=4.4mm,text=onbmuted] at (\c,-\r) {\n};
+  \fi
+  \fi
+}}
+\node[right=4pt,align=left,text width=3.4cm] at (10.8,-2)
+{\small Crible d'Ératosthène : en orange, les nombres premiers $\le 50$.};
+\end{tikzpicture}
+\fig{Figure 1.4 — Crible d'Ératosthène : les nombres premiers inférieurs à $50$.}
+\end{illus}
 
 \begin{theoreme}[Décomposition en facteurs premiers]
 Tout entier $n\ge 2$ s'écrit de manière \textbf{unique} (à l'ordre des facteurs près) comme produit de nombres premiers :
@@ -147,7 +309,7 @@ n=p_{1}^{\alpha_{1}}\,p_{2}^{\alpha_{2}}\cdots p_{k}^{\alpha_{k}}.
 {\small On divise successivement par les nombres premiers croissants :
 \[360=2^{3}\times 3^{2}\times 5.\]};
 \end{tikzpicture}
-\fig{Figure 1.3 — Arbre de décomposition de $360$ en facteurs premiers.}
+\fig{Figure 1.5 — Arbre de décomposition de $360$ en facteurs premiers.}
 \end{illus}
 
 \begin{propriete}[Nombre de diviseurs]
@@ -157,8 +319,15 @@ Si $n=p_{1}^{\alpha_{1}}\cdots p_{k}^{\alpha_{k}}$, alors le nombre de diviseurs
 \]
 \end{propriete}
 
+\begin{propriete}[PGCD et PPCM par les facteurs premiers]
+En écrivant $a$ et $b$ sur les mêmes premiers, $a=\prod p_i^{\alpha_i}$ et $b=\prod p_i^{\beta_i}$ :
+\[
+a\wedge b=\prod p_i^{\min(\alpha_i,\beta_i)},\qquad a\vee b=\prod p_i^{\max(\alpha_i,\beta_i)}.
+\]
+\end{propriete}
+
 \begin{exemple}
-$360=2^{3}\times 3^{2}\times 5^{1}$ possède $(3{+}1)(2{+}1)(1{+}1)=24$ diviseurs positifs.
+$360=2^{3}\times 3^{2}\times 5^{1}$ possède $(3{+}1)(2{+}1)(1{+}1)=24$ diviseurs positifs. Avec $84=2^2\times 3\times 7$ : $360\wedge 84=2^2\times3=12$ et $360\vee 84=2^3\times3^2\times5\times7=2520$.
 \end{exemple}
 
 % ═══════════════════════════════════════════════════════════════
@@ -172,9 +341,45 @@ N=a_{p}\,b^{p}+a_{p-1}\,b^{p-1}+\dots+a_{1}\,b+a_{0},\qquad 0\le a_{i}<b,\ a_{p}
 que l'on note $N=\overline{a_{p}a_{p-1}\dots a_{0}}^{\,b}$. Les $a_i$ sont les \textbf{chiffres} de $N$ en base $b$.
 \end{definition}
 
+\begin{remarque}
+En base $16$ (hexadécimale), les chiffres au-delà de $9$ se notent $\text A=10,\ \text B=11,\ \text C=12,\ \text D=13,\ \text E=14,\ \text F=15$. La base $2$ (binaire) n'utilise que $0$ et $1$.
+\end{remarque}
+
 \begin{exemple}
 $\overline{1011}^{\,2}=1\cdot 2^{3}+0\cdot 2^{2}+1\cdot 2+1=11$. Réciproquement, pour écrire $45$ en base $2$, on effectue des divisions successives par $2$ et l'on lit les restes de bas en haut : $45=\overline{101101}^{\,2}$.
 \end{exemple}
+
+% ═══════════════════════════════════════════════════════════════
+\section{L'essentiel à retenir}
+
+\begin{synthese}
+\textbf{Divisibilité.} $b\mid a \iff \exists k\in\Z,\ a=kb$. Outil clé : $a\mid b$ et $a\mid c \Rightarrow a\mid(bu+cv)$.
+
+\smallskip
+\textbf{Division euclidienne.} Pour $b>0$, unique $(q,r)$ avec $a=bq+r$, $0\le r<b$. Le reste est \emph{toujours} positif.
+
+\smallskip
+\textbf{Congruences mod $n$.} $a\equiv b\;[n]\iff n\mid(a-b)\iff$ même reste mod $n$. Compatibles avec $+,-,\times$ et les puissances. Pour un reste de $a^N$ : chercher une puissance $\equiv 1$.
+
+\smallskip
+\textbf{PGCD / PPCM.}
+$\mathrm{PGCD}(a,b)=\mathrm{PGCD}(b,r)$ (Euclide) ; dernier reste non nul $=$ PGCD.
+$\mathrm{PGCD}(a,b)\times\mathrm{PPCM}(a,b)=ab$.
+Par les facteurs premiers : $\min$ pour le PGCD, $\max$ pour le PPCM.
+
+\smallskip
+\textbf{Bézout.} $a\wedge b=d \Rightarrow \exists u,v,\ au+bv=d$. Premiers entre eux $\iff au+bv=1$.
+\textbf{Gauss.} $a\mid bc$ et $a\wedge b=1 \Rightarrow a\mid c$.
+
+\smallskip
+\textbf{Premiers.} $p\ge2$, deux diviseurs. Test : pas de diviseur premier $\le\sqrt n$. Décomposition unique $n=\prod p_i^{\alpha_i}$ ; nombre de diviseurs $=\prod(\alpha_i+1)$.
+
+\smallskip
+\textbf{Bases.} $N=\sum a_i b^i$, $0\le a_i<b$. Vers la base dix : développer ; depuis la base dix : divisions successives par $b$, restes lus de bas en haut.
+
+\smallskip
+\textbf{Pièges.} Ne pas simplifier une congruence par un facteur non premier avec $n$ ; garder $r\ge 0$ même si $a<0$ ; $1$ n'est pas premier.
+\end{synthese}
 
 % ═══════════════════════════════════════════════════════════════
 \section{Méthodes \& savoir-faire}
@@ -191,14 +396,44 @@ Pour montrer que $n\mid u_k$ pour tout $k$, on initialise puis on suppose $n\mid
 Montrons que $3\mid 4^{k}-1$ pour tout $k\in\N$. \emph{Initialisation :} $4^{0}-1=0$, divisible par $3$. \emph{Hérédité :} si $3\mid 4^{k}-1$, alors $4^{k+1}-1=4\cdot 4^{k}-1=4(4^{k}-1)+3$ ; somme de deux multiples de $3$, donc $3\mid 4^{k+1}-1$.
 \end{exemple}
 
+\methode{Démontrer une divisibilité par disjonction de cas (congruences)}
+Étudier l'expression selon le reste de $n$ modulo le diviseur visé.
+\begin{exemple}
+Montrons que $n^2+n$ est pair pour tout $n$. Si $n\equiv 0\;[2]$, $n^2+n\equiv 0$. Si $n\equiv 1\;[2]$, $n^2+n\equiv 1+1\equiv 0\;[2]$. Dans tous les cas, $2\mid n^2+n$.
+\end{exemple}
+
+\methode{Calculer un PGCD par l'algorithme d'Euclide}
+Diviser, garder le reste, recommencer avec (diviseur, reste) jusqu'au reste nul ; le dernier reste non nul est le PGCD.
+\begin{exemple}
+$\mathrm{PGCD}(252,198)$ : $252=198\times1+54$ ; $198=54\times3+36$ ; $54=36\times1+18$ ; $36=18\times2+0$. Donc $\mathrm{PGCD}(252,198)=18$.
+\end{exemple}
+
+\methode{Trouver une relation de Bézout (algorithme d'Euclide remonté)}
+Exprimer chaque reste comme combinaison des deux nombres en remontant les égalités d'Euclide.
+\begin{exemple}
+Pour $a=17$, $b=5$ : $17=5\times3+2$, $5=2\times2+1$. On remonte : $1=5-2\times2=5-2(17-5\times3)=5\times7-17\times2$. Donc $17\times(-2)+5\times7=1$ : $17$ et $5$ sont premiers entre eux.
+\end{exemple}
+
+\methode{Résoudre une équation diophantienne $ax+by=c$}
+Vérifier que $d=a\wedge b$ divise $c$ (sinon pas de solution). Trouver une solution particulière (Bézout), puis la solution générale $x=x_0+\frac{b}{d}k$, $y=y_0-\frac{a}{d}k$.
+\begin{exemple}
+$5x+3y=1$. Solution particulière : $x_0=2,\ y_0=-3$ (car $10-9=1$). Comme $5\wedge3=1$, la solution générale est $x=2+3k$, $y=-3-5k$, $k\in\Z$.
+\end{exemple}
+
 \methode{Décomposer en facteurs premiers et compter les diviseurs}
 Diviser successivement par les premiers croissants, puis appliquer la formule du produit des $(\alpha_i+1)$.
+\begin{exemple}
+$600=2^3\times3\times5^2$ : nombre de diviseurs $=(3{+}1)(1{+}1)(2{+}1)=24$.
+\end{exemple}
 
 \methode{Changer de base}
 \emph{Vers la base dix} : développer les puissances. \emph{Depuis la base dix} : divisions euclidiennes successives par $b$, les restes lus de bas en haut donnent les chiffres.
+\begin{exemple}
+$100$ en base $7$ : $100=7\times14+2$, $14=7\times2+0$, $2=7\times0+2$ ; restes de bas en haut : $2,0,2$, donc $100=\overline{202}^{\,7}$. Vérification : $2\cdot49+0+2=100$.
+\end{exemple}
 
 % ═══════════════════════════════════════════════════════════════
-\section{Exercices}
+\section{Exercices d'application}
 
 \rubrique{Divisibilité et division euclidienne}
 \exo{}\diff{1} Effectuer la division euclidienne de $2024$ par $7$, puis de $-2024$ par $7$.
@@ -207,24 +442,143 @@ Diviser successivement par les premiers croissants, puis appliquer la formule du
 
 \exo{}\diff{2} Montrer que pour tout entier $n$, le produit $n(n+1)$ est divisible par $2$, et $n(n+1)(n+2)$ par $6$.
 
+\exo{}\diff{2} Déterminer tous les entiers $n$ tels que $(n-2)\mid(n+5)$.
+
 \rubrique{Congruences}
 \exo{}\diff{1} Déterminer le reste de la division de $5^{100}$ par $4$.
 
 \exo{}\diff{2} Quel est le chiffre des unités de $3^{2025}$ ?
 
+\exo{}\diff{2} Déterminer le reste de la division de $4^{2024}$ par $9$.
+
 \exo{}\diff{3} Montrer que pour tout entier $n$, $7\mid 3^{2n+1}+2^{n+2}$.
+
+\rubrique{PGCD, PPCM et Bézout}
+\exo{}\diff{1} Calculer $\mathrm{PGCD}(364,154)$ par l'algorithme d'Euclide, puis $\mathrm{PPCM}(364,154)$.
+
+\exo{}\diff{2} Déterminer un couple d'entiers $(u,v)$ tel que $11u+8v=1$.
+
+\exo{}\diff{2} Résoudre dans $\Z^2$ l'équation $7x+5y=1$.
+
+\exo{}\diff{3} Soit $n\in\N$. Montrer que les entiers $2n+1$ et $3n+1$ sont premiers entre eux.
 
 \rubrique{Nombres premiers et numération}
 \exo{}\diff{2} Décomposer $1\,800$ en facteurs premiers et donner son nombre de diviseurs.
 
+\exo{}\diff{2} Le nombre $221$ est-il premier ? Justifier.
+
 \exo{}\diff{2} Écrire $45$ en base $2$ et $171$ en base $16$. Convertir $\overline{2301}^{\,4}$ en base dix.
 
-\rubrique{Problème type Baccalauréat}
+\exo{}\diff{2} Convertir $\overline{1101}^{\,2}$ en base dix, puis écrire ce résultat en base $5$.
+
+\rubrique{Problèmes de synthèse}
 \exo{}\diff{3} On pose $A=n^{3}-n$ pour $n\in\N$.
 \begin{enumerate}[label=\arabic*)]
 \item Factoriser $A$.
 \item Montrer que $A$ est divisible par $6$ pour tout entier $n$.
 \item En déduire le reste de la division de $n^{3}$ par $6$ en fonction de celui de $n$.
+\end{enumerate}
+
+\exo{}\diff{3} Soit $d=\mathrm{PGCD}(a,b)$. On pose $a=d a'$ et $b=d b'$. Montrer que $a'\wedge b'=1$.
+
+% ═══════════════════════════════════════════════════════════════
+\section{Exercices d'entraînement}
+
+\rubrique{Divisibilité et division euclidienne}
+\exo{}\diff{1} Effectuer la division euclidienne de $1234$ par $13$, et de $-100$ par $9$.
+
+\exo{}\diff{1} Trouver tous les diviseurs positifs de $48$ et de $90$.
+
+\exo{}\diff{2} Montrer que pour tout $n\in\N$, $n(n+1)(n+2)(n+3)$ est divisible par $24$.
+
+\exo{}\diff{2} Déterminer les entiers $n$ tels que $(n+1)\mid(n^2+3)$.
+
+\exo{}\diff{2} Montrer que la somme de trois entiers consécutifs est toujours divisible par $3$.
+
+\exo{}\diff{2} Quels sont les restes possibles de $n^2$ dans la division par $4$ ? par $8$ ?
+
+\exo{}\diff{3} Montrer que pour tout $n\in\N$, $9\mid 10^n-1$.
+
+\rubrique{Congruences}
+\exo{}\diff{1} Déterminer le reste de $2^{50}$ modulo $3$.
+
+\exo{}\diff{1} Quel est le chiffre des unités de $2^{1000}$ ?
+
+\exo{}\diff{2} Déterminer le reste de $7^{100}$ modulo $5$.
+
+\exo{}\diff{2} Montrer que $11\mid 2^{5}+5^{2}\cdot 2$ n'est pas vrai, mais que $11\mid 2^{10}-1$.
+
+\exo{}\diff{2} Montrer que pour tout $n$, $6\mid n^3-n$.
+
+\exo{}\diff{3} Montrer que $5\mid 2^{4n+1}+3$ pour tout $n\in\N$.
+
+\exo{}\diff{3} Déterminer les deux derniers chiffres de $7^{2024}$.
+
+\rubrique{PGCD, PPCM, Bézout et Gauss}
+\exo{}\diff{1} Calculer $\mathrm{PGCD}(48,180)$ et $\mathrm{PPCM}(48,180)$.
+
+\exo{}\diff{2} Calculer $\mathrm{PGCD}(1\,001,1\,309)$ par l'algorithme d'Euclide.
+
+\exo{}\diff{2} Déterminer un couple de Bézout pour $13$ et $9$.
+
+\exo{}\diff{2} Résoudre dans $\Z^2$ l'équation $9x+7y=2$.
+
+\exo{}\diff{2} Deux feux clignotent l'un toutes les $36$ s, l'autre toutes les $48$ s. Au bout de combien de temps clignotent-ils ensemble à nouveau ?
+
+\exo{}\diff{3} Montrer que pour tout $n\in\N^*$, $n$ et $2n+1$ sont premiers entre eux.
+
+\exo{}\diff{3} Montrer que si $a\wedge b=1$, alors $(a+b)\wedge(ab)=1$.
+
+\exo{}\diff{3} Déterminer tous les couples $(a,b)$ d'entiers positifs tels que $a\wedge b=6$ et $a\vee b=180$.
+
+\rubrique{Nombres premiers et décomposition}
+\exo{}\diff{1} Les nombres $51$, $91$, $97$ sont-ils premiers ?
+
+\exo{}\diff{2} Décomposer $2\,520$ et $5\,544$ en facteurs premiers.
+
+\exo{}\diff{2} Combien $720$ a-t-il de diviseurs positifs ? Lesquels sont impairs ?
+
+\exo{}\diff{3} Montrer que si $p$ est premier et $p\mid ab$, alors $p\mid a$ ou $p\mid b$.
+
+\exo{}\diff{3} Trouver le plus petit entier ayant exactement $15$ diviseurs positifs.
+
+\rubrique{Systèmes de numération}
+\exo{}\diff{1} Écrire $100$ en base $2$, en base $5$ et en base $16$.
+
+\exo{}\diff{2} Convertir $\overline{1\,0110}^{\,2}$ et $\overline{\text{2A}}^{\,16}$ en base dix.
+
+\exo{}\diff{2} Un nombre s'écrit $\overline{1331}^{\,b}$ en base $b$. Montrer qu'il vaut $(b+1)^3$.
+
+\exo{}\diff{3} Déterminer la base $b$ dans laquelle $\overline{52}^{\,b}=\overline{34}^{\,10}$.
+
+% ═══════════════════════════════════════════════════════════════
+\section{Sujets type Baccalauréat}
+
+\sujetbac[Divisibilité, congruences et récurrence]
+On considère, pour $n\in\N$, l'entier $u_n=3^{2n}-1$.
+\begin{enumerate}[label=\arabic*)]
+\item Calculer $u_0,u_1,u_2$.
+\item Montrer par récurrence que $8\mid u_n$ pour tout $n\in\N$.
+\item Retrouver ce résultat à l'aide des congruences modulo $8$.
+\item En déduire que $3^{2n}\equiv 1\;[8]$ et donner le reste de $3^{100}$ dans la division par $8$.
+\end{enumerate}
+
+\sujetbac[PGCD, Bézout et équation diophantienne]
+On veut résoudre dans $\Z^2$ l'équation $(E):\ 23x+17y=1$.
+\begin{enumerate}[label=\arabic*)]
+\item Justifier que $23\wedge17=1$ à l'aide de l'algorithme d'Euclide.
+\item Déterminer, en remontant l'algorithme, un couple $(u,v)$ tel que $23u+17v=1$.
+\item En déduire l'ensemble des solutions de $(E)$.
+\item Déterminer la solution $(x,y)$ de $(E)$ vérifiant $0\le x<17$.
+\end{enumerate}
+
+\sujetbac[Nombres premiers, décomposition et diviseurs]
+Soit $N=2^{4}\times 3^{2}\times 5$.
+\begin{enumerate}[label=\arabic*)]
+\item Calculer $N$ et donner son nombre de diviseurs positifs.
+\item Déterminer la somme de tous les diviseurs positifs de $N$.
+\item On pose $M=2^{2}\times 3^{3}\times 7$. Calculer $N\wedge M$ et $N\vee M$.
+\item Vérifier que $(N\wedge M)\times(N\vee M)=N\times M$.
 \end{enumerate}
 
 % ═══════════════════════════════════════════════════════════════
@@ -240,21 +594,67 @@ $36=2^{2}\times 3^{2}$. Ses diviseurs positifs sont $1,2,3,4,6,9,12,18,36$ (soit
 Parmi deux entiers consécutifs $n,n+1$, l'un est pair : $2\mid n(n+1)$. Parmi trois entiers consécutifs $n,n+1,n+2$, l'un est multiple de $3$ et l'un est pair : le produit est divisible par $2$ et par $3$, donc par $6$.
 
 \corrige{de l'exercice 4}
-$5\equiv 1\;[4]$, donc $5^{100}\equiv 1^{100}\equiv 1\;[4]$ : le reste est $\mathbf 1$.
+$n+5=(n-2)+7$, donc $(n-2)\mid(n+5)\iff(n-2)\mid 7$. Ainsi $n-2\in\{-7,-1,1,7\}$, d'où $n\in\{-5,1,3,9\}$.
 
 \corrige{de l'exercice 5}
-Les puissances de $3$ modulo $10$ suivent le cycle $3,9,7,1$ de longueur $4$. Comme $2025=4\times 506+1$, $3^{2025}\equiv 3^{1}\equiv 3\;[10]$ : le chiffre des unités est $\mathbf 3$.
+$5\equiv 1\;[4]$, donc $5^{100}\equiv 1^{100}\equiv 1\;[4]$ : le reste est $\mathbf 1$.
 
 \corrige{de l'exercice 6}
-Modulo $7$ : $3^{2}=9\equiv 2$, donc $3^{2n+1}=3\cdot(3^{2})^{n}\equiv 3\cdot 2^{n}\;[7]$. Ainsi $3^{2n+1}+2^{n+2}\equiv 3\cdot 2^{n}+4\cdot 2^{n}=7\cdot 2^{n}\equiv 0\;[7]$. Donc $7\mid 3^{2n+1}+2^{n+2}$.
+Les puissances de $3$ modulo $10$ suivent le cycle $3,9,7,1$ de longueur $4$. Comme $2025=4\times 506+1$, $3^{2025}\equiv 3^{1}\equiv 3\;[10]$ : le chiffre des unités est $\mathbf 3$.
 
 \corrige{de l'exercice 7}
-$1800=2^{3}\times 3^{2}\times 5^{2}$ ; nombre de diviseurs : $(3{+}1)(2{+}1)(2{+}1)=36$.
+Modulo $9$ : $4^{1}\equiv4$, $4^{2}\equiv7$, $4^{3}\equiv1\;[9]$ : cycle de longueur $3$. Comme $2024=3\times674+2$, $4^{2024}\equiv4^{2}\equiv7\;[9]$ : le reste est $\mathbf 7$.
 
 \corrige{de l'exercice 8}
-$45=\overline{101101}^{\,2}$ (divisions par $2$). $171=16\times 10+11=\overline{\text{AB}}^{\,16}$ avec $10=\text A$, $11=\text B$, soit $\overline{\text{AB}}^{\,16}$. Enfin $\overline{2301}^{\,4}=2\cdot 4^{3}+3\cdot 4^{2}+0\cdot 4+1=128+48+0+1=177$.
+Modulo $7$ : $3^{2}=9\equiv 2$, donc $3^{2n+1}=3\cdot(3^{2})^{n}\equiv 3\cdot 2^{n}\;[7]$. Ainsi $3^{2n+1}+2^{n+2}\equiv 3\cdot 2^{n}+4\cdot 2^{n}=7\cdot 2^{n}\equiv 0\;[7]$. Donc $7\mid 3^{2n+1}+2^{n+2}$.
 
-\corrige{du problème}
+\corrige{de l'exercice 9}
+$364=154\times2+56$ ; $154=56\times2+42$ ; $56=42\times1+14$ ; $42=14\times3+0$. Donc $\mathrm{PGCD}(364,154)=14$. Puis $\mathrm{PPCM}=\dfrac{364\times154}{14}=364\times11=4004$.
+
+\corrige{de l'exercice 10}
+Euclide : $11=8\times1+3$, $8=3\times2+2$, $3=2\times1+1$. On remonte : $1=3-2=3-(8-3\times2)=3\times3-8=3(11-8)-8=11\times3-8\times4$. Donc $(u,v)=(3,-4)$ : $11\times3+8\times(-4)=33-32=1$.
+
+\corrige{de l'exercice 11}
+$7\wedge5=1$. Solution particulière : $7\times3+5\times(-4)=21-20=1$, donc $(x_0,y_0)=(3,-4)$. Solution générale : $x=3+5k$, $y=-4-7k$, $k\in\Z$.
+
+\corrige{de l'exercice 12}
+Tout diviseur commun $d$ de $2n+1$ et $3n+1$ divise $3(2n+1)-2(3n+1)=6n+3-6n-2=1$. Donc $d=1$ : ils sont premiers entre eux.
+
+\corrige{de l'exercice 13}
+$1800=2^{3}\times 3^{2}\times 5^{2}$ ; nombre de diviseurs : $(3{+}1)(2{+}1)(2{+}1)=36$.
+
+\corrige{de l'exercice 14}
+$\sqrt{221}\approx14{,}9$ : on teste les premiers $\le14$. $221=13\times17$, donc $221$ \textbf{n'est pas premier} (composé).
+
+\corrige{de l'exercice 15}
+$45=\overline{101101}^{\,2}$ (divisions par $2$). $171=16\times 10+11$, avec $10=\text A$, $11=\text B$, donc $171=\overline{\text{AB}}^{\,16}$. Enfin $\overline{2301}^{\,4}=2\cdot 4^{3}+3\cdot 4^{2}+0\cdot 4+1=128+48+0+1=177$.
+
+\corrige{de l'exercice 16}
+$\overline{1101}^{\,2}=1\cdot8+1\cdot4+0\cdot2+1=13$. En base $5$ : $13=5\times2+3$, $2=5\times0+2$, restes de bas en haut $\Rightarrow 13=\overline{23}^{\,5}$.
+
+\corrige{de l'exercice 17}
 1) $A=n^{3}-n=n(n^{2}-1)=n(n-1)(n+1)=(n-1)\,n\,(n+1)$ : produit de trois entiers consécutifs.\;
 2) Parmi trois entiers consécutifs, il y a au moins un multiple de $2$ et un multiple de $3$ ; $2$ et $3$ étant premiers entre eux, $A$ est divisible par $6$.\;
 3) De $n^{3}-n\equiv 0\;[6]$ on tire $n^{3}\equiv n\;[6]$ : le reste de $n^{3}$ modulo $6$ est \textbf{égal} à celui de $n$.
+
+\corrige{de l'exercice 18}
+Par Bézout, $au+bv=d$. En divisant par $d$ : $a'u+b'v=1$ (avec $a=da'$, $b=db'$). L'existence d'une relation de Bézout égale à $1$ prouve que $a'\wedge b'=1$.
+
+% ── Corrigés des sujets ────────────────────────────────────────
+\corrige{du sujet 1}
+1) $u_0=3^0-1=0$, $u_1=3^2-1=8$, $u_2=3^4-1=80$.\;
+2) \emph{Initialisation :} $u_0=0$, divisible par $8$. \emph{Hérédité :} supposons $8\mid u_n$, c.-à-d. $3^{2n}=1+8m$. Alors $u_{n+1}=3^{2n+2}-1=9\cdot3^{2n}-1=9(1+8m)-1=8+72m=8(1+9m)$, donc $8\mid u_{n+1}$.\;
+3) $3^2=9\equiv1\;[8]$, donc $3^{2n}=(3^2)^n\equiv1^n\equiv1\;[8]$, d'où $u_n=3^{2n}-1\equiv0\;[8]$.\;
+4) On a $3^{2n}\equiv1\;[8]$ ; pour $3^{100}=3^{2\times50}\equiv1\;[8]$, le reste est $\mathbf 1$.
+
+\corrige{du sujet 2}
+1) $23=17\times1+6$ ; $17=6\times2+5$ ; $6=5\times1+1$ ; $5=1\times5+0$. Dernier reste non nul $=1$, donc $23\wedge17=1$.\;
+2) On remonte : $1=6-5=6-(17-6\times2)=6\times3-17=3(23-17)-17=23\times3-17\times4$. Donc $(u,v)=(3,-4)$ : $23\times3+17\times(-4)=69-68=1$.\;
+3) Solution particulière $(x_0,y_0)=(3,-4)$. Comme $23\wedge17=1$, l'ensemble des solutions est $x=3+17k$, $y=-4-23k$, $k\in\Z$.\;
+4) On veut $0\le 3+17k<17$, soit $k=0$ : la solution est $(x,y)=(3,-4)$.
+
+\corrige{du sujet 3}
+1) $N=16\times9\times5=720$ ; nombre de diviseurs $=(4{+}1)(2{+}1)(1{+}1)=30$.\;
+2) Somme des diviseurs $=(1+2+4+8+16)(1+3+9)(1+5)=31\times13\times6=2418$.\;
+3) $M=4\times27\times7=756=2^2\times3^3\times7$. $N\wedge M=2^{\min(4,2)}3^{\min(2,3)}=2^2\times3^2=36$ ; $N\vee M=2^4\times3^3\times5\times7=15120$.\;
+4) $(N\wedge M)(N\vee M)=36\times15120=544\,320$ et $N\times M=720\times756=544\,320$ : l'égalité est vérifiée.

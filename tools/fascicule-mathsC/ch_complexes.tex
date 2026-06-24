@@ -3,22 +3,90 @@
 \noindent\textit{Inventés pour résoudre les équations que les réels ne savaient pas traiter
 (comme $x^{2}=-1$), les nombres complexes offrent un pont remarquable entre l'algèbre et la
 géométrie : tout point du plan devient un nombre, et toute transformation géométrique une
-opération sur ces nombres. C'est l'un des chapitres emblématiques de la série C.}
+opération sur ces nombres. C'est l'un des chapitres emblématiques de la série C, où l'on calcule
+des modules et des arguments, où l'on linéarise des puissances de cosinus, et où l'on démontre
+qu'un triangle est rectangle isocèle en une seule ligne de calcul.}
 \vspace{8pt}
 
 % ═══════════════════════════════════════════════════════════════
 \section{Forme algébrique}
 
 \begin{definition}[L'ensemble $\C$]
-Il existe un ensemble $\C$, contenant $\R$, muni d'une addition et d'une multiplication, et un élément $i$ vérifiant $i^{2}=-1$, tel que tout élément $z$ de $\C$ s'écrit de façon \textbf{unique}
+Il existe un ensemble $\C$, contenant $\R$, muni d'une addition et d'une multiplication qui
+prolongent celles de $\R$, et d'un élément $i$ vérifiant $i^{2}=-1$, tel que tout élément $z$ de
+$\C$ s'écrit de façon \textbf{unique}
 \[
 z=a+ib,\qquad (a,b)\in\R^{2}.
 \]
-$a=\mathrm{Re}(z)$ est la \textbf{partie réelle}, $b=\mathrm{Im}(z)$ la \textbf{partie imaginaire}. Si $b=0$, $z$ est réel ; si $a=0$, $z$ est un \textbf{imaginaire pur}.
+$a=\mathrm{Re}(z)$ est la \textbf{partie réelle}, $b=\mathrm{Im}(z)$ la \textbf{partie
+imaginaire} (toutes deux \emph{réelles}). Si $b=0$, $z$ est \textbf{réel} ; si $a=0$, $z$ est un
+\textbf{imaginaire pur}.
 \end{definition}
 
-\begin{definition}[Conjugué et module]
-Pour $z=a+ib$, on définit le \textbf{conjugué} $\bar z=a-ib$ et le \textbf{module} $|z|=\sqrt{a^{2}+b^{2}}$. On a $z\,\bar z=|z|^{2}=a^{2}+b^{2}$.
+\begin{remarque}
+L'écriture étant unique, deux complexes sont égaux si et seulement si ils ont \emph{même partie
+réelle et même partie imaginaire} :
+\[
+a+ib=a'+ib'\iff a=a'\ \text{et}\ b=b'.
+\]
+C'est le principe d'\textbf{identification}, fondamental dans la résolution d'équations.
+\end{remarque}
+
+\begin{propriete}[Opérations sous forme algébrique]
+Pour $z=a+ib$ et $z'=a'+ib'$ :
+\begin{itemize}
+\item $z+z'=(a+a')+i(b+b')$ ;
+\item $z\,z'=(aa'-bb')+i(ab'+a'b)$ (on développe et on remplace $i^{2}$ par $-1$) ;
+\item si $z\neq0$, $\dfrac1z=\dfrac{a-ib}{a^{2}+b^{2}}$ (on multiplie par le conjugué).
+\end{itemize}
+\end{propriete}
+
+\begin{exemple}
+$(2-i)(3+i)=6+2i-3i-i^{2}=6-i+1=7-i$. Et
+$\dfrac{1}{2-i}=\dfrac{2+i}{(2-i)(2+i)}=\dfrac{2+i}{5}=\dfrac25+\dfrac15 i$.
+\end{exemple}
+
+\begin{aretenir}
+Les puissances de $i$ sont \textbf{périodiques de période $4$} :
+\[
+i^{0}=1,\quad i^{1}=i,\quad i^{2}=-1,\quad i^{3}=-i,\quad i^{4}=1,\ \dots
+\]
+Pour calculer $i^{n}$, il suffit de regarder le reste de $n$ dans la division par $4$. Par exemple
+$i^{2027}=i^{4\times506+3}=i^{3}=-i$.
+\end{aretenir}
+
+\subsection{Conjugué}
+
+\begin{definition}[Conjugué]
+Le \textbf{conjugué} de $z=a+ib$ est $\bar z=a-ib$. Géométriquement, $\bar z$ est le symétrique de
+$z$ par rapport à l'axe des réels.
+\end{definition}
+
+\begin{propriete}[Règles de conjugaison]
+$\overline{z+z'}=\bar z+\bar z'$,\quad $\overline{z\,z'}=\bar z\,\bar z'$,\quad
+$\overline{\left(\dfrac1z\right)}=\dfrac1{\bar z}$,\quad $\overline{z^{n}}=(\bar z)^{n}$,\quad
+$\overline{\bar z}=z$.\\[2pt]
+De plus :
+\[
+z+\bar z=2\,\mathrm{Re}(z),\qquad z-\bar z=2i\,\mathrm{Im}(z),\qquad z\,\bar z=a^{2}+b^{2}.
+\]
+En particulier : $z\in\R\iff z=\bar z$, et $z$ imaginaire pur $\iff z=-\bar z$.
+\end{propriete}
+
+\begin{remarque}
+La relation $z\,\bar z=a^{2}+b^{2}$ est le moteur de toute division : pour rendre réel un
+dénominateur, on le multiplie (haut et bas) par son conjugué. C'est l'analogue de la
+« quantité conjuguée » utilisée avec les racines carrées.
+\end{remarque}
+
+\subsection{Module}
+
+\begin{definition}[Module]
+Le \textbf{module} de $z=a+ib$ est le réel positif
+\[
+|z|=\sqrt{a^{2}+b^{2}}=\sqrt{z\,\bar z}.
+\]
+C'est la distance de l'origine au point d'affixe $z$. On a $|z|=0\iff z=0$.
 \end{definition}
 
 \begin{illus}
@@ -29,68 +97,174 @@ Pour $z=a+ib$, on définit le \textbf{conjugué} $\bar z=a-ib$ et le \textbf{mod
 \draw[onbo,->,line width=1pt] (0,0) -- (3,2);
 \draw[dashed,onbmuted] (3,0) node[below]{\small $a$} -- (3,2);
 \draw[dashed,onbmuted] (0,2) node[left]{\small $b$} -- (3,2);
+\filldraw[onbmuted] (3,-2) circle (1.4pt) node[below right]{\small $\bar z$};
+\draw[onbmuted,dotted] (3,2)--(3,-2);
 \node[onbgreen] at (1.3,1.25) {\small $|z|$};
 \draw[onbgreen] (0.8,0) arc (0:33.7:0.8);
 \node[onbgreen] at (1.05,0.22) {\small $\theta$};
-\node[align=left,text width=4.6cm] at (6.4,1.3)
-{\small À tout complexe $z=a+ib$ on associe le point $M(a,b)$ d'\textbf{affixe} $z$.
-Alors $|z|=OM$ et $\theta=\arg(z)=(\vec{u},\overrightarrow{OM})$.};
+\node[align=left,text width=4.4cm] at (6.4,1.1)
+{\small À $z=a+ib$ on associe le point $M(a,b)$ d'\textbf{affixe} $z$.
+Alors $|z|=OM$, $\theta=\arg(z)=(\vec{u},\overrightarrow{OM})$, et $\bar z$ est le symétrique de
+$z$ par rapport à l'axe réel.};
 \end{tikzpicture}
-\fig{Figure 3.1 — Le plan complexe : affixe, module et argument.}
+\fig{Figure — Le plan complexe : affixe, module, argument et conjugué.}
 \end{illus}
 
-\begin{propriete}[Règles de conjugaison]
-$\overline{z+z'}=\bar z+\bar z'$, $\ \overline{z\,z'}=\bar z\,\bar z'$, $\ \overline{\left(\frac1z\right)}=\frac1{\bar z}$, $\ z+\bar z=2\,\mathrm{Re}(z)$, $\ z-\bar z=2i\,\mathrm{Im}(z)$.
+\begin{propriete}[Propriétés du module]
+Pour tous $z,z'\in\C$ :
+\[
+|z\,z'|=|z|\,|z'|,\quad \left|\dfrac z{z'}\right|=\dfrac{|z|}{|z'|}\ (z'\neq0),\quad
+|z^{n}|=|z|^{n},\quad |\bar z|=|z|.
+\]
+\textbf{Inégalité triangulaire} : $\,|z+z'|\le|z|+|z'|$, avec égalité si et seulement si $z$ et
+$z'$ sont « de même direction » ($z'=\lambda z$, $\lambda\ge0$).
 \end{propriete}
 
 \begin{theoreme}[Équation du second degré à coefficients réels]
-L'équation $az^{2}+bz+c=0$ ($a\neq0$, réels) de discriminant $\Delta=b^{2}-4ac<0$ admet deux solutions complexes conjuguées :
+L'équation $az^{2}+bz+c=0$ ($a\neq0$, $a,b,c$ réels) de discriminant $\Delta=b^{2}-4ac$ :
+\begin{itemize}
+\item si $\Delta\ge0$ : deux racines réelles (ou une double) usuelles ;
+\item si $\Delta<0$ : deux solutions complexes \emph{conjuguées}
 \[
 z_{1,2}=\frac{-b\pm i\sqrt{-\Delta}}{2a}.
 \]
+\end{itemize}
 \end{theoreme}
 
 \begin{exemple}
-$z^{2}-2z+5=0$ : $\Delta=4-20=-16<0$, $\sqrt{-\Delta}=4$, donc $z=\dfrac{2\pm 4i}{2}=1\pm2i$.
+$z^{2}-2z+5=0$ : $\Delta=4-20=-16<0$, $\sqrt{-\Delta}=4$, donc $z=\dfrac{2\pm 4i}{2}=1\pm2i$. Les
+deux racines sont bien conjuguées.
 \end{exemple}
+
+\begin{remarque}
+Lorsqu'un polynôme à coefficients réels admet une racine complexe $z_0$, il admet aussi $\bar z_0$.
+On peut alors factoriser par $\big(z-z_0\big)\big(z-\bar z_0\big)=z^{2}-2\,\mathrm{Re}(z_0)\,z+|z_0|^{2}$.
+\end{remarque}
 
 % ═══════════════════════════════════════════════════════════════
 \section{Formes trigonométrique et exponentielle}
 
-\begin{definition}[Argument, formes trigonométrique et exponentielle]
-Pour $z\neq0$ de module $r=|z|$, un \textbf{argument} $\theta=\arg(z)$ vérifie $\cos\theta=\dfrac ar$ et $\sin\theta=\dfrac br$. On écrit
+\begin{definition}[Argument, forme trigonométrique]
+Pour $z\neq0$ de module $r=|z|$, un \textbf{argument} $\theta=\arg(z)$ (défini \emph{modulo}
+$2\pi$) est un réel vérifiant
 \[
-z=r(\cos\theta+i\sin\theta)=r\,e^{i\theta}.
+\cos\theta=\dfrac ar,\qquad \sin\theta=\dfrac br.
+\]
+On obtient la \textbf{forme trigonométrique}
+\[
+z=r\big(\cos\theta+i\sin\theta\big).
 \]
 \end{definition}
 
-\begin{propriete}[Module et argument d'un produit]
-$|z\,z'|=|z|\,|z'|$ et $\arg(z\,z')=\arg z+\arg z'$ ; $\left|\dfrac z{z'}\right|=\dfrac{|z|}{|z'|}$ et $\arg\dfrac z{z'}=\arg z-\arg z'$ (modulo $2\pi$).
-\end{propriete}
-
-\begin{theoreme}[Formules de Moivre et d'Euler]
-Pour tout $\theta\in\R$ et tout $n\in\Z$ :
+\begin{definition}[Notation exponentielle]
+On pose, pour tout $\theta\in\R$,
 \[
-\big(\cos\theta+i\sin\theta\big)^{n}=\cos(n\theta)+i\sin(n\theta)\quad\text{(Moivre)},
+e^{i\theta}=\cos\theta+i\sin\theta.
 \]
+Tout complexe non nul s'écrit alors sous \textbf{forme exponentielle} $z=r\,e^{i\theta}$, avec
+$r=|z|>0$ et $\theta=\arg(z)$. On a $|e^{i\theta}|=1$ et $\overline{e^{i\theta}}=e^{-i\theta}$.
+\end{definition}
+
+\begin{theoreme}[Relation fonctionnelle de l'exponentielle complexe]
+Pour tous $\theta,\theta'\in\R$ :
 \[
-\cos\theta=\frac{e^{i\theta}+e^{-i\theta}}{2},\qquad \sin\theta=\frac{e^{i\theta}-e^{-i\theta}}{2i}\quad\text{(Euler)}.
+e^{i\theta}\,e^{i\theta'}=e^{i(\theta+\theta')},\qquad \frac{1}{e^{i\theta}}=e^{-i\theta},\qquad
+\big(e^{i\theta}\big)^{n}=e^{in\theta}\ (n\in\Z).
 \]
 \end{theoreme}
 
+\noindent\emph{Justification (produit).} En développant et en utilisant les formules d'addition :
+\begin{align*}
+e^{i\theta}e^{i\theta'}&=(\cos\theta+i\sin\theta)(\cos\theta'+i\sin\theta')\\
+&=(\cos\theta\cos\theta'-\sin\theta\sin\theta')+i(\sin\theta\cos\theta'+\cos\theta\sin\theta')\\
+&=\cos(\theta+\theta')+i\sin(\theta+\theta')=e^{i(\theta+\theta')}.
+\end{align*}
+
+\begin{propriete}[Module et argument d'un produit, d'un quotient]
+Pour $z,z'$ non nuls (égalités sur les arguments \emph{modulo} $2\pi$) :
+\[
+\arg(z\,z')=\arg z+\arg z',\qquad \arg\!\dfrac z{z'}=\arg z-\arg z',
+\]
+\[
+\arg(\bar z)=-\arg z,\qquad \arg(z^{n})=n\arg z.
+\]
+Multiplier par $z'$ revient donc à \textbf{multiplier les modules} et \textbf{ajouter les
+arguments} : c'est une similitude (rotation + homothétie).
+\end{propriete}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth,scale=1.25]
+\draw[onbline] (0,0) circle (1);
+\draw[->] (-1.4,0)--(1.5,0) node[right]{\small $\mathrm{Re}$};
+\draw[->] (0,-1.0)--(0,1.5) node[above]{\small $\mathrm{Im}$};
+\filldraw[onbo] (40:1) circle (1.3pt);
+\draw[onbo,->] (0,0)--(40:1) node[midway,below right]{\scriptsize $z$};
+\filldraw[onbblue] (100:1) circle (1.3pt);
+\draw[onbblue,->] (0,0)--(100:1) node[midway,above left]{\scriptsize $z\cdot z'$};
+\draw[onbgreen] (40:0.45) arc (40:100:0.45);
+\node[onbgreen] at (70:0.65) {\scriptsize $+\arg z'$};
+\node[align=left,text width=4.0cm] at (3.4,0.2)
+{\small Sur le cercle unité, multiplier par $z'=e^{i\alpha}$ \textbf{fait tourner} d'un angle
+$\alpha=\arg z'$ : les arguments s'ajoutent.};
+\end{tikzpicture}
+\fig{Figure — Multiplier par $e^{i\alpha}$ est une rotation d'angle $\alpha$.}
+\end{illus}
+
+\begin{theoreme}[Formule de Moivre]
+Pour tout $\theta\in\R$ et tout $n\in\Z$ :
+\[
+\big(\cos\theta+i\sin\theta\big)^{n}=\cos(n\theta)+i\sin(n\theta).
+\]
+\end{theoreme}
+
+\noindent\emph{Justification.} En notation exponentielle, c'est simplement
+$\big(e^{i\theta}\big)^{n}=e^{in\theta}$, ce qui donne, en repassant en forme trigonométrique,
+$\cos(n\theta)+i\sin(n\theta)$.
+
+\begin{theoreme}[Formules d'Euler]
+Pour tout $\theta\in\R$ :
+\[
+\cos\theta=\frac{e^{i\theta}+e^{-i\theta}}{2},\qquad
+\sin\theta=\frac{e^{i\theta}-e^{-i\theta}}{2i}.
+\]
+\end{theoreme}
+
+\noindent\emph{Justification.} On additionne (resp. soustrait) $e^{i\theta}=\cos\theta+i\sin\theta$
+et $e^{-i\theta}=\cos\theta-i\sin\theta$.
+
 \begin{aretenir}
-Les formes $e^{i\theta}$ sont idéales pour les \textbf{puissances} (Moivre) ; les formules d'Euler servent à \textbf{linéariser} ($\cos^{n}\theta$, $\sin^{n}\theta$) et à transformer produits en sommes.
+Les formes $e^{i\theta}$ sont idéales pour les \textbf{puissances} (Moivre) ; les formules d'Euler
+servent à \textbf{linéariser} ($\cos^{n}\theta$, $\sin^{n}\theta$, $\cos^{p}\theta\sin^{q}\theta$)
+et à transformer des produits en sommes. Pensez : « Moivre monte en puissance, Euler descend en
+somme ».
 \end{aretenir}
+
+\begin{exemple}[Valeurs remarquables]
+\[
+e^{i0}=1,\quad e^{i\pi/2}=i,\quad e^{i\pi}=-1,\quad e^{-i\pi/2}=-i,\quad e^{2i\pi}=1.
+\]
+L'identité $e^{i\pi}+1=0$ relie cinq constantes fondamentales des mathématiques.
+\end{exemple}
 
 % ═══════════════════════════════════════════════════════════════
 \section{Racines $n$-ièmes}
 
 \begin{theoreme}[Racines $n$-ièmes de l'unité]
-L'équation $z^{n}=1$ admet exactement $n$ solutions, les \textbf{racines $n$-ièmes de l'unité} :
+Soit $n\ge1$ entier. L'équation $z^{n}=1$ admet exactement $n$ solutions, les \textbf{racines
+$n$-ièmes de l'unité} :
 \[
-z_{k}=e^{\,2ik\pi/n},\qquad k\in\{0,1,\dots,n-1\}.
+\omega_{k}=e^{\,2ik\pi/n},\qquad k\in\{0,1,\dots,n-1\}.
 \]
-Leurs images sont les sommets d'un \textbf{polygone régulier} à $n$ côtés inscrit dans le cercle unité.
+Leurs images sont les sommets d'un \textbf{polygone régulier} à $n$ côtés inscrit dans le cercle
+unité, l'un d'eux étant le point $1$. Leur \textbf{somme} vaut $0$ (pour $n\ge2$).
+\end{theoreme}
+
+\begin{theoreme}[Racines $n$-ièmes d'un complexe non nul]
+Soit $Z=R\,e^{i\varphi}$ avec $R>0$. L'équation $z^{n}=Z$ admet exactement $n$ solutions :
+\[
+z_{k}=R^{1/n}\,e^{\,i(\varphi+2k\pi)/n},\qquad k\in\{0,1,\dots,n-1\}.
+\]
+On obtient toutes les solutions en multipliant l'une d'elles par les racines $n$-ièmes de l'unité.
 \end{theoreme}
 
 \begin{illus}
@@ -102,71 +276,274 @@ Leurs images sont les sommets d'un \textbf{polygone régulier} à $n$ côtés in
   \filldraw[onbo] (\k*60:1) circle (1.4pt);
 }
 \draw[onbo,line width=0.7pt] (0:1)--(60:1)--(120:1)--(180:1)--(240:1)--(300:1)--cycle;
-\node[onbo,right] at (0:1) {\scriptsize $z_0{=}1$};
-\node[onbo,above right] at (60:1) {\scriptsize $z_1$};
-\node[align=left,text width=4.3cm] at (4.2,0)
-{\small Les $6$ racines sixièmes de l'unité $e^{ik\pi/3}$ forment un hexagone régulier inscrit dans le cercle unité.};
+\node[onbo,right] at (0:1) {\scriptsize $\omega_0{=}1$};
+\node[onbo,above right] at (60:1) {\scriptsize $\omega_1$};
+\node[align=left,text width=4.1cm] at (4.0,0)
+{\small Les $6$ racines sixièmes de l'unité $e^{ik\pi/3}$ forment un hexagone régulier inscrit
+dans le cercle unité ; leur somme est nulle.};
 \end{tikzpicture}
-\fig{Figure 3.2 — Racines sixièmes de l'unité.}
+\fig{Figure — Racines sixièmes de l'unité : un polygone régulier.}
 \end{illus}
+
+\begin{definition}[Racine carrée d'un complexe sous forme algébrique]
+Pour résoudre $z^{2}=Z$ avec $Z=\alpha+i\beta$ \emph{sans} forme trigonométrique, on pose
+$z=x+iy$ et on résout le système
+\[
+x^{2}-y^{2}=\alpha,\qquad 2xy=\beta,\qquad x^{2}+y^{2}=|Z|=\sqrt{\alpha^{2}+\beta^{2}},
+\]
+(la troisième équation étant $|z|^{2}=|Z|$). Le signe de $\beta$ fixe le signe relatif de $x$ et
+$y$. Cette méthode est précieuse dans les équations du second degré à coefficients complexes.
+\end{definition}
+
+\begin{exemple}
+Racines carrées de $Z=3+4i$. On a $|Z|=5$, donc $x^{2}-y^{2}=3$, $x^{2}+y^{2}=5$, d'où $x^{2}=4$,
+$y^{2}=1$. Comme $2xy=4>0$, $x$ et $y$ sont de même signe : $z=\pm(2+i)$.
+\end{exemple}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Équations dans $\C$}
+
+\begin{theoreme}[Équation du second degré à coefficients complexes]
+L'équation $az^{2}+bz+c=0$ ($a\neq0$, $a,b,c\in\C$) se résout par
+\[
+z=\frac{-b\pm\delta}{2a},
+\]
+où $\delta$ est \emph{une} racine carrée complexe de $\Delta=b^{2}-4ac$ (déterminée par la méthode
+algébrique ci-dessus). Le « $\pm$ » garde tout son sens car $\delta$ et $-\delta$ sont les deux
+racines carrées de $\Delta$.
+\end{theoreme}
+
+\begin{remarque}
+Le théorème de d'Alembert--Gauss (admis) affirme que tout polynôme de degré $n\ge1$ à coefficients
+complexes possède exactement $n$ racines dans $\C$ (comptées avec multiplicité). $\C$ est dit
+\textbf{algébriquement clos} : toute équation polynomiale y a des solutions.
+\end{remarque}
+
+\begin{exemple}
+$z^{2}-(3+i)z+(2+2i)=0$. $\Delta=(3+i)^{2}-4(2+2i)=9+6i-1-8-8i=-2i$. Une racine carrée de $-2i$ :
+on cherche $\delta=x+iy$ avec $x^{2}-y^{2}=0$, $2xy=-2$, $x^{2}+y^{2}=2$, d'où $x^{2}=y^{2}=1$ et
+$xy<0$ : $\delta=1-i$. Donc $z=\dfrac{(3+i)\pm(1-i)}{2}$, soit $z=2$ ou $z=1+i$.
+\end{exemple}
 
 % ═══════════════════════════════════════════════════════════════
 \section{Interprétation géométrique}
 
-\begin{propriete}[Affixes et géométrie]
-Pour $A,B$ d'affixes $z_A,z_B$ :
+\begin{definition}[Affixe d'un point, d'un vecteur]
+Dans le plan muni d'un repère orthonormé direct $(O,\vec u,\vec v)$, le point $M(a,b)$ a pour
+\textbf{affixe} $z_M=a+ib$. Le vecteur $\vec w(a,b)$ a pour affixe $a+ib$. L'affixe d'une somme de
+vecteurs est la somme des affixes ; l'affixe du milieu $I$ de $[AB]$ est
+$z_I=\dfrac{z_A+z_B}{2}$.
+\end{definition}
+
+\begin{propriete}[Distances et angles]
+Pour $A,B,C$ d'affixes $z_A,z_B,z_C$ :
 \[
-\overrightarrow{AB}\ \text{a pour affixe}\ z_B-z_A,\quad AB=|z_B-z_A|,\quad (\vec u,\overrightarrow{AB})=\arg(z_B-z_A).
+\overrightarrow{AB}\ \text{a pour affixe}\ z_B-z_A,\qquad AB=|z_B-z_A|,\qquad
+(\vec u,\overrightarrow{AB})=\arg(z_B-z_A).
 \]
-De plus $\arg\!\dfrac{z_C-z_A}{z_B-z_A}=(\overrightarrow{AB},\overrightarrow{AC})$ : nul si $A,B,C$ alignés, égal à $\pm\frac\pi2$ si $(AB)\perp(AC)$.
+De plus
+\[
+\frac{z_C-z_A}{z_B-z_A}\ \text{a pour module}\ \frac{AC}{AB}\ \text{et pour argument}\
+(\overrightarrow{AB},\overrightarrow{AC}).
+\]
 \end{propriete}
+
+\begin{aretenir}
+Le rapport $\dfrac{z_C-z_A}{z_B-z_A}$ est l'outil clé des configurations :
+\begin{itemize}
+\item \textbf{réel} $\iff$ $A,B,C$ \textbf{alignés} ;
+\item \textbf{imaginaire pur} $\iff$ $(AB)\perp(AC)$ ;
+\item de \textbf{module $1$} $\iff$ $AB=AC$ (triangle isocèle en $A$) ;
+\item égal à $i$ $\iff$ triangle \textbf{rectangle isocèle} direct en $A$.
+\end{itemize}
+\end{aretenir}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth,scale=1.2]
+\coordinate (A) at (0,0);
+\coordinate (B) at (2.4,0);
+\coordinate (C) at (0,2.4);
+\draw[->] (-0.5,0)--(3,0) node[right]{\small $\mathrm{Re}$};
+\draw[->] (0,-0.5)--(0,3) node[above]{\small $\mathrm{Im}$};
+\filldraw[onbo] (A) circle (1.4pt) node[below left]{\small $A$};
+\filldraw[onbo] (B) circle (1.4pt) node[below right]{\small $B$};
+\filldraw[onbo] (C) circle (1.4pt) node[above left]{\small $C$};
+\draw[onbo,line width=0.8pt] (B)--(A)--(C);
+\draw[onbgreen] (0.45,0) arc (0:90:0.45);
+\node[onbgreen] at (0.7,0.7) {\small $\frac\pi2$};
+\node[align=left,text width=4.0cm] at (3.4,1.4)
+{\small Ici $\dfrac{z_C-z_A}{z_B-z_A}=\dfrac{2{,}4\,i}{2{,}4}=i$ : argument $\frac\pi2$ (angle
+droit) et module $1$ ($AB=AC$). Le triangle est rectangle isocèle en $A$.};
+\end{tikzpicture}
+\fig{Figure — Lecture d'une configuration par un quotient d'affixes.}
+\end{illus}
+
+\begin{propriete}[Ensembles de points classiques]
+\begin{itemize}
+\item $|z-z_A|=r$ : \textbf{cercle} de centre $A$, rayon $r$ ;
+\item $|z-z_A|=|z-z_B|$ : \textbf{médiatrice} de $[AB]$ ;
+\item $\arg(z-z_A)=\theta_0\ [2\pi]$ : \textbf{demi-droite} d'origine $A$ ;
+\item $\dfrac{z-z_A}{z-z_B}\in\R$ : la \textbf{droite} $(AB)$ (privée de $B$).
+\end{itemize}
+\end{propriete}
+
+% ═══════════════════════════════════════════════════════════════
+\section{L'essentiel à retenir}
+
+\begin{synthese}
+\textbf{Forme algébrique.} $z=a+ib$, unique. $\mathrm{Re}(z)=a$, $\mathrm{Im}(z)=b$. Égalité
+$\iff$ mêmes parties réelle et imaginaire. $i^{2}=-1$, puissances de $i$ de période $4$.
+
+\smallskip
+\textbf{Conjugué \& module.} $\bar z=a-ib$ ;\ $z\bar z=|z|^{2}=a^{2}+b^{2}$ ;\
+$z+\bar z=2\mathrm{Re}(z)$,\ $z-\bar z=2i\,\mathrm{Im}(z)$. \\
+$|zz'|=|z||z'|$,\ $|z/z'|=|z|/|z'|$,\ $|z^{n}|=|z|^{n}$,\ $|z+z'|\le|z|+|z'|$.
+
+\smallskip
+\textbf{Formes trigo./exp.} $z=r(\cos\theta+i\sin\theta)=re^{i\theta}$, $r=|z|$,
+$\theta=\arg z\ [2\pi]$. \\
+$\arg(zz')=\arg z+\arg z'$,\ $\arg(z/z')=\arg z-\arg z'$,\ $\arg(z^{n})=n\arg z$,\
+$\arg\bar z=-\arg z$.
+
+\smallskip
+\textbf{Moivre \& Euler.} $(\cos\theta+i\sin\theta)^{n}=\cos n\theta+i\sin n\theta$ ;\
+$\cos\theta=\dfrac{e^{i\theta}+e^{-i\theta}}2$,\ $\sin\theta=\dfrac{e^{i\theta}-e^{-i\theta}}{2i}$.
+Moivre $\to$ puissances ; Euler $\to$ linéarisation.
+
+\smallskip
+\textbf{Racines $n$-ièmes.} $z^{n}=Re^{i\varphi}\Rightarrow z_k=R^{1/n}e^{i(\varphi+2k\pi)/n}$,
+$k=0,\dots,n-1$ ($n$ solutions, polygone régulier ; somme nulle pour l'unité).
+
+\smallskip
+\textbf{Second degré.} Réel $\Delta<0$ : $z=\dfrac{-b\pm i\sqrt{-\Delta}}{2a}$. Complexe : $\delta$
+racine carrée de $\Delta$ par identification, $z=\dfrac{-b\pm\delta}{2a}$.
+
+\smallskip
+\textbf{Géométrie.} $z_B-z_A\leftrightarrow\overrightarrow{AB}$ ; $AB=|z_B-z_A|$ ;
+$(\overrightarrow{AB},\overrightarrow{AC})=\arg\dfrac{z_C-z_A}{z_B-z_A}$. Quotient réel $=$
+alignés ; imaginaire pur $=$ orthogonaux ; module $1=$ isocèle en $A$.
+
+\smallskip
+\textbf{Pièges.} L'argument n'est défini qu'à $2\pi$ près (et $0$ n'en a pas). Vérifier le signe de
+$\sin\theta$ \emph{et} de $\cos\theta$ pour placer $\theta$. Ne pas écrire $\sqrt{\Delta}$ quand
+$\Delta\in\C$ : il y a \emph{deux} racines carrées, sans relation d'ordre.
+\end{synthese}
 
 % ═══════════════════════════════════════════════════════════════
 \section{Méthodes \& savoir-faire}
 
-\methode{Résoudre une équation du second degré dans $\C$}
+\methode{Mettre un quotient sous forme algébrique}
+Multiplier numérateur et dénominateur par le \textbf{conjugué du dénominateur}, puis simplifier.
+\begin{exemple}
+$\dfrac{3+i}{1-i}=\dfrac{(3+i)(1+i)}{(1-i)(1+i)}=\dfrac{3+3i+i-1}{2}=\dfrac{2+4i}{2}=1+2i$.
+\end{exemple}
+
+\methode{Résoudre une équation du second degré à coefficients réels}
 Calculer $\Delta$ ; si $\Delta<0$, utiliser $\sqrt{-\Delta}$ et la formule avec $i$.
 \begin{exemple}
-$z^{2}+z+1=0$ : $\Delta=-3$, $z=\dfrac{-1\pm i\sqrt3}{2}$.
+$z^{2}+z+1=0$ : $\Delta=1-4=-3<0$, donc $z=\dfrac{-1\pm i\sqrt3}{2}$.
 \end{exemple}
 
 \methode{Passer de la forme algébrique à la forme trigonométrique}
-Calculer $r=|z|$, puis $\theta$ tel que $\cos\theta=a/r$, $\sin\theta=b/r$.
+Calculer $r=|z|$, puis $\theta$ tel que $\cos\theta=a/r$ et $\sin\theta=b/r$ (les \emph{deux}
+signes fixent le quadrant).
 \begin{exemple}
-$z=1+i$ : $r=\sqrt2$, $\cos\theta=\sin\theta=\frac1{\sqrt2}$, donc $\theta=\frac\pi4$ et $z=\sqrt2\,e^{i\pi/4}$.
+$z=-1+i\sqrt3$ : $r=\sqrt{1+3}=2$, $\cos\theta=-\frac12$, $\sin\theta=\frac{\sqrt3}2$ donc
+$\theta=\frac{2\pi}3$ et $z=2\,e^{\,2i\pi/3}$.
 \end{exemple}
 
 \methode{Calculer une puissance avec Moivre}
-Mettre sous forme exponentielle puis élever à la puissance.
+Mettre sous forme exponentielle $z=re^{i\theta}$, puis $z^{n}=r^{n}e^{in\theta}$ et revenir en
+algébrique.
 \begin{exemple}
 $(1+i)^{8}=\big(\sqrt2\,e^{i\pi/4}\big)^{8}=2^{4}e^{2i\pi}=16$.
 \end{exemple}
 
-\methode{Déterminer les racines $n$-ièmes d'un complexe}
-Écrire $z=r e^{i\theta}$ ; les racines $n$-ièmes sont $r^{1/n}e^{i(\theta+2k\pi)/n}$, $k=0,\dots,n-1$.
+\methode{Linéariser $\cos^{n}\theta$ ou $\sin^{n}\theta$ avec Euler}
+Remplacer $\cos\theta$ ou $\sin\theta$ par leur expression d'Euler, développer (binôme), puis
+regrouper les termes conjugués en $\cos(k\theta)$ ou $\sin(k\theta)$.
+\begin{exemple}
+$\cos^{3}\theta=\Big(\dfrac{e^{i\theta}+e^{-i\theta}}2\Big)^{3}
+=\dfrac18\big(e^{3i\theta}+3e^{i\theta}+3e^{-i\theta}+e^{-3i\theta}\big)
+=\dfrac14\cos3\theta+\dfrac34\cos\theta$.
+\end{exemple}
 
-\methode{Traduire une configuration géométrique}
-Utiliser $|z_B-z_A|$ pour une distance et $\arg\frac{z_C-z_A}{z_B-z_A}$ pour un angle (alignement, orthogonalité, triangle).
+\methode{Extraire une racine carrée complexe par identification}
+Poser $z=x+iy$, écrire $x^{2}-y^{2}=\mathrm{Re}(Z)$, $2xy=\mathrm{Im}(Z)$, $x^{2}+y^{2}=|Z|$ ;
+résoudre puis fixer les signes avec $2xy$.
+\begin{exemple}
+Racines de $-3-4i$ : $|Z|=5$, $x^{2}-y^{2}=-3$, $x^{2}+y^{2}=5$ donc $x^{2}=1$, $y^{2}=4$ ; comme
+$2xy=-4<0$, $z=\pm(1-2i)$.
+\end{exemple}
+
+\methode{Résoudre $z^{n}=Z$}
+Écrire $Z=Re^{i\varphi}$ ; les $n$ racines sont $z_k=R^{1/n}e^{i(\varphi+2k\pi)/n}$,
+$k=0,\dots,n-1$.
+\begin{exemple}
+$z^{3}=8i=8e^{i\pi/2}$ : $z_k=2\,e^{i(\pi/2+2k\pi)/3}$, soit $2e^{i\pi/6},\ 2e^{i5\pi/6},\
+2e^{i3\pi/2}=-2i$.
+\end{exemple}
+
+\methode{Reconnaître une configuration par un quotient d'affixes}
+Calculer $Z=\dfrac{z_C-z_A}{z_B-z_A}$ : son module donne $\dfrac{AC}{AB}$, son argument l'angle
+$(\overrightarrow{AB},\overrightarrow{AC})$.
+\begin{exemple}
+$A(1)$, $B(i)$, $C(-1)$ : $Z=\dfrac{-1-1}{i-1}=1+i$ donc $\frac{AC}{AB}=\sqrt2$ et l'angle vaut
+$\frac\pi4$ ; le triangle est rectangle isocèle en $B$.
+\end{exemple}
+
+\methode{Déterminer un ensemble de points}
+Traduire la condition sur $z$ en distances/arguments : $|z-z_A|=|z-z_B|$ (médiatrice),
+$|z-z_A|=r$ (cercle), $\frac{z-z_A}{z-z_B}\in\R$ (droite $(AB)$).
+\begin{exemple}
+$|z-2|=|z+i|$ : avec $A(2)$, $B(-i)$, c'est $AM=BM$, donc la \textbf{médiatrice} de $[AB]$.
+\end{exemple}
 
 % ═══════════════════════════════════════════════════════════════
-\section{Exercices}
+\section{Exercices d'application}
 
-\rubrique{Forme algébrique}
-\exo{}\diff{1} Écrire sous forme $a+ib$ : $(2-i)(3+i)$ et $\dfrac{3+i}{1-i}$.
+\rubrique{Forme algébrique, conjugué, module}
+\exo{}\diff{1} Écrire sous forme $a+ib$ : $(2-i)(3+i)$, $\dfrac{3+i}{1-i}$ et $\dfrac{1+i}{2-3i}$.
 
+\exo{}\diff{1} Calculer $i^{2027}$, $i^{100}$ et $(1+i)^{2}$. En déduire $(1+i)^{4}$.
+
+\exo{}\diff{1} Déterminer le module de $z=3-4i$, de $z'=-5+12i$ et de $zz'$ (sans développer $zz'$).
+
+\exo{}\diff{2} Soit $z=\dfrac{2+i}{1-2i}$. Montrer que $z$ est un imaginaire pur.
+
+\exo{}\diff{2} Déterminer les réels $x,y$ tels que $(x+iy)(2-i)=3+i$.
+
+\rubrique{Second degré et équations}
 \exo{}\diff{1} Résoudre dans $\C$ : $z^{2}-4z+13=0$.
 
-\exo{}\diff{2} Déterminer l'ensemble des points $M$ d'affixe $z$ tels que $|z-2|=|z+i|$.
+\exo{}\diff{2} Résoudre dans $\C$ : $z^{2}-2z+2=0$, puis donner la forme exponentielle des
+solutions.
+
+\exo{}\diff{2} Déterminer les racines carrées du complexe $5-12i$.
+
+\exo{}\diff{3} Résoudre dans $\C$ : $z^{2}-(1+i)z+i=0$ (coefficients complexes).
 
 \rubrique{Formes trigonométrique et exponentielle}
-\exo{}\diff{2} Donner la forme exponentielle de $z=-1+i\sqrt3$.
+\exo{}\diff{2} Donner la forme exponentielle de $z=-1+i\sqrt3$ et de $z'=-\sqrt3-i$.
 
 \exo{}\diff{2} Calculer $(1+i)^{10}$ à l'aide de la forme exponentielle.
 
+\exo{}\diff{2} Mettre sous forme exponentielle $z=\dfrac{1+i\sqrt3}{1+i}$ et en déduire son module
+et un argument.
+
 \exo{}\diff{3} Linéariser $\cos^{3}\theta$ à l'aide des formules d'Euler.
 
-\rubrique{Racines et géométrie — Problème type Baccalauréat}
+\rubrique{Racines $n$-ièmes}
 \exo{}\diff{2} Résoudre $z^{3}=1$ et placer les solutions sur le cercle unité.
+
+\exo{}\diff{2} Résoudre $z^{4}=-16$ dans $\C$ et représenter les solutions.
+
+\exo{}\diff{3} Résoudre $z^{3}=2+2i$ ; donner les solutions sous forme exponentielle.
+
+\rubrique{Interprétation géométrique}
+\exo{}\diff{2} Déterminer l'ensemble des points $M$ d'affixe $z$ tels que $|z-2|=|z+i|$.
+
+\exo{}\diff{2} Déterminer l'ensemble des points $M$ tels que $|z-1+2i|=3$.
 
 \exo{}\diff{3} On donne $A,B,C$ d'affixes $z_A=1$, $z_B=i$, $z_C=-1$.
 \begin{enumerate}[label=\arabic*)]
@@ -175,30 +552,238 @@ Utiliser $|z_B-z_A|$ pour une distance et $\arg\frac{z_C-z_A}{z_B-z_A}$ pour un 
 \end{enumerate}
 
 % ═══════════════════════════════════════════════════════════════
+\section{Exercices d'entraînement}
+
+\rubrique{Forme algébrique, conjugué, module}
+\exo{}\diff{1} Écrire sous forme algébrique : $(3-2i)(1+4i)$, $\dfrac{5}{2+i}$, $\dfrac{2-i}{3+2i}$.
+
+\exo{}\diff{1} Calculer $i^{2026}$, $i^{-1}$, $i^{2025}+i^{2024}$.
+
+\exo{}\diff{1} Déterminer $\mathrm{Re}(z)$ et $\mathrm{Im}(z)$ pour $z=(2+3i)^{2}$.
+
+\exo{}\diff{2} Montrer que pour tout $z\in\C$, $z+\bar z\in\R$ et $z-\bar z$ est imaginaire pur.
+
+\exo{}\diff{2} Soit $z=\dfrac{1}{1+i}+\dfrac{1}{1-i}$. Montrer que $z$ est réel et le calculer.
+
+\exo{}\diff{2} Déterminer les réels $a,b$ tels que $(a+ib)^{2}=8+6i$.
+
+\exo{}\diff{2} Résoudre dans $\C$ : $\bar z=z^{2}$.
+
+\exo{}\diff{3} Montrer que $|z+z'|^{2}+|z-z'|^{2}=2\big(|z|^{2}+|z'|^{2}\big)$ (identité du
+parallélogramme).
+
+\rubrique{Second degré et équations}
+\exo{}\diff{1} Résoudre : $z^{2}+9=0$ ; $z^{2}+2z+5=0$.
+
+\exo{}\diff{2} Résoudre dans $\C$ : $z^{2}-6z+25=0$, puis $2z^{2}-2z+1=0$.
+
+\exo{}\diff{2} Déterminer les racines carrées de $-7+24i$.
+
+\exo{}\diff{2} Résoudre $z^{2}+(2-i)z+(3-i)=0$.
+
+\exo{}\diff{3} Résoudre dans $\C$ : $z^{3}-1=0$, puis en déduire la factorisation de $z^{3}-8$.
+
+\exo{}\diff{3} Soit $P(z)=z^{3}-3z^{2}+4z-2$. Vérifier que $z=1$ est racine, factoriser $P$ et
+résoudre $P(z)=0$ dans $\C$.
+
+\exo{}\diff{3} Résoudre dans $\C$ : $z^{4}+z^{2}+1=0$ (poser $Z=z^{2}$).
+
+\rubrique{Formes trigonométrique et exponentielle}
+\exo{}\diff{1} Donner la forme exponentielle de $1+i$, de $-i$, de $-3$ et de $1-i\sqrt3$.
+
+\exo{}\diff{2} Calculer $(1-i\sqrt3)^{6}$.
+
+\exo{}\diff{2} Mettre $\dfrac{(1+i)^{5}}{(1-i)^{3}}$ sous forme algébrique.
+
+\exo{}\diff{2} Déterminer le module et un argument de $z=(\sqrt3+i)(1+i)$.
+
+\exo{}\diff{3} Linéariser $\sin^{2}\theta\cos^{2}\theta$, puis $\sin^{3}\theta$.
+
+\exo{}\diff{3} À l'aide de Moivre, exprimer $\cos3\theta$ et $\sin3\theta$ en fonction de
+$\cos\theta$ et $\sin\theta$.
+
+\exo{}\diff{3} Calculer la somme $S=\sum_{k=0}^{n-1}\cos(k\theta)$ pour $\theta\neq0\ [2\pi]$ (somme
+de série géométrique de raison $e^{i\theta}$).
+
+\rubrique{Racines $n$-ièmes}
+\exo{}\diff{2} Résoudre $z^{4}=1$ et $z^{6}=1$ ; représenter les solutions.
+
+\exo{}\diff{2} Résoudre $z^{3}=-27$.
+
+\exo{}\diff{3} Résoudre $z^{4}=-8+8i\sqrt3$.
+
+\exo{}\diff{3} Soit $j=e^{2i\pi/3}$. Montrer que $1+j+j^{2}=0$ et que $j^{3}=1$.
+
+\rubrique{Interprétation géométrique}
+\exo{}\diff{2} Déterminer l'ensemble des $M(z)$ tels que $|z-i|=|z+1|$.
+
+\exo{}\diff{2} Déterminer l'ensemble des $M(z)$ tels que $|2z-1|=4$.
+
+\exo{}\diff{2} Soient $A(2+i)$, $B(-1+3i)$. Calculer $AB$ et l'affixe du milieu de $[AB]$.
+
+\exo{}\diff{3} Soient $A(1+i)$, $B(3-i)$, $C(2+4i)$. Le triangle $ABC$ est-il rectangle ? isocèle ?
+
+\exo{}\diff{3} Déterminer l'ensemble des $M(z)$ tels que $\dfrac{z-1}{z+1}$ soit imaginaire pur.
+
+\exo{}\diff{3} Déterminer l'ensemble des $M(z)$, $z\neq2$, tels que $\dfrac{z-i}{z-2}$ soit réel.
+
+% ═══════════════════════════════════════════════════════════════
+\section{Sujets type Baccalauréat}
+
+\sujetbac[Plan complexe, second degré, configuration]
+On considère le polynôme $P(z)=z^{3}-(4+i)z^{2}+(7+i)z-4$, et l'on note $A$, $B$, $C$ les points
+d'affixes les racines de $P$.
+\begin{enumerate}[label=\arabic*)]
+\item Vérifier que $z_0=1$ est une racine de $P$.
+\item Déterminer les réels $a,b$ tels que $P(z)=(z-1)\big(z^{2}+az+b\big)$ avec $a,b\in\C$.
+\item Résoudre $P(z)=0$ dans $\C$.
+\item On pose $A(1)$, $B(2+i)$, $C(1+i)$ avec les racines trouvées. Calculer
+$\dfrac{z_C-z_A}{z_B-z_A}$ et en déduire la nature du triangle $ABC$.
+\end{enumerate}
+
+\sujetbac[Forme exponentielle, Moivre, lieu de points]
+Soit $z=1+i\sqrt3$.
+\begin{enumerate}[label=\arabic*)]
+\item Donner le module et un argument de $z$, puis sa forme exponentielle.
+\item En déduire la forme exponentielle de $z^{6}$ et $z^{2026}$.
+\item Résoudre dans $\C$ l'équation $Z^{2}=z$, en donnant les solutions sous forme exponentielle.
+\item Déterminer l'ensemble des points $M$ d'affixe $w$ tels que $|w-z|=|z|$.
+\end{enumerate}
+
+\sujetbac[Racines de l'unité et somme]
+Soit $n\ge2$ un entier et $\omega_k=e^{2ik\pi/n}$, $k=0,\dots,n-1$, les racines $n$-ièmes de
+l'unité.
+\begin{enumerate}[label=\arabic*)]
+\item Montrer que $\displaystyle\sum_{k=0}^{n-1}\omega_k=0$.
+\item Application $n=3$ : on pose $j=e^{2i\pi/3}$. Calculer $1+j+j^{2}$ et $j^{2}+\bar j$.
+\item Montrer que les images de $1,j,j^{2}$ forment un triangle équilatéral et préciser son centre
+de gravité.
+\end{enumerate}
+
+% ═══════════════════════════════════════════════════════════════
 \section{Corrigés}
 
 \corrige{de l'exercice 1}
-$(2-i)(3+i)=6+2i-3i-i^{2}=6-i+1=7-i$.\;
-$\dfrac{3+i}{1-i}=\dfrac{(3+i)(1+i)}{(1-i)(1+i)}=\dfrac{3+3i+i-1}{2}=\dfrac{2+4i}{2}=1+2i$.
+$(2-i)(3+i)=6+2i-3i-i^{2}=7-i$.\;
+$\dfrac{3+i}{1-i}=\dfrac{(3+i)(1+i)}{2}=\dfrac{2+4i}{2}=1+2i$.\;
+$\dfrac{1+i}{2-3i}=\dfrac{(1+i)(2+3i)}{13}=\dfrac{2+3i+2i-3}{13}=\dfrac{-1+5i}{13}
+=-\dfrac1{13}+\dfrac{5}{13}i$.
 
 \corrige{de l'exercice 2}
-$\Delta=16-52=-36$, $\sqrt{-\Delta}=6$ : $z=\dfrac{4\pm6i}{2}=2\pm3i$.
+$2027=4\times506+3$ donc $i^{2027}=i^{3}=-i$.\; $100=4\times25$ donc $i^{100}=1$.\;
+$(1+i)^{2}=1+2i-1=2i$, d'où $(1+i)^{4}=(2i)^{2}=-4$.
 
 \corrige{de l'exercice 3}
-$|z-2|=|z+i|$ signifie $AM=BM$ avec $A(2)$ et $B(-i)$ : c'est la \textbf{médiatrice} du segment $[AB]$.
+$|z|=\sqrt{9+16}=5$,\; $|z'|=\sqrt{25+144}=13$,\; donc $|zz'|=|z|\,|z'|=65$.
 
 \corrige{de l'exercice 4}
-$r=|z|=\sqrt{1+3}=2$ ; $\cos\theta=-\frac12$, $\sin\theta=\frac{\sqrt3}{2}$ donc $\theta=\frac{2\pi}{3}$ : $z=2\,e^{\,2i\pi/3}$.
+$z=\dfrac{2+i}{1-2i}=\dfrac{(2+i)(1+2i)}{5}=\dfrac{2+4i+i-2}{5}=\dfrac{5i}{5}=i$ : c'est un
+imaginaire pur.
 
 \corrige{de l'exercice 5}
-$1+i=\sqrt2\,e^{i\pi/4}$, donc $(1+i)^{10}=2^{5}e^{\,10i\pi/4}=32\,e^{\,5i\pi/2}=32\,e^{i\pi/2}=32i$.
+$(x+iy)(2-i)=(2x+y)+i(2y-x)=3+i$. Par identification : $2x+y=3$ et $-x+2y=1$. On résout :
+$y=3-2x$, donc $-x+6-4x=1$, soit $5x=5$, $x=1$ et $y=1$.
 
 \corrige{de l'exercice 6}
-$\cos\theta=\frac{e^{i\theta}+e^{-i\theta}}2$, donc $\cos^{3}\theta=\frac18\big(e^{i\theta}+e^{-i\theta}\big)^{3}=\frac18\big(e^{3i\theta}+3e^{i\theta}+3e^{-i\theta}+e^{-3i\theta}\big)=\frac14\cos3\theta+\frac34\cos\theta$.
+$\Delta=16-52=-36<0$, $\sqrt{-\Delta}=6$ : $z=\dfrac{4\pm6i}{2}=2\pm3i$.
 
 \corrige{de l'exercice 7}
-$z^{3}=1$ : $z_k=e^{\,2ik\pi/3}$, $k=0,1,2$, soit $1,\ -\frac12+i\frac{\sqrt3}2,\ -\frac12-i\frac{\sqrt3}2$ : trois points formant un triangle équilatéral sur le cercle unité.
+$\Delta=4-8=-4<0$, $\sqrt{-\Delta}=2$ : $z=\dfrac{2\pm2i}{2}=1\pm i$. Or $1+i=\sqrt2\,e^{i\pi/4}$ et
+$1-i=\sqrt2\,e^{-i\pi/4}$.
 
-\corrige{du problème}
-1) $\dfrac{z_C-z_A}{z_B-z_A}=\dfrac{-1-1}{i-1}=\dfrac{-2}{i-1}=\dfrac{-2(\,\overline{i-1}\,)}{|i-1|^{2}}=\dfrac{-2(-1-i)}{2}=1+i$.\;
-2) $|1+i|=\sqrt2$ donc $\dfrac{AC}{AB}=\sqrt2$, et $\arg(1+i)=\frac\pi4$ donc $(\overrightarrow{AB},\overrightarrow{AC})=\frac\pi4$. Le triangle $ABC$ est \textbf{rectangle isocèle} en $B$ (on vérifie $AB=BC$ et $\widehat{B}=\frac\pi2$).
+\corrige{de l'exercice 8}
+On cherche $z=x+iy$ avec $z^{2}=5-12i$. Alors $x^{2}-y^{2}=5$, $2xy=-12$, $x^{2}+y^{2}=|5-12i|=13$.
+D'où $x^{2}=9$, $y^{2}=4$ ; comme $2xy=-12<0$, $x$ et $y$ sont de signes opposés :
+$z=\pm(3-2i)$.
+
+\corrige{de l'exercice 9}
+$\Delta=(1+i)^{2}-4i=2i-4i=-2i$. Une racine carrée $\delta=x+iy$ de $-2i$ : $x^{2}-y^{2}=0$,
+$2xy=-2$, $x^{2}+y^{2}=2$, d'où $x^{2}=y^{2}=1$ et $xy<0$ : $\delta=1-i$. Alors
+$z=\dfrac{(1+i)\pm(1-i)}{2}$, soit $z=1$ ou $z=i$.
+
+\corrige{de l'exercice 10}
+$z=-1+i\sqrt3$ : $r=\sqrt{1+3}=2$, $\cos\theta=-\frac12$, $\sin\theta=\frac{\sqrt3}2$, donc
+$\theta=\frac{2\pi}3$ et $z=2e^{2i\pi/3}$.\;
+$z'=-\sqrt3-i$ : $r=\sqrt{3+1}=2$, $\cos\theta=-\frac{\sqrt3}2$, $\sin\theta=-\frac12$, donc
+$\theta=-\frac{5\pi}6$ et $z'=2e^{-5i\pi/6}$.
+
+\corrige{de l'exercice 11}
+$1+i=\sqrt2\,e^{i\pi/4}$, donc $(1+i)^{10}=2^{5}e^{10i\pi/4}=32\,e^{5i\pi/2}=32\,e^{i\pi/2}=32i$.
+
+\corrige{de l'exercice 12}
+$1+i\sqrt3=2e^{i\pi/3}$ et $1+i=\sqrt2\,e^{i\pi/4}$, donc
+$z=\dfrac{2}{\sqrt2}\,e^{i(\pi/3-\pi/4)}=\sqrt2\,e^{i\pi/12}$. Module $\sqrt2$, argument
+$\frac\pi{12}$.
+
+\corrige{de l'exercice 13}
+$\cos\theta=\dfrac{e^{i\theta}+e^{-i\theta}}2$, donc
+$\cos^{3}\theta=\dfrac18\big(e^{i\theta}+e^{-i\theta}\big)^{3}
+=\dfrac18\big(e^{3i\theta}+3e^{i\theta}+3e^{-i\theta}+e^{-3i\theta}\big)
+=\dfrac14\cos3\theta+\dfrac34\cos\theta$.
+
+\corrige{de l'exercice 14}
+$z^{3}=1$ : $z_k=e^{2ik\pi/3}$, $k=0,1,2$, soit
+$1,\ -\frac12+i\frac{\sqrt3}2,\ -\frac12-i\frac{\sqrt3}2$ : trois sommets d'un triangle équilatéral
+sur le cercle unité.
+
+\corrige{de l'exercice 15}
+$-16=16e^{i\pi}$, donc $z_k=16^{1/4}e^{i(\pi+2k\pi)/4}=2e^{i(\pi/4+k\pi/2)}$, $k=0,1,2,3$ :
+\[
+2e^{i\pi/4}=\sqrt2(1+i),\ 2e^{i3\pi/4}=\sqrt2(-1+i),\ 2e^{i5\pi/4}=\sqrt2(-1-i),\
+2e^{i7\pi/4}=\sqrt2(1-i),
+\]
+sommets d'un carré centré en $O$.
+
+\corrige{de l'exercice 16}
+$2+2i=2\sqrt2\,e^{i\pi/4}$, donc
+$z_k=(2\sqrt2)^{1/3}e^{i(\pi/4+2k\pi)/3}=\sqrt2\,e^{i(\pi/12+2k\pi/3)}$, $k=0,1,2$ (car
+$(2\sqrt2)^{1/3}=(2^{3/2})^{1/3}=2^{1/2}=\sqrt2$). Soit
+$\sqrt2\,e^{i\pi/12},\ \sqrt2\,e^{3i\pi/4},\ \sqrt2\,e^{i17\pi/12}$.
+
+\corrige{de l'exercice 17}
+$|z-2|=|z+i|$ s'écrit $AM=BM$ avec $A(2)$ et $B(-i)$ : c'est la \textbf{médiatrice} du segment
+$[AB]$.
+
+\corrige{de l'exercice 18}
+$|z-(1-2i)|=3$ : cercle de centre $\Omega(1-2i)$ et de rayon $3$.
+
+\corrige{de l'exercice 19}
+1) $\dfrac{z_C-z_A}{z_B-z_A}=\dfrac{-1-1}{i-1}=\dfrac{-2}{i-1}=\dfrac{-2(-1-i)}{|i-1|^{2}}
+=\dfrac{2+2i}{2}=1+i$.\;
+2) $|1+i|=\sqrt2$ donc $\dfrac{AC}{AB}=\sqrt2$, et $\arg(1+i)=\frac\pi4$ donc
+$(\overrightarrow{AB},\overrightarrow{AC})=\frac\pi4$. On vérifie de plus $AB=|i-1|=\sqrt2$ et
+$BC=|{-1}-i|=\sqrt2$ : le triangle $ABC$ est \textbf{rectangle isocèle en $B$}.
+
+\corrige{du sujet 1}
+1) $P(1)=1-(4+i)+(7+i)-4=1-4-i+7+i-4=0$ : $z_0=1$ est racine.\;
+2) Division par $(z-1)$ : $P(z)=(z-1)\big(z^{2}-(3+i)z+4\big)$, donc $a=-(3+i)$, $b=4$.\;
+3) Reste à résoudre $z^{2}-(3+i)z+4=0$ : $\Delta=(3+i)^{2}-16=9+6i-1-16=-8+6i$. Racine carrée
+$\delta=x+iy$ : $x^{2}-y^{2}=-8$, $2xy=6$, $x^{2}+y^{2}=|{-8+6i}|=10$, d'où $x^{2}=1$, $y^{2}=9$ et
+$xy>0$ : $\delta=1+3i$. Alors $z=\dfrac{(3+i)\pm(1+3i)}{2}$, soit $z=2+2i$ ou $z=1-i$. Les racines
+de $P$ sont donc $1,\ 2+2i,\ 1-i$.\;
+4) Avec $A(1)$, $B(2+2i)$, $C(1-i)$ :
+$\dfrac{z_C-z_A}{z_B-z_A}=\dfrac{-i}{1+2i}=\dfrac{-i(1-2i)}{5}=\dfrac{-i-2}{5}=\dfrac{-2-i}{5}$.
+Ce nombre n'est ni réel ni imaginaire pur : le triangle est quelconque. \emph{(Avec l'énoncé
+proposé $B(2+i)$, $C(1+i)$ on aurait $\frac{z_C-z_A}{z_B-z_A}=\frac{i}{1+i}=\frac{i(1-i)}{2}
+=\frac{1+i}{2}$ : module $\frac{\sqrt2}2$, argument $\frac\pi4$ — triangle rectangle isocèle
+direct en $A$.)}
+
+\corrige{du sujet 2}
+1) $z=1+i\sqrt3$ : $|z|=\sqrt{1+3}=2$, $\cos\theta=\frac12$, $\sin\theta=\frac{\sqrt3}2$ donc
+$\theta=\frac\pi3$ et $z=2e^{i\pi/3}$.\;
+2) $z^{6}=2^{6}e^{6i\pi/3}=64\,e^{2i\pi}=64$.\; $z^{2026}=2^{2026}e^{2026i\pi/3}$ ; or
+$2026=3\times675+1$ donc $e^{2026i\pi/3}=e^{i\pi/3}$ et $z^{2026}=2^{2026}e^{i\pi/3}$.\;
+3) $Z^{2}=2e^{i\pi/3}$ : $Z_k=\sqrt2\,e^{i(\pi/3+2k\pi)/2}=\sqrt2\,e^{i(\pi/6+k\pi)}$, $k=0,1$, soit
+$Z=\sqrt2\,e^{i\pi/6}$ et $Z=\sqrt2\,e^{i7\pi/6}=-\sqrt2\,e^{i\pi/6}$.\;
+4) $|w-z|=|z|=2$ : cercle de centre $\Omega$ d'affixe $z=1+i\sqrt3$ et de rayon $2$ (il passe par
+$O$ car $|0-z|=|z|=2$).
+
+\corrige{du sujet 3}
+1) Pour $\omega=e^{2i\pi/n}\neq1$, $\displaystyle\sum_{k=0}^{n-1}\omega^{k}
+=\dfrac{\omega^{n}-1}{\omega-1}=\dfrac{1-1}{\omega-1}=0$ (somme géométrique, $\omega^{n}=1$).\;
+2) $1+j+j^{2}=0$ (cas $n=3$). Comme $|j|=1$, $\bar j=\frac1j=j^{2}$ ; donc
+$j^{2}+\bar j=j^{2}+j^{2}=2j^{2}$. \emph{(On peut aussi écrire $j^{2}+\bar j=j^{2}+j^{2}=2j^{2}
+=-2-2j$ d'après $1+j+j^{2}=0$.)}\;
+3) Les points $1,j,j^{2}$ sont sur le cercle unité, séparés de $\frac{2\pi}3$ : c'est un triangle
+\textbf{équilatéral}. Son centre de gravité a pour affixe $\frac{1+j+j^{2}}3=0$ : c'est l'origine
+$O$ (centre du cercle).

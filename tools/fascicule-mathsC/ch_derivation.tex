@@ -2,19 +2,60 @@
 
 \noindent\textit{La dérivée mesure la vitesse de variation d'une fonction : géométriquement,
 c'est la pente de la tangente. Elle permet d'étudier les variations, de rechercher les
-extremums et — spécificité de la série C — d'analyser la \textbf{convexité} d'une courbe.}
+extremums et — spécificité de la série C — d'analyser la \textbf{convexité} d'une courbe.
+Ce chapitre rassemble tout l'outillage de l'analyse au Baccalauréat : nombre dérivé,
+dérivées usuelles, sens de variation, inégalité des accroissements finis, convexité,
+points d'inflexion, asymptotes et le \textbf{plan complet d'étude d'une fonction}.}
 \vspace{8pt}
 
 % ═══════════════════════════════════════════════════════════════
-\section{Dérivabilité et tangente}
+\section{Dérivabilité et nombre dérivé}
 
 \begin{definition}[Nombre dérivé]
 $f$ est \textbf{dérivable en} $a$ si le taux d'accroissement admet une limite finie :
 \[
-f'(a)=\lim_{h\to0}\frac{f(a+h)-f(a)}{h}.
+f'(a)=\lim_{h\to0}\frac{f(a+h)-f(a)}{h}=\lim_{x\to a}\frac{f(x)-f(a)}{x-a}.
 \]
 Ce nombre $f'(a)$ est la \textbf{pente de la tangente} à la courbe $\mathcal C_f$ au point d'abscisse $a$.
 \end{definition}
+
+\begin{remarque}
+Les deux écritures sont équivalentes : on passe de l'une à l'autre par $x=a+h$, donc $h=x-a$,
+et $h\to0\iff x\to a$. La première (en $h$) est commode pour les calculs algébriques ; la
+seconde (en $x$) éclaire le lien avec la limite d'une fonction.
+\end{remarque}
+
+\begin{exemple}
+Pour $f(x)=x^{2}$ en $a=3$ :
+$\dfrac{f(3+h)-f(3)}{h}=\dfrac{(3+h)^{2}-9}{h}=\dfrac{6h+h^{2}}{h}=6+h\xrightarrow[h\to0]{}6$.
+Donc $f'(3)=6$ : cohérent avec la formule $f'(x)=2x$.
+\end{exemple}
+
+\begin{definition}[Dérivabilité à gauche, à droite]
+$f$ est dérivable à droite (resp. à gauche) en $a$ si $\displaystyle\lim_{h\to0^{+}}\frac{f(a+h)-f(a)}{h}=f'_d(a)$
+(resp. $\lim_{h\to0^{-}}=f'_g(a)$) existe et est finie. $f$ est dérivable en $a$ \emph{ssi}
+$f'_g(a)=f'_d(a)$, et alors $f'(a)$ vaut cette valeur commune.
+\end{definition}
+
+\begin{propriete}[Dérivabilité $\Rightarrow$ continuité]
+Si $f$ est dérivable en $a$, alors $f$ est continue en $a$. La réciproque est \textbf{fausse}.
+\end{propriete}
+
+\begin{remarque}
+Contre-exemple classique : $x\mapsto|x|$ est continue en $0$ mais non dérivable
+($f'_g(0)=-1\ne f'_d(0)=1$). Géométriquement, la courbe présente un \textbf{point anguleux}.
+Lorsque $\dfrac{f(a+h)-f(a)}{h}\to\pm\infty$, on a une \textbf{tangente verticale}
+(ex. $x\mapsto\sqrt x$ en $0$).
+\end{remarque}
+
+\begin{definition}[Fonction dérivée]
+Si $f$ est dérivable en tout point d'un intervalle $I$, la fonction $f':x\mapsto f'(x)$
+est la \textbf{fonction dérivée} de $f$ sur $I$. On définit de même $f''=(f')'$ (dérivée seconde),
+puis $f^{(n)}$.
+\end{definition}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Tangente et approximation affine}
 
 \begin{propriete}[Équation de la tangente]
 La tangente à $\mathcal C_f$ au point d'abscisse $a$ a pour équation
@@ -39,20 +80,69 @@ y=f'(a)\,(x-a)+f(a).
 \fig{Figure — Tangente à une courbe : interprétation du nombre dérivé.}
 \end{illus}
 
-\begin{propriete}[Dérivées usuelles et opérations]
+\begin{propriete}[Approximation affine locale]
+Au voisinage de $a$, $f(a+h)\approx f(a)+h\,f'(a)$. C'est la meilleure approximation
+\emph{affine} de $f$ près de $a$ ; elle sert aux calculs approchés.
+\end{propriete}
+
+\begin{exemple}
+Approximation de $\sqrt{4{,}02}$ avec $f(x)=\sqrt x$, $a=4$, $h=0{,}02$ :
+$f'(x)=\dfrac1{2\sqrt x}$, $f'(4)=\dfrac14$, d'où
+$\sqrt{4{,}02}\approx 2+0{,}02\times0{,}25=2{,}005$ (valeur exacte $2{,}004994\ldots$).
+\end{exemple}
+
+\begin{aretenir}
+La tangente est la droite qui « colle » le mieux à la courbe en $a$. Sa pente est $f'(a)$,
+son ordonnée à l'origine se lit dans $y=f'(a)(x-a)+f(a)$. Une tangente \textbf{horizontale}
+($f'(a)=0$) signale un éventuel extremum local.
+\end{aretenir}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Dérivées usuelles et opérations}
+
+\begin{propriete}[Dérivées des fonctions de référence]
 \begin{center}\small
 \begin{tabular}{@{}llll@{}}
 \toprule
 $f(x)$ & $f'(x)$ & $f(x)$ & $f'(x)$\\
 \midrule
-$x^{n}$ & $n\,x^{n-1}$ & $\sqrt x$ & $\dfrac1{2\sqrt x}$\\[3pt]
-$\dfrac1x$ & $-\dfrac1{x^{2}}$ & $\cos x$ & $-\sin x$\\[3pt]
-$\sin x$ & $\cos x$ & $\tan x$ & $1+\tan^{2}x$\\
+$k$ (cste) & $0$ & $\sqrt x$ & $\dfrac1{2\sqrt x}$\\[3pt]
+$x^{n}\ (n\in\Z)$ & $n\,x^{n-1}$ & $\dfrac1x$ & $-\dfrac1{x^{2}}$\\[3pt]
+$\sin x$ & $\cos x$ & $\cos x$ & $-\sin x$\\[3pt]
+$\tan x$ & $1+\tan^{2}x=\dfrac1{\cos^{2}x}$ & $\dfrac1{x^{n}}$ & $-\dfrac{n}{x^{n+1}}$\\
 \bottomrule
 \end{tabular}
 \end{center}
-$(u+v)'=u'+v'$, $\ (uv)'=u'v+uv'$, $\ \left(\dfrac uv\right)'=\dfrac{u'v-uv'}{v^{2}}$, $\ \big(g\circ u\big)'=u'\times g'\!\circ u$.
 \end{propriete}
+
+\begin{propriete}[Opérations sur les dérivées]
+Pour $u,v$ dérivables et $k$ constante :
+\[
+(ku)'=ku',\quad (u+v)'=u'+v',\quad (uv)'=u'v+uv',\quad
+\left(\frac uv\right)'=\frac{u'v-uv'}{v^{2}}\ (v\ne0).
+\]
+\textbf{Dérivée d'une composée} : $\big(g\circ u\big)'=u'\times g'\!\circ u$, soit $\big(g(u)\big)'=u'\,g'(u)$.
+\end{propriete}
+
+\begin{propriete}[Composées usuelles (formules « avec $u$ »)]
+\[
+\big(u^{n}\big)'=n\,u'\,u^{n-1},\qquad
+\big(\sqrt u\big)'=\frac{u'}{2\sqrt u},\qquad
+\Big(\frac1u\Big)'=-\frac{u'}{u^{2}},
+\]
+\[
+\big(\sin u\big)'=u'\cos u,\qquad \big(\cos u\big)'=-u'\sin u,\qquad \big(\tan u\big)'=u'(1+\tan^{2}u).
+\]
+\end{propriete}
+
+\begin{exemple}
+$f(x)=(3x^{2}-1)^{4}$ : avec $u=3x^{2}-1$, $u'=6x$, donc $f'(x)=4u'u^{3}=24x\,(3x^{2}-1)^{3}$.
+\end{exemple}
+
+\begin{remarque}
+La dérivée d'une composée est la source d'erreurs la plus fréquente. \textbf{Réflexe} : poser
+clairement $u$, calculer $u'$, puis appliquer la formule « avec $u$ ». Ne jamais « oublier le $u'$ ».
+\end{remarque}
 
 % ═══════════════════════════════════════════════════════════════
 \section{Sens de variation et extremums}
@@ -60,22 +150,116 @@ $(u+v)'=u'+v'$, $\ (uv)'=u'v+uv'$, $\ \left(\dfrac uv\right)'=\dfrac{u'v-uv'}{v^
 \begin{theoreme}[Variations et signe de la dérivée]
 Soit $f$ dérivable sur un intervalle $I$.
 \begin{itemize}
-\item Si $f'>0$ sur $I$, $f$ est \textbf{strictement croissante} sur $I$ ;
+\item Si $f'>0$ sur $I$ (sauf en des points isolés), $f$ est \textbf{strictement croissante} sur $I$ ;
 \item si $f'<0$ sur $I$, $f$ est \textbf{strictement décroissante} ;
-\item si $f'$ s'annule en changeant de signe en $x_0$, $f$ présente un \textbf{extremum local} en $x_0$.
+\item si $f'=0$ sur $I$, $f$ est \textbf{constante} sur $I$.
 \end{itemize}
 \end{theoreme}
 
-\begin{propriete}[Inégalité des accroissements finis]
-Si pour tout $x\in[a,b]$, $m\le f'(x)\le M$, alors $m(b-a)\le f(b)-f(a)\le M(b-a)$.
+\begin{theoreme}[Extremum local]
+Si $f$ est dérivable sur $I$ et présente un extremum local en un point $x_0$ \emph{intérieur} à $I$,
+alors $f'(x_0)=0$. \textbf{Réciproquement}, si $f'$ \emph{s'annule en changeant de signe} en $x_0$,
+$f$ admet un extremum local en $x_0$ (maximum si $f'$ passe de $+$ à $-$, minimum sinon).
+\end{theoreme}
+
+\begin{remarque}
+$f'(x_0)=0$ \textbf{ne suffit pas} : pour $f(x)=x^{3}$, $f'(0)=0$ mais $f$ est strictement
+croissante (pas d'extremum). Il faut un \emph{changement de signe} de $f'$.
+\end{remarque}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth]
+\begin{axis}[width=8.6cm,height=5cm,axis lines=middle,xlabel={\small $x$},ylabel={\small $y$},
+  xmin=-1.6,xmax=3.2,ymin=-3,ymax=3,xtick={0,2},xticklabels={$0$,$2$},ytick=\empty]
+\addplot[onbo,line width=1pt,domain=-1.4:3,samples=80]{x^3-3*x^2+2};
+\filldraw[onbblue](axis cs:0,2)circle(2pt) node[anchor=south,onbblue]{\small max};
+\filldraw[onbgreen](axis cs:2,-2)circle(2pt) node[anchor=north,onbgreen]{\small min};
+\end{axis}
+\node[align=left,text width=3.6cm,anchor=west] at (8.7,1.4)
+{\small $f'(x)=3x(x-2)$ : croissante, puis décroissante, puis croissante.};
+\end{tikzpicture}
+\fig{Figure — Extremums locaux : $f$ change de variation là où $f'$ change de signe.}
+\end{illus}
+
+\begin{propriete}[Inégalité des accroissements finis (IAF)]
+Soit $f$ dérivable sur $[a,b]$. Si pour tout $x\in[a,b]$, $m\le f'(x)\le M$, alors
+\[
+m\,(b-a)\ \le\ f(b)-f(a)\ \le\ M\,(b-a).
+\]
+En particulier, si $|f'(x)|\le k$ sur $[a,b]$, alors $|f(b)-f(a)|\le k\,(b-a)$.
 \end{propriete}
+
+\begin{exemple}
+Montrons que pour tout $x>0$, $\sin x<x$. Soit $f(t)=\sin t$ sur $[0,x]$ : $f'(t)=\cos t\le1$.
+L'IAF donne $\sin x-\sin0\le 1\cdot(x-0)$, soit $\sin x\le x$ ; l'inégalité est stricte
+car $\cos$ n'est pas constamment égal à $1$.
+\end{exemple}
+
+\begin{aretenir}
+Pour étudier les variations : (1) calculer $f'$, (2) \textbf{factoriser} $f'$ pour étudier son signe,
+(3) dresser le \textbf{tableau de variations} (domaine, signe de $f'$, flèches, valeurs aux bornes
+et extremums). L'IAF sert à \textbf{majorer un écart} ou prouver une inégalité.
+\end{aretenir}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Limites, asymptotes et branches infinies}
+
+\begin{propriete}[Asymptotes]
+Soit $\mathcal C_f$ la courbe de $f$.
+\begin{itemize}
+\item Si $\displaystyle\lim_{x\to a}f(x)=\pm\infty$ : \textbf{asymptote verticale} d'équation $x=a$.
+\item Si $\displaystyle\lim_{x\to\pm\infty}f(x)=\ell$ (fini) : \textbf{asymptote horizontale} $y=\ell$.
+\item Si $\displaystyle\lim_{x\to\pm\infty}\big(f(x)-(ax+b)\big)=0$ : \textbf{asymptote oblique} $y=ax+b$.
+\end{itemize}
+\end{propriete}
+
+\begin{propriete}[Recherche d'une asymptote oblique]
+Si $\displaystyle\lim_{x\to+\infty}\frac{f(x)}{x}=a$ (fini non nul) et
+$\displaystyle\lim_{x\to+\infty}\big(f(x)-ax\big)=b$ (fini), alors $y=ax+b$ est asymptote
+oblique en $+\infty$ (idem en $-\infty$). Pour une fraction rationnelle, on obtient $ax+b$ par
+\textbf{division euclidienne} du numérateur par le dénominateur.
+\end{propriete}
+
+\begin{remarque}[Position relative]
+Le \textbf{signe} de $f(x)-(ax+b)$ donne la position de $\mathcal C_f$ par rapport à
+son asymptote : au-dessus si $>0$, en dessous si $<0$. On le précise systématiquement
+dans une étude complète.
+\end{remarque}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth]
+\begin{axis}[width=9cm,height=5.6cm,axis lines=middle,xlabel={\small $x$},ylabel={\small $y$},
+  xmin=-4.5,xmax=4.5,ymin=-7,ymax=7,xtick=\empty,ytick=\empty,samples=120]
+\addplot[onbo,line width=1pt,domain=1.15:4.3]{(x*x-2*x+2)/(x-1)};
+\addplot[onbo,line width=1pt,domain=-4.3:0.85]{(x*x-2*x+2)/(x-1)};
+\addplot[onbblue,dashed,line width=0.8pt,domain=-4.3:4.3]{x-1};
+\draw[onbgreen,dashed,line width=0.8pt](axis cs:1,-7)--(axis cs:1,7);
+\node[onbblue,anchor=west] at (axis cs:2.2,2.4){\small $y=x-1$};
+\node[onbgreen,anchor=south west] at (axis cs:1,5.2){\small $x=1$};
+\end{axis}
+\end{tikzpicture}
+\fig{Figure — Asymptote verticale $x=1$ et asymptote oblique $y=x-1$ d'une fraction rationnelle.}
+\end{illus}
 
 % ═══════════════════════════════════════════════════════════════
 \section{Convexité et points d'inflexion}
 
-\begin{definition}[Convexité]
-$f$ (deux fois dérivable) est \textbf{convexe} sur $I$ si $f''\ge0$ sur $I$ (la courbe est « tournée vers le haut », au-dessus de ses tangentes) ; \textbf{concave} si $f''\le0$. Un \textbf{point d'inflexion} est un point où $f''$ \emph{s'annule en changeant de signe} : la courbe y traverse sa tangente.
+\begin{definition}[Convexité, concavité]
+$f$ (deux fois dérivable sur $I$) est \textbf{convexe} sur $I$ si $f''\ge0$ sur $I$ : la courbe
+est « tournée vers le haut » et reste \emph{au-dessus de chacune de ses tangentes}.
+Elle est \textbf{concave} si $f''\le0$ : courbe « tournée vers le bas », \emph{en dessous de ses tangentes}.
 \end{definition}
+
+\begin{definition}[Point d'inflexion]
+Un \textbf{point d'inflexion} est un point où $f''$ \emph{s'annule en changeant de signe} :
+la courbe y traverse sa tangente et change de convexité.
+\end{definition}
+
+\begin{propriete}[Caractérisation géométrique de la convexité]
+Si $f$ est convexe sur $I$, toute corde joignant deux points de $\mathcal C_f$ est
+\emph{au-dessus} de la courbe, et toute tangente est \emph{en dessous}. C'est l'inverse
+pour une fonction concave.
+\end{propriete}
 
 \begin{illus}
 \begin{tikzpicture}[>=Stealth]
@@ -92,59 +276,184 @@ $f$ (deux fois dérivable) est \textbf{convexe} sur $I$ si $f''\ge0$ sur $I$ (la
 \fig{Figure — Concavité, convexité et point d'inflexion.}
 \end{illus}
 
+\begin{exemple}
+$f(x)=x^{4}$ : $f''(x)=12x^{2}\ge0$, donc $f$ est convexe sur $\R$. Bien que $f''(0)=0$,
+il n'y a \textbf{pas} de point d'inflexion en $0$ car $f''$ \emph{ne change pas de signe}.
+\end{exemple}
+
 \begin{aretenir}
-Le \textbf{signe de $f''$} donne la convexité ; un \textbf{changement de signe de $f''$} signale un point d'inflexion. (À ne pas confondre avec le signe de $f'$, qui donne les variations.)
+Le \textbf{signe de $f''$} donne la convexité ; un \textbf{changement de signe de $f''$} signale
+un point d'inflexion. (À ne pas confondre avec le signe de $f'$, qui donne les variations.)
+La fonction $\exp$ est convexe, $\ln$ est concave, et toute fonction affine est à la fois
+convexe et concave.
 \end{aretenir}
 
 % ═══════════════════════════════════════════════════════════════
-\section{Asymptotes et plan d'étude}
-
-\begin{propriete}[Asymptotes]
-Si $\displaystyle\lim_{x\to a}f=\pm\infty$ : asymptote \textbf{verticale} $x=a$. Si $\displaystyle\lim_{x\to\pm\infty}f=\ell$ : asymptote \textbf{horizontale} $y=\ell$. Si $\displaystyle\lim_{x\to\pm\infty}\big(f(x)-(ax+b)\big)=0$ : asymptote \textbf{oblique} $y=ax+b$.
-\end{propriete}
+\section{Plan complet d'étude d'une fonction}
 
 \begin{aretenir}
-\textbf{Plan d'étude d'une fonction} : domaine $\to$ limites et asymptotes $\to$ dérivée et signe $\to$ tableau de variations $\to$ (convexité) $\to$ points particuliers (tangentes) $\to$ tracé.
+\textbf{Plan d'étude d'une fonction $f$}
+\begin{enumerate}[label=\arabic*)]
+\item \textbf{Domaine} $D_f$ et éventuelles symétries (parité, périodicité).
+\item \textbf{Limites} aux bornes de $D_f$ ; en déduire les \textbf{asymptotes}.
+\item \textbf{Dérivée} $f'$, factorisation et \textbf{signe}.
+\item \textbf{Tableau de variations} (signe de $f'$, flèches, extremums, valeurs/limites aux bornes).
+\item \textbf{Convexité} : $f''$, signe, points d'inflexion (souvent en série C).
+\item \textbf{Points particuliers} : intersections avec les axes, tangentes remarquables,
+position par rapport aux asymptotes.
+\item \textbf{Tracé} soigné de $\mathcal C_f$.
+\end{enumerate}
 \end{aretenir}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth]
+\begin{axis}[width=9cm,height=5.4cm,axis lines=middle,xlabel={\small $x$},ylabel={\small $y$},
+  xmin=-3.4,xmax=3.4,ymin=-2.6,ymax=4.4,xtick={-2,2},ytick={1},samples=140]
+\addplot[onbo,line width=1pt,domain=-3.2:3.2]{0.25*x^4-x^2+1};
+\filldraw[onbgreen](axis cs:-2,-2)circle(1.8pt);
+\filldraw[onbgreen](axis cs:2,-2)circle(1.8pt);
+\filldraw[onbblue](axis cs:0,1)circle(1.8pt) node[anchor=south west,onbblue]{\small max local};
+\node[onbgreen,anchor=north] at (axis cs:2,-2.05){\small min};
+\end{axis}
+\node[align=left,text width=3.4cm,anchor=west] at (9.1,1.6)
+{\small $f(x)=\tfrac14x^4-x^2+1$ : deux minimums symétriques, un maximum local.};
+\end{tikzpicture}
+\fig{Figure — Allure d'une fonction polynomiale étudiée selon le plan complet.}
+\end{illus}
+
+% ═══════════════════════════════════════════════════════════════
+\section{L'essentiel à retenir}
+
+\begin{synthese}
+\textbf{Nombre dérivé.} $f'(a)=\displaystyle\lim_{h\to0}\frac{f(a+h)-f(a)}{h}$ = pente de la tangente.
+Dérivable $\Rightarrow$ continue (réciproque fausse).\\[4pt]
+\textbf{Tangente en $a$.} $\ y=f'(a)(x-a)+f(a)$. Approximation affine : $f(a+h)\approx f(a)+h f'(a)$.\\[4pt]
+\textbf{Dérivées usuelles.} $(x^n)'=n x^{n-1}$,\ $(\sqrt x)'=\tfrac1{2\sqrt x}$,\
+$(\tfrac1x)'=-\tfrac1{x^2}$,\ $(\sin x)'=\cos x$,\ $(\cos x)'=-\sin x$,\ $(\tan x)'=1+\tan^2 x$.\\[4pt]
+\textbf{Opérations.} $(uv)'=u'v+uv'$ ;\ $\big(\tfrac uv\big)'=\dfrac{u'v-uv'}{v^2}$ ;\
+$\big(g(u)\big)'=u'\,g'(u)$. Composées : $(u^n)'=n u' u^{n-1}$,\ $(\sqrt u)'=\tfrac{u'}{2\sqrt u}$.\\[4pt]
+\textbf{Variations.} $f'>0\Rightarrow$ croissante ;\ $f'<0\Rightarrow$ décroissante. Extremum
+local $\Rightarrow$ $f'$ change de signe ($f'(x_0)=0$ seul ne suffit pas).\\[4pt]
+\textbf{IAF.} $m\le f'\le M$ sur $[a,b]\Rightarrow m(b-a)\le f(b)-f(a)\le M(b-a)$ ;\
+$|f'|\le k\Rightarrow |f(b)-f(a)|\le k(b-a)$.\\[4pt]
+\textbf{Asymptotes.} verticale $x=a$ si $\lim_a f=\pm\infty$ ; horizontale $y=\ell$ si $\lim_{\pm\infty}f=\ell$ ;
+oblique $y=ax+b$ si $\lim_{\pm\infty}\!\big(f-(ax+b)\big)=0$ (division euclidienne pour une fraction).\\[4pt]
+\textbf{Convexité.} $f''\ge0\Rightarrow$ convexe (au-dessus des tangentes) ; $f''\le0\Rightarrow$
+concave. Point d'inflexion $\iff$ $f''$ change de signe.\\[4pt]
+\textbf{Plan d'étude.} domaine $\to$ limites/asymptotes $\to$ $f'$ et signe $\to$ tableau de variations
+$\to$ convexité $\to$ points particuliers $\to$ tracé.\\[4pt]
+\textbf{Pièges.} oublier le $u'$ d'une composée ; conclure un extremum sans changement de signe ;
+confondre signe de $f'$ (variations) et de $f''$ (convexité).
+\end{synthese}
 
 % ═══════════════════════════════════════════════════════════════
 \section{Méthodes \& savoir-faire}
 
-\methode{Calculer une dérivée (composée, quotient)}
-Identifier la structure puis appliquer la formule adaptée.
+\methode{Calculer un nombre dérivé par la définition}
+Former le taux d'accroissement, simplifier, faire tendre $h\to0$.
 \begin{exemple}
-$f(x)=\sqrt{x^{2}+1}$ : $f=\sqrt u$ avec $u=x^{2}+1$, donc $f'=\dfrac{u'}{2\sqrt u}=\dfrac{x}{\sqrt{x^{2}+1}}$.
+$f(x)=\dfrac1x$ en $a=2$ : $\dfrac{f(2+h)-f(2)}{h}=\dfrac1h\Big(\dfrac1{2+h}-\dfrac12\Big)
+=\dfrac1h\cdot\dfrac{-h}{2(2+h)}=\dfrac{-1}{2(2+h)}\xrightarrow[h\to0]{}-\dfrac14$.
+Donc $f'(2)=-\tfrac14$.
+\end{exemple}
+
+\methode{Dériver une composée ou un quotient}
+Identifier la structure, poser $u$, calculer $u'$, appliquer la formule adaptée.
+\begin{exemple}
+$f(x)=\sqrt{x^{2}+1}$ : $f=\sqrt u$ avec $u=x^{2}+1$, $u'=2x$, donc
+$f'=\dfrac{u'}{2\sqrt u}=\dfrac{x}{\sqrt{x^{2}+1}}$.
 \end{exemple}
 
 \methode{Déterminer une équation de tangente}
 Calculer $f(a)$ et $f'(a)$, puis $y=f'(a)(x-a)+f(a)$.
 \begin{exemple}
-$f(x)=x^{2}$ en $a=1$ : $f(1)=1$, $f'(1)=2$, tangente $y=2(x-1)+1=2x-1$.
+$f(x)=x^{3}-x$ en $a=1$ : $f(1)=0$, $f'(x)=3x^{2}-1$, $f'(1)=2$, tangente $y=2(x-1)=2x-2$.
 \end{exemple}
 
-\methode{Étudier les variations et les extremums}
-Calculer $f'$, étudier son signe, dresser le tableau de variations.
+\methode{Étudier les variations et trouver les extremums}
+Calculer $f'$, \textbf{factoriser}, dresser le tableau de signes puis le tableau de variations.
+\begin{exemple}
+$f(x)=x^{3}-3x^{2}+2$ : $f'(x)=3x^{2}-6x=3x(x-2)$. $f'>0$ sur $]-\infty,0[\cup]2,+\infty[$,
+$f'<0$ sur $]0,2[$. Maximum local $f(0)=2$, minimum local $f(2)=-2$.
+\end{exemple}
 
-\methode{Étudier la convexité}
+\methode{Utiliser l'inégalité des accroissements finis}
+Encadrer $f'$ sur $[a,b]$, puis appliquer l'IAF pour majorer/encadrer un écart.
+\begin{exemple}
+Montrons $|\cos a-\cos b|\le|a-b|$ : avec $g(t)=\cos t$, $|g'(t)|=|\sin t|\le1$, donc
+$|\cos a-\cos b|\le 1\cdot|a-b|$.
+\end{exemple}
+
+\methode{Rechercher une asymptote oblique (fraction rationnelle)}
+Effectuer la division euclidienne du numérateur par le dénominateur : $f(x)=ax+b+\dfrac{r(x)}{d(x)}$
+avec $\frac{r}{d}\to0$ ; l'asymptote oblique est $y=ax+b$.
+\begin{exemple}
+$f(x)=\dfrac{2x^{2}+x-1}{x}=2x+1-\dfrac1x$. Comme $-\tfrac1x\to0$, l'asymptote oblique
+est $y=2x+1$ ; $\mathcal C_f$ est en dessous quand $x>0$, au-dessus quand $x<0$.
+\end{exemple}
+
+\methode{Étudier la convexité et trouver les points d'inflexion}
 Calculer $f''$, étudier son signe ; les changements de signe donnent les points d'inflexion.
 \begin{exemple}
-$f(x)=x^{3}$ : $f''(x)=6x$, négatif puis positif : la courbe est concave sur $]-\infty,0]$, convexe sur $[0,+\infty[$, avec un point d'inflexion en $0$.
+$f(x)=x^{3}$ : $f''(x)=6x$, négatif puis positif : concave sur $]-\infty,0]$, convexe sur
+$[0,+\infty[$, avec un point d'inflexion en $0$ (la tangente $y=0$ y traverse la courbe).
+\end{exemple}
+
+\methode{Mener une étude complète de fonction}
+Suivre le plan : domaine $\to$ limites/asymptotes $\to$ $f'$ et signe $\to$ tableau $\to$
+convexité $\to$ points particuliers $\to$ tracé. Vérifier la cohérence (les flèches collent aux limites).
+
+\methode{Démontrer une inégalité par étude de fonction}
+Poser $\varphi(x)=g(x)-h(x)$, étudier son signe via son tableau de variations
+(souvent en montrant qu'un minimum est positif).
+\begin{exemple}
+Montrer $e^{x}\ge1+x$ : $\varphi(x)=e^{x}-1-x$, $\varphi'(x)=e^{x}-1$, qui s'annule en $0$
+(min). $\varphi(0)=0$ est le minimum, donc $\varphi\ge0$, c.-à-d. $e^{x}\ge1+x$.
 \end{exemple}
 
 % ═══════════════════════════════════════════════════════════════
-\section{Exercices}
+\section{Exercices d'application}
+
+\rubrique{Nombre dérivé et dérivabilité}
+\exo{}\diff{1} En utilisant la définition, calculer $f'(a)$ pour $f(x)=x^{2}-3x$ en $a=2$.
+
+\exo{}\diff{2} Étudier la dérivabilité de $f(x)=|x-1|$ en $x=1$ (limites à gauche et à droite du taux d'accroissement). Conclure géométriquement.
+
+\exo{}\diff{2} Soit $f(x)=\sqrt{x}$. Montrer, par la définition, que $f$ n'est pas dérivable en $0$ et interpréter (tangente).
 
 \rubrique{Dérivées et tangentes}
 \exo{}\diff{1} Dériver $f(x)=2x^{3}-3x^{2}+1$, $g(x)=\dfrac{x}{x^{2}+1}$, $h(x)=\sqrt{2x+3}$.
 
+\exo{}\diff{2} Dériver $f(x)=(x^{2}-x+1)^{3}$, $g(x)=\dfrac{2x-1}{x+2}$, $k(x)=x\sqrt{x^{2}+1}$.
+
 \exo{}\diff{2} Déterminer l'équation de la tangente à $\mathcal C_f$ ($f(x)=x^{3}-x$) au point d'abscisse $1$.
 
-\rubrique{Variations et convexité}
-\exo{}\diff{2} Soit $f(x)=x^{3}-3x^{2}+2$. Dresser le tableau de variations et étudier la convexité.
+\exo{}\diff{2} Soit $f(x)=\dfrac{1}{x}$. Déterminer les points de $\mathcal C_f$ où la tangente est parallèle à la droite $y=-4x+1$.
 
-\exo{}\diff{2} Montrer que $f(x)=\dfrac{x^{2}+1}{x}$ admet une asymptote oblique en $\pm\infty$.
+\exo{}\diff{3} En quel(s) point(s) la tangente à $\mathcal C_f$, $f(x)=x^{3}-3x+1$, passe-t-elle par l'origine ?
 
-\rubrique{Étude complète — Problème type Baccalauréat}
+\rubrique{Variations, extremums et IAF}
+\exo{}\diff{2} Soit $f(x)=x^{3}-3x^{2}+2$. Dresser le tableau de variations et préciser les extremums.
+
+\exo{}\diff{2} Étudier les variations de $f(x)=\dfrac{x}{x^{2}+1}$ sur $\R$ et préciser ses extremums.
+
+\exo{}\diff{2} À l'aide de l'IAF, montrer que pour tout $x\ge0$, $\sqrt{1+x}\le 1+\dfrac{x}{2}$.
+
+\exo{}\diff{3} Montrer que pour tous réels $a,b$ : $|\sin a-\sin b|\le|a-b|$.
+
+\rubrique{Convexité et points d'inflexion}
+\exo{}\diff{2} Soit $f(x)=x^{3}-3x^{2}+2$. Étudier la convexité et déterminer le point d'inflexion.
+
+\exo{}\diff{2} Étudier la convexité de $f(x)=\dfrac{x^{2}+1}{x}$ sur $]0,+\infty[$.
+
+\exo{}\diff{3} Soit $f(x)=x^{4}-6x^{2}+5$. Déterminer les intervalles de convexité et les points d'inflexion.
+
+\rubrique{Asymptotes}
+\exo{}\diff{2} Montrer que $f(x)=\dfrac{x^{2}+1}{x}$ admet une asymptote oblique en $\pm\infty$ et préciser la position de $\mathcal C_f$.
+
+\exo{}\diff{2} Déterminer toutes les asymptotes de $f(x)=\dfrac{3x-2}{x+1}$.
+
+\rubrique{Étude complète — type Baccalauréat}
 \exo{}\diff{3} Soit $f(x)=\dfrac{x^{2}-2x+2}{x-1}$.
 \begin{enumerate}[label=\arabic*)]
 \item Déterminer le domaine de définition et les limites aux bornes.
@@ -152,22 +461,238 @@ $f(x)=x^{3}$ : $f''(x)=6x$, négatif puis positif : la courbe est concave sur $]
 \item Étudier les variations de $f$ et dresser son tableau de variations.
 \end{enumerate}
 
+\exo{}\diff{3} Étude de $f(x)=\dfrac{x^{2}}{x-1}$ : domaine, limites/asymptotes, dérivée, tableau de variations.
+
+% ═══════════════════════════════════════════════════════════════
+\section{Exercices d'entraînement}
+
+\rubrique{Nombre dérivé, tangentes}
+\exo{}\diff{1} Calculer par la définition $f'(a)$ pour $f(x)=3x^{2}+1$ en $a=-1$.
+
+\exo{}\diff{1} Donner l'équation de la tangente à $\mathcal C_f$ ($f(x)=x^{2}+x$) en $a=0$ puis en $a=2$.
+
+\exo{}\diff{2} Soit $f(x)=\sqrt{x}$. Donner l'équation de la tangente en $a=4$ ; en déduire une valeur approchée de $\sqrt{4{,}1}$.
+
+\exo{}\diff{2} Pour quelles valeurs de $a$ la tangente à $\mathcal C_f$ ($f(x)=x^{2}$) en $a$ a-t-elle pour pente $6$ ?
+
+\exo{}\diff{2} Déterminer les tangentes à $\mathcal C_f$ ($f(x)=x^{3}$) parallèles à la droite $y=3x$.
+
+\exo{}\diff{3} Trouver les points de $\mathcal C_f$ ($f(x)=x^{2}-2x$) où la tangente passe par le point $A(2,-3)$.
+
+\rubrique{Calculs de dérivées}
+\exo{}\diff{1} Dériver : $f(x)=5x^{4}-2x^{2}+7$,\ $g(x)=\dfrac{3}{x}-\sqrt{x}$,\ $h(x)=(2x-1)^{5}$.
+
+\exo{}\diff{2} Dériver : $f(x)=\dfrac{x^{2}-1}{x^{2}+1}$,\ $g(x)=\sqrt{3x^{2}+2}$,\ $h(x)=\dfrac{x}{\sqrt{x+1}}$.
+
+\exo{}\diff{2} Dériver : $f(x)=\sin(2x)$,\ $g(x)=\cos^{2}x$,\ $h(x)=\tan(3x-1)$.
+
+\exo{}\diff{2} Dériver $f(x)=(x^{2}+1)\sqrt{x^{2}+1}$ et simplifier.
+
+\exo{}\diff{3} Soit $f(x)=\dfrac{ax+b}{cx+d}$ ($ad-bc\ne0$). Exprimer $f'(x)$ et discuter son signe.
+
+\rubrique{Variations et extremums}
+\exo{}\diff{1} Étudier les variations de $f(x)=x^{2}-4x+3$ et préciser le sommet.
+
+\exo{}\diff{2} Dresser le tableau de variations de $f(x)=2x^{3}-9x^{2}+12x$.
+
+\exo{}\diff{2} Étudier les variations de $f(x)=\dfrac{x^{2}-3}{x}$ sur son domaine.
+
+\exo{}\diff{2} Déterminer les extremums de $f(x)=x+\dfrac{4}{x}$ sur $]0,+\infty[$.
+
+\exo{}\diff{3} Soit $f(x)=x\sqrt{4-x^{2}}$ sur $[-2,2]$. Étudier ses variations et ses extremums.
+
+\rubrique{Inégalités des accroissements finis}
+\exo{}\diff{2} Montrer que pour tout $x\ge0$, $\sin x\le x$.
+
+\exo{}\diff{2} Montrer que pour tout $x>0$, $\dfrac{x}{1+x}\le\ln(1+x)\le x$. (On admet $(\ln(1+x))'=\tfrac1{1+x}$.)
+
+\exo{}\diff{3} La suite $(u_n)$ vérifie $u_{n+1}=\cos(u_n)$. En utilisant l'IAF sur $[0,1]$, montrer que $|u_{n+1}-u_n|\le \sin(1)\,|u_n-u_{n-1}|$.
+
+\rubrique{Convexité}
+\exo{}\diff{1} Étudier la convexité de $f(x)=x^{2}-3x+1$.
+
+\exo{}\diff{2} Étudier la convexité de $f(x)=x^{3}-6x^{2}+1$ et donner le point d'inflexion.
+
+\exo{}\diff{2} Soit $f(x)=\dfrac1x$ sur $]0,+\infty[$. Montrer que $f$ est convexe.
+
+\exo{}\diff{3} Montrer que $f(x)=x^{4}-2x^{2}$ a deux points d'inflexion et les déterminer.
+
+\rubrique{Asymptotes et études complètes}
+\exo{}\diff{2} Déterminer les asymptotes de $f(x)=\dfrac{2x^{2}+3}{x}$.
+
+\exo{}\diff{2} Déterminer les asymptotes de $f(x)=\dfrac{x-3}{2x+1}$.
+
+\exo{}\diff{3} Étude complète de $f(x)=\dfrac{x^{2}+x+1}{x+1}$ (domaine, limites, asymptotes, variations, tracé).
+
+\exo{}\diff{3} Étude complète de $f(x)=x+\dfrac{1}{x}$ sur $\R^{*}$ (parité, variations, convexité, asymptotes).
+
+\exo{}\diff{3} Soit $f(x)=\dfrac{x^{3}}{x^{2}-1}$. Étudier la parité, le domaine, les asymptotes et les variations.
+
+\exo{}\diff{3} Étude complète de $f(x)=(x-1)^{2}(x+2)$ : variations, convexité, point d'inflexion, tracé.
+
+% ═══════════════════════════════════════════════════════════════
+\section{Sujets type Baccalauréat}
+
+\sujetbac[étude d'une fraction rationnelle et asymptote oblique]
+On considère la fonction $f$ définie sur $\R\setminus\{1\}$ par
+$f(x)=\dfrac{x^{2}-2x+2}{x-1}$ et $\mathcal C_f$ sa courbe.
+\begin{enumerate}[label=\arabic*)]
+\item Déterminer le domaine de définition $D_f$ et calculer les limites de $f$ aux bornes de $D_f$.
+\item Montrer que pour tout $x\in D_f$, $f(x)=x-1+\dfrac{1}{x-1}$. En déduire que la droite
+$\Delta:y=x-1$ est asymptote à $\mathcal C_f$ en $\pm\infty$, et préciser la position de $\mathcal C_f$ par rapport à $\Delta$.
+\item Calculer $f'(x)$, l'étudier et dresser le tableau de variations de $f$.
+\item Montrer que le point $\Omega(1,0)$ est centre de symétrie de $\mathcal C_f$.
+\item Tracer $\mathcal C_f$ et ses asymptotes.
+\end{enumerate}
+
+\sujetbac[étude de fonction polynomiale, convexité et tangentes]
+Soit $f$ définie sur $\R$ par $f(x)=x^{3}-3x^{2}-9x+5$, de courbe $\mathcal C_f$.
+\begin{enumerate}[label=\arabic*)]
+\item Calculer $\displaystyle\lim_{x\to\pm\infty}f(x)$.
+\item Calculer $f'(x)$, étudier son signe et dresser le tableau de variations.
+\item Étudier la convexité de $f$ et déterminer les coordonnées du point d'inflexion $I$.
+\item Déterminer l'équation de la tangente $T$ à $\mathcal C_f$ au point d'inflexion $I$.
+\item Montrer que $I$ est centre de symétrie de $\mathcal C_f$.
+\end{enumerate}
+
+\sujetbac[fonction avec radical, étude et inégalité]
+On pose $f(x)=\dfrac{x}{\sqrt{x^{2}+1}}$, définie sur $\R$.
+\begin{enumerate}[label=\arabic*)]
+\item Montrer que $f$ est impaire.
+\item Calculer $\displaystyle\lim_{x\to+\infty}f(x)$ et $\displaystyle\lim_{x\to-\infty}f(x)$ ; en déduire deux asymptotes.
+\item Calculer $f'(x)$ et montrer que $f$ est strictement croissante sur $\R$.
+\item En déduire que pour tout $x\in\R$, $-1<f(x)<1$.
+\item Tracer l'allure de $\mathcal C_f$.
+\end{enumerate}
+
 % ═══════════════════════════════════════════════════════════════
 \section{Corrigés}
 
 \corrige{de l'exercice 1}
-$f'(x)=6x^{2}-6x$ ; $g'(x)=\dfrac{(x^{2}+1)-x(2x)}{(x^{2}+1)^{2}}=\dfrac{1-x^{2}}{(x^{2}+1)^{2}}$ ; $h'(x)=\dfrac{2}{2\sqrt{2x+3}}=\dfrac1{\sqrt{2x+3}}$.
+$\dfrac{f(2+h)-f(2)}{h}=\dfrac{(2+h)^{2}-3(2+h)-(4-6)}{h}=\dfrac{(4+4h+h^{2}-6-3h)+2}{h}
+=\dfrac{h+h^{2}}{h}=1+h\to1$. Donc $f'(2)=1$ (cohérent : $f'(x)=2x-3$, $f'(2)=1$).
 
 \corrige{de l'exercice 2}
-$f(1)=0$, $f'(x)=3x^{2}-1$ donc $f'(1)=2$ : tangente $y=2(x-1)+0=2x-2$.
+$\dfrac{f(1+h)-f(1)}{h}=\dfrac{|h|}{h}$ : limite $-1$ à gauche, $+1$ à droite. Comme
+$f'_g(1)\ne f'_d(1)$, $f$ n'est pas dérivable en $1$. Géométriquement, $\mathcal C_f$
+présente un \textbf{point anguleux} en $(1,0)$.
 
 \corrige{de l'exercice 3}
-$f'(x)=3x^{2}-6x=3x(x-2)$ : $f$ croît sur $]-\infty,0]$, décroît sur $[0,2]$, croît sur $[2,+\infty[$ ; maximum local $f(0)=2$, minimum local $f(2)=-2$. $f''(x)=6x-6=6(x-1)$ : concave sur $]-\infty,1]$, convexe sur $[1,+\infty[$, point d'inflexion en $x=1$.
+$\dfrac{\sqrt{0+h}-0}{h}=\dfrac{\sqrt h}{h}=\dfrac1{\sqrt h}\to+\infty$ quand $h\to0^{+}$.
+La limite est infinie : $f$ n'est pas dérivable en $0$, et $\mathcal C_f$ admet une
+\textbf{tangente verticale} (l'axe des ordonnées) en $0$.
 
 \corrige{de l'exercice 4}
-$f(x)=\dfrac{x^{2}+1}{x}=x+\dfrac1x$ et $\displaystyle\lim_{x\to\pm\infty}\big(f(x)-x\big)=\lim\dfrac1x=0$ : asymptote oblique $y=x$.
+$f'(x)=6x^{2}-6x$ ; $g'(x)=\dfrac{(x^{2}+1)-x(2x)}{(x^{2}+1)^{2}}=\dfrac{1-x^{2}}{(x^{2}+1)^{2}}$ ;
+$h'(x)=\dfrac{2}{2\sqrt{2x+3}}=\dfrac1{\sqrt{2x+3}}$.
 
-\corrige{du problème}
-1) $D_f=\R\setminus\{1\}$ ; $\displaystyle\lim_{x\to1^{\pm}}f=\pm\infty$ (asymptote verticale $x=1$) ; $\lim_{\pm\infty}f=\pm\infty$.\;
-2) Division : $\dfrac{x^{2}-2x+2}{x-1}=x-1+\dfrac{1}{x-1}$, et $\displaystyle\lim_{\pm\infty}\big(f-(x-1)\big)=0$ : asymptote oblique $y=x-1$.\;
-3) $f'(x)=1-\dfrac1{(x-1)^{2}}=\dfrac{(x-1)^{2}-1}{(x-1)^{2}}=\dfrac{x(x-2)}{(x-1)^{2}}$ : $f'>0$ sur $]-\infty,0[\cup\,]2,+\infty[$, $f'<0$ sur $]0,1[\cup\,]1,2[$. Maximum local $f(0)=-2$, minimum local $f(2)=2$.
+\corrige{de l'exercice 5}
+$f'(x)=3(2x-1)(x^{2}-x+1)^{2}$ ;\
+$g'(x)=\dfrac{2(x+2)-(2x-1)}{(x+2)^{2}}=\dfrac{5}{(x+2)^{2}}$ ;\
+$k'(x)=\sqrt{x^{2}+1}+x\cdot\dfrac{x}{\sqrt{x^{2}+1}}=\dfrac{(x^{2}+1)+x^{2}}{\sqrt{x^{2}+1}}
+=\dfrac{2x^{2}+1}{\sqrt{x^{2}+1}}$.
+
+\corrige{de l'exercice 6}
+$f(1)=0$, $f'(x)=3x^{2}-1$ donc $f'(1)=2$ : tangente $y=2(x-1)+0=2x-2$.
+
+\corrige{de l'exercice 7}
+$f'(x)=-\dfrac1{x^{2}}$. On veut $f'(x)=-4$, soit $\dfrac1{x^{2}}=4$, $x^{2}=\tfrac14$,
+$x=\pm\tfrac12$. Points : $\big(\tfrac12,2\big)$ et $\big(-\tfrac12,-2\big)$.
+
+\corrige{de l'exercice 8}
+Tangente en $a$ : $y=(3a^{2}-3)(x-a)+a^{3}-3a+1$. Elle passe par $O(0,0)$ ssi
+$0=(3a^{2}-3)(-a)+a^{3}-3a+1$, soit $-3a^{3}+3a+a^{3}-3a+1=0$, donc $-2a^{3}+1=0$,
+$a^{3}=\tfrac12$, $a=\dfrac1{\sqrt[3]{2}}$. Un unique point convient.
+
+\corrige{de l'exercice 9}
+$f'(x)=3x^{2}-6x=3x(x-2)$ : $f$ croît sur $]-\infty,0]$, décroît sur $[0,2]$, croît sur
+$[2,+\infty[$. Maximum local $f(0)=2$, minimum local $f(2)=8-12+2=-2$.
+
+\corrige{de l'exercice 10}
+$f'(x)=\dfrac{(x^{2}+1)-x(2x)}{(x^{2}+1)^{2}}=\dfrac{1-x^{2}}{(x^{2}+1)^{2}}$ : du signe de $1-x^{2}$.
+$f$ décroît sur $]-\infty,-1]$, croît sur $[-1,1]$, décroît sur $[1,+\infty[$. Minimum
+$f(-1)=-\tfrac12$, maximum $f(1)=\tfrac12$.
+
+\corrige{de l'exercice 11}
+Soit $g(t)=\sqrt{1+t}$ sur $[0,x]$. $g'(t)=\dfrac1{2\sqrt{1+t}}\le\dfrac12$ pour $t\ge0$.
+L'IAF donne $g(x)-g(0)\le\tfrac12(x-0)$, soit $\sqrt{1+x}-1\le\tfrac x2$, d'où
+$\sqrt{1+x}\le1+\tfrac x2$.
+
+\corrige{de l'exercice 12}
+Soit $g(t)=\sin t$ sur l'intervalle d'extrémités $a$ et $b$. $|g'(t)|=|\cos t|\le1$, donc
+par l'IAF $|\sin a-\sin b|\le 1\cdot|a-b|=|a-b|$.
+
+\corrige{de l'exercice 13}
+$f''(x)=6x-6=6(x-1)$ : $f''<0$ sur $]-\infty,1[$ (concave), $f''>0$ sur $]1,+\infty[$ (convexe).
+Changement de signe en $1$ : point d'inflexion $\big(1,f(1)\big)=(1,0)$ car $f(1)=1-3+2=0$.
+
+\corrige{de l'exercice 14}
+Sur $]0,+\infty[$, $f(x)=x+\dfrac1x$, $f'(x)=1-\dfrac1{x^{2}}$, $f''(x)=\dfrac{2}{x^{3}}>0$ :
+$f$ est \textbf{convexe} sur $]0,+\infty[$ (pas de point d'inflexion sur cet intervalle).
+
+\corrige{de l'exercice 15}
+$f'(x)=4x^{3}-12x$, $f''(x)=12x^{2}-12=12(x^{2}-1)=12(x-1)(x+1)$. $f''>0$ sur
+$]-\infty,-1[\cup]1,+\infty[$ (convexe), $f''<0$ sur $]-1,1[$ (concave). Points d'inflexion en
+$x=-1$ ($f(-1)=1-6+5=0$) et $x=1$ ($f(1)=0$) : $I_1(-1,0)$ et $I_2(1,0)$.
+
+\corrige{de l'exercice 16}
+$f(x)=\dfrac{x^{2}+1}{x}=x+\dfrac1x$ et $\displaystyle\lim_{x\to\pm\infty}\big(f(x)-x\big)=\lim\dfrac1x=0$ :
+asymptote oblique $y=x$. Position : $f(x)-x=\tfrac1x>0$ si $x>0$ (au-dessus), $<0$ si $x<0$ (en dessous).
+
+\corrige{de l'exercice 17}
+$f(x)=\dfrac{3x-2}{x+1}$. $D_f=\R\setminus\{-1\}$. $\displaystyle\lim_{x\to-1^{\pm}}f=\mp\infty$ :
+asymptote verticale $x=-1$. $\displaystyle\lim_{x\to\pm\infty}f=3$ : asymptote horizontale $y=3$.
+
+\corrige{de l'exercice 18}
+1) $D_f=\R\setminus\{1\}$ ; $\displaystyle\lim_{x\to1^{\pm}}f=\pm\infty$ (asymptote verticale $x=1$) ;
+$\lim_{\pm\infty}f=\pm\infty$.\;
+2) Division : $\dfrac{x^{2}-2x+2}{x-1}=x-1+\dfrac{1}{x-1}$, et $\displaystyle\lim_{\pm\infty}\big(f-(x-1)\big)=0$ :
+asymptote oblique $y=x-1$.\;
+3) $f'(x)=1-\dfrac1{(x-1)^{2}}=\dfrac{(x-1)^{2}-1}{(x-1)^{2}}=\dfrac{x(x-2)}{(x-1)^{2}}$ :
+$f'>0$ sur $]-\infty,0[\cup]2,+\infty[$, $f'<0$ sur $]0,1[\cup]1,2[$. Maximum local $f(0)=-2$,
+minimum local $f(2)=2$.
+
+\corrige{de l'exercice 19}
+$f(x)=\dfrac{x^{2}}{x-1}$, $D_f=\R\setminus\{1\}$. Division : $f(x)=x+1+\dfrac1{x-1}$, donc
+asymptote oblique $y=x+1$ ; asymptote verticale $x=1$ ($\lim_{1^{\pm}}f=\pm\infty$).
+$f'(x)=1-\dfrac1{(x-1)^{2}}=\dfrac{x(x-2)}{(x-1)^{2}}$ : croît sur $]-\infty,0[$, décroît sur
+$]0,1[\cup]1,2[$, croît sur $]2,+\infty[$. Maximum local $f(0)=0$, minimum local $f(2)=4$.
+
+\corrige{du sujet 1}
+1) $D_f=\R\setminus\{1\}$. $\displaystyle\lim_{x\to1^{+}}f=+\infty$, $\lim_{x\to1^{-}}f=-\infty$
+(le numérateur vaut $1>0$ en $1$, le dénominateur change de signe) ; $\lim_{x\to\pm\infty}f=\pm\infty$.\\
+2) $x-1+\dfrac1{x-1}=\dfrac{(x-1)^{2}+1}{x-1}=\dfrac{x^{2}-2x+2}{x-1}=f(x)$. Comme
+$\dfrac1{x-1}\to0$ en $\pm\infty$, $\Delta:y=x-1$ est asymptote oblique. Position :
+$f(x)-(x-1)=\dfrac1{x-1}$, positif si $x>1$ (courbe au-dessus), négatif si $x<1$ (en dessous).\\
+3) $f'(x)=1-\dfrac1{(x-1)^{2}}=\dfrac{x(x-2)}{(x-1)^{2}}$. Signe = celui de $x(x-2)$ :
+$f'>0$ sur $]-\infty,0[$ et $]2,+\infty[$ ; $f'<0$ sur $]0,1[$ et $]1,2[$. Maximum local
+$f(0)=\dfrac{2}{-1}=-2$ ; minimum local $f(2)=\dfrac{2}{1}=2$.\\
+4) Posons $X=x-1$ (donc $x=1+X$) : $f(1+X)=X+\dfrac1X$, fonction \textbf{impaire} de $X$.
+Donc $f(1+X)+f(1-X)=0=2\times0$ : $\Omega(1,0)$ est centre de symétrie de $\mathcal C_f$.\\
+5) Tracé : deux branches, asymptote verticale $x=1$, asymptote oblique $y=x-1$, sommet
+local $(0,-2)$ et $(2,2)$, symétrie de centre $\Omega(1,0)$.
+
+\corrige{du sujet 2}
+1) $\displaystyle\lim_{x\to+\infty}f=+\infty$, $\lim_{x\to-\infty}f=-\infty$ (terme dominant $x^{3}$).\\
+2) $f'(x)=3x^{2}-6x-9=3(x^{2}-2x-3)=3(x-3)(x+1)$. $f'>0$ sur $]-\infty,-1[\cup]3,+\infty[$,
+$f'<0$ sur $]-1,3[$. Maximum local $f(-1)=-1-3+9+5=10$ ; minimum local
+$f(3)=27-27-27+5=-22$.\\
+3) $f''(x)=6x-6=6(x-1)$ : concave sur $]-\infty,1[$, convexe sur $]1,+\infty[$. Point
+d'inflexion $I$ en $x=1$ : $f(1)=1-3-9+5=-6$, donc $I(1,-6)$.\\
+4) $f'(1)=3-6-9=-12$ : tangente $T:y=-12(x-1)+(-6)=-12x+6$.\\
+5) Avec $X=x-1$, $f(1+X)=(1+X)^{3}-3(1+X)^{2}-9(1+X)+5$. En développant,
+$f(1+X)=X^{3}-12X-6$. Alors $f(1+X)+f(1-X)=(X^{3}-12X-6)+(-X^{3}+12X-6)=-12=2(-6)$,
+soit $\dfrac{f(1+X)+f(1-X)}2=-6=f(1)$ : $I(1,-6)$ est centre de symétrie de $\mathcal C_f$.
+
+\corrige{du sujet 3}
+1) $f(-x)=\dfrac{-x}{\sqrt{x^{2}+1}}=-f(x)$ : $f$ est \textbf{impaire}.\\
+2) $\dfrac{x}{\sqrt{x^{2}+1}}=\dfrac{x}{|x|\sqrt{1+1/x^{2}}}$. En $+\infty$, $x>0$ donne $|x|=x$,
+limite $\dfrac1{\sqrt1}=1$ ; en $-\infty$, $|x|=-x$, limite $-1$. Asymptotes horizontales
+$y=1$ (en $+\infty$) et $y=-1$ (en $-\infty$).\\
+3) $f'(x)=\dfrac{\sqrt{x^{2}+1}-x\cdot\frac{x}{\sqrt{x^{2}+1}}}{x^{2}+1}
+=\dfrac{(x^{2}+1)-x^{2}}{(x^{2}+1)\sqrt{x^{2}+1}}=\dfrac{1}{(x^{2}+1)^{3/2}}>0$.
+Donc $f$ est strictement croissante sur $\R$.\\
+4) $f$ croissante de limites $-1$ (en $-\infty$) à $1$ (en $+\infty$), donc pour tout
+$x\in\R$, $-1<f(x)<1$.\\
+5) $\mathcal C_f$ : courbe impaire (symétrique par rapport à $O$), strictement croissante,
+encadrée par les deux asymptotes $y=\pm1$, de tangente de pente $f'(0)=1$ en l'origine.
