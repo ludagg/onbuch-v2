@@ -904,25 +904,10 @@ class _QuickLinks extends StatelessWidget {
             behavior: HitTestBehavior.opaque,
             onTap: () => _tap(context, it[2] as String),
             child: Column(children: [
-              Container(
-                width: 54,
-                height: 54,
-                decoration: BoxDecoration(
-                  // Teinte pleine, légèrement assombrie en bas pour la profondeur
-                  // (pas d'éclaircissement vers le blanc qui « délavait » l'icône).
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [color, Color.lerp(color, Colors.black, 0.16)!],
-                  ),
-                  borderRadius: BorderRadius.circular(16),
-                  boxShadow: [
-                    BoxShadow(color: color.withValues(alpha: 0.34), blurRadius: 12, offset: const Offset(0, 5)),
-                  ],
-                ),
-                child: Icon(it[0] as IconData, color: Colors.white, size: 26),
-              ),
-              const SizedBox(height: 7),
+              // Style « sans cadre » : grande icône colorée directement, sans
+              // pastille ni ombre.
+              Icon(it[0] as IconData, color: color, size: 32),
+              const SizedBox(height: 8),
               SizedBox(
                 width: double.infinity,
                 child: FittedBox(
