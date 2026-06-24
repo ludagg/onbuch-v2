@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:typed_data';
 import 'package:flutter/foundation.dart';
@@ -257,8 +258,11 @@ class TutorService {
     yield* _runStream({'jobId': jobId, 'messages': messages}, jobId);
   }
 
-  /// Lance l'exécution async puis interroge le job ; émet le `correction` partiel
-  /// à chaque fois qu'il grandit, jusqu'à `status == done` (ou lève en cas d'erreur).
+  /// Lance l'exécution async puis suit le job EN TEMPS RÉEL (Appwrite Realtime) :
+  /// dès que la fonction écrit `correction` dans `tutor_jobs`, l'app reçoit la
+  /// mise à jour poussée (pas de sondage permanent → fluide même sur connexion
+  /// lente). Un sondage espacé sert de filet de sécurité (le Realtime peut rater
+  /// la toute première écriture ou être bloqué par certains réseaux).
   Stream<String> _runStream(Map<String, dynamic> payload, String jobId) async* {
     try {
       await AppwriteClient.functions.createExecution(
@@ -271,40 +275,90 @@ class TutorService {
       throw 'Connexion au Tuteur impossible. Vérifie ta connexion et réessaie.';
     }
 
+    final channel =
+        'databases.$appwriteDatabaseId.collections.$appwriteTutorJobsCollectionId.documents.$jobId';
+    final out = StreamController<String>();
     final deadline = DateTime.now().add(const Duration(seconds: 110));
-    var tries = 0;
     var last = '';
-    while (true) {
-      if (DateTime.now().isAfter(deadline)) {
-        throw 'Le Tuteur met trop de temps à répondre. Réessaie.';
+    Object? failure;
+    RealtimeSubscription? sub;
+    StreamSubscription<RealtimeMessage>? rtSub;
+    Timer? poll;
+
+    void finish([Object? err]) {
+      if (out.isClosed) return;
+      failure = err;
+      rtSub?.cancel();
+      poll?.cancel();
+      try {
+        sub?.close();
+      } catch (_) {}
+      out.close();
+    }
+
+    void apply(Map<String, dynamic> data) {
+      if (out.isClosed) return;
+      final status = data['status']?.toString();
+      final c = _stripThink((data['correction'] ?? '').toString());
+      if (c.isNotEmpty && c != last) {
+        last = c;
+        out.add(c); // texte partiel (ou final) qui grandit
       }
-      final waitMs = tries < 12 ? 500 : 1500;
-      tries++;
-      await Future.delayed(Duration(milliseconds: waitMs));
+      if (status == 'done') {
+        finish(last.isEmpty ? 'Le Tuteur n\'a pas pu répondre. Réessaie.' : null);
+      } else if (status == 'error') {
+        final err = data['error']?.toString();
+        finish((err != null && err.isNotEmpty)
+            ? err
+            : 'Le Tuteur a rencontré un problème.');
+      }
+    }
+
+    // 1) Temps réel : mises à jour poussées par Appwrite.
+    try {
+      sub = AppwriteClient.realtime.subscribe([channel]);
+      rtSub = sub.stream.listen(
+        (msg) => apply(Map<String, dynamic>.from(msg.payload)),
+        onError: (_) {/* on garde le sondage de secours */},
+      );
+    } catch (_) {
+      sub = null; // Realtime indisponible → on s'appuie sur le sondage.
+    }
+
+    // 2) Filet de sécurité : sondage espacé (coût réseau minimal).
+    Future<void> pollOnce() async {
+      if (out.isClosed) return;
+      if (DateTime.now().isAfter(deadline)) {
+        finish('Le Tuteur met trop de temps à répondre. Réessaie.');
+        return;
+      }
       try {
         final doc = await AppwriteClient.databases.getDocument(
           databaseId: appwriteDatabaseId,
           collectionId: appwriteTutorJobsCollectionId,
           documentId: jobId,
         );
-        final status = doc.data['status']?.toString();
-        final c = _stripThink((doc.data['correction'] ?? '').toString());
-        if (c.isNotEmpty && c != last) {
-          last = c;
-          yield c; // texte partiel (ou final) qui grandit
-        }
-        if (status == 'done') {
-          if (last.isNotEmpty) return;
-          throw 'Le Tuteur n\'a pas pu répondre. Réessaie.';
-        }
-        if (status == 'error') {
-          final err = doc.data['error']?.toString();
-          throw (err != null && err.isNotEmpty) ? err : 'Le Tuteur a rencontré un problème.';
-        }
+        apply(Map<String, dynamic>.from(doc.data));
       } on AppwriteException catch (_) {
-        continue; // 404 (pas encore créé) ou erreur transitoire → on retente.
+        // 404 (pas encore créé) ou erreur transitoire → on retentera.
       }
     }
+
+    // Premier coup d'œil rapide (au cas où l'écriture précède l'abonnement),
+    // puis un rythme lent — le Realtime fait l'essentiel du travail.
+    Future.delayed(const Duration(milliseconds: 700), pollOnce);
+    poll = Timer.periodic(const Duration(seconds: 3), (_) => pollOnce());
+
+    try {
+      yield* out.stream;
+    } finally {
+      rtSub?.cancel();
+      poll?.cancel();
+      try {
+        sub?.close();
+      } catch (_) {}
+    }
+    if (failure != null) throw failure!;
   }
 
   /// Renvoie la correction déjà calculée d'un job (réouverture).
