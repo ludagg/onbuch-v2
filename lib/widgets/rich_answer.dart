@@ -21,10 +21,11 @@ class RichAnswer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final src = _normalizeBlocks(text);
     final children = <Widget>[];
     var last = 0;
-    for (final m in _blockRe.allMatches(text)) {
-      final before = text.substring(last, m.start).trim();
+    for (final m in _blockRe.allMatches(src)) {
+      final before = src.substring(last, m.start).trim();
       if (before.isNotEmpty) children.add(_markdown(before));
       final kind = m.group(1);
       final content = m.group(2)?.trim() ?? '';
@@ -34,14 +35,35 @@ class RichAnswer extends StatelessWidget {
       ));
       last = m.end;
     }
-    final tail = text.substring(last).trim();
+    final tail = src.substring(last).trim();
     if (tail.isNotEmpty) children.add(_markdown(tail));
-    if (children.isEmpty) children.add(_markdown(text));
+    if (children.isEmpty) children.add(_markdown(src));
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: children,
     );
+  }
+
+  // Le modèle enveloppe parfois le graphique/figure dans un bloc ```json avec une
+  // clé « onbuch-plot » / « onbuch-svg » au lieu d'utiliser la balise dédiée. On
+  // réécrit ces blocs vers ```onbuch-plot / ```onbuch-svg pour qu'ils s'affichent.
+  static final _jsonBlockRe =
+      RegExp(r'```(?:json)?\s*(\{[\s\S]*?\})\s*```', multiLine: true);
+  static String _normalizeBlocks(String s) {
+    if (!s.contains('onbuch-')) return s;
+    return s.replaceAllMapped(_jsonBlockRe, (m) {
+      try {
+        final obj = jsonDecode(m[1]!);
+        if (obj is Map) {
+          final plot = obj['onbuch-plot'] ?? obj['plot'];
+          if (plot is Map) return '```onbuch-plot\n${jsonEncode(plot)}\n```';
+          final svg = obj['onbuch-svg'] ?? obj['svg'];
+          if (svg is String && svg.contains('<svg')) return '```onbuch-svg\n$svg\n```';
+        }
+      } catch (_) {/* pas un JSON onbuch → inchangé */}
+      return m[0]!;
+    });
   }
 
   Widget _markdown(String md) => GptMarkdown(
@@ -70,18 +92,52 @@ class _PlotBlock extends StatelessWidget {
   final String spec;
   const _PlotBlock(this.spec);
 
+  // Repli quand le JSON du graphe est cassé : extraction directe des paires [x,y].
+  static final _rePair =
+      RegExp(r'\[\s*(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)\s*\]');
+  static final _reTitle = RegExp(r'"title"\s*:\s*"([^"]*)"');
+  static final _reType = RegExp(r'"type"\s*:\s*"(line|bar)"');
+
+  static List<FlSpot> _salvagePoints(String spec) {
+    final spots = <FlSpot>[];
+    for (final m in _rePair.allMatches(spec)) {
+      final x = double.tryParse(m[1]!);
+      final y = double.tryParse(m[2]!);
+      if (x != null && y != null && x.isFinite && y.isFinite) spots.add(FlSpot(x, y));
+    }
+    return spots;
+  }
+
   @override
   Widget build(BuildContext context) {
-    Map<String, dynamic> data;
+    Map<String, dynamic>? data;
     try {
       data = jsonDecode(spec) as Map<String, dynamic>;
     } catch (_) {
-      return const _PlotUnavailable();
+      data = null; // JSON cassé (ex. crochet manquant) → on tentera un repli.
+    }
+    // Tolérance : contenu enveloppé dans une clé « onbuch-plot »/« plot ».
+    if (data != null) {
+      final wrapped = data['onbuch-plot'] ?? data['plot'];
+      if (wrapped is Map) data = Map<String, dynamic>.from(wrapped);
     }
 
-    final title = (data['title'] ?? '').toString();
-    final type = (data['type'] ?? 'line').toString();
-    final series = _parseSeries(data);
+    var title = (data?['title'] ?? '').toString();
+    var type = (data?['type'] ?? 'line').toString();
+    var series = data != null ? _parseSeries(data) : <_Series>[];
+
+    // Repli robuste : si le JSON est invalide/illisible (les modèles ratent
+    // parfois un crochet sur les longs tableaux), on récupère directement toutes
+    // les paires [x, y] présentes dans le texte brut → le graphe s'affiche quand même.
+    if (series.isEmpty) {
+      final pts = _salvagePoints(spec);
+      if (pts.length >= 2) {
+        series = [_Series('', pts)];
+        if (title.isEmpty) title = _reTitle.firstMatch(spec)?.group(1) ?? '';
+        final t = _reType.firstMatch(spec)?.group(1);
+        if (t != null) type = t;
+      }
+    }
     if (series.isEmpty) return const _PlotUnavailable();
 
     return Container(
@@ -231,7 +287,15 @@ class _SvgBlock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final svg = code.trim();
+    var svg = code.trim();
+    // Tolérance : SVG enveloppé dans un JSON { "onbuch-svg": "<svg…/>" }.
+    if (svg.startsWith('{')) {
+      try {
+        final obj = jsonDecode(svg);
+        final inner = obj is Map ? (obj['onbuch-svg'] ?? obj['svg']) : null;
+        if (inner is String) svg = inner.trim();
+      } catch (_) {/* on garde le texte tel quel */}
+    }
     if (!svg.contains('<svg')) return const _PlotUnavailable();
     // Toujours sur fond blanc (les figures ont des traits sombres) → lisible
     // aussi en mode sombre.

@@ -43,12 +43,13 @@ OUTILS DE MISE EN FORME — l'app sait rendre du Markdown enrichi, des maths LaT
 \`\`\`onbuch-plot
 {"title":"f(x)=x^2-5x+6","type":"line","series":[{"label":"f","points":[[-1,12],[0,6],[1,2],[2,0],[3,0],[4,2],[5,6]]}]}
 \`\`\`
-  Règles : JSON STRICT ; "type" = "line" ou "bar" ; "points" = listes [x, y] de NOMBRES que TU calcules ; 10 à 20 points pour une courbe lisse. À RÉSERVER aux fonctions.
+  Règles : la balise du bloc est EXACTEMENT onbuch-plot (jamais \`\`\`json). Le contenu est l'objet JSON DIRECTEMENT — soit { "title", "type", "series" } — SANS l'envelopper dans une clé « onbuch-plot ». JSON STRICT ; "type" = "line" ou "bar" ; "points" = listes [x, y] de NOMBRES que TU calcules ; 10 à 20 points pour une courbe lisse. À RÉSERVER aux fonctions.
 - FIGURE / SCHÉMA (géométrie : triangles, cercles, repères ; circuits ; schémas SVT/physique — seulement si l'énoncé l'exige) : N'UTILISE PAS onbuch-plot. Insère un bloc dont le langage est exactement onbuch-svg, contenant un SVG autonome et valide, par exemple :
 \`\`\`onbuch-svg
 <svg viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg"><polygon points="20,220 300,220 120,40" fill="none" stroke="#1C1714" stroke-width="2"/><text x="8" y="234" font-size="14" fill="#1C1714">A</text></svg>
 \`\`\`
   Règles SVG : SVG pur (PAS de script, ni image/police externe, ni CSS externe ; tout en attributs) ; "viewBox" défini ; coordonnées EXACTES et proportionnelles à l'énoncé (longueurs/angles) ; géométrie = traits DROITS (line, polygon), pas de courbes, ferme les polygones ; nomme les sommets/points avec des balises text (A, B, C…), marque les angles droits et cotations utiles ; couleurs : traits #1C1714, accents orange #F59321 et bleu #2D6CDF, fond transparent ; compact et lisible.
+  Pour le SVG aussi : balise EXACTEMENT onbuch-svg (jamais \`\`\`json), contenu = le \`<svg…>\` DIRECTEMENT (pas d'enveloppe JSON, pas de clé « onbuch-svg »).
   Choisis le bon outil : onbuch-svg pour une FIGURE/SCHÉMA, onbuch-plot pour une COURBE de fonction.`;
 
 const LESSON_PROMPT = `Tu es le Tuteur IA d'OnBuch. On te donne un chapitre du programme scolaire camerounais (système francophone). Rédige un COURS clair, structuré et pédagogique en français :
