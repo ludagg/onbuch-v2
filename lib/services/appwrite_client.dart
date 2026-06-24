@@ -10,4 +10,5 @@ class AppwriteClient {
   static Databases get databases => Databases(client);
   static Functions get functions => Functions(client);
   static Messaging get messaging => Messaging(client);
+  static Realtime get realtime => Realtime(client);
 }

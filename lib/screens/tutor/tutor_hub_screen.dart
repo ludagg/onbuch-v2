@@ -25,7 +25,6 @@ class TutorHubScreen extends StatefulWidget {
 class _TutorHubScreenState extends State<TutorHubScreen> {
   final _service = TutorService();
   final _db = DatabaseService();
-  late Future<List<TutorJob>> _recent = _service.recentJobs();
   late Future<List<TutorThread>> _threads = _service.recentThreads(limit: 6);
   late Future<List<ReviewItem>> _due = _db.dueReviews();
   TutorQuota? _quota;
@@ -166,7 +165,6 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
     await context.push('/tutor/correction', extra: req);
     if (mounted) {
       setState(() {
-        _recent = _service.recentJobs();
         _threads = _service.recentThreads(limit: 6);
       });
       _loadQuota();
@@ -198,7 +196,7 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
     if (_blockedByQuota()) return;
     await context.push('/tutor/capture');
     if (mounted) {
-      setState(() => _recent = _service.recentJobs());
+      setState(() => _threads = _service.recentThreads(limit: 6));
       _loadQuota();
     }
   }
@@ -336,39 +334,6 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
               ]);
             },
           ),
-
-          // ── Reprendre ─────────────────────────────────────────────────────
-          Text('Reprendre', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
-          const SizedBox(height: 10),
-          FutureBuilder<List<TutorJob>>(
-            future: _recent,
-            builder: (context, snap) {
-              if (snap.connectionState == ConnectionState.waiting) {
-                return const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 14),
-                  child: Center(child: SizedBox(width: 20, height: 20,
-                      child: CircularProgressIndicator(strokeWidth: 2.4, color: OC.o500))),
-                );
-              }
-              final jobs = snap.data ?? const <TutorJob>[];
-              if (jobs.isEmpty) {
-                return Container(
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: OC.paper, borderRadius: BorderRadius.circular(14),
-                    border: Border.all(color: OC.line, width: 1.5),
-                  ),
-                  child: Row(children: [
-                    Icon(Icons.history_rounded, size: 18, color: OC.muted),
-                    const SizedBox(width: 10),
-                    Expanded(child: Text('Tes corrections apparaîtront ici.',
-                        style: body(13, color: OC.muted, weight: FontWeight.w500))),
-                  ]),
-                );
-              }
-              return Column(children: jobs.map(_recentTile).toList());
-            },
-          ),
         ]),
       ),
     );
@@ -423,7 +388,7 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
       behavior: HitTestBehavior.opaque,
       onTap: () async {
         await context.push('/tutor/resume');
-        if (mounted) setState(() => _recent = _service.recentJobs());
+        if (mounted) setState(() => _threads = _service.recentThreads(limit: 6));
       },
       child: Container(
         padding: const EdgeInsets.all(14),
@@ -664,35 +629,6 @@ class _TutorHubScreenState extends State<TutorHubScreen> {
             Text(t.title, maxLines: 1, overflow: TextOverflow.ellipsis, style: body(13.5, weight: FontWeight.w700)),
             const SizedBox(height: 2),
             Text(t.subject.isNotEmpty ? '${t.subject} · reprendre' : 'reprendre la discussion',
-                style: body(11.5, color: OC.muted, weight: FontWeight.w500)),
-          ])),
-          Icon(Icons.chevron_right_rounded, size: 18, color: OC.muted),
-        ]),
-      ),
-    );
-  }
-
-  Widget _recentTile(TutorJob job) {
-    return GestureDetector(
-      onTap: () => _open(TutorRequest(jobId: job.id, titleHint: job.title, subject: job.subject)),
-      child: Container(
-        margin: const EdgeInsets.only(bottom: 9),
-        padding: const EdgeInsets.all(11),
-        decoration: BoxDecoration(
-          color: OC.paper, borderRadius: BorderRadius.circular(14),
-          border: Border.all(color: OC.line, width: 1.5),
-        ),
-        child: Row(children: [
-          Container(
-            width: 38, height: 38,
-            decoration: BoxDecoration(color: OC.goodBg, borderRadius: BorderRadius.circular(11)),
-            child: Icon(Icons.check_circle_outline_rounded, size: 19, color: OC.good),
-          ),
-          const SizedBox(width: 12),
-          Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text(job.title, maxLines: 1, overflow: TextOverflow.ellipsis, style: body(13.5, weight: FontWeight.w700)),
-            const SizedBox(height: 2),
-            Text(job.subject.isNotEmpty ? '${job.subject} · résolu' : 'résolu',
                 style: body(11.5, color: OC.muted, weight: FontWeight.w500)),
           ])),
           Icon(Icons.chevron_right_rounded, size: 18, color: OC.muted),
