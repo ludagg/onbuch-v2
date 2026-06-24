@@ -53,10 +53,30 @@ dans `lib/models/exercise.dart` (nécessite un patch Shorebird pour les élèves
 
 ## Avancement (à mettre à jour)
 
-- Maths : 92/95 publiées (3 fiches coriaces en reprise).
-- Physique : ch.1 Cinématique, ch.2 Lois de Newton, ch.3 Énergie complets ;
-  ch.4 (champ de pesanteur) en cours. Reste ch.4(f2+)..ch.18.
-- Chimie : ch.1 Cinétique complet. Reste ch.2..ch.15.
+- **Maths : 94/95** publiées. Restent 3 fiches coriaces à RÉDIGER À LA MAIN
+  (le pipeline IA échoue) : `exch_mathc_07_f4` (énoncé), `exch_mathc_08_f2`
+  (énoncé), `exch_mathc_03_f4` (corrigé manquant).
+- **Physique : ch.1 à ch.5 COMPLETS** (Cinématique, Lois de Newton, Énergie,
+  Champ de pesanteur, Champ électrique). Restent ch.6 à ch.18.
+- **Chimie : ch.1 à ch.3 COMPLETS** (Cinétique, pH/acides-bases, Couples Ka/pKa).
+  Restent ch.4 à ch.15.
+
+> ⚠️ TEMPORAIRE : les chapitres physique/chimie ont `track=""` (visibles par
+> toutes les séries) en attendant le patch Shorebird du modèle multi-séries.
+> À rebasculer en `track="C,D,E,TI"` une fois le patch déployé.
+
+## Reprise rapide (nouvelle session)
+
+```
+cd /tmp && mkdir -p exo/out && cd exo
+# (réinstaller tectonic si absent)
+cp /home/user/onbuch-v2/tools/exercices-fiches/{preamble.tex,build_pdf.py,upload.py,pub.py} build/
+# écrire build/../out/<cid>/enonce<i>.body.tex et corr<i>.body.tex, puis :
+export APPWRITE_API_KEY=...  NVIDIA_API_KEY=...  REPAIR_MODEL=meta/llama-3.3-70b-instruct
+python3 build/pub.py <chapter_id> <i> "<Difficulté>" "<titre fiche>"
+```
+Conventions : g=10 N/kg, contexte camerounais, 3–5 exercices Facile→Difficile,
+maths/chimie en `$...$` et tableaux `array`, PAS de tikz.
 
 > Les conventions de contenu (programme MINESEC Tle C/D/E/TI, g=10 N/kg, contexte
 > camerounais, énoncés Facile→Difficile, 4–6 exercices/fiche) sont à respecter.
