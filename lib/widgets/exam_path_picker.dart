@@ -15,12 +15,15 @@ class ExamPathPicker extends StatefulWidget {
   final String exam;
   final String? value;
   final ValueChanged<String?> onChanged;
+  /// Émis quand une feuille (série/spécialité) est choisie : (catégorie, code, libellé).
+  final void Function(String category, String code, String label)? onLeaf;
 
   const ExamPathPicker({
     super.key,
     required this.exam,
     required this.value,
     required this.onChanged,
+    this.onLeaf,
   });
 
   @override
@@ -88,6 +91,9 @@ class _ExamPathPickerState extends State<ExamPathPicker> {
       }
     });
     widget.onChanged(_leaf?.label);
+    if (_leaf != null) {
+      widget.onLeaf?.call(_groups.map((g) => g.label).join(' / '), _leaf!.code, _leaf!.label);
+    }
   }
 
   @override
