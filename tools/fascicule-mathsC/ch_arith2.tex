@@ -1,0 +1,194 @@
+\chapter{Arithmétique : PGCD, PPCM, Bézout et Gauss}
+
+\noindent\textit{Ce chapitre prolonge l'étude de la divisibilité par les notions de plus
+grand commun diviseur et de plus petit commun multiple, puis introduit les deux théorèmes
+fondamentaux de l'arithmétique de Terminale C — \textbf{Bézout} et \textbf{Gauss} — qui
+permettent de résoudre les équations diophantiennes et les congruences linéaires.}
+\vspace{8pt}
+
+% ═══════════════════════════════════════════════════════════════
+\section{PGCD et PPCM}
+
+\begin{definition}[PGCD et PPCM]
+Soient $a$ et $b$ deux entiers naturels non nuls.
+\begin{itemize}
+\item Le \textbf{PGCD} de $a$ et $b$, noté $\mathrm{pgcd}(a,b)$ ou $a\wedge b$, est le plus grand de leurs diviseurs communs.
+\item Le \textbf{PPCM} de $a$ et $b$, noté $\mathrm{ppcm}(a,b)$ ou $a\vee b$, est le plus petit de leurs multiples communs strictement positifs.
+\end{itemize}
+\end{definition}
+
+\begin{theoreme}[Algorithme d'Euclide]
+Pour tous entiers $a\ge b>0$, si $r$ est le reste de la division euclidienne de $a$ par $b$, alors
+\[
+a\wedge b=b\wedge r.
+\]
+En répétant le procédé, le \textbf{dernier reste non nul} est le PGCD de $a$ et $b$.
+\end{theoreme}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth,node distance=8mm,
+  box/.style={rectangle,draw=onbink,fill=white,rounded corners=2pt,inner sep=4pt,font=\small},
+  gcd/.style={rectangle,draw=onbgreen,fill=onbsoft,rounded corners=2pt,inner sep=4pt,font=\small\bfseries}]
+\node[box] (a) {$252$};
+\node[box,right=of a] (b) {$198$};
+\node[box,right=of b] (c) {$54$};
+\node[box,right=of c] (d) {$36$};
+\node[gcd,right=of d] (e) {$18$};
+\node[box,right=of e] (f) {$0$};
+\foreach \x/\y in {a/b,b/c,c/d,d/e,e/f}{\draw[->,onbo] (\x) -- (\y);}
+\node[below=1pt of a,font=\scriptsize\itshape,onbmuted] {$252=1\cdot198+54$};
+\node[below=1pt of c,font=\scriptsize\itshape,onbmuted] {$198=3\cdot54+36$};
+\node[below=1pt of e,font=\scriptsize\itshape,onbmuted] {$54=1\cdot36+18$};
+\end{tikzpicture}
+\fig{Figure 2.1 — Algorithme d'Euclide : la descente des restes ; le dernier reste non nul est $252\wedge198=18$.}
+\end{illus}
+
+\begin{propriete}[Propriétés du PGCD et du PPCM]
+Pour tous entiers naturels non nuls $a,b$ :
+\[
+(a\wedge b)\times(a\vee b)=a\times b,\qquad
+\text{et si } d=a\wedge b,\ \text{alors } a=d\,a',\ b=d\,b'\ \text{avec } a'\wedge b'=1.
+\]
+\end{propriete}
+
+\begin{definition}[Nombres premiers entre eux]
+$a$ et $b$ sont \textbf{premiers entre eux} lorsque $a\wedge b=1$ (leur seul diviseur commun positif est $1$).
+\end{definition}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Théorème de Bézout}
+
+\begin{theoreme}[Identité et théorème de Bézout]
+Pour tous entiers relatifs $a,b$ non nuls, il existe des entiers relatifs $u,v$ tels que
+\[
+a\,u+b\,v=a\wedge b.
+\]
+\textbf{En particulier :} $a$ et $b$ sont premiers entre eux \emph{si et seulement si} il existe des entiers $u,v$ tels que $a\,u+b\,v=1$.
+\end{theoreme}
+
+\begin{aretenir}
+Pour trouver un couple de Bézout $(u,v)$, on « remonte » l'algorithme d'Euclide : on exprime chaque reste en fonction des deux nombres de départ.
+\end{aretenir}
+
+\begin{exemple}
+On a vu $252\wedge198=18$. En remontant :
+$18=54-36=54-(198-3\cdot54)=4\cdot54-198=4(252-198)-198=4\cdot252-5\cdot198.$
+Donc $\boxed{4\times252+(-5)\times198=18}$.
+\end{exemple}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Théorème de Gauss}
+
+\begin{theoreme}[Théorème de Gauss]
+Soient $a,b,c$ des entiers. Si $a\mid b\,c$ \textbf{et} $a\wedge b=1$, alors $a\mid c$.
+\end{theoreme}
+
+\begin{propriete}[Conséquences utiles]
+\begin{itemize}
+\item Si $b\mid n$, $c\mid n$ et $b\wedge c=1$, alors $b\,c\mid n$.
+\item Si $a\wedge b=1$, alors $a\wedge b^{k}=1$ pour tout $k\in\N$.
+\end{itemize}
+\end{propriete}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Équations diophantiennes $ax+by=c$}
+
+\begin{aretenir}
+\textbf{Résolution de $ax+by=c$ dans $\Z^2$} (avec $d=a\wedge b$) :
+\begin{enumerate}
+\item L'équation admet des solutions \emph{si et seulement si} $d\mid c$ ;
+\item on cherche une \textbf{solution particulière} $(x_0,y_0)$ (via Bézout) ;
+\item la \textbf{solution générale} est $x=x_0+\dfrac{b}{d}\,k,\ \ y=y_0-\dfrac{a}{d}\,k,\ \ k\in\Z$.
+\end{enumerate}
+\end{aretenir}
+
+\begin{exemple}
+Résoudre $5x+3y=1$. Comme $5\wedge3=1$, il y a des solutions. Solution particulière évidente : $(x_0,y_0)=(2,-3)$ car $10-9=1$. Solution générale : $x=2+3k,\ y=-3-5k,\ k\in\Z$.
+\end{exemple}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Méthodes \& savoir-faire}
+
+\methode{Calculer un PGCD par l'algorithme d'Euclide}
+Diviser le plus grand par le plus petit, recommencer avec (diviseur, reste) jusqu'à un reste nul ; le dernier reste non nul est le PGCD.
+\begin{exemple}
+$\mathrm{pgcd}(154,42)$ : $154=3\cdot42+28$ ; $42=1\cdot28+14$ ; $28=2\cdot14+0$. Donc $\mathrm{pgcd}=14$.
+\end{exemple}
+
+\methode{Trouver un couple de Bézout}
+Remonter les égalités de l'algorithme d'Euclide en isolant chaque reste.
+\begin{exemple}
+$\mathrm{pgcd}(154,42)=14$ : $14=42-28=42-(154-3\cdot42)=4\cdot42-154$. Donc $(-1)\cdot154+4\cdot42=14$.
+\end{exemple}
+
+\methode{Résoudre une équation diophantienne $ax+by=c$}
+Vérifier $d\mid c$ ; trouver $(x_0,y_0)$ (Bézout, puis multiplier par $c/d$) ; écrire la solution générale.
+\begin{exemple}
+$7x+5y=1$ : $(3,-4)$ convient ($21-20=1$). Solutions : $x=3+5k,\ y=-4-7k,\ k\in\Z$.
+\end{exemple}
+
+\methode{Résoudre une congruence linéaire $ax\equiv b\;[n]$}
+Elle équivaut à $ax-ny=b$ : on se ramène à une équation diophantienne (solutions ssi $(a\wedge n)\mid b$).
+\begin{exemple}
+$3x\equiv2\;[5]$. Comme $3\times2=6\equiv1\;[5]$, $3^{-1}\equiv2$ ; donc $x\equiv2\times2=4\;[5]$.
+\end{exemple}
+
+\methode{Appliquer le théorème de Gauss}
+Lorsqu'on sait que $a\mid bc$ avec $a\wedge b=1$, on conclut $a\mid c$ ; utile pour les problèmes de divisibilité.
+
+% ═══════════════════════════════════════════════════════════════
+\section{Exercices}
+
+\rubrique{PGCD, PPCM et nombres premiers entre eux}
+\exo{}\diff{1} Calculer $\mathrm{pgcd}(360,84)$ par l'algorithme d'Euclide, puis $\mathrm{ppcm}(360,84)$.
+
+\exo{}\diff{2} Montrer que pour tout entier $n$, $n$ et $n+1$ sont premiers entre eux.
+
+\exo{}\diff{2} Déterminer les entiers $n$ tels que $n-2$ divise $n+7$.
+
+\rubrique{Identité de Bézout}
+\exo{}\diff{2} Déterminer un couple $(u,v)\in\Z^2$ tel que $17u+5v=1$.
+
+\exo{}\diff{2} Montrer que $n+1$ et $2n+1$ sont premiers entre eux pour tout $n\in\N$.
+
+\rubrique{Équations diophantiennes et congruences}
+\exo{}\diff{2} Résoudre dans $\Z^2$ l'équation $4x+6y=8$.
+
+\exo{}\diff{2} Résoudre la congruence $5x\equiv3\;[7]$.
+
+\rubrique{Théorème de Gauss — Problème type Baccalauréat}
+\exo{}\diff{3} On considère l'équation $(E):\ 11x-7y=1$, $(x,y)\in\Z^2$.
+\begin{enumerate}[label=\arabic*)]
+\item Justifier que $(E)$ admet des solutions et en trouver une particulière.
+\item Résoudre $(E)$.
+\item En déduire les entiers naturels $n\le 100$ tels que $n\equiv3\;[7]$ et $n\equiv5\;[11]$.
+\end{enumerate}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Corrigés}
+
+\corrige{de l'exercice 1}
+$360=4\cdot84+24$ ; $84=3\cdot24+12$ ; $24=2\cdot12+0$. Donc $\mathrm{pgcd}=12$, et $\mathrm{ppcm}=\dfrac{360\times84}{12}=2520$.
+
+\corrige{de l'exercice 2}
+Un diviseur commun $d$ de $n$ et $n+1$ divise leur différence $(n+1)-n=1$, donc $d=1$ : $n\wedge(n+1)=1$.
+
+\corrige{de l'exercice 3}
+$n+7=(n-2)+9$, donc $n-2$ divise $n+7$ ssi $n-2$ divise $9$. Les diviseurs (relatifs) de $9$ donnent $n-2\in\{\pm1,\pm3,\pm9\}$, d'où $n\in\{-7,-1,1,3,5,11\}$.
+
+\corrige{de l'exercice 4}
+$17=3\cdot5+2$ ; $5=2\cdot2+1$. En remontant : $1=5-2\cdot2=5-2(17-3\cdot5)=7\cdot5-2\cdot17$. Donc $(u,v)=(-2,7)$ : $17\times(-2)+5\times7=1$.
+
+\corrige{de l'exercice 5}
+$2(n+1)-(2n+1)=1$ : un diviseur commun de $n+1$ et $2n+1$ divise $1$, donc ils sont premiers entre eux.
+
+\corrige{de l'exercice 6}
+$d=4\wedge6=2$ et $2\mid8$ : il y a des solutions. On simplifie : $2x+3y=4$. Particulière : $(x_0,y_0)=(2,0)$. Générale : $x=2+3k,\ y=-2k,\ k\in\Z$.
+
+\corrige{de l'exercice 7}
+$5\times3=15\equiv1\;[7]$ donc $5^{-1}\equiv3\;[7]$ ; ainsi $x\equiv3\times3=9\equiv2\;[7]$. Solution : $x\equiv2\;[7]$.
+
+\corrige{du problème}
+1) $11\wedge7=1$ divise $1$ : solutions existent. $11\cdot2-7\cdot3=22-21=1$, donc $(x_0,y_0)=(2,3)$.\;
+2) Solution générale : $x=2+7k,\ y=3+11k,\ k\in\Z$.\;
+3) $n\equiv3\;[7]$ et $n\equiv5\;[11]$. Écrivons $n=3+7x=5+11y'$, soit $7x-11y'=2$. D'après 1), $7\cdot(-3)-11\cdot(-2)=-21+22=1$, donc $(x,y')=(-6,-4)$ est solution de $7x-11y'=2$ ; général $x=-6+11k$. Alors $n=3+7x=3+7(-6+11k)=-39+77k$, soit $n\equiv38\;[77]$. Pour $0\le n\le100$ : $n=38$.
