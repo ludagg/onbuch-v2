@@ -216,14 +216,15 @@ class _Greeting extends StatefulWidget {
 }
 
 class _GreetingState extends State<_Greeting> {
-  // Salutations qui tournent à chaque ouverture (prénom inséré si connu).
+  // Salutations qui tournent à chaque ouverture. Seule « Salut » porte le
+  // prénom ; les autres restent courtes (sinon trop longues avec le prénom).
   static final List<String Function(String?)> _greetings = [
     (n) => n == null ? 'Salut 👋' : 'Salut, $n 👋',
-    (n) => n == null ? 'Le goat est de retour 🐐' : 'Le goat $n est de retour 🐐',
-    (n) => n == null ? 'Content de te revoir ✨' : 'Content de te revoir, $n ✨',
-    (n) => n == null ? 'Prêt à tout déchirer ? 💪' : 'Prêt à tout déchirer, $n ? 💪',
-    (n) => n == null ? 'De retour, boss 👑' : 'De retour, boss $n 👑',
-    (n) => n == null ? 'On déchire aujourd\'hui ? 🔥' : 'On déchire aujourd\'hui, $n ? 🔥',
+    (_) => 'Le goat est de retour 🐐',
+    (_) => 'Content de te revoir ✨',
+    (_) => 'Prêt à tout déchirer ? 💪',
+    (_) => 'De retour, boss 👑',
+    (_) => 'On déchire aujourd\'hui ? 🔥',
   ];
   // Mémorise le dernier index pour éviter de répéter la même à l'ouverture suivante.
   static int _last = -1;
