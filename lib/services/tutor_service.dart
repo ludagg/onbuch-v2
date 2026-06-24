@@ -192,6 +192,110 @@ class TutorService {
     }
   }
 
+  // ── Variantes STREAMING ─────────────────────────────────────────────────────
+  // Émettent le texte PARTIEL (qui grandit) au fil de l'eau, puis le texte final.
+  // La fonction `tutor-ai` écrit `tutor_jobs.correction` incrémentalement
+  // (status 'streaming') puis 'done' ; on relit le doc et on émet ce qui a grandi.
+
+  Stream<String> analyzeExerciseStream({
+    Uint8List? image,
+    String? text,
+    String? subject,
+    String? mode,
+    String? chapterId,
+    bool notify = false,
+  }) async* {
+    if (image == null && (text == null || text.trim().isEmpty)) {
+      throw 'Fournis une photo ou écris ton exercice.';
+    }
+    final b64 = image != null ? await compute(_compressToBase64, image) : null;
+    final jobId = ID.unique();
+    final payload = <String, dynamic>{
+      'jobId': jobId,
+      if (b64 != null) 'image': b64,
+      if (text != null && text.trim().isNotEmpty) 'question': text.trim(),
+      if (subject != null && subject.trim().isNotEmpty) 'subject': subject.trim(),
+      if (mode != null && mode.isNotEmpty) 'mode': mode,
+      if (chapterId != null && chapterId.isNotEmpty) 'chapterId': chapterId,
+      if (notify) 'notify': true,
+    };
+    yield* _runStream(payload, jobId);
+  }
+
+  Stream<String> analyzeExamStream({
+    String examUrl = '',
+    Uint8List? image,
+    required String question,
+    String? subject,
+  }) async* {
+    final b64 = image != null ? await compute(_compressToBase64, image) : null;
+    final jobId = ID.unique();
+    final payload = <String, dynamic>{
+      'jobId': jobId,
+      'mode': 'exam_help',
+      if (examUrl.trim().isNotEmpty) 'examUrl': examUrl.trim(),
+      if (b64 != null) 'image': b64,
+      if (question.trim().isNotEmpty) 'question': question.trim(),
+      if (subject != null && subject.trim().isNotEmpty) 'subject': subject.trim(),
+    };
+    yield* _runStream(payload, jobId);
+  }
+
+  Stream<String> continueConversationStream(List<Map<String, String>> messages) async* {
+    final jobId = ID.unique();
+    yield* _runStream({'jobId': jobId, 'messages': messages}, jobId);
+  }
+
+  /// Lance l'exécution async puis interroge le job ; émet le `correction` partiel
+  /// à chaque fois qu'il grandit, jusqu'à `status == done` (ou lève en cas d'erreur).
+  Stream<String> _runStream(Map<String, dynamic> payload, String jobId) async* {
+    try {
+      await AppwriteClient.functions.createExecution(
+        functionId: AIConfig.tutorFunctionId,
+        body: jsonEncode(payload),
+        xasync: true,
+      );
+    } on AppwriteException catch (e) {
+      if (e.code == 401) throw 'Connecte-toi pour utiliser le Tuteur IA.';
+      throw 'Connexion au Tuteur impossible. Vérifie ta connexion et réessaie.';
+    }
+
+    final deadline = DateTime.now().add(const Duration(seconds: 110));
+    var tries = 0;
+    var last = '';
+    while (true) {
+      if (DateTime.now().isAfter(deadline)) {
+        throw 'Le Tuteur met trop de temps à répondre. Réessaie.';
+      }
+      final waitMs = tries < 12 ? 500 : 1500;
+      tries++;
+      await Future.delayed(Duration(milliseconds: waitMs));
+      try {
+        final doc = await AppwriteClient.databases.getDocument(
+          databaseId: appwriteDatabaseId,
+          collectionId: appwriteTutorJobsCollectionId,
+          documentId: jobId,
+        );
+        final status = doc.data['status']?.toString();
+        final c = (doc.data['correction'] ?? '').toString().trim();
+        if (c.isNotEmpty && c != last) {
+          last = c;
+          yield c; // texte partiel (ou final) qui grandit
+        }
+        if (status == 'done') {
+          if (last.isNotEmpty) return;
+          throw 'Le Tuteur n\'a pas pu répondre. Réessaie.';
+        }
+        if (status == 'error') {
+          final err = doc.data['error']?.toString();
+          throw (err != null && err.isNotEmpty) ? err : 'Le Tuteur a rencontré un problème.';
+        }
+      } on AppwriteException catch (_) {
+        continue; // 404 (pas encore créé) ou erreur transitoire → on retente.
+      }
+    }
+  }
+
   /// Renvoie la correction déjà calculée d'un job (réouverture).
   Future<String> getJobCorrection(String jobId) async {
     try {
