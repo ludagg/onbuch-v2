@@ -71,6 +71,8 @@ import '../screens/cours/chapter_detail_screen.dart';
 import '../screens/cours/quiz_screen.dart';
 import '../screens/cours/quiz_result_screen.dart';
 import '../screens/cours/cours_search_screen.dart';
+import '../screens/exercices/exercices_screen.dart';
+import '../models/exercise.dart';
 import '../models/article.dart';
 import '../models/exam_result.dart';
 import '../models/concours.dart';
@@ -149,6 +151,18 @@ final appRouter = GoRouter(
     GoRoute(path: '/aide', builder: (_, __) => const AideScreen()),
     GoRoute(path: '/edit-profile', builder: (_, __) => const EditProfileScreen()),
     GoRoute(path: '/search', builder: (_, s) => GlobalSearchScreen(scope: s.uri.queryParameters['scope'])),
+    // Module Exercices (hors shell → plein écran).
+    GoRoute(path: '/exercices', builder: (_, __) => const ExercicesScreen()),
+    GoRoute(path: '/exercices/chapitres', builder: (_, s) {
+      final m = s.extra is Map ? s.extra as Map : const {};
+      return ExerciseChaptersScreen(
+        subject: (m['subject'] ?? '').toString(),
+        examen: m['examen'] as String?,
+        serie: m['serie'] as String?,
+      );
+    }),
+    GoRoute(path: '/exercices/fiches', builder: (_, s) =>
+        ExerciseSheetsScreen(chapter: s.extra as ExerciseChapter)),
     GoRoute(path: '/progress', builder: (_, __) => const ProgressScreen()),
     GoRoute(
       path: '/cours-subject',

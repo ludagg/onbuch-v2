@@ -36,6 +36,13 @@ const appwriteAppConfigCollectionId = 'app_config';
 const appwriteHomeAnnouncementsCollectionId = 'home_announcements';
 const appwriteGamificationCollectionId = 'gamification';
 
+// ── Module Exercices (banque d'exercices par matière/classe) ────────────────
+// Chapitres + fiches (énoncé PDF + correction PDF) gérés par l'admin ;
+// progression privée par élève (trouvé / pas trouvé). Cf. tools/setup_exercises.sh.
+const appwriteExerciseChaptersCollectionId = 'exercise_chapters';
+const appwriteExerciseSheetsCollectionId = 'exercise_sheets';
+const appwriteExerciseProgressCollectionId = 'exercise_progress';
+
 // Endpoint serverless (Vercel) qui résout une recherche de résultat pour les
 // sources `pdf` (extraction texte) et `api` (proxy externe). Hébergé sur Vercel
 // car le plan Appwrite a atteint sa limite de fonctions. Aucun secret requis :

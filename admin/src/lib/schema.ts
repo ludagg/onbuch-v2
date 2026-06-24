@@ -214,6 +214,62 @@ export const RESOURCES: Resource[] = [
     ]
   },
   {
+    id: 'exercise_chapters',
+    collectionId: 'exercise_chapters',
+    label: 'Exercices — chapitres',
+    singular: 'chapitre',
+    icon: '🧩',
+    titleField: 'title',
+    subtitleField: 'subject',
+    orderBy: { field: 'order', dir: 'asc' },
+    fields: [
+      { key: 'subject', label: 'Matière', type: 'text', required: true, help: 'Nom exact de la matière (ex. « Mathématiques »). Sert à regrouper les chapitres.' },
+      { key: 'title', label: 'Titre du chapitre', type: 'text', required: true, help: 'ex. « Dérivation », « Le théorème de Thalès ».' },
+      { key: 'exam', label: 'Examen', type: 'text', help: 'ex. « Baccalauréat ». Vide = tous les examens.' },
+      { key: 'track', label: 'Série', type: 'text', help: 'Code/série, ex. « C », « D ». Vide = toutes les séries.' },
+      { key: 'levels', label: 'Classes', type: 'text', help: 'Classes concernées, ex. « Terminale,1ère ». Vide = toutes. Une matière peut servir 2 classes.' },
+      { key: 'description', label: 'Description', type: 'textarea', help: 'Courte description (optionnel).' },
+      { key: 'order', label: 'Ordre', type: 'number', help: 'Tri croissant.' }
+    ]
+  },
+  {
+    id: 'exercise_sheets',
+    collectionId: 'exercise_sheets',
+    label: 'Exercices — fiches',
+    singular: 'fiche',
+    icon: '📝',
+    titleField: 'title',
+    subtitleField: 'subject',
+    orderBy: { field: 'order', dir: 'asc' },
+    fields: [
+      { key: 'chapterId', label: 'ID du chapitre', type: 'text', required: true, help: 'L’ID du document « Exercices — chapitres » auquel rattacher cette fiche.' },
+      { key: 'subject', label: 'Matière', type: 'text', help: 'Reprend la matière du chapitre (pour l’affichage).' },
+      { key: 'title', label: 'Titre de la fiche', type: 'text', required: true, help: 'ex. « Fiche 1 — Calcul de dérivées ».' },
+      { key: 'difficulty', label: 'Difficulté', type: 'select', options: ['facile', 'moyen', 'difficile'], help: 'Optionnel.' },
+      { key: 'statementPdfUrl', label: 'PDF énoncé (URL)', type: 'text', required: true, help: 'URL publique du PDF de l’énoncé (Storage Appwrite ou autre).' },
+      { key: 'correctionPdfUrl', label: 'PDF correction (URL)', type: 'text', help: 'URL publique du PDF de la correction. Optionnel.' },
+      { key: 'order', label: 'Ordre', type: 'number', help: 'Tri croissant (1, 2, 3…).' }
+    ]
+  },
+  {
+    id: 'exercise_progress',
+    collectionId: 'exercise_progress',
+    label: 'Exercices — progression',
+    singular: 'progression',
+    icon: '📈',
+    titleField: 'sheetId',
+    subtitleField: 'status',
+    readOnly: true,
+    orderBy: { field: 'updatedAt', dir: 'desc' },
+    fields: [
+      { key: 'userId', label: 'Élève (UID)', type: 'text' },
+      { key: 'sheetId', label: 'Fiche', type: 'text' },
+      { key: 'subject', label: 'Matière', type: 'text' },
+      { key: 'status', label: 'Statut', type: 'text' },
+      { key: 'updatedAt', label: 'Mis à jour', type: 'datetime' }
+    ]
+  },
+  {
     id: 'articles',
     collectionId: 'articles',
     label: 'Actualités',
