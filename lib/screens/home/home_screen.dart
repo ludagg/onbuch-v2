@@ -463,40 +463,52 @@ class _AnnouncementCard extends StatelessWidget {
           if (a.hasImage)
             Image.network(a.imageUrl, fit: BoxFit.cover,
                 errorBuilder: (_, __, ___) => const SizedBox.shrink()),
-          // Voile pour la lisibilité du texte clair sur image.
+          // Voile pour la lisibilité du texte clair sur image (haut ET bas
+          // assombris ; centre plus clair pour laisser respirer l'image).
           if (a.hasImage && light)
             DecoratedBox(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: [Colors.black.withValues(alpha: 0.18), Colors.black.withValues(alpha: 0.62)],
+                  colors: [
+                    Colors.black.withValues(alpha: 0.46),
+                    Colors.black.withValues(alpha: 0.28),
+                    Colors.black.withValues(alpha: 0.72),
+                  ],
+                  stops: const [0.0, 0.42, 1.0],
                 ),
               ),
             ),
           Padding(
-            padding: const EdgeInsets.all(18),
+            padding: const EdgeInsets.fromLTRB(18, 17, 18, 17),
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              if (a.eyebrow.isNotEmpty)
-                Text(a.eyebrow.toUpperCase(),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: body(10.5, weight: FontWeight.w800, color: light ? const Color(0xFFFFB489) : OC.o600)
-                        .copyWith(letterSpacing: 0.12 * 10.5)),
-              if (a.eyebrow.isNotEmpty) const SizedBox(height: 9),
+              if (a.eyebrow.isNotEmpty) ...[
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4.5),
+                  decoration: BoxDecoration(
+                    color: light ? Colors.white.withValues(alpha: 0.18) : OC.o600.withValues(alpha: 0.12),
+                    borderRadius: BorderRadius.circular(999),
+                  ),
+                  child: Text(a.eyebrow.toUpperCase(),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: body(9.5, weight: FontWeight.w800, color: light ? Colors.white : OC.o700)
+                          .copyWith(letterSpacing: 1.1)),
+                ),
+                const SizedBox(height: 11),
+              ],
               if (a.title.isNotEmpty)
                 Text(a.title,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: display(19, weight: FontWeight.w700, color: fg)),
+                    style: display(20.5, weight: FontWeight.w800, color: fg).copyWith(height: 1.12)),
               if (a.body.isNotEmpty) ...[
                 const SizedBox(height: 7),
-                Flexible(
-                  child: Text(a.body,
-                      maxLines: 3,
-                      overflow: TextOverflow.ellipsis,
-                      style: body(13, weight: FontWeight.w500, color: fgSoft).copyWith(height: 1.35)),
-                ),
+                Text(a.body,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: body(12.5, weight: FontWeight.w500, color: fgSoft).copyWith(height: 1.32)),
               ],
               const Spacer(),
               if (a.hasCta)
@@ -505,16 +517,19 @@ class _AnnouncementCard extends StatelessWidget {
                   child: GestureDetector(
                     onTap: () => _open(context),
                     child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 11),
                       decoration: BoxDecoration(
                         color: light ? Colors.white : OC.ink,
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(14),
+                        boxShadow: [
+                          BoxShadow(color: Colors.black.withValues(alpha: 0.20), blurRadius: 12, offset: const Offset(0, 5)),
+                        ],
                       ),
                       child: Row(mainAxisSize: MainAxisSize.min, children: [
                         Text(a.ctaLabel,
-                            style: body(12.5, weight: FontWeight.w700, color: light ? OC.ink : Colors.white)),
-                        const SizedBox(width: 6),
-                        Icon(Icons.arrow_forward_rounded, size: 15, color: light ? OC.ink : Colors.white),
+                            style: body(13, weight: FontWeight.w800, color: light ? OC.ink : Colors.white)),
+                        const SizedBox(width: 7),
+                        Icon(Icons.arrow_forward_rounded, size: 16, color: light ? OC.ink : Colors.white),
                       ]),
                     ),
                   ),
