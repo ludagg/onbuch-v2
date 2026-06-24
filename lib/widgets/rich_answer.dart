@@ -53,7 +53,13 @@ class RichAnswer extends StatelessWidget {
   /// avec des `$`. On convertit donc les délimiteurs dollar produits par le
   /// modèle pour qu'ils s'affichent bien.
   static String _normalizeMath(String s) {
-    var out = s.replaceAllMapped(RegExp(r'\$\$([\s\S]+?)\$\$'), (m) => '\\[${m[1]}\\]');
+    // Défense contre le sur-échappement : certains modèles renvoient parfois
+    // `\\frac`, `\\lim`, `\\boxed`… (double antislash). `flutter_math_fork`
+    // interprète `\\` comme un saut de ligne ⇒ la commande s'affiche en brut.
+    // Un vrai saut de ligne LaTeX (`\\`) n'est jamais suivi d'une lettre, donc
+    // on peut sans risque ré-assembler `\\` + lettre en une seule commande.
+    var out = s.replaceAllMapped(RegExp(r'\\\\([a-zA-Z])'), (m) => '\\${m[1]}');
+    out = out.replaceAllMapped(RegExp(r'\$\$([\s\S]+?)\$\$'), (m) => '\\[${m[1]}\\]');
     out = out.replaceAllMapped(RegExp(r'\$([^\$\n]+?)\$'), (m) => '\\(${m[1]}\\)');
     return out;
   }
