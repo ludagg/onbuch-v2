@@ -1,0 +1,64 @@
+\input{preamble.tex}
+\usepackage{graphicx}
+
+\begin{document}
+
+% ════════════════════ COUVERTURE ════════════════════
+\begin{titlepage}
+\thispagestyle{empty}
+\newgeometry{margin=0pt}
+\noindent\begin{tcolorbox}[width=\paperwidth,height=\paperheight,
+  colback=onbink,colframe=onbink,sharp corners,valign=center,
+  left=0pt,right=0pt,top=0pt,bottom=0pt]
+\centering
+\color{white}
+
+{\color{onbo2}\rule{4.5cm}{3pt}}\\[10pt]
+{\sffamily\fontsize{16}{16}\selectfont OnBuch · Collection Réussite}\\[2pt]
+{\sffamily\fontsize{13}{13}\selectfont\color{onbmuted} Baccalauréat Scientifique — Cameroun}\\[36pt]
+
+{\sffamily\bfseries\fontsize{62}{62}\selectfont\color{white} MATHÉ\-MATIQUES}\\[14pt]
+{\sffamily\fontsize{30}{30}\selectfont\color{onbo2} Terminale C}\\[26pt]
+
+\begin{tcolorbox}[colback=onbink,colframe=onbo,boxrule=1.5pt,arc=10pt,
+  width=11.5cm,halign=center,fontupper=\sffamily\large\color{white}]
+Cours complet · Méthodes · Exercices et problèmes corrigés
+\end{tcolorbox}
+
+\vfill
+\includegraphics[width=4.6cm]{logo.png}\\[10pt]
+{\sffamily\fontsize{20}{20}\selectfont\bfseries\color{white} OnBuch}\\[2pt]
+{\sffamily\color{onbmuted} Réussir, ensemble.}\\[30pt]
+{\color{onbo2}\rule{\paperwidth}{6pt}}
+\end{tcolorbox}
+\restoregeometry
+\end{titlepage}
+
+% ════════════════════ PAGE DE GARDE / AVANT-PROPOS ════════════════════
+\frontmatter
+\thispagestyle{empty}
+\vspace*{1cm}
+{\sffamily\Large\bfseries\color{onbink} Avant-propos}\\[2pt]
+{\color{onbo}\rule{4cm}{2pt}}\par\vspace{10pt}
+\noindent Ce fascicule couvre l'intégralité du programme de mathématiques de la
+classe de \textbf{Terminale C} (Baccalauréat scientifique, Cameroun), selon
+l'approche par compétences. Chaque chapitre s'organise en quatre temps :
+\begin{itemize}
+  \item \textbf{L'essentiel du cours} — définitions, théorèmes et propriétés, présentés en encadrés clairs ;
+  \item \textbf{Méthodes \& savoir-faire} — les techniques incontournables, chacune illustrée par un exemple résolu ;
+  \item \textbf{Exercices d'application} puis \textbf{problèmes type Baccalauréat}, progressifs ;
+  \item \textbf{Corrigés détaillés}.
+\end{itemize}
+\noindent Bon travail, et bonne réussite au Baccalauréat !
+\par\vspace{4pt}\hfill{\sffamily\itshape\color{onbmuted} L'équipe OnBuch}
+
+\vspace{1.2cm}
+{\sffamily\Large\bfseries\color{onbink} Sommaire}\\[2pt]
+{\color{onbo}\rule{4cm}{2pt}}\par\vspace{6pt}
+{\hypersetup{linkcolor=onbink}\makeatletter\@starttoc{toc}\makeatother}
+
+% ════════════════════ CONTENU ════════════════════
+\mainmatter
+\include{ch01}
+
+\end{document}

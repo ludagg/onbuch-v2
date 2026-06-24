@@ -1,0 +1,181 @@
+\chapter{Limites et continuité}
+
+\noindent\textit{La notion de limite décrit le comportement d'une fonction au voisinage
+d'un point ou de l'infini ; la continuité traduit l'idée d'une courbe « sans saut ».
+Ces deux notions sont à la base de toute l'analyse de Terminale.}
+\vspace{8pt}
+
+% ═══════════════════════════════════════════════════════════════
+\section{L'essentiel du cours}
+
+\subsection{Limites d'une fonction}
+
+\begin{definition}[Limite finie ou infinie]
+Soit $f$ une fonction et $a$ un réel (ou $a=\pm\infty$).
+\begin{itemize}
+\item $\displaystyle\lim_{x\to a}f(x)=\ell$ signifie que $f(x)$ peut être rendu aussi proche que l'on veut de $\ell$ pourvu que $x$ soit assez proche de $a$.
+\item $\displaystyle\lim_{x\to a}f(x)=+\infty$ signifie que $f(x)$ devient aussi grand que l'on veut pourvu que $x$ soit assez proche de $a$.
+\end{itemize}
+\end{definition}
+
+\begin{propriete}[Limites de référence]
+\[
+\lim_{x\to+\infty}x^{n}=+\infty,\quad
+\lim_{x\to+\infty}\frac1{x^{n}}=0,\quad
+\lim_{x\to+\infty}\sqrt{x}=+\infty,\quad
+\lim_{x\to0^{+}}\frac1x=+\infty,\quad
+\lim_{x\to0^{-}}\frac1x=-\infty.
+\]
+\end{propriete}
+
+\begin{theoreme}[Opérations sur les limites]
+Lorsque les limites de $f$ et $g$ existent, la limite d'une somme, d'un produit ou d'un quotient s'obtient en « calculant » avec les limites, \emph{sauf} dans les quatre cas de \textbf{formes indéterminées} :
+\[
+\boxed{\;\infty-\infty\;}\qquad\boxed{\;0\times\infty\;}\qquad\boxed{\;\frac{\infty}{\infty}\;}\qquad\boxed{\;\frac{0}{0}\;}
+\]
+\end{theoreme}
+
+\begin{theoreme}[Limite d'une fonction composée]
+Si $\displaystyle\lim_{x\to a}u(x)=b$ et $\displaystyle\lim_{X\to b}g(X)=\ell$, alors
+$\displaystyle\lim_{x\to a}g\big(u(x)\big)=\ell$.
+\end{theoreme}
+
+\begin{remarque}
+Pour une fonction \textbf{polynôme}, la limite en $\pm\infty$ est celle de son terme de plus haut degré ; pour une fonction \textbf{rationnelle}, c'est la limite du quotient des termes de plus haut degré.
+\end{remarque}
+
+\subsection{Continuité}
+
+\begin{definition}[Continuité en un point]
+$f$ est \textbf{continue en} $a$ lorsque $f$ est définie en $a$ et
+$\displaystyle\lim_{x\to a}f(x)=f(a)$.
+$f$ est \textbf{continue sur un intervalle} $I$ si elle est continue en chaque point de $I$.
+\end{definition}
+
+\begin{propriete}[Continuité des fonctions usuelles]
+Les fonctions polynômes, rationnelles, racine carrée, valeur absolue, ainsi que les sommes, produits, quotients (où ils sont définis) et composées de fonctions continues, sont continues sur tout intervalle de leur ensemble de définition.
+\end{propriete}
+
+\begin{definition}[Prolongement par continuité]
+Si $f$ n'est pas définie en $a$ mais admet une limite finie $\ell$ en $a$, on définit le \textbf{prolongement par continuité} $\tilde f$ de $f$ en $a$ par $\tilde f(a)=\ell$ et $\tilde f(x)=f(x)$ pour $x\neq a$.
+\end{definition}
+
+\begin{theoreme}[Théorème des valeurs intermédiaires (TVI)]
+Si $f$ est continue sur $[a,b]$, alors pour tout réel $k$ compris entre $f(a)$ et $f(b)$, l'équation $f(x)=k$ admet \textbf{au moins une} solution dans $[a,b]$.
+\end{theoreme}
+
+\begin{propriete}[Corollaire : cas strictement monotone]
+Si de plus $f$ est \textbf{strictement monotone} sur $[a,b]$, alors pour tout $k$ entre $f(a)$ et $f(b)$, l'équation $f(x)=k$ admet une \textbf{unique} solution dans $[a,b]$.
+\end{propriete}
+
+\begin{aretenir}
+Pour prouver qu'une équation $f(x)=0$ admet une unique solution sur $[a,b]$ : (1) $f$ \textbf{continue} sur $[a,b]$ ; (2) $f$ \textbf{strictement monotone} ; (3) $f(a)$ et $f(b)$ de \textbf{signes contraires} (i.e. $f(a)\,f(b)<0$).
+\end{aretenir}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Méthodes \& savoir-faire}
+
+\methode{Lever une forme indéterminée}
+Selon le type d'indétermination : factoriser par le terme dominant (polynômes, rationnelles), utiliser l'expression conjuguée (présence de racines), ou factoriser le numérateur et le dénominateur (forme $\frac00$).
+\begin{exemple}
+Calculer $\displaystyle L=\lim_{x\to+\infty}\big(\sqrt{x^{2}+x}-x\big)$ (forme $\infty-\infty$). On multiplie par l'expression conjuguée :
+\[
+\sqrt{x^{2}+x}-x=\frac{(x^{2}+x)-x^{2}}{\sqrt{x^{2}+x}+x}=\frac{x}{\sqrt{x^{2}+x}+x}
+=\frac{1}{\sqrt{1+\frac1x}+1}\xrightarrow[x\to+\infty]{}\frac12 .
+\]
+Donc $L=\dfrac12$.
+\end{exemple}
+
+\methode{Limite d'une fonction composée}
+On pose $X=u(x)$, on détermine $\lim u(x)$, puis la limite de $g$ en cette valeur.
+\begin{exemple}
+$\displaystyle\lim_{x\to+\infty}\sqrt{\frac{2x+1}{x+3}}$. On a $\dfrac{2x+1}{x+3}\to 2$ quand $x\to+\infty$, et $\sqrt{X}\to\sqrt2$ quand $X\to2$ ; donc la limite vaut $\sqrt2$.
+\end{exemple}
+
+\methode{Étudier la continuité ou prolonger par continuité}
+On compare $\displaystyle\lim_{x\to a}f(x)$ et $f(a)$. Si $f$ n'est pas définie en $a$ mais que la limite est finie, on prolonge.
+\begin{exemple}
+Soit $f(x)=\dfrac{x^{2}-1}{x-1}$ pour $x\neq1$. Pour $x\neq1$, $f(x)=\dfrac{(x-1)(x+1)}{x-1}=x+1$, donc $\displaystyle\lim_{x\to1}f(x)=2$. On prolonge $f$ par continuité en posant $\tilde f(1)=2$.
+\end{exemple}
+
+\methode{Appliquer le TVI pour prouver l'existence d'une solution}
+Vérifier la continuité, calculer $f$ aux bornes, conclure par changement de signe ; ajouter la stricte monotonie pour l'unicité.
+\begin{exemple}
+Montrer que $f(x)=x^{3}+x-1$ s'annule une seule fois sur $\R$. $f$ est continue et dérivable, $f'(x)=3x^{2}+1>0$ : $f$ est strictement croissante. Comme $f(0)=-1<0$ et $f(1)=1>0$, l'équation $f(x)=0$ admet une unique solution $\alpha\in\,]0,1[$.
+\end{exemple}
+
+\methode{Encadrer une solution (balayage / dichotomie)}
+On affine l'intervalle contenant $\alpha$ en évaluant le signe de $f$ en des points intermédiaires.
+\begin{exemple}
+Pour $\alpha$ précédent : $f(0{,}6)=0{,}6^{3}+0{,}6-1=-0{,}184<0$ et $f(0{,}7)=0{,}7^{3}+0{,}7-1=0{,}043>0$, donc $0{,}6<\alpha<0{,}7$.
+\end{exemple}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Exercices d'application}
+
+\exo{Calculs de limites}
+Calculer les limites suivantes :
+\begin{enumerate}[label=\alph*)]
+\item $\displaystyle\lim_{x\to+\infty}\frac{3x^{2}-x+2}{x^{2}+5}$ ;
+\item $\displaystyle\lim_{x\to2}\frac{x^{2}-4}{x-2}$ ;
+\item $\displaystyle\lim_{x\to+\infty}\big(\sqrt{x^{2}+3x}-x\big)$ ;
+\item $\displaystyle\lim_{x\to1}\frac{\sqrt{x}-1}{x-1}$.
+\end{enumerate}
+
+\exo{Continuité et prolongement}
+Soit $f$ définie sur $\R\setminus\{3\}$ par $f(x)=\dfrac{x^{2}-9}{x-3}$.
+\begin{enumerate}[label=\alph*)]
+\item Calculer $\displaystyle\lim_{x\to3}f(x)$.
+\item $f$ admet-elle un prolongement par continuité en $3$ ? Si oui, le préciser.
+\end{enumerate}
+
+\exo{Continuité avec un paramètre}
+Soit $f(x)=\begin{cases} x^{2}+1 & \text{si } x\le1\\ ax+2 & \text{si } x>1\end{cases}$. Déterminer le réel $a$ pour que $f$ soit continue en $1$.
+
+\exo{Application du TVI}
+Soit $f(x)=x^{3}-3x+1$.
+\begin{enumerate}[label=\alph*)]
+\item Justifier que $f$ est continue sur $\R$.
+\item Montrer que l'équation $f(x)=0$ admet une solution $\alpha$ dans $]1,2[$.
+\item Donner un encadrement de $\alpha$ d'amplitude $0{,}1$.
+\end{enumerate}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Problème type Baccalauréat}
+
+\exo{Étude de continuité et existence de solution}
+On considère la fonction $f$ définie sur $[0,+\infty[$ par $f(x)=\dfrac{x-1}{x+1}$.
+\begin{enumerate}[label=\arabic*)]
+\item Justifier que $f$ est continue sur $[0,+\infty[$.
+\item Calculer $\displaystyle\lim_{x\to+\infty}f(x)$ et interpréter graphiquement.
+\item Montrer que pour tout $x\ge0$, $f(x)=1-\dfrac{2}{x+1}$. En déduire le sens de variation de $f$.
+\item Montrer que l'équation $f(x)=\dfrac12$ admet une unique solution sur $[0,+\infty[$ et la déterminer.
+\end{enumerate}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Corrigés}
+
+\corrige{de l'exercice 1}
+a) Quotient des termes de plus haut degré : $\dfrac{3x^{2}}{x^{2}}=3$, donc la limite est $\mathbf{3}$.\;
+b) $\dfrac{x^{2}-4}{x-2}=\dfrac{(x-2)(x+2)}{x-2}=x+2\to\mathbf{4}$.\;
+c) $\sqrt{x^{2}+3x}-x=\dfrac{3x}{\sqrt{x^{2}+3x}+x}=\dfrac{3}{\sqrt{1+\frac3x}+1}\to\mathbf{\frac32}$.\;
+d) $\dfrac{\sqrt x-1}{x-1}=\dfrac{\sqrt x-1}{(\sqrt x-1)(\sqrt x+1)}=\dfrac{1}{\sqrt x+1}\to\mathbf{\frac12}$.
+
+\corrige{de l'exercice 2}
+a) Pour $x\neq3$, $f(x)=\dfrac{(x-3)(x+3)}{x-3}=x+3$, donc $\displaystyle\lim_{x\to3}f(x)=6$.\;
+b) La limite est finie : $f$ se prolonge par continuité en posant $\tilde f(3)=6$.
+
+\corrige{de l'exercice 3}
+$f$ est continue en $1$ si $\displaystyle\lim_{x\to1^{-}}f(x)=\lim_{x\to1^{+}}f(x)=f(1)$.
+À gauche : $1^{2}+1=2$. À droite : $a\times1+2=a+2$. L'égalité $a+2=2$ donne $\mathbf{a=0}$.
+
+\corrige{de l'exercice 4}
+a) $f$ est une fonction polynôme, donc continue sur $\R$.\;
+b) $f(1)=1-3+1=-1<0$ et $f(2)=8-6+1=3>0$ ; $f$ continue sur $[1,2]$, donc d'après le TVI l'équation $f(x)=0$ admet une solution $\alpha\in\,]1,2[$.\;
+c) $f(1{,}5)=3{,}375-4{,}5+1=-0{,}125<0$ et $f(1{,}6)=4{,}096-4{,}8+1=0{,}296>0$, donc $\mathbf{1{,}5<\alpha<1{,}6}$.
+
+\corrige{du problème}
+1) $f$ est une fonction rationnelle dont le dénominateur $x+1$ ne s'annule pas sur $[0,+\infty[$ : elle y est continue.\;
+2) $\displaystyle\lim_{x\to+\infty}\frac{x-1}{x+1}=\lim_{x\to+\infty}\frac{x}{x}=1$ : la droite $y=1$ est asymptote horizontale à $\mathcal C_f$ en $+\infty$.\;
+3) $1-\dfrac{2}{x+1}=\dfrac{(x+1)-2}{x+1}=\dfrac{x-1}{x+1}=f(x)$. Comme $x\mapsto\dfrac{2}{x+1}$ est décroissante, $f(x)=1-\dfrac{2}{x+1}$ est \textbf{croissante} sur $[0,+\infty[$.\;
+4) $f$ est continue, strictement croissante, $f(0)=-1$ et $\displaystyle\lim_{+\infty}f=1$ ; comme $\frac12\in\,]-1,1[$, l'équation $f(x)=\frac12$ admet une unique solution. On résout : $\dfrac{x-1}{x+1}=\dfrac12\Leftrightarrow 2(x-1)=x+1\Leftrightarrow x=3$. La solution est $\mathbf{x=3}$.
