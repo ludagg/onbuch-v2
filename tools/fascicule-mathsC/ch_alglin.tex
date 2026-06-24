@@ -1,0 +1,429 @@
+\chapter{Algèbre linéaire : espaces vectoriels et applications linéaires}
+
+\noindent\textit{Les vecteurs du plan et de l'espace que tu manipules depuis la seconde
+obéissent à des règles communes : on les additionne, on les multiplie par un nombre. En
+dégageant ces règles, on obtient la notion d'\textbf{espace vectoriel}, un cadre unique qui
+décrit aussi bien $\R^2$, $\R^3$ que beaucoup d'autres ensembles. Ce chapitre, spécifique à
+la série C, prépare directement le calcul matriciel et éclaire la géométrie.}
+\vspace{8pt}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Espaces vectoriels réels}
+
+\begin{definition}[Espace vectoriel réel]
+Un ensemble $E$ non vide est un \textbf{espace vectoriel sur} $\R$ (ses éléments sont appelés
+\textbf{vecteurs}) lorsqu'il est muni :
+\begin{itemize}
+\item d'une \textbf{addition} $+$ qui à deux vecteurs $\vec u,\vec v$ associe $\vec u+\vec v\in E$ ;
+\item d'une \textbf{multiplication par un réel} (un \textbf{scalaire}) qui à $\lambda\in\R$ et $\vec u\in E$ associe $\lambda\vec u\in E$ ;
+\end{itemize}
+de sorte que, pour tous $\vec u,\vec v,\vec w\in E$ et tous $\lambda,\mu\in\R$ :
+\[
+\begin{array}{llll}
+\vec u+\vec v=\vec v+\vec u, & (\vec u+\vec v)+\vec w=\vec u+(\vec v+\vec w), & \vec u+\vec 0=\vec u, & \vec u+(-\vec u)=\vec 0,\\[3pt]
+\lambda(\vec u+\vec v)=\lambda\vec u+\lambda\vec v, & (\lambda+\mu)\vec u=\lambda\vec u+\mu\vec u, & \lambda(\mu\vec u)=(\lambda\mu)\vec u, & 1\cdot\vec u=\vec u.
+\end{array}
+\]
+Le vecteur $\vec 0$ est le \textbf{vecteur nul}.
+\end{definition}
+
+\begin{exemple}
+$\R^2=\{(x,y)\mid x,y\in\R\}$ est un espace vectoriel pour
+$(x,y)+(x',y')=(x+x',y+y')$ et $\lambda(x,y)=(\lambda x,\lambda y)$, de vecteur nul $(0,0)$.
+De même $\R^3=\{(x,y,z)\}$. Plus généralement $\R^n$ est un espace vectoriel.
+\end{exemple}
+
+\begin{remarque}
+L'ensemble des vecteurs du plan (ou de l'espace) géométrique est un espace vectoriel : c'est
+le modèle que l'on visualise. On note souvent un vecteur de $\R^2$ aussi bien $(x,y)$ que
+$\vec u$.
+\end{remarque}
+
+\begin{propriete}[Règles de calcul]
+Dans tout espace vectoriel $E$, pour tout $\vec u\in E$ et tout $\lambda\in\R$ :
+\[
+0\cdot\vec u=\vec 0,\qquad \lambda\cdot\vec 0=\vec 0,\qquad (-1)\vec u=-\vec u,\qquad
+\lambda\vec u=\vec 0\ \Longleftrightarrow\ \lambda=0\ \text{ou}\ \vec u=\vec 0.
+\]
+\end{propriete}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Sous-espaces vectoriels}
+
+\begin{definition}[Sous-espace vectoriel]
+Une partie $F$ de $E$ est un \textbf{sous-espace vectoriel} (s.e.v.) de $E$ si :
+\begin{enumerate}[label=\arabic*)]
+\item $F$ contient le vecteur nul : $\vec 0\in F$ (donc $F\neq\varnothing$) ;
+\item $F$ est \textbf{stable par addition} : pour tous $\vec u,\vec v\in F$, $\vec u+\vec v\in F$ ;
+\item $F$ est \textbf{stable par multiplication par un scalaire} : pour tout $\lambda\in\R$ et tout $\vec u\in F$, $\lambda\vec u\in F$.
+\end{enumerate}
+\end{definition}
+
+\begin{theoreme}[Caractérisation pratique]
+$F\subset E$ est un sous-espace vectoriel de $E$ si et seulement si :
+\[
+\vec 0\in F\qquad\text{et}\qquad \forall\,\vec u,\vec v\in F,\ \forall\,\lambda,\mu\in\R,\quad \lambda\vec u+\mu\vec v\in F.
+\]
+Un sous-espace vectoriel est lui-même un espace vectoriel : c'est l'intérêt de cette notion.
+\end{theoreme}
+
+\begin{exemple}
+Dans $\R^2$, $F=\{(x,y)\mid y=2x\}$ est un s.e.v. : $(0,0)\in F$ ; si $\vec u=(x,2x)$ et
+$\vec v=(x',2x')$, alors $\lambda\vec u+\mu\vec v=(\lambda x+\mu x',\,2(\lambda x+\mu x'))\in F$.
+Géométriquement, $F$ est une \textbf{droite vectorielle} (passant par l'origine).
+\end{exemple}
+
+\begin{remarque}
+$\{\vec 0\}$ et $E$ tout entier sont toujours des sous-espaces vectoriels de $E$. En revanche,
+une droite \emph{ne passant pas} par l'origine n'est \textbf{pas} un s.e.v. (elle ne contient
+pas $\vec 0$).
+\end{remarque}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth,scale=1.0]
+\draw[->] (-2.6,0)--(2.8,0) node[right]{\small $x$};
+\draw[->] (0,-1.6)--(0,2.6) node[above]{\small $y$};
+\draw[onbo,line width=1pt] (-1.2,-1.5)--(1.6,2.0);
+\foreach \t in {-1,1}{\filldraw[onbo] (\t*0.8,\t*1.0) circle (1.6pt);}
+\draw[onbblue,->,line width=1pt] (0,0)--(0.8,1.0) node[above left]{\small $\vec u$};
+\draw[onbgreen,->,line width=1pt] (0,0)--(-0.8,-1.0);
+\node[onbo] at (1.85,2.25) {\small $D$};
+\node[align=left,text width=4.3cm,anchor=west] at (3.1,0.6)
+{\small La droite $D:\ y=2x$ \emph{passe par l'origine}. Tout multiple $\lambda\vec u$ d'un de
+ses vecteurs reste sur $D$ : c'est un \textbf{sous-espace vectoriel} (droite vectorielle).};
+\end{tikzpicture}
+\fig{Figure — Une droite vectorielle de $\R^2$ : un sous-espace vectoriel.}
+\end{illus}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Combinaisons linéaires, familles génératrices}
+
+\begin{definition}[Combinaison linéaire]
+Une \textbf{combinaison linéaire} des vecteurs $\vec{u_1},\dots,\vec{u_p}$ est tout vecteur de la forme
+\[
+\lambda_1\vec{u_1}+\lambda_2\vec{u_2}+\dots+\lambda_p\vec{u_p},\qquad (\lambda_1,\dots,\lambda_p)\in\R^p.
+\]
+\end{definition}
+
+\begin{definition}[Famille génératrice]
+La famille $(\vec{u_1},\dots,\vec{u_p})$ est \textbf{génératrice} de $E$ si \emph{tout} vecteur
+de $E$ s'écrit comme combinaison linéaire de ces vecteurs. On note alors
+$E=\mathrm{Vect}(\vec{u_1},\dots,\vec{u_p})$.
+\end{definition}
+
+\begin{exemple}
+Dans $\R^2$, $\vec i=(1,0)$ et $\vec j=(0,1)$ engendrent $\R^2$ : tout $(x,y)=x\vec i+y\vec j$.
+La famille $(\vec i,\vec j)$ est génératrice.
+\end{exemple}
+
+\begin{remarque}
+$\mathrm{Vect}(\vec{u_1},\dots,\vec{u_p})$ est toujours un sous-espace vectoriel de $E$
+(le « plus petit » contenant ces vecteurs).
+\end{remarque}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Familles libres, familles liées}
+
+\begin{definition}[Famille libre, famille liée]
+La famille $(\vec{u_1},\dots,\vec{u_p})$ est \textbf{libre} (les vecteurs sont \emph{linéairement indépendants}) si la seule combinaison linéaire nulle est triviale :
+\[
+\lambda_1\vec{u_1}+\dots+\lambda_p\vec{u_p}=\vec 0\ \Longrightarrow\ \lambda_1=\dots=\lambda_p=0.
+\]
+Sinon la famille est \textbf{liée} : l'un des vecteurs est combinaison linéaire des autres.
+\end{definition}
+
+\begin{propriete}[Cas de deux vecteurs]
+Deux vecteurs $\vec u,\vec v$ forment une famille \textbf{libre} si et seulement s'ils ne sont
+pas colinéaires. Ils sont \textbf{liés} si et seulement si $\vec v=\lambda\vec u$ pour un certain
+$\lambda$ (ou $\vec u=\vec 0$).
+\end{propriete}
+
+\begin{exemple}
+$\vec u=(1,2)$ et $\vec v=(2,4)$ sont liés car $\vec v=2\vec u$. En revanche $\vec u=(1,2)$ et
+$\vec w=(3,1)$ sont libres : ils ne sont pas colinéaires ($1\times1-2\times3=-5\neq0$).
+\end{exemple}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Bases et dimension}
+
+\begin{definition}[Base]
+Une famille $(\vec{e_1},\dots,\vec{e_n})$ est une \textbf{base} de $E$ si elle est à la fois
+\textbf{libre} et \textbf{génératrice}. Tout vecteur $\vec u$ de $E$ se décompose alors de façon
+\textbf{unique} :
+\[
+\vec u=x_1\vec{e_1}+\dots+x_n\vec{e_n},
+\]
+les réels $x_1,\dots,x_n$ étant les \textbf{coordonnées} de $\vec u$ dans cette base.
+\end{definition}
+
+\begin{theoreme}[Dimension]
+Dans un espace vectoriel $E$ admettant une base finie, toutes les bases ont le \textbf{même nombre}
+de vecteurs : ce nombre est la \textbf{dimension} de $E$, notée $\dim E$.
+\[
+\dim\R^2=2,\qquad \dim\R^3=3,\qquad \dim\R^n=n.
+\]
+\end{theoreme}
+
+\begin{propriete}[Reconnaître une base par la dimension]
+Si $\dim E=n$, alors :
+\begin{itemize}
+\item toute famille \textbf{libre} de $n$ vecteurs de $E$ est une base ;
+\item toute famille \textbf{génératrice} de $n$ vecteurs de $E$ est une base.
+\end{itemize}
+Il suffit donc de vérifier \emph{une} des deux propriétés quand on a déjà le bon nombre de vecteurs.
+\end{propriete}
+
+\begin{exemple}
+La \textbf{base canonique} de $\R^2$ est $(\vec i,\vec j)$ avec $\vec i=(1,0)$, $\vec j=(0,1)$ ;
+celle de $\R^3$ est $(\vec i,\vec j,\vec k)$ avec $\vec i=(1,0,0)$, $\vec j=(0,1,0)$, $\vec k=(0,0,1)$.
+\end{exemple}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth,scale=1.0]
+\draw[onbline,step=1,very thin] (-0.4,-0.4) grid (3.4,2.9);
+\draw[->] (-0.5,0)--(3.6,0) node[right]{\small $x$};
+\draw[->] (0,-0.5)--(0,3.1) node[above]{\small $y$};
+\draw[onbo,->,line width=1.2pt] (0,0)--(2,1) node[midway,below right]{\small $\vec u$};
+\draw[onbgreen,->,line width=1.2pt] (0,0)--(1,2) node[midway,above left]{\small $\vec v$};
+\draw[dashed,onbmuted] (2,1)--(3,3)--(1,2);
+\filldraw[onbblue] (3,3) circle (1.6pt) node[right]{\small $\vec w=\vec u+\vec v$};
+\node[align=left,text width=4.0cm,anchor=west] at (4.0,1.5)
+{\small $\vec u=(2,1)$ et $\vec v=(1,2)$ ne sont pas colinéaires : ils forment une
+\textbf{base} de $\R^2$. Tout vecteur, comme $\vec w$, se décompose dessus de façon unique.};
+\end{tikzpicture}
+\fig{Figure — Deux vecteurs non colinéaires forment une base de $\R^2$.}
+\end{illus}
+
+\begin{aretenir}
+Pour une famille de $\R^2$ : \textbf{libre} $\Leftrightarrow$ vecteurs non colinéaires ;
+\textbf{base} $\Leftrightarrow$ deux vecteurs non colinéaires. Pour $\R^3$ : \textbf{base}
+$\Leftrightarrow$ trois vecteurs non coplanaires. Coordonnées dans une base = \textbf{uniques}.
+\end{aretenir}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Applications linéaires}
+
+\begin{definition}[Application linéaire]
+Soient $E$ et $F$ deux espaces vectoriels réels. Une application $f:E\to F$ est \textbf{linéaire}
+si, pour tous $\vec u,\vec v\in E$ et tout $\lambda\in\R$ :
+\[
+f(\vec u+\vec v)=f(\vec u)+f(\vec v)\qquad\text{et}\qquad f(\lambda\vec u)=\lambda f(\vec u).
+\]
+De façon équivalente : $f(\lambda\vec u+\mu\vec v)=\lambda f(\vec u)+\mu f(\vec v)$ pour tous
+$\lambda,\mu\in\R$. On a alors nécessairement $f(\vec 0)=\vec 0$.
+\end{definition}
+
+\begin{exemple}
+$f:\R^2\to\R^2$, $f(x,y)=(2x-y,\,x+3y)$ est linéaire. L'application $g(x,y)=(x+1,y)$ ne l'est
+pas, car $g(0,0)=(1,0)\neq(0,0)$.
+\end{exemple}
+
+\begin{definition}[Noyau et image]
+Pour $f:E\to F$ linéaire :
+\[
+\ker f=\{\vec u\in E\mid f(\vec u)=\vec 0\}\ \subset E\quad\text{(le \textbf{noyau})},\qquad
+\mathrm{Im}\,f=\{f(\vec u)\mid \vec u\in E\}\ \subset F\quad\text{(l'\textbf{image})}.
+\]
+\end{definition}
+
+\begin{theoreme}[Propriétés du noyau et de l'image]
+Si $f:E\to F$ est linéaire, $\ker f$ est un sous-espace vectoriel de $E$ et $\mathrm{Im}\,f$ un
+sous-espace vectoriel de $F$. De plus :
+\[
+f\ \text{injective}\ \Longleftrightarrow\ \ker f=\{\vec 0\};\qquad
+f\ \text{surjective}\ \Longleftrightarrow\ \mathrm{Im}\,f=F.
+\]
+\end{theoreme}
+
+\begin{propriete}[Théorème du rang]
+Si $E$ est de dimension finie et $f:E\to F$ linéaire, en posant
+$\mathrm{rg}(f)=\dim(\mathrm{Im}\,f)$ (le \textbf{rang} de $f$) :
+\[
+\dim(\ker f)+\mathrm{rg}(f)=\dim E.
+\]
+\end{propriete}
+
+\begin{remarque}
+L'image $\mathrm{Im}\,f$ est engendrée par les images des vecteurs d'une base de $E$ : si
+$(\vec{e_1},\dots,\vec{e_n})$ est une base de $E$, alors
+$\mathrm{Im}\,f=\mathrm{Vect}\big(f(\vec{e_1}),\dots,f(\vec{e_n})\big)$.
+\end{remarque}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Méthodes \& savoir-faire}
+
+\methode{Montrer qu'un ensemble est un sous-espace vectoriel}
+Vérifier les trois points : $\vec 0\in F$, puis pour $\vec u,\vec v\in F$ et $\lambda,\mu\in\R$,
+montrer $\lambda\vec u+\mu\vec v\in F$ (caractérisation pratique).
+\begin{exemple}
+$F=\{(x,y,z)\in\R^3\mid x+y-z=0\}$. \;$\vec 0=(0,0,0)$ vérifie $0+0-0=0$ donc $\vec 0\in F$.
+Soient $\vec u=(x,y,z)$, $\vec v=(x',y',z')$ dans $F$ et $\lambda,\mu\in\R$. Posons
+$\vec w=\lambda\vec u+\mu\vec v=(\lambda x+\mu x',\ \lambda y+\mu y',\ \lambda z+\mu z')$.
+Alors $(\lambda x+\mu x')+(\lambda y+\mu y')-(\lambda z+\mu z')=\lambda(x+y-z)+\mu(x'+y'-z')=0$.
+Donc $\vec w\in F$ : $F$ est un s.e.v. de $\R^3$ (un \textbf{plan vectoriel}).
+\end{exemple}
+
+\methode{Étudier la liberté d'une famille}
+Poser $\lambda_1\vec{u_1}+\dots+\lambda_p\vec{u_p}=\vec 0$, traduire en système et résoudre :
+famille libre si la seule solution est nulle, liée sinon.
+\begin{exemple}
+$\vec u=(1,1,0)$, $\vec v=(0,1,1)$ dans $\R^3$. $\lambda\vec u+\mu\vec v=(\lambda,\lambda+\mu,\mu)=(0,0,0)$
+donne $\lambda=0$, $\mu=0$ : la famille est \textbf{libre}.
+\end{exemple}
+
+\methode{Extraire une base et donner la dimension}
+Repérer une famille libre maximale parmi les générateurs ; sa taille est la dimension.
+\begin{exemple}
+$F=\{(x,y,z)\mid z=x+y\}=\{(x,y,x+y)\}=x(1,0,1)+y(0,1,1)$. Les vecteurs $(1,0,1)$ et $(0,1,1)$
+sont libres (non colinéaires) et engendrent $F$ : ils en forment une \textbf{base}, donc $\dim F=2$.
+\end{exemple}
+
+\methode{Montrer qu'une application est linéaire}
+Vérifier $f(\lambda\vec u+\mu\vec v)=\lambda f(\vec u)+\mu f(\vec v)$. Un contre-exemple
+(souvent $f(\vec 0)\neq\vec 0$) suffit pour conclure à la non-linéarité.
+\begin{exemple}
+$f(x,y)=(x-y,\,2y)$. Pour $\vec u=(x,y)$, $\vec v=(x',y')$ :
+$f(\lambda\vec u+\mu\vec v)=f(\lambda x+\mu x',\lambda y+\mu y')
+=\big((\lambda x+\mu x')-(\lambda y+\mu y'),\,2(\lambda y+\mu y')\big)
+=\lambda(x-y,2y)+\mu(x'-y',2y')=\lambda f(\vec u)+\mu f(\vec v)$. Donc $f$ est linéaire.
+\end{exemple}
+
+\methode{Déterminer le noyau d'une application linéaire}
+Résoudre $f(\vec u)=\vec 0$ : c'est un système d'équations linéaires. L'ensemble des solutions
+est $\ker f$.
+\begin{exemple}
+$f(x,y)=(x-y,\,2x-2y)$. $f(x,y)=(0,0)\Leftrightarrow x-y=0\Leftrightarrow y=x$. Donc
+$\ker f=\{(x,x)\mid x\in\R\}=\mathrm{Vect}\big((1,1)\big)$, une droite vectorielle : $\dim\ker f=1$.
+\end{exemple}
+
+\methode{Déterminer l'image d'une application linéaire}
+Calculer $f$ sur une base de l'espace de départ : $\mathrm{Im}\,f$ est engendrée par ces images.
+En extraire une famille libre pour la base et le rang.
+\begin{exemple}
+Avec $f(x,y)=(x-y,2x-2y)$ ci-dessus : $f(1,0)=(1,2)$, $f(0,1)=(-1,-2)=-(1,2)$. Donc
+$\mathrm{Im}\,f=\mathrm{Vect}\big((1,2)\big)$, droite vectorielle, $\mathrm{rg}(f)=1$.
+On vérifie le théorème du rang : $\dim\ker f+\mathrm{rg}(f)=1+1=2=\dim\R^2$. \checkmark
+\end{exemple}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Exercices}
+
+\rubrique{Sous-espaces vectoriels}
+\exo{}\diff{1} Parmi ces parties de $\R^2$, lesquelles sont des sous-espaces vectoriels ?
+\[
+A=\{(x,y)\mid y=3x\},\quad B=\{(x,y)\mid y=x+1\},\quad C=\{(x,y)\mid x^2=y^2\}.
+\]
+
+\exo{}\diff{2} Montrer que $F=\{(x,y,z)\in\R^3\mid 2x-y+z=0\}$ est un sous-espace vectoriel de $\R^3$.
+
+\rubrique{Familles, bases et dimension}
+\exo{}\diff{1} Les vecteurs $\vec u=(2,-1)$ et $\vec v=(-6,3)$ de $\R^2$ sont-ils libres ou liés ?
+
+\exo{}\diff{2} Montrer que $\big((1,2),(3,1)\big)$ est une base de $\R^2$, puis donner les
+coordonnées de $\vec w=(5,5)$ dans cette base.
+
+\exo{}\diff{2} Déterminer une base et la dimension de
+$F=\{(x,y,z)\in\R^3\mid x=2y \text{ et } z=0\}$.
+
+\exo{}\diff{3} Montrer que $\big((1,1,0),(0,1,1),(1,0,1)\big)$ est une base de $\R^3$.
+
+\rubrique{Applications linéaires}
+\exo{}\diff{1} L'application $f(x,y)=(3x,\,x-y)$ est-elle linéaire ? Et $g(x,y)=(xy,\,x)$ ?
+
+\exo{}\diff{2} Soit $f:\R^3\to\R^2$, $f(x,y,z)=(x+y-z,\ 2x-z)$. Montrer que $f$ est linéaire et
+déterminer $\ker f$.
+
+\rubrique{Problème type Baccalauréat}
+\exo{}\diff{3} On considère l'application $f:\R^2\to\R^2$ définie par
+\[
+f(x,y)=(x+2y,\ 2x+4y).
+\]
+\begin{enumerate}[label=\arabic*)]
+\item Montrer que $f$ est une application linéaire.
+\item Déterminer le noyau $\ker f$ ; en donner une base et la dimension. $f$ est-elle injective ?
+\item Calculer $f(1,0)$ et $f(0,1)$. En déduire une base de $\mathrm{Im}\,f$ et le rang de $f$.
+\item Vérifier la relation $\dim(\ker f)+\mathrm{rg}(f)=2$. L'application $f$ est-elle surjective ?
+\end{enumerate}
+
+\exo{}\diff{3} Soit $f:\R^3\to\R^3$, $f(x,y,z)=(x-y,\ y-z,\ z-x)$.
+\begin{enumerate}[label=\arabic*)]
+\item Montrer que $f$ est linéaire.
+\item Déterminer $\ker f$ ; en donner une base et la dimension.
+\item En déduire le rang de $f$ à l'aide du théorème du rang.
+\end{enumerate}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Corrigés}
+
+\corrige{de l'exercice 1}
+$A$ : droite passant par l'origine ($(0,0)\in A$, stable) $\Rightarrow$ \textbf{s.e.v.}\;
+$B$ : $(0,0)\notin B$ car $0\neq0+1$ $\Rightarrow$ \textbf{non}.\;
+$C$ : $x^2=y^2\Leftrightarrow y=\pm x$, réunion de deux droites ; $(1,1)\in C$ et $(1,-1)\in C$
+mais leur somme $(2,0)\notin C$ (car $4\neq0$) $\Rightarrow$ \textbf{non} (pas stable par addition).
+
+\corrige{de l'exercice 2}
+$\vec 0=(0,0,0)$ : $2\cdot0-0+0=0$ donc $\vec 0\in F$. Soient $\vec u=(x,y,z)$, $\vec v=(x',y',z')$
+dans $F$ et $\lambda,\mu\in\R$. Pour $\vec w=\lambda\vec u+\mu\vec v$ :
+$2(\lambda x+\mu x')-(\lambda y+\mu y')+(\lambda z+\mu z')=\lambda(2x-y+z)+\mu(2x'-y'+z')=\lambda\cdot0+\mu\cdot0=0$.
+Donc $\vec w\in F$ : $F$ est un sous-espace vectoriel de $\R^3$.
+
+\corrige{de l'exercice 3}
+$\vec v=(-6,3)=-3\,(2,-1)=-3\vec u$ : $\vec u$ et $\vec v$ sont colinéaires, donc la famille est
+\textbf{liée}.
+
+\corrige{de l'exercice 4}
+$(1,2)$ et $(3,1)$ ne sont pas colinéaires ($1\times1-2\times3=-5\neq0$) : famille libre de $2$
+vecteurs dans $\R^2$ ($\dim\R^2=2$), c'est donc une \textbf{base}. On cherche $a,b$ tels que
+$a(1,2)+b(3,1)=(5,5)$, soit $a+3b=5$ et $2a+b=5$. De la seconde : $b=5-2a$ ; report :
+$a+3(5-2a)=5\Rightarrow a+15-6a=5\Rightarrow-5a=-10\Rightarrow a=2$, $b=1$. Coordonnées :
+$\vec w=2(1,2)+1(3,1)$, soit $(2,1)$ dans cette base.
+
+\corrige{de l'exercice 5}
+$F=\{(2y,y,0)\mid y\in\R\}=y\,(2,1,0)$. Le vecteur $(2,1,0)$ engendre $F$ et est non nul (donc
+libre) : c'est une \textbf{base} de $F$, et $\dim F=1$ ($F$ est une droite vectorielle).
+
+\corrige{de l'exercice 6}
+Trois vecteurs dans $\R^3$ ($\dim=3$) : il suffit de montrer qu'ils sont libres. Posons
+$\lambda(1,1,0)+\mu(0,1,1)+\nu(1,0,1)=(0,0,0)$, soit
+$\lambda+\nu=0$, $\lambda+\mu=0$, $\mu+\nu=0$. De la première $\nu=-\lambda$ ; de la deuxième
+$\mu=-\lambda$ ; report dans la troisième : $-\lambda-\lambda=0\Rightarrow\lambda=0$, puis
+$\mu=\nu=0$. La famille est libre, donc c'est une \textbf{base} de $\R^3$.
+
+\corrige{de l'exercice 7}
+$f(x,y)=(3x,x-y)$ : pour $\vec u=(x,y)$, $\vec v=(x',y')$, $\lambda,\mu\in\R$,
+$f(\lambda\vec u+\mu\vec v)=\big(3(\lambda x+\mu x'),(\lambda x+\mu x')-(\lambda y+\mu y')\big)
+=\lambda(3x,x-y)+\mu(3x',x'-y')=\lambda f(\vec u)+\mu f(\vec v)$ : \textbf{linéaire}.\;
+$g(x,y)=(xy,x)$ : $g(0,1)=(0,0)$, $g(0,2)=(0,0)$ mais $g(2\cdot(0,1))=g(0,2)$ devrait valoir
+$2g(0,1)$ ; ici ok, prenons plutôt $g(1,1)=(1,1)$ et $2g(1,1)=(2,2)$ tandis que $g(2,2)=(4,2)\neq(2,2)$ :
+\textbf{non linéaire}.
+
+\corrige{de l'exercice 8}
+\textbf{Linéarité} : $f(\lambda\vec u+\mu\vec v)=\big((\lambda x+\mu x')+(\lambda y+\mu y')-(\lambda z+\mu z'),\,2(\lambda x+\mu x')-(\lambda z+\mu z')\big)
+=\lambda f(\vec u)+\mu f(\vec v)$ : $f$ est linéaire.\;
+\textbf{Noyau} : $f(x,y,z)=(0,0)\Leftrightarrow x+y-z=0$ et $2x-z=0$, soit $z=2x$ et $y=z-x=x$.
+Donc $\ker f=\{(x,x,2x)\mid x\in\R\}=\mathrm{Vect}\big((1,1,2)\big)$, droite vectorielle de
+dimension $1$.
+
+\corrige{du problème}
+1) Pour $\vec u=(x,y)$, $\vec v=(x',y')$, $\lambda,\mu\in\R$ :
+$f(\lambda\vec u+\mu\vec v)=\big((\lambda x+\mu x')+2(\lambda y+\mu y'),\,2(\lambda x+\mu x')+4(\lambda y+\mu y')\big)
+=\lambda(x+2y,2x+4y)+\mu(x'+2y',2x'+4y')=\lambda f(\vec u)+\mu f(\vec v)$. Donc $f$ est linéaire.\;
+2) $f(x,y)=(0,0)\Leftrightarrow x+2y=0$ et $2x+4y=0$. La seconde équation est le double de la
+première ; il reste $x+2y=0$, soit $x=-2y$. Ainsi
+$\ker f=\{(-2y,y)\mid y\in\R\}=\mathrm{Vect}\big((-2,1)\big)$ : base $\{(-2,1)\}$, $\dim\ker f=1$.
+Comme $\ker f\neq\{\vec 0\}$, $f$ \textbf{n'est pas injective}.\;
+3) $f(1,0)=(1,2)$ et $f(0,1)=(2,4)=2(1,2)$. Donc
+$\mathrm{Im}\,f=\mathrm{Vect}\big((1,2),(2,4)\big)=\mathrm{Vect}\big((1,2)\big)$ : une base de
+$\mathrm{Im}\,f$ est $\{(1,2)\}$ et $\mathrm{rg}(f)=1$.\;
+4) $\dim\ker f+\mathrm{rg}(f)=1+1=2=\dim\R^2$ : la relation est vérifiée. Comme
+$\mathrm{Im}\,f\neq\R^2$ (c'est une droite), $f$ \textbf{n'est pas surjective}.
+
+\medskip
+\noindent\textit{Second problème (exercice 9).}\;
+1) $f(x,y,z)=(x-y,y-z,z-x)$ est linéaire (chaque composante est combinaison linéaire de
+$x,y,z$ ; vérification identique aux précédentes).\;
+2) $f(x,y,z)=(0,0,0)\Leftrightarrow x-y=0,\ y-z=0,\ z-x=0\Leftrightarrow x=y=z$. Donc
+$\ker f=\{(x,x,x)\mid x\in\R\}=\mathrm{Vect}\big((1,1,1)\big)$ : base $\{(1,1,1)\}$, $\dim\ker f=1$.\;
+3) Théorème du rang : $\mathrm{rg}(f)=\dim\R^3-\dim\ker f=3-1=2$. L'image est donc un plan
+vectoriel de $\R^3$ (on peut vérifier : $f(1,0,0)=(1,0,-1)$, $f(0,1,0)=(-1,1,0)$ sont libres et
+engendrent $\mathrm{Im}\,f$).

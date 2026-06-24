@@ -1,0 +1,290 @@
+\chapter{Isométries du plan (et de l'espace)}
+
+\noindent\textit{Une isométrie est une transformation qui « conserve les distances » :
+les figures se déplacent sans se déformer. Translations, rotations, symétries en sont les
+exemples fondamentaux. Étudier leurs propriétés et leurs composées — pour reconnaître,
+classer et construire — est un pilier de la géométrie de la série C.}
+\vspace{8pt}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Isométries : définition et conservations}
+
+\begin{definition}[Isométrie du plan]
+Une \textbf{isométrie} du plan $\mathcal P$ est une application $f:\mathcal P\to\mathcal P$ qui \textbf{conserve les distances} : pour tous points $M,N$,
+\[
+f(M)f(N)=MN.
+\]
+Autrement dit, si $M'=f(M)$ et $N'=f(N)$, alors $M'N'=MN$.
+\end{definition}
+
+\begin{propriete}[Propriétés conservées par une isométrie]
+Toute isométrie $f$ conserve :
+\begin{itemize}
+\item les \textbf{distances} (par définition) et donc l'\textbf{alignement}, le \textbf{milieu}, le \textbf{barycentre} ;
+\item le \textbf{produit scalaire} : $\overrightarrow{M'N'}\cdot\overrightarrow{M'P'}=\overrightarrow{MN}\cdot\overrightarrow{MP}$, donc l'\textbf{orthogonalité} et les \textbf{angles géométriques} (non orientés) ;
+\item le \textbf{parallélisme}, le \textbf{contact}, les \textbf{aires}.
+\end{itemize}
+Une isométrie est une \textbf{bijection} ; sa réciproque est encore une isométrie.
+\end{propriete}
+
+\begin{remarque}
+La conservation des distances entraîne celle du produit scalaire grâce à l'identité de polarisation
+$\vec a\cdot\vec b=\tfrac12\big(\|\vec a\|^2+\|\vec b\|^2-\|\vec a-\vec b\|^2\big)$ : les trois normes étant conservées, le produit scalaire l'est aussi.
+\end{remarque}
+
+\begin{definition}[Point invariant]
+$M$ est un \textbf{point invariant} (ou point fixe) de $f$ si $f(M)=M$. L'ensemble des points invariants caractérise en grande partie la nature de $f$.
+\end{definition}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Déplacements et antidéplacements}
+
+Une isométrie conserve les angles géométriques ; selon qu'elle conserve \emph{ou} inverse les angles \textbf{orientés}, on distingue deux familles.
+
+\begin{definition}[Déplacement, antidéplacement]
+\begin{itemize}
+\item Un \textbf{déplacement} est une isométrie qui \textbf{conserve les angles orientés} (et l'orientation du plan).
+\item Un \textbf{antidéplacement} est une isométrie qui \textbf{inverse les angles orientés}.
+\end{itemize}
+\end{definition}
+
+\begin{propriete}[Les quatre types d'isométries planes]
+Toute isométrie du plan est de l'un des quatre types :
+\begin{center}\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+Nature & Famille & Points invariants\\
+\midrule
+Translation $t_{\vec u}$ ($\vec u\neq\vec0$) & déplacement & aucun\\
+Rotation $r_{(\Omega,\theta)}$ ($\theta\neq0$) & déplacement & un seul : le centre $\Omega$\\
+Symétrie orthogonale $s_{(D)}$ & antidéplacement & une droite : l'axe $D$\\
+Symétrie glissée & antidéplacement & aucun\\
+\bottomrule
+\end{tabular}
+\end{center}
+(L'identité est la translation de vecteur nul ; la symétrie centrale $s_\Omega$ est la rotation d'angle $\pi$ de centre $\Omega$.)
+\end{propriete}
+
+\begin{definition}[Les transformations de base]
+Soit $M$ un point et $M'$ son image.
+\begin{itemize}
+\item \textbf{Translation} $t_{\vec u}$ : $\overrightarrow{MM'}=\vec u$.
+\item \textbf{Rotation} $r_{(\Omega,\theta)}$ : $\Omega M'=\Omega M$ et $(\overrightarrow{\Omega M},\overrightarrow{\Omega M'})=\theta$.
+\item \textbf{Symétrie orthogonale} $s_{(D)}$ : $D$ est la médiatrice de $[MM']$ (et $M'=M$ si $M\in D$).
+\item \textbf{Symétrie glissée} : composée $t_{\vec u}\circ s_{(D)}$ avec $\vec u\neq\vec0$ \emph{dirigeant} l'axe $D$.
+\end{itemize}
+\end{definition}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth,scale=0.95]
+% triangle ABC
+\coordinate (A) at (0.4,0.5);
+\coordinate (B) at (2.2,0.4);
+\coordinate (C) at (1.1,1.9);
+\draw[onbo,line width=1pt] (A)--(B)--(C)--cycle;
+\node[onbo,below left] at (A){\small $A$};
+\node[onbo,below right] at (B){\small $B$};
+\node[onbo,above] at (C){\small $C$};
+% translation vector
+\draw[onbblue,->,line width=1pt] (2.6,1.0)--(4.1,1.0) node[midway,above]{\small $\vec u$};
+% image triangle A'B'C'
+\coordinate (Ap) at ($(A)+(3.5,0.5)$);
+\coordinate (Bp) at ($(B)+(3.5,0.5)$);
+\coordinate (Cp) at ($(C)+(3.5,0.5)$);
+\draw[onbgreen,line width=1pt] (Ap)--(Bp)--(Cp)--cycle;
+\node[onbgreen,below left] at (Ap){\small $A'$};
+\node[onbgreen,below right] at (Bp){\small $B'$};
+\node[onbgreen,above] at (Cp){\small $C'$};
+\draw[onbmuted,dashed,->] (A)--(Ap);
+\draw[onbmuted,dashed,->] (C)--(Cp);
+\node[align=left,text width=3.4cm,anchor=west] at (8.4,1.1)
+{\small Par la translation $t_{\vec u}$, le triangle $ABC$ « glisse » en $A'B'C'$ : même forme, même taille, $\overrightarrow{AA'}=\overrightarrow{CC'}=\vec u$.};
+\end{tikzpicture}
+\fig{Figure — Image d'un triangle par une translation : les distances sont conservées.}
+\end{illus}
+
+\begin{aretenir}
+\textbf{Classer par les points invariants.} \emph{Aucun} invariant : translation ou symétrie glissée. \emph{Un seul} : rotation. \emph{Une droite} d'invariants : symétrie orthogonale. \emph{Tout le plan} : identité. Pour départager les deux premiers cas, on regarde si $f$ conserve (déplacement) ou inverse (antidéplacement) l'orientation.
+\end{aretenir}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Composées et décomposition en symétries}
+
+Les symétries orthogonales sont les « briques » de toutes les isométries.
+
+\begin{theoreme}[Composée de deux symétries orthogonales]
+Soit $s_{(D)}$ et $s_{(D')}$ deux symétries d'axes $D$ et $D'$.
+\begin{itemize}
+\item Si $D\parallel D'$ : $\ s_{(D')}\circ s_{(D)}=t_{\vec u}$ est une \textbf{translation}, $\vec u$ orthogonal aux axes, $\|\vec u\|=2d$ où $d$ est la distance de $D$ à $D'$ (sens de $D$ vers $D'$).
+\item Si $D\cap D'=\{\Omega\}$ : $\ s_{(D')}\circ s_{(D)}=r_{(\Omega,\,2\alpha)}$ est une \textbf{rotation} de centre $\Omega$ et d'angle $2\alpha$, où $\alpha=(D,D')$ est l'angle orienté des deux axes.
+\end{itemize}
+\end{theoreme}
+
+\begin{propriete}[Décomposition d'un déplacement]
+\begin{itemize}
+\item Toute \textbf{translation} $t_{\vec u}$ s'écrit $s_{(D')}\circ s_{(D)}$ avec $D,D'$ \emph{parallèles}, orthogonaux à $\vec u$, distants de $\tfrac12\|\vec u\|$. L'\emph{un} des deux axes peut être choisi librement.
+\item Toute \textbf{rotation} $r_{(\Omega,\theta)}$ s'écrit $s_{(D')}\circ s_{(D)}$ avec $D,D'$ \emph{sécants en} $\Omega$, faisant entre eux l'angle $\theta/2$. L'un des deux axes (passant par $\Omega$) peut être choisi librement.
+\end{itemize}
+\end{propriete}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth,scale=1.0]
+% Two intersecting axes -> rotation
+\coordinate (O) at (0,0);
+\draw[onbblue,line width=1pt] (-1.6,-0.9)--(1.6,0.9) node[right]{\small $D$};
+\draw[onbgreen,line width=1pt] (-0.9,-1.6)--(0.9,1.6) node[above]{\small $D'$};
+\filldraw[onbink] (O) circle (1.6pt) node[below left]{\small $\Omega$};
+% point M and images
+\coordinate (M) at (2.2,0.3);
+\filldraw[onbo] (M) circle (1.6pt) node[right]{\small $M$};
+% reflection of M across D (line through O at angle ~29.36deg)
+% angle of D = atan(0.9/1.6)=29.36 deg; reflect M
+\coordinate (M1) at (1.42,1.71);
+\filldraw[onbmuted] (M1) circle (1.4pt) node[above right]{\small $s_{(D)}(M)$};
+\coordinate (M2) at (-0.30,2.20);
+\filldraw[onbgreen] (M2) circle (1.6pt) node[above]{\small $M'$};
+\draw[onbline] (O)--(M); \draw[onbline] (O)--(M1); \draw[onbgreen,dashed] (O)--(M2);
+\draw[onbo,->] (1.0,0.13) arc (7:98:1.02);
+\node[onbo] at (1.15,1.0){\small $\theta$};
+\node[align=left,text width=3.7cm,anchor=west] at (3.6,-0.2)
+{\small Deux symétries d'axes \emph{sécants} en $\Omega$ se composent en une \textbf{rotation} de centre $\Omega$ et d'angle $\theta=2\,(D,D')$.};
+\end{tikzpicture}
+\fig{Figure — Composée de deux symétries d'axes sécants : une rotation d'angle double.}
+\end{illus}
+
+\begin{propriete}[Quelques composées utiles]
+\begin{itemize}
+\item $t_{\vec u}\circ t_{\vec v}=t_{\vec u+\vec v}$ (les translations commutent).
+\item $r_{(\Omega,\theta)}\circ r_{(\Omega,\theta')}=r_{(\Omega,\theta+\theta')}$ (même centre).
+\item $r_{(B,\beta)}\circ r_{(A,\alpha)}$ est une \textbf{rotation} d'angle $\alpha+\beta$ si $\alpha+\beta\neq0\ [2\pi]$, et une \textbf{translation} si $\alpha+\beta\equiv0\ [2\pi]$.
+\item $s_\Omega\circ s_{\Omega'}=t_{2\overrightarrow{\Omega'\Omega}}$ (deux symétries centrales : une translation).
+\end{itemize}
+\end{propriete}
+
+\begin{remarque}
+La composée de \textbf{deux déplacements} (ou deux antidéplacements) est un \textbf{déplacement} ; celle d'un déplacement et d'un antidéplacement est un \textbf{antidéplacement}. C'est la « règle des signes » des orientations.
+\end{remarque}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Isométries de l'espace (aperçu)}
+
+\begin{propriete}[Isométries de l'espace]
+Dans l'espace, une isométrie conserve aussi les distances ; les principaux exemples sont :
+\begin{itemize}
+\item la \textbf{translation} $t_{\vec u}$ ;
+\item la \textbf{symétrie centrale} $s_\Omega$ et la \textbf{symétrie orthogonale par rapport à un plan} $s_{(P)}$ ;
+\item la \textbf{rotation d'axe} $(\Delta)$ et d'angle $\theta$ : chaque point tourne de $\theta$ dans le plan perpendiculaire à $(\Delta)$, les points de $(\Delta)$ étant invariants.
+\end{itemize}
+Comme dans le plan, distances, produit scalaire, barycentres et orthogonalité sont conservés.
+\end{propriete}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Méthodes \& savoir-faire}
+
+\methode{Classer une isométrie par ses points invariants}
+Résoudre $f(M)=M$. Selon l'ensemble obtenu (vide, un point, une droite, tout le plan) et l'orientation, conclure à l'aide du tableau des quatre types.
+\begin{exemple}
+$f$ a pour seul point invariant $\Omega$ et conserve l'orientation : c'est une \textbf{rotation} de centre $\Omega$. On trouve son angle via $(\overrightarrow{\Omega A},\overrightarrow{\Omega A'})$ pour un point $A$ et son image $A'$.
+\end{exemple}
+
+\methode{Déterminer la nature d'une composée}
+Compter les antidéplacements en jeu (parité) pour savoir si la composée est un déplacement ou un antidéplacement, puis additionner les « angles » (rotations) et combiner les vecteurs.
+\begin{exemple}
+$r_{(A,\frac\pi3)}\circ r_{(B,\frac\pi3)}$ : deux déplacements $\Rightarrow$ déplacement ; somme des angles $\frac\pi3+\frac\pi3=\frac{2\pi}3\neq0$, donc c'est une \textbf{rotation} d'angle $\frac{2\pi}3$.
+\end{exemple}
+
+\methode{Décomposer un déplacement en deux symétries orthogonales}
+Pour une rotation $r_{(\Omega,\theta)}$ : choisir un axe $D$ passant par $\Omega$, prendre $D'$ passant par $\Omega$ tel que $(D,D')=\theta/2$, alors $r=s_{(D')}\circ s_{(D)}$. Pour une translation $t_{\vec u}$ : choisir $D\perp\vec u$, puis $D'$ parallèle à distance $\tfrac12\|\vec u\|$.
+\begin{exemple}
+$r_{(\Omega,\frac\pi2)}=s_{(D')}\circ s_{(D)}$ où $D,D'$ passent par $\Omega$ et font entre eux un angle de $\frac\pi4$.
+\end{exemple}
+
+\methode{Exploiter les conservations dans une démonstration}
+Pour prouver une égalité de longueurs, un alignement, une orthogonalité ou une nature de figure, exhiber une isométrie qui envoie une configuration connue sur celle étudiée : elle transporte toutes ces propriétés.
+\begin{exemple}
+Si une rotation envoie $[AB]$ sur $[CD]$, alors $AB=CD$ ; si elle envoie le triangle $T$ sur $T'$, alors $T$ et $T'$ sont \textbf{isométriques} (mêmes côtés, mêmes angles).
+\end{exemple}
+
+\methode{Reconnaître une symétrie glissée}
+Un antidéplacement \emph{sans} point invariant est une symétrie glissée $t_{\vec u}\circ s_{(D)}$. On trouve l'axe $D$ comme ensemble des milieux $\big[M\,f(M)\big]$, et $\vec u=\overrightarrow{M\,f(M)}$ projeté sur $D$ (ou : $\vec u=\tfrac12\overrightarrow{M\,f\circ f(M)}$).
+\begin{exemple}
+Si $f\circ f=t_{\vec w}$ avec $\vec w\neq\vec0$ et $f$ antidéplacement, alors $f$ est la symétrie glissée d'axe dirigé par $\vec w$ et de vecteur $\tfrac12\vec w$.
+\end{exemple}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Exercices}
+
+\rubrique{Reconnaître et caractériser}
+\exo{}\diff{1} Pour chacune, donner la nature et les éléments caractéristiques : (a) l'application qui à $M$ associe $M'$ tel que $\overrightarrow{MM'}=\vec u$ fixé non nul ; (b) la symétrie de centre $\Omega$ ; (c) la symétrie d'axe une droite $D$.
+
+\exo{}\diff{1} Vrai ou faux (justifier) : (a) une translation possède un point invariant ; (b) une rotation conserve les angles orientés ; (c) une symétrie orthogonale est un déplacement.
+
+\exo{}\diff{2} $f$ est une isométrie telle que $f(A)=A$ et $f(B)=B$ avec $A\neq B$, mais $f\neq\mathrm{id}$. Quelle est la nature de $f$ ? Justifier par les points invariants.
+
+\rubrique{Composées et décompositions}
+\exo{}\diff{2} Déterminer la nature de $s_\Omega\circ s_{\Omega'}$ (deux symétries centrales, $\Omega\neq\Omega'$) et préciser ses éléments.
+
+\exo{}\diff{2} $D$ et $D'$ sont deux droites parallèles distantes de $3$ cm. Déterminer la nature et les éléments de $s_{(D')}\circ s_{(D)}$.
+
+\exo{}\diff{2} $A$ et $B$ sont deux points distincts. Déterminer la nature de $r_{(A,\frac{2\pi}{3})}\circ r_{(B,\frac{4\pi}{3})}$.
+
+\exo{}\diff{3} Décomposer la rotation $r_{(\Omega,\frac{2\pi}{3})}$ en produit de deux symétries orthogonales, en imposant que le premier axe soit une droite $D$ donnée passant par $\Omega$.
+
+\rubrique{Conservations et constructions}
+\exo{}\diff{2} $ABC$ est un triangle équilatéral direct de centre $G$. Montrer que la rotation de centre $G$ et d'angle $\frac{2\pi}{3}$ envoie $A$ sur $B$, $B$ sur $C$, $C$ sur $A$.
+
+\exo{}\diff{3} $f$ est un antidéplacement vérifiant $f\circ f=t_{\vec u}$ avec $\vec u\neq\vec0$. Montrer que $f$ est une symétrie glissée et préciser son axe et son vecteur.
+
+\rubrique{Problème type Baccalauréat}
+\exo{}\diff{3} Le plan est rapporté à un repère orthonormé direct. On considère les points $A(0,0)$, $B(2,0)$ et le carré direct $ABCD$ (donc $C(2,2)$, $D(0,2)$). Soit $r$ la rotation de centre $A$ et d'angle $\frac\pi2$, et $r'$ la rotation de centre $C$ et d'angle $\frac\pi2$.
+\begin{enumerate}[label=\arabic*)]
+\item Déterminer les images $r(B)$ et $r(D)$.
+\item Préciser la nature de $r'\circ r$ (sans calcul de coordonnées) en utilisant la somme des angles.
+\item Déterminer l'image du point $A$ par $r'\circ r$, puis en déduire l'élément caractéristique manquant (centre ou vecteur) de $r'\circ r$.
+\item Soit $g=s_{(AB)}\circ r$. Justifier que $g$ est un antidéplacement, puis déterminer ses points invariants et conclure sur sa nature.
+\end{enumerate}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Corrigés}
+
+\corrige{de l'exercice 1}
+(a) \textbf{Translation} de vecteur $\vec u$ ; déplacement, aucun point invariant.\;
+(b) \textbf{Symétrie centrale} de centre $\Omega$ = rotation de centre $\Omega$ et d'angle $\pi$ ; déplacement, un seul invariant $\Omega$.\;
+(c) \textbf{Symétrie orthogonale} d'axe $D$ ; antidéplacement, invariants = tous les points de $D$.
+
+\corrige{de l'exercice 2}
+(a) \textbf{Faux} : une translation de vecteur non nul n'a aucun point invariant ($\overrightarrow{MM'}=\vec u\neq\vec0$).\;
+(b) \textbf{Vrai} : une rotation est un déplacement, elle conserve les angles orientés.\;
+(c) \textbf{Faux} : une symétrie orthogonale inverse les angles orientés, c'est un \emph{antidéplacement}.
+
+\corrige{de l'exercice 3}
+$f$ fixe les deux points distincts $A$ et $B$, donc fixe toute la droite $(AB)$ (une isométrie conserve l'alignement et les distances : tout point de $(AB)$ est repéré par ses distances à $A$ et $B$). L'ensemble des invariants contient une droite ; comme $f\neq\mathrm{id}$, il est exactement égal à $(AB)$ : $f$ est la \textbf{symétrie orthogonale d'axe $(AB)$}.
+
+\corrige{de l'exercice 4}
+Pour tout $M$ : $s_\Omega\circ s_{\Omega'}(M)$. Posons $M_1=s_{\Omega'}(M)$, donc $\overrightarrow{M M_1}=2\overrightarrow{M\Omega'}$, puis $M'=s_\Omega(M_1)$ avec $\overrightarrow{M_1 M'}=2\overrightarrow{M_1\Omega}$. On calcule
+$\overrightarrow{MM'}=\overrightarrow{MM_1}+\overrightarrow{M_1M'}=2\overrightarrow{M\Omega'}+2\overrightarrow{M_1\Omega}$.
+Plus simplement, $s_\Omega\circ s_{\Omega'}=t_{\vec u}$ avec $\vec u=2\overrightarrow{\Omega'\Omega}$ (constant) : c'est une \textbf{translation} de vecteur $2\overrightarrow{\Omega'\Omega}$. Aucun point invariant car $\Omega\neq\Omega'$.
+
+\corrige{de l'exercice 5}
+$D\parallel D'$ : la composée $s_{(D')}\circ s_{(D)}$ est une \textbf{translation} $t_{\vec u}$, de vecteur $\vec u$ orthogonal à $D$ et $D'$, de norme $2\times 3=6$ cm, orienté de $D$ vers $D'$.
+
+\corrige{de l'exercice 6}
+Deux rotations $\Rightarrow$ déplacement. Somme des angles : $\frac{2\pi}{3}+\frac{4\pi}{3}=2\pi\equiv0\ [2\pi]$. La composée est donc une \textbf{translation} (cas $\alpha+\beta\equiv0$). Son vecteur se trouve en calculant l'image d'un point particulier ; par exemple l'image de $A$ donne directement $\vec u=\overrightarrow{A\,(r_{(A,\frac{2\pi}3)}\circ r_{(B,\frac{4\pi}3)})(A)}$.
+
+\corrige{de l'exercice 7}
+On veut $r_{(\Omega,\frac{2\pi}{3})}=s_{(D')}\circ s_{(D)}$. La théorie impose : $D,D'$ passent par $\Omega$ et $(D,D')=\frac12\cdot\frac{2\pi}{3}=\frac\pi3$. On garde donc $D$ comme premier axe et l'on prend $D'$ la droite passant par $\Omega$ telle que l'angle orienté $(D,D')=\frac\pi3$. Alors $s_{(D')}\circ s_{(D)}=r_{(\Omega,\frac{2\pi}3)}$.
+
+\corrige{de l'exercice 8}
+Soit $r=r_{(G,\frac{2\pi}{3})}$. Comme $ABC$ est équilatéral direct de centre $G$, on a $GA=GB=GC$ et $(\overrightarrow{GA},\overrightarrow{GB})=\frac{2\pi}{3}$, $(\overrightarrow{GB},\overrightarrow{GC})=\frac{2\pi}{3}$, $(\overrightarrow{GC},\overrightarrow{GA})=\frac{2\pi}{3}$. Pour $A$ : $GA'=GA$ et $(\overrightarrow{GA},\overrightarrow{GA'})=\frac{2\pi}{3}=(\overrightarrow{GA},\overrightarrow{GB})$, donc $A'=B$. De même $r(B)=C$ et $r(C)=A$. La rotation permute circulairement les sommets.
+
+\corrige{de l'exercice 9}
+$f$ est un antidéplacement (inverse l'orientation). Si $f$ avait un point invariant, $f$ serait une symétrie orthogonale $s_{(D)}$, et alors $f\circ f=\mathrm{id}=t_{\vec0}$, contredisant $\vec u\neq\vec0$. Donc $f$ n'a aucun point invariant : c'est une \textbf{symétrie glissée} $f=t_{\vec w}\circ s_{(D)}$ avec $\vec w$ dirigeant $D$. On calcule alors $f\circ f$. Comme $\vec w$ dirige $D$, $s_{(D)}$ et $t_{\vec w}$ commutent et $f\circ f=t_{\vec w}\circ s_{(D)}\circ t_{\vec w}\circ s_{(D)}=t_{2\vec w}$ (car $s_{(D)}\circ t_{\vec w}\circ s_{(D)}=t_{\vec w}$). Ainsi $t_{2\vec w}=t_{\vec u}$, d'où $\vec w=\tfrac12\vec u$. \textbf{Conclusion} : $f$ est la symétrie glissée d'axe $D$ dirigé par $\vec u$ et de vecteur $\tfrac12\vec u$.
+
+\corrige{du problème}
+\textbf{1)} $r=r_{(A,\frac\pi2)}$, $A=O$. La rotation de $+\frac\pi2$ envoie $(x,y)$ sur $(-y,x)$. Donc $r(B)=r(2,0)=(0,2)=D$, et $r(D)=r(0,2)=(-2,0)$ (point noté $B_1$, image de $D$).
+
+\textbf{2)} $r'\circ r$ est la composée de deux rotations : c'est un \textbf{déplacement}. Somme des angles : $\frac\pi2+\frac\pi2=\pi\neq0\ [2\pi]$. C'est donc une \textbf{rotation d'angle $\pi$}, c'est-à-dire une \textbf{symétrie centrale}. Reste à trouver son centre.
+
+\textbf{3)} On calcule l'image de $A=(0,0)$. D'abord $r(A)=A=(0,0)$ (centre de $r$). Puis $r'$, rotation de $+\frac\pi2$ de centre $C=(2,2)$, agit par $(x,y)\mapsto C+R_{\pi/2}\big((x,y)-C\big)$ où $R_{\pi/2}(u,v)=(-v,u)$. Pour $(0,0)$ : $(x,y)-C=(-2,-2)$, $R_{\pi/2}(-2,-2)=(2,-2)$, image $=C+(2,-2)=(4,0)$. Donc $(r'\circ r)(A)=(4,0)$. Le centre $\omega$ d'une symétrie centrale est le \textbf{milieu} de $\big[A\,;(r'\circ r)(A)\big]$ : $\omega=\big(\tfrac{0+4}2,\tfrac{0+0}2\big)=(2,0)=B$. \textbf{Conclusion} : $r'\circ r=s_B$, symétrie centrale de centre $B(2,0)$.
+
+\textbf{4)} $g=s_{(AB)}\circ r$ : composée d'un déplacement ($r$) et d'un antidéplacement (la symétrie d'axe), donc $g$ est un \textbf{antidéplacement}. Ici $(AB)$ est l'axe des abscisses, $s_{(AB)}:(x,y)\mapsto(x,-y)$. Pour $M(x,y)$ : $r(M)=(-y,x)$ puis $s_{(AB)}(-y,x)=(-y,-x)$. Donc $g(x,y)=(-y,-x)$. Points invariants : $-y=x$ et $-x=y$, soit $y=-x$ : c'est la \textbf{droite} d'équation $y=-x$ passant par $A$. $g$ a une droite d'invariants et inverse l'orientation : c'est la \textbf{symétrie orthogonale d'axe la droite $y=-x$} (on vérifie d'ailleurs que $g\circ g(x,y)=g(-y,-x)=(x,y)=\mathrm{id}$).

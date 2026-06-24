@@ -1,0 +1,321 @@
+\chapter{Similitudes directes du plan}
+
+\noindent\textit{Une similitude est une transformation qui « agrandit » ou « réduit » une figure
+en conservant sa forme : les angles sont préservés et toutes les longueurs sont multipliées par
+un même rapport. Spécificité de la série C, l'\textbf{écriture complexe} $z'=az+b$ en donne une
+description algébrique d'une élégance remarquable, et fait le lien entre géométrie et nombres complexes.}
+\vspace{8pt}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Définition et premières propriétés}
+
+\begin{definition}[Similitude directe]
+Une \textbf{similitude directe} du plan de rapport $k>0$ est une transformation $S$ qui multiplie
+toutes les distances par $k$ et conserve les angles orientés :
+\[
+\forall M,N,\quad S(M)=M',\ S(N)=N'\ \Longrightarrow\ M'N'=k\,MN
+\quad\text{et}\quad \big(\overrightarrow{MN},\overrightarrow{M'N'}\big)=\theta\ \ (\text{constant}).
+\]
+Le réel $k>0$ est le \textbf{rapport}, l'angle $\theta$ (modulo $2\pi$) est l'\textbf{angle} de la similitude.
+\end{definition}
+
+\begin{remarque}
+Si $k=1$, la similitude directe est un \textbf{déplacement} (translation ou rotation). Si $\theta=0$,
+c'est une \textbf{homothétie} de rapport $k>0$ (ou une translation si de plus $k=1$). Une similitude
+directe générale combine ces deux effets.
+\end{remarque}
+
+\begin{theoreme}[Forme réduite]
+Toute similitude directe $S$ qui n'est pas une translation possède un unique point invariant $\Omega$,
+appelé \textbf{centre}. Elle s'écrit alors de façon unique comme la \textbf{composée commutative}
+\[
+S=h_{(\Omega,k)}\circ r_{(\Omega,\theta)}=r_{(\Omega,\theta)}\circ h_{(\Omega,k)},
+\]
+où $h_{(\Omega,k)}$ est l'homothétie de centre $\Omega$ et de rapport $k$, et $r_{(\Omega,\theta)}$
+la rotation de centre $\Omega$ et d'angle $\theta$. Le triplet $(\Omega,k,\theta)$ donne les
+\textbf{éléments caractéristiques} de $S$.
+\end{theoreme}
+
+\begin{propriete}[Réciproque]
+La réciproque d'une similitude directe de rapport $k$, d'angle $\theta$ et de centre $\Omega$ est la
+similitude directe de \textbf{même centre} $\Omega$, de rapport $\dfrac1k$ et d'angle $-\theta$.
+\end{propriete}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth,scale=1.0]
+% centre
+\filldraw[onbink] (0,0) circle (1.6pt) node[below left]{\small $\Omega$};
+% triangle ABC
+\coordinate (A) at (1.6,0.2);
+\coordinate (B) at (3.0,0.6);
+\coordinate (C) at (2.3,1.5);
+\draw[onbo,line width=1pt] (A)--(B)--(C)--cycle;
+\node[onbo,below] at (A){\small $A$};
+\node[onbo,below right] at (B){\small $B$};
+\node[onbo,above] at (C){\small $C$};
+% image : rotation 40°, rapport 0.6 -> appliquée depuis Omega
+% A'=Omega + 0.6*R40 (A-Omega)
+\coordinate (Ap) at ({0.6*(cos(40)*1.6 - sin(40)*0.2)},{0.6*(sin(40)*1.6 + cos(40)*0.2)});
+\coordinate (Bp) at ({0.6*(cos(40)*3.0 - sin(40)*0.6)},{0.6*(sin(40)*3.0 + cos(40)*0.6)});
+\coordinate (Cp) at ({0.6*(cos(40)*2.3 - sin(40)*1.5)},{0.6*(sin(40)*2.3 + cos(40)*1.5)});
+\draw[onbgreen,line width=1pt] (Ap)--(Bp)--(Cp)--cycle;
+\node[onbgreen,left] at (Ap){\small $A'$};
+\node[onbgreen,above left] at (Bp){\small $B'$};
+\node[onbgreen,above] at (Cp){\small $C'$};
+% rayons depuis Omega
+\draw[onbmuted,dashed,thin] (0,0)--(B);
+\draw[onbmuted,dashed,thin] (0,0)--(Bp);
+% angle
+\draw[onbblue] (1.0,0) arc (0:40:1.0);
+\node[onbblue] at (1.25,0.35){\small $\theta$};
+\node[align=left,text width=3.6cm,anchor=west] at (4.2,1.4)
+{\small La similitude de centre $\Omega$, d'angle $\theta$ et de rapport $k<1$ transforme
+$ABC$ en un triangle $A'B'C'$ \textbf{semblable} (même forme, taille réduite).};
+\end{tikzpicture}
+\fig{Figure — Similitude directe de centre $\Omega$ : un triangle et son image semblable.}
+\end{illus}
+
+\begin{propriete}[Conservations]
+Une similitude directe de rapport $k$ :
+\begin{itemize}
+\item conserve les \textbf{angles orientés} (donc l'orientation des figures) ;
+\item conserve le \textbf{parallélisme}, l'\textbf{orthogonalité}, l'\textbf{alignement}, le \textbf{contact} (tangence) ;
+\item conserve les \textbf{rapports de distances} : $\dfrac{M'N'}{P'Q'}=\dfrac{MN}{PQ}$ ;
+\item multiplie les longueurs par $k$, les \textbf{aires} par $k^{2}$ ;
+\item transforme une droite en droite, un segment en segment, un cercle de rayon $R$ en un cercle de rayon $kR$,
+le barycentre en barycentre.
+\end{itemize}
+\end{propriete}
+
+\begin{aretenir}
+Une similitude directe est entièrement déterminée par la donnée de \textbf{deux points distincts et de
+leurs images} : si $A\mapsto A'$ et $B\mapsto B'$ (avec $A\neq B$, $A'\neq B'$), il existe une unique
+similitude directe $S$ telle que $S(A)=A'$ et $S(B)=B'$.
+\end{aretenir}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Écriture complexe}
+
+\begin{theoreme}[Écriture complexe d'une similitude directe]
+Une transformation du plan est une similitude directe si et seulement si elle admet une écriture complexe
+\[
+z'=az+b,\qquad a\in\C^{*},\ b\in\C.
+\]
+On a alors $a=k\,e^{i\theta}$, où $k=|a|$ est le \textbf{rapport} et $\theta=\arg(a)$ l'\textbf{angle}.
+\begin{itemize}
+\item Si $a=1$ : c'est la \textbf{translation} de vecteur d'affixe $b$.
+\item Si $a\neq1$ : il existe un unique \textbf{centre} $\Omega$ d'affixe $\omega=\dfrac{b}{1-a}$,
+solution de $\omega=a\omega+b$.
+\end{itemize}
+\end{theoreme}
+
+\begin{propriete}[Forme réduite complexe]
+Lorsque $a\neq1$, l'écriture $z'=az+b$ équivaut à
+\[
+z'-\omega=a\,(z-\omega),\qquad \omega=\frac{b}{1-a}.
+\]
+Cette forme rend lisibles les éléments caractéristiques : centre $\Omega(\omega)$, rapport $k=|a|$, angle $\theta=\arg(a)$.
+\end{propriete}
+
+\begin{exemple}
+Soit $S:\ z'=2i\,z+3$. Alors $a=2i$, donc $k=|2i|=2$ et $\theta=\arg(2i)=\dfrac\pi2$. Le centre a pour affixe
+$\omega=\dfrac{3}{1-2i}=\dfrac{3(1+2i)}{(1-2i)(1+2i)}=\dfrac{3+6i}{5}=\dfrac35+\dfrac65 i$.
+$S$ est la similitude directe de centre $\Omega\!\left(\frac35+\frac65 i\right)$, de rapport $2$ et d'angle $\frac\pi2$.
+\end{exemple}
+
+\begin{remarque}
+La composée d'une homothétie $h_{(\Omega,k)}$ (écriture $z'=k(z-\omega)+\omega$) et d'une rotation
+$r_{(\Omega,\theta)}$ (écriture $z'=e^{i\theta}(z-\omega)+\omega$) donne bien
+$z'=k\,e^{i\theta}(z-\omega)+\omega$, soit $a=k\,e^{i\theta}$ : on retrouve la forme réduite.
+\end{remarque}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Composée et figures semblables}
+
+\begin{propriete}[Composée de similitudes]
+La composée de deux similitudes directes de rapports $k_1,k_2$ et d'angles $\theta_1,\theta_2$ est une
+similitude directe de rapport $k_1k_2$ et d'angle $\theta_1+\theta_2$. En écriture complexe,
+$z'=a_2(a_1 z+b_1)+b_2=(a_2a_1)z+(a_2b_1+b_2)$ : les coefficients $a$ se \textbf{multiplient}.
+L'ensemble des similitudes directes est stable par composition et par passage à la réciproque.
+\end{propriete}
+
+\begin{definition}[Figures semblables]
+Deux figures $\mathcal F$ et $\mathcal F'$ sont \textbf{semblables} s'il existe une similitude (directe ou indirecte)
+transformant $\mathcal F$ en $\mathcal F'$. Deux triangles $ABC$ et $A'B'C'$ sont semblables (directement) si et
+seulement si
+\[
+\frac{z_{B'}-z_{A'}}{z_{C'}-z_{A'}}=\frac{z_B-z_A}{z_C-z_A},
+\]
+ce qui traduit l'égalité des rapports de côtés et des angles.
+\end{definition}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth,scale=1.0]
+\filldraw[onbink] (0,0) circle (1.5pt) node[below left]{\small $\Omega$};
+% spirale obtenue par itération d'une similitude : k=0.78, theta=32°
+\foreach \n in {0,...,8}{
+  \pgfmathsetmacro{\r}{2.6*pow(0.78,\n)}
+  \pgfmathsetmacro{\ang}{32*\n}
+  \filldraw[onbo] (\ang:\r) circle (1.3pt);
+}
+% relier par une spirale approximative
+\draw[onbo!70,line width=0.7pt,domain=0:256,samples=120,smooth]
+  plot ({2.6*exp(-0.00964*\x)*cos(\x)},{2.6*exp(-0.00964*\x)*sin(\x)});
+\node[onbo,right] at (0:2.6){\small $M_0$};
+\node[onbo,above] at (32:2.028){\small $M_1$};
+\node[onbo] at (64:1.582){\small $M_2$};
+\node[align=left,text width=3.7cm,anchor=west] at (3.0,-1.2)
+{\small En itérant une même similitude de centre $\Omega$ ($k<1$, $\theta\neq0$), les points $M_n=S^n(M_0)$
+décrivent une \textbf{spirale logarithmique} convergeant vers $\Omega$.};
+\end{tikzpicture}
+\fig{Figure — Spirale engendrée par les itérées d'une similitude directe.}
+\end{illus}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Méthodes \& savoir-faire}
+
+\methode{Lire les éléments caractéristiques sur l'écriture complexe}
+À partir de $z'=az+b$ : calculer $k=|a|$, $\theta=\arg(a)$, puis le centre $\omega=\dfrac{b}{1-a}$ (si $a\neq1$).
+\begin{exemple}
+$z'=(1+i)z+2-i$ : $a=1+i$ donc $k=|1+i|=\sqrt2$, $\theta=\arg(1+i)=\frac\pi4$. Centre :
+$\omega=\dfrac{2-i}{1-(1+i)}=\dfrac{2-i}{-i}=\dfrac{(2-i)\,i}{-i\cdot i}=\dfrac{2i+1}{1}=1+2i$.
+$S$ : centre $\Omega(1+2i)$, rapport $\sqrt2$, angle $\frac\pi4$.
+\end{exemple}
+
+\methode{Déterminer une similitude par deux points et leurs images}
+Pour $A\mapsto A'$, $B\mapsto B'$ : résoudre le système $z_{A'}=az_A+b$, $z_{B'}=az_B+b$. On obtient
+$a=\dfrac{z_{B'}-z_{A'}}{z_B-z_A}$ puis $b=z_{A'}-a\,z_A$.
+\begin{exemple}
+$A(1)\mapsto A'(i)$, $B(0)\mapsto B'(2)$ : $a=\dfrac{i-2}{1-0}=i-2$ ; $b=z_{B'}-a\cdot z_B=2-(i-2)\cdot0=2$.
+Donc $z'=(i-2)z+2$, de rapport $k=|i-2|=\sqrt5$ et d'angle $\theta=\arg(-2+i)$.
+\end{exemple}
+
+\methode{Déterminer une similitude par centre, rapport et angle}
+Écrire directement $z'=k\,e^{i\theta}(z-\omega)+\omega$, puis développer en $z'=az+b$ si besoin.
+\begin{exemple}
+Centre $\Omega(1+i)$, rapport $3$, angle $\frac\pi2$ ($e^{i\pi/2}=i$) :
+$z'=3i\,(z-(1+i))+(1+i)=3i\,z-3i(1+i)+1+i=3i\,z+(3-3i)+1+i=3i\,z+4-2i$.
+\end{exemple}
+
+\methode{Passer de la forme réduite à l'écriture complexe (et inversement)}
+Forme réduite $\Rightarrow$ écriture : développer $z'=a(z-\omega)+\omega=az+\omega(1-a)$, donc $b=\omega(1-a)$.
+Écriture $\Rightarrow$ forme réduite : calculer $\omega=\frac{b}{1-a}$ et écrire $z'-\omega=a(z-\omega)$.
+
+\methode{Construire l'image d'une figure}
+Construire l'image de chaque point clé (sommets, centre de cercle) par $\Omega$, $k$, $\theta$ ; relier en
+conservant la nature (droite$\to$droite, cercle de rayon $R\to$ cercle de rayon $kR$).
+\begin{exemple}
+L'image du cercle de centre $C$ et de rayon $R$ par $S$ (rapport $k$) est le cercle de centre $S(C)$ et de rayon $kR$.
+\end{exemple}
+
+\methode{Calculer distances et aires sous une similitude}
+Une longueur $\ell$ devient $k\ell$ ; une aire $\mathcal A$ devient $k^{2}\mathcal A$ ; un rapport de longueurs est inchangé.
+\begin{exemple}
+Si $S$ a pour rapport $k=3$ et qu'un triangle a pour aire $5\,\text{cm}^2$, son image a pour aire
+$k^{2}\times5=9\times5=45\,\text{cm}^2$.
+\end{exemple}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Exercices}
+
+\rubrique{Lecture et écriture complexe}
+\exo{}\diff{1} Donner le rapport et l'angle de la similitude $z'=(-1+i\sqrt3)\,z+5$.
+
+\exo{}\diff{1} Préciser la nature et les éléments de la transformation $z'=2z-1+3i$.
+
+\exo{}\diff{2} Déterminer le centre, le rapport et l'angle de la similitude $z'=(1-i)z+3i$.
+
+\rubrique{Détermination d'une similitude}
+\exo{}\diff{2} Trouver l'écriture complexe de la similitude directe de centre $\Omega(2)$, de rapport $2$ et d'angle $\dfrac\pi3$.
+
+\exo{}\diff{2} Déterminer la similitude directe $S$ telle que $A(1+i)\mapsto A'(3+i)$ et $B(2)\mapsto B'(4+2i)$.
+
+\exo{}\diff{2} On donne $S_1:\ z'=iz+1$ et $S_2:\ z'=2z-i$. Déterminer l'écriture complexe et les éléments de $S_2\circ S_1$.
+
+\rubrique{Configurations et conservations}
+\exo{}\diff{2} Une similitude directe de rapport $k=\dfrac12$ transforme un triangle d'aire $24\,\text{cm}^2$.
+Quelle est l'aire du triangle image ?
+
+\exo{}\diff{3} Soit $S$ la similitude directe d'écriture $z'=(1+i)z$. Déterminer l'image par $S$ du cercle de
+centre $C(2)$ et de rayon $1$ (centre et rayon de l'image).
+
+\exo{}\diff{3} On considère $A(1)$, $B(3)$, $C(3+2i)$. Montrer que la similitude directe $S$ qui envoie $A$ sur $B$ et
+$B$ sur $C$ a pour centre le point $\Omega$ dont on calculera l'affixe.
+
+\rubrique{Problème type Baccalauréat}
+\exo{}\diff{3} Le plan complexe est rapporté à un repère orthonormé direct. On considère la similitude directe $S$
+d'écriture complexe
+\[
+z'=(1+i)\,z+2.
+\]
+\begin{enumerate}[label=\arabic*)]
+\item Déterminer le rapport $k$, l'angle $\theta$ et l'affixe $\omega$ du centre $\Omega$ de $S$.
+\item Soit $M$ d'affixe $z$ et $M'=S(M)$ d'affixe $z'$. Exprimer $\Omega M'$ en fonction de $\Omega M$,
+et l'angle $(\overrightarrow{\Omega M},\overrightarrow{\Omega M'})$.
+\item On note $M$ le point d'affixe $z=x+iy$ ($x,y$ réels) et $M'$ son image. Déterminer l'ensemble $(\Gamma)$
+des points $M$ tels que $M'$ appartienne à l'axe des réels (c.-à-d. $\mathrm{Im}(z')=0$). Reconnaître $(\Gamma)$.
+\item Pour $M$ d'affixe $z$, on pose $f(z)=\dfrac{z'-\omega}{z-\omega}$ (pour $z\neq\omega$). Calculer $f(z)$ et
+en déduire le lieu des points $M$ tels que le triangle $\Omega M M'$ soit rectangle isocèle en $\Omega$.
+\end{enumerate}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Corrigés}
+
+\corrige{de l'exercice 1}
+$a=-1+i\sqrt3$ : $k=|a|=\sqrt{1+3}=2$. $\cos\theta=-\frac12$, $\sin\theta=\frac{\sqrt3}2$ donc $\theta=\frac{2\pi}{3}$.
+Similitude de rapport $2$ et d'angle $\frac{2\pi}{3}$.
+
+\corrige{de l'exercice 2}
+$a=2$ est réel positif et $a\neq1$ : c'est une \textbf{homothétie} de rapport $2$ (angle $\theta=0$).
+Centre : $\omega=\dfrac{-1+3i}{1-2}=\dfrac{-1+3i}{-1}=1-3i$. Homothétie de centre $\Omega(1-3i)$, rapport $2$.
+
+\corrige{de l'exercice 3}
+$a=1-i$ : $k=|1-i|=\sqrt2$ ; $\cos\theta=\frac1{\sqrt2}$, $\sin\theta=-\frac1{\sqrt2}$ donc $\theta=-\frac\pi4$.
+Centre : $\omega=\dfrac{3i}{1-(1-i)}=\dfrac{3i}{i}=3$. Similitude de centre $\Omega(3)$, rapport $\sqrt2$, angle $-\frac\pi4$.
+
+\corrige{de l'exercice 4}
+$a=k\,e^{i\theta}=2\,e^{i\pi/3}=2\left(\frac12+i\frac{\sqrt3}2\right)=1+i\sqrt3$. Avec $\omega=2$ :
+$z'=a(z-2)+2=(1+i\sqrt3)z-2(1+i\sqrt3)+2=(1+i\sqrt3)z+(-2-2i\sqrt3+2)=(1+i\sqrt3)z-2i\sqrt3$.
+Donc $z'=(1+i\sqrt3)\,z-2i\sqrt3$.
+
+\corrige{de l'exercice 5}
+$a=\dfrac{z_{B'}-z_{A'}}{z_B-z_A}=\dfrac{(4+2i)-(3+i)}{2-(1+i)}=\dfrac{1+i}{1-i}=\dfrac{(1+i)^2}{(1-i)(1+i)}=\dfrac{2i}{2}=i$.
+$b=z_{A'}-a\,z_A=(3+i)-i(1+i)=3+i-i-i^2=3+1=4$. Donc $z'=iz+4$ (rotation de rapport $1$, angle $\frac\pi2$, centre
+$\omega=\frac{4}{1-i}=2+2i$).
+
+\corrige{de l'exercice 6}
+$S_2\circ S_1$ : $z\mapsto z_1=iz+1$ puis $z_1\mapsto z'=2z_1-i=2(iz+1)-i=2iz+2-i$.
+Donc $z'=2i\,z+(2-i)$ : $a=2i$, $k=2$, $\theta=\frac\pi2$. Centre $\omega=\dfrac{2-i}{1-2i}=\dfrac{(2-i)(1+2i)}{5}
+=\dfrac{2+4i-i+2}{5}=\dfrac{4+3i}{5}=\frac45+\frac35 i$.
+
+\corrige{de l'exercice 7}
+L'aire est multipliée par $k^2=\left(\frac12\right)^2=\frac14$, donc l'aire image vaut $\frac14\times24=6\,\text{cm}^2$.
+
+\corrige{de l'exercice 8}
+$a=1+i$, $k=|1+i|=\sqrt2$. L'image de $C(2)$ a pour affixe $z'_C=(1+i)\cdot2=2+2i$, soit $C'(2+2i)$.
+Le rayon devient $k\times1=\sqrt2$. L'image est le cercle de centre $C'(2+2i)$ et de rayon $\sqrt2$.
+
+\corrige{de l'exercice 9}
+On cherche la similitude $S$ : $z'=az+b$ avec $A(1)\mapsto B(3)$ et $B(3)\mapsto C(3+2i)$.
+$a=\dfrac{z_C-z_B}{z_B-z_A}=\dfrac{(3+2i)-3}{3-1}=\dfrac{2i}{2}=i$. $b=z_B-a\,z_A=3-i\cdot1=3-i$.
+Donc $z'=iz+3-i$. Comme $a=i\neq1$, le centre est $\omega=\dfrac{b}{1-a}=\dfrac{3-i}{1-i}=\dfrac{(3-i)(1+i)}{(1-i)(1+i)}
+=\dfrac{3+3i-i+1}{2}=\dfrac{4+2i}{2}=2+i$. Donc $\Omega(2+i)$.
+
+\corrige{du problème}
+\textbf{1)} $a=1+i$ : $k=|1+i|=\sqrt2$ et $\theta=\arg(1+i)=\dfrac\pi4$. Centre :
+$\omega=\dfrac{b}{1-a}=\dfrac{2}{1-(1+i)}=\dfrac{2}{-i}=\dfrac{2\,i}{-i\cdot i}=\dfrac{2i}{1}=2i$. Donc $\Omega(2i)$.
+
+\smallskip\textbf{2)} La forme réduite est $z'-\omega=a(z-\omega)$, donc $|z'-\omega|=|a|\,|z-\omega|$, soit
+$\Omega M'=\sqrt2\,\Omega M$. De plus $\arg\dfrac{z'-\omega}{z-\omega}=\arg(a)=\dfrac\pi4$, c'est-à-dire
+$(\overrightarrow{\Omega M},\overrightarrow{\Omega M'})=\dfrac\pi4$.
+
+\smallskip\textbf{3)} $z'=(1+i)(x+iy)+2=(x-y+2)+i(x+y)$. Donc $\mathrm{Im}(z')=x+y$, et
+$\mathrm{Im}(z')=0\iff x+y=0\iff y=-x$. L'ensemble $(\Gamma)$ est la \textbf{droite} d'équation $y=-x$
+(droite passant par l'origine, de pente $-1$).
+
+\smallskip\textbf{4)} Pour $z\neq\omega$, $f(z)=\dfrac{z'-\omega}{z-\omega}=\dfrac{a(z-\omega)}{z-\omega}=a=1+i$, valeur
+\emph{constante}. Donc pour tout $M\neq\Omega$, $\dfrac{\Omega M'}{\Omega M}=|a|=\sqrt2$ et
+$(\overrightarrow{\Omega M},\overrightarrow{\Omega M'})=\frac\pi4$. Le triangle $\Omega M M'$ vérifie
+$\widehat{M\Omega M'}=\frac\pi4\neq\frac\pi2$ : il n'est \textbf{jamais} rectangle en $\Omega$. Le lieu cherché est donc
+\textbf{vide}. (En revanche, le triangle est toujours \emph{semblable à lui-même} pour tout $M$ : tous ces triangles
+$\Omega M M'$ sont semblables, d'angle en $\Omega$ égal à $\frac\pi4$ et de rapport $\frac{\Omega M'}{\Omega M}=\sqrt2$.)

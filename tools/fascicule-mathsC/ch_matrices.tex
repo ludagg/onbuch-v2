@@ -1,0 +1,490 @@
+\chapter{Matrices}
+
+\noindent\textit{Une matrice est un tableau de nombres rangés en lignes et en colonnes.
+Cet outil, au cœur de l'algèbre linéaire, permet de calculer rapidement, de résoudre des
+systèmes linéaires, de décrire les transformations du plan et de modéliser des situations
+(suites couplées, réseaux). C'est un chapitre spécifique du programme camerounais de la
+série~C, à la jonction du calcul et de la géométrie.}
+\vspace{8pt}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Matrices : définitions et types}
+
+\begin{definition}[Matrice]
+Une \textbf{matrice} de \textbf{format} (ou \textbf{type}) $n\times p$ est un tableau de
+$n\times p$ nombres réels rangés en $n$ \textbf{lignes} et $p$ \textbf{colonnes} :
+\[
+A=(a_{ij})_{\substack{1\le i\le n\\ 1\le j\le p}}=
+\begin{pmatrix} a_{11} & a_{12} & \cdots & a_{1p}\\ a_{21} & a_{22} & \cdots & a_{2p}\\
+\vdots & & & \vdots\\ a_{n1} & a_{n2} & \cdots & a_{np}\end{pmatrix}.
+\]
+Le réel $a_{ij}$ (terme de la ligne $i$, colonne $j$) est le \textbf{coefficient} d'indices
+$i,j$. On note $\mathcal M_{n,p}(\R)$ l'ensemble des matrices $n\times p$, et $\mathcal M_n(\R)$
+celui des matrices carrées d'ordre $n$.
+\end{definition}
+
+\begin{definition}[Types usuels]
+\begin{itemize}
+\item \textbf{Matrice ligne} : un seul ligne, format $1\times p$, ex. $\begin{pmatrix}2 & -1 & 5\end{pmatrix}$.
+\item \textbf{Matrice colonne} : une seule colonne, format $n\times 1$, ex. $\begin{pmatrix}3\\0\\-2\end{pmatrix}$.
+\item \textbf{Matrice carrée} d'ordre $n$ : autant de lignes que de colonnes ($n=p$). Sa
+\textbf{diagonale principale} est formée des $a_{ii}$.
+\item \textbf{Matrice nulle} $O$ : tous les coefficients valent $0$.
+\item \textbf{Matrice identité} $I_n$ : matrice carrée avec des $1$ sur la diagonale et des $0$ ailleurs,
+$I_2=\begin{pmatrix}1&0\\0&1\end{pmatrix}$, $I_3=\begin{pmatrix}1&0&0\\0&1&0\\0&0&1\end{pmatrix}$.
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Égalité]
+Deux matrices $A=(a_{ij})$ et $B=(b_{ij})$ sont \textbf{égales} si elles ont \emph{le même
+format} et si $a_{ij}=b_{ij}$ pour tous $i,j$.
+\end{definition}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Opérations sur les matrices}
+
+\begin{definition}[Somme et produit par un scalaire]
+Pour deux matrices $A,B$ de \emph{même format} $n\times p$ et un réel $\lambda$ :
+\[
+(A+B)_{ij}=a_{ij}+b_{ij},\qquad (\lambda A)_{ij}=\lambda\,a_{ij}.
+\]
+On ajoute (et on multiplie par un scalaire) \textbf{terme à terme}.
+\end{definition}
+
+\begin{propriete}[Règles de calcul (somme)]
+Pour $A,B,C$ de même format et $\lambda,\mu\in\R$ :
+$A+B=B+A$, \ $(A+B)+C=A+(B+C)$, \ $A+O=A$, \ $A+(-A)=O$, \
+$\lambda(A+B)=\lambda A+\lambda B$, \ $(\lambda+\mu)A=\lambda A+\mu A$, \ $\lambda(\mu A)=(\lambda\mu)A$.
+\end{propriete}
+
+\begin{exemple}
+Avec $A=\begin{pmatrix}1&2\\0&-3\end{pmatrix}$ et $B=\begin{pmatrix}4&-1\\2&5\end{pmatrix}$ :
+$A+B=\begin{pmatrix}5&1\\2&2\end{pmatrix}$, \ $2A=\begin{pmatrix}2&4\\0&-6\end{pmatrix}$, \
+$2A-B=\begin{pmatrix}-2&5\\-2&-11\end{pmatrix}$.
+\end{exemple}
+
+\subsection{Produit matriciel}
+
+\begin{definition}[Produit de deux matrices]
+Le produit $A\times B$ n'est défini que si le \textbf{nombre de colonnes de $A$ égale le
+nombre de lignes de $B$}. Si $A$ est de format $n\times p$ et $B$ de format $p\times q$, alors
+$C=AB$ est de format $n\times q$ et
+\[
+c_{ij}=\sum_{k=1}^{p}a_{ik}\,b_{kj}=a_{i1}b_{1j}+a_{i2}b_{2j}+\cdots+a_{ip}b_{pj}.
+\]
+Le coefficient $c_{ij}$ s'obtient en « multipliant la \textbf{ligne $i$ de $A$} par la
+\textbf{colonne $j$ de $B$} ».
+\end{definition}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth,scale=1]
+% Matrice A (ligne i surlignée)
+\node at (0,2.4){\small$A$};
+\draw[onbline,line width=0.8pt] (-0.9,1.2) rectangle (0.9,3.0);
+\fill[onbo!18] (-0.9,2.2) rectangle (0.9,2.6);
+\node at (0,2.4){\small $a_{i1}\;a_{i2}\;a_{i3}$};
+\node[onbo,anchor=east] at (-1.0,2.4){\scriptsize ligne $i$};
+% Matrice B (colonne j surlignée)
+\node at (3.2,3.4){\small$B$};
+\draw[onbline,line width=0.8pt] (2.3,1.2) rectangle (4.1,3.0);
+\fill[onbblue!16] (2.9,1.2) rectangle (3.3,3.0);
+\node[rotate=90] at (3.1,2.1){\small $b_{1j}\;\;b_{2j}\;\;b_{3j}$};
+\node[onbblue,anchor=south] at (3.1,3.05){\scriptsize colonne $j$};
+% Matrice C résultat
+\node at (6.2,2.4){\small$C=AB$};
+\draw[onbline,line width=0.8pt] (5.4,1.2) rectangle (7.0,3.0);
+\fill[onbgreen!16] (5.9,2.2) rectangle (6.3,2.6);
+\filldraw[onbgreen] (6.1,2.4) circle (1.6pt);
+\node[onbgreen,anchor=west] at (7.1,2.4){\scriptsize $c_{ij}$};
+% flèche
+\draw[->,onbmuted,line width=0.7pt] (1.0,2.0) .. controls (3,0.6) and (4.2,0.6) .. (5.9,2.0);
+\node[onbmuted,anchor=north] at (3.4,0.55){\scriptsize $c_{ij}=a_{i1}b_{1j}+a_{i2}b_{2j}+a_{i3}b_{3j}$};
+\end{tikzpicture}
+\fig{Figure — Produit ligne $\times$ colonne : le coefficient $c_{ij}$ combine la ligne $i$ de $A$ et la colonne $j$ de $B$.}
+\end{illus}
+
+\begin{exemple}
+Soit $A=\begin{pmatrix}1&2\\3&4\end{pmatrix}$ et $B=\begin{pmatrix}5&6\\7&8\end{pmatrix}$.
+\[
+AB=\begin{pmatrix}1\cdot5+2\cdot7 & 1\cdot6+2\cdot8\\ 3\cdot5+4\cdot7 & 3\cdot6+4\cdot8\end{pmatrix}
+=\begin{pmatrix}19&22\\43&50\end{pmatrix}.
+\]
+On vérifie que $BA=\begin{pmatrix}23&34\\31&46\end{pmatrix}\neq AB$ : le produit n'est
+\textbf{pas commutatif}.
+\end{exemple}
+
+\begin{propriete}[Règles de calcul (produit)]
+Lorsque les formats permettent les produits :
+\[
+A(BC)=(AB)C,\quad A(B+C)=AB+AC,\quad (A+B)C=AC+BC,\quad \lambda(AB)=(\lambda A)B=A(\lambda B).
+\]
+Pour toute matrice carrée $A$ d'ordre $n$ : $A\,I_n=I_n\,A=A$ ($I_n$ est l'\textbf{élément neutre}).
+\end{propriete}
+
+\begin{aretenir}
+Le produit matriciel n'est \textbf{ni commutatif} ($AB\neq BA$ en général), ni intègre :
+$AB=O$ \emph{n'entraîne pas} $A=O$ ou $B=O$. Vérifie toujours la \textbf{compatibilité des
+formats} ($p$ colonnes de $A$ $=$ $p$ lignes de $B$) avant de poser un produit.
+\end{aretenir}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Déterminant}
+
+\begin{definition}[Déterminant $2\times2$]
+Pour $A=\begin{pmatrix}a&b\\c&d\end{pmatrix}$, le \textbf{déterminant} est
+\[
+\det A=\begin{vmatrix}a&b\\c&d\end{vmatrix}=ad-bc.
+\]
+\end{definition}
+
+\begin{definition}[Déterminant $3\times3$ — règle de Sarrus]
+Pour $A=\begin{pmatrix}a&b&c\\d&e&f\\g&h&i\end{pmatrix}$ :
+\[
+\det A=aei+bfg+cdh-ceg-bdi-afh.
+\]
+On peut aussi développer suivant la première ligne :
+$\det A=a\begin{vmatrix}e&f\\h&i\end{vmatrix}-b\begin{vmatrix}d&f\\g&i\end{vmatrix}
++c\begin{vmatrix}d&e\\g&h\end{vmatrix}.$
+\end{definition}
+
+\begin{exemple}
+$\begin{vmatrix}2&1\\3&4\end{vmatrix}=2\cdot4-1\cdot3=5$. \quad
+$\begin{vmatrix}1&2&3\\0&1&4\\5&6&0\end{vmatrix}
+=1(1\cdot0-4\cdot6)-2(0\cdot0-4\cdot5)+3(0\cdot6-1\cdot5)=-24+40-15=1.$
+\end{exemple}
+
+\begin{theoreme}[Déterminant et produit]
+Pour deux matrices carrées de même ordre, $\det(AB)=\det A\times\det B$. En particulier
+$A$ est inversible si et seulement si $\det A\neq0$, et alors $\det(A^{-1})=\dfrac1{\det A}$.
+\end{theoreme}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Matrice inverse}
+
+\begin{definition}[Matrice inversible]
+Une matrice carrée $A$ d'ordre $n$ est \textbf{inversible} s'il existe une matrice $A^{-1}$
+telle que $A\,A^{-1}=A^{-1}A=I_n$. Cette inverse, si elle existe, est unique.
+\end{definition}
+
+\begin{propriete}[Inverse d'une matrice $2\times2$]
+$A=\begin{pmatrix}a&b\\c&d\end{pmatrix}$ est inversible si et seulement si $\det A=ad-bc\neq0$,
+et alors
+\[
+A^{-1}=\frac1{ad-bc}\begin{pmatrix}d&-b\\-c&a\end{pmatrix}.
+\]
+\end{propriete}
+
+\begin{exemple}
+$A=\begin{pmatrix}2&1\\3&4\end{pmatrix}$, $\det A=5\neq0$ :
+$A^{-1}=\dfrac15\begin{pmatrix}4&-1\\-3&2\end{pmatrix}$. Vérification :
+$A\,A^{-1}=\dfrac15\begin{pmatrix}2&1\\3&4\end{pmatrix}\!\begin{pmatrix}4&-1\\-3&2\end{pmatrix}
+=\dfrac15\begin{pmatrix}5&0\\0&5\end{pmatrix}=I_2.$
+\end{exemple}
+
+\begin{propriete}[Inverse d'une matrice $3\times3$]
+Si $\det A\neq0$, l'inverse se calcule par la formule de la \textbf{comatrice} :
+\[
+A^{-1}=\frac1{\det A}\,{}^{t}\!\big(\operatorname{com}A\big),
+\]
+où $\operatorname{com}A=\big((-1)^{i+j}\,m_{ij}\big)$ et $m_{ij}$ est le \textbf{mineur}
+(déterminant $2\times2$ obtenu en supprimant la ligne $i$ et la colonne $j$).
+En pratique on utilise souvent le \textbf{pivot de Gauss} sur $[\,A\mid I_3\,]$.
+\end{propriete}
+
+\begin{remarque}
+Pour $A,B$ inversibles : $(AB)^{-1}=B^{-1}A^{-1}$ (attention à l'ordre) et $(A^{-1})^{-1}=A$.
+\end{remarque}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Systèmes linéaires et écriture matricielle}
+
+\begin{definition}[Écriture matricielle $AX=B$]
+Le système linéaire
+$\left\{\begin{array}{l}a_{11}x+a_{12}y+a_{13}z=b_1\\ a_{21}x+a_{22}y+a_{23}z=b_2\\
+a_{31}x+a_{32}y+a_{33}z=b_3\end{array}\right.$
+s'écrit $AX=B$ avec
+\[
+A=\begin{pmatrix}a_{11}&a_{12}&a_{13}\\a_{21}&a_{22}&a_{23}\\a_{31}&a_{32}&a_{33}\end{pmatrix},\quad
+X=\begin{pmatrix}x\\y\\z\end{pmatrix},\quad B=\begin{pmatrix}b_1\\b_2\\b_3\end{pmatrix}.
+\]
+\end{definition}
+
+\begin{theoreme}[Résolution par l'inverse]
+Si $A$ est inversible (i.e. $\det A\neq0$), le système $AX=B$ admet une \textbf{unique
+solution} donnée par
+\[
+X=A^{-1}B.
+\]
+\end{theoreme}
+
+\begin{exemple}
+$\left\{\begin{array}{l}2x+y=7\\3x+4y=13\end{array}\right.$ s'écrit $AX=B$ avec
+$A=\begin{pmatrix}2&1\\3&4\end{pmatrix}$, $B=\begin{pmatrix}7\\13\end{pmatrix}$. Comme
+$A^{-1}=\dfrac15\begin{pmatrix}4&-1\\-3&2\end{pmatrix}$,
+$X=A^{-1}B=\dfrac15\begin{pmatrix}28-13\\-21+26\end{pmatrix}=\dfrac15\begin{pmatrix}15\\5\end{pmatrix}
+=\begin{pmatrix}3\\1\end{pmatrix}$, soit $x=3,\ y=1$.
+\end{exemple}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Puissances d'une matrice}
+
+\begin{definition}[Puissance]
+Pour une matrice carrée $A$ et $n\in\N^*$, $A^{n}=\underbrace{A\times A\times\cdots\times A}_{n\ \text{facteurs}}$,
+et par convention $A^{0}=I_n$.
+\end{definition}
+
+\begin{aretenir}
+Pour calculer $A^n$, deux grandes techniques au programme :
+\begin{enumerate}[label=\arabic*)]
+\item \textbf{Conjecture + récurrence} : calculer $A^2$, $A^3$, conjecturer une formule pour $A^n$,
+puis la \textbf{démontrer par récurrence}.
+\item Écrire $A=I+N$ avec $N$ \textbf{nilpotente} ($N^k=O$) et utiliser le \textbf{binôme de Newton}
+(valable car $I$ et $N$ commutent).
+\end{enumerate}
+\end{aretenir}
+
+\begin{exemple}
+Soit $A=\begin{pmatrix}1&1\\0&1\end{pmatrix}$. On calcule
+$A^2=\begin{pmatrix}1&2\\0&1\end{pmatrix}$, $A^3=\begin{pmatrix}1&3\\0&1\end{pmatrix}$. On
+conjecture $A^n=\begin{pmatrix}1&n\\0&1\end{pmatrix}$, prouvée par récurrence ci-après (méthode~4).
+\end{exemple}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Matrice d'une transformation du plan}
+
+Dans le plan rapporté à un repère orthonormé, une transformation linéaire associe à un vecteur
+$\vec u\,(x,y)$ le vecteur $\vec u\,'(x',y')$ tel que $\begin{pmatrix}x'\\y'\end{pmatrix}
+=M\begin{pmatrix}x\\y\end{pmatrix}$, où $M$ est la \textbf{matrice} de la transformation.
+
+\begin{propriete}[Matrices usuelles]
+\[
+\text{Rotation d'angle }\theta:\ R_\theta=\begin{pmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{pmatrix};\quad
+\text{Homothétie de rapport }k:\ \begin{pmatrix}k&0\\0&k\end{pmatrix};
+\]
+\[
+\text{Sym. axe }(Ox):\begin{pmatrix}1&0\\0&-1\end{pmatrix};\ \
+\text{Sym. axe }(Oy):\begin{pmatrix}-1&0\\0&1\end{pmatrix};\ \
+\text{Sym. centrale }O:\begin{pmatrix}-1&0\\0&-1\end{pmatrix}.
+\]
+\end{propriete}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth,scale=0.95]
+\draw[->,onbline] (-0.4,0)--(3.2,0) node[right,onbmuted,font=\scriptsize]{$x$};
+\draw[->,onbline] (0,-0.4)--(0,3.2) node[above,onbmuted,font=\scriptsize]{$y$};
+% vecteur u = (2.4 , 0.6) approx ; angle ~ 14°
+\draw[->,onbo,line width=1.1pt] (0,0)--(2.4,0.7) node[anchor=west,onbo,font=\small]{$\vec u$};
+% rotation de 60° de u
+\draw[->,onbblue,line width=1.1pt] (0,0)--(0.594,2.444) node[anchor=south,onbblue,font=\small]{$\vec u\,'=R_\theta\vec u$};
+% arc d'angle
+\draw[onbgreen,line width=0.8pt] (1.1,0.32) arc (16:76:1.15);
+\node[onbgreen,font=\small] at (1.35,1.15){$\theta$};
+\end{tikzpicture}
+\fig{Figure — Une rotation d'angle $\theta$ envoie $\vec u$ sur $R_\theta\vec u$ : $\det R_\theta=\cos^2\theta+\sin^2\theta=1$ (les longueurs sont conservées).}
+\end{illus}
+
+\begin{remarque}
+La composée de deux transformations correspond au \textbf{produit} de leurs matrices :
+$R_\alpha\circ R_\beta$ a pour matrice $R_\alpha R_\beta=R_{\alpha+\beta}$ (on retrouve les
+formules d'addition de $\cos$ et $\sin$).
+\end{remarque}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Méthodes \& savoir-faire}
+
+\methode{Effectuer un produit matriciel}
+Vérifier la compatibilité des formats, puis calculer chaque coefficient « ligne $\times$ colonne ».
+\begin{exemple}
+$\begin{pmatrix}1&-1&2\\0&3&1\end{pmatrix}\begin{pmatrix}2&0\\1&4\\-1&1\end{pmatrix}$ :
+format $(2\times3)(3\times2)=2\times2$.
+$c_{11}=1\cdot2+(-1)\cdot1+2\cdot(-1)=-1$, $c_{12}=1\cdot0+(-1)\cdot4+2\cdot1=-2$,
+$c_{21}=0\cdot2+3\cdot1+1\cdot(-1)=2$, $c_{22}=0\cdot0+3\cdot4+1\cdot1=13$. D'où
+$\begin{pmatrix}-1&-2\\2&13\end{pmatrix}$.
+\end{exemple}
+
+\methode{Calculer un déterminant et une inverse $2\times2$}
+Calculer $\det A=ad-bc$. Si $\det A\neq0$, $A^{-1}=\dfrac1{\det A}\begin{pmatrix}d&-b\\-c&a\end{pmatrix}$.
+\begin{exemple}
+$A=\begin{pmatrix}3&5\\1&2\end{pmatrix}$ : $\det A=3\cdot2-5\cdot1=1\neq0$, donc
+$A^{-1}=\begin{pmatrix}2&-5\\-1&3\end{pmatrix}$. (Vérif. : $A A^{-1}=I_2$.)
+\end{exemple}
+
+\methode{Calculer une inverse $3\times3$ par le pivot de Gauss}
+Écrire $[\,A\mid I_3\,]$ et appliquer les opérations élémentaires sur les lignes jusqu'à
+obtenir $[\,I_3\mid A^{-1}\,]$.
+\begin{exemple}
+$A=\begin{pmatrix}1&0&2\\0&1&0\\0&0&1\end{pmatrix}$. La seule colonne « à nettoyer » est la 3e :
+$L_1\leftarrow L_1-2L_3$ donne $A^{-1}=\begin{pmatrix}1&0&-2\\0&1&0\\0&0&1\end{pmatrix}$.
+\end{exemple}
+
+\methode{Calculer $A^n$ par récurrence}
+Calculer $A^2,A^3$, conjecturer $A^n$, puis prouver par récurrence en utilisant $A^{n+1}=A^n\cdot A$.
+\begin{exemple}
+$A=\begin{pmatrix}1&1\\0&1\end{pmatrix}$, conjecture $A^n=\begin{pmatrix}1&n\\0&1\end{pmatrix}$.
+\emph{Initialisation} : $A^1=A$, vrai. \emph{Hérédité} : si $A^n=\begin{pmatrix}1&n\\0&1\end{pmatrix}$,
+alors $A^{n+1}=A^n A=\begin{pmatrix}1&n\\0&1\end{pmatrix}\begin{pmatrix}1&1\\0&1\end{pmatrix}
+=\begin{pmatrix}1&n+1\\0&1\end{pmatrix}$. La formule est donc vraie pour tout $n\ge1$.
+\end{exemple}
+
+\methode{Résoudre un système par les matrices}
+Écrire $AX=B$, vérifier $\det A\neq0$, calculer $A^{-1}$ et conclure $X=A^{-1}B$.
+\begin{exemple}
+$\left\{\begin{array}{l}x+2y=5\\3x+5y=11\end{array}\right.$ : $A=\begin{pmatrix}1&2\\3&5\end{pmatrix}$,
+$\det A=-1$, $A^{-1}=-\begin{pmatrix}5&-2\\-3&1\end{pmatrix}=\begin{pmatrix}-5&2\\3&-1\end{pmatrix}$.
+$X=A^{-1}\begin{pmatrix}5\\11\end{pmatrix}=\begin{pmatrix}-25+22\\15-11\end{pmatrix}=\begin{pmatrix}-3\\4\end{pmatrix}$,
+soit $x=-3,\ y=4$.
+\end{exemple}
+
+\methode{Déterminer la matrice d'une transformation}
+Calculer les images des vecteurs de base $\vec\imath\,(1,0)$ et $\vec\jmath\,(0,1)$ : ce sont
+les \emph{colonnes} de la matrice.
+\begin{exemple}
+Rotation d'angle $\dfrac\pi2$ : $\vec\imath\mapsto(0,1)$, $\vec\jmath\mapsto(-1,0)$, donc
+$M=\begin{pmatrix}0&-1\\1&0\end{pmatrix}$, ce qui coïncide avec $R_{\pi/2}$.
+\end{exemple}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Exercices}
+
+\rubrique{Calcul matriciel}
+\exo{}\diff{1} On donne $A=\begin{pmatrix}1&-2\\3&0\end{pmatrix}$ et $B=\begin{pmatrix}4&1\\-1&2\end{pmatrix}$.
+Calculer $A+B$, \ $3A-2B$, \ $AB$ et $BA$. Le produit est-il commutatif ?
+
+\exo{}\diff{1} Effectuer le produit
+$\begin{pmatrix}2&0&1\\-1&3&2\end{pmatrix}\begin{pmatrix}1&-1\\0&2\\3&1\end{pmatrix}$
+(après avoir vérifié sa compatibilité).
+
+\exo{}\diff{2} Soit $N=\begin{pmatrix}0&2\\0&0\end{pmatrix}$. Calculer $N^2$. Que peut-on dire de $N$ ?
+En déduire $(I_2+N)^{5}$ à l'aide du binôme.
+
+\rubrique{Déterminant et inverse}
+\exo{}\diff{1} Calculer $\det A$ pour $A=\begin{pmatrix}5&3\\2&4\end{pmatrix}$, puis $A^{-1}$.
+
+\exo{}\diff{2} Calculer $\begin{vmatrix}2&-1&0\\1&3&2\\0&1&1\end{vmatrix}$ par la règle de Sarrus.
+
+\exo{}\diff{2} Pour quelles valeurs du réel $m$ la matrice
+$A=\begin{pmatrix}m&1\\4&m\end{pmatrix}$ est-elle inversible ? Donner $A^{-1}$ lorsque $m=3$.
+
+\rubrique{Systèmes linéaires}
+\exo{}\diff{2} Résoudre par l'écriture matricielle
+$\left\{\begin{array}{l}2x+3y=8\\ x-y=-1\end{array}\right.$
+
+\exo{}\diff{3} Soit $A=\begin{pmatrix}1&1&1\\0&1&2\\0&0&1\end{pmatrix}$. Montrer que $A$ est
+inversible, calculer $A^{-1}$, puis résoudre
+$\left\{\begin{array}{l}x+y+z=6\\ y+2z=8\\ z=3\end{array}\right.$
+
+\rubrique{Puissances et transformations}
+\exo{}\diff{2} Soit $A=\begin{pmatrix}3&0\\0&-2\end{pmatrix}$. Conjecturer $A^n$ et le démontrer par récurrence.
+
+\exo{}\diff{3} Déterminer la matrice de la symétrie orthogonale par rapport à la droite $y=x$, en
+calculant les images de $\vec\imath$ et $\vec\jmath$. Quel est son déterminant ? Quelle est son inverse ?
+
+\rubrique{Problème type Baccalauréat}
+\exo{}\diff{3} On considère la matrice $A=\begin{pmatrix}2&1\\0&3\end{pmatrix}$ et les suites
+$(u_n)$, $(v_n)$ définies par $u_0=1$, $v_0=1$ et, pour tout $n\in\N$,
+\[
+\left\{\begin{array}{l}u_{n+1}=2u_n+v_n\\ v_{n+1}=3v_n\end{array}\right.,\qquad
+\text{soit }X_n=\begin{pmatrix}u_n\\v_n\end{pmatrix},\ X_{n+1}=A X_n.
+\]
+\begin{enumerate}[label=\arabic*)]
+\item Calculer $A^2$ et $A^3$.
+\item Démontrer par récurrence que pour tout $n\ge1$,
+$A^n=\begin{pmatrix}2^n & 3^n-2^n\\ 0 & 3^n\end{pmatrix}$.
+\item Justifier que $X_n=A^n X_0$, puis exprimer $u_n$ et $v_n$ en fonction de $n$.
+\item Déterminer $\displaystyle\lim_{n\to+\infty}\frac{u_n}{v_n}$.
+\end{enumerate}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Corrigés}
+
+\corrige{de l'exercice 1}
+$A+B=\begin{pmatrix}5&-1\\2&2\end{pmatrix}$. \
+$3A-2B=\begin{pmatrix}3&-6\\9&0\end{pmatrix}-\begin{pmatrix}8&2\\-2&4\end{pmatrix}
+=\begin{pmatrix}-5&-8\\11&-4\end{pmatrix}$. \
+\[
+AB=\begin{pmatrix}1\cdot4+(-2)(-1)&1\cdot1+(-2)\cdot2\\ 3\cdot4+0&3\cdot1+0\end{pmatrix}
+=\begin{pmatrix}6&-3\\12&3\end{pmatrix},\quad
+BA=\begin{pmatrix}4+3&-8+0\\-1+6&2+0\end{pmatrix}=\begin{pmatrix}7&-8\\5&2\end{pmatrix}.
+\]
+Comme $AB\neq BA$, le produit n'est pas commutatif.
+
+\corrige{de l'exercice 2}
+Format $(2\times3)(3\times2)=2\times2$.
+$c_{11}=2\cdot1+0\cdot0+1\cdot3=5$, $c_{12}=2(-1)+0\cdot2+1\cdot1=-1$,
+$c_{21}=-1\cdot1+3\cdot0+2\cdot3=5$, $c_{22}=-1(-1)+3\cdot2+2\cdot1=9$. Résultat :
+$\begin{pmatrix}5&-1\\5&9\end{pmatrix}$.
+
+\corrige{de l'exercice 3}
+$N^2=\begin{pmatrix}0&2\\0&0\end{pmatrix}^2=\begin{pmatrix}0&0\\0&0\end{pmatrix}=O$ : $N$ est
+\textbf{nilpotente} (d'ordre $2$). Comme $I_2$ et $N$ commutent et $N^2=O$, le binôme donne
+$(I_2+N)^5=\sum_{k=0}^{5}\binom5k N^k=I_2+5N=\begin{pmatrix}1&10\\0&1\end{pmatrix}$.
+
+\corrige{de l'exercice 4}
+$\det A=5\cdot4-3\cdot2=14\neq0$, donc $A^{-1}=\dfrac1{14}\begin{pmatrix}4&-3\\-2&5\end{pmatrix}$.
+
+\corrige{de l'exercice 5}
+Par Sarrus : $aei+bfg+cdh-ceg-bdi-afh$ avec
+$(a,b,c)=(2,-1,0)$, $(d,e,f)=(1,3,2)$, $(g,h,i)=(0,1,1)$ :
+$2\cdot3\cdot1+(-1)\cdot2\cdot0+0\cdot1\cdot1-0\cdot3\cdot0-(-1)\cdot1\cdot1-2\cdot2\cdot1
+=6+0+0-0+1-4=3$.
+
+\corrige{de l'exercice 6}
+$\det A=m\cdot m-1\cdot4=m^2-4$. $A$ est inversible $\iff m^2-4\neq0\iff m\neq\pm2$.
+Pour $m=3$ : $\det A=5$, $A^{-1}=\dfrac15\begin{pmatrix}3&-1\\-4&3\end{pmatrix}$.
+
+\corrige{de l'exercice 7}
+$A=\begin{pmatrix}2&3\\1&-1\end{pmatrix}$, $B=\begin{pmatrix}8\\-1\end{pmatrix}$.
+$\det A=2(-1)-3\cdot1=-5\neq0$, $A^{-1}=-\dfrac15\begin{pmatrix}-1&-3\\-1&2\end{pmatrix}
+=\dfrac15\begin{pmatrix}1&3\\1&-2\end{pmatrix}$.
+$X=A^{-1}B=\dfrac15\begin{pmatrix}8-3\\8+2\end{pmatrix}=\dfrac15\begin{pmatrix}5\\10\end{pmatrix}
+=\begin{pmatrix}1\\2\end{pmatrix}$, soit $x=1,\ y=2$.
+(Vérification : $2\cdot1+3\cdot2=8$ et $1-2=-1$.)
+
+\corrige{de l'exercice 8}
+$A$ est triangulaire à diagonale de $1$ : $\det A=1\neq0$, $A$ est inversible. Par pivot de Gauss
+sur $[\,A\mid I_3\,]$ (ou comatrice), on trouve
+$A^{-1}=\begin{pmatrix}1&-1&1\\0&1&-2\\0&0&1\end{pmatrix}$.
+\emph{Vérification} : $A A^{-1}=\begin{pmatrix}1&-1+1&1-2+1\\0&1&-2+2\\0&0&1\end{pmatrix}=I_3$.\;
+Le système s'écrit $AX=B$ avec $B=\begin{pmatrix}6\\8\\3\end{pmatrix}$ :
+$X=A^{-1}B=\begin{pmatrix}6-8+3\\8-6\\3\end{pmatrix}=\begin{pmatrix}1\\2\\3\end{pmatrix}$,
+soit $x=1,\ y=2,\ z=3$.
+
+\corrige{de l'exercice 9}
+$A$ est diagonale : $A^2=\begin{pmatrix}9&0\\0&4\end{pmatrix}$, $A^3=\begin{pmatrix}27&0\\0&-8\end{pmatrix}$.
+On conjecture $A^n=\begin{pmatrix}3^n&0\\0&(-2)^n\end{pmatrix}$.
+\emph{Initialisation} ($n=1$) : vrai. \emph{Hérédité} : si la formule est vraie au rang $n$,
+$A^{n+1}=A^n A=\begin{pmatrix}3^n&0\\0&(-2)^n\end{pmatrix}\begin{pmatrix}3&0\\0&-2\end{pmatrix}
+=\begin{pmatrix}3^{n+1}&0\\0&(-2)^{n+1}\end{pmatrix}$. Vrai pour tout $n\ge1$.
+
+\corrige{de l'exercice 10}
+La symétrie d'axe $y=x$ échange les coordonnées : $\vec\imath\,(1,0)\mapsto(0,1)$ et
+$\vec\jmath\,(0,1)\mapsto(1,0)$. Ces images sont les colonnes :
+$M=\begin{pmatrix}0&1\\1&0\end{pmatrix}$. $\det M=0\cdot0-1\cdot1=-1$ (un antidéplacement).
+Comme $M^2=\begin{pmatrix}1&0\\0&1\end{pmatrix}=I_2$, $M$ est sa propre inverse : $M^{-1}=M$.
+
+\corrige{du problème}
+\textbf{1)} $A^2=\begin{pmatrix}2&1\\0&3\end{pmatrix}^2=\begin{pmatrix}4&5\\0&9\end{pmatrix}$, \
+$A^3=A^2A=\begin{pmatrix}4&5\\0&9\end{pmatrix}\begin{pmatrix}2&1\\0&3\end{pmatrix}=\begin{pmatrix}8&19\\0&27\end{pmatrix}$.
+On remarque $4=2^2$, $9=3^2$, $5=3^2-2^2$ ; $8=2^3$, $27=3^3$, $19=3^3-2^3$.
+
+\textbf{2)} Conjecture : $A^n=\begin{pmatrix}2^n&3^n-2^n\\0&3^n\end{pmatrix}$.
+\emph{Initialisation} ($n=1$) : $\begin{pmatrix}2&3-2\\0&3\end{pmatrix}=\begin{pmatrix}2&1\\0&3\end{pmatrix}=A$, vrai.
+\emph{Hérédité} : supposons la formule vraie au rang $n$. Alors
+\[
+A^{n+1}=A^nA=\begin{pmatrix}2^n&3^n-2^n\\0&3^n\end{pmatrix}\begin{pmatrix}2&1\\0&3\end{pmatrix}
+=\begin{pmatrix}2^{n+1}&2^n+3(3^n-2^n)\\0&3^{n+1}\end{pmatrix}.
+\]
+Or $2^n+3\cdot3^n-3\cdot2^n=3^{n+1}-2^{n+1}$, d'où
+$A^{n+1}=\begin{pmatrix}2^{n+1}&3^{n+1}-2^{n+1}\\0&3^{n+1}\end{pmatrix}$. La formule est donc vraie pour tout $n\ge1$.
+
+\textbf{3)} Comme $X_{n+1}=AX_n$, une récurrence immédiate donne $X_n=A^nX_0$ pour tout $n\ge1$
+(et c'est aussi vrai pour $n=0$ avec $A^0=I_2$). Avec $X_0=\begin{pmatrix}1\\1\end{pmatrix}$ :
+\[
+X_n=\begin{pmatrix}2^n&3^n-2^n\\0&3^n\end{pmatrix}\begin{pmatrix}1\\1\end{pmatrix}
+=\begin{pmatrix}2^n+3^n-2^n\\3^n\end{pmatrix}=\begin{pmatrix}3^n\\3^n\end{pmatrix}.
+\]
+Donc $u_n=3^n$ et $v_n=3^n$ pour tout $n\ge0$.
+(Contrôle direct : $v_{n+1}=3v_n$ avec $v_0=1$ donne $v_n=3^n$ ; et $u_{n+1}=2u_n+v_n=2u_n+3^n$
+avec $u_0=1$ admet bien $u_n=3^n$ pour solution, car $3^{n+1}=2\cdot3^n+3^n$.)
+
+\textbf{4)} $\dfrac{u_n}{v_n}=\dfrac{3^n}{3^n}=1$, donc $\displaystyle\lim_{n\to+\infty}\frac{u_n}{v_n}=1$.

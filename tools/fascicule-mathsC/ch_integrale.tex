@@ -1,0 +1,374 @@
+\chapter{Calcul intégral}
+
+\noindent\textit{Intégrer, c'est « sommer » une infinité de contributions infinitésimales :
+l'intégrale d'une fonction positive mesure une \textbf{aire}. Le lien fondamental avec les
+primitives — l'intégrale de $a$ à $b$ vaut $F(b)-F(a)$ — fait du calcul intégral un outil
+de mesure (aires, volumes, valeurs moyennes) et un terrain privilégié des problèmes de Baccalauréat
+de la série C.}
+\vspace{8pt}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Intégrale et primitive}
+
+\begin{definition}[Intégrale d'une fonction continue]
+Soit $f$ une fonction \textbf{continue} sur un intervalle $I$ et $a,b\in I$. Si $F$ est
+\emph{une} primitive de $f$ sur $I$, le nombre $F(b)-F(a)$ ne dépend pas de la primitive choisie.
+On l'appelle \textbf{intégrale de $f$ de $a$ à $b$} :
+\[
+\int_a^b f(x)\dd x=\big[F(x)\big]_a^b=F(b)-F(a).
+\]
+$x$ est une variable \emph{muette} : $\displaystyle\int_a^b f(x)\dd x=\int_a^b f(t)\dd t$.
+\end{definition}
+
+\begin{remarque}
+Le résultat est indépendant de la primitive : si $G=F+k$, alors $G(b)-G(a)=F(b)-F(a)$.
+\end{remarque}
+
+\begin{exemple}
+$\displaystyle\int_1^2 x^2\dd x=\left[\frac{x^3}{3}\right]_1^2=\frac{8}{3}-\frac13=\frac{7}{3}$.\;
+$\displaystyle\int_0^{\pi}\sin x\dd x=\big[-\cos x\big]_0^{\pi}=-(-1)-(-1)=2$.
+\end{exemple}
+
+\begin{theoreme}[Interprétation comme aire]
+Si $f$ est continue et \textbf{positive} sur $[a,b]$, alors $\displaystyle\int_a^b f(x)\dd x$ est l'\textbf{aire}
+(en unités d'aire) du domaine compris entre la courbe $\mathcal C_f$, l'axe des abscisses et les
+droites $x=a$ et $x=b$.
+\end{theoreme}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth]
+\begin{axis}[width=8.4cm,height=5cm,axis lines=middle,xlabel={\small $x$},ylabel={\small $y$},
+  xmin=-0.4,xmax=4,ymin=-0.4,ymax=3.4,xtick={1,3},xticklabels={$a$,$b$},ytick=\empty,
+  clip=false]
+\addplot[onbo,line width=1pt,domain=0:3.7,samples=80]{0.3*x^2-0.1*x+0.8};
+\addplot[onbo!35,domain=1:3,samples=60,fill=onbsoft]{0.3*x^2-0.1*x+0.8}\closedcycle;
+\addplot[onbo,line width=1pt,domain=1:3,samples=60]{0.3*x^2-0.1*x+0.8};
+\node[onbo,anchor=west] at (axis cs:3.1,2.6){\small $\mathcal C_f$};
+\node[onbink] at (axis cs:2,1.0){\small $\displaystyle\int_a^b\! f$};
+\end{axis}
+\node[align=left,text width=3.3cm,anchor=west] at (8.6,1.6)
+{\small L'aire hachurée sous la courbe, entre $x=a$ et $x=b$, vaut $\int_a^b f(x)\dd x$.};
+\end{tikzpicture}
+\fig{Figure — Aire sous une courbe positive : interprétation de l'intégrale.}
+\end{illus}
+
+\begin{remarque}
+Sur un repère orthogonal d'unités $i$ (sur $Ox$) et $j$ (sur $Oy$), l'\textbf{unité d'aire} (u.a.)
+vaut $i\times j$. Une intégrale donne un nombre de u.a. ; on multiplie par la valeur d'une u.a.
+(en cm$^2$) pour une aire « réelle ».
+\end{remarque}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Propriétés de l'intégrale}
+
+\begin{propriete}[Premières propriétés]
+Pour $f,g$ continues sur un intervalle contenant $a$ et $b$ :
+\[
+\int_a^a f(x)\dd x=0,\qquad \int_b^a f(x)\dd x=-\int_a^b f(x)\dd x.
+\]
+\end{propriete}
+
+\begin{theoreme}[Relation de Chasles]
+Pour $a,b,c$ dans $I$ :
+\[
+\int_a^b f(x)\dd x=\int_a^c f(x)\dd x+\int_c^b f(x)\dd x.
+\]
+\end{theoreme}
+
+\begin{theoreme}[Linéarité]
+Pour tous réels $\lambda,\mu$ :
+\[
+\int_a^b\big(\lambda f(x)+\mu g(x)\big)\dd x=\lambda\int_a^b f(x)\dd x+\mu\int_a^b g(x)\dd x.
+\]
+\end{theoreme}
+
+\begin{theoreme}[Positivité et ordre]
+On suppose $a\le b$.
+\begin{itemize}
+\item Si $f\ge0$ sur $[a,b]$, alors $\displaystyle\int_a^b f(x)\dd x\ge0$.
+\item Si $f\le g$ sur $[a,b]$, alors $\displaystyle\int_a^b f(x)\dd x\le\int_a^b g(x)\dd x$ (\textbf{croissance}).
+\end{itemize}
+\end{theoreme}
+
+\begin{remarque}
+Attention : la positivité \emph{suppose} $a\le b$. Pour $a>b$ les inégalités changent de sens.
+De plus $\displaystyle\left|\int_a^b f\right|\le\int_a^b|f|$ (inégalité triangulaire intégrale, pour $a\le b$).
+\end{remarque}
+
+\begin{exemple}
+Pour $x\in[0,1]$, $0\le x^3\le x^2$, donc par croissance
+$\displaystyle\int_0^1 x^3\dd x\le\int_0^1 x^2\dd x$, c.-à-d. $\tfrac14\le\tfrac13$. \checkmark
+\end{exemple}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Valeur moyenne et inégalité de la moyenne}
+
+\begin{definition}[Valeur moyenne]
+La \textbf{valeur moyenne} de $f$ continue sur $[a,b]$ (avec $a<b$) est
+\[
+\mu=\frac{1}{b-a}\int_a^b f(x)\dd x.
+\]
+\end{definition}
+
+\begin{theoreme}[Inégalité de la moyenne]
+Si $m\le f(x)\le M$ pour tout $x\in[a,b]$ (avec $a\le b$), alors
+\[
+m(b-a)\le\int_a^b f(x)\dd x\le M(b-a),\qquad\text{donc}\qquad m\le\mu\le M.
+\]
+\end{theoreme}
+
+\begin{aretenir}
+L'inégalité de la moyenne est l'outil-clé pour \textbf{encadrer une intégrale} qu'on ne sait
+pas calculer : on majore et minore $f$ sur $[a,b]$, puis on intègre.
+\end{aretenir}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Intégration par parties}
+
+\begin{theoreme}[Intégration par parties (IPP)]
+Si $u$ et $v$ sont de classe $\mathcal C^1$ sur $[a,b]$ (dérivées continues), alors
+\[
+\int_a^b u(x)\,v'(x)\dd x=\big[u(x)\,v(x)\big]_a^b-\int_a^b u'(x)\,v(x)\dd x.
+\]
+\end{theoreme}
+
+\begin{remarque}
+On choisit $u$ que l'on \emph{dérive} (vers quelque chose de plus simple) et $v'$ que l'on \emph{primitive}.
+Règle pratique de choix de $u$ (par ordre de priorité) : \textbf{L}ogarithme, fonction \textbf{P}olynôme,
+\textbf{E}xponentielle / trigonométrie. L'IPP est indispensable pour $\int x e^{x}\dd x$, $\int x\ln x\dd x$,
+$\int x\cos x\dd x$, etc.
+\end{remarque}
+
+\begin{exemple}
+$\displaystyle\int_0^1 x\,e^{x}\dd x$ : posons $u=x$, $v'=e^{x}$, donc $u'=1$, $v=e^{x}$.
+\[
+\int_0^1 x e^{x}\dd x=\big[x e^{x}\big]_0^1-\int_0^1 e^{x}\dd x=e-\big[e^{x}\big]_0^1=e-(e-1)=1.
+\]
+\end{exemple}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Aires et volumes}
+
+\begin{propriete}[Aire entre deux courbes]
+Si $f$ et $g$ sont continues avec $f\le g$ sur $[a,b]$, l'aire (en u.a.) du domaine compris entre
+les courbes $\mathcal C_f$ et $\mathcal C_g$ pour $x\in[a,b]$ est
+\[
+\mathcal A=\int_a^b\big(g(x)-f(x)\big)\dd x.
+\]
+\end{propriete}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth]
+\begin{axis}[width=8.6cm,height=5cm,axis lines=middle,xlabel={\small $x$},ylabel={\small $y$},
+  xmin=-0.4,xmax=3.2,ymin=-0.4,ymax=3.6,xtick={0.5,2.5},xticklabels={$a$,$b$},ytick=\empty,clip=false]
+% Remplissage du domaine entre les deux courbes sur [0.5 ; 2.5] :
+% aire sous g (onbsoft) puis on « retire » l'aire sous f (blanc).
+\addplot[draw=none,fill=onbsoft,domain=0.5:2.5,samples=60]{3-0.55*(x-1.5)^2}\closedcycle;
+\addplot[draw=none,fill=white,domain=0.5:2.5,samples=60]{0.4*x+0.3}\closedcycle;
+\addplot[onbo,line width=1pt,domain=0:3,samples=70]{3-0.55*(x-1.5)^2};
+\addplot[onbblue,line width=1pt,domain=0:3,samples=70]{0.4*x+0.3};
+\node[onbo,anchor=south] at (axis cs:1.5,2.55){\small $\mathcal C_g$};
+\node[onbblue,anchor=north west] at (axis cs:2.55,1.3){\small $\mathcal C_f$};
+\end{axis}
+\node[align=left,text width=3.1cm,anchor=west] at (8.8,1.6)
+{\small Aire entre les deux courbes : $\int_a^b\!\big(g-f\big)$, où $g$ est « au-dessus ».};
+\end{tikzpicture}
+\fig{Figure — Aire du domaine compris entre deux courbes.}
+\end{illus}
+
+\begin{propriete}[Volume de révolution]
+Soit $f$ continue et positive sur $[a,b]$. Le solide engendré par la rotation, autour de l'axe
+$(Ox)$, du domaine sous $\mathcal C_f$ a pour volume (en unités de volume)
+\[
+V=\pi\int_a^b \big(f(x)\big)^2\dd x.
+\]
+\end{propriete}
+
+\begin{exemple}
+La rotation de la droite $y=x$ pour $x\in[0,h]$ autour de $(Ox)$ engendre un cône de rayon $h$ ;
+$V=\pi\displaystyle\int_0^h x^2\dd x=\pi\dfrac{h^3}{3}=\dfrac{\pi h^2\cdot h}{3}=\dfrac13\pi R^2 H$
+avec $R=H=h$. \checkmark
+\end{exemple}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Méthodes \& savoir-faire}
+
+\methode{Calculer une intégrale à l'aide d'une primitive}
+Déterminer une primitive $F$ de $f$ (formes de référence : $u'u^n$, $u'/u$, $u'e^u$, $u'\sin u$\dots),
+puis appliquer $\int_a^b f=F(b)-F(a)$.
+\begin{exemple}
+$\displaystyle\int_0^1\frac{2x}{x^2+1}\dd x$. Ici $\dfrac{2x}{x^2+1}=\dfrac{u'}{u}$ avec $u=x^2+1$, primitive $\ln u$ :
+\[
+\int_0^1\frac{2x}{x^2+1}\dd x=\big[\ln(x^2+1)\big]_0^1=\ln 2-\ln 1=\ln 2.
+\]
+\end{exemple}
+
+\methode{Intégration par parties (et IPP répétée)}
+Choisir $u$ (à dériver) et $v'$ (à primitiver), appliquer la formule ; recommencer si l'intégrale
+restante n'est pas immédiate.
+\begin{exemple}
+$\displaystyle\int_1^e x\ln x\dd x$ : $u=\ln x$, $v'=x$, donc $u'=\dfrac1x$, $v=\dfrac{x^2}{2}$.
+\[
+\int_1^e x\ln x\dd x=\left[\frac{x^2}{2}\ln x\right]_1^e-\int_1^e\frac{x^2}{2}\cdot\frac1x\dd x
+=\frac{e^2}{2}-\frac12\int_1^e x\dd x=\frac{e^2}{2}-\frac{e^2-1}{4}=\frac{e^2+1}{4}.
+\]
+\end{exemple}
+
+\methode{Calculer une aire entre deux courbes}
+Déterminer les abscisses d'intersection (en résolvant $f(x)=g(x)$), étudier le signe de $g-f$ pour
+savoir quelle courbe est au-dessus, puis intégrer $g-f$ (en valeur absolue par morceaux si besoin).
+\begin{exemple}
+Aire entre $\mathcal C_g$ ($g(x)=2x$) et $\mathcal C_f$ ($f(x)=x^2$). Intersections : $x^2=2x\Rightarrow x=0$ ou $x=2$ ;
+sur $[0,2]$, $2x\ge x^2$. Donc
+\[
+\mathcal A=\int_0^2(2x-x^2)\dd x=\left[x^2-\frac{x^3}{3}\right]_0^2=4-\frac{8}{3}=\frac{4}{3}\ \text{u.a.}
+\]
+\end{exemple}
+
+\methode{Calculer un volume de révolution}
+Appliquer $V=\pi\displaystyle\int_a^b (f(x))^2\dd x$ après avoir vérifié que $f\ge0$.
+\begin{exemple}
+Rotation de $\mathcal C_f$, $f(x)=\sqrt{x}$, pour $x\in[0,4]$ autour de $(Ox)$ :
+\[
+V=\pi\int_0^4(\sqrt x)^2\dd x=\pi\int_0^4 x\dd x=\pi\left[\frac{x^2}{2}\right]_0^4=8\pi\ \text{u.v.}
+\]
+\end{exemple}
+
+\methode{Encadrer une intégrale}
+Majorer et minorer $f$ sur $[a,b]$, puis intégrer (inégalité de la moyenne ou croissance).
+\begin{exemple}
+Pour $x\in[0,1]$ : $1\le 1+x^2\le 2$, donc $\dfrac12\le\dfrac{1}{1+x^2}\le1$, d'où
+$\dfrac12\le\displaystyle\int_0^1\frac{\dd x}{1+x^2}\le1$. (Valeur exacte : $\arctan 1=\tfrac\pi4\approx0{,}785$.)
+\end{exemple}
+
+\methode{Étudier une suite d'intégrales $I_n$}
+Établir une relation de récurrence (souvent par IPP), prouver monotonie / encadrement, puis en déduire
+la limite (théorème des gendarmes).
+\begin{exemple}
+$I_n=\displaystyle\int_0^1 x^n e^{x}\dd x$. Pour $x\in[0,1]$, $0\le x^n e^x\le e\,x^n$, donc
+$0\le I_n\le e\displaystyle\int_0^1 x^n\dd x=\dfrac{e}{n+1}\to0$ : par les gendarmes, $\lim I_n=0$.
+\end{exemple}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Exercices}
+
+\rubrique{Calculs directs (primitives)}
+\exo{}\diff{1} Calculer $\displaystyle\int_0^2(3x^2-2x+1)\dd x$, $\displaystyle\int_1^e\frac{1}{x}\dd x$
+et $\displaystyle\int_0^{\pi/2}\cos x\dd x$.
+
+\exo{}\diff{1} Calculer $\displaystyle\int_0^1 e^{2x}\dd x$ et $\displaystyle\int_0^1\frac{x}{x^2+1}\dd x$.
+
+\exo{}\diff{2} À l'aide de la relation de Chasles, calculer $\displaystyle\int_{-1}^{2}|x|\dd x$.
+
+\rubrique{Intégration par parties}
+\exo{}\diff{2} Calculer $\displaystyle\int_0^{\pi} x\sin x\dd x$.
+
+\exo{}\diff{2} Calculer $\displaystyle\int_1^e \ln x\dd x$ (poser $u=\ln x$, $v'=1$).
+
+\exo{}\diff{3} En appliquant deux IPP successives, calculer $\displaystyle\int_0^1 x^2 e^{x}\dd x$.
+
+\rubrique{Aires et volumes}
+\exo{}\diff{2} Soit $f(x)=x^2-1$ et $g(x)=1-x^2$. Déterminer l'aire du domaine compris entre $\mathcal C_f$
+et $\mathcal C_g$.
+
+\exo{}\diff{2} Un artisan de Douala fabrique un bol obtenu en faisant tourner $\mathcal C_f$, $f(x)=\sqrt{x+1}$,
+pour $x\in[0,3]$, autour de $(Ox)$. Calculer le volume intérieur (en u.v.).
+
+\rubrique{Encadrement et valeur moyenne}
+\exo{}\diff{2} Calculer la valeur moyenne de $f(x)=x^2$ sur $[0,3]$.
+
+\exo{}\diff{3} Montrer que $\displaystyle\frac{1}{2}\le\int_0^1\frac{1}{1+x}\dd x\le 1$, puis calculer la valeur exacte de cette intégrale.
+
+\rubrique{Problème type Baccalauréat}
+\exo{}\diff{3} On pose, pour tout entier $n\ge0$,
+\[
+I_n=\int_0^1 x^n e^{-x}\dd x.
+\]
+\begin{enumerate}[label=\arabic*)]
+\item Calculer $I_0$.
+\item Montrer, à l'aide d'une intégration par parties, que pour tout $n\ge0$ :
+$I_{n+1}=(n+1)I_n-e^{-1}$.
+\item En déduire la valeur exacte de $I_1$ et de $I_2$.
+\item Montrer que pour tout $n$, $I_n\ge0$, puis que la suite $(I_n)$ est décroissante.
+\item Établir l'encadrement $0\le I_n\le\dfrac{1}{n+1}$ et en déduire $\displaystyle\lim_{n\to+\infty}I_n$.
+\item On considère le domaine $\mathcal D$ délimité par $\mathcal C_h$ ($h(x)=x e^{-x}$), l'axe $(Ox)$
+et les droites $x=0$, $x=1$. Calculer l'aire de $\mathcal D$ et l'exprimer à l'aide de $I_1$.
+\end{enumerate}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Corrigés}
+
+\corrige{de l'exercice 1}
+$\displaystyle\int_0^2(3x^2-2x+1)\dd x=\big[x^3-x^2+x\big]_0^2=8-4+2=6$.\;
+$\displaystyle\int_1^e\frac{\dd x}{x}=\big[\ln x\big]_1^e=1$.\;
+$\displaystyle\int_0^{\pi/2}\cos x\dd x=\big[\sin x\big]_0^{\pi/2}=1$.
+
+\corrige{de l'exercice 2}
+$\displaystyle\int_0^1 e^{2x}\dd x=\left[\frac12 e^{2x}\right]_0^1=\frac{e^2-1}{2}$.\;
+$\displaystyle\int_0^1\frac{x}{x^2+1}\dd x=\left[\frac12\ln(x^2+1)\right]_0^1=\frac{\ln 2}{2}$.
+
+\corrige{de l'exercice 3}
+Sur $[-1,0]$, $|x|=-x$ ; sur $[0,2]$, $|x|=x$. Par Chasles :
+\[
+\int_{-1}^{2}|x|\dd x=\int_{-1}^0(-x)\dd x+\int_0^2 x\dd x=\left[-\frac{x^2}{2}\right]_{-1}^0+\left[\frac{x^2}{2}\right]_0^2=\frac12+2=\frac52.
+\]
+
+\corrige{de l'exercice 4}
+$u=x$, $v'=\sin x$, $u'=1$, $v=-\cos x$ :
+\[
+\int_0^{\pi}x\sin x\dd x=\big[-x\cos x\big]_0^{\pi}+\int_0^{\pi}\cos x\dd x=\pi+\big[\sin x\big]_0^{\pi}=\pi+0=\pi.
+\]
+
+\corrige{de l'exercice 5}
+$u=\ln x$, $v'=1$, $u'=\dfrac1x$, $v=x$ :
+\[
+\int_1^e\ln x\dd x=\big[x\ln x\big]_1^e-\int_1^e x\cdot\frac1x\dd x=e-\big[x\big]_1^e=e-(e-1)=1.
+\]
+
+\corrige{de l'exercice 6}
+$u=x^2$, $v'=e^x$ : $\displaystyle\int_0^1 x^2 e^x\dd x=\big[x^2 e^x\big]_0^1-2\int_0^1 x e^x\dd x=e-2\int_0^1 xe^x\dd x$.
+Or (vu en cours) $\displaystyle\int_0^1 x e^x\dd x=1$. Donc $\displaystyle\int_0^1 x^2 e^x\dd x=e-2$.
+
+\corrige{de l'exercice 7}
+$g(x)-f(x)=(1-x^2)-(x^2-1)=2-2x^2=2(1-x^2)\ge0$ sur $[-1,1]$, et $\mathcal C_f,\mathcal C_g$ se coupent en $x=\pm1$.
+\[
+\mathcal A=\int_{-1}^1 2(1-x^2)\dd x=2\left[x-\frac{x^3}{3}\right]_{-1}^1=2\left(\frac23-\Big(-\frac23\Big)\right)=2\cdot\frac43=\frac83\ \text{u.a.}
+\]
+
+\corrige{de l'exercice 8}
+$f\ge0$ sur $[0,3]$ et $(f(x))^2=x+1$ :
+\[
+V=\pi\int_0^3(x+1)\dd x=\pi\left[\frac{x^2}{2}+x\right]_0^3=\pi\left(\frac92+3\right)=\frac{15\pi}{2}\ \text{u.v.}
+\]
+
+\corrige{de l'exercice 9}
+$\mu=\dfrac{1}{3-0}\displaystyle\int_0^3 x^2\dd x=\dfrac13\left[\dfrac{x^3}{3}\right]_0^3=\dfrac13\cdot 9=3$.
+
+\corrige{de l'exercice 10}
+Pour $x\in[0,1]$ : $1\le 1+x\le2$, donc $\dfrac12\le\dfrac{1}{1+x}\le1$. En intégrant sur $[0,1]$ (longueur $1$) :
+$\dfrac12\le\displaystyle\int_0^1\frac{\dd x}{1+x}\le1$. Valeur exacte : $\displaystyle\int_0^1\frac{\dd x}{1+x}=\big[\ln(1+x)\big]_0^1=\ln 2\approx0{,}693$, qui vérifie bien l'encadrement.
+
+\corrige{du problème}
+\textbf{1)} $I_0=\displaystyle\int_0^1 e^{-x}\dd x=\big[-e^{-x}\big]_0^1=-e^{-1}+1=1-e^{-1}$.
+
+\noindent\textbf{2)} IPP avec $u=x^{n+1}$, $v'=e^{-x}$, donc $u'=(n+1)x^{n}$, $v=-e^{-x}$ :
+\[
+I_{n+1}=\int_0^1 x^{n+1}e^{-x}\dd x=\big[-x^{n+1}e^{-x}\big]_0^1+\int_0^1(n+1)x^{n}e^{-x}\dd x=-e^{-1}+(n+1)I_n.
+\]
+D'où $I_{n+1}=(n+1)I_n-e^{-1}$.
+
+\noindent\textbf{3)} $I_1=1\cdot I_0-e^{-1}=(1-e^{-1})-e^{-1}=1-2e^{-1}$.\;
+$I_2=2I_1-e^{-1}=2(1-2e^{-1})-e^{-1}=2-5e^{-1}$.
+
+\noindent\textbf{4)} Sur $[0,1]$, $x^n e^{-x}\ge0$ donc par positivité $I_n\ge0$. De plus, pour $x\in[0,1]$,
+$x^{n+1}\le x^n$ (car $0\le x\le1$), donc $x^{n+1}e^{-x}\le x^n e^{-x}$, et par croissance de l'intégrale
+$I_{n+1}\le I_n$ : la suite $(I_n)$ est décroissante.
+
+\noindent\textbf{5)} Pour $x\in[0,1]$, $0\le e^{-x}\le1$ donc $0\le x^n e^{-x}\le x^n$ ; en intégrant :
+$0\le I_n\le\displaystyle\int_0^1 x^n\dd x=\left[\frac{x^{n+1}}{n+1}\right]_0^1=\frac{1}{n+1}$.
+Comme $\dfrac{1}{n+1}\to0$, le théorème des gendarmes donne $\displaystyle\lim_{n\to+\infty}I_n=0$.
+
+\noindent\textbf{6)} Sur $[0,1]$, $h(x)=x e^{-x}\ge0$, donc l'aire de $\mathcal D$ est
+\[
+\mathcal A=\int_0^1 x e^{-x}\dd x=I_1=1-2e^{-1}\ \text{u.a.}\approx0{,}264\ \text{u.a.}
+\]

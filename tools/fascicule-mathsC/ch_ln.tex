@@ -1,0 +1,377 @@
+\chapter{Fonction logarithme népérien}
+
+\noindent\textit{Construite comme la primitive de $x\mapsto 1/x$ qui s'annule en $1$, la
+fonction logarithme népérien transforme les produits en sommes : c'est l'outil qui
+linéarise le calcul et qui mesure les ordres de grandeur (pH, intensité sonore, échelle
+de Richter). Sa réciproque, l'exponentielle, fera l'objet du chapitre suivant.}
+\vspace{8pt}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Définition et premières propriétés}
+
+\begin{definition}[Logarithme népérien]
+La fonction $x\mapsto\dfrac1x$ est continue sur $]0,+\infty[$ : elle y admet des
+primitives. On appelle \textbf{logarithme népérien}, noté $\ln$, l'unique primitive de
+$x\mapsto\dfrac1x$ sur $]0,+\infty[$ qui \textbf{s'annule en $1$}. Ainsi
+\[
+\ln\;:\;]0,+\infty[\;\longrightarrow\;\R,\qquad \ln'(x)=\frac1x,\qquad \ln(1)=0.
+\]
+\end{definition}
+
+\begin{remarque}
+$\ln x$ n'existe que pour $x>0$ : la \textbf{condition d'existence} $x>0$ devra toujours
+être vérifiée avant tout calcul. De plus $\ln'(x)=\frac1x>0$ : $\ln$ est strictement
+croissante, donc \textbf{bijective} de $]0,+\infty[$ sur $\R$.
+\end{remarque}
+
+\begin{theoreme}[Relation fonctionnelle fondamentale]
+Pour tous réels $a>0$ et $b>0$,
+\[
+\boxed{\;\ln(ab)=\ln a+\ln b\;}
+\]
+Le logarithme transforme les produits en sommes.
+\end{theoreme}
+
+\noindent\textit{Démonstration.} Fixons $b>0$ et posons $g(x)=\ln(bx)$ sur $]0,+\infty[$.
+Par dérivation d'une composée, $g'(x)=\dfrac{b}{bx}=\dfrac1x=\ln'(x)$. Donc $g$ et $\ln$
+ont la même dérivée : elles diffèrent d'une constante, $g(x)=\ln x+k$. En $x=1$ :
+$g(1)=\ln b=\ln 1+k=k$, d'où $k=\ln b$ et $\ln(bx)=\ln x+\ln b$. \hfill$\square$
+
+\begin{propriete}[Règles de calcul]
+Pour tous $a>0$, $b>0$ et tout entier $n\in\Z$ :
+\[
+\ln\!\Big(\frac1b\Big)=-\ln b,\qquad
+\ln\!\Big(\frac ab\Big)=\ln a-\ln b,\qquad
+\ln(a^{n})=n\,\ln a,\qquad
+\ln\sqrt a=\tfrac12\ln a.
+\]
+\end{propriete}
+
+\noindent\textit{Preuve rapide.} $\ln\big(b\cdot\frac1b\big)=\ln 1=0=\ln b+\ln\frac1b$
+donne $\ln\frac1b=-\ln b$ ; puis $\ln\frac ab=\ln\big(a\cdot\frac1b\big)=\ln a-\ln b$.
+La formule $\ln(a^n)=n\ln a$ s'obtient par récurrence pour $n\ge0$, puis avec $\frac1{a^n}$
+pour $n<0$. Enfin $2\ln\sqrt a=\ln\big((\sqrt a)^2\big)=\ln a$.
+
+\begin{definition}[Le nombre $e$]
+Comme $\ln$ est une bijection de $]0,+\infty[$ sur $\R$, l'équation $\ln x=1$ admet une
+unique solution, notée $e$. On a $e\approx 2{,}718$. Pour tout réel $x$ et tout $a>0$ :
+\[
+\ln(e)=1,\qquad \ln(e^{x})=x,\qquad \ln a=x\iff a=e^{x}.
+\]
+\end{definition}
+
+\begin{aretenir}
+Avant tout calcul avec $\ln$ : \textbf{poser la condition d'existence} (les arguments
+doivent être strictement positifs). $\ln$ est \textbf{strictement croissante}, donc
+$\ln a=\ln b\iff a=b$ et $\ln a<\ln b\iff a<b$ (pour $a,b>0$).
+\end{aretenir}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Dérivée, limites et courbe}
+
+\begin{propriete}[Dérivée de $\ln u$]
+Si $u$ est dérivable et \textbf{strictement positive} sur un intervalle $I$, alors
+$x\mapsto\ln\big(u(x)\big)$ est dérivable sur $I$ et
+\[
+\big(\ln u\big)'=\frac{u'}{u}.
+\]
+\end{propriete}
+
+\begin{exemple}
+$f(x)=\ln(x^{2}+1)$ : ici $u=x^{2}+1>0$, $u'=2x$, donc $f'(x)=\dfrac{2x}{x^{2}+1}$.
+\end{exemple}
+
+\begin{theoreme}[Limites de référence]
+\[
+\lim_{x\to+\infty}\ln x=+\infty,\qquad
+\lim_{x\to0^{+}}\ln x=-\infty,
+\]
+\[
+\lim_{x\to+\infty}\frac{\ln x}{x}=0,\qquad
+\lim_{x\to0^{+}}x\ln x=0,\qquad
+\lim_{x\to1}\frac{\ln x}{x-1}=1.
+\]
+\end{theoreme}
+
+\begin{remarque}
+Les deux limites du milieu expriment les \textbf{croissances comparées} : à l'infini, $x$
+« l'emporte » sur $\ln x$ ; en $0^+$, $x$ « écrase » $\ln x$. La dernière limite est le
+nombre dérivé de $\ln$ en $1$ : $\ln'(1)=1$, donc la tangente en $1$ a pour pente $1$.
+\end{remarque}
+
+\begin{propriete}[Tableau de variations de $\ln$]
+\begin{center}\small
+\begin{tabular}{c|ccccc}
+$x$ & $0$ & & $1$ & & $+\infty$\\
+\hline
+$\ln' x=\frac1x$ & & $+$ & $+$ & $+$ & \\
+\hline
+$\ln x$ & $-\infty$ & $\nearrow$ & $0$ & $\nearrow$ & $+\infty$\\
+\end{tabular}
+\end{center}
+La droite $x=0$ (axe des ordonnées) est \textbf{asymptote verticale} à la courbe.
+\end{propriete}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth]
+\begin{axis}[width=9cm,height=6cm,axis lines=middle,xlabel={\small $x$},ylabel={\small $y$},
+  xmin=-0.6,xmax=6,ymin=-2.6,ymax=2.4,xtick={1,2.718},xticklabels={$1$,$e$},
+  ytick={1},yticklabels={$1$},samples=120]
+\addplot[onbo,line width=1.1pt,domain=0.085:6]{ln(x)};
+\addplot[onbblue,line width=0.8pt,domain=0.2:3.2]{x-1};
+\addplot[onbmuted,dashed,line width=0.6pt]coordinates{(0,-2.6)(0,2.4)};
+\filldraw[onbink](axis cs:1,0)circle(1.6pt);
+\filldraw[onbink](axis cs:2.718,1)circle(1.6pt);
+\node[onbo,anchor=west] at (axis cs:4.3,1.7){\small $y=\ln x$};
+\node[onbblue,anchor=west] at (axis cs:2.6,2.0){\small $y=x-1$};
+\end{axis}
+\node[align=left,text width=3.6cm,anchor=west] at (9.1,2.2)
+{\small La courbe coupe l'axe en $1$, passe par $(e,1)$ et admet l'axe $Oy$ comme
+asymptote verticale. La \textbf{tangente en $1$} est $y=x-1$ (pente $1$).};
+\end{tikzpicture}
+\fig{Figure 1 — Courbe de $\ln$, tangente en $x=1$ et asymptote verticale $x=0$.}
+\end{illus}
+
+\begin{propriete}[Une inégalité utile]
+Pour tout $x>0$ : $\ \ln x\le x-1$, avec égalité seulement en $x=1$. En particulier
+$\ln x\le x$ : la courbe de $\ln$ est toujours \emph{en dessous} de sa tangente en $1$
+(et bien en dessous de la première bissectrice).
+\end{propriete}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth]
+\begin{axis}[width=9cm,height=5.4cm,axis lines=middle,xlabel={\small $x$},ylabel={\small $y$},
+  xmin=-0.4,xmax=6,ymin=-2.2,ymax=5.4,xtick=\empty,ytick=\empty,samples=120]
+\addplot[onbo,line width=1.1pt,domain=0.085:6]{ln(x)};
+\addplot[onbgreen,line width=1pt,domain=0:5.4]{x};
+\addplot[onbblue,dashed,line width=0.7pt,domain=0.2:5.4]{x-1};
+\node[onbgreen,anchor=west] at (axis cs:3.4,4.6){\small $y=x$};
+\node[onbblue,anchor=west] at (axis cs:4.2,3.0){\small $y=x-1$};
+\node[onbo,anchor=west] at (axis cs:4.4,1.55){\small $y=\ln x$};
+\end{axis}
+\node[align=left,text width=3.6cm,anchor=west] at (9.1,2.4)
+{\small Croissances comparées : $\ln x$ croît bien plus lentement que $x$. On a toujours
+$\ln x\le x-1\le x$.};
+\end{tikzpicture}
+\fig{Figure 2 — Comparaison de $\ln x$, de $x-1$ et de $x$ : croissance lente du logarithme.}
+\end{illus}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Logarithme décimal et logarithme de base $a$}
+
+\begin{definition}[Logarithme décimal]
+On appelle \textbf{logarithme décimal} la fonction
+\[
+\log x=\frac{\ln x}{\ln 10}\qquad(x>0).
+\]
+Elle vérifie $\log 1=0$, $\log 10=1$, $\log(10^{n})=n$ et les mêmes règles algébriques
+que $\ln$. C'est l'outil des échelles : $\mathrm{pH}=-\log[\mathrm H_3O^+]$, décibels,
+magnitude de Richter.
+\end{definition}
+
+\begin{definition}[Logarithme de base $a$]
+Pour $a>0$ et $a\neq1$, le \textbf{logarithme de base $a$} est
+\[
+\log_a x=\frac{\ln x}{\ln a}\qquad(x>0),
+\]
+caractérisé par $\log_a(a)=1$ et $\log_a(a^{x})=x$. On retrouve $\ln=\log_e$ et
+$\log=\log_{10}$.
+\end{definition}
+
+\begin{exemple}
+Combien de chiffres compte $2^{50}$ en base $10$ ? Le nombre de chiffres de $N$ est
+$\lfloor\log N\rfloor+1$. Or $\log(2^{50})=50\log 2\approx 50\times0{,}3010=15{,}05$,
+donc $2^{50}$ possède $\lfloor15{,}05\rfloor+1=16$ chiffres.
+\end{exemple}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Méthodes \& savoir-faire}
+
+\methode{Résoudre une équation ou une inéquation avec $\ln$}
+On commence \textbf{toujours} par poser le domaine (conditions d'existence). Puis on se
+ramène à $\ln A=\ln B$ (équivalent à $A=B$) ou à $\ln A\le\ln B$ (équivalent à $A\le B$,
+car $\ln$ est croissante), \textbf{sans oublier} l'intersection avec le domaine.
+\begin{exemple}
+Résoudre $\ln(x-1)+\ln(x+2)=\ln(2x+2)$.\\
+\emph{Existence :} $x-1>0$, $x+2>0$ et $2x+2>0$, soit $x>1$.\\
+L'équation s'écrit $\ln\big((x-1)(x+2)\big)=\ln(2x+2)$, d'où $(x-1)(x+2)=2x+2$, soit
+$x^{2}+x-2=2x+2$, c'est-à-dire $x^{2}-x-4=0$. Le discriminant vaut $\Delta=1+16=17$, donc
+$x=\dfrac{1\pm\sqrt{17}}2$. Seule $x=\dfrac{1+\sqrt{17}}2\approx2{,}56>1$ convient.
+\textbf{$\mathcal S=\Big\{\dfrac{1+\sqrt{17}}2\Big\}$.}
+\end{exemple}
+
+\methode{Changement de variable $X=\ln x$}
+Quand une équation/inéquation fait intervenir $\ln x$ par des puissances, on pose
+$X=\ln x$ ($X\in\R$) pour obtenir une équation polynomiale en $X$, puis on revient à $x$.
+\begin{exemple}
+Résoudre $(\ln x)^{2}-3\ln x+2=0$ sur $]0,+\infty[$. Posons $X=\ln x$ :
+$X^{2}-3X+2=0$, soit $(X-1)(X-2)=0$, donc $X=1$ ou $X=2$. On revient : $\ln x=1\Rightarrow
+x=e$ ; $\ln x=2\Rightarrow x=e^{2}$. \textbf{$\mathcal S=\{e,\,e^{2}\}$.}
+\end{exemple}
+
+\methode{Dériver et étudier une fonction comportant $\ln$}
+Déterminer le domaine, calculer $f'$ à l'aide de $(\ln u)'=u'/u$, étudier son signe et
+dresser le tableau de variations.
+\begin{exemple}
+$f(x)=x-\ln x$ sur $]0,+\infty[$ : $f'(x)=1-\dfrac1x=\dfrac{x-1}{x}$. Sur $]0,+\infty[$ le
+dénominateur est positif : $f'<0$ sur $]0,1[$, $f'>0$ sur $]1,+\infty[$. $f$ admet donc un
+\textbf{minimum} en $1$, $f(1)=1$. On en déduit $x-\ln x\ge1>0$, soit $\ln x\le x-1$.
+\end{exemple}
+
+\methode{Lever une indétermination par croissances comparées}
+Devant une forme $\frac{\infty}{\infty}$ ou $0\times\infty$ mêlant $\ln$ et puissances,
+on utilise $\dfrac{\ln x}{x}\to0$ et $x\ln x\to0$ (au besoin par un changement de variable).
+\begin{exemple}
+$\displaystyle\lim_{x\to+\infty}\frac{\ln x}{\sqrt x}$. Posons $t=\sqrt x\to+\infty$ ;
+alors $\ln x=\ln(t^{2})=2\ln t$ et $\dfrac{\ln x}{\sqrt x}=\dfrac{2\ln t}{t}\to2\times0=0$.
+\end{exemple}
+
+\methode{Reconnaître une primitive du type $u'/u$}
+Si $u>0$ et dérivable, une primitive de $\dfrac{u'}{u}$ est $\ln u$. Plus généralement, une
+primitive de $\dfrac{u'}{u}$ est $\ln|u|$ là où $u$ ne s'annule pas.
+\begin{exemple}
+Une primitive de $f(x)=\dfrac{2x}{x^{2}+1}$ est $F(x)=\ln(x^{2}+1)$ (ici $u=x^{2}+1>0$).
+Une primitive de $g(x)=\tan x=\dfrac{\sin x}{\cos x}=-\dfrac{(\cos x)'}{\cos x}$ est
+$G(x)=-\ln|\cos x|$.
+\end{exemple}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Exercices}
+
+\rubrique{Calculs et propriétés algébriques}
+\exo{}\diff{1} Simplifier $A=\ln 12-\ln 3+\ln\dfrac14$ et $B=2\ln\sqrt5+\ln\dfrac1{25}$.
+
+\exo{}\diff{1} Écrire en fonction de $\ln 2$ et $\ln 3$ : $\ln 6$, $\ln 8$, $\ln\dfrac9{16}$,
+$\ln 72$.
+
+\exo{}\diff{2} À l'aide du logarithme décimal, déterminer le nombre de chiffres de $3^{40}$
+en base $10$ (on prendra $\log 3\approx0{,}4771$).
+
+\rubrique{Équations et inéquations}
+\exo{}\diff{1} Résoudre dans $\R$ : a) $\ln(2x-1)=\ln 5$ ; b) $\ln(x+3)\le\ln(2x)$.
+
+\exo{}\diff{2} Résoudre $(\ln x)^{2}-\ln x-6=0$.
+
+\exo{}\diff{2} Résoudre $\ln(x+1)+\ln(x-1)=\ln 3$.
+
+\exo{}\diff{3} Résoudre l'inéquation $\ln(x^{2}-3x+2)\le\ln(2-x)+\ln 2$.
+
+\rubrique{Limites et primitives}
+\exo{}\diff{2} Calculer $\displaystyle\lim_{x\to+\infty}\big(x-\ln x\big)$ et
+$\displaystyle\lim_{x\to0^{+}}\big(x^{2}\ln x\big)$.
+
+\exo{}\diff{2} Déterminer une primitive de $f(x)=\dfrac{3x^{2}}{x^{3}+1}$ sur $]-1,+\infty[$,
+puis de $g(x)=\dfrac1{x\ln x}$ sur $]1,+\infty[$.
+
+\rubrique{Étude de fonction --- Problème type Baccalauréat}
+\exo{}\diff{3} On considère la fonction $f$ définie sur $]0,+\infty[$ par
+\[
+f(x)=x-2+\frac{\ln x}{x},
+\]
+de courbe représentative $\mathcal C$ dans un repère orthonormé (unité $2$~cm).
+\begin{enumerate}[label=\arabic*)]
+\item Déterminer $\displaystyle\lim_{x\to0^{+}}f(x)$ et $\displaystyle\lim_{x\to+\infty}f(x)$.
+En déduire une asymptote de $\mathcal C$.
+\item Montrer que la droite $\mathcal D:\,y=x-2$ est asymptote à $\mathcal C$ en $+\infty$,
+et étudier la position relative de $\mathcal C$ et $\mathcal D$.
+\item Calculer $f'(x)$ et montrer que $f'(x)=\dfrac{x^{2}+1-\ln x}{x^{2}}$. En étudiant le
+signe du numérateur $g(x)=x^{2}+1-\ln x$, montrer que $f$ est strictement croissante sur
+$]0,+\infty[$, puis dresser le tableau de variations.
+\item Calculer, en unités d'aire puis en cm$^2$, l'aire $\mathcal A$ du domaine compris
+entre $\mathcal C$, l'asymptote $\mathcal D$ et les droites $x=1$ et $x=e$.
+\end{enumerate}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Corrigés}
+
+\corrige{de l'exercice 1}
+$A=\ln\dfrac{12}{3}+\ln\dfrac14=\ln 4+\ln\dfrac14=\ln\big(4\cdot\tfrac14\big)=\ln 1=0$.\;
+$B=2\cdot\tfrac12\ln5+\ln\dfrac1{25}=\ln5-\ln25=\ln5-2\ln5=-\ln5$.
+
+\corrige{de l'exercice 2}
+$\ln6=\ln2+\ln3$ ; $\ln8=3\ln2$ ; $\ln\dfrac9{16}=2\ln3-4\ln2$ ;
+$\ln72=\ln(8\cdot9)=3\ln2+2\ln3$.
+
+\corrige{de l'exercice 3}
+$\log(3^{40})=40\log3\approx40\times0{,}4771=19{,}084$, donc le nombre de chiffres est
+$\lfloor19{,}084\rfloor+1=20$. $3^{40}$ compte \textbf{$20$ chiffres}.
+
+\corrige{de l'exercice 4}
+a) Existence : $2x-1>0$ soit $x>\tfrac12$. Alors $2x-1=5$, $x=3$ ($>\tfrac12$).
+$\mathcal S=\{3\}$.\;
+b) Existence : $x+3>0$ et $2x>0$, soit $x>0$. L'inéquation $\ln(x+3)\le\ln(2x)$ équivaut
+(croissance) à $x+3\le2x$, soit $x\ge3$. $\mathcal S=[3,+\infty[$.
+
+\corrige{de l'exercice 5}
+Posons $X=\ln x$ : $X^{2}-X-6=0$, $\Delta=25$, $X=3$ ou $X=-2$. Donc $\ln x=3\Rightarrow
+x=e^{3}$ et $\ln x=-2\Rightarrow x=e^{-2}$. $\mathcal S=\{e^{-2},\,e^{3}\}$.
+
+\corrige{de l'exercice 6}
+Existence : $x+1>0$ et $x-1>0$, soit $x>1$. L'équation devient
+$\ln\big((x+1)(x-1)\big)=\ln3$, d'où $x^{2}-1=3$, $x^{2}=4$, $x=2$ (on rejette $x=-2<1$).
+$\mathcal S=\{2\}$.
+
+\corrige{de l'exercice 7}
+Existence : $x^{2}-3x+2=(x-1)(x-2)>0$ et $2-x>0$. Le premier facteur impose
+$x<1$ ou $x>2$ ; le second $x<2$. L'intersection est $x<1$, soit le domaine $D=]-\infty,1[$.
+Sur $D$, l'inéquation s'écrit $\ln(x^{2}-3x+2)\le\ln\big(2(2-x)\big)$, équivalente à
+$x^{2}-3x+2\le4-2x$, soit $x^{2}-x-2\le0$, c'est-à-dire $(x-2)(x+1)\le0$ : $-1\le x\le2$.
+En intersectant avec $D=]-\infty,1[$ : $\mathcal S=[-1,1[$.
+
+\corrige{de l'exercice 8}
+$x-\ln x=x\Big(1-\dfrac{\ln x}{x}\Big)$ ; comme $\dfrac{\ln x}{x}\to0$ et $x\to+\infty$, on a
+$x-\ln x\to+\infty$.\;
+Pour $x^{2}\ln x$ en $0^{+}$ : $x^{2}\ln x=x\cdot(x\ln x)$ ; or $x\ln x\to0$ et $x\to0$, donc
+$x^{2}\ln x\to0$.
+
+\corrige{de l'exercice 9}
+$f(x)=\dfrac{3x^{2}}{x^{3}+1}=\dfrac{u'}{u}$ avec $u=x^{3}+1>0$ sur $]-1,+\infty[$ : une
+primitive est $F(x)=\ln(x^{3}+1)$.\;
+$g(x)=\dfrac1{x\ln x}=\dfrac{1/x}{\ln x}=\dfrac{(\ln x)'}{\ln x}$ avec $\ln x>0$ sur
+$]1,+\infty[$ : une primitive est $G(x)=\ln(\ln x)$.
+
+\corrige{du problème}
+\textbf{1)} En $0^{+}$ : $x-2\to-2$ et $\dfrac{\ln x}{x}\to\dfrac{-\infty}{0^{+}}=-\infty$,
+donc $\displaystyle\lim_{x\to0^{+}}f(x)=-\infty$ : la droite $x=0$ est \textbf{asymptote
+verticale}. En $+\infty$ : $x-2\to+\infty$ et $\dfrac{\ln x}{x}\to0$, donc
+$\displaystyle\lim_{x\to+\infty}f(x)=+\infty$.
+
+\textbf{2)} $f(x)-(x-2)=\dfrac{\ln x}{x}\to0$ quand $x\to+\infty$ : $\mathcal D:y=x-2$ est
+\textbf{asymptote oblique} en $+\infty$. Position : le signe de $f(x)-(x-2)=\dfrac{\ln x}{x}$
+est celui de $\ln x$ (car $x>0$). Donc sur $]0,1[$, $f(x)<x-2$ ($\mathcal C$ sous
+$\mathcal D$) ; sur $]1,+\infty[$, $f(x)>x-2$ ($\mathcal C$ au-dessus) ; elles se coupent en
+$x=1$ où $f(1)=-1$.
+
+\textbf{3)} Avec $\Big(\dfrac{\ln x}{x}\Big)'=\dfrac{\frac1x\cdot x-\ln x\cdot1}{x^{2}}
+=\dfrac{1-\ln x}{x^{2}}$, on obtient
+\[
+f'(x)=1+\frac{1-\ln x}{x^{2}}=\frac{x^{2}+1-\ln x}{x^{2}}.
+\]
+Posons $g(x)=x^{2}+1-\ln x$. Alors $g'(x)=2x-\dfrac1x=\dfrac{2x^{2}-1}{x}$, qui s'annule en
+$x_0=\dfrac1{\sqrt2}$. $g$ décroît sur $]0,x_0]$ puis croît : son minimum est
+$g(x_0)=\dfrac12+1-\ln\dfrac1{\sqrt2}=\dfrac32+\dfrac12\ln2\approx1{,}85>0$. Donc $g(x)>0$
+pour tout $x>0$, d'où $f'(x)>0$ : $f$ est \textbf{strictement croissante} sur $]0,+\infty[$.
+
+\smallskip
+\begin{center}\small
+\begin{tabular}{c|ccc}
+$x$ & $0$ & & $+\infty$\\
+\hline
+$f'(x)$ & & $+$ & \\
+\hline
+$f(x)$ & $-\infty$ & $\nearrow$ & $+\infty$\\
+\end{tabular}
+\end{center}
+
+\textbf{4)} Sur $[1,e]$, $\ln x\ge0$ donc $f(x)\ge x-2$ : $\mathcal C$ est au-dessus de
+$\mathcal D$ et $f(x)-(x-2)=\dfrac{\ln x}{x}\ge0$. L'aire vaut donc
+\[
+\mathcal A=\int_{1}^{e}\big(f(x)-(x-2)\big)\dd x=\int_{1}^{e}\frac{\ln x}{x}\dd x.
+\]
+En reconnaissant $\dfrac{\ln x}{x}=(\ln x)'\,\ln x$, une primitive est $\dfrac{(\ln x)^{2}}2$,
+donc
+\[
+\mathcal A=\Big[\frac{(\ln x)^{2}}2\Big]_{1}^{e}=\frac{1}{2}-0=\frac12\ \text{u.a.}
+\]
+L'unité de longueur valant $2$~cm, l'unité d'aire vaut $2\times2=4\ \text{cm}^2$, d'où
+$\mathcal A=\dfrac12\times4=\textbf{2~cm}^2$.

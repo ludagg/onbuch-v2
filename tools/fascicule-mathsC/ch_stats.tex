@@ -1,0 +1,378 @@
+\chapter{Statistiques à deux variables}
+
+\noindent\textit{Lorsqu'on observe \emph{deux} caractères sur une même population — par
+exemple la superficie cultivée et la récolte de cacao dans des plantations de la région du
+Centre — on cherche à savoir s'ils sont \textbf{liés}. On représente alors un nuage de points,
+on mesure la force du lien (covariance, corrélation) et, si le lien est quasi affine, on
+ajuste une \textbf{droite} qui permet de \textbf{prévoir}.}
+\vspace{8pt}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Série double, nuage de points et point moyen}
+
+\begin{definition}[Série statistique double]
+Une \textbf{série statistique double} est la donnée, pour chaque individu $i$ ($1\le i\le n$),
+d'un couple $(x_i,y_i)$ de valeurs de deux caractères quantitatifs $X$ et $Y$. Représentée
+dans un repère, elle forme un \textbf{nuage de points} $M_i(x_i\,;\,y_i)$.
+\end{definition}
+
+\begin{definition}[Séries marginales et point moyen]
+Les séries $(x_i)$ et $(y_i)$ prises séparément sont les \textbf{séries marginales}. Leurs
+moyennes sont
+\[
+\bar x=\frac1n\sum_{i=1}^{n}x_i,\qquad \bar y=\frac1n\sum_{i=1}^{n}y_i.
+\]
+Le \textbf{point moyen} du nuage est $G(\bar x\,;\,\bar y)$. C'est le « centre de gravité » des points.
+\end{definition}
+
+\begin{remarque}
+Pour une série marginale, on dispose aussi de la \textbf{variance} et de l'\textbf{écart-type} :
+\[
+V(X)=\frac1n\sum_{i=1}^{n}x_i^{2}-\bar x^{\,2},\qquad \sigma_X=\sqrt{V(X)},
+\]
+formule dite « de König » (moyenne des carrés moins carré de la moyenne).
+\end{remarque}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth]
+\begin{axis}[width=8cm,height=5.2cm,axis lines=middle,xlabel={\small $x$},ylabel={\small $y$},
+  xmin=0,xmax=7,ymin=0,ymax=9,xtick={1,2,...,6},ytick={2,4,6,8},
+  tick label style={font=\scriptsize}]
+\addplot[only marks,onbo,mark=*,mark size=1.6pt] coordinates
+  {(1,2.2)(2,3.1)(3,4.4)(4,5.0)(5,6.3)(6,7.1)};
+\filldraw[onbblue](axis cs:3.5,4.683)circle(2.4pt);
+\node[onbblue,anchor=south west,font=\scriptsize] at (axis cs:3.5,4.683){$G$};
+\end{axis}
+\node[align=left,text width=3.6cm,anchor=west] at (8.1,1.6)
+{\small Le nuage « monte » : $X$ et $Y$ varient dans le même sens. Le point moyen $G$ est au cœur du nuage.};
+\end{tikzpicture}
+\fig{Figure — Nuage de points et point moyen $G(\bar x\,;\,\bar y)$.}
+\end{illus}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Covariance et coefficient de corrélation}
+
+\begin{definition}[Covariance]
+La \textbf{covariance} de $X$ et $Y$ est
+\[
+\mathrm{cov}(X,Y)=\frac1n\sum_{i=1}^{n}(x_i-\bar x)(y_i-\bar y)
+=\frac1n\sum_{i=1}^{n}x_iy_i-\bar x\,\bar y .
+\]
+La seconde écriture (« de König ») est la plus commode pour les calculs.
+\end{definition}
+
+\begin{remarque}
+La covariance a le signe de la « tendance » du nuage : positive s'il monte, négative s'il
+descend, proche de $0$ si aucune direction ne se dégage. On a toujours $\mathrm{cov}(X,X)=V(X)$.
+\end{remarque}
+
+\begin{definition}[Coefficient de corrélation linéaire]
+On appelle \textbf{coefficient de corrélation linéaire} de $X$ et $Y$ le nombre
+\[
+r=\frac{\mathrm{cov}(X,Y)}{\sigma_X\,\sigma_Y}.
+\]
+\end{definition}
+
+\begin{propriete}[Encadrement et interprétation]
+Pour toute série double, $\boxed{-1\le r\le 1}$. De plus :
+\begin{itemize}
+\item $r$ a le même signe que $\mathrm{cov}(X,Y)$ ;
+\item $|r|=1$ équivaut à un \textbf{alignement parfait} des points ;
+\item en pratique, on considère l'ajustement affine \textbf{justifié} lorsque $|r|$ est
+proche de $1$ (souvent $|r|\ge 0{,}87$, soit $r^2\ge 0{,}75$).
+\end{itemize}
+\end{propriete}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth]
+\begin{axis}[name=g1,width=5.6cm,height=4.4cm,axis lines=middle,
+  xlabel={\scriptsize $x$},ylabel={\scriptsize $y$},
+  xmin=0,xmax=7,ymin=0,ymax=8,xtick=\empty,ytick=\empty,title={\scriptsize corrélation forte ($r\approx0{,}99$)}]
+\addplot[only marks,onbgreen,mark=*,mark size=1.4pt] coordinates
+  {(1,1.2)(2,2.0)(3,3.1)(4,3.9)(5,5.2)(6,6.0)};
+\addplot[onbo,line width=0.9pt,domain=0.5:6.5]{0.98*x+0.05};
+\end{axis}
+\begin{axis}[at={(g1.right of east)},anchor=left of west,xshift=10pt,
+  width=5.6cm,height=4.4cm,axis lines=middle,
+  xlabel={\scriptsize $x$},ylabel={\scriptsize $y$},
+  xmin=0,xmax=7,ymin=0,ymax=8,xtick=\empty,ytick=\empty,title={\scriptsize corrélation faible ($r\approx0{,}2$)}]
+\addplot[only marks,onbblue,mark=*,mark size=1.4pt] coordinates
+  {(1,4.4)(2,2.1)(3,5.6)(4,3.0)(5,6.2)(6,3.8)};
+\end{axis}
+\end{tikzpicture}
+\fig{Figure — Corrélation forte (points alignés) contre corrélation faible (nuage diffus).}
+\end{illus}
+
+\begin{aretenir}
+Un coefficient $r$ proche de $\pm1$ signale seulement une \textbf{liaison linéaire} forte :
+corrélation \emph{n'est pas} causalité. On ajuste par une droite uniquement quand $|r|$ est
+proche de $1$.
+\end{aretenir}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Droites de régression (moindres carrés)}
+
+\begin{definition}[Méthode des moindres carrés]
+La \textbf{droite de régression de $y$ en $x$} est la droite $y=ax+b$ rendant minimale la
+somme des carrés des écarts verticaux $\sum_{i}\big(y_i-(ax_i+b)\big)^2$ entre les points et
+la droite.
+\end{definition}
+
+\begin{theoreme}[Droite de $y$ en $x$]
+La droite de régression de $y$ en $x$ a pour coefficients
+\[
+a=\frac{\mathrm{cov}(X,Y)}{V(X)},\qquad b=\bar y-a\,\bar x,
+\]
+et elle \textbf{passe toujours par le point moyen} $G(\bar x\,;\,\bar y)$.
+\end{theoreme}
+
+\begin{propriete}[Droite de $x$ en $y$]
+De façon symétrique, la droite de régression de $x$ en $y$ s'écrit $x=a'y+b'$ avec
+\[
+a'=\frac{\mathrm{cov}(X,Y)}{V(Y)},\qquad b'=\bar x-a'\,\bar y .
+\]
+Elle passe aussi par $G$. Les deux droites se coupent donc en $G$, et l'on a la relation
+$r^{2}=a\,a'$.
+\end{propriete}
+
+\begin{remarque}
+Les deux droites sont en général distinctes ; elles coïncident exactement lorsque $|r|=1$
+(alignement parfait). Pour \textbf{prévoir} $y$ à partir de $x$, on utilise toujours la droite
+\emph{de $y$ en $x$}.
+\end{remarque}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth]
+\begin{axis}[width=8.2cm,height=5.2cm,axis lines=middle,xlabel={\small $x$},ylabel={\small $y$},
+  xmin=0,xmax=7,ymin=0,ymax=9,xtick={1,2,...,6},ytick={2,4,6,8},
+  tick label style={font=\scriptsize}]
+\addplot[only marks,onbo,mark=*,mark size=1.6pt] coordinates
+  {(1,2.2)(2,3.1)(3,4.4)(4,5.0)(5,6.3)(6,7.1)};
+\addplot[onbblue,line width=1pt,domain=0.3:6.6]{0.96*x+1.32};
+\filldraw[onbgreen](axis cs:3.5,4.683)circle(2.4pt);
+\node[onbgreen,anchor=north west,font=\scriptsize] at (axis cs:3.5,4.683){$G$};
+\node[onbblue,anchor=west,font=\scriptsize] at (axis cs:5.0,7.4){$y=ax+b$};
+\end{axis}
+\node[align=left,text width=3.4cm,anchor=west] at (8.3,1.6)
+{\small La droite des moindres carrés passe par $G$ et « résume » le nuage.};
+\end{tikzpicture}
+\fig{Figure — Nuage, point moyen $G$ et droite d'ajustement affine.}
+\end{illus}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Ajustement par changement de variable}
+
+\begin{aretenir}
+Quand le nuage n'est \emph{pas} linéaire mais semble \textbf{exponentiel} ($y\approx k\,e^{mx}$)
+ou \textbf{puissance/logarithmique}, on se ramène à un ajustement affine par un
+\textbf{changement de variable} :
+\[
+y=k\,e^{mx}\;\Longrightarrow\;\underbrace{\ln y}_{Z}=m\,x+\ln k\quad(\text{affine en }x);
+\qquad
+y=k\,x^{\alpha}\;\Longrightarrow\;\ln y=\alpha\,\ln x+\ln k .
+\]
+On pose $Z=\ln y$ (et éventuellement $T=\ln x$), on ajuste $Z$ par une droite, puis on
+\textbf{revient} à $y$.
+\end{aretenir}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Méthodes \& savoir-faire}
+
+\methode{Représenter un nuage et placer le point moyen $G$}
+Reporter les points $M_i(x_i\,;\,y_i)$ ; calculer $\bar x$ et $\bar y$ ; placer $G(\bar x\,;\,\bar y)$.
+\begin{exemple}
+Pour la série $\;(1;2)\;(2;3)\;(3;5)\;(4;6)$ : $\bar x=\dfrac{1+2+3+4}{4}=2{,}5$ et
+$\bar y=\dfrac{2+3+5+6}{4}=4$. Le point moyen est $G(2{,}5\,;\,4)$.
+\end{exemple}
+
+\methode{Calculer covariance et coefficient de corrélation}
+Dresser un tableau de $x_i$, $y_i$, $x_i^2$, $y_i^2$, $x_iy_i$. Puis appliquer König :
+$\mathrm{cov}=\overline{xy}-\bar x\bar y$, $V(X)=\overline{x^2}-\bar x^2$, $V(Y)=\overline{y^2}-\bar y^2$, et $r=\dfrac{\mathrm{cov}}{\sigma_X\sigma_Y}$.
+\begin{exemple}
+Série : $\;(1;3)\;(2;4)\;(3;6)\;(4;7)$ ($n=4$).
+$\bar x=2{,}5$, $\bar y=5$.
+$\sum x_iy_i=1\!\cdot\!3+2\!\cdot\!4+3\!\cdot\!6+4\!\cdot\!7=3+8+18+28=57$, donc
+$\overline{xy}=14{,}25$ et $\mathrm{cov}=14{,}25-2{,}5\times5=1{,}75$.
+$\sum x_i^2=1+4+9+16=30\Rightarrow V(X)=7{,}5-6{,}25=1{,}25$.
+$\sum y_i^2=9+16+36+49=110\Rightarrow V(Y)=27{,}5-25=2{,}5$.
+Ainsi $r=\dfrac{1{,}75}{\sqrt{1{,}25\times2{,}5}}=\dfrac{1{,}75}{\sqrt{3{,}125}}\approx\dfrac{1{,}75}{1{,}7678}\approx0{,}990$ : corrélation très forte.
+\end{exemple}
+
+\methode{Déterminer la droite de régression de $y$ en $x$}
+Calculer $a=\dfrac{\mathrm{cov}(X,Y)}{V(X)}$ puis $b=\bar y-a\bar x$ ; écrire $y=ax+b$.
+\begin{exemple}
+Avec l'exemple précédent : $a=\dfrac{1{,}75}{1{,}25}=1{,}4$ et $b=5-1{,}4\times2{,}5=5-3{,}5=1{,}5$.
+La droite est $\;y=1{,}4\,x+1{,}5\;$ ; elle passe bien par $G(2{,}5\,;\,5)$ car $1{,}4\times2{,}5+1{,}5=5$.
+\end{exemple}
+
+\methode{Estimer et prévoir par interpolation/extrapolation}
+Remplacer la valeur connue dans l'équation de la droite de $y$ en $x$ pour estimer la valeur
+inconnue de $y$ (et inversement avec la droite de $x$ en $y$).
+\begin{exemple}
+Avec $y=1{,}4x+1{,}5$, la prévision pour $x=6$ est $y=1{,}4\times6+1{,}5=8{,}4+1{,}5=9{,}9$.
+\end{exemple}
+
+\methode{Ajuster par changement de variable (modèle exponentiel)}
+Poser $Z=\ln y$, ajuster $Z$ par une droite $Z=mx+p$ (moindres carrés sur $(x_i,Z_i)$), puis
+revenir : $y=e^{p}\,e^{mx}$, c'est-à-dire $k=e^{p}$ et le taux $m$.
+\begin{exemple}
+Si l'ajustement de $Z=\ln y$ donne $Z=0{,}2\,x+0{,}7$, alors $m=0{,}2$ et $k=e^{0{,}7}\approx2{,}01$ :
+le modèle est $y\approx2{,}01\,e^{0{,}2x}$. Pour $x=10$ : $y\approx2{,}01\,e^{2}\approx2{,}01\times7{,}389\approx14{,}9$.
+\end{exemple}
+
+\methode{Utiliser la relation $r^2=a\,a'$ et le passage par $G$}
+Contrôler ses calculs : $r^2=a\,a'$, et les deux droites se coupent en $G$. Si l'une de ces
+vérifications échoue, c'est qu'il y a une erreur de calcul.
+
+% ═══════════════════════════════════════════════════════════════
+\section{Exercices}
+
+\rubrique{Nuage de points et point moyen}
+
+\exo{}\diff{1} On relève la taille $x$ (en $\mathrm{cm}$) et la pointure $y$ de cinq élèves de
+Yaoundé : $(160;38)\;(165;39)\;(170;41)\;(175;42)\;(180;44)$. Calculer $\bar x$ et $\bar y$ et
+donner les coordonnées du point moyen $G$.
+
+\exo{}\diff{1} Pour la série double $\;(2;1)\;(4;3)\;(6;4)\;(8;6)\;(10;6)$, représenter le nuage
+de points et placer le point moyen $G$.
+
+\rubrique{Covariance et corrélation}
+
+\exo{}\diff{2} Soit la série $\;(1;2)\;(2;5)\;(3;5)\;(4;8)$. Calculer $\mathrm{cov}(X,Y)$,
+$V(X)$, $V(Y)$ puis le coefficient de corrélation $r$. Un ajustement affine est-il justifié ?
+
+\exo{}\diff{2} On donne $\bar x=10$, $\bar y=25$, $V(X)=4$, $V(Y)=36$ et
+$\mathrm{cov}(X,Y)=10$. Calculer $r$. La liaison linéaire est-elle forte ?
+
+\exo{}\diff{3} Montrer que pour toute série double on a $\mathrm{cov}(X,X)=V(X)$, puis que la
+droite de régression de $y$ en $x$ passe par le point moyen $G$.
+
+\rubrique{Droites de régression et prévision}
+
+\exo{}\diff{2} Une boutique de Douala observe le nombre $x$ de publicités diffusées et les
+ventes $y$ (en centaines) : $(1;3)\;(2;4)\;(3;6)\;(4;7)\;(5;10)$. Déterminer la droite de
+régression de $y$ en $x$ et estimer les ventes pour $x=6$ publicités.
+
+\exo{}\diff{2} Pour une série on a trouvé $a=2{,}5$ (droite de $y$ en $x$) et $a'=0{,}3$
+(droite de $x$ en $y$). Calculer $r^2$ puis $r$, sachant que le nuage est croissant.
+
+\exo{}\diff{3} On donne $\bar x=5$, $\bar y=12$, $\mathrm{cov}(X,Y)=8$, $V(X)=5$, $V(Y)=16$.
+Écrire la droite de régression de $y$ en $x$ et celle de $x$ en $y$ ; vérifier qu'elles se
+coupent en $G$ et que $r^2=a\,a'$.
+
+\rubrique{Ajustement par changement de variable}
+
+\exo{}\diff{3} La population $y$ (en milliers) d'une localité du Nord-Cameroun est modélisée
+par $y=k\,e^{mx}$, où $x$ est le nombre d'années depuis 2010. On a posé $Z=\ln y$ et obtenu
+l'ajustement $Z=0{,}05\,x+3{,}9$. Donner $k$ et $m$, puis prévoir la population en 2030
+($x=20$).
+
+\rubrique{Problème type Baccalauréat}
+
+\exo{}\diff{3} \textbf{Production de cacao.} Une coopérative du Centre relève, pour six
+campagnes, la superficie cultivée $x$ (en hectares) et la production de cacao $y$ (en tonnes) :
+\begin{center}\small
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+$x_i$ & $2$ & $4$ & $5$ & $7$ & $8$ & $10$\\
+$y_i$ & $3$ & $5$ & $7$ & $8$ & $11$ & $14$\\
+\bottomrule
+\end{tabular}
+\end{center}
+\begin{enumerate}[label=\arabic*)]
+\item Calculer $\bar x$, $\bar y$ et placer le point moyen $G$.
+\item Calculer $\mathrm{cov}(X,Y)$, $V(X)$, $V(Y)$, puis le coefficient de corrélation $r$.
+Un ajustement affine est-il justifié ?
+\item Déterminer la droite de régression de $y$ en $x$ par la méthode des moindres carrés.
+\item Estimer la production attendue pour une superficie de $12$ hectares.
+\end{enumerate}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Corrigés}
+
+\corrige{de l'exercice 1}
+$\bar x=\dfrac{160+165+170+175+180}{5}=\dfrac{850}{5}=170$ ;
+$\bar y=\dfrac{38+39+41+42+44}{5}=\dfrac{204}{5}=40{,}8$.
+Point moyen $G(170\,;\,40{,}8)$.
+
+\corrige{de l'exercice 2}
+$\bar x=\dfrac{2+4+6+8+10}{5}=6$ ; $\bar y=\dfrac{1+3+4+6+6}{5}=\dfrac{20}{5}=4$.
+On place les cinq points et $G(6\,;\,4)$, qui est bien au centre du nuage (croissant).
+
+\corrige{de l'exercice 3}
+$n=4$, $\bar x=\dfrac{1+2+3+4}{4}=2{,}5$, $\bar y=\dfrac{2+5+5+8}{4}=5$.
+$\sum x_iy_i=1\!\cdot\!2+2\!\cdot\!5+3\!\cdot\!5+4\!\cdot\!8=2+10+15+32=59$, donc
+$\mathrm{cov}=\dfrac{59}{4}-2{,}5\times5=14{,}75-12{,}5=2{,}25$.
+$\sum x_i^2=30\Rightarrow V(X)=7{,}5-6{,}25=1{,}25$.
+$\sum y_i^2=4+25+25+64=118\Rightarrow V(Y)=29{,}5-25=4{,}5$.
+$r=\dfrac{2{,}25}{\sqrt{1{,}25\times4{,}5}}=\dfrac{2{,}25}{\sqrt{5{,}625}}=\dfrac{2{,}25}{2{,}3717}\approx0{,}949$.
+Comme $|r|\approx0{,}95>0{,}87$, l'ajustement affine est justifié.
+
+\corrige{de l'exercice 4}
+$r=\dfrac{\mathrm{cov}(X,Y)}{\sqrt{V(X)V(Y)}}=\dfrac{10}{\sqrt{4\times36}}=\dfrac{10}{\sqrt{144}}=\dfrac{10}{12}\approx0{,}833$.
+La liaison est assez forte mais $|r|<0{,}87$ : l'ajustement affine reste de qualité moyenne.
+
+\corrige{de l'exercice 5}
+\emph{Covariance :} $\mathrm{cov}(X,X)=\dfrac1n\sum(x_i-\bar x)(x_i-\bar x)=\dfrac1n\sum(x_i-\bar x)^2=V(X)$.\;
+\emph{Passage par $G$ :} la droite de $y$ en $x$ est $y=ax+b$ avec $b=\bar y-a\bar x$.
+En $x=\bar x$ : $a\bar x+b=a\bar x+(\bar y-a\bar x)=\bar y$. Donc le point $(\bar x\,;\,\bar y)=G$
+appartient à la droite.
+
+\corrige{de l'exercice 6}
+$n=5$, $\bar x=\dfrac{1+2+3+4+5}{5}=3$, $\bar y=\dfrac{3+4+6+7+10}{5}=\dfrac{30}{5}=6$.
+$\sum x_iy_i=1\!\cdot\!3+2\!\cdot\!4+3\!\cdot\!6+4\!\cdot\!7+5\!\cdot\!10=3+8+18+28+50=107$, donc
+$\mathrm{cov}=\dfrac{107}{5}-3\times6=21{,}4-18=3{,}4$.
+$\sum x_i^2=1+4+9+16+25=55\Rightarrow V(X)=11-9=2$.
+$a=\dfrac{\mathrm{cov}}{V(X)}=\dfrac{3{,}4}{2}=1{,}7$ et $b=6-1{,}7\times3=6-5{,}1=0{,}9$.
+Droite : $y=1{,}7x+0{,}9$. Pour $x=6$ : $y=1{,}7\times6+0{,}9=10{,}2+0{,}9=11{,}1$, soit environ
+$1110$ articles vendus.
+
+\corrige{de l'exercice 7}
+$r^2=a\,a'=2{,}5\times0{,}3=0{,}75$, donc $r=\pm\sqrt{0{,}75}\approx\pm0{,}866$. Le nuage étant
+croissant, $\mathrm{cov}>0$ d'où $r>0$ : $r\approx0{,}866$.
+
+\corrige{de l'exercice 8}
+\emph{Droite de $y$ en $x$ :} $a=\dfrac{\mathrm{cov}}{V(X)}=\dfrac{8}{5}=1{,}6$ et
+$b=\bar y-a\bar x=12-1{,}6\times5=12-8=4$, d'où $y=1{,}6x+4$.\;
+\emph{Droite de $x$ en $y$ :} $a'=\dfrac{\mathrm{cov}}{V(Y)}=\dfrac{8}{16}=0{,}5$ et
+$b'=\bar x-a'\bar y=5-0{,}5\times12=5-6=-1$, d'où $x=0{,}5y-1$.\;
+\emph{Intersection en $G$ :} dans la première, $x=5\Rightarrow y=1{,}6\times5+4=12=\bar y$ ; dans la
+seconde, $y=12\Rightarrow x=0{,}5\times12-1=5=\bar x$. Les deux passent par $G(5\,;\,12)$.\;
+\emph{Vérification :} $a\,a'=1{,}6\times0{,}5=0{,}8=r^2$, soit $r\approx0{,}894$ (liaison forte).
+
+\corrige{de l'exercice 9}
+L'ajustement de $Z=\ln y$ donne $Z=0{,}05x+3{,}9$, donc par identification avec
+$\ln y=mx+\ln k$ : $m=0{,}05$ et $\ln k=3{,}9$, soit $k=e^{3{,}9}\approx49{,}4$.
+Le modèle est $y\approx49{,}4\,e^{0{,}05x}$ (milliers d'habitants).
+Pour 2030, $x=20$ : $y\approx49{,}4\,e^{0{,}05\times20}=49{,}4\,e^{1}\approx49{,}4\times2{,}718\approx134{,}3$,
+soit environ $134\,000$ habitants.
+
+\corrige{du problème}
+On organise les calculs ($n=6$).
+\smallskip
+
+\noindent\textit{1) Moyennes et point moyen.}
+$\sum x_i=2+4+5+7+8+10=36\Rightarrow\bar x=\dfrac{36}{6}=6$.\;
+$\sum y_i=3+5+7+8+11+14=48\Rightarrow\bar y=\dfrac{48}{6}=8$.\;
+Point moyen $G(6\,;\,8)$.
+\smallskip
+
+\noindent\textit{2) Covariance, variances et corrélation.}
+$\sum x_iy_i=2\!\cdot\!3+4\!\cdot\!5+5\!\cdot\!7+7\!\cdot\!8+8\!\cdot\!11+10\!\cdot\!14
+=6+20+35+56+88+140=345$.\;
+$\mathrm{cov}(X,Y)=\dfrac{345}{6}-6\times8=57{,}5-48=9{,}5$.\;
+$\sum x_i^2=4+16+25+49+64+100=258\Rightarrow V(X)=\dfrac{258}{6}-36=43-36=7$.\;
+$\sum y_i^2=9+25+49+64+121+196=464\Rightarrow V(Y)=\dfrac{464}{6}-64\approx77{,}333-64=13{,}333$.\;
+$r=\dfrac{9{,}5}{\sqrt{7\times13{,}333}}=\dfrac{9{,}5}{\sqrt{93{,}333}}=\dfrac{9{,}5}{9{,}661}\approx0{,}983$.
+Comme $|r|\approx0{,}98$ est très proche de $1$, l'ajustement affine est pleinement justifié.
+\smallskip
+
+\noindent\textit{3) Droite de régression de $y$ en $x$.}
+$a=\dfrac{\mathrm{cov}(X,Y)}{V(X)}=\dfrac{9{,}5}{7}\approx1{,}357$ et
+$b=\bar y-a\bar x=8-1{,}357\times6=8-8{,}143\approx-0{,}143$.
+D'où $\;y\approx1{,}357\,x-0{,}143$. (Elle passe par $G$ : $1{,}357\times6-0{,}143\approx8$.)
+\smallskip
+
+\noindent\textit{4) Prévision pour $x=12$ hectares.}
+$y\approx1{,}357\times12-0{,}143=16{,}286-0{,}143\approx16{,}1$.
+On peut espérer une production d'environ $\mathbf{16}$ \textbf{tonnes} de cacao.

@@ -1,0 +1,394 @@
+\chapter{Coniques}
+
+\noindent\textit{Sections d'un cône par un plan, les coniques --- parabole, ellipse,
+hyperbole --- décrivent aussi bien la trajectoire d'un projectile que l'orbite d'une
+planète. La série C les aborde par une définition unifiée (foyer, directrice,
+excentricité) et par leurs équations réduites, où l'algèbre du second degré rencontre
+la géométrie du plan.}
+\vspace{8pt}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Définition unifiée par foyer, directrice et excentricité}
+
+\begin{definition}[Conique]
+Soient $F$ un point (le \textbf{foyer}), $(\mathcal D)$ une droite ne passant pas par $F$
+(la \textbf{directrice}) et $e>0$ un réel (l'\textbf{excentricité}). La \textbf{conique}
+de foyer $F$, de directrice $(\mathcal D)$ et d'excentricité $e$ est l'ensemble des points
+$M$ du plan tels que
+\[
+\frac{MF}{d\big(M,(\mathcal D)\big)}=e.
+\]
+Selon la valeur de $e$ :
+\begin{itemize}
+\item $e=1$ : \textbf{parabole} ;
+\item $0<e<1$ : \textbf{ellipse} ;
+\item $e>1$ : \textbf{hyperbole}.
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Axe focal, sommets, centre]
+L'\textbf{axe focal} est la droite passant par le foyer $F$ et perpendiculaire à la
+directrice ; c'est un \textbf{axe de symétrie} de la conique. Les points d'intersection de
+la conique avec son axe focal sont les \textbf{sommets}. L'ellipse et l'hyperbole possèdent
+de plus un \textbf{centre} de symétrie (et un second foyer, une seconde directrice) ; la
+parabole, elle, n'a ni centre ni second foyer.
+\end{definition}
+
+\begin{remarque}
+Plus $e$ est petit, plus l'ellipse est « ronde » ($e\to0$ : cercle limite) ; plus $e$ est
+grand, plus l'hyperbole est « ouverte ». La parabole ($e=1$) est le cas frontière unique.
+\end{remarque}
+
+% ═══════════════════════════════════════════════════════════════
+\section{La parabole}
+
+\begin{theoreme}[Équation réduite de la parabole]
+Dans un repère orthonormé bien choisi (sommet à l'origine, axe focal $=$ axe des
+abscisses), la parabole de paramètre $p>0$ a pour équation réduite
+\[
+y^{2}=2px.
+\]
+Son \textbf{foyer} est $F\!\left(\dfrac p2,0\right)$, sa \textbf{directrice}
+$(\mathcal D):x=-\dfrac p2$, son \textbf{sommet} est l'origine $O$. Le réel $p$ est le
+\textbf{paramètre} : c'est la distance du foyer à la directrice.
+\end{theoreme}
+
+\begin{remarque}
+Pour $M(x,y)$ sur la parabole, $MF=x+\frac p2=d\big(M,(\mathcal D)\big)$ : on retrouve
+bien $e=1$. La parabole est tournée vers les $x>0$ ; l'équation $y^{2}=-2px$ donne la
+parabole ouverte vers les $x<0$, et $x^{2}=2py$ une parabole d'axe vertical.
+\end{remarque}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth]
+\begin{axis}[width=8.2cm,height=6cm,axis lines=middle,xlabel={\small $x$},ylabel={\small $y$},
+  xmin=-1.6,xmax=4.2,ymin=-3.2,ymax=3.2,xtick={-1,1},xticklabels={$-\frac p2$,$\frac p2$},ytick=\empty]
+\addplot[onbo,line width=1pt,domain=-3:3,samples=80]({(\x)^2/4},{\x});
+\draw[onbblue,line width=0.9pt] (axis cs:-1,-3.1)--(axis cs:-1,3.1);
+\node[onbblue,anchor=south,rotate=90] at (axis cs:-1,1.9){\scriptsize $(\mathcal D)$};
+\filldraw[onbink](axis cs:1,0)circle(2pt) node[anchor=north west]{\scriptsize $F$};
+\filldraw[onbink](axis cs:0,0)circle(1.6pt) node[anchor=north east]{\scriptsize $O$};
+% point M et distances
+\filldraw[onbgreen](axis cs:2.25,3)circle(1.6pt) node[anchor=south west]{\scriptsize $M$};
+\draw[dashed,onbmuted](axis cs:2.25,3)--(axis cs:-1,3);
+\draw[dashed,onbmuted](axis cs:2.25,3)--(axis cs:1,0);
+\node[onbo,anchor=west] at (axis cs:2.6,2.0){\small $y^2=2px$};
+\end{axis}
+\node[align=left,text width=3.6cm,anchor=west] at (8.3,2.0)
+{\small Pour tout point $M$ de la parabole, $MF$ égale la distance de $M$ à la directrice
+$(\mathcal D)$.};
+\end{tikzpicture}
+\fig{Figure — Parabole $y^2=2px$ : foyer $F$, directrice $(\mathcal D)$ et propriété focale.}
+\end{illus}
+
+% ═══════════════════════════════════════════════════════════════
+\section{L'ellipse}
+
+\begin{theoreme}[Équation réduite de l'ellipse]
+Dans un repère orthonormé centré au centre de symétrie, l'ellipse a pour équation réduite
+\[
+\frac{x^{2}}{a^{2}}+\frac{y^{2}}{b^{2}}=1,\qquad a>b>0.
+\]
+On pose $c=\sqrt{a^{2}-b^{2}}$, d'où la relation fondamentale
+\[
+\boxed{\,a^{2}=b^{2}+c^{2}\,}.
+\]
+\begin{itemize}
+\item \textbf{Sommets} : $A(a,0)$, $A'(-a,0)$ (grand axe, longueur $2a$) et $B(0,b)$,
+$B'(0,-b)$ (petit axe, longueur $2b$) ;
+\item \textbf{Foyers} : $F(c,0)$ et $F'(-c,0)$ sur le grand axe (distance focale $2c$) ;
+\item \textbf{Excentricité} : $e=\dfrac ca\in\,]0,1[$ ;
+\item \textbf{Directrices} : $x=\dfrac ae=\dfrac{a^{2}}c$ et $x=-\dfrac{a^{2}}c$.
+\end{itemize}
+\end{theoreme}
+
+\begin{propriete}[Définition bifocale de l'ellipse]
+L'ellipse est l'ensemble des points $M$ tels que
+\[
+MF+MF'=2a.
+\]
+La somme des distances aux deux foyers est constante, égale à la longueur du grand axe.
+\end{propriete}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth]
+\begin{axis}[width=9cm,height=5.6cm,axis lines=middle,xlabel={\small $x$},ylabel={\small $y$},
+  xmin=-3.6,xmax=3.6,ymin=-2.4,ymax=2.4,xtick={-3,-2.236,2.236,3},
+  xticklabels={$-a$,$-c$,$c$,$a$},ytick={1.5},yticklabels={$b$},
+  axis equal image=false]
+\addplot[onbo,line width=1pt,domain=0:360,samples=120]({3*cos(\x)},{1.5*sin(\x)});
+\filldraw[onbink](axis cs:2.236,0)circle(2pt) node[anchor=north]{\scriptsize $F$};
+\filldraw[onbink](axis cs:-2.236,0)circle(2pt) node[anchor=north]{\scriptsize $F'$};
+\filldraw[onbgreen](axis cs:1.2,1.375)circle(1.6pt) node[anchor=south west]{\scriptsize $M$};
+\draw[onbblue,line width=0.7pt](axis cs:2.236,0)--(axis cs:1.2,1.375);
+\draw[onbblue,line width=0.7pt](axis cs:-2.236,0)--(axis cs:1.2,1.375);
+\end{axis}
+\node[align=left,text width=3.3cm,anchor=west] at (9.1,1.7)
+{\small Pour tout point $M$, $MF+MF'=2a$ (somme constante).};
+\end{tikzpicture}
+\fig{Figure — Ellipse $\frac{x^2}{a^2}+\frac{y^2}{b^2}=1$ : foyers, axes et propriété bifocale.}
+\end{illus}
+
+\begin{aretenir}
+Pour l'ellipse, ne jamais confondre les trois longueurs : $a$ (demi-grand axe, le plus
+grand), $b$ (demi-petit axe) et $c$ (demi-distance focale), liées par
+$a^{2}=b^{2}+c^{2}$. L'excentricité $e=c/a$ se calcule \emph{après} avoir trouvé $c$.
+\end{aretenir}
+
+% ═══════════════════════════════════════════════════════════════
+\section{L'hyperbole}
+
+\begin{theoreme}[Équation réduite de l'hyperbole]
+Dans un repère orthonormé centré au centre de symétrie, l'hyperbole a pour équation réduite
+\[
+\frac{x^{2}}{a^{2}}-\frac{y^{2}}{b^{2}}=1,\qquad a>0,\ b>0.
+\]
+On pose ici $c=\sqrt{a^{2}+b^{2}}$, d'où
+\[
+\boxed{\,c^{2}=a^{2}+b^{2}\,}.
+\]
+\begin{itemize}
+\item \textbf{Sommets} : $A(a,0)$ et $A'(-a,0)$ (l'axe $Oy$ ne coupe pas la courbe) ;
+\item \textbf{Foyers} : $F(c,0)$ et $F'(-c,0)$ ;
+\item \textbf{Excentricité} : $e=\dfrac ca>1$ ;
+\item \textbf{Asymptotes} : les droites $y=\dfrac ba\,x$ et $y=-\dfrac ba\,x$ ;
+\item \textbf{Directrices} : $x=\pm\dfrac{a^{2}}c$.
+\end{itemize}
+\end{theoreme}
+
+\begin{propriete}[Définition bifocale de l'hyperbole]
+L'hyperbole est l'ensemble des points $M$ tels que
+\[
+\big|\,MF-MF'\,\big|=2a.
+\]
+La valeur absolue de la différence des distances aux foyers est constante.
+\end{propriete}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth]
+\begin{axis}[width=8.6cm,height=6cm,axis lines=middle,xlabel={\small $x$},ylabel={\small $y$},
+  xmin=-4.4,xmax=4.4,ymin=-3.4,ymax=3.4,xtick={-2,2},xticklabels={$-a$,$a$},ytick=\empty]
+% asymptotes y = +-(b/a) x  avec a=2,b=2 -> pente 1
+\addplot[onbmuted,dashed,line width=0.7pt,domain=-3.2:3.2]{\x};
+\addplot[onbmuted,dashed,line width=0.7pt,domain=-3.2:3.2]{-\x};
+% branches : x = +- a*cosh t, y = b*sinh t ; a=b=2
+\addplot[onbo,line width=1pt,domain=-1.4:1.4,samples=60]({2*cosh(\x)},{2*sinh(\x)});
+\addplot[onbo,line width=1pt,domain=-1.4:1.4,samples=60]({-2*cosh(\x)},{2*sinh(\x)});
+\filldraw[onbink](axis cs:2.83,0)circle(2pt) node[anchor=north west]{\scriptsize $F$};
+\filldraw[onbink](axis cs:-2.83,0)circle(2pt) node[anchor=north east]{\scriptsize $F'$};
+\node[onbmuted,anchor=south] at (axis cs:2.9,3.0){\scriptsize $y=\frac ba x$};
+\end{axis}
+\node[align=left,text width=3.4cm,anchor=west] at (8.7,2.0)
+{\small Les deux branches s'approchent des asymptotes $y=\pm\frac ba x$ ;
+$|MF-MF'|=2a$.};
+\end{tikzpicture}
+\fig{Figure — Hyperbole $\frac{x^2}{a^2}-\frac{y^2}{b^2}=1$ : sommets, foyers et asymptotes.}
+\end{illus}
+
+\begin{remarque}
+Si $a=b$, l'hyperbole est dite \textbf{équilatère} : ses asymptotes $y=\pm x$ sont
+perpendiculaires et $e=\sqrt2$.
+\end{remarque}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Reconnaître une conique : forme canonique}
+
+\begin{theoreme}[Réduction de $ax^{2}+by^{2}+2cx+2dy+e=0$]
+Une équation de la forme $ax^{2}+by^{2}+2cx+2dy+e=0$ (sans terme en $xy$) se ramène, par
+\textbf{complétion des carrés} (mise sous forme canonique), à une équation réduite après
+translation de l'origine au point $\Omega\!\left(-\dfrac ca,\,-\dfrac db\right)$. La nature
+dépend des signes de $a$ et $b$ :
+\begin{itemize}
+\item $a$ et $b$ de \textbf{même signe} et non nuls : \textbf{ellipse} (ou cercle si
+$a=b$), éventuellement vide ou réduite à un point ;
+\item $a$ et $b$ de \textbf{signes contraires} : \textbf{hyperbole} (ou couple de droites) ;
+\item l'un des deux nul (ex. $b=0$) avec un terme linéaire dans l'autre variable :
+\textbf{parabole}.
+\end{itemize}
+\end{theoreme}
+
+\begin{exemple}
+$4x^{2}+9y^{2}-8x+36y+4=0$. On complète :
+$4(x^{2}-2x)+9(y^{2}+4y)+4=4(x-1)^{2}-4+9(y+2)^{2}-36+4=0$,
+soit $4(x-1)^{2}+9(y+2)^{2}=36$, c'est-à-dire
+$\dfrac{(x-1)^{2}}{9}+\dfrac{(y+2)^{2}}{4}=1$ : \textbf{ellipse} de centre $\Omega(1,-2)$,
+$a=3$, $b=2$.
+\end{exemple}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Méthodes \& savoir-faire}
+
+\methode{Reconnaître une conique et déterminer ses éléments}
+Identifier l'équation réduite, lire $a$, $b$, le signe entre les termes, puis calculer
+$c$ par la relation adaptée ($a^2=b^2+c^2$ pour l'ellipse, $c^2=a^2+b^2$ pour
+l'hyperbole) et $e=c/a$.
+\begin{exemple}
+$\dfrac{x^{2}}{25}+\dfrac{y^{2}}{9}=1$ : ellipse, $a=5$, $b=3$, donc
+$c=\sqrt{25-9}=4$. Foyers $(\pm4,0)$, sommets $(\pm5,0)$ et $(0,\pm3)$,
+$e=\frac45$, directrices $x=\pm\frac{a^2}c=\pm\frac{25}4$.
+\end{exemple}
+
+\methode{Obtenir l'équation réduite par forme canonique}
+Regrouper les $x$ ensemble, les $y$ ensemble, factoriser les coefficients dominants,
+compléter chaque carré, puis diviser pour faire apparaître un second membre égal à $1$.
+\begin{exemple}
+$9x^{2}-16y^{2}-18x-64y-199=0$ :
+$9(x^{2}-2x)-16(y^{2}+4y)-199=9(x-1)^{2}-9-16(y+2)^{2}+64-199=0$,
+d'où $9(x-1)^{2}-16(y+2)^{2}=144$, soit
+$\dfrac{(x-1)^{2}}{16}-\dfrac{(y+2)^{2}}{9}=1$ : hyperbole de centre $(1,-2)$,
+$a=4$, $b=3$.
+\end{exemple}
+
+\methode{Déterminer foyer et directrice d'une parabole}
+Mettre l'équation sous la forme $y^{2}=2px$ (ou $x^{2}=2py$), lire $p$, puis
+$F(\frac p2,0)$ et $(\mathcal D):x=-\frac p2$.
+\begin{exemple}
+$y^{2}=12x$ : $2p=12$ donc $p=6$. Foyer $F(3,0)$, directrice $x=-3$, sommet $O$.
+\end{exemple}
+
+\methode{Déterminer les asymptotes d'une hyperbole}
+À partir de $\frac{x^2}{a^2}-\frac{y^2}{b^2}=1$, les asymptotes sont $y=\pm\frac ba x$
+(passant par le centre). Après translation, elles passent par le centre $\Omega$.
+\begin{exemple}
+$\dfrac{(x-1)^{2}}{16}-\dfrac{(y+2)^{2}}{9}=1$ : asymptotes
+$y+2=\pm\frac34(x-1)$.
+\end{exemple}
+
+\methode{Tracer une conique}
+Placer le centre (ou sommet), marquer les sommets à $\pm a$, $\pm b$, tracer le rectangle
+$2a\times2b$ pour une hyperbole (ses diagonales sont les asymptotes), puis la courbe.
+Pour une parabole, placer sommet, foyer et directrice.
+
+\methode{Exploiter une propriété focale (définition bifocale)}
+Traduire un énoncé du type « $MF+MF'=k$ » ou « $|MF-MF'|=k$ » en une équation de conique :
+on obtient $2a=k$, puis $c$ à partir des foyers, et $b$ par la relation adaptée.
+\begin{exemple}
+Lieu des $M$ tels que $MF+MF'=10$ avec $F(3,0)$, $F'(-3,0)$ : $2a=10\Rightarrow a=5$,
+$c=3$, $b^2=a^2-c^2=16$ : ellipse $\frac{x^2}{25}+\frac{y^2}{16}=1$.
+\end{exemple}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Exercices}
+
+\rubrique{Reconnaissance et éléments}
+\exo{}\diff{1} Pour chaque équation, donner la nature de la conique, ses sommets et son
+excentricité : (a) $\dfrac{x^{2}}{16}+\dfrac{y^{2}}{4}=1$ ; (b) $\dfrac{x^{2}}{9}-\dfrac{y^{2}}{16}=1$ ;
+(c) $y^{2}=8x$.
+
+\exo{}\diff{1} Déterminer le foyer et la directrice de la parabole $y^{2}=6x$, puis de
+$x^{2}=-4y$.
+
+\exo{}\diff{2} Soit l'ellipse $\dfrac{x^{2}}{36}+\dfrac{y^{2}}{20}=1$. Calculer $c$, les
+foyers, l'excentricité et les équations des directrices.
+
+\rubrique{Forme canonique}
+\exo{}\diff{2} Reconnaître la conique $x^{2}+4y^{2}-4x+8y+4=0$ et préciser son centre et
+ses demi-axes.
+
+\exo{}\diff{2} Mettre $y^{2}-6y-4x+13=0$ sous forme réduite ; en déduire sa nature, son
+sommet, son foyer.
+
+\exo{}\diff{3} Reconnaître $4x^{2}-y^{2}-24x+4y+28=0$ ; donner centre, sommets et
+asymptotes.
+
+\rubrique{Tracés et propriétés}
+\exo{}\diff{2} Tracer l'hyperbole $\dfrac{x^{2}}{9}-\dfrac{y^{2}}{16}=1$ en construisant
+d'abord ses asymptotes et le rectangle des axes.
+
+\exo{}\diff{2} Déterminer l'équation de l'ellipse de centre $O$, de foyers $(\pm4,0)$ et
+passant par le point $A(0,3)$.
+
+\exo{}\diff{3} Une parabole d'axe $(Ox)$ et de sommet $O$ passe par le point $P(2,4)$.
+Déterminer son équation réduite, son paramètre, son foyer et sa directrice.
+
+\rubrique{Problème type Baccalauréat}
+\exo{}\diff{3} Le plan est rapporté à un repère orthonormé. On donne les points
+$F(2,0)$ et $F'(-2,0)$.
+\begin{enumerate}[label=\arabic*)]
+\item Déterminer et reconnaître l'ensemble $(\mathcal E)$ des points $M$ tels que
+$MF+MF'=6$. Préciser ses sommets, ses demi-axes et son excentricité.
+\item Soit $M(x,y)$ un point de $(\mathcal E)$ et $N$ le projeté orthogonal de $M$ sur
+l'axe $(Ox)$. Soit $P$ le point tel que $\overrightarrow{NP}=\dfrac32\,\overrightarrow{NM}$.
+Déterminer le lieu de $P$ lorsque $M$ décrit $(\mathcal E)$ ; reconnaître ce lieu.
+\item En déduire, pour la valeur particulière obtenue, la nature de la courbe décrite
+par $P$.
+\end{enumerate}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Corrigés}
+
+\corrige{de l'exercice 1}
+(a) Ellipse, $a=4$, $b=2$, $c=\sqrt{16-4}=2\sqrt3$, sommets $(\pm4,0)$ et $(0,\pm2)$,
+$e=\frac{2\sqrt3}{4}=\frac{\sqrt3}{2}$.\;
+(b) Hyperbole, $a=3$, $b=4$, $c=\sqrt{9+16}=5$, sommets $(\pm3,0)$, $e=\frac53$.\;
+(c) Parabole $y^2=8x$, $2p=8$ donc $p=4$ ; sommet $O$, $e=1$.
+
+\corrige{de l'exercice 2}
+$y^{2}=6x$ : $2p=6$, $p=3$, foyer $F\!\left(\frac32,0\right)$, directrice $x=-\frac32$.\;
+$x^{2}=-4y$ : axe $(Oy)$, $2p=4$, $p=2$, ouverte vers le bas, foyer $\left(0,-1\right)$,
+directrice $y=1$.
+
+\corrige{de l'exercice 3}
+$a^{2}=36$, $b^{2}=20$ donc $c=\sqrt{36-20}=4$. Foyers $(\pm4,0)$,
+$e=\frac{c}{a}=\frac{4}{6}=\frac23$. Directrices $x=\pm\frac{a^{2}}{c}=\pm\frac{36}{4}=\pm9$.
+
+\corrige{de l'exercice 4}
+$x^{2}-4x+4(y^{2}+2y)+4=(x-2)^{2}-4+4(y+1)^{2}-4+4=0$, soit
+$(x-2)^{2}+4(y+1)^{2}=4$, d'où $\dfrac{(x-2)^{2}}{4}+(y+1)^{2}=1$ : \textbf{ellipse}
+de centre $\Omega(2,-1)$, $a=2$, $b=1$.
+
+\corrige{de l'exercice 5}
+$y^{2}-6y=(y-3)^{2}-9$, donc l'équation devient $(y-3)^{2}-9-4x+13=0$, soit
+$(y-3)^{2}=4x-4=4(x-1)$. C'est une \textbf{parabole} d'axe horizontal, sommet
+$S(1,3)$. Ici $2p=4$, $p=2$ : le foyer est en $\left(1+\frac p2,3\right)=(2,3)$,
+directrice $x=1-\frac p2=0$.
+
+\corrige{de l'exercice 6}
+$4(x^{2}-6x)-(y^{2}-4y)+28=4(x-3)^{2}-36-(y-2)^{2}+4+28=0$, soit
+$4(x-3)^{2}-(y-2)^{2}=4$, d'où $\dfrac{(x-3)^{2}}{1}-\dfrac{(y-2)^{2}}{4}=1$ :
+\textbf{hyperbole} de centre $(3,2)$, $a=1$, $b=2$. Sommets $(3\pm1,2)$, soit $(2,2)$ et
+$(4,2)$. Asymptotes $y-2=\pm\frac ba(x-3)=\pm2(x-3)$.
+
+\corrige{de l'exercice 7}
+$a=3$, $b=4$ : on trace les asymptotes $y=\pm\frac43 x$ (diagonales du rectangle de
+sommets $(\pm3,\pm4)$), on place les sommets $(\pm3,0)$, puis les deux branches qui
+s'appuient sur le rectangle et tendent vers les asymptotes. $c=\sqrt{9+16}=5$, foyers
+$(\pm5,0)$.
+
+\corrige{de l'exercice 8}
+Foyers $(\pm4,0)$ donc $c=4$ ; le point $A(0,3)$ est un sommet du petit axe, donc $b=3$.
+Alors $a^{2}=b^{2}+c^{2}=9+16=25$, $a=5$. Équation :
+$\dfrac{x^{2}}{25}+\dfrac{y^{2}}{9}=1$.
+
+\corrige{de l'exercice 9}
+Axe $(Ox)$, sommet $O$ : $y^{2}=2px$. Le point $P(2,4)$ donne $16=2p\cdot2=4p$, donc
+$p=4$ et l'équation est $y^{2}=8x$. Foyer $F(2,0)$, directrice $x=-2$.
+
+\corrige{du problème}
+\textbf{1)} $MF+MF'=6$ avec $F(2,0)$, $F'(-2,0)$ : par la définition bifocale, c'est une
+\textbf{ellipse} de foyers $F,F'$, avec $2a=6\Rightarrow a=3$ et $c=2$. Donc
+$b^{2}=a^{2}-c^{2}=9-4=5$ et
+\[
+(\mathcal E):\ \frac{x^{2}}{9}+\frac{y^{2}}{5}=1.
+\]
+Sommets $(\pm3,0)$ et $(0,\pm\sqrt5)$ ; demi-axes $a=3$, $b=\sqrt5$ ;
+excentricité $e=\frac ca=\frac23$.
+
+\noindent\textbf{2)} $M(x,y)\in(\mathcal E)$, $N$ projeté de $M$ sur $(Ox)$ : $N(x,0)$.
+Posons $P(X,Y)$. La relation $\overrightarrow{NP}=\frac32\overrightarrow{NM}$ s'écrit
+$\big(X-x,\,Y-0\big)=\frac32\big(x-x,\,y-0\big)=\big(0,\tfrac32 y\big)$.
+Donc $X=x$ et $Y=\frac32 y$, soit $x=X$ et $y=\frac23 Y$.
+En reportant dans l'équation de $(\mathcal E)$ :
+\[
+\frac{X^{2}}{9}+\frac{\left(\frac23 Y\right)^{2}}{5}=1
+\ \Longleftrightarrow\
+\frac{X^{2}}{9}+\frac{4Y^{2}}{45}=1
+\ \Longleftrightarrow\
+\frac{X^{2}}{9}+\frac{Y^{2}}{45/4}=1.
+\]
+
+\noindent\textbf{3)} On obtient $\dfrac{X^{2}}{9}+\dfrac{Y^{2}}{45/4}=1$ avec
+$\frac{45}{4}=11{,}25>9$ : c'est une \textbf{ellipse} de centre $O$, dont le grand axe est
+maintenant porté par $(Oy)$ (demi-grand axe $\frac{3\sqrt5}{2}$, demi-petit axe $3$).
+L'affinité orthogonale de rapport $\frac32$ d'axe $(Ox)$ a « étiré » verticalement
+l'ellipse de départ.
