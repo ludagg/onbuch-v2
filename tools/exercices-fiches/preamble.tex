@@ -1,0 +1,65 @@
+% OnBuch — préambule fiches d'exercices (compilé avec tectonic / XeLaTeX)
+\documentclass[11pt]{article}
+
+\usepackage{fontspec}
+\usepackage[french]{babel}
+\usepackage[a4paper,margin=2cm,top=3.2cm,headheight=1.2cm]{geometry}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage[most]{tcolorbox}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+
+% Palette OnBuch
+\definecolor{onbo}{HTML}{F2620E}
+\definecolor{onbgreen}{HTML}{1E9E63}
+\definecolor{onbink}{HTML}{241B12}
+\definecolor{onbpaper}{HTML}{FFF7F1}
+\definecolor{onbline}{HTML}{E8DDD3}
+\definecolor{onbmuted}{HTML}{8A7B6D}
+
+\setlist[enumerate]{leftmargin=1.6em,itemsep=4pt,topsep=4pt}
+\setlist[itemize]{leftmargin=1.6em,itemsep=3pt,topsep=3pt}
+
+% En-tête / pied
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\footrule}{\hbox to\headwidth{\color{onbline}\leaders\hrule height \footrulewidth\hfill}}
+\lhead{\color{onbo}\textbf{\large OnBuch}\;\color{onbmuted}\small\textsf{·\ \DOCMATIERE}}
+\rhead{\color{onbmuted}\small\textsf{\DOCNIVEAU}}
+\lfoot{\color{onbmuted}\footnotesize\textsf{OnBuch — réussir, ensemble.}}
+\rfoot{\color{onbmuted}\footnotesize\textsf{\thepage}}
+
+% Bandeau titre
+\newcommand{\fichetitre}[3]{%
+  % #1 = titre fiche, #2 = chapitre, #3 = difficulté
+  \begin{tcolorbox}[colback=onbpaper,colframe=onbo,boxrule=1pt,arc=8pt,
+      leftrule=3pt,left=14pt,right=14pt,top=10pt,bottom=10pt,
+      before skip=0pt,after skip=10pt]
+    {\color{onbmuted}\small\textsf{\MakeUppercase{#2}}}\\[2pt]
+    {\color{onbink}\LARGE\bfseries #1}\par\vspace{2pt}
+    {\color{onbgreen}\small\textsf{\textbf{#3}}}
+  \end{tcolorbox}
+}
+
+% Boîtes correction / astuce
+% Amorce de correction (pas d'englobage : le contenu coule sur toutes les pages)
+\newcommand{\corrstart}{%
+  \par\noindent{\color{onbgreen}\sffamily\bfseries\large Correction détaillée}%
+  \par\vspace{3pt}\noindent{\color{onbgreen}\rule{\linewidth}{1.4pt}}\par\vspace{9pt}%
+}
+% compat : environnement correction = simple amorce (sans cadre englobant)
+\newenvironment{correction}{\corrstart}{}
+\newtcolorbox{astuce}{colback=onbpaper,colframe=onbo,boxrule=0.6pt,arc=6pt,
+  left=12pt,right=12pt,top=7pt,bottom=7pt}
+
+% Exercice header
+\newcommand{\exo}[1]{\vspace{8pt}\noindent{\color{onbo}\bfseries\large #1}\par\vspace{3pt}}
