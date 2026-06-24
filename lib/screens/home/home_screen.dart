@@ -873,7 +873,7 @@ class _QuickLinks extends StatelessWidget {
   static const _items = <List<Object>>[
     [Icons.menu_book_rounded, 'Cours', 'go:/cours'],
     [Icons.article_rounded, 'Annales', 'go:/annales'],
-    [Icons.edit_rounded, 'Exercices', 'go:/tutor'],
+    [Icons.edit_rounded, 'Exercices', 'push:/exercices'],
     [Icons.emoji_events_rounded, 'Concours', 'go:/concours'],
     [Icons.camera_alt_rounded, 'Scanner', 'push:/tutor/capture'],
   ];

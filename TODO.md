@@ -4,6 +4,20 @@ Idées et chantiers à réaliser plus tard (notés pour ne pas les perdre).
 
 ---
 
+## 🧩 Exercices — génération IA → PDF (admin) (à faire)
+
+Le module Exercices (collections `exercise_chapters`/`exercise_sheets`/`exercise_progress`,
+écrans app `/exercices`, ressources back-office) est **en place**. L'admin saisit
+aujourd'hui les **URLs de PDF** (énoncé + correction) à la main dans le back-office.
+
+À construire : l'**atelier de génération** côté admin —
+- une **fonction Vercel** `api/generate-exercises` (clé NVIDIA côté serveur) qui appelle
+  **Nemotron Ultra** pour produire 5 énoncés + corrections d'un chapitre ;
+- rendu **HTML (template OnBuch) → PDF** (Puppeteer/Chromium sur un service, ou API HTML→PDF) ;
+- upload des PDF dans Storage Appwrite (bucket `annales_files`) + écriture des `exercise_sheets`
+  (statementPdfUrl / correctionPdfUrl) ;
+- bouton « Générer avec l'IA » dans le back-office (relecture/édition avant publication).
+
 ## 📅 Emploi du temps des élèves + alertes (à faire)
 
 Fonctionnalité : chaque élève a sa grille hebdomadaire de cours, avec rappels

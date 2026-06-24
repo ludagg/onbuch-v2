@@ -88,7 +88,8 @@ carte d'accueil + menu).
 `articles`, `exams`, `school_calendar`, `concours`, `prep_centers`,
 `concours_resources`, `concours_applications`, `subjects`, `chapters`, `lessons`,
 `chapter_progress`, `quizzes`, `affiche`, `tutor_jobs`, `tutor_quota`,
-`notifications`, `daily_quotes`.
+`notifications`, `daily_quotes`, `exercise_chapters`, `exercise_sheets`,
+`exercise_progress`.
 - Contenu géré par l'admin = lecture `read("any")`, écriture `team:admins`.
 - Données utilisateur (tutor_jobs/quota) = `read("user:<uid>")`.
 
