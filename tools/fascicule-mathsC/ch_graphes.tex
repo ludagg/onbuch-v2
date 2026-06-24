@@ -2,9 +2,11 @@
 
 \noindent\textit{Un graphe est un dessin de points reliés par des traits : il modélise
 des \textbf{relations} entre des objets — villes reliées par des routes, joueurs s'affrontant
-dans un tournoi, tâches d'un planning. Outil récent du programme de la série C, la théorie
-des graphes relie l'\textbf{algèbre} (matrices) à des situations très concrètes, et fournit
-des méthodes efficaces pour étudier connexité, parcours et coloration.}
+dans un tournoi, tâches d'un planning, examens incompatibles. Outil récent du programme de la
+série C, la théorie des graphes relie l'\textbf{algèbre} (matrices) à des situations très
+concrètes, et fournit des méthodes efficaces et élégantes pour étudier la connexité, les
+parcours, le plus court chemin (algorithme de Dijkstra) et la coloration. Ce chapitre rassemble
+tout le vocabulaire et tous les outils attendus au Baccalauréat.}
 \vspace{8pt}
 
 % ═══════════════════════════════════════════════════════════════
@@ -22,7 +24,7 @@ lui-même est une \textbf{boucle}.
 
 \begin{exemple}
 Le graphe ci-dessous a pour sommets $S=\{A,B,C,D\}$ (ordre $4$) et pour arêtes
-$A=\{AB,\,AC,\,BC,\,CD\}$ (quatre arêtes). Les sommets $A$ et $B$ sont adjacents ; $A$ et $D$
+$\{AB,\,AC,\,BC,\,CD\}$ (quatre arêtes). Les sommets $A$ et $B$ sont adjacents ; $A$ et $D$
 ne le sont pas.
 \end{exemple}
 
@@ -48,7 +50,8 @@ $A$, $B$ et $D$.};
 
 \begin{definition}[Degré]
 Le \textbf{degré} d'un sommet $s$, noté $d(s)$, est le nombre d'arêtes qui ont $s$ pour
-extrémité (une boucle compte pour $2$). Un sommet de degré $0$ est dit \textbf{isolé}.
+extrémité (une boucle compte pour $2$). Un sommet de degré $0$ est dit \textbf{isolé} ;
+un sommet de degré $1$ est dit \textbf{pendant}.
 \end{definition}
 
 \begin{theoreme}[Lemme des poignées de main]
@@ -60,7 +63,8 @@ d'arêtes :
 \end{theoreme}
 
 \noindent\emph{Justification.} Chaque arête possède exactement deux extrémités : elle est donc
-comptée \emph{deux fois} dans la somme des degrés, une fois pour chacune.
+comptée \emph{deux fois} dans la somme des degrés, une fois pour chacune. (Une boucle relie un
+sommet à lui-même : elle apporte bien $2$ à son degré.)
 
 \begin{propriete}[Nombre de sommets de degré impair]
 Dans tout graphe, le nombre de sommets de degré \textbf{impair} est \textbf{pair}.
@@ -78,10 +82,16 @@ $2+2+3+1=8=2\times 4$, ce qui confirme qu'il y a bien $4$ arêtes. Les sommets d
 impair sont $C$ et $D$ : ils sont au nombre de $2$, qui est pair.
 \end{exemple}
 
+\begin{aretenir}
+Pour tout graphe : $\displaystyle\sum_{s} d(s)=2\,\Card(A)$. Conséquences immédiates : la somme
+des degrés est toujours \textbf{paire} ; le nombre de sommets de degré \textbf{impair} est
+\textbf{pair} ; le nombre d'arêtes est la \emph{demi-somme} des degrés.
+\end{aretenir}
+
 % ═══════════════════════════════════════════════════════════════
 \section{Graphes particuliers}
 
-\begin{definition}[Graphe simple, complet, biparti]
+\begin{definition}[Graphe simple, complet, biparti, régulier]
 \begin{itemize}
 \item Un graphe est \textbf{simple} s'il est sans boucle et si deux sommets sont reliés
 par \emph{au plus une} arête.
@@ -90,6 +100,7 @@ de sommets est reliée par une arête.
 \item Un graphe est \textbf{biparti} si l'on peut partager ses sommets en deux groupes
 $X$ et $Y$ de sorte que toute arête joigne un sommet de $X$ à un sommet de $Y$ (aucune
 arête à l'intérieur d'un groupe).
+\item Un graphe est \textbf{$k$-régulier} si tous ses sommets ont le même degré $k$.
 \end{itemize}
 \end{definition}
 
@@ -98,7 +109,7 @@ Le graphe complet $K_n$ possède
 \[
 \Card(A)=\binom{n}{2}=\frac{n(n-1)}{2}
 \]
-arêtes, et chacun de ses sommets est de degré $n-1$.
+arêtes, et chacun de ses sommets est de degré $n-1$ : $K_n$ est $(n-1)$-régulier.
 \end{propriete}
 
 \begin{exemple}
@@ -131,13 +142,65 @@ $\dfrac{5\times 4}{2}=10$ matches : c'est $K_5$.
 \node[onbmuted,font=\small] at (1,-1.7) {biparti complet $K_{3,2}$};
 \end{scope}
 \end{tikzpicture}
-\fig{Figure 23.2 — À gauche, le graphe complet $K_4$ ; à droite, un graphe biparti.}
+\fig{Figure 23.2 — À gauche, le graphe complet $K_4$ ; à droite, un graphe biparti $K_{3,2}$.}
 \end{illus}
 
 \begin{remarque}
 Un graphe est biparti si et seulement si tous ses cycles ont une longueur \textbf{paire}.
 En particulier, un triangle (cycle de longueur $3$) ne peut jamais apparaître dans un graphe
 biparti.
+\end{remarque}
+
+\subsection{Graphes orientés et pondérés}
+
+\begin{definition}[Graphe orienté]
+Un \textbf{graphe orienté} $G=(S,A)$ est un graphe dont les arêtes, appelées \textbf{arcs},
+ont un \emph{sens} : un arc $(s_i,s_j)$ va de $s_i$ \emph{vers} $s_j$ (on le dessine par une
+flèche). On distingue alors :
+\begin{itemize}
+\item le \textbf{degré sortant} $d^{+}(s)$ : nombre d'arcs partant de $s$ ;
+\item le \textbf{degré entrant} $d^{-}(s)$ : nombre d'arcs arrivant en $s$.
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Graphe pondéré]
+Un \textbf{graphe pondéré} est un graphe (orienté ou non) dont chaque arête (ou arc) porte
+un nombre positif appelé \textbf{poids} (longueur, durée, coût, distance\ldots). Le poids
+d'une chaîne est la \emph{somme} des poids des arêtes qui la composent.
+\end{definition}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth,
+  som/.style={circle,draw=onbo,fill=onbsoft,inner sep=2.5pt,font=\small\bfseries}]
+% graphe orienté
+\begin{scope}
+\node[som] (A) at (0,1.6) {A};
+\node[som] (B) at (2,1.6) {B};
+\node[som] (C) at (1,0) {C};
+\draw[->,onbink,line width=0.9pt] (A)--(B);
+\draw[->,onbink,line width=0.9pt] (B)--(C);
+\draw[->,onbink,line width=0.9pt] (C)--(A);
+\node[onbmuted,font=\small] at (1,-0.9) {orienté};
+\end{scope}
+% graphe pondéré
+\begin{scope}[xshift=6cm]
+\node[som] (P) at (0,1.6) {P};
+\node[som] (Q) at (2.2,1.6) {Q};
+\node[som] (R) at (1.1,0) {R};
+\draw[onbink,line width=0.9pt] (P)-- node[above,font=\scriptsize,onbblue]{$5$} (Q);
+\draw[onbink,line width=0.9pt] (P)-- node[left,font=\scriptsize,onbblue]{$3$} (R);
+\draw[onbink,line width=0.9pt] (R)-- node[right,font=\scriptsize,onbblue]{$4$} (Q);
+\node[onbmuted,font=\small] at (1.1,-0.9) {pondéré};
+\end{scope}
+\end{tikzpicture}
+\fig{Figure 23.3 — À gauche un graphe orienté (arcs fléchés) ; à droite un graphe pondéré (poids sur les arêtes).}
+\end{illus}
+
+\begin{remarque}
+Dans un graphe orienté, le lemme des poignées de main devient
+$\sum_s d^{+}(s)=\sum_s d^{-}(s)=\Card(A)$ : chaque arc compte une fois comme sortant et une
+fois comme entrant. Les graphes pondérés servent à modéliser les \textbf{réseaux} (routes avec
+distances, tâches avec durées) ; ils sont au cœur du problème du \emph{plus court chemin}.
 \end{remarque}
 
 % ═══════════════════════════════════════════════════════════════
@@ -147,15 +210,17 @@ biparti.
 On numérote les sommets $s_1,s_2,\dots,s_n$. La \textbf{matrice d'adjacence} de $G$ est la
 matrice carrée $M=(m_{ij})$ d'ordre $n$ définie par
 \[
-m_{ij}=\text{nombre d'arêtes reliant } s_i \text{ à } s_j.
+m_{ij}=\text{nombre d'arêtes (ou d'arcs) reliant } s_i \text{ à } s_j.
 \]
 Pour un graphe simple, $m_{ij}\in\{0,1\}$ et $m_{ii}=0$ (pas de boucle).
 \end{definition}
 
 \begin{propriete}[Lecture de la matrice]
-Pour un graphe non orienté, la matrice d'adjacence est \textbf{symétrique} ($m_{ij}=m_{ji}$).
-La somme des coefficients de la ligne $i$ (ou de la colonne $i$) est égale au \textbf{degré}
-du sommet $s_i$.
+Pour un graphe \textbf{non orienté}, la matrice d'adjacence est \textbf{symétrique}
+($m_{ij}=m_{ji}$) ; la somme des coefficients de la ligne $i$ (ou de la colonne $i$) est
+égale au \textbf{degré} du sommet $s_i$. Pour un graphe \textbf{orienté}, $M$ n'est en
+général pas symétrique : la somme de la ligne $i$ donne le degré \emph{sortant} $d^{+}(s_i)$,
+celle de la colonne $i$ le degré \emph{entrant} $d^{-}(s_i)$.
 \end{propriete}
 
 \begin{illus}
@@ -182,11 +247,11 @@ M=\begin{array}{c@{\,}c}
 \end{array}\right)
 \end{array}$};
 \end{tikzpicture}
-\fig{Figure 23.3 — Un graphe et sa matrice d'adjacence (ordre des sommets $A,B,C,D$).}
+\fig{Figure 23.4 — Un graphe et sa matrice d'adjacence (ordre des sommets $A,B,C,D$).}
 \end{illus}
 
 \begin{exemple}
-Sur la figure 23.3 : la ligne de $B$ est $(1,0,1,1)$, de somme $3=d(B)$. La matrice est bien
+Sur la figure 23.4 : la ligne de $B$ est $(1,0,1,1)$, de somme $3=d(B)$. La matrice est bien
 symétrique. La diagonale est nulle car le graphe est simple.
 \end{exemple}
 
@@ -201,11 +266,13 @@ le sommet $s_i$ au sommet $s_j$.
 \begin{aretenir}
 Les \textbf{puissances de $M$} comptent les chemins : $M^2$ donne le nombre de trajets en
 \emph{deux} arêtes, $M^3$ en \emph{trois}, etc. C'est l'outil-clé pour répondre à
-« de combien de façons peut-on aller de $X$ à $Y$ en exactement $k$ étapes ? ».
+« de combien de façons peut-on aller de $X$ à $Y$ en exactement $k$ étapes ? ». Sur la
+diagonale, $(M^2)_{ii}=d(s_i)$ : le nombre de chaînes de longueur $2$ d'un sommet à lui-même
+est son nombre de voisins.
 \end{aretenir}
 
 \begin{exemple}
-Avec la matrice $M$ de la figure 23.3, on calcule
+Avec la matrice $M$ de la figure 23.4, on calcule
 \[
 M^2=\begin{pmatrix}2&1&1&1\\1&3&1&0\\1&1&2&1\\1&0&1&1\end{pmatrix}.
 \]
@@ -221,12 +288,14 @@ donc trois allers-retours de longueur $2$.
 Une \textbf{chaîne} est une suite de sommets reliés de proche en proche par des arêtes ;
 sa \textbf{longueur} est le nombre d'arêtes parcourues. Une chaîne est \textbf{simple} si
 elle n'emprunte pas deux fois la même arête. Un \textbf{cycle} est une chaîne simple
-\emph{fermée} (même sommet de départ et d'arrivée) de longueur au moins $3$.
+\emph{fermée} (même sommet de départ et d'arrivée) de longueur au moins $3$. Dans un graphe
+orienté, on parle de \textbf{chemin} et de \textbf{circuit}.
 \end{definition}
 
 \begin{definition}[Graphe connexe]
 Un graphe est \textbf{connexe} si, pour tout couple de sommets, il existe une chaîne les
-reliant : « on peut aller de n'importe quel sommet à n'importe quel autre ».
+reliant : « on peut aller de n'importe quel sommet à n'importe quel autre ». Sinon, les
+sommets se répartissent en \textbf{composantes connexes} (les « morceaux » du graphe).
 \end{definition}
 
 \begin{propriete}[Connexité par la matrice]
@@ -237,6 +306,13 @@ B=I_n+M+M^2+\dots+M^{n-1}
 ne comporte \textbf{aucun coefficient nul}. ($I_n$ tient compte du « trajet vide » d'un
 sommet à lui-même.)
 \end{propriete}
+
+\begin{remarque}
+Un coefficient $b_{ij}$ de $B$ compte le nombre total de chaînes de longueur $\le n-1$ de
+$s_i$ à $s_j$. Si $s_i$ et $s_j$ sont reliés, ils le sont par une chaîne d'au plus $n-1$
+arêtes (sans repasser par un sommet) : $b_{ij}\ne0$. C'est pourquoi tester la connexité
+revient à vérifier que $B$ n'a aucun zéro.
+\end{remarque}
 
 \subsection{Chaînes et cycles eulériens}
 
@@ -257,11 +333,95 @@ deux sommets et finit à l'autre.
 \end{itemize}
 \end{theoreme}
 
+\begin{illus}
+\begin{tikzpicture}[>=Stealth,
+  som/.style={circle,draw=onbo,fill=onbsoft,inner sep=2.5pt,font=\small\bfseries}]
+% les ponts de Königsberg, schématisés (4 sommets, multi-arêtes)
+\node[som] (A) at (0,1) {A};
+\node[som] (B) at (3,1) {B};
+\node[som] (C) at (1.5,2.4) {C};
+\node[som] (D) at (1.5,-0.4) {D};
+\draw[onbink,line width=0.8pt] (A) to[bend left=25] (C);
+\draw[onbink,line width=0.8pt] (A) to[bend right=25] (C);
+\draw[onbink,line width=0.8pt] (B) to[bend left=25] (C);
+\draw[onbink,line width=0.8pt] (B) to[bend right=25] (C);
+\draw[onbink,line width=0.8pt] (A) -- (D);
+\draw[onbink,line width=0.8pt] (B) -- (D);
+\draw[onbink,line width=0.8pt] (C) -- (D);
+\node[align=left,text width=4.6cm,anchor=west] at (4.2,1)
+{\small Königsberg : $d(C)=5$, $d(A)=d(B)=d(D)=3$. Quatre sommets de degré \emph{impair}
+$\Rightarrow$ aucune chaîne eulérienne : la promenade est \textbf{impossible}.};
+\end{tikzpicture}
+\fig{Figure 23.5 — Les sept ponts de Königsberg modélisés par un (multi)graphe.}
+\end{illus}
+
 \begin{exemple}
-Le problème historique des \emph{ponts de Königsberg} revient à chercher une chaîne
-eulérienne dans un graphe ayant quatre sommets tous de degré impair : c'est donc
+Le problème historique des \emph{ponts de Königsberg} (figure 23.5) revient à chercher une
+chaîne eulérienne dans un graphe ayant quatre sommets tous de degré impair : c'est donc
 \textbf{impossible}. Un facteur peut parcourir toutes les rues d'un quartier sans repasser
 deux fois par la même seulement si au plus deux carrefours sont de degré impair.
+\end{exemple}
+
+\subsection{Plus court chemin : algorithme de Dijkstra}
+
+\begin{definition}[Plus court chemin]
+Dans un graphe \textbf{pondéré} à poids positifs, le \textbf{plus court chemin} entre deux
+sommets est une chaîne reliant ces sommets dont le poids total (somme des poids des arêtes)
+est \emph{minimal}.
+\end{definition}
+
+\begin{theoreme}[Algorithme de Dijkstra]
+Pour trouver le plus court chemin d'un sommet de départ $D$ vers tous les autres dans un
+graphe à poids positifs :
+\begin{enumerate}[label=\arabic*)]
+\item Affecter au départ $D$ la distance $0$ et à tous les autres sommets la distance $+\infty$
+(« provisoire »).
+\item Choisir parmi les sommets \emph{non encore figés} celui de plus petite distance provisoire ;
+le \textbf{figer} (sa distance est définitive).
+\item \textbf{Mettre à jour} chaque voisin $V$ non figé : si \,(distance du sommet figé)\,$+$\,(poids
+de l'arête)\, est inférieure à la distance provisoire de $V$, la remplacer, et noter le
+\emph{prédécesseur} de $V$.
+\item Répéter tant qu'il reste des sommets non figés.
+\end{enumerate}
+La distance finale d'un sommet est le poids du plus court chemin depuis $D$ ; on le reconstitue
+en remontant les prédécesseurs.
+\end{theoreme}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth,
+  som/.style={circle,draw=onbo,fill=onbsoft,inner sep=2.5pt,font=\small\bfseries}]
+\node[som] (A) at (0,1.5) {A};
+\node[som] (B) at (2.2,2.6) {B};
+\node[som] (C) at (2.2,0.4) {C};
+\node[som] (D) at (4.4,1.5) {D};
+\node[som] (E) at (6.3,1.5) {E};
+\draw[onbink,line width=0.8pt] (A)-- node[above left,font=\scriptsize,onbblue]{$4$} (B);
+\draw[onbink,line width=0.8pt] (A)-- node[below left,font=\scriptsize,onbblue]{$2$} (C);
+\draw[onbink,line width=0.8pt] (B)-- node[left,font=\scriptsize,onbblue]{$1$} (C);
+\draw[onbink,line width=0.8pt] (B)-- node[above,font=\scriptsize,onbblue]{$5$} (D);
+\draw[onbink,line width=0.8pt] (C)-- node[below,font=\scriptsize,onbblue]{$8$} (D);
+\draw[onbink,line width=0.8pt] (D)-- node[above,font=\scriptsize,onbblue]{$3$} (E);
+\node[onbmuted,font=\scriptsize] at (3.1,-0.6)
+{Plus court chemin $A\to E$ : $A-C-B-D-E$ de poids $2+1+5+3=11$.};
+\end{tikzpicture}
+\fig{Figure 23.6 — Recherche d'un plus court chemin par l'algorithme de Dijkstra.}
+\end{illus}
+
+\begin{exemple}
+Sur la figure 23.6, cherchons le plus court chemin de $A$ à $E$. On organise le calcul en
+tableau (distance provisoire la plus faible \underline{soulignée} = sommet figé) :
+\[
+\begin{array}{c|ccccc|l}
+\text{étape} & A & B & C & D & E & \text{figé}\\\hline
+0 & \underline{0} & \infty & \infty & \infty & \infty & A\\
+1 & & 4 & \underline{2}_{(A)} & \infty & \infty & C\\
+2 & & \underline{3}_{(C)} & & 10 & \infty & B\\
+3 & & & & \underline{8}_{(B)} & \infty & D\\
+4 & & & & & \underline{11}_{(D)} & E
+\end{array}
+\]
+On lit en remontant les prédécesseurs : $E\leftarrow D\leftarrow B\leftarrow C\leftarrow A$,
+soit le chemin $A-C-B-D-E$ de longueur totale $\mathbf{11}$.
 \end{exemple}
 
 \subsection{Coloration d'un graphe}
@@ -274,15 +434,53 @@ chromatique} $\chi(G)$ est le plus petit nombre de couleurs permettant une telle
 
 \begin{propriete}[Encadrement du nombre chromatique]
 Si $\Delta$ est le degré maximal des sommets, alors $\chi(G)\le \Delta+1$. De plus, si le
-graphe contient un sous-graphe complet $K_p$, alors $\chi(G)\ge p$. En particulier
-$\chi(K_n)=n$ et $\chi(G)=2$ pour tout graphe biparti (non vide d'arêtes).
+graphe contient un sous-graphe complet $K_p$ (une « clique » de $p$ sommets tous reliés),
+alors $\chi(G)\ge p$. En particulier $\chi(K_n)=n$ et $\chi(G)=2$ pour tout graphe biparti
+(possédant au moins une arête).
 \end{propriete}
 
 \begin{remarque}
 La coloration modélise les problèmes de \textbf{compatibilité} : couleurs = créneaux
 horaires, fréquences radio, ou groupes ; une arête = « ces deux objets ne peuvent pas
 partager le même créneau ». Le nombre chromatique donne alors le nombre minimal de créneaux.
+L'\textbf{algorithme de Welsh-Powell} (colorer les sommets par degré décroissant, avec la
+plus petite couleur libre) fournit une coloration valable, souvent optimale.
 \end{remarque}
+
+\begin{aretenir}
+Pour le nombre chromatique : on \textbf{minore} $\chi$ par la taille de la plus grosse clique
+(un triangle force $\chi\ge3$), et on \textbf{majore} $\chi$ en exhibant une coloration
+explicite. Quand la minoration et la majoration coïncident, on a la valeur exacte de $\chi$.
+\end{aretenir}
+
+% ═══════════════════════════════════════════════════════════════
+\section{L'essentiel à retenir}
+
+\begin{synthese}
+\textbf{Vocabulaire.} Graphe $G=(S,A)$ : ordre $=\Card(S)$, $\Card(A)$ arêtes. Degré
+$d(s)=$ nombre d'arêtes incidentes (boucle $=2$). Orienté : degrés $d^{+}$ (sortant),
+$d^{-}$ (entrant). Pondéré : poids sur les arêtes.\\[4pt]
+\textbf{Poignées de main.} $\displaystyle\sum_s d(s)=2\,\Card(A)$ : la somme des degrés est
+paire ; le nombre de sommets de degré impair est pair.\\[4pt]
+\textbf{Graphes types.} $K_n$ complet : $\tfrac{n(n-1)}2$ arêtes, $(n-1)$-régulier,
+$\chi=n$. Biparti : pas de cycle impair, $\chi=2$.\\[4pt]
+\textbf{Matrice $M$.} $m_{ij}=$ nb d'arêtes $s_i\!-\!s_j$ ; symétrique si non orienté ; somme
+d'une ligne $=$ degré. $(M^k)_{ij}=$ nombre de chaînes de longueur $k$ de $s_i$ à $s_j$ ;
+$(M^2)_{ii}=d(s_i)$.\\[4pt]
+\textbf{Connexité.} On peut relier tout couple de sommets. Test : $B=I_n+M+\dots+M^{n-1}$ sans
+aucun zéro $\iff$ connexe.\\[4pt]
+\textbf{Euler (graphe connexe).} \emph{cycle} eulérien $\iff$ tous les degrés pairs ;
+\emph{chaîne} eulérienne $\iff$ exactement deux degrés impairs (départ/arrivée à ces deux
+sommets) ; sinon, aucun parcours eulérien.\\[4pt]
+\textbf{Dijkstra (poids $\ge0$).} départ à $0$, autres à $+\infty$ ; figer le plus petit ;
+mettre à jour les voisins (dist.\ figée $+$ poids), noter les prédécesseurs ; répéter ;
+remonter pour le chemin.\\[4pt]
+\textbf{Coloration.} $\chi(G)=$ nb minimal de couleurs (sommets adjacents $\ne$). Clique $K_p$
+$\Rightarrow\chi\ge p$ ; $\chi\le\Delta+1$. Applications : emplois du temps, fréquences.\\[4pt]
+\textbf{Pièges.} oublier qu'une boucle vaut $2$ au degré ; lire un degré sur la colonne au lieu
+de la ligne ; confondre cycle (degrés pairs) et chaîne (deux impairs) eulériens ; appliquer
+Dijkstra avec des poids négatifs (interdit).
+\end{synthese}
 
 % ═══════════════════════════════════════════════════════════════
 \section{Méthodes \& savoir-faire}
@@ -298,13 +496,31 @@ Degrés : $d(\text{Yaoundé})=3$, $d(\text{Bafoussam})=3$, $d(\text{Douala})=2$,
 $d(\text{Garoua})=1$, $d(\text{Bertoua})=1$. Vérification : $3+3+2+1+1=10=2\times 5$.
 \end{exemple}
 
+\methode{Utiliser le lemme des poignées de main}
+La somme des degrés vaut $2\Card(A)$ : elle est paire, et on en déduit le nombre d'arêtes ou
+l'impossibilité d'une configuration.
+\begin{exemple}
+Existe-t-il un graphe à $5$ sommets de degrés $3,3,3,3,3$ ? La somme $5\times3=15$ est
+\emph{impaire} : impossible (elle devrait être $2\Card(A)$, donc paire). En revanche, des
+degrés $3,3,2,2,2$ donnent une somme $12=2\times6$ : $6$ arêtes — c'est envisageable.
+\end{exemple}
+
 \methode{Écrire ou lire une matrice d'adjacence}
 Fixer un ordre des sommets, puis remplir $m_{ij}=1$ si $s_i$ et $s_j$ sont reliés, $0$ sinon.
-La matrice doit être symétrique ; la somme d'une ligne redonne le degré.
+La matrice doit être symétrique (non orienté) ; la somme d'une ligne redonne le degré.
 \begin{exemple}
 Pour le triangle $A,B,C$ tous reliés deux à deux ($K_3$) :
 $M=\begin{pmatrix}0&1&1\\1&0&1\\1&1&0\end{pmatrix}$. Chaque ligne somme à $2$ : chaque
 sommet est de degré $2$, ce qui est correct pour $K_3$.
+\end{exemple}
+
+\methode{Compter les chaînes par les puissances de la matrice}
+Calculer $M^k$ ; le coefficient $(i,j)$ donne le nombre de chaînes de longueur $k$ de $s_i$
+à $s_j$.
+\begin{exemple}
+Pour $K_3$ ci-dessus, $M^2=\begin{pmatrix}2&1&1\\1&2&1\\1&1&2\end{pmatrix}$. Le coefficient
+$(A,B)$ vaut $1$ : une seule chaîne de longueur $2$ de $A$ à $B$, à savoir $A-C-B$. Sur la
+diagonale, $2=d(A)$.
 \end{exemple}
 
 \methode{Étudier la connexité et chercher une chaîne}
@@ -317,14 +533,6 @@ $1,2,3$ mais ni $4$ ni $5$ : le graphe \emph{n'est pas} connexe ; il a deux comp
 $\{1,2,3\}$ et $\{4,5\}$.
 \end{exemple}
 
-\methode{Compter les chaînes par les puissances de la matrice}
-Calculer $M^k$ ; le coefficient $(i,j)$ donne le nombre de chaînes de longueur $k$ de $s_i$
-à $s_j$.
-\begin{exemple}
-Pour $K_3$ ci-dessus, $M^2=\begin{pmatrix}2&1&1\\1&2&1\\1&1&2\end{pmatrix}$. Le coefficient
-$(A,B)$ vaut $1$ : une seule chaîne de longueur $2$ de $A$ à $B$, à savoir $A-C-B$.
-\end{exemple}
-
 \methode{Appliquer le théorème d'Euler}
 Compter les sommets de degré impair sur un graphe connexe : $0\Rightarrow$ cycle eulérien ;
 exactement $2\Rightarrow$ chaîne eulérienne (entre ces deux sommets) ; sinon, aucun parcours
@@ -335,16 +543,35 @@ Degrés $(3,2,2,3)$ : exactement deux impairs $\Rightarrow$ chaîne eulérienne 
 commence et finit aux deux sommets de degré $3$.
 \end{exemple}
 
+\methode{Appliquer l'algorithme de Dijkstra}
+Dresser le tableau des distances : départ à $0$, autres à $+\infty$ ; à chaque étape, figer
+le plus petit, mettre à jour les voisins (distance figée $+$ poids), noter les prédécesseurs.
+\begin{exemple}
+Graphe : $A\!-\!B$ (poids $1$), $A\!-\!C$ (poids $4$), $B\!-\!C$ (poids $1$). De $A$ :
+on fige $A$ ($0$), puis $B$ ($1$). Par $B$, on atteint $C$ à $1+1=2<4$ : on fige $C$ à $2$,
+prédécesseur $B$. Plus court chemin $A\to C$ : $A-B-C$, longueur $2$ (et non $4$ en direct).
+\end{exemple}
+
 \methode{Colorer un graphe et trouver son nombre chromatique}
-Colorer les sommets un à un (en priorité ceux de plus haut degré) avec la plus petite
-couleur disponible ; minorer $\chi$ par la taille du plus grand sous-graphe complet.
+Colorer les sommets un à un (en priorité ceux de plus haut degré, méthode de Welsh-Powell)
+avec la plus petite couleur disponible ; minorer $\chi$ par la taille du plus grand
+sous-graphe complet.
 \begin{exemple}
 Un graphe contenant un triangle a $\chi\ge 3$. S'il est de plus colorable avec $3$ couleurs,
-alors $\chi=3$.
+alors $\chi=3$. Un graphe biparti (sans triangle, deux groupes) a $\chi=2$.
+\end{exemple}
+
+\methode{Résoudre un problème d'emploi du temps par coloration}
+Modéliser : sommets $=$ épreuves/réunions, arête $=$ incompatibilité (ne peuvent pas être
+simultanées). Le nombre chromatique $=$ nombre minimal de créneaux.
+\begin{exemple}
+Trois clubs se réunissent ; deux clubs partageant un membre ne peuvent se réunir le même
+jour. Si les incompatibilités forment un triangle, il faut $\chi=3$ jours ; si elles forment
+une simple chaîne, $\chi=2$ jours suffisent.
 \end{exemple}
 
 % ═══════════════════════════════════════════════════════════════
-\section{Exercices}
+\section{Exercices d'application}
 
 \rubrique{Sommets, arêtes et degrés}
 \exo{}\diff{1} Un graphe a $6$ sommets de degrés respectifs $3,3,2,2,1,1$. Combien
@@ -356,12 +583,19 @@ sont de degré $3$. Combien a-t-il d'arêtes ?
 \exo{}\diff{2} Existe-t-il un graphe simple à $5$ sommets dont les degrés sont
 $4,4,4,4,1$ ? Justifier.
 
+\exo{}\diff{2} Dans une classe de Terminale C, on relie deux élèves dès qu'ils sont amis.
+Peut-il exister exactement $7$ élèves ayant chacun un nombre \emph{impair} d'amis ? Justifier.
+
 \rubrique{Graphes particuliers}
 \exo{}\diff{1} Combien d'arêtes possède le graphe complet $K_7$ ? Quel est le degré de
 chacun de ses sommets ?
 
 \exo{}\diff{2} Dans un tournoi, $8$ équipes se rencontrent toutes exactement une fois.
 Combien de matches sont joués au total ?
+
+\exo{}\diff{2} Un graphe orienté a pour arcs $A\!\to\!B$, $B\!\to\!C$, $A\!\to\!C$,
+$C\!\to\!A$. Donner les degrés entrant et sortant de chaque sommet et vérifier que
+$\sum d^{+}=\sum d^{-}$.
 
 \rubrique{Matrice d'adjacence}
 \exo{}\diff{2} On donne la matrice $M$ d'un graphe de sommets $A,B,C,D$ :
@@ -377,16 +611,40 @@ M^2=\begin{pmatrix}3&1&1&2\\1&2&2&1\\1&2&2&1\\2&1&1&3\end{pmatrix}.
 \]
 Donner le degré de chaque sommet et le nombre de chaînes de longueur $2$ entre $A$ et $D$.
 
-\rubrique{Connexité, parcours eulériens, coloration}
-\exo{}\diff{2} Un graphe connexe a pour degrés $5,5,4,2,2$. Admet-il un cycle eulérien ?
-une chaîne eulérienne ?
+\exo{}\diff{2} Pour le graphe de la figure 23.1 ($A\!-\!B$, $A\!-\!C$, $B\!-\!C$, $C\!-\!D$),
+écrire la matrice d'adjacence $M$ dans l'ordre $A,B,C,D$ et vérifier qu'elle est symétrique.
 
+\rubrique{Connexité et parcours eulériens}
+\exo{}\diff{2} Un graphe connexe a pour degrés $5,5,4,2,2$. Admet-il un cycle eulérien ?
+une chaîne eulérienne ? Préciser dans ce cas les sommets de départ et d'arrivée.
+
+\exo{}\diff{2} Un dessin se compose d'une enveloppe : un rectangle $ABCD$ surmonté d'un
+triangle (sommet $E$ au-dessus de $AB$), avec les diagonales $AC$ et $BD$. Peut-on le tracer
+« sans lever le crayon ni repasser sur un trait » ? Justifier par le théorème d'Euler.
+
+\exo{}\diff{3} Un facteur doit parcourir toutes les rues d'un quartier modélisé par un graphe
+connexe dont les degrés sont $4,4,3,3,2,2$. Peut-il faire sa tournée en passant une seule fois
+par chaque rue ? Si oui, doit-il revenir à son point de départ ?
+
+\rubrique{Plus court chemin (Dijkstra)}
+\exo{}\diff{2} Dans un graphe pondéré, on a les arêtes (et poids) : $A\!-\!B\,(2)$,
+$A\!-\!C\,(5)$, $B\!-\!C\,(1)$, $B\!-\!D\,(7)$, $C\!-\!D\,(3)$. Déterminer, par l'algorithme
+de Dijkstra, le plus court chemin de $A$ à $D$ et sa longueur.
+
+\exo{}\diff{3} Quatre villes $P,Q,R,S$ sont reliées par des routes (en km) :
+$P\!-\!Q\,(4)$, $P\!-\!R\,(2)$, $Q\!-\!R\,(1)$, $Q\!-\!S\,(5)$, $R\!-\!S\,(8)$. Déterminer
+l'itinéraire le plus court de $P$ à $S$ et sa distance.
+
+\rubrique{Coloration}
 \exo{}\diff{2} On veut programmer $5$ examens $E_1,\dots,E_5$. Deux examens ne peuvent avoir
 lieu en même temps si un même élève les passe tous deux. Les incompatibilités sont :
 $E_1$–$E_2$, $E_1$–$E_3$, $E_2$–$E_3$, $E_3$–$E_4$, $E_4$–$E_5$. Modéliser par un graphe et
 déterminer le nombre minimal de créneaux horaires.
 
-\rubrique{Problème type Baccalauréat}
+\exo{}\diff{2} Déterminer le nombre chromatique du graphe complet $K_5$ et celui d'un cycle
+de longueur $6$ (hexagone). Justifier.
+
+\rubrique{Problème de synthèse}
 \exo{}\diff{3} \emph{Réseau routier camerounais.} On considère cinq villes :
 Yaoundé (Y), Douala (D), Bafoussam (B), Bertoua (R) et Ngaoundéré (N). Les liaisons
 routières directes sont : Y–D, Y–B, Y–R, D–B, B–N, R–N.
@@ -397,6 +655,167 @@ routières directes sont : Y–D, Y–B, Y–R, D–B, B–N, R–N.
 Si oui, entre quelles villes doit-il commencer et finir ?
 \item On admet que le coefficient $(Y,N)$ de $M^2$ vaut $2$. Interpréter ce résultat
 en termes d'itinéraire.
+\end{enumerate}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Exercices d'entraînement}
+
+\rubrique{Vocabulaire, degrés, poignées de main}
+\exo{}\diff{1} Un graphe a $5$ sommets de degrés $4,3,3,2,2$. Combien a-t-il d'arêtes ?
+
+\exo{}\diff{1} Dessiner un graphe d'ordre $4$ ayant exactement $3$ arêtes et un sommet isolé.
+
+\exo{}\diff{2} Existe-t-il un graphe simple d'ordre $6$ dont les degrés sont $5,5,5,5,5,5$ ?
+Si oui, lequel ?
+
+\exo{}\diff{2} Montrer que dans tout graphe simple d'ordre $n\ge2$, il existe au moins deux
+sommets de même degré.
+
+\exo{}\diff{2} Un graphe simple d'ordre $7$ a tous ses sommets de degré $3$. Est-ce possible ?
+Justifier.
+
+\exo{}\diff{1} Combien d'arêtes a un graphe $4$-régulier d'ordre $10$ ?
+
+\rubrique{Graphes complets, bipartis, orientés}
+\exo{}\diff{1} Combien d'arêtes possède $K_{10}$ ?
+
+\exo{}\diff{2} Dans une réunion, $12$ personnes se serrent toutes la main une fois. Combien
+de poignées de main au total ?
+
+\exo{}\diff{2} Le graphe biparti complet $K_{3,4}$ : combien de sommets, combien d'arêtes ?
+Quel est le degré de chaque sommet de chaque groupe ?
+
+\exo{}\diff{2} Dessiner un graphe orienté d'ordre $4$ tel que $d^{+}(A)=2$ et $d^{-}(A)=1$.
+
+\exo{}\diff{3} Montrer qu'un graphe biparti ne contient aucun triangle.
+
+\rubrique{Matrices d'adjacence et puissances}
+\exo{}\diff{1} Écrire la matrice d'adjacence du cycle $A\!-\!B\!-\!C\!-\!D\!-\!A$.
+
+\exo{}\diff{2} On donne $M=\begin{pmatrix}0&1&1&0\\1&0&1&1\\1&1&0&1\\0&1&1&0\end{pmatrix}$
+(sommets $A,B,C,D$). Dessiner le graphe et donner les degrés.
+
+\exo{}\diff{2} Pour $K_3$ de matrice $M=\begin{pmatrix}0&1&1\\1&0&1\\1&1&0\end{pmatrix}$,
+calculer $M^2$ et interpréter le coefficient $(A,B)$.
+
+\exo{}\diff{3} Soit $M$ la matrice du graphe : $A\!-\!B$, $B\!-\!C$, $C\!-\!D$, $D\!-\!A$
+(carré). Calculer $M^2$ et indiquer le nombre de chaînes de longueur $2$ de $A$ à $C$.
+
+\exo{}\diff{3} Un graphe d'ordre $4$ a pour $M^2$ une diagonale $(2,3,3,2)$. Donner le degré
+de chaque sommet et le nombre total d'arêtes.
+
+\rubrique{Connexité et composantes}
+\exo{}\diff{1} Le graphe de sommets $\{1,2,3,4,5,6\}$ et arêtes $12,23,45,56$ est-il connexe ?
+Donner ses composantes connexes.
+
+\exo{}\diff{2} Un graphe d'ordre $5$ a $3$ arêtes. Peut-il être connexe ? (On rappelle qu'un
+graphe connexe d'ordre $n$ a au moins $n-1$ arêtes.)
+
+\exo{}\diff{2} Combien de composantes connexes a un graphe d'ordre $8$ formé de deux triangles
+disjoints et de deux sommets isolés ?
+
+\exo{}\diff{3} Montrer qu'un graphe d'ordre $n$ ayant strictement plus de $\dfrac{(n-1)(n-2)}2$
+arêtes est nécessairement connexe.
+
+\rubrique{Parcours eulériens}
+\exo{}\diff{1} Un graphe connexe a tous ses sommets de degré $4$. Admet-il un cycle eulérien ?
+
+\exo{}\diff{2} Les degrés d'un graphe connexe sont $3,3,3,3$. Peut-on le tracer sans lever le
+crayon ? Justifier.
+
+\exo{}\diff{2} Un quartier a $6$ carrefours de degrés $4,4,2,2,3,3$. Le balayeur peut-il
+parcourir chaque rue une seule fois ? Reviendra-t-il à son point de départ ?
+
+\exo{}\diff{3} Pour quelles valeurs de $n$ le graphe complet $K_n$ admet-il un cycle eulérien ?
+(Indication : étudier la parité de $n-1$.)
+
+\rubrique{Plus court chemin}
+\exo{}\diff{2} Arêtes pondérées : $A\!-\!B\,(3)$, $A\!-\!C\,(1)$, $C\!-\!B\,(1)$,
+$B\!-\!D\,(2)$, $C\!-\!D\,(6)$. Plus court chemin de $A$ à $D$ ?
+
+\exo{}\diff{3} Cinq villes $A,B,C,D,E$ et distances (km) : $A\!-\!B\,(6)$, $A\!-\!C\,(2)$,
+$C\!-\!B\,(3)$, $B\!-\!E\,(1)$, $C\!-\!D\,(5)$, $D\!-\!E\,(2)$. Déterminer le plus court trajet
+de $A$ à $E$.
+
+\exo{}\diff{2} Dans le graphe pondéré $P\!-\!Q\,(4)$, $Q\!-\!R\,(2)$, $P\!-\!R\,(7)$,
+appliquer Dijkstra de $P$ : quelles sont les distances minimales à $Q$ et à $R$ ?
+
+\rubrique{Coloration}
+\exo{}\diff{1} Quel est le nombre chromatique d'un cycle de longueur $5$ ?
+
+\exo{}\diff{2} Six matières doivent être affectées à des salles ; deux matières partageant un
+professeur ne peuvent pas avoir lieu en même temps. Les conflits sont $M_1M_2$, $M_2M_3$,
+$M_3M_1$, $M_4M_5$, $M_5M_6$. Combien de créneaux au minimum ?
+
+\exo{}\diff{2} Déterminer $\chi(G)$ pour un graphe formé d'un carré ($A\!-\!B\!-\!C\!-\!D\!-\!A$)
+auquel on ajoute la diagonale $A\!-\!C$.
+
+\exo{}\diff{3} On dispose des fréquences radio à attribuer à $7$ émetteurs ; deux émetteurs
+trop proches (donc reliés par une arête) doivent recevoir des fréquences différentes. Le degré
+maximal du graphe est $3$. Combien de fréquences suffisent à coup sûr ? Justifier par
+l'encadrement $\chi\le\Delta+1$.
+
+\rubrique{Problèmes de synthèse}
+\exo{}\diff{3} On modélise un réseau de $5$ ordinateurs par un graphe d'arêtes $12,13,23,34,45$.
+Donner sa matrice d'adjacence, ses degrés, dire s'il est connexe, et s'il admet une chaîne
+eulérienne.
+
+\exo{}\diff{3} Sept élèves doivent être répartis en équipes ; certaines paires refusent de
+travailler ensemble (arêtes du graphe de conflit). Si ce graphe contient un $K_4$, combien
+d'équipes au minimum faut-il prévoir ? Justifier.
+
+\exo{}\diff{2} Un voyageur veut visiter Yaoundé, Douala, Kribi et Limbé reliées par
+$Y\!-\!D\,(3\,\text{h})$, $D\!-\!K\,(2\,\text{h})$, $D\!-\!L\,(1\,\text{h})$,
+$K\!-\!L\,(2\,\text{h})$. Quel est le trajet le plus court de $Y$ à $L$ ?
+
+% ═══════════════════════════════════════════════════════════════
+\section{Sujets type Baccalauréat}
+
+\sujetbac[réseau routier, matrice, parcours eulérien]
+On considère cinq villes : Yaoundé (Y), Douala (D), Bafoussam (B), Bertoua (R) et
+Ngaoundéré (N). Les liaisons routières directes sont : Y–D, Y–B, Y–R, D–B, B–N, R–N.
+\begin{enumerate}[label=\arabic*)]
+\item Représenter cette situation par un graphe et donner le degré de chaque ville.
+\item Écrire la matrice d'adjacence $M$ (ordre $Y,D,B,R,N$). Le graphe est-il connexe ?
+\item Un transporteur souhaite emprunter chaque route exactement une fois. Est-ce possible ?
+Si oui, entre quelles villes doit-il commencer et finir ?
+\item On admet que le coefficient $(Y,N)$ de $M^2$ vaut $2$. Interpréter ce résultat
+en termes d'itinéraire.
+\end{enumerate}
+
+\sujetbac[plus court chemin par l'algorithme de Dijkstra]
+Un livreur basé à Yaoundé (Y) doit atteindre la ville d'Ebolowa (E). Le réseau routier
+(distances en km) est : $Y\!-\!A\,(60)$, $Y\!-\!B\,(30)$, $A\!-\!B\,(20)$, $A\!-\!E\,(40)$,
+$B\!-\!C\,(50)$, $C\!-\!E\,(30)$, où $A,B,C$ sont des villes intermédiaires.
+\begin{enumerate}[label=\arabic*)]
+\item Représenter le réseau par un graphe pondéré.
+\item Appliquer l'algorithme de Dijkstra à partir de $Y$ : présenter le tableau des distances
+provisoires et des sommets figés.
+\item En déduire le plus court chemin de $Y$ à $E$ et sa longueur totale.
+\item Le livreur emprunte finalement le trajet $Y\!-\!A\!-\!E$. De combien de km ce trajet
+est-il plus long que le plus court chemin ?
+\end{enumerate}
+
+\sujetbac[coloration et organisation d'un emploi du temps]
+Un lycée doit organiser $6$ activités $a_1,\dots,a_6$. Certaines activités partagent des
+élèves et ne peuvent donc avoir lieu simultanément ; les incompatibilités sont :
+$a_1a_2$, $a_1a_3$, $a_2a_3$, $a_3a_4$, $a_4a_5$, $a_4a_6$, $a_5a_6$.
+\begin{enumerate}[label=\arabic*)]
+\item Construire le graphe des incompatibilités et donner le degré de chaque sommet.
+\item Montrer que le graphe contient deux triangles. Qu'en déduit-on pour $\chi$ ?
+\item Proposer une coloration en utilisant le moins de couleurs possible.
+\item En déduire le nombre minimal de créneaux horaires et un emploi du temps possible.
+\end{enumerate}
+
+\sujetbac[matrice d'adjacence et dénombrement de chemins]
+Un réseau social relie cinq utilisateurs $A,B,C,D,E$. Les amitiés sont : $A\!-\!B$, $A\!-\!C$,
+$B\!-\!C$, $B\!-\!D$, $C\!-\!D$, $D\!-\!E$.
+\begin{enumerate}[label=\arabic*)]
+\item Écrire la matrice d'adjacence $M$ dans l'ordre $A,B,C,D,E$ et donner les degrés.
+\item Le réseau est-il connexe ? Justifier.
+\item On admet que $M^2=\begin{pmatrix}2&1&1&2&0\\1&3&2&1&1\\1&2&3&1&1\\2&1&1&3&0\\0&1&1&0&1\end{pmatrix}$.
+Combien existe-t-il de chaînes de longueur $2$ reliant $A$ à $D$ ? Les expliciter.
+\item Existe-t-il une chaîne eulérienne dans ce réseau ? Justifier par le théorème d'Euler.
 \end{enumerate}
 
 % ═══════════════════════════════════════════════════════════════
@@ -418,36 +837,105 @@ voisin des quatre autres, son degré vaut $4$ et non $1$ : la liste $4,4,4,4,1$ 
 \textbf{impossible}.
 
 \corrige{de l'exercice 4}
-$K_7$ a $\dfrac{7\times 6}{2}=21$ arêtes et chaque sommet est de degré $7-1=6$.
+Le nombre de sommets de degré impair est toujours \textbf{pair}. Avoir exactement $7$ élèves
+(nombre impair) ayant un degré impair est donc \textbf{impossible}.
 
 \corrige{de l'exercice 5}
+$K_7$ a $\dfrac{7\times 6}{2}=21$ arêtes et chaque sommet est de degré $7-1=6$.
+
+\corrige{de l'exercice 6}
 Chaque paire d'équipes joue une fois : c'est le nombre d'arêtes de $K_8$, soit
 $\dfrac{8\times 7}{2}=28$ matches.
 
-\corrige{de l'exercice 6}
+\corrige{de l'exercice 7}
+Arcs : $A\!\to\!B$, $B\!\to\!C$, $A\!\to\!C$, $C\!\to\!A$. Degrés sortants :
+$d^{+}(A)=2$ (vers $B,C$), $d^{+}(B)=1$ ($C$), $d^{+}(C)=1$ ($A$). Degrés entrants :
+$d^{-}(A)=1$ ($C$), $d^{-}(B)=1$ ($A$), $d^{-}(C)=2$ ($A,B$). On a $\sum d^{+}=2+1+1=4$ et
+$\sum d^{-}=1+1+2=4=\Card(A)$ : l'égalité est bien vérifiée.
+
+\corrige{de l'exercice 8}
 Le graphe : $A$ relié à $B,C,D$ ; $B$ relié à $A,D$ ; $C$ relié à $A,D$ ; $D$ relié à
 $A,B,C$. Degrés : $d(A)=3$, $d(B)=2$, $d(C)=2$, $d(D)=3$ (sommes des lignes). En partant de
 $A$ on atteint $B$, $C$, $D$ : tous les sommets, donc le graphe est \textbf{connexe}.
 
-\corrige{de l'exercice 7}
+\corrige{de l'exercice 9}
 Le degré d'un sommet est le coefficient diagonal de $M^2$ (nombre de chaînes de longueur $2$
 d'un sommet à lui-même = nombre de ses voisins). Ici la diagonale est $3,2,2,3$, donc
 $d(A)=3$, $d(B)=2$, $d(C)=2$, $d(D)=3$. Le coefficient $(A,D)$ de $M^2$ vaut $2$ : il y a
 \textbf{deux} chaînes de longueur $2$ reliant $A$ à $D$.
 
-\corrige{de l'exercice 8}
+\corrige{de l'exercice 10}
+Arêtes $A\!-\!B$, $A\!-\!C$, $B\!-\!C$, $C\!-\!D$. Dans l'ordre $A,B,C,D$ :
+\[
+M=\begin{pmatrix}0&1&1&0\\1&0&1&0\\1&1&0&1\\0&0&1&0\end{pmatrix}.
+\]
+On a $m_{ij}=m_{ji}$ pour tout couple : $M$ est \textbf{symétrique}. (Sommes des lignes :
+$2,2,3,1$, c'est-à-dire $d(A),d(B),d(C),d(D)$, cohérent avec la figure 23.1.)
+
+\corrige{de l'exercice 11}
 Les sommets de degré impair sont les deux de degré $5$. Il y en a exactement deux : il
 n'existe donc \textbf{pas} de cycle eulérien (qui exigerait tous les degrés pairs), mais il
-existe une \textbf{chaîne eulérienne} reliant les deux sommets de degré $5$.
+existe une \textbf{chaîne eulérienne} reliant ces deux sommets de degré $5$ (départ à l'un,
+arrivée à l'autre).
 
-\corrige{de l'exercice 9}
+\corrige{de l'exercice 12}
+Sommets : $A,B,C,D$ (rectangle), $E$ (sommet du triangle au-dessus de $AB$). Arêtes :
+$AB,BC,CD,DA$ (rectangle), $AC,BD$ (diagonales), $AE,BE$ (triangle). Degrés :
+$d(A)=4$ ($B,D,C,E$), $d(B)=4$ ($A,C,D,E$), $d(C)=3$ ($B,D,A$), $d(D)=3$ ($C,A,B$),
+$d(E)=2$ ($A,B$). Deux sommets de degré impair ($C$ et $D$), le graphe est connexe : il
+existe une \textbf{chaîne eulérienne} commençant en $C$ et finissant en $D$ (ou l'inverse).
+Le dessin se trace donc « sans lever le crayon », mais sans revenir au point de départ.
+
+\corrige{de l'exercice 13}
+Degrés $4,4,3,3,2,2$ : exactement deux sommets de degré impair (les deux de degré $3$). Le
+graphe étant connexe, il admet une \textbf{chaîne eulérienne} : le facteur peut passer une
+seule fois par chaque rue. Comme ce n'est pas un \emph{cycle} (tous les degrés ne sont pas
+pairs), il \textbf{ne revient pas} à son point de départ : il commence et finit aux deux
+carrefours de degré $3$.
+
+\corrige{de l'exercice 14}
+Arêtes : $A\!-\!B\,(2)$, $A\!-\!C\,(5)$, $B\!-\!C\,(1)$, $B\!-\!D\,(7)$, $C\!-\!D\,(3)$.
+Dijkstra depuis $A$ :
+\[
+\begin{array}{c|cccc|l}
+\text{ét.} & A & B & C & D & \text{figé}\\\hline
+0 & \underline{0} & \infty & \infty & \infty & A\\
+1 & & \underline{2}_{(A)} & 5 & \infty & B\\
+2 & & & \underline{3}_{(B)} & 9 & C\\
+3 & & & & \underline{6}_{(C)} & D
+\end{array}
+\]
+($C$ : via $B$, $2+1=3<5$ ; $D$ : via $C$, $3+3=6<9$.) Plus court chemin
+$A\to D$ : $A-B-C-D$ de longueur $\mathbf{6}$.
+
+\corrige{de l'exercice 15}
+Arêtes : $P\!-\!Q\,(4)$, $P\!-\!R\,(2)$, $Q\!-\!R\,(1)$, $Q\!-\!S\,(5)$, $R\!-\!S\,(8)$.
+Dijkstra depuis $P$ :
+\[
+\begin{array}{c|cccc|l}
+\text{ét.} & P & Q & R & S & \text{figé}\\\hline
+0 & \underline{0} & \infty & \infty & \infty & P\\
+1 & & 4 & \underline{2}_{(P)} & \infty & R\\
+2 & & \underline{3}_{(R)} & & 10 & Q\\
+3 & & & & \underline{8}_{(Q)} & S
+\end{array}
+\]
+($Q$ : via $R$, $2+1=3<4$ ; $S$ : via $Q$, $3+5=8<10$ donné par $R$.) Itinéraire le plus
+court $P\to S$ : $P-R-Q-S$, distance $\mathbf{8}$ km.
+
+\corrige{de l'exercice 16}
 Graphe des incompatibilités : arêtes $E_1E_2$, $E_1E_3$, $E_2E_3$, $E_3E_4$, $E_4E_5$.
 Le triangle $E_1E_2E_3$ ($K_3$) impose au moins $3$ couleurs, donc $\chi\ge 3$. Coloration en
 $3$ couleurs : $E_1$ = couleur 1, $E_2$ = couleur 2, $E_3$ = couleur 3, $E_4$ = couleur 1
 (non adjacent à $E_1$), $E_5$ = couleur 2. Aucune arête ne joint deux sommets de même
 couleur, donc $\chi=3$ : il faut au minimum \textbf{3 créneaux horaires}.
 
-\corrige{du problème}
+\corrige{de l'exercice 17}
+$K_5$ : tous les sommets sont adjacents deux à deux, donc deux quelconques doivent recevoir
+des couleurs différentes : $\chi(K_5)=5$. Le cycle de longueur $6$ (pair) est biparti : on
+alterne deux couleurs autour de l'hexagone, donc $\chi=2$.
+
+\corrige{de l'exercice 18}
 \textbf{1)} Sommets $Y,D,B,R,N$ ; arêtes $YD,YB,YR,DB,BN,RN$. Degrés :
 $d(Y)=3$ (vers $D,B,R$), $d(D)=2$ ($Y,B$), $d(B)=3$ ($Y,D,N$), $d(R)=2$ ($Y,N$),
 $d(N)=2$ ($B,R$). Contrôle : $3+2+3+2+2=12=2\times 6$ arêtes.
@@ -478,3 +966,67 @@ reliant Yaoundé à Ngaoundéré. Il vaut $2$ : il y a \textbf{deux itinéraires
 qui correspondent aux deux voisins communs de $Y$ et $N$, à savoir $B$ et $R$. Ce sont
 $Y\!-\!B\!-\!N$ et $Y\!-\!R\!-\!N$. (Il n'existe en revanche aucune route directe
 $Y\!-\!N$.)
+
+\corrige{du sujet 1}
+\textbf{1)} Sommets $Y,D,B,R,N$ ; arêtes $YD,YB,YR,DB,BN,RN$. Degrés : $d(Y)=3$, $d(D)=2$,
+$d(B)=3$, $d(R)=2$, $d(N)=2$. Somme $12=2\times6$.\\
+\textbf{2)} Dans l'ordre $Y,D,B,R,N$, $M=\begin{pmatrix}0&1&1&1&0\\1&0&1&0&0\\1&1&0&0&1\\
+1&0&0&0&1\\0&0&1&1&0\end{pmatrix}$, symétrique. En partant de $Y$ on atteint tous les sommets :
+le graphe est \textbf{connexe}.\\
+\textbf{3)} Deux sommets de degré impair ($Y$ et $B$), graphe connexe : par le théorème
+d'Euler, il existe une \textbf{chaîne eulérienne} commençant en $Y$ et finissant en $B$
+(ou l'inverse) ; pas de cycle eulérien car tous les degrés ne sont pas pairs.\\
+\textbf{4)} $(Y,N)$ de $M^2$ vaut $2$ : il y a deux chaînes de longueur $2$ entre $Y$ et $N$,
+à savoir $Y\!-\!B\!-\!N$ et $Y\!-\!R\!-\!N$ (les deux voisins communs $B$ et $R$).
+
+\corrige{du sujet 2}
+\textbf{1)} Sommets $Y,A,B,C,E$ ; arêtes pondérées $YA\,(60)$, $YB\,(30)$, $AB\,(20)$,
+$AE\,(40)$, $BC\,(50)$, $CE\,(30)$.\\
+\textbf{2)} Dijkstra depuis $Y$ :
+\[
+\begin{array}{c|ccccc|l}
+\text{ét.} & Y & A & B & C & E & \text{figé}\\\hline
+0 & \underline{0} & \infty & \infty & \infty & \infty & Y\\
+1 & & 60 & \underline{30}_{(Y)} & \infty & \infty & B\\
+2 & & \underline{50}_{(B)} & & 80 & \infty & A\\
+3 & & & & \underline{80}_{(B)} & 90 & C\\
+4 & & & & & \underline{90}_{(A)} & E
+\end{array}
+\]
+Détails : $A$ via $B$ : $30+20=50<60$ ; $C$ via $B$ : $30+50=80$ ; $E$ via $A$ : $50+40=90$ ;
+via $C$ : $80+30=110>90$, donc $E$ reste à $90$ par $A$.\\
+\textbf{3)} En remontant les prédécesseurs : $E\leftarrow A\leftarrow B\leftarrow Y$. Plus
+court chemin $Y\to E$ : $Y-B-A-E$ de longueur $30+20+40=\mathbf{90}$ km.\\
+\textbf{4)} Le trajet $Y-A-E$ mesure $60+40=100$ km, soit $100-90=\mathbf{10}$ km de plus que
+le plus court chemin.
+
+\corrige{du sujet 3}
+\textbf{1)} Arêtes $a_1a_2,a_1a_3,a_2a_3,a_3a_4,a_4a_5,a_4a_6,a_5a_6$. Degrés :
+$d(a_1)=2$ ($a_2,a_3$), $d(a_2)=2$ ($a_1,a_3$), $d(a_3)=3$ ($a_1,a_2,a_4$),
+$d(a_4)=3$ ($a_3,a_5,a_6$), $d(a_5)=2$ ($a_4,a_6$), $d(a_6)=2$ ($a_4,a_5$). Somme
+$2+2+3+3+2+2=14=2\times7$ arêtes.\\
+\textbf{2)} $a_1a_2a_3$ forment un triangle (arêtes $a_1a_2,a_1a_3,a_2a_3$) et $a_4a_5a_6$
+aussi ($a_4a_5,a_4a_6,a_5a_6$). Chaque triangle est un $K_3$, donc $\chi\ge 3$.\\
+\textbf{3)} Coloration en $3$ couleurs : $a_1=1$, $a_2=2$, $a_3=3$, $a_4=1$ (adjacent
+seulement à $a_3=3$ parmi les déjà colorés), $a_5=2$, $a_6=3$. Vérification : toutes les
+arêtes joignent des couleurs distinctes. Donc $\chi=3$ (minoration $\ge3$ et coloration en
+$3$).\\
+\textbf{4)} Il faut au minimum \textbf{3 créneaux horaires}. Un emploi du temps possible :
+créneau 1 $=\{a_1,a_4\}$, créneau 2 $=\{a_2,a_5\}$, créneau 3 $=\{a_3,a_6\}$ (chaque créneau
+ne contient que des activités compatibles).
+
+\corrige{du sujet 4}
+\textbf{1)} Dans l'ordre $A,B,C,D,E$, arêtes $AB,AC,BC,BD,CD,DE$ :
+\[
+M=\begin{pmatrix}0&1&1&0&0\\1&0&1&1&0\\1&1&0&1&0\\0&1&1&0&1\\0&0&0&1&0\end{pmatrix}.
+\]
+Degrés (sommes des lignes) : $d(A)=2$, $d(B)=3$, $d(C)=3$, $d(D)=3$, $d(E)=1$. Contrôle :
+$2+3+3+3+1=12=2\times6$ arêtes.\\
+\textbf{2)} En partant de $A$ : $A\to B,C$ ; puis $B\to D$ ; puis $D\to E$. Tous les sommets
+sont atteints : le réseau est \textbf{connexe}.\\
+\textbf{3)} Le coefficient $(A,D)$ de $M^2$ vaut $2$ : il y a \textbf{deux} chaînes de
+longueur $2$ de $A$ à $D$. Les voisins communs de $A$ et $D$ sont $B$ et $C$, d'où les
+chaînes $A\!-\!B\!-\!D$ et $A\!-\!C\!-\!D$.\\
+\textbf{4)} Degrés : $2,3,3,3,1$. Les sommets de degré impair sont $B,C,D,E$ : ils sont au
+nombre de \textbf{quatre}. Le théorème d'Euler exige au plus deux sommets de degré impair :
+il n'existe donc \textbf{aucune chaîne eulérienne} dans ce réseau.

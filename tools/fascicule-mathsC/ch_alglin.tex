@@ -1,11 +1,62 @@
 \chapter{Algèbre linéaire : espaces vectoriels et applications linéaires}
 
 \noindent\textit{Les vecteurs du plan et de l'espace que tu manipules depuis la seconde
-obéissent à des règles communes : on les additionne, on les multiplie par un nombre. En
-dégageant ces règles, on obtient la notion d'\textbf{espace vectoriel}, un cadre unique qui
-décrit aussi bien $\R^2$, $\R^3$ que beaucoup d'autres ensembles. Ce chapitre, spécifique à
-la série C, prépare directement le calcul matriciel et éclaire la géométrie.}
+obéissent à des règles communes : on les additionne, on les multiplie par un nombre, on
+repère un point par ses coordonnées. En dégageant ces règles, on obtient le \textbf{calcul
+vectoriel} et la notion d'\textbf{espace vectoriel}, un cadre unique qui décrit aussi bien
+$\R^2$, $\R^3$ que beaucoup d'autres ensembles. Ce chapitre, spécificité de la série C,
+rassemble tout l'outillage : combinaisons linéaires, colinéarité et coplanarité, bases et
+repères, coordonnées, \textbf{déterminant} de deux vecteurs du plan, applications
+géométriques (alignement, parallélisme) et \textbf{systèmes d'équations linéaires}. Il prépare
+directement le calcul matriciel et éclaire toute la géométrie analytique du Baccalauréat.}
 \vspace{8pt}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Vecteurs du plan et de l'espace}
+
+\begin{definition}[Vecteur]
+À tout couple de points $(A,B)$ on associe le \textbf{vecteur} $\vec{AB}$, caractérisé par
+sa \textbf{direction} (celle de la droite $(AB)$), son \textbf{sens} (de $A$ vers $B$) et sa
+\textbf{norme} (ou longueur) $\|\vec{AB}\|=AB$. Deux bipoints $(A,B)$ et $(C,D)$ représentent
+le \textbf{même} vecteur si et seulement si $ABDC$ est un parallélogramme, c'est-à-dire si
+$\vec{AB}=\vec{CD}$. Le \textbf{vecteur nul} $\vec 0=\vec{AA}$ est de norme $0$.
+\end{definition}
+
+\begin{propriete}[Relation de Chasles et opérations]
+Pour tous points $A,B,C$ du plan ou de l'espace :
+\[
+\vec{AB}+\vec{BC}=\vec{AC}\qquad\text{(relation de Chasles)},\qquad \vec{AB}=-\vec{BA}.
+\]
+L'addition de deux vecteurs se construit « bout à bout » (Chasles) ou par la
+\textbf{règle du parallélogramme}. La multiplication par un réel $\lambda$ donne un vecteur
+$\lambda\vec u$ de même direction que $\vec u$, de norme $|\lambda|\,\|\vec u\|$, de même sens
+si $\lambda>0$, de sens opposé si $\lambda<0$.
+\end{propriete}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth,scale=1.05]
+\coordinate (A) at (0,0);
+\coordinate (B) at (2.4,0.6);
+\coordinate (C) at (3.4,2.0);
+\draw[onbo,->,line width=1.1pt] (A)--(B) node[midway,below right]{\small $\vec u$};
+\draw[onbgreen,->,line width=1.1pt] (B)--(C) node[midway,right]{\small $\vec v$};
+\draw[onbblue,->,line width=1.1pt] (A)--(C) node[midway,above left]{\small $\vec u+\vec v$};
+\draw[onbmuted,dashed] (A)--($(A)+(C)-(B)$)--(C);
+\filldraw[onbink] (A) circle (1.5pt) node[below left]{\small $A$};
+\filldraw[onbink] (B) circle (1.5pt) node[below right]{\small $B$};
+\filldraw[onbink] (C) circle (1.5pt) node[above right]{\small $C$};
+\node[align=left,text width=4.4cm,anchor=west] at (4.4,0.9)
+{\small \textbf{Chasles} : $\vec{AB}+\vec{BC}=\vec{AC}$. La somme $\vec u+\vec v$ est la diagonale
+du parallélogramme construit sur $\vec u$ et $\vec v$.};
+\end{tikzpicture}
+\fig{Figure — Addition de vecteurs : relation de Chasles et règle du parallélogramme.}
+\end{illus}
+
+\begin{remarque}
+Un vecteur n'est pas « attaché » à un point : il représente seulement une translation. On peut
+le « déplacer » librement tant qu'on conserve direction, sens et norme. C'est ce qui permet de
+ramener tout vecteur à une origine commune $O$ : $\vec u=\vec{OM}$ pour un unique point $M$.
+\end{remarque}
 
 % ═══════════════════════════════════════════════════════════════
 \section{Espaces vectoriels réels}
@@ -36,7 +87,7 @@ De même $\R^3=\{(x,y,z)\}$. Plus généralement $\R^n$ est un espace vectoriel.
 \begin{remarque}
 L'ensemble des vecteurs du plan (ou de l'espace) géométrique est un espace vectoriel : c'est
 le modèle que l'on visualise. On note souvent un vecteur de $\R^2$ aussi bien $(x,y)$ que
-$\vec u$.
+$\vec u$. Le plan vectoriel a \textbf{dimension $2$}, l'espace vectoriel \textbf{dimension $3$}.
 \end{remarque}
 
 \begin{propriete}[Règles de calcul]
@@ -76,7 +127,8 @@ Géométriquement, $F$ est une \textbf{droite vectorielle} (passant par l'origin
 \begin{remarque}
 $\{\vec 0\}$ et $E$ tout entier sont toujours des sous-espaces vectoriels de $E$. En revanche,
 une droite \emph{ne passant pas} par l'origine n'est \textbf{pas} un s.e.v. (elle ne contient
-pas $\vec 0$).
+pas $\vec 0$). Les s.e.v. de $\R^2$ sont : $\{\vec 0\}$, les droites vectorielles, et $\R^2$.
+Ceux de $\R^3$ : $\{\vec 0\}$, les droites vectorielles, les plans vectoriels, et $\R^3$.
 \end{remarque}
 
 \begin{illus}
@@ -103,6 +155,7 @@ Une \textbf{combinaison linéaire} des vecteurs $\vec{u_1},\dots,\vec{u_p}$ est 
 \[
 \lambda_1\vec{u_1}+\lambda_2\vec{u_2}+\dots+\lambda_p\vec{u_p},\qquad (\lambda_1,\dots,\lambda_p)\in\R^p.
 \]
+Les réels $\lambda_i$ sont les \textbf{coefficients} de la combinaison.
 \end{definition}
 
 \begin{definition}[Famille génératrice]
@@ -113,16 +166,25 @@ $E=\mathrm{Vect}(\vec{u_1},\dots,\vec{u_p})$.
 
 \begin{exemple}
 Dans $\R^2$, $\vec i=(1,0)$ et $\vec j=(0,1)$ engendrent $\R^2$ : tout $(x,y)=x\vec i+y\vec j$.
-La famille $(\vec i,\vec j)$ est génératrice.
+La famille $(\vec i,\vec j)$ est génératrice. De même, on vérifie que $\vec u=(2,1)$ est
+combinaison linéaire de $\vec a=(1,1)$ et $\vec b=(0,1)$ : $\vec u=2\vec a-\vec b$.
 \end{exemple}
 
 \begin{remarque}
 $\mathrm{Vect}(\vec{u_1},\dots,\vec{u_p})$ est toujours un sous-espace vectoriel de $E$
-(le « plus petit » contenant ces vecteurs).
+(le « plus petit » contenant ces vecteurs). $\mathrm{Vect}(\vec u)$ est la droite vectorielle
+dirigée par $\vec u$ (si $\vec u\neq\vec 0$) ; $\mathrm{Vect}(\vec u,\vec v)$ est le plan
+vectoriel engendré par $\vec u$ et $\vec v$ (si $\vec u,\vec v$ non colinéaires).
 \end{remarque}
 
 % ═══════════════════════════════════════════════════════════════
-\section{Familles libres, familles liées}
+\section{Colinéarité, familles libres et liées}
+
+\begin{definition}[Vecteurs colinéaires]
+Deux vecteurs $\vec u$ et $\vec v$ sont \textbf{colinéaires} s'il existe un réel $\lambda$ tel que
+$\vec v=\lambda\vec u$ (ou $\vec u=\vec 0$). Géométriquement, ils ont la \textbf{même direction} :
+les points qui les portent sont alignés ou les droites sont parallèles.
+\end{definition}
 
 \begin{definition}[Famille libre, famille liée]
 La famille $(\vec{u_1},\dots,\vec{u_p})$ est \textbf{libre} (les vecteurs sont \emph{linéairement indépendants}) si la seule combinaison linéaire nulle est triviale :
@@ -134,8 +196,8 @@ Sinon la famille est \textbf{liée} : l'un des vecteurs est combinaison linéair
 
 \begin{propriete}[Cas de deux vecteurs]
 Deux vecteurs $\vec u,\vec v$ forment une famille \textbf{libre} si et seulement s'ils ne sont
-pas colinéaires. Ils sont \textbf{liés} si et seulement si $\vec v=\lambda\vec u$ pour un certain
-$\lambda$ (ou $\vec u=\vec 0$).
+pas colinéaires. Ils sont \textbf{liés} si et seulement s'ils sont colinéaires
+($\vec v=\lambda\vec u$ pour un certain $\lambda$, ou $\vec u=\vec 0$).
 \end{propriete}
 
 \begin{exemple}
@@ -143,8 +205,56 @@ $\vec u=(1,2)$ et $\vec v=(2,4)$ sont liés car $\vec v=2\vec u$. En revanche $\
 $\vec w=(3,1)$ sont libres : ils ne sont pas colinéaires ($1\times1-2\times3=-5\neq0$).
 \end{exemple}
 
+\begin{aretenir}
+Dans $\R^2$ : deux vecteurs sont \textbf{colinéaires} $\Leftrightarrow$ leur déterminant est nul
+(voir plus bas). Dans $\R^3$, trois vecteurs sont \textbf{coplanaires} (liés) si l'un est
+combinaison linéaire des deux autres ; sinon ils forment une famille libre, donc une base.
+\end{aretenir}
+
 % ═══════════════════════════════════════════════════════════════
-\section{Bases et dimension}
+\section{Coplanarité dans l'espace}
+
+\begin{definition}[Vecteurs coplanaires]
+Trois vecteurs $\vec u,\vec v,\vec w$ de l'espace sont \textbf{coplanaires} s'il existe des points
+$A,B,C,D$ d'un même plan tels que $\vec u=\vec{AB}$, $\vec v=\vec{AC}$, $\vec w=\vec{AD}$.
+De façon équivalente : la famille $(\vec u,\vec v,\vec w)$ est \textbf{liée}.
+\end{definition}
+
+\begin{propriete}[Caractérisation de la coplanarité]
+Soient $\vec u,\vec v$ deux vecteurs \textbf{non colinéaires} de l'espace. Un vecteur $\vec w$ est
+coplanaire avec $\vec u$ et $\vec v$ si et seulement s'il existe deux réels $a,b$ tels que
+\[
+\vec w=a\,\vec u+b\,\vec v.
+\]
+On dit que $(\vec u,\vec v)$ est une base du plan vectoriel $\mathrm{Vect}(\vec u,\vec v)$.
+\end{propriete}
+
+\begin{exemple}
+$\vec u=(1,0,1)$, $\vec v=(0,1,1)$, $\vec w=(1,1,2)$ dans $\R^3$. On cherche $a,b$ avec
+$\vec w=a\vec u+b\vec v=(a,b,a+b)$. Il faut $a=1$, $b=1$, et $a+b=2$ : c'est vérifié. Donc
+$\vec w=\vec u+\vec v$ : les trois vecteurs sont \textbf{coplanaires} (famille liée).
+\end{exemple}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth,scale=0.95]
+% repère espace en perspective
+\draw[->] (0,0)--(3.4,0) node[right]{\small $x$};
+\draw[->] (0,0)--(0,3.0) node[above]{\small $z$};
+\draw[->] (0,0)--(-1.7,-1.1) node[below left]{\small $y$};
+% plan engendré (parallélogramme)
+\filldraw[onbsoft,draw=onbo,opacity=0.85] (0,0)--(2.4,0.5)--(1.3,2.0)--(-1.1,1.5)--cycle;
+\draw[onbo,->,line width=1pt] (0,0)--(2.4,0.5) node[below right]{\small $\vec u$};
+\draw[onbgreen,->,line width=1pt] (0,0)--(-1.1,1.5) node[left]{\small $\vec v$};
+\draw[onbblue,->,line width=1pt] (0,0)--(1.3,2.0) node[above right]{\small $\vec w=a\vec u+b\vec v$};
+\node[align=left,text width=4.0cm,anchor=west] at (3.0,1.6)
+{\small Trois vecteurs sont \textbf{coplanaires} lorsqu'ils « tiennent » dans un même plan :
+$\vec w$ est combinaison linéaire de $\vec u$ et $\vec v$.};
+\end{tikzpicture}
+\fig{Figure — Coplanarité de trois vecteurs de l'espace.}
+\end{illus}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Bases, repères et coordonnées}
 
 \begin{definition}[Base]
 Une famille $(\vec{e_1},\dots,\vec{e_n})$ est une \textbf{base} de $E$ si elle est à la fois
@@ -173,10 +283,27 @@ Si $\dim E=n$, alors :
 Il suffit donc de vérifier \emph{une} des deux propriétés quand on a déjà le bon nombre de vecteurs.
 \end{propriete}
 
+\begin{definition}[Repère]
+Un \textbf{repère} du plan est un triplet $(O,\vec i,\vec j)$ où $O$ est un point (l'origine) et
+$(\vec i,\vec j)$ une base. Tout point $M$ a alors des \textbf{coordonnées} $(x,y)$ définies par
+$\vec{OM}=x\vec i+y\vec j$. De même, un repère de l'espace est $(O,\vec i,\vec j,\vec k)$ et
+$\vec{OM}=x\vec i+y\vec j+z\vec k$ donne les coordonnées $(x,y,z)$ de $M$.
+\end{definition}
+
 \begin{exemple}
 La \textbf{base canonique} de $\R^2$ est $(\vec i,\vec j)$ avec $\vec i=(1,0)$, $\vec j=(0,1)$ ;
 celle de $\R^3$ est $(\vec i,\vec j,\vec k)$ avec $\vec i=(1,0,0)$, $\vec j=(0,1,0)$, $\vec k=(0,0,1)$.
 \end{exemple}
+
+\begin{propriete}[Calculs en coordonnées]
+Dans un repère, si $A(x_A,y_A)$ et $B(x_B,y_B)$ alors
+\[
+\vec{AB}=(x_B-x_A,\ y_B-y_A),\qquad
+I=\text{milieu de }[AB]\ \Rightarrow\ I\Big(\tfrac{x_A+x_B}{2},\ \tfrac{y_A+y_B}{2}\Big).
+\]
+Dans un repère \textbf{orthonormé}, $\|\vec{AB}\|=\sqrt{(x_B-x_A)^2+(y_B-y_A)^2}$
+(idem dans l'espace avec la troisième coordonnée).
+\end{propriete}
 
 \begin{illus}
 \begin{tikzpicture}[>=Stealth,scale=1.0]
@@ -198,6 +325,140 @@ celle de $\R^3$ est $(\vec i,\vec j,\vec k)$ avec $\vec i=(1,0,0)$, $\vec j=(0,1
 Pour une famille de $\R^2$ : \textbf{libre} $\Leftrightarrow$ vecteurs non colinéaires ;
 \textbf{base} $\Leftrightarrow$ deux vecteurs non colinéaires. Pour $\R^3$ : \textbf{base}
 $\Leftrightarrow$ trois vecteurs non coplanaires. Coordonnées dans une base = \textbf{uniques}.
+\end{aretenir}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Déterminant de deux vecteurs du plan}
+
+\begin{definition}[Déterminant]
+Soient $\vec u=(x,y)$ et $\vec v=(x',y')$ deux vecteurs de $\R^2$ exprimés dans une base. Le
+\textbf{déterminant} de $(\vec u,\vec v)$ est le réel
+\[
+\det(\vec u,\vec v)=\begin{vmatrix}x&x'\\ y&y'\end{vmatrix}=x\,y'-y\,x'.
+\]
+\end{definition}
+
+\begin{theoreme}[Colinéarité et déterminant]
+Deux vecteurs $\vec u,\vec v$ du plan sont \textbf{colinéaires} si et seulement si
+\[
+\det(\vec u,\vec v)=xy'-yx'=0.
+\]
+Par conséquent, $(\vec u,\vec v)$ est une \textbf{base} de $\R^2$ si et seulement si
+$\det(\vec u,\vec v)\neq0$.
+\end{theoreme}
+
+\begin{remarque}
+En repère \textbf{orthonormé}, $|\det(\vec u,\vec v)|$ est l'\textbf{aire} du parallélogramme
+construit sur $\vec u$ et $\vec v$. L'aire du triangle $ABC$ vaut alors
+$\tfrac12\,\big|\det(\vec{AB},\vec{AC})\big|$. Le déterminant nul $\Leftrightarrow$ aire nulle
+$\Leftrightarrow$ points alignés.
+\end{remarque}
+
+\begin{exemple}
+$\vec u=(2,3)$, $\vec v=(4,6)$ : $\det=2\times6-3\times4=12-12=0$ : colinéaires.\;
+$\vec u=(2,3)$, $\vec w=(1,5)$ : $\det=2\times5-3\times1=10-3=7\neq0$ : base de $\R^2$.
+\end{exemple}
+
+\begin{propriete}[Propriétés du déterminant]
+Le déterminant est \textbf{antisymétrique} et \textbf{linéaire} en chaque vecteur :
+\[
+\det(\vec v,\vec u)=-\det(\vec u,\vec v),\qquad
+\det(\lambda\vec u,\vec v)=\lambda\det(\vec u,\vec v),\qquad
+\det(\vec u+\vec u',\vec v)=\det(\vec u,\vec v)+\det(\vec u',\vec v).
+\]
+En particulier $\det(\vec u,\vec u)=0$.
+\end{propriete}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth,scale=1.0]
+\draw[->] (-0.4,0)--(3.6,0) node[right]{\small $x$};
+\draw[->] (0,-0.4)--(0,2.9) node[above]{\small $y$};
+\filldraw[onbsoft,draw=onbo,opacity=0.8] (0,0)--(2.4,0.6)--(3.0,2.2)--(0.6,1.6)--cycle;
+\draw[onbo,->,line width=1.1pt] (0,0)--(2.4,0.6) node[midway,below right]{\small $\vec u$};
+\draw[onbgreen,->,line width=1.1pt] (0,0)--(0.6,1.6) node[midway,above left]{\small $\vec v$};
+\node[onbink] at (1.5,1.2) {\small aire $=|\det(\vec u,\vec v)|$};
+\node[align=left,text width=3.4cm,anchor=west] at (3.6,1.4)
+{\small En repère orthonormé, $|\det(\vec u,\vec v)|$ est l'aire du parallélogramme.
+Nulle $\Leftrightarrow$ vecteurs colinéaires.};
+\end{tikzpicture}
+\fig{Figure — Interprétation du déterminant comme aire d'un parallélogramme.}
+\end{illus}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Applications géométriques}
+
+\begin{propriete}[Alignement et parallélisme]
+Soient $A,B,C,D$ des points du plan.
+\begin{itemize}
+\item $A,B,C$ sont \textbf{alignés} $\Leftrightarrow$ $\vec{AB}$ et $\vec{AC}$ sont colinéaires
+$\Leftrightarrow$ $\det(\vec{AB},\vec{AC})=0$.
+\item Les droites $(AB)$ et $(CD)$ sont \textbf{parallèles} $\Leftrightarrow$ $\vec{AB}$ et $\vec{CD}$
+sont colinéaires $\Leftrightarrow$ $\det(\vec{AB},\vec{CD})=0$.
+\item $ABDC$ est un \textbf{parallélogramme} $\Leftrightarrow$ $\vec{AB}=\vec{CD}$.
+\end{itemize}
+\end{propriete}
+
+\begin{exemple}
+$A(1,2)$, $B(3,5)$, $C(5,8)$. $\vec{AB}=(2,3)$, $\vec{AC}=(4,6)$ ;
+$\det(\vec{AB},\vec{AC})=2\times6-3\times4=0$ : les points $A,B,C$ sont \textbf{alignés}.
+\end{exemple}
+
+\begin{propriete}[Équation cartésienne d'une droite]
+Dans un repère, une droite admet une équation $ax+by+c=0$ avec $(a,b)\neq(0,0)$. Un
+\textbf{vecteur directeur} en est $\vec u=(-b,a)$. Deux droites $ax+by+c=0$ et $a'x+b'y+c'=0$
+sont parallèles $\Leftrightarrow$ $ab'-a'b=0$ (déterminant des vecteurs directeurs nul).
+\end{propriete}
+
+\begin{exemple}
+Droite $D:2x-3y+1=0$, vecteur directeur $\vec u=(3,2)$. Droite $D':4x-6y-5=0$, vecteur directeur
+$\vec u'=(6,4)=2\vec u$ : $D\parallel D'$ (et $D\neq D'$ car $c$ diffère).
+\end{exemple}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Systèmes d'équations linéaires}
+
+\begin{definition}[Système linéaire $2\times2$]
+Un système linéaire de deux équations à deux inconnues s'écrit
+\[
+\left\{\begin{aligned} ax+by&=e\\ cx+dy&=f \end{aligned}\right.
+\qquad\text{de déterminant}\qquad \Delta=\begin{vmatrix}a&b\\ c&d\end{vmatrix}=ad-bc.
+\]
+\end{definition}
+
+\begin{theoreme}[Formules de Cramer]
+Si $\Delta=ad-bc\neq0$, le système admet une \textbf{unique} solution donnée par
+\[
+x=\frac{\Delta_x}{\Delta}=\frac{1}{\Delta}\begin{vmatrix}e&b\\ f&d\end{vmatrix}=\frac{ed-bf}{ad-bc},
+\qquad
+y=\frac{\Delta_y}{\Delta}=\frac{1}{\Delta}\begin{vmatrix}a&e\\ c&f\end{vmatrix}=\frac{af-ec}{ad-bc}.
+\]
+\end{theoreme}
+
+\begin{remarque}[Interprétation et cas $\Delta=0$]
+Chaque équation représente une droite. Si $\Delta\neq0$, les droites se coupent en un point :
+\textbf{une} solution. Si $\Delta=0$, les droites sont parallèles : soit \textbf{confondues}
+(une infinité de solutions), soit \textbf{strictement parallèles} (aucune solution). Le lien avec
+le calcul vectoriel est direct : $\Delta$ est le déterminant des vecteurs colonnes $(a,c)$ et
+$(b,d)$.
+\end{remarque}
+
+\begin{exemple}
+$\left\{\begin{aligned}2x+3y&=8\\ x-y&=-1\end{aligned}\right.$ : $\Delta=2(-1)-3(1)=-5\neq0$.
+$x=\dfrac{1}{-5}\begin{vmatrix}8&3\\-1&-1\end{vmatrix}=\dfrac{-8+3}{-5}=1$,\;
+$y=\dfrac{1}{-5}\begin{vmatrix}2&8\\1&-1\end{vmatrix}=\dfrac{-2-8}{-5}=2$. Solution $(1,2)$.
+\end{exemple}
+
+\begin{remarque}[Systèmes $3\times3$]
+Un système de trois équations à trois inconnues se résout par \textbf{substitution} ou
+\textbf{combinaisons} (méthode du pivot de Gauss) : on élimine successivement les inconnues pour
+se ramener à une forme triangulaire. Trois plans peuvent se couper en un point (solution unique),
+selon une droite ou un plan (infinité), ou n'avoir aucun point commun.
+\end{remarque}
+
+\begin{aretenir}
+\textbf{Système $2\times2$.} Calculer $\Delta=ad-bc$. Si $\Delta\neq0$ : solution unique par
+Cramer. Si $\Delta=0$ : comparer les équations (proportionnelles $\to$ infinité ; sinon $\to$ pas
+de solution). Toujours \textbf{vérifier} la solution dans les deux équations de départ.
 \end{aretenir}
 
 % ═══════════════════════════════════════════════════════════════
@@ -250,7 +511,61 @@ $\mathrm{Im}\,f=\mathrm{Vect}\big(f(\vec{e_1}),\dots,f(\vec{e_n})\big)$.
 \end{remarque}
 
 % ═══════════════════════════════════════════════════════════════
+\section{L'essentiel à retenir}
+
+\begin{synthese}
+\textbf{Vecteurs.} $\vec{AB}+\vec{BC}=\vec{AC}$ (Chasles) ;\ $\vec{AB}=(x_B-x_A,\,y_B-y_A)$ ;\
+milieu $I\big(\tfrac{x_A+x_B}2,\tfrac{y_A+y_B}2\big)$ ;\ norme (orthonormé)
+$\sqrt{(x_B-x_A)^2+(y_B-y_A)^2}$.\\[4pt]
+\textbf{Espace vectoriel.} $\R^n$ ; s.e.v. $F$ : $\vec0\in F$ et $\lambda\vec u+\mu\vec v\in F$.
+Les s.e.v. de $\R^3$ : $\{\vec0\}$, droites, plans, $\R^3$.\\[4pt]
+\textbf{Combinaison linéaire.} $\sum\lambda_i\vec{u_i}$ ; famille \textbf{génératrice} si tout
+vecteur s'écrit ainsi ($\mathrm{Vect}$).\\[4pt]
+\textbf{Libre / liée.} Libre $\Leftrightarrow$ ($\sum\lambda_i\vec{u_i}=\vec0\Rightarrow$ tous
+$\lambda_i=0$). Deux vecteurs : libre $\Leftrightarrow$ non colinéaires. Trois vecteurs de $\R^3$ :
+libre $\Leftrightarrow$ non coplanaires.\\[4pt]
+\textbf{Base \& dimension.} Base = libre + génératrice ; coordonnées \textbf{uniques}.
+$\dim\R^2=2$, $\dim\R^3=3$. Avec le bon nombre de vecteurs, libre $\Rightarrow$ base.\\[4pt]
+\textbf{Déterminant (plan).} $\det\big((x,y),(x',y')\big)=xy'-yx'$. Colinéaires $\Leftrightarrow$
+$\det=0$ ; base $\Leftrightarrow$ $\det\neq0$ ; $|\det|=$ aire du parallélogramme.\\[4pt]
+\textbf{Applications géom.} $A,B,C$ alignés $\Leftrightarrow$ $\det(\vec{AB},\vec{AC})=0$ ;
+$(AB)\parallel(CD)\Leftrightarrow\det(\vec{AB},\vec{CD})=0$ ;\ $ABDC$ parallélogramme
+$\Leftrightarrow\vec{AB}=\vec{CD}$. Droite $ax+by+c=0$, directeur $(-b,a)$.\\[4pt]
+\textbf{Système $2\times2$.} $\Delta=ad-bc$. Cramer : $x=\Delta_x/\Delta$, $y=\Delta_y/\Delta$.
+$\Delta=0\Rightarrow$ aucune ou une infinité de solutions.\\[4pt]
+\textbf{Appli. linéaire.} $f(\lambda\vec u+\mu\vec v)=\lambda f(\vec u)+\mu f(\vec v)$ ;\
+$\ker f$, $\mathrm{Im}\,f$ s.e.v. ; injective $\Leftrightarrow\ker f=\{\vec0\}$ ; théorème du rang
+$\dim\ker f+\mathrm{rg}(f)=\dim E$.\\[4pt]
+\textbf{Pièges.} oublier $\vec0\in F$ ; confondre colinéaire (2 vect.) et coplanaire (3 vect.) ;
+oublier de vérifier la solution d'un système ; conclure « linéaire » sans tester $f(\vec0)=\vec0$.
+\end{synthese}
+
+% ═══════════════════════════════════════════════════════════════
 \section{Méthodes \& savoir-faire}
+
+\methode{Calculer avec des vecteurs en coordonnées}
+Utiliser $\vec{AB}=(x_B-x_A,\,y_B-y_A)$, l'addition composante par composante et la relation de
+Chasles pour simplifier les expressions.
+\begin{exemple}
+$A(2,-1)$, $B(5,3)$, $C(0,4)$. Alors $\vec{AB}=(3,4)$, $\vec{AC}=(-2,5)$ et
+$\vec{AB}+\vec{AC}=(1,9)$. Le milieu de $[BC]$ est $\big(\tfrac{5+0}2,\tfrac{3+4}2\big)=(2{,}5\,;\,3{,}5)$.
+\end{exemple}
+
+\methode{Tester la colinéarité de deux vecteurs}
+Calculer le déterminant $\det(\vec u,\vec v)=xy'-yx'$ : nul $\Rightarrow$ colinéaires, non nul
+$\Rightarrow$ libres (donc base de $\R^2$).
+\begin{exemple}
+$\vec u=(6,-4)$, $\vec v=(-3,2)$ : $\det=6\times2-(-4)\times(-3)=12-12=0$ : colinéaires
+(en effet $\vec v=-\tfrac12\vec u$).
+\end{exemple}
+
+\methode{Montrer que trois points sont alignés}
+Former deux vecteurs $\vec{AB}$ et $\vec{AC}$ ; les points sont alignés ssi
+$\det(\vec{AB},\vec{AC})=0$.
+\begin{exemple}
+$A(1,1)$, $B(4,3)$, $C(-2,-1{,}\overline{6})$ ? Prenons $A(1,1)$, $B(4,3)$, $C(7,5)$ :
+$\vec{AB}=(3,2)$, $\vec{AC}=(6,4)$, $\det=3\times4-2\times6=0$ : alignés.
+\end{exemple}
 
 \methode{Montrer qu'un ensemble est un sous-espace vectoriel}
 Vérifier les trois points : $\vec 0\in F$, puis pour $\vec u,\vec v\in F$ et $\lambda,\mu\in\R$,
@@ -271,42 +586,57 @@ $\vec u=(1,1,0)$, $\vec v=(0,1,1)$ dans $\R^3$. $\lambda\vec u+\mu\vec v=(\lambd
 donne $\lambda=0$, $\mu=0$ : la famille est \textbf{libre}.
 \end{exemple}
 
-\methode{Extraire une base et donner la dimension}
-Repérer une famille libre maximale parmi les générateurs ; sa taille est la dimension.
+\methode{Décomposer un vecteur dans une base}
+Écrire $\vec w=a\vec u+b\vec v$, identifier composante par composante, résoudre le système
+linéaire en $(a,b)$ (par Cramer ou substitution).
 \begin{exemple}
-$F=\{(x,y,z)\mid z=x+y\}=\{(x,y,x+y)\}=x(1,0,1)+y(0,1,1)$. Les vecteurs $(1,0,1)$ et $(0,1,1)$
-sont libres (non colinéaires) et engendrent $F$ : ils en forment une \textbf{base}, donc $\dim F=2$.
+Décomposer $\vec w=(5,5)$ dans la base $\big((1,2),(3,1)\big)$ : $a+3b=5$, $2a+b=5$. De la
+seconde $b=5-2a$ ; report $a+15-6a=5\Rightarrow a=2$, $b=1$. Donc $\vec w=2(1,2)+(3,1)$.
 \end{exemple}
 
-\methode{Montrer qu'une application est linéaire}
-Vérifier $f(\lambda\vec u+\mu\vec v)=\lambda f(\vec u)+\mu f(\vec v)$. Un contre-exemple
-(souvent $f(\vec 0)\neq\vec 0$) suffit pour conclure à la non-linéarité.
+\methode{Résoudre un système linéaire $2\times2$ par Cramer}
+Calculer $\Delta=ad-bc$. Si $\Delta\neq0$, appliquer $x=\Delta_x/\Delta$, $y=\Delta_y/\Delta$,
+puis \textbf{vérifier}.
 \begin{exemple}
-$f(x,y)=(x-y,\,2y)$. Pour $\vec u=(x,y)$, $\vec v=(x',y')$ :
-$f(\lambda\vec u+\mu\vec v)=f(\lambda x+\mu x',\lambda y+\mu y')
-=\big((\lambda x+\mu x')-(\lambda y+\mu y'),\,2(\lambda y+\mu y')\big)
-=\lambda(x-y,2y)+\mu(x'-y',2y')=\lambda f(\vec u)+\mu f(\vec v)$. Donc $f$ est linéaire.
+$\left\{\begin{aligned}3x+2y&=7\\ x-4y&=-1\end{aligned}\right.$ : $\Delta=3(-4)-2(1)=-14$.
+$x=\dfrac{1}{-14}\begin{vmatrix}7&2\\-1&-4\end{vmatrix}=\dfrac{-28+2}{-14}=\dfrac{-26}{-14}=\dfrac{13}{7}$,\;
+$y=\dfrac{1}{-14}\begin{vmatrix}3&7\\1&-1\end{vmatrix}=\dfrac{-3-7}{-14}=\dfrac{5}{7}$.
 \end{exemple}
 
-\methode{Déterminer le noyau d'une application linéaire}
-Résoudre $f(\vec u)=\vec 0$ : c'est un système d'équations linéaires. L'ensemble des solutions
-est $\ker f$.
+\methode{Montrer qu'une application est linéaire et trouver son noyau}
+Vérifier $f(\lambda\vec u+\mu\vec v)=\lambda f(\vec u)+\mu f(\vec v)$ ; un contre-exemple (souvent
+$f(\vec 0)\neq\vec 0$) suffit pour la non-linéarité. Pour $\ker f$, résoudre $f(\vec u)=\vec0$.
 \begin{exemple}
-$f(x,y)=(x-y,\,2x-2y)$. $f(x,y)=(0,0)\Leftrightarrow x-y=0\Leftrightarrow y=x$. Donc
-$\ker f=\{(x,x)\mid x\in\R\}=\mathrm{Vect}\big((1,1)\big)$, une droite vectorielle : $\dim\ker f=1$.
+$f(x,y)=(x-y,\,2x-2y)$. Linéarité immédiate (composantes affines sans terme constant).
+$f(x,y)=(0,0)\Leftrightarrow x-y=0$ : $\ker f=\mathrm{Vect}\big((1,1)\big)$, $\dim\ker f=1$.
 \end{exemple}
 
-\methode{Déterminer l'image d'une application linéaire}
-Calculer $f$ sur une base de l'espace de départ : $\mathrm{Im}\,f$ est engendrée par ces images.
-En extraire une famille libre pour la base et le rang.
+\methode{Déterminer l'image et le rang}
+Calculer $f$ sur une base de départ : $\mathrm{Im}\,f$ est engendrée par ces images ; en extraire
+une famille libre pour la base et le rang.
 \begin{exemple}
-Avec $f(x,y)=(x-y,2x-2y)$ ci-dessus : $f(1,0)=(1,2)$, $f(0,1)=(-1,-2)=-(1,2)$. Donc
-$\mathrm{Im}\,f=\mathrm{Vect}\big((1,2)\big)$, droite vectorielle, $\mathrm{rg}(f)=1$.
-On vérifie le théorème du rang : $\dim\ker f+\mathrm{rg}(f)=1+1=2=\dim\R^2$. \checkmark
+Avec $f(x,y)=(x-y,2x-2y)$ : $f(1,0)=(1,2)$, $f(0,1)=(-1,-2)=-(1,2)$. Donc
+$\mathrm{Im}\,f=\mathrm{Vect}\big((1,2)\big)$, $\mathrm{rg}(f)=1$. Vérif. du rang : $1+1=2=\dim\R^2$. \checkmark
 \end{exemple}
 
 % ═══════════════════════════════════════════════════════════════
-\section{Exercices}
+\section{Exercices d'application}
+
+\rubrique{Calcul vectoriel et coordonnées}
+\exo{}\diff{1} Dans un repère, $A(-1,2)$, $B(3,-1)$, $C(2,4)$. Calculer $\vec{AB}$, $\vec{BC}$,
+$\vec{AC}$ et vérifier la relation de Chasles $\vec{AB}+\vec{BC}=\vec{AC}$.
+
+\exo{}\diff{1} Déterminer les coordonnées du point $D$ tel que $ABCD$ soit un parallélogramme,
+avec $A(0,1)$, $B(4,2)$, $C(5,5)$.
+
+\rubrique{Colinéarité, alignement, parallélisme}
+\exo{}\diff{1} Les vecteurs $\vec u=(2,-1)$ et $\vec v=(-6,3)$ de $\R^2$ sont-ils libres ou liés ?
+
+\exo{}\diff{2} Les points $A(1,2)$, $B(4,3)$, $C(7,4)$ sont-ils alignés ? Justifier avec un
+déterminant.
+
+\exo{}\diff{2} On donne $A(1,0)$, $B(3,2)$, $C(0,1)$, $D(4,5)$. Les droites $(AB)$ et $(CD)$
+sont-elles parallèles ?
 
 \rubrique{Sous-espaces vectoriels}
 \exo{}\diff{1} Parmi ces parties de $\R^2$, lesquelles sont des sous-espaces vectoriels ?
@@ -316,9 +646,7 @@ A=\{(x,y)\mid y=3x\},\quad B=\{(x,y)\mid y=x+1\},\quad C=\{(x,y)\mid x^2=y^2\}.
 
 \exo{}\diff{2} Montrer que $F=\{(x,y,z)\in\R^3\mid 2x-y+z=0\}$ est un sous-espace vectoriel de $\R^3$.
 
-\rubrique{Familles, bases et dimension}
-\exo{}\diff{1} Les vecteurs $\vec u=(2,-1)$ et $\vec v=(-6,3)$ de $\R^2$ sont-ils libres ou liés ?
-
+\rubrique{Familles, bases et coordonnées}
 \exo{}\diff{2} Montrer que $\big((1,2),(3,1)\big)$ est une base de $\R^2$, puis donner les
 coordonnées de $\vec w=(5,5)$ dans cette base.
 
@@ -327,103 +655,282 @@ $F=\{(x,y,z)\in\R^3\mid x=2y \text{ et } z=0\}$.
 
 \exo{}\diff{3} Montrer que $\big((1,1,0),(0,1,1),(1,0,1)\big)$ est une base de $\R^3$.
 
+\exo{}\diff{2} Les vecteurs $\vec u=(1,0,1)$, $\vec v=(2,1,0)$, $\vec w=(0,1,-2)$ sont-ils
+coplanaires ? (On cherchera si $\vec w$ est combinaison linéaire de $\vec u$ et $\vec v$.)
+
+\rubrique{Déterminant et systèmes}
+\exo{}\diff{1} Calculer $\det(\vec u,\vec v)$ pour $\vec u=(3,-2)$, $\vec v=(1,4)$, puis pour
+$\vec u=(2,6)$, $\vec v=(1,3)$. Conclure dans chaque cas.
+
+\exo{}\diff{2} Résoudre par les formules de Cramer :
+$\left\{\begin{aligned}2x+3y&=8\\ x-y&=-1\end{aligned}\right.$
+
+\exo{}\diff{2} Discuter selon $m\in\R$ le nombre de solutions du système
+$\left\{\begin{aligned}x+2y&=3\\ 2x+my&=6\end{aligned}\right.$
+
 \rubrique{Applications linéaires}
 \exo{}\diff{1} L'application $f(x,y)=(3x,\,x-y)$ est-elle linéaire ? Et $g(x,y)=(xy,\,x)$ ?
 
 \exo{}\diff{2} Soit $f:\R^3\to\R^2$, $f(x,y,z)=(x+y-z,\ 2x-z)$. Montrer que $f$ est linéaire et
 déterminer $\ker f$.
 
-\rubrique{Problème type Baccalauréat}
-\exo{}\diff{3} On considère l'application $f:\R^2\to\R^2$ définie par
+\exo{}\diff{3} Soit $f:\R^2\to\R^2$, $f(x,y)=(x+2y,\,2x+4y)$. Déterminer $\ker f$, $\mathrm{Im}\,f$,
+le rang, et préciser injectivité/surjectivité.
+
+% ═══════════════════════════════════════════════════════════════
+\section{Exercices d'entraînement}
+
+\rubrique{Calcul vectoriel et coordonnées}
+\exo{}\diff{1} $A(2,3)$, $B(-1,4)$. Calculer $\vec{AB}$, sa norme (repère orthonormé) et le
+milieu de $[AB]$.
+
+\exo{}\diff{1} Placer $A(1,1)$, $B(3,2)$ ; déterminer $C$ tel que $\vec{AC}=3\vec{AB}$.
+
+\exo{}\diff{2} Soient $A(0,0)$, $B(2,1)$, $C(1,3)$. Calculer l'aire du triangle $ABC$ à l'aide d'un
+déterminant.
+
+\exo{}\diff{2} Dans l'espace, $A(1,0,2)$, $B(3,1,1)$, $C(2,-1,4)$. Calculer $\vec{AB}$, $\vec{AC}$
+et $\vec{AB}+\vec{AC}$.
+
+\exo{}\diff{2} Déterminer $D$ pour que $ABCD$ soit un parallélogramme : $A(-2,1)$, $B(0,4)$, $C(3,3)$.
+
+\rubrique{Colinéarité, alignement, parallélisme}
+\exo{}\diff{1} Les vecteurs $\vec u=(4,6)$ et $\vec v=(6,9)$ sont-ils colinéaires ?
+
+\exo{}\diff{1} Les points $A(0,1)$, $B(2,5)$, $C(-1,-1)$ sont-ils alignés ?
+
+\exo{}\diff{2} Pour quelle valeur de $k$ les vecteurs $\vec u=(k,3)$ et $\vec v=(4,6)$ sont-ils
+colinéaires ?
+
+\exo{}\diff{2} Pour quelle valeur de $m$ les points $A(1,2)$, $B(3,m)$, $C(5,8)$ sont-ils alignés ?
+
+\exo{}\diff{2} Montrer que les droites $D:3x-2y+1=0$ et $D':6x-4y+7=0$ sont parallèles. Sont-elles
+confondues ?
+
+\exo{}\diff{3} On donne $A(1,1)$, $B(5,3)$, $C(2,4)$, $D(6,6)$. Montrer que $(AB)\parallel(CD)$ et
+que $ABDC$ n'est pas un parallélogramme.
+
+\rubrique{Sous-espaces vectoriels}
+\exo{}\diff{1} $F=\{(x,y)\mid 2x-5y=0\}$ est-il un s.e.v. de $\R^2$ ? Et $G=\{(x,y)\mid xy=0\}$ ?
+
+\exo{}\diff{2} Montrer que $H=\{(x,y,z)\in\R^3\mid x-2y+3z=0\}$ est un s.e.v. de $\R^3$.
+
+\exo{}\diff{2} $K=\{(x,y,z)\mid x+y+z=1\}$ est-il un s.e.v. de $\R^3$ ? Justifier.
+
+\exo{}\diff{3} Montrer que $L=\{(x,y,z)\mid x=y=z\}$ est un s.e.v. de $\R^3$ et en donner une base.
+
+\rubrique{Familles, bases, dimension, coplanarité}
+\exo{}\diff{1} La famille $\big((1,3),(2,6)\big)$ est-elle libre ?
+
+\exo{}\diff{2} Montrer que $\big((2,1),(1,3)\big)$ est une base de $\R^2$ ; décomposer $(7,7)$.
+
+\exo{}\diff{2} Donner une base et la dimension de $F=\{(x,y,z)\mid x+y+z=0\}$.
+
+\exo{}\diff{2} Les vecteurs $\vec u=(1,2,3)$, $\vec v=(0,1,2)$, $\vec w=(1,3,5)$ sont-ils
+coplanaires ?
+
+\exo{}\diff{3} Montrer que $\big((1,2,1),(2,1,0),(1,0,1)\big)$ est une base de $\R^3$.
+
+\exo{}\diff{3} Dans $\R^3$, déterminer une base de $\mathrm{Vect}\big((1,1,2),(2,2,4),(0,1,1)\big)$
+et sa dimension.
+
+\rubrique{Déterminant et systèmes}
+\exo{}\diff{1} Calculer $\begin{vmatrix}5&-2\\3&1\end{vmatrix}$ et $\begin{vmatrix}4&8\\1&2\end{vmatrix}$.
+
+\exo{}\diff{2} Résoudre par Cramer : $\left\{\begin{aligned}5x-2y&=4\\ 3x+y&=5\end{aligned}\right.$
+
+\exo{}\diff{2} Résoudre : $\left\{\begin{aligned}4x+6y&=10\\ 2x+3y&=5\end{aligned}\right.$
+(que constate-t-on ?)
+
+\exo{}\diff{2} Résoudre : $\left\{\begin{aligned}x-2y&=1\\ -2x+4y&=3\end{aligned}\right.$
+(interpréter géométriquement).
+
+\exo{}\diff{3} Résoudre le système $3\times3$ :
+$\left\{\begin{aligned}x+y+z&=6\\ x-y+2z&=5\\ 2x+y-z&=1\end{aligned}\right.$
+
+\exo{}\diff{3} Discuter selon $a\in\R$ les solutions de
+$\left\{\begin{aligned}x+ay&=1\\ ax+y&=1\end{aligned}\right.$
+
+\rubrique{Applications linéaires}
+\exo{}\diff{1} $f(x,y)=(2x+y,\,x-3y)$ est-elle linéaire ? Et $g(x,y)=(x^2,\,y)$ ?
+
+\exo{}\diff{2} Soit $f(x,y)=(x+y,\,x-y)$. Déterminer $\ker f$ et $\mathrm{Im}\,f$. $f$ est-elle
+bijective ?
+
+\exo{}\diff{2} Soit $f:\R^3\to\R^2$, $f(x,y,z)=(x-2y+z,\,3x+z)$. Déterminer $\ker f$ et sa dimension.
+
+\exo{}\diff{3} Soit $f:\R^3\to\R^3$, $f(x,y,z)=(x+y,\,y+z,\,z+x)$. Déterminer $\ker f$, le rang, et
+dire si $f$ est bijective.
+
+% ═══════════════════════════════════════════════════════════════
+\section{Sujets type Baccalauréat}
+
+\sujetbac[calcul vectoriel, alignement et déterminant]
+Le plan est rapporté à un repère orthonormé. On donne $A(-1,2)$, $B(2,3)$, $C(5,4)$ et $D(1,-1)$.
+\begin{enumerate}[label=\arabic*)]
+\item Calculer les coordonnées des vecteurs $\vec{AB}$ et $\vec{AC}$.
+\item Calculer $\det(\vec{AB},\vec{AC})$. Les points $A$, $B$, $C$ sont-ils alignés ?
+\item Calculer $\det(\vec{AB},\vec{AD})$ et en déduire l'aire du triangle $ABD$.
+\item Déterminer les coordonnées du point $E$ tel que $ABED$ soit un parallélogramme.
+\item Les droites $(AB)$ et $(CD)$ sont-elles parallèles ? Justifier par un déterminant.
+\end{enumerate}
+
+\sujetbac[base, coordonnées et système de Cramer]
+Dans $\R^2$ on pose $\vec u=(1,2)$ et $\vec v=(3,-1)$.
+\begin{enumerate}[label=\arabic*)]
+\item Montrer que $(\vec u,\vec v)$ est une base de $\R^2$ (on calculera un déterminant).
+\item Soit $\vec w=(5,5)$. Déterminer les coordonnées $(a,b)$ de $\vec w$ dans la base
+$(\vec u,\vec v)$ à l'aide des formules de Cramer.
+\item Vérifier le résultat en calculant $a\vec u+b\vec v$.
+\item Soit $g:\R^2\to\R^2$ définie par $g(x,y)=(x+3y,\,2x-y)$. Montrer que $g$ est linéaire et
+exprimer $g(\vec u)$ et $g(\vec v)$.
+\item En déduire que $g$ envoie la base $(\vec i,\vec j)$ sur $(\vec u,\vec v)$.
+\end{enumerate}
+
+\sujetbac[application linéaire, noyau, image et théorème du rang]
+On considère l'application $f:\R^3\to\R^3$ définie par
 \[
-f(x,y)=(x+2y,\ 2x+4y).
+f(x,y,z)=(x-y,\ y-z,\ z-x).
 \]
 \begin{enumerate}[label=\arabic*)]
 \item Montrer que $f$ est une application linéaire.
-\item Déterminer le noyau $\ker f$ ; en donner une base et la dimension. $f$ est-elle injective ?
-\item Calculer $f(1,0)$ et $f(0,1)$. En déduire une base de $\mathrm{Im}\,f$ et le rang de $f$.
-\item Vérifier la relation $\dim(\ker f)+\mathrm{rg}(f)=2$. L'application $f$ est-elle surjective ?
-\end{enumerate}
-
-\exo{}\diff{3} Soit $f:\R^3\to\R^3$, $f(x,y,z)=(x-y,\ y-z,\ z-x)$.
-\begin{enumerate}[label=\arabic*)]
-\item Montrer que $f$ est linéaire.
-\item Déterminer $\ker f$ ; en donner une base et la dimension.
-\item En déduire le rang de $f$ à l'aide du théorème du rang.
+\item Déterminer le noyau $\ker f$ ; en donner une base et la dimension.
+\item En déduire le rang de $f$ à l'aide du théorème du rang. $f$ est-elle bijective ?
+\item Calculer $f(1,0,0)$, $f(0,1,0)$, $f(0,0,1)$ et en déduire une base de $\mathrm{Im}\,f$.
+\item Vérifier que $\mathrm{Im}\,f=\{(a,b,c)\in\R^3\mid a+b+c=0\}$.
 \end{enumerate}
 
 % ═══════════════════════════════════════════════════════════════
 \section{Corrigés}
 
 \corrige{de l'exercice 1}
-$A$ : droite passant par l'origine ($(0,0)\in A$, stable) $\Rightarrow$ \textbf{s.e.v.}\;
-$B$ : $(0,0)\notin B$ car $0\neq0+1$ $\Rightarrow$ \textbf{non}.\;
-$C$ : $x^2=y^2\Leftrightarrow y=\pm x$, réunion de deux droites ; $(1,1)\in C$ et $(1,-1)\in C$
-mais leur somme $(2,0)\notin C$ (car $4\neq0$) $\Rightarrow$ \textbf{non} (pas stable par addition).
+$\vec{AB}=(3-(-1),-1-2)=(4,-3)$ ; $\vec{BC}=(2-3,4-(-1))=(-1,5)$ ;
+$\vec{AC}=(2-(-1),4-2)=(3,2)$. Vérification : $\vec{AB}+\vec{BC}=(4-1,-3+5)=(3,2)=\vec{AC}$. \checkmark
 
 \corrige{de l'exercice 2}
-$\vec 0=(0,0,0)$ : $2\cdot0-0+0=0$ donc $\vec 0\in F$. Soient $\vec u=(x,y,z)$, $\vec v=(x',y',z')$
-dans $F$ et $\lambda,\mu\in\R$. Pour $\vec w=\lambda\vec u+\mu\vec v$ :
-$2(\lambda x+\mu x')-(\lambda y+\mu y')+(\lambda z+\mu z')=\lambda(2x-y+z)+\mu(2x'-y'+z')=\lambda\cdot0+\mu\cdot0=0$.
-Donc $\vec w\in F$ : $F$ est un sous-espace vectoriel de $\R^3$.
+$ABCD$ parallélogramme $\Leftrightarrow\vec{AB}=\vec{DC}$, soit $\vec{AD}=\vec{BC}$.
+$\vec{BC}=(1,3)$, donc $D=A+\vec{BC}=(0+1,1+3)=(1,4)$. (On vérifie $\vec{AB}=(4,1)=\vec{DC}=(5-1,5-4)=(4,1)$.)
 
 \corrige{de l'exercice 3}
 $\vec v=(-6,3)=-3\,(2,-1)=-3\vec u$ : $\vec u$ et $\vec v$ sont colinéaires, donc la famille est
 \textbf{liée}.
 
 \corrige{de l'exercice 4}
-$(1,2)$ et $(3,1)$ ne sont pas colinéaires ($1\times1-2\times3=-5\neq0$) : famille libre de $2$
-vecteurs dans $\R^2$ ($\dim\R^2=2$), c'est donc une \textbf{base}. On cherche $a,b$ tels que
-$a(1,2)+b(3,1)=(5,5)$, soit $a+3b=5$ et $2a+b=5$. De la seconde : $b=5-2a$ ; report :
-$a+3(5-2a)=5\Rightarrow a+15-6a=5\Rightarrow-5a=-10\Rightarrow a=2$, $b=1$. Coordonnées :
-$\vec w=2(1,2)+1(3,1)$, soit $(2,1)$ dans cette base.
+$\vec{AB}=(3,1)$, $\vec{AC}=(6,2)$. $\det(\vec{AB},\vec{AC})=3\times2-1\times6=0$ : les points
+$A,B,C$ sont \textbf{alignés}.
 
 \corrige{de l'exercice 5}
+$\vec{AB}=(2,2)$, $\vec{CD}=(4,4)$. $\det(\vec{AB},\vec{CD})=2\times4-2\times4=0$ : $\vec{AB}$ et
+$\vec{CD}$ sont colinéaires, donc $(AB)\parallel(CD)$.
+
+\corrige{de l'exercice 6}
+$A$ : droite passant par l'origine ($(0,0)\in A$, stable) $\Rightarrow$ \textbf{s.e.v.}\;
+$B$ : $(0,0)\notin B$ car $0\neq0+1$ $\Rightarrow$ \textbf{non}.\;
+$C$ : $x^2=y^2\Leftrightarrow y=\pm x$, réunion de deux droites ; $(1,1)\in C$ et $(1,-1)\in C$
+mais leur somme $(2,0)\notin C$ (car $4\neq0$) $\Rightarrow$ \textbf{non} (pas stable par addition).
+
+\corrige{de l'exercice 7}
+$\vec 0=(0,0,0)$ : $2\cdot0-0+0=0$ donc $\vec 0\in F$. Soient $\vec u=(x,y,z)$, $\vec v=(x',y',z')$
+dans $F$ et $\lambda,\mu\in\R$. Pour $\vec w=\lambda\vec u+\mu\vec v$ :
+$2(\lambda x+\mu x')-(\lambda y+\mu y')+(\lambda z+\mu z')=\lambda(2x-y+z)+\mu(2x'-y'+z')=0$.
+Donc $\vec w\in F$ : $F$ est un sous-espace vectoriel de $\R^3$ (un plan vectoriel).
+
+\corrige{de l'exercice 8}
+$(1,2)$ et $(3,1)$ : $\det=1\times1-2\times3=-5\neq0$, donc famille libre de $2$ vecteurs dans
+$\R^2$ : c'est une \textbf{base}. On cherche $a,b$ avec $a(1,2)+b(3,1)=(5,5)$, soit $a+3b=5$ et
+$2a+b=5$. De la seconde $b=5-2a$ ; report : $a+15-6a=5\Rightarrow-5a=-10\Rightarrow a=2$, $b=1$.
+Coordonnées : $\vec w=2(1,2)+1(3,1)$, soit $(2,1)$ dans cette base.
+
+\corrige{de l'exercice 9}
 $F=\{(2y,y,0)\mid y\in\R\}=y\,(2,1,0)$. Le vecteur $(2,1,0)$ engendre $F$ et est non nul (donc
 libre) : c'est une \textbf{base} de $F$, et $\dim F=1$ ($F$ est une droite vectorielle).
 
-\corrige{de l'exercice 6}
+\corrige{de l'exercice 10}
 Trois vecteurs dans $\R^3$ ($\dim=3$) : il suffit de montrer qu'ils sont libres. Posons
 $\lambda(1,1,0)+\mu(0,1,1)+\nu(1,0,1)=(0,0,0)$, soit
 $\lambda+\nu=0$, $\lambda+\mu=0$, $\mu+\nu=0$. De la première $\nu=-\lambda$ ; de la deuxième
 $\mu=-\lambda$ ; report dans la troisième : $-\lambda-\lambda=0\Rightarrow\lambda=0$, puis
 $\mu=\nu=0$. La famille est libre, donc c'est une \textbf{base} de $\R^3$.
 
-\corrige{de l'exercice 7}
+\corrige{de l'exercice 11}
+On cherche $a,b$ avec $\vec w=a\vec u+b\vec v$, soit $(0,1,-2)=a(1,0,1)+b(2,1,0)=(a+2b,\,b,\,a)$.
+On a $b=1$, $a=-2$, et il faut $a+2b=0$ : $-2+2=0$ \checkmark. Donc $\vec w=-2\vec u+\vec v$ : les
+trois vecteurs sont \textbf{coplanaires} (famille liée).
+
+\corrige{de l'exercice 12}
+$\det\big((3,-2),(1,4)\big)=3\times4-(-2)\times1=12+2=14\neq0$ : libres (base de $\R^2$).\;
+$\det\big((2,6),(1,3)\big)=2\times3-6\times1=0$ : colinéaires.
+
+\corrige{de l'exercice 13}
+$\Delta=2(-1)-3(1)=-5\neq0$. $x=\dfrac{1}{-5}\begin{vmatrix}8&3\\-1&-1\end{vmatrix}=\dfrac{-8+3}{-5}=1$,\;
+$y=\dfrac{1}{-5}\begin{vmatrix}2&8\\1&-1\end{vmatrix}=\dfrac{-2-8}{-5}=2$. Solution $(1,2)$
+(on vérifie : $2(1)+3(2)=8$ et $1-2=-1$). \checkmark
+
+\corrige{de l'exercice 14}
+$\Delta=\begin{vmatrix}1&2\\2&m\end{vmatrix}=m-4$.\;
+\textbf{Si $m\neq4$} : $\Delta\neq0$, solution unique (Cramer).\;
+\textbf{Si $m=4$} : le système devient $x+2y=3$ et $2x+4y=6$, la seconde équation est le double
+de la première : \textbf{une infinité} de solutions (droite $x+2y=3$).
+
+\corrige{de l'exercice 15}
 $f(x,y)=(3x,x-y)$ : pour $\vec u=(x,y)$, $\vec v=(x',y')$, $\lambda,\mu\in\R$,
 $f(\lambda\vec u+\mu\vec v)=\big(3(\lambda x+\mu x'),(\lambda x+\mu x')-(\lambda y+\mu y')\big)
 =\lambda(3x,x-y)+\mu(3x',x'-y')=\lambda f(\vec u)+\mu f(\vec v)$ : \textbf{linéaire}.\;
-$g(x,y)=(xy,x)$ : $g(0,1)=(0,0)$, $g(0,2)=(0,0)$ mais $g(2\cdot(0,1))=g(0,2)$ devrait valoir
-$2g(0,1)$ ; ici ok, prenons plutôt $g(1,1)=(1,1)$ et $2g(1,1)=(2,2)$ tandis que $g(2,2)=(4,2)\neq(2,2)$ :
+$g(x,y)=(xy,x)$ : $g(1,1)=(1,1)$ donc $2g(1,1)=(2,2)$, tandis que $g(2,2)=(4,2)\neq(2,2)$ :
 \textbf{non linéaire}.
 
-\corrige{de l'exercice 8}
+\corrige{de l'exercice 16}
 \textbf{Linéarité} : $f(\lambda\vec u+\mu\vec v)=\big((\lambda x+\mu x')+(\lambda y+\mu y')-(\lambda z+\mu z'),\,2(\lambda x+\mu x')-(\lambda z+\mu z')\big)
 =\lambda f(\vec u)+\mu f(\vec v)$ : $f$ est linéaire.\;
 \textbf{Noyau} : $f(x,y,z)=(0,0)\Leftrightarrow x+y-z=0$ et $2x-z=0$, soit $z=2x$ et $y=z-x=x$.
 Donc $\ker f=\{(x,x,2x)\mid x\in\R\}=\mathrm{Vect}\big((1,1,2)\big)$, droite vectorielle de
 dimension $1$.
 
-\corrige{du problème}
-1) Pour $\vec u=(x,y)$, $\vec v=(x',y')$, $\lambda,\mu\in\R$ :
-$f(\lambda\vec u+\mu\vec v)=\big((\lambda x+\mu x')+2(\lambda y+\mu y'),\,2(\lambda x+\mu x')+4(\lambda y+\mu y')\big)
-=\lambda(x+2y,2x+4y)+\mu(x'+2y',2x'+4y')=\lambda f(\vec u)+\mu f(\vec v)$. Donc $f$ est linéaire.\;
-2) $f(x,y)=(0,0)\Leftrightarrow x+2y=0$ et $2x+4y=0$. La seconde équation est le double de la
-première ; il reste $x+2y=0$, soit $x=-2y$. Ainsi
-$\ker f=\{(-2y,y)\mid y\in\R\}=\mathrm{Vect}\big((-2,1)\big)$ : base $\{(-2,1)\}$, $\dim\ker f=1$.
-Comme $\ker f\neq\{\vec 0\}$, $f$ \textbf{n'est pas injective}.\;
-3) $f(1,0)=(1,2)$ et $f(0,1)=(2,4)=2(1,2)$. Donc
-$\mathrm{Im}\,f=\mathrm{Vect}\big((1,2),(2,4)\big)=\mathrm{Vect}\big((1,2)\big)$ : une base de
-$\mathrm{Im}\,f$ est $\{(1,2)\}$ et $\mathrm{rg}(f)=1$.\;
-4) $\dim\ker f+\mathrm{rg}(f)=1+1=2=\dim\R^2$ : la relation est vérifiée. Comme
-$\mathrm{Im}\,f\neq\R^2$ (c'est une droite), $f$ \textbf{n'est pas surjective}.
+\corrige{de l'exercice 17}
+$f(x,y)=(x+2y,2x+4y)$.\;
+\textbf{Linéarité} : composantes linéaires en $(x,y)$, donc $f$ est linéaire.\;
+\textbf{Noyau} : $x+2y=0$ et $2x+4y=0$ (double de la première) ; il reste $x=-2y$, d'où
+$\ker f=\mathrm{Vect}\big((-2,1)\big)$, base $\{(-2,1)\}$, $\dim\ker f=1$. Donc $f$ \textbf{n'est pas
+injective}.\;
+\textbf{Image} : $f(1,0)=(1,2)$, $f(0,1)=(2,4)=2(1,2)$, donc
+$\mathrm{Im}\,f=\mathrm{Vect}\big((1,2)\big)$, $\mathrm{rg}(f)=1$. Vérif. : $1+1=2=\dim\R^2$ \checkmark.
+Comme $\mathrm{Im}\,f\neq\R^2$, $f$ \textbf{n'est pas surjective}.
 
-\medskip
-\noindent\textit{Second problème (exercice 9).}\;
-1) $f(x,y,z)=(x-y,y-z,z-x)$ est linéaire (chaque composante est combinaison linéaire de
-$x,y,z$ ; vérification identique aux précédentes).\;
+\corrige{du sujet 1}
+1) $\vec{AB}=(2-(-1),3-2)=(3,1)$, $\vec{AC}=(5-(-1),4-2)=(6,2)$.\\
+2) $\det(\vec{AB},\vec{AC})=3\times2-1\times6=0$ : les points $A,B,C$ sont \textbf{alignés}.\\
+3) $\vec{AD}=(1-(-1),-1-2)=(2,-3)$. $\det(\vec{AB},\vec{AD})=3\times(-3)-1\times2=-11$. Aire du
+triangle $ABD=\tfrac12|{-11}|=\dfrac{11}{2}=5{,}5$ unités d'aire.\\
+4) $ABED$ parallélogramme $\Leftrightarrow\vec{AB}=\vec{DE}$, donc $E=D+\vec{AB}=(1+3,-1+1)=(4,0)$.\\
+5) $\vec{CD}=(1-5,-1-4)=(-4,-5)$. $\det(\vec{AB},\vec{CD})=3\times(-5)-1\times(-4)=-15+4=-11\neq0$ :
+$(AB)$ et $(CD)$ \textbf{ne sont pas parallèles}.
+
+\corrige{du sujet 2}
+1) $\det(\vec u,\vec v)=\begin{vmatrix}1&3\\2&-1\end{vmatrix}=1\times(-1)-2\times3=-7\neq0$ :
+$(\vec u,\vec v)$ est une \textbf{base} de $\R^2$.\\
+2) On résout $a\vec u+b\vec v=(5,5)$, soit $a+3b=5$ et $2a-b=5$, de déterminant $\Delta=-7$.
+$a=\dfrac{1}{-7}\begin{vmatrix}5&3\\5&-1\end{vmatrix}=\dfrac{-5-15}{-7}=\dfrac{-20}{-7}=\dfrac{20}{7}$,\;
+$b=\dfrac{1}{-7}\begin{vmatrix}1&5\\2&5\end{vmatrix}=\dfrac{5-10}{-7}=\dfrac{-5}{-7}=\dfrac{5}{7}$.\\
+3) $a\vec u+b\vec v=\tfrac{20}{7}(1,2)+\tfrac57(3,-1)=\big(\tfrac{20+15}{7},\tfrac{40-5}{7}\big)
+=\big(\tfrac{35}{7},\tfrac{35}{7}\big)=(5,5)$. \checkmark\\
+4) $g$ a des composantes linéaires en $(x,y)$ : $g(\lambda\vec a+\mu\vec b)=\lambda g(\vec a)+\mu g(\vec b)$,
+donc $g$ est \textbf{linéaire}. $g(\vec u)=g(1,2)=(1+6,2-2)=(7,0)$ ;
+$g(\vec v)=g(3,-1)=(3-3,6+1)=(0,7)$.\\
+5) $g(\vec i)=g(1,0)=(1,2)=\vec u$ et $g(\vec j)=g(0,1)=(3,-1)=\vec v$. Donc $g$ envoie la base
+canonique $(\vec i,\vec j)$ sur la base $(\vec u,\vec v)$.
+
+\corrige{du sujet 3}
+1) $f(x,y,z)=(x-y,y-z,z-x)$ : chaque composante est linéaire en $(x,y,z)$, donc pour tous
+$\vec U,\vec V$ et $\lambda,\mu$, $f(\lambda\vec U+\mu\vec V)=\lambda f(\vec U)+\mu f(\vec V)$ :
+$f$ est \textbf{linéaire}.\\
 2) $f(x,y,z)=(0,0,0)\Leftrightarrow x-y=0,\ y-z=0,\ z-x=0\Leftrightarrow x=y=z$. Donc
-$\ker f=\{(x,x,x)\mid x\in\R\}=\mathrm{Vect}\big((1,1,1)\big)$ : base $\{(1,1,1)\}$, $\dim\ker f=1$.\;
-3) Théorème du rang : $\mathrm{rg}(f)=\dim\R^3-\dim\ker f=3-1=2$. L'image est donc un plan
-vectoriel de $\R^3$ (on peut vérifier : $f(1,0,0)=(1,0,-1)$, $f(0,1,0)=(-1,1,0)$ sont libres et
-engendrent $\mathrm{Im}\,f$).
+$\ker f=\{(x,x,x)\mid x\in\R\}=\mathrm{Vect}\big((1,1,1)\big)$ : base $\{(1,1,1)\}$, $\dim\ker f=1$.\\
+3) Théorème du rang : $\mathrm{rg}(f)=\dim\R^3-\dim\ker f=3-1=2$. Comme $\ker f\neq\{\vec0\}$,
+$f$ n'est pas injective, donc \textbf{pas bijective}.\\
+4) $f(1,0,0)=(1,0,-1)$, $f(0,1,0)=(-1,1,0)$, $f(0,0,1)=(0,-1,1)$. Ces vecteurs engendrent
+$\mathrm{Im}\,f$ ; les deux premiers sont non colinéaires (donc libres) et le rang vaut $2$ : une
+base de $\mathrm{Im}\,f$ est $\big((1,0,-1),(-1,1,0)\big)$.\\
+5) Pour tout $(a,b,c)=f(x,y,z)=(x-y,y-z,z-x)$ : $a+b+c=(x-y)+(y-z)+(z-x)=0$. Donc
+$\mathrm{Im}\,f\subset\{a+b+c=0\}$. Ce dernier est un plan (dimension $2$) contenant
+$\mathrm{Im}\,f$ qui est aussi de dimension $2$ : il y a égalité,
+$\mathrm{Im}\,f=\{(a,b,c)\mid a+b+c=0\}$.

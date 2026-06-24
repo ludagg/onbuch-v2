@@ -4,11 +4,14 @@
 d'un ensemble fini sans dresser la liste complète. Au c{\oe}ur du raisonnement
 combinatoire, ce chapitre fournit les outils — listes, arrangements, permutations,
 combinaisons — indispensables au calcul des probabilités (chapitre 20), et culmine avec
-la \textbf{formule du binôme de Newton}.}
+la \textbf{formule du binôme de Newton}. La démarche est toujours la même : modéliser
+la situation (l'ordre compte-t-il ? les répétitions sont-elles permises ?), choisir
+le bon outil, puis calculer. On y apprend à \og découper \fg{} un problème en étapes,
+à raisonner par complémentaire, et à manier le triangle de Pascal.}
 \vspace{8pt}
 
 % ═══════════════════════════════════════════════════════════════
-\section{Principes fondamentaux du dénombrement}
+\section{Ensembles finis et cardinaux}
 
 \subsection{Cardinal d'un ensemble fini}
 
@@ -16,16 +19,60 @@ la \textbf{formule du binôme de Newton}.}
 Le \textbf{cardinal} d'un ensemble fini $E$, noté $\Card(E)$ (ou $|E|$ ou $n(E)$), est le nombre d'éléments de $E$. Par convention $\Card(\varnothing)=0$.
 \end{definition}
 
+\begin{exemple}
+$E=\{a,e,i,o,u,y\}$ (voyelles) a pour cardinal $\Card(E)=6$. L'ensemble des entiers de
+$1$ à $50$ a pour cardinal $50$. Plus généralement, $\Card\big(\{p,p+1,\dots,q\}\big)=q-p+1$.
+\end{exemple}
+
 \begin{propriete}[Réunion et complémentaire]
 Soient $A$ et $B$ deux parties finies d'un ensemble $E$ :
 \begin{itemize}
-\item $\Card(A\cup B)=\Card(A)+\Card(B)-\Card(A\cap B)$ ;
+\item $\Card(A\cup B)=\Card(A)+\Card(B)-\Card(A\cap B)$ \quad(\textbf{formule du crible}) ;
 \item si $A$ et $B$ sont \textbf{disjoints} ($A\cap B=\varnothing$) : $\Card(A\cup B)=\Card(A)+\Card(B)$ ;
 \item $\Card(\overline{A})=\Card(E)-\Card(A)$ \quad(passage au \textbf{complémentaire}).
 \end{itemize}
 \end{propriete}
 
-\subsection{Les deux principes}
+\begin{remarque}
+La formule du crible se généralise à trois parties :
+\[
+\Card(A\cup B\cup C)=\Card A+\Card B+\Card C-\Card(A\cap B)-\Card(A\cap C)-\Card(B\cap C)+\Card(A\cap B\cap C).
+\]
+On ajoute les cardinaux simples, on retranche les intersections deux à deux, on rajoute
+l'intersection triple : c'est le principe d'inclusion-exclusion.
+\end{remarque}
+
+\begin{exemple}
+Dans une classe de $40$ élèves, $25$ font de l'anglais, $18$ de l'espagnol et $10$ font
+les deux. Le nombre d'élèves faisant \emph{au moins une} des deux langues est
+$\Card(A\cup E)=25+18-10=33$. Ceux qui n'en font \emph{aucune} sont $40-33=7$.
+\end{exemple}
+
+\subsection{Produit cartésien}
+
+\begin{definition}[Produit cartésien]
+Le \textbf{produit cartésien} de deux ensembles $E$ et $F$ est l'ensemble des couples
+ordonnés $E\times F=\{(x,y)\mid x\in E,\ y\in F\}$. Pour $k$ ensembles, $E_1\times\cdots\times E_k$
+est l'ensemble des $k$-uplets $(x_1,\dots,x_k)$.
+\end{definition}
+
+\begin{propriete}[Cardinal d'un produit]
+Si $E$ et $F$ sont finis, $\Card(E\times F)=\Card(E)\times\Card(F)$, et plus généralement
+\[
+\Card(E_1\times E_2\times\cdots\times E_k)=\Card(E_1)\times\Card(E_2)\times\cdots\times\Card(E_k).
+\]
+En particulier $\Card(E^{p})=\big(\Card E\big)^{p}$.
+\end{propriete}
+
+\begin{remarque}
+Le produit cartésien est le \emph{modèle abstrait} du principe multiplicatif : choisir un
+couple $(x,y)$, c'est choisir $x$ \textbf{puis} $y$ indépendamment.
+\end{remarque}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Les deux principes du dénombrement}
+
+\subsection{Principe additif, principe multiplicatif}
 
 \begin{theoreme}[Principe additif]
 Si une situation se décompose en plusieurs cas \textbf{deux à deux incompatibles} (disjoints), le nombre total de possibilités est la \textbf{somme} des nombres de possibilités de chaque cas.
@@ -39,11 +86,17 @@ n_1\times n_2\times \cdots \times n_k.
 \end{theoreme}
 
 \begin{aretenir}
-Tout repose sur une question de langage : \textbf{« et »} (étapes enchaînées) appelle une \textbf{multiplication} ; \textbf{« ou »} (cas exclusifs) appelle une \textbf{addition}.
+Tout repose sur une question de langage : \textbf{« et »} (étapes enchaînées) appelle une \textbf{multiplication} ; \textbf{« ou »} (cas exclusifs) appelle une \textbf{addition}. Avant tout calcul, reformule l'énoncé avec des \og et \fg{} / \og ou \fg.
 \end{aretenir}
 
 \begin{exemple}
 Au restaurant universitaire de Yaoundé, un menu comprend $3$ entrées, $4$ plats et $2$ desserts. Le nombre de menus complets (une entrée \emph{et} un plat \emph{et} un dessert) est $3\times 4\times 2=24$.
+\end{exemple}
+
+\begin{exemple}
+Combien d'entiers de $1$ à $999$ ? On distingue les nombres à $1$, $2$ ou $3$ chiffres
+(\emph{ou} exclusif) : $9$ (de $1$ à $9$) \emph{plus} $90$ (de $10$ à $99$) \emph{plus}
+$900$ (de $100$ à $999$), soit $9+90+900=999$. L'addition traduit le \og ou \fg.
 \end{exemple}
 
 \begin{illus}
@@ -68,15 +121,34 @@ Au restaurant universitaire de Yaoundé, un menu comprend $3$ entrées, $4$ plat
 \fig{Figure 12.1 — Arbre de choix : le principe multiplicatif compte les feuilles.}
 \end{illus}
 
-% ═══════════════════════════════════════════════════════════════
-\section{Listes, arrangements et permutations}
+\subsection{Nombre de parties d'un ensemble}
 
-On part d'un ensemble $E$ à $n$ éléments et l'on tire $p$ éléments. Quatre situations se distinguent selon que l'\textbf{ordre} compte ou non, et que les \textbf{répétitions} sont permises ou non.
+\begin{theoreme}[Nombre de parties]
+Un ensemble $E$ à $n$ éléments possède exactement $2^{n}$ parties (sous-ensembles), y
+compris $\varnothing$ et $E$ lui-même. Autrement dit, $\Card\big(\mathcal P(E)\big)=2^{n}$.
+\end{theoreme}
+
+\begin{remarque}
+Justification par le principe multiplicatif : pour construire une partie, on décide
+\emph{pour chaque} élément s'il est \og dedans \fg{} ou \og dehors \fg{} ($2$ choix par
+élément, $n$ éléments) : $\underbrace{2\times 2\times\cdots\times 2}_{n}=2^{n}$.
+\end{remarque}
+
+\begin{exemple}
+Une pizzeria propose $5$ garnitures supplémentaires. Le nombre de pizzas possibles (en
+choisissant un sous-ensemble quelconque de garnitures, éventuellement aucune) est
+$2^{5}=32$.
+\end{exemple}
+
+% ═══════════════════════════════════════════════════════════════
+\section{$p$-listes, arrangements et permutations}
+
+On part d'un ensemble $E$ à $n$ éléments et l'on tire $p$ éléments. Quatre situations se distinguent selon que l'\textbf{ordre} compte ou non, et que les \textbf{répétitions} sont permises ou non. Trois sont au programme et donnent une formule directe.
 
 \subsection{$p$-listes : tirages successifs avec remise}
 
 \begin{definition}[$p$-liste]
-Une \textbf{$p$-liste} (ou $p$-uplet) d'un ensemble $E$ à $n$ éléments est une suite ordonnée de $p$ éléments de $E$, \textbf{avec répétitions autorisées}. Elle modélise un tirage \textbf{successif avec remise}.
+Une \textbf{$p$-liste} (ou $p$-uplet) d'un ensemble $E$ à $n$ éléments est une suite ordonnée de $p$ éléments de $E$, \textbf{avec répétitions autorisées}. Elle modélise un tirage \textbf{successif avec remise}. C'est un élément de $E^{p}$.
 \end{definition}
 
 \begin{theoreme}[Nombre de $p$-listes]
@@ -86,11 +158,40 @@ Le nombre de $p$-listes d'un ensemble à $n$ éléments est
 \]
 \end{theoreme}
 
+\begin{remarque}
+Preuve par le principe multiplicatif : pour chacune des $p$ positions de la liste, on
+dispose de $n$ choix (remise), d'où $n\times n\times\cdots\times n=n^{p}$.
+\end{remarque}
+
 \begin{exemple}
 Une plaque d'immatriculation formée de $3$ lettres (parmi $26$) suivies de $4$ chiffres (parmi $10$) : il y en a $26^{3}\times 10^{4}=17\,576\times 10\,000=175\,760\,000$.
 \end{exemple}
 
-\subsection{Arrangements : tirages sans remise, ordonnés}
+\begin{illus}
+\begin{tikzpicture}[font=\small,>=Stealth]
+% urne avec remise
+\draw[onbink,line width=1pt] (0,0) .. controls (0,-1.1) and (1.6,-1.1) .. (1.6,0);
+\draw[onbink,line width=1pt] (-0.1,0) -- (1.7,0);
+\foreach \x/\y in {0.35/-0.45,0.8/-0.7,1.15/-0.4,0.55/-0.75,1.0/-0.25}
+  {\fill[onbo] (\x,\y) circle (3pt);}
+\node at (0.8,0.35) {\footnotesize urne ($n$)};
+% flèche tirage
+\draw[->,onbgreen,line width=1pt] (2.0,-0.3) -- (3.0,-0.3);
+\node[onbgreen] at (2.5,0.05) {\footnotesize tire};
+% remise (boucle)
+\draw[->,onbblue,line width=0.9pt] (3.0,-0.75) .. controls (2.2,-1.4) and (0.4,-1.4) .. (0.4,-0.9);
+\node[onbblue] at (1.7,-1.5) {\footnotesize remet (remise)};
+% cases liste
+\foreach \i in {0,1,2}{\draw[onbink] (3.4+\i*0.95,-0.6) rectangle (4.25+\i*0.95,0.05);}
+\node at (3.825,-0.28){$x_1$}; \node at (4.775,-0.28){$x_2$}; \node at (5.725,-0.28){$x_3$};
+\node[align=left,text width=4.2cm,anchor=west] at (6.9,-0.3)
+{\footnotesize Avec remise et ordre :\\ $p$-liste, $n^{p}$ tirages. Une même boule peut
+revenir plusieurs fois.};
+\end{tikzpicture}
+\fig{Figure 12.2 — Tirage successif avec remise : modèle de la $p$-liste.}
+\end{illus}
+
+\subsection{Arrangements : tirages successifs sans remise}
 
 \begin{definition}[Arrangement]
 Un \textbf{arrangement} de $p$ éléments parmi $n$ ($0\le p\le n$) est une suite ordonnée de $p$ éléments \textbf{deux à deux distincts} de $E$. Il modélise un tirage \textbf{successif sans remise}.
@@ -99,10 +200,21 @@ Un \textbf{arrangement} de $p$ éléments parmi $n$ ($0\le p\le n$) est une suit
 \begin{theoreme}[Nombre d'arrangements]
 Le nombre d'arrangements de $p$ éléments parmi $n$ est
 \[
-A_n^{p}=n(n-1)(n-2)\cdots(n-p+1)=\frac{n!}{(n-p)!}\qquad(p\le n),
+A_n^{p}=n(n-1)(n-2)\cdots(n-p+1)=\frac{n!}{(n-p)!}\qquad(0\le p\le n),
 \]
 produit de $p$ facteurs entiers consécutifs décroissants à partir de $n$.
 \end{theoreme}
+
+\begin{remarque}
+Preuve : $n$ choix pour la $1^{\text{re}}$ position, $n-1$ pour la $2^{\text{e}}$ (un
+élément étant déjà pris), \dots, $n-p+1$ pour la $p^{\text{e}}$. Le principe multiplicatif
+donne $n(n-1)\cdots(n-p+1)$, soit $p$ facteurs. La forme factorielle s'obtient en
+multipliant et divisant par $(n-p)!$.
+\end{remarque}
+
+\begin{exemple}
+$A_5^{2}=5\times 4=20$ ; $A_7^{3}=7\times 6\times 5=210$ ; $A_{10}^{4}=10\times 9\times 8\times 7=5\,040$.
+\end{exemple}
 
 \subsection{Permutations}
 
@@ -117,16 +229,31 @@ A_n^{n}=n!=n\times(n-1)\times\cdots\times 2\times 1,\qquad\text{avec }0!=1.
 \]
 \end{theoreme}
 
+\begin{propriete}[Propriétés de la factorielle]
+Pour tout entier $n\ge1$ : $\ n!=n\times(n-1)!$.\quad De plus
+\[
+A_n^{p}=\frac{n!}{(n-p)!},\qquad A_n^{0}=1,\qquad A_n^{1}=n,\qquad A_n^{n}=A_n^{n-1}=n!.
+\]
+\end{propriete}
+
 \begin{exemple}
-Le nombre de façons de classer $5$ candidats lors d'une finale est $5!=120$. Le nombre de mots (sans sens) formés en réordonnant les $4$ lettres distinctes du mot LION est $4!=24$.
+Le nombre de façons de classer $5$ candidats lors d'une finale est $5!=120$. Le nombre de mots (sans sens) formés en réordonnant les $4$ lettres distinctes du mot LION est $4!=24$. On a $6!=720$, $7!=5\,040$, $8!=40\,320$.
 \end{exemple}
 
 \begin{remarque}
-Tout se ramène au principe multiplicatif : pour un arrangement, on a $n$ choix pour la première place, $n-1$ pour la deuxième (un élément étant déjà pris), \dots, $n-p+1$ pour la $p$-ième.
+Tout se ramène au principe multiplicatif : pour une permutation, $n$ choix pour la première
+place, $n-1$ pour la deuxième, \dots, $1$ pour la dernière : $n!$. La factorielle croît
+\emph{très} vite ; ne jamais la développer inutilement dans les quotients.
 \end{remarque}
 
+\begin{aretenir}
+\textbf{Ordre + sans remise} $\Rightarrow$ arrangement $A_n^{p}$. Si l'on prend \emph{tous}
+les éléments ($p=n$), c'est une permutation $n!$. \textbf{Ordre + avec remise} $\Rightarrow$
+$p$-liste $n^{p}$. Le mot-clé \og successivement \fg{} signale presque toujours un ordre.
+\end{aretenir}
+
 % ═══════════════════════════════════════════════════════════════
-\section{Combinaisons}
+\section{Combinaisons et coefficients binomiaux}
 
 \subsection{Définition et formule}
 
@@ -142,7 +269,7 @@ Pour $0\le p\le n$,
 \end{theoreme}
 
 \begin{remarque}
-On divise $A_n^{p}$ par $p!$ car chaque sous-ensemble de $p$ éléments correspond à $p!$ arrangements (ses $p!$ ordres possibles) que la combinaison identifie en un seul.
+On divise $A_n^{p}$ par $p!$ car chaque sous-ensemble de $p$ éléments correspond à $p!$ arrangements (ses $p!$ ordres possibles) que la combinaison identifie en un seul. C'est l'argument du \og facteur correctif \fg{} : ordonné, puis on \og oublie \fg{} l'ordre.
 \end{remarque}
 
 \begin{exemple}
@@ -150,9 +277,33 @@ Le nombre de délégations de $3$ élèves choisies parmi une classe de $30$ est
 \[
 \binom{30}{3}=\frac{30\times 29\times 28}{3\times 2\times 1}=\frac{24\,360}{6}=4\,060.
 \]
+Astuce de calcul : écrire $\dbinom np$ comme un quotient de $p$ facteurs au numérateur
+et $p!$ au dénominateur, sans développer les grandes factorielles.
 \end{exemple}
 
-\subsection{Propriétés}
+\begin{illus}
+\begin{tikzpicture}[font=\small,>=Stealth]
+% urne, tirage simultané d'une poignée
+\draw[onbink,line width=1pt] (0,0) .. controls (0,-1.1) and (1.6,-1.1) .. (1.6,0);
+\draw[onbink,line width=1pt] (-0.1,0) -- (1.7,0);
+\foreach \x/\y in {0.35/-0.45,0.8/-0.7,1.15/-0.4,0.55/-0.75,1.0/-0.25,0.7/-0.5}
+  {\fill[onbo] (\x,\y) circle (3pt);}
+\node at (0.8,0.35) {\footnotesize urne ($n$)};
+\draw[->,onbgreen,line width=1pt] (2.0,-0.35) -- (3.0,-0.35);
+\node[onbgreen] at (2.5,0.0){\footnotesize poigne};
+% trois boules tirées d'un coup, en accolade (sans ordre)
+\fill[onbgreen] (3.5,-0.15) circle(3.5pt);
+\fill[onbgreen] (3.9,-0.55) circle(3.5pt);
+\fill[onbgreen] (4.3,-0.2) circle(3.5pt);
+\draw[decorate,decoration={brace,amplitude=5pt},onbink] (3.2,0.15) -- (4.6,0.15);
+\node[align=left,text width=4.3cm,anchor=west] at (5.2,-0.3)
+{\footnotesize Tirage \emph{simultané} : pas d'ordre, pas de répétition.\\
+Combinaison : $\dbinom np$ tirages.};
+\end{tikzpicture}
+\fig{Figure 12.3 — Tirage simultané : modèle de la combinaison.}
+\end{illus}
+
+\subsection{Propriétés des coefficients binomiaux}
 
 \begin{propriete}[Valeurs particulières et symétrie]
 Pour $0\le p\le n$ :
@@ -162,12 +313,25 @@ Pour $0\le p\le n$ :
 \]
 \end{propriete}
 
+\begin{remarque}
+La symétrie a une interprétation limpide : choisir les $p$ éléments \emph{présents} revient
+à choisir les $n-p$ éléments \emph{absents}. On l'utilise pour alléger les calculs :
+$\dbinom{10}{8}=\dbinom{10}{2}=45$ plutôt que $\dbinom{10}{8}$ directement.
+\end{remarque}
+
 \begin{theoreme}[Relation de Pascal]
 Pour $1\le p\le n-1$,
 \[
 \binom{n-1}{p-1}+\binom{n-1}{p}=\binom np.
 \]
 \end{theoreme}
+
+\begin{remarque}
+Preuve combinatoire : pour choisir $p$ éléments parmi $n$, fixons un élément particulier
+$\omega$. Ou bien $\omega$ \emph{est choisi} (il reste $p-1$ à prendre parmi les $n-1$
+autres : $\dbinom{n-1}{p-1}$), ou bien $\omega$ \emph{n'est pas choisi} (les $p$ sont parmi
+les $n-1$ autres : $\dbinom{n-1}{p}$). Ces cas sont disjoints : on additionne.
+\end{remarque}
 
 \begin{aretenir}
 La relation de Pascal permet de construire de proche en proche le \textbf{triangle de Pascal} : chaque coefficient est la somme des deux situés au-dessus de lui. C'est le moyen le plus rapide d'obtenir les $\binom np$ sans factorielles.
@@ -191,8 +355,18 @@ La relation de Pascal permet de construire de proche en proche le \textbf{triang
 \node[onbgreen,anchor=west,align=left,text width=3.5cm] at (3,3.4)
 {\small $\dbinom42=\dbinom31+\dbinom32$ : $6=3+3$ (relation de Pascal).};
 \end{tikzpicture}
-\fig{Figure 12.2 — Triangle de Pascal : chaque terme est la somme des deux du dessus.}
+\fig{Figure 12.4 — Triangle de Pascal : chaque terme est la somme des deux du dessus.}
 \end{illus}
+
+\begin{propriete}[Autres relations utiles]
+Pour $1\le p\le n$ :
+\[
+p\,\binom np=n\,\binom{n-1}{p-1}\quad\text{(formule du \og pion \fg)},
+\]
+\[
+\binom np=\frac{n-p+1}{p}\,\binom{n}{p-1}\quad\text{(passage d'un terme au suivant)}.
+\]
+\end{propriete}
 
 % ═══════════════════════════════════════════════════════════════
 \section{Formule du binôme de Newton}
@@ -206,7 +380,10 @@ Pour tous réels (ou complexes) $a,b$ et tout entier naturel $n$,
 \end{theoreme}
 
 \begin{remarque}
-Les coefficients sont précisément la $n$-ième ligne du triangle de Pascal. En faisant $a=b=1$, on obtient $\displaystyle\sum_{p=0}^{n}\binom np=2^{n}$ : c'est le nombre total de parties d'un ensemble à $n$ éléments.
+Les coefficients sont précisément la $n$-ième ligne du triangle de Pascal. En développant
+$(a+b)^{n}=(a+b)(a+b)\cdots(a+b)$, chaque terme du développement choisit $a$ dans $p$ des
+facteurs et $b$ dans les $n-p$ autres : il y a $\dbinom np$ façons de faire ce choix, d'où
+le coefficient $\dbinom np$ devant $a^{p}b^{n-p}$.
 \end{remarque}
 
 \begin{exemple}
@@ -214,27 +391,103 @@ $(a+b)^{4}=a^{4}+4a^{3}b+6a^{2}b^{2}+4ab^{3}+b^{4}$ (coefficients $1,4,6,4,1$).
 En particulier $(x+2)^{3}=x^{3}+3\cdot x^{2}\cdot 2+3\cdot x\cdot 2^{2}+2^{3}=x^{3}+6x^{2}+12x+8$.
 \end{exemple}
 
+\begin{propriete}[Sommes remarquables des coefficients]
+En spécialisant $a$ et $b$ dans le binôme :
+\[
+\sum_{p=0}^{n}\binom np=2^{n}\quad(a=b=1),\qquad
+\sum_{p=0}^{n}(-1)^{p}\binom np=0\quad(a=-1,\ b=1,\ n\ge1).
+\]
+\end{propriete}
+
+\begin{remarque}
+La première égalité retrouve le nombre total de parties d'un ensemble à $n$ éléments :
+$2^{n}$. La seconde dit que, dans une ligne du triangle, la somme des termes de rang
+\emph{pair} égale la somme des termes de rang \emph{impair} (chacune valant $2^{n-1}$).
+\end{remarque}
+
+\begin{exemple}
+Vérification ligne $n=4$ : $1+4+6+4+1=16=2^{4}$, et $1-4+6-4+1=0$. Les termes pairs
+$1+6+1=8$ égalent les impairs $4+4=8=2^{3}$.
+\end{exemple}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Bilan : choisir le bon modèle}
+
+\begin{aretenir}
+\textbf{Le tableau de décision.} Devant un tirage de $p$ objets parmi $n$, deux questions :
+\begin{center}\small
+\begin{tabular}{@{}lccc@{}}
+\toprule
+\textbf{Ordre ?} & \textbf{Répétition ?} & \textbf{Modèle} & \textbf{Nombre}\\
+\midrule
+oui & oui & $p$-liste (successif \emph{avec} remise) & $n^{p}$\\
+oui & non & arrangement (successif \emph{sans} remise) & $A_n^{p}=\dfrac{n!}{(n-p)!}$\\
+non & non & combinaison (\emph{simultané}) & $\dbinom np=\dfrac{n!}{p!(n-p)!}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+Le quatrième cas (sans ordre, \emph{avec} répétition) est hors programme.
+\end{aretenir}
+
+\begin{illus}
+\begin{tikzpicture}[font=\small,>=Stealth,
+  q/.style={rectangle,rounded corners=2pt,draw=onbblue,fill=white,align=center,inner sep=4pt},
+  r/.style={rectangle,rounded corners=2pt,draw=onbo,fill=onbsoft,align=center,inner sep=4pt}]
+\node[q] (a) at (0,0) {L'ordre\\ compte-t-il ?};
+\node[q] (b) at (4.2,1.2) {Répétitions\\ permises ?};
+\node[r] (c) at (8.6,2.1) {$p$-liste\\ $n^{p}$};
+\node[r] (d) at (8.6,0.3) {arrangement\\ $A_n^{p}$};
+\node[r] (e) at (4.2,-1.6) {combinaison\\ $\dbinom np$};
+\draw[->,onbink] (a) -- node[above,sloped,onbgreen,font=\scriptsize]{oui} (b);
+\draw[->,onbink] (a) -- node[below,sloped,onbo,font=\scriptsize]{non} (e);
+\draw[->,onbink] (b) -- node[above,sloped,onbgreen,font=\scriptsize]{oui} (c);
+\draw[->,onbink] (b) -- node[below,sloped,onbo,font=\scriptsize]{non} (d);
+\end{tikzpicture}
+\fig{Figure 12.5 — Arbre de décision pour choisir liste, arrangement ou combinaison.}
+\end{illus}
+
+% ═══════════════════════════════════════════════════════════════
+\section{L'essentiel à retenir}
+
+\begin{synthese}
+\textbf{Cardinaux.} $\Card(A\cup B)=\Card A+\Card B-\Card(A\cap B)$ ;\
+$\Card(\overline A)=\Card E-\Card A$ ;\ $\Card(E\times F)=\Card E\times\Card F$.\\[4pt]
+\textbf{Deux principes.} \og et \fg{} (étapes) $\to$ on \textbf{multiplie} ;\ \og ou \fg{}
+(cas disjoints) $\to$ on \textbf{additionne}.\\[4pt]
+\textbf{Parties.} Un ensemble à $n$ éléments a $2^{n}$ parties.\\[4pt]
+\textbf{Modèles de tirage} ($p$ parmi $n$).\quad
+ordre + remise : \textbf{$p$-liste} $\ n^{p}$ ;\quad
+ordre + sans remise : \textbf{arrangement} $\ A_n^{p}=\dfrac{n!}{(n-p)!}=n(n-1)\cdots(n-p+1)$ ;\quad
+sans ordre : \textbf{combinaison} $\ \dbinom np=\dfrac{n!}{p!(n-p)!}$.\\[4pt]
+\textbf{Permutation} ($p=n$) : $\ n!$, avec $0!=1$.\\[4pt]
+\textbf{Coefficients binomiaux.} $\dbinom n0=\dbinom nn=1$,\ $\dbinom n1=n$,\
+$\dbinom np=\dbinom{n}{n-p}$ (symétrie),\ Pascal : $\dbinom{n-1}{p-1}+\dbinom{n-1}{p}=\dbinom np$.\\[4pt]
+\textbf{Binôme de Newton.} $\displaystyle (a+b)^{n}=\sum_{p=0}^{n}\binom np a^{p}b^{n-p}$ ;\
+$\displaystyle\sum_{p=0}^{n}\binom np=2^{n}$ ;\ $\displaystyle\sum_{p=0}^{n}(-1)^{p}\binom np=0$.\\[4pt]
+\textbf{Anagrammes} (lettres répétées $n_1,n_2,\dots$) : $\dfrac{n!}{n_1!\,n_2!\cdots}$.\\[4pt]
+\textbf{Pièges.} \emph{successivement} $\Rightarrow$ ordre ;\ \emph{simultanément} $\Rightarrow$
+sans ordre. Pour \og au moins \fg{} / \og au plus \fg, passer par le \textbf{complémentaire}.
+Ne pas confondre $A_n^{p}$ et $\dbinom np$ (rapport $p!$). Ne jamais multiplier des cas
+qui ne sont pas indépendants.
+\end{synthese}
+
 % ═══════════════════════════════════════════════════════════════
 \section{Méthodes \& savoir-faire}
 
 \methode{Choisir le bon modèle (liste / arrangement / combinaison)}
-Se poser \emph{deux} questions : l'\textbf{ordre} compte-t-il ? Les \textbf{répétitions} sont-elles permises ?
-\begin{center}\small
-\begin{tabular}{@{}lccc@{}}
-\toprule
-Ordre ? & Répétition ? & Modèle & Nombre\\
-\midrule
-oui & oui & $p$-liste (avec remise) & $n^{p}$\\
-oui & non & arrangement (sans remise) & $A_n^{p}=\dfrac{n!}{(n-p)!}$\\
-non & non & combinaison (simultané) & $\dbinom np=\dfrac{n!}{p!(n-p)!}$\\
-\bottomrule
-\end{tabular}
-\end{center}
+Se poser \emph{deux} questions : l'\textbf{ordre} compte-t-il ? Les \textbf{répétitions} sont-elles permises ? Puis lire la formule dans le tableau de décision.
 \begin{exemple}
 Dans une urne de $10$ jetons numérotés, on tire $3$ jetons.
 \emph{Successivement avec remise} : $10^{3}=1000$ tirages.
 \emph{Successivement sans remise} : $A_{10}^{3}=10\times 9\times 8=720$.
 \emph{Simultanément} : $\binom{10}{3}=\dfrac{720}{6}=120$.
+\end{exemple}
+
+\methode{Dénombrer par étapes (principe multiplicatif et combinaisons)}
+Découper le choix global en étapes \emph{indépendantes} ; multiplier les nombres de possibilités. Lorsqu'un choix porte sur plusieurs catégories simultanément, on multiplie les combinaisons de chaque catégorie.
+\begin{exemple}
+Former un comité de $2$ filles \emph{et} $2$ garçons parmi $7$ filles et $5$ garçons :
+$\binom72\times\binom52=21\times 10=210$.
 \end{exemple}
 
 \methode{Dénombrer une anagramme avec lettres répétées}
@@ -245,7 +498,7 @@ $\dfrac{6!}{3!\,2!\,1!}=\dfrac{720}{12}=60$.
 \end{exemple}
 
 \methode{Dénombrer avec contraintes (« au moins », « au plus »)}
-Souvent il est plus court de passer par le \textbf{complémentaire} : (cas favorables) = (total) $-$ (cas contraires).
+Souvent il est plus court de passer par le \textbf{complémentaire} : (cas favorables) = (total) $-$ (cas contraires). \og Au moins un \fg{} est le contraire de \og aucun \fg.
 \begin{exemple}
 Un comité de $4$ personnes est choisi parmi $7$ filles et $5$ garçons ($12$ en tout). Nombre de comités comportant \emph{au moins une fille} :
 \[
@@ -254,39 +507,68 @@ Un comité de $4$ personnes est choisi parmi $7$ filles et $5$ garçons ($12$ en
 ($\binom54$ compte les comités \emph{sans aucune fille}.)
 \end{exemple}
 
-\methode{Dénombrer par étapes (principe multiplicatif et combinaisons)}
-Lorsqu'un choix porte sur plusieurs catégories simultanément, on multiplie les combinaisons de chaque catégorie.
+\methode{Dénombrer avec une position imposée}
+Quand un objet doit occuper une place fixée (chiffre des unités, première lettre\dots),
+on \emph{fige} d'abord cette place (en comptant ses choix), puis on dénombre le reste.
 \begin{exemple}
-Former un comité de $2$ filles \emph{et} $2$ garçons parmi $7$ filles et $5$ garçons :
-$\binom72\times\binom52=21\times 10=210$.
+Nombres de $4$ chiffres distincts pris dans $\{1,2,3,4,5,6\}$ et \emph{pairs} : le chiffre
+des unités est $2,4$ ou $6$ ($3$ choix), puis on arrange $3$ chiffres parmi les $5$ restants
+pour les autres positions : $A_5^{3}=60$. Total $3\times 60=180$.
 \end{exemple}
 
 \methode{Calculer un coefficient ou un terme du binôme}
-Le terme en $a^{p}b^{\,n-p}$ de $(a+b)^{n}$ a pour coefficient $\binom np$. On l'utilise pour isoler un coefficient précis sans tout développer.
+Le terme général de $(a+b)^{n}$ est $\dbinom np\,a^{p}\,b^{\,n-p}$. On l'utilise pour isoler un coefficient précis sans tout développer : on identifie la puissance voulue de $x$.
 \begin{exemple}
 Coefficient de $x^{2}$ dans $(2x-3)^{5}$ : terme $\binom5p(2x)^{p}(-3)^{5-p}$ avec $p=2$, soit
 $\binom52\,2^{2}\,(-3)^{3}=10\times 4\times(-27)=-1080$.
 \end{exemple}
 
+\methode{Utiliser le triangle de Pascal pour développer}
+Pour développer $(a+b)^{n}$ avec $n$ petit, lire la ligne $n$ du triangle ($1,n,\dots$) et l'appliquer terme à terme. Attention aux signes si $b<0$.
+\begin{exemple}
+Ligne $5$ : $1,5,10,10,5,1$. Donc
+$(x-1)^{5}=x^{5}-5x^{4}+10x^{3}-10x^{2}+5x-1$ (signes alternés car $b=-1$).
+\end{exemple}
+
 \methode{Exploiter une identité combinatoire}
-Les identités ($\binom np=\binom n{n-p}$, Pascal, $\sum\binom np=2^n$) simplifient les calculs et permettent des démonstrations élégantes.
+Les identités ($\dbinom np=\dbinom n{n-p}$, Pascal, $\sum\dbinom np=2^n$) simplifient les calculs et permettent des démonstrations élégantes ou la résolution d'équations en $n$ ou $p$.
+\begin{exemple}
+Résoudre $\dbinom n2=15$ : $\dfrac{n(n-1)}{2}=15$, donc $n(n-1)=30=6\times5$, d'où $n=6$.
+\end{exemple}
+
+\methode{Dénombrer une réunion (inclusion-exclusion)}
+Pour compter les éléments vérifiant \og au moins une \fg{} de plusieurs propriétés, appliquer
+la formule du crible : additionner les cas, retrancher les intersections deux à deux\dots
+\begin{exemple}
+Entiers de $1$ à $100$ multiples de $2$ ou de $3$ : $\lfloor 100/2\rfloor+\lfloor100/3\rfloor-\lfloor100/6\rfloor=50+33-16=67$.
+\end{exemple}
 
 % ═══════════════════════════════════════════════════════════════
-\section{Exercices}
+\section{Exercices d'application}
 
-\rubrique{Principes additif et multiplicatif}
+\rubrique{Cardinaux, principes additif et multiplicatif}
+\exo{}\diff{1} Dans un lycée de Douala, $60$ élèves de Tle C font de la musique, $45$ du
+sport, et $20$ font les deux. Combien d'élèves font au moins une de ces activités ? Combien
+n'en font aucune sachant que la classe compte $90$ élèves ?
+
 \exo{}\diff{1} Combien de codes de $4$ chiffres peut-on former sur un cadenas (chiffres de $0$ à $9$) ? Combien si les quatre chiffres doivent être distincts ?
 
 \exo{}\diff{1} Un restaurant propose $2$ entrées, $3$ plats et $2$ desserts. On prend une entrée ou un dessert, puis un plat. Combien de repas possibles ?
 
 \exo{}\diff{2} On lance trois dés discernables. Dénombrer les résultats dont la somme est paire.
 
-\rubrique{Listes, arrangements, permutations}
+\exo{}\diff{2} Combien d'entiers compris entre $1$ et $300$ sont multiples de $3$ ou de $5$ ?
+
+\rubrique{$p$-listes, arrangements, permutations}
 \exo{}\diff{1} De combien de façons $8$ coureurs peuvent-ils occuper le podium (or, argent, bronze) ?
 
 \exo{}\diff{2} Combien d'anagrammes (mots ayant ou non un sens) peut-on former avec les lettres du mot \textsc{Cameroun} ? Et avec celles de \textsc{Maroua} ?
 
+\exo{}\diff{2} Combien d'anagrammes peut-on former avec les lettres du mot \textsc{Mississippi} ($11$ lettres) ?
+
 \exo{}\diff{2} Combien de nombres de $3$ chiffres distincts peut-on écrire avec les chiffres $\{1,2,3,4,5\}$ ? Combien sont pairs ?
+
+\exo{}\diff{2} On range $6$ livres distincts sur une étagère. De combien de façons ? Et si $2$ livres précis doivent rester côte à côte ?
 
 \rubrique{Combinaisons et contraintes}
 \exo{}\diff{1} Calculer $\binom{8}{3}$, $\binom{10}{7}$ et vérifier la relation de Pascal $\binom{6}{2}+\binom{6}{3}=\binom{7}{3}$.
@@ -295,12 +577,18 @@ Les identités ($\binom np=\binom n{n-p}$, Pascal, $\sum\binom np=2^n$) simplifi
 
 \exo{}\diff{2} Une main de $5$ cartes est tirée d'un jeu de $32$. Combien de mains contiennent exactement deux rois ?
 
-\rubrique{Binôme de Newton}
+\exo{}\diff{2} Résoudre dans $\N$ l'équation $\dbinom n2=28$, puis l'équation $A_n^{2}=42$.
+
+\rubrique{Binôme de Newton et coefficients}
 \exo{}\diff{2} Développer $(2x-1)^{4}$ à l'aide du triangle de Pascal.
+
+\exo{}\diff{2} Déterminer le coefficient de $x^{5}$ dans le développement de $(1+x)^{8}$, puis dans $(2-x)^{8}$.
 
 \exo{}\diff{3} Déterminer le coefficient de $x^{3}$ dans le développement de $\left(x+\dfrac{2}{x}\right)^{7}$.
 
-\rubrique{Problème type Baccalauréat (préparation aux probabilités)}
+\exo{}\diff{2} Calculer la somme $S=\dbinom{10}{0}+\dbinom{10}{1}+\cdots+\dbinom{10}{10}$ et la somme alternée $S'=\dbinom{10}{0}-\dbinom{10}{1}+\cdots+\dbinom{10}{10}$.
+
+\rubrique{Problème de synthèse (préparation aux probabilités)}
 \exo{}\diff{3} Une urne contient $5$ boules rouges, $4$ boules vertes et $3$ boules blanches, indiscernables au toucher. On tire \textbf{simultanément} $3$ boules.
 \begin{enumerate}[label=\arabic*)]
 \item Déterminer le nombre total de tirages possibles.
@@ -311,50 +599,253 @@ Les identités ($\binom np=\binom n{n-p}$, Pascal, $\sum\binom np=2^n$) simplifi
 \end{enumerate}
 
 % ═══════════════════════════════════════════════════════════════
+\section{Exercices d'entraînement}
+
+\rubrique{Cardinaux et principes}
+\exo{}\diff{1} Un sandwich est composé d'un pain (parmi $3$), d'une viande (parmi $4$) et
+d'une sauce (parmi $2$). Combien de sandwichs différents ?
+
+\exo{}\diff{1} Dans un groupe de $50$ personnes, $30$ parlent français, $25$ anglais et
+$12$ les deux. Combien ne parlent ni l'un ni l'autre ?
+
+\exo{}\diff{1} Combien de nombres entiers de $1$ à $9999$ comportent exactement $4$ chiffres ?
+
+\exo{}\diff{2} Combien d'entiers de $1$ à $1000$ sont divisibles par $2$, par $5$ ou par $7$ ?
+
+\exo{}\diff{2} On lance deux dés discernables. Combien de résultats donnent une somme
+strictement supérieure à $8$ ?
+
+\exo{}\diff{2} Un ensemble $E$ a $7$ éléments. Combien de parties possède-t-il ? Combien
+de parties contenant exactement $4$ éléments ?
+
+\rubrique{$p$-listes, arrangements, permutations}
+\exo{}\diff{1} Combien de mots de $5$ lettres (ayant ou non un sens) peut-on écrire avec
+l'alphabet de $26$ lettres ? Combien à lettres toutes distinctes ?
+
+\exo{}\diff{1} On distribue les médailles (or, argent, bronze) à $12$ athlètes. De combien
+de façons ?
+
+\exo{}\diff{2} Combien d'anagrammes peut-on former avec le mot \textsc{Bafoussam} ($9$ lettres) ?
+
+\exo{}\diff{2} Combien d'anagrammes du mot \textsc{Statistique} ($11$ lettres) ?
+
+\exo{}\diff{2} De combien de façons peut-on asseoir $5$ personnes sur un banc ? Et autour
+d'une table ronde (deux dispositions identiques par rotation sont confondues) ?
+
+\exo{}\diff{2} Combien de nombres de $4$ chiffres distincts peut-on former avec
+$\{0,1,2,3,4,5\}$ (le premier chiffre ne peut être $0$) ? Combien sont pairs ?
+
+\exo{}\diff{3} Sept personnes, dont Paul et Marie, font la queue. Combien de files où
+Paul est juste devant Marie ? Combien où ils ne sont pas voisins ?
+
+\rubrique{Combinaisons}
+\exo{}\diff{1} Calculer $\dbinom{9}{2}$, $\dbinom{12}{10}$, $\dbinom{15}{0}$ et $\dbinom{20}{19}$.
+
+\exo{}\diff{2} Une équipe de football compte $11$ joueurs choisis parmi $18$. Combien
+d'équipes possibles si le gardien est imposé et que l'on choisit les $10$ autres parmi $17$ ?
+
+\exo{}\diff{2} Dans un jeu de $32$ cartes, combien de mains de $8$ cartes contiennent
+exactement $3$ c{\oe}urs ?
+
+\exo{}\diff{2} Un sac contient $6$ jetons rouges et $4$ jetons noirs. On en tire $4$
+simultanément. Combien de tirages comportent autant de rouges que de noirs ?
+
+\exo{}\diff{2} Combien de diagonales possède un polygone convexe à $n$ côtés ?
+
+\exo{}\diff{3} Sur un cercle, on place $8$ points. Combien de cordes ? Combien de triangles
+dont les sommets sont parmi ces points ? Combien de points d'intersection des cordes au
+maximum (à l'intérieur du cercle) ?
+
+\rubrique{Contraintes : « au moins », « exactement »}
+\exo{}\diff{2} Un comité de $6$ membres est tiré d'un groupe de $8$ hommes et $5$ femmes.
+Combien comportent au moins une femme ?
+
+\exo{}\diff{2} Dans une classe de $25$ élèves (dont $3$ jumeaux), combien de délégations de
+$4$ élèves ne contenant aucun des jumeaux ? Combien en contenant au moins un ?
+
+\exo{}\diff{3} Une urne contient $4$ boules rouges, $5$ vertes et $6$ bleues. On en tire
+$5$ simultanément. Combien de tirages comportent au moins une boule de chaque couleur ?
+
+\exo{}\diff{2} Combien de \og mains \fg{} de $5$ cartes (jeu de $32$) contiennent au moins
+un roi ?
+
+\rubrique{Binôme de Newton et identités}
+\exo{}\diff{1} Développer $(x+3)^{3}$ et $(2a-b)^{4}$ à l'aide du triangle de Pascal.
+
+\exo{}\diff{2} Déterminer le terme constant (indépendant de $x$) dans le développement de
+$\left(x-\dfrac{1}{x}\right)^{6}$.
+
+\exo{}\diff{2} Déterminer le coefficient de $x^{4}$ dans $(1+2x)^{6}$.
+
+\exo{}\diff{2} À l'aide du binôme, calculer $\displaystyle\sum_{p=0}^{n}\binom np 3^{p}$
+en fonction de $n$.
+
+\exo{}\diff{3} Démontrer que $\displaystyle\sum_{p=0}^{n}\binom np 2^{p}=3^{n}$ et
+interpréter le résultat en termes de dénombrement.
+
+\exo{}\diff{3} Résoudre dans $\N$ : $\dbinom n3=5\,\dbinom n2$.
+
+\rubrique{Synthèse}
+\exo{}\diff{2} Un clavier d'immeuble a un code de $4$ chiffres pris dans $\{0,\dots,9\}$.
+Combien de codes ? Combien à chiffres deux à deux distincts ? Combien comportant au moins
+deux chiffres identiques ?
+
+\exo{}\diff{3} À l'examen, un QCM comporte $10$ questions à $4$ réponses possibles. Un
+candidat répond au hasard. Combien de grilles de réponses possibles ? Combien comportant
+exactement $7$ bonnes réponses (une seule bonne réponse par question) ?
+
+\exo{}\diff{3} Un comité directeur de $5$ membres (un président, un vice-président, un
+secrétaire, et $2$ membres simples) est constitué parmi $12$ personnes. De combien de
+façons ? (Les rôles distinguent les $3$ premiers ; les $2$ membres simples sont
+interchangeables.)
+
+% ═══════════════════════════════════════════════════════════════
+\section{Sujets type Baccalauréat}
+
+\sujetbac[tirages dans une urne tricolore]
+Une urne contient $4$ boules rouges, $3$ boules vertes et $2$ boules jaunes,
+indiscernables au toucher (soit $9$ boules en tout).
+\begin{enumerate}[label=\arabic*)]
+\item On tire \textbf{simultanément} $3$ boules.
+\begin{enumerate}[label=\alph*)]
+\item Déterminer le nombre total de tirages.
+\item Dénombrer les tirages \emph{unicolores} (les trois boules de même couleur).
+\item Dénombrer les tirages contenant exactement $2$ boules rouges.
+\item Dénombrer les tirages contenant au moins une boule jaune.
+\end{enumerate}
+\item On tire maintenant les $3$ boules \textbf{successivement sans remise}.
+\begin{enumerate}[label=\alph*)]
+\item Déterminer le nombre total de tirages ordonnés.
+\item Dénombrer les tirages dont la première boule est rouge et la dernière jaune.
+\end{enumerate}
+\item En supposant les tirages \emph{simultanés} équiprobables, calculer la probabilité
+d'obtenir exactement $2$ boules rouges.
+\end{enumerate}
+
+\sujetbac[anagrammes et dénombrements de mots]
+On considère les lettres du mot \textsc{Bambari} (sept lettres : B, A, M, B, A, R, I, où
+B apparaît deux fois et A deux fois). On appelle \og mot \fg{} toute suite de ces sept
+lettres, ayant ou non un sens.
+\begin{enumerate}[label=\arabic*)]
+\item Déterminer le nombre total d'anagrammes du mot \textsc{Bambari}.
+\item Combien de ces anagrammes commencent par la lettre R ?
+\item Combien commencent par une voyelle ?
+\item Combien d'anagrammes où les deux lettres A sont côte à côte ?
+\item Combien d'anagrammes commençant et finissant par une consonne ?
+\end{enumerate}
+
+\sujetbac[coefficients binomiaux et binôme de Newton]
+Soit $n$ un entier naturel non nul.
+\begin{enumerate}[label=\arabic*)]
+\item Rappeler la formule du binôme de Newton pour $(a+b)^{n}$.
+\item En déduire les valeurs de $\displaystyle\sum_{p=0}^{n}\binom np$ et
+$\displaystyle\sum_{p=0}^{n}(-1)^{p}\binom np$ (pour $n\ge1$).
+\item On considère $(1+x)^{6}$.
+\begin{enumerate}[label=\alph*)]
+\item Donner son développement complet à l'aide du triangle de Pascal.
+\item En déduire le coefficient de $x^{4}$, puis la valeur de $\displaystyle\sum_{p=0}^{6}\binom 6p$.
+\end{enumerate}
+\item Déterminer le terme indépendant de $x$ (terme constant) dans le développement de
+$\left(2x-\dfrac{1}{x}\right)^{8}$.
+\end{enumerate}
+
+\sujetbac[délégations et comités sous contraintes]
+Un conseil de classe doit élire des représentants parmi $7$ filles et $5$ garçons
+($12$ élèves).
+\begin{enumerate}[label=\arabic*)]
+\item On forme une délégation de $4$ élèves \emph{sans tenir compte de l'ordre}.
+\begin{enumerate}[label=\alph*)]
+\item Combien de délégations possibles ?
+\item Combien comportant exactement $2$ filles et $2$ garçons ?
+\item Combien comportant au moins une fille ?
+\item Combien comportant au plus une fille ?
+\end{enumerate}
+\item On souhaite désigner, parmi ces $12$ élèves, un \emph{délégué} et un \emph{suppléant}
+(deux rôles distincts).
+\begin{enumerate}[label=\alph*)]
+\item Combien de choix possibles ?
+\item Combien si le délégué doit être une fille et le suppléant un garçon ?
+\end{enumerate}
+\end{enumerate}
+
+% ═══════════════════════════════════════════════════════════════
 \section{Corrigés}
 
 \corrige{de l'exercice 1}
-Code de $4$ chiffres : tirage successif \emph{avec remise} de $4$ chiffres parmi $10$, soit $10^{4}=10\,000$ codes. Avec quatre chiffres distincts : arrangement $A_{10}^{4}=10\times 9\times 8\times 7=5\,040$.
+Soit $M$ (musique) et $S$ (sport) : $\Card(M\cup S)=60+45-20=85$ élèves font au moins
+une activité. Aucune : $90-85=5$ élèves.
 
 \corrige{de l'exercice 2}
-« Une entrée \emph{ou} un dessert » : $2+2=4$ choix (cas disjoints, principe additif). Puis « un plat » : $3$ choix. Au total $4\times 3=12$ repas.
+Code de $4$ chiffres : tirage successif \emph{avec remise} de $4$ chiffres parmi $10$, soit $10^{4}=10\,000$ codes. Avec quatre chiffres distincts : arrangement $A_{10}^{4}=10\times 9\times 8\times 7=5\,040$.
 
 \corrige{de l'exercice 3}
-Chaque dé donne $6$ résultats, soit $6^{3}=216$ au total. La somme est paire ssi le nombre de dés impairs est pair ($0$ ou $2$). Chaque dé est pair ($3$ faces) ou impair ($3$ faces). Cas « $0$ impair » : $3^{3}=27$. Cas « $2$ impairs » : choisir les deux dés impairs $\binom32=3$, puis $3^{2}$ faces impaires et $3$ faces paires, soit $3\times 3^{2}\times 3=81$. Total $27+81=108$. (On retrouve la moitié de $216$.)
+« Une entrée \emph{ou} un dessert » : $2+2=4$ choix (cas disjoints, principe additif). Puis « un plat » : $3$ choix. Au total $4\times 3=12$ repas.
 
 \corrige{de l'exercice 4}
-L'ordre compte, sans répétition : arrangement de $3$ parmi $8$, soit $A_{8}^{3}=8\times 7\times 6=336$ podiums.
+Chaque dé donne $6$ résultats, soit $6^{3}=216$ au total. La somme est paire ssi le nombre de dés impairs est pair ($0$ ou $2$). Chaque dé est pair ($3$ faces) ou impair ($3$ faces). Cas « $0$ impair » : $3^{3}=27$. Cas « $2$ impairs » : choisir les deux dés impairs $\binom32=3$, puis $3^{2}$ faces impaires et $3$ faces paires, soit $3\times 3^{2}\times 3=81$. Total $27+81=108$. (On retrouve la moitié de $216$.)
 
 \corrige{de l'exercice 5}
-\textsc{Cameroun} a $8$ lettres toutes distinctes : $8!=40\,320$ anagrammes. \textsc{Maroua} a $6$ lettres dont A deux fois : $\dfrac{6!}{2!}=\dfrac{720}{2}=360$.
+Multiples de $3$ jusqu'à $300$ : $\lfloor 300/3\rfloor=100$. Multiples de $5$ : $\lfloor300/5\rfloor=60$.
+Multiples de $15$ : $\lfloor300/15\rfloor=20$. Par le crible :
+$100+60-20=140$ entiers multiples de $3$ ou de $5$.
 
 \corrige{de l'exercice 6}
-Nombres de $3$ chiffres distincts parmi $5$ : $A_5^{3}=5\times 4\times 3=60$. Pairs : le chiffre des unités doit être $2$ ou $4$ ($2$ choix), puis les deux autres positions sont un arrangement de $2$ parmi les $4$ restants, $A_4^{2}=12$ ; total $2\times 12=24$.
+L'ordre compte, sans répétition : arrangement de $3$ parmi $8$, soit $A_{8}^{3}=8\times 7\times 6=336$ podiums.
 
 \corrige{de l'exercice 7}
-$\binom83=\dfrac{8\times 7\times 6}{6}=56$. $\binom{10}{7}=\binom{10}{3}=\dfrac{10\times 9\times 8}{6}=120$ (symétrie). Pascal : $\binom62+\binom63=15+20=35=\binom73$.
+\textsc{Cameroun} a $8$ lettres toutes distinctes : $8!=40\,320$ anagrammes. \textsc{Maroua} a $6$ lettres dont A deux fois : $\dfrac{6!}{2!}=\dfrac{720}{2}=360$.
 
 \corrige{de l'exercice 8}
+\textsc{Mississippi} : $11$ lettres avec M$\times1$, I$\times4$, S$\times4$, P$\times2$.
+Nombre d'anagrammes : $\dfrac{11!}{1!\,4!\,4!\,2!}=\dfrac{39\,916\,800}{24\times24\times2}
+=\dfrac{39\,916\,800}{1\,152}=34\,650$.
+
+\corrige{de l'exercice 9}
+Nombres de $3$ chiffres distincts parmi $5$ : $A_5^{3}=5\times 4\times 3=60$. Pairs : le chiffre des unités doit être $2$ ou $4$ ($2$ choix), puis les deux autres positions sont un arrangement de $2$ parmi les $4$ restants, $A_4^{2}=12$ ; total $2\times 12=24$.
+
+\corrige{de l'exercice 10}
+Rangements de $6$ livres : $6!=720$. Si deux livres précis restent côte à côte : on les
+\og colle \fg{} en un seul bloc, ce qui fait $5$ objets à ranger ($5!=120$ façons), et le
+bloc lui-même a $2!=2$ ordres internes : $5!\times 2!=120\times 2=240$.
+
+\corrige{de l'exercice 11}
+$\binom83=\dfrac{8\times 7\times 6}{6}=56$. $\binom{10}{7}=\binom{10}{3}=\dfrac{10\times 9\times 8}{6}=120$ (symétrie). Pascal : $\binom62+\binom63=15+20=35=\binom73$.
+
+\corrige{de l'exercice 12}
 Tirage simultané de $5$ parmi $30$.
 (a) $\binom{30}{5}=\dfrac{30\times 29\times 28\times 27\times 26}{120}=142\,506$.
 (b) exactement $3$ filles : $\binom{18}{3}\times\binom{12}{2}=816\times 66=53\,856$.
 (c) au moins un garçon = total $-$ (aucun garçon, donc $5$ filles) : $142\,506-\binom{18}{5}=142\,506-8\,568=133\,938$.
 
-\corrige{de l'exercice 9}
+\corrige{de l'exercice 13}
 On choisit $2$ rois parmi $4$ \emph{et} $3$ cartes parmi les $28$ non-rois :
 $\binom42\times\binom{28}{3}=6\times 3\,276=19\,656$ mains.
 
-\corrige{de l'exercice 10}
+\corrige{de l'exercice 14}
+$\dbinom n2=28$ : $\dfrac{n(n-1)}{2}=28$, donc $n(n-1)=56=8\times7$, d'où $n=8$.
+$A_n^{2}=42$ : $n(n-1)=42=7\times6$, d'où $n=7$.
+
+\corrige{de l'exercice 15}
 Ligne $1,4,6,4,1$ avec $a=2x$, $b=-1$ :
 \[
 (2x-1)^{4}=(2x)^{4}+4(2x)^{3}(-1)+6(2x)^{2}+4(2x)(-1)^{3}+1
 =16x^{4}-32x^{3}+24x^{2}-8x+1.
 \]
 
-\corrige{de l'exercice 11}
+\corrige{de l'exercice 16}
+Dans $(1+x)^{8}$, terme général $\dbinom8p x^{p}$ : le coefficient de $x^{5}$ est
+$\dbinom85=\dbinom83=56$.
+Dans $(2-x)^{8}$, terme $\dbinom8p 2^{8-p}(-x)^{p}$ ; pour $x^{5}$, $p=5$ :
+$\dbinom85\,2^{3}(-1)^{5}=56\times 8\times(-1)=-448$.
+
+\corrige{de l'exercice 17}
 Terme général : $\binom7p x^{p}\left(\dfrac2x\right)^{7-p}=\binom7p\,2^{\,7-p}\,x^{\,2p-7}$. On veut $2p-7=3$, soit $p=5$. Le coefficient est $\binom75\,2^{2}=\binom72\times 4=21\times 4=84$.
 
-\corrige{du problème}
+\corrige{de l'exercice 18}
+Par le binôme avec $a=b=1$ : $S=\displaystyle\sum_{p=0}^{10}\binom{10}{p}=2^{10}=1024$.
+Avec $a=-1,b=1$ : $S'=\displaystyle\sum_{p=0}^{10}(-1)^{p}\binom{10}{p}=(1-1)^{10}=0$.
+
+\corrige{de l'exercice 19}
 L'urne contient $12$ boules. Tirage simultané de $3$ boules.
 \begin{enumerate}[label=\arabic*)]
 \item Nombre total : $\displaystyle\binom{12}{3}=\frac{12\times 11\times 10}{6}=220$.
@@ -370,4 +861,102 @@ P(\text{2 rouges})=\frac{70}{220}=\frac{7}{22},\quad
 P(\text{tricolore})=\frac{60}{220}=\frac{3}{11},\quad
 P(\text{au moins 1 rouge})=\frac{185}{220}=\frac{37}{44}.
 \]
+\end{enumerate}
+
+\corrige{du sujet 1}
+$9$ boules : $4$ rouges (R), $3$ vertes (V), $2$ jaunes (J).
+\begin{enumerate}[label=\arabic*)]
+\item Tirage simultané de $3$ boules.
+\begin{enumerate}[label=\alph*)]
+\item Total : $\dbinom93=\dfrac{9\times8\times7}{6}=84$.
+\item Unicolores : trois rouges $\dbinom43=4$, trois vertes $\dbinom33=1$ ; on ne peut pas
+faire trois jaunes (seulement $2$). Total $4+1=5$.
+\item Exactement $2$ rouges : $2$ rouges parmi $4$ et $1$ non-rouge parmi $5$ :
+$\dbinom42\times\dbinom51=6\times5=30$.
+\item Au moins une jaune = total $-$ (aucune jaune, $3$ parmi les $7$ non-jaunes) :
+$84-\dbinom73=84-35=49$.
+\end{enumerate}
+\item Tirage successif sans remise de $3$ boules (ordonné).
+\begin{enumerate}[label=\alph*)]
+\item Total : $A_9^{3}=9\times8\times7=504$.
+\item Première rouge ($4$ choix), dernière jaune ($2$ choix), boule du milieu parmi les
+$7$ restantes : $4\times 7\times 2=56$. (On place d'abord les positions imposées.)
+\end{enumerate}
+\item Probabilité d'exactement $2$ rouges (tirage simultané, équiprobable) :
+$P=\dfrac{30}{84}=\dfrac{5}{14}$.
+\end{enumerate}
+
+\corrige{du sujet 2}
+\textsc{Bambari} : $7$ lettres, B$\times2$, A$\times2$, M, R, I.
+\begin{enumerate}[label=\arabic*)]
+\item Anagrammes : $\dfrac{7!}{2!\,2!}=\dfrac{5040}{4}=1260$.
+\item Commençant par R : R fixée en tête, on permute les $6$ lettres restantes
+(B,A,M,B,A,I avec B$\times2$, A$\times2$) : $\dfrac{6!}{2!\,2!}=\dfrac{720}{4}=180$.
+\item Voyelles : A, A, I. Commençant par I : $\dfrac{6!}{2!\,2!}=180$ (reste B,A,M,B,A,R).
+Commençant par A : il reste B,A,M,B,R,I avec B$\times2$, A$\times1$ : $\dfrac{6!}{2!}=360$.
+Comme les deux A sont indiscernables, \og commencer par A \fg{} ne se compte qu'une fois :
+total voyelles $=180+360=540$.
+\item Les deux A côte à côte : on colle \og AA \fg{} en un bloc, soit $6$ objets
+(AA, B, B, M, R, I) avec B$\times2$ : $\dfrac{6!}{2!}=360$.
+\item Consonnes : B, B, M, R ($4$ consonnes, dont B$\times2$) ; voyelles A,A,I.
+Première et dernière places occupées par des consonnes. Choisir le couple
+(ordonné) de consonnes aux extrémités, puis permuter le reste au milieu. Plus simple :
+nombre total d'arrangements distincts avec première et dernière lettres consonnes. On place
+les $2$ consonnes des extrémités : parmi $\{B,B,M,R\}$, le nombre de façons ordonnées de
+remplir (début, fin) en tenant compte des B identiques. Énumérons les multiensembles de
+$2$ consonnes pour les extrémités et le reste au centre :
+les $4$ consonnes sont B,B,M,R. Le nombre de mots avec consonnes aux deux bouts se calcule
+en plaçant d'abord les $3$ voyelles A,A,I et $2$ consonnes au centre, et $2$ consonnes aux
+bouts. On compte directement : choisir la suite ordonnée des $7$ lettres telle que
+positions $1$ et $7$ soient des consonnes. Nombre $=\dfrac{(\text{arr. consonnes aux bouts})\times(\text{arr. du reste})}{\text{symétries}}$.
+Méthode sûre : total des mots $=1260$ ; comptons ceux à bouts consonnes par énumération
+des types de consonnes aux extrémités :
+\begin{itemize}
+\item bouts $\{B,B\}$ : les deux B aux extrémités (1 façon, B indiscernables), reste
+A,A,M,R,I au centre : $\dfrac{5!}{2!}=60$.
+\item bouts $\{B,M\}$ : $2$ ordres (B–M ou M–B), reste B,A,A,R,I : $\dfrac{5!}{2!}=60$
+chacun, soit $2\times60=120$.
+\item bouts $\{B,R\}$ : de même $2\times\dfrac{5!}{2!}=120$.
+\item bouts $\{M,R\}$ : $2$ ordres, reste B,B,A,A,I : $\dfrac{5!}{2!\,2!}=30$ chacun, soit
+$2\times30=60$.
+\end{itemize}
+Total $=60+120+120+60=360$ anagrammes commençant et finissant par une consonne.
+\end{enumerate}
+
+\corrige{du sujet 3}
+\begin{enumerate}[label=\arabic*)]
+\item Binôme : $\displaystyle (a+b)^{n}=\sum_{p=0}^{n}\binom np a^{p}b^{\,n-p}$.
+\item Avec $a=b=1$ : $\displaystyle\sum_{p=0}^{n}\binom np=2^{n}$. Avec $a=-1,b=1$ (et $n\ge1$) :
+$\displaystyle\sum_{p=0}^{n}(-1)^{p}\binom np=(1-1)^{n}=0$.
+\item $(1+x)^{6}$.
+\begin{enumerate}[label=\alph*)]
+\item Ligne $6$ du triangle : $1,6,15,20,15,6,1$. Donc
+$(1+x)^{6}=1+6x+15x^{2}+20x^{3}+15x^{4}+6x^{5}+x^{6}$.
+\item Coefficient de $x^{4}$ : $\dbinom64=15$. Somme des coefficients $=2^{6}=64$
+(c'est $\sum_{p=0}^{6}\binom6p$, valeur en $x=1$).
+\end{enumerate}
+\item $\left(2x-\dfrac1x\right)^{8}$, terme général
+$\dbinom8p(2x)^{p}\left(-\dfrac1x\right)^{8-p}=\dbinom8p\,2^{p}(-1)^{8-p}\,x^{\,p-(8-p)}
+=\dbinom8p\,2^{p}(-1)^{8-p}x^{2p-8}$.
+Terme constant : $2p-8=0$, soit $p=4$ :
+$\dbinom84\,2^{4}(-1)^{4}=70\times16\times1=1120$.
+\end{enumerate}
+
+\corrige{du sujet 4}
+$7$ filles (F), $5$ garçons (G), $12$ élèves.
+\begin{enumerate}[label=\arabic*)]
+\item Délégation de $4$ (sans ordre).
+\begin{enumerate}[label=\alph*)]
+\item Total : $\dbinom{12}{4}=\dfrac{12\times11\times10\times9}{24}=495$.
+\item $2$ filles et $2$ garçons : $\dbinom72\times\dbinom52=21\times10=210$.
+\item Au moins une fille = total $-$ (aucune fille, $4$ parmi les $5$ garçons) :
+$495-\dbinom54=495-5=490$.
+\item Au plus une fille = (aucune fille) $+$ (exactement une fille) :
+$\dbinom54+\dbinom71\dbinom53=5+7\times10=5+70=75$.
+\end{enumerate}
+\item Délégué et suppléant (rôles distincts, donc ordre).
+\begin{enumerate}[label=\alph*)]
+\item Arrangement de $2$ parmi $12$ : $A_{12}^{2}=12\times11=132$.
+\item Délégué fille ($7$ choix) \emph{et} suppléant garçon ($5$ choix) : $7\times5=35$.
+\end{enumerate}
 \end{enumerate}

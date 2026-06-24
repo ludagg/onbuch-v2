@@ -1,49 +1,108 @@
 \chapter{Probabilités et variables aléatoires}
 
 \noindent\textit{Le calcul des probabilités modélise le hasard et l'incertitude :
-tirages, jeux, contrôle de qualité, dépistage médical. Après le dénombrement, on
-y associe à chaque issue une mesure de sa « chance » de se produire. La série C
-approfondit la \textbf{probabilité conditionnelle}, la \textbf{formule des
-probabilités totales} et l'étude des \textbf{variables aléatoires}, jusqu'à la
-\textbf{loi binomiale}, modèle d'une répétition d'épreuves indépendantes.}
+tirages, jeux, contrôle de qualité, dépistage médical, files d'attente, sondages.
+Après le dénombrement, on associe à chaque issue une mesure de sa « chance » de se
+produire. La série C approfondit la \textbf{probabilité conditionnelle}, la
+\textbf{formule des probabilités totales}, la \textbf{formule de Bayes} et l'étude
+des \textbf{variables aléatoires} (loi, espérance, variance, écart-type), jusqu'à
+la \textbf{loi binomiale}, modèle d'une répétition d'épreuves identiques et
+indépendantes. Ce chapitre rassemble tout l'outillage probabiliste du
+Baccalauréat scientifique.}
 \vspace{8pt}
 
 % ═══════════════════════════════════════════════════════════════
-\section{Vocabulaire et équiprobabilité}
+\section{Vocabulaire des expériences aléatoires}
 
-\subsection{Expérience aléatoire, événements}
+\subsection{Expérience aléatoire, univers, événements}
 
 \begin{definition}[Univers et événements]
 Une \textbf{expérience aléatoire} est une expérience dont on ne peut prévoir le
-résultat. L'ensemble de toutes ses issues forme l'\textbf{univers} $\Omega$. Un
+résultat avec certitude, mais dont on connaît l'ensemble des résultats possibles.
+L'ensemble de toutes ses issues forme l'\textbf{univers} $\Omega$. Un
 \textbf{événement} est une partie de $\Omega$. Un \textbf{événement élémentaire}
 est un singleton $\{\omega\}$. L'événement $\Omega$ est \textbf{certain},
 $\varnothing$ est \textbf{impossible}.
 \end{definition}
 
+\begin{exemple}
+On lance un dé à $6$ faces : $\Omega=\{1,2,3,4,5,6\}$. « Obtenir un nombre pair »
+est l'événement $A=\{2,4,6\}$ ; « obtenir $5$ » est l'événement élémentaire
+$\{5\}$ ; « obtenir un nombre $\le 6$ » est l'événement certain $\Omega$ ;
+« obtenir $7$ » est l'événement impossible $\varnothing$.
+\end{exemple}
+
 \begin{definition}[Opérations sur les événements]
 Soient $A$ et $B$ deux événements.
 \begin{itemize}
-\item $A\cap B$ (« $A$ \textbf{et} $B$ ») est réalisé si $A$ et $B$ le sont ;
+\item $A\cap B$ (« $A$ \textbf{et} $B$ ») est réalisé si $A$ et $B$ le sont tous deux ;
 \item $A\cup B$ (« $A$ \textbf{ou} $B$ ») est réalisé si l'un au moins l'est ;
 \item $\overline A$, l'\textbf{événement contraire}, est réalisé quand $A$ ne l'est pas ;
-\item $A$ et $B$ sont \textbf{incompatibles} si $A\cap B=\varnothing$.
+\item $A$ et $B$ sont \textbf{incompatibles} (ou disjoints) si $A\cap B=\varnothing$ ;
+\item $A$ \textbf{implique} $B$ si $A\subset B$ (réaliser $A$ entraîne réaliser $B$).
 \end{itemize}
 \end{definition}
+
+\begin{propriete}[Lois de De Morgan sur les événements]
+Pour tous événements $A$ et $B$ :
+\[
+\overline{A\cup B}=\overline A\cap\overline B,\qquad
+\overline{A\cap B}=\overline A\cup\overline B.
+\]
+« Le contraire de (\,$A$ ou $B$\,) est (non $A$) et (non $B$) ».
+\end{propriete}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth]
+\draw[onbline,fill=onbpaper] (0,0) rectangle (6.4,3.2);
+\node[onbmuted] at (5.9,2.9) {$\Omega$};
+\begin{scope}
+\clip (2.0,1.6) circle (1.25cm);
+\fill[onbo,opacity=0.30] (4.0,1.6) circle (1.25cm);
+\end{scope}
+\draw[onbo,line width=1pt,fill=onbo,fill opacity=0.12] (2.0,1.6) circle (1.25cm);
+\draw[onbblue,line width=1pt,fill=onbblue,fill opacity=0.10] (4.0,1.6) circle (1.25cm);
+\node[onbo] at (1.35,1.6) {$A$};
+\node[onbblue] at (4.65,1.6) {$B$};
+\node[onbink,font=\scriptsize] at (3.0,1.6) {$A\cap B$};
+\end{tikzpicture}
+\fig{Figure 1 — Diagramme de Venn : l'intersection $A\cap B$ (zone hachurée orange) et la réunion $A\cup B$.}
+\end{illus}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Probabilité et équiprobabilité}
+
+\subsection{Notion de probabilité}
 
 \begin{definition}[Probabilité]
 Une \textbf{probabilité} $P$ sur un univers fini $\Omega$ associe à chaque
 événement $A$ un réel $P(A)\in[0,1]$ tel que $P(\Omega)=1$ et, pour deux
-événements incompatibles, $P(A\cup B)=P(A)+P(B)$.
+événements incompatibles $A$ et $B$, $P(A\cup B)=P(A)+P(B)$ (\textbf{additivité}).
+Une probabilité est entièrement déterminée par les probabilités $p_i=P(\{\omega_i\})$
+des événements élémentaires, avec $p_i\ge0$ et $\sum_i p_i=1$.
 \end{definition}
 
 \begin{propriete}[Règles de calcul]
 Pour tous événements $A$ et $B$ :
 \[
+P(\varnothing)=0,\qquad
 P(\overline A)=1-P(A),\qquad
-P(A\cup B)=P(A)+P(B)-P(A\cap B),\qquad P(\varnothing)=0.
+P(A\cup B)=P(A)+P(B)-P(A\cap B).
 \]
+De plus, si $A\subset B$, alors $P(A)\le P(B)$ et $P(B\setminus A)=P(B)-P(A)$.
 \end{propriete}
+
+\begin{remarque}
+La formule $P(A\cup B)=P(A)+P(B)-P(A\cap B)$ corrige le « double comptage » de la
+zone commune $A\cap B$. Quand $A$ et $B$ sont incompatibles, $P(A\cap B)=0$ et l'on
+retrouve $P(A\cup B)=P(A)+P(B)$.
+\end{remarque}
+
+\begin{aretenir}
+Le \textbf{passage au contraire} est l'un des réflexes les plus utiles :
+calculer $P(A)=1-P(\overline A)$ est souvent bien plus rapide, notamment pour les
+événements du type « \textbf{au moins un} » (contraire de « aucun »).
+\end{aretenir}
 
 \subsection{Équiprobabilité}
 
@@ -57,20 +116,34 @@ P(A)=\frac{\Card A}{\Card\Omega}
 \end{definition}
 
 \begin{remarque}
-L'équiprobabilité ramène le calcul d'une probabilité à un \textbf{dénombrement}
-(chapitre 12) : on compte les issues favorables et les issues possibles à l'aide
-des $p$-listes, arrangements ou combinaisons selon que l'ordre et la répétition
-interviennent ou non.
+L'équiprobabilité ramène le calcul d'une probabilité à un \textbf{dénombrement} :
+on compte les issues favorables et les issues possibles à l'aide des $p$-listes,
+arrangements ou combinaisons selon que l'ordre et la répétition interviennent ou
+non. Les expressions « au hasard », « équilibré », « indiscernables au toucher »,
+« non truqué » signalent l'équiprobabilité.
 \end{remarque}
 
 \begin{exemple}
 On tire au hasard une carte d'un jeu de $32$ cartes. Soit $A$ : « obtenir un
 roi ». Il y a $4$ rois, donc $P(A)=\dfrac{4}{32}=\dfrac18$. Soit $B$ : « obtenir
-un c\oe ur » ; $P(A\cup B)=P(A)+P(B)-P(A\cap B)=\dfrac{4}{32}+\dfrac{8}{32}-\dfrac{1}{32}=\dfrac{11}{32}$.
+un c\oe ur » ; $P(B)=\dfrac{8}{32}=\dfrac14$ et, le roi de c\oe ur étant compté
+une fois,
+\[
+P(A\cup B)=P(A)+P(B)-P(A\cap B)=\dfrac{4}{32}+\dfrac{8}{32}-\dfrac{1}{32}=\dfrac{11}{32}.
+\]
+\end{exemple}
+
+\begin{exemple}
+Une urne contient $5$ boules rouges et $3$ vertes. On tire \textbf{simultanément}
+$3$ boules (l'ordre ne compte pas). $\Card\Omega=\binom83=56$. La probabilité
+d'obtenir exactement $2$ rouges est
+\[
+P=\frac{\binom52\binom31}{\binom83}=\frac{10\times3}{56}=\frac{30}{56}=\frac{15}{28}\approx0{,}54.
+\]
 \end{exemple}
 
 % ═══════════════════════════════════════════════════════════════
-\section{Probabilité conditionnelle et indépendance}
+\section{Probabilité conditionnelle}
 
 \begin{definition}[Probabilité conditionnelle]
 Soit $B$ un événement de probabilité non nulle. La \textbf{probabilité
@@ -78,41 +151,41 @@ conditionnelle de $A$ sachant $B$} est
 \[
 P_B(A)=P(A\mid B)=\frac{P(A\cap B)}{P(B)}.
 \]
+C'est la probabilité de $A$ \emph{une fois que l'on sait $B$ réalisé} : l'univers
+est « réduit » à $B$.
 \end{definition}
 
-\begin{propriete}[Probabilité d'une intersection]
+\begin{propriete}[Probabilité d'une intersection (formule des probabilités composées)]
 Si $P(B)\neq 0$ : $\;P(A\cap B)=P(B)\,P_B(A)$. De même, si $P(A)\neq 0$,
-$P(A\cap B)=P(A)\,P_A(B)$.
+$P(A\cap B)=P(A)\,P_A(B)$. Plus généralement,
+\[
+P(A_1\cap A_2\cap A_3)=P(A_1)\,P_{A_1}(A_2)\,P_{A_1\cap A_2}(A_3).
+\]
 \end{propriete}
 
-\begin{definition}[Événements indépendants]
-Deux événements $A$ et $B$ sont \textbf{indépendants} lorsque
-\[
-P(A\cap B)=P(A)\times P(B),
-\]
-ce qui équivaut, si $P(B)\neq 0$, à $P_B(A)=P(A)$ : la réalisation de $B$ ne
-modifie pas la probabilité de $A$.
-\end{definition}
-
 \begin{remarque}
-Ne pas confondre \textbf{incompatibles} ($A\cap B=\varnothing$) et
-\textbf{indépendants} ($P(A\cap B)=P(A)P(B)$). Deux événements incompatibles de
-probabilités non nulles ne sont \emph{jamais} indépendants.
+$P_B$ est elle-même une probabilité : $P_B(\Omega)=1$, $P_B(\overline A)=1-P_B(A)$,
+$P_B(A\cup A')=P_B(A)+P_B(A')-P_B(A\cap A')$. En revanche, en général
+$P_B(A)\ne P_A(B)$ : confondre les deux est une faute classique.
 \end{remarque}
 
 \begin{exemple}
-On lance deux dés équilibrés. $A$ : « le premier dé donne $6$ », $B$ : « la somme
-vaut $7$ ». On a $P(A)=\frac16$, $P(B)=\frac{6}{36}=\frac16$ et $A\cap B$ : « $(6,1)$ »
-soit $P(A\cap B)=\frac1{36}=P(A)P(B)$ : $A$ et $B$ sont \textbf{indépendants}.
+Dans une classe, $P(\text{interne})=0{,}5$ et $P(\text{interne et fille})=0{,}3$.
+La probabilité d'être une fille \emph{sachant} qu'on est interne est
+\[
+P_{\text{interne}}(\text{fille})=\frac{0{,}3}{0{,}5}=0{,}6.
+\]
 \end{exemple}
 
 % ═══════════════════════════════════════════════════════════════
-\section{Probabilités totales et arbre pondéré}
+\section{Probabilités totales et arbres pondérés}
 
 \begin{definition}[Système complet d'événements]
 Des événements $A_1,A_2,\dots,A_n$ de probabilités non nulles forment un
 \textbf{système complet d'événements} lorsqu'ils sont deux à deux incompatibles
-et que leur réunion est $\Omega$ : ils « partagent » $\Omega$ sans recouvrement.
+($A_i\cap A_j=\varnothing$ pour $i\ne j$) et que leur réunion est $\Omega$ : ils
+« partagent » $\Omega$ sans recouvrement. Le cas le plus simple est la
+\textbf{partition} $\{A,\overline A\}$.
 \end{definition}
 
 \begin{theoreme}[Formule des probabilités totales]
@@ -123,15 +196,25 @@ P(B)=\sum_{i=1}^{n}P(A_i\cap B)=\sum_{i=1}^{n}P(A_i)\,P_{A_i}(B).
 \]
 \end{theoreme}
 
+\begin{remarque}[Justification]
+Comme les $A_i$ partagent $\Omega$, les événements $A_i\cap B$ partagent $B$ et
+sont deux à deux incompatibles. Par additivité, $P(B)=\sum_i P(A_i\cap B)$, et
+chaque terme se réécrit $P(A_i)P_{A_i}(B)$ par la formule des probabilités
+composées.
+\end{remarque}
+
 \begin{aretenir}
 Un \textbf{arbre pondéré} traduit la formule des probabilités totales. Règles :
 \begin{itemize}
 \item la somme des probabilités des branches \emph{issues d'un même n\oe ud} vaut $1$ ;
 \item la probabilité d'un \emph{chemin} est le \textbf{produit} des probabilités
-rencontrées ;
+rencontrées le long du chemin (probabilités composées) ;
 \item la probabilité d'un événement est la \textbf{somme} des probabilités des
-chemins qui le réalisent.
+chemins qui le réalisent (probabilités totales).
 \end{itemize}
+Sur le 1\textsuperscript{er} niveau figurent des probabilités « simples »
+$P(A_i)$ ; sur le 2\textsuperscript{e} niveau, des probabilités
+\emph{conditionnelles} $P_{A_i}(B)$.
 \end{aretenir}
 
 \begin{illus}
@@ -151,7 +234,7 @@ chemins qui le réalisent.
 \node[align=left,text width=4.3cm,anchor=west,onbink] at (5.4,0)
 {\small $P(B)=0{,}4\times0{,}9+0{,}6\times0{,}3$ \\[2pt] $\phantom{P(B)}=0{,}36+0{,}18=0{,}54.$};
 \end{tikzpicture}
-\fig{Figure — Arbre pondéré : système complet $\{A,\overline A\}$ et probabilités totales.}
+\fig{Figure 2 — Arbre pondéré : système complet $\{A,\overline A\}$ et probabilités totales.}
 \end{illus}
 
 \begin{exemple}
@@ -165,9 +248,53 @@ $P(B)=0{,}4\cdot0{,}9+0{,}6\cdot0{,}3=0{,}54$.
 \begin{theoreme}[Probabilité des causes (formule de Bayes)]
 Si $A_1,\dots,A_n$ est un système complet et $P(B)\neq 0$, alors pour tout $i$ :
 \[
-P_B(A_i)=\frac{P(A_i)\,P_{A_i}(B)}{\displaystyle\sum_{j=1}^{n}P(A_j)\,P_{A_j}(B)}.
+P_B(A_i)=\frac{P(A_i\cap B)}{P(B)}=\frac{P(A_i)\,P_{A_i}(B)}{\displaystyle\sum_{j=1}^{n}P(A_j)\,P_{A_j}(B)}.
 \]
 \end{theoreme}
+
+\begin{remarque}
+La formule de Bayes « renverse » le conditionnement : elle calcule $P_B(A_i)$ (la
+\emph{cause} sachant l'\emph{effet}) à partir des $P_{A_i}(B)$ (l'effet sachant la
+cause). Le dénominateur n'est autre que $P(B)$, obtenu par les probabilités
+totales.
+\end{remarque}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Indépendance}
+
+\begin{definition}[Événements indépendants]
+Deux événements $A$ et $B$ sont \textbf{indépendants} lorsque
+\[
+P(A\cap B)=P(A)\times P(B),
+\]
+ce qui équivaut, si $P(B)\neq 0$, à $P_B(A)=P(A)$ : la réalisation de $B$ ne
+modifie pas la probabilité de $A$.
+\end{definition}
+
+\begin{propriete}[Stabilité par passage au contraire]
+Si $A$ et $B$ sont indépendants, alors $A$ et $\overline B$ le sont aussi,
+$\overline A$ et $B$ également, ainsi que $\overline A$ et $\overline B$.
+\end{propriete}
+
+\begin{remarque}
+Ne pas confondre \textbf{incompatibles} ($A\cap B=\varnothing$) et
+\textbf{indépendants} ($P(A\cap B)=P(A)P(B)$). Deux événements incompatibles de
+probabilités non nulles ne sont \emph{jamais} indépendants : si $A\cap
+B=\varnothing$, alors $P(A\cap B)=0\ne P(A)P(B)>0$.
+\end{remarque}
+
+\begin{exemple}
+On lance deux dés équilibrés. $A$ : « le premier dé donne $6$ », $B$ : « la somme
+vaut $7$ ». On a $P(A)=\frac16$, $P(B)=\frac{6}{36}=\frac16$ et $A\cap B=\{(6,1)\}$
+soit $P(A\cap B)=\frac1{36}=P(A)P(B)$ : $A$ et $B$ sont \textbf{indépendants}.
+\end{exemple}
+
+\begin{aretenir}
+\textbf{Répétitions indépendantes.} Lorsqu'une même expérience est répétée de
+façon indépendante (tirages \emph{avec remise}, lancers successifs, plusieurs
+machines distinctes), la probabilité d'une suite de résultats est le
+\textbf{produit} des probabilités. C'est le fondement du schéma de Bernoulli.
+\end{aretenir}
 
 % ═══════════════════════════════════════════════════════════════
 \section{Variables aléatoires}
@@ -180,23 +307,59 @@ probabilités $p_i=P(X=x_i)$, avec
 \[
 p_i\ge 0 \quad\text{et}\quad \sum_{i=1}^{n}p_i=1.
 \]
+On la présente le plus souvent sous forme de tableau.
 \end{definition}
+
+\begin{exemple}
+Soit $X$ le nombre de « piles » obtenus en lançant deux fois une pièce
+équilibrée. Les issues équiprobables sont PP, PF, FP, FF, donc
+\[
+P(X{=}0)=\tfrac14,\qquad P(X{=}1)=\tfrac12,\qquad P(X{=}2)=\tfrac14.
+\]
+\[
+\begin{array}{c|ccc}
+x_i & 0 & 1 & 2\\\hline
+P(X{=}x_i) & \frac14 & \frac12 & \frac14
+\end{array}
+\]
+La somme des probabilités vaut bien $1$.
+\end{exemple}
 
 \begin{definition}[Fonction de répartition]
 La \textbf{fonction de répartition} de $X$ est la fonction $F$ définie sur $\R$ par
 \[
 F(x)=P(X\le x).
 \]
-C'est une fonction \textbf{en escalier}, croissante, qui passe de $0$ à $1$ ;
-elle augmente d'un « saut » de hauteur $p_i$ à chaque valeur $x_i$.
+C'est une fonction \textbf{en escalier}, croissante, continue à droite, qui passe
+de $0$ à $1$ ; elle augmente d'un « saut » de hauteur $p_i$ à chaque valeur $x_i$.
 \end{definition}
 
 \begin{exemple}
-Soit $X$ le nombre de « piles » obtenus en lançant deux fois une pièce
-équilibrée. Les issues équiprobables sont PP, PF, FP, FF, donc $P(X{=}0)=\frac14$,
-$P(X{=}1)=\frac12$, $P(X{=}2)=\frac14$. La fonction de répartition vaut $0$ pour
+Pour le $X$ précédent (deux lancers), la fonction de répartition vaut $0$ pour
 $x<0$, $\frac14$ pour $0\le x<1$, $\frac34$ pour $1\le x<2$, et $1$ pour $x\ge 2$.
 \end{exemple}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth]
+\begin{axis}[width=9.2cm,height=5cm,axis lines=left,
+  xlabel={\small $x$},ylabel={\small $F(x)=P(X\le x)$},
+  xmin=-1.4,xmax=3.4,ymin=-0.05,ymax=1.15,
+  xtick={0,1,2},ytick={0,0.25,0.75,1},yticklabels={$0$,$\frac14$,$\frac34$,$1$},
+  enlarge x limits=0.04]
+\draw[onbo,line width=1.1pt] (axis cs:-1.4,0)--(axis cs:0,0);
+\draw[onbo,line width=1.1pt] (axis cs:0,0.25)--(axis cs:1,0.25);
+\draw[onbo,line width=1.1pt] (axis cs:1,0.75)--(axis cs:2,0.75);
+\draw[onbo,line width=1.1pt] (axis cs:2,1)--(axis cs:3.4,1);
+\filldraw[onbo] (axis cs:0,0.25) circle (2pt);
+\filldraw[onbo] (axis cs:1,0.75) circle (2pt);
+\filldraw[onbo] (axis cs:2,1) circle (2pt);
+\draw[onbo,fill=white] (axis cs:0,0) circle (2pt);
+\draw[onbo,fill=white] (axis cs:1,0.25) circle (2pt);
+\draw[onbo,fill=white] (axis cs:2,0.75) circle (2pt);
+\end{axis}
+\end{tikzpicture}
+\fig{Figure 3 — Fonction de répartition en escalier de $X$ (nombre de « piles » en deux lancers).}
+\end{illus}
 
 % ═══════════════════════════════════════════════════════════════
 \section{Espérance, variance et écart-type}
@@ -208,8 +371,9 @@ E(X)=\sum_{i=1}^{n}p_i\,x_i,\qquad
 V(X)=\sum_{i=1}^{n}p_i\big(x_i-E(X)\big)^2,\qquad
 \sigma(X)=\sqrt{V(X)}.
 \]
-$E(X)$ est la \textbf{valeur moyenne} attendue, $V(X)\ge0$ mesure la
-\textbf{dispersion} et $\sigma(X)$ l'\textbf{écart-type}.
+$E(X)$ est la \textbf{valeur moyenne} attendue (le « centre de gravité » de la
+loi), $V(X)\ge0$ mesure la \textbf{dispersion} autour de $E(X)$ et $\sigma(X)$
+est l'\textbf{écart-type}, exprimé dans la même unité que $X$.
 \end{definition}
 
 \begin{propriete}[Formule de König--Huygens et linéarité]
@@ -217,14 +381,31 @@ La variance se calcule plus rapidement par
 \[
 V(X)=E(X^2)-\big(E(X)\big)^2,\qquad\text{où}\quad E(X^2)=\sum_{i=1}^{n}p_i\,x_i^{2}.
 \]
-De plus, pour tous réels $a,b$ : $\;E(aX+b)=a\,E(X)+b$ et $V(aX+b)=a^{2}V(X)$.
+De plus, pour tous réels $a,b$ :
+\[
+E(aX+b)=a\,E(X)+b,\qquad V(aX+b)=a^{2}\,V(X),\qquad \sigma(aX+b)=|a|\,\sigma(X).
+\]
 \end{propriete}
+
+\begin{remarque}
+L'espérance est \textbf{linéaire} (le $+b$ se transmet), mais la variance
+\textbf{ignore les translations} ($V(X+b)=V(X)$) et fait apparaître $a^2$ : un
+décalage ne change pas la dispersion, mais une dilatation par $a$ la multiplie par
+$a^2$.
+\end{remarque}
 
 \begin{exemple}
 Pour le $X$ ci-dessus (deux lancers) :
-$E(X)=0\cdot\frac14+1\cdot\frac12+2\cdot\frac14=1$, $\;E(X^2)=0\cdot\frac14+1\cdot\frac12+4\cdot\frac14=\frac32$,
+$E(X)=0\cdot\frac14+1\cdot\frac12+2\cdot\frac14=1$,
+$\;E(X^2)=0\cdot\frac14+1\cdot\frac12+4\cdot\frac14=\frac32$,
 donc $V(X)=\frac32-1^2=\frac12$ et $\sigma(X)=\frac{1}{\sqrt2}\approx0{,}71$.
 \end{exemple}
+
+\begin{aretenir}
+Un \textbf{jeu est équitable} lorsque l'espérance du gain algébrique est nulle
+($E(G)=0$), \textbf{favorable} au joueur si $E(G)>0$, \textbf{défavorable} si
+$E(G)<0$. Pour un gain, ne pas oublier de soustraire la \textbf{mise}.
+\end{aretenir}
 
 % ═══════════════════════════════════════════════════════════════
 \section{Schéma de Bernoulli et loi binomiale}
@@ -233,7 +414,7 @@ donc $V(X)=\frac32-1^2=\frac12$ et $\sigma(X)=\frac{1}{\sqrt2}\approx0{,}71$.
 Une \textbf{épreuve de Bernoulli} est une expérience à deux issues : le
 \textbf{succès} $S$ (probabilité $p$) et l'\textbf{échec} $\overline S$
 (probabilité $q=1-p$). La v.a. $X$ qui vaut $1$ en cas de succès et $0$ sinon
-suit la \textbf{loi de Bernoulli} de paramètre $p$ : $E(X)=p$, $V(X)=p(1-p)$.
+suit la \textbf{loi de Bernoulli} de paramètre $p$ : $E(X)=p$ et $V(X)=p(1-p)$.
 \end{definition}
 
 \begin{definition}[Schéma de Bernoulli]
@@ -248,16 +429,19 @@ Pour tout entier $k$ avec $0\le k\le n$ :
 \[
 P(X=k)=\binom{n}{k}\,p^{k}(1-p)^{\,n-k}.
 \]
-Son espérance et sa variance sont
+Son espérance, sa variance et son écart-type sont
 \[
 E(X)=np,\qquad V(X)=np(1-p),\qquad \sigma(X)=\sqrt{np(1-p)}.
 \]
 \end{theoreme}
 
-\begin{remarque}
-Le coefficient $\binom nk$ compte les façons de placer les $k$ succès parmi les
-$n$ épreuves ; $p^k(1-p)^{n-k}$ est la probabilité d'un chemin précis (par
-indépendance). La loi binomiale combine ainsi dénombrement et indépendance.
+\begin{remarque}[Justification de la formule]
+Un chemin précis comportant $k$ succès et $n-k$ échecs a, par indépendance, la
+probabilité $p^k(1-p)^{n-k}$. Le coefficient $\binom nk$ compte les façons de
+placer les $k$ succès parmi les $n$ épreuves (choix de $k$ positions). La loi
+binomiale combine ainsi \textbf{dénombrement} et \textbf{indépendance}. Comme
+$\sum_k\binom nk p^k(1-p)^{n-k}=(p+(1-p))^n=1$ (formule du binôme de Newton), on a
+bien une loi de probabilité.
 \end{remarque}
 
 \begin{illus}
@@ -273,16 +457,77 @@ indépendance). La loi binomiale combine ainsi dénombrement et indépendance.
 \node[align=left,text width=3.4cm,anchor=west,onbink] at (9.5,1.7)
 {\small Loi $\mathcal B(6\,;\,0{,}4)$ : $E(X)=2{,}4$. La barre la plus haute est en $k=2$.};
 \end{tikzpicture}
-\fig{Figure — Diagramme en bâtons de la loi binomiale $\mathcal B(6\,;\,0{,}4)$.}
+\fig{Figure 4 — Diagramme en bâtons de la loi binomiale $\mathcal B(6\,;\,0{,}4)$.}
+\end{illus}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth,grow=right,level distance=20mm,
+  every node/.style={font=\scriptsize},
+  nd/.style={circle,draw=onbo,fill=onbsoft,inner sep=1.3pt},
+  lf/.style={inner sep=1.5pt}]
+\node[nd]{}
+  child{node[nd]{}
+    child{node[lf]{$SS$ : $p^2$}      edge from parent node[above,onbgreen]{$p$}}
+    child{node[lf]{$S\overline S$ : $pq$} edge from parent node[below,onbmuted]{$q$}}
+    edge from parent node[above,onbgreen]{$p$}}
+  child{node[nd]{}
+    child{node[lf]{$\overline S S$ : $qp$}      edge from parent node[above,onbgreen]{$p$}}
+    child{node[lf]{$\overline S\,\overline S$ : $q^2$} edge from parent node[below,onbmuted]{$q$}}
+    edge from parent node[below,onbmuted]{$q$}};
+\node[align=left,text width=4.2cm,anchor=west,onbink] at (5.6,0)
+{\small $n=2$ épreuves : $P(X{=}1)=2pq$ (deux chemins), $P(X{=}2)=p^2$, $P(X{=}0)=q^2$.};
+\end{tikzpicture}
+\fig{Figure 5 — Schéma de Bernoulli à $n=2$ épreuves : l'arbre engendre la loi binomiale.}
 \end{illus}
 
 \begin{exemple}
 Un QCM comporte $6$ questions à $4$ choix ; un candidat répond au hasard. Le
 nombre $X$ de bonnes réponses suit $\mathcal B(6\,;\,0{,}25)$. La probabilité
 d'avoir exactement $2$ bonnes réponses est
-$P(X{=}2)=\binom62(0{,}25)^2(0{,}75)^4=15\times0{,}0625\times0{,}3164\approx0{,}297$.
+\[
+P(X{=}2)=\binom62(0{,}25)^2(0{,}75)^4=15\times0{,}0625\times0{,}3164\approx0{,}297.
+\]
 On attend en moyenne $E(X)=6\times0{,}25=1{,}5$ bonne réponse.
 \end{exemple}
+
+\begin{aretenir}
+\textbf{Conditions de la loi binomiale} : (1) on répète une \emph{même} épreuve à
+\emph{deux} issues, (2) un nombre \emph{fixé} $n$ de fois, (3) de façon
+\emph{indépendante}. Un \textbf{tirage avec remise} respecte ces conditions ; un
+\textbf{tirage sans remise} (boules tirées \emph{simultanément}) ne les respecte
+\emph{pas} (épreuves non indépendantes) : on revient alors au dénombrement.
+\end{aretenir}
+
+% ═══════════════════════════════════════════════════════════════
+\section{L'essentiel à retenir}
+
+\begin{synthese}
+\textbf{Vocabulaire.} Univers $\Omega$, événement $A\subset\Omega$, contraire
+$\overline A$, $A\cap B$ (et), $A\cup B$ (ou). Incompatibles : $A\cap
+B=\varnothing$. De Morgan : $\overline{A\cup B}=\overline A\cap\overline B$.\\[4pt]
+\textbf{Probabilité.} $0\le P(A)\le1$, $P(\Omega)=1$, $P(\overline A)=1-P(A)$,
+$\ P(A\cup B)=P(A)+P(B)-P(A\cap B)$. Équiprobabilité :
+$P(A)=\dfrac{\Card A}{\Card\Omega}$.\\[4pt]
+\textbf{Conditionnelle.} $P_B(A)=\dfrac{P(A\cap B)}{P(B)}$ ;\ composées :
+$P(A\cap B)=P(B)P_B(A)$.\\[4pt]
+\textbf{Probabilités totales.} Système complet $\{A_i\}$ :
+$P(B)=\sum_i P(A_i)P_{A_i}(B)$. \textbf{Bayes} :
+$P_B(A_i)=\dfrac{P(A_i)P_{A_i}(B)}{\sum_j P(A_j)P_{A_j}(B)}$.\\[4pt]
+\textbf{Arbre.} branches d'un n\oe ud $\to$ somme $1$ ;\ chemin $\to$ produit ;\
+événement $\to$ somme des chemins.\\[4pt]
+\textbf{Indépendance.} $P(A\cap B)=P(A)P(B)\iff P_B(A)=P(A)$. À ne pas confondre
+avec incompatibles.\\[4pt]
+\textbf{Variable aléatoire.} Loi : $p_i=P(X{=}x_i)$, $\sum p_i=1$. Répartition
+$F(x)=P(X\le x)$ (escalier).\\[4pt]
+\textbf{Caractéristiques.} $E(X)=\sum p_i x_i$ ;\ $V(X)=E(X^2)-E(X)^2$ ;\
+$\sigma=\sqrt V$. Linéarité : $E(aX+b)=aE(X)+b$, $V(aX+b)=a^2V(X)$.\\[4pt]
+\textbf{Loi binomiale} $\mathcal B(n,p)$ ($n$ épreuves identiques indépendantes,
+$p=$ succès) : $P(X{=}k)=\binom nk p^k(1-p)^{n-k}$,\ $E=np$,\ $V=np(1-p)$,\
+$\sigma=\sqrt{np(1-p)}$.\\[4pt]
+\textbf{Pièges.} oublier $-P(A\cap B)$ dans une réunion ; confondre $P_B(A)$ et
+$P_A(B)$ ; appliquer la binomiale à un tirage \emph{sans remise} ; oublier la mise
+dans un gain ; oublier $a^2$ dans $V(aX+b)$.
+\end{synthese}
 
 % ═══════════════════════════════════════════════════════════════
 \section{Méthodes \& savoir-faire}
@@ -299,21 +544,52 @@ P=\frac{\binom52\binom31}{\binom83}=\frac{10\times3}{56}=\frac{30}{56}=\frac{15}
 \]
 \end{exemple}
 
+\methode{Utiliser le passage au contraire (« au moins un »)}
+Pour un événement « au moins un \dots », calculer le contraire « aucun » puis
+soustraire à $1$ : $P(\text{au moins un})=1-P(\text{aucun})$.
+\begin{exemple}
+On lance $3$ fois un dé. Probabilité d'obtenir \textbf{au moins un} $6$ : le
+contraire est « aucun $6$ », de probabilité $\big(\frac56\big)^3=\frac{125}{216}$,
+donc
+\[
+P(\text{au moins un }6)=1-\frac{125}{216}=\frac{91}{216}\approx0{,}42.
+\]
+\end{exemple}
+
 \methode{Utiliser un arbre pondéré et les probabilités totales}
 Construire l'arbre du système complet, multiplier le long des chemins, additionner
-les chemins favorables. Pour une probabilité conditionnelle « renversée »,
-appliquer Bayes.
+les chemins favorables.
 \begin{exemple}
-Reprenons l'usine ($P(A){=}0{,}4$, $P_A(B){=}0{,}9$, $P_{\overline A}(B){=}0{,}3$).
-Une pièce tirée est bonne ; probabilité qu'elle vienne de $A$ :
+Une usine ($P(A){=}0{,}4$, $P_A(B){=}0{,}9$, $P_{\overline A}(B){=}0{,}3$). La
+probabilité qu'une pièce soit bonne est
+\[
+P(B)=0{,}4\times0{,}9+0{,}6\times0{,}3=0{,}36+0{,}18=0{,}54.
+\]
+\end{exemple}
+
+\methode{Renverser un conditionnement (formule de Bayes)}
+Quand on connaît $P_{A_i}(B)$ et qu'on cherche $P_B(A_i)$, appliquer Bayes : au
+numérateur le chemin menant à $A_i\cap B$, au dénominateur $P(B)$.
+\begin{exemple}
+Reprenons l'usine. Une pièce tirée est bonne ; probabilité qu'elle vienne de $A$ :
 \[
 P_B(A)=\frac{P(A)P_A(B)}{P(B)}=\frac{0{,}4\times0{,}9}{0{,}54}=\frac{0{,}36}{0{,}54}=\frac23\approx0{,}67.
 \]
 \end{exemple}
 
+\methode{Tester l'indépendance de deux événements}
+Calculer $P(A)$, $P(B)$ et $P(A\cap B)$ ; comparer $P(A\cap B)$ à $P(A)P(B)$.
+Égalité $\Rightarrow$ indépendance.
+\begin{exemple}
+Tirage d'une carte parmi $32$. $A$ : « un roi » ($P=\frac4{32}$), $B$ : « un
+c\oe ur » ($P=\frac8{32}$). $A\cap B$ : « roi de c\oe ur », $P=\frac1{32}$. Or
+$P(A)P(B)=\frac4{32}\cdot\frac8{32}=\frac{32}{1024}=\frac1{32}$ : $A$ et $B$ sont
+\textbf{indépendants}.
+\end{exemple}
+
 \methode{Établir la loi de probabilité et la fonction de répartition d'une v.a.}
-Déterminer les valeurs prises par $X$, calculer chaque $P(X=x_i)$, vérifier que
-la somme vaut $1$, puis cumuler les probabilités pour obtenir $F(x)=P(X\le x)$.
+Déterminer les valeurs prises par $X$, calculer chaque $P(X=x_i)$, vérifier que la
+somme vaut $1$, puis cumuler les probabilités pour obtenir $F(x)=P(X\le x)$.
 \begin{exemple}
 On tire $2$ boules simultanément d'une urne de $3$ rouges et $2$ noires ; $X$ =
 nombre de rouges. $P(X{=}0)=\frac{\binom22}{\binom52}=\frac1{10}$,
@@ -325,7 +601,8 @@ $\frac1{10}$ si $0\le x<1$, $\frac7{10}$ si $1\le x<2$, $1$ si $x\ge2$.
 \methode{Calculer espérance, variance et écart-type}
 Utiliser $E(X)=\sum p_i x_i$, puis $V(X)=E(X^2)-E(X)^2$ et $\sigma=\sqrt{V}$.
 \begin{exemple}
-Avec la loi précédente : $E(X)=0\cdot\frac1{10}+1\cdot\frac6{10}+2\cdot\frac3{10}=\frac{12}{10}=1{,}2$ ;
+Avec la loi précédente :
+$E(X)=0\cdot\frac1{10}+1\cdot\frac6{10}+2\cdot\frac3{10}=\frac{12}{10}=1{,}2$ ;
 $E(X^2)=0+1\cdot\frac6{10}+4\cdot\frac3{10}=\frac{18}{10}=1{,}8$ ;
 $V(X)=1{,}8-1{,}44=0{,}36$, $\sigma(X)=0{,}6$.
 \end{exemple}
@@ -342,8 +619,16 @@ P(X\ge1)=1-P(X{=}0)=1-\Big(\tfrac56\Big)^5=1-\tfrac{3125}{7776}\approx0{,}598.
 \]
 \end{exemple}
 
+\methode{Calculer une probabilité cumulée dans une loi binomiale}
+Pour $P(X\le k)$ ou $P(X\ge k)$, sommer les $P(X{=}j)$ utiles ; penser au passage
+au contraire pour « au moins un » ($P(X\ge1)=1-P(X{=}0)$).
+\begin{exemple}
+$X\sim\mathcal B(4\,;\,0{,}8)$. $P(X\ge3)=P(X{=}3)+P(X{=}4)
+=\binom43(0{,}8)^3(0{,}2)+(0{,}8)^4=0{,}4096+0{,}4096=0{,}8192$.
+\end{exemple}
+
 % ═══════════════════════════════════════════════════════════════
-\section{Exercices}
+\section{Exercices d'application}
 
 \rubrique{Équiprobabilité et dénombrement}
 \exo{}\diff{1} On tire une carte d'un jeu de $52$ cartes. Calculer la probabilité
@@ -355,6 +640,10 @@ simultanément. Quelle est la probabilité que la somme des numéros soit paire 
 \exo{}\diff{2} Une urne contient $6$ boules rouges et $4$ boules blanches. On tire
 simultanément $3$ boules. Calculer la probabilité d'obtenir : a) trois rouges ;
 b) exactement deux rouges ; c) au moins une blanche.
+
+\exo{}\diff{2} On range au hasard $3$ livres distincts sur une étagère. Quelle est
+la probabilité qu'un livre particulier (le livre de maths) se trouve à l'une des
+deux extrémités ?
 
 \rubrique{Probabilité conditionnelle, arbres et probabilités totales}
 \exo{}\diff{2} Dans une classe de Terminale C, $60\%$ des élèves sont des filles.
@@ -372,6 +661,16 @@ contient $1$ rouge et $4$ vertes. On lance un dé équilibré : s'il donne $6$, 
 tire dans $U_1$, sinon dans $U_2$. a) Probabilité de tirer une boule rouge.
 b) On a tiré une rouge ; probabilité qu'elle vienne de $U_1$.
 
+\rubrique{Indépendance}
+\exo{}\diff{1} On lance deux dés équilibrés. $A$ : « le premier dé donne un nombre
+pair », $B$ : « le second dé donne $5$ ou $6$ ». Les événements $A$ et $B$ sont-ils
+indépendants ? Justifier par le calcul.
+
+\exo{}\diff{2} Deux composants électroniques fonctionnent indépendamment ; le
+premier tombe en panne avec la probabilité $0{,}1$, le second avec $0{,}2$.
+Calculer la probabilité : a) que les deux fonctionnent ; b) qu'au moins un tombe
+en panne.
+
 \rubrique{Variables aléatoires, espérance et variance}
 \exo{}\diff{2} On lance deux dés équilibrés et on note $X$ la somme des points
 obtenus. a) Donner la loi de probabilité de $X$. b) Calculer $E(X)$.
@@ -385,6 +684,9 @@ joueur (calculer $E(G)$) ? c) Calculer $\sigma(G)$.
 $P(X{=}-1)=\frac14$, $P(X{=}0)=a$, $P(X{=}2)=\frac12$. a) Déterminer $a$.
 b) Calculer $E(X)$, $V(X)$, $\sigma(X)$. c) Donner la fonction de répartition $F$.
 
+\exo{}\diff{2} Soit $X$ une v.a. d'espérance $E(X)=3$ et de variance $V(X)=2$. On
+pose $Y=2X-5$. Calculer $E(Y)$, $V(Y)$ et $\sigma(Y)$.
+
 \rubrique{Loi binomiale}
 \exo{}\diff{2} Une machine produit des pièces dont $5\%$ sont défectueuses. On
 prélève $10$ pièces (production assez grande pour supposer l'indépendance). Soit
@@ -395,6 +697,11 @@ b) Calculer $P(X{=}0)$, $P(X{=}1)$ et $P(X\ge1)$. c) Donner $E(X)$.
 $0{,}8$, indépendamment les uns des autres. Il en tire $4$. Soit $X$ le nombre de
 buts. a) Donner la loi de $X$. b) Probabilité qu'il marque exactement $3$ buts.
 c) Probabilité qu'il marque au moins $3$ buts. d) Calculer $E(X)$ et $\sigma(X)$.
+
+\exo{}\diff{3} Une épreuve réussit avec la probabilité $p=0{,}3$ ; on la répète
+$n$ fois de façon indépendante. Soit $X$ le nombre de succès. a) Quelle est la
+loi de $X$ ? b) Déterminer le plus petit entier $n$ tel que la probabilité
+d'obtenir au moins un succès dépasse $0{,}9$.
 
 \rubrique{Problème type Baccalauréat}
 \exo{}\diff{3} \textbf{Épreuve composée, v.a. et loi binomiale.}
@@ -418,12 +725,175 @@ rouges obtenues au cours de ces $4$ tirages.
 \end{enumerate}
 
 % ═══════════════════════════════════════════════════════════════
+\section{Exercices d'entraînement}
+
+\rubrique{Vocabulaire et calculs de probabilités}
+\exo{}\diff{1} On lance un dé équilibré à $6$ faces. Décrire $\Omega$ et donner la
+probabilité de : a) « obtenir un multiple de $3$ » ; b) « obtenir un nombre
+premier ».
+
+\exo{}\diff{1} Soient $A$ et $B$ deux événements avec $P(A)=0{,}5$, $P(B)=0{,}4$ et
+$P(A\cap B)=0{,}2$. Calculer $P(A\cup B)$, $P(\overline A)$ et $P(\overline A\cap\overline B)$.
+
+\exo{}\diff{1} Dans une urne de $10$ boules numérotées de $1$ à $10$, on en tire
+une au hasard. Probabilité d'obtenir : a) un nombre pair ; b) un multiple de $3$ ;
+c) un nombre pair \emph{ou} multiple de $3$.
+
+\exo{}\diff{2} On tire simultanément $2$ cartes d'un jeu de $32$. Probabilité
+d'obtenir : a) deux rois ; b) exactement un roi ; c) aucun roi.
+
+\exo{}\diff{2} Un sac contient $5$ jetons rouges, $3$ verts et $2$ bleus. On en
+tire $3$ simultanément. Probabilité d'obtenir : a) trois jetons de la même
+couleur ; b) un jeton de chaque couleur.
+
+\exo{}\diff{2} On forme un nombre de $3$ chiffres distincts avec les chiffres
+$1,2,3,4,5$. Probabilité qu'il soit pair.
+
+\rubrique{Probabilité conditionnelle et arbres}
+\exo{}\diff{1} On a $P(A)=0{,}6$ et $P_A(B)=0{,}3$. Calculer $P(A\cap B)$.
+
+\exo{}\diff{2} Dans une population, $40\%$ des personnes sont vaccinées. Parmi les
+vaccinés, $5\%$ contractent la grippe ; parmi les non-vaccinés, $30\%$. Calculer
+la probabilité qu'une personne prise au hasard contracte la grippe.
+
+\exo{}\diff{2} Un élève répond à deux questions successives. Il répond bien à la
+première avec probabilité $0{,}7$. S'il a bien répondu, il répond bien à la seconde
+avec probabilité $0{,}8$ ; sinon avec probabilité $0{,}4$. Construire l'arbre et
+calculer la probabilité qu'il réponde bien aux deux questions.
+
+\exo{}\diff{2} Une boîte contient $4$ piles bonnes et $2$ usagées. On en tire deux
+successivement \emph{sans remise}. Probabilité : a) que les deux soient bonnes ;
+b) que la seconde soit bonne.
+
+\exo{}\diff{3} Trois machines $M_1,M_2,M_3$ produisent respectivement $50\%$,
+$30\%$ et $20\%$ des pièces d'une usine, avec des taux de défaut de $2\%$, $3\%$
+et $5\%$. Une pièce est défectueuse : quelle machine l'a le plus probablement
+produite ?
+
+\exo{}\diff{3} Un message binaire (0 ou 1) est transmis. On émet un $1$ avec
+probabilité $0{,}6$. Le canal inverse le bit avec probabilité $0{,}1$. Sachant
+qu'on a reçu un $1$, quelle est la probabilité qu'un $1$ ait été émis ?
+
+\rubrique{Indépendance}
+\exo{}\diff{1} $P(A)=0{,}3$, $P(B)=0{,}5$. Les événements $A$ et $B$ étant
+indépendants, calculer $P(A\cap B)$ et $P(A\cup B)$.
+
+\exo{}\diff{2} On lance trois fois une pièce équilibrée. Montrer que les événements
+« pile au premier lancer » et « exactement deux piles au total » ne sont pas
+indépendants.
+
+\exo{}\diff{2} Un tireur atteint sa cible avec probabilité $0{,}7$. Il tire trois
+fois indépendamment. Probabilité : a) de trois échecs ; b) d'au moins un succès.
+
+\rubrique{Variables aléatoires}
+\exo{}\diff{1} La loi de $X$ est : $P(X{=}1)=0{,}2$, $P(X{=}2)=0{,}5$,
+$P(X{=}3)=0{,}3$. Calculer $E(X)$ et $V(X)$.
+
+\exo{}\diff{2} Une v.a. $X$ prend les valeurs $0,1,2,3$ avec
+$P(X{=}k)=\dfrac{k+1}{10}$. a) Vérifier que c'est une loi. b) Calculer $E(X)$.
+
+\exo{}\diff{2} On lance deux dés et $X$ désigne le plus grand des deux numéros
+obtenus. Donner la loi de $X$ et calculer $E(X)$.
+
+\exo{}\diff{2} Une loterie vend $1000$ billets à $500$ FCFA. Il y a un lot de
+$200\,000$ FCFA et cinq lots de $20\,000$ FCFA. Soit $G$ le gain algébrique d'un
+joueur ayant acheté un billet. Calculer $E(G)$ et conclure.
+
+\exo{}\diff{3} Une v.a. $X$ prend les valeurs $1,2,3,4$ avec
+$P(X{=}1)=a$, $P(X{=}2)=2a$, $P(X{=}3)=3a$, $P(X{=}4)=4a$. a) Déterminer $a$.
+b) Calculer $E(X)$ et $\sigma(X)$. c) Donner $F$.
+
+\exo{}\diff{2} Soit $X$ telle que $E(X)=5$ et $\sigma(X)=2$. On pose $Y=-3X+1$.
+Calculer $E(Y)$, $V(Y)$ et $\sigma(Y)$.
+
+\rubrique{Loi de Bernoulli et loi binomiale}
+\exo{}\diff{1} $X$ suit $\mathcal B(5\,;\,0{,}4)$. Calculer $P(X{=}2)$ et $E(X)$.
+
+\exo{}\diff{2} On lance $8$ fois une pièce équilibrée. Soit $X$ le nombre de piles.
+a) Quelle est la loi de $X$ ? b) Calculer $P(X{=}4)$. c) Calculer $E(X)$ et $\sigma(X)$.
+
+\exo{}\diff{2} Un contrôle qualité accepte un lot si, sur $20$ pièces prélevées
+(avec remise), au plus une est défectueuse. Le taux de défaut est $3\%$. Calculer
+la probabilité d'accepter le lot.
+
+\exo{}\diff{2} À un carrefour, un feu est vert avec probabilité $0{,}4$. Un
+automobiliste le franchit $6$ jours de suite (indépendamment). Soit $X$ le nombre
+de feux verts. Calculer $P(X{=}3)$ et $P(X\ge1)$.
+
+\exo{}\diff{2} On répète $n=10$ fois une épreuve de succès $p=0{,}2$. Calculer
+$P(X\le1)$ et $P(X\ge2)$.
+
+\exo{}\diff{3} Une v.a. $X$ suit $\mathcal B(n\,;\,0{,}25)$. Sachant que
+$E(X)=2{,}5$, déterminer $n$, puis calculer $V(X)$ et $P(X{=}0)$.
+
+\exo{}\diff{3} Un sondage interroge $n$ personnes indépendamment ; chacune approuve
+une mesure avec probabilité $0{,}45$. On veut que la probabilité d'avoir au moins
+une approbation dépasse $0{,}99$. Déterminer le plus petit $n$ convenable.
+
+\rubrique{Problèmes de synthèse}
+\exo{}\diff{3} Une urne contient $4$ boules rouges et $6$ boules noires. On tire
+successivement, \emph{avec remise}, $5$ boules. Soit $X$ le nombre de rouges.
+a) Loi de $X$. b) $P(X{=}2)$, $P(X\ge1)$. c) $E(X)$, $V(X)$.
+
+\exo{}\diff{3} Un jeu : on lance deux dés. Si la somme vaut $7$, on gagne $1000$
+FCFA ; si elle vaut $2$ ou $12$, on gagne $2000$ FCFA ; sinon on perd la mise de
+$300$ FCFA. Soit $G$ le gain algébrique. Calculer $E(G)$ ; le jeu est-il équitable ?
+
+\exo{}\diff{3} Une maladie touche $1\%$ d'une population. Un test est positif chez
+$99\%$ des malades et chez $2\%$ des sains. a) Probabilité qu'un individu testé
+soit positif. b) Sachant qu'il est positif, probabilité qu'il soit malade.
+c) Commenter.
+
+% ═══════════════════════════════════════════════════════════════
+\section{Sujets type Baccalauréat}
+
+\sujetbac[probabilités conditionnelles, arbre et loi binomiale]
+Dans un lycée de Yaoundé, $55\%$ des candidats au Baccalauréat sont des filles.
+Le taux de réussite est de $80\%$ chez les filles et de $70\%$ chez les garçons.
+\begin{enumerate}[label=\arabic*)]
+\item Construire un arbre pondéré décrivant cette situation.
+\item Calculer la probabilité qu'un candidat choisi au hasard soit reçu.
+\item Sachant qu'un candidat est reçu, calculer la probabilité que ce soit une fille.
+\item On choisit au hasard et de façon indépendante $5$ candidats de ce lycée.
+Soit $X$ le nombre de reçus parmi eux. Préciser la loi de $X$, puis calculer
+$P(X{=}5)$ et $E(X)$ (on prendra la probabilité de réussite trouvée au 2), arrondie
+au centième).
+\end{enumerate}
+
+\sujetbac[variable aléatoire, espérance et jeu]
+Une urne contient $3$ boules blanches et $2$ boules noires, indiscernables au
+toucher. Un joueur tire simultanément $2$ boules. Il gagne $300$ FCFA par boule
+blanche tirée, mais doit payer une mise de $250$ FCFA pour jouer. Soit $X$ le
+nombre de boules blanches tirées et $G$ le gain algébrique du joueur.
+\begin{enumerate}[label=\arabic*)]
+\item Déterminer la loi de probabilité de $X$.
+\item Calculer $E(X)$ et $V(X)$.
+\item Exprimer $G$ en fonction de $X$, puis en déduire $E(G)$ et $\sigma(G)$.
+\item Le jeu est-il favorable au joueur ? Quelle mise rendrait le jeu équitable ?
+\end{enumerate}
+
+\sujetbac[schéma de Bernoulli, loi binomiale et seuil]
+Une chaîne de production fabrique des ampoules ; chaque ampoule est défectueuse
+avec la probabilité $p=0{,}05$, indépendamment des autres. On prélève un
+échantillon de $n$ ampoules.
+\begin{enumerate}[label=\arabic*)]
+\item Pour $n=20$, soit $X$ le nombre d'ampoules défectueuses. Justifier que $X$
+suit une loi binomiale et en préciser les paramètres.
+\item Calculer $P(X{=}0)$, $P(X{=}1)$ et $P(X\ge2)$ (arrondir au millième).
+\item Calculer $E(X)$ et $\sigma(X)$.
+\item On souhaite que la probabilité d'avoir \emph{au moins une} ampoule
+défectueuse dans l'échantillon dépasse $0{,}95$. Déterminer le plus petit entier
+$n$ convenable.
+\end{enumerate}
+
+% ═══════════════════════════════════════════════════════════════
 \section{Corrigés}
 
 \corrige{de l'exercice 1}
 a) $P=\frac{4}{52}=\frac1{13}$.\;
 b) $P=\frac{13}{52}=\frac14$.\;
-c) « roi ou c\oe ur » : $P=\frac{4}{52}+\frac{13}{52}-\frac{1}{52}=\frac{16}{52}=\frac{4}{13}$ (le roi de c\oe ur est compté une fois).
+c) « roi ou c\oe ur » : $P=\frac{4}{52}+\frac{13}{52}-\frac{1}{52}=\frac{16}{52}=\frac{4}{13}$
+(le roi de c\oe ur est compté une fois).
 
 \corrige{de l'exercice 2}
 $\Card\Omega=\binom42=6$. Somme paire $\Leftrightarrow$ les deux numéros de même
@@ -436,32 +906,47 @@ b) $\frac{\binom62\binom41}{120}=\frac{15\times4}{120}=\frac{60}{120}=\frac12$.\
 c) « au moins une blanche » = contraire de « trois rouges » : $1-\frac16=\frac56$.
 
 \corrige{de l'exercice 4}
+Les $3$ livres se rangent de $3!=6$ façons. Le livre de maths est à une extrémité
+dans : $2$ choix d'extrémité $\times\,2!$ rangements des autres $=4$ cas.
+$P=\frac46=\frac23$. (On peut aussi raisonner directement : la place du livre de
+maths est l'une des $3$, dont $2$ sont des extrémités, d'où $\frac23$.)
+
+\corrige{de l'exercice 5}
 Notons $F$ (fille), $G$ (garçon), $I$ (interne). $P(F)=0{,}6$, $P(G)=0{,}4$,
 $P_F(I)=0{,}7$, $P_G(I)=0{,}5$.\;
 b) $P(I)=0{,}6\times0{,}7+0{,}4\times0{,}5=0{,}42+0{,}20=0{,}62$.\;
 c) $P_I(F)=\dfrac{P(F)P_F(I)}{P(I)}=\dfrac{0{,}42}{0{,}62}=\dfrac{42}{62}=\dfrac{21}{31}\approx0{,}68$.
 
-\corrige{de l'exercice 5}
+\corrige{de l'exercice 6}
 $M$ : malade, $T$ : test positif. $P(M)=0{,}02$, $P_M(T)=0{,}95$,
 $P_{\overline M}(T)=0{,}04$.
 \[
-P(T)=0{,}02\times0{,}95+0{,}98\times0{,}04=0{,}019+0{,}0392=0{,}0582.
-\]
-\[
+P(T)=0{,}02\times0{,}95+0{,}98\times0{,}04=0{,}019+0{,}0392=0{,}0582,\qquad
 P_T(M)=\frac{0{,}019}{0{,}0582}\approx0{,}326.
 \]
 Malgré un test « fiable », à peine un tiers des positifs sont réellement malades
 (la maladie est rare) : c'est un piège classique des dépistages.
 
-\corrige{de l'exercice 6}
+\corrige{de l'exercice 7}
 Notons $R$ : « rouge ». $P(U_1)=\frac16$, $P(U_2)=\frac56$,
 $P_{U_1}(R)=\frac35$, $P_{U_2}(R)=\frac15$.\;
 a) $P(R)=\frac16\cdot\frac35+\frac56\cdot\frac15=\frac{3}{30}+\frac{5}{30}=\frac{8}{30}=\frac{4}{15}$.\;
 b) $P_R(U_1)=\dfrac{\frac16\cdot\frac35}{\frac{4}{15}}=\dfrac{\frac{3}{30}}{\frac{8}{30}}=\dfrac{3}{8}$.
 
-\corrige{de l'exercice 7}
-a) $X$ prend les valeurs $2,3,\dots,12$ avec $\Card\Omega=36$. Les probabilités
-(numérateur = nombre de couples) :
+\corrige{de l'exercice 8}
+$P(A)=\frac{3}{6}=\frac12$ (le premier dé pair : $2,4,6$), $P(B)=\frac26=\frac13$
+(le second donne $5$ ou $6$). Les deux dés étant distincts,
+$P(A\cap B)=\frac12\times\frac13=\frac16=P(A)P(B)$ : $A$ et $B$ sont
+\textbf{indépendants}.
+
+\corrige{de l'exercice 9}
+Pannes indépendantes. a) « les deux fonctionnent » :
+$P=(1-0{,}1)(1-0{,}2)=0{,}9\times0{,}8=0{,}72$.\;
+b) « au moins une panne » = contraire de « les deux fonctionnent » :
+$P=1-0{,}72=0{,}28$.
+
+\corrige{de l'exercice 10}
+a) $X$ prend les valeurs $2,3,\dots,12$ avec $\Card\Omega=36$ :
 \[
 \begin{array}{c|ccccccccccc}
 k & 2&3&4&5&6&7&8&9&10&11&12\\\hline
@@ -470,7 +955,7 @@ P(X{=}k)&\frac1{36}&\frac2{36}&\frac3{36}&\frac4{36}&\frac5{36}&\frac6{36}&\frac
 \]
 b) Par symétrie autour de $7$ : $E(X)=7$.
 
-\corrige{de l'exercice 8}
+\corrige{de l'exercice 11}
 $G$ vaut $500-200=300$ (gain net en cas de succès) ou $0-200=-200$ (perte).
 $P(G{=}300)=\frac{2}{10}=\frac15$, $P(G{=}-200)=\frac{8}{10}=\frac45$.\;
 b) $E(G)=300\cdot\frac15+(-200)\cdot\frac45=60-160=-100$ FCFA : le jeu est
@@ -478,14 +963,19 @@ b) $E(G)=300\cdot\frac15+(-200)\cdot\frac45=60-160=-100$ FCFA : le jeu est
 c) $E(G^2)=300^2\cdot\frac15+200^2\cdot\frac45=18000+32000=50000$ ;
 $V(G)=50000-(-100)^2=40000$ ; $\sigma(G)=200$ FCFA.
 
-\corrige{de l'exercice 9}
+\corrige{de l'exercice 12}
 a) $\frac14+a+\frac12=1\Rightarrow a=\frac14$.\;
 b) $E(X)=-1\cdot\frac14+0\cdot\frac14+2\cdot\frac12=-\frac14+1=\frac34$.
 $E(X^2)=1\cdot\frac14+0+4\cdot\frac12=\frac14+2=\frac94$.
-$V(X)=\frac94-\frac9{16}=\frac{36-9}{16}=\frac{27}{16}$, $\sigma(X)=\frac{\sqrt{27}}{4}=\frac{3\sqrt3}{4}\approx1{,}30$.\;
+$V(X)=\frac94-\frac9{16}=\frac{36-9}{16}=\frac{27}{16}$,
+$\sigma(X)=\frac{\sqrt{27}}{4}=\frac{3\sqrt3}{4}\approx1{,}30$.\;
 c) $F(x)=0$ si $x<-1$ ; $\frac14$ si $-1\le x<0$ ; $\frac12$ si $0\le x<2$ ; $1$ si $x\ge2$.
 
-\corrige{de l'exercice 10}
+\corrige{de l'exercice 13}
+$Y=2X-5$ : $E(Y)=2E(X)-5=2\times3-5=1$ ; $V(Y)=2^2V(X)=4\times2=8$ ;
+$\sigma(Y)=\sqrt8=2\sqrt2\approx2{,}83$.
+
+\corrige{de l'exercice 14}
 a) Chaque pièce est défectueuse ou non (deux issues), avec $p=0{,}05$, les $10$
 prélèvements étant indépendants : $X\sim\mathcal B(10\,;\,0{,}05)$.\;
 b) $P(X{=}0)=(0{,}95)^{10}\approx0{,}599$ ;
@@ -493,11 +983,16 @@ $P(X{=}1)=\binom{10}{1}(0{,}05)(0{,}95)^9=10\times0{,}05\times0{,}6302\approx0{,
 $P(X\ge1)=1-(0{,}95)^{10}\approx0{,}401$.\;
 c) $E(X)=10\times0{,}05=0{,}5$.
 
-\corrige{de l'exercice 11}
+\corrige{de l'exercice 15}
 a) $X\sim\mathcal B(4\,;\,0{,}8)$ : $P(X{=}k)=\binom4k(0{,}8)^k(0{,}2)^{4-k}$.\;
 b) $P(X{=}3)=\binom43(0{,}8)^3(0{,}2)=4\times0{,}512\times0{,}2=0{,}4096$.\;
 c) $P(X\ge3)=P(X{=}3)+P(X{=}4)=0{,}4096+(0{,}8)^4=0{,}4096+0{,}4096=0{,}8192$.\;
 d) $E(X)=4\times0{,}8=3{,}2$ ; $V(X)=4\times0{,}8\times0{,}2=0{,}64$, $\sigma(X)=0{,}8$.
+
+\corrige{de l'exercice 16}
+a) $X\sim\mathcal B(n\,;\,0{,}3)$.\;
+b) $P(X\ge1)=1-(0{,}7)^n>0{,}9 \iff (0{,}7)^n<0{,}1$. Comme $(0{,}7)^6\approx0{,}1176$
+et $(0{,}7)^7\approx0{,}0824$, le plus petit entier convenable est $n=7$.
 
 \corrige{du problème}
 \textbf{Partie A.} $\Card\Omega=\binom83=56$. $X$ (nombre de rouges parmi $3$
@@ -523,3 +1018,44 @@ $P(Y\ge1)=1-P(Y{=}0)=1-\Big(\frac38\Big)^4=1-\frac{81}{4096}=\frac{4015}{4096}\a
 5) $E(Y)=4\times\frac58=\frac52=2{,}5$ ;
 $V(Y)=4\times\frac58\times\frac38=\frac{60}{64}=\frac{15}{16}$,
 $\sigma(Y)=\frac{\sqrt{15}}{4}\approx0{,}968$.
+
+% ── Corrigés des sujets type Baccalauréat ──
+\corrige{du sujet 1}
+Notons $F$ (fille), $G$ (garçon), $R$ (reçu). $P(F)=0{,}55$, $P(G)=0{,}45$,
+$P_F(R)=0{,}80$, $P_G(R)=0{,}70$.\\
+1) Arbre : 1\textsuperscript{er} niveau $F$ ($0{,}55$) / $G$ ($0{,}45$) ;
+2\textsuperscript{e} niveau $R$ / $\overline R$ de probabilités $0{,}80$/$0{,}20$
+sous $F$ et $0{,}70$/$0{,}30$ sous $G$.\\
+2) $P(R)=0{,}55\times0{,}80+0{,}45\times0{,}70=0{,}44+0{,}315=0{,}755$.\\
+3) $P_R(F)=\dfrac{P(F)P_F(R)}{P(R)}=\dfrac{0{,}44}{0{,}755}\approx0{,}583$.\\
+4) Chaque candidat est reçu ou non, indépendamment, avec $p\approx0{,}76$ ;
+$X\sim\mathcal B(5\,;\,0{,}76)$. $P(X{=}5)=(0{,}76)^5\approx0{,}254$ ;
+$E(X)=5\times0{,}76=3{,}8$.
+
+\corrige{du sujet 2}
+1) $\Card\Omega=\binom52=10$. $X$ = nombre de blanches parmi $2$ tirées ($3$
+blanches, $2$ noires) :
+\[
+P(X{=}0)=\tfrac{\binom22}{10}=\tfrac1{10},\quad
+P(X{=}1)=\tfrac{\binom31\binom21}{10}=\tfrac{6}{10},\quad
+P(X{=}2)=\tfrac{\binom32}{10}=\tfrac{3}{10}.
+\]
+2) $E(X)=0\cdot\frac1{10}+1\cdot\frac6{10}+2\cdot\frac3{10}=\frac{12}{10}=1{,}2$.
+$E(X^2)=0+1\cdot\frac6{10}+4\cdot\frac3{10}=\frac{18}{10}=1{,}8$, donc
+$V(X)=1{,}8-1{,}44=0{,}36$.\\
+3) $G=300X-250$. Donc $E(G)=300E(X)-250=300\times1{,}2-250=360-250=110$ FCFA.
+$\sigma(G)=300\,\sigma(X)=300\sqrt{0{,}36}=300\times0{,}6=180$ FCFA.\\
+4) $E(G)=110>0$ : le jeu est \textbf{favorable au joueur}. Le jeu serait équitable
+si la mise $m$ vérifiait $300\times1{,}2-m=0$, soit $m=360$ FCFA.
+
+\corrige{du sujet 3}
+1) Chaque ampoule est défectueuse ($p=0{,}05$) ou non, indépendamment ; pour
+$n=20$, $X\sim\mathcal B(20\,;\,0{,}05)$.\\
+2) $P(X{=}0)=(0{,}95)^{20}\approx0{,}358$ ;
+$P(X{=}1)=\binom{20}{1}(0{,}05)(0{,}95)^{19}=20\times0{,}05\times(0{,}95)^{19}\approx0{,}377$ ;
+$P(X\ge2)=1-P(X{=}0)-P(X{=}1)\approx1-0{,}358-0{,}377=0{,}265$.\\
+3) $E(X)=20\times0{,}05=1$ ; $V(X)=20\times0{,}05\times0{,}95=0{,}95$,
+$\sigma(X)=\sqrt{0{,}95}\approx0{,}975$.\\
+4) Pour un échantillon de taille $n$, $P(\text{au moins une déf.})=1-(0{,}95)^n$.
+On veut $1-(0{,}95)^n>0{,}95 \iff (0{,}95)^n<0{,}05$. Or $(0{,}95)^{58}\approx0{,}0516$
+et $(0{,}95)^{59}\approx0{,}0490$ : le plus petit entier convenable est $n=59$.
