@@ -66,7 +66,11 @@ class _ExercicesScreenState extends State<ExercicesScreen> {
     if (user != null) {
       final p = await DatabaseService().getUserProfile(user.$id);
       _examen = (p?['examen'] ?? '').toString();
-      _serie = (p?['serie'] ?? '').toString();
+      // On matche par CODE de série (ex. « C ») — cohérent avec l'arbre et les
+      // chapitres. Repli sur le libellé pour les anciens comptes.
+      _serie = (p?['serieCode'] ?? '').toString().isNotEmpty
+          ? (p?['serieCode']).toString()
+          : (p?['serie'] ?? '').toString();
       final f = DatabaseService.splitFullName(user.name)['firstName'] as String?;
       if (f != null && f.isNotEmpty) _first = f;
     }

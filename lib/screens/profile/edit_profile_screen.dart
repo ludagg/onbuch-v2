@@ -31,6 +31,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   int _exam = 0;
   String? _gender;
   String? _serie;
+  String? _serieCode;
+  String? _category;
   String? _studyField;
   String? _destination;
   String _email = '';
@@ -74,6 +76,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       if (p != null) {
         final sv = (p['serie'] ?? '').toString().trim();
         _serie = sv.isEmpty ? null : sv;
+        final sc = (p['serieCode'] ?? '').toString().trim();
+        _serieCode = sc.isEmpty ? null : sc;
+        final cat = (p['category'] ?? '').toString().trim();
+        _category = cat.isEmpty ? null : cat;
         _ecoleCtrl.text = (p['school'] ?? '').toString();
         _villeCtrl.text = (p['city'] ?? '').toString();
         _phoneCtrl.text = (p['phoneNumber'] ?? '').toString();
@@ -115,6 +121,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         'classe': _levels[_level],
         'examen': _exams[_exam],
         'serie': _serie?.trim() ?? '',
+        'serieCode': _serieCode?.trim() ?? '',
+        'category': _category?.trim() ?? '',
         'school': _ecoleCtrl.text.trim(),
         'city': _villeCtrl.text.trim(),
         'phoneNumber': _phoneCtrl.text.trim(),
@@ -168,7 +176,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 ExamPathPicker(
                   exam: _exams[_exam],
                   value: _serie,
-                  onChanged: (v) => setState(() => _serie = v),
+                  onChanged: (v) => setState(() { _serie = v; if (v == null) { _serieCode = null; _category = null; } }),
+                  onLeaf: (cat, code, label) => setState(() { _serie = label; _serieCode = code; _category = cat; }),
                 ),
                 const SizedBox(height: 14),
                 _field('Établissement', _ecoleCtrl, 'Lycée de Bonabéri', Icons.account_balance_outlined),

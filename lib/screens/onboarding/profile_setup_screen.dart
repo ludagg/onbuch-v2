@@ -30,7 +30,9 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
   // ── Données du profil ───────────────────────────────────────────────────
   String _classe = 'Terminale';
   String _examen = 'Baccalauréat';
-  String? _serie;
+  String? _serie; // libellé de la série/filière (feuille de l'arbre)
+  String? _serieCode; // code (ex. « C ») — colle à exam_series
+  String? _category; // subdivision (ex. « Enseignement général (ESG) »)
 
   String? _studyField;      // domaine d'études visé (aspiration)
   final _careerCtrl = TextEditingController(); // métier de rêve
@@ -62,8 +64,28 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
     super.dispose();
   }
 
+  /// La série est-elle requise pour l'examen choisi ? (certains examens, ex. BEPC,
+  /// se composent par matières et n'ont pas de série à choisir dans l'arbre).
+  bool get _serieRequired {
+    final root = ExamStructureService.instance.taxonomy[_examen];
+    return root != null && root.children.isNotEmpty;
+  }
+
   // ── Navigation entre sections ─────────────────────────────────────────────
   void _next() {
+    // Section 0 = parcours scolaire : la série (combinaison examen→série) est
+    // obligatoire — c'est elle qui détermine la classe et les matières.
+    if (_section == 0 && _serieRequired && (_serie == null || _serie!.trim().isEmpty)) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text('Choisis ta série pour continuer.',
+            style: body(13.5, color: Colors.white, weight: FontWeight.w600)),
+        backgroundColor: OC.ink,
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        margin: const EdgeInsets.all(12),
+      ));
+      return;
+    }
     if (_section < _sectionCount - 1) {
       setState(() { _dir = 1; _section++; });
     } else {
@@ -102,6 +124,8 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
       'classe': _classe,
       'examen': _examen,
       if (serie.isNotEmpty) 'serie': serie,
+      if ((_serieCode ?? '').trim().isNotEmpty) 'serieCode': _serieCode!.trim(),
+      if ((_category ?? '').trim().isNotEmpty) 'category': _category!.trim(),
       if (ecole.isNotEmpty) 'school': ecole,
       if (ville.isNotEmpty) 'city': ville,
       if (phone.isNotEmpty) 'phoneNumber': phone,
@@ -284,12 +308,13 @@ class _ProfileSetupScreenState extends State<ProfileSetupScreen> {
             _choice(_classes, _classe, (v) => setState(() => _classe = v!)),
             const SizedBox(height: 20),
             _groupLabel('Examen / concours visé'),
-            _choice(_exams, _examen, (v) => setState(() { _examen = v!; _serie = null; })),
+            _choice(_exams, _examen, (v) => setState(() { _examen = v!; _serie = null; _serieCode = null; _category = null; })),
             const SizedBox(height: 20),
             ExamPathPicker(
               exam: _examen,
               value: _serie,
-              onChanged: (v) => setState(() => _serie = v),
+              onChanged: (v) => setState(() { _serie = v; if (v == null) { _serieCode = null; _category = null; } }),
+              onLeaf: (cat, code, label) => setState(() { _serie = label; _serieCode = code; _category = cat; }),
             ),
           ],
         1 => [
