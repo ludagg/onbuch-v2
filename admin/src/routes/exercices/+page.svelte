@@ -300,6 +300,72 @@ ${extra ? 'Consignes supplémentaires : ' + extra : ''}`;
       publishing = false;
     }
   }
+
+  // ── Gestion des chapitres & fiches existants (hub complet) ────────────────
+  let manageOpen: Record<string, boolean> = {};
+  let manageSheets: Record<string, any[]> = {};
+  let manageBusy = '';
+
+  $: manageChapters = chapters.filter(
+    (c) => (!selExam || c.exam === selExam) && (!selMatiere || (c.subject || '') === selMatiere)
+  );
+
+  async function toggleManage(chId: string) {
+    manageOpen[chId] = !manageOpen[chId];
+    manageOpen = { ...manageOpen };
+    if (manageOpen[chId] && !manageSheets[chId]) {
+      try {
+        const r = await databases.listDocuments(DB, SH, [Query.equal('chapterId', chId), Query.orderAsc('order'), Query.limit(100)]);
+        manageSheets[chId] = r.documents;
+        manageSheets = { ...manageSheets };
+      } catch { manageSheets[chId] = []; manageSheets = { ...manageSheets }; }
+    }
+  }
+
+  function fileIdFromUrl(u: string): string | null {
+    const m = (u || '').match(/\/files\/([^/]+)\//);
+    return m ? m[1] : null;
+  }
+  async function delFile(u: string) {
+    const id = fileIdFromUrl(u);
+    if (id) { try { await storage.deleteFile(RESULT_PDFS_BUCKET, id); } catch { /* ignore */ } }
+  }
+
+  async function saveSheetMeta(s: any) {
+    manageBusy = s.$id;
+    try {
+      await databases.updateDocument(DB, SH, s.$id, { title: s.title, difficulty: s.difficulty });
+      note('Fiche mise à jour.');
+    } catch (e: any) { note('Erreur : ' + (e?.message || e)); } finally { manageBusy = ''; }
+  }
+  async function deleteSheet(chId: string, s: any) {
+    if (!confirm('Supprimer cette fiche (énoncé + correction) ?')) return;
+    manageBusy = s.$id;
+    try {
+      await delFile(s.statementPdfUrl);
+      if (s.correctionPdfUrl) await delFile(s.correctionPdfUrl);
+      await databases.deleteDocument(DB, SH, s.$id);
+      manageSheets[chId] = (manageSheets[chId] || []).filter((x) => x.$id !== s.$id);
+      manageSheets = { ...manageSheets };
+      note('Fiche supprimée.');
+    } catch (e: any) { note('Erreur : ' + (e?.message || e)); } finally { manageBusy = ''; }
+  }
+  async function deleteChapter(c: any) {
+    if (!confirm('Supprimer ce chapitre ET toutes ses fiches ?')) return;
+    manageBusy = c.$id;
+    try {
+      const r = await databases.listDocuments(DB, SH, [Query.equal('chapterId', c.$id), Query.limit(100)]);
+      for (const s of r.documents) {
+        await delFile(s.statementPdfUrl);
+        if (s.correctionPdfUrl) await delFile(s.correctionPdfUrl);
+        await databases.deleteDocument(DB, SH, s.$id);
+      }
+      await databases.deleteDocument(DB, CH, c.$id);
+      delete manageSheets[c.$id];
+      await loadChapters();
+      note('Chapitre supprimé.');
+    } catch (e: any) { note('Erreur : ' + (e?.message || e)); } finally { manageBusy = ''; }
+  }
 </script>
 
 <svelte:head><title>Atelier Exercices — OnBuch</title></svelte:head>
@@ -403,6 +469,45 @@ ${extra ? 'Consignes supplémentaires : ' + extra : ''}`;
     </div>
   {/if}
 
+  <div class="card">
+    <h2>📚 Gérer les chapitres & fiches</h2>
+    <p class="hint">Liste, vérifie et supprime ce qui est publié{selExam || selMatiere ? ' (filtré par ta sélection ci-dessus)' : ''}.</p>
+    {#if manageChapters.length === 0}
+      <p class="hint">Aucun chapitre pour l'instant.</p>
+    {:else}
+      {#each manageChapters as c}
+        <div class="mch">
+          <div class="mch-head">
+            <button class="link" on:click={() => toggleManage(c.$id)}>
+              {manageOpen[c.$id] ? '▾' : '▸'} {c.title} <span class="muted">· {c.subject}{c.track ? ' · ' + c.track : ''}</span>
+            </button>
+            <button class="del" on:click={() => deleteChapter(c)} disabled={manageBusy === c.$id}>Supprimer</button>
+          </div>
+          {#if manageOpen[c.$id]}
+            {#if (manageSheets[c.$id] || []).length === 0}
+              <p class="hint" style="padding-left:14px">Aucune fiche.</p>
+            {:else}
+              {#each manageSheets[c.$id] as s}
+                <div class="msheet">
+                  <input class="ms-title" bind:value={s.title} />
+                  <select bind:value={s.difficulty}>
+                    <option value="facile">facile</option>
+                    <option value="moyen">moyen</option>
+                    <option value="difficile">difficile</option>
+                  </select>
+                  <a class="view" href={s.statementPdfUrl} target="_blank" rel="noreferrer">Énoncé</a>
+                  {#if s.correctionPdfUrl}<a class="view" href={s.correctionPdfUrl} target="_blank" rel="noreferrer">Correction</a>{/if}
+                  <button class="save" on:click={() => saveSheetMeta(s)} disabled={manageBusy === s.$id}>💾</button>
+                  <button class="del" on:click={() => deleteSheet(c.$id, s)} disabled={manageBusy === s.$id}>🗑</button>
+                </div>
+              {/each}
+            {/if}
+          {/if}
+        </div>
+      {/each}
+    {/if}
+  </div>
+
   <!-- Scène cachée pour le rendu PDF -->
   <div bind:this={stage} class="pdfstage"></div>
 </div>
@@ -445,5 +550,14 @@ ${extra ? 'Consignes supplémentaires : ' + extra : ''}`;
   :global(.pdfbody) { font-size: 15px; line-height: 1.6; }
   :global(.pdfbody h1,.pdfbody h2,.pdfbody h3) { font-family: 'Space Grotesk', sans-serif; }
   :global(.pdffoot) { margin-top: 28px; border-top: 1px solid #eee; padding-top: 10px; color: #b0a596; font-size: 11px; text-align: center; }
+  .mch { border-top: 1px solid #f0e9de; padding: 8px 0; }
+  .mch-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .link { background: none; border: none; cursor: pointer; font: inherit; font-weight: 700; color: #241B12; text-align: left; padding: 4px 0; }
+  .muted { color: #8a8073; font-weight: 500; }
+  .del { background: #fdecea; color: #c0392b; border: none; border-radius: 8px; padding: 6px 10px; font-weight: 700; cursor: pointer; font-size: 12px; }
+  .save { background: #eaf6ef; color: #1E9E63; border: none; border-radius: 8px; padding: 6px 10px; cursor: pointer; }
+  .msheet { display: flex; align-items: center; gap: 8px; padding: 6px 0 6px 14px; flex-wrap: wrap; }
+  .ms-title { flex: 1; min-width: 160px; }
+  .view { font-size: 12px; font-weight: 700; color: #2D6CDF; text-decoration: none; padding: 4px 8px; border: 1px solid #d9e3f7; border-radius: 8px; }
   @media (max-width: 760px) { .grid, .cols { grid-template-columns: 1fr; } }
 </style>
