@@ -7,6 +7,17 @@ import '../ai_config.dart';
 import '../appwrite_config.dart';
 import 'appwrite_client.dart';
 
+/// Retire le raisonnement `<think>…</think>` éventuel (filet de sécurité côté
+/// app : le serveur ne devrait plus jamais l'émettre, mais une ancienne version
+/// déployée pourrait encore le faire). Gère aussi un `<think>` non fermé.
+String _stripThink(String s) {
+  if (s.isEmpty) return s;
+  var out = s.replaceAll(RegExp(r'<think>[\s\S]*?</think>', multiLine: true), '');
+  final i = out.indexOf('<think>');
+  if (i >= 0) out = out.substring(0, i);
+  return out.trim();
+}
+
 /// Une correction du Tuteur (entrée de l'historique « Corrections récentes »).
 class TutorJob {
   final String id;
@@ -178,8 +189,8 @@ class TutorService {
         );
         final status = doc.data['status']?.toString();
         if (status == 'done') {
-          final c = doc.data['correction']?.toString() ?? '';
-          if (c.trim().isNotEmpty) return c.trim();
+          final c = _stripThink(doc.data['correction']?.toString() ?? '');
+          if (c.isNotEmpty) return c;
           throw 'Le Tuteur n\'a pas pu répondre. Réessaie.';
         }
         if (status == 'error') {
@@ -277,7 +288,7 @@ class TutorService {
           documentId: jobId,
         );
         final status = doc.data['status']?.toString();
-        final c = (doc.data['correction'] ?? '').toString().trim();
+        final c = _stripThink((doc.data['correction'] ?? '').toString());
         if (c.isNotEmpty && c != last) {
           last = c;
           yield c; // texte partiel (ou final) qui grandit
@@ -304,9 +315,9 @@ class TutorService {
         collectionId: appwriteTutorJobsCollectionId,
         documentId: jobId,
       );
-      final c = doc.data['correction']?.toString() ?? '';
-      if (c.trim().isEmpty) throw 'Correction introuvable.';
-      return c.trim();
+      final c = _stripThink(doc.data['correction']?.toString() ?? '');
+      if (c.isEmpty) throw 'Correction introuvable.';
+      return c;
     } on AppwriteException catch (_) {
       throw 'Correction introuvable.';
     }

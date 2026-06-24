@@ -16,6 +16,11 @@
 import pdfParse from 'pdf-parse/lib/pdf-parse.js';
 
 const NVIDIA_ENDPOINT = 'https://integrate.api.nvidia.com/v1/chat/completions';
+// Budget de tokens pour une réponse. Le modèle « reasoning » consomme des tokens
+// en réflexion (<think>) AVANT de rédiger : 3200 était trop juste pour les
+// réponses riches (schéma/figure) → la réflexion mangeait tout et la réponse
+// finale ressortait vide (« Le Tuteur n'a pas pu répondre »).
+const ANSWER_TOKENS = 5000;
 
 const TRANSCRIBE_PROMPT = `Tu transcris fidèlement le contenu d'une photo d'exercice scolaire en texte.
 - Restitue l'énoncé COMPLET : consignes, données, équations (x^2, sqrt(...), <=, >=), et décris brièvement tout schéma/figure.
@@ -116,13 +121,20 @@ async function callNvidia(apiKey, model, messages, maxTokens) {
   if (!r.ok) throw new NvError(r.status);
   const data = await r.json();
   let content = data?.choices?.[0]?.message?.content || '';
-  content = content.replace(/<think>[\s\S]*?<\/think>/g, '').trim();
+  content = stripThink(content);
   return content;
 }
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+// Retire le raisonnement <think>…</think> du modèle. Gère AUSSI un <think> non
+// fermé (le modèle a épuisé son budget de tokens en pleine réflexion) : on coupe
+// tout à partir de la balise ouvrante, sinon on renverrait le raisonnement brut.
 function stripThink(s) {
-  return (s || '').replace(/<think>[\s\S]*?<\/think>/g, '').trim();
+  if (!s) return '';
+  let out = s.replace(/<think>[\s\S]*?<\/think>/g, '');
+  const i = out.indexOf('<think>');
+  if (i >= 0) out = out.slice(0, i);
+  return out.trim();
 }
 
 // « Puits » de streaming : écrit la correction au fil de l'eau dans le job
@@ -196,15 +208,18 @@ async function streamStep(apiKey, model, messages, maxTokens, sink) {
       try { delta = JSON.parse(d)?.choices?.[0]?.delta?.content || ''; } catch (_) { continue; }
       if (!delta) continue;
       full += delta;
+      // On ne décide (et on n'émet) qu'à partir du texte SANS le <think> : tant
+      // que le modèle réfléchit, le job reste vide (l'app affiche « Léo réfléchit »)
+      // au lieu d'afficher le raisonnement brut.
+      const visible = stripThink(full);
       if (mode === null) {
-        const t = stripThink(full).replace(/^\s+/, '');
-        if (t) {
-          const c = t[0];
+        if (visible) {
+          const c = visible[0];
           mode = (c === '`' || c === '{') ? 'buffer' : 'emit';
-          if (mode === 'emit' && sink) sink.set(full);
+          if (mode === 'emit' && sink) sink.set(visible);
         }
       } else if (mode === 'emit' && sink) {
-        sink.set(full);
+        sink.set(visible);
       }
     }
   }
@@ -222,7 +237,7 @@ async function streamStep(apiKey, model, messages, maxTokens, sink) {
 async function solveStream(apiKey, model, messages, db, sink) {
   const convo = [...messages];
   for (let step = 0; step < 2; step++) {
-    const out = await streamStep(apiKey, model, convo, 3200, sink);
+    const out = await streamStep(apiKey, model, convo, ANSWER_TOKENS, sink);
     if (!out.action) return out.text || '';
     let result;
     try {
@@ -237,7 +252,7 @@ async function solveStream(apiKey, model, messages, db, sink) {
     convo.push({ role: 'user', content: `RÉSULTAT OUTIL (${out.action.tool}) :\n${result}\n\nUtilise ce résultat. Réponds maintenant à l'élève, ou appelle un autre outil si vraiment nécessaire.` });
   }
   convo.push({ role: 'user', content: 'Donne maintenant ta réponse finale à l\'élève (texte normal, pas de bloc onbuch-action).' });
-  const out = await streamStep(apiKey, model, convo, 3200, sink);
+  const out = await streamStep(apiKey, model, convo, ANSWER_TOKENS, sink);
   return out.text || '';
 }
 
@@ -482,7 +497,7 @@ function parseAction(text) {
 async function solveWithTools(apiKey, model, messages, db) {
   const convo = [...messages];
   for (let step = 0; step < 2; step++) {
-    const out = await callNvidia(apiKey, model, convo, 3200);
+    const out = await callNvidia(apiKey, model, convo, ANSWER_TOKENS);
     const action = parseAction(out);
     if (!action) return out; // réponse finale
     let result;
@@ -502,7 +517,7 @@ async function solveWithTools(apiKey, model, messages, db) {
   }
   // Budget épuisé → forcer une réponse finale, sans outil.
   convo.push({ role: 'user', content: 'Donne maintenant ta réponse finale à l\'élève (texte normal, pas de bloc onbuch-action).' });
-  return callNvidia(apiKey, model, convo, 3200);
+  return callNvidia(apiKey, model, convo, ANSWER_TOKENS);
 }
 
 export default async ({ req, res, error }) => {
@@ -659,9 +674,16 @@ export default async ({ req, res, error }) => {
           ? await solveStream(apiKey, reasoningModel, convo, db, sink)
           : (wantTools
               ? await solveWithTools(apiKey, reasoningModel, convo, db)
-              : await callNvidia(apiKey, reasoningModel, convo, 3200));
+              : await callNvidia(apiKey, reasoningModel, convo, ANSWER_TOKENS));
       } finally {
         if (sink) await sink.stop();
+      }
+      // Réponse vide = la réflexion a (rare) épuisé le budget sans rédiger.
+      // Seconde chance : on redemande une réponse directe et brève.
+      if (!reply) {
+        reply = await callNvidia(apiKey, reasoningModel,
+          [...convo, { role: 'user', content: 'Réponds directement et brièvement à ma dernière demande, sans réfléchir trop longtemps.' }],
+          ANSWER_TOKENS).catch(() => '');
       }
       if (!reply) {
         return finish({ status: 'error', error: "Le Tuteur n'a pas pu répondre. Réessaie." });
@@ -739,7 +761,7 @@ export default async ({ req, res, error }) => {
       correction = await callNvidia(apiKey, reasoningModel, [
         { role: 'system', content: isLesson ? LESSON_PROMPT : QUIZ_PROMPT },
         { role: 'user', content: userMsg },
-      ], 3200);
+      ], ANSWER_TOKENS);
     } else {
       const convo = [{ role: 'system', content: solveSys }, { role: 'user', content: solveUserContent }];
       const sink = (jobId && db) ? makeJobSink(jobId, uid) : null;
@@ -748,9 +770,14 @@ export default async ({ req, res, error }) => {
           ? await solveStream(apiKey, reasoningModel, convo, db, sink)
           : (wantTools
               ? await solveWithTools(apiKey, reasoningModel, convo, db)
-              : await callNvidia(apiKey, reasoningModel, convo, 3200));
+              : await callNvidia(apiKey, reasoningModel, convo, ANSWER_TOKENS));
       } finally {
         if (sink) await sink.stop();
+      }
+      if (!correction) {
+        correction = await callNvidia(apiKey, reasoningModel,
+          [...convo, { role: 'user', content: 'Réponds directement et clairement, sans réfléchir trop longtemps.' }],
+          ANSWER_TOKENS).catch(() => '');
       }
     }
 
