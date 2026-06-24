@@ -456,8 +456,17 @@ class TutorService {
       final list = (jsonDecode(raw) as List?) ?? const [];
       return list
           .whereType<Map>()
-          .map((m) => {'role': (m['role'] ?? '').toString(), 'content': (m['content'] ?? '').toString()})
-          .where((m) => m['content']!.isNotEmpty)
+          .map((m) {
+            final out = <String, String>{
+              'role': (m['role'] ?? '').toString(),
+              'content': (m['content'] ?? '').toString(),
+            };
+            final img = (m['image'] ?? '').toString();
+            if (img.isNotEmpty) out['image'] = img; // image persistée (base64)
+            return out;
+          })
+          // On garde un message s'il a du texte OU une image.
+          .where((m) => m['content']!.isNotEmpty || (m['image']?.isNotEmpty ?? false))
           .toList();
     } catch (_) {
       return const [];
