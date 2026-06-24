@@ -54,6 +54,9 @@
         <a class="nav-item" class:active={path.startsWith('/annales')} href="/annales">
           <span class="nav-ico">🗂️</span> Annales & documents
         </a>
+        <a class="nav-item" class:active={path.startsWith('/exercices')} href="/exercices">
+          <span class="nav-ico">🧪</span> Atelier Exercices
+        </a>
         {#each RESOURCES as r}
           <a class="nav-item" class:active={path.startsWith('/c/' + r.id)} href={'/c/' + r.id}>
             <span class="nav-ico">{r.icon}</span> {r.label}
