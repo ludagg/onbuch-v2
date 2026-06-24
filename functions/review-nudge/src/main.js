@@ -31,6 +31,75 @@ async function sendPush(uid, title, body, route) {
   return r.ok;
 }
 
+// Citations de secours (utilisées si la collection `daily_quotes` est vide ou
+// indisponible) — la fonction marche donc même sans configuration admin.
+const FALLBACK_QUOTES = [
+  { text: "Chaque petit effort d'aujourd'hui construit le grand résultat de demain. Au travail 💪", author: 'Léo' },
+  { text: "L'éducation est l'arme la plus puissante pour changer le monde.", author: 'Nelson Mandela' },
+  { text: "Peu importe la lenteur à laquelle tu avances, tant que tu n'abandonnes pas.", author: 'Confucius' },
+  { text: "Un exercice qui te résiste est un muscle qui grandit. Ne lâche pas 🔥", author: 'Léo' },
+  { text: "Cela semble toujours impossible, jusqu'à ce qu'on le fasse.", author: 'Nelson Mandela' },
+  { text: "Réviser 30 minutes par jour bat largement 5 heures la veille de l'examen.", author: 'Léo' },
+  { text: "Nous sommes ce que nous faisons de manière répétée. L'excellence est donc une habitude.", author: 'Aristote' },
+  { text: "L'eau goutte à goutte finit par creuser le roc. Avance pas à pas.", author: 'Proverbe africain' },
+  { text: "Crois en toi autant que Léo croit en toi. Tu es capable ✨", author: 'Léo' },
+  { text: "Ta seule limite, c'est celle que tu acceptes. Vise plus haut 🚀", author: 'Léo' },
+  { text: "La patience cuit même la pierre. Continue, tes efforts vont payer.", author: 'Proverbe camerounais' },
+  { text: "Discipline aujourd'hui, liberté demain. Un chapitre à la fois 📖", author: 'Léo' },
+  { text: "Le savoir est une lumière qui ne s'éteint jamais, même la nuit.", author: 'Proverbe africain' },
+  { text: "Repose-toi si tu es fatigué, mais n'abandonne jamais. Léo est là pour t'aider 🦁", author: 'Léo' },
+];
+
+// Lit les citations actives (triées) ; repli sur la liste intégrée.
+async function getDailyQuotes(error) {
+  const db = process.env.DATABASE_ID;
+  if (!db) return FALLBACK_QUOTES;
+  try {
+    const ql = encodeURIComponent(JSON.stringify({ method: 'limit', values: [200] }));
+    const qa = encodeURIComponent(JSON.stringify({ method: 'equal', attribute: 'active', values: [true] }));
+    const qo = encodeURIComponent(JSON.stringify({ method: 'orderAsc', values: ['order'] }));
+    const r = await awFetch('GET', `/databases/${db}/collections/daily_quotes/documents?queries[]=${ql}&queries[]=${qa}&queries[]=${qo}`);
+    if (r.ok) {
+      const j = await r.json();
+      const arr = (Array.isArray(j.documents) ? j.documents : [])
+        .map((d) => ({ text: (d.text || '').toString(), author: (d.author || '').toString() }))
+        .filter((q) => q.text);
+      if (arr.length) return arr;
+    }
+  } catch (e) { if (error) error(`getDailyQuotes: ${String(e)}`); }
+  return FALLBACK_QUOTES;
+}
+
+// Citation du jour : déterministe (même citation pour tous), tourne chaque jour.
+function quoteOfTheDay(quotes) {
+  const dayIndex = Math.floor(Date.now() / 86400000);
+  const n = quotes.length;
+  return quotes[((dayIndex % n) + n) % n];
+}
+
+// Diffuse la citation du jour en push à TOUS les élèves (broadcast quotidien).
+async function broadcastDailyQuote(log, error) {
+  try {
+    const quotes = await getDailyQuotes(error);
+    if (!quotes.length) return;
+    const q = quoteOfTheDay(quotes);
+    const title = 'Léo · Citation du jour ✨';
+    const body = q.author ? `« ${q.text} » — ${q.author}` : `« ${q.text} »`;
+    const ids = await listAllUserIds(error);
+    if (!ids.length) { log('citation du jour : aucun élève ciblé.'); return; }
+    let sent = 0;
+    const chunk = 400;
+    for (let i = 0; i < ids.length; i += chunk) {
+      const slice = ids.slice(i, i + chunk);
+      const r = await awFetch('POST', '/messaging/messages/push',
+        { messageId: genId(), title, body, users: slice, data: { route: '/tutor' } });
+      if (r.ok) sent += slice.length;
+      else error(`quote push ${r.status}: ${(await r.text()).slice(0, 160)}`);
+    }
+    log(`citation du jour « ${q.text.slice(0, 40)}… » : ${ids.length} ciblé(s), ${sent} OK.`);
+  } catch (e) { error(`broadcastDailyQuote: ${String(e)}`); }
+}
+
 async function isAdmin(callerUid) {
   if (!callerUid) return false;
   const team = process.env.ADMIN_TEAM_ID || 'admins';
@@ -218,5 +287,8 @@ export default async ({ req, res, log, error }) => {
   } catch (_) { hasAction = false; }
 
   if (hasAction) return handleAdmin(req, res, error);
+  // Cron quotidien (06 h UTC ≈ 07 h Cameroun) : citation motivante à TOUS les
+  // élèves, puis rappels de révision aux élèves ayant des révisions dues.
+  await broadcastDailyQuote(log, error);
   return handleNudge(res, log, error);
 };

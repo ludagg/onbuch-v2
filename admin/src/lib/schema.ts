@@ -198,6 +198,22 @@ export const RESOURCES: Resource[] = [
     ]
   },
   {
+    id: 'daily_quotes',
+    collectionId: 'daily_quotes',
+    label: 'Citations du jour',
+    singular: 'citation',
+    icon: '✨',
+    titleField: 'text',
+    subtitleField: 'author',
+    orderBy: { field: 'order', dir: 'asc' },
+    fields: [
+      { key: 'active', label: 'Active (cocher pour l’utiliser)', type: 'boolean', help: 'Décochée = jamais envoyée. Une citation est envoyée en push chaque matin (07 h), en rotation.' },
+      { key: 'order', label: 'Ordre', type: 'number', help: 'Ordre de rotation (tri croissant). La citation du jour tourne automatiquement.' },
+      { key: 'text', label: 'Citation', type: 'textarea', required: true, help: 'Le texte de la citation (280 caractères max). Les emojis sont permis.' },
+      { key: 'author', label: 'Auteur', type: 'text', help: 'ex. « Léo », « Nelson Mandela », « Proverbe africain ». Optionnel.' }
+    ]
+  },
+  {
     id: 'articles',
     collectionId: 'articles',
     label: 'Actualités',
