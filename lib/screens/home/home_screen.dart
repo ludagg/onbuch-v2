@@ -839,13 +839,15 @@ class _TuteurCard extends StatelessWidget {
 class _QuickLinks extends StatelessWidget {
   const _QuickLinks();
 
-  // [icône, libellé, couleur, action ("go:" = onglet, "push:" = écran)]
+  // [icône, libellé, action ("go:" = onglet, "push:" = écran)]. Les couleurs
+  // sont résolues au build (teintes OC, mutables selon le thème) → mêmes teintes
+  // que la barre de statistiques.
   static const _items = <List<Object>>[
-    [Icons.menu_book_rounded, 'Cours', Color(0xFF22A55B), 'go:/cours'],
-    [Icons.article_rounded, 'Annales', Color(0xFF8E5CF7), 'go:/annales'],
-    [Icons.edit_rounded, 'Exercices', Color(0xFF2D7CF0), 'go:/tutor'],
-    [Icons.emoji_events_rounded, 'Concours', Color(0xFFEF4F43), 'go:/concours'],
-    [Icons.camera_alt_rounded, 'Scanner', Color(0xFFF6921E), 'push:/tutor/capture'],
+    [Icons.menu_book_rounded, 'Cours', 'go:/cours'],
+    [Icons.article_rounded, 'Annales', 'go:/annales'],
+    [Icons.edit_rounded, 'Exercices', 'go:/tutor'],
+    [Icons.emoji_events_rounded, 'Concours', 'go:/concours'],
+    [Icons.camera_alt_rounded, 'Scanner', 'push:/tutor/capture'],
   ];
 
   void _tap(BuildContext context, String action) {
@@ -861,28 +863,33 @@ class _QuickLinks extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Mêmes teintes que la barre de statistiques (OC.good/blue/warn + violet),
+    // plus l'orange de marque pour le Scanner.
+    final colors = <Color>[OC.good, const Color(0xFF7A5AE0), OC.blue, OC.warn, OC.o600];
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: List.generate(_items.length, (i) {
         final it = _items[i];
-        final color = it[2] as Color;
+        final color = colors[i % colors.length];
         return Expanded(
           child: GestureDetector(
             behavior: HitTestBehavior.opaque,
-            onTap: () => _tap(context, it[3] as String),
+            onTap: () => _tap(context, it[2] as String),
             child: Column(children: [
               Container(
                 width: 54,
                 height: 54,
                 decoration: BoxDecoration(
+                  // Teinte pleine, légèrement assombrie en bas pour la profondeur
+                  // (pas d'éclaircissement vers le blanc qui « délavait » l'icône).
                   gradient: LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
-                    colors: [Color.lerp(color, Colors.white, 0.18)!, color],
+                    colors: [color, Color.lerp(color, Colors.black, 0.16)!],
                   ),
                   borderRadius: BorderRadius.circular(16),
                   boxShadow: [
-                    BoxShadow(color: color.withValues(alpha: 0.32), blurRadius: 12, offset: const Offset(0, 5)),
+                    BoxShadow(color: color.withValues(alpha: 0.34), blurRadius: 12, offset: const Offset(0, 5)),
                   ],
                 ),
                 child: Icon(it[0] as IconData, color: Colors.white, size: 26),
