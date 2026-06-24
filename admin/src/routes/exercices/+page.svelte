@@ -6,7 +6,6 @@
   const DB = APPWRITE_DATABASE;
   const CH = 'exercise_chapters';
   const SH = 'exercise_sheets';
-  const NV_URL = 'https://integrate.api.nvidia.com/v1/chat/completions';
 
   // ── Arbre (exam_series) : sélection en cascade Examen → Série → Matière ────
   let series: any[] = [];
@@ -177,12 +176,14 @@ ${extra ? 'Consignes supplémentaires : ' + extra : ''}`;
   }
 
   async function callNvidia(messages: any[]): Promise<string> {
-    const res = await fetch(NV_URL, {
+    // Passe par le proxy même-origine /api/nv (l'API NVIDIA bloque le CORS
+    // navigateur). Une fiche par appel → court, pas de timeout de batch.
+    const res = await fetch('/api/nv', {
       method: 'POST',
-      headers: { Authorization: `Bearer ${nvKey}`, 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify({ model: nvModel, messages, temperature: 0.4, top_p: 0.9, max_tokens: 4000 }),
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ key: nvKey, model: nvModel, messages, max_tokens: 4000 }),
     });
-    if (!res.ok) throw new Error('NVIDIA ' + res.status + ' — ' + (await res.text()).slice(0, 180));
+    if (!res.ok) throw new Error('NVIDIA ' + res.status + ' — ' + (await res.text()).slice(0, 200));
     const data = await res.json();
     let c = data?.choices?.[0]?.message?.content || '';
     c = c.replace(/<think>[\s\S]*?<\/think>/g, '').trim();
