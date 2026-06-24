@@ -1,0 +1,260 @@
+\chapter{Arithmétique : divisibilité, congruences et numération}
+
+\noindent\textit{L'arithmétique étudie les nombres entiers et leurs propriétés. Discipline
+reine de la série C, elle développe la rigueur du raisonnement (récurrence, disjonction
+de cas, raisonnement par l'absurde) et trouve des applications modernes en cryptographie
+et en informatique. Ce premier chapitre pose les fondations : divisibilité, division
+euclidienne, congruences et écriture des nombres dans différentes bases.}
+\vspace{8pt}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Divisibilité dans $\Z$}
+
+\subsection{Diviseurs et multiples}
+
+\begin{definition}[Divisibilité]
+Soient $a$ et $b$ deux entiers relatifs. On dit que $b$ \textbf{divise} $a$ (ou que $a$ est un \textbf{multiple} de $b$), et l'on note $b\mid a$, s'il existe un entier relatif $k$ tel que $a=k\,b$.
+\end{definition}
+
+\begin{exemple}
+$7\mid 42$ car $42=6\times 7$ ; $\;-3\mid 12$ car $12=(-4)\times(-3)$. Tout entier divise $0$ (car $0=0\times b$), et $1$ divise tout entier.
+\end{exemple}
+
+\begin{propriete}[Règles de calcul]
+Pour tous entiers $a,b,c$ :
+\begin{itemize}
+\item si $a\mid b$ et $b\mid c$, alors $a\mid c$ \quad(\emph{transitivité}) ;
+\item si $a\mid b$ et $a\mid c$, alors $a\mid (bu+cv)$ pour tous entiers $u,v$ \quad(\emph{combinaison linéaire}) ;
+\item si $a\mid b$ et $b\mid a$, alors $a=b$ ou $a=-b$ ;
+\item si $a\mid b$ et $b\neq 0$, alors $|a|\le |b|$.
+\end{itemize}
+\end{propriete}
+
+\begin{remarque}
+La propriété de combinaison linéaire est un outil \emph{fondamental} : pour montrer qu'un entier $d$ divise une expression, on cherche à l'écrire comme combinaison d'entiers que $d$ divise déjà.
+\end{remarque}
+
+\subsection{La division euclidienne}
+
+\begin{theoreme}[Division euclidienne dans $\N$ puis $\Z$]
+Pour tout entier $a$ et tout entier $b>0$, il existe un \textbf{unique} couple d'entiers $(q,r)$ tel que
+\[
+a=b\,q+r \qquad\text{avec}\qquad 0\le r<b.
+\]
+$q$ est le \textbf{quotient} et $r$ le \textbf{reste} de la division euclidienne de $a$ par $b$.
+\end{theoreme}
+
+\begin{illus}
+\begin{tikzpicture}[x=1cm,>=Stealth]
+\draw[->] (-0.4,0) -- (10.6,0);
+\foreach \i/\lab in {0/0,2/b,4/2b,6/3b,8/4b}{
+  \draw (\i,0.12) -- (\i,-0.12) node[below=2pt]{\small $\lab$};}
+\draw[onbo,line width=1.2pt] (8,0.12) -- (8,-0.12);
+\node[onbo] at (8,0.5) {\small $qb$};
+\filldraw[onbo] (9.1,0) circle (2.2pt) node[above=4pt]{\small $a$};
+\draw[onbgreen,decorate,decoration={brace,amplitude=5pt},line width=1pt] (9.1,-0.5) -- (8,-0.5)
+  node[midway,below=6pt,onbgreen]{\small $r$};
+\node at (4,1.1) {\small $a=bq+r,\quad 0\le r<b$ : $a$ se situe entre $qb$ et $(q{+}1)b$.};
+\end{tikzpicture}
+\fig{Figure 1.1 — Interprétation de la division euclidienne sur l'axe des entiers.}
+\end{illus}
+
+\begin{exemple}
+Division de $47$ par $6$ : $47=6\times 7+5$, donc $q=7$ et $r=5$.
+Pour un entier \emph{négatif}, on garde $0\le r<b$ : $-47=6\times(-8)+1$, donc le reste est $1$ (et non $-5$).
+\end{exemple}
+
+\subsection{Critères de divisibilité}
+
+\begin{propriete}[Critères usuels]
+Un entier écrit en base dix est divisible par :
+\begin{itemize}
+\item \textbf{2} (resp. \textbf{5}) si son chiffre des unités est divisible par $2$ (resp. par $5$) ;
+\item \textbf{4} si le nombre formé par ses deux derniers chiffres l'est ;
+\item \textbf{3} (resp. \textbf{9}) si la somme de ses chiffres est divisible par $3$ (resp. par $9$) ;
+\item \textbf{11} si la somme alternée de ses chiffres est divisible par $11$.
+\end{itemize}
+\end{propriete}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Congruences modulo $n$}
+
+\begin{definition}[Congruence]
+Soit $n$ un entier naturel non nul. Deux entiers $a$ et $b$ sont \textbf{congrus modulo} $n$, ce que l'on note $a\equiv b\;[n]$, lorsque $n\mid (a-b)$, c'est-à-dire lorsque $a$ et $b$ ont le \textbf{même reste} dans la division euclidienne par $n$.
+\end{definition}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth,scale=1]
+\def\R{1.5}
+\foreach \i/\ang in {0/90,1/18,2/-54,3/-126,4/162}{
+  \node[circle,draw=onbo,fill=onbsoft,inner sep=2.5pt] (n\i) at (\ang:\R) {\small $\i$};}
+\foreach \i/\j in {0/1,1/2,2/3,3/4,4/0}{
+  \draw[->,onbo,line width=0.9pt] (n\i) to[bend left=18] (n\j);}
+\node at (0,0) {\small $\bmod\,5$};
+\node[right=1.6cm,align=left,text width=5.4cm] at (\R,0)
+{\small La congruence modulo $5$ « enroule » $\Z$ sur $5$ classes. Ajouter $1$ fait avancer d'un cran : $\dots\equiv 7\equiv 12\equiv 2\;[5]$.};
+\end{tikzpicture}
+\fig{Figure 1.2 — Roue des congruences modulo $5$ (les cinq classes de restes).}
+\end{illus}
+
+\begin{theoreme}[Compatibilité avec les opérations]
+Si $a\equiv b\;[n]$ et $c\equiv d\;[n]$, alors :
+\[
+a+c\equiv b+d\;[n],\qquad a\,c\equiv b\,d\;[n],\qquad a^{p}\equiv b^{p}\;[n]\ \ (p\in\N).
+\]
+\end{theoreme}
+
+\begin{aretenir}
+Les congruences sont l'outil idéal pour déterminer un \textbf{reste} ou le \textbf{chiffre des unités} d'un grand nombre, et pour étudier la \textbf{divisibilité} d'une expression dépendant de $n$ : on remplace chaque entier par un représentant simple de sa classe.
+\end{aretenir}
+
+\begin{exemple}
+Reste de $2^{2024}$ modulo $7$. On a $2^{3}=8\equiv 1\;[7]$. Comme $2024=3\times 674+2$,
+$2^{2024}=(2^{3})^{674}\times 2^{2}\equiv 1^{674}\times 4\equiv 4\;[7]$. Le reste est $\mathbf{4}$.
+\end{exemple}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Nombres premiers et décomposition}
+
+\begin{definition}[Nombre premier]
+Un entier $p\ge 2$ est \textbf{premier} s'il n'admet que deux diviseurs positifs : $1$ et lui-même. Un entier $\ge 2$ non premier est dit \textbf{composé}.
+\end{definition}
+
+\begin{theoreme}[Décomposition en facteurs premiers]
+Tout entier $n\ge 2$ s'écrit de manière \textbf{unique} (à l'ordre des facteurs près) comme produit de nombres premiers :
+\[
+n=p_{1}^{\alpha_{1}}\,p_{2}^{\alpha_{2}}\cdots p_{k}^{\alpha_{k}}.
+\]
+\end{theoreme}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth,level distance=10mm,sibling distance=20mm,
+  every node/.style={font=\small},
+  pf/.style={circle,draw=onbo,fill=onbsoft,inner sep=1.5pt},
+  cp/.style={rectangle,draw=onbink,fill=white,inner sep=2pt}]
+\node[cp]{$360$}
+  child{node[pf]{$2$}}
+  child{node[cp]{$180$}
+    child{node[pf]{$2$}}
+    child{node[cp]{$90$}
+      child{node[pf]{$2$}}
+      child{node[cp]{$45$}
+        child{node[pf]{$3$}}
+        child{node[cp]{$15$}
+          child{node[pf]{$3$}}
+          child{node[pf]{$5$}}}}}};
+\node[right=3.2cm,align=left,text width=4.6cm] at (0,-2)
+{\small On divise successivement par les nombres premiers croissants :
+\[360=2^{3}\times 3^{2}\times 5.\]};
+\end{tikzpicture}
+\fig{Figure 1.3 — Arbre de décomposition de $360$ en facteurs premiers.}
+\end{illus}
+
+\begin{propriete}[Nombre de diviseurs]
+Si $n=p_{1}^{\alpha_{1}}\cdots p_{k}^{\alpha_{k}}$, alors le nombre de diviseurs positifs de $n$ est
+\[
+(\alpha_{1}+1)(\alpha_{2}+1)\cdots(\alpha_{k}+1).
+\]
+\end{propriete}
+
+\begin{exemple}
+$360=2^{3}\times 3^{2}\times 5^{1}$ possède $(3{+}1)(2{+}1)(1{+}1)=24$ diviseurs positifs.
+\end{exemple}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Systèmes de numération}
+
+\begin{definition}[Écriture en base $b$]
+Soit $b\ge 2$ un entier. Tout entier $N\ge 1$ s'écrit de façon unique
+\[
+N=a_{p}\,b^{p}+a_{p-1}\,b^{p-1}+\dots+a_{1}\,b+a_{0},\qquad 0\le a_{i}<b,\ a_{p}\neq 0,
+\]
+que l'on note $N=\overline{a_{p}a_{p-1}\dots a_{0}}^{\,b}$. Les $a_i$ sont les \textbf{chiffres} de $N$ en base $b$.
+\end{definition}
+
+\begin{exemple}
+$\overline{1011}^{\,2}=1\cdot 2^{3}+0\cdot 2^{2}+1\cdot 2+1=11$. Réciproquement, pour écrire $45$ en base $2$, on effectue des divisions successives par $2$ et l'on lit les restes de bas en haut : $45=\overline{101101}^{\,2}$.
+\end{exemple}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Méthodes \& savoir-faire}
+
+\methode{Déterminer un reste à l'aide des congruences}
+Remplacer chaque facteur par un représentant simple de sa classe modulo $n$, puis exploiter les puissances qui valent $1$.
+\begin{exemple}
+Chiffre des unités de $7^{2025}$ : c'est le reste modulo $10$. Or $7^{1}\equiv 7$, $7^{2}\equiv 9$, $7^{3}\equiv 3$, $7^{4}\equiv 1\;[10]$ : le cycle est de longueur $4$. Comme $2025=4\times 506+1$, $7^{2025}\equiv 7^{1}\equiv 7\;[10]$. Le chiffre des unités est $\mathbf 7$.
+\end{exemple}
+
+\methode{Démontrer une divisibilité par récurrence}
+Pour montrer que $n\mid u_k$ pour tout $k$, on initialise puis on suppose $n\mid u_k$ et on écrit $u_{k+1}$ comme combinaison faisant apparaître $u_k$.
+\begin{exemple}
+Montrons que $3\mid 4^{k}-1$ pour tout $k\in\N$. \emph{Initialisation :} $4^{0}-1=0$, divisible par $3$. \emph{Hérédité :} si $3\mid 4^{k}-1$, alors $4^{k+1}-1=4\cdot 4^{k}-1=4(4^{k}-1)+3$ ; somme de deux multiples de $3$, donc $3\mid 4^{k+1}-1$.
+\end{exemple}
+
+\methode{Décomposer en facteurs premiers et compter les diviseurs}
+Diviser successivement par les premiers croissants, puis appliquer la formule du produit des $(\alpha_i+1)$.
+
+\methode{Changer de base}
+\emph{Vers la base dix} : développer les puissances. \emph{Depuis la base dix} : divisions euclidiennes successives par $b$, les restes lus de bas en haut donnent les chiffres.
+
+% ═══════════════════════════════════════════════════════════════
+\section{Exercices}
+
+\rubrique{Divisibilité et division euclidienne}
+\exo{}\diff{1} Effectuer la division euclidienne de $2024$ par $7$, puis de $-2024$ par $7$.
+
+\exo{}\diff{1} Déterminer tous les diviseurs positifs de $36$.
+
+\exo{}\diff{2} Montrer que pour tout entier $n$, le produit $n(n+1)$ est divisible par $2$, et $n(n+1)(n+2)$ par $6$.
+
+\rubrique{Congruences}
+\exo{}\diff{1} Déterminer le reste de la division de $5^{100}$ par $4$.
+
+\exo{}\diff{2} Quel est le chiffre des unités de $3^{2025}$ ?
+
+\exo{}\diff{3} Montrer que pour tout entier $n$, $7\mid 3^{2n+1}+2^{n+2}$.
+
+\rubrique{Nombres premiers et numération}
+\exo{}\diff{2} Décomposer $1\,800$ en facteurs premiers et donner son nombre de diviseurs.
+
+\exo{}\diff{2} Écrire $45$ en base $2$ et $171$ en base $16$. Convertir $\overline{2301}^{\,4}$ en base dix.
+
+\rubrique{Problème type Baccalauréat}
+\exo{}\diff{3} On pose $A=n^{3}-n$ pour $n\in\N$.
+\begin{enumerate}[label=\arabic*)]
+\item Factoriser $A$.
+\item Montrer que $A$ est divisible par $6$ pour tout entier $n$.
+\item En déduire le reste de la division de $n^{3}$ par $6$ en fonction de celui de $n$.
+\end{enumerate}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Corrigés}
+
+\corrige{de l'exercice 1}
+$2024=7\times 289+1$ (car $7\times 289=2023$), donc $q=289$, $r=1$. Pour $-2024$ : on veut $0\le r<7$ ; $-2024=7\times(-290)+6$ (car $7\times(-290)=-2030$ et $-2030+6=-2024$), donc $q=-290$, $r=6$.
+
+\corrige{de l'exercice 2}
+$36=2^{2}\times 3^{2}$. Ses diviseurs positifs sont $1,2,3,4,6,9,12,18,36$ (soit $(2{+}1)(2{+}1)=9$ diviseurs).
+
+\corrige{de l'exercice 3}
+Parmi deux entiers consécutifs $n,n+1$, l'un est pair : $2\mid n(n+1)$. Parmi trois entiers consécutifs $n,n+1,n+2$, l'un est multiple de $3$ et l'un est pair : le produit est divisible par $2$ et par $3$, donc par $6$.
+
+\corrige{de l'exercice 4}
+$5\equiv 1\;[4]$, donc $5^{100}\equiv 1^{100}\equiv 1\;[4]$ : le reste est $\mathbf 1$.
+
+\corrige{de l'exercice 5}
+Les puissances de $3$ modulo $10$ suivent le cycle $3,9,7,1$ de longueur $4$. Comme $2025=4\times 506+1$, $3^{2025}\equiv 3^{1}\equiv 3\;[10]$ : le chiffre des unités est $\mathbf 3$.
+
+\corrige{de l'exercice 6}
+Modulo $7$ : $3^{2}=9\equiv 2$, donc $3^{2n+1}=3\cdot(3^{2})^{n}\equiv 3\cdot 2^{n}\;[7]$. Ainsi $3^{2n+1}+2^{n+2}\equiv 3\cdot 2^{n}+4\cdot 2^{n}=7\cdot 2^{n}\equiv 0\;[7]$. Donc $7\mid 3^{2n+1}+2^{n+2}$.
+
+\corrige{de l'exercice 7}
+$1800=2^{3}\times 3^{2}\times 5^{2}$ ; nombre de diviseurs : $(3{+}1)(2{+}1)(2{+}1)=36$.
+
+\corrige{de l'exercice 8}
+$45=\overline{101101}^{\,2}$ (divisions par $2$). $171=16\times 10+11=\overline{\text{AB}}^{\,16}$ avec $10=\text A$, $11=\text B$, soit $\overline{\text{AB}}^{\,16}$. Enfin $\overline{2301}^{\,4}=2\cdot 4^{3}+3\cdot 4^{2}+0\cdot 4+1=128+48+0+1=177$.
+
+\corrige{du problème}
+1) $A=n^{3}-n=n(n^{2}-1)=n(n-1)(n+1)=(n-1)\,n\,(n+1)$ : produit de trois entiers consécutifs.\;
+2) Parmi trois entiers consécutifs, il y a au moins un multiple de $2$ et un multiple de $3$ ; $2$ et $3$ étant premiers entre eux, $A$ est divisible par $6$.\;
+3) De $n^{3}-n\equiv 0\;[6]$ on tire $n^{3}\equiv n\;[6]$ : le reste de $n^{3}$ modulo $6$ est \textbf{égal} à celui de $n$.
