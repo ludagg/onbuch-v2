@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ui' show PathOperation;
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
@@ -1371,64 +1372,141 @@ class _CommunitySectionState extends State<_CommunitySection> {
     return FutureBuilder<List<SocialLink>>(
       future: _future,
       builder: (context, snap) {
-        final links = (snap.data ?? const <SocialLink>[]).take(4).toList();
-        if (links.isEmpty) return const SizedBox.shrink();
-        return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          SecHead(eyebrow: 'Reste connectée', title: 'La communauté', action: null),
-          const SizedBox(height: 14),
-          Row(
-            children: List.generate(links.length, (i) {
-              final s = links[i];
-              return Expanded(
-                child: Padding(
-                  padding: EdgeInsets.only(left: i > 0 ? 11 : 0),
-                  child: GestureDetector(
-                    behavior: HitTestBehavior.opaque,
-                    onTap: () => openUrl(context, s.url),
-                    child: Column(children: [
-                      AspectRatio(
-                        aspectRatio: 1,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: OC.paper,
-                            borderRadius: BorderRadius.circular(18),
-                            border: Border.all(color: OC.line, width: 1.5),
-                            boxShadow: [
-                              BoxShadow(color: OC.ink.withValues(alpha: 0.04), blurRadius: 10, offset: const Offset(0, 4)),
-                            ],
-                          ),
-                          child: Center(
-                            child: Container(
-                              width: 44, height: 44,
-                              alignment: Alignment.center,
-                              decoration: BoxDecoration(
-                                color: s.color.withValues(alpha: 0.12),
-                                borderRadius: BorderRadius.circular(13),
-                              ),
-                              child: FaIcon(s.faIcon, color: s.color, size: 20),
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 9),
-                      Text(s.label,
-                          style: body(11.5, weight: FontWeight.w700, color: OC.ink),
-                          textAlign: TextAlign.center, maxLines: 1, overflow: TextOverflow.ellipsis),
-                      if (s.description != null) ...[
-                        const SizedBox(height: 2),
-                        Text(s.description!, style: body(10, weight: FontWeight.w600, color: OC.muted),
-                            textAlign: TextAlign.center, maxLines: 1, overflow: TextOverflow.ellipsis),
-                      ],
-                    ]),
-                  ),
-                ),
-              );
-            }),
-          ),
-        ]);
+        final links = snap.data ?? const <SocialLink>[];
+        // Lien du groupe WhatsApp (configuré par l'admin) : entrée « whatsapp ».
+        final wa = links.where((s) => s.platform == 'whatsapp' && s.url.trim().isNotEmpty);
+        final url = wa.isNotEmpty ? wa.first.url : '';
+        if (url.isEmpty) return const SizedBox.shrink();
+        return _CommunityTicket(url: url);
       },
     );
   }
+}
+
+/// Invitation « ticket VIP » doré à rejoindre la communauté WhatsApp étudiante.
+class _CommunityTicket extends StatelessWidget {
+  final String url;
+  const _CommunityTicket({required this.url});
+
+  static const _ink = Color(0xFF4A3A0E); // brun doré foncé (texte)
+  static const _ink2 = Color(0xFF7A621E);
+  static const _stub = 86.0;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () => openUrl(context, url),
+      child: Container(
+        // Lueur dorée derrière le ticket.
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(color: const Color(0xFFCDA63F).withValues(alpha: 0.38), blurRadius: 20, offset: const Offset(0, 9)),
+          ],
+        ),
+        child: ClipPath(
+          clipper: _TicketClipper(stub: _stub),
+          child: Container(
+            height: 108,
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [Color(0xFFFCEFA6), Color(0xFFEACB66), Color(0xFFCBA23A)],
+              ),
+            ),
+            child: Stack(children: [
+              // Voile clair en haut (effet « brillance »).
+              Positioned(top: 0, left: 0, right: 0, height: 44,
+                child: DecoratedBox(decoration: BoxDecoration(
+                  gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter,
+                    colors: [Colors.white.withValues(alpha: 0.28), Colors.white.withValues(alpha: 0)]),
+                ))),
+              Row(children: [
+                // Corps : invitation
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(18, 16, 14, 16),
+                    child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.center, children: [
+                      Row(children: [
+                        const Icon(Icons.workspace_premium_rounded, size: 15, color: _ink2),
+                        const SizedBox(width: 5),
+                        Text('COMMUNAUTÉ VIP', style: body(10.5, weight: FontWeight.w800, color: _ink2)
+                            .copyWith(letterSpacing: 0.13 * 10.5)),
+                      ]),
+                      const SizedBox(height: 7),
+                      Text('Rejoins le groupe WhatsApp',
+                          maxLines: 1, overflow: TextOverflow.ellipsis,
+                          style: display(16.5, weight: FontWeight.w700, color: _ink)),
+                      const SizedBox(height: 3),
+                      Text('Entraide, annales & bons plans entre étudiants',
+                          maxLines: 2, overflow: TextOverflow.ellipsis,
+                          style: body(11.5, weight: FontWeight.w600, color: _ink2).copyWith(height: 1.25)),
+                    ]),
+                  ),
+                ),
+                // Talon : perforation + WhatsApp + « Rejoindre »
+                SizedBox(
+                  width: _stub,
+                  child: Stack(children: [
+                    Positioned(left: 0, top: 16, bottom: 16, child: _Perforation()),
+                    Center(
+                      child: Column(mainAxisSize: MainAxisSize.min, children: [
+                        Container(
+                          width: 46, height: 46,
+                          decoration: const BoxDecoration(color: Colors.white, shape: BoxShape.circle),
+                          child: const Center(child: FaIcon(FontAwesomeIcons.whatsapp, size: 24, color: Color(0xFF25D366))),
+                        ),
+                        const SizedBox(height: 7),
+                        Row(mainAxisSize: MainAxisSize.min, children: [
+                          Text('REJOINDRE', style: body(9.5, weight: FontWeight.w800, color: _ink)
+                              .copyWith(letterSpacing: 0.06 * 9.5)),
+                          const SizedBox(width: 2),
+                          const Icon(Icons.arrow_forward_rounded, size: 11, color: _ink),
+                        ]),
+                      ]),
+                    ),
+                  ]),
+                ),
+              ]),
+            ]),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Ligne de perforation verticale (pointillés) du ticket.
+class _Perforation extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: List.generate(
+      9, (_) => Container(width: 2, height: 5,
+        decoration: BoxDecoration(color: const Color(0xFF8A6D1E).withValues(alpha: 0.55), borderRadius: BorderRadius.circular(2))),
+    ));
+  }
+}
+
+/// Forme « ticket » : rectangle arrondi avec deux encoches au niveau du talon.
+class _TicketClipper extends CustomClipper<Path> {
+  final double stub;
+  const _TicketClipper({required this.stub});
+
+  @override
+  Path getClip(Size size) {
+    final body = Path()..addRRect(RRect.fromRectAndRadius(Offset.zero & size, const Radius.circular(20)));
+    final dx = size.width - stub;
+    const r = 9.0;
+    final notches = Path()
+      ..addOval(Rect.fromCircle(center: Offset(dx, 0), radius: r))
+      ..addOval(Rect.fromCircle(center: Offset(dx, size.height), radius: r));
+    return Path.combine(PathOperation.difference, body, notches);
+  }
+
+  @override
+  bool shouldReclip(covariant _TicketClipper oldClipper) => oldClipper.stub != stub;
 }
 
 /// Rangée compacte d'icônes de réseaux sociaux (rondes, couleur de marque) en
