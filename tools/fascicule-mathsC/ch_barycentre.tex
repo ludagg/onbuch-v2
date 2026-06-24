@@ -1,0 +1,638 @@
+\chapter{Barycentre et lignes de niveau}
+
+\noindent\textit{Le barycentre est le « point d'équilibre » d'un système de points affectés
+de coefficients : il généralise le milieu et le centre de gravité. Outil central de la série C,
+il permet de réduire des sommes vectorielles, de prouver des alignements ou des concours de
+droites, et — couplé à la formule de Leibniz — de décrire de belles \textbf{lignes de niveau}
+(cercles, médiatrices, droites). Ce chapitre rassemble tout l'outillage : barycentre de
+points pondérés, fonction vectorielle de Leibniz, associativité, coordonnées, isobarycentre,
+et l'étude complète des lignes de niveau du Baccalauréat.}
+\vspace{8pt}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Barycentre de points pondérés}
+
+\begin{definition}[Point pondéré et barycentre de deux points]
+Un \textbf{point pondéré} est un couple $(A,\alpha)$ où $A$ est un point et $\alpha\in\R$ son \textbf{coefficient} (ou poids). Soient $(A,\alpha)$ et $(B,\beta)$ deux points pondérés tels que $\alpha+\beta\neq0$. Il existe un \textbf{unique} point $G$, appelé \textbf{barycentre} de $\{(A,\alpha),(B,\beta)\}$, vérifiant
+\[
+\alpha\,\overrightarrow{GA}+\beta\,\overrightarrow{GB}=\vec 0.
+\]
+\end{definition}
+
+\begin{remarque}
+Le mot vient du grec \emph{barus} (« lourd ») : $G$ est le « centre des poids ». Si les
+coefficients $\alpha,\beta$ représentent des masses placées en $A$ et $B$, alors $G$ est le
+point d'équilibre de la balance. La condition $\alpha+\beta\neq0$ est essentielle : si la
+somme des poids était nulle, aucun point d'équilibre n'existerait (voir plus loin la réduction
+de somme vectorielle constante).
+\end{remarque}
+
+\begin{theoreme}[Caractérisation vectorielle (point de réduction)]
+Si $\alpha+\beta\neq0$, le barycentre $G$ de $\{(A,\alpha),(B,\beta)\}$ est l'unique point tel que, pour \textbf{tout} point $M$ du plan,
+\[
+\alpha\,\overrightarrow{MA}+\beta\,\overrightarrow{MB}=(\alpha+\beta)\,\overrightarrow{MG}.
+\]
+En particulier (avec $M=A$) : $\ \overrightarrow{AG}=\dfrac{\beta}{\alpha+\beta}\,\overrightarrow{AB}$.
+\end{theoreme}
+
+\begin{remarque}
+\textbf{Preuve.} Par la relation de Chasles, pour tout $M$ :
+$\alpha\,\overrightarrow{MA}+\beta\,\overrightarrow{MB}
+=\alpha(\overrightarrow{MG}+\overrightarrow{GA})+\beta(\overrightarrow{MG}+\overrightarrow{GB})
+=(\alpha+\beta)\overrightarrow{MG}+\big(\alpha\overrightarrow{GA}+\beta\overrightarrow{GB}\big)
+=(\alpha+\beta)\overrightarrow{MG}+\vec0$
+puisque $G$ est le barycentre. L'\textbf{existence et l'unicité} de $G$ découlent de
+$\overrightarrow{AG}=\dfrac{\beta}{\alpha+\beta}\overrightarrow{AB}$ : ce vecteur détermine
+$G$ de façon unique sur la droite $(AB)$.
+\end{remarque}
+
+\begin{exemple}
+$G=\mathrm{bar}\{(A,3),(B,1)\}$ : $\overrightarrow{AG}=\dfrac{1}{4}\overrightarrow{AB}$, donc
+$G$ est sur $[AB]$ au quart à partir de $A$. Le poids le plus fort ($3$ en $A$) rapproche $G$ de $A$.
+\end{exemple}
+
+\begin{definition}[Barycentre de $n$ points — isobarycentre]
+Soit $\{(A_1,\alpha_1),\dots,(A_n,\alpha_n)\}$ un système tel que $S=\displaystyle\sum_{i=1}^{n}\alpha_i\neq0$. Le \textbf{barycentre} $G$ est l'unique point vérifiant
+\[
+\sum_{i=1}^{n}\alpha_i\,\overrightarrow{GA_i}=\vec 0
+\qquad\Longleftrightarrow\qquad
+\forall M,\ \sum_{i=1}^{n}\alpha_i\,\overrightarrow{MA_i}=S\,\overrightarrow{MG}.
+\]
+Lorsque tous les coefficients sont \textbf{égaux} (et non nuls), $G$ est l'\textbf{isobarycentre} des points $A_i$.
+\end{definition}
+
+\begin{remarque}
+L'isobarycentre de deux points est leur \textbf{milieu} ; celui des trois sommets d'un triangle est son \textbf{centre de gravité} (intersection des médianes) ; celui des quatre sommets d'un parallélogramme est le \textbf{centre} de celui-ci.
+\end{remarque}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth,scale=1.0]
+\coordinate (A) at (0,0);
+\coordinate (B) at (5,0.4);
+\coordinate (C) at (1.6,3);
+% G = barycentre de (A,1),(B,1),(C,2) : G=(A+B+2C)/4
+\coordinate (G) at ($0.25*(A)+0.25*(B)+0.5*(C)$);
+\draw[onbline] (A)--(B)--(C)--cycle;
+\filldraw[onbink] (A) circle (1.6pt) node[below left]{\small $A\,(1)$};
+\filldraw[onbink] (B) circle (1.6pt) node[below right]{\small $B\,(1)$};
+\filldraw[onbink] (C) circle (1.6pt) node[above]{\small $C\,(2)$};
+\filldraw[onbo] (G) circle (2pt) node[right]{\small $G$};
+\draw[onbo,->,line width=0.9pt] (G)--(A);
+\draw[onbo,->,line width=0.9pt] (G)--(B);
+\draw[onbo,->,line width=0.9pt] (G)--(C);
+\node[align=left,text width=4.5cm,anchor=west] at (6.1,1.5)
+{\small $G=\mathrm{bar}\{(A,1),(B,1),(C,2)\}$ vérifie $\overrightarrow{GA}+\overrightarrow{GB}+2\,\overrightarrow{GC}=\vec0$. Le poids plus fort en $C$ « tire » $G$ vers $C$.};
+\end{tikzpicture}
+\fig{Figure — Barycentre de trois points pondérés.}
+\end{illus}
+
+\begin{aretenir}
+Deux écritures équivalentes du barycentre $G$ (avec $S=\sum\alpha_i\neq0$) :
+\[
+\underbrace{\sum_i\alpha_i\,\overrightarrow{GA_i}=\vec0}_{\text{définition}}
+\qquad\Longleftrightarrow\qquad
+\underbrace{\forall M,\ \sum_i\alpha_i\,\overrightarrow{MA_i}=S\,\overrightarrow{MG}}_{\text{réduction, l'outil de calcul}}.
+\]
+La deuxième, prise en un point $M$ \emph{bien choisi} (un sommet, l'origine), donne tous les calculs.
+\end{aretenir}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Propriétés fondamentales}
+
+\begin{propriete}[Homogénéité]
+Le barycentre est inchangé si l'on multiplie \textbf{tous} les coefficients par un même réel $k\neq0$ :
+\[
+\mathrm{bar}\{(A_i,\alpha_i)\}=\mathrm{bar}\{(A_i,k\alpha_i)\}.
+\]
+\end{propriete}
+
+\begin{remarque}
+\textbf{Preuve.} Si $\sum\alpha_i\overrightarrow{GA_i}=\vec0$, alors en multipliant par $k$ :
+$\sum (k\alpha_i)\overrightarrow{GA_i}=\vec0$, et $\sum k\alpha_i=kS\neq0$ : c'est exactement
+la définition du barycentre de $\{(A_i,k\alpha_i)\}$, qui est donc le même point $G$.
+Grâce à l'homogénéité, on peut toujours se ramener à des coefficients commodes (entiers, ou
+de somme $1$). Si $\sum\alpha_i=1$, alors $\overrightarrow{OG}=\sum\alpha_i\,\overrightarrow{OA_i}$ pour toute origine $O$.
+\end{remarque}
+
+\begin{theoreme}[Associativité — barycentres partiels]
+On ne change pas le barycentre d'un système en remplaçant plusieurs points par leur \textbf{barycentre partiel}, affecté de la \textbf{somme} de leurs coefficients (à condition que cette somme soit non nulle). Par exemple, si $\alpha+\beta\neq0$ et $H=\mathrm{bar}\{(A,\alpha),(B,\beta)\}$, alors
+\[
+\mathrm{bar}\{(A,\alpha),(B,\beta),(C,\gamma)\}=\mathrm{bar}\{(H,\alpha+\beta),(C,\gamma)\}.
+\]
+\end{theoreme}
+
+\begin{remarque}
+\textbf{Preuve.} Soit $G=\mathrm{bar}\{(A,\alpha),(B,\beta),(C,\gamma)\}$, $S=\alpha+\beta+\gamma$.
+Par réduction au point $G$ et au point $H$ (barycentre partiel) :
+$\alpha\overrightarrow{GA}+\beta\overrightarrow{GB}=(\alpha+\beta)\overrightarrow{GH}$.
+Donc $\vec0=\alpha\overrightarrow{GA}+\beta\overrightarrow{GB}+\gamma\overrightarrow{GC}
+=(\alpha+\beta)\overrightarrow{GH}+\gamma\overrightarrow{GC}$, ce qui signifie exactement que
+$G=\mathrm{bar}\{(H,\alpha+\beta),(C,\gamma)\}$.
+\end{remarque}
+
+\begin{aretenir}
+L'associativité est l'outil-roi pour \textbf{construire} un barycentre et pour prouver des \textbf{alignements} ou des \textbf{concours de droites} : regrouper deux points fait apparaître que $G$ est sur une droite remarquable.
+\end{aretenir}
+
+\begin{propriete}[Coordonnées du barycentre]
+Dans un repère, si $A_i$ a pour coordonnées $(x_i,y_i)$ et $S=\sum\alpha_i\neq0$, alors
+\[
+x_G=\frac{1}{S}\sum_{i=1}^{n}\alpha_i x_i,\qquad
+y_G=\frac{1}{S}\sum_{i=1}^{n}\alpha_i y_i.
+\]
+(De même pour l'affixe : $z_G=\dfrac1S\sum\alpha_i z_i$.)
+\end{propriete}
+
+\begin{remarque}
+\textbf{Preuve.} On applique la réduction au point $O$ origine du repère :
+$\sum\alpha_i\overrightarrow{OA_i}=S\,\overrightarrow{OG}$, donc
+$\overrightarrow{OG}=\frac1S\sum\alpha_i\overrightarrow{OA_i}$. En lisant les coordonnées (qui sont
+celles des vecteurs $\overrightarrow{OA_i}=(x_i,y_i)$), on obtient les formules annoncées.
+\end{remarque}
+
+\begin{exemple}
+Barycentre de $(A,2),(B,1),(C,1)$ avec $A(1,0)$, $B(3,2)$, $C(0,-2)$ : $S=4$, donc
+$x_G=\frac14(2\cdot1+3+0)=\frac54$, $y_G=\frac14(0+2-2)=0$. Ainsi $G\!\left(\frac54,0\right)$.
+\end{exemple}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth,scale=1.0]
+% Construction par associativité : G = bar{(A,1),(B,1),(C,2)}, H = milieu AB, G = milieu HC
+\coordinate (A) at (0,0);
+\coordinate (B) at (4.4,0);
+\coordinate (C) at (1.2,2.8);
+\coordinate (H) at ($0.5*(A)+0.5*(B)$);
+\coordinate (G) at ($0.5*(H)+0.5*(C)$);
+\draw[onbline] (A)--(B)--(C)--cycle;
+\draw[onbblue,dashed] (C)--(H);
+\filldraw[onbink] (A) circle (1.4pt) node[below left]{\small $A\,(1)$};
+\filldraw[onbink] (B) circle (1.4pt) node[below right]{\small $B\,(1)$};
+\filldraw[onbink] (C) circle (1.4pt) node[above]{\small $C\,(2)$};
+\filldraw[onbgreen] (H) circle (1.6pt) node[below]{\small $H$ milieu};
+\filldraw[onbo] (G) circle (2pt) node[right]{\small $G$};
+\node[align=left,text width=4.4cm,anchor=west] at (5.0,1.6)
+{\small \textbf{Associativité} : $H=\mathrm{bar}\{(A,1),(B,1)\}$ (milieu de $[AB]$), puis $G=\mathrm{bar}\{(H,2),(C,2)\}$ = milieu de $[HC]$.};
+\end{tikzpicture}
+\fig{Figure — Construction d'un barycentre par regroupement (associativité).}
+\end{illus}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Réduction de sommes vectorielles}
+
+\begin{theoreme}[Réduction de $\sum\alpha_i\,\overrightarrow{MA_i}$]
+Soit $\vec f(M)=\displaystyle\sum_{i=1}^{n}\alpha_i\,\overrightarrow{MA_i}$ et $S=\sum\alpha_i$.
+\begin{itemize}
+\item Si $S\neq0$ : soit $G$ le barycentre du système ; alors $\vec f(M)=S\,\overrightarrow{MG}$ (le vecteur dépend de $M$).
+\item Si $S=0$ : $\vec f(M)$ est un vecteur \textbf{constant} (indépendant de $M$).
+\end{itemize}
+\end{theoreme}
+
+\begin{remarque}
+\textbf{Preuve du cas $S=0$.} Pour deux points $M,N$ :
+$\vec f(M)-\vec f(N)=\sum\alpha_i(\overrightarrow{MA_i}-\overrightarrow{NA_i})
+=\sum\alpha_i\,\overrightarrow{MN}=\Big(\sum\alpha_i\Big)\overrightarrow{MN}=0\cdot\overrightarrow{MN}=\vec0$.
+Donc $\vec f(M)=\vec f(N)$ pour tous $M,N$ : la fonction est constante.
+\end{remarque}
+
+\begin{exemple}
+$\vec f(M)=2\,\overrightarrow{MA}-2\,\overrightarrow{MB}$ : ici $S=0$, donc $\vec f(M)=2(\overrightarrow{MA}-\overrightarrow{MB})=2\,\overrightarrow{BA}$, vecteur constant.
+\end{exemple}
+
+\begin{exemple}
+$\vec f(M)=\overrightarrow{MA}+2\,\overrightarrow{MB}+\overrightarrow{MC}$ : $S=4\neq0$, soit
+$G=\mathrm{bar}\{(A,1),(B,2),(C,1)\}$ ; alors $\vec f(M)=4\,\overrightarrow{MG}$. L'ensemble
+des $M$ tels que $\|\vec f(M)\|=12$ est le cercle de centre $G$, rayon $3$ (car $4\,MG=12$).
+\end{exemple}
+
+\section{Réduction de $\sum\alpha_i\,MA_i^{2}$ — formule de Leibniz}
+
+\begin{theoreme}[Formule de Leibniz]
+Posons $f(M)=\displaystyle\sum_{i=1}^{n}\alpha_i\,MA_i^{2}$ et $S=\sum\alpha_i$.
+\begin{itemize}
+\item \textbf{Si $S\neq0$}, soit $G$ le barycentre du système. Pour tout point $M$ :
+\[
+f(M)=S\cdot MG^{2}+f(G),\qquad\text{où } f(G)=\sum_{i=1}^{n}\alpha_i\,GA_i^{2}.
+\]
+\item \textbf{Si $S=0$}, soit $\vec u=\sum\alpha_i\,\overrightarrow{OA_i}$ (constant) ; alors $f(M)=2\,\overrightarrow{MO}\cdot\vec u+f(O)$ est une fonction \textbf{affine} de $M$.
+\end{itemize}
+\end{theoreme}
+
+\begin{remarque}
+\textbf{Démonstration (cas $S\neq0$).} Pour chaque $i$,
+$MA_i^{2}=\overrightarrow{MA_i}\cdot\overrightarrow{MA_i}=\big(\overrightarrow{MG}+\overrightarrow{GA_i}\big)^{2}
+=MG^{2}+2\,\overrightarrow{MG}\cdot\overrightarrow{GA_i}+GA_i^{2}$.
+En sommant pondéré par $\alpha_i$ : le terme du milieu vaut
+$2\,\overrightarrow{MG}\cdot\big(\sum\alpha_i\overrightarrow{GA_i}\big)=\vec0$ par définition de $G$.
+D'où $f(M)=S\,MG^{2}+f(G)$.
+\end{remarque}
+
+\begin{aretenir}
+\textbf{Leibniz transforme} $\sum\alpha_i MA_i^{2}$ en $S\,MG^{2}+\text{cte}$. Une équation $\sum\alpha_i MA_i^{2}=k$ devient $MG^{2}=\dfrac{k-f(G)}{S}$ : c'est un \textbf{cercle} de centre $G$ (si le second membre $>0$), un point (si $=0$), ou l'ensemble vide (si $<0$).
+\end{aretenir}
+
+\begin{exemple}
+$A,B$ avec $AB=4$, $f(M)=MA^{2}+MB^{2}$. Ici $S=2$, $G=I$ milieu de $[AB]$, $GA=GB=2$,
+donc $f(G)=2^{2}+2^{2}=8$ et $f(M)=2\,MI^{2}+8$. Ainsi $f(M)=24\iff MI^2=8\iff MI=2\sqrt2$.
+\end{exemple}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Lignes de niveau}
+
+\begin{definition}[Ligne de niveau]
+Étant donnée une fonction $f$ qui à tout point $M$ associe un réel $f(M)$, la \textbf{ligne de niveau} $k$ est l'ensemble $\mathcal L_k=\{\,M\ :\ f(M)=k\,\}$.
+\end{definition}
+
+\begin{propriete}[Trois familles de lignes de niveau classiques]
+\begin{enumerate}[label=\arabic*)]
+\item $f(M)=\sum\alpha_i MA_i^{2}$ : par Leibniz, $\mathcal L_k$ est un \textbf{cercle} de centre le barycentre $G$ (ou $\varnothing$, ou un point) si $S\neq0$, et une \textbf{droite} perpendiculaire à $\vec u$ si $S=0$.
+\item $f(M)=\dfrac{MA}{MB}=k>0$ (avec $A\neq B$) : si $k=1$, c'est la \textbf{médiatrice} de $[AB]$ ; si $k\neq1$, c'est un \textbf{cercle} (cercle d'Apollonius) de diamètre $[IJ]$, où $I=\mathrm{bar}\{(A,1),(B,-k)\}$ et $J=\mathrm{bar}\{(A,1),(B,k)\}$.
+\item $f(M)=\overrightarrow{MA}\cdot\overrightarrow{MB}=k$ : ligne de niveau du \textbf{produit scalaire}. Avec $I$ milieu de $[AB]$, $\overrightarrow{MA}\cdot\overrightarrow{MB}=MI^{2}-\dfrac{AB^{2}}{4}$, donc $\mathcal L_k$ est un \textbf{cercle} de centre $I$ (ou un point, ou $\varnothing$).
+\end{enumerate}
+\end{propriete}
+
+\begin{remarque}
+\textbf{Justification du point 3.} Avec $I$ milieu de $[AB]$ :
+$\overrightarrow{MA}=\overrightarrow{MI}+\overrightarrow{IA}$ et $\overrightarrow{MB}=\overrightarrow{MI}+\overrightarrow{IB}=\overrightarrow{MI}-\overrightarrow{IA}$ (car $\overrightarrow{IB}=-\overrightarrow{IA}$). Donc
+$\overrightarrow{MA}\cdot\overrightarrow{MB}=(\overrightarrow{MI}+\overrightarrow{IA})\cdot(\overrightarrow{MI}-\overrightarrow{IA})=MI^{2}-IA^{2}=MI^{2}-\dfrac{AB^{2}}{4}$.
+La condition $=k$ donne $MI^{2}=k+\dfrac{AB^{2}}{4}$, équation d'un cercle de centre $I$.
+\end{remarque}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth,scale=1.0]
+% Ligne de niveau MA^2+MB^2 = cte : cercle centré au milieu I de [AB]
+\coordinate (A) at (-2,0);
+\coordinate (B) at (2,0);
+\coordinate (I) at (0,0);
+\draw[onbblue,line width=1pt] (I) circle (1.7);
+\filldraw[onbink] (A) circle (1.6pt) node[below left]{\small $A$};
+\filldraw[onbink] (B) circle (1.6pt) node[below right]{\small $B$};
+\filldraw[onbo] (I) circle (1.8pt) node[below]{\small $I$};
+% un point M sur le cercle
+\coordinate (M) at (60:1.7);
+\filldraw[onbgreen] (M) circle (1.6pt) node[above right]{\small $M$};
+\draw[onbgreen,->] (M)--(A);
+\draw[onbgreen,->] (M)--(B);
+\node[align=left,text width=4.6cm,anchor=west] at (2.6,0.4)
+{\small $MA^{2}+MB^{2}=k$ : ici $S=2$, le barycentre est le milieu $I$ de $[AB]$. La ligne de niveau est le \textbf{cercle} de centre $I$ et de rayon $\sqrt{\tfrac{k}{2}-\tfrac{AB^{2}}{4}}$.};
+\end{tikzpicture}
+\fig{Figure — Ligne de niveau $M\mapsto MA^{2}+MB^{2}$ : un cercle centré au milieu de $[AB]$.}
+\end{illus}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth,scale=1.0]
+% Ligne de niveau MA^2 - MB^2 = cte (S=0) : droite perpendiculaire à (AB)
+\coordinate (A) at (-2.2,0);
+\coordinate (B) at (2.2,0);
+\draw[onbink,line width=0.8pt] (A)--(B);
+\filldraw[onbink] (A) circle (1.6pt) node[below]{\small $A$};
+\filldraw[onbink] (B) circle (1.6pt) node[below]{\small $B$};
+\coordinate (H) at (0.7,0);
+\filldraw[onbo] (H) circle (1.6pt) node[below right]{\small $H$};
+\draw[onbblue,line width=1pt] (0.7,-2)--(0.7,2);
+\node[onbblue,anchor=south] at (0.7,2){\small $\mathcal L_k$};
+\node[align=left,text width=4.6cm,anchor=west] at (2.6,0.6)
+{\small $MA^{2}-MB^{2}=k$ : ici $S=0$. La ligne de niveau est une \textbf{droite perpendiculaire} à $(AB)$, coupant $(AB)$ au point $H$ tel que $\overrightarrow{AH}=\Big(\tfrac12-\tfrac{k}{2AB^2}\Big)\overrightarrow{AB}$ (au signe près).};
+\end{tikzpicture}
+\fig{Figure — Ligne de niveau $M\mapsto MA^{2}-MB^{2}$ (somme des poids nulle) : une droite.}
+\end{illus}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth,scale=1.0]
+% Cercle d'Apollonius : MA/MB = 2
+\coordinate (A) at (-2.4,0);
+\coordinate (B) at (1.2,0);
+% I = bar{(A,1),(B,-2)} : AI = -2/(1-2) AB = 2 AB ; J = bar{(A,1),(B,2)} : AJ=2/3 AB
+% AB vector = (3.6,0). I : A + 2*AB = (-2.4+7.2,0)=(4.8,0) hors cadre -> on choisit autre k
+% Prenons k=2 : I=bar{(A,1),(B,-2)} : AI=(-2/(1-2))AB=2AB=(7.2,0) trop loin. Utilisons illustration schématique avec J et I proches.
+% Simplifions : montrer le cercle d'Apollonius centré entre A et B.
+\def\cx{0.0}
+\draw[onbo,line width=1pt] (\cx,0) circle (1.6);
+\filldraw[onbink] (A) circle (1.6pt) node[below left]{\small $A$};
+\filldraw[onbink] (B) circle (1.6pt) node[below right]{\small $B$};
+\coordinate (J) at (-1.6,0);
+\coordinate (Iap) at (1.6,0);
+\filldraw[onbgreen] (J) circle (1.6pt) node[above left]{\small $J$};
+\filldraw[onbgreen] (Iap) circle (1.6pt) node[above right]{\small $I$};
+\coordinate (M) at (50:1.6);
+\filldraw[onbblue] (M) circle (1.6pt) node[above]{\small $M$};
+\draw[onbblue,->] (M)--(A);
+\draw[onbblue,->] (M)--(B);
+\node[align=left,text width=4.6cm,anchor=west] at (2.4,0.2)
+{\small \textbf{Cercle d'Apollonius} $\{M:MA/MB=k\}$ ($k\neq1$) : cercle de diamètre $[IJ]$ avec $I=\mathrm{bar}\{(A,1),(B,k)\}$, $J=\mathrm{bar}\{(A,1),(B,-k)\}$, qui partagent $[AB]$ dans le rapport $k$.};
+\end{tikzpicture}
+\fig{Figure — Ligne de niveau $M\mapsto MA/MB$ : médiatrice ($k=1$) ou cercle d'Apollonius ($k\neq1$).}
+\end{illus}
+
+% ═══════════════════════════════════════════════════════════════
+\section{L'essentiel à retenir}
+
+\begin{synthese}
+\textbf{Définition.} $G=\mathrm{bar}\{(A_i,\alpha_i)\}$ avec $S=\sum\alpha_i\neq0$ :
+$\ \sum_i\alpha_i\,\overrightarrow{GA_i}=\vec0$.\\[4pt]
+\textbf{Réduction (l'outil de calcul).} Pour tout $M$ : $\ \sum_i\alpha_i\,\overrightarrow{MA_i}=S\,\overrightarrow{MG}$.
+Cas deux points : $\overrightarrow{AG}=\dfrac{\beta}{\alpha+\beta}\overrightarrow{AB}$.\\[4pt]
+\textbf{Coordonnées / affixe.} $x_G=\dfrac1S\sum\alpha_i x_i$,\ $y_G=\dfrac1S\sum\alpha_i y_i$,\ $z_G=\dfrac1S\sum\alpha_i z_i$.\\[4pt]
+\textbf{Homogénéité.} $\mathrm{bar}\{(A_i,\alpha_i)\}=\mathrm{bar}\{(A_i,k\alpha_i)\}$, $k\neq0$.\\[4pt]
+\textbf{Associativité.} Remplacer un sous-groupe par son barycentre partiel affecté de la somme des poids (si $\neq0$).\\[4pt]
+\textbf{Isobarycentre.} coefficients égaux. $2$ points $\to$ milieu ;\ triangle $\to$ centre de gravité $G$, avec $\overrightarrow{AG}=\tfrac23\overrightarrow{AA'}$ ($A'$ milieu de $[BC]$).\\[4pt]
+\textbf{Somme vectorielle.} $\sum\alpha_i\overrightarrow{MA_i}$ vaut $S\,\overrightarrow{MG}$ si $S\neq0$ ;\ \textbf{vecteur constant} si $S=0$.\\[4pt]
+\textbf{Leibniz.} $\sum\alpha_i MA_i^2=S\,MG^2+f(G)$ si $S\neq0$ ;\ fonction \textbf{affine} de $M$ si $S=0$.\\[4pt]
+\textbf{Lignes de niveau.}\ $\sum\alpha_i MA_i^2=k$ : cercle (centre $G$) si $S\neq0$, droite si $S=0$.\
+$\dfrac{MA}{MB}=k$ : médiatrice si $k=1$, cercle d'Apollonius si $k\neq1$.\
+$\overrightarrow{MA}\cdot\overrightarrow{MB}=k$ : cercle de centre $I$ (milieu de $[AB]$), via $MI^2-\tfrac{AB^2}{4}=k$.\\[4pt]
+\textbf{Géométrie.} $G=\mathrm{bar}\{(A,\alpha),(B,\beta)\}\in(AB)$ : sert aux \textbf{alignements} et \textbf{concours de droites}.\\[4pt]
+\textbf{Pièges.} vérifier $S\neq0$ avant d'introduire $G$ ;\ ne pas oublier la constante $f(G)$ dans Leibniz ;\ un rayon$^2$ négatif $\Rightarrow$ ensemble vide.
+\end{synthese}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Méthodes \& savoir-faire}
+
+\methode{Calculer les coordonnées d'un barycentre}
+Vérifier $S=\sum\alpha_i\neq0$, puis appliquer $x_G=\frac1S\sum\alpha_i x_i$ et $y_G=\frac1S\sum\alpha_i y_i$.
+\begin{exemple}
+$A(2,1)$, $B(-1,3)$, $C(4,-2)$, $G=\mathrm{bar}\{(A,1),(B,2),(C,1)\}$. $S=4$ ;
+$x_G=\frac14(2-2+4)=1$, $y_G=\frac14(1+6-2)=\frac54$. Donc $G\!\left(1,\frac54\right)$.
+\end{exemple}
+
+\methode{Réduire une somme vectorielle pondérée}
+Calculer $S=\sum\alpha_i$. Si $S\neq0$, introduire le barycentre $G$ : $\sum\alpha_i\overrightarrow{MA_i}=S\,\overrightarrow{MG}$. Si $S=0$, regrouper pour faire apparaître un vecteur constant.
+\begin{exemple}
+Réduire $\vec f(M)=\overrightarrow{MA}+2\,\overrightarrow{MB}+\overrightarrow{MC}$. Ici $S=4\neq0$ ; soit $G=\mathrm{bar}\{(A,1),(B,2),(C,1)\}$. Alors $\vec f(M)=4\,\overrightarrow{MG}$.
+\end{exemple}
+
+\methode{Construire un barycentre par associativité}
+Regrouper deux points en un barycentre partiel $H$, puis placer $G$ sur $(HC)$ via $\overrightarrow{HG}=\frac{\gamma}{S}\overrightarrow{HC}$.
+\begin{exemple}
+$G=\mathrm{bar}\{(A,1),(B,1),(C,2)\}$ : poser $H=$ milieu de $[AB]$ ($\mathrm{bar}\{(A,1),(B,1)\}$), alors $G=\mathrm{bar}\{(H,2),(C,2)\}=$ milieu de $[HC]$.
+\end{exemple}
+
+\methode{Réduire $\sum\alpha_i\,MA_i^{2}$ par Leibniz}
+Calculer $S$, le barycentre $G$, puis la constante $f(G)=\sum\alpha_i\,GA_i^{2}$. On obtient $f(M)=S\,MG^{2}+f(G)$.
+\begin{exemple}
+$A,B$ avec $AB=4$, $f(M)=MA^{2}+MB^{2}$. $S=2$, $G=I$ milieu de $[AB]$, $GA=GB=2$, donc $f(G)=2^{2}+2^{2}=8$ et $f(M)=2\,MI^{2}+8$.
+\end{exemple}
+
+\methode{Déterminer et construire une ligne de niveau (cas $S\neq0$)}
+Réduire $f(M)$ par Leibniz, isoler $MG^{2}=R^{2}$ : reconnaître cercle ($R^2>0$), point ($R^2=0$) ou $\varnothing$ ($R^2<0$).
+\begin{exemple}
+$AB=4$ : déterminer $\{M:MA^{2}+MB^{2}=24\}$. D'après ci-dessus $2\,MI^{2}+8=24$, soit $MI^{2}=8$, $MI=2\sqrt2$ : \textbf{cercle} de centre $I$ et de rayon $2\sqrt2$.
+\end{exemple}
+
+\methode{Traiter une ligne de niveau quand $S=0$}
+$\sum\alpha_i MA_i^2$ devient \emph{affine} : factoriser via $a^2-b^2=(a-b)(a+b)$ et le milieu pour faire apparaître un produit scalaire $\overrightarrow{u}\cdot\overrightarrow{MI}=$ cte : c'est une \textbf{droite}.
+\begin{exemple}
+$AB=6$, $\{M:MA^2-MB^2=12\}$. On a $MA^2-MB^2=\overrightarrow{BA}\cdot(\overrightarrow{MA}+\overrightarrow{MB})=2\,\overrightarrow{BA}\cdot\overrightarrow{MI}$ ($I$ milieu de $[AB]$). D'où $\overrightarrow{BA}\cdot\overrightarrow{MI}=6$ : droite $\perp(AB)$.
+\end{exemple}
+
+\methode{Reconnaître une ligne de niveau $MA/MB$ ou $\overrightarrow{MA}\cdot\overrightarrow{MB}$}
+Pour $MA/MB=k$ : si $k=1$ médiatrice de $[AB]$, sinon cercle d'Apollonius. Pour $\overrightarrow{MA}\cdot\overrightarrow{MB}=k$ : utiliser $MI^2-\frac{AB^2}{4}=k$ ($I$ milieu) $\Rightarrow$ cercle de centre $I$.
+\begin{exemple}
+$\{M:MA=MB\}$ est la médiatrice de $[AB]$ ; $\{M:\overrightarrow{MA}\cdot\overrightarrow{MB}=0\}$ est le cercle de diamètre $[AB]$ (l'angle $\widehat{AMB}$ est droit).
+\end{exemple}
+
+\methode{Prouver un alignement par le barycentre}
+Montrer qu'un point $P$ est barycentre de deux autres $A,B$ : alors $P\in(AB)$, donc $A,P,B$ alignés. On exhibe les coefficients en écrivant une relation $\alpha\overrightarrow{PA}+\beta\overrightarrow{PB}=\vec0$.
+\begin{exemple}
+Si $3\overrightarrow{PA}+2\overrightarrow{PB}=\vec0$, alors $P=\mathrm{bar}\{(A,3),(B,2)\}\in(AB)$ : $P$ est aligné avec $A$ et $B$.
+\end{exemple}
+
+\methode{Prouver un concours de droites (médianes)}
+Exhiber un même barycentre $G$ appartenant à chaque droite, en regroupant les points par associativité.
+\begin{exemple}
+$G=\mathrm{bar}\{(A,1),(B,1),(C,1)\}$. En regroupant $B,C$ en leur milieu $A'$ : $G=\mathrm{bar}\{(A,1),(A',2)\}\in(AA')$. De même $G\in(BB')$ et $(CC')$ : les trois médianes \textbf{concourent} en $G$, avec $\overrightarrow{AG}=\frac23\overrightarrow{AA'}$.
+\end{exemple}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Exercices d'application}
+
+\rubrique{Barycentres et coordonnées}
+\exo{}\diff{1} On donne $A(2,1)$, $B(-1,3)$, $C(4,-2)$. Déterminer les coordonnées du barycentre $G$ de $\{(A,1),(B,2),(C,1)\}$.
+
+\exo{}\diff{1} Soient $A$ et $B$ deux points. Construire le barycentre $G$ de $\{(A,3),(B,1)\}$ en exprimant $\overrightarrow{AG}$ en fonction de $\overrightarrow{AB}$.
+
+\exo{}\diff{2} À l'aide de l'homogénéité et de l'associativité, construire $G=\mathrm{bar}\{(A,2),(B,1),(C,1)\}$ en regroupant $B$ et $C$.
+
+\exo{}\diff{2} Dans un repère, $A(-1,2)$, $B(3,0)$, $C(1,-4)$ et $D(2,5)$. Déterminer le barycentre $G$ de $\{(A,2),(B,1),(C,1),(D,2)\}$.
+
+\rubrique{Réductions vectorielles}
+\exo{}\diff{1} Réduire $\vec f(M)=3\,\overrightarrow{MA}-\overrightarrow{MB}$ et $\vec g(M)=\overrightarrow{MA}+\overrightarrow{MB}-2\,\overrightarrow{MC}$.
+
+\exo{}\diff{2} Soit $ABC$ un triangle. Déterminer l'ensemble des points $M$ tels que $\big\|\,2\,\overrightarrow{MA}+\overrightarrow{MB}+\overrightarrow{MC}\,\big\|=8$.
+
+\exo{}\diff{2} $ABC$ un triangle. Déterminer l'ensemble des points $M$ tels que $\big\|\overrightarrow{MA}+\overrightarrow{MB}+\overrightarrow{MC}\big\|=\big\|\overrightarrow{MB}-\overrightarrow{MA}\big\|$.
+
+\rubrique{Formule de Leibniz et lignes de niveau (cercles, droites)}
+\exo{}\diff{2} $A$ et $B$ tels que $AB=6$. Déterminer et construire l'ensemble $\{M:MA^{2}+MB^{2}=26\}$.
+
+\exo{}\diff{2} Mêmes $A,B$ ($AB=6$). Déterminer l'ensemble $\{M:MA^{2}-MB^{2}=12\}$ (on remarquera que $S=0$).
+
+\exo{}\diff{3} Soit $ABC$ un triangle équilatéral de côté $a$. Déterminer le lieu des points $M$ tels que $MA^{2}+MB^{2}+MC^{2}=2a^{2}$.
+
+\exo{}\diff{2} Soient $A,B$ avec $AB=4$. Déterminer l'ensemble $\{M:\overrightarrow{MA}\cdot\overrightarrow{MB}=0\}$ puis $\{M:\overrightarrow{MA}\cdot\overrightarrow{MB}=5\}$.
+
+\rubrique{Lignes de niveau $MA/MB$ et produit scalaire}
+\exo{}\diff{2} $A$ et $B$ distincts. Décrire l'ensemble $\{M:MA=2\,MB\}$ (cercle d'Apollonius).
+
+\exo{}\diff{2} Décrire $\{M:MA=MB\}$ puis $\{M:3MA^2=3MB^2\}$. Sont-ils égaux ?
+
+\rubrique{Applications géométriques (alignement, concours)}
+\exo{}\diff{2} $ABC$ un triangle, $I$ le milieu de $[BC]$. On définit $P$ par $\overrightarrow{AP}=\frac23\overrightarrow{AI}$. Montrer que $P$ est le centre de gravité de $ABC$.
+
+\exo{}\diff{3} $ABCD$ un parallélogramme de centre $O$. Montrer que $O$ est l'isobarycentre de $A,B,C,D$.
+
+\rubrique{Problème type Baccalauréat}
+\exo{}\diff{3} Le plan est rapporté à un repère orthonormé. On donne $A(0,0)$, $B(4,0)$ et $C(0,3)$.
+\begin{enumerate}[label=\arabic*)]
+\item Déterminer les coordonnées du barycentre $G$ de $\{(A,2),(B,1),(C,1)\}$.
+\item Réduire $\vec u(M)=2\,\overrightarrow{MA}+\overrightarrow{MB}+\overrightarrow{MC}$, puis déterminer l'ensemble $(\Gamma_1)$ des points $M$ tels que $\big\|\vec u(M)\big\|=8$.
+\item On pose $f(M)=2\,MA^{2}+MB^{2}+MC^{2}$. Calculer $f(G)$, puis montrer que $f(M)=4\,MG^{2}+f(G)$.
+\item Déterminer et tracer l'ensemble $(\Gamma_2)$ des points $M$ tels que $f(M)=49$.
+\end{enumerate}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Exercices d'entraînement}
+
+\rubrique{Barycentres, coordonnées, constructions}
+\exo{}\diff{1} $A(1,2)$, $B(5,-2)$. Déterminer le barycentre de $\{(A,1),(B,3)\}$.
+
+\exo{}\diff{1} $A(0,3)$, $B(-2,1)$, $C(4,4)$. Déterminer l'isobarycentre (centre de gravité) de $A,B,C$.
+
+\exo{}\diff{1} Construire $G=\mathrm{bar}\{(A,2),(B,-1)\}$ en exprimant $\overrightarrow{AG}$ en fonction de $\overrightarrow{AB}$. Où se situe $G$ par rapport à $[AB]$ ?
+
+\exo{}\diff{2} $A(1,1)$, $B(4,2)$, $C(2,-3)$. Déterminer $m$ pour que le barycentre de $\{(A,1),(B,m),(C,1)\}$ ait pour ordonnée $0$.
+
+\exo{}\diff{2} $ABC$ un triangle. Construire $G=\mathrm{bar}\{(A,1),(B,2),(C,3)\}$ par associativité (regrouper $A,B$).
+
+\exo{}\diff{2} $A,B,C,D$ quatre points. Construire $\mathrm{bar}\{(A,1),(B,1),(C,1),(D,1)\}$ de deux façons (par regroupements différents) et vérifier qu'on obtient le même point.
+
+\exo{}\diff{2} Montrer que le barycentre de $\{(A,3),(B,3),(C,3)\}$ est le même que celui de $\{(A,1),(B,1),(C,1)\}$.
+
+\rubrique{Réductions vectorielles}
+\exo{}\diff{1} Réduire $\overrightarrow{MA}+3\,\overrightarrow{MB}$, puis $2\,\overrightarrow{MA}-2\,\overrightarrow{MB}$.
+
+\exo{}\diff{2} Réduire $\vec f(M)=2\overrightarrow{MA}+3\overrightarrow{MB}-\overrightarrow{MC}$ puis $\vec g(M)=\overrightarrow{MA}-3\overrightarrow{MB}+2\overrightarrow{MC}$.
+
+\exo{}\diff{2} $ABCD$ un quadrilatère. Réduire $\overrightarrow{MA}+\overrightarrow{MB}+\overrightarrow{MC}+\overrightarrow{MD}$.
+
+\exo{}\diff{2} $ABC$ un triangle. Déterminer l'ensemble des $M$ tels que $\big\|3\overrightarrow{MA}-\overrightarrow{MB}-\overrightarrow{MC}\big\|=\big\|\overrightarrow{MA}+\overrightarrow{MB}+\overrightarrow{MC}\big\|$.
+
+\exo{}\diff{3} $ABC$ un triangle. Pour $M$ variable, montrer que le vecteur $\overrightarrow{MA}+\overrightarrow{MB}-2\overrightarrow{MC}$ est constant et l'exprimer à l'aide des sommets.
+
+\rubrique{Leibniz, cercles et droites}
+\exo{}\diff{1} $AB=2$. Déterminer $\{M:MA^2+MB^2=10\}$.
+
+\exo{}\diff{2} $AB=5$. Déterminer et construire $\{M:MA^2+MB^2=30\}$.
+
+\exo{}\diff{2} $AB=8$. Déterminer $\{M:MA^2-MB^2=16\}$ et préciser le point d'intersection avec $(AB)$.
+
+\exo{}\diff{2} $A,B,C$ avec $A(0,0)$, $B(6,0)$, $C(0,6)$. Déterminer $\{M:MA^2+MB^2+MC^2=60\}$.
+
+\exo{}\diff{2} $A,B$ tels que $AB=4$. Déterminer $\{M:2MA^2+MB^2=k\}$ selon les valeurs de $k$.
+
+\exo{}\diff{3} $ABC$ un triangle, $G$ son centre de gravité. Montrer que pour tout $M$, $MA^2+MB^2+MC^2=3MG^2+GA^2+GB^2+GC^2$.
+
+\exo{}\diff{3} Soit $ABCD$ un carré de côté $a$, centre $O$. Déterminer $\{M:MA^2+MB^2+MC^2+MD^2=6a^2\}$.
+
+\rubrique{Lignes de niveau $MA/MB$, angle, produit scalaire}
+\exo{}\diff{2} Décrire $\{M:MA=3MB\}$ pour $A\neq B$.
+
+\exo{}\diff{2} Décrire $\{M:2MA=3MB\}$.
+
+\exo{}\diff{2} $AB=6$. Décrire $\{M:\overrightarrow{MA}\cdot\overrightarrow{MB}=0\}$ puis $\{M:\overrightarrow{MA}\cdot\overrightarrow{MB}=-5\}$.
+
+\exo{}\diff{2} $AB=4$. Pour quelles valeurs de $k$ l'ensemble $\{M:\overrightarrow{MA}\cdot\overrightarrow{MB}=k\}$ est-il vide, un point, un cercle ?
+
+\exo{}\diff{3} $A,B$ distincts. Décrire $\{M:MA^2=3MB^2\}$ (préciser centre et rayon en fonction de $AB$).
+
+\rubrique{Alignements, concours, applications géométriques}
+\exo{}\diff{2} $ABC$ un triangle, $I=\mathrm{bar}\{(B,1),(C,2)\}$ et $J=\mathrm{bar}\{(A,1),(C,2)\}$. Montrer que $G=\mathrm{bar}\{(A,1),(B,1),(C,2)\}$ appartient aux droites $(AI)$ et $(BJ)$.
+
+\exo{}\diff{2} $ABC$ un triangle. $P$ est défini par $\overrightarrow{AP}=\frac14\overrightarrow{AB}$. Exprimer $P$ comme barycentre de $A$ et $B$.
+
+\exo{}\diff{3} $ABC$ un triangle, $I$ milieu de $[BC]$, $J$ milieu de $[AC]$, $K$ milieu de $[AB]$. Montrer que les médianes $(AI)$, $(BJ)$, $(CK)$ concourent en $G$ avec $\overrightarrow{AG}=\frac23\overrightarrow{AI}$.
+
+\exo{}\diff{3} $ABCD$ un quadrilatère. On note $I,J$ les milieux de $[AB]$ et $[CD]$, $K,L$ ceux de $[BC]$ et $[AD]$. Montrer que $[IJ]$ et $[KL]$ ont le même milieu (le centre de gravité de $A,B,C,D$).
+
+\exo{}\diff{3} $ABC$ un triangle. Déterminer le point $G$ tel que $\overrightarrow{GA}+2\overrightarrow{GB}+3\overrightarrow{GC}=\vec0$, et montrer qu'il est intérieur au triangle.
+
+\exo{}\diff{2} $A,B,C$ alignés tels que $\overrightarrow{AB}=3\overrightarrow{AC}$. Exprimer $C$ comme barycentre de $A$ et $B$.
+
+% ═══════════════════════════════════════════════════════════════
+\section{Sujets type Baccalauréat}
+
+\sujetbac[barycentre, réduction et deux lignes de niveau]
+Le plan est muni d'un repère orthonormé $(O;\vec\imath,\vec\jmath)$. On donne $A(0,0)$, $B(4,0)$, $C(0,3)$.
+\begin{enumerate}[label=\arabic*)]
+\item Déterminer les coordonnées du barycentre $G$ de $\{(A,2),(B,1),(C,1)\}$.
+\item Réduire $\vec u(M)=2\,\overrightarrow{MA}+\overrightarrow{MB}+\overrightarrow{MC}$. En déduire et tracer l'ensemble $(\Gamma_1)$ des points $M$ tels que $\|\vec u(M)\|=8$.
+\item On pose $f(M)=2\,MA^{2}+MB^{2}+MC^{2}$. Calculer $f(G)$, puis montrer que $f(M)=4\,MG^{2}+f(G)$.
+\item Déterminer et tracer l'ensemble $(\Gamma_2)$ des points $M$ tels que $f(M)=49$.
+\end{enumerate}
+
+\sujetbac[médianes, centre de gravité et lieu géométrique]
+$ABC$ est un triangle, $A'$, $B'$, $C'$ les milieux respectifs de $[BC]$, $[CA]$, $[AB]$.
+\begin{enumerate}[label=\arabic*)]
+\item Montrer que le centre de gravité $G$ de $ABC$ vérifie $\overrightarrow{GA}+\overrightarrow{GB}+\overrightarrow{GC}=\vec0$, et que $G\in(AA')$ avec $\overrightarrow{AG}=\frac23\overrightarrow{AA'}$.
+\item En déduire que les trois médianes $(AA')$, $(BB')$, $(CC')$ sont concourantes en $G$.
+\item Soit $\varphi(M)=MA^2+MB^2+MC^2$. Montrer que $\varphi(M)=3MG^2+\varphi(G)$.
+\item On suppose $AB=AC=BC=6$ (triangle équilatéral). Calculer $\varphi(G)$, puis déterminer le lieu des points $M$ tels que $\varphi(M)=48$.
+\end{enumerate}
+
+\sujetbac[cercle d'Apollonius et produit scalaire]
+On considère deux points $A$ et $B$ avec $AB=4$. À tout point $M$ du plan on associe
+$g(M)=MA^2-4MB^2$ et $h(M)=\overrightarrow{MA}\cdot\overrightarrow{MB}$.
+\begin{enumerate}[label=\arabic*)]
+\item Soit $G=\mathrm{bar}\{(A,1),(B,-4)\}$. Exprimer $\overrightarrow{AG}$ en fonction de $\overrightarrow{AB}$ et placer $G$.
+\item Montrer que $g(M)=-3MG^2+g(G)$. Calculer $g(G)$.
+\item Déterminer le lieu $(\mathcal C_1)$ des points $M$ tels que $MA=2MB$, et préciser son centre et son rayon.
+\item Soit $I$ le milieu de $[AB]$. Montrer que $h(M)=MI^2-4$. Déterminer le lieu $(\mathcal C_2)$ des points $M$ tels que $h(M)=0$.
+\end{enumerate}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Corrigés}
+
+\corrige{de l'exercice 1}
+$S=1+2+1=4$. $x_G=\frac14(2+2(-1)+4)=\frac14\cdot4=1$ ; $y_G=\frac14(1+2\cdot3+(-2))=\frac14\cdot5=\frac54$. Donc $G\!\left(1,\frac54\right)$.
+
+\corrige{de l'exercice 2}
+$S=3+1=4$, et $\overrightarrow{AG}=\frac{\beta}{S}\overrightarrow{AB}=\frac14\overrightarrow{AB}$ : $G$ est le point de $[AB]$ situé au quart à partir de $A$.
+
+\corrige{de l'exercice 3}
+Par homogénéité, $S=4$. Soit $H=\mathrm{bar}\{(B,1),(C,1)\}=$ milieu de $[BC]$. Par associativité, $G=\mathrm{bar}\{(A,2),(H,2)\}=$ milieu de $[AH]$. On a donc $\overrightarrow{AG}=\frac12\overrightarrow{AH}$.
+
+\corrige{de l'exercice 4}
+$S=2+1+1+2=6$. $x_G=\frac16(2(-1)+3+1+2\cdot2)=\frac16(-2+3+1+4)=\frac16\cdot6=1$ ;
+$y_G=\frac16(2\cdot2+0+(-4)+2\cdot5)=\frac16(4+0-4+10)=\frac{10}{6}=\frac53$. Donc $G\!\left(1,\frac53\right)$.
+
+\corrige{de l'exercice 5}
+Pour $\vec f$ : $S=3-1=2\neq0$, soit $G=\mathrm{bar}\{(A,3),(B,-1)\}$ ; alors $\vec f(M)=2\,\overrightarrow{MG}$.
+Pour $\vec g$ : $S=1+1-2=0$, donc $\vec g$ est constant : $\vec g(M)=(\overrightarrow{MA}-\overrightarrow{MC})+(\overrightarrow{MB}-\overrightarrow{MC})=\overrightarrow{CA}+\overrightarrow{CB}$.
+
+\corrige{de l'exercice 6}
+$S=2+1+1=4\neq0$. Soit $G=\mathrm{bar}\{(A,2),(B,1),(C,1)\}$ ; alors $2\overrightarrow{MA}+\overrightarrow{MB}+\overrightarrow{MC}=4\,\overrightarrow{MG}$, donc la condition s'écrit $4\,MG=8$, soit $MG=2$. L'ensemble est le \textbf{cercle} de centre $G$ et de rayon $2$.
+
+\corrige{de l'exercice 7}
+À gauche : $\overrightarrow{MA}+\overrightarrow{MB}+\overrightarrow{MC}=3\,\overrightarrow{MG}$ ($G$ centre de gravité), donc la norme vaut $3\,MG$. À droite : $\overrightarrow{MB}-\overrightarrow{MA}=\overrightarrow{AB}$, vecteur constant de norme $AB$. La condition $3MG=AB$ donne $MG=\frac{AB}{3}$ : c'est le \textbf{cercle} de centre $G$ (centre de gravité) et de rayon $\frac{AB}{3}$.
+
+\corrige{de l'exercice 8}
+$S=2$, $G=I$ milieu de $[AB]$, $IA=IB=3$, donc $f(I)=IA^{2}+IB^{2}=9+9=18$. Par Leibniz $f(M)=2\,MI^{2}+18=26$, d'où $MI^{2}=4$, $MI=2$ : \textbf{cercle} de centre $I$ (milieu de $[AB]$) et de rayon $2$.
+
+\corrige{de l'exercice 9}
+$S=1-1=0$. Posons $f(M)=MA^{2}-MB^{2}=\overrightarrow{MA}^{2}-\overrightarrow{MB}^{2}=(\overrightarrow{MA}-\overrightarrow{MB})\cdot(\overrightarrow{MA}+\overrightarrow{MB})=\overrightarrow{BA}\cdot(\overrightarrow{MA}+\overrightarrow{MB})$.
+Avec $I$ milieu de $[AB]$ : $\overrightarrow{MA}+\overrightarrow{MB}=2\,\overrightarrow{MI}$, donc $f(M)=2\,\overrightarrow{BA}\cdot\overrightarrow{MI}=12$, soit $\overrightarrow{BA}\cdot\overrightarrow{MI}=6$. C'est une \textbf{droite perpendiculaire} à $(AB)$. Son pied $H$ sur $(AB)$ vérifie $\overrightarrow{BA}\cdot\overrightarrow{IH}=6$. En posant $\overrightarrow{IH}=t\,\overrightarrow{BA}$, on a $\overrightarrow{BA}\cdot\overrightarrow{IH}=t\,BA^2=36t=6$, donc $t=\frac16$ : $\overrightarrow{IH}=\frac16\overrightarrow{BA}$, c.-à-d. $H$ est du côté de $A$, à la distance $IH=1$ du milieu $I$.
+
+\corrige{de l'exercice 10}
+$S=3\neq0$, le barycentre est le centre de gravité $G$ du triangle. Pour un triangle équilatéral de côté $a$, $GA=GB=GC=\frac{a}{\sqrt3}$ (rayon du cercle circonscrit), donc $f(G)=3\cdot\frac{a^{2}}{3}=a^{2}$. Par Leibniz $f(M)=3\,MG^{2}+a^{2}=2a^{2}$, d'où $MG^{2}=\frac{a^{2}}{3}$, $MG=\frac{a}{\sqrt3}$ : \textbf{cercle} de centre $G$ et de rayon $\frac{a}{\sqrt3}$ — c'est exactement le \textbf{cercle circonscrit} au triangle.
+
+\corrige{de l'exercice 11}
+Soit $I$ le milieu de $[AB]$ : $\overrightarrow{MA}\cdot\overrightarrow{MB}=MI^2-\frac{AB^2}{4}=MI^2-4$ (car $AB=4$).
+Pour $=0$ : $MI^2=4$, $MI=2$ : \textbf{cercle} de centre $I$ et de rayon $2$, c'est le cercle de diamètre $[AB]$.
+Pour $=5$ : $MI^2=9$, $MI=3$ : \textbf{cercle} de centre $I$ et de rayon $3$.
+
+\corrige{de l'exercice 12}
+$MA=2MB\Leftrightarrow MA^{2}=4MB^{2}\Leftrightarrow MA^{2}-4MB^{2}=0$. Ici $S=1-4=-3\neq0$ : soit $G=\mathrm{bar}\{(A,1),(B,-4)\}$. Par Leibniz, $MA^{2}-4MB^{2}=-3\,MG^{2}+\big(GA^{2}-4GB^{2}\big)$. La condition équivaut à $MG^{2}=\frac{GA^{2}-4GB^{2}}{3}=$ constante $>0$ : c'est un \textbf{cercle} de centre $G$ (cercle d'Apollonius). Ses points sur $(AB)$ sont $I_1=\mathrm{bar}\{(A,1),(B,-2)\}$ et $J_1=\mathrm{bar}\{(A,1),(B,2)\}$, qui en forment un diamètre.
+
+\corrige{de l'exercice 13}
+$\{M:MA=MB\}$ : ensemble des points équidistants de $A$ et $B$, c'est la \textbf{médiatrice} de $[AB]$.
+$\{M:3MA^2=3MB^2\}\Leftrightarrow MA^2=MB^2\Leftrightarrow MA=MB$ (distances positives), c'est la même médiatrice. Les deux ensembles sont donc \textbf{égaux}.
+
+\corrige{de l'exercice 14}
+$P$ vérifie $\overrightarrow{AP}=\frac23\overrightarrow{AI}$. Or $I$ est le milieu de $[BC]$, donc $I=\mathrm{bar}\{(B,1),(C,1)\}$ et par associativité le centre de gravité $G=\mathrm{bar}\{(A,1),(B,1),(C,1)\}=\mathrm{bar}\{(A,1),(I,2)\}$ vérifie $\overrightarrow{AG}=\frac{2}{3}\overrightarrow{AI}$. Donc $P=G$ : $P$ est le centre de gravité de $ABC$.
+
+\corrige{de l'exercice 15}
+Soit $O$ le centre du parallélogramme : c'est le milieu commun des diagonales $[AC]$ et $[BD]$, donc $O=\mathrm{bar}\{(A,1),(C,1)\}=\mathrm{bar}\{(B,1),(D,1)\}$. Par associativité, $\mathrm{bar}\{(A,1),(B,1),(C,1),(D,1)\}=\mathrm{bar}\{(O_{AC},2),(O_{BD},2)\}$ où $O_{AC}=O_{BD}=O$. Donc l'isobarycentre des quatre sommets est $O$.
+
+\corrige{du problème}
+\textbf{1)} $S=2+1+1=4$. $x_G=\frac14(2\cdot0+4+0)=1$ ; $y_G=\frac14(0+0+3)=\frac34$. Donc $G\!\left(1,\frac34\right)$.
+
+\textbf{2)} $S=4\neq0$ donc $\vec u(M)=2\overrightarrow{MA}+\overrightarrow{MB}+\overrightarrow{MC}=4\,\overrightarrow{MG}$. La condition $\|\vec u(M)\|=8$ s'écrit $4\,MG=8$, soit $MG=2$ : $(\Gamma_1)$ est le \textbf{cercle} de centre $G\!\left(1,\frac34\right)$ et de rayon $2$.
+
+\textbf{3)} Calculons $f(G)=2\,GA^{2}+GB^{2}+GC^{2}$.
+$GA^{2}=(1-0)^{2}+\left(\frac34\right)^{2}=1+\frac{9}{16}=\frac{25}{16}$.
+$GB^{2}=(1-4)^{2}+\left(\frac34\right)^{2}=9+\frac{9}{16}=\frac{153}{16}$.
+$GC^{2}=(1-0)^{2}+\left(\frac34-3\right)^{2}=1+\frac{81}{16}=\frac{97}{16}$.
+Donc $f(G)=2\cdot\frac{25}{16}+\frac{153}{16}+\frac{97}{16}=\frac{50+153+97}{16}=\frac{300}{16}=\frac{75}{4}$.
+La formule de Leibniz (avec $S=4$) donne $f(M)=4\,MG^{2}+f(G)=4\,MG^{2}+\frac{75}{4}$.
+
+\textbf{4)} $f(M)=49\Leftrightarrow 4\,MG^{2}+\frac{75}{4}=49\Leftrightarrow 4\,MG^{2}=49-\frac{75}{4}=\frac{196-75}{4}=\frac{121}{4}\Leftrightarrow MG^{2}=\frac{121}{16}$, soit $MG=\frac{11}{4}=2{,}75$. $(\Gamma_2)$ est le \textbf{cercle} de centre $G\!\left(1,\frac34\right)$ et de rayon $\frac{11}{4}$ (concentrique à $(\Gamma_1)$).
+
+% ── Corrigés des sujets type Bac ───────────────────────────────
+
+\corrige{du sujet 1}
+\textbf{1)} $S=2+1+1=4$. $x_G=\frac14(0+4+0)=1$, $y_G=\frac14(0+0+3)=\frac34$ : $G\!\left(1,\frac34\right)$.\\
+\textbf{2)} $S=4$, donc $\vec u(M)=4\,\overrightarrow{MG}$. La condition $\|\vec u(M)\|=8$ donne $4MG=8$, $MG=2$ : $(\Gamma_1)$ est le cercle de centre $G$, rayon $2$.\\
+\textbf{3)} $GA^2=1+\frac9{16}=\frac{25}{16}$, $GB^2=9+\frac9{16}=\frac{153}{16}$, $GC^2=1+\frac{81}{16}=\frac{97}{16}$.
+$f(G)=2\cdot\frac{25}{16}+\frac{153}{16}+\frac{97}{16}=\frac{300}{16}=\frac{75}{4}$. Par Leibniz ($S=4$) : $f(M)=4MG^2+\frac{75}4$.\\
+\textbf{4)} $f(M)=49\Leftrightarrow 4MG^2=\frac{121}{4}\Leftrightarrow MG=\frac{11}{4}$ : $(\Gamma_2)$ est le cercle de centre $G$, rayon $\frac{11}4$, concentrique à $(\Gamma_1)$.
+
+\corrige{du sujet 2}
+\textbf{1)} $G=\mathrm{bar}\{(A,1),(B,1),(C,1)\}$ vérifie par définition $\overrightarrow{GA}+\overrightarrow{GB}+\overrightarrow{GC}=\vec0$. Comme $A'=\mathrm{bar}\{(B,1),(C,1)\}$, l'associativité donne $G=\mathrm{bar}\{(A,1),(A',2)\}$, d'où $\overrightarrow{AG}=\frac{2}{3}\overrightarrow{AA'}$ et $G\in(AA')$.\\
+\textbf{2)} De même $B'=\mathrm{bar}\{(A,1),(C,1)\}$ donne $G=\mathrm{bar}\{(B,1),(B',2)\}\in(BB')$ ; et $C'=\mathrm{bar}\{(A,1),(B,1)\}$ donne $G\in(CC')$. Les trois médianes passent toutes par $G$ : elles \textbf{concourent} en $G$.\\
+\textbf{3)} Par Leibniz avec $S=3$ et $\sum\overrightarrow{GA_i}=\vec0$ : $\varphi(M)=\sum MA_i^2=3MG^2+\varphi(G)$ où $\varphi(G)=GA^2+GB^2+GC^2$.\\
+\textbf{4)} Triangle équilatéral de côté $6$ : $GA=GB=GC=\frac{6}{\sqrt3}=2\sqrt3$, donc $GA^2=12$ et $\varphi(G)=3\cdot12=36$. La condition $\varphi(M)=48$ donne $3MG^2+36=48$, soit $MG^2=4$, $MG=2$ : le lieu est le \textbf{cercle} de centre $G$ et de rayon $2$.
+
+\corrige{du sujet 3}
+\textbf{1)} $G=\mathrm{bar}\{(A,1),(B,-4)\}$ : $S=1-4=-3$, et $\overrightarrow{AG}=\frac{-4}{-3}\overrightarrow{AB}=\frac43\overrightarrow{AB}$. Donc $G$ est sur la droite $(AB)$, au-delà de $B$ ($AG=\frac43 AB=\frac{16}{3}$).\\
+\textbf{2)} Par Leibniz, $g(M)=MA^2-4MB^2=S\,MG^2+g(G)=-3MG^2+g(G)$. Calcul de $g(G)=GA^2-4GB^2$ : $GA=\frac43 AB=\frac{16}3$, donc $GA^2=\frac{256}{9}$ ; $\overrightarrow{GB}=\overrightarrow{GA}+\overrightarrow{AB}=-\frac43\overrightarrow{AB}+\overrightarrow{AB}=-\frac13\overrightarrow{AB}$, donc $GB=\frac13 AB=\frac43$, $GB^2=\frac{16}{9}$. Ainsi $g(G)=\frac{256}{9}-4\cdot\frac{16}{9}=\frac{256-64}{9}=\frac{192}{9}=\frac{64}{3}$.\\
+\textbf{3)} $MA=2MB\Leftrightarrow MA^2-4MB^2=0\Leftrightarrow g(M)=0\Leftrightarrow -3MG^2+\frac{64}{3}=0\Leftrightarrow MG^2=\frac{64}{9}$, soit $MG=\frac83$. $(\mathcal C_1)$ est le \textbf{cercle d'Apollonius} de centre $G$ et de rayon $\frac83$.\\
+\textbf{4)} $I$ milieu de $[AB]$ : $h(M)=\overrightarrow{MA}\cdot\overrightarrow{MB}=MI^2-\frac{AB^2}{4}=MI^2-\frac{16}{4}=MI^2-4$. La condition $h(M)=0$ donne $MI^2=4$, $MI=2$ : $(\mathcal C_2)$ est le \textbf{cercle de diamètre} $[AB]$ (centre $I$, rayon $2$).

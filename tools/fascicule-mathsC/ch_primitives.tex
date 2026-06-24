@@ -1,0 +1,760 @@
+\chapter{Primitives}
+
+\noindent\textit{Primitiver, c'est « remonter » la dérivation : on cherche une fonction
+dont la dérivée est donnée. Cette opération est au cœur du calcul intégral et de la
+résolution des équations différentielles. Tout le savoir-faire consiste à
+\textbf{reconnaître une forme dérivée connue} pour la primitiver à l'envers. Ce chapitre
+rassemble la définition, la structure de l'ensemble des primitives, le tableau des
+primitives usuelles, les formes composées ($u'u^{n}$, $u'/u$, $u'e^{u}$, $u'/\sqrt u$\dots),
+la primitive sous condition initiale, et un grand banc d'exercices et de sujets type Bac.}
+\vspace{8pt}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Définition et premiers exemples}
+
+\begin{definition}[Primitive d'une fonction]
+Soit $f$ une fonction définie sur un intervalle $I$. On appelle \textbf{primitive de $f$ sur $I$}
+toute fonction $F$ \textbf{dérivable sur $I$} telle que
+\[
+F'(x)=f(x)\qquad\text{pour tout }x\in I.
+\]
+\end{definition}
+
+\begin{exemple}
+$F(x)=x^{2}$ est une primitive de $f(x)=2x$ sur $\R$, car $F'(x)=2x=f(x)$.
+De même $G(x)=x^{2}+5$ et $H(x)=x^{2}-\sqrt3$ sont aussi des primitives de $f$ :
+toutes ces fonctions ont la même dérivée $2x$.
+\end{exemple}
+
+\begin{remarque}
+Primitiver est l'opération \emph{réciproque} de la dérivation. On la note parfois
+$\displaystyle F(x)=\int f(x)\dd x$ (intégrale indéfinie), notation que l'on retrouvera
+au chapitre du calcul intégral ; en Terminale on dit le plus souvent « \emph{une}
+primitive de $f$ ». Attention au mot « \emph{une} » : il y en a une infinité.
+\end{remarque}
+
+\begin{theoreme}[Existence]
+Toute fonction \textbf{continue} sur un intervalle $I$ \textbf{admet des primitives} sur $I$.
+\end{theoreme}
+
+\begin{remarque}
+L'existence est garantie par la continuité ; on l'admet en Terminale (elle sera justifiée
+au chapitre du \emph{calcul intégral}). En revanche, savoir \emph{calculer} explicitement une
+primitive n'est pas toujours possible avec les fonctions usuelles : par exemple
+$x\mapsto e^{-x^{2}}$ admet des primitives (elle est continue) mais aucune ne s'exprime
+à l'aide des fonctions de référence.
+\end{remarque}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth]
+\begin{scope}
+\node[draw,rounded corners,fill=onbsoft,onbink,minimum width=2.6cm,minimum height=1cm] (F) at (0,0){$F$ (primitive)};
+\node[draw,rounded corners,fill=onbsoft,onbink,minimum width=2.6cm,minimum height=1cm] (f) at (6,0){$f$ (fonction)};
+\end{scope}
+\draw[->,onbo,line width=1pt] ($(F.north east)+(0,0.05)$) to[bend left=28]
+   node[above,onbo]{\small dérivation $(\,'\,)$} ($(f.north west)+(0,0.05)$);
+\draw[->,onbgreen,line width=1pt] ($(f.south west)+(0,-0.05)$) to[bend left=28]
+   node[below,onbgreen]{\small primitivation} ($(F.south east)+(0,-0.05)$);
+\node[onbmuted,align=center] at (3,-1.9)
+   {\small On part de $f$ et on « remonte » à $F$ telle que $F'=f$.};
+\end{tikzpicture}
+\fig{Figure — Dérivation $\leftrightarrow$ primitivation : deux opérations réciproques.}
+\end{illus}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Ensemble des primitives d'une fonction}
+
+\begin{theoreme}[Deux primitives diffèrent d'une constante]
+Si $F$ est une primitive de $f$ sur l'intervalle $I$, alors les primitives de $f$ sur $I$ sont
+\textbf{exactement} les fonctions
+\[
+G(x)=F(x)+k,\qquad k\in\R .
+\]
+\end{theoreme}
+
+\noindent\textbf{Justification.} Si $F'=f$ et $G'=f$, alors $(G-F)'=f-f=0$ sur $I$.
+Or une fonction de dérivée nulle sur un \emph{intervalle} est constante : $G-F=k$, soit $G=F+k$.
+Réciproquement, $(F+k)'=F'=f$, donc $F+k$ est bien une primitive. \hfill$\square$
+
+\begin{aretenir}
+Sur un \textbf{intervalle}, l'ensemble des primitives de $f$ est une \textbf{famille}
+$\{\,F+k\;;\;k\in\R\,\}$ : connaître \emph{une} primitive les donne \emph{toutes}.
+L'hypothèse « intervalle » est essentielle (sur $\R^{*}=]-\infty,0[\cup\,]0,+\infty[$ la
+constante peut différer d'un morceau à l'autre).
+\end{aretenir}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth]
+\begin{axis}[width=8.4cm,height=5.4cm,axis lines=middle,xlabel={\small $x$},ylabel={\small $y$},
+  xmin=-2.4,xmax=2.4,ymin=-2.2,ymax=4.6,xtick=\empty,ytick=\empty,samples=80,domain=-2:2]
+\addplot[onbmuted,line width=0.7pt]{0.5*x^2-1.5};
+\addplot[onbmuted,line width=0.7pt]{0.5*x^2-0.5};
+\addplot[onbo,line width=1.1pt]{0.5*x^2+0.5};
+\addplot[onbmuted,line width=0.7pt]{0.5*x^2+1.5};
+\addplot[onbmuted,line width=0.7pt]{0.5*x^2+2.5};
+\node[onbo,anchor=west] at (axis cs:1.15,3.0){\small $F$};
+\node[onbmuted,anchor=west] at (axis cs:1.6,4.0){\small $F+k$};
+\end{axis}
+\node[align=left,text width=3.8cm,anchor=west] at (8.6,1.8)
+{\small Les primitives d'une même fonction se déduisent l'une de l'autre par une
+\textbf{translation verticale} : même pente en chaque abscisse.};
+\end{tikzpicture}
+\fig{Figure — Famille des primitives : des courbes translatées verticalement.}
+\end{illus}
+
+\begin{remarque}
+Deux primitives ayant la même pente en chaque point, leurs courbes ne se coupent jamais :
+on obtient un \emph{faisceau} de courbes parallèles « verticalement ». Choisir la valeur de $k$,
+c'est choisir \emph{une} courbe parmi toutes : c'est précisément le rôle d'une condition initiale
+(section suivante).
+\end{remarque}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Primitive vérifiant une condition initiale}
+
+\begin{theoreme}[Unicité sous condition initiale]
+Soit $f$ continue sur un intervalle $I$, $x_0\in I$ et $y_0\in\R$. Il existe une
+\textbf{unique} primitive $F$ de $f$ sur $I$ vérifiant $F(x_0)=y_0$.
+\end{theoreme}
+
+\noindent\textbf{Justification.} Partant d'une primitive $F_0$, on cherche $F=F_0+k$ avec $F(x_0)=y_0$ :
+cela impose $F_0(x_0)+k=y_0$, soit $k=y_0-F_0(x_0)$, d'où une seule valeur possible de $k$.
+\hfill$\square$
+
+\begin{exemple}
+Cherchons la primitive $F$ de $f(x)=2x$ sur $\R$ telle que $F(1)=3$. Les primitives sont
+$F(x)=x^{2}+k$ ; la condition donne $1+k=3$, donc $k=2$ et $F(x)=x^{2}+2$.
+C'est la seule courbe de la famille passant par le point $(1,3)$.
+\end{exemple}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth]
+\begin{axis}[width=8.4cm,height=5.2cm,axis lines=middle,xlabel={\small $x$},ylabel={\small $y$},
+  xmin=-2.4,xmax=2.4,ymin=-1,ymax=6,xtick={1},xticklabels={$1$},ytick={3},yticklabels={$3$},
+  samples=80,domain=-2:2]
+\addplot[onbmuted,line width=0.7pt]{x^2};
+\addplot[onbmuted,line width=0.7pt]{x^2+1};
+\addplot[onbo,line width=1.2pt]{x^2+2};
+\addplot[onbmuted,line width=0.7pt]{x^2+3};
+\filldraw[onbblue](axis cs:1,3)circle(2.2pt);
+\draw[onbblue,dashed,line width=0.6pt](axis cs:1,0)--(axis cs:1,3)--(axis cs:0,3);
+\node[onbo,anchor=west] at (axis cs:1.25,4.4){\small $F:\ y=x^2+2$};
+\end{axis}
+\node[align=left,text width=3.7cm,anchor=west] at (8.6,1.6)
+{\small La condition $F(1)=3$ \textbf{sélectionne une seule} courbe de la famille : elle fixe $k=2$.};
+\end{tikzpicture}
+\fig{Figure — Une condition initiale fixe la constante et lève l'indétermination.}
+\end{illus}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Primitives des fonctions de référence}
+
+\begin{propriete}[Primitives usuelles]
+Dans le tableau, $F$ désigne \emph{une} primitive de $f$ (les autres s'en déduisent en
+ajoutant une constante $k$), sur tout intervalle où $f$ est définie.
+\begin{center}\small
+\renewcommand{\arraystretch}{1.6}
+\begin{tabular}{@{}lll@{}}
+\toprule
+$f(x)$ & $F(x)$ & intervalle\\
+\midrule
+$a\ (\text{constante})$ & $a\,x$ & $\R$\\
+$x^{n}\ (n\in\N)$ & $\dfrac{x^{n+1}}{n+1}$ & $\R$\\
+$x^{r}\ (r\neq-1)$ & $\dfrac{x^{r+1}}{r+1}$ & $]0,+\infty[$\\
+$\dfrac{1}{x^{n}}\ (n\ge2)$ & $\dfrac{-1}{(n-1)\,x^{n-1}}$ & $]0,+\infty[$ ou $]-\infty,0[$\\
+$\dfrac1{x^{2}}$ & $-\dfrac1x$ & $]0,+\infty[$ ou $]-\infty,0[$\\
+$\dfrac1x$ & $\ln x$ & $]0,+\infty[$\\
+$\dfrac1{\sqrt x}$ & $2\sqrt x$ & $]0,+\infty[$\\
+$\sqrt x$ & $\dfrac23\,x\sqrt x=\dfrac23\,x^{3/2}$ & $[0,+\infty[$\\
+$e^{x}$ & $e^{x}$ & $\R$\\
+$\cos x$ & $\sin x$ & $\R$\\
+$\sin x$ & $-\cos x$ & $\R$\\
+$\cos(ax+b)$ & $\dfrac1a\sin(ax+b)$ & $\R\ (a\neq0)$\\
+$\sin(ax+b)$ & $-\dfrac1a\cos(ax+b)$ & $\R\ (a\neq0)$\\
+$1+\tan^{2}x=\dfrac1{\cos^{2}x}$ & $\tan x$ & $\left]-\frac\pi2,\frac\pi2\right[$\\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{propriete}
+
+\begin{propriete}[Linéarité]
+Si $F$ est une primitive de $f$ et $G$ une primitive de $g$ sur $I$, alors pour tous réels
+$a,b$, $aF+bG$ est une primitive de $af+bg$ sur $I$ :
+\[
+\text{une primitive de }af+bg\ \text{est}\ aF+bG.
+\]
+\end{propriete}
+
+\begin{remarque}
+La \textbf{linéarité} est constamment utilisée : on primitive \emph{terme à terme} et on
+sort les coefficients. C'est l'analogue exact de la linéarité de la dérivation.
+\end{remarque}
+
+\begin{exemple}
+Une primitive de $f(x)=3x^{2}-\dfrac4{x^{2}}+5$ sur $]0,+\infty[$ est
+\[
+F(x)=3\cdot\frac{x^{3}}{3}-4\cdot\Big(-\frac1x\Big)+5x=x^{3}+\frac4x+5x .
+\]
+Vérification : $F'(x)=3x^{2}-\dfrac4{x^{2}}+5=f(x)$. \checkmark
+\end{exemple}
+
+\begin{aretenir}
+\textbf{Toujours vérifier} une primitive en la \emph{dérivant} : si l'on retombe sur $f$,
+c'est correct. C'est le contrôle le plus rapide et le plus fiable, à faire systématiquement
+en composition.
+\end{aretenir}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Primitives des formes composées}
+
+\noindent Soit $u$ une fonction dérivable. En lisant « à l'envers » les formules de
+dérivation des composées, on obtient les formes suivantes, omniprésentes au Bac.
+
+\begin{propriete}[Formes usuelles $u'\,(\,\cdot\,)$]
+\begin{center}\small
+\renewcommand{\arraystretch}{1.7}
+\begin{tabular}{@{}lll@{}}
+\toprule
+$f$ & une primitive $F$ & condition\\
+\midrule
+$u'\,u^{n}\ (n\neq-1)$ & $\dfrac{u^{n+1}}{n+1}$ & ---\\
+$\dfrac{u'}{u}$ & $\ln|u|$ & $u\neq0$\\
+$u'\,e^{u}$ & $e^{u}$ & ---\\
+$\dfrac{u'}{\sqrt u}$ & $2\sqrt u$ & $u>0$\\
+$\dfrac{u'}{u^{2}}$ & $-\dfrac1u$ & $u\neq0$\\
+$u'\cos u$ & $\sin u$ & ---\\
+$u'\sin u$ & $-\cos u$ & ---\\
+$u'\,(1+\tan^{2}u)$ & $\tan u$ & $u\in\left]-\frac\pi2,\frac\pi2\right[$\\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{propriete}
+
+\noindent\textbf{Justification d'une ligne (la première).} Posons $G=\dfrac{u^{n+1}}{n+1}$.
+Par dérivation d'une composée, $G'=\dfrac{1}{n+1}\cdot(n+1)\,u'\,u^{n}=u'\,u^{n}=f$.
+Les autres lignes se justifient de la même façon en dérivant la colonne $F$. \hfill$\square$
+
+\begin{remarque}
+Les formes $\dfrac{u'}{u^{2}}$ et $\dfrac{u'}{\sqrt u}$ sont des cas particuliers de
+$u'\,u^{n}$ : prendre respectivement $n=-2$ (donc $\frac{u^{-1}}{-1}=-\frac1u$) et
+$n=-\frac12$ (donc $\frac{u^{1/2}}{1/2}=2\sqrt u$).
+\end{remarque}
+
+\begin{aretenir}
+\textbf{Le réflexe gagnant} : repérer le facteur $u'$ « caché ». On accepte un \textbf{coefficient
+multiplicatif} que l'on rétablit. Par exemple, pour $x\,e^{x^{2}}$, on a $u=x^{2}$, $u'=2x$ :
+il « manque » le facteur $2$, donc on écrit $x\,e^{x^{2}}=\frac12\,(2x)\,e^{x^{2}}$, primitive $\frac12\,e^{x^{2}}$.
+\end{aretenir}
+
+\begin{exemple}
+\begin{enumerate}[label=\alph*)]
+\item $f(x)=\dfrac{2x}{x^{2}+1}$ est de la forme $\dfrac{u'}{u}$ avec $u=x^{2}+1>0$ :
+$F(x)=\ln(x^{2}+1)$.
+\item $f(x)=\dfrac{x}{\sqrt{x^{2}+1}}$ : avec $u=x^{2}+1$, $u'=2x$, on a
+$f=\tfrac12\cdot\dfrac{u'}{\sqrt u}$, d'où $F(x)=\tfrac12\cdot2\sqrt u=\sqrt{x^{2}+1}$.
+\item $f(x)=\cos x\,e^{\sin x}$ : avec $u=\sin x$, $u'=\cos x$, $f=u'e^{u}$, donc $F(x)=e^{\sin x}$.
+\end{enumerate}
+\end{exemple}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth]
+\begin{axis}[width=9cm,height=5.4cm,axis lines=middle,xlabel={\small $x$},ylabel={\small $y$},
+  xmin=-2.6,xmax=2.6,ymin=-0.2,ymax=2.4,xtick=\empty,ytick=\empty,samples=140,domain=-2.4:2.4]
+\addplot[onbo,line width=1.1pt]{ln(x^2+1)+0.6};
+\addplot[onbblue,line width=1pt]{2*x/(x^2+1)+1.2};
+\node[onbo,anchor=west] at (axis cs:1.4,2.05){\small $F=\ln(u)$};
+\node[onbblue,anchor=west] at (axis cs:0.6,1.65){\small $f=\frac{u'}{u}$};
+\end{axis}
+\node[align=left,text width=3.6cm,anchor=west] at (9.1,1.4)
+{\small Forme $\dfrac{u'}{u}$ : sa primitive est $\ln|u|$. La pente de $F$ (orange) est la
+hauteur de $f$ (bleu) en chaque point.};
+\end{tikzpicture}
+\fig{Figure — Lecture graphique de la forme $u'/u$ et de sa primitive $\ln|u|$.}
+\end{illus}
+
+% ═══════════════════════════════════════════════════════════════
+\section{L'essentiel à retenir}
+
+\begin{synthese}
+\textbf{Définition.} $F$ est une primitive de $f$ sur l'intervalle $I$ si $F$ est dérivable sur $I$ et $F'=f$.\\[4pt]
+\textbf{Existence.} $f$ continue sur $I$ $\Rightarrow$ $f$ admet des primitives sur $I$ (admis).\\[4pt]
+\textbf{Ensemble des primitives.} Si $F$ en est une, toutes sont $F+k$, $k\in\R$ (sur un \emph{intervalle}).
+Connaître \emph{une} primitive les donne \emph{toutes}.\\[4pt]
+\textbf{Condition initiale.} $F$ continue, $x_0\in I$, $y_0\in\R$ : il existe une \textbf{unique} primitive avec
+$F(x_0)=y_0$ ; elle fixe $k=y_0-F_0(x_0)$.\\[4pt]
+\textbf{Linéarité.} primitive de $af+bg=a\,F+b\,G$ (primitiver terme à terme).\\[4pt]
+\textbf{Primitives usuelles.}\\
+$\displaystyle x^{n}\!\to\!\frac{x^{n+1}}{n+1}\ (n\ne-1)$ ;\
+$\dfrac1{x^{2}}\!\to\!-\dfrac1x$ ;\
+$\dfrac1{\sqrt x}\!\to\!2\sqrt x$ ;\
+$\dfrac1x\!\to\!\ln x$ ;\
+$e^{x}\!\to\!e^{x}$ ;\
+$\cos x\!\to\!\sin x$ ;\
+$\sin x\!\to\!-\cos x$.\\
+$\cos(ax+b)\!\to\!\frac1a\sin(ax+b)$ ;\ $\sin(ax+b)\!\to\!-\frac1a\cos(ax+b)$.\\[4pt]
+\textbf{Formes composées ($u$ dérivable).}\\
+$\displaystyle u'u^{n}\!\to\!\frac{u^{n+1}}{n+1}\ (n\ne-1)$ ;\
+$\dfrac{u'}{u}\!\to\!\ln|u|$ ;\
+$u'e^{u}\!\to\!e^{u}$ ;\
+$\dfrac{u'}{\sqrt u}\!\to\!2\sqrt u$ ;\
+$\dfrac{u'}{u^{2}}\!\to\!-\dfrac1u$ ;\
+$u'\cos u\!\to\!\sin u$ ;\
+$u'\sin u\!\to\!-\cos u$.\\[4pt]
+\textbf{Plan de résolution.} (1) Reconnaître la forme ($u'u^n$, $u'/u$, $u'e^u$\dots).
+(2) Poser $u$, calculer $u'$. (3) Ajuster le coefficient manquant. (4) Appliquer le tableau.
+(5) \textbf{Vérifier en dérivant}. (6) Si condition initiale : écrire $F+k$ et résoudre.\\[4pt]
+\textbf{Trigonométrie.} $\cos^{2}x=\frac{1+\cos2x}{2}$,\ $\sin^{2}x=\frac{1-\cos2x}{2}$,\
+$\sin x\cos x=\frac{\sin2x}{2}$ : \textbf{linéariser} avant de primitiver.\\[4pt]
+\textbf{Pièges.} oublier le facteur $u'$ ; oublier le coefficient $\frac1a$ pour $\cos(ax+b)$ ;
+écrire $\ln u$ au lieu de $\ln|u|$ ; ajouter une constante \emph{globale} alors que le domaine
+n'est pas un intervalle.
+\end{synthese}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Méthodes \& savoir-faire}
+
+\methode{Primitiver un polynôme ou une somme par linéarité}
+Primitiver chaque terme à part, en remontant la règle $x^{n}\to\frac{x^{n+1}}{n+1}$, et sortir les coefficients.
+\begin{exemple}
+$f(x)=5x^{4}-3x^{2}+2x-7$. Une primitive est
+$F(x)=5\cdot\dfrac{x^{5}}{5}-3\cdot\dfrac{x^{3}}{3}+2\cdot\dfrac{x^{2}}{2}-7x=x^{5}-x^{3}+x^{2}-7x$.
+\emph{Contrôle} : $F'=5x^{4}-3x^{2}+2x-7=f$. \checkmark
+\end{exemple}
+
+\methode{Reconnaître une forme composée et primitiver}
+Identifier la structure ($u'u^{n}$, $u'/u$, $u'e^{u}$, $u'/\sqrt u$, $u'/u^{2}$, $u'\cos u$\dots),
+poser $u$, calculer $u'$, puis appliquer le tableau.
+\begin{exemple}
+$f(x)=(3x^{2}-2)\,(x^{3}-2x+1)^{4}$. On pose $u=x^{3}-2x+1$, alors $u'=3x^{2}-2$ :
+$f=u'\,u^{4}$, donc
+\[
+F(x)=\frac{u^{5}}{5}=\frac{(x^{3}-2x+1)^{5}}{5}.
+\]
+\end{exemple}
+
+\methode{Ajuster un coefficient multiplicatif}
+Lorsque le facteur devant n'est pas exactement $u'$ mais un multiple, on factorise la constante.
+\begin{exemple}
+$f(x)=x\,e^{x^{2}}$. Avec $u=x^{2}$, $u'=2x$ : $f=\tfrac12\,u'e^{u}$, donc $F(x)=\tfrac12\,e^{x^{2}}$.
+\emph{Contrôle} : $F'(x)=\tfrac12\cdot2x\,e^{x^{2}}=x\,e^{x^{2}}=f(x)$. \checkmark
+\end{exemple}
+
+\methode{Primitiver une forme $u'/u$ (logarithme)}
+Vérifier que le numérateur est, à un coefficient près, la dérivée du dénominateur ; la primitive est $\ln|u|$.
+\begin{exemple}
+$f(x)=\dfrac{x}{x^{2}+3}$. Avec $u=x^{2}+3>0$, $u'=2x$ : $f=\tfrac12\cdot\dfrac{u'}{u}$,
+donc $F(x)=\tfrac12\ln(x^{2}+3)$.
+\end{exemple}
+
+\methode{Primitiver $\cos(ax+b)$ et $\sin(ax+b)$ (ne pas oublier le $\frac1a$)}
+Une primitive de $\cos(ax+b)$ est $\frac1a\sin(ax+b)$, et de $\sin(ax+b)$ est $-\frac1a\cos(ax+b)$.
+\begin{exemple}
+$f(x)=\cos(3x-1)$. Une primitive est $F(x)=\dfrac13\sin(3x-1)$.
+\emph{Contrôle} : $F'(x)=\tfrac13\cdot3\cos(3x-1)=\cos(3x-1)$. \checkmark
+\end{exemple}
+
+\methode{Linéariser avant de primitiver (trigonométrie)}
+Les puissances $\cos^{2},\sin^{2},\cos\,\sin$ ne se primitivent pas telles quelles : on les
+\textbf{linéarise} grâce aux formules de duplication
+\[
+\cos^{2}x=\frac{1+\cos 2x}{2},\qquad
+\sin^{2}x=\frac{1-\cos 2x}{2},\qquad
+\sin x\cos x=\frac{\sin 2x}{2}.
+\]
+\begin{exemple}
+$f(x)=\cos^{2}x=\dfrac{1+\cos 2x}{2}$. Une primitive est
+$F(x)=\dfrac12\Big(x+\dfrac{\sin 2x}{2}\Big)=\dfrac x2+\dfrac{\sin 2x}{4}$.
+\emph{Contrôle} : $F'(x)=\tfrac12+\tfrac14\cdot2\cos 2x=\tfrac12+\tfrac12\cos2x=\cos^{2}x$. \checkmark
+\end{exemple}
+
+\methode{Décomposer une fraction rationnelle}
+Quand le numérateur n'est pas directement $u'$, on effectue une division ou une décomposition
+pour faire apparaître les formes $\frac1{x-a}$, $\frac{u'}{u}$ ou un polynôme.
+\begin{exemple}
+$f(x)=\dfrac{x}{x+1}=1-\dfrac1{x+1}$ sur $]-1,+\infty[$. Une primitive est
+$F(x)=x-\ln(x+1)$.
+\end{exemple}
+
+\methode{Déterminer la primitive vérifiant une condition initiale}
+Écrire la primitive générale $F(x)+k$, puis imposer $F(x_0)=y_0$ pour calculer l'unique $k$.
+\begin{exemple}
+Primitive $G$ de $g(x)=3x^{2}-1$ telle que $G(1)=4$. On a $G(x)=x^{3}-x+k$ ;
+$G(1)=1-1+k=k=4$, donc $G(x)=x^{3}-x+4$.
+\end{exemple}
+
+\methode{Vérifier qu'une fonction donnée est une primitive (dérivation directe)}
+Lorsqu'on fournit $F$ et qu'on demande de prouver $F'=f$, on dérive $F$ (produit, quotient, composée)
+puis on identifie à $f$.
+\begin{exemple}
+Montrons que $F(x)=(x-1)e^{x}$ est une primitive de $f(x)=x\,e^{x}$ :
+$F'(x)=e^{x}+(x-1)e^{x}=(1+x-1)e^{x}=x\,e^{x}=f(x)$. \checkmark
+\end{exemple}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Exercices d'application}
+
+\rubrique{Primitives des fonctions de référence}
+
+\exo{}\diff{1} Déterminer une primitive sur $\R$ de
+$f(x)=4x^{3}-6x^{2}+2x-7$, puis de $g(x)=\dfrac{x^{2}}{2}-3\cos x+e^{x}$.
+
+\exo{}\diff{1} Déterminer une primitive, en précisant l'intervalle, de
+$f(x)=\dfrac3{x^{2}}$, de $g(x)=\dfrac2{\sqrt x}$ et de $h(x)=\dfrac1x+\sin x$.
+
+\exo{}\diff{2} Déterminer une primitive de $f(x)=2\cos(3x)+\sin\!\Big(\dfrac x2\Big)$ sur $\R$,
+puis de $g(x)=e^{2x-1}$.
+
+\rubrique{Reconnaissance de formes composées}
+
+\exo{}\diff{2} Primitiver, en posant $u$ à chaque fois :
+\[
+f(x)=2x\,(x^{2}+3)^{4},\quad g(x)=\frac{2x+2}{x^{2}+2x+5},\quad h(x)=\frac{3x^{2}}{\sqrt{x^{3}+1}}.
+\]
+
+\exo{}\diff{2} Déterminer une primitive de $f(x)=\dfrac{2x}{(x^{2}+1)^{2}}$
+et de $g(x)=(2x+1)\,e^{x^{2}+x}$.
+
+\exo{}\diff{2} Soit $f(x)=\dfrac{\ln x}{x}$ sur $]0,+\infty[$.
+En posant $u=\ln x$, montrer que $f=u'u$ et en déduire une primitive de $f$.
+
+\exo{}\diff{2} Primitiver $f(x)=\dfrac{x}{x^{2}+4}$ et $g(x)=\cos x\,e^{\sin x}$.
+
+\rubrique{Trigonométrie : linéarisation}
+
+\exo{}\diff{2} Linéariser puis primitiver $f(x)=\sin^{2}x$ et $g(x)=\sin x\cos x$.
+
+\exo{}\diff{3} Primitiver $f(x)=\cos^{3}x$.
+\emph{Indication} : écrire $\cos^{3}x=\cos x\,(1-\sin^{2}x)$ et poser $u=\sin x$.
+
+\rubrique{Conditions initiales}
+
+\exo{}\diff{2} Déterminer la primitive $F$ de $f(x)=3x^{2}+\dfrac1{x^{2}}$ sur $]0,+\infty[$
+telle que $F(1)=2$.
+
+\exo{}\diff{2} Déterminer la primitive $F$ de $f(x)=\dfrac{1}{x}$ sur $]0,+\infty[$ telle que
+$F(e)=3$.
+
+\exo{}\diff{2} Un mobile se déplace sur une droite ; sa vitesse à l'instant $t$ (en secondes)
+est $v(t)=2t-3$ (en m/s). Sa position $x(t)$ vérifie $x'(t)=v(t)$ et $x(0)=5$ (en mètres).
+Déterminer $x(t)$, puis la position à $t=4$\,s.
+
+\exo{}\diff{3} À Douala, un réservoir se vide ; le débit sortant est $d(t)=0{,}6\,t$ (litres/s)
+à l'instant $t$. Le volume $V(t)$ vérifie $V'(t)=-d(t)$ et $V(0)=120$ litres.
+Déterminer $V(t)$ et l'instant où le réservoir est vide.
+
+\rubrique{Reconnaître / vérifier une primitive}
+
+\exo{}\diff{2} Vérifier que $F(x)=(x^{2}-2x+2)\,e^{x}$ est une primitive de $f(x)=x^{2}e^{x}$ sur $\R$,
+puis donner l'ensemble des primitives de $f$.
+
+\exo{}\diff{2} On donne $F(x)=x\ln x-x$ sur $]0,+\infty[$. Montrer que $F$ est une primitive de
+$f(x)=\ln x$, et en déduire la primitive de $\ln$ s'annulant en $1$.
+
+\rubrique{Problèmes type Baccalauréat}
+
+\exo{}\diff{3} On considère la fonction $f$ définie sur $\R$ par
+\[
+f(x)=\frac{2x-1}{x^{2}-x+1}.
+\]
+\begin{enumerate}[label=\arabic*)]
+\item Montrer que $x^{2}-x+1>0$ pour tout réel $x$ ; en déduire que $f$ est définie et continue sur $\R$.
+\item Reconnaître la forme de $f$ et en déduire l'ensemble des primitives de $f$ sur $\R$.
+\item Déterminer la primitive $F$ de $f$ telle que $F(1)=0$.
+\item On pose $g(x)=\dfrac{1}{x^{2}-x+1}$. Vérifier que $F'$ et $g$ ne sont pas proportionnelles
+(on ne demande pas de primitiver $g$).
+\end{enumerate}
+
+\exo{}\diff{3} Soit $f(x)=x\,e^{-x}$ sur $\R$.
+\begin{enumerate}[label=\arabic*)]
+\item Vérifier que la fonction $G(x)=-(x+1)\,e^{-x}$ a pour dérivée $f$.
+\item En déduire l'ensemble des primitives de $f$ sur $\R$.
+\item Déterminer la primitive $F$ de $f$ s'annulant en $0$, et calculer $F(1)$.
+\end{enumerate}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Exercices d'entraînement}
+
+\rubrique{Fonctions de référence et linéarité}
+\exo{}\diff{1} Déterminer une primitive de $f(x)=7x^{6}-4x^{3}+x-2$ sur $\R$.
+
+\exo{}\diff{1} Déterminer une primitive de $f(x)=3-\dfrac5{x^{2}}$ sur $]0,+\infty[$.
+
+\exo{}\diff{1} Déterminer une primitive de $f(x)=\sqrt x+\dfrac1{\sqrt x}$ sur $]0,+\infty[$.
+
+\exo{}\diff{2} Déterminer une primitive de $f(x)=\dfrac{x^{3}-2x+1}{x^{2}}$ sur $]0,+\infty[$.
+\emph{(Diviser terme à terme.)}
+
+\exo{}\diff{2} Déterminer une primitive de $f(x)=4e^{x}-3\cos x+\dfrac2x$ sur $]0,+\infty[$.
+
+\exo{}\diff{2} Déterminer une primitive de $f(x)=\cos(2x)-\sin(3x)+e^{-x}$ sur $\R$.
+
+\rubrique{Formes $u'u^{n}$ et $u'/\sqrt u$}
+\exo{}\diff{1} Primitiver $f(x)=2x\,(x^{2}+1)^{3}$.
+
+\exo{}\diff{2} Primitiver $f(x)=(2x-3)(x^{2}-3x+5)^{4}$.
+
+\exo{}\diff{2} Primitiver $f(x)=\dfrac{x}{\sqrt{x^{2}+9}}$.
+
+\exo{}\diff{2} Primitiver $f(x)=\dfrac{x^{2}}{\sqrt{x^{3}+2}}$ sur un intervalle où $x^{3}+2>0$.
+
+\exo{}\diff{3} Primitiver $f(x)=\dfrac{x}{\sqrt{1-x^{2}}}$ sur $]-1,1[$.
+
+\rubrique{Formes $u'/u$ et $u'/u^{2}$ (logarithme, inverse)}
+\exo{}\diff{1} Primitiver $f(x)=\dfrac{2x}{x^{2}+5}$.
+
+\exo{}\diff{2} Primitiver $f(x)=\dfrac{3x^{2}-1}{x^{3}-x+4}$ sur un intervalle où $x^{3}-x+4>0$.
+
+\exo{}\diff{2} Primitiver $f(x)=\dfrac{2x}{(x^{2}+1)^{2}}$.
+
+\exo{}\diff{2} Primitiver $f(x)=\dfrac{\cos x}{2+\sin x}$ sur $\R$.
+
+\exo{}\diff{2} Primitiver $f(x)=\tan x$ sur $\left]-\frac\pi2,\frac\pi2\right[$.
+\emph{(Indication : $\tan x=\frac{\sin x}{\cos x}=-\frac{u'}{u}$ avec $u=\cos x$.)}
+
+\rubrique{Formes $u'e^{u}$ et exponentielle}
+\exo{}\diff{1} Primitiver $f(x)=e^{3x+2}$.
+
+\exo{}\diff{2} Primitiver $f(x)=x\,e^{x^{2}-1}$.
+
+\exo{}\diff{2} Primitiver $f(x)=(2x+3)\,e^{x^{2}+3x}$.
+
+\exo{}\diff{2} Primitiver $f(x)=\dfrac{e^{x}}{e^{x}+1}$ sur $\R$.
+
+\rubrique{Trigonométrie}
+\exo{}\diff{1} Primitiver $f(x)=\sin(4x)$ et $g(x)=\cos\!\Big(\dfrac x3\Big)$.
+
+\exo{}\diff{2} Linéariser et primitiver $f(x)=\cos^{2}(3x)$.
+
+\exo{}\diff{2} Primitiver $f(x)=\sin^{2}x\cos x$. \emph{(Forme $u'u^{2}$.)}
+
+\exo{}\diff{3} Primitiver $f(x)=\sin^{3}x$. \emph{(Indication : $\sin^{3}x=\sin x(1-\cos^{2}x)$.)}
+
+\exo{}\diff{3} Linéariser puis primitiver $f(x)=\cos^{4}x$.
+
+\rubrique{Conditions initiales et applications}
+\exo{}\diff{2} Déterminer la primitive $F$ de $f(x)=2x-3$ telle que $F(2)=0$.
+
+\exo{}\diff{2} Déterminer la primitive $F$ de $f(x)=e^{-x}$ telle que $F(0)=1$.
+
+\exo{}\diff{2} Déterminer la primitive $F$ de $f(x)=\dfrac{1}{\sqrt x}$ sur $]0,+\infty[$
+telle que $F(4)=5$.
+
+\exo{}\diff{2} Déterminer la primitive $F$ de $f(x)=\cos x$ telle que $F\!\Big(\dfrac\pi2\Big)=0$.
+
+\exo{}\diff{3} La vitesse d'un véhicule (en m/s) sur l'axe Yaoundé–Mbalmayo est
+$v(t)=3t^{2}-2t+1$. La distance parcourue $d(t)$ vérifie $d'(t)=v(t)$ et $d(0)=0$.
+Déterminer $d(t)$ puis la distance parcourue entre $t=0$ et $t=3$\,s.
+
+\rubrique{Vérification et raisonnement}
+\exo{}\diff{2} Vérifier que $F(x)=\dfrac12\ln(x^{2}+1)$ est une primitive de
+$f(x)=\dfrac{x}{x^{2}+1}$ sur $\R$.
+
+\exo{}\diff{3} Soit $F(x)=(ax+b)e^{x}$. Déterminer $a,b$ pour que $F$ soit une primitive de
+$f(x)=(3x-2)e^{x}$.
+
+\exo{}\diff{3} Montrer que la fonction $x\mapsto\dfrac1x$ n'admet pas de primitive définie sur
+$\R^{*}$ tout entier qui soit de la forme $\ln|x|+k$ avec une \emph{même} constante $k$ sur
+les deux intervalles. \emph{(Réfléchir à la structure de $\R^{*}$.)}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Sujets type Baccalauréat}
+
+\sujetbac[primitives d'une fraction et condition initiale]
+On considère la fonction $f$ définie sur $]-1,+\infty[$ par
+$f(x)=\dfrac{x}{x+1}$, de courbe $\mathcal C_f$.
+\begin{enumerate}[label=\arabic*)]
+\item Montrer que pour tout $x\in]-1,+\infty[$, $f(x)=1-\dfrac{1}{x+1}$.
+\item En déduire l'ensemble des primitives de $f$ sur $]-1,+\infty[$.
+\item Déterminer la primitive $F$ de $f$ telle que $F(0)=0$.
+\item Calculer $F(1)$ et en donner la valeur exacte.
+\end{enumerate}
+
+\sujetbac[forme $u'e^{u}$, étude et primitive sous condition]
+Soit $f$ la fonction définie sur $\R$ par $f(x)=2x\,e^{-x^{2}}$.
+\begin{enumerate}[label=\arabic*)]
+\item Justifier que $f$ est continue sur $\R$ et reconnaître une forme du type $u'e^{u}$
+(préciser $u$ et $u'$).
+\item En déduire l'ensemble des primitives de $f$ sur $\R$.
+\item Déterminer la primitive $F$ de $f$ telle que $\displaystyle\lim_{x\to+\infty}F(x)=0$.
+\item Calculer $F(0)$.
+\end{enumerate}
+
+\sujetbac[primitive et étude liée — produit $x e^{x}$]
+On pose $f(x)=(x+2)\,e^{x}$ sur $\R$ et l'on cherche une primitive de $f$.
+\begin{enumerate}[label=\arabic*)]
+\item Soit $G(x)=(ax+b)\,e^{x}$. Calculer $G'(x)$ et déterminer $a,b$ pour que $G'=f$.
+\item En déduire l'ensemble des primitives de $f$ sur $\R$.
+\item Déterminer la primitive $F$ de $f$ telle que $F(0)=1$.
+\item Étudier le signe de $F'(x)=f(x)$ et en déduire le sens de variation de $F$ sur $\R$.
+\end{enumerate}
+
+\sujetbac[primitives en trigonométrie et linéarisation]
+On considère $f(x)=\cos^{2}x-\sin^{2}x$ sur $\R$.
+\begin{enumerate}[label=\arabic*)]
+\item Montrer que $f(x)=\cos(2x)$.
+\item En déduire l'ensemble des primitives de $f$ sur $\R$.
+\item Déterminer la primitive $F$ de $f$ telle que $F(0)=1$.
+\item Soit $g(x)=\sin x\cos x$. Exprimer $g$ à l'aide de $\sin(2x)$, puis donner une
+primitive de $g$.
+\end{enumerate}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Corrigés}
+
+\corrige{de l'exercice 1}
+$F(x)=x^{4}-2x^{3}+x^{2}-7x$ (vérif. : $F'=4x^{3}-6x^{2}+2x-7$).
+Pour $g$ : $G(x)=\dfrac{x^{3}}{6}-3\sin x+e^{x}$.
+
+\corrige{de l'exercice 2}
+$f(x)=\dfrac3{x^{2}}=3\cdot\dfrac1{x^{2}}$ : $F(x)=-\dfrac3x$ sur $]0,+\infty[$ (ou $]-\infty,0[$).
+$g(x)=\dfrac2{\sqrt x}$ : $G(x)=2\cdot2\sqrt x=4\sqrt x$ sur $]0,+\infty[$.
+$h(x)=\dfrac1x+\sin x$ : $H(x)=\ln x-\cos x$ sur $]0,+\infty[$.
+
+\corrige{de l'exercice 3}
+$2\cos(3x)$ : primitive $2\cdot\dfrac13\sin(3x)=\dfrac23\sin(3x)$.
+$\sin\!\big(\frac x2\big)$ : primitive $-\dfrac{1}{1/2}\cos\!\big(\frac x2\big)=-2\cos\!\big(\frac x2\big)$.
+Donc $F(x)=\dfrac23\sin(3x)-2\cos\!\Big(\dfrac x2\Big)$.
+Pour $g(x)=e^{2x-1}$ : $G(x)=\dfrac12\,e^{2x-1}$ (car $u=2x-1$, $u'=2$, $g=\frac12 u'e^{u}$). \checkmark
+
+\corrige{de l'exercice 4}
+\begin{enumerate}[label=\alph*)]
+\item $u=x^{2}+3$, $u'=2x$ : $f=u'u^{4}$, $F(x)=\dfrac{(x^{2}+3)^{5}}{5}$.
+\item $u=x^{2}+2x+5$, $u'=2x+2$ : $g=\dfrac{u'}{u}$ ; comme $u=(x+1)^{2}+4>0$,
+$G(x)=\ln(x^{2}+2x+5)$.
+\item $u=x^{3}+1$, $u'=3x^{2}$ : $h=\dfrac{u'}{\sqrt u}$, $H(x)=2\sqrt{x^{3}+1}$
+(sur un intervalle où $x^{3}+1>0$, c.-à-d. $x>-1$).
+\end{enumerate}
+
+\corrige{de l'exercice 5}
+$f=\dfrac{u'}{u^{2}}$ avec $u=x^{2}+1$, $u'=2x$ : $F(x)=-\dfrac1{x^{2}+1}$.
+$g=(2x+1)\,e^{x^{2}+x}=u'e^{u}$ avec $u=x^{2}+x$ : $G(x)=e^{x^{2}+x}$.
+
+\corrige{de l'exercice 6}
+$u=\ln x$, $u'=\dfrac1x$, donc $f=\dfrac{\ln x}{x}=u'\,u$. C'est la forme $u'u^{1}$ :
+$F(x)=\dfrac{u^{2}}{2}=\dfrac{(\ln x)^{2}}{2}$.
+\emph{Contrôle} : $F'(x)=\dfrac1x\cdot\ln x=f(x)$. \checkmark
+
+\corrige{de l'exercice 7}
+$f(x)=\dfrac{x}{x^{2}+4}=\tfrac12\cdot\dfrac{2x}{x^{2}+4}=\tfrac12\cdot\dfrac{u'}{u}$ avec
+$u=x^{2}+4>0$ : $F(x)=\dfrac12\ln(x^{2}+4)$.
+$g(x)=\cos x\,e^{\sin x}=u'e^{u}$ avec $u=\sin x$ : $G(x)=e^{\sin x}$.
+
+\corrige{de l'exercice 8}
+$\sin^{2}x=\dfrac{1-\cos2x}{2}$ : $F(x)=\dfrac x2-\dfrac{\sin2x}{4}$.
+$\sin x\cos x=\dfrac{\sin2x}{2}$ : $G(x)=-\dfrac{\cos2x}{4}$.
+(On peut vérifier $G'=\tfrac14\cdot2\sin2x=\tfrac12\sin2x=\sin x\cos x$.) \checkmark
+
+\corrige{de l'exercice 9}
+$\cos^{3}x=\cos x-\cos x\sin^{2}x$. Le premier terme se primitive en $\sin x$.
+Pour le second, $\cos x\sin^{2}x=u'u^{2}$ avec $u=\sin x$, $u'=\cos x$ : sa primitive est
+$\dfrac{\sin^{3}x}{3}$. D'où
+\[
+F(x)=\sin x-\frac{\sin^{3}x}{3}.
+\]
+\emph{Contrôle} : $F'=\cos x-\sin^{2}x\cos x=\cos x(1-\sin^{2}x)=\cos^{3}x$. \checkmark
+
+\corrige{de l'exercice 10}
+Primitive générale : $F(x)=x^{3}-\dfrac1x+k$. Condition $F(1)=1-1+k=k=2$, donc $k=2$ et
+\[
+F(x)=x^{3}-\frac1x+2.
+\]
+
+\corrige{de l'exercice 11}
+Les primitives de $\dfrac1x$ sur $]0,+\infty[$ sont $\ln x+k$. Condition $F(e)=\ln e+k=1+k=3$,
+donc $k=2$ et $F(x)=\ln x+2$.
+
+\corrige{de l'exercice 12}
+$x'(t)=2t-3$ donc $x(t)=t^{2}-3t+k$. Condition $x(0)=k=5$, d'où $x(t)=t^{2}-3t+5$.
+À $t=4$ : $x(4)=16-12+5=9$ mètres.
+
+\corrige{de l'exercice 13}
+$V'(t)=-0{,}6\,t$ donc $V(t)=-0{,}3\,t^{2}+k$. Condition $V(0)=k=120$, d'où
+$V(t)=120-0{,}3\,t^{2}$. Le réservoir est vide quand $V(t)=0$ :
+$0{,}3\,t^{2}=120$, $t^{2}=400$, $t=20$\,s.
+
+\corrige{de l'exercice 14}
+$F(x)=(x^{2}-2x+2)e^{x}$ : $F'(x)=(2x-2)e^{x}+(x^{2}-2x+2)e^{x}=(x^{2})\,e^{x}=x^{2}e^{x}=f(x)$. \checkmark
+Donc $F$ est une primitive et l'ensemble des primitives de $f$ sur $\R$ est
+$\big\{\,x\mapsto(x^{2}-2x+2)e^{x}+k\;;\;k\in\R\,\big\}$.
+
+\corrige{de l'exercice 15}
+$F(x)=x\ln x-x$ : $F'(x)=\ln x+x\cdot\dfrac1x-1=\ln x+1-1=\ln x=f(x)$. \checkmark
+La primitive s'annulant en $1$ est $G(x)=x\ln x-x+k$ avec $G(1)=1\cdot0-1+k=k-1=0$,
+donc $k=1$ et $G(x)=x\ln x-x+1$.
+
+\corrige{de l'exercice 16}
+\begin{enumerate}[label=\arabic*)]
+\item $x^{2}-x+1=\Big(x-\dfrac12\Big)^{2}+\dfrac34\ge\dfrac34>0$ pour tout $x\in\R$.
+Le dénominateur ne s'annule jamais : $f$ est définie et continue (quotient de fonctions
+continues) sur $\R$.
+\item Posons $u=x^{2}-x+1$ ; alors $u'=2x-1$, donc $f=\dfrac{u'}{u}$ avec $u>0$.
+Une primitive est $F_0(x)=\ln(x^{2}-x+1)$, et l'ensemble des primitives de $f$ sur $\R$ est
+\[
+\big\{\,x\mapsto\ln(x^{2}-x+1)+k\;;\;k\in\R\,\big\}.
+\]
+\item On impose $F(1)=0$ : $F(x)=\ln(x^{2}-x+1)+k$ et $F(1)=\ln(1-1+1)+k=\ln1+k=k$.
+Donc $k=0$ et $F(x)=\ln(x^{2}-x+1)$.
+\item $F'(x)=f(x)=\dfrac{2x-1}{x^{2}-x+1}$, tandis que $g(x)=\dfrac1{x^{2}-x+1}$.
+Le rapport $\dfrac{F'(x)}{g(x)}=2x-1$ n'est pas constant : $F'$ et $g$ ne sont pas
+proportionnelles. (On ne peut donc pas obtenir une primitive de $g$ par simple
+ajustement de coefficient : elle relève d'une autre technique.)
+\end{enumerate}
+
+\corrige{de l'exercice 17}
+\begin{enumerate}[label=\arabic*)]
+\item $G(x)=-(x+1)e^{-x}$. Par la formule du produit,
+\[
+G'(x)=-\,e^{-x}-(x+1)\cdot(-e^{-x})=-e^{-x}+(x+1)e^{-x}=x\,e^{-x}=f(x). \checkmark
+\]
+\item $G$ est donc une primitive de $f$ ; l'ensemble des primitives sur $\R$ est
+$\big\{\,x\mapsto-(x+1)e^{-x}+k\;;\;k\in\R\,\big\}$.
+\item $F(x)=-(x+1)e^{-x}+k$ et $F(0)=-(0+1)e^{0}+k=-1+k=0$, donc $k=1$ et
+\[
+F(x)=1-(x+1)e^{-x}.
+\]
+Enfin $F(1)=1-2e^{-1}=1-\dfrac2e$.
+\end{enumerate}
+
+\corrige{du sujet 1}
+\begin{enumerate}[label=\arabic*)]
+\item $\dfrac{x}{x+1}=\dfrac{(x+1)-1}{x+1}=1-\dfrac{1}{x+1}$.
+\item Une primitive de $1$ est $x$ ; une primitive de $\dfrac1{x+1}$ (forme $\frac{u'}{u}$, $u=x+1>0$)
+est $\ln(x+1)$. Donc une primitive de $f$ est $x-\ln(x+1)$, et l'ensemble des primitives est
+$\big\{\,x\mapsto x-\ln(x+1)+k\;;\;k\in\R\,\big\}$.
+\item $F(x)=x-\ln(x+1)+k$ ; $F(0)=0-\ln1+k=k=0$, donc $F(x)=x-\ln(x+1)$.
+\item $F(1)=1-\ln 2$.
+\end{enumerate}
+
+\corrige{du sujet 2}
+\begin{enumerate}[label=\arabic*)]
+\item $f$ est un produit/composée de fonctions continues sur $\R$, donc continue.
+Avec $u=-x^{2}$, $u'=-2x$ : $f(x)=2x\,e^{-x^{2}}=-(-2x)e^{-x^{2}}=-u'e^{u}$.
+\item Une primitive de $-u'e^{u}$ est $-e^{u}=-e^{-x^{2}}$ ; l'ensemble des primitives sur $\R$ est
+$\big\{\,x\mapsto-e^{-x^{2}}+k\;;\;k\in\R\,\big\}$.
+\item $F(x)=-e^{-x^{2}}+k$. Quand $x\to+\infty$, $e^{-x^{2}}\to0$, donc $F(x)\to k$.
+On veut cette limite nulle : $k=0$, d'où $F(x)=-e^{-x^{2}}$.
+\item $F(0)=-e^{0}=-1$.
+\end{enumerate}
+
+\corrige{du sujet 3}
+\begin{enumerate}[label=\arabic*)]
+\item $G(x)=(ax+b)e^{x}$, donc $G'(x)=a\,e^{x}+(ax+b)e^{x}=(ax+a+b)e^{x}$.
+On veut $G'(x)=(x+2)e^{x}$, soit $ax+(a+b)=x+2$ : $a=1$ et $a+b=2$, donc $b=1$.
+Ainsi $G(x)=(x+1)e^{x}$.
+\item L'ensemble des primitives de $f$ sur $\R$ est $\big\{\,x\mapsto(x+1)e^{x}+k\;;\;k\in\R\,\big\}$.
+\item $F(x)=(x+1)e^{x}+k$ ; $F(0)=(0+1)e^{0}+k=1+k=1$, donc $k=0$ et $F(x)=(x+1)e^{x}$.
+\item $F'(x)=f(x)=(x+2)e^{x}$. Comme $e^{x}>0$, le signe de $F'$ est celui de $x+2$ :
+$F'<0$ sur $]-\infty,-2[$ (donc $F$ décroissante) et $F'>0$ sur $]-2,+\infty[$ (donc $F$ croissante).
+$F$ admet un minimum en $x=-2$.
+\end{enumerate}
+
+\corrige{du sujet 4}
+\begin{enumerate}[label=\arabic*)]
+\item $\cos(2x)=\cos^{2}x-\sin^{2}x$ (formule de duplication), donc $f(x)=\cos(2x)$.
+\item Une primitive de $\cos(2x)$ est $\dfrac12\sin(2x)$ ; l'ensemble des primitives sur $\R$ est
+$\big\{\,x\mapsto\dfrac12\sin(2x)+k\;;\;k\in\R\,\big\}$.
+\item $F(x)=\dfrac12\sin(2x)+k$ ; $F(0)=\dfrac12\sin0+k=k=1$, donc $F(x)=\dfrac12\sin(2x)+1$.
+\item $g(x)=\sin x\cos x=\dfrac{\sin(2x)}{2}$. Une primitive est $-\dfrac14\cos(2x)$
+(car la primitive de $\sin(2x)$ est $-\frac12\cos(2x)$, multipliée par $\frac12$).
+\emph{Contrôle} : $\big(-\tfrac14\cos2x\big)'=\tfrac14\cdot2\sin2x=\tfrac12\sin2x=g$. \checkmark
+\end{enumerate}

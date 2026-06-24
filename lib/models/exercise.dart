@@ -25,15 +25,21 @@ class ExerciseChapter {
 
   /// Le chapitre concerne-t-il l'examen + la série de l'élève ? (même logique
   /// souple que `Subject.appliesToClass`).
+  ///
+  /// `track` peut lister PLUSIEURS séries séparées par `,` `/` ou `;`
+  /// (ex. « C,D,E,TI » pour un chapitre commun aux 4 filières scientifiques ESG).
+  /// Vide = toutes les séries.
   bool appliesToClass(String? exam, String? serie) {
     final e = (exam ?? '').trim().toLowerCase();
     if (this.exam.trim().isNotEmpty && e.isNotEmpty && this.exam.trim().toLowerCase() != e) return false;
-    final t = track.trim().toLowerCase();
-    if (t.isEmpty) return true;
+    final raw = track.trim().toLowerCase();
+    if (raw.isEmpty) return true;
     final s = (serie ?? '').trim().toLowerCase();
     if (s.isEmpty) return true;
-    if (t == s) return true;
-    if (t.length <= 4 && (s.startsWith(t) || t.startsWith(s))) return true;
+    for (final t in raw.split(RegExp(r'[,/;]')).map((x) => x.trim()).where((x) => x.isNotEmpty)) {
+      if (t == s) return true;
+      if (t.length <= 4 && (s.startsWith(t) || t.startsWith(s))) return true;
+    }
     return false;
   }
 

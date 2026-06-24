@@ -1,0 +1,616 @@
+\chapter{Limites et continuité}
+
+\noindent\textit{La notion de limite décrit le comportement d'une fonction au voisinage d'un
+point ou de l'infini ; la continuité traduit l'idée d'une courbe « tracée sans lever le
+crayon ». Ces deux notions ouvrent l'analyse de Terminale et fondent toute l'étude des
+fonctions : asymptotes, résolution approchée d'équations, théorème de la bijection. C'est le
+socle sur lequel reposeront la dérivation, les primitives et le calcul intégral.}
+\vspace{8pt}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Limite d'une fonction en un point ou à l'infini}
+
+\subsection{Limite finie, limite infinie}
+
+\begin{definition}[Limite finie ou infinie]
+Soit $f$ une fonction et $a$ un réel ou $a=\pm\infty$ (on suppose $f$ définie au voisinage de $a$, sauf peut-être en $a$).
+\begin{itemize}
+\item $\displaystyle\lim_{x\to a}f(x)=\ell$ ($\ell$ réel) : $f(x)$ devient \emph{aussi proche que l'on veut} de $\ell$ dès que $x$ est \emph{assez proche} de $a$.
+\item $\displaystyle\lim_{x\to a}f(x)=+\infty$ : $f(x)$ \emph{dépasse tout nombre fixé} dès que $x$ est assez proche de $a$ ; de même pour $-\infty$.
+\item $\displaystyle\lim_{x\to+\infty}f(x)=\ell$ : $f(x)$ devient aussi proche que l'on veut de $\ell$ dès que $x$ est assez grand.
+\end{itemize}
+\end{definition}
+
+\begin{remarque}
+Lorsque $a$ est un réel, on distingue parfois la \textbf{limite à droite} $\displaystyle\lim_{x\to a^{+}}f$ (pour $x>a$) et la \textbf{limite à gauche} $\displaystyle\lim_{x\to a^{-}}f$ (pour $x<a$). La fonction admet une limite (finie ou infinie) en $a$ si et seulement si ces deux limites existent \emph{et sont égales}.
+\end{remarque}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth,scale=1]
+\begin{axis}[width=8.2cm,height=5cm,axis lines=middle,xlabel={\small $x$},ylabel={\small $y$},
+  xmin=-0.3,xmax=6,ymin=-0.5,ymax=4,xtick=\empty,ytick={2},yticklabels={$\ell$},
+  every axis y label/.style={at={(ticklabel* cs:1)},anchor=south},
+  every axis x label/.style={at={(ticklabel* cs:1)},anchor=west}]
+\addplot[onbo,line width=1pt,domain=0.6:6,samples=100]{2 + 2/(x)};
+\draw[dashed,onbgreen] (axis cs:0,2)--(axis cs:6,2);
+\node[onbgreen,anchor=west] at (axis cs:4.2,2.25){\small $y=\ell$ (asymptote)};
+\end{axis}
+\node[align=left,text width=4.2cm,anchor=west] at (8.4,1.8)
+{\small Ici $\displaystyle\lim_{x\to+\infty}f(x)=\ell$ : la courbe se rapproche de la droite $y=\ell$, \textbf{asymptote horizontale}.};
+\end{tikzpicture}
+\fig{Figure 1 — Limite finie en $+\infty$ et asymptote horizontale.}
+\end{illus}
+
+\subsection{Interprétation graphique : les asymptotes}
+
+\begin{aretenir}
+Une limite traduit immédiatement une \textbf{asymptote} :
+\begin{itemize}
+\item $\displaystyle\lim_{x\to a^{\pm}}f(x)=\pm\infty$ ($a$ réel) $\Longrightarrow$ asymptote \textbf{verticale} d'équation $x=a$ ;
+\item $\displaystyle\lim_{x\to\pm\infty}f(x)=\ell$ ($\ell$ réel) $\Longrightarrow$ asymptote \textbf{horizontale} d'équation $y=\ell$.
+\end{itemize}
+\end{aretenir}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth]
+\begin{axis}[width=8.4cm,height=5cm,axis lines=middle,xlabel={\small $x$},ylabel={\small $y$},
+  xmin=-3.6,xmax=3.6,ymin=-4,ymax=4,xtick={1},xticklabels={$a$},ytick=\empty,
+  restrict y to domain=-4:4]
+\addplot[onbo,line width=1pt,domain=1.12:3.6,samples=120]{1/(x-1)};
+\addplot[onbo,line width=1pt,domain=-3.6:0.88,samples=120]{1/(x-1)};
+\draw[dashed,onbblue](axis cs:1,-4)--(axis cs:1,4);
+\node[onbblue,anchor=south west] at (axis cs:1.05,2.6){\small $x=a$};
+\end{axis}
+\node[align=left,text width=3.8cm,anchor=west] at (8.6,1.6)
+{\small $\displaystyle\lim_{x\to a^{+}}f=+\infty$ et $\displaystyle\lim_{x\to a^{-}}f=-\infty$ : \textbf{asymptote verticale} $x=a$.};
+\end{tikzpicture}
+\fig{Figure 2 — Asymptote verticale : limites infinies à gauche et à droite.}
+\end{illus}
+
+\subsection{Limites de référence}
+
+\begin{propriete}[Limites usuelles à connaître par cœur]
+Pour tout entier $n\ge1$ :
+\[
+\lim_{x\to+\infty}x^{n}=+\infty,\qquad
+\lim_{x\to-\infty}x^{n}=
+\begin{cases}+\infty & n\text{ pair}\\ -\infty & n\text{ impair}\end{cases}
+\]
+\[
+\lim_{x\to+\infty}\frac1{x^{n}}=0,\qquad
+\lim_{x\to-\infty}\frac1{x^{n}}=0,\qquad
+\lim_{x\to+\infty}\sqrt{x}=+\infty,
+\]
+\[
+\lim_{x\to0^{+}}\frac1x=+\infty,\qquad
+\lim_{x\to0^{-}}\frac1x=-\infty,\qquad
+\lim_{x\to0^{+}}\frac1{x^{n}}=+\infty,\qquad
+\lim_{x\to0^{+}}\frac1{\sqrt x}=+\infty.
+\]
+\end{propriete}
+
+\begin{remarque}
+Une limite de référence très utile : $\displaystyle\lim_{x\to0}\frac{\sin x}{x}=1$ (avec $x$ en radians). On en déduit $\displaystyle\lim_{x\to0}\frac{\tan x}{x}=1$ et $\displaystyle\lim_{x\to0}\frac{1-\cos x}{x^{2}}=\frac12$.
+\end{remarque}
+
+\subsection{Opérations sur les limites}
+
+\begin{theoreme}[Limite d'une somme, d'un produit, d'un quotient]
+Lorsque les limites existent, la limite d'une somme est la somme des limites, celle d'un produit le produit des limites, celle d'un quotient le quotient des limites (quand le dénominateur ne tend pas vers $0$). On prolonge ces règles aux limites infinies avec les conventions naturelles :
+\[
+\ell+\infty=+\infty,\quad (+\infty)\times(+\infty)=+\infty,\quad \frac{\ell}{\pm\infty}=0\ (\ell\text{ fini}),\quad \frac{\ell}{0^{+}}=\pm\infty.
+\]
+\end{theoreme}
+
+\begin{theoreme}[Les quatre formes indéterminées]
+Quatre situations ne se résolvent pas par les règles précédentes : ce sont les \textbf{formes indéterminées} (FI). Il faut alors \emph{transformer l'écriture} pour conclure.
+\[
+\boxed{\;\infty-\infty\;}\qquad\boxed{\;0\times\infty\;}\qquad\boxed{\;\dfrac{\infty}{\infty}\;}\qquad\boxed{\;\dfrac{0}{0}\;}
+\]
+\end{theoreme}
+
+\begin{aretenir}
+Les formes $\dfrac{\ell}{0}$ (avec $\ell\neq0$) et $\dfrac{0}{\ell}$ \textbf{ne sont pas} indéterminées : la première donne $\pm\infty$ (selon le signe), la seconde donne $0$. Bien étudier le \textbf{signe} du dénominateur qui tend vers $0$.
+\end{aretenir}
+
+\begin{remarque}
+En $\pm\infty$, une fonction \textbf{polynôme} a la même limite que son terme de plus haut degré ; une fonction \textbf{rationnelle} a la même limite que le quotient des termes de plus haut degré. C'est la méthode la plus rapide pour ces deux cas (qui sont des FI de type $\infty-\infty$ ou $\tfrac{\infty}{\infty}$).
+\end{remarque}
+
+\begin{exemple}
+$\displaystyle\lim_{x\to+\infty}\big(2x^{3}-5x^{2}+7\big)=\lim_{x\to+\infty}2x^{3}=+\infty$ ; \quad
+$\displaystyle\lim_{x\to-\infty}\frac{4x^{2}-1}{x^{2}+x}=\lim_{x\to-\infty}\frac{4x^{2}}{x^{2}}=4$.
+\end{exemple}
+
+\subsection{Limite d'une fonction composée}
+
+\begin{theoreme}[Limite d'une composée]
+Soit $u$ et $g$ deux fonctions, $a$, $b$, $\ell$ des réels ou $\pm\infty$. Si
+\[
+\lim_{x\to a}u(x)=b \qquad\text{et}\qquad \lim_{X\to b}g(X)=\ell,
+\]
+alors $\displaystyle\lim_{x\to a}g\big(u(x)\big)=\ell$.
+\end{theoreme}
+
+\begin{exemple}
+$\displaystyle\lim_{x\to+\infty}\sqrt{\frac{2x^{2}+1}{x^{2}+3}}$ : on pose $u(x)=\dfrac{2x^{2}+1}{x^{2}+3}\to2$ et $g(X)=\sqrt X$ avec $\sqrt X\to\sqrt2$. Donc la limite vaut $\sqrt2$.
+\end{exemple}
+
+\subsection{Théorèmes de comparaison}
+
+\begin{theoreme}[Théorème des gendarmes (encadrement)]
+Si, au voisinage de $a$, $\;u(x)\le f(x)\le v(x)\;$ et si $\displaystyle\lim_{x\to a}u=\lim_{x\to a}v=\ell$ (fini), alors $\displaystyle\lim_{x\to a}f=\ell$.
+\end{theoreme}
+
+\begin{propriete}[Comparaison vers l'infini]
+Si, au voisinage de $a$, $f(x)\ge u(x)$ et $\displaystyle\lim_{x\to a}u=+\infty$, alors $\displaystyle\lim_{x\to a}f=+\infty$. De même, si $f(x)\le v(x)$ et $\lim v=-\infty$, alors $\lim f=-\infty$.
+\end{propriete}
+
+\begin{exemple}
+Pour tout $x>0$, $-\dfrac1x\le\dfrac{\sin x}{x}\le\dfrac1x$, et $\pm\dfrac1x\to0$ : par les gendarmes, $\displaystyle\lim_{x\to+\infty}\frac{\sin x}{x}=0$.
+\end{exemple}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Continuité d'une fonction}
+
+\subsection{Continuité en un point, sur un intervalle}
+
+\begin{definition}[Continuité]
+$f$ est \textbf{continue en} $a$ si $f$ est définie en $a$ et $\displaystyle\lim_{x\to a}f(x)=f(a)$. Elle est \textbf{continue sur un intervalle} $I$ si elle est continue en chaque point de $I$.
+\end{definition}
+
+\begin{remarque}
+Graphiquement, $f$ est continue sur $I$ si on peut tracer sa courbe « sans lever le crayon » sur $I$. Une rupture (saut, trou, branche infinie) signale une discontinuité.
+\end{remarque}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth]
+\begin{axis}[width=8.4cm,height=5cm,axis lines=middle,xlabel={\small $x$},ylabel={\small $y$},
+  xmin=-0.4,xmax=5,ymin=-0.5,ymax=4,xtick={2},xticklabels={$a$},ytick=\empty]
+% partie gauche
+\addplot[onbo,line width=1pt,domain=0.2:2,samples=40]{0.6*x+0.4};
+% partie droite (saut)
+\addplot[onbo,line width=1pt,domain=2:4.6,samples=40]{0.5*x+1.6};
+\filldraw[white,draw=onbo,line width=0.8pt](axis cs:2,1.6)circle(2.4pt);
+\filldraw[onbo](axis cs:2,2.6)circle(2.4pt);
+\draw[dashed,onbmuted](axis cs:2,0)--(axis cs:2,2.6);
+\end{axis}
+\node[align=left,text width=3.6cm,anchor=west] at (8.6,1.6)
+{\small Fonction \textbf{discontinue} en $a$ : la courbe « saute ». Limite à gauche $\neq$ limite à droite.};
+\end{tikzpicture}
+\fig{Figure 3 — Une discontinuité par saut en $x=a$.}
+\end{illus}
+
+\begin{propriete}[Continuité des fonctions usuelles]
+Les fonctions polynômes, rationnelles, racine carrée, valeur absolue, sinus, cosinus, ainsi que leurs sommes, produits, quotients (là où ils sont définis) et leurs composées, sont \textbf{continues} sur tout intervalle de leur domaine de définition.
+\end{propriete}
+
+\begin{aretenir}
+\textbf{Dérivable $\Rightarrow$ continue}, mais la réciproque est fausse : $x\mapsto|x|$ est continue en $0$ sans y être dérivable. La continuité est une condition \emph{plus faible} que la dérivabilité.
+\end{aretenir}
+
+\subsection{Prolongement par continuité}
+
+\begin{definition}[Prolongement par continuité]
+Si $f$ n'est pas définie en $a$ mais admet une limite \textbf{finie} $\ell$ en $a$, on définit le \textbf{prolongement par continuité} $\tilde f$ de $f$ en $a$ par :
+\[
+\tilde f(x)=
+\begin{cases}
+f(x) & \text{si } x\neq a,\\
+\ell & \text{si } x=a.
+\end{cases}
+\]
+La fonction $\tilde f$ ainsi obtenue est continue en $a$.
+\end{definition}
+
+\begin{exemple}
+$f(x)=\dfrac{x^{2}-1}{x-1}=x+1$ pour $x\neq1$, et $\displaystyle\lim_{x\to1}f=2$. On prolonge $f$ par continuité en posant $\tilde f(1)=2$.
+\end{exemple}
+
+\begin{remarque}
+Si la limite en $a$ est \textbf{infinie} (ou n'existe pas), aucun prolongement par continuité n'est possible : il y a une asymptote verticale ou une discontinuité essentielle.
+\end{remarque}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Théorème des valeurs intermédiaires et bijection}
+
+\subsection{Le théorème des valeurs intermédiaires}
+
+\begin{theoreme}[Théorème des valeurs intermédiaires (TVI)]
+Si $f$ est \textbf{continue} sur $[a,b]$, alors pour tout réel $k$ compris entre $f(a)$ et $f(b)$, l'équation $f(x)=k$ admet \textbf{au moins une} solution $c$ dans $[a,b]$.
+\end{theoreme}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth]
+\begin{axis}[width=7.6cm,height=5cm,axis lines=middle,xlabel={\small $x$},ylabel={\small $y$},
+  xmin=-0.3,xmax=4.4,ymin=-0.5,ymax=4,
+  xtick={0.5,3.5},xticklabels={$a$,$b$},ytick={2},yticklabels={$k$}]
+\addplot[onbo,line width=1pt,domain=0.5:3.5,samples=80]{0.4+0.9*x-0.05*x^2+0.6*sin(deg(x))};
+\draw[dashed,onbgreen](axis cs:-0.3,2)--(axis cs:4.4,2);
+\draw[dashed,onbmuted](axis cs:2.0,0)--(axis cs:2.0,2);
+\filldraw[onbblue](axis cs:2.0,2)circle(2.2pt);
+\node[onbblue,anchor=south west] at (axis cs:2.05,2.05){\small $c$};
+\end{axis}
+\node[align=left,text width=4cm,anchor=west] at (7.8,1.6)
+{\small $f$ continue sur $[a,b]$ et $k$ entre $f(a)$ et $f(b)$ : la courbe \textbf{coupe} la droite $y=k$, donc $f(c)=k$ a une solution.};
+\end{tikzpicture}
+\fig{Figure 4 — Illustration du théorème des valeurs intermédiaires.}
+\end{illus}
+
+\begin{remarque}
+Un cas particulier fréquent : si $f$ est continue sur $[a,b]$ et si $f(a)$ et $f(b)$ sont de \textbf{signes contraires} (donc $f(a)\,f(b)<0$), alors l'équation $f(x)=0$ admet au moins une solution dans $]a,b[$.
+\end{remarque}
+
+\subsection{Existence ET unicité : cas strictement monotone}
+
+\begin{theoreme}[Corollaire : TVI version stricte]
+Si $f$ est continue \textbf{et strictement monotone} sur $[a,b]$, alors pour tout réel $k$ compris entre $f(a)$ et $f(b)$, l'équation $f(x)=k$ admet une \textbf{unique} solution dans $[a,b]$.
+\end{theoreme}
+
+\begin{aretenir}
+Pour montrer que $f(x)=0$ (ou $f(x)=k$) admet une \textbf{unique} solution sur $[a,b]$, vérifier les \textbf{trois conditions} :
+\begin{enumerate}[label=(\arabic*)]
+\item $f$ est \textbf{continue} sur $[a,b]$ ;
+\item $f$ est \textbf{strictement monotone} sur $[a,b]$ ;
+\item $k$ est \textbf{compris} entre $f(a)$ et $f(b)$ (souvent : $f(a)\,f(b)<0$ pour $k=0$).
+\end{enumerate}
+On encadre ensuite la solution $\alpha$ par \textbf{balayage} (tester des valeurs).
+\end{aretenir}
+
+\subsection{Théorème de la bijection}
+
+\begin{theoreme}[Théorème de la bijection]
+Si $f$ est continue et \textbf{strictement monotone} sur un intervalle $I$, alors $f$ réalise une \textbf{bijection} de $I$ sur l'intervalle image $J=f(I)$. La bijection réciproque $f^{-1}:J\to I$ est elle aussi continue et strictement monotone, de \textbf{même sens de variation} que $f$.
+\end{theoreme}
+
+\begin{propriete}[Intervalle image]
+Si $f$ est continue et strictement croissante sur $[a,b]$, alors $f([a,b])=[f(a),f(b)]$. Sur un intervalle ouvert ou infini, les bornes sont remplacées par les limites. Par exemple, si $f$ est continue strictement croissante sur $]a,+\infty[$, alors $f(\,]a,+\infty[\,)=\big]\lim_{a^{+}}f\,,\,\lim_{+\infty}f\big[$.
+\end{propriete}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth]
+\begin{axis}[width=8cm,height=5.2cm,axis lines=middle,xlabel={\small $x$},ylabel={\small $y$},
+  xmin=-0.4,xmax=4,ymin=-0.4,ymax=4,xtick=\empty,ytick=\empty]
+\addplot[onbo,line width=1.1pt,domain=0:3.6,samples=80]{0.25*x^2+0.2*x+0.2};
+\addplot[onbblue,line width=1.1pt,domain=0.2:3.6,samples=80]{(-0.2+sqrt(0.04+4*0.25*(x-0.2)))/(2*0.25)};
+\addplot[onbmuted,dashed,line width=0.6pt,domain=0:3.8]{x};
+\node[onbo,anchor=west] at (axis cs:2.8,3.4){\small $\mathcal C_f$};
+\node[onbblue,anchor=north] at (axis cs:3.4,1.7){\small $\mathcal C_{f^{-1}}$};
+\node[onbmuted,anchor=west] at (axis cs:2.5,2.9){\scriptsize $y=x$};
+\end{axis}
+\node[align=left,text width=3.6cm,anchor=west] at (8.2,1.6)
+{\small Les courbes de $f$ et de $f^{-1}$ sont \textbf{symétriques} par rapport à la droite $y=x$.};
+\end{tikzpicture}
+\fig{Figure 5 — Une fonction bijective et sa réciproque (symétrie par rapport à $y=x$).}
+\end{illus}
+
+\begin{remarque}
+La résolution approchée d'équations (par balayage, dichotomie) et l'existence de fonctions réciproques (comme $\sqrt{\;}$, racine cubique, plus tard $\ln$ et $\exp$) reposent directement sur ces deux théorèmes.
+\end{remarque}
+
+% ═══════════════════════════════════════════════════════════════
+\section{L'essentiel à retenir}
+
+\begin{synthese}
+\textbf{Limites de référence.} $\displaystyle\lim_{+\infty}x^{n}=+\infty$ ; $\displaystyle\lim_{\pm\infty}\frac1{x^{n}}=0$ ; $\displaystyle\lim_{0^{+}}\frac1x=+\infty$, $\displaystyle\lim_{0^{-}}\frac1x=-\infty$ ; $\displaystyle\lim_{+\infty}\sqrt x=+\infty$ ; $\displaystyle\lim_{0}\frac{\sin x}{x}=1$.
+
+\smallskip
+\textbf{Quatre formes indéterminées :} $\;\infty-\infty\;$, $\;0\times\infty\;$, $\;\dfrac{\infty}{\infty}\;$, $\;\dfrac00$. \quad Attention : $\dfrac{\ell}{0}=\pm\infty$ (selon le signe), \emph{pas} une FI.
+
+\smallskip
+\textbf{Polynôme / rationnelle en $\pm\infty$ :} limite du terme de plus haut degré / du quotient des termes de plus haut degré.
+
+\smallskip
+\textbf{Lever une FI :} factoriser par le terme dominant ($\tfrac{\infty}{\infty}$) ; multiplier par l'\textbf{expression conjuguée} (racines, $\infty-\infty$) ; factoriser numérateur et dénominateur ($\tfrac00$).
+
+\smallskip
+\textbf{Composée :} $\displaystyle\lim_{a}u=b$ et $\displaystyle\lim_{b}g=\ell\Rightarrow\lim_{a}g\circ u=\ell$. \quad
+\textbf{Gendarmes :} $u\le f\le v$ avec $\lim u=\lim v=\ell\Rightarrow\lim f=\ell$.
+
+\smallskip
+\textbf{Asymptotes :} $\lim_{a^{\pm}}f=\pm\infty\Rightarrow$ verticale $x=a$ ; $\lim_{\pm\infty}f=\ell\Rightarrow$ horizontale $y=\ell$.
+
+\smallskip
+\textbf{Continuité en $a$ :} $f(a)$ existe et $\displaystyle\lim_{a}f=f(a)$. Polynômes, rationnelles, $\sqrt{\;}$, $\sin$, $\cos$, $|\cdot|$ continues sur leur domaine. \textbf{Dérivable $\Rightarrow$ continue} (réciproque fausse).
+
+\smallskip
+\textbf{Prolongement par continuité :} si $\displaystyle\lim_{a}f=\ell$ fini ($f$ non définie en $a$), poser $\tilde f(a)=\ell$.
+
+\smallskip
+\textbf{TVI :} $f$ continue sur $[a,b]$, $k$ entre $f(a)$ et $f(b)$ $\Rightarrow$ $f(x)=k$ a \textbf{au moins} une solution.
+
+\smallskip
+\textbf{Existence + unicité :} $f$ continue \textbf{et strictement monotone}, $k$ entre $f(a)$ et $f(b)$ $\Rightarrow$ solution \textbf{unique}. \textbf{Bijection :} $f$ continue strictement monotone sur $I$ $\Rightarrow$ bijection de $I$ sur $f(I)$ ; $\mathcal C_f$ et $\mathcal C_{f^{-1}}$ symétriques par rapport à $y=x$.
+
+\smallskip
+\textbf{Piège :} toujours étudier le \textbf{signe} d'un dénominateur qui tend vers $0$ pour trancher entre $+\infty$ et $-\infty$.
+\end{synthese}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Méthodes \& savoir-faire}
+
+\methode{Calculer la limite d'un polynôme ou d'une rationnelle en $\pm\infty$}
+Garder uniquement le terme de plus haut degré (polynôme) ou le quotient des termes de plus haut degré (rationnelle).
+\begin{exemple}
+$\displaystyle\lim_{x\to+\infty}\frac{3x^{2}-x+2}{x^{2}+5}=\lim_{x\to+\infty}\frac{3x^{2}}{x^{2}}=3$ ; \quad
+$\displaystyle\lim_{x\to-\infty}\frac{-2x^{3}+x}{x^{2}+1}=\lim_{x\to-\infty}\frac{-2x^{3}}{x^{2}}=\lim_{x\to-\infty}(-2x)=+\infty$.
+\end{exemple}
+
+\methode{Lever une forme indéterminée $\tfrac00$ par factorisation}
+Quand $x\to a$ annule numérateur et dénominateur, factoriser par $(x-a)$ et simplifier.
+\begin{exemple}
+$\displaystyle\lim_{x\to2}\frac{x^{2}-4}{x-2}=\lim_{x\to2}\frac{(x-2)(x+2)}{x-2}=\lim_{x\to2}(x+2)=4$.
+\end{exemple}
+
+\methode{Lever une FI avec l'expression conjuguée (racines)}
+Multiplier numérateur et dénominateur par la quantité conjuguée pour faire disparaître la racine gênante.
+\begin{exemple}
+$\displaystyle\lim_{x\to+\infty}\big(\sqrt{x^{2}+x}-x\big)=\lim_{x\to+\infty}\frac{x}{\sqrt{x^{2}+x}+x}=\lim_{x\to+\infty}\frac{1}{\sqrt{1+\frac1x}+1}=\frac12.$
+\end{exemple}
+
+\methode{Calculer une limite par le théorème des gendarmes}
+Encadrer $f$ entre deux fonctions de même limite (souvent grâce à $-1\le\sin\le1$, $-1\le\cos\le1$).
+\begin{exemple}
+$\displaystyle\lim_{x\to+\infty}\frac{2x+\cos x}{x}$ : $\dfrac{2x-1}{x}\le\dfrac{2x+\cos x}{x}\le\dfrac{2x+1}{x}$, et $\dfrac{2x\pm1}{x}\to2$, donc la limite vaut $2$.
+\end{exemple}
+
+\methode{Calculer la limite d'une composée}
+Poser $X=u(x)$, déterminer $\lim u=b$, puis $\lim_{X\to b}g(X)$.
+\begin{exemple}
+$\displaystyle\lim_{x\to0^{+}}\sqrt{\frac{1+x}{x}}$ : $u(x)=\dfrac{1+x}{x}\to+\infty$ quand $x\to0^{+}$, et $\sqrt X\to+\infty$, donc la limite est $+\infty$.
+\end{exemple}
+
+\methode{Étudier la continuité et prolonger}
+Comparer $\displaystyle\lim_{x\to a}f$ et $f(a)$. Si $f$ n'est pas définie en $a$ et que la limite est finie $\ell$, prolonger par $\tilde f(a)=\ell$.
+\begin{exemple}
+$f(x)=\dfrac{x^{2}-1}{x-1}$ : pour $x\neq1$, $f(x)=x+1$, $\displaystyle\lim_{x\to1}f=2$ (finie) $\Rightarrow$ on pose $\tilde f(1)=2$.
+\end{exemple}
+
+\methode{Recoller deux morceaux : continuité d'une fonction par morceaux}
+Calculer les limites à gauche et à droite au point de raccord et imposer leur égalité avec la valeur de la fonction.
+\begin{exemple}
+$f(x)=\begin{cases}x^{2}+1 & x\le1\\ ax+2 & x>1\end{cases}$ : $\displaystyle\lim_{1^{-}}f=2$, $\displaystyle\lim_{1^{+}}f=a+2$ ; continuité $\Leftrightarrow a+2=2\Leftrightarrow a=0$.
+\end{exemple}
+
+\methode{Appliquer le TVI : existence ET unicité d'une solution}
+Vérifier (1) continuité, (2) stricte monotonie, (3) $k$ entre $f(a)$ et $f(b)$ ; conclure à l'unicité puis encadrer par balayage.
+\begin{exemple}
+$f(x)=x^{3}+x-1$ : $f'(x)=3x^{2}+1>0$ (strictement croissante), $f$ continue, $f(0)=-1<0<1=f(1)$ : \textbf{unique} solution $\alpha\in\,]0,1[$. Comme $f(0{,}6)=-0{,}184<0<0{,}143=f(0{,}7)$, on a $0{,}6<\alpha<0{,}7$.
+\end{exemple}
+
+\methode{Déterminer l'intervalle image d'une bijection}
+Pour $f$ continue strictement monotone, l'image de l'intervalle est l'intervalle dont les bornes sont les images (ou limites) aux extrémités, dans l'ordre dicté par la monotonie.
+\begin{exemple}
+$f(x)=\dfrac{x-1}{x+1}$ sur $[0,+\infty[$ : continue strictement croissante, $f(0)=-1$ et $\displaystyle\lim_{+\infty}f=1$, donc $f$ réalise une bijection de $[0,+\infty[$ sur $[-1,1[$.
+\end{exemple}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Exercices d'application}
+
+\rubrique{Calculs de limites (polynômes, rationnelles)}
+\exo{}\diff{1} Calculer $\displaystyle\lim_{x\to+\infty}\frac{3x^{2}-x+2}{x^{2}+5}$ et $\displaystyle\lim_{x\to2}\frac{x^{2}-4}{x-2}$.
+
+\exo{}\diff{1} Calculer $\displaystyle\lim_{x\to-\infty}\big(x^{3}-4x^{2}+1\big)$ et $\displaystyle\lim_{x\to+\infty}\frac{5x-3}{2x^{2}+x+1}$.
+
+\exo{}\diff{2} Calculer $\displaystyle\lim_{x\to1^{+}}\frac{x+2}{x-1}$ et $\displaystyle\lim_{x\to1^{-}}\frac{x+2}{x-1}$. Interpréter graphiquement.
+
+\rubrique{Formes indéterminées avec racines}
+\exo{}\diff{2} Calculer $\displaystyle\lim_{x\to+\infty}\big(\sqrt{x^{2}+3x}-x\big)$ et $\displaystyle\lim_{x\to1}\frac{\sqrt x-1}{x-1}$.
+
+\exo{}\diff{2} Calculer $\displaystyle\lim_{x\to0}\frac{\sqrt{1+x}-1}{x}$.
+
+\exo{}\diff{3} Calculer $\displaystyle\lim_{x\to+\infty}\big(\sqrt{x^{2}+x+1}-\sqrt{x^{2}-x}\big)$.
+
+\rubrique{Limites par encadrement et composées}
+\exo{}\diff{2} Montrer que $\displaystyle\lim_{x\to+\infty}\frac{x+\sin x}{x}=1$.
+
+\exo{}\diff{2} Calculer $\displaystyle\lim_{x\to+\infty}\sqrt{\frac{4x^{2}+1}{x^{2}+x}}$.
+
+\exo{}\diff{1} Calculer $\displaystyle\lim_{x\to0}\frac{\sin 3x}{x}$.
+
+\rubrique{Continuité et prolongement}
+\exo{}\diff{1} La fonction $f(x)=\dfrac{x^{2}-9}{x-3}$ admet-elle un prolongement par continuité en $3$ ? Si oui, le donner.
+
+\exo{}\diff{2} Déterminer $a$ pour que $f(x)=\begin{cases}x^{2}+1&x\le1\\ ax+2&x>1\end{cases}$ soit continue en $1$.
+
+\exo{}\diff{2} Soit $g(x)=\dfrac{x^{3}-1}{x-1}$. Étudier la possibilité d'un prolongement par continuité en $1$ et préciser $\tilde g(1)$.
+
+\exo{}\diff{3} Soit $h(x)=\begin{cases}\dfrac{\sqrt{x+4}-2}{x}&x\neq0\\ a&x=0\end{cases}$. Déterminer $a$ pour que $h$ soit continue en $0$.
+
+\rubrique{TVI, unicité et bijection}
+\exo{}\diff{2} Soit $f(x)=x^{3}-3x+1$. Montrer que $f(x)=0$ admet une solution $\alpha\in\,]1,2[$ et l'encadrer à $0{,}1$ près.
+
+\exo{}\diff{2} Montrer que l'équation $x^{3}+x-3=0$ admet une unique solution réelle, et l'encadrer à $0{,}1$ près.
+
+\exo{}\diff{3} Soit $f(x)=\dfrac{x-1}{x+1}$ sur $[0,+\infty[$.
+\begin{enumerate}[label=\arabic*)]
+\item Montrer que $f(x)=1-\dfrac{2}{x+1}$ et en déduire son sens de variation.
+\item Calculer $\displaystyle\lim_{x\to+\infty}f$ et interpréter graphiquement.
+\item Montrer que $f$ réalise une bijection de $[0,+\infty[$ sur un intervalle à préciser.
+\item Montrer que $f(x)=\dfrac12$ a une unique solution sur $[0,+\infty[$ et la déterminer.
+\end{enumerate}
+
+\exo{}\diff{3} Soit $f(x)=x+\dfrac1x$ pour $x>0$. Étudier ses variations, puis montrer que $f$ réalise une bijection de $[1,+\infty[$ sur un intervalle à préciser.
+
+% ═══════════════════════════════════════════════════════════════
+\section{Exercices d'entraînement}
+
+\rubrique{Calculs de limites directes}
+\exo{}\diff{1} $\displaystyle\lim_{x\to+\infty}\frac{7x^{2}+2x}{3x^{2}-1}$.
+
+\exo{}\diff{1} $\displaystyle\lim_{x\to-\infty}\big(2x^{4}-5x^{3}+x\big)$.
+
+\exo{}\diff{1} $\displaystyle\lim_{x\to+\infty}\frac{x^{2}+1}{x^{3}+x}$.
+
+\exo{}\diff{1} $\displaystyle\lim_{x\to3}\frac{x^{2}-9}{x^{2}-2x-3}$.
+
+\exo{}\diff{2} $\displaystyle\lim_{x\to-2}\frac{x^{2}+x-2}{x+2}$.
+
+\exo{}\diff{2} $\displaystyle\lim_{x\to0^{+}}\Big(\frac1x-\frac1{x^{2}}\Big)$.
+
+\rubrique{Limites avec valeurs interdites (signes)}
+\exo{}\diff{2} $\displaystyle\lim_{x\to2^{+}}\frac{3x-1}{x-2}$ et $\displaystyle\lim_{x\to2^{-}}\frac{3x-1}{x-2}$.
+
+\exo{}\diff{2} $\displaystyle\lim_{x\to(-1)^{+}}\frac{x}{x+1}$ et $\displaystyle\lim_{x\to(-1)^{-}}\frac{x}{x+1}$.
+
+\exo{}\diff{2} $\displaystyle\lim_{x\to0}\frac{x-2}{x^{2}}$.
+
+\exo{}\diff{3} Étudier les limites de $f(x)=\dfrac{x^{2}+1}{x^{2}-4}$ aux bornes de son domaine. En déduire toutes les asymptotes.
+
+\rubrique{Formes indéterminées avec racines}
+\exo{}\diff{2} $\displaystyle\lim_{x\to+\infty}\big(\sqrt{x+1}-\sqrt{x}\big)$.
+
+\exo{}\diff{2} $\displaystyle\lim_{x\to4}\frac{\sqrt x-2}{x-4}$.
+
+\exo{}\diff{3} $\displaystyle\lim_{x\to+\infty}\big(\sqrt{4x^{2}+x}-2x\big)$.
+
+\exo{}\diff{3} $\displaystyle\lim_{x\to2}\frac{\sqrt{x+2}-2}{x-2}$.
+
+\rubrique{Gendarmes, trigonométrie et composées}
+\exo{}\diff{2} $\displaystyle\lim_{x\to0}\frac{\sin 5x}{\sin 2x}$.
+
+\exo{}\diff{2} $\displaystyle\lim_{x\to+\infty}\frac{2x+3\cos x}{x-1}$.
+
+\exo{}\diff{2} $\displaystyle\lim_{x\to0}\frac{1-\cos x}{x^{2}}$.
+
+\exo{}\diff{3} Montrer que $\displaystyle\lim_{x\to+\infty}\frac{\lfloor x\rfloor}{x}=1$ (où $\lfloor x\rfloor$ désigne la partie entière), en utilisant $x-1<\lfloor x\rfloor\le x$.
+
+\exo{}\diff{2} $\displaystyle\lim_{x\to+\infty}\sqrt{\frac{x^{2}-1}{2x^{2}+3}}$.
+
+\rubrique{Continuité, prolongement, fonctions par morceaux}
+\exo{}\diff{1} Étudier la continuité de $f(x)=\dfrac{x^{2}-5x+6}{x-2}$ et la prolonger si possible en $2$.
+
+\exo{}\diff{2} Soit $f(x)=\begin{cases}2x+1 & x<2\\ x^{2}-1 & x\ge2\end{cases}$. $f$ est-elle continue en $2$ ?
+
+\exo{}\diff{2} Déterminer $a$ et $b$ pour que $f(x)=\begin{cases}x+1 & x\le0\\ ax+b & 0<x<1\\ 3 & x\ge1\end{cases}$ soit continue sur $\R$.
+
+\exo{}\diff{3} Soit $f(x)=\dfrac{x^{3}-8}{x^{2}-4}$. Étudier le prolongement par continuité en $2$ et en $-2$.
+
+\exo{}\diff{2} Montrer que $f(x)=|x-1|+|x+2|$ est continue sur $\R$.
+
+\rubrique{TVI, unicité, bijection}
+\exo{}\diff{2} Montrer que $x^{3}+2x-5=0$ admet une unique solution réelle, et l'encadrer à $0{,}1$ près.
+
+\exo{}\diff{2} Soit $f(x)=x^{3}-6x+2$. Montrer que l'équation $f(x)=0$ admet exactement trois solutions réelles.
+
+\exo{}\diff{2} Montrer que l'équation $\cos x=x$ admet une unique solution dans $\big[0,\tfrac{\pi}{2}\big]$.
+
+\exo{}\diff{3} Soit $f(x)=\dfrac{2x+1}{x-1}$ sur $]1,+\infty[$. Montrer que $f$ réalise une bijection de $]1,+\infty[$ sur un intervalle à préciser, puis résoudre $f(x)=3$.
+
+\exo{}\diff{3} Soit $f(x)=x^{3}+3x^{2}+1$. Étudier les variations de $f$, puis le nombre de solutions de $f(x)=k$ selon la valeur du réel $k$.
+
+\exo{}\diff{2} Montrer que tout polynôme de degré impair admet au moins une racine réelle (on pourra étudier ses limites en $\pm\infty$).
+
+% ═══════════════════════════════════════════════════════════════
+\section{Sujets type Baccalauréat}
+
+\sujetbac[Étude d'une fonction homographique et bijection]
+On considère la fonction $f$ définie sur $\R\setminus\{2\}$ par $\displaystyle f(x)=\frac{3x-1}{x-2}$, de courbe $\mathcal C_f$.
+\begin{enumerate}[label=\arabic*)]
+\item Déterminer les limites de $f$ aux bornes de son domaine. En déduire toutes les asymptotes de $\mathcal C_f$.
+\item Montrer que pour tout $x\neq2$, $\;f(x)=3+\dfrac{5}{x-2}$.
+\item En déduire le sens de variation de $f$ sur $]2,+\infty[$ puis sur $]-\infty,2[$.
+\item Montrer que $f$ réalise une bijection de $]2,+\infty[$ sur un intervalle $J$ que l'on précisera.
+\item Résoudre dans $]2,+\infty[$ l'équation $f(x)=4$.
+\end{enumerate}
+
+\sujetbac[Forme indéterminée, continuité et TVI]
+Soit $f$ la fonction définie sur $\R$ par $\displaystyle f(x)=x^{3}-3x^{2}+2$.
+\begin{enumerate}[label=\arabic*)]
+\item Calculer $\displaystyle\lim_{x\to-\infty}f(x)$ et $\displaystyle\lim_{x\to+\infty}f(x)$.
+\item Calculer $f'(x)$, étudier son signe et dresser le tableau de variations de $f$.
+\item Montrer que l'équation $f(x)=0$ admet exactement trois solutions réelles $\alpha<\beta<\gamma$.
+\item Donner un encadrement de $\alpha$ à $0{,}1$ près.
+\item Soit $g(x)=\dfrac{f(x)}{x-1}$ pour $x\neq1$. Calculer $\displaystyle\lim_{x\to1}g(x)$ et étudier le prolongement par continuité de $g$ en $1$.
+\end{enumerate}
+
+\sujetbac[Conjuguée, gendarmes et continuité par morceaux]
+\begin{enumerate}[label=\arabic*)]
+\item Calculer $\displaystyle\lim_{x\to+\infty}\big(\sqrt{x^{2}+2x+3}-x\big)$.
+\item À l'aide d'un encadrement, déterminer $\displaystyle\lim_{x\to+\infty}\frac{2x+\sin(3x)}{x+1}$.
+\item Soit $\displaystyle h(x)=\begin{cases}\dfrac{x^{2}-x-2}{x-2} & x\neq2\\[4pt] m & x=2.\end{cases}$ Déterminer le réel $m$ pour que $h$ soit continue en $2$.
+\item Pour la valeur de $m$ trouvée, montrer que $h$ est continue et strictement croissante sur $\R$, et qu'il existe un unique réel $c$ tel que $h(c)=0$. Déterminer $c$.
+\end{enumerate}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Corrigés}
+
+\corrige{de l'exercice 1}
+$\dfrac{3x^{2}-x+2}{x^{2}+5}\to\dfrac{3x^{2}}{x^{2}}=3$. \quad $\dfrac{x^{2}-4}{x-2}=x+2\to4$.
+
+\corrige{de l'exercice 2}
+$x^{3}-4x^{2}+1\to x^{3}\to-\infty$ quand $x\to-\infty$. \quad $\dfrac{5x-3}{2x^{2}+x+1}\to\dfrac{5x}{2x^{2}}=\dfrac{5}{2x}\to0$.
+
+\corrige{de l'exercice 3}
+Quand $x\to1$, le numérateur tend vers $3>0$ et $x-1\to0$. Pour $x\to1^{+}$, $x-1>0$ donc $\dfrac{x+2}{x-1}\to+\infty$ ; pour $x\to1^{-}$, $x-1<0$ donc $\to-\infty$. Asymptote verticale $x=1$.
+
+\corrige{de l'exercice 4}
+$\sqrt{x^{2}+3x}-x=\dfrac{3x}{\sqrt{x^{2}+3x}+x}=\dfrac{3}{\sqrt{1+\frac3x}+1}\to\dfrac32$.
+
+\noindent$\dfrac{\sqrt x-1}{x-1}=\dfrac{\sqrt x-1}{(\sqrt x-1)(\sqrt x+1)}=\dfrac1{\sqrt x+1}\to\dfrac12$.
+
+\corrige{de l'exercice 5}
+$\dfrac{\sqrt{1+x}-1}{x}=\dfrac{(1+x)-1}{x\big(\sqrt{1+x}+1\big)}=\dfrac{1}{\sqrt{1+x}+1}\to\dfrac12$.
+
+\corrige{de l'exercice 6}
+On multiplie par la conjuguée :
+\[
+\sqrt{x^{2}+x+1}-\sqrt{x^{2}-x}=\frac{(x^{2}+x+1)-(x^{2}-x)}{\sqrt{x^{2}+x+1}+\sqrt{x^{2}-x}}=\frac{2x+1}{\sqrt{x^{2}+x+1}+\sqrt{x^{2}-x}}.
+\]
+Pour $x>0$, en factorisant $x$ au dénominateur : $\dfrac{2x+1}{x\big(\sqrt{1+\frac1x+\frac1{x^{2}}}+\sqrt{1-\frac1x}\big)}\to\dfrac{2}{1+1}=1$. La limite vaut $1$.
+
+\corrige{de l'exercice 7}
+Pour $x>0$ : $\dfrac{x-1}{x}\le\dfrac{x+\sin x}{x}\le\dfrac{x+1}{x}$, soit $1-\dfrac1x\le f(x)\le1+\dfrac1x$. Les deux bornes tendent vers $1$, donc par les gendarmes $\displaystyle\lim_{x\to+\infty}\dfrac{x+\sin x}{x}=1$.
+
+\corrige{de l'exercice 8}
+$\dfrac{4x^{2}+1}{x^{2}+x}\to\dfrac{4x^{2}}{x^{2}}=4$, et $\sqrt X\to\sqrt4=2$. Donc la limite vaut $2$.
+
+\corrige{de l'exercice 9}
+$\dfrac{\sin 3x}{x}=3\cdot\dfrac{\sin 3x}{3x}\to3\times1=3$ (car $\dfrac{\sin u}{u}\to1$ avec $u=3x\to0$).
+
+\corrige{de l'exercice 10}
+Pour $x\neq3$, $f(x)=\dfrac{(x-3)(x+3)}{x-3}=x+3$, donc $\displaystyle\lim_{x\to3}f=6$ (finie). $f$ se prolonge par continuité avec $\tilde f(3)=6$.
+
+\corrige{de l'exercice 11}
+$\displaystyle\lim_{1^{-}}f=1^{2}+1=2$ et $\displaystyle\lim_{1^{+}}f=a+2$. Continuité $\Leftrightarrow a+2=2\Leftrightarrow a=0$.
+
+\corrige{de l'exercice 12}
+$x^{3}-1=(x-1)(x^{2}+x+1)$, donc pour $x\neq1$, $g(x)=x^{2}+x+1$ et $\displaystyle\lim_{x\to1}g=3$ (finie). Prolongement : $\tilde g(1)=3$.
+
+\corrige{de l'exercice 13}
+Pour $x\neq0$ : $\dfrac{\sqrt{x+4}-2}{x}=\dfrac{(x+4)-4}{x\big(\sqrt{x+4}+2\big)}=\dfrac1{\sqrt{x+4}+2}\to\dfrac1{2+2}=\dfrac14$. Pour la continuité en $0$, on prend $a=\dfrac14$.
+
+\corrige{de l'exercice 14}
+$f$ est un polynôme, donc continue. $f(1)=1-3+1=-1<0$ et $f(2)=8-6+1=3>0$ : par le TVI, il existe $\alpha\in\,]1,2[$ tel que $f(\alpha)=0$. Balayage : $f(1{,}5)=3{,}375-4{,}5+1=-0{,}125<0$ et $f(1{,}6)=4{,}096-4{,}8+1=0{,}296>0$, donc $1{,}5<\alpha<1{,}6$.
+
+\corrige{de l'exercice 15}
+Soit $f(x)=x^{3}+x-3$. $f'(x)=3x^{2}+1>0$ : $f$ est continue et strictement croissante sur $\R$, donc bijective ; comme $\displaystyle\lim_{-\infty}f=-\infty$ et $\displaystyle\lim_{+\infty}f=+\infty$, $0$ est atteint une seule fois : \textbf{unique} solution $\alpha$. $f(1)=-1<0$, $f(1{,}2)=1{,}728+1{,}2-3=-0{,}072<0$, $f(1{,}3)=2{,}197+1{,}3-3=0{,}497>0$, donc $1{,}2<\alpha<1{,}3$.
+
+\corrige{de l'exercice 16}
+1) $1-\dfrac2{x+1}=\dfrac{(x+1)-2}{x+1}=\dfrac{x-1}{x+1}=f(x)$. Comme $x\mapsto\dfrac2{x+1}$ décroît sur $[0,+\infty[$, $f$ est \textbf{strictement croissante}.\;
+2) $\displaystyle\lim_{x\to+\infty}f=1$ : asymptote horizontale $y=1$.\;
+3) $f$ continue, strictement croissante, $f(0)=-1$ et $\displaystyle\lim_{+\infty}f=1$ : $f$ réalise une bijection de $[0,+\infty[$ sur $[-1,1[$.\;
+4) Comme $\dfrac12\in[-1,1[$, l'équation $f(x)=\dfrac12$ a une \textbf{unique} solution. $\dfrac{x-1}{x+1}=\dfrac12\Leftrightarrow 2(x-1)=x+1\Leftrightarrow x=3$.
+
+\corrige{de l'exercice 17}
+$f(x)=x+\dfrac1x$, $f'(x)=1-\dfrac1{x^{2}}=\dfrac{x^{2}-1}{x^{2}}$. Pour $x\ge1$, $f'(x)\ge0$ : $f$ est strictement croissante sur $[1,+\infty[$. Elle y est continue, $f(1)=2$ et $\displaystyle\lim_{+\infty}f=+\infty$ : $f$ réalise une bijection de $[1,+\infty[$ sur $[2,+\infty[$.
+
+\corrige{du sujet 1}
+1) Comme $x\to2$, $3x-1\to5>0$ et $x-2\to0$ : pour $x\to2^{+}$, $\to+\infty$ ; pour $x\to2^{-}$, $\to-\infty$ : asymptote \textbf{verticale} $x=2$. En $\pm\infty$, $f(x)\to\dfrac{3x}{x}=3$ : asymptote \textbf{horizontale} $y=3$.\;
+2) $3+\dfrac5{x-2}=\dfrac{3(x-2)+5}{x-2}=\dfrac{3x-1}{x-2}=f(x)$.\;
+3) $f(x)=3+\dfrac5{x-2}$ : la fonction $x\mapsto\dfrac5{x-2}$ est strictement décroissante sur chaque intervalle où $x-2$ garde un signe constant. Donc $f$ est \textbf{strictement décroissante} sur $]2,+\infty[$ et sur $]-\infty,2[$.\;
+4) Sur $]2,+\infty[$ : $f$ continue, strictement décroissante, $\displaystyle\lim_{2^{+}}f=+\infty$ et $\displaystyle\lim_{+\infty}f=3$, donc $f$ réalise une bijection de $]2,+\infty[$ sur $J=\,]3,+\infty[$.\;
+5) $f(x)=4\Leftrightarrow 3+\dfrac5{x-2}=4\Leftrightarrow \dfrac5{x-2}=1\Leftrightarrow x-2=5\Leftrightarrow x=7$ (bien dans $]2,+\infty[$).
+
+\corrige{du sujet 2}
+1) $f(x)\to x^{3}$ : $\displaystyle\lim_{-\infty}f=-\infty$, $\displaystyle\lim_{+\infty}f=+\infty$.\;
+2) $f'(x)=3x^{2}-6x=3x(x-2)$ : $f'>0$ sur $]-\infty,0[$, $f'<0$ sur $]0,2[$, $f'>0$ sur $]2,+\infty[$. Maximum local $f(0)=2$, minimum local $f(2)=8-12+2=-2$. Variations : $\nearrow$ jusqu'à $f(0)=2$, $\searrow$ jusqu'à $f(2)=-2$, $\nearrow$ ensuite.\;
+3) Sur $]-\infty,0]$ : $f$ croît de $-\infty$ à $2$, donc s'annule une fois ($\alpha<0$). Sur $[0,2]$ : $f$ décroît de $2$ à $-2$, donc s'annule une fois ($\beta\in\,]0,2[$). Sur $[2,+\infty[$ : $f$ croît de $-2$ à $+\infty$, donc s'annule une fois ($\gamma>2$). Au total \textbf{trois} solutions $\alpha<\beta<\gamma$.\;
+4) Pour $\alpha<0$ : $f(-1)=-1-3+2=-2<0$, $f(-0{,}7)=-0{,}343-1{,}47+2=0{,}187>0$, $f(-0{,}8)=-0{,}512-1{,}92+2=-0{,}432<0$. Donc $-0{,}8<\alpha<-0{,}7$.\;
+5) Pour $x\neq1$ : $f(x)=x^{3}-3x^{2}+2$. On vérifie $f(1)=1-3+2=0$, donc $(x-1)$ divise $f$ : $f(x)=(x-1)(x^{2}-2x-2)$. Ainsi $g(x)=x^{2}-2x-2$ pour $x\neq1$, $\displaystyle\lim_{x\to1}g=1-2-2=-3$ (finie). $g$ se prolonge par continuité en posant $\tilde g(1)=-3$.
+
+\corrige{du sujet 3}
+1) $\sqrt{x^{2}+2x+3}-x=\dfrac{(x^{2}+2x+3)-x^{2}}{\sqrt{x^{2}+2x+3}+x}=\dfrac{2x+3}{\sqrt{x^{2}+2x+3}+x}$. En factorisant $x$ : $\to\dfrac{2x}{x(1+1)}=\dfrac{2}{2}=1$. Limite $=1$.\;
+2) Pour $x>0$ : $\dfrac{2x-1}{x+1}\le\dfrac{2x+\sin(3x)}{x+1}\le\dfrac{2x+1}{x+1}$, et $\dfrac{2x\pm1}{x+1}\to2$. Par les gendarmes, la limite vaut $2$.\;
+3) $x^{2}-x-2=(x-2)(x+1)$, donc pour $x\neq2$, $h(x)=x+1$ et $\displaystyle\lim_{x\to2}h=3$. Continuité en $2$ : $m=3$.\;
+4) Avec $m=3$, $h(x)=x+1$ pour tout $x$ (y compris en $2$ car $2+1=3=m$). Donc $h$ est affine : continue et strictement croissante sur $\R$. $h(c)=0\Leftrightarrow c+1=0\Leftrightarrow c=-1$, unique. Donc $c=-1$.

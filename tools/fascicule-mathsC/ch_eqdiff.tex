@@ -1,0 +1,961 @@
+\chapter{Équations différentielles}
+
+\noindent\textit{Une équation différentielle relie une fonction inconnue à ses
+dérivées. Elle traduit en langage mathématique de nombreuses lois de la nature :
+refroidissement d'un corps, désintégration radioactive, croissance d'une
+population, décharge d'un condensateur, oscillations d'un ressort ou d'un circuit
+électrique. En Terminale C, on apprend à reconnaître quelques types classiques
+($y'=ay$, $y'=ay+b$, $y''+\omega^2 y=0$, $y''+by'+cy=0$) dont on sait écrire
+\emph{toutes} les solutions, puis à sélectionner celle qui satisfait des
+\textbf{conditions initiales}. Ce chapitre est le pont entre l'analyse et les
+sciences physiques : c'est un thème très présent au Baccalauréat.}
+\vspace{8pt}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Vocabulaire et premiers exemples}
+
+\begin{definition}[Équation différentielle, solution]
+Une \textbf{équation différentielle} est une équation dont l'inconnue est une
+\textbf{fonction} $y$ et qui fait intervenir $y$ et au moins une de ses dérivées
+($y'$, $y''$, \dots). Son \textbf{ordre} est celui de la dérivée la plus élevée
+qui y figure.
+
+Une fonction $f$, dérivable autant de fois que nécessaire sur un intervalle $I$,
+est une \textbf{solution} sur $I$ si, en remplaçant $y$ par $f(x)$ (et $y'$ par
+$f'(x)$, etc.), l'égalité est vraie pour \emph{tout} $x\in I$.
+\end{definition}
+
+\begin{exemple}
+$y'=2y$ est d'ordre $1$. La fonction $f(x)=5\,e^{2x}$ en est une solution : en
+effet $f'(x)=10\,e^{2x}=2\times 5e^{2x}=2f(x)$ pour tout $x\in\R$.
+\end{exemple}
+
+\begin{exemple}
+$y''+y=0$ est d'ordre $2$. La fonction $f(x)=\cos x$ est solution :
+$f''(x)=-\cos x=-f(x)$, donc $f''+f=0$. La fonction $g(x)=3\sin x-2\cos x$ l'est
+aussi.
+\end{exemple}
+
+\begin{definition}[Solution générale, solution particulière]
+\textbf{Résoudre} (ou \textbf{intégrer}) une équation différentielle, c'est
+déterminer \emph{toutes} ses solutions sur un intervalle. L'ensemble de ces
+solutions s'appelle la \textbf{solution générale} : elle dépend d'une constante
+arbitraire (ordre $1$) ou de deux constantes (ordre $2$). Une \textbf{solution
+particulière} est une solution précise, obtenue en fixant ces constantes.
+\end{definition}
+
+\begin{remarque}
+Une \textbf{condition initiale} (valeur de $y$, et éventuellement de $y'$, en un
+point $x_0$) fixe les constantes et isole \emph{une} solution. Au premier ordre,
+une condition suffit ; au second ordre, il en faut deux. On parle alors de
+\textbf{problème de Cauchy} : « l'équation $+$ les conditions initiales ».
+\end{remarque}
+
+\begin{remarque}[Lien avec les primitives]
+Le cas le plus simple est $y'=g(x)$ : résoudre revient à \textbf{chercher les
+primitives} de $g$. Par exemple $y'=2x$ a pour solutions $y=x^2+C$. Toute la
+théorie des équations différentielles généralise cette idée : on cherche une
+famille de fonctions dépendant de constantes.
+\end{remarque}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Équations linéaires du premier ordre}
+
+\subsection{L'équation $y'=ay$}
+
+\begin{theoreme}[Équation $y'=ay$]
+Soit $a$ un réel. Les solutions sur $\R$ de l'équation
+\[
+y'=ay
+\]
+sont exactement les fonctions
+\[
+x\longmapsto C\,e^{ax},\qquad C\in\R.
+\]
+De plus, pour toute condition initiale $y(x_0)=y_0$, il existe une
+\textbf{unique} solution.
+\end{theoreme}
+
+\begin{remarque}[Justification]
+\emph{Vérification} : si $f(x)=Ce^{ax}$ alors $f'(x)=aCe^{ax}=af(x)$.
+\emph{Réciproque} : soit $f$ une solution. Posons $g(x)=f(x)\,e^{-ax}$. Alors
+$g'(x)=f'(x)e^{-ax}-a f(x)e^{-ax}=\big(f'(x)-af(x)\big)e^{-ax}=0$. Donc $g$ est
+constante : $g(x)=C$, d'où $f(x)=Ce^{ax}$. La condition $y(x_0)=y_0$ donne
+$C=y_0\,e^{-ax_0}$, unique.
+\end{remarque}
+
+\begin{remarque}
+On retient le sens physique : « la dérivée est proportionnelle à la fonction »
+caractérise les fonctions exponentielles. Si $a>0$ il y a \textbf{croissance}
+exponentielle ; si $a<0$, \textbf{décroissance} (désintégration,
+refroidissement\dots) ; si $a=0$, la solution est constante.
+\end{remarque}
+
+\begin{exemple}
+Solutions de $y'=-3y$ : $x\mapsto C\,e^{-3x}$. Celle vérifiant $y(0)=4$ :
+$C\,e^{0}=4$ donc $C=4$, d'où $f(x)=4\,e^{-3x}$.
+\end{exemple}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth]
+\begin{axis}[width=8.4cm,height=5.2cm,axis lines=middle,xlabel={\small $x$},ylabel={\small $y$},
+  xmin=-1.6,xmax=1.6,ymin=-3.2,ymax=3.2,xtick={0},xticklabels={$0$},ytick=\empty,samples=80]
+\addplot[onbo,line width=1pt,domain=-1.5:1.1]{2*exp(0.9*x)};
+\addplot[onbo2,line width=1pt,domain=-1.5:1.4]{1*exp(0.9*x)};
+\addplot[onbblue,line width=1pt,domain=-1.5:1.6]{-1.4*exp(0.9*x)};
+\addplot[onbgreen,line width=1pt,domain=-1.5:1.6]{0.5*exp(0.9*x)};
+\node[onbo,anchor=west] at (axis cs:0.55,2.7){\small $C=2$};
+\node[onbgreen,anchor=west] at (axis cs:0.7,1.1){\small $C=\tfrac12$};
+\node[onbblue,anchor=west] at (axis cs:0.45,-2.6){\small $C=-1{,}4$};
+\end{axis}
+\node[align=left,text width=3.6cm,anchor=west] at (8.6,1.6)
+{\small Faisceau des solutions de $y'=ay$ ($a=0{,}9$) : une courbe $x\mapsto Ce^{ax}$ par valeur de $C$. Par chaque point du plan passe exactement une courbe.};
+\end{tikzpicture}
+\fig{Figure 1 — Courbes solutions de $y'=ay$ pour différentes constantes $C$.}
+\end{illus}
+
+\subsection{L'équation $y'=ay+b$}
+
+\begin{theoreme}[Équation $y'=ay+b$]
+Soient $a\neq0$ et $b$ deux réels. Les solutions sur $\R$ de
+\[
+y'=ay+b
+\]
+sont les fonctions
+\[
+x\longmapsto C\,e^{ax}-\frac{b}{a},\qquad C\in\R.
+\]
+\end{theoreme}
+
+\begin{remarque}[Méthode et justification]
+La fonction constante $g(x)=-\dfrac{b}{a}$ est une \textbf{solution particulière}
+(elle vérifie $g'=0=a\!\left(-\frac{b}{a}\right)+b$). Si $f$ est une solution
+quelconque, alors $h=f-g$ vérifie $h'=f'-0=a f+b-(-b)=a\!\left(f+\frac{b}{a}\right)=a\,h$, donc
+$h(x)=Ce^{ax}$ ; on retrouve $f=Ce^{ax}-\frac{b}{a}$.
+\end{remarque}
+
+\begin{remarque}[Valeur d'équilibre]
+La constante $-\frac{b}{a}$ est appelée \textbf{valeur d'équilibre} (ou état
+stationnaire) : c'est la solution constante, et c'est la limite quand
+$x\to+\infty$ \emph{lorsque} $a<0$. Toute solution s'écrit
+$\underbrace{Ce^{ax}}_{\text{régime transitoire}}-\dfrac{b}{a}$.
+\end{remarque}
+
+\begin{exemple}
+Solutions de $y'=2y+6$ : $-\frac{b}{a}=-\frac{6}{2}=-3$, donc $x\mapsto Ce^{2x}-3$.
+Celle vérifiant $y(0)=1$ : $C-3=1$ donc $C=4$ et $f(x)=4e^{2x}-3$.
+\end{exemple}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth]
+\begin{axis}[width=8.6cm,height=5cm,axis lines=middle,xlabel={\small $x$},ylabel={\small $y$},
+  xmin=-0.2,xmax=4,ymin=-0.5,ymax=6.5,xtick={0},xticklabels={$0$},ytick={5},yticklabels={$-\frac ba$},samples=80]
+\addplot[onbline,dashed,line width=1pt,domain=-0.2:4]{5};
+\addplot[onbo,line width=1pt,domain=-0.2:4]{5+1.5*exp(-1.1*x)};
+\addplot[onbblue,line width=1pt,domain=-0.2:4]{5-3.5*exp(-1.1*x)};
+\addplot[onbgreen,line width=1pt,domain=-0.2:4]{5+3*exp(-1.1*x)};
+\node[onbmuted,anchor=south west] at (axis cs:2.7,5){\small équilibre};
+\end{axis}
+\node[align=left,text width=3.6cm,anchor=west] at (8.8,1.6)
+{\small Cas $a<0$ : toutes les solutions de $y'=ay+b$ convergent vers la valeur d'équilibre $-\frac ba$ quand $x\to+\infty$.};
+\end{tikzpicture}
+\fig{Figure 2 — Convergence vers l'équilibre pour $y'=ay+b$ avec $a<0$.}
+\end{illus}
+
+\begin{aretenir}
+\textbf{Premier ordre.} \quad
+$y'=ay \ \Rightarrow\ y=Ce^{ax}$. \qquad
+$y'=ay+b \ \Rightarrow\ y=Ce^{ax}-\dfrac{b}{a}$.\\[3pt]
+\emph{Stratégie} : solution générale $=$ \textbf{solution particulière} (ici la
+constante $-\frac ba$) $+$ \textbf{solution générale de l'équation homogène}
+$y'=ay$.
+\end{aretenir}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Équations du second ordre à coefficients constants}
+
+On étudie les équations de la forme $ay''+by'+cy=0$ (avec $a\neq0$), dites
+\textbf{linéaires, homogènes, à coefficients constants}. On commence par les cas
+particuliers du programme, puis on présente la méthode générale par l'équation
+caractéristique.
+
+\subsection{Cas $y''=0$ et $y''=ky$}
+
+\begin{theoreme}[Équation $y''=0$]
+Les solutions sur $\R$ de $y''=0$ sont les fonctions \textbf{affines}
+\[
+x\longmapsto Ax+B,\qquad A,B\in\R.
+\]
+\end{theoreme}
+
+\begin{theoreme}[Équation $y''=\omega^{2}y$ \ ($\omega>0$)]
+Les solutions sur $\R$ de $y''=\omega^{2}y$ sont les fonctions
+\[
+x\longmapsto A\,e^{\omega x}+B\,e^{-\omega x},\qquad A,B\in\R.
+\]
+\end{theoreme}
+
+\begin{remarque}
+On vérifie que $x\mapsto e^{\omega x}$ et $x\mapsto e^{-\omega x}$ sont solutions
+(leur dérivée seconde vaut $\omega^2$ fois la fonction), et toute combinaison
+linéaire l'est aussi. On peut écrire ces solutions à l'aide de $\cosh$ et
+$\sinh$, mais la forme exponentielle suffit au programme.
+\end{remarque}
+
+\begin{theoreme}[Équation $y''+\omega^{2}y=0$ \ ($\omega>0$)]
+Les solutions sur $\R$ de $y''=-\omega^{2}y$, c'est-à-dire de $y''+\omega^2 y=0$,
+sont les fonctions
+\[
+x\longmapsto A\cos(\omega x)+B\sin(\omega x),\qquad A,B\in\R.
+\]
+Pour des conditions initiales $y(x_0)=y_0$ et $y'(x_0)=y_0'$, la solution est
+\textbf{unique}.
+\end{theoreme}
+
+\begin{remarque}[Forme amplitude–phase]
+Toute solution $A\cos(\omega x)+B\sin(\omega x)$ s'écrit aussi
+$R\cos(\omega x-\varphi)$ avec $R=\sqrt{A^{2}+B^{2}}$ (\textbf{amplitude}) et
+$\varphi$ tel que $\cos\varphi=\frac{A}{R}$, $\sin\varphi=\frac{B}{R}$. Le
+mouvement est \textbf{sinusoïdal}, de \textbf{pulsation} $\omega$ et de
+\textbf{période} $T=\dfrac{2\pi}{\omega}$.
+\end{remarque}
+
+\begin{exemple}
+$y''=-4y$ : ici $\omega^{2}=4$ donc $\omega=2$, solutions
+$y=A\cos(2x)+B\sin(2x)$. Celle vérifiant $y(0)=1$ et $y'(0)=6$ :
+$y(0)=A=1$ ; $y'(x)=-2A\sin(2x)+2B\cos(2x)$ donne $y'(0)=2B=6$, soit $B=3$.
+D'où $f(x)=\cos(2x)+3\sin(2x)$.
+\end{exemple}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth]
+\begin{axis}[width=9.2cm,height=4.8cm,axis lines=middle,xlabel={\small $x$},ylabel={\small $y$},
+  xmin=-0.3,xmax=6.6,ymin=-2.4,ymax=2.4,
+  xtick={1.5708,3.1416,4.7124,6.2832},
+  xticklabels={$\frac{\pi}{2}$,$\pi$,$\frac{3\pi}{2}$,$2\pi$},
+  ytick={-2,2},samples=120]
+\addplot[onbo,line width=1.1pt,domain=0:6.5]{2*sin(deg(2*x))};
+\draw[onbline,dashed] (axis cs:-0.3,2)--(axis cs:6.6,2);
+\draw[onbline,dashed] (axis cs:-0.3,-2)--(axis cs:6.6,-2);
+\node[onbo,anchor=west] at (axis cs:4.9,1.5){\small $y=2\sin(2x)$};
+\draw[<->,onbblue,line width=0.7pt] (axis cs:0,2.25)--(axis cs:3.1416,2.25);
+\node[onbblue,anchor=south] at (axis cs:1.57,2.25){\small $T=\frac{2\pi}{\omega}=\pi$};
+\end{axis}
+\end{tikzpicture}
+\fig{Figure 3 — Une solution oscillante de $y''+\omega^2 y=0$ (ici $\omega=2$) : sinusoïde d'amplitude $2$ et de période $\pi$.}
+\end{illus}
+
+\begin{aretenir}
+\textbf{Cas particuliers du second ordre.}\\[2pt]
+\begin{tabular}{@{}ll@{}}
+$y''=0$ & $y=Ax+B$\\[2pt]
+$y''=\omega^{2}y$ \ ($\omega>0$) & $y=A\,e^{\omega x}+B\,e^{-\omega x}$\\[2pt]
+$y''+\omega^{2}y=0$ \ ($\omega>0$) & $y=A\cos(\omega x)+B\sin(\omega x)$\\
+\end{tabular}\\[4pt]
+\textbf{Attention au signe :} $+\omega^2 y$ au second membre donne des
+\emph{exponentielles} (divergence), $-\omega^2 y$ donne des \emph{oscillations}
+bornées.
+\end{aretenir}
+
+\subsection{Méthode générale : l'équation caractéristique}
+
+\begin{definition}[Équation caractéristique]
+À l'équation différentielle $a y''+b y'+c y=0$ (avec $a\neq0$) on associe
+l'\textbf{équation caractéristique}, équation du second degré d'inconnue $r$ :
+\[
+a\,r^{2}+b\,r+c=0.
+\]
+Son discriminant est $\Delta=b^{2}-4ac$.
+\end{definition}
+
+\begin{remarque}[D'où vient-elle ?]
+On cherche des solutions de la forme $y=e^{rx}$. Alors $y'=re^{rx}$,
+$y''=r^2 e^{rx}$, et $ay''+by'+cy=(ar^2+br+c)e^{rx}$. Comme $e^{rx}\neq0$,
+$e^{rx}$ est solution \emph{si et seulement si} $ar^2+br+c=0$.
+\end{remarque}
+
+\begin{theoreme}[Résolution selon le discriminant]
+On résout $a y''+b y'+c y=0$ selon le signe de $\Delta=b^2-4ac$.
+\begin{itemize}
+\item Si $\Delta>0$ : deux racines réelles distinctes $r_1,r_2$. Solutions :
+\[
+y=A\,e^{r_1 x}+B\,e^{r_2 x}.
+\]
+\item Si $\Delta=0$ : une racine double $r_0=-\dfrac{b}{2a}$. Solutions :
+\[
+y=(A x+B)\,e^{r_0 x}.
+\]
+\item Si $\Delta<0$ : deux racines complexes conjuguées $r=\alpha\pm i\beta$
+(avec $\alpha=-\frac{b}{2a}$, $\beta=\frac{\sqrt{-\Delta}}{2a}>0$). Solutions :
+\[
+y=e^{\alpha x}\big(A\cos(\beta x)+B\sin(\beta x)\big).
+\]
+\end{itemize}
+Dans tous les cas, $A$ et $B$ sont des réels arbitraires.
+\end{theoreme}
+
+\begin{remarque}[Cohérence avec les cas particuliers]
+\emph{Pas de surprise} : pour $y''-\omega^2 y=0$ on a $r^2-\omega^2=0$, racines
+$\pm\omega$ ($\Delta>0$), d'où $y=Ae^{\omega x}+Be^{-\omega x}$. Pour
+$y''+\omega^2 y=0$ on a $r^2+\omega^2=0$, racines $\pm i\omega$ ($\Delta<0$,
+$\alpha=0,\ \beta=\omega$), d'où $y=A\cos(\omega x)+B\sin(\omega x)$. L'équation
+caractéristique \textbf{unifie} tout le second ordre.
+\end{remarque}
+
+\begin{exemple}[$\Delta>0$]
+$y''-5y'+6y=0$ : équation caractéristique $r^2-5r+6=0$, soit $(r-2)(r-3)=0$,
+racines $r_1=2,\ r_2=3$. Solutions : $y=A\,e^{2x}+B\,e^{3x}$.
+\end{exemple}
+
+\begin{exemple}[$\Delta=0$]
+$y''-4y'+4y=0$ : $r^2-4r+4=(r-2)^2=0$, racine double $r_0=2$. Solutions :
+$y=(Ax+B)\,e^{2x}$.
+\end{exemple}
+
+\begin{exemple}[$\Delta<0$]
+$y''+2y'+5y=0$ : $r^2+2r+5=0$, $\Delta=4-20=-16$, racines
+$r=\dfrac{-2\pm 4i}{2}=-1\pm 2i$, donc $\alpha=-1,\ \beta=2$. Solutions :
+$y=e^{-x}\big(A\cos(2x)+B\sin(2x)\big)$. Ces solutions sont des
+\textbf{oscillations amorties}.
+\end{exemple}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth]
+\begin{axis}[width=9.4cm,height=5cm,axis lines=middle,xlabel={\small $x$},ylabel={\small $y$},
+  xmin=-0.2,xmax=6.4,ymin=-1.7,ymax=2.2,xtick={0},xticklabels={$0$},ytick=\empty,samples=160]
+\addplot[onbo,line width=1.1pt,domain=0:6.3]{2*exp(-0.45*x)*cos(deg(2*x))};
+\addplot[onbline,dashed,line width=0.8pt,domain=0:6.3]{2*exp(-0.45*x)};
+\addplot[onbline,dashed,line width=0.8pt,domain=0:6.3]{-2*exp(-0.45*x)};
+\node[onbmuted,anchor=west] at (axis cs:2.4,1.4){\small enveloppe $\pm2e^{-0{,}45x}$};
+\node[onbo,anchor=west] at (axis cs:3.5,-1.0){\small $y=2e^{\alpha x}\cos(\beta x)$};
+\end{axis}
+\end{tikzpicture}
+\fig{Figure 4 — Cas $\Delta<0$ avec $\alpha<0$ : oscillations amorties, encadrées par une enveloppe exponentielle.}
+\end{illus}
+
+\begin{aretenir}
+\textbf{Recette du second ordre $ay''+by'+cy=0$.}
+\begin{enumerate}[label=\arabic*)]
+\item Écrire l'équation caractéristique $ar^2+br+c=0$, calculer $\Delta$.
+\item $\Delta>0$ : $y=Ae^{r_1x}+Be^{r_2x}$ ;\quad
+$\Delta=0$ : $y=(Ax+B)e^{r_0x}$ ;\\
+$\Delta<0$ : $y=e^{\alpha x}\big(A\cos\beta x+B\sin\beta x\big)$ avec
+$r=\alpha\pm i\beta$.
+\item Utiliser deux conditions initiales pour trouver $A$ et $B$.
+\end{enumerate}
+\end{aretenir}
+
+\subsection{Équation du second ordre avec second membre constant}
+
+\begin{propriete}[Second membre constant]
+Pour résoudre $ay''+by'+cy=d$ (avec $c\neq0$ et $d$ constant), on ajoute à la
+solution générale de l'équation homogène la \textbf{solution particulière
+constante} $y_p=\dfrac{d}{c}$.
+\end{propriete}
+
+\begin{exemple}
+$y''+\omega^2 y=\omega^2 h$ (oscillateur soumis à une force constante, $h$
+constante). Solution particulière $y_p=h$, solution générale
+$y=h+A\cos(\omega x)+B\sin(\omega x)$ : oscillations autour de la position
+d'équilibre $y=h$.
+\end{exemple}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Conditions initiales et unicité}
+
+\begin{propriete}[Détermination des constantes]
+La solution générale d'une équation du \textbf{premier} ordre contient
+\textbf{une} constante : une condition $y(x_0)=y_0$ la fixe. Celle d'une équation
+du \textbf{second} ordre contient \textbf{deux} constantes : il faut
+\textbf{deux} conditions (typiquement $y(x_0)=y_0$ \emph{et} $y'(x_0)=y_0'$) pour
+les déterminer. Dans les deux cas, la solution du problème de Cauchy est
+\textbf{unique}.
+\end{propriete}
+
+\begin{exemple}
+Cherchons la solution de $y''=9y$ vérifiant $y(0)=2$ et $y'(0)=0$.
+Ici $\omega=3$ : $y=Ae^{3x}+Be^{-3x}$, $y'=3Ae^{3x}-3Be^{-3x}$.
+Les conditions donnent $A+B=2$ et $3A-3B=0$, soit $A=B=1$.
+D'où $f(x)=e^{3x}+e^{-3x}$.
+\end{exemple}
+
+\begin{remarque}[Ne pas confondre les deux conditions]
+Au second ordre, donner $y(x_0)$ et $y(x_1)$ (deux \emph{valeurs}, pas une valeur
+et une dérivée) est aussi possible : on obtient encore deux équations à deux
+inconnues $A,B$. Mais la donnée la plus courante au Bac est $\{y(x_0),y'(x_0)\}$.
+\end{remarque}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth]
+\begin{axis}[width=8.8cm,height=5cm,axis lines=middle,xlabel={\small $x$},ylabel={\small $y$},
+  xmin=-0.2,xmax=4.4,ymin=-0.3,ymax=4.5,xtick={0},xticklabels={$0$},ytick={2},yticklabels={$y_0$},samples=80]
+\addplot[onbo,line width=1.1pt,domain=-0.1:1.4]{2*cosh(1.5*x)};
+\addplot[onbblue,line width=1pt,domain=-0.1:2.4]{2*exp(-0.8*x)};
+\addplot[onbgreen,line width=1pt,domain=-0.1:4.3]{2*exp(-0.8*x)+0.0001};
+\filldraw[onbink](axis cs:0,2)circle(2pt);
+\draw[onbmuted,dashed](axis cs:0,0)--(axis cs:0,2);
+\node[onbo,anchor=west] at (axis cs:0.9,3.5){\small $y'(0)>0$};
+\node[onbblue,anchor=west] at (axis cs:1.4,0.9){\small $y'(0)<0$};
+\end{axis}
+\node[align=left,text width=3.4cm,anchor=west] at (9,1.6)
+{\small Même $y(0)=y_0$, mais $y'(0)$ différent : la deuxième condition sélectionne \emph{une} courbe.};
+\end{tikzpicture}
+\fig{Figure 5 — Au second ordre, deux conditions $y(0)$ et $y'(0)$ isolent une unique solution.}
+\end{illus}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Modélisation : où apparaissent les équations différentielles}
+
+\begin{aretenir}
+\textbf{Lois physiques classiques.}
+\begin{itemize}
+\item \textbf{Désintégration radioactive} : $N'(t)=-\lambda N(t)$, donc
+$N(t)=N_0\,e^{-\lambda t}$. \textbf{Demi-vie} $T$ : $N(T)=\frac{N_0}{2}$, soit
+$T=\dfrac{\ln 2}{\lambda}$.
+\item \textbf{Refroidissement de Newton} : $\theta'(t)=-k\big(\theta(t)-\theta_a\big)$,
+$\theta_a$ température ambiante.
+\item \textbf{Circuit $RC$} (décharge/charge d'un condensateur) :
+$RC\,u'+u=E$, soit $u'=-\frac{1}{RC}u+\frac{E}{RC}$.
+\item \textbf{Oscillateur $LC$} ou ressort : $y''+\omega^2 y=0$, mouvement
+sinusoïdal.
+\item \textbf{Circuit $RLC$} (avec résistance) : $y''+\frac{R}{L}y'+\frac{1}{LC}y=0$,
+résolu par l'équation caractéristique.
+\end{itemize}
+\end{aretenir}
+
+\begin{exemple}[Désintégration]
+Le carbone $14$ a pour constante $\lambda=\dfrac{\ln 2}{5730}$ an$^{-1}$. Une
+quantité $N_0$ devient $N(t)=N_0 e^{-\lambda t}$ ; au bout de $5730$ ans il en
+reste la moitié, d'où la datation par le carbone $14$.
+\end{exemple}
+
+% ═══════════════════════════════════════════════════════════════
+\section{L'essentiel à retenir}
+
+\begin{synthese}
+\textbf{Vocabulaire.} \emph{Ordre} $=$ plus haute dérivée. \emph{Résoudre} $=$
+trouver toutes les solutions ; la \emph{solution générale} dépend de $1$ (ordre
+1) ou $2$ (ordre 2) constantes ; les \emph{conditions initiales} les fixent.\\[4pt]
+\textbf{Premier ordre.}\quad $y'=ay \Rightarrow y=Ce^{ax}$.\quad
+$y'=ay+b \Rightarrow y=Ce^{ax}-\dfrac{b}{a}$ \,(constante $=$ valeur d'équilibre,
+limite si $a<0$).\\[4pt]
+\textbf{Second ordre — cas particuliers.}\quad
+$y''=0\Rightarrow y=Ax+B$ ;\quad
+$y''=\omega^2 y\Rightarrow y=Ae^{\omega x}+Be^{-\omega x}$ ;\quad
+$y''+\omega^2 y=0\Rightarrow y=A\cos\omega x+B\sin\omega x$.\\[4pt]
+\textbf{Second ordre — méthode générale.} $ay''+by'+cy=0$ $\to$ équation
+caractéristique $ar^2+br+c=0$, $\Delta=b^2-4ac$ :
+\begin{itemize}
+\item $\Delta>0$, racines $r_1,r_2$ : $y=Ae^{r_1x}+Be^{r_2x}$ ;
+\item $\Delta=0$, racine double $r_0$ : $y=(Ax+B)e^{r_0x}$ ;
+\item $\Delta<0$, $r=\alpha\pm i\beta$ : $y=e^{\alpha x}(A\cos\beta x+B\sin\beta x)$.
+\end{itemize}
+\textbf{Second membre constant} ($c\neq0$) : ajouter $y_p=\frac{d}{c}$.\\[4pt]
+\textbf{Conditions initiales.} ordre 1 : une condition. ordre 2 : deux conditions
+$\{y(x_0),y'(x_0)\}$. Résoudre le système linéaire en $A,B$.\\[4pt]
+\textbf{Amplitude–phase.} $A\cos\omega x+B\sin\omega x=R\cos(\omega x-\varphi)$,
+$R=\sqrt{A^2+B^2}$, période $T=\frac{2\pi}{\omega}$.\\[4pt]
+\textbf{Modèles.} désintégration $N'=-\lambda N$ (demi-vie $\frac{\ln2}{\lambda}$) ;
+Newton $\theta'=-k(\theta-\theta_a)$ ; $RC$ : $RCu'+u=E$ ; oscillateur
+$y''+\omega^2y=0$.\\[4pt]
+\textbf{Pièges.} confondre $+\omega^2 y$ (exponentielles) et $-\omega^2 y$
+(sinus) ; oublier une constante ; oublier la solution particulière dans
+$y'=ay+b$ ; au $\Delta=0$ oublier le facteur $(Ax+B)$ ; au $\Delta<0$ oublier le
+facteur $e^{\alpha x}$.
+\end{synthese}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Méthodes \& savoir-faire}
+
+\methode{Reconnaître le type et écrire la solution générale}
+Identifier l'ordre, mettre l'équation sous une forme du tableau, puis recopier la
+solution générale correspondante (sans oublier la ou les constantes).
+\begin{exemple}
+$3y'+12y=0 \Longleftrightarrow y'=-4y$ : c'est $y'=ay$ avec $a=-4$,
+donc $y=Ce^{-4x}$.
+\end{exemple}
+
+\methode{Trouver une solution particulière (second membre constant)}
+Pour $y'=ay+b$ ($a\neq0$), chercher une solution \textbf{constante} $y=k$ : alors
+$0=ak+b$ donne $k=-\frac{b}{a}$. La solution générale est cette constante plus la
+solution générale de l'homogène $y'=ay$.
+\begin{exemple}
+$y'=-2y+10$ : solution constante $k=-\frac{10}{-2}=5$. Solution générale
+$y=Ce^{-2x}+5$.
+\end{exemple}
+
+\methode{Déterminer la solution vérifiant des conditions initiales (ordre 1)}
+Écrire la solution générale, exprimer $y(x_0)$ en fonction de la constante,
+résoudre, conclure.
+\begin{exemple}
+$y'=5y$, $y(0)=7$ : $y=Ce^{5x}$, $y(0)=C=7$, donc $f(x)=7e^{5x}$.
+\end{exemple}
+
+\methode{Résoudre un second ordre par l'équation caractéristique}
+Écrire $ar^2+br+c=0$, calculer $\Delta$, appliquer la formule du cas
+correspondant, puis (si conditions initiales) déterminer $A,B$.
+\begin{exemple}
+$y''-3y'-4y=0$ : $r^2-3r-4=(r-4)(r+1)=0$, racines $4$ et $-1$. Solutions
+$y=Ae^{4x}+Be^{-x}$. Avec $y(0)=0$ et $y'(0)=5$ : $A+B=0$ et $4A-B=5$, donc
+$5A=5$, $A=1$, $B=-1$ : $y=e^{4x}-e^{-x}$.
+\end{exemple}
+
+\methode{Traiter le cas du discriminant nul}
+Quand $\Delta=0$, ne pas oublier le facteur $(Ax+B)$. La racine double est
+$r_0=-\frac{b}{2a}$.
+\begin{exemple}
+$y''+6y'+9y=0$ : $r^2+6r+9=(r+3)^2$, $r_0=-3$. Solutions $y=(Ax+B)e^{-3x}$.
+Avec $y(0)=1$, $y'(0)=0$ : $y'=(A)e^{-3x}-3(Ax+B)e^{-3x}$, $y(0)=B=1$,
+$y'(0)=A-3B=0$ donne $A=3$. D'où $y=(3x+1)e^{-3x}$.
+\end{exemple}
+
+\methode{Traiter le cas du discriminant négatif (oscillations)}
+Quand $\Delta<0$, écrire $r=\alpha\pm i\beta$ et la solution
+$e^{\alpha x}(A\cos\beta x+B\sin\beta x)$. Le signe de $\alpha$ donne
+l'amortissement.
+\begin{exemple}
+$y''+y'+y=0$ : $r^2+r+1=0$, $\Delta=-3$, $r=-\frac12\pm i\frac{\sqrt3}{2}$.
+Solutions $y=e^{-x/2}\!\left(A\cos\frac{\sqrt3}{2}x+B\sin\frac{\sqrt3}{2}x\right)$ :
+oscillations amorties ($\alpha=-\frac12<0$).
+\end{exemple}
+
+\methode{Vérifier qu'une fonction donnée est solution}
+Calculer les dérivées nécessaires, substituer dans l'équation et constater
+l'égalité pour tout $x$.
+\begin{exemple}
+$f(x)=(2x+1)e^{x}$ est-elle solution de $y'-y=2e^{x}$ ?
+$f'(x)=2e^{x}+(2x+1)e^{x}=(2x+3)e^{x}$, donc
+$f'(x)-f(x)=(2x+3)e^{x}-(2x+1)e^{x}=2e^{x}$. \textbf{Oui}.
+\end{exemple}
+
+\methode{Se ramener à un type connu par changement de fonction}
+Si $z$ vérifie $z'=az+b$, poser $u=z+\frac{b}{a}$ : alors $u'=z'=au$, équation
+$u'=au$ résolue, puis revenir à $z$. (Idem pour ramener un second ordre avec
+second membre constant à l'homogène.)
+\begin{exemple}
+$z'=-z+3$. Posons $u=z-3$ : $u'=z'=-z+3=-(u+3)+3=-u$, donc $u=Ce^{-x}$
+et $z=Ce^{-x}+3$.
+\end{exemple}
+
+\methode{Exploiter la forme amplitude–phase}
+Pour $y''+\omega^2 y=0$, écrire
+$A\cos(\omega x)+B\sin(\omega x)=R\cos(\omega x-\varphi)$ avec $R=\sqrt{A^2+B^2}$ :
+on lit l'amplitude $R$ et la période $T=\frac{2\pi}{\omega}$.
+\begin{exemple}
+$y=\cos(2x)+\sqrt3\,\sin(2x)$ : $R=\sqrt{1+3}=2$, et $\cos\varphi=\frac12$,
+$\sin\varphi=\frac{\sqrt3}{2}$ donnent $\varphi=\frac{\pi}{3}$. Ainsi
+$y=2\cos\!\left(2x-\frac{\pi}{3}\right)$, amplitude $2$, période $\pi$.
+\end{exemple}
+
+\methode{Modéliser un problème concret}
+Traduire la loi (« la vitesse de variation est proportionnelle à\dots ») en
+équation différentielle, identifier le type, résoudre, puis utiliser les données
+($y(0)$, une mesure ultérieure) pour fixer les constantes et répondre.
+\begin{exemple}
+Population $P$ croissant à taux $5\,\%$ par an : $P'=0{,}05\,P$, donc
+$P(t)=P_0 e^{0{,}05t}$. Si $P_0=2000$, alors $P(10)=2000\,e^{0{,}5}\approx 3297$.
+\end{exemple}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Exercices d'application}
+
+\rubrique{Premier ordre : $y'=ay$ et $y'=ay+b$}
+
+\exo{}\diff{1} Résoudre, puis donner la solution vérifiant la condition indiquée :
+\begin{enumerate}[label=\alph*)]
+\item $y'=3y$, \ $y(0)=2$ ;
+\item $2y'+y=0$, \ $y(0)=-4$ ;
+\item $y'=4y-8$, \ $y(0)=5$.
+\end{enumerate}
+
+\exo{}\diff{1} Déterminer les solutions de $y'=-\dfrac12 y+3$, puis celle qui
+vaut $1$ en $0$. Quelle est sa limite en $+\infty$ ?
+
+\exo{}\diff{2} Une fonction $f$ vérifie $f'=2f+6$ et $f(0)=0$. Déterminer $f$,
+puis résoudre $f(x)=3$.
+
+\exo{}\diff{2} On considère $y'+3y=12$. a) Donner la valeur d'équilibre.
+b) Résoudre. c) Déterminer la solution telle que $y(0)=10$ et sa limite en
+$+\infty$.
+
+\rubrique{Second ordre : cas particuliers}
+
+\exo{}\diff{1} Résoudre : a) $y''=0$ avec $y(0)=1,\ y'(0)=-2$ ; \quad
+b) $y''=16y$ ; \quad c) $y''=-9y$.
+
+\exo{}\diff{2} Résoudre $y''+4y=0$, puis déterminer la solution telle que
+$y(0)=3$ et $y'(0)=2$. Donner son amplitude et sa période.
+
+\exo{}\diff{2} Soit l'équation $y''=25y$. Déterminer la solution vérifiant
+$y(0)=0$ et $y'(0)=10$ (on exprimera le résultat sous forme exponentielle ou à
+l'aide de $\sinh$).
+
+\rubrique{Second ordre : équation caractéristique}
+
+\exo{}\diff{1} Résoudre par l'équation caractéristique :
+a) $y''-5y'+6y=0$ ; \quad b) $y''-4y'+4y=0$ ; \quad c) $y''+9y=0$.
+
+\exo{}\diff{2} Résoudre $y''+2y'+5y=0$, puis déterminer la solution vérifiant
+$y(0)=1$ et $y'(0)=1$.
+
+\exo{}\diff{2} Résoudre $y''-2y'+y=0$ avec $y(0)=2$ et $y'(0)=1$.
+
+\exo{}\diff{2} Résoudre $y''+y'-6y=0$, puis la solution telle que $y(0)=5$ et
+$\displaystyle\lim_{x\to+\infty}y(x)=0$.
+
+\rubrique{Vérifier / justifier qu'une fonction est solution}
+
+\exo{}\diff{2} Montrer que $f(x)=e^{-x}\cos(2x)$ vérifie $f''+2f'+5f=0$.
+
+\exo{}\diff{2} On considère $g(x)=(x^2+1)e^{2x}$. Calculer $g'$ puis vérifier que
+$g$ est solution de $y'-2y=2x\,e^{2x}$.
+
+\exo{}\diff{3} Soit $f(x)=A\cos(\omega x)+B\sin(\omega x)$ une solution de
+$y''+\omega^2 y=0$ (avec $\omega>0$). Montrer que la quantité
+$E(x)=\big(f'(x)\big)^2+\omega^2\big(f(x)\big)^2$ est \textbf{constante}.
+(Interprétation : conservation de l'énergie d'un oscillateur.)
+
+\rubrique{Problèmes (modélisation)}
+
+\exo{}\diff{2} \textbf{Désintégration.} Un échantillon radioactif vérifie
+$N'(t)=-\lambda N(t)$ avec $N(0)=N_0$. a) Donner $N(t)$. b) La demi-vie est
+$T=8$ jours ; exprimer $\lambda$. c) Quelle fraction reste-t-il au bout de
+$24$ jours ?
+
+\exo{}\diff{3} \textbf{Refroidissement d'une boisson (loi de Newton).}\;
+À Yaoundé, on sort d'un réfrigérateur une bouteille de jus à la température
+$\theta_0=8\,^\circ\mathrm{C}$. La température ambiante est constante,
+$\theta_a=28\,^\circ\mathrm{C}$. La loi de Newton affirme que la vitesse de
+variation de $\theta(t)$ ($t$ en heures) est proportionnelle à l'écart avec
+l'ambiance :
+\[
+\theta'(t)=-k\big(\theta(t)-\theta_a\big),\qquad k>0.
+\]
+\begin{enumerate}[label=\arabic*)]
+\item On pose $u(t)=\theta(t)-28$. Montrer que $u'=-k\,u$, et en déduire
+$\theta(t)$ en fonction de $k$ et d'une constante.
+\item Déterminer la constante grâce à $\theta(0)=8$.
+\item On mesure $\theta(1)=15\,^\circ\mathrm{C}$. Calculer $k$ (valeur exacte
+puis approchée à $10^{-2}$ près).
+\item Étudier le sens de variation de $\theta$ sur $[0,+\infty[$ et déterminer
+$\displaystyle\lim_{t\to+\infty}\theta(t)$. Interpréter.
+\item Au bout de combien de temps (en minutes, arrondi) la boisson atteint-elle
+$25\,^\circ\mathrm{C}$ ?
+\end{enumerate}
+
+\exo{}\diff{2} \textbf{Circuit $RC$.} La tension $u(t)$ aux bornes d'un
+condensateur en charge vérifie $RC\,u'+u=E$ ($R,C,E>0$, $u(0)=0$).
+a) Réécrire sous la forme $u'=au+b$. b) Résoudre. c) Donner $\lim_{t\to+\infty}u(t)$.
+
+% ═══════════════════════════════════════════════════════════════
+\section{Exercices d'entraînement}
+
+\rubrique{Premier ordre}
+
+\exo{}\diff{1} Résoudre $y'=5y$ ; donner la solution telle que $y(0)=3$.
+
+\exo{}\diff{1} Résoudre $y'+7y=0$ avec $y(0)=2$.
+
+\exo{}\diff{1} Résoudre $y'=-y+4$ ; préciser la valeur d'équilibre.
+
+\exo{}\diff{2} Résoudre $3y'-6y=9$ et donner la solution vérifiant $y(0)=0$.
+
+\exo{}\diff{2} Soit $y'=\dfrac12 y-2$. Résoudre, puis trouver la solution telle
+que $y(0)=4$. Quel est son comportement en $+\infty$ ?
+
+\exo{}\diff{2} Une fonction $f$ vérifie $f'+2f=8$ et $f(0)=1$. Déterminer $f$ et
+résoudre $f(x)=3$.
+
+\exo{}\diff{2} Résoudre $y'=4y$ et déterminer la solution dont la courbe passe
+par le point $A(1\,;\,e^{4})$.
+
+\exo{}\diff{3} On pose $z'=-3z+e^{-3x}$. En cherchant une solution sous la forme
+$z=(\lambda x+\mu)e^{-3x}$, résoudre l'équation.
+
+\rubrique{Second ordre : cas particuliers}
+
+\exo{}\diff{1} Résoudre $y''=0$ avec $y(0)=2$ et $y'(0)=5$.
+
+\exo{}\diff{1} Résoudre $y''=36y$.
+
+\exo{}\diff{1} Résoudre $y''+25y=0$ et donner la période des solutions.
+
+\exo{}\diff{2} Résoudre $y''+16y=0$ avec $y(0)=2$, $y'(0)=8$ ; donner amplitude et
+période.
+
+\exo{}\diff{2} Résoudre $4y''+y=0$ ; donner la solution telle que $y(0)=0$ et
+$y'(0)=3$.
+
+\exo{}\diff{2} Résoudre $y''=2y$ avec $y(0)=0$ et $y'(0)=4$. Exprimer le résultat
+avec $\sinh$.
+
+\rubrique{Second ordre : équation caractéristique}
+
+\exo{}\diff{1} Résoudre $y''-y'-2y=0$.
+
+\exo{}\diff{1} Résoudre $y''-6y'+9y=0$.
+
+\exo{}\diff{2} Résoudre $y''+4y'+13y=0$.
+
+\exo{}\diff{2} Résoudre $y''-2y'+2y=0$ avec $y(0)=1$, $y'(0)=0$.
+
+\exo{}\diff{2} Résoudre $y''+y'-12y=0$ et donner la solution bornée en $+\infty$
+telle que $y(0)=2$.
+
+\exo{}\diff{2} Résoudre $y''-8y'+16y=0$ avec $y(0)=0$, $y'(0)=2$.
+
+\exo{}\diff{2} Résoudre $2y''-3y'+y=0$.
+
+\exo{}\diff{3} Pour quelle(s) valeur(s) du réel $m$ l'équation
+$y''+my'+y=0$ a-t-elle des solutions oscillantes (cas $\Delta<0$) ?
+
+\exo{}\diff{3} Résoudre $y''+6y'+9y=0$ avec $y(0)=1$, $y'(0)=-3$. Montrer que la
+solution s'annule une seule fois sur $\R$.
+
+\rubrique{Vérification, démonstration}
+
+\exo{}\diff{2} Vérifier que $f(x)=x\,e^{2x}$ est solution de $y''-4y'+4y=0$.
+
+\exo{}\diff{2} Montrer que $f(x)=e^{-2x}\sin(3x)$ vérifie $y''+4y'+13y=0$.
+
+\exo{}\diff{3} Soit $f$ une solution de $y''+\omega^2 y=0$ avec $f(0)=0$. Montrer
+que $f(x)=B\sin(\omega x)$ pour un certain réel $B$.
+
+\exo{}\diff{3} Soit $f$ une solution non nulle de $y'=ay$. Montrer que $f$ ne
+s'annule jamais.
+
+\rubrique{Problèmes}
+
+\exo{}\diff{2} \textbf{Population.} Une ville compte $P_0=120\,000$ habitants et
+croît selon $P'=0{,}03\,P$ ($t$ en années). Donner $P(t)$, puis l'année où la
+population double (à l'unité près).
+
+\exo{}\diff{2} \textbf{Médicament.} La concentration $c(t)$ d'un médicament dans
+le sang vérifie $c'=-0{,}2\,c$ ($t$ en heures), $c(0)=50$ mg/L. Au bout de combien
+d'heures la concentration tombe-t-elle sous $10$ mg/L ?
+
+\exo{}\diff{3} \textbf{Refroidissement.} Un corps à $90\,^\circ$C est placé dans
+une pièce à $20\,^\circ$C. Au bout de $10$ min il est à $60\,^\circ$C. En
+modélisant par la loi de Newton $\theta'=-k(\theta-20)$, déterminer $k$ puis la
+température au bout de $30$ min.
+
+\exo{}\diff{3} \textbf{Oscillateur.} Une masse accrochée à un ressort vérifie
+$y''+25y=0$ ($y$ en cm, $t$ en s), avec $y(0)=4$ et $y'(0)=0$. Donner $y(t)$,
+l'amplitude, la période, et les instants où la masse repasse par $y=0$.
+
+\exo{}\diff{3} \textbf{Circuit $RLC$.} La charge $q(t)$ d'un condensateur dans un
+circuit $RLC$ vérifie $q''+4q'+5q=0$. Résoudre, identifier le régime (amorti /
+oscillant), et donner $\lim_{t\to+\infty}q(t)$.
+
+% ═══════════════════════════════════════════════════════════════
+\section{Sujets type Baccalauréat}
+
+\sujetbac[premier ordre, refroidissement et étude de fonction]
+On étudie le refroidissement d'un objet métallique. Sa température $\theta(t)$
+(en $^\circ$C, $t$ en minutes) vérifie l'équation différentielle
+\[
+(E):\quad \theta'=-0{,}05\,(\theta-22),
+\]
+où $22\,^\circ$C est la température ambiante. À l'instant $t=0$, $\theta(0)=100$.
+\begin{enumerate}[label=\arabic*)]
+\item On pose $u(t)=\theta(t)-22$. Montrer que $u$ est solution de $u'=-0{,}05\,u$.
+\item En déduire l'expression de $u(t)$ puis de $\theta(t)$.
+\item Étudier les variations de $\theta$ sur $[0,+\infty[$ et calculer
+$\displaystyle\lim_{t\to+\infty}\theta(t)$. Interpréter physiquement.
+\item Déterminer l'instant $t_1$ (à la minute près) où $\theta(t_1)=50$.
+\item Montrer que la durée pour passer de $\theta$ à $\frac{\theta+22}{2}$ (moitié
+de l'écart à l'ambiance) ne dépend pas de la température de départ.
+\end{enumerate}
+
+\sujetbac[second ordre, équation caractéristique et oscillateur amorti]
+On considère l'équation différentielle
+\[
+(E):\quad y''+2y'+10y=0.
+\]
+\begin{enumerate}[label=\arabic*)]
+\item Écrire l'équation caractéristique de $(E)$ et calculer son discriminant.
+\item Résoudre $(E)$ sur $\R$.
+\item Déterminer la solution $f$ de $(E)$ vérifiant $f(0)=0$ et $f'(0)=3$.
+\item Montrer que $f(x)=e^{-x}\sin(3x)$.
+\item Vérifier que $|f(x)|\le e^{-x}$ pour tout $x\ge0$, et en déduire
+$\displaystyle\lim_{x\to+\infty}f(x)$.
+\item Déterminer les abscisses des points où $\mathcal C_f$ coupe l'axe des
+abscisses sur $[0,+\infty[$.
+\end{enumerate}
+
+\sujetbac[premier et second ordre combinés]
+\textbf{Partie A.} On considère $(E_1):\ y'=2y+4$.
+\begin{enumerate}[label=\arabic*)]
+\item Déterminer la solution particulière constante de $(E_1)$.
+\item Résoudre $(E_1)$, puis donner la solution $g$ telle que $g(0)=1$.
+\end{enumerate}
+\textbf{Partie B.} On considère $(E_2):\ y''-4y=0$.
+\begin{enumerate}[label=\arabic*)]
+\setcounter{enumi}{2}
+\item Résoudre $(E_2)$.
+\item Déterminer la solution $h$ de $(E_2)$ telle que $h(0)=2$ et $h'(0)=0$ ;
+exprimer $h$ à l'aide de $\cosh$.
+\item Montrer que $h$ est paire et étudier ses variations sur $[0,+\infty[$.
+\end{enumerate}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Corrigés}
+
+\corrige{de l'exercice 1}
+a) $y=Ce^{3x}$ ; $y(0)=C=2$ donc $y=2e^{3x}$.\;
+b) $2y'+y=0\Leftrightarrow y'=-\tfrac12 y$, $y=Ce^{-x/2}$ ; $y(0)=C=-4$ donc
+$y=-4e^{-x/2}$.\;
+c) $y'=4y-8$ : solution constante $-\frac{b}{a}=-\frac{-8}{4}=2$, d'où
+$y=Ce^{4x}+2$ ; $y(0)=C+2=5$ donne $C=3$ et $y=3e^{4x}+2$.
+
+\corrige{de l'exercice 2}
+$a=-\frac12,\ b=3$ : solution constante $-\frac{b}{a}=-\frac{3}{-1/2}=6$, donc
+$y=Ce^{-x/2}+6$. Condition $y(0)=C+6=1$ donne $C=-5$ et $y=-5e^{-x/2}+6$.
+Comme $a<0$, $e^{-x/2}\to0$, donc $\displaystyle\lim_{x\to+\infty}y=6$
+(valeur d'équilibre).
+
+\corrige{de l'exercice 3}
+$f'=2f+6$ : solution constante $-\frac{6}{2}=-3$, donc $f(x)=Ce^{2x}-3$ ;
+$f(0)=C-3=0$ donne $C=3$, d'où $f(x)=3e^{2x}-3$.
+Puis $f(x)=3 \Leftrightarrow 3e^{2x}-3=3 \Leftrightarrow e^{2x}=2
+\Leftrightarrow x=\frac{\ln 2}{2}$.
+
+\corrige{de l'exercice 4}
+$y'+3y=12 \Leftrightarrow y'=-3y+12$. a) Équilibre : $-\frac{b}{a}=-\frac{12}{-3}=4$.\;
+b) $y=Ce^{-3x}+4$.\; c) $y(0)=C+4=10$ donne $C=6$ : $y=6e^{-3x}+4$. Comme $a=-3<0$,
+$\displaystyle\lim_{x\to+\infty}y=4$.
+
+\corrige{de l'exercice 5}
+a) $y''=0\Rightarrow y=Ax+B$ ; $y(0)=B=1$ et $y'(0)=A=-2$, donc $y=-2x+1$.\;
+b) $y''=16y$ : $\omega=4$, $y=Ae^{4x}+Be^{-4x}$.\;
+c) $y''=-9y$ : $\omega=3$, $y=A\cos(3x)+B\sin(3x)$.
+
+\corrige{de l'exercice 6}
+$y''+4y=0\Leftrightarrow y''=-4y$, $\omega=2$ : $y=A\cos(2x)+B\sin(2x)$.
+$y(0)=A=3$. $y'(x)=-2A\sin(2x)+2B\cos(2x)$, $y'(0)=2B=2$ donc $B=1$.
+Solution : $y=3\cos(2x)+\sin(2x)$. Amplitude $R=\sqrt{3^2+1^2}=\sqrt{10}$,
+période $T=\frac{2\pi}{2}=\pi$.
+
+\corrige{de l'exercice 7}
+$y''=25y$ : $\omega=5$, $y=Ae^{5x}+Be^{-5x}$. $y(0)=A+B=0$ donc $B=-A$.
+$y'(x)=5Ae^{5x}-5Be^{-5x}$, $y'(0)=5A-5B=10A=10$ donc $A=1$, $B=-1$.
+Ainsi $y=e^{5x}-e^{-5x}=2\sinh(5x)$.
+
+\corrige{de l'exercice 8}
+a) $r^2-5r+6=(r-2)(r-3)=0$ : $y=Ae^{2x}+Be^{3x}$.\;
+b) $r^2-4r+4=(r-2)^2=0$, racine double $2$ : $y=(Ax+B)e^{2x}$.\;
+c) $r^2+9=0$, $r=\pm 3i$ ($\alpha=0,\beta=3$) : $y=A\cos(3x)+B\sin(3x)$.
+
+\corrige{de l'exercice 9}
+$r^2+2r+5=0$, $\Delta=4-20=-16$, $r=\frac{-2\pm4i}{2}=-1\pm2i$ : $\alpha=-1$,
+$\beta=2$. Solutions $y=e^{-x}(A\cos2x+B\sin2x)$. $y(0)=A=1$.
+$y'(x)=-e^{-x}(A\cos2x+B\sin2x)+e^{-x}(-2A\sin2x+2B\cos2x)$, donc
+$y'(0)=-A+2B=1$ ; avec $A=1$ : $2B=2$, $B=1$. Solution
+$y=e^{-x}(\cos2x+\sin2x)$.
+
+\corrige{de l'exercice 10}
+$r^2-2r+1=(r-1)^2=0$, racine double $1$ : $y=(Ax+B)e^{x}$. $y(0)=B=2$.
+$y'(x)=Ae^{x}+(Ax+B)e^{x}=(Ax+A+B)e^{x}$, $y'(0)=A+B=1$ donne $A=1-2=-1$.
+Solution $y=(-x+2)e^{x}=(2-x)e^x$.
+
+\corrige{de l'exercice 11}
+$r^2+r-6=(r+3)(r-2)=0$, racines $-3$ et $2$ : $y=Ae^{-3x}+Be^{2x}$. La limite en
+$+\infty$ est nulle ssi le terme $Be^{2x}$ disparaît, donc $B=0$. Avec $y(0)=A=5$ :
+$y=5e^{-3x}$.
+
+\corrige{de l'exercice 12}
+$f(x)=e^{-x}\cos(2x)$.
+$f'(x)=-e^{-x}\cos 2x-2e^{-x}\sin 2x=e^{-x}(-\cos 2x-2\sin 2x)$.
+On dérive le crochet $-\cos2x-2\sin2x$ (dérivée $2\sin2x-4\cos2x$) :
+\[
+f''(x)=-e^{-x}(-\cos2x-2\sin2x)+e^{-x}(2\sin2x-4\cos2x)=e^{-x}(-3\cos2x+4\sin2x).
+\]
+Dans $f''+2f'+5f$, facteur $e^{-x}$ :
+coefficient de $\cos2x$ : $-3+2(-1)+5(1)=0$ ;
+coefficient de $\sin2x$ : $4+2(-2)+5(0)=0$.
+Donc $f''+2f'+5f=0$ : $f$ est solution.
+
+\corrige{de l'exercice 13}
+$g(x)=(x^2+1)e^{2x}$. $g'(x)=2x\,e^{2x}+(x^2+1)\cdot 2e^{2x}=(2x^2+2x+2)e^{2x}$.
+Alors $g'(x)-2g(x)=(2x^2+2x+2)e^{2x}-2(x^2+1)e^{2x}=(2x^2+2x+2-2x^2-2)e^{2x}
+=2x\,e^{2x}$. Donc $g$ vérifie $y'-2y=2x\,e^{2x}$.
+
+\corrige{de l'exercice 14}
+$f''=-\omega^2 f$ par hypothèse. Dérivons :
+$E'(x)=2f'(x)f''(x)+\omega^2\cdot 2f(x)f'(x)=2f'(x)\big(f''(x)+\omega^2 f(x)\big)
+=2f'(x)\cdot 0=0.$
+Ainsi $E'\equiv 0$ : $E$ est constante sur $\R$. (Sa valeur est $\omega^2 R^2$
+où $R=\sqrt{A^2+B^2}$ est l'amplitude.)
+
+\corrige{de l'exercice 15}
+a) $N'=-\lambda N$ donne $N(t)=N_0e^{-\lambda t}$.\;
+b) $N(T)=\frac{N_0}{2}$ : $e^{-\lambda T}=\frac12$, donc $\lambda T=\ln2$ et
+$\lambda=\frac{\ln2}{T}=\frac{\ln2}{8}$.\;
+c) $24=3T$, donc $N(24)=N_0e^{-3\ln2}=N_0\cdot 2^{-3}=\frac{N_0}{8}$ : il reste
+$\frac18$ de l'échantillon ($12{,}5\,\%$).
+
+\corrige{de l'exercice 16}
+\textbf{1)} $u=\theta-28$, donc $u'=\theta'=-k(\theta-28)=-k\,u$ : $u'=-ku$, d'où
+$u(t)=Ce^{-kt}$ et $\theta(t)=28+Ce^{-kt}$.\;
+\textbf{2)} $\theta(0)=28+C=8$ donne $C=-20$ : $\theta(t)=28-20e^{-kt}$.\;
+\textbf{3)} $\theta(1)=28-20e^{-k}=15$, donc $20e^{-k}=13$, $e^{-k}=\frac{13}{20}$,
+d'où $k=-\ln\frac{13}{20}=\ln\frac{20}{13}\approx 0{,}43$.\;
+\textbf{4)} $\theta'(t)=20k\,e^{-kt}>0$ : $\theta$ est strictement croissante (la
+boisson se réchauffe). Comme $k>0$, $e^{-kt}\to0$, donc
+$\displaystyle\lim_{t\to+\infty}\theta(t)=28$ : la température tend vers celle de la
+pièce.\;
+\textbf{5)} $\theta(t)=25 \Leftrightarrow 20e^{-kt}=3 \Leftrightarrow
+t=\frac{1}{k}\ln\frac{20}{3}$. Avec $k\approx0{,}43$ :
+$t\approx\frac{1{,}897}{0{,}43}\approx 4{,}41$~h, soit environ $4$~h $25$~min.
+
+\corrige{de l'exercice 17}
+a) $RCu'+u=E \Leftrightarrow u'=-\frac{1}{RC}u+\frac{E}{RC}$ : $a=-\frac{1}{RC}$,
+$b=\frac{E}{RC}$.\;
+b) Solution constante $-\frac ba=-\frac{E/RC}{-1/RC}=E$, donc $u=Ce^{-t/(RC)}+E$ ;
+$u(0)=C+E=0$ donne $C=-E$ : $u(t)=E\big(1-e^{-t/(RC)}\big)$.\;
+c) $\displaystyle\lim_{t\to+\infty}u(t)=E$ : le condensateur se charge jusqu'à la
+tension $E$.
+
+\corrige{du sujet 1}
+\textbf{1)} $u=\theta-22$, $u'=\theta'=-0{,}05(\theta-22)=-0{,}05\,u$.\;
+\textbf{2)} $u(t)=Ce^{-0{,}05t}$ ; $u(0)=\theta(0)-22=78$ donc $C=78$ et
+$\theta(t)=22+78e^{-0{,}05t}$.\;
+\textbf{3)} $\theta'(t)=78\times(-0{,}05)e^{-0{,}05t}=-3{,}9\,e^{-0{,}05t}<0$ :
+$\theta$ est strictement décroissante. $\displaystyle\lim_{t\to+\infty}\theta(t)=22$ :
+l'objet refroidit jusqu'à la température ambiante.\;
+\textbf{4)} $\theta(t_1)=50 \Leftrightarrow 78e^{-0{,}05t_1}=28 \Leftrightarrow
+e^{-0{,}05t_1}=\frac{28}{78} \Leftrightarrow t_1=\frac{1}{0{,}05}\ln\frac{78}{28}
+=20\ln\frac{78}{28}\approx 20\times1{,}0245\approx 20{,}5$, soit $t_1\approx 20$~min
+(arrondi : $21$~min en arrondissant à l'entier supérieur ; $\approx 20$~min).\;
+\textbf{5)} L'écart à l'ambiance est $u(t)=78e^{-0{,}05t}$. Passer de $\theta$ à
+$\frac{\theta+22}{2}$ revient à diviser l'écart $u$ par $2$. Si $u(t_2)=\frac12 u(t_1)$,
+alors $e^{-0{,}05(t_2-t_1)}=\frac12$, soit $t_2-t_1=\frac{\ln2}{0{,}05}=20\ln2$,
+constante indépendante de la température de départ. (C'est l'analogue d'une
+« demi-vie » : ici $\approx 13{,}9$~min.)
+
+\corrige{du sujet 2}
+\textbf{1)} Équation caractéristique $r^2+2r+10=0$, $\Delta=4-40=-36<0$.\;
+\textbf{2)} $r=\frac{-2\pm6i}{2}=-1\pm3i$ : $\alpha=-1$, $\beta=3$. Solutions
+$y=e^{-x}(A\cos3x+B\sin3x)$.\;
+\textbf{3)} $f(0)=A=0$. $f'(x)=-e^{-x}(A\cos3x+B\sin3x)+e^{-x}(-3A\sin3x+3B\cos3x)$,
+$f'(0)=-A+3B=3$ ; avec $A=0$ : $3B=3$, $B=1$. Solution $f(x)=e^{-x}\sin3x$.\;
+\textbf{4)} C'est exactement l'expression obtenue : $f(x)=e^{-x}\sin(3x)$.\;
+\textbf{5)} Pour $x\ge0$, $e^{-x}>0$ et $|\sin3x|\le1$, donc
+$|f(x)|=e^{-x}|\sin3x|\le e^{-x}$. Comme $e^{-x}\to0$, le théorème des gendarmes
+donne $\displaystyle\lim_{x\to+\infty}f(x)=0$.\;
+\textbf{6)} $f(x)=0 \Leftrightarrow \sin3x=0 \Leftrightarrow 3x=k\pi$
+($k\in\Z$), soit $x=\frac{k\pi}{3}$. Sur $[0,+\infty[$ : $x=0,\ \frac{\pi}{3},\
+\frac{2\pi}{3},\ \pi,\dots$, c'est-à-dire $x=\frac{k\pi}{3}$ pour $k\in\N$.
+
+\corrige{du sujet 3}
+\textbf{Partie A.}
+\textbf{1)} Solution constante de $y'=2y+4$ : $-\frac ba=-\frac{4}{2}=-2$.\;
+\textbf{2)} $y=Ce^{2x}-2$ ; $g(0)=C-2=1$ donne $C=3$, donc $g(x)=3e^{2x}-2$.\\
+\textbf{Partie B.}
+\textbf{3)} $y''-4y=0 \Leftrightarrow y''=4y$, $\omega=2$ : $y=Ae^{2x}+Be^{-2x}$
+(équivalent : $r^2-4=0$, $r=\pm2$).\;
+\textbf{4)} $h(0)=A+B=2$ ; $h'(x)=2Ae^{2x}-2Be^{-2x}$, $h'(0)=2A-2B=0$ donne $A=B$,
+d'où $A=B=1$ : $h(x)=e^{2x}+e^{-2x}=2\cosh(2x)$.\;
+\textbf{5)} $h(-x)=e^{-2x}+e^{2x}=h(x)$ : $h$ est paire. $h'(x)=2(e^{2x}-e^{-2x})
+=4\sinh(2x)$ ; pour $x>0$, $\sinh(2x)>0$ donc $h'>0$ : $h$ est strictement
+croissante sur $[0,+\infty[$ (avec minimum $h(0)=2$).

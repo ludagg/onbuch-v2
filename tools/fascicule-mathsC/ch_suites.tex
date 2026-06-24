@@ -1,0 +1,975 @@
+\chapter{Suites numériques}
+
+\noindent\textit{Une suite est une « liste infinie ordonnée » de nombres réels, indexée par les
+entiers naturels. Étudier une suite, c'est en comprendre le comportement : croît-elle ?
+reste-t-elle bornée ? vers quelle valeur se rapproche-t-elle quand $n$ devient très grand ?
+Le raisonnement par récurrence, l'étude du sens de variation et le calcul des limites sont les
+outils-clés de ce chapitre, au cœur des problèmes de la série C. On y rencontre les suites
+arithmétiques et géométriques, les suites arithmético-géométriques, les suites récurrentes
+$u_{n+1}=f(u_n)$, les théorèmes de convergence, de comparaison, des gendarmes et des suites
+adjacentes.}
+\vspace{8pt}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Généralités sur les suites}
+
+\begin{definition}[Suite numérique]
+Une \textbf{suite numérique} $(u_n)$ est une fonction de $\N$ (ou d'une partie $\{n\ge n_0\}$ de $\N$)
+vers $\R$, qui à chaque entier $n$ associe un réel $u_n$ appelé \textbf{terme de rang $n$}.
+On note la suite $(u_n)_{n\in\N}$, ou simplement $(u_n)$ ; $u_0$ (ou $u_{n_0}$) est le \textbf{terme initial}.
+\end{definition}
+
+\begin{definition}[Modes de génération]
+On définit une suite de deux façons principales :
+\begin{itemize}
+\item \textbf{Forme explicite} : $u_n=f(n)$ ; chaque terme se calcule directement à partir de $n$.
+  Ex. $u_n=\dfrac{2n-1}{n+1}$.
+\item \textbf{Forme récurrente} : on donne le premier terme et une relation
+  $u_{n+1}=f(u_n)$ liant chaque terme au précédent. Ex. $u_0=2$ et $u_{n+1}=\sqrt{u_n+1}$.
+\end{itemize}
+\end{definition}
+
+\begin{remarque}
+Avec une forme explicite, $u_{100}$ se calcule en une ligne. Avec une forme récurrente, il faut
+en principe connaître $u_{99}$ : tout l'enjeu sera souvent de \emph{retrouver une forme explicite}
+(par une suite auxiliaire ou une conjecture validée par récurrence).
+\end{remarque}
+
+\begin{exemple}
+Soit $(u_n)$ définie par $u_0=2$ et $u_{n+1}=\sqrt{u_n+1}$. Alors
+$u_1=\sqrt{3}\approx1{,}732$, $u_2=\sqrt{\sqrt3+1}\approx1{,}653$, $u_3\approx1{,}630$ :
+les termes semblent décroître et se stabiliser autour de $1{,}618$ (on le justifiera plus loin).
+\end{exemple}
+
+\subsection{Représentation graphique}
+
+On peut représenter une suite de deux manières : en plaçant les points $\bigl(n\,;\,u_n\bigr)$
+dans un repère (nuage de points), ou — pour une suite récurrente — par une construction
+« en escalier » à l'aide des courbes $y=f(x)$ et $y=x$ (voir plus loin).
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth]
+\begin{axis}[width=9.2cm,height=5cm,axis lines=middle,xlabel={\small $n$},ylabel={\small $u_n$},
+  xmin=-0.4,xmax=9,ymin=-1.4,ymax=2.4,xtick={0,1,2,3,4,5,6,7,8},ytick={2},yticklabels={$2$},clip=false]
+\addplot[onbo,only marks,mark=*,mark size=1.7pt,samples at={0,1,2,3,4,5,6,7,8}]{2-3/(x+1)};
+\addplot[onbgreen,dashed,line width=0.7pt,domain=-0.4:9]{2};
+\node[onbgreen,anchor=south west] at (axis cs:6.6,2){\small $y=2$};
+\end{axis}
+\node[align=left,text width=3.3cm,anchor=west] at (9.3,1.8)
+{\small Nuage de points de $u_n=\dfrac{2n-1}{n+1}=2-\dfrac3{n+1}$ : les termes montent vers $2$ sans l'atteindre.};
+\end{tikzpicture}
+\fig{Figure~1 — Représentation d'une suite par le nuage des points $(n\,;\,u_n)$.}
+\end{illus}
+
+\subsection{Suites majorées, minorées, bornées}
+
+\begin{definition}[Majorant, minorant, bornée]
+La suite $(u_n)$ est :
+\begin{itemize}
+\item \textbf{majorée} s'il existe un réel $M$ tel que $u_n\le M$ pour tout $n$ ;
+\item \textbf{minorée} s'il existe un réel $m$ tel que $u_n\ge m$ pour tout $n$ ;
+\item \textbf{bornée} si elle est à la fois majorée et minorée (il existe alors $K\ge0$ tel que $|u_n|\le K$).
+\end{itemize}
+\end{definition}
+
+\begin{remarque}
+Un majorant (resp. minorant) n'est \textbf{pas unique} : si $M$ majore $(u_n)$, tout réel $\ge M$ aussi.
+Pour \emph{prouver} qu'une suite est majorée, il suffit d'exhiber UN majorant et de le vérifier
+(souvent par récurrence pour une suite récurrente).
+\end{remarque}
+
+\begin{exemple}
+$u_n=\dfrac{2n-1}{n+1}=2-\dfrac3{n+1}$. Comme $\dfrac3{n+1}>0$, on a $u_n<2$ : la suite est
+majorée par $2$. De plus $u_n=2-\dfrac3{n+1}\ge u_0=-1$ : elle est minorée par $-1$.
+Elle est donc \textbf{bornée}.
+\end{exemple}
+
+\subsection{Sens de variation}
+
+\begin{definition}[Monotonie]
+La suite $(u_n)$ est \textbf{croissante} si $u_{n+1}\ge u_n$ pour tout $n$ ;
+\textbf{décroissante} si $u_{n+1}\le u_n$ pour tout $n$ ; \textbf{monotone} si elle est croissante
+ou décroissante. (\emph{Strictement} si les inégalités sont strictes ; \emph{constante} si $u_{n+1}=u_n$.)
+\end{definition}
+
+\begin{propriete}[Méthodes pour le sens de variation]
+Pour étudier la monotonie de $(u_n)$, on peut :
+\begin{itemize}
+\item étudier le \textbf{signe de $u_{n+1}-u_n$} (croissante si toujours $\ge0$) ;
+\item si tous les termes sont strictement positifs, comparer le \textbf{quotient $\dfrac{u_{n+1}}{u_n}$} à $1$ ;
+\item si $u_n=f(n)$, exploiter le \textbf{sens de variation de $f$} sur $[n_0,+\infty[$ :
+  $f$ croissante $\Rightarrow$ $(u_n)$ croissante.
+\end{itemize}
+\end{propriete}
+
+\begin{remarque}
+Attention : le critère « $f$ croissante » ne s'applique qu'à la forme \emph{explicite} $u_n=f(n)$.
+Pour une suite \emph{récurrente} $u_{n+1}=f(u_n)$, le sens de variation de $f$ ne donne PAS
+directement celui de $(u_n)$ (voir la section sur les suites récurrentes).
+\end{remarque}
+
+\begin{exemple}
+$u_n=\dfrac{n}{2^n}$ (termes $>0$). Le quotient
+$\dfrac{u_{n+1}}{u_n}=\dfrac{(n+1)/2^{n+1}}{n/2^n}=\dfrac{n+1}{2n}$.
+Pour $n\ge1$, $\dfrac{n+1}{2n}\le1\iff n+1\le2n\iff n\ge1$ : la suite est \textbf{décroissante} à partir de $n=1$.
+\end{exemple}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Raisonnement par récurrence}
+
+\begin{theoreme}[Principe de récurrence]
+Soit $P(n)$ une propriété dépendant de l'entier $n$. Si :
+\begin{enumerate}[label=\arabic*)]
+\item \textbf{Initialisation} : $P(n_0)$ est vraie ;
+\item \textbf{Hérédité} : pour tout $n\ge n_0$, $P(n)\Rightarrow P(n+1)$,
+\end{enumerate}
+alors $P(n)$ est vraie pour tout entier $n\ge n_0$.
+\end{theoreme}
+
+\begin{aretenir}
+Rédiger une récurrence : (1) \textbf{énoncer} clairement $P(n)$ ; (2) \textbf{initialiser}
+en vérifiant $P(n_0)$ par le calcul ; (3) \textbf{hérédité} : « supposons $P(n)$ vraie pour un
+$n\ge n_0$ fixé » (hypothèse de récurrence), puis démontrer $P(n+1)$ ; (4) \textbf{conclure}
+par le principe de récurrence. Ne jamais oublier l'initialisation !
+\end{aretenir}
+
+\begin{exemple}
+Montrons que $1+2+\dots+n=\dfrac{n(n+1)}{2}$ pour tout $n\ge1$.
+\emph{Initialisation} ($n=1$) : membre de gauche $=1$, membre de droite $=\dfrac{1\cdot2}{2}=1$. Vrai.
+\emph{Hérédité} : supposons $1+\dots+n=\dfrac{n(n+1)}{2}$. Alors
+$1+\dots+n+(n+1)=\dfrac{n(n+1)}{2}+(n+1)=(n+1)\dfrac{n+2}{2}=\dfrac{(n+1)(n+2)}{2}$,
+qui est la formule au rang $n+1$. Donc $P(n)$ est vraie pour tout $n\ge1$.
+\end{exemple}
+
+\begin{remarque}
+La récurrence sert aussi à démontrer des \textbf{inégalités} (ex. $2^n\ge n+1$), des
+\textbf{divisibilités} (ex. $7\mid 3^{2n}-2^n$) ou un \textbf{encadrement} $m\le u_n\le M$
+pour une suite récurrente. C'est l'outil de prédilection pour valider une conjecture.
+\end{remarque}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Suites arithmétiques et géométriques}
+
+\begin{definition}[Suite arithmétique]
+$(u_n)$ est \textbf{arithmétique de raison $r$} si $u_{n+1}=u_n+r$ pour tout $n$ ;
+c'est-à-dire $u_{n+1}-u_n=r$ est constant.
+\end{definition}
+
+\begin{propriete}[Terme général et somme — arithmétique]
+Si $(u_n)$ est arithmétique de raison $r$ et de premier terme $u_0$ :
+\[
+u_n=u_0+nr,\qquad u_n=u_p+(n-p)\,r .
+\]
+La somme de termes consécutifs vaut
+\[
+S=u_0+u_1+\dots+u_n=(n+1)\cdot\frac{u_0+u_n}{2}
+=\bigl(\text{nb de termes}\bigr)\times\frac{\text{premier}+\text{dernier}}{2}.
+\]
+Le sens de variation est donné par le signe de $r$ ($r>0$ : croissante ; $r<0$ : décroissante ;
+$r=0$ : constante).
+\end{propriete}
+
+\begin{remarque}
+\textbf{Preuve du terme général.} Par récurrence : $u_0=u_0+0\cdot r$ (vrai) ; si $u_n=u_0+nr$,
+alors $u_{n+1}=u_n+r=u_0+nr+r=u_0+(n+1)r$. \textbf{Preuve de la somme.} En écrivant $S$
+à l'endroit puis à l'envers et en additionnant terme à terme, chaque paire vaut $u_0+u_n$ ;
+il y a $n+1$ termes, d'où $2S=(n+1)(u_0+u_n)$.
+\end{remarque}
+
+\begin{definition}[Suite géométrique]
+$(u_n)$ est \textbf{géométrique de raison $q$} ($q\neq0$) si $u_{n+1}=q\,u_n$ pour tout $n$ ;
+c'est-à-dire $\dfrac{u_{n+1}}{u_n}=q$ est constant (quand $u_n\ne0$).
+\end{definition}
+
+\begin{propriete}[Terme général et somme — géométrique]
+Si $(u_n)$ est géométrique de raison $q$ et de premier terme $u_0$ :
+\[
+u_n=u_0\,q^{\,n},\qquad u_n=u_p\,q^{\,n-p}.
+\]
+Pour $q\neq1$, la somme vaut
+\[
+S=u_0+u_1+\dots+u_n=u_0\,\frac{1-q^{\,n+1}}{1-q}
+=\bigl(\text{premier terme}\bigr)\times\frac{1-q^{\text{(nb de termes)}}}{1-q}.
+\]
+(Pour $q=1$, tous les termes valent $u_0$ et $S=(n+1)u_0$.)
+\end{propriete}
+
+\begin{remarque}
+\textbf{Preuve de la somme géométrique.} Posons $S=u_0(1+q+\dots+q^n)$. Alors
+$qS=u_0(q+q^2+\dots+q^{n+1})$, donc $S-qS=u_0(1-q^{n+1})$, soit $S(1-q)=u_0(1-q^{n+1})$,
+d'où le résultat pour $q\ne1$.
+\end{remarque}
+
+\begin{aretenir}
+\textbf{Arithmétique} : on \emph{ajoute} toujours $r$ ($u_n=u_0+nr$). \quad
+\textbf{Géométrique} : on \emph{multiplie} toujours par $q$ ($u_n=u_0q^n$).
+La somme retient : « \emph{nombre de termes} $\times\dfrac{\text{premier}+\text{dernier}}{2}$ »
+(arithmétique) ou « \emph{premier} $\times\dfrac{1-q^{\text{nb termes}}}{1-q}$ » (géométrique).
+\end{aretenir}
+
+\begin{exemple}
+$(u_n)$ géométrique, $u_0=3$, $q=2$ : $u_n=3\cdot2^n$, et
+$u_0+\dots+u_5=3\cdot\dfrac{1-2^{6}}{1-2}=3\cdot\dfrac{1-64}{-1}=3\times63=189$
+($6$ termes, de $u_0$ à $u_5$).
+\end{exemple}
+
+\begin{propriete}[Caractérisation par moyenne]
+Trois réels $a,b,c$ sont des termes consécutifs d'une suite \textbf{arithmétique} ssi
+$b=\dfrac{a+c}{2}$ ($b$ est la \emph{moyenne arithmétique}). Ils sont termes consécutifs d'une
+suite \textbf{géométrique} (de signes compatibles) ssi $b^2=ac$ ($|b|$ est la \emph{moyenne géométrique}).
+\end{propriete}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth]
+\begin{axis}[width=9cm,height=5cm,axis lines=middle,xlabel={\small $n$},ylabel={\small $u_n$},
+  xmin=-0.4,xmax=7.5,ymin=0,ymax=18,xtick={0,1,2,3,4,5,6},ytick=\empty]
+% arithmétique u_n = 2 + 2n
+\addplot[onbblue,only marks,mark=*,mark size=1.6pt,samples at={0,1,2,3,4,5,6}]{2+2*x};
+\addplot[onbblue,line width=0.5pt,dashed,domain=0:6]{2+2*x};
+% géométrique u_n = 0.6*1.6^n
+\addplot[onbo,only marks,mark=square*,mark size=1.5pt,samples at={0,1,2,3,4,5,6}]{0.6*1.6^x};
+\node[onbblue,anchor=west] at (axis cs:4.2,9){\small arithm. $u_n=2+2n$};
+\node[onbo,anchor=west] at (axis cs:3.4,14){\small géom. $u_n=0{,}6\cdot1{,}6^n$};
+\end{axis}
+\node[align=left,text width=3.1cm,anchor=west] at (9.1,2.4)
+{\small Une suite arithmétique croît \emph{linéairement} ; une suite géométrique ($q>1$) croît de plus en plus vite.};
+\end{tikzpicture}
+\fig{Figure~2 — Croissance comparée d'une suite arithmétique et d'une suite géométrique.}
+\end{illus}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Suites arithmético-géométriques}
+
+\begin{definition}[Suite arithmético-géométrique]
+$(u_n)$ est \textbf{arithmético-géométrique} s'il existe deux réels $a$ et $b$ ($a\neq1$, $a\neq0$) tels que
+\[
+u_{n+1}=a\,u_n+b\qquad\text{pour tout }n.
+\]
+\end{definition}
+
+\begin{propriete}[Résolution par suite auxiliaire]
+On note $\ell$ le \textbf{point fixe} solution de $\ell=a\ell+b$, soit $\ell=\dfrac{b}{1-a}$.
+Alors la suite $v_n=u_n-\ell$ est \textbf{géométrique de raison $a$} :
+\[
+v_{n+1}=u_{n+1}-\ell=a\,u_n+b-(a\ell+b)=a(u_n-\ell)=a\,v_n.
+\]
+On en déduit $v_n=v_0\,a^{\,n}$ puis $u_n=\ell+(u_0-\ell)\,a^{\,n}$.
+\end{propriete}
+
+\begin{exemple}
+$u_0=1$, $u_{n+1}=\tfrac12 u_n+3$. Point fixe : $\ell=\tfrac12\ell+3\Rightarrow\ell=6$.
+Posons $v_n=u_n-6$ : $v$ est géométrique de raison $\tfrac12$, $v_0=1-6=-5$, donc
+$v_n=-5\bigl(\tfrac12\bigr)^n$ et $u_n=6-5\bigl(\tfrac12\bigr)^n$.
+Comme $\bigl(\tfrac12\bigr)^n\to0$, on a $u_n\to6$.
+\end{exemple}
+
+\begin{aretenir}
+Devant $u_{n+1}=au_n+b$ ($a\ne1$) : (1) résoudre $\ell=a\ell+b$ ; (2) poser $v_n=u_n-\ell$,
+\textbf{géométrique de raison $a$} ; (3) écrire $v_n=v_0a^n$ ; (4) revenir à $u_n=\ell+v_n$ ;
+(5) conclure sur la limite via $\lim a^n$.
+\end{aretenir}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Limite d'une suite}
+
+\begin{definition}[Convergence, divergence]
+$(u_n)$ \textbf{converge} vers le réel $\ell$ si $u_n$ devient et reste aussi proche de $\ell$ que
+l'on veut dès que $n$ est assez grand ; on note $\displaystyle\lim_{n\to+\infty}u_n=\ell$.
+Une suite qui ne converge pas est \textbf{divergente} (limite infinie, ou pas de limite du tout).
+\end{definition}
+
+\begin{remarque}
+Plus formellement, $u_n\to\ell$ signifie : pour tout $\varepsilon>0$, il existe un rang $N$ tel que
+pour tout $n\ge N$, $|u_n-\ell|<\varepsilon$. Au niveau Tle, on raisonne surtout avec les
+opérations sur les limites et les théorèmes ci-dessous, sans manipuler explicitement $\varepsilon$.
+\end{remarque}
+
+\begin{propriete}[Limites de référence]
+\[
+\lim_{n\to+\infty}\frac1n=0,\quad \lim_{n\to+\infty}\frac1{n^k}=0\ (k>0),\quad
+\lim_{n\to+\infty}\frac1{\sqrt n}=0,
+\]
+\[
+\lim_{n\to+\infty}n=+\infty,\qquad\lim_{n\to+\infty}\sqrt n=+\infty.
+\]
+\end{propriete}
+
+\begin{theoreme}[Limite d'une suite géométrique]
+Pour la suite géométrique $(q^n)$ :
+\[
+\lim_{n\to+\infty}q^n=
+\begin{cases}
+0 & \text{si } -1<q<1,\\
+1 & \text{si } q=1,\\
++\infty & \text{si } q>1,\\
+\text{pas de limite} & \text{si } q\le-1.
+\end{cases}
+\]
+\end{theoreme}
+
+\begin{propriete}[Opérations sur les limites]
+Si $u_n\to\ell$ et $v_n\to\ell'$ (réels), alors $u_n+v_n\to\ell+\ell'$, $u_nv_n\to\ell\ell'$,
+et $\dfrac{u_n}{v_n}\to\dfrac{\ell}{\ell'}$ (si $\ell'\ne0$). Les formes
+$\infty-\infty$, $0\times\infty$, $\dfrac\infty\infty$, $\dfrac00$ sont \textbf{indéterminées} :
+on les lève par factorisation du terme dominant, conjugué, etc.
+\end{propriete}
+
+\begin{exemple}
+$u_n=\dfrac{3n^2+1}{n^2+n}$ : forme $\frac\infty\infty$. On factorise par $n^2$ :
+$u_n=\dfrac{3+\frac1{n^2}}{1+\frac1n}\to\dfrac{3+0}{1+0}=3$.
+\end{exemple}
+
+\begin{theoreme}[Suite monotone bornée]
+Toute suite \textbf{croissante et majorée} converge (vers un réel $\le$ à tout majorant).
+Toute suite \textbf{décroissante et minorée} converge. \\
+De plus, toute suite croissante \emph{non} majorée tend vers $+\infty$, et toute suite
+décroissante non minorée tend vers $-\infty$.
+\end{theoreme}
+
+\begin{remarque}
+Ce théorème garantit l'\emph{existence} de la limite sans en donner la valeur : on prouve d'abord
+la convergence (monotonie + bornitude par récurrence), puis on calcule $\ell$ (souvent par le point fixe).
+\end{remarque}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth]
+\begin{axis}[width=9.2cm,height=5cm,axis lines=middle,xlabel={\small $n$},ylabel={\small $u_n$},
+  xmin=-0.4,xmax=9,ymin=0,ymax=3.4,xtick={0,1,2,3,4,5,6,7,8},ytick={3},yticklabels={$M$},clip=false]
+\addplot[onbo,only marks,mark=*,mark size=1.7pt,samples at={0,1,2,3,4,5,6,7,8}]{3-2.6*(0.6)^x};
+\addplot[onbgreen,dashed,line width=0.8pt,domain=-0.4:9]{3};
+\node[onbgreen,anchor=south west] at (axis cs:6.4,3){\small majorant $M$};
+\node[onbo,anchor=north west] at (axis cs:5.3,2.2){\small $u_n\nearrow$};
+\end{axis}
+\node[align=left,text width=3.2cm,anchor=west] at (9.3,1.8)
+{\small Une suite croissante et majorée « s'écrase » contre un plafond : elle converge vers $\ell\le M$.};
+\end{tikzpicture}
+\fig{Figure~3 — Théorème de la suite monotone bornée : croissante et majorée $\Rightarrow$ convergente.}
+\end{illus}
+
+\begin{theoreme}[Théorèmes de comparaison et des gendarmes]
+Soit $(u_n)$, $(v_n)$, $(w_n)$ telles que les inégalités ci-dessous soient vraies à partir d'un
+certain rang.
+\begin{itemize}
+\item Si $u_n\le v_n$ et $u_n\to+\infty$, alors $v_n\to+\infty$.
+\item Si $u_n\le v_n$ et $v_n\to-\infty$, alors $u_n\to-\infty$.
+\item \textbf{Théorème des gendarmes} : si $u_n\le v_n\le w_n$ avec $u_n\to\ell$ et $w_n\to\ell$
+  (\emph{même} limite finie $\ell$), alors $v_n\to\ell$.
+\item \textbf{Cas particulier utile} : si $|v_n-\ell|\le w_n$ avec $w_n\to0$, alors $v_n\to\ell$.
+\end{itemize}
+\end{theoreme}
+
+\begin{exemple}
+$u_n=\dfrac{\sin n}{n}$. Comme $-1\le\sin n\le1$, on a $-\dfrac1n\le u_n\le\dfrac1n$ ;
+les deux « gendarmes » tendent vers $0$, donc par le théorème des gendarmes $u_n\to0$.
+\end{exemple}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth]
+\begin{axis}[width=9.4cm,height=5cm,axis lines=middle,xlabel={\small $n$},ylabel={\small },
+  xmin=0.6,xmax=9,ymin=-1.2,ymax=1.2,xtick={1,2,3,4,5,6,7,8},ytick={0},clip=false]
+\addplot[onbblue,only marks,mark=*,mark size=1.4pt,samples at={1,2,3,4,5,6,7,8}]{1/x};
+\addplot[onbblue,only marks,mark=*,mark size=1.4pt,samples at={1,2,3,4,5,6,7,8}]{-1/x};
+\addplot[onbo,only marks,mark=square*,mark size=1.4pt,samples at={1,2,3,4,5,6,7,8}]{sin(deg(x))/x};
+\addplot[onbblue,dashed,line width=0.5pt,domain=0.8:9]{1/x};
+\addplot[onbblue,dashed,line width=0.5pt,domain=0.8:9]{-1/x};
+\node[onbblue,anchor=west] at (axis cs:5.4,0.62){\small $\frac1n$};
+\node[onbblue,anchor=west] at (axis cs:5.4,-0.62){\small $-\frac1n$};
+\node[onbo,anchor=south west] at (axis cs:1.1,0.85){\small $\frac{\sin n}{n}$};
+\end{axis}
+\node[align=left,text width=3.1cm,anchor=west] at (9.5,0)
+{\small Les deux « gendarmes » $\pm\frac1n$ enserrent $\frac{\sin n}{n}$ : tous trois tendent vers $0$.};
+\end{tikzpicture}
+\fig{Figure~4 — Théorème des gendarmes : $-\tfrac1n\le\tfrac{\sin n}{n}\le\tfrac1n\to0$.}
+\end{illus}
+
+\begin{propriete}[Limite et point fixe (suite récurrente)]
+Si $u_{n+1}=f(u_n)$ avec $f$ \textbf{continue} sur un intervalle stable contenant les $u_n$,
+et si $(u_n)$ \textbf{converge} vers $\ell$, alors $\ell$ est un \textbf{point fixe} de $f$ :
+$f(\ell)=\ell$. (On résout cette équation pour trouver les candidats limites.)
+\end{propriete}
+
+\begin{remarque}
+\textbf{Attention} : cette propriété donne les candidats \emph{à condition} que la convergence
+soit déjà établie. Elle ne prouve PAS, à elle seule, que la suite converge : il faut d'abord
+le justifier (par exemple suite monotone bornée).
+\end{remarque}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Suites récurrentes $u_{n+1}=f(u_n)$}
+
+\begin{aretenir}
+\textbf{Plan d'étude d'une suite récurrente $u_{n+1}=f(u_n)$ :}
+\begin{enumerate}[label=\arabic*)]
+\item Trouver un intervalle $I$ \textbf{stable} ($x\in I\Rightarrow f(x)\in I$) contenant $u_0$,
+  et y montrer par récurrence que $u_n\in I$ (la suite est \textbf{bornée}).
+\item Étudier le \textbf{sens de variation} : signe de $u_{n+1}-u_n=f(u_n)-u_n$, ou récurrence.
+\item Conclure la \textbf{convergence} (suite monotone bornée).
+\item Trouver $\ell$ en résolvant $f(\ell)=\ell$ ($f$ continue).
+\end{enumerate}
+\end{aretenir}
+
+La construction « \textbf{en escalier} » (si $f$ croissante) ou « \textbf{en toile d'araignée} »
+(si $f$ décroissante) visualise le comportement : on part de $u_0$ sur l'axe, on monte
+verticalement jusqu'à la courbe $y=f(x)$ pour obtenir $u_1=f(u_0)$, on se reporte
+horizontalement sur la droite $y=x$, et on recommence.
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth]
+\begin{axis}[width=8.2cm,height=6.2cm,axis lines=middle,xlabel={\small $x$},ylabel={\small $y$},
+  xmin=0,xmax=7,ymin=0,ymax=7,xtick={6},xticklabels={$\ell$},ytick=\empty,clip=false]
+\addplot[onbmuted,line width=0.8pt,domain=0:7]{x};
+\node[onbmuted,anchor=south] at (axis cs:6.3,6.4){\small $y=x$};
+\addplot[onbo,line width=1pt,domain=0:7]{x/2+3};
+\node[onbo,anchor=west] at (axis cs:5.05,5.6){\small $y=f(x)$};
+\draw[onbblue,line width=0.8pt] (axis cs:1,0)--(axis cs:1,3.5);
+\draw[onbblue,line width=0.8pt] (axis cs:1,3.5)--(axis cs:3.5,3.5);
+\draw[onbblue,line width=0.8pt] (axis cs:3.5,3.5)--(axis cs:3.5,4.75);
+\draw[onbblue,line width=0.8pt] (axis cs:3.5,4.75)--(axis cs:4.75,4.75);
+\draw[onbblue,line width=0.8pt] (axis cs:4.75,4.75)--(axis cs:4.75,5.375);
+\draw[onbblue,line width=0.8pt] (axis cs:4.75,5.375)--(axis cs:5.375,5.375);
+\filldraw[onbink](axis cs:1,0)circle(1.6pt) node[anchor=north,onbink]{\small $u_0$};
+\node[anchor=north,onbink] at (axis cs:3.5,0){\small $u_1$};
+\node[anchor=north,onbink] at (axis cs:4.75,0){\small $u_2$};
+\filldraw[onbgreen](axis cs:6,6)circle(2pt);
+\end{axis}
+\node[align=left,text width=3.6cm,anchor=west] at (8.3,3)
+{\small Construction « en escalier » de $u_{n+1}=\tfrac12 u_n+3$ ($f$ croissante) : la suite
+monte vers le point fixe $\ell=6$ (intersection de $y=f(x)$ et $y=x$).};
+\end{tikzpicture}
+\fig{Figure~5 — Représentation « en escalier » d'une suite récurrente croissante $u_{n+1}=\tfrac12 u_n+3$.}
+\end{illus}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth]
+\begin{axis}[width=8.2cm,height=6.2cm,axis lines=middle,xlabel={\small $x$},ylabel={\small $y$},
+  xmin=0,xmax=4,ymin=0,ymax=4,xtick={2},xticklabels={$\ell$},ytick=\empty,clip=false]
+\addplot[onbmuted,line width=0.8pt,domain=0:4]{x};
+\node[onbmuted,anchor=south] at (axis cs:3.4,3.5){\small $y=x$};
+% f(x) = 4/(x+1) decroissante, point fixe : x(x+1)=4 -> x^2+x-4=0 -> x=(-1+sqrt17)/2 ~ 1.561
+\addplot[onbo,line width=1pt,domain=0.05:4,samples=80]{4/(x+1)};
+\node[onbo,anchor=west] at (axis cs:2.5,1.3){\small $y=f(x)$};
+% toile d'araignée à partir de u0 = 0.5 : u1 = 4/1.5=2.667 ; u2=4/3.667=1.0909 ; u3=4/2.0909=1.913
+\draw[onbblue,line width=0.8pt] (axis cs:0.5,0)--(axis cs:0.5,2.6667);
+\draw[onbblue,line width=0.8pt] (axis cs:0.5,2.6667)--(axis cs:2.6667,2.6667);
+\draw[onbblue,line width=0.8pt] (axis cs:2.6667,2.6667)--(axis cs:2.6667,1.0909);
+\draw[onbblue,line width=0.8pt] (axis cs:2.6667,1.0909)--(axis cs:1.0909,1.0909);
+\draw[onbblue,line width=0.8pt] (axis cs:1.0909,1.0909)--(axis cs:1.0909,1.913);
+\draw[onbblue,line width=0.8pt] (axis cs:1.0909,1.913)--(axis cs:1.913,1.913);
+\filldraw[onbink](axis cs:0.5,0)circle(1.6pt) node[anchor=north,onbink]{\small $u_0$};
+\filldraw[onbgreen](axis cs:1.5616,1.5616)circle(2pt);
+\end{axis}
+\node[align=left,text width=3.6cm,anchor=west] at (8.3,3)
+{\small Construction « en toile d'araignée » pour $u_{n+1}=\dfrac4{u_n+1}$ ($f$ décroissante) :
+la suite \emph{oscille} en spiralant vers le point fixe $\ell$.};
+\end{tikzpicture}
+\fig{Figure~6 — Représentation « en toile d'araignée » d'une suite récurrente décroissante $u_{n+1}=\tfrac4{u_n+1}$.}
+\end{illus}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Suites adjacentes}
+
+\begin{definition}[Suites adjacentes]
+Deux suites $(u_n)$ et $(v_n)$ sont \textbf{adjacentes} si l'une est croissante, l'autre décroissante,
+et $\displaystyle\lim_{n\to+\infty}(v_n-u_n)=0$.
+\end{definition}
+
+\begin{theoreme}[Convergence des suites adjacentes]
+Deux suites adjacentes convergent vers une \textbf{même limite} $\ell$, et l'on a pour tout $n$
+(si $(u_n)$ croît et $(v_n)$ décroît) : $u_n\le\ell\le v_n$.
+\end{theoreme}
+
+\begin{remarque}
+Conséquence pratique : $u_n$ et $v_n$ sont des valeurs approchées de $\ell$ par défaut et par
+excès, avec une erreur $\le v_n-u_n$. C'est le principe des encadrements de $\sqrt2$, de $\pi$,
+ou de la constante $e=\sum \frac1{k!}$.
+\end{remarque}
+
+\begin{illus}
+\begin{tikzpicture}[>=Stealth]
+\begin{axis}[width=9cm,height=5cm,axis lines=middle,xlabel={\small $n$},ylabel={\small },
+  xmin=-0.3,xmax=8.5,ymin=0,ymax=3.2,xtick={0,1,2,3,4,5,6,7},ytick={2},yticklabels={$\ell$}]
+\addplot[onbo,only marks,mark=*,mark size=1.6pt,samples at={0,1,2,3,4,5,6,7}]{2-1/(x+1)};
+\addplot[onbblue,only marks,mark=*,mark size=1.6pt,samples at={0,1,2,3,4,5,6,7}]{2+1/(x+1)};
+\addplot[onbgreen,dashed,line width=0.7pt,domain=-0.3:8.5]{2};
+\node[onbo,anchor=west] at (axis cs:6.2,1.55){\small $u_n\nearrow$};
+\node[onbblue,anchor=west] at (axis cs:6.2,2.5){\small $v_n\searrow$};
+\end{axis}
+\node[align=left,text width=3.2cm,anchor=west] at (9.1,2.6)
+{\small Les termes de $(u_n)$ montent, ceux de $(v_n)$ descendent ; l'écart $v_n-u_n\to0$ :
+elles « enserrent » $\ell$.};
+\end{tikzpicture}
+\fig{Figure~7 — Deux suites adjacentes convergeant vers la même limite $\ell$.}
+\end{illus}
+
+% ═══════════════════════════════════════════════════════════════
+\section{L'essentiel à retenir}
+
+\begin{synthese}
+\textbf{Vocabulaire.} $(u_n)$ majorée : $\exists M,\ u_n\le M$ ; minorée : $\exists m,\ u_n\ge m$ ;
+bornée : majorée et minorée. Croissante : $u_{n+1}\ge u_n$ ; décroissante : $u_{n+1}\le u_n$.\\[4pt]
+\textbf{Sens de variation.} Étudier le signe de $u_{n+1}-u_n$ ; ou $\dfrac{u_{n+1}}{u_n}$ comparé à $1$
+si $u_n>0$ ; ou les variations de $f$ si $u_n=f(n)$.\\[4pt]
+\textbf{Récurrence.} Initialisation $P(n_0)$ ; hérédité $P(n)\Rightarrow P(n+1)$ ; conclusion.\\[4pt]
+\textbf{Arithmétique} (raison $r$) : $u_n=u_0+nr$ ;\ $\sum=(\text{nb termes})\dfrac{\text{prem.}+\text{dern.}}{2}$.\\[4pt]
+\textbf{Géométrique} (raison $q$) : $u_n=u_0q^n$ ;\ $\sum=u_0\dfrac{1-q^{\text{nb termes}}}{1-q}$ ($q\ne1$).\\[4pt]
+\textbf{Arithmético-géom.} $u_{n+1}=au_n+b$ : point fixe $\ell=\dfrac b{1-a}$, $v_n=u_n-\ell$
+géométrique de raison $a$, $u_n=\ell+(u_0-\ell)a^n$.\\[4pt]
+\textbf{Limites de référence.} $\dfrac1n,\dfrac1{n^k},\dfrac1{\sqrt n}\to0$ ;\ $n,\sqrt n\to+\infty$.
+$q^n\to0$ si $|q|<1$, $\to+\infty$ si $q>1$.\\[4pt]
+\textbf{Théorèmes clés.} Monotone bornée $\Rightarrow$ converge. Comparaison : $u_n\le v_n$,
+$u_n\to+\infty\Rightarrow v_n\to+\infty$. Gendarmes : $u_n\le v_n\le w_n$, $u_n,w_n\to\ell\Rightarrow v_n\to\ell$.
+Si $|v_n-\ell|\le w_n\to0$ alors $v_n\to\ell$.\\[4pt]
+\textbf{Suite récurrente} $u_{n+1}=f(u_n)$ : (1) intervalle stable + bornitude ; (2) monotonie ;
+(3) convergence ; (4) $\ell$ vérifie $f(\ell)=\ell$ ($f$ continue). Escalier ($f\nearrow$) / toile d'araignée ($f\searrow$).\\[4pt]
+\textbf{Adjacentes.} l'une $\nearrow$, l'autre $\searrow$, $v_n-u_n\to0$ $\Rightarrow$ même limite $\ell$, avec $u_n\le\ell\le v_n$.\\[4pt]
+\textbf{Pièges.} oublier l'initialisation d'une récurrence ; appliquer le critère « $f\nearrow$ » à une
+suite récurrente ; conclure $f(\ell)=\ell$ sans avoir prouvé la convergence ; confondre raison
+$r$ (arithmétique) et $q$ (géométrique).
+\end{synthese}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Méthodes \& savoir-faire}
+
+\methode{Démontrer une propriété par récurrence}
+Énoncer $P(n)$, vérifier l'initialisation, supposer $P(n)$ (hypothèse de récurrence) et en déduire $P(n+1)$, conclure.
+\begin{exemple}
+Montrons que $2^n\ge n+1$ pour tout $n\ge0$.
+\emph{Initialisation} ($n=0$) : $2^0=1\ge0+1=1$. Vrai.
+\emph{Hérédité} : si $2^n\ge n+1$, alors $2^{n+1}=2\cdot2^n\ge2(n+1)=2n+2\ge n+2=(n+1)+1$
+(car $2n+2\ge n+2\iff n\ge0$). Donc $P(n)$ est vraie pour tout $n\ge0$.
+\end{exemple}
+
+\methode{Étudier la monotonie d'une suite}
+Calculer $u_{n+1}-u_n$ (signe), ou comparer $\tfrac{u_{n+1}}{u_n}$ à $1$ si $u_n>0$, ou utiliser les variations de $f$ si $u_n=f(n)$.
+\begin{exemple}
+$u_n=\dfrac{n}{2^n}$ ($u_n>0$). $\dfrac{u_{n+1}}{u_n}=\dfrac{n+1}{2n}\le1\iff n\ge1$.
+La suite est décroissante à partir de $n=1$ (et $u_0=0\le u_1=\tfrac12$).
+\end{exemple}
+
+\methode{Montrer qu'une suite récurrente est bornée}
+Conjecturer un encadrement $m\le u_n\le M$ (intervalle stable), puis le démontrer par récurrence.
+\begin{exemple}
+$u_0=2$, $u_{n+1}=\sqrt{u_n+1}$. Montrons $1\le u_n\le2$ par récurrence : vrai pour $n=0$
+($u_0=2$). Si $1\le u_n\le2$, alors $2\le u_n+1\le3$, donc $\sqrt2\le u_{n+1}\le\sqrt3$,
+et comme $1\le\sqrt2$ et $\sqrt3\le2$, on a bien $1\le u_{n+1}\le2$. La suite est bornée.
+\end{exemple}
+
+\methode{Exploiter une suite auxiliaire (arithmético-géométrique)}
+Pour $u_{n+1}=au_n+b$, calculer le point fixe $\ell=\tfrac{b}{1-a}$, poser $v_n=u_n-\ell$ géométrique de raison $a$, en déduire $u_n$ puis la limite.
+\begin{exemple}
+$u_0=0$, $u_{n+1}=3u_n+4$. Point fixe $\ell=\tfrac{4}{1-3}=-2$.
+$v_n=u_n+2$ est géométrique de raison $3$, $v_0=2$, donc $v_n=2\cdot3^n$ et $u_n=2\cdot3^n-2$.
+Comme $3^n\to+\infty$, $u_n\to+\infty$.
+\end{exemple}
+
+\methode{Étudier une suite récurrente $u_{n+1}=f(u_n)$ (point fixe)}
+Montrer que $(u_n)$ est monotone et bornée (récurrence) $\Rightarrow$ elle converge ; la limite $\ell$ vérifie $f(\ell)=\ell$ ($f$ continue) : la résoudre.
+\begin{exemple}
+$u_0=2$, $u_{n+1}=\sqrt{u_n+1}$, bornée : $\phi\le u_n\le2$ où $\phi=\dfrac{1+\sqrt5}{2}\approx1{,}618$
+(récurrence : si $\phi\le u_n\le2$ alors $\phi+1\le u_n+1\le3$, et $\sqrt{\phi+1}=\phi$, $\sqrt3\le2$,
+d'où $\phi\le u_{n+1}\le2$). Variation : $u_{n+1}-u_n=\sqrt{u_n+1}-u_n$ est du signe de
+$u_n+1-u_n^2$, négatif pour $u_n\ge\phi$ (racine de $x^2-x-1$). Donc $(u_n)$ décroît, minorée par $\phi$ :
+elle converge. La limite vérifie $\ell=\sqrt{\ell+1}\Rightarrow\ell^2=\ell+1\Rightarrow\ell=\dfrac{1+\sqrt5}{2}$ (nombre d'or).
+\end{exemple}
+
+\methode{Calculer une limite par comparaison ou gendarmes}
+Encadrer $u_n$ entre deux suites de limites connues, ou majorer $|u_n-\ell|$ par une suite tendant vers $0$.
+\begin{exemple}
+$u_n=\dfrac{\cos n}{n^2+1}$. Comme $-1\le\cos n\le1$, on a $-\dfrac1{n^2+1}\le u_n\le\dfrac1{n^2+1}$ ;
+les deux gendarmes tendent vers $0$, donc $u_n\to0$.
+\end{exemple}
+
+\methode{Lever une forme indéterminée pour une suite explicite}
+Factoriser par le terme dominant (au numérateur et au dénominateur), ou utiliser l'expression conjuguée pour une différence de racines.
+\begin{exemple}
+$u_n=\sqrt{n+1}-\sqrt n$ (forme $\infty-\infty$). On multiplie par le conjugué :
+$u_n=\dfrac{(n+1)-n}{\sqrt{n+1}+\sqrt n}=\dfrac1{\sqrt{n+1}+\sqrt n}\to0$.
+\end{exemple}
+
+\methode{Calculer une somme de termes (arithmétique / géométrique)}
+Identifier la nature, repérer le \emph{premier} terme, le \emph{nombre} de termes et le \emph{dernier} (ou la raison), appliquer la formule.
+\begin{exemple}
+$S=1+3+5+\dots+99$ : arithmétique, $r=2$, premier $1$, dernier $99$, soit $50$ termes
+($n=\frac{99-1}{2}+1=50$). Donc $S=50\times\dfrac{1+99}{2}=50\times50=2500$.
+\end{exemple}
+
+\methode{Déterminer le plus petit $n$ tel que $|u_n-\ell|\le10^{-p}$}
+Écrire l'inégalité avec la forme explicite, isoler $n$ (souvent par les puissances ou le logarithme), prendre l'entier supérieur.
+\begin{exemple}
+$u_n=6-5\bigl(\tfrac12\bigr)^n$ (limite $\ell=6$). On veut $|u_n-6|=5\bigl(\tfrac12\bigr)^n\le10^{-2}$,
+soit $\bigl(\tfrac12\bigr)^n\le\dfrac{1}{500}$, donc $2^n\ge500$. Or $2^8=256<500\le512=2^9$ :
+le plus petit entier convenable est $n=9$.
+\end{exemple}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Exercices d'application}
+
+\rubrique{Modes de génération et premiers termes}
+\exo{}\diff{1} Soit $(u_n)$ définie par $u_n=\dfrac{2n-1}{n+1}$. Calculer $u_0,u_1,u_2$ et $u_{10}$.
+La suite semble-t-elle majorée ?
+
+\exo{}\diff{1} Soit $u_0=5$ et $u_{n+1}=2u_n-3$. Calculer $u_1,u_2,u_3$. Reconnaître la nature de $(u_n)$
+en posant $v_n=u_n-3$.
+
+\exo{}\diff{2} Soit $u_n=\dfrac{n}{2^n}$. Calculer $u_0,u_1,u_2,u_3$ puis étudier le sens de
+variation de $(u_n)$ à l'aide du quotient $\dfrac{u_{n+1}}{u_n}$.
+
+\rubrique{Raisonnement par récurrence}
+\exo{}\diff{2} Démontrer par récurrence que pour tout $n\ge1$, $1^2+2^2+\dots+n^2=\dfrac{n(n+1)(2n+1)}{6}$.
+
+\exo{}\diff{2} Démontrer par récurrence que pour tout $n\ge0$, $3^{2n}-1$ est divisible par $8$.
+
+\rubrique{Arithmétiques et géométriques}
+\exo{}\diff{2} Une famille de Bafoussam épargne : elle dépose $u_0=20\,000$ FCFA, puis chaque mois
+$2\,000$ FCFA de plus que le mois précédent. Donner $u_n$ (dépôt du mois $n$) et le total déposé au bout
+de $12$ mois.
+
+\exo{}\diff{2} Une population de poissons d'un étang croît de $8\%$ par an. Initialement $P_0=500$.
+Exprimer $P_n$ ; au bout de combien d'années dépasse-t-elle $1\,000$ ?
+
+\exo{}\diff{2} Calculer la somme $S=2+6+18+\dots+2\cdot3^{10}$ (somme géométrique de raison $3$).
+
+\rubrique{Suites arithmético-géométriques}
+\exo{}\diff{2} Soit $u_0=1$ et $u_{n+1}=\dfrac12 u_n+3$. Déterminer la limite de $(u_n)$ en posant
+$v_n=u_n-6$. Donner $u_n$ en fonction de $n$.
+
+\exo{}\diff{3} Soit $u_0=4$ et $u_{n+1}=-\dfrac13 u_n+4$. Déterminer le point fixe, exprimer $u_n$
+et étudier la convergence.
+
+\rubrique{Récurrence, monotonie et bornitude}
+\exo{}\diff{2} Soit $u_0=1$ et $u_{n+1}=\dfrac{u_n}{1+u_n}$. Montrer par récurrence que $u_n>0$ pour
+tout $n$, puis que $(u_n)$ est décroissante.
+
+\exo{}\diff{3} Soit $(u_n)$ définie par $u_0=0$ et $u_{n+1}=\dfrac{u_n+3}{u_n+2}$.
+Montrer par récurrence que $1\le u_n\le2$ pour tout $n\ge1$.
+
+\rubrique{Limites, comparaison, gendarmes}
+\exo{}\diff{1} Déterminer $\displaystyle\lim_{n\to+\infty}\dfrac{3n^2+1}{n^2+n}$ et
+$\displaystyle\lim_{n\to+\infty}\Bigl(\tfrac34\Bigr)^n$.
+
+\exo{}\diff{2} Soit $u_n=\dfrac{(-1)^n}{n^2+1}$. Montrer que $(u_n)$ converge et donner sa limite.
+
+\exo{}\diff{2} Déterminer $\displaystyle\lim_{n\to+\infty}\bigl(\sqrt{n+1}-\sqrt n\bigr)$
+en utilisant l'expression conjuguée.
+
+\exo{}\diff{2} Soit $S_n=\dfrac1{1\cdot2}+\dfrac1{2\cdot3}+\dots+\dfrac1{n(n+1)}$.
+Montrer que $\dfrac1{k(k+1)}=\dfrac1k-\dfrac1{k+1}$, en déduire $S_n$ puis $\displaystyle\lim_{n\to+\infty}S_n$.
+
+\rubrique{Suites récurrentes et point fixe}
+\exo{}\diff{3} Soit $u_0=0$ et $u_{n+1}=\sqrt{2u_n+3}$. Montrer que $(u_n)$ est croissante, majorée
+par $3$, et déterminer sa limite.
+
+\exo{}\diff{2} Soit $u_0=1$ et $u_{n+1}=\dfrac12\Bigl(u_n+\dfrac2{u_n}\Bigr)$. En admettant que $(u_n)$
+converge vers $\ell>0$, déterminer $\ell$.
+
+\rubrique{Suites adjacentes}
+\exo{}\diff{3} Soit $u_n=1+\dfrac11+\dfrac1{2}+\dots+\dfrac1{n}-\ln n$ et $v_n=u_n-\dfrac1n$
+(on admet que $(u_n)$ décroît et $(v_n)$ croît). Montrer que ces suites sont adjacentes.
+
+\rubrique{Problème type Baccalauréat}
+\exo{}\diff{3} On considère la suite $(u_n)$ définie par $u_0=1$ et, pour tout $n\in\N$,
+\[
+u_{n+1}=\frac13\,u_n+2 .
+\]
+\begin{enumerate}[label=\arabic*)]
+\item Calculer $u_1$ et $u_2$.
+\item Montrer par récurrence que $u_n<3$ pour tout $n\in\N$.
+\item Étudier le sens de variation de $(u_n)$ ; en déduire qu'elle converge.
+\item On pose $v_n=u_n-3$. Montrer que $(v_n)$ est géométrique ; préciser sa raison et $v_0$.
+\item Exprimer $v_n$ puis $u_n$ en fonction de $n$. Retrouver la limite de $(u_n)$.
+\item Déterminer le plus petit entier $n$ tel que $|u_n-3|\le10^{-3}$.
+\end{enumerate}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Exercices d'entraînement}
+
+\rubrique{Premiers termes et nature d'une suite}
+\exo{}\diff{1} Calculer les quatre premiers termes de $u_n=\dfrac{n^2-1}{n+2}$ et de
+$v_n=(-1)^n\,n$.
+
+\exo{}\diff{1} Soit $u_0=3$ et $u_{n+1}=u_n-4$. Donner la nature et la raison, puis $u_n$ et $u_{20}$.
+
+\exo{}\diff{1} Soit $u_0=2$ et $u_{n+1}=5u_n$. Donner la nature, la raison, $u_n$ et $u_6$.
+
+\exo{}\diff{2} Étudier le sens de variation de $u_n=\dfrac{2n+1}{n+3}$.
+
+\exo{}\diff{2} Soit $u_n=n^2-10n$. Étudier le signe de $u_{n+1}-u_n$ et en déduire la monotonie.
+
+\rubrique{Raisonnement par récurrence}
+\exo{}\diff{2} Montrer par récurrence que $1+3+5+\dots+(2n-1)=n^2$ pour tout $n\ge1$.
+
+\exo{}\diff{2} Montrer que pour tout $n\ge0$, $7\mid 3^{2n+1}+2^{n+2}$.
+
+\exo{}\diff{2} Montrer que pour tout $n\ge4$, $2^n\ge n^2$.
+
+\exo{}\diff{3} Soit $u_0=2$ et $u_{n+1}=2u_n-1$. Conjecturer $u_n$ puis le démontrer par récurrence.
+
+\exo{}\diff{3} Montrer par récurrence que pour tout $n\ge1$, $\displaystyle\sum_{k=1}^{n}k\cdot k!=(n+1)!-1$.
+
+\rubrique{Arithmétiques, géométriques et sommes}
+\exo{}\diff{1} Une suite arithmétique vérifie $u_3=7$ et $u_8=22$. Déterminer $u_0$ et la raison $r$.
+
+\exo{}\diff{2} Une suite géométrique vérifie $u_2=12$ et $u_5=96$. Déterminer la raison $q$ et $u_0$.
+
+\exo{}\diff{2} Calculer $S=1+2+3+\dots+200$ et $T=5+8+11+\dots+302$.
+
+\exo{}\diff{2} Calculer $S=1+\dfrac12+\dfrac14+\dots+\dfrac1{2^{10}}$.
+
+\exo{}\diff{3} Un capital de $1\,000\,000$ FCFA est placé à intérêts composés au taux annuel de $6\%$.
+Exprimer le capital $C_n$ au bout de $n$ années, puis déterminer après combien d'années il a doublé.
+
+\exo{}\diff{2} Les nombres $x-1$, $x+1$, $2x+3$ sont, dans cet ordre, trois termes consécutifs
+d'une suite arithmétique. Déterminer $x$.
+
+\rubrique{Suites arithmético-géométriques}
+\exo{}\diff{2} Soit $u_0=0$ et $u_{n+1}=2u_n+1$. Déterminer $u_n$ en fonction de $n$ et la limite.
+
+\exo{}\diff{2} Soit $u_0=5$ et $u_{n+1}=\dfrac13 u_n+4$. Étudier la convergence et donner $u_n$.
+
+\exo{}\diff{3} Soit $u_0=10$ et $u_{n+1}=0{,}9\,u_n+1$. Modélisant une dose de médicament,
+déterminer la valeur limite de $(u_n)$.
+
+\rubrique{Suites récurrentes $u_{n+1}=f(u_n)$}
+\exo{}\diff{2} Soit $u_0=4$ et $u_{n+1}=\dfrac{u_n+5}{2}$. Étudier la monotonie et la convergence.
+
+\exo{}\diff{3} Soit $u_0=2$ et $u_{n+1}=\dfrac{1}{2}u_n^2-1$ pour $u_n\in[-1,2]$ ? (On posera la
+question de la stabilité de l'intervalle.) Étudier les premiers termes et conjecturer le comportement.
+
+\exo{}\diff{3} Soit $u_0=1$ et $u_{n+1}=\sqrt{3u_n+4}$. Montrer que $(u_n)$ converge et déterminer sa limite.
+
+\exo{}\diff{3} Soit $u_0=5$ et $u_{n+1}=\dfrac{6}{u_n+1}$ ($f$ décroissante). Étudier les suites
+extraites $(u_{2n})$ et $(u_{2n+1})$ et conjecturer la limite.
+
+\rubrique{Limites et indéterminations}
+\exo{}\diff{1} Déterminer $\displaystyle\lim_{n\to+\infty}\dfrac{5n^3-2n}{2n^3+n^2+1}$.
+
+\exo{}\diff{2} Déterminer $\displaystyle\lim_{n\to+\infty}\dfrac{2^n}{2^n+3^n}$.
+
+\exo{}\diff{2} Déterminer $\displaystyle\lim_{n\to+\infty}\bigl(\sqrt{n^2+n}-n\bigr)$.
+
+\exo{}\diff{2} Soit $u_n=\dfrac{\cos(n^2)}{\sqrt n}$. Montrer que $(u_n)$ converge et donner sa limite.
+
+\exo{}\diff{3} Soit $u_n=\dfrac{n!}{n^n}$. Montrer que $0<u_n\le\dfrac1n$ pour $n\ge1$, puis conclure.
+
+\rubrique{Suites adjacentes et encadrements}
+\exo{}\diff{3} Soit $u_n=\displaystyle\sum_{k=0}^{n}\dfrac1{k!}$ et $v_n=u_n+\dfrac1{n\cdot n!}$.
+Montrer que $(u_n)$ et $(v_n)$ sont adjacentes (on admettra $u_n\nearrow$, $v_n\searrow$).
+
+\exo{}\diff{3} On pose $a_0=1$, $b_0=2$ et $a_{n+1}=\dfrac{a_n+b_n}{2}$, $b_{n+1}=\sqrt{a_n b_n}$.
+Montrer que $(a_n)$ et $(b_n)$ sont adjacentes.
+
+% ═══════════════════════════════════════════════════════════════
+\section{Sujets type Baccalauréat}
+
+\sujetbac[suite arithmético-géométrique et convergence]
+On considère la suite $(u_n)$ définie par $u_0=1$ et, pour tout $n\in\N$,
+$u_{n+1}=\dfrac34 u_n+1$, de courbe associée $f(x)=\dfrac34 x+1$.
+\begin{enumerate}[label=\arabic*)]
+\item Calculer $u_1$, $u_2$ et $u_3$.
+\item Montrer par récurrence que pour tout $n\in\N$, $u_n<4$.
+\item Étudier le sens de variation de $(u_n)$ ; en déduire qu'elle est convergente.
+\item On pose $v_n=u_n-4$. Démontrer que $(v_n)$ est géométrique ; préciser sa raison et $v_0$.
+\item Exprimer $v_n$ puis $u_n$ en fonction de $n$. En déduire $\displaystyle\lim_{n\to+\infty}u_n$.
+\item Déterminer le plus petit entier $n$ tel que $|u_n-4|\le10^{-2}$.
+\end{enumerate}
+
+\sujetbac[suite récurrente avec radical et nombre d'or]
+Soit $(u_n)$ définie par $u_0=2$ et, pour tout $n\in\N$, $u_{n+1}=\sqrt{u_n+1}$.
+On pose $f(x)=\sqrt{x+1}$ et $\phi=\dfrac{1+\sqrt5}{2}$.
+\begin{enumerate}[label=\arabic*)]
+\item Calculer $u_1$ et $u_2$ (valeurs approchées au millième).
+\item Vérifier que $\phi$ est l'unique solution positive de l'équation $f(x)=x$.
+\item Montrer par récurrence que pour tout $n\in\N$, $\phi\le u_n\le2$.
+\item Montrer que $(u_n)$ est décroissante.
+\item En déduire que $(u_n)$ converge et déterminer sa limite.
+\end{enumerate}
+
+\sujetbac[deux suites couplées, suite auxiliaire]
+Deux suites $(u_n)$ et $(v_n)$ sont définies par $u_0=1$, $v_0=2$ et, pour tout $n\in\N$,
+\[
+u_{n+1}=\frac{u_n+v_n}{2},\qquad v_{n+1}=\frac{u_n+2v_n}{3}.
+\]
+\begin{enumerate}[label=\arabic*)]
+\item Calculer $u_1$, $v_1$, $u_2$, $v_2$.
+\item On pose $w_n=v_n-u_n$. Montrer que $(w_n)$ est géométrique ; préciser sa raison.
+\item En déduire $\displaystyle\lim_{n\to+\infty}(v_n-u_n)$.
+\item Montrer que $(u_n)$ est croissante et $(v_n)$ décroissante.
+\item Conclure que $(u_n)$ et $(v_n)$ convergent vers une même limite $\ell$.
+\end{enumerate}
+
+% ═══════════════════════════════════════════════════════════════
+\section{Corrigés}
+
+\corrige{de l'exercice 1}
+$u_0=\dfrac{-1}{1}=-1$, $u_1=\dfrac{1}{2}$, $u_2=\dfrac{3}{3}=1$, $u_{10}=\dfrac{19}{11}\approx1{,}73$.
+Comme $u_n=\dfrac{2n-1}{n+1}=2-\dfrac{3}{n+1}<2$, la suite est majorée par $2$ (et croissante vers $2$).
+
+\corrige{de l'exercice 2}
+$u_1=2\cdot5-3=7$, $u_2=11$, $u_3=19$. Avec $v_n=u_n-3$ :
+$v_{n+1}=u_{n+1}-3=2u_n-3-3=2(u_n-3)=2v_n$ : $(v_n)$ est géométrique de raison $2$
+($v_0=2$), donc $(u_n)$ est arithmético-géométrique et $u_n=3+2\cdot2^n=3+2^{n+1}$.
+
+\corrige{de l'exercice 3}
+$u_0=0$, $u_1=\tfrac12$, $u_2=\tfrac{2}{4}=\tfrac12$, $u_3=\tfrac{3}{8}$. Pour $n\ge1$, $u_n>0$ et
+$\dfrac{u_{n+1}}{u_n}=\dfrac{(n+1)/2^{n+1}}{n/2^n}=\dfrac{n+1}{2n}$. Or $\dfrac{n+1}{2n}\le1\iff n+1\le2n\iff n\ge1$ :
+la suite est décroissante à partir de $n=1$ (et $u_0=0<u_1$).
+
+\corrige{de l'exercice 4}
+\emph{Initialisation} ($n=1$) : à gauche $1^2=1$, à droite $\dfrac{1\cdot2\cdot3}{6}=1$. Vrai.
+\emph{Hérédité} : supposons $\sum_{k=1}^n k^2=\dfrac{n(n+1)(2n+1)}{6}$. Alors
+\[
+\sum_{k=1}^{n+1}k^2=\dfrac{n(n+1)(2n+1)}{6}+(n+1)^2=\dfrac{(n+1)\bigl[n(2n+1)+6(n+1)\bigr]}{6}
+=\dfrac{(n+1)(n+2)(2n+3)}{6},
+\]
+car $n(2n+1)+6(n+1)=2n^2+7n+6=(n+2)(2n+3)$. C'est la formule au rang $n+1$. Donc vraie pour tout $n\ge1$.
+
+\corrige{de l'exercice 5}
+\emph{Initialisation} ($n=0$) : $3^0-1=0$, divisible par $8$. Vrai.
+\emph{Hérédité} : si $3^{2n}-1=8k$, alors
+$3^{2(n+1)}-1=9\cdot3^{2n}-1=9(8k+1)-1=72k+8=8(9k+1)$, divisible par $8$.
+Donc $8\mid 3^{2n}-1$ pour tout $n\ge0$.
+
+\corrige{de l'exercice 6}
+Dépôt du mois $n$ : suite arithmétique de raison $r=2\,000$, $u_0=20\,000$, donc
+$u_n=20\,000+2\,000\,n$. Total des $12$ premiers dépôts ($u_0$ à $u_{11}$, soit $12$ termes) :
+$u_{11}=20\,000+2\,000\times11=42\,000$, et
+$S=12\times\dfrac{u_0+u_{11}}{2}=12\times\dfrac{20\,000+42\,000}{2}=12\times31\,000=372\,000$ FCFA.
+
+\corrige{de l'exercice 7}
+Croissance de $8\%$ : suite géométrique de raison $q=1{,}08$, $P_0=500$, donc
+$P_n=500\times1{,}08^{\,n}$. On cherche $P_n>1\,000$, soit $1{,}08^{\,n}>2$, donc
+$n>\dfrac{\ln2}{\ln1{,}08}\approx\dfrac{0{,}693}{0{,}0770}\approx9{,}0$. Comme $1{,}08^{9}\approx1{,}999<2$
+et $1{,}08^{10}\approx2{,}159>2$, la population dépasse $1\,000$ au bout de $\mathbf{10}$ ans.
+
+\corrige{de l'exercice 8}
+Suite géométrique de premier terme $2$, raison $3$ ; les termes vont de $2$ à $2\cdot3^{10}$,
+soit $11$ termes ($k=0$ à $10$). Donc
+$S=2\cdot\dfrac{1-3^{11}}{1-3}=2\cdot\dfrac{1-177147}{-2}=177146$.
+
+\corrige{de l'exercice 9}
+Point fixe $\ell=\tfrac12\ell+3\Rightarrow\ell=6$. $v_n=u_n-6$ géométrique de raison $\tfrac12$,
+$v_0=1-6=-5$, d'où $v_n=-5\bigl(\tfrac12\bigr)^n$ et $u_n=6-5\bigl(\tfrac12\bigr)^n$.
+Comme $\bigl(\tfrac12\bigr)^n\to0$, $\displaystyle\lim u_n=6$.
+
+\corrige{de l'exercice 10}
+Point fixe $\ell=-\tfrac13\ell+4\Rightarrow\tfrac43\ell=4\Rightarrow\ell=3$. $v_n=u_n-3$ est
+géométrique de raison $-\tfrac13$, $v_0=4-3=1$, donc $v_n=\bigl(-\tfrac13\bigr)^n$ et
+$u_n=3+\bigl(-\tfrac13\bigr)^n$. Comme $\bigl|-\tfrac13\bigr|<1$, $\bigl(-\tfrac13\bigr)^n\to0$ :
+$(u_n)$ converge vers $3$ (en oscillant autour de $3$).
+
+\corrige{de l'exercice 11}
+\emph{Positivité.} $u_0=1>0$. Si $u_n>0$, alors $1+u_n>0$ et $u_{n+1}=\dfrac{u_n}{1+u_n}>0$ : par récurrence $u_n>0$ pour tout $n$.
+\emph{Décroissance.} $u_{n+1}-u_n=\dfrac{u_n}{1+u_n}-u_n=\dfrac{u_n-u_n(1+u_n)}{1+u_n}=\dfrac{-u_n^2}{1+u_n}<0$
+(car $u_n>0$). Donc $(u_n)$ est strictement décroissante.
+
+\corrige{de l'exercice 12}
+\emph{Initialisation} ($n=1$) : $u_1=\dfrac{u_0+3}{u_0+2}=\dfrac{0+3}{0+2}=\dfrac32$, et $1\le\dfrac32\le2$. Vrai.
+\emph{Hérédité.} Supposons $1\le u_n\le2$. Posons $f(x)=\dfrac{x+3}{x+2}=1+\dfrac1{x+2}$ ;
+$f$ est \emph{décroissante} sur $[1,2]$ (car $\dfrac1{x+2}$ décroît). Donc
+$f(2)\le f(u_n)\le f(1)$, c'est-à-dire $\dfrac54\le u_{n+1}\le\dfrac43$.
+Comme $1\le\dfrac54$ et $\dfrac43\le2$, on a $1\le u_{n+1}\le2$. La propriété est héréditaire,
+donc vraie pour tout $n\ge1$.
+
+\corrige{de l'exercice 13}
+$\dfrac{3n^2+1}{n^2+n}=\dfrac{3+\frac1{n^2}}{1+\frac1n}\to\dfrac{3+0}{1+0}=3$.
+Et $\Bigl(\tfrac34\Bigr)^n\to0$ car $-1<\tfrac34<1$.
+
+\corrige{de l'exercice 14}
+$\bigl|u_n\bigr|=\dfrac{1}{n^2+1}\le\dfrac1{n^2}\to0$ ; avec l'encadrement
+$-\dfrac1{n^2+1}\le u_n\le\dfrac1{n^2+1}$, le théorème des gendarmes donne $u_n\to0$.
+
+\corrige{de l'exercice 15}
+$\sqrt{n+1}-\sqrt n=\dfrac{(n+1)-n}{\sqrt{n+1}+\sqrt n}=\dfrac1{\sqrt{n+1}+\sqrt n}$.
+Le dénominateur tend vers $+\infty$, donc la limite est $0$.
+
+\corrige{de l'exercice 16}
+$\dfrac1{k(k+1)}=\dfrac{(k+1)-k}{k(k+1)}=\dfrac1k-\dfrac1{k+1}$. La somme est \emph{télescopique} :
+\[
+S_n=\sum_{k=1}^{n}\Bigl(\frac1k-\frac1{k+1}\Bigr)=1-\frac1{n+1}.
+\]
+Donc $\displaystyle\lim_{n\to+\infty}S_n=1$.
+
+\corrige{de l'exercice 17}
+\emph{Bornitude.} $u_0=0$ ; supposons $0\le u_n\le3$. Alors $3\le2u_n+3\le9$, donc
+$\sqrt3\le u_{n+1}\le3$ ; comme $0\le\sqrt3$, on a $0\le u_{n+1}\le3$ : par récurrence $0\le u_n\le3$.
+\emph{Croissance.} $u_{n+1}^2-u_n^2=2u_n+3-u_n^2=-(u_n-3)(u_n+1)\ge0$ pour $0\le u_n\le3$,
+et comme $u_{n+1},u_n\ge0$, $u_{n+1}\ge u_n$ : $(u_n)$ croît. Croissante et majorée par $3$, elle
+\textbf{converge}. La limite vérifie $\ell=\sqrt{2\ell+3}$, soit $\ell^2-2\ell-3=0$, $(\ell-3)(\ell+1)=0$,
+d'où $\ell=3$ (l'autre racine $-1$ est exclue car $\ell\ge0$).
+
+\corrige{de l'exercice 18}
+Si $u_n\to\ell>0$, par continuité $\ell=\dfrac12\bigl(\ell+\dfrac2\ell\bigr)$, soit
+$2\ell=\ell+\dfrac2\ell$, donc $\ell=\dfrac2\ell$, $\ell^2=2$, $\ell=\sqrt2$ ($\ell>0$).
+(C'est la méthode de Héron pour approcher $\sqrt2$.)
+
+\corrige{de l'exercice 19}
+$(u_n)$ décroît, $(v_n)$ croît (admis), et $v_n-u_n=-\dfrac1n\to0$… or il faut
+$v_n-u_n\to0$ avec $u_n\ge v_n$. Ici $v_n=u_n-\dfrac1n\le u_n$, et $u_n-v_n=\dfrac1n\to0$ :
+l'écart tend vers $0$, $(u_n)$ décroissante et $(v_n)$ croissante : les suites sont
+\textbf{adjacentes} et convergent vers une même limite (la constante d'Euler-Mascheroni $\gamma$).
+
+\corrige{de l'exercice 20}
+\textbf{1)} $u_1=\dfrac13\cdot1+2=\dfrac73$ ; $u_2=\dfrac13\cdot\dfrac73+2=\dfrac{7}{9}+2=\dfrac{25}{9}$.
+
+\noindent\textbf{2)} \emph{Initialisation} : $u_0=1<3$. \emph{Hérédité} : si $u_n<3$, alors
+$\dfrac13 u_n<1$, donc $u_{n+1}=\dfrac13 u_n+2<3$. Par récurrence, $u_n<3$ pour tout $n$.
+
+\noindent\textbf{3)} $u_{n+1}-u_n=\dfrac13 u_n+2-u_n=2-\dfrac23 u_n=\dfrac23(3-u_n)>0$
+(car $u_n<3$). Donc $(u_n)$ est \textbf{strictement croissante}. Croissante et majorée par $3$,
+elle \textbf{converge} (théorème de la suite monotone bornée).
+
+\noindent\textbf{4)} $v_n=u_n-3$ :
+$v_{n+1}=u_{n+1}-3=\dfrac13 u_n+2-3=\dfrac13 u_n-1=\dfrac13(u_n-3)=\dfrac13 v_n$.
+Donc $(v_n)$ est \textbf{géométrique de raison $\dfrac13$}, avec $v_0=u_0-3=-2$.
+
+\noindent\textbf{5)} $v_n=-2\Bigl(\dfrac13\Bigr)^n$, d'où $u_n=3-2\Bigl(\dfrac13\Bigr)^n$.
+Comme $\Bigl(\dfrac13\Bigr)^n\to0$, on retrouve $\displaystyle\lim_{n\to+\infty}u_n=3$
+(cohérent : $3$ est le point fixe $\ell=\tfrac{2}{1-\frac13}=3$).
+
+\noindent\textbf{6)} $|u_n-3|=2\Bigl(\dfrac13\Bigr)^n\le10^{-3}\iff 3^n\ge2\cdot10^3=2000$.
+Or $3^6=729$, $3^7=2187\ge2000$ : le plus petit entier est $\mathbf{n=7}$.
+
+\corrige{du sujet 1}
+\textbf{1)} $u_1=\dfrac34\cdot1+1=\dfrac74$ ; $u_2=\dfrac34\cdot\dfrac74+1=\dfrac{21}{16}+1=\dfrac{37}{16}$ ;
+$u_3=\dfrac34\cdot\dfrac{37}{16}+1=\dfrac{111}{64}+1=\dfrac{175}{64}\approx2{,}73$.\\
+\textbf{2)} \emph{Init.} $u_0=1<4$. \emph{Hérédité} : si $u_n<4$, alors $\dfrac34 u_n<3$, donc
+$u_{n+1}=\dfrac34 u_n+1<4$. Donc $u_n<4$ pour tout $n$.\\
+\textbf{3)} $u_{n+1}-u_n=\dfrac34 u_n+1-u_n=1-\dfrac14 u_n=\dfrac14(4-u_n)>0$ (car $u_n<4$) :
+$(u_n)$ est strictement croissante. Croissante et majorée par $4$, elle \textbf{converge}.\\
+\textbf{4)} $v_{n+1}=u_{n+1}-4=\dfrac34 u_n+1-4=\dfrac34 u_n-3=\dfrac34(u_n-4)=\dfrac34 v_n$ :
+$(v_n)$ est géométrique de raison $\dfrac34$, $v_0=1-4=-3$.\\
+\textbf{5)} $v_n=-3\Bigl(\dfrac34\Bigr)^n$, donc $u_n=4-3\Bigl(\dfrac34\Bigr)^n$. Comme
+$\Bigl(\dfrac34\Bigr)^n\to0$, $\displaystyle\lim u_n=4$.\\
+\textbf{6)} $|u_n-4|=3\Bigl(\dfrac34\Bigr)^n\le10^{-2}\iff\Bigl(\dfrac34\Bigr)^n\le\dfrac1{300}$,
+soit $n\ge\dfrac{\ln(1/300)}{\ln(3/4)}=\dfrac{\ln300}{\ln(4/3)}\approx\dfrac{5{,}704}{0{,}2877}\approx19{,}8$.
+Le plus petit entier est $\mathbf{n=20}$.
+
+\corrige{du sujet 2}
+\textbf{1)} $u_1=\sqrt{u_0+1}=\sqrt3\approx1{,}732$ ; $u_2=\sqrt{\sqrt3+1}=\sqrt{2{,}732}\approx1{,}653$.\\
+\textbf{2)} $f(x)=x\iff\sqrt{x+1}=x$. Pour $x\ge0$ : $x+1=x^2$, soit $x^2-x-1=0$,
+de racines $\dfrac{1\pm\sqrt5}{2}$ ; la seule positive est $\phi=\dfrac{1+\sqrt5}{2}\approx1{,}618$.\\
+\textbf{3)} \emph{Init.} $u_0=2$ et $\phi\approx1{,}618\le2\le2$. Vrai.
+\emph{Hérédité} : si $\phi\le u_n\le2$, alors $\phi+1\le u_n+1\le3$, donc
+$\sqrt{\phi+1}\le u_{n+1}\le\sqrt3$. Or $\sqrt{\phi+1}=\phi$ (car $\phi^2=\phi+1$) et
+$\sqrt3\approx1{,}732\le2$. Donc $\phi\le u_{n+1}\le2$. Vrai pour tout $n$.\\
+\textbf{4)} $u_{n+1}-u_n=\sqrt{u_n+1}-u_n$. Le signe est celui de $(u_n+1)-u_n^2=-(u_n^2-u_n-1)$.
+Comme $u_n\ge\phi$ (racine de $x^2-x-1$), on a $u_n^2-u_n-1\ge0$, donc $u_{n+1}-u_n\le0$ :
+$(u_n)$ est décroissante.\\
+\textbf{5)} $(u_n)$ décroissante et minorée par $\phi$ : elle \textbf{converge} vers $\ell\ge\phi$.
+Par continuité de $f$, $\ell=\sqrt{\ell+1}$, donc $\ell=\phi$ (seule solution $\ge\phi$).
+$\displaystyle\lim u_n=\dfrac{1+\sqrt5}{2}$ (nombre d'or).
+
+\corrige{du sujet 3}
+\textbf{1)} $u_1=\dfrac{1+2}{2}=\dfrac32$ ; $v_1=\dfrac{1+2\cdot2}{3}=\dfrac53$ ;
+$u_2=\dfrac{u_1+v_1}{2}=\dfrac{3/2+5/3}{2}=\dfrac{19/6}{2}=\dfrac{19}{12}$ ;
+$v_2=\dfrac{u_1+2v_1}{3}=\dfrac{3/2+10/3}{3}=\dfrac{29/6}{3}=\dfrac{29}{18}$.\\
+\textbf{2)} $w_{n+1}=v_{n+1}-u_{n+1}=\dfrac{u_n+2v_n}{3}-\dfrac{u_n+v_n}{2}
+=\dfrac{2(u_n+2v_n)-3(u_n+v_n)}{6}=\dfrac{-u_n+v_n}{6}=\dfrac16 w_n$.
+Donc $(w_n)$ est géométrique de raison $\dfrac16$, $w_0=v_0-u_0=1$.\\
+\textbf{3)} $w_n=\Bigl(\dfrac16\Bigr)^n\to0$, donc $\displaystyle\lim_{n\to+\infty}(v_n-u_n)=0$.\\
+\textbf{4)} $u_{n+1}-u_n=\dfrac{u_n+v_n}{2}-u_n=\dfrac{v_n-u_n}{2}=\dfrac{w_n}{2}$. Or
+$w_n=\bigl(\tfrac16\bigr)^n>0$, donc $u_{n+1}-u_n>0$ : $(u_n)$ croît.
+$v_{n+1}-v_n=\dfrac{u_n+2v_n}{3}-v_n=\dfrac{u_n-v_n}{3}=-\dfrac{w_n}{3}<0$ : $(v_n)$ décroît.\\
+\textbf{5)} $(u_n)$ croissante, $(v_n)$ décroissante, $v_n-u_n=w_n\to0$ : les suites sont
+\textbf{adjacentes}, donc elles convergent vers une \textbf{même limite} $\ell$, avec
+$u_n\le\ell\le v_n$ pour tout $n$.

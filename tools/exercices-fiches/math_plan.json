@@ -1,0 +1,135 @@
+{
+  "exch_mathc_01": {"title": "Limites et continuité", "fiches": [
+    ["Facile", "calcul de limites simples, limites usuelles, formes directes"],
+    ["Moyen", "formes indéterminées 0/0 et inf/inf, factorisation, conjugué"],
+    ["Moyen", "limites et asymptotes (verticales, horizontales, obliques)"],
+    ["Difficile", "continuité, prolongement par continuité, théorème des valeurs intermédiaires"],
+    ["Difficile", "problèmes mêlant limites, continuité et TVI, encadrements"]
+  ]},
+  "exch_mathc_02": {"title": "Dérivation et applications", "fiches": [
+    ["Facile", "nombre dérivé, dérivées usuelles, opérations sur les dérivées"],
+    ["Moyen", "tangentes, dérivée de fonctions composées, racine et quotient"],
+    ["Moyen", "sens de variation, tableau de variations, extremums"],
+    ["Difficile", "étude complète de fonctions polynômes et rationnelles"],
+    ["Difficile", "problèmes d'optimisation et tangentes depuis un point extérieur"]
+  ]},
+  "exch_mathc_03": {"title": "Étude et représentation de fonctions", "fiches": [
+    ["Facile", "domaine, parité, périodicité, éléments de symétrie"],
+    ["Moyen", "asymptotes et branches infinies, position relative courbe/asymptote"],
+    ["Moyen", "étude et tracé de fonctions rationnelles"],
+    ["Difficile", "fonctions avec valeur absolue et racine carrée"],
+    ["Difficile", "étude complète avec paramètre et discussion"]
+  ]},
+  "exch_mathc_04": {"title": "Suites numériques", "fiches": [
+    ["Facile", "suites arithmétiques et géométriques, terme général, somme"],
+    ["Moyen", "sens de variation, suites majorées/minorées, convergence"],
+    ["Moyen", "suites récurrentes u(n+1)=f(u(n)), point fixe"],
+    ["Difficile", "raisonnement par récurrence, suites adjacentes"],
+    ["Difficile", "problèmes mêlant suites, limites et récurrence"]
+  ]},
+  "exch_mathc_05": {"title": "Fonction logarithme népérien", "fiches": [
+    ["Facile", "propriétés algébriques du ln, équations et inéquations simples"],
+    ["Moyen", "dérivée de ln(u), limites, étude de fonctions avec ln"],
+    ["Moyen", "équations et inéquations avec changement de variable"],
+    ["Difficile", "étude complète de fonctions comportant ln, primitives"],
+    ["Difficile", "problèmes et logarithme décimal, applications"]
+  ]},
+  "exch_mathc_06": {"title": "Fonction exponentielle", "fiches": [
+    ["Facile", "propriétés de exp, équations et inéquations simples"],
+    ["Moyen", "dérivée de exp(u), limites, étude de fonctions avec exp"],
+    ["Moyen", "équations se ramenant au second degré par changement de variable"],
+    ["Difficile", "étude complète de fonctions avec exp, position et tangentes"],
+    ["Difficile", "problèmes (croissance, modèles) avec exponentielle"]
+  ]},
+  "exch_mathc_07": {"title": "Fonctions puissances et croissances comparées", "fiches": [
+    ["Facile", "fonctions puissances, racines n-ièmes, propriétés"],
+    ["Moyen", "croissances comparées exp/puissance/ln, limites"],
+    ["Moyen", "étude de fonctions x^a et composées"],
+    ["Difficile", "fonctions de la forme u^v, dérivation logarithmique"],
+    ["Difficile", "problèmes mêlant croissances comparées"]
+  ]},
+  "exch_mathc_08": {"title": "Primitives", "fiches": [
+    ["Facile", "primitives usuelles, primitive avec condition initiale"],
+    ["Moyen", "primitives de u'u^n, u'/u, u'e^u"],
+    ["Moyen", "primitives de fonctions trigonométriques et rationnelles simples"],
+    ["Difficile", "recherche de primitives par formes et reconnaissance"],
+    ["Difficile", "problèmes utilisant les primitives"]
+  ]},
+  "exch_mathc_09": {"title": "Calcul intégral", "fiches": [
+    ["Facile", "intégrale et primitive, propriétés, calculs directs"],
+    ["Moyen", "intégration par parties"],
+    ["Moyen", "calcul d'aires et de valeurs moyennes"],
+    ["Difficile", "intégrales et suites, encadrements"],
+    ["Difficile", "problèmes (volumes, aires) et intégrales"]
+  ]},
+  "exch_mathc_10": {"title": "Équations différentielles", "fiches": [
+    ["Facile", "y'=ay, y'=ay+b, solutions et condition initiale"],
+    ["Moyen", "y''+w^2 y=0 et y''=ay'+by, résolution"],
+    ["Moyen", "recherche de solution particulière"],
+    ["Difficile", "équations différentielles avec second membre"],
+    ["Difficile", "problèmes (physique, croissance) modélisés par EDO"]
+  ]},
+  "exch_mathc_11": {"title": "Nombres complexes", "fiches": [
+    ["Facile", "forme algébrique, conjugué, module, opérations"],
+    ["Moyen", "forme trigonométrique et exponentielle, arguments"],
+    ["Moyen", "équations dans C, racines carrées et second degré"],
+    ["Difficile", "racines n-ièmes, interprétation géométrique"],
+    ["Difficile", "complexes et transformations, lieux géométriques"]
+  ]},
+  "exch_mathc_12": {"title": "Dénombrement (analyse combinatoire)", "fiches": [
+    ["Facile", "principe additif/multiplicatif, p-listes"],
+    ["Moyen", "arrangements et permutations"],
+    ["Moyen", "combinaisons, propriétés"],
+    ["Difficile", "binôme de Newton, identités combinatoires"],
+    ["Difficile", "problèmes de dénombrement variés"]
+  ]},
+  "exch_mathc_13": {"title": "Probabilités", "fiches": [
+    ["Facile", "vocabulaire, équiprobabilité, calculs de base"],
+    ["Moyen", "probabilité conditionnelle, indépendance, arbres"],
+    ["Moyen", "formule des probabilités totales, Bayes"],
+    ["Difficile", "variables aléatoires, loi, espérance, variance"],
+    ["Difficile", "loi binomiale et problèmes de probabilités"]
+  ]},
+  "exch_mathc_14": {"title": "Arithmétique", "fiches": [
+    ["Facile", "divisibilité, division euclidienne, PGCD/PPCM"],
+    ["Moyen", "congruences, propriétés et applications"],
+    ["Moyen", "théorème de Bézout, identité de Bézout"],
+    ["Difficile", "théorème de Gauss, équations diophantiennes ax+by=c"],
+    ["Difficile", "problèmes (cryptographie simple, critères) en arithmétique"]
+  ]},
+  "exch_mathc_15": {"title": "Statistiques à deux variables", "fiches": [
+    ["Facile", "séries doubles, nuage de points, point moyen"],
+    ["Moyen", "covariance, coefficient de corrélation"],
+    ["Moyen", "droite de régression de y en x (moindres carrés)"],
+    ["Difficile", "ajustement affine et estimations, changement de variable"],
+    ["Difficile", "problèmes d'ajustement (exponentiel, par log)"]
+  ]},
+  "exch_mathc_16": {"title": "Barycentre", "fiches": [
+    ["Facile", "barycentre de 2 et 3 points, propriétés"],
+    ["Moyen", "associativité du barycentre, réduction d'expressions vectorielles"],
+    ["Moyen", "lignes de niveau, ensembles de points"],
+    ["Difficile", "barycentre et géométrie analytique"],
+    ["Difficile", "problèmes de géométrie utilisant le barycentre"]
+  ]},
+  "exch_mathc_17": {"title": "Produit scalaire et géométrie de l'espace", "fiches": [
+    ["Facile", "produit scalaire dans le plan et l'espace, orthogonalité"],
+    ["Moyen", "équations de droites et de plans dans l'espace"],
+    ["Moyen", "distances (point-plan, point-droite), sphères"],
+    ["Difficile", "positions relatives, intersections dans l'espace"],
+    ["Difficile", "problèmes de géométrie dans l'espace"]
+  ]},
+  "exch_mathc_18": {"title": "Transformations du plan", "fiches": [
+    ["Facile", "translations, rotations, homothéties : définitions et images"],
+    ["Moyen", "compositions de transformations, nature et éléments"],
+    ["Moyen", "écriture complexe des transformations"],
+    ["Difficile", "similitudes directes, propriétés"],
+    ["Difficile", "problèmes de configuration avec transformations"]
+  ]},
+  "exch_mathc_19": {"title": "Coniques", "fiches": [
+    ["Facile", "ellipse : définition, équation réduite, éléments"],
+    ["Moyen", "hyperbole : équation réduite, asymptotes, éléments"],
+    ["Moyen", "parabole : définition, équation réduite, foyer, directrice"],
+    ["Difficile", "coniques par foyer-directrice et excentricité"],
+    ["Difficile", "problèmes et lieux géométriques sur les coniques"]
+  ]}
+}
