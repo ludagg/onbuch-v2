@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -17,6 +18,8 @@ class _Msg {
   final Uint8List? image;
   final Future<String>? future; // pour les messages de l'assistant
   String? resolved;
+  String? partial; // texte en cours de streaming (Léo « écrit »)
+  String? errorText; // message d'erreur affichable
   bool failed = false;
   _Msg.user({this.text, this.image})
       : isUser = true,
@@ -151,14 +154,14 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
       fut = _service.getJobCorrection(r.jobId!);
     } else if (r.image != null) {
       _bgNotice = true;
-      fut = _service.analyzeExercise(image: r.image, subject: r.subject, notify: true);
+      _addAiStream(_service.analyzeExerciseStream(image: r.image, subject: r.subject, notify: true));
     } else if (r.question != null && r.question!.trim().isNotEmpty) {
       // Les corrections (mode libre) tournent en arrière-plan + push ; les
       // modes cachés (lesson/quiz) restent silencieux.
       final bg = r.mode == null || r.mode!.isEmpty;
       _bgNotice = bg;
-      fut = _service.analyzeExercise(
-          text: r.question, subject: r.subject, mode: r.mode, chapterId: r.chapterId, notify: bg);
+      _addAiStream(_service.analyzeExerciseStream(
+          text: r.question, subject: r.subject, mode: r.mode, chapterId: r.chapterId, notify: bg));
     }
     if (fut != null) _addAi(fut);
   }
@@ -173,9 +176,39 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
       setState(() => m.resolved = t);
       _scrollToBottom();
       _persistThread();
-    }).catchError((_) {
+    }).catchError((e) {
       if (!mounted) return;
-      setState(() => m.failed = true);
+      setState(() { m.failed = true; m.errorText = '$e'; });
+    });
+  }
+
+  /// Ajoute une réponse de Léo en STREAMING : le texte partiel s'affiche et
+  /// grandit au fil de l'eau, puis se fige en réponse finale.
+  void _addAiStream(Stream<String> stream) {
+    final m = _Msg.ai(null);
+    _msgs.add(m);
+    StreamSubscription<String>? sub;
+    sub = stream.listen((t) {
+      if (!mounted) return;
+      setState(() => m.partial = t);
+      _scrollToBottom();
+    }, onDone: () {
+      if (!mounted) { sub?.cancel(); return; }
+      final fin = m.partial;
+      if (m.resolved == null && fin != null && fin.trim().isNotEmpty) {
+        AnalyticsService.logEvent('tutor_correction', {'subject': widget.request?.subject ?? ''});
+        GamificationService.instance.addXp(15, tutorUses: 1);
+        setState(() => m.resolved = fin);
+        _scrollToBottom();
+        _persistThread();
+      } else if (m.resolved == null) {
+        setState(() { m.failed = true; m.errorText = 'Le Tuteur n\'a pas pu répondre. Réessaie.'; });
+      }
+      sub?.cancel();
+    }, onError: (e) {
+      if (!mounted) { sub?.cancel(); return; }
+      setState(() { m.failed = true; m.errorText = '$e'; });
+      sub?.cancel();
     });
   }
 
@@ -242,7 +275,7 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
       final text = 'Je bloque sur : $q$ctx. Aide-moi à le résoudre étape par étape.';
       setState(() {
         _msgs.add(_Msg.user(text: q));
-        _addAi(_service.analyzeExam(examUrl: examUrl, image: examImg, question: text, subject: widget.request?.subject));
+        _addAiStream(_service.analyzeExamStream(examUrl: examUrl, image: examImg, question: text, subject: widget.request?.subject));
       });
       _scrollToBottom();
       return;
@@ -251,7 +284,7 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
     final history = _history()..add({'role': 'user', 'content': q});
     setState(() {
       _msgs.add(_Msg.user(text: q));
-      _addAi(_service.continueConversation(history));
+      _addAiStream(_service.continueConversationStream(history));
     });
     _scrollToBottom();
   }
@@ -442,6 +475,40 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
     );
   }
 
+  // Contenu d'une bulle de Léo selon l'état : réfléchit / écrit (partiel) /
+  // réponse finale / erreur.
+  Widget _aiContent(_Msg m) {
+    if (m.failed) {
+      return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Icon(Icons.error_outline_rounded, size: 18, color: OC.bad),
+        const SizedBox(width: 9),
+        Flexible(child: Text(m.errorText ?? 'Le Tuteur a rencontré un problème.',
+            style: body(13, color: OC.ink2, weight: FontWeight.w500).copyWith(height: 1.4))),
+      ]);
+    }
+    if (m.resolved != null) {
+      return RichAnswer(m.resolved!);
+    }
+    final p = m.partial;
+    if (p != null && p.trim().isNotEmpty) {
+      // En cours de streaming : le texte grandit, avec un discret « Léo écrit… ».
+      return Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
+        RichAnswer(p),
+        const SizedBox(height: 8),
+        Row(mainAxisSize: MainAxisSize.min, children: [
+          SizedBox(width: 10, height: 10, child: CircularProgressIndicator(strokeWidth: 1.8, color: OC.o500)),
+          const SizedBox(width: 8),
+          Text('Léo écrit…', style: body(11.5, color: OC.muted, weight: FontWeight.w600)),
+        ]),
+      ]);
+    }
+    return Row(mainAxisSize: MainAxisSize.min, children: [
+      const LeoMascot(size: 32, mood: LeoMood.thinking),
+      const SizedBox(width: 10),
+      Flexible(child: Text('Léo réfléchit…', style: body(13, color: OC.ink2, weight: FontWeight.w500))),
+    ]);
+  }
+
   Widget _aiBubble(_Msg m) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 14),
@@ -467,27 +534,7 @@ class _TutorCorrectionScreenState extends State<TutorCorrectionScreen> {
               boxShadow: [BoxShadow(color: OC.ink.withValues(alpha: 0.04), blurRadius: 6)],
             ),
             padding: const EdgeInsets.all(14),
-            child: FutureBuilder<String>(
-              future: m.future,
-              builder: (context, snap) {
-                if (snap.connectionState == ConnectionState.waiting) {
-                  return Row(mainAxisSize: MainAxisSize.min, children: [
-                    const LeoMascot(size: 32, mood: LeoMood.thinking),
-                    const SizedBox(width: 10),
-                    Flexible(child: Text('Léo réfléchit…', style: body(13, color: OC.ink2, weight: FontWeight.w500))),
-                  ]);
-                }
-                if (snap.hasError) {
-                  return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                    Icon(Icons.error_outline_rounded, size: 18, color: OC.bad),
-                    const SizedBox(width: 9),
-                    Flexible(child: Text('${snap.error}',
-                        style: body(13, color: OC.ink2, weight: FontWeight.w500).copyWith(height: 1.4))),
-                  ]);
-                }
-                return RichAnswer(snap.data ?? '');
-              },
-            ),
+            child: _aiContent(m),
           ),
         ]),
       ),
