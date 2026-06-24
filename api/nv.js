@@ -1,52 +1,66 @@
-// /api/nv — proxy même-origine vers l'API NVIDIA (zéro-config /api Vercel).
+// /api/nv — proxy STREAMING même-origine vers l'API NVIDIA (runtime Edge).
 //
-// Pourquoi : l'API NVIDIA (integrate.api.nvidia.com) ne renvoie pas d'en-tête
-// CORS → un navigateur ne peut PAS l'appeler directement (« Failed to fetch »).
-// L'Atelier Exercices appelle donc ce proxy, qui est sur le MÊME domaine que
-// l'admin (pas de CORS pour le navigateur) et relaie côté serveur vers NVIDIA
-// (pas de CORS serveur→serveur).
-//
-// On relaie UNE seule complétion par appel (une fiche) → court, pas de timeout
-// de gros batch. La clé NVIDIA est fournie par l'admin (jamais stockée ici).
+// Pourquoi Edge + streaming : l'API NVIDIA bloque le CORS navigateur (appel
+// direct impossible). Et les modèles lents (Nemotron Ultra « reasoning »)
+// dépassent la durée d'une fonction serverless classique → 504
+// FUNCTION_INVOCATION_TIMEOUT. En streaming, on relaie les tokens (SSE) au fur
+// et à mesure : la connexion reste vivante tant que ça génère → pas de timeout,
+// et l'atelier voit la progression.
 //
 // Requête : POST JSON { key, model, messages, max_tokens? }
-// Réponse : la réponse JSON brute de NVIDIA (même status).
+// Réponse : flux SSE brut de NVIDIA (stream:true).
 
-module.exports = async (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  if (req.method === 'OPTIONS') { res.status(204).end(); return; }
-  if (req.method !== 'POST') { res.status(405).json({ error: 'POST uniquement.' }); return; }
+export const config = { runtime: 'edge' };
 
-  let body = {};
-  try {
-    body = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : (req.body || {});
-  } catch (_) { body = {}; }
-
-  const key = (body.key || '').toString().trim();
-  const model = (body.model || '').toString().trim();
-  const messages = Array.isArray(body.messages) ? body.messages : null;
-  const maxTokens = Number(body.max_tokens) || 4000;
-  if (!key || !model || !messages) {
-    res.status(400).json({ error: 'Paramètres manquants (key, model, messages).' });
-    return;
-  }
-
-  try {
-    const r = await fetch('https://integrate.api.nvidia.com/v1/chat/completions', {
-      method: 'POST',
-      headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify({ model, messages, temperature: 0.4, top_p: 0.9, max_tokens: maxTokens }),
-    });
-    const text = await r.text();
-    res.status(r.status);
-    res.setHeader('Content-Type', 'application/json');
-    res.send(text);
-  } catch (e) {
-    res.status(502).json({ error: 'Proxy NVIDIA : ' + String(e) });
-  }
+const CORS = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'POST, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type',
 };
 
-// Une fiche par appel → 60 s suffisent largement (max plan Hobby).
-module.exports.config = { maxDuration: 60 };
+export default async function handler(req) {
+  if (req.method === 'OPTIONS') return new Response(null, { status: 204, headers: CORS });
+  if (req.method !== 'POST') {
+    return new Response(JSON.stringify({ error: 'POST uniquement.' }), {
+      status: 405, headers: { ...CORS, 'Content-Type': 'application/json' },
+    });
+  }
+
+  let body;
+  try { body = await req.json(); } catch (_) { body = {}; }
+  const key = (body && body.key ? String(body.key) : '').trim();
+  const model = (body && body.model ? String(body.model) : '').trim();
+  const messages = body && Array.isArray(body.messages) ? body.messages : null;
+  const maxTokens = Number(body && body.max_tokens) || 4000;
+  if (!key || !model || !messages) {
+    return new Response(JSON.stringify({ error: 'Paramètres manquants (key, model, messages).' }), {
+      status: 400, headers: { ...CORS, 'Content-Type': 'application/json' },
+    });
+  }
+
+  let upstream;
+  try {
+    upstream = await fetch('https://integrate.api.nvidia.com/v1/chat/completions', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json', Accept: 'text/event-stream' },
+      body: JSON.stringify({ model, messages, temperature: 0.4, top_p: 0.9, max_tokens: maxTokens, stream: true }),
+    });
+  } catch (e) {
+    return new Response(JSON.stringify({ error: 'Proxy NVIDIA : ' + String(e) }), {
+      status: 502, headers: { ...CORS, 'Content-Type': 'application/json' },
+    });
+  }
+
+  if (!upstream.ok || !upstream.body) {
+    const t = await upstream.text().catch(() => '');
+    return new Response(t || JSON.stringify({ error: 'NVIDIA ' + upstream.status }), {
+      status: upstream.status || 502, headers: { ...CORS, 'Content-Type': 'application/json' },
+    });
+  }
+
+  // Relaie le flux SSE tel quel au navigateur.
+  return new Response(upstream.body, {
+    status: 200,
+    headers: { ...CORS, 'Content-Type': 'text/event-stream; charset=utf-8', 'Cache-Control': 'no-cache, no-transform' },
+  });
+}
