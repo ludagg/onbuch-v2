@@ -88,7 +88,7 @@ carte d'accueil + menu).
 `articles`, `exams`, `school_calendar`, `concours`, `prep_centers`,
 `concours_resources`, `concours_applications`, `subjects`, `chapters`, `lessons`,
 `chapter_progress`, `quizzes`, `affiche`, `tutor_jobs`, `tutor_quota`,
-`notifications`.
+`notifications`, `daily_quotes`.
 - Contenu géré par l'admin = lecture `read("any")`, écriture `team:admins`.
 - Données utilisateur (tutor_jobs/quota) = `read("user:<uid>")`.
 
@@ -105,6 +105,15 @@ Console → Auth → Teams → `admins` → Create membership (email).
   `JOBS_COLLECTION`, `FREE_DAILY`, `VISION_MODEL`, `NVIDIA_MODEL`. Modes :
   défaut (correction), `lesson`, `quiz`, `summary` (tous gratuits sauf correction).
 - `verify-purchase` : vérifie les achats Google Play et crédite `tutor_quota`.
+- `review-nudge` (node-22) : fonction « ops » mutualisée (limite de fonctions du
+  plan). **CRON quotidien** `0 6 * * *` (≈ 07 h Cameroun) : (1) **citation
+  motivante** en push à TOUS les élèves — collection `daily_quotes` (active/order,
+  rotation déterministe par jour) avec liste de secours intégrée ; (2) rappels
+  « révisions du jour » (`review_queue`). **ÉVÉNEMENT** (création d'un doc
+  `notifications`) : broadcast push à tous. **ADMIN** (body `{action,userId}`,
+  réservé `team:admins`) : status/block/unblock/delete compte + `addCredits`
+  (crédite `tutor_quota`). **Variables** : `APPWRITE_ENDPOINT`, `APPWRITE_PROJECT`,
+  `APPWRITE_API_KEY`, `DATABASE_ID`, `ADMIN_TEAM_ID`.
 - **`result-lookup`** : hébergé sur **Vercel** (`api/result-lookup.js`), pas sur
   Appwrite (plan = limite de fonctions atteinte). Résout les sources `pdf`
   (télécharge le PDF chargé par l'admin, extrait le texte via `pdf-parse`,
