@@ -8,11 +8,17 @@
   const SH = 'exercise_sheets';
   const NV_URL = 'https://integrate.api.nvidia.com/v1/chat/completions';
 
-  // ── Paramètres du chapitre ──────────────────────────────────────────────
+  // ── Arbre (exam_series) : sélection en cascade Examen → Série → Matière ────
+  let series: any[] = [];
+  let selExam = '';
+  let selSerieName = '';
+  let selMatiere = '';
+  // Dérivés (servent à l'enregistrement) — calculés à partir des sélections.
   let subject = '';
   let exam = '';
   let track = '';
   let levels = '';
+
   let chapterMode: 'new' | 'existing' = 'new';
   let chapters: any[] = [];
   let selectedChapterId = '';
@@ -21,6 +27,21 @@
   let difficulty = 'moyen';
   let count = 5;
   let extra = '';
+
+  const LEVEL_BY_EXAM: Record<string, string> = {
+    'Baccalauréat': 'Terminale', 'Probatoire': '1ère', 'BEPC': '3e',
+    'GCE A Level': 'Upper Sixth', 'GCE O Level': 'Form 5',
+  };
+  $: exams = Array.from(new Set(series.map((s) => s.exam).filter(Boolean)));
+  $: seriesForExam = series.filter((s) => s.exam === selExam);
+  $: selSerieDoc = series.find((x) => x.exam === selExam && x.name === selSerieName);
+  $: subjectsForSerie = (selSerieDoc?.subjects || '')
+    .split(',').map((x: string) => x.trim()).filter(Boolean);
+  // Dérive les champs d'enregistrement depuis l'arbre.
+  $: exam = selExam;
+  $: track = selSerieDoc?.code || '';
+  $: levels = LEVEL_BY_EXAM[selExam] || '';
+  $: subject = selMatiere;
 
   // ── Réglages NVIDIA (clé stockée dans le navigateur, jamais dans le code) ──
   let nvKey = '';
@@ -48,8 +69,16 @@
     } catch (e) {
       note('Impossible de charger les librairies de rendu (vérifie ta connexion).');
     }
+    await loadSeries();
     await loadChapters();
   });
+
+  async function loadSeries() {
+    try {
+      const r = await databases.listDocuments(DB, 'exam_series', [Query.orderAsc('sortOrder'), Query.limit(500)]);
+      series = r.documents;
+    } catch { series = []; }
+  }
 
   function loadScript(src: string): Promise<void> {
     return new Promise((res, rej) => {
@@ -107,7 +136,7 @@
   // ── Génération (appel direct NVIDIA, une fiche à la fois) ────────────────
   async function generate() {
     if (!nvKey.trim()) { note('Renseigne ta clé NVIDIA.'); return; }
-    if (!subject.trim()) { note('Renseigne la matière.'); return; }
+    if (!selExam || !selSerieName || !selMatiere) { note('Sélectionne Examen → Série → Matière dans l\'arbre.'); return; }
     const chapTitle = chapterMode === 'new'
       ? newChapterTitle.trim()
       : (chapters.find((c) => c.$id === selectedChapterId)?.title || '');
@@ -280,12 +309,27 @@ ${extra ? 'Consignes supplémentaires : ' + extra : ''}`;
   <p class="sub">Génère des fiches d'exercices (énoncé + correction) avec l'IA, prévisualise le rendu LaTeX, puis publie en PDF.</p>
 
   <div class="card">
-    <h2>1. Chapitre</h2>
+    <h2>1. Choisis dans l'arbre</h2>
     <div class="grid">
-      <label>Matière<input bind:value={subject} placeholder="Mathématiques" /></label>
-      <label>Examen<input bind:value={exam} placeholder="Baccalauréat (vide = tous)" /></label>
-      <label>Série<input bind:value={track} placeholder="C (vide = toutes)" /></label>
-      <label>Classes<input bind:value={levels} placeholder="Terminale,1ère (vide = toutes)" /></label>
+      <label>Examen
+        <select bind:value={selExam} on:change={() => { selSerieName = ''; selMatiere = ''; }}>
+          <option value="">— choisir —</option>
+          {#each exams as e}<option value={e}>{e}</option>{/each}
+        </select>
+      </label>
+      <label>Série / filière
+        <select bind:value={selSerieName} on:change={() => { selMatiere = ''; }} disabled={!selExam}>
+          <option value="">— choisir —</option>
+          {#each seriesForExam as s}<option value={s.name}>{s.name}</option>{/each}
+        </select>
+      </label>
+      <label>Matière
+        <select bind:value={selMatiere} disabled={!selSerieName}>
+          <option value="">— choisir —</option>
+          {#each subjectsForSerie as m}<option value={m}>{m}</option>{/each}
+        </select>
+      </label>
+      <label>Classe (auto)<input value={levels} readonly placeholder="déduit de l'examen" /></label>
     </div>
     <div class="row">
       <label class="radio"><input type="radio" bind:group={chapterMode} value="new" /> Nouveau chapitre</label>

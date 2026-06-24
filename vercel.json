@@ -4,5 +4,10 @@
   "installCommand": "cd admin && npm install",
   "buildCommand": "cd admin && npm run build",
   "outputDirectory": "admin/build",
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
+  "git": {
+    "deploymentEnabled": {
+      "claude/exam-search-black-screen-h7i2bg": false
+    }
+  }
 }
