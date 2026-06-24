@@ -120,6 +120,127 @@ async function callNvidia(apiKey, model, messages, maxTokens) {
   return content;
 }
 
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+function stripThink(s) {
+  return (s || '').replace(/<think>[\s\S]*?<\/think>/g, '').trim();
+}
+
+// « Puits » de streaming : écrit la correction au fil de l'eau dans le job
+// (tutor_jobs/{jobId}). Crée le doc au besoin, puis met à jour `correction`
+// ~3×/seconde via une boucle indépendante (ne bloque pas la lecture du flux).
+function makeJobSink(jobId, uid) {
+  const db = process.env.DATABASE_ID;
+  if (!db || !jobId) return null;
+  const col = process.env.JOBS_COLLECTION || 'tutor_jobs';
+  let latest = '', flushed = '', created = false, finished = false;
+  async function ensure() {
+    if (created) return;
+    created = true;
+    await awFetch('POST', `/databases/${db}/collections/${col}/documents`, {
+      documentId: jobId,
+      data: { status: 'streaming', createdAt: new Date().toISOString() },
+      permissions: uid ? [`read("user:${uid}")`] : [],
+    }).catch(() => {});
+  }
+  const loop = (async () => {
+    await ensure();
+    while (!finished) {
+      await sleep(350);
+      if (latest !== flushed) {
+        flushed = latest;
+        await awFetch('PATCH', `/databases/${db}/collections/${col}/documents/${jobId}`,
+          { data: { status: 'streaming', correction: flushed.slice(0, 60000) } }).catch(() => {});
+      }
+    }
+  })();
+  return {
+    set(t) { latest = t; },
+    async stop() { finished = true; try { await loop; } catch (_) {} },
+  };
+}
+
+// Un appel modèle EN STREAMING. Renvoie { text } pour une réponse en prose
+// (émise au fil de l'eau via sink), ou { action, raw } si le tout début ressemble
+// à un appel d'outil (auquel cas RIEN n'est émis vers le job).
+async function streamStep(apiKey, model, messages, maxTokens, sink) {
+  const r = await fetch(NVIDIA_ENDPOINT, {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json', Accept: 'text/event-stream' },
+    body: JSON.stringify({ model, messages, temperature: 0.2, top_p: 0.7, max_tokens: maxTokens, stream: true }),
+  });
+  if (!r.ok) throw new NvError(r.status);
+  if (!r.body || !r.body.getReader) {
+    // Pas de flux exploitable → repli non-streamé.
+    const data = await r.json();
+    const full = stripThink(data?.choices?.[0]?.message?.content || '');
+    const action = parseAction(full);
+    if (action) return { action, raw: full };
+    if (sink) sink.set(full);
+    return { text: full };
+  }
+  const reader = r.body.getReader();
+  const decoder = new TextDecoder();
+  let buf = '', full = '', mode = null; // null = indécis, 'emit' = prose, 'buffer' = outil ?
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    buf += decoder.decode(value, { stream: true });
+    let i;
+    while ((i = buf.indexOf('\n')) >= 0) {
+      const line = buf.slice(0, i).trim();
+      buf = buf.slice(i + 1);
+      if (!line.startsWith('data:')) continue;
+      const d = line.slice(5).trim();
+      if (!d || d === '[DONE]') continue;
+      let delta = '';
+      try { delta = JSON.parse(d)?.choices?.[0]?.delta?.content || ''; } catch (_) { continue; }
+      if (!delta) continue;
+      full += delta;
+      if (mode === null) {
+        const t = stripThink(full).replace(/^\s+/, '');
+        if (t) {
+          const c = t[0];
+          mode = (c === '`' || c === '{') ? 'buffer' : 'emit';
+          if (mode === 'emit' && sink) sink.set(full);
+        }
+      } else if (mode === 'emit' && sink) {
+        sink.set(full);
+      }
+    }
+  }
+  full = stripThink(full);
+  if (mode === 'buffer') {
+    const action = parseAction(full);
+    if (action) return { action, raw: full };
+    if (sink) sink.set(full); // finalement de la prose (commençait par ` ou {)
+  }
+  return { text: full };
+}
+
+// Boucle d'agent EN STREAMING : streame la réponse finale ; les appels d'outils
+// (rares) ne sont pas émis vers le job. Borne basse pour la latence.
+async function solveStream(apiKey, model, messages, db, sink) {
+  const convo = [...messages];
+  for (let step = 0; step < 2; step++) {
+    const out = await streamStep(apiKey, model, convo, 3200, sink);
+    if (!out.action) return out.text || '';
+    let result;
+    try {
+      const a = out.action;
+      if (a.tool === 'search_courses') result = await skillSearchCourses(db, (a.args && a.args.query) || '', (a.args && a.args.subject) || '');
+      else if (a.tool === 'get_chapter') result = await skillGetChapter(db, (a.args && a.args.chapterId) || '');
+      else result = 'Outil inconnu.';
+    } catch (_) {
+      result = 'Erreur lors de la consultation du cours.';
+    }
+    convo.push({ role: 'assistant', content: out.raw });
+    convo.push({ role: 'user', content: `RÉSULTAT OUTIL (${out.action.tool}) :\n${result}\n\nUtilise ce résultat. Réponds maintenant à l'élève, ou appelle un autre outil si vraiment nécessaire.` });
+  }
+  convo.push({ role: 'user', content: 'Donne maintenant ta réponse finale à l\'élève (texte normal, pas de bloc onbuch-action).' });
+  const out = await streamStep(apiKey, model, convo, 3200, sink);
+  return out.text || '';
+}
+
 // Construit un titre court à partir de l'énoncé (première ligne non vide).
 function makeTitle(s) {
   const line = (s || '')
@@ -144,15 +265,22 @@ async function writeJob(jobId, uid, result, error) {
   if (result.title) data.title = result.title;
   if (result.subject) data.subject = result.subject;
 
-  const r = await fetch(`${endpoint}/databases/${db}/collections/${col}/documents`, {
+  const hdr = { 'X-Appwrite-Project': project, 'X-Appwrite-Key': key, 'Content-Type': 'application/json' };
+  let r = await fetch(`${endpoint}/databases/${db}/collections/${col}/documents`, {
     method: 'POST',
-    headers: { 'X-Appwrite-Project': project, 'X-Appwrite-Key': key, 'Content-Type': 'application/json' },
+    headers: hdr,
     body: JSON.stringify({
       documentId: jobId,
       data,
       permissions: uid ? [`read("user:${uid}")`] : [],
     }),
   });
+  // Doc déjà créé par le streaming → on met à jour (status done + texte final).
+  if (r.status === 409) {
+    r = await fetch(`${endpoint}/databases/${db}/collections/${col}/documents/${jobId}`, {
+      method: 'PATCH', headers: hdr, body: JSON.stringify({ data }),
+    });
+  }
   if (!r.ok) {
     const t = await r.text();
     error(`writeJob ${r.status}: ${t.slice(0, 200)}`);
@@ -524,9 +652,17 @@ export default async ({ req, res, error }) => {
     // Suivi de conversation (texte uniquement, pas de vision).
     if (messages && messages.length) {
       const convo = [{ role: 'system', content: solveSys }, ...messages];
-      const reply = wantTools
-        ? await solveWithTools(apiKey, reasoningModel, convo, db)
-        : await callNvidia(apiKey, reasoningModel, convo, 3200);
+      const sink = (jobId && db) ? makeJobSink(jobId, uid) : null;
+      let reply;
+      try {
+        reply = sink
+          ? await solveStream(apiKey, reasoningModel, convo, db, sink)
+          : (wantTools
+              ? await solveWithTools(apiKey, reasoningModel, convo, db)
+              : await callNvidia(apiKey, reasoningModel, convo, 3200));
+      } finally {
+        if (sink) await sink.stop();
+      }
       if (!reply) {
         return finish({ status: 'error', error: "Le Tuteur n'a pas pu répondre. Réessaie." });
       }
@@ -606,9 +742,16 @@ export default async ({ req, res, error }) => {
       ], 3200);
     } else {
       const convo = [{ role: 'system', content: solveSys }, { role: 'user', content: solveUserContent }];
-      correction = wantTools
-        ? await solveWithTools(apiKey, reasoningModel, convo, db)
-        : await callNvidia(apiKey, reasoningModel, convo, 3200);
+      const sink = (jobId && db) ? makeJobSink(jobId, uid) : null;
+      try {
+        correction = sink
+          ? await solveStream(apiKey, reasoningModel, convo, db, sink)
+          : (wantTools
+              ? await solveWithTools(apiKey, reasoningModel, convo, db)
+              : await callNvidia(apiKey, reasoningModel, convo, 3200));
+      } finally {
+        if (sink) await sink.stop();
+      }
     }
 
     if (!correction) {
