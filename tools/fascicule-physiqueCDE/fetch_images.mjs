@@ -29,6 +29,22 @@ const API = 'https://commons.wikimedia.org/w/api.php';
 // \imgph{cle}{description} — la description ne doit pas contenir d'accolades (cf. AGENT_GUIDE).
 const IMGPH_RE = /\\imgph\{([^{}]+)\}\{([^{}]*)\}/g;
 
+// Requêtes Wikimedia affinées (EN) par clé — Commons est indexé surtout en anglais ;
+// les descriptions FR longues ne matchent rien. Ajoute une entrée par image au besoin.
+const QUERY_OVERRIDE = {
+  'ch01-spectre-aimant-droit': 'iron filings magnetic field bar magnet',
+  'ch01-spectre-aimant-u': 'iron filings magnetic field horseshoe magnet',
+  'ch08-cuve-ondes': 'ripple tank water waves',
+};
+
+// Fichier Commons EXACT à utiliser pour une clé (prioritaire sur la recherche) :
+// garantit la pertinence + une licence connue. Format : 'File:Nom.ext'.
+const FILE_OVERRIDE = {
+  'ch01-spectre-aimant-droit': 'File:Bar-magnet-iron-filings max.jpg',
+  'ch01-spectre-aimant-u': 'File:Horseshoe Magnetic Filings (Flipped 180).jpg',
+  'ch08-cuve-ondes': 'File:Ripple tank motor.png',
+};
+
 async function listTexFiles() {
   const files = (await readdir(HERE)).filter((f) => /^ch\d+\.tex$/.test(f));
   return ONLY ? files.filter((f) => f.startsWith(ONLY)) : files;
@@ -59,6 +75,28 @@ async function searchCommons(query) {
       descUrl: ii.descriptionshorturl || ii.descriptionurl,
     };
   }).filter(Boolean);
+}
+
+// Récupère un fichier Commons précis par son titre (File:...).
+async function fileInfo(title) {
+  const u = new URL(API);
+  u.search = new URLSearchParams({
+    action: 'query', format: 'json', titles: title,
+    prop: 'imageinfo', iiprop: 'url|extmetadata|mime', iiurlwidth: '1200',
+  }).toString();
+  const r = await fetch(u, { headers: { 'User-Agent': 'OnBuch-Fascicule/1.0 (educational)' } });
+  if (!r.ok) throw new Error(`Commons HTTP ${r.status}`);
+  const data = await r.json();
+  const p = Object.values(data?.query?.pages || {})[0];
+  const ii = p?.imageinfo?.[0];
+  if (!ii) return null;
+  const meta = ii.extmetadata || {};
+  return {
+    title: p.title, url: ii.thumburl || ii.url, mime: ii.mime,
+    license: meta.LicenseShortName?.value || meta.License?.value || 'inconnue',
+    artist: (meta.Artist?.value || '').replace(/<[^>]+>/g, '').trim(),
+    descUrl: ii.descriptionshorturl || ii.descriptionurl,
+  };
 }
 
 function extFromUrl(url, mime) {
@@ -95,8 +133,12 @@ async function run() {
       const [full, key, desc] = m;
       total++;
       console.log(`\n[${file}] ${key}\n   « ${desc} »`);
+      const query = QUERY_OVERRIDE[key] || desc;
       let candidates = [];
-      try { candidates = await searchCommons(desc); }
+      try {
+        if (FILE_OVERRIDE[key]) { const c = await fileInfo(FILE_OVERRIDE[key]); if (c) candidates = [c]; }
+        else { candidates = await searchCommons(query); }
+      }
       catch (e) { console.log(`   ⚠️ recherche échouée: ${e.message}`); }
       if (!candidates.length) { console.log('   ❌ aucun candidat Commons — placeholder conservé'); continue; }
 

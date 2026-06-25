@@ -1,0 +1,31 @@
+[
+  {
+    "key": "ch01-spectre-aimant-droit",
+    "file": "ch01.tex",
+    "description": "Spectre magnétique d’un aimant droit obtenu avec de la limaille de fer : lignes allant du pôle nord au pôle sud.",
+    "picked": "File:Bar-magnet-iron-filings max.jpg",
+    "license": "CC BY-SA 4.0",
+    "artist": "MikeRun, Vera Wurmsdobler",
+    "source": "https://commons.wikimedia.org/w/index.php?curid=189691448",
+    "saved": "ch01-spectre-aimant-droit.jpg"
+  },
+  {
+    "key": "ch01-spectre-aimant-u",
+    "file": "ch01.tex",
+    "description": "Spectre magnétique d’un aimant en U : lignes quasi parallèles entre les pôles (champ uniforme).",
+    "picked": "File:Horseshoe Magnetic Filings (Flipped 180).jpg",
+    "license": "CC BY-SA 4.0",
+    "artist": "Noguarde",
+    "source": "https://commons.wikimedia.org/w/index.php?curid=98394066",
+    "saved": "ch01-spectre-aimant-u.jpg"
+  },
+  {
+    "key": "ch08-cuve-ondes",
+    "file": "ch08.tex",
+    "description": "Cuve à ondes utilisée en travaux pratiques : bac rectangulaire rempli d'eau, lame vibrante motorisée, éclairage stroboscopique, projection sur écran.",
+    "picked": "File:Ripple tank motor.png",
+    "license": "CC BY-SA 3.0",
+    "artist": "Theresa_knott (talk) (Uploads)",
+    "source": "https://commons.wikimedia.org/w/index.php?curid=27387773"
+  }
+]

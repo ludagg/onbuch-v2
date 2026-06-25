@@ -6,3 +6,5 @@ _*.log
 *.toc
 .chk/
 *-apercu.pdf
+main.pdf
+*.synctex.gz

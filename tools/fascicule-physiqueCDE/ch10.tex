@@ -35,7 +35,7 @@ La stabilité d'un noyau dépend de l'équilibre entre la répulsion électrosta
         \addplot[domain=0:150, samples=200, thick, blue!60!black] {x/(1+0.007*x^(2/3))};
         \addplot[domain=0:150, samples=200, dashed, blue!40] {x/(1+0.007*x^(2/3))-3};
         \addplot[domain=0:150, samples=200, dashed, blue!40] {x/(1+0.007*x^(2/3))+3};
-        \addlegendentry{Noyaux stables};
+        \addlegendentry{Noyaux stables}
         % Zone excès de neutrons
         \fill[red!20] (0,0) -- (150,0) -- (150,100) -- (0,100) -- cycle;
         \node[red!70!black] at (120,80) {Excès de neutrons};
@@ -75,19 +75,19 @@ Le radium $\ce{^{226}_{88}Ra}$ se désintègre en radon $\ce{^{222}_{86}Rn}$ :
 \subsection{Radioactivité $\beta^-$}
 \begin{definition}[Radioactivité bêta moins]
 Un neutron se transforme en proton avec émission d'un électron $\beta^-$ et d'un antineutrino $\bar{\nu}_e$ :
-\[\ce{^{A}_{Z}X -> ^{A}_{Z+1}Y + e^- + \bar{\nu}_e}\]
+\[\ce{^{A}_{Z}X -> ^{A}_{Z+1}Y} + e^- + \bar{\nu}_e\]
 \end{definition}
 
 \subsection{Radioactivité $\beta^+$}
 \begin{definition}[Radioactivité bêta plus]
 Un proton se transforme en neutron avec émission d'un positon $\beta^+$ et d'un neutrino $\nu_e$ :
-\[\ce{^{A}_{Z}X -> ^{A}_{Z-1}Y + e^+ + \nu_e}\]
+\[\ce{^{A}_{Z}X -> ^{A}_{Z-1}Y} + e^+ + \nu_e\]
 \end{definition}
 
 \subsection{Radioactivité $\gamma$}
 \begin{definition}[Rayonnement gamma]
 Un noyau excité (noté $\ce{^{A}_{Z}X^*}$) retourne à son état fondamental en émettant un photon $\gamma$ de haute énergie :
-\[\ce{^{A}_{Z}X^* -> ^{A}_{Z}X + \gamma}\]
+\[\ce{^{A}_{Z}X^* -> ^{A}_{Z}X} + \gamma\]
 \end{definition}
 \begin{remarque}
 Le rayonnement $\gamma$ accompagne souvent les désintégrations $\alpha$ ou $\beta$ lorsque le noyau fils est formé dans un état excité.
@@ -252,7 +252,7 @@ où $c = \SI{3.00e8}{\metre\per\second}$.
         title={Courbe d'Aston — Énergie de liaison par nucléon}
     ]
         \addplot[domain=1:250, samples=200, thick, blue] {8.8 - 0.5*abs(x-56)^0.5 + 0.02*x};
-        \addlegendentry{$E_l/A$};
+        \addlegendentry{$E_l/A$}
         \draw[dashed, red] (axis cs:56,0) -- (axis cs:56,8.8);
         \node[red] at (axis cs:56,9) {$\ce{^{56}_{26}Fe}$};
     \end{axis}
@@ -273,9 +273,9 @@ La fission et la fusion libèrent de l'énergie car les noyaux produits ont une 
 \paragraph{Types de radioactivité}
 \begin{itemize}
     \item $\alpha$ : $\ce{^{A}_{Z}X -> ^{A-4}_{Z-2}Y + ^{4}_{2}He}$
-    \item $\beta^-$ : $\ce{^{A}_{Z}X -> ^{A}_{Z+1}Y + e^- + \bar{\nu}_e}$
-    \item $\beta^+$ : $\ce{^{A}_{Z}X -> ^{A}_{Z-1}Y + e^+ + \nu_e}$
-    \item $\gamma$ : $\ce{^{A}_{Z}X^* -> ^{A}_{Z}X + \gamma}$
+    \item $\beta^-$ : $\ce{^{A}_{Z}X -> ^{A}_{Z+1}Y} + e^- + \bar{\nu}_e$
+    \item $\beta^+$ : $\ce{^{A}_{Z}X -> ^{A}_{Z-1}Y} + e^+ + \nu_e$
+    \item $\gamma$ : $\ce{^{A}_{Z}X^* -> ^{A}_{Z}X} + \gamma$
 \end{itemize}
 
 \paragraph{Loi de décroissance} : $N(t) = N_0 e^{-\lambda t}$, $T_{1/2} = \frac{\ln 2}{\lambda}$, $A(t) = \lambda N(t)$.
@@ -401,7 +401,7 @@ C'est une fission car un noyau lourd se scinde en deux noyaux moyens.
 
 \exo{}\diff{2} Le carbone $\ce{^{11}_{6}C}$ se désintègre par $\beta^+$. Écrire l'équation.
 
-\exo{}\diff{1} Identifier le type de radioactivité : $\ce{^{60}_{27}Co -> ^{60}_{28}Ni + e^- + \bar{\nu}_e}$.
+\exo{}\diff{1} Identifier le type de radioactivité : $\ce{^{60}_{27}Co -> ^{60}_{28}Ni} + e^- + \bar{\nu}_e$.
 
 \exo{}\diff{2} Le polonium $\ce{^{210}_{84}Po}$ émet une particule $\alpha$. Quel est le noyau fils ?
 
@@ -477,10 +477,10 @@ On considère la famille radioactive du thorium $\ce{^{232}_{90}Th}$. Le thorium
 $\ce{^{226}_{88}Ra -> ^{222}_{86}Rn + ^{4}_{2}He}$
 
 \corrige{de l'exercice 2}
-$\ce{^{234}_{90}Th -> ^{234}_{91}Pa + e^- + \bar{\nu}_e}$
+$\ce{^{234}_{90}Th -> ^{234}_{91}Pa} + e^- + \bar{\nu}_e$
 
 \corrige{de l'exercice 3}
-$\ce{^{22}_{11}Na -> ^{22}_{10}Ne + e^+ + \nu_e}$
+$\ce{^{22}_{11}Na -> ^{22}_{10}Ne} + e^+ + \nu_e$
 
 \corrige{de l'exercice 4}
 $\lambda = \frac{\ln 2}{8.02 \times 24 \times 3600} \approx \SI{1.00e-6}{\per\second}$
@@ -522,7 +522,7 @@ $\ce{^{235}_{92}U + ^{1}_{0}n -> ^{141}_{56}Ba + ^{92}_{36}Kr + 3 ^{1}_{0}n}$ (3
 4. Puissance thermique : $P_{\text{th}} = \frac{900}{0.33} \approx \SI{2727}{\mega\watt}$ ; énergie par jour : $E_{\text{jour}} = 2727 \times 10^6 \times 24 \times 3600 \approx \SI{2.36e14}{\joule}$ ; nombre de fissions : $N = \frac{2.36e14}{2.78e-11} \approx \num{8.49e24}$ ; masse : $m = \frac{8.49e24 \times 235.0439 \times 1.66e-27}{1000} \approx \SI{3.31}{\kilogram}$.
 
 \corrige{du sujet 3}
-1. $\ce{^{232}_{90}Th -> ^{228}_{88}Ra + ^{4}_{2}He}$ ; $\ce{^{228}_{88}Ra -> ^{228}_{89}Ac + e^- + \bar{\nu}_e}$
-2. $\ce{^{228}_{89}Ac -> ^{228}_{90}Th + e^- + \bar{\nu}_e}$
+1. $\ce{^{232}_{90}Th -> ^{228}_{88}Ra + ^{4}_{2}He}$ ; $\ce{^{228}_{88}Ra -> ^{228}_{89}Ac} + e^- + \bar{\nu}_e$
+2. $\ce{^{228}_{89}Ac -> ^{228}_{90}Th} + e^- + \bar{\nu}_e$
 3. $\ce{^{228}_{90}Th -> ^{224}_{88}Ra + ^{4}_{2}He}$
 4. Pour passer de $\ce{^{232}_{90}Th}$ à $\ce{^{208}_{82}Pb}$, il faut perdre $24$ nucléons et $8$ protons. Chaque $\alpha$ perd $4$ nucléons et $2$ protons, chaque $\beta$ ne change pas $A$ mais augmente $Z$ de $1$. Soit $x$ désintégrations $\alpha$ et $y$ $\beta$ : $4x = 24 \Rightarrow x = 6$ ; $2x - y = 8 \Rightarrow y = 4$. Il faut $6$ $\alpha$ et $4$ $\beta$.

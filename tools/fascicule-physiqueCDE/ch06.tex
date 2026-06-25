@@ -195,11 +195,11 @@ où $X_m$ est l'amplitude du mouvement.
     height=6cm
 ]
 \addplot[domain=0:4, samples=200, thick, blue] {0.5*(1 - cos(deg(2*pi*x)))^2 + 0.5*(sin(deg(2*pi*x)))^2};
-\addlegendentry{$E_c$};
+\addlegendentry{$E_c$}
 \addplot[domain=0:4, samples=200, thick, red] {0.5*(1 - cos(deg(2*pi*x)))^2};
-\addlegendentry{$E_p$};
+\addlegendentry{$E_p$}
 \addplot[domain=0:4, samples=200, thick, green!60!black] {1};
-\addlegendentry{$E_m$};
+\addlegendentry{$E_m$}
 \end{axis}
 \end{tikzpicture}
 \fig{Évolution temporelle des énergies cinétique $E_c$, potentielle $E_p$ et mécanique $E_m$ pour un oscillateur harmonique.}
@@ -243,11 +243,11 @@ La résonance mécanique se produit lorsque la fréquence de l'excitation $f$ es
     height=6cm
 ]
 \addplot[domain=0.1:2.5, samples=200, thick, blue] {1/sqrt((1 - x^2)^2 + (0.1*x)^2)};
-\addlegendentry{faible amortissement};
+\addlegendentry{faible amortissement}
 \addplot[domain=0.1:2.5, samples=200, thick, red] {1/sqrt((1 - x^2)^2 + (0.5*x)^2)};
-\addlegendentry{amortissement moyen};
+\addlegendentry{amortissement moyen}
 \addplot[domain=0.1:2.5, samples=200, thick, green!60!black] {1/sqrt((1 - x^2)^2 + (1.0*x)^2)};
-\addlegendentry{fort amortissement};
+\addlegendentry{fort amortissement}
 \end{axis}
 \end{tikzpicture}
 \fig{Courbes de résonance d'un oscillateur forcé pour différents amortissements.}

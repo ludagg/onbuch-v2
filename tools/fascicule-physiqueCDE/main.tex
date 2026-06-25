@@ -1,0 +1,122 @@
+\input{preamble.tex}
+
+\begin{document}
+
+% ════════════════════ COUVERTURE (page de titre LaTeX) ════════════════════
+\begin{titlepage}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[onbink] (current page.south west) rectangle (current page.north east);
+  \fill[onbo] ([yshift=-5.2cm]current page.north west) rectangle ([yshift=-9.6cm]current page.north east);
+\end{tikzpicture}
+\vspace*{2.2cm}
+\begin{center}
+  {\sffamily\bfseries\fontsize{20}{22}\selectfont\color{onbo} OnBuch}\\[0.25cm]
+  {\sffamily\color{onbpaper} Collection Réussite}
+\end{center}
+\vspace{1.4cm}
+\begin{center}
+  {\sffamily\bfseries\fontsize{64}{66}\selectfont\color{onbpaper} PHYSIQUE}\\[0.5cm]
+  {\sffamily\bfseries\fontsize{26}{28}\selectfont\color{onbink} Terminales C · D · E · TI}
+\end{center}
+\vfill
+\begin{center}
+  {\sffamily\fontsize{15}{18}\selectfont\color{onbpaper} Baccalauréat scientifique — Cameroun}\\[0.2cm]
+  {\sffamily\color{onbo2} Programme officiel MINESEC}\\[1.4cm]
+  {\sffamily\small\color{onbmuted} Cours développé · Méthodes · Exercices corrigés · Sujets type Bac}
+\end{center}
+\vspace{1.2cm}
+\end{titlepage}
+
+\frontmatter
+
+% ════════════════════ COLOPHON ════════════════════
+\thispagestyle{empty}
+\null\vfill
+\noindent{\color{onbo}\rule{3cm}{2pt}}\par\vspace{8pt}
+{\sffamily\bfseries\color{onbink} Physique — Terminales C, D, E, TI}\\[2pt]
+{\sffamily\color{onbmuted} Collection Réussite OnBuch · Baccalauréat scientifique (Cameroun)}\par\vspace{12pt}
+\noindent\small
+\textbf{Éditeur :} l'équipe OnBuch, dirigée par \textbf{Ludovic Aggaï N.}\par\smallskip
+\textbf{Programme :} MINESEC — séries C, D, E et TI (tronc commun).\par\smallskip
+\textbf{Édition :} \the\year{} · Première édition.\par\vspace{10pt}
+{\footnotesize\color{onbmuted} Cet ouvrage est proposé aux élèves dans l'application OnBuch.
+Toute reproduction à but commercial est soumise à l'autorisation de l'éditeur.
+Les illustrations photographiques proviennent de Wikimedia Commons (voir crédits en fin d'ouvrage).}
+\par\vspace{6pt}
+{\footnotesize\color{onbmuted}\copyright{} \the\year{} OnBuch — Tous droits réservés.}
+\vfill
+\clearpage
+
+% ════════════════════ AVANT-PROPOS ════════════════════
+\thispagestyle{empty}
+\vspace*{0.6cm}
+{\sffamily\fontsize{30}{32}\selectfont\bfseries\color{onbink} Avant-propos}\par\vspace{4pt}
+{\color{onbo}\rule{5cm}{2.5pt}}\par\vspace{16pt}
+
+\noindent Tu tiens entre les mains un ouvrage pensé pour t'accompagner, pas à pas,
+vers la \textbf{réussite au Baccalauréat scientifique}. Ce fascicule couvre
+\textbf{l'intégralité du programme de physique des classes de Terminale} des séries
+\textbf{C, D, E et TI} (programme officiel MINESEC), organisé selon les trois grands
+thèmes au programme : les mouvements dans les champs de forces, les systèmes
+oscillants, les phénomènes corpusculaires et ondulatoires.
+
+\medskip
+\noindent Chaque chapitre s'organise en plusieurs temps complémentaires :
+\begin{itemize}
+  \item \textbf{Le cours, développé et illustré} — chaque notion est définie, démontrée
+        ou justifiée, puis éclairée par des figures, des lois encadrées et des exemples ;
+  \item \textbf{L'essentiel — fiche de révision} — une synthèse encadrée pour réviser vite et bien ;
+  \item \textbf{Méthodes \& savoir-faire} — les techniques incontournables, chacune avec un exemple résolu ;
+  \item \textbf{Exercices d'application corrigés}, classés par thème et par difficulté ($\star$ à $\star\star\star$) ;
+  \item \textbf{Exercices d'entraînement} — un grand nombre d'exercices à chercher seul ;
+  \item \textbf{Sujets type Baccalauréat}, corrigés en détail.
+\end{itemize}
+
+\medskip
+\noindent\textbf{Comment l'utiliser ?} Lis le cours crayon en main, refais les
+exemples, puis attaque les méthodes. Entraîne-toi d'abord sur les exercices
+corrigés (sans regarder la solution !), puis lance-toi sur les exercices
+d'entraînement. Termine chaque chapitre par un sujet type Bac, en temps limité.
+La régularité, bien plus que la durée, fait la différence.
+
+\vspace{6pt}
+\begin{aretenir}
+\textbf{À propos d'OnBuch.} OnBuch est l'application éducative des élèves
+camerounais : \textbf{Léo}, ton tuteur intelligent qui corrige tes exercices à
+partir d'une simple photo, des \textbf{cours}, des \textbf{annales}, les
+\textbf{résultats d'examens}, les \textbf{concours} et l'agenda scolaire. Notre
+mission : mettre la réussite à la portée de chaque élève, partout au Cameroun, et
+viser l'excellence. Ce fascicule prolonge cette mission sur le papier.
+\end{aretenir}
+
+\medskip
+\noindent Bon travail, et surtout : \textbf{bonne réussite au Baccalauréat !}
+\par\vspace{8pt}
+\hfill{\sffamily\itshape\color{onbmuted} L'équipe OnBuch, dirigée par Ludovic Aggaï N.}
+\clearpage
+
+% ════════════════════ SOMMAIRE ════════════════════
+\thispagestyle{empty}
+\vspace*{0.6cm}
+{\sffamily\fontsize{30}{32}\selectfont\bfseries\color{onbink} Sommaire}\par\vspace{4pt}
+{\color{onbo}\rule{5cm}{2.5pt}}\par\vspace{10pt}
+{\hypersetup{linkcolor=onbink}\makeatletter\@starttoc{toc}\makeatother}
+
+% ════════════════════ CHAPITRES ════════════════════
+\mainmatter
+% — Thème I : Mouvements dans les champs de forces —
+\include{ch01}
+\include{ch02}
+\include{ch03}
+\include{ch04}
+% — Thème II : Systèmes oscillants —
+\include{ch05}
+\include{ch06}
+\include{ch07}
+% — Thème III : Phénomènes corpusculaires et ondulatoires —
+\include{ch08}
+\include{ch09}
+\include{ch10}
+
+\end{document}
