@@ -1,0 +1,476 @@
+\chapter{Généralités sur la chimie organique}
+
+\textit{La chimie organique est la chimie du carbone et de ses composés. Présente dans notre quotidien (médicaments, plastiques, carburants, textiles, aliments), elle constitue un pilier fondamental des sciences chimiques. Ce chapitre pose les bases nécessaires à l'étude systématique des molécules organiques : structure de l'atome de carbone, analyse élémentaire, représentation des molécules, isomérie, nomenclature et groupes fonctionnels.}
+
+\section{Le carbone et ses liaisons}
+
+\subsection{Tétravalence de l'atome de carbone}
+
+\begin{definition}[Tétravalence du carbone]
+L'atome de carbone possède quatre électrons sur sa couche de valence ($2s^2 2p^2$). Pour respecter la règle de l'octet, il établit \textbf{quatre liaisons covalentes} avec d'autres atomes. On dit que le carbone est \textbf{tétravalent}.
+\end{definition}
+
+\begin{propriete}[Types de liaisons du carbone]
+Le carbone peut former :
+\begin{itemize}
+    \item \textbf{Quatre liaisons simples} ($\sigma$) : carbone \textbf{saturé} (hybridation $sp^3$, géométrie tétraédrique, angles $\approx \SI{109.5}{\degree}$).
+    \item \textbf{Une double liaison} (une $\sigma$ + une $\pi$) : carbone \textbf{insaturé} (hybridation $sp^2$, géométrie trigonale plane, angles $\approx \SI{120}{\degree}$).
+    \item \textbf{Une triple liaison} (une $\sigma$ + deux $\pi$) : carbone \textbf{insaturé} (hybridation $sp$, géométrie linéaire, angle $\SI{180}{\degree}$).
+\end{itemize}
+\end{propriete}
+
+\begin{exemple}
+\begin{center}
+\begin{illus}
+\chemfig{C(-[1]H)(-[2]H)(-[4]H)(-[6]H)} \qquad
+\chemfig{C(=[1]O)(-[2]H)(-[4]H)} \qquad
+\chemfig{C~C}
+\fig{Exemples de carbone tétraédrique ($sp^3$), trigonal ($sp^2$) et linéaire ($sp$)}
+\end{illus}
+\end{center}
+\end{exemple}
+
+\subsection{Chaînes carbonées}
+
+\begin{definition}[Squelette carboné]
+Le \textbf{squelette carboné} (ou chaîne carbonée) est l'enchaînement des atomes de carbone qui constitue la charpente de la molécule organique.
+\end{definition}
+
+\begin{propriete}[Types de chaînes]
+On distingue :
+\begin{itemize}
+    \item \textbf{Chaîne linéaire} (ou droite) : les carbones sont liés les uns à la suite des autres.
+    \item \textbf{Chaîne ramifiée} : un ou plusieurs carbones sont liés à plus de deux autres carbones.
+    \item \textbf{Chaîne cyclique} : les carbones forment un cycle fermé.
+\end{itemize}
+\end{propriete}
+
+\begin{exemple}
+\begin{center}
+\begin{illus}
+\chemfig{CH_3-CH_2-CH_2-CH_3} \quad (butane, linéaire)\\[4pt]
+\chemfig{CH_3-CH(-[2]CH_3)-CH_3} \quad (2-méthylpropane, ramifié)\\[4pt]
+\chemfig{*6(-=-=-=)} \quad (cyclohexane, cyclique)
+\fig{Types de chaînes carbonées}
+\end{illus}
+\end{center}
+\end{exemple}
+
+\section{Analyse élémentaire et détermination des formules}
+
+\subsection{Analyse élémentaire qualitative et quantitative}
+
+\begin{experience}[Analyse élémentaire d'un composé organique]
+L'analyse élémentaire permet de déterminer la nature et la proportion des éléments présents dans un composé organique.
+\begin{itemize}
+    \item \textbf{Carbone et hydrogène} : On chauffe l'échantillon en présence d'oxyde de cuivre (\ce{CuO}). Le carbone est oxydé en \ce{CO2} (trouble de l'eau de chaux) et l'hydrogène en \ce{H2O} (bleuissement du sulfate de cuivre anhydre).
+    \item \textbf{Azote} : La méthode de Dumas (chauffage avec \ce{CuO}) libère \ce{N2} gazeux.
+    \item \textbf{Oxygène} : Dosage par différence après avoir déterminé les autres éléments.
+\end{itemize}
+\end{experience}
+
+\begin{loi}[Loi de conservation de la masse]
+La masse totale des éléments dans l'échantillon est égale à la masse de l'échantillon. On en déduit les pourcentages massiques.
+\end{loi}
+
+\begin{exemple}
+Un composé organique de masse \SI{1.50}{\gram} donne par combustion \SI{3.30}{\gram} de \ce{CO2} et \SI{1.35}{\gram} de \ce{H2O}. Déterminer les pourcentages de C et H.
+
+\noindent \textbf{Solution :}
+\begin{itemize}
+    \item Masse de carbone : $m_C = \dfrac{12}{44} \times \SI{3.30}{\gram} = \SI{0.90}{\gram}$.
+    \item Masse d'hydrogène : $m_H = \dfrac{2}{18} \times \SI{1.35}{\gram} = \SI{0.15}{\gram}$.
+    \item Pourcentage de C : $\dfrac{0.90}{1.50} \times 100 = \SI{60}{\%}$.
+    \item Pourcentage de H : $\dfrac{0.15}{1.50} \times 100 = \SI{10}{\%}$.
+    \item Pourcentage d'O (par différence) : $100 - (60 + 10) = \SI{30}{\%}$.
+\end{itemize}
+\end{exemple}
+
+\subsection{Détermination de la formule brute et de la formule moléculaire}
+
+\begin{definition}[Formule brute]
+La \textbf{formule brute} indique la nature et le nombre d'atomes de chaque élément dans la molécule, sans préciser leur agencement. Exemple : \ce{C2H6O}.
+\end{definition}
+
+\begin{propriete}[Détermination de la formule brute]
+À partir des pourcentages massiques et de la masse molaire $M$, on détermine le nombre $n$ d'atomes de chaque élément :
+\[
+n_X = \dfrac{\%X \times M}{100 \times M_X}
+\]
+où $M_X$ est la masse molaire atomique de l'élément $X$.
+\end{propriete}
+
+\begin{definition}[Densité de vapeur]
+La \textbf{densité de vapeur} $d$ d'un composé gazeux par rapport à l'air est :
+\[
+d = \frac{M}{29}
+\]
+où $M$ est la masse molaire du composé (en \si{\gram\per\mol}) et \num{29} est la masse molaire moyenne de l'air.
+\end{definition}
+
+\begin{exemple}
+Un composé organique a pour composition centésimale : C = \SI{40.0}{\%}, H = \SI{6.67}{\%}, O = \SI{53.33}{\%}. Sa densité de vapeur est $d = \num{2.07}$. Déterminer sa formule moléculaire.
+
+\noindent \textbf{Solution :}
+\begin{itemize}
+    \item Masse molaire : $M = 29 \times d = 29 \times \num{2.07} \approx \SI{60.0}{\gram\per\mol}$.
+    \item Nombre d'atomes de C : $n_C = \dfrac{40.0 \times 60.0}{100 \times 12} = 2$.
+    \item Nombre d'atomes de H : $n_H = \dfrac{6.67 \times 60.0}{100 \times 1} = 4$.
+    \item Nombre d'atomes de O : $n_O = \dfrac{53.33 \times 60.0}{100 \times 16} = 2$.
+    \item Formule moléculaire : \ce{C2H4O2}.
+\end{itemize}
+\end{exemple}
+
+\section{Représentation des molécules organiques}
+
+\subsection{Formule développée et semi-développée}
+
+\begin{definition}[Formule développée]
+La \textbf{formule développée} représente toutes les liaisons entre atomes, chaque liaison étant figurée par un trait.
+\end{definition}
+
+\begin{definition}[Formule semi-développée]
+La \textbf{formule semi-développée} regroupe les atomes d'hydrogène liés à un même carbone. Seules les liaisons carbone-carbone et carbone-hétéroatome sont représentées.
+\end{definition}
+
+\begin{exemple}
+\begin{center}
+\begin{illus}
+\chemfig{H-C(-[1]H)(-[2]H)(-[3]H)-C(-[1]H)(-[2]H)(-[3]H)-O-H} \quad (développée)\\[4pt]
+\chemfig{CH_3-CH_2-OH} \quad (semi-développée)
+\fig{Éthanol : formules développée et semi-développée}
+\end{illus}
+\end{center}
+\end{exemple}
+
+\subsection{Formule topologique}
+
+\begin{definition}[Formule topologique]
+La \textbf{formule topologique} est une représentation simplifiée où :
+\begin{itemize}
+    \item Les atomes de carbone sont représentés par les extrémités et les points de concours des traits.
+    \item Les atomes d'hydrogène ne sont pas représentés (sauf ceux portés par des hétéroatomes).
+    \item Les hétéroatomes (O, N, Cl, etc.) sont explicitement écrits.
+\end{itemize}
+\end{definition}
+
+\begin{exemple}
+\begin{center}
+\begin{illus}
+\chemfig{OH} \quad (éthanol)\\[4pt]
+\chemfig{*6(-=-(-OH)=-=)} \quad (phénol)
+\fig{Exemples de formules topologiques}
+\end{illus}
+\end{center}
+\end{exemple}
+
+\begin{remarque}
+La formule topologique est très utilisée en chimie organique avancée car elle permet de visualiser rapidement le squelette carboné et les groupes fonctionnels.
+\end{remarque}
+
+\section{Isomérie}
+
+\subsection{Définition et classification}
+
+\begin{definition}[Isomères]
+Des \textbf{isomères} sont des composés qui ont la même formule brute mais des formules développées ou des arrangements spatiaux différents.
+\end{definition}
+
+\begin{propriete}[Types d'isomérie]
+On distingue :
+\begin{itemize}
+    \item \textbf{Isomérie de constitution} (même formule brute, enchaînement différent) :
+        \begin{itemize}
+            \item Isomérie de chaîne (différence de squelette carboné).
+            \item Isomérie de position (position différente d'un groupe fonctionnel ou d'une insaturation).
+            \item Isomérie de fonction (groupes fonctionnels différents).
+        \end{itemize}
+    \item \textbf{Stéréo-isomérie} (même enchaînement, disposition spatiale différente) :
+        \begin{itemize}
+            \item Isomérie géométrique (Z/E) autour d'une double liaison.
+            \item Énantiomérie (images non superposables dans un miroir).
+        \end{itemize}
+\end{itemize}
+\end{propriete}
+
+\subsection{Isomérie de constitution}
+
+\begin{exemple}[Isomérie de chaîne]
+\begin{center}
+\begin{illus}
+\chemfig{CH_3-CH_2-CH_2-CH_3} \quad (butane)\\[4pt]
+\chemfig{CH_3-CH(-[2]CH_3)-CH_3} \quad (2-méthylpropane)
+\fig{Isomères de chaîne : \ce{C4H10}}
+\end{illus}
+\end{center}
+\end{exemple}
+
+\begin{exemple}[Isomérie de position]
+\begin{center}
+\begin{illus}
+\chemfig{CH_3-CH_2-CH_2-OH} \quad (propan-1-ol)\\[4pt]
+\chemfig{CH_3-CH(-[2]OH)-CH_3} \quad (propan-2-ol)
+\fig{Isomères de position : \ce{C3H8O}}
+\end{illus}
+\end{center}
+\end{exemple}
+
+\begin{exemple}[Isomérie de fonction]
+\begin{center}
+\begin{illus}
+\chemfig{CH_3-CH_2-OH} \quad (éthanol, alcool)\\[4pt]
+\chemfig{CH_3-O-CH_3} \quad (éther diméthylique, éther-oxyde)
+\fig{Isomères de fonction : \ce{C2H6O}}
+\end{illus}
+\end{center}
+\end{exemple}
+
+\subsection{Stéréo-isomérie Z/E}
+
+\begin{definition}[Isomérie Z/E]
+Autour d'une double liaison \ce{C=C}, la rotation est bloquée. Si les deux substituants les plus importants (selon les règles de Cahn-Ingold-Prelog) sont du même côté, on parle d'isomère \textbf{Z} (du allemand \textit{zusammen} = ensemble) ; s'ils sont de côtés opposés, on parle d'isomère \textbf{E} (du allemand \textit{entgegen} = opposé).
+\end{definition}
+
+\begin{exemple}
+\begin{center}
+\begin{illus}
+\chemfig{H-C(=[1]C(-[1]H)(-[6]CH_3))-CH_3} \quad (Z)\\[4pt]
+\chemfig{H-C(=[1]C(-[1]CH_3)(-[6]H))-CH_3} \quad (E)
+\fig{Isomères Z et E du but-2-ène}
+\end{illus}
+\end{center}
+\end{exemple}
+
+\subsection{Énantiomérie}
+
+\begin{definition}[Carbone asymétrique]
+Un \textbf{carbone asymétrique} (ou chiral) est un atome de carbone tétraédrique lié à quatre substituants \textbf{tous différents}.
+\end{definition}
+
+\begin{definition}[Énantiomères]
+Deux molécules images l'une de l'autre dans un miroir plan et non superposables sont appelées \textbf{énantiomères}. Elles possèdent des propriétés physiques identiques (sauf le pouvoir rotatoire) mais des activités biologiques souvent différentes.
+\end{definition}
+
+\begin{exemple}
+\begin{center}
+\begin{illus}
+\chemfig{C(-[1]H)(-[2]OH)(-[4]CH_3)(-[6]COOH)} \quad (acide lactique)
+\fig{Acide lactique : exemple de molécule chirale}
+\end{illus}
+\end{center}
+\end{exemple}
+
+\section{Groupes fonctionnels et familles}
+
+\begin{definition}[Groupe fonctionnel]
+Un \textbf{groupe fonctionnel} est un atome ou un groupement d'atomes qui confère à la molécule des propriétés chimiques caractéristiques.
+\end{definition}
+
+\begin{propriete}[Principales familles]
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Famille} & \textbf{Groupe fonctionnel} & \textbf{Exemple} \\
+\hline
+Alcane & Aucun (liaisons simples C-C, C-H) & \ce{CH4} (méthane) \\
+\hline
+Alcène & \ce{C=C} & \ce{CH2=CH2} (éthène) \\
+\hline
+Alcyne & \ce{C#C} & \ce{CH#CH} (éthyne) \\
+\hline
+Alcool & \ce{-OH} & \ce{CH3OH} (méthanol) \\
+\hline
+Aldéhyde & \ce{-CHO} & \ce{CH3CHO} (éthanal) \\
+\hline
+Cétone & \ce{-CO-} & \ce{CH3COCH3} (propanone) \\
+\hline
+Acide carboxylique & \ce{-COOH} & \ce{CH3COOH} (acide éthanoïque) \\
+\hline
+Ester & \ce{-COO-} & \ce{CH3COOCH3} (éthanoate de méthyle) \\
+\hline
+Amine & \ce{-NH2} & \ce{CH3NH2} (méthanamine) \\
+\hline
+\end{tabular}
+\end{center}
+\end{propriete}
+
+\section{Nomenclature systématique (IUPAC)}
+
+\subsection{Règles générales}
+
+\begin{loi}[Règles IUPAC pour les alcanes]
+Pour nommer un alcane linéaire :
+\begin{enumerate}
+    \item Identifier la chaîne carbonée la plus longue (chaîne principale).
+    \item Numéroter la chaîne de façon à donner les indices les plus petits aux substituants.
+    \item Nommer les substituants (groupes alkyles) en les faisant précéder de leur position.
+    \item Écrire le nom en un seul mot : positions-substituants-nom de la chaîne principale.
+\end{enumerate}
+\end{loi}
+
+\begin{exemple}
+\begin{center}
+\begin{illus}
+\chemfig{CH_3-CH(-[2]CH_3)-CH_2-CH_3} \quad (2-méthylbutane)\\[4pt]
+\chemfig{CH_3-CH_2-CH(-[2]CH_3)-CH_2-CH_3} \quad (3-méthylpentane)
+\fig{Exemples de nomenclature}
+\end{illus}
+\end{center}
+\end{exemple}
+
+\subsection{Nomenclature des composés insaturés et fonctionnels}
+
+\begin{propriete}[Règles pour les alcènes et alcynes]
+\begin{itemize}
+    \item La chaîne principale doit contenir la double ou triple liaison.
+    \item La numérotation commence par l'extrémité la plus proche de l'insaturation.
+    \item Le suffixe devient \textit{-ène} ou \textit{-yne}.
+\end{itemize}
+\end{propriete}
+
+\begin{exemple}
+\begin{center}
+\begin{illus}
+\chemfig{CH_3-CH=CH-CH_3} \quad (but-2-ène)\\[4pt]
+\chemfig{CH#C-CH_2-CH_3} \quad (but-1-yne)
+\fig{Nomenclature des composés insaturés}
+\end{illus}
+\end{center}
+\end{exemple}
+
+\begin{propriete}[Règles pour les composés fonctionnels]
+\begin{itemize}
+    \item Le groupe fonctionnel principal détermine le suffixe.
+    \item La chaîne principale est celle qui contient le groupe fonctionnel.
+    \item La numérotation donne le plus petit indice au groupe fonctionnel.
+\end{itemize}
+\end{propriete}
+
+\begin{exemple}
+\begin{center}
+\begin{illus}
+\chemfig{CH_3-CH_2-CH_2-OH} \quad (propan-1-ol)\\[4pt]
+\chemfig{CH_3-CH_2-COOH} \quad (acide propanoïque)
+\fig{Nomenclature des composés fonctionnels}
+\end{illus}
+\end{center}
+\end{exemple}
+
+\section{L'essentiel à retenir}
+
+\begin{synthese}
+\textbf{Points clés du chapitre :}
+\begin{itemize}
+    \item Le carbone est \textbf{tétravalent} : 4 liaisons covalentes.
+    \item \textbf{Analyse élémentaire} : combustion → \ce{CO2} et \ce{H2O} → pourcentages massiques.
+    \item \textbf{Formule moléculaire} : $M = 29 \times d$ ; $n_X = \dfrac{\%X \times M}{100 \times M_X}$.
+    \item \textbf{Représentations} : développée (toutes les liaisons), semi-développée (H regroupés), topologique (C implicites).
+    \item \textbf{Isomérie} : de constitution (chaîne, position, fonction) et stéréo-isomérie (Z/E, énantiomérie).
+    \item \textbf{Groupes fonctionnels} : alcool (-OH), aldéhyde (-CHO), cétone (-CO-), acide carboxylique (-COOH), ester (-COO-), amine (-NH2).
+    \item \textbf{Nomenclature IUPAC} : chaîne principale la plus longue, numérotation minimale, suffixes caractéristiques.
+\end{itemize}
+\textbf{Attention aux pièges :}
+\begin{itemize}
+    \item Ne pas confondre formule brute et formule moléculaire (la brute donne la composition, la moléculaire est la formule réelle).
+    \item Vérifier que la somme des pourcentages massiques est bien \SI{100}{\%}.
+    \item Pour l'isomérie Z/E, bien classer les substituants par ordre de priorité (règles CIP).
+\end{itemize}
+\end{synthese}
+
+\section{Méthodes \& savoir-faire}
+
+\methode{Déterminer la formule brute à partir des pourcentages massiques}
+\begin{itemize}
+    \item Calculer la masse de chaque élément dans \SI{100}{\gram} de composé.
+    \item Diviser chaque masse par la masse molaire atomique correspondante.
+    \item Obtenir les rapports molaires, puis les simplifier en nombres entiers.
+\end{itemize}
+\begin{exemple}
+Un composé contient \SI{52.17}{\%} de C, \SI{13.04}{\%} de H et \SI{34.79}{\%} d'O. Déterminer sa formule brute.
+\noindent \textbf{Solution :} Pour \SI{100}{\gram} : $n_C = \frac{52.17}{12} = 4.35$, $n_H = \frac{13.04}{1} = 13.04$, $n_O = \frac{34.79}{16} = 2.17$. Rapport : $\frac{4.35}{2.17} = 2$, $\frac{13.04}{2.17} = 6$, $\frac{2.17}{2.17} = 1$. Formule brute : \ce{C2H6O}.
+\end{exemple}
+
+\methode{Calculer la masse molaire à partir de la densité de vapeur}
+\begin{itemize}
+    \item Utiliser la relation $M = 29 \times d$.
+    \item Vérifier que le composé est bien gazeux dans les conditions de mesure.
+\end{itemize}
+\begin{exemple}
+La densité de vapeur d'un hydrocarbure est $d = \num{2.0}$. Calculer sa masse molaire.
+\noindent \textbf{Solution :} $M = 29 \times 2.0 = \SI{58}{\gram\per\mol}$.
+\end{exemple}
+
+\methode{Distinguer les types d'isomérie}
+\begin{itemize}
+    \item Comparer les squelettes carbonés (isomérie de chaîne).
+    \item Comparer les positions des groupes fonctionnels (isomérie de position).
+    \item Comparer les groupes fonctionnels (isomérie de fonction).
+    \item Pour la stéréo-isomérie, vérifier la présence d'une double liaison (Z/E) ou d'un carbone asymétrique (énantiomérie).
+\end{itemize}
+\begin{exemple}
+Les composés \ce{CH3CH2OH} et \ce{CH3OCH3} sont-ils des isomères ? De quel type ?
+\noindent \textbf{Solution :} Même formule brute \ce{C2H6O}. Le premier est un alcool, le second un éther-oxyde. Ce sont des isomères de fonction.
+\end{exemple}
+
+\methode{Nommer un alcane ramifié selon l'IUPAC}
+\begin{itemize}
+    \item Identifier la chaîne la plus longue.
+    \item Numéroter pour donner les plus petits indices aux substituants.
+    \item Citer les substituants par ordre alphabétique (sans tenir compte des préfixes di-, tri-).
+\end{itemize}
+\begin{exemple}
+Nommer \chemfig{CH_3-CH(-[2]CH_3)-CH(-[2]CH_3)-CH_3}.
+\noindent \textbf{Solution :} Chaîne principale : 4 carbones (butane). Substituants : deux groupes méthyle en positions 2 et 3. Nom : 2,3-diméthylbutane.
+\end{exemple}
+
+\methode{Représenter une molécule en formule topologique}
+\begin{itemize}
+    \item Dessiner le squelette carboné en zigzag.
+    \item Ne pas représenter les atomes de H liés au carbone.
+    \item Écrire explicitement les hétéroatomes et les H qui leur sont liés.
+\end{itemize}
+\begin{exemple}
+Représenter le 2-méthylbutan-2-ol en formule topologique.
+\noindent \textbf{Solution :} \chemfig{C(-[2]C)(-[4]C)(-[6]OH)-C(-[1]C)(-[5]C)}.
+\end{exemple}
+
+\methode{Déterminer la configuration Z ou E d'un alcène}
+\begin{itemize}
+    \item Attribuer un ordre de priorité à chaque substituant sur chaque carbone de la double liaison (règles CIP : numéro atomique décroissant).
+    \item Si les deux substituants prioritaires sont du même côté → Z ; sinon → E.
+\end{itemize}
+\begin{exemple}
+Déterminer la configuration de \chemfig{H-C(=[1]C(-[1]Cl)(-[6]Br))-CH_3}.
+\noindent \textbf{Solution :} Sur le carbone de gauche : H (1) et CH3 (6) → priorité à CH3. Sur le carbone de droite : Cl (17) et Br (35) → priorité à Br. Les prioritaires (CH3 et Br) sont du même côté → configuration Z.
+\end{exemple}
+
+\methode{Identifier un carbone asymétrique}
+\begin{itemize}
+    \item Vérifier que le carbone est tétraédrique (4 liaisons simples).
+    \item Vérifier que les quatre substituants sont tous différents.
+\end{itemize}
+\begin{exemple}
+Le 2-butanol (\chemfig{CH_3-CH(-[2]OH)-CH_2-CH_3}) possède-t-il un carbone asymétrique ?
+\noindent \textbf{Solution :} Le carbone 2 est lié à H, OH, CH3 et CH2CH3. Les quatre substituants sont différents → c'est un carbone asymétrique.
+\end{exemple}
+
+\methode{Écrire l'équation de combustion d'un composé organique}
+\begin{itemize}
+    \item Écrire le composé avec \ce{O2} comme réactif.
+    \item Les produits sont \ce{CO2} et \ce{H2O} (et \ce{N2} si présence d'azote).
+    \item Équilibrer l'équation en commençant par le carbone, puis l'hydrogène, puis l'oxygène.
+\end{itemize}
+\begin{exemple}
+Écrire l'équation de combustion complète du propane (\ce{C3H8}).
+\noindent \textbf{Solution :} \ce{C3H8 + 5 O2 -> 3 CO2 + 4 H2O}.
+\end{exemple}
+
+\methode{Calculer le pourcentage d'un élément à partir de la formule}
+\begin{itemize}
+    \item Calculer la masse molaire du composé.
+    \item Diviser la masse totale de l'élément par la masse molaire, multiplier par 100.
+\end{itemize}
+\begin{exemple}
+Calculer le pourcentage de carbone dans le glucose (\ce{C6H12O6}).
+\noindent \textbf{Solution :} $M = 6\times12 + 12\times1 + 6\times16 = \SI{180}{\gram\per\mol}$. $\%C = \frac{72}{180} \times 100 = \SI{40}{\%}$.
+\end{exemple}

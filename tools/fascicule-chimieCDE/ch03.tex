@@ -1,0 +1,364 @@
+\chapter{Les alcènes et les alcynes}
+
+\textit{Les hydrocarbures insaturés, caractérisés par la présence de liaisons multiples carbone-carbone, constituent une famille fondamentale en chimie organique. Les alcènes (double liaison) et les alcynes (triple liaison) sont des composés très réactifs, servant de matière première à de nombreuses synthèses industrielles (polymères, solvants, médicaments). Ce chapitre présente leur nomenclature, leurs propriétés chimiques et les tests qui permettent de les identifier.}
+
+\section{Généralités sur les hydrocarbures insaturés}
+
+\begin{definition}[Hydrocarbure insaturé]
+Un hydrocarbure insaturé est un composé organique constitué uniquement d'atomes de carbone et d'hydrogène, comportant au moins une liaison multiple (double ou triple) entre deux atomes de carbone.
+\end{definition}
+
+\begin{propriete}[Formules générales]
+\begin{itemize}
+    \item Alcènes : \ce{C_nH_{2n}} (une double liaison)
+    \item Alcynes : \ce{C_nH_{2n-2}} (une triple liaison)
+\end{itemize}
+\end{propriete}
+
+\section{Les alcènes}
+
+\subsection{Structure de la double liaison}
+
+\begin{definition}[Double liaison]
+La double liaison \ce{C=C} est constituée d'une liaison $\sigma$ (recouvrement axial) et d'une liaison $\pi$ (recouvrement latéral). La liaison $\pi$ est plus faible et plus réactive que la liaison $\sigma$.
+\end{definition}
+
+\begin{remarque}
+La double liaison empêche la libre rotation des atomes de carbone, ce qui donne naissance à l'isomérie géométrique (Z/E).
+\end{remarque}
+
+\subsection{Nomenclature des alcènes}
+
+\begin{loi}[Règles de nomenclature IUPAC]
+\begin{enumerate}
+    \item La chaîne principale est la plus longue chaîne contenant la double liaison.
+    \item Le suffixe \textit{-ène} remplace \textit{-ane}.
+    \item La position de la double liaison est indiquée par le numéro le plus petit possible.
+    \item Les substituants sont nommés comme pour les alcanes.
+\end{enumerate}
+\end{loi}
+
+\begin{exemple}
+\begin{itemize}
+    \item \ce{CH2=CH2} : éthène (ou éthylène)
+    \item \ce{CH3-CH=CH2} : propène
+    \item \ce{CH3-CH2-CH=CH2} : but-1-ène
+    \item \ce{CH3-CH=CH-CH3} : but-2-ène
+\end{itemize}
+\end{exemple}
+
+\subsection{Isomérie Z/E}
+
+\begin{definition}[Isomérie Z/E]
+L'isomérie Z/E est un type de stéréoisomérie de configuration qui apparaît lorsque chaque atome de carbone de la double liaison porte deux substituants différents. On utilise la règle de Cahn-Ingold-Prelog (CIP) pour classer les substituants par priorité.
+\begin{itemize}
+    \item \textbf{Z} (zusammen) : les deux substituants prioritaires sont du même côté.
+    \item \textbf{E} (entgegen) : les deux substituants prioritaires sont de côtés opposés.
+\end{itemize}
+\end{definition}
+
+\begin{exemple}
+Pour le but-2-ène :
+\begin{center}
+\begin{illus}
+\chemfig{CH_3-C(=[1]H)-C(=[2]H)-CH_3}
+\fig{But-2-ène Z (cis)}
+\end{illus}
+\qquad
+\begin{illus}
+\chemfig{CH_3-C(=[1]H)-C(=[2]CH_3)-H}
+\fig{But-2-ène E (trans)}
+\end{illus}
+\end{center}
+\end{exemple}
+
+\subsection{Réactions d'addition sur les alcènes}
+
+\begin{propriete}[Réactivité des alcènes]
+La liaison $\pi$ est riche en électrons et peut être attaquée par des réactifs électrophiles. Les alcènes subissent principalement des réactions d'addition.
+\end{propriete}
+
+\subsubsection{Addition de dihydrogène (\ce{H2})}
+
+\begin{experience}[Hydrogénation catalytique]
+L'addition de \ce{H2} sur un alcène nécessite un catalyseur métallique (Ni, Pt, Pd) et se fait à chaud.
+\ce{CH2=CH2 + H2 ->[Ni, \SI{150}{\celsius}] CH3-CH3}
+\end{experience}
+
+\subsubsection{Addition de dihalogènes (\ce{X2})}
+
+\begin{experience}[Décoloration de l'eau de brome]
+L'eau de brome (\ce{Br2} en solution aqueuse) se décolore au contact d'un alcène, formant un composé dihalogéné incolore.
+\ce{CH2=CH2 + Br2 -> CH2Br-CH2Br}
+\end{experience}
+
+\begin{remarque}
+Ce test permet de distinguer un alcène d'un alcane (l'alcane ne décolore pas l'eau de brome).
+\end{remarque}
+
+\subsubsection{Addition d'hydracides (\ce{HX})}
+
+\begin{loi}[Règle de Markovnikov]
+Lors de l'addition d'un hydracide \ce{HX} sur un alcène dissymétrique, l'atome d'hydrogène se fixe sur le carbone le plus hydrogéné (celui qui porte déjà le plus d'atomes d'hydrogène).
+\end{loi}
+
+\begin{exemple}
+\ce{CH3-CH=CH2 + HBr -> CH3-CHBr-CH3} (2-bromopropane, produit majoritaire)
+\end{exemple}
+
+\begin{remarque}
+En présence de peroxydes, l'addition de \ce{HBr} suit la règle anti-Markovnikov (effet Kharasch).
+\end{remarque}
+
+\subsubsection{Addition d'eau (\ce{H2O})}
+
+\begin{experience}[Hydratation des alcènes]
+L'addition d'eau sur un alcène nécessite un catalyseur acide (\ce{H2SO4}) et conduit à la formation d'un alcool.
+\ce{CH2=CH2 + H2O ->[H2SO4] CH3-CH2OH}
+\end{experience}
+
+\begin{exemple}
+\ce{CH3-CH=CH2 + H2O ->[H2SO4] CH3-CHOH-CH3} (propan-2-ol, selon Markovnikov)
+\end{exemple}
+
+\subsection{Oxydation des alcènes}
+
+\subsubsection{Oxydation douce}
+
+\begin{experience}[Test au permanganate de potassium]
+Le permanganate de potassium (\ce{KMnO4}) en milieu neutre ou basique oxyde les alcènes en diols (glycols). La solution violette se décolore et un précipité brun de \ce{MnO2} apparaît.
+\ce{3 CH2=CH2 + 2 KMnO4 + 4 H2O -> 3 CH2OH-CH2OH + 2 MnO2 + 2 KOH}
+\end{experience}
+
+\subsubsection{Oxydation énergétique}
+
+\begin{propriete}[Coupure oxydante]
+En milieu acide et à chaud, \ce{KMnO4} ou \ce{K2Cr2O7} provoque la rupture de la double liaison :
+\begin{itemize}
+    \item Carbone terminal (\ce{R-CH=CH2}) donne \ce{R-COOH} et \ce{CO2}
+    \item Carbone interne (\ce{R-CH=CH-R$'$}) donne deux acides carboxyliques
+\end{itemize}
+\end{propriete}
+
+\subsection{Polymérisation des alcènes}
+
+\begin{definition}[Polymérisation]
+La polymérisation est une réaction en chaîne au cours de laquelle des molécules d'alcène (monomères) s'additionnent les unes aux autres pour former une macromolécule (polymère).
+\end{definition}
+
+\begin{exemple}[Polyéthylène]
+\ce{n CH2=CH2 ->[catalyseur] -(CH2-CH2)_n-}
+\end{exemple}
+
+\begin{remarque}
+Le polyéthylène (PE) est le polymère le plus produit au monde, utilisé pour les sacs plastiques, les bouteilles, etc.
+\end{remarque}
+
+\section{Les alcynes}
+
+\subsection{Structure de la triple liaison}
+
+\begin{definition}[Triple liaison]
+La triple liaison \ce{C#C} est constituée d'une liaison $\sigma$ et de deux liaisons $\pi$. Elle est plus courte et plus rigide que la double liaison.
+\end{definition}
+
+\subsection{Nomenclature des alcynes}
+
+\begin{loi}[Règles de nomenclature]
+\begin{enumerate}
+    \item La chaîne principale est la plus longue chaîne contenant la triple liaison.
+    \item Le suffixe \textit{-yne} remplace \textit{-ane}.
+    \item La position de la triple liaison est indiquée par le numéro le plus petit possible.
+\end{enumerate}
+\end{loi}
+
+\begin{exemple}
+\begin{itemize}
+    \item \ce{CH#CH} : éthyne (ou acétylène)
+    \item \ce{CH3-C#CH} : propyne
+    \item \ce{CH3-CH2-C#CH} : but-1-yne
+    \item \ce{CH3-C#C-CH3} : but-2-yne
+\end{itemize}
+\end{exemple}
+
+\subsection{Réactions d'addition sur les alcynes}
+
+\subsubsection{Addition de dihydrogène}
+
+\begin{experience}[Hydrogénation]
+L'hydrogénation des alcynes peut être contrôlée :
+\begin{itemize}
+    \item Avec un catalyseur de Lindlar (Pd/CaCO3, empoisonné), on obtient l'alcène Z.
+    \item Avec Ni ou Pt, on obtient directement l'alcane.
+\end{itemize}
+\ce{CH#CH + H2 ->[Lindlar] CH2=CH2}
+\ce{CH#CH + 2 H2 ->[Ni] CH3-CH3}
+\end{experience}
+
+\subsubsection{Addition de dihalogènes}
+
+\begin{exemple}
+\ce{CH#CH + Br2 -> CHBr=CHBr} (1,2-dibromoéthène)
+\ce{CH#CH + 2 Br2 -> CHBr2-CHBr2} (1,1,2,2-tétrabromoéthane)
+\end{exemple}
+
+\subsubsection{Addition d'hydracides}
+
+\begin{propriete}
+L'addition de \ce{HX} sur un alcyne suit également la règle de Markovnikov.
+\ce{CH3-C#CH + HBr -> CH3-CBr=CH2} (2-bromopropène)
+\end{propriete}
+
+\subsubsection{Hydratation des alcynes}
+
+\begin{experience}[Hydratation en milieu acide]
+L'hydratation des alcynes en présence de \ce{HgSO4} et \ce{H2SO4} conduit à la formation d'un énol, qui se tautomérise en cétone (ou aldéhyde pour l'éthyne).
+\ce{CH#CH + H2O ->[HgSO4, H2SO4] CH2=CHOH -> CH3-CHO} (éthanal)
+\ce{CH3-C#CH + H2O ->[HgSO4, H2SO4] CH3-CO-CH3} (propanone)
+\end{experience}
+
+\begin{remarque}
+Cette réaction est appelée \textbf{réaction de Koutcherov}.
+\end{remarque}
+
+\section{Tests d'insaturation}
+
+\begin{experience}[Test à l'eau de brome]
+\begin{itemize}
+    \item \textbf{Protocole :} Ajouter quelques gouttes d'eau de brome (brune) à l'hydrocarbure.
+    \item \textbf{Observation :} Décoloration de l'eau de brome.
+    \item \textbf{Interprétation :} Présence d'une liaison multiple (alcène ou alcyne).
+\end{itemize}
+\end{experience}
+
+\begin{experience}[Test au permanganate de potassium]
+\begin{itemize}
+    \item \textbf{Protocole :} Ajouter une solution de \ce{KMnO4} (violette) à l'hydrocarbure.
+    \item \textbf{Observation :} Décoloration du permanganate et apparition d'un précipité brun de \ce{MnO2}.
+    \item \textbf{Interprétation :} Présence d'une liaison multiple.
+\end{itemize}
+\end{experience}
+
+\begin{aretenir}
+Les deux tests (eau de brome et \ce{KMnO4}) sont positifs pour les alcènes et les alcynes, mais négatifs pour les alcanes.
+\end{aretenir}
+
+\section{L'essentiel à retenir}
+
+\begin{synthese}
+\subsection*{Alcènes (\ce{C_nH_{2n}})}
+\begin{itemize}
+    \item Double liaison \ce{C=C} : une liaison $\sigma$ + une liaison $\pi$.
+    \item Nomenclature : suffixe \textit{-ène}, position de la double liaison.
+    \item Isomérie Z/E (règle CIP).
+    \item Additions électrophiles : \ce{H2} (catalyseur), \ce{X2} (décoloration), \ce{HX} (Markovnikov), \ce{H2O} (alcool).
+    \item Oxydation douce : diols ; oxydation énergétique : coupure.
+    \item Polymérisation : polyéthylène, polypropylène.
+\end{itemize}
+
+\subsection*{Alcynes (\ce{C_nH_{2n-2}})}
+\begin{itemize}
+    \item Triple liaison \ce{C#C} : une liaison $\sigma$ + deux liaisons $\pi$.
+    \item Nomenclature : suffixe \textit{-yne}.
+    \item Additions : \ce{H2} (Lindlar $\rightarrow$ alcène Z), \ce{X2}, \ce{HX} (Markovnikov).
+    \item Hydratation (Koutcherov) : $\rightarrow$ énol $\rightarrow$ cétone/aldéhyde.
+\end{itemize}
+
+\subsection*{Tests d'insaturation}
+\begin{itemize}
+    \item Eau de brome : décoloration $\rightarrow$ insaturation.
+    \item \ce{KMnO4} : décoloration + précipité brun $\rightarrow$ insaturation.
+\end{itemize}
+
+\subsection*{Pièges à éviter}
+\begin{itemize}
+    \item Ne pas confondre isomérie Z/E et isomérie cis/trans (Z/E est plus général).
+    \item L'hydratation d'un alcyne donne une cétone (sauf pour l'éthyne qui donne un aldéhyde).
+    \item La règle de Markovnikov s'applique aussi aux alcynes.
+\end{itemize}
+\end{synthese}
+
+\section{Méthodes \& savoir-faire}
+
+\methode{Nommer un alcène ou un alcyne selon l'IUPAC}
+\begin{itemize}
+    \item Identifier la chaîne la plus longue contenant la liaison multiple.
+    \item Numéroter pour donner le plus petit indice à la liaison multiple.
+    \item Indiquer la position de la liaison multiple et des substituants.
+\end{itemize}
+\begin{exemple}
+Nommer \ce{CH3-CH(CH3)-CH=CH2}.
+La chaîne principale est le but-1-ène avec un méthyle en position 3 : 3-méthylbut-1-ène.
+\end{exemple}
+
+\methode{Déterminer la configuration Z ou E}
+\begin{itemize}
+    \item Classer les substituants sur chaque carbone par ordre de priorité (règle CIP).
+    \item Si les deux prioritaires sont du même côté $\rightarrow$ Z ; sinon $\rightarrow$ E.
+\end{itemize}
+\begin{exemple}
+Pour \ce{CH3-CH=CH-CH2CH3} : sur le carbone 2, priorité \ce{CH3} > H ; sur le carbone 3, priorité \ce{CH2CH3} > H. Si \ce{CH3} et \ce{CH2CH3} sont du même côté $\rightarrow$ Z.
+\end{exemple}
+
+\methode{Écrire l'équation d'une addition électrophile}
+\begin{itemize}
+    \item Identifier le site électrophile (liaison $\pi$).
+    \item Appliquer la règle de Markovnikov si l'alcène est dissymétrique.
+    \item Équilibrer l'équation.
+\end{itemize}
+\begin{exemple}
+Addition de \ce{HCl} sur le propène : \ce{CH3-CH=CH2 + HCl -> CH3-CHCl-CH3} (2-chloropropane).
+\end{exemple}
+
+\methode{Prévoir le produit d'hydratation d'un alcyne}
+\begin{itemize}
+    \item Ajouter \ce{H2O} sur la triple liaison (Markovnikov).
+    \item Former l'énol, puis tautomériser en cétone (ou aldéhyde pour l'éthyne).
+\end{itemize}
+\begin{exemple}
+Hydratation du but-1-yne : \ce{CH3-CH2-C#CH + H2O -> CH3-CH2-CO-CH3} (butanone).
+\end{exemple}
+
+\methode{Distinguer un alcane d'un alcène par un test chimique}
+\begin{itemize}
+    \item Utiliser l'eau de brome ou \ce{KMnO4}.
+    \item L'alcane ne réagit pas ; l'alcène décolore.
+\end{itemize}
+\begin{exemple}
+Deux tubes : l'un avec du cyclohexane, l'autre avec du cyclohexène. Ajouter de l'eau de brome. Le tube contenant le cyclohexène se décolore.
+\end{exemple}
+
+\methode{Écrire le mécanisme d'addition de \ce{Br2} sur un alcène}
+\begin{itemize}
+    \item Formation d'un ion bromonium cyclique.
+    \item Attaque nucléophile de \ce{Br-} sur le carbone le plus substitué.
+\end{itemize}
+\begin{exemple}
+\ce{CH2=CH2 + Br2 -> CH2Br-CH2Br} (addition anti).
+\end{exemple}
+
+\methode{Calculer la formule brute d'un hydrocarbure insaturé}
+\begin{itemize}
+    \item Utiliser les formules générales : \ce{C_nH_{2n}} pour un alcène, \ce{C_nH_{2n-2}} pour un alcyne.
+    \item Vérifier avec le degré d'insaturation.
+\end{itemize}
+\begin{exemple}
+Un hydrocarbure a pour formule \ce{C5H10}. C'est un alcène (ou cycloalcane). S'il est insaturé, c'est un pentène.
+\end{exemple}
+
+\methode{Reconnaître une réaction de polymérisation}
+\begin{itemize}
+    \item Identifier le monomère (alcène).
+    \item Écrire la répétition de l'unité monomère.
+\end{itemize}
+\begin{exemple}
+Polymérisation du propène : \ce{n CH3-CH=CH2 -> -(CH(CH3)-CH2)_n-} (polypropylène).
+\end{exemple}
+
+\methode{Utiliser la règle de Markovnikov pour les additions sur les alcynes}
+\begin{itemize}
+    \item L'hydrogène se fixe sur le carbone le plus hydrogéné de la triple liaison.
+\end{itemize}
+\begin{exemple}
+\ce{CH3-C#CH + HBr -> CH3-CBr=CH2} (2-bromopropène).
+\end{exemple}

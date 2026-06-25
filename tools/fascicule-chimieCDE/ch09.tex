@@ -1,0 +1,312 @@
+\chapter{Les acides $\alpha$-aminés et les protéines}
+
+\textit{Les acides $\alpha$-aminés sont les briques élémentaires des protéines, macromolécules essentielles à la vie. Leur structure particulière leur confère des propriétés acido-basiques remarquables et une chiralité qui influence leur fonction biologique. L'étude de la liaison peptidique permet de comprendre comment ces monomères s'enchaînent pour former des peptides et des protéines aux structures tridimensionnelles complexes.}
+
+\section{Structure générale des acides $\alpha$-aminés}
+
+\subsection{Définition et formule générale}
+
+\begin{definition}[Acide $\alpha$-aminé]
+Un acide $\alpha$-aminé est un composé organique possédant une fonction amine ($\ce{-NH2}$) et une fonction acide carboxylique ($\ce{-COOH}$) liées au même atome de carbone, appelé \textbf{carbone $\alpha$}. Sa formule générale est :
+\begin{center}
+\chemfig{R-C(-[1]H)(-[7]NH_2)-C(-[1]O)(-[7]OH)}
+\end{center}
+où \textbf{R} est une chaîne latérale variable (hydrogène, alkyle, aryle, ou groupe fonctionnel).
+\end{definition}
+
+\begin{remarque}
+Le carbone $\alpha$ est le carbone adjacent au groupe carboxyle. Dans la nature, on trouve 20 acides $\alpha$-aminés standard, chacun caractérisé par sa chaîne latérale R.
+\end{remarque}
+
+\subsection{Classification selon la chaîne latérale}
+
+\begin{propriete}[Classification des acides $\alpha$-aminés]
+Les acides $\alpha$-aminés sont classés en quatre catégories selon la nature de leur chaîne latérale R :
+\begin{itemize}
+    \item \textbf{Chaîne latérale apolaire (hydrophobe)} : glycine (R = H), alanine (R = $\ce{CH3}$), valine, leucine, isoleucine, méthionine, phénylalanine, tryptophane, proline.
+    \item \textbf{Chaîne latérale polaire non chargée (hydrophile)} : sérine, thréonine, cystéine, tyrosine, asparagine, glutamine.
+    \item \textbf{Chaîne latérale acide (chargée négativement)} : acide aspartique (R = $\ce{CH2COOH}$), acide glutamique (R = $\ce{CH2CH2COOH}$).
+    \item \textbf{Chaîne latérale basique (chargée positivement)} : lysine, arginine, histidine.
+\end{itemize}
+\end{propriete}
+
+\begin{exemple}
+La glycine (Gly, G) est le plus simple des acides $\alpha$-aminés :
+\begin{center}
+\chemfig{H_2N-CH_2-COOH}
+\end{center}
+Son carbone $\alpha$ n'est pas asymétrique car R = H.
+\end{exemple}
+
+\section{Propriétés acido-basiques : le caractère amphotère}
+
+\subsection{Équilibres acido-basiques}
+
+Les acides $\alpha$-aminés possèdent deux groupes ionisables : le groupe carboxyle ($\ce{-COOH}$) et le groupe amine ($\ce{-NH2}$). En solution aqueuse, ils se comportent comme des \textbf{ampholytes} (espèces amphotères).
+
+\begin{loi}[Équilibres de dissociation d'un acide $\alpha$-aminé]
+Pour un acide $\alpha$-aminé général $\ce{H2N-CHR-COOH}$, les équilibres acido-basiques sont :
+\begin{align}
+\ce{^{+}H3N-CHR-COOH &<=> H+ + H3N-CHR-COO-} \quad (pK_{a1}) \\
+\ce{^{+}H3N-CHR-COO- &<=> H+ + H2N-CHR-COO-} \quad (pK_{a2})
+\end{align}
+\end{loi}
+
+\begin{remarque}
+Le $pK_{a1}$ correspond à la dissociation du groupe $\ce{-COOH}$ (valeur typique entre 2 et 3), tandis que le $pK_{a2}$ correspond à la dissociation du groupe $\ce{-NH3+}$ (valeur typique entre 9 et 10).
+\end{remarque}
+
+\subsection{Forme zwitterionique}
+
+\begin{definition}[Zwitterion]
+Un zwitterion (ou amphion) est une espèce chimique globalement neutre mais portant des charges électriques opposées sur différents atomes. Pour un acide $\alpha$-aminé, la forme zwitterionique est $\ce{^{+}H3N-CHR-COO-}$.
+\end{definition}
+
+\begin{propriete}[Point isoélectrique]
+Le \textbf{pH isoélectrique} ($pI$) d'un acide $\alpha$-aminé est le pH pour lequel la concentration de la forme zwitterionique est maximale et la charge nette de la molécule est nulle. Il est donné par :
+\[
+pI = \frac{pK_{a1} + pK_{a2}}{2}
+\]
+\end{propriete}
+
+\begin{exemple}
+Pour l'alanine ($pK_{a1} = 2,34$, $pK_{a2} = 9,69$) :
+\[
+pI = \frac{2,34 + 9,69}{2} = 6,02
+\]
+À pH $< pI$, la forme cationique $\ce{^{+}H3N-CHR-COOH}$ prédomine ; à pH $> pI$, la forme anionique $\ce{H2N-CHR-COO-}$ prédomine.
+\end{exemple}
+
+\begin{experience}[Migration électrophorétique]
+Sous l'influence d'un champ électrique, un acide $\alpha$-aminé migre :
+\begin{itemize}
+    \item vers la cathode ($-$) si pH $< pI$ (charge nette positive) ;
+    \item vers l'anode ($+$) si pH $> pI$ (charge nette négative) ;
+    \item ne migre pas si pH $= pI$ (charge nette nulle).
+\end{itemize}
+Cette propriété est utilisée pour séparer les acides $\alpha$-aminés par électrophorèse.
+\end{experience}
+
+\section{Chiralité des acides $\alpha$-aminés}
+
+\subsection{Carbone asymétrique}
+
+\begin{definition}[Carbone asymétrique]
+Un atome de carbone est dit \textbf{asymétrique} (ou chiral) lorsqu'il est lié à quatre substituants différents. Il est noté $\ce{C*}$.
+\end{definition}
+
+\begin{propriete}[Chiralité des acides $\alpha$-aminés]
+À l'exception de la glycine (R = H), tous les acides $\alpha$-aminés naturels possèdent un carbone $\alpha$ asymétrique. Ils existent donc sous forme de deux énantiomères (images non superposables dans un miroir).
+\end{propriete}
+
+\begin{illus}
+Représentation des deux énantiomères de l'alanine :
+\begin{center}
+\chemfig{H_2N-C(-[2]H)(-[6]CH_3)-COOH}
+\qquad
+\chemfig{H_2N-C(-[2]CH_3)(-[6]H)-COOH}
+\end{center}
+\fig{Énantiomères L et D de l'alanine}
+\end{illus}
+
+\begin{remarque}
+Dans la nature, les protéines sont exclusivement constituées d'acides $\alpha$-aminés de configuration \textbf{L} (sauf cas rares). La nomenclature D/L est basée sur la configuration du glycéraldéhyde.
+\end{remarque}
+
+\section{La liaison peptidique}
+
+\subsection{Formation de la liaison peptidique}
+
+\begin{definition}[Liaison peptidique]
+La \textbf{liaison peptidique} est une liaison amide $\ce{-CO-NH-}$ qui se forme entre le groupe carboxyle d'un acide $\alpha$-aminé et le groupe amine d'un autre acide $\alpha$-aminé, avec élimination d'une molécule d'eau (réaction de condensation).
+\end{definition}
+
+\begin{loi}[Réaction de formation d'un dipeptide]
+\begin{center}
+\ce{^{+}H3N-CHR1-COOH + H2N-CHR2-COO- ->[-\ce{H2O}] H3N-CHR1-CO-NH-CHR2-COO-}
+\end{center}
+\end{loi}
+
+\begin{exemple}
+Formation du dipeptide glycylalanine (Gly-Ala) :
+\begin{center}
+\chemfig{H_2N-CH_2-COOH} + \chemfig{H_2N-CH(-[2]CH_3)-COOH} $\xrightarrow{-\ce{H2O}}$ \chemfig{H_2N-CH_2-CO-NH-CH(-[2]CH_3)-COOH}
+\end{center}
+\end{exemple}
+
+\subsection{Caractéristiques de la liaison peptidique}
+
+\begin{propriete}[Caractère partiel de double liaison]
+La liaison peptidique $\ce{-CO-NH-}$ présente un caractère de double liaison partiel dû à la délocalisation électronique entre le doublet libre de l'azote et le groupe carbonyle. Cela confère à la liaison :
+\begin{itemize}
+    \item une \textbf{rigidité} (pas de rotation libre autour de la liaison $\ce{C-N}$) ;
+    \item une \textbf{planéité} (les six atomes $\ce{C_{\alpha}-CO-NH-C_{\alpha}}$ sont dans le même plan) ;
+    \item une \textbf{configuration trans} préférentielle (sauf pour la proline).
+\end{itemize}
+\end{propriete}
+
+\begin{aretenir}
+La liaison peptidique est une liaison amide plane, rigide et de configuration \textit{trans} dans la majorité des cas. Sa longueur ($\SI{1.33}{\angstrom}$) est intermédiaire entre une simple liaison $\ce{C-N}$ ($\SI{1.47}{\angstrom}$) et une double liaison $\ce{C=N}$ ($\SI{1.27}{\angstrom}$).
+\end{aretenir}
+
+\section{Dipeptides, polypeptides et protéines}
+
+\subsection{Nomenclature et structure}
+
+\begin{definition}[Peptide et protéine]
+\begin{itemize}
+    \item Un \textbf{dipeptide} est formé de deux acides $\alpha$-aminés liés par une liaison peptidique.
+    \item Un \textbf{tripeptide} en contient trois, un \textbf{tétrapeptide} quatre, etc.
+    \item Un \textbf{polypeptide} est une chaîne linéaire de 10 à 100 acides $\alpha$-aminés.
+    \item Une \textbf{protéine} est une macromolécule biologique constituée d'une ou plusieurs chaînes polypeptidiques (plus de 100 acides $\alpha$-aminés) repliées dans une conformation tridimensionnelle spécifique.
+\end{itemize}
+\end{definition}
+
+\begin{remarque}
+Dans un peptide, l'extrémité portant le groupe $\ce{-NH2}$ libre est appelée \textbf{extrémité N-terminale}, et celle portant le groupe $\ce{-COOH}$ libre est l'\textbf{extrémité C-terminale}. Par convention, la séquence est écrite de N-terminal à C-terminal.
+\end{remarque}
+
+\subsection{Structure des protéines}
+
+\begin{propriete}[Niveaux d'organisation des protéines]
+Les protéines présentent quatre niveaux de structure :
+\begin{enumerate}
+    \item \textbf{Structure primaire} : séquence linéaire des acides $\alpha$-aminés.
+    \item \textbf{Structure secondaire} : repliement local régulier (hélice $\alpha$, feuillet $\beta$, coude $\beta$) stabilisé par des liaisons hydrogène entre les groupes $\ce{-CO-}$ et $\ce{-NH-}$ du squelette peptidique.
+    \item \textbf{Structure tertiaire} : repliement tridimensionnel global de la chaîne polypeptidique, stabilisé par des interactions hydrophobes, des ponts disulfure ($\ce{-S-S-}$), des liaisons ioniques et des liaisons hydrogène.
+    \item \textbf{Structure quaternaire} : association de plusieurs sous-unités polypeptidiques (exemple : l'hémoglobine est un tétramère $\alpha_2\beta_2$).
+\end{enumerate}
+\end{propriete}
+
+\begin{exemple}
+L'insuline est une hormone polypeptidique constituée de deux chaînes (A : 21 acides $\alpha$-aminés, B : 30 acides $\alpha$-aminés) reliées par deux ponts disulfure.
+\end{exemple}
+
+\begin{aretenir}
+La fonction biologique d'une protéine dépend de sa structure tridimensionnelle. La dénaturation (chauffage, pH extrême, solvants organiques) entraîne la perte de cette structure et donc de l'activité biologique.
+\end{aretenir}
+
+\section{L'essentiel à retenir}
+
+\begin{synthese}
+\subsection*{Acides $\alpha$-aminés}
+\begin{itemize}
+    \item Formule générale : \chemfig{R-C(-[1]H)(-[7]NH_2)-C(-[1]O)(-[7]OH)} avec un carbone $\alpha$ lié à $\ce{-NH2}$, $\ce{-COOH}$, H et R.
+    \item \textbf{Amphotères} : existent sous forme cationique (pH $< pI$), zwitterionique (pH $= pI$), anionique (pH $> pI$).
+    \item $pI = \dfrac{pK_{a1} + pK_{a2}}{2}$.
+    \item \textbf{Chiraux} (sauf glycine) : carbone $\alpha$ asymétrique, configuration L naturelle.
+\end{itemize}
+
+\subsection*{Liaison peptidique}
+\begin{itemize}
+    \item Formation : $\ce{-COOH + H2N- -> -CO-NH- + H2O}$ (condensation).
+    \item Caractère partiel de double liaison $\Rightarrow$ planéité, rigidité, configuration \textit{trans}.
+\end{itemize}
+
+\subsection*{Protéines}
+\begin{itemize}
+    \item Structure primaire : séquence d'acides $\alpha$-aminés.
+    \item Structure secondaire : hélice $\alpha$, feuillet $\beta$ (liaisons H).
+    \item Structure tertiaire : repliement 3D (ponts S-S, interactions hydrophobes).
+    \item Structure quaternaire : association de sous-unités.
+\end{itemize}
+
+\subsection*{Pièges à éviter}
+\begin{itemize}
+    \item Ne pas confondre $pK_a$ et $pI$ : $pI$ est la moyenne des $pK_a$ des groupes ionisables.
+    \item La glycine n'est pas chirale (R = H).
+    \item La liaison peptidique n'est pas une simple liaison $\ce{C-N}$ : elle est partiellement double.
+    \item L'écriture d'un peptide se fait toujours de N-terminal à C-terminal.
+\end{itemize}
+\end{synthese}
+
+\section{Méthodes \& savoir-faire}
+
+\methode{Reconnaître un acide $\alpha$-aminé}
+Pour identifier un acide $\alpha$-aminé, vérifier la présence d'un carbone $\alpha$ portant simultanément un groupe $\ce{-NH2}$ (ou $\ce{-NH3+}$) et un groupe $\ce{-COOH}$ (ou $\ce{-COO-}$). La formule générale est \chemfig{H_2N-C(-[2]H)(-[6]R)-COOH}.
+
+\begin{exemple}
+Parmi les composés suivants, lequel est un acide $\alpha$-aminé ?
+\begin{enumerate}
+    \item \chemfig{CH_3-CH_2-CH(NH_2)-COOH}
+    \item \chemfig{H_2N-CH_2-CH_2-COOH}
+    \item \chemfig{CH_3-CH(NH_2)-CH_2-COOH}
+\end{enumerate}
+\textbf{Solution} : Le composé 1 possède le groupe $\ce{-NH2}$ et $\ce{-COOH}$ sur le même carbone (carbone $\alpha$). Les composés 2 et 3 ont ces groupes sur des carbones différents (ce sont des acides $\beta$ et $\gamma$-aminés respectivement). Réponse : 1.
+\end{exemple}
+
+\methode{Déterminer le pH isoélectrique d'un acide $\alpha$-aminé}
+Pour un acide $\alpha$-aminé simple (sans chaîne latérale ionisable), utiliser la formule $pI = \dfrac{pK_{a1} + pK_{a2}}{2}$.
+
+\begin{exemple}
+La valine a $pK_{a1} = 2,32$ et $pK_{a2} = 9,62$. Calculer son $pI$.
+\textbf{Solution} : $pI = \dfrac{2,32 + 9,62}{2} = \dfrac{11,94}{2} = 5,97$.
+\end{exemple}
+
+\methode{Prévoir la charge nette d'un acide $\alpha$-aminé à un pH donné}
+Comparer le pH de la solution au $pI$ de l'acide $\alpha$-aminé :
+\begin{itemize}
+    \item Si pH $< pI$ : charge nette positive (forme cationique prédominante).
+    \item Si pH $= pI$ : charge nette nulle (zwitterion).
+    \item Si pH $> pI$ : charge nette négative (forme anionique prédominante).
+\end{itemize}
+
+\begin{exemple}
+À pH = 7,4 (pH physiologique), quelle est la charge nette de l'alanine ($pI = 6,02$) ?
+\textbf{Solution} : pH $= 7,4 > pI = 6,02$, donc la charge nette est négative. L'alanine est sous forme $\ce{H2N-CH(CH3)-COO-}$.
+\end{exemple}
+
+\methode{Écrire la réaction de formation d'un dipeptide}
+Identifier les deux acides $\alpha$-aminés, puis écrire la condensation entre le groupe $\ce{-COOH}$ du premier et le groupe $\ce{-NH2}$ du second, avec élimination d'eau.
+
+\begin{exemple}
+Écrire la formation du dipeptide sérine-alanine (Ser-Ala).
+\textbf{Solution} :
+Sérine : \chemfig{H_2N-CH(-[2]CH_2OH)-COOH}
+Alanine : \chemfig{H_2N-CH(-[2]CH_3)-COOH}
+Réaction : \chemfig{H_2N-CH(-[2]CH_2OH)-COOH} + \chemfig{H_2N-CH(-[2]CH_3)-COOH} $\xrightarrow{-\ce{H2O}}$ \chemfig{H_2N-CH(-[2]CH_2OH)-CO-NH-CH(-[2]CH_3)-COOH}
+\end{exemple}
+
+\methode{Reconnaître la chiralité d'un acide $\alpha$-aminé}
+Vérifier si le carbone $\alpha$ est lié à quatre substituants différents. Si oui, la molécule est chirale et possède deux énantiomères.
+
+\begin{exemple}
+L'acide $\alpha$-aminé suivant est-il chiral ? \chemfig{H_2N-C(-[2]H)(-[6]CH_3)-COOH}
+\textbf{Solution} : Le carbone $\alpha$ est lié à $\ce{-NH2}$, $\ce{-COOH}$, $\ce{-H}$ et $\ce{-CH3}$ : quatre substituants différents. Donc il est chiral. C'est l'alanine.
+\end{exemple}
+
+\methode{Identifier les extrémités N-terminale et C-terminale d'un peptide}
+L'extrémité N-terminale porte un groupe $\ce{-NH2}$ libre (ou $\ce{-NH3+}$), l'extrémité C-terminale porte un groupe $\ce{-COOH}$ libre (ou $\ce{-COO-}$).
+
+\begin{exemple}
+Dans le tripeptide \chemfig{H_2N-CH_2-CO-NH-CH(-[2]CH_3)-CO-NH-CH_2-COOH}, identifier les extrémités.
+\textbf{Solution} : N-terminal : glycine (Gly) avec $\ce{-NH2}$ libre ; C-terminal : glycine (Gly) avec $\ce{-COOH}$ libre. La séquence est Gly-Ala-Gly.
+\end{exemple}
+
+\methode{Représenter la liaison peptidique en chimie organique}
+Utiliser \texttt{chemfig} pour montrer le plan peptidique et la configuration \textit{trans}.
+
+\begin{exemple}
+Représenter la liaison peptidique entre deux alanines.
+\textbf{Solution} :
+\begin{center}
+\chemfig{H_2N-CH(-[2]CH_3)-C(-[1]O)-N(-[7]H)-CH(-[2]CH_3)-COOH}
+\end{center}
+\fig{Liaison peptidique entre deux alanines (Ala-Ala)}
+\end{exemple}
+
+\methode{Calculer la masse molaire d'un peptide}
+Additionner les masses molaires des acides $\alpha$-aminés constituants et soustraire la masse de l'eau éliminée pour chaque liaison peptidique ($\SI{18.0}{\gram\per\mol}$ par liaison).
+
+\begin{exemple}
+Calculer la masse molaire du dipeptide Gly-Ala ($M(\text{Gly}) = \SI{75.0}{\gram\per\mol}$, $M(\text{Ala}) = \SI{89.0}{\gram\per\mol}$).
+\textbf{Solution} : $M(\text{Gly-Ala}) = 75,0 + 89,0 - 18,0 = \SI{146.0}{\gram\per\mol}$.
+\end{exemple}
+
+\methode{Prévoir la structure secondaire d'une séquence peptidique}
+Identifier les acides $\alpha$-aminés favorisant l'hélice $\alpha$ (Ala, Leu, Glu) ou le feuillet $\beta$ (Val, Ile, Thr). La présence de proline brise l'hélice $\alpha$.
+
+\begin{exemple}
+La séquence \texttt{Ala-Leu-Glu-Ala-Leu} favorise-t-elle l'hélice $\alpha$ ?
+\textbf{Solution} : Oui, car elle contient majoritairement des acides $\alpha$-aminés hélicogènes (Ala, Leu, Glu). L'absence de proline et de glycine en grand nombre confirme cette tendance.
+\end{exemple}

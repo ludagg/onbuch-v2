@@ -164,6 +164,15 @@
   left=12pt,right=12pt,top=8pt,bottom=8pt,breakable,
   title={\sffamily\bfseries À retenir},coltitle=white,colbacktitle=onbo,fonttitle=\sffamily\bfseries}
 
+% Règle (alias type loi, titre « Règle ») + illustration (cadre figure avec titre optionnel)
+\newtcolorbox{regle}[1][]{colback=white,colframe=onbgreen,boxrule=0pt,
+  leftrule=3pt,arc=3pt,left=12pt,right=12pt,top=8pt,bottom=8pt,breakable,
+  title={\sffamily\bfseries Règle},coltitle=onbgreen,colbacktitle=white,
+  fonttitle=\sffamily\bfseries,attach title to upper={\;\;\textmd{\itshape#1}\par\smallskip}}
+\newtcolorbox{illustration}[1][]{colback=white,colframe=onbline,boxrule=0.8pt,arc=4pt,
+  left=8pt,right=8pt,top=8pt,bottom=6pt,halign=center,breakable,
+  before upper={\ifstrempty{#1}{}{{\footnotesize\itshape\color{onbmuted}#1\par\smallskip}}}}
+
 % ── Synthèse de fin de chapitre (« L'essentiel — fiche de révision ») ──
 \newtcolorbox{synthese}[1][L'essentiel du chapitre]{enhanced,breakable,
   colback=onbink,colframe=onbink,boxrule=0pt,arc=6pt,
@@ -192,3 +201,6 @@
 \newcommand{\N}{\mathbb{N}}
 % Constantes usuelles (rappel) : \cst{g}{9{,}8}{m.s^{-2}} -> g = 9,8 m·s⁻²
 \newcommand{\degC}{^{\circ}\mathrm{C}}
+% Oxydant / réducteur génériques (oxydoréduction)
+\newcommand{\ox}{\mathrm{Ox}}
+\newcommand{\red}{\mathrm{Red}}

@@ -1,0 +1,455 @@
+\chapter{Les réactions d'oxydoréduction — piles et électrolyse}
+
+\textit{Les réactions d'oxydoréduction (ou réactions redox) sont au cœur de nombreux processus chimiques et biologiques. Elles impliquent un transfert d'électrons entre espèces chimiques. Ce chapitre présente les concepts fondamentaux (oxydant, réducteur, couple redox), l'équilibrage des demi-équations en milieux acide et basique, puis deux applications majeures : les piles électrochimiques (conversion d'énergie chimique en énergie électrique) et l'électrolyse (conversion d'énergie électrique en énergie chimique).}
+
+% ============================================================
+\section{Oxydant, réducteur et couple redox}
+
+% ----------------------------------------------------------
+\begin{definition}[Oxydation et réduction]
+\begin{itemize}
+    \item \textbf{Oxydation} : perte d'un ou plusieurs électrons par une espèce chimique.
+    \item \textbf{Réduction} : gain d'un ou plusieurs électrons par une espèce chimique.
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Oxydant et réducteur]
+\begin{itemize}
+    \item Un \textbf{oxydant} (ou oxydant) est une espèce chimique capable de capter un ou plusieurs électrons. Il se réduit.
+    \item Un \textbf{réducteur} (ou réducteur) est une espèce chimique capable de céder un ou plusieurs électrons. Il s'oxyde.
+\end{itemize}
+\end{definition}
+
+\begin{exemple}
+\begin{itemize}
+    \item Le dioxygène \ce{O2} est un oxydant : \ce{O2 + 4 e- + 4 H+ -> 2 H2O}.
+    \item Le zinc métallique \ce{Zn} est un réducteur : \ce{Zn -> Zn^2+ + 2 e-}.
+\end{itemize}
+\end{exemple}
+
+% ----------------------------------------------------------
+\begin{definition}[Couple redox]
+Un couple redox est constitué d'un oxydant et d'un réducteur conjugués, reliés par une demi-équation électronique :
+\[
+\ox \ + \ n\,\ce{e-} \ \rightleftharpoons \ \red
+\]
+où $\ox$ est l'oxydant, $\red$ le réducteur, et $n$ le nombre d'électrons échangés.
+\end{definition}
+
+\begin{exemple}
+Couple \ce{Cu^2+/Cu} : \ce{Cu^2+ + 2 e- <=> Cu}.\\
+Couple \ce{Zn^2+/Zn} : \ce{Zn^2+ + 2 e- <=> Zn}.\\
+Couple \ce{Fe^3+/Fe^2+} : \ce{Fe^3+ + e- <=> Fe^2+}.
+\end{exemple}
+
+% ----------------------------------------------------------
+\subsection{Équilibrage des demi-équations en milieu acide et basique}
+
+\begin{propriete}[Méthode d'équilibrage]
+Pour équilibrer une demi-équation redox, on suit les étapes suivantes :
+\begin{enumerate}
+    \item Écrire les deux formes (oxydant et réducteur) avec les atomes autres que H et O.
+    \item Équilibrer les atomes d'oxygène en ajoutant des molécules \ce{H2O}.
+    \item Équilibrer les atomes d'hydrogène en ajoutant des ions \ce{H+} (milieu acide) ou \ce{H2O} et \ce{HO-} (milieu basique).
+    \item Équilibrer les charges électriques en ajoutant des électrons \ce{e-}.
+\end{enumerate}
+\end{propriete}
+
+\begin{exemple}[Milieu acide]
+Équilibrer la demi-équation du couple \ce{MnO4-/Mn^2+} en milieu acide.
+\begin{itemize}
+    \item Formes : \ce{MnO4- -> Mn^2+}
+    \item Oxygène : \ce{MnO4- -> Mn^2+ + 4 H2O}
+    \item Hydrogène : \ce{MnO4- + 8 H+ -> Mn^2+ + 4 H2O}
+    \item Charges : gauche : $-1 + 8 = +7$ ; droite : $+2$. Il faut ajouter $5$ électrons à gauche : \ce{MnO4- + 8 H+ + 5 e- -> Mn^2+ + 4 H2O}.
+\end{itemize}
+\end{exemple}
+
+\begin{exemple}[Milieu basique]
+Équilibrer la demi-équation du couple \ce{ClO-/Cl-} en milieu basique.
+\begin{itemize}
+    \item Formes : \ce{ClO- -> Cl-}
+    \item Oxygène : \ce{ClO- -> Cl- + H2O}
+    \item Hydrogène : en milieu basique, on ajoute \ce{H2O} du côté qui manque d'hydrogène et \ce{HO-} de l'autre côté. Ici, il manque 2 H à droite : \ce{ClO- + H2O -> Cl- + 2 HO-}
+    \item Charges : gauche : $-1$ ; droite : $-1 -2 = -3$. Il faut ajouter $2$ électrons à gauche : \ce{ClO- + H2O + 2 e- -> Cl- + 2 HO-}.
+\end{itemize}
+\end{exemple}
+
+% ----------------------------------------------------------
+\subsection{Classification qualitative : pouvoir oxydant et réducteur}
+
+\begin{propriete}[Échelle des potentiels standards]
+Les couples redox sont classés par leur potentiel standard d'électrode $E^\circ$ (en volt, \si{\volt}). Plus $E^\circ$ est élevé, plus l'oxydant est fort (tendance à capter des électrons). Plus $E^\circ$ est faible, plus le réducteur est fort (tendance à céder des électrons).
+\end{propriete}
+
+\begin{exemple}
+Quelques potentiels standards à \SI{25}{\celsius} :
+\begin{itemize}
+    \item \ce{F2/F-} : $E^\circ = \SI{2.87}{\volt}$ (oxydant très fort)
+    \item \ce{MnO4-/Mn^2+} : $E^\circ = \SI{1.51}{\volt}$
+    \item \ce{Cl2/Cl-} : $E^\circ = \SI{1.36}{\volt}$
+    \item \ce{Cu^2+/Cu} : $E^\circ = \SI{0.34}{\volt}$
+    \item \ce{Zn^2+/Zn} : $E^\circ = \SI{-0.76}{\volt}$ (réducteur fort)
+    \item \ce{Li+/Li} : $E^\circ = \SI{-3.04}{\volt}$ (réducteur très fort)
+\end{itemize}
+\end{exemple}
+
+\begin{aretenir}
+Un oxydant fort a un $E^\circ$ élevé ; un réducteur fort a un $E^\circ$ faible (très négatif). La réaction spontanée se produit entre l'oxydant le plus fort et le réducteur le plus fort.
+\end{aretenir}
+
+% ============================================================
+\section{Les piles électrochimiques}
+
+% ----------------------------------------------------------
+\begin{definition}[Pile électrochimique]
+Une pile électrochimique est un dispositif qui convertit l'énergie chimique d'une réaction d'oxydoréduction spontanée en énergie électrique. Elle est constituée de deux demi-piles (électrodes) reliées par un circuit électrique et un pont salin.
+\end{definition}
+
+% ----------------------------------------------------------
+\subsection{La pile Daniell}
+
+\begin{experience}[Pile Daniell]
+La pile Daniell est une pile historique constituée de :
+\begin{itemize}
+    \item Une lame de zinc plongeant dans une solution de sulfate de zinc \ce{ZnSO4} (demi-pile \ce{Zn^2+/Zn}).
+    \item Une lame de cuivre plongeant dans une solution de sulfate de cuivre \ce{CuSO4} (demi-pile \ce{Cu^2+/Cu}).
+    \item Un pont salin (tube contenant une solution de \ce{KCl} ou \ce{KNO3}) reliant les deux solutions.
+    \item Un voltmètre ou une résistance entre les deux électrodes.
+\end{itemize}
+\end{experience}
+
+\begin{propriete}[Fonctionnement de la pile Daniell]
+\begin{itemize}
+    \item \textbf{Anode} (pôle négatif) : le zinc s'oxyde : \ce{Zn -> Zn^2+ + 2 e-}. La lame de zinc se dissout.
+    \item \textbf{Cathode} (pôle positif) : les ions cuivre \ce{Cu^2+} se réduisent : \ce{Cu^2+ + 2 e- -> Cu}. Du cuivre métallique se dépose sur la lame de cuivre.
+    \item \textbf{Équation-bilan} : \ce{Zn + Cu^2+ -> Zn^2+ + Cu}.
+    \item \textbf{Pont salin} : assure la neutralité électrique des solutions en laissant migrer les ions (\ce{K+} vers la cathode, \ce{Cl-} vers l'anode).
+    \item \textbf{Force électromotrice (f.é.m.)} : $E = E^\circ_{\text{cathode}} - E^\circ_{\text{anode}} = \SI{0.34}{\volt} - (\SI{-0.76}{\volt}) = \SI{1.10}{\volt}$.
+\end{itemize}
+\end{propriete}
+
+\begin{illus}
+\centering
+\begin{tikzpicture}[scale=0.8]
+    % Pile Daniell
+    \draw[thick] (0,0) rectangle (2,4);
+    \draw[thick] (4,0) rectangle (6,4);
+    % Solutions
+    \fill[blue!20] (0.1,0.1) rectangle (1.9,3.9);
+    \fill[cyan!20] (4.1,0.1) rectangle (5.9,3.9);
+    % Électrodes
+    \draw[fill=gray!50] (1,0.5) rectangle (1.2,3.5);
+    \draw[fill=orange!50] (4.8,0.5) rectangle (5,3.5);
+    % Pont salin
+    \draw[thick, bend left] (1.5,2) to (4.5,2);
+    \node at (3,2.3) {Pont salin};
+    % Circuit extérieur
+    \draw (1.1,3.5) -- (1.1,4.5) -- (4.9,4.5) -- (4.9,3.5);
+    \draw (1.1,4.5) to[short,*-] (2.5,4.5);
+    \draw (2.5,4.5) to[voltmeter] (4.9,4.5);
+    % Légendes
+    \node at (1,0.2) {Zn};
+    \node at (4.9,0.2) {Cu};
+    \node at (1,4.2) {Anode (-)};
+    \node at (4.9,4.2) {Cathode (+)};
+    \node at (1,1.5) {\ce{Zn^2+}};
+    \node at (4.9,1.5) {\ce{Cu^2+}};
+\end{tikzpicture}
+\fig{Schéma de la pile Daniell}
+\end{illus}
+
+\begin{remarque}
+Le sens du courant électrique (conventionnel) va de la cathode (+) vers l'anode (-) à l'extérieur de la pile. Les électrons circulent en sens inverse.
+\end{remarque}
+
+% ----------------------------------------------------------
+\subsection{Notation et polarité d'une pile}
+
+\begin{propriete}[Notation d'une pile]
+Une pile se note conventionnellement en écrivant l'anode à gauche et la cathode à droite, séparées par un pont salin (noté $\parallel$) :
+\[
+\ce{Zn | Zn^2+ (c1) || Cu^2+ (c2) | Cu}
+\]
+\end{propriete}
+
+\begin{exemple}
+Pour la pile Daniell avec concentrations \SI{1.0}{\mol\per\litre} : \ce{Zn | Zn^2+ (1 M) || Cu^2+ (1 M) | Cu}.
+\end{exemple}
+
+% ----------------------------------------------------------
+\subsection{Force électromotrice et prévision de réaction}
+
+\begin{loi}[Loi de Nernst]
+Pour un couple redox $\ox + n\,\ce{e-} \rightleftharpoons \red$, le potentiel d'électrode à \SI{25}{\celsius} est donné par :
+\[
+E = E^\circ + \frac{\SI{0.059}{\volt}}{n} \log \frac{[\ox]}{[\red]}
+\]
+où $[\ox]$ et $[\red]$ sont les concentrations (en \si{\mol\per\litre}) des espèces en solution.
+\end{loi}
+
+\begin{propriete}[Prévision de réaction spontanée]
+Une réaction d'oxydoréduction est spontanée si la différence de potentiel $\Delta E = E_{\text{cathode}} - E_{\text{anode}} > 0$. L'oxydant le plus fort réagit avec le réducteur le plus fort.
+\end{propriete}
+
+\begin{exemple}
+Dans la pile Daniell, $\Delta E = \SI{1.10}{\volt} > 0$, la réaction \ce{Zn + Cu^2+ -> Zn^2+ + Cu} est spontanée.
+\end{exemple}
+
+% ============================================================
+\section{L'électrolyse}
+
+% ----------------------------------------------------------
+\begin{definition}[Électrolyse]
+L'électrolyse est un processus qui force une réaction d'oxydoréduction non spontanée à se produire en appliquant une tension électrique externe. Elle convertit l'énergie électrique en énergie chimique.
+\end{definition}
+
+% ----------------------------------------------------------
+\subsection{Principe et montage}
+
+\begin{experience}[Montage d'électrolyse]
+Un électrolyseur est constitué de :
+\begin{itemize}
+    \item Deux électrodes (anode et cathode) plongeant dans un électrolyte (solution ionique ou sel fondu).
+    \item Un générateur de courant continu (pile ou alimentation).
+    \item Un ampèremètre et un voltmètre pour mesurer le courant et la tension.
+\end{itemize}
+\end{experience}
+
+\begin{propriete}[Polarité des électrodes]
+\begin{itemize}
+    \item \textbf{Anode} : électrode reliée à la borne positive du générateur. Il s'y produit une oxydation.
+    \item \textbf{Cathode} : électrode reliée à la borne négative du générateur. Il s'y produit une réduction.
+\end{itemize}
+\end{propriete}
+
+\begin{illus}
+\centering
+\begin{tikzpicture}[scale=0.8]
+    % Électrolyseur
+    \draw[thick] (0,0) rectangle (2,4);
+    \draw[thick] (4,0) rectangle (6,4);
+    % Solution
+    \fill[blue!20] (0.1,0.1) rectangle (1.9,3.9);
+    \fill[blue!20] (4.1,0.1) rectangle (5.9,3.9);
+    % Électrodes
+    \draw[fill=gray!50] (0.5,0.5) rectangle (0.7,3.5);
+    \draw[fill=gray!50] (5.3,0.5) rectangle (5.5,3.5);
+    % Générateur
+    \draw (0.6,3.5) -- (0.6,5) -- (2,5);
+    \draw (5.4,3.5) -- (5.4,5) -- (4,5);
+    \draw (2,5) to[battery] (4,5);
+    % Légendes
+    \node at (0.6,0.2) {Anode (+)};
+    \node at (5.4,0.2) {Cathode (-)};
+    \node at (3,2) {Électrolyte};
+    \node at (3,5.3) {Générateur};
+\end{tikzpicture}
+\fig{Schéma d'un électrolyseur}
+\end{illus}
+
+% ----------------------------------------------------------
+\subsection{Réactions aux électrodes}
+
+\begin{exemple}[Électrolyse de l'eau]
+Électrolyse de l'eau acidulée (avec \ce{H2SO4}) :
+\begin{itemize}
+    \item À la cathode (réduction) : \ce{2 H2O + 2 e- -> H2 + 2 HO-} (ou \ce{2 H+ + 2 e- -> H2} en milieu acide).
+    \item À l'anode (oxydation) : \ce{2 H2O -> O2 + 4 H+ + 4 e-}.
+    \item Équation-bilan : \ce{2 H2O -> 2 H2 + O2}.
+\end{itemize}
+\end{exemple}
+
+\begin{exemple}[Électrolyse d'une solution de chlorure de sodium]
+Électrolyse d'une solution aqueuse de \ce{NaCl} :
+\begin{itemize}
+    \item À la cathode : \ce{2 H2O + 2 e- -> H2 + 2 HO-} (réduction de l'eau, car \ce{Na+} ne se réduit pas).
+    \item À l'anode : \ce{2 Cl- -> Cl2 + 2 e-} (oxydation des ions chlorure).
+    \item Équation-bilan : \ce{2 H2O + 2 Cl- -> H2 + Cl2 + 2 HO-}.
+\end{itemize}
+\end{exemple}
+
+% ----------------------------------------------------------
+\subsection{Applications de l'électrolyse}
+
+\begin{propriete}[Galvanoplastie]
+La galvanoplastie (ou électrodéposition) consiste à recouvrir un objet métallique d'une fine couche d'un autre métal (argent, or, chrome) par électrolyse. L'objet à recouvrir sert de cathode, et le métal à déposer est à l'anode.
+\end{propriete}
+
+\begin{exemple}[Argenture]
+Pour argenter une cuillère en laiton :
+\begin{itemize}
+    \item Électrolyte : solution de \ce{AgNO3} et de cyanure.
+    \item Anode : lame d'argent.
+    \item Cathode : cuillère en laiton.
+    \item Réaction à la cathode : \ce{Ag+ + e- -> Ag} (dépôt d'argent).
+    \item Réaction à l'anode : \ce{Ag -> Ag+ + e-} (dissolution de l'argent).
+\end{itemize}
+\end{exemple}
+
+\begin{propriete}[Affinage du cuivre]
+L'affinage électrolytique du cuivre permet d'obtenir du cuivre pur (99,99\,\%) à partir de cuivre brut contenant des impuretés.
+\begin{itemize}
+    \item Anode : cuivre brut (impur).
+    \item Cathode : feuille de cuivre pur.
+    \item Électrolyte : solution de \ce{CuSO4} acidulée.
+    \item À l'anode : \ce{Cu -> Cu^2+ + 2 e-} (les impuretés tombent au fond).
+    \item À la cathode : \ce{Cu^2+ + 2 e- -> Cu} (dépôt de cuivre pur).
+\end{itemize}
+\end{propriete}
+
+\begin{aretenir}
+L'électrolyse est utilisée dans l'industrie pour la production de métaux (aluminium, sodium), le traitement de surface (galvanoplastie, anodisation), et la purification des métaux (affinage).
+\end{aretenir}
+
+% ============================================================
+\section{L'essentiel à retenir}
+
+\begin{synthese}
+\subsection*{Oxydoréduction}
+\begin{itemize}
+    \item \textbf{Oxydant} : capte des électrons (se réduit). \textbf{Réducteur} : cède des électrons (s'oxyde).
+    \item \textbf{Couple redox} : $\ox + n\,\ce{e-} \rightleftharpoons \red$.
+    \item \textbf{Équilibrage} : en milieu acide, utiliser \ce{H+} et \ce{H2O} ; en milieu basique, utiliser \ce{H2O} et \ce{HO-}.
+    \item \textbf{Pouvoir oxydant} : classé par $E^\circ$ (potentiel standard). Plus $E^\circ$ est élevé, plus l'oxydant est fort.
+\end{itemize}
+
+\subsection*{Piles}
+\begin{itemize}
+    \item \textbf{Pile} : convertit énergie chimique $\rightarrow$ électrique (réaction spontanée).
+    \item \textbf{Anode} ($-$) : oxydation. \textbf{Cathode} ($+$) : réduction.
+    \item \textbf{Pont salin} : maintient la neutralité électrique.
+    \item \textbf{f.é.m.} : $E = E^\circ_{\text{cathode}} - E^\circ_{\text{anode}}$.
+    \item \textbf{Loi de Nernst} : $E = E^\circ + \frac{0,059}{n} \log \frac{[\ox]}{[\red]}$ (à \SI{25}{\celsius}).
+\end{itemize}
+
+\subsection*{Électrolyse}
+\begin{itemize}
+    \item \textbf{Électrolyse} : convertit énergie électrique $\rightarrow$ chimique (réaction forcée).
+    \item \textbf{Anode} ($+$) : oxydation. \textbf{Cathode} ($-$) : réduction.
+    \item \textbf{Applications} : galvanoplastie (dépôt de métal), affinage du cuivre, production de \ce{H2}, \ce{Cl2}, \ce{NaOH}.
+\end{itemize}
+
+\subsection*{Pièges à éviter}
+\begin{itemize}
+    \item Ne pas confondre anode et cathode selon le contexte (pile vs électrolyseur).
+    \item En pile, l'anode est négative ; en électrolyse, l'anode est positive.
+    \item Toujours équilibrer les demi-équations en masse et en charge.
+    \item Le pont salin ne participe pas à la réaction ; il assure seulement la conduction ionique.
+\end{itemize}
+\end{synthese}
+
+% ============================================================
+\section{Méthodes \& savoir-faire}
+
+% ----------------------------------------------------------
+\methode{Équilibrer une demi-équation redox en milieu acide}
+\begin{itemize}
+    \item Écrire les deux formes (oxydant et réducteur).
+    \item Équilibrer les atomes d'oxygène avec \ce{H2O}.
+    \item Équilibrer les atomes d'hydrogène avec \ce{H+}.
+    \item Équilibrer les charges avec des électrons \ce{e-}.
+\end{itemize}
+\begin{exemple}
+Équilibrer \ce{Cr2O7^2- -> Cr^3+} en milieu acide.
+\begin{itemize}
+    \item Oxygène : \ce{Cr2O7^2- -> 2 Cr^3+ + 7 H2O}
+    \item Hydrogène : \ce{Cr2O7^2- + 14 H+ -> 2 Cr^3+ + 7 H2O}
+    \item Charges : gauche : $-2 + 14 = +12$ ; droite : $+6$. Ajouter $6$ électrons à gauche : \ce{Cr2O7^2- + 14 H+ + 6 e- -> 2 Cr^3+ + 7 H2O}.
+\end{itemize}
+\end{exemple}
+
+% ----------------------------------------------------------
+\methode{Équilibrer une demi-équation redox en milieu basique}
+\begin{itemize}
+    \item Équilibrer d'abord comme en milieu acide.
+    \item Ajouter \ce{HO-} des deux côtés pour neutraliser les \ce{H+} (former \ce{H2O}).
+    \item Simplifier les molécules d'eau.
+\end{itemize}
+\begin{exemple}
+Équilibrer \ce{ClO- -> Cl-} en milieu basique.
+\begin{itemize}
+    \item En milieu acide : \ce{ClO- + 2 H+ + 2 e- -> Cl- + H2O}
+    \item Ajouter \ce{2 HO-} des deux côtés : \ce{ClO- + 2 H2O + 2 e- -> Cl- + H2O + 2 HO-}
+    \item Simplifier \ce{H2O} : \ce{ClO- + H2O + 2 e- -> Cl- + 2 HO-}.
+\end{itemize}
+\end{exemple}
+
+% ----------------------------------------------------------
+\methode{Écrire l'équation-bilan d'une réaction redox}
+\begin{itemize}
+    \item Identifier les deux couples redox mis en jeu.
+    \item Écrire les deux demi-équations équilibrées.
+    \item Multiplier chaque demi-équation pour égaliser le nombre d'électrons échangés.
+    \item Additionner les deux demi-équations et simplifier.
+\end{itemize}
+\begin{exemple}
+Réaction entre \ce{Zn} et \ce{Cu^2+}.
+\begin{itemize}
+    \item Demi-équations : \ce{Zn -> Zn^2+ + 2 e-} ; \ce{Cu^2+ + 2 e- -> Cu}
+    \item Addition : \ce{Zn + Cu^2+ -> Zn^2+ + Cu}.
+\end{itemize}
+\end{exemple}
+
+% ----------------------------------------------------------
+\methode{Calculer la force électromotrice d'une pile}
+\begin{itemize}
+    \item Identifier l'anode et la cathode à partir des potentiels standards ($E^\circ$ le plus faible = anode).
+    \item Appliquer : $E = E^\circ_{\text{cathode}} - E^\circ_{\text{anode}}$.
+\end{itemize}
+\begin{exemple}
+Pile \ce{Zn | Zn^2+ || Cu^2+ | Cu} : $E^\circ_{\ce{Cu^2+/Cu}} = \SI{0.34}{\volt}$, $E^\circ_{\ce{Zn^2+/Zn}} = \SI{-0.76}{\volt}$. Donc $E = \SI{0.34}{\volt} - (\SI{-0.76}{\volt}) = \SI{1.10}{\volt}$.
+\end{exemple}
+
+% ----------------------------------------------------------
+\methode{Prévoir le sens d'une réaction redox spontanée}
+\begin{itemize}
+    \item Comparer les potentiels standards des deux couples.
+    \item L'oxydant le plus fort (plus grand $E^\circ$) réagit avec le réducteur le plus fort (plus petit $E^\circ$).
+\end{itemize}
+\begin{exemple}
+Couples \ce{Fe^3+/Fe^2+} ($E^\circ = \SI{0.77}{\volt}$) et \ce{Zn^2+/Zn} ($E^\circ = \SI{-0.76}{\volt}$). L'oxydant \ce{Fe^3+} réagit avec le réducteur \ce{Zn} : \ce{2 Fe^3+ + Zn -> 2 Fe^2+ + Zn^2+}.
+\end{exemple}
+
+% ----------------------------------------------------------
+\methode{Utiliser la loi de Nernst}
+\begin{itemize}
+    \item Écrire la demi-équation du couple.
+    \item Appliquer $E = E^\circ + \frac{0,059}{n} \log \frac{[\ox]}{[\red]}$ (à \SI{25}{\celsius}).
+    \item Attention : $[\red]$ peut être 1 si c'est un solide.
+\end{itemize}
+\begin{exemple}
+Pour le couple \ce{Cu^2+/Cu} avec $[\ce{Cu^2+}] = \SI{0.01}{\mol\per\litre}$ : $E = \SI{0.34}{\volt} + \frac{0,059}{2} \log(0,01) = \SI{0.34}{\volt} + \frac{0,059}{2} \times (-2) = \SI{0.34}{\volt} - \SI{0.059}{\volt} = \SI{0.281}{\volt}$.
+\end{exemple}
+
+% ----------------------------------------------------------
+\methode{Schématiser une pile ou un électrolyseur}
+\begin{itemize}
+    \item Dessiner les deux électrodes et les solutions.
+    \item Indiquer la polarité (anode/cathode) et le sens du courant.
+    \item Ajouter le pont salin pour une pile.
+    \item Écrire les réactions aux électrodes.
+\end{itemize}
+\begin{exemple}
+Pour la pile Daniell, schéma avec anode Zn (-), cathode Cu (+), pont salin, et réactions : \ce{Zn -> Zn^2+ + 2 e-} (anode), \ce{Cu^2+ + 2 e- -> Cu} (cathode).
+\end{exemple}
+
+% ----------------------------------------------------------
+\methode{Identifier les produits d'une électrolyse}
+\begin{itemize}
+    \item Lister les espèces présentes dans l'électrolyte.
+    \item À la cathode : réduction de l'espèce la plus facile à réduire (potentiel le plus élevé).
+    \item À l'anode : oxydation de l'espèce la plus facile à oxyder (potentiel le plus faible).
+\end{itemize}
+\begin{exemple}
+Électrolyse d'une solution de \ce{NaCl} : espèces : \ce{Na+}, \ce{Cl-}, \ce{H2O}. À la cathode : réduction de \ce{H2O} ($E^\circ = \SI{-0.83}{\volt}$) plutôt que \ce{Na+} ($E^\circ = \SI{-2.71}{\volt}$). À l'anode : oxydation de \ce{Cl-} ($E^\circ = \SI{1.36}{\volt}$) plutôt que \ce{H2O} ($E^\circ = \SI{1.23}{\volt}$) si la surtension est favorable. Produits : \ce{H2} et \ce{Cl2}.
+\end{exemple}
+
+% ----------------------------------------------------------
+\methode{Calculer la masse déposée lors d'une électrolyse (loi de Faraday)}
+\begin{itemize}
+    \item Utiliser la relation : $m = \frac{Q \cdot M}{n \cdot F}$, où $Q = I \cdot t$ (charge), $M$ masse molaire, $n$ nombre d'électrons, $F = \SI{96500}{\coulomb\per\mol}$ (constante de Faraday).
+\end{itemize}
+\begin{exemple}
+Dépôt de cuivre par électrolyse : $I = \SI{2.0}{\ampere}$, $t = \SI{30}{\minute} = \SI{1800}{\second}$, $M_{\ce{Cu}} = \SI{63.5}{\gram\per\mol}$, $n = 2$. $Q = 2 \times 1800 = \SI{3600}{\coulomb}$. $m = \frac{3600 \times 63.5}{2 \times 96500} = \SI{1.18}{\gram}$.
+\end{exemple}
