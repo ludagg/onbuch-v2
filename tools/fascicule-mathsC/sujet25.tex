@@ -1,0 +1,128 @@
+\section{Sujet n\textsuperscript{o}\,25}
+\noindent\begin{minipage}{0.5\linewidth}\footnotesize Office du Baccalauréat du Cameroun\end{minipage}%
+\hfill\begin{minipage}{0.45\linewidth}\footnotesize\raggedleft Examen : \textbf{Baccalauréat} · Série : \textbf{C/E}\\
+Épreuve : \textbf{Mathématiques} · Durée : \textbf{4\,h} · Coef. : \textbf{7}\end{minipage}
+\par\smallskip{\color{onbo}\rule{\linewidth}{1pt}}
+
+\subsection*{Partie A — Évaluation des ressources \hfill (15 points)}
+
+\noindent\textbf{Exercice 1.} \hfill\textit{(3 points)}\\
+À la coopérative de café de Dschang, un lot contient $8$ sacs : $5$ de qualité supérieure
+et $3$ de qualité ordinaire. Un acheteur prélève au hasard et simultanément $3$ sacs. Soit
+$X$ le nombre de sacs de qualité supérieure obtenus.
+\begin{enumerate}[label=\arabic*)]
+\item Déterminer la loi de probabilité de $X$. \hfill\textit{(1,5 pt)}
+\item Calculer l'espérance mathématique $E(X)$. \hfill\textit{(0,75 pt)}
+\item Calculer la variance $V(X)$. \hfill\textit{(0,75 pt)}
+\end{enumerate}
+
+\smallskip
+\noindent\textbf{Exercice 2.} \hfill\textit{(3 points)}\\
+La coopérative range ses sacs de café en caisses. Le nombre $N$ de sacs vérifie :
+en caisses de $7$ il reste $3$ sacs ; en caisses de $11$ il reste $5$ sacs.
+\begin{enumerate}[label=\arabic*)]
+\item Résoudre dans $\Z^2$ l'équation $7x-11y=1$. \hfill\textit{(1,25 pt)}
+\item En déduire une solution du système $\;N\equiv3\;[7],\ N\equiv5\;[11]$. \hfill\textit{(1 pt)}
+\item Déterminer tous les entiers $N$ solutions, puis le plus petit $N$ supérieur à $200$. \hfill\textit{(0,75 pt)}
+\end{enumerate}
+
+\smallskip
+\noindent\textbf{Exercice 3.} \hfill\textit{(4 points)}\\
+Le taux de remplissage d'un séchoir solaire est modélisé par la suite $(u_n)$ définie par
+$u_0=1$ et, pour tout $n\in\N$, $u_{n+1}=\sqrt{3u_n+4}$.
+\begin{enumerate}[label=\arabic*)]
+\item Étudier les variations de $f(x)=\sqrt{3x+4}$ sur $[0,+\infty[$ et résoudre $f(x)=x$. \hfill\textit{(1 pt)}
+\item Démontrer par récurrence que pour tout $n\in\N$, $0\le u_n\le u_{n+1}\le4$. \hfill\textit{(1,5 pt)}
+\item En déduire que $(u_n)$ converge et déterminer sa limite. \hfill\textit{(1,5 pt)}
+\end{enumerate}
+
+\smallskip
+\noindent\textbf{Exercice 4.} \hfill\textit{(5 points)}\\
+Dans le plan, on considère le triangle $ABC$ et le système de points pondérés
+$\{(A,2),(B,1),(C,1)\}$.
+\begin{enumerate}[label=\arabic*)]
+\item Justifier l'existence du barycentre $G$ de ce système, puis montrer que $\overrightarrow{AG}=\frac14(\overrightarrow{AB}+\overrightarrow{AC})$. \hfill\textit{(1,25 pt)}
+\item Soit $I$ le milieu de $[BC]$. Montrer que $G$ est le milieu de $[AI]$. \hfill\textit{(1,25 pt)}
+\item Déterminer et construire l'ensemble $(\Gamma)$ des points $M$ du plan tels que
+$\big\|2\overrightarrow{MA}+\overrightarrow{MB}+\overrightarrow{MC}\big\|=\big\|\overrightarrow{AB}+\overrightarrow{AC}\big\|$. \hfill\textit{(1,5 pt)}
+\item Déterminer l'ensemble $(\mathcal E)$ des points $M$ tels que $2MA^2+MB^2+MC^2=4MG^2$. \hfill\textit{(1 pt)}
+\end{enumerate}
+
+\subsection*{Partie B — Évaluation des compétences \hfill (5 points)}
+
+\noindent\textit{Le gérant de la coopérative de café de Dschang te sollicite, en tant qu'élève de
+Terminale~C, pour trois décisions. (a) Il dispose de \SI{60}{\metre} de bordure pour aménager
+une aire de séchage rectangulaire dont un grand côté longe un hangar (non bordé) ; il veut
+l'aire maximale. (b) Les ventes mensuelles, de \SI{500}{} sacs ce mois-ci, baissent de
+\SI{6}{\percent} par mois en saison creuse ; il veut savoir quand elles passeront sous
+\SI{350}{} sacs. (c) Sur les sacs livrés, \SI{8}{\percent} ont un taux d'humidité excessif ;
+un client en contrôle $4$ au hasard.}
+
+\begin{enumerate}[label=\textbf{Tâche \arabic*.},leftmargin=2.4em]
+\item Déterminer les dimensions de l'aire de séchage rectangulaire d'\emph{aire maximale}, ainsi que cette aire. \hfill\textit{(1,5 pt)}
+\item Déterminer le mois à partir duquel les ventes mensuelles seront inférieures à \SI{350}{} sacs. \hfill\textit{(1,5 pt)}
+\item Déterminer la probabilité qu'\emph{au plus un} des $4$ sacs contrôlés ait un taux d'humidité excessif. \hfill\textit{(1,5 pt)}
+\end{enumerate}
+\par\smallskip{\footnotesize\itshape Présentation générale : 0,5 point.}
+
+% ════════════════════════════════════════════════════
+\corrige{du sujet 25}
+
+\noindent\textbf{Partie A — Exercice 1.}
+1) $\binom83=56$ tirages équiprobables. $P(X{=}k)=\dfrac{\binom5k\binom3{3-k}}{56}$, $k\in\{0,1,2,3\}$ :
+$P(0)=\frac{\binom50\binom33}{56}=\frac1{56}$ ; $P(1)=\frac{\binom51\binom32}{56}=\frac{15}{56}$ ;
+$P(2)=\frac{\binom52\binom31}{56}=\frac{30}{56}$ ; $P(3)=\frac{\binom53\binom30}{56}=\frac{10}{56}$.
+(Somme : $\frac{1+15+30+10}{56}=1$ \checkmark.)
+2) $E(X)=\frac{0\cdot1+1\cdot15+2\cdot30+3\cdot10}{56}=\frac{105}{56}=\frac{15}{8}=1{,}875$.
+(On retrouve $E(X)=n\frac{a}{a+b}=3\cdot\frac58=\frac{15}{8}$.)
+3) $E(X^2)=\frac{0+1\cdot15+4\cdot30+9\cdot10}{56}=\frac{225}{56}$.
+$V(X)=E(X^2)-E(X)^2=\frac{225}{56}-\big(\frac{15}{8}\big)^2=\frac{225}{56}-\frac{225}{64}$.
+Au dénominateur $448$ : $\frac{1800}{448}-\frac{1575}{448}=\frac{225}{448}\approx0{,}502$.
+
+\noindent\textbf{Exercice 2.}
+1) $7\times8-11\times5=56-55=1$ : une solution particulière est $(8\,;\,5)$. Par différence,
+$7(x-8)=11(y-5)$ ; comme $7\wedge11=1$, par Gauss $11\mid x-8$, d'où $x=8+11k,\ y=5+7k$, $k\in\Z$.
+2) On cherche $N$ avec $N\equiv3\;[7]$ et $N\equiv5\;[11]$. Écrivons $N=3+7a$ ; alors $3+7a\equiv5\;[11]$,
+soit $7a\equiv2\;[11]$. Comme $7\times8=56\equiv1\;[11]$, $7^{-1}\equiv8\;[11]$, donc $a\equiv16\equiv5\;[11]$.
+Pour $a=5$ : $N=3+35=38$. Vérif. : $38=5\times7+3$ et $38=3\times11+5$ \checkmark.
+3) Le module commun est $7\times11=77$ (théorème des restes chinois). Donc $N\equiv38\;[77]$,
+c'est-à-dire $N=38+77k,\ k\in\Z$. Plus petit $N>200$ : $38+77\times3=269$ ($38+77\times2=192\le200$), donc $\mathbf{N=269}$.
+
+\noindent\textbf{Exercice 3.}
+1) $f(x)=\sqrt{3x+4}$, définie et dérivable sur $]-\frac43,+\infty[$ : $f'(x)=\frac{3}{2\sqrt{3x+4}}>0$, $f$ strictement croissante.
+$f(x)=x\iff 3x+4=x^2$ et $x\ge0\iff x^2-3x-4=0\iff(x-4)(x+1)=0$, d'où $x=4$ (seule racine $\ge0$).
+2) Récurrence sur $P(n):\ 0\le u_n\le u_{n+1}\le4$.
+\emph{Initialisation :} $u_0=1$, $u_1=\sqrt{7}\approx2{,}65$ : $0\le1\le2{,}65\le4$, $P(0)$ vraie.
+\emph{Hérédité :} supposons $0\le u_n\le u_{n+1}\le4$. $f$ croissante sur $[0,4]$ donne
+$f(0)\le f(u_n)\le f(u_{n+1})\le f(4)$, soit $2\le u_{n+1}\le u_{n+2}\le4$ (car $f(4)=\sqrt{16}=4$).
+Donc $0\le u_{n+1}\le u_{n+2}\le4$ : $P(n+1)$ vraie.
+3) $(u_n)$ est croissante et majorée par $4$, donc \emph{convergente} vers une limite $\ell\in[1,4]$.
+Par continuité de $f$, $\ell=f(\ell)$, soit $\ell=4$ (unique point fixe dans l'intervalle). Donc $\displaystyle\lim u_n=\mathbf4$.
+
+\noindent\textbf{Exercice 4.}
+1) Somme des coefficients $2+1+1=4\neq0$ : le barycentre $G$ existe et est unique. De
+$2\overrightarrow{GA}+\overrightarrow{GB}+\overrightarrow{GC}=\vec0$, en écrivant $\overrightarrow{GB}=\overrightarrow{GA}+\overrightarrow{AB}$ et $\overrightarrow{GC}=\overrightarrow{GA}+\overrightarrow{AC}$ :
+$4\overrightarrow{GA}+\overrightarrow{AB}+\overrightarrow{AC}=\vec0$, d'où $\overrightarrow{AG}=-\overrightarrow{GA}=\frac14(\overrightarrow{AB}+\overrightarrow{AC})$.
+2) $I$ milieu de $[BC]$ : $\overrightarrow{AB}+\overrightarrow{AC}=2\overrightarrow{AI}$, donc $\overrightarrow{AG}=\frac14\cdot2\overrightarrow{AI}=\frac12\overrightarrow{AI}$ : $G$ est le milieu de $[AI]$.
+3) Par réduction au barycentre $G$ : $2\overrightarrow{MA}+\overrightarrow{MB}+\overrightarrow{MC}=4\overrightarrow{MG}$, donc le membre de gauche vaut $4MG$.
+Le membre de droite est une constante : $\overrightarrow{AB}+\overrightarrow{AC}=2\overrightarrow{AI}$, donc $\|\overrightarrow{AB}+\overrightarrow{AC}\|=2AI$.
+L'égalité s'écrit $4MG=2AI$, soit $MG=\dfrac{AI}{2}=AG$ (car $G$ est le milieu de $[AI]$, $AG=\frac{AI}{2}$).
+$(\Gamma)$ est donc le \textbf{cercle de centre $G$ et de rayon $AG$} ; il passe par $A$ et par $I$.
+4) Formule de Leibniz (réduction au barycentre $G$, somme des coefficients $4$) :
+$2MA^2+MB^2+MC^2=4MG^2+\big(2GA^2+GB^2+GC^2\big)$.
+L'égalité demandée $2MA^2+MB^2+MC^2=4MG^2$ équivaut donc à $2GA^2+GB^2+GC^2=0$, ce qui est
+impossible (somme de carrés non tous nuls, $A,B,C$ distincts). Donc $(\mathcal E)=\varnothing$.
+
+\smallskip
+\noindent\textbf{Partie B — Situation.}
+\emph{Tâche 1.} Côté perpendiculaire au hangar $x$ (deux côtés), côté longeant le hangar $y$
+(un seul côté bordé) : $2x+y=60$, $y=60-2x$. Aire $A(x)=x(60-2x)$, $A'(x)=60-4x=0\Rightarrow x=15$.
+Dimensions : $x=\SI{15}{\metre}$, $y=\SI{30}{\metre}$ ; aire maximale $\SI{450}{\metre\squared}$.
+
+\emph{Tâche 2.} Ventes du mois $n$ (avec $n=0$ ce mois) : $v_n=500\times0{,}94^{\,n}$. On résout $v_n<350$,
+soit $0{,}94^{\,n}<0{,}7$, d'où $n>\frac{\ln0{,}7}{\ln0{,}94}\approx\frac{-0{,}3567}{-0{,}0619}\approx5{,}76$ :
+dès le \textbf{6\textsuperscript{e} mois} ($v_6=500\times0{,}94^{6}\approx\SI{343}{}$ sacs).
+
+\emph{Tâche 3.} $X\sim\mathcal B(4\,;\,0{,}08)$. $P(X\le1)=P(X{=}0)+P(X{=}1)=0{,}92^4+\binom41\,0{,}08\,0{,}92^3$.
+$0{,}92^4\approx0{,}7164$ ; $4\times0{,}08\times0{,}92^3\approx0{,}32\times0{,}7787\approx0{,}2492$.
+$P(X\le1)\approx0{,}7164+0{,}2492=\mathbf{0{,}966}$, soit environ \SI{96,6}{\percent}.
