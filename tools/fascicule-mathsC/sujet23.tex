@@ -1,0 +1,121 @@
+\section{Sujet n\textsuperscript{o}\,23}
+\noindent\begin{minipage}{0.5\linewidth}\footnotesize Office du Baccalauréat du Cameroun\end{minipage}%
+\hfill\begin{minipage}{0.45\linewidth}\footnotesize\raggedleft Examen : \textbf{Baccalauréat} · Série : \textbf{C/E}\\
+Épreuve : \textbf{Mathématiques} · Durée : \textbf{4\,h} · Coef. : \textbf{7}\end{minipage}
+\par\smallskip{\color{onbo}\rule{\linewidth}{1pt}}
+
+\subsection*{Partie A — Évaluation des ressources \hfill (15 points)}
+
+\noindent\textbf{Exercice 1.} \hfill\textit{(3 points)}\\
+Dans une pharmacie de Bamenda, on estime que $8\,\%$ des boîtes d'un médicament livrées
+sont périmées. Un contrôleur prélève au hasard un échantillon de $10$ boîtes, le stock
+étant suffisamment grand pour assimiler les prélèvements à un tirage avec remise. On note
+$X$ le nombre de boîtes périmées parmi les $10$.
+\begin{enumerate}[label=\arabic*)]
+\item Justifier que $X$ suit une loi binomiale dont on précisera les paramètres. \hfill\textit{(0,75 pt)}
+\item Calculer la probabilité qu'aucune boîte ne soit périmée, puis qu'exactement deux le soient. \hfill\textit{(1,5 pt)}
+\item Calculer l'espérance $E(X)$ et la probabilité $P(X\ge1)$. \hfill\textit{(0,75 pt)}
+\end{enumerate}
+
+\smallskip
+\noindent\textbf{Exercice 2.} \hfill\textit{(3 points)}\\
+\begin{enumerate}[label=\arabic*)]
+\item Soient $a=84$ et $b=60$. Calculer $\mathrm{pgcd}(a,b)$ par l'algorithme d'Euclide,
+puis $\mathrm{ppcm}(a,b)$ en utilisant la relation $\mathrm{pgcd}\times\mathrm{ppcm}=ab$. \hfill\textit{(1,5 pt)}
+\item Un livreur passe à la pharmacie tous les $84$ jours, un autre tous les $60$ jours.
+S'ils sont passés ensemble aujourd'hui, dans combien de jours se croiseront-ils de nouveau ?
+Déterminer enfin le reste de $5^{2025}$ modulo $7$. \hfill\textit{(1,5 pt)}
+\end{enumerate}
+
+\smallskip
+\noindent\textbf{Exercice 3.} \hfill\textit{(4 points)}\\
+La concentration (en mg/L) d'un médicament dans le sang vérifie l'équation différentielle
+$y'+2y=0$, avec une concentration initiale $y(0)=5$.
+\begin{enumerate}[label=\arabic*)]
+\item Résoudre l'équation différentielle et déterminer la solution $f$ vérifiant la
+condition initiale. \hfill\textit{(1,5 pt)}
+\item Étudier le sens de variation de $f$ sur $[0,+\infty[$ et déterminer
+$\displaystyle\lim_{t\to+\infty}f(t)$. \hfill\textit{(1 pt)}
+\item Déterminer l'instant $t_0$ (en heures) à partir duquel la concentration devient
+inférieure à $1$ mg/L. \hfill\textit{(1,5 pt)}
+\end{enumerate}
+
+\smallskip
+\noindent\textbf{Exercice 4.} \hfill\textit{(5 points)}\\
+L'espace est muni d'un repère orthonormé direct $(O\,;\,\vec\imath,\vec\jmath,\vec k)$. On
+considère les points $A(1\,;\,0\,;\,0)$, $B(0\,;\,2\,;\,0)$ et $C(0\,;\,0\,;\,3)$.
+\begin{enumerate}[label=\arabic*)]
+\item Calculer le produit vectoriel $\vec{AB}\wedge\vec{AC}$. \hfill\textit{(1,5 pt)}
+\item En déduire une équation cartésienne du plan $(ABC)$. \hfill\textit{(1 pt)}
+\item Calculer la distance du point $O$ au plan $(ABC)$. \hfill\textit{(1 pt)}
+\item Calculer l'aire du triangle $ABC$ puis le volume du tétraèdre $OABC$. \hfill\textit{(1,5 pt)}
+\end{enumerate}
+
+\subsection*{Partie B — Évaluation des compétences \hfill (5 points)}
+
+\noindent\textit{Monsieur Tanyi gère le stock d'une pharmacie de Bamenda et te sollicite, en
+tant qu'élève de Terminale~C, pour trois décisions. Il veut d'abord ranger ses boîtes dans
+une caisse parallélépipédique : la somme « longueur + largeur » d'une étiquette
+rectangulaire doit valoir \SI{40}{\centi\metre}, et il cherche l'aire maximale de cette
+étiquette. Son stock initial de \SI{800}{} boîtes d'un sirop diminue de \SI{12}{\percent}
+chaque semaine après écoulement. Enfin, parmi les boîtes d'un lot, $6\,\%$ sont défectueuses ;
+un client en achète $4$ au hasard.}
+
+\begin{enumerate}[label=\textbf{Tâche \arabic*.},leftmargin=2.4em]
+\item Déterminer les dimensions de l'étiquette d'\emph{aire maximale}, ainsi que cette aire. \hfill\textit{(1,5 pt)}
+\item Déterminer la semaine à partir de laquelle le stock de sirop passera sous les
+\SI{300}{} boîtes. \hfill\textit{(1,5 pt)}
+\item Déterminer la probabilité qu'\emph{au moins une} des $4$ boîtes achetées soit
+défectueuse. \hfill\textit{(1,5 pt)}
+\end{enumerate}
+\par\smallskip{\footnotesize\itshape Présentation générale : 0,5 point.}
+
+% ════════════════════════════════════════════════════
+\corrige{du sujet 23}
+
+\noindent\textbf{Partie A — Exercice 1.}
+1) On répète $10$ fois, de façon indépendante et identique, une épreuve à deux issues
+(« périmée » de probabilité $p=0{,}08$, « non périmée »). Donc $X\sim\mathcal B(10\,;\,0{,}08)$.
+2) $P(X{=}0)=(0{,}92)^{10}\approx\mathbf{0{,}434}$.
+$P(X{=}2)=\binom{10}{2}(0{,}08)^2(0{,}92)^8=45\times0{,}0064\times0{,}5132\approx\mathbf{0{,}148}$.
+3) $E(X)=np=10\times0{,}08=\mathbf{0{,}8}$. $P(X\ge1)=1-P(X{=}0)=1-0{,}434=\mathbf{0{,}566}$.
+
+\noindent\textbf{Exercice 2.}
+1) Euclide : $84=60\times1+24$, $60=24\times2+12$, $24=12\times2+0$ : $\mathrm{pgcd}(84,60)=12$.
+Puis $\mathrm{ppcm}(84,60)=\dfrac{84\times60}{12}=\dfrac{5040}{12}=\mathbf{420}$.
+2) Ils se recroiseront après $\mathrm{ppcm}(84,60)=\mathbf{420}$ jours. Modulo $7$ :
+$5^2=25\equiv4$, $5^3\equiv20\equiv6\equiv-1\ [7]$, donc $5^6\equiv1\ [7]$. Comme
+$2025=6\times337+3$, $5^{2025}\equiv(5^6)^{337}\times5^3\equiv5^3\equiv-1\equiv\mathbf 6\ [7]$.
+Le reste est $\mathbf 6$.
+
+\noindent\textbf{Exercice 3.}
+1) Les solutions de $y'+2y=0$ sont $y(t)=K\mathrm e^{-2t}$, $K\in\R$. Condition $y(0)=K=5$,
+donc $f(t)=\mathbf{5\,\mathrm e^{-2t}}$.
+2) $f'(t)=-10\,\mathrm e^{-2t}<0$ : $f$ est strictement décroissante sur $[0,+\infty[$.
+Comme $-2t\to-\infty$, $\lim_{t\to+\infty}f(t)=\mathbf 0$ (la concentration tend vers $0$).
+3) $f(t)<1\iff 5\mathrm e^{-2t}<1\iff\mathrm e^{-2t}<\frac15\iff-2t<\ln\frac15\iff
+t>\frac{\ln5}{2}\approx0{,}80$. Donc $t_0=\dfrac{\ln5}{2}\approx\mathbf{0{,}80}$ h, soit environ
+$48$ minutes.
+
+\noindent\textbf{Exercice 4.}
+1) $\vec{AB}=(-1\,;\,2\,;\,0)$, $\vec{AC}=(-1\,;\,0\,;\,3)$.
+$\vec{AB}\wedge\vec{AC}=(2\times3-0\times0\,;\,0\times(-1)-(-1)\times3\,;\,(-1)\times0-2\times(-1))=\mathbf{(6\,;\,3\,;\,2)}$.
+2) Le vecteur $\vec n=(6\,;\,3\,;\,2)$ est normal à $(ABC)$ ; passant par $A(1\,;\,0\,;\,0)$ :
+$6(x-1)+3y+2z=0$, soit $\mathbf{6x+3y+2z-6=0}$.
+3) $d(O,(ABC))=\dfrac{|6\times0+3\times0+2\times0-6|}{\sqrt{6^2+3^2+2^2}}=\dfrac{6}{\sqrt{49}}=\dfrac{6}{7}\approx\mathbf{0{,}857}$.
+4) Aire $=\frac12\|\vec{AB}\wedge\vec{AC}\|=\frac12\sqrt{49}=\frac72=\mathbf{3{,}5}$.
+Volume $OABC=\frac13\times\text{aire}\times d=\frac13\times\frac72\times\frac67=\mathbf 1$.
+(On vérifie : $V=\frac16|\det(\vec{OA},\vec{OB},\vec{OC})|=\frac16\times|1\times2\times3|=1$.)
+
+\smallskip
+\noindent\textbf{Partie B — Situation.}
+\emph{Tâche 1.} Soit $x$ la longueur, $y=40-x$ la largeur. Aire $A(x)=x(40-x)$ ;
+$A'(x)=40-2x=0$ en $x=20$. Dimensions : $\SI{20}{\centi\metre}\times\SI{20}{\centi\metre}$
+(carré) ; aire maximale $\SI{400}{\centi\metre\squared}$.
+
+\emph{Tâche 2.} Stock de la semaine $n$ : $u_n=800\times0{,}88^{\,n}$ (avec $u_0=800$). On
+résout $u_n<300$, soit $0{,}88^{\,n}<\frac{3}{8}$, d'où $n>\frac{\ln(3/8)}{\ln0{,}88}\approx7{,}67$ :
+à partir de la \textbf{8\textsuperscript{e} semaine} ($u_8\approx\SI{288}{}$ boîtes).
+
+\emph{Tâche 3.} $P(\text{au moins une})=1-(0{,}94)^4\approx1-0{,}780=\mathbf{0{,}220}$, soit
+environ \SI{22,0}{\percent}.

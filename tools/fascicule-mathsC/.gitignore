@@ -4,3 +4,9 @@ apercu-*.pdf
 *.out
 *.toc
 .sk*
+wrap*.tex
+wrap*.pdf
+_wrap*.tex
+_wrap*.pdf
+*.t.tex
+*.t.pdf
