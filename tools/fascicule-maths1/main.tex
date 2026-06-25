@@ -3,30 +3,7 @@
 \begin{document}
 
 % ════════════════════ COUVERTURE (provisoire LaTeX) ════════════════════
-\begin{titlepage}
-\thispagestyle{empty}
-\begin{tikzpicture}[remember picture,overlay]
-  \fill[onbink] (current page.south west) rectangle (current page.north east);
-  \fill[onbo] ([yshift=-5.2cm]current page.north west) rectangle ([yshift=-9.6cm]current page.north east);
-\end{tikzpicture}
-\vspace*{2.2cm}
-\begin{center}
-  {\sffamily\bfseries\fontsize{20}{22}\selectfont\color{onbo} OnBuch}\\[0.25cm]
-  {\sffamily\color{onbpaper} Collection Réussite}
-\end{center}
-\vspace{1.4cm}
-\begin{center}
-  {\sffamily\bfseries\fontsize{56}{58}\selectfont\color{onbpaper} MATHÉMATIQUES}\\[0.5cm]
-  {\sffamily\bfseries\fontsize{30}{32}\selectfont\color{onbink} Première C}
-\end{center}
-\vfill
-\begin{center}
-  {\sffamily\fontsize{15}{18}\selectfont\color{onbpaper} Probatoire \& préparation au Baccalauréat — Cameroun}\\[0.2cm]
-  {\sffamily\color{onbo2} Programme officiel MINESEC}\\[1.4cm]
-  {\sffamily\small\color{onbmuted} Cours complet · Méthodes · Exercices et problèmes corrigés}
-\end{center}
-\vspace{1.2cm}
-\end{titlepage}
+\includepdf[pages=1,fitpaper=true]{couverture.pdf}
 
 \frontmatter
 
