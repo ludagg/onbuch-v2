@@ -1,0 +1,360 @@
+\chapter{Polynômes et fractions rationnelles}
+\textit{Derrière les équations, les courbes et les calculs de cette classe se cachent
+presque toujours des polynômes. Savoir les manipuler — déterminer leur degré, les
+factoriser, les diviser, en lire le signe — est un savoir-faire central. Les fractions
+rationnelles, quotients de deux polynômes, prolongent naturellement cette étude. Ce
+chapitre te donne les outils que tu réutiliseras dans tout le programme.}
+
+\section{Polynômes à une variable}
+
+\begin{definition}[Fonction polynôme]
+Une \textbf{fonction polynôme} (ou simplement \textbf{polynôme}) à une variable $x$ est
+une fonction $P$ définie sur $\R$ par une expression de la forme
+\[ P(x)=a_n x^n + a_{n-1}x^{n-1}+\dots+a_1 x + a_0, \]
+où $n\in\N$ et où les réels $a_0,a_1,\dots,a_n$ sont appelés les \textbf{coefficients}
+de $P$. Le réel $a_k$ est le coefficient du terme de degré $k$ ; $a_0$ est le
+\textbf{terme constant}.
+\end{definition}
+
+\begin{definition}[Degré d'un polynôme]
+Si $P$ n'est pas le polynôme nul, son \textbf{degré}, noté $\deg P$, est le plus grand
+entier $n$ tel que le coefficient $a_n$ soit \emph{non nul}. Ce coefficient $a_n$ est
+alors le \textbf{coefficient dominant}. Par convention, le polynôme nul n'a pas de degré.
+\end{definition}
+
+\begin{exemple}
+$P(x)=2x^3-5x+7$ est un polynôme de degré $3$, de coefficient dominant $2$ et de terme
+constant $7$ ; les coefficients de $x^2$ et de $x$ sont respectivement $0$ et $-5$.
+Le polynôme $Q(x)=4$ est de degré $0$ (polynôme constant non nul).
+\end{exemple}
+
+\begin{propriete}[Degré d'une somme et d'un produit]
+Soit $P$ et $Q$ deux polynômes non nuls. Alors :
+\begin{itemize}
+  \item $\deg(P\times Q)=\deg P + \deg Q$ ;
+  \item $\deg(P+Q)\le \max(\deg P,\deg Q)$, avec égalité dès que $\deg P\neq \deg Q$.
+\end{itemize}
+\end{propriete}
+
+\begin{remarque}
+Le degré d'une somme peut \emph{baisser} si les termes dominants se compensent. Par
+exemple, $(x^2+x)+(-x^2+1)=x+1$ : deux polynômes de degré $2$ dont la somme est de
+degré $1$.
+\end{remarque}
+
+\begin{theoreme}[Égalité de deux polynômes]
+Deux polynômes sont \textbf{égaux} si et seulement s'ils ont \emph{le même degré} et
+\emph{les mêmes coefficients}, terme à terme. Autrement dit, si
+\[ a_n x^n+\dots+a_0 = b_n x^n+\dots+b_0 \quad\text{pour tout }x\in\R, \]
+alors $a_k=b_k$ pour tout $k$. En particulier, un polynôme est nul (pour tout $x$) si et
+seulement si \emph{tous} ses coefficients sont nuls.
+\end{theoreme}
+
+\begin{aretenir}[Identification des coefficients]
+Cette propriété fonde la méthode d'\textbf{identification} : pour déterminer des
+coefficients inconnus, on développe, puis on égale terme à terme les coefficients de
+même degré des deux membres. On obtient alors un système d'équations.
+\end{aretenir}
+
+\begin{exemple}
+Cherchons $a,b,c$ tels que $x^2+1=a(x-1)^2+b(x-1)+c$ pour tout $x$. En développant le
+membre de droite : $a x^2+(-2a+b)x+(a-b+c)$. L'identification donne
+\[ a=1,\qquad -2a+b=0,\qquad a-b+c=1, \]
+d'où $a=1$, $b=2$, $c=2$. Ainsi $x^2+1=(x-1)^2+2(x-1)+2$.
+\end{exemple}
+
+\section{Racines et factorisation}
+
+\begin{definition}[Racine d'un polynôme]
+On appelle \textbf{racine} (ou \textbf{zéro}) du polynôme $P$ tout réel $a$ tel que
+$P(a)=0$.
+\end{definition}
+
+\begin{theoreme}[Racine et factorisation]
+Soit $P$ un polynôme et $a$ un réel. Alors :
+\[ a \text{ est racine de } P \iff (x-a) \text{ divise } P, \]
+c'est-à-dire qu'il existe un polynôme $Q$ tel que $P(x)=(x-a)\,Q(x)$ pour tout $x$.
+\end{theoreme}
+
+\begin{remarque}
+Démonstration du sens direct. Si $a$ est racine, écrivons $P(x)=P(x)-P(a)$ (car
+$P(a)=0$). Chaque terme $a_k(x^k-a^k)$ se factorise par $(x-a)$, puisque
+$x^k-a^k=(x-a)(x^{k-1}+ax^{k-2}+\dots+a^{k-1})$. En mettant $(x-a)$ en facteur dans
+toute la somme, on obtient $P(x)=(x-a)Q(x)$. Réciproquement, si $P(x)=(x-a)Q(x)$, alors
+$P(a)=(a-a)Q(a)=0$, donc $a$ est racine.
+\end{remarque}
+
+\begin{propriete}[Polynôme factorisé et nombre de racines]
+Si $a_1,a_2,\dots,a_p$ sont des racines \emph{distinctes} de $P$, alors $P$ se factorise
+par le produit $(x-a_1)(x-a_2)\cdots(x-a_p)$. En conséquence, un polynôme non nul de
+degré $n$ admet \textbf{au plus $n$ racines}.
+\end{propriete}
+
+\begin{exemple}
+$P(x)=x^3-3x^2+2x$. On remarque $P(0)=0$, donc $x$ se met en facteur :
+$P(x)=x(x^2-3x+2)$. Or $1$ est racine de $x^2-3x+2$, donc
+$x^2-3x+2=(x-1)(x-2)$. Finalement $P(x)=x(x-1)(x-2)$ : les racines sont $0$, $1$ et $2$.
+\end{exemple}
+
+\begin{aretenir}[Trouver une racine évidente]
+Pour amorcer une factorisation, on teste les valeurs simples : $0$, $1$, $-1$, $2$,
+$-2$\dots\ Si $P(a)=0$, alors $(x-a)$ est en facteur ; on obtient le quotient par
+division euclidienne ou par identification.
+\end{aretenir}
+
+\section{Division des polynômes}
+
+\subsection{Division euclidienne}
+
+\begin{theoreme}[Division euclidienne]
+Soit $A$ et $B$ deux polynômes avec $B\neq 0$. Il existe un \emph{unique} couple de
+polynômes $(Q,R)$ tel que
+\[ A = B\,Q + R \qquad\text{avec}\qquad R=0 \ \text{ ou } \ \deg R < \deg B. \]
+$Q$ est le \textbf{quotient} et $R$ le \textbf{reste} de la division euclidienne de $A$
+par $B$. On dit que $B$ \textbf{divise} $A$ lorsque $R=0$.
+\end{theoreme}
+
+\begin{aretenir}[Poser la division]
+On dispose la division comme pour les entiers, en ordonnant $A$ et $B$ suivant les
+\textbf{puissances décroissantes}. À chaque étape, on divise le terme dominant du reste
+courant par le terme dominant de $B$, on multiplie, on soustrait, et on recommence tant
+que le degré du reste reste $\ge \deg B$.
+\end{aretenir}
+
+\begin{exemple}
+Divisons $A(x)=2x^3-3x^2+4x-1$ par $B(x)=x^2+1$.
+\begin{itemize}
+  \item $2x^3 \div x^2 = 2x$ ; $\ 2x(x^2+1)=2x^3+2x$ ; reste $-3x^2+2x-1$.
+  \item $-3x^2 \div x^2 = -3$ ; $\ -3(x^2+1)=-3x^2-3$ ; reste $2x+2$.
+\end{itemize}
+Le degré de $2x+2$ étant $<2$, on s'arrête. Ainsi
+\[ 2x^3-3x^2+4x-1=(x^2+1)(2x-3)+(2x+2), \]
+avec quotient $Q(x)=2x-3$ et reste $R(x)=2x+2$.
+\end{exemple}
+
+\subsection{Division suivant les puissances décroissantes}
+
+\begin{remarque}
+La division précédente s'appelle aussi \textbf{division suivant les puissances
+décroissantes} : on classe les termes du plus haut degré au plus bas, et on s'arrête dès
+que le degré du reste devient strictement inférieur à celui du diviseur. C'est la forme
+employée pour factoriser un polynôme et pour décomposer une fraction rationnelle.
+\end{remarque}
+
+\begin{exemple}
+On sait que $1$ est racine de $A(x)=x^3-2x^2-x+2$. Divisons par $(x-1)$ :
+\[ x^3-2x^2-x+2=(x-1)(x^2-x-2). \]
+Puis $x^2-x-2=(x-2)(x+1)$. D'où la factorisation complète
+$A(x)=(x-1)(x-2)(x+1)$, de racines $1$, $2$, $-1$.
+\end{exemple}
+
+\section{Identités remarquables et factorisations}
+
+\begin{propriete}[Identités remarquables]
+Pour tous réels $a$ et $b$ :
+\begin{align*}
+(a+b)^2 &= a^2+2ab+b^2, & (a-b)^2 &= a^2-2ab+b^2,\\
+(a+b)(a-b) &= a^2-b^2, & (a+b)^3 &= a^3+3a^2b+3ab^2+b^3,\\
+(a-b)^3 &= a^3-3a^2b+3ab^2-b^3. &&
+\end{align*}
+Et pour les sommes/différences de cubes :
+\[ a^3-b^3=(a-b)(a^2+ab+b^2),\qquad a^3+b^3=(a+b)(a^2-ab+b^2). \]
+\end{propriete}
+
+\begin{exemple}
+$x^3-8=x^3-2^3=(x-2)(x^2+2x+4)$. Le facteur $x^2+2x+4$ n'a pas de racine réelle (son
+discriminant vaut $4-16=-12<0$), donc cette factorisation est la plus poussée dans $\R$.
+\end{exemple}
+
+\begin{aretenir}[Stratégie de factorisation]
+\begin{itemize}
+  \item mettre d'abord en \textbf{facteur commun} ce qui est commun à tous les termes ;
+  \item reconnaître une \textbf{identité remarquable} ;
+  \item chercher une \textbf{racine évidente}, puis factoriser par $(x-a)$ via une division ;
+  \item pour un trinôme $ax^2+bx+c$, utiliser les racines (voir section suivante).
+\end{itemize}
+\end{aretenir}
+
+\section{Signe d'un polynôme}
+
+\begin{propriete}[Signe du trinôme du second degré]
+Soit $P(x)=ax^2+bx+c$ avec $a\neq 0$, de discriminant $\Delta=b^2-4ac$.
+\begin{itemize}
+  \item Si $\Delta>0$ : $P$ a deux racines $x_1<x_2$ ; $P(x)$ est \emph{du signe de $a$}
+        à l'extérieur de $[x_1\,;\,x_2]$ et \emph{du signe de $-a$} entre les racines.
+  \item Si $\Delta=0$ : $P$ a une racine double $x_0=-\dfrac{b}{2a}$ ; $P(x)$ est du
+        signe de $a$ partout, et s'annule en $x_0$.
+  \item Si $\Delta<0$ : $P$ n'a pas de racine réelle ; $P(x)$ est du signe de $a$ pour
+        tout $x$.
+\end{itemize}
+On résume cela par la formule : « \textbf{le trinôme est du signe de $a$ sauf entre les
+racines} ».
+\end{propriete}
+
+\begin{illus}
+\begin{tikzpicture}[scale=0.95]
+  \draw[->,onbline] (-1.4,0)--(4.4,0) node[right,onbmuted]{$x$};
+  \draw[->,onbline] (0,-1.6)--(0,3.2) node[above,onbmuted]{$y$};
+  \draw[thick,onbo,smooth,samples=80,domain=-0.8:3.8] plot (\x,{(\x-1)*(\x-3)});
+  \filldraw[onbgreen] (1,0) circle (1.7pt) node[below right,onbink]{$x_1$};
+  \filldraw[onbgreen] (3,0) circle (1.7pt) node[below right,onbink]{$x_2$};
+  \node[onbmuted] at (2,-1.25) {$P<0$};
+  \node[onbmuted] at (-0.6,2.4) {$P>0$};
+  \node[onbmuted] at (3.7,2.4) {$P>0$};
+\end{tikzpicture}
+\fig{Figure — pour $a>0$ (ici $P(x)=(x-1)(x-3)$) : $P$ est négatif entre les racines, positif à l'extérieur.}
+\end{illus}
+
+\begin{propriete}[Signe d'un polynôme factorisé]
+Lorsqu'un polynôme est écrit sous forme de \textbf{produit de facteurs du premier
+degré} (et éventuellement de trinômes sans racine), on dresse un \textbf{tableau de
+signes} : chaque facteur $(x-a)$ est négatif pour $x<a$ et positif pour $x>a$ ; le signe
+du produit s'obtient par la règle des signes.
+\end{propriete}
+
+\begin{illus}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabular}{@{}c|ccccccc@{}}
+\toprule
+$x$        & $-\infty$ && $-1$ && $2$ && $+\infty$ \\
+\midrule
+$x-2$      &           & $-$  & $-$ & $-$ & $0$ & $+$ & \\
+$x+1$      &           & $-$  & $0$ & $+$ & $+$ & $+$ & \\
+\midrule
+$(x-2)(x+1)$ &         & $+$  & $0$ & $-$ & $0$ & $+$ & \\
+\bottomrule
+\end{tabular}
+\fig{Figure — tableau de signes de $P(x)=(x-2)(x+1)=x^2-x-2$. Le produit est négatif sur $]-1\,;\,2[$.}
+\end{illus}
+
+\begin{exemple}
+Résolvons $x^2-x-2\le 0$. D'après le tableau ci-dessus, $P(x)=(x-2)(x+1)$ est négatif ou
+nul exactement sur $[-1\,;\,2]$. L'ensemble des solutions est donc $S=[-1\,;\,2]$.
+\end{exemple}
+
+\section{Fractions rationnelles}
+
+\begin{definition}[Fraction rationnelle]
+On appelle \textbf{fraction rationnelle} tout quotient $F(x)=\dfrac{P(x)}{Q(x)}$ de deux
+polynômes $P$ et $Q$, avec $Q$ non nul. L'\textbf{ensemble de définition} de $F$ est
+l'ensemble des réels qui n'annulent pas le dénominateur :
+\[ D_F=\{\,x\in\R \ \mid\ Q(x)\neq 0\,\}. \]
+\end{definition}
+
+\begin{exemple}
+Pour $F(x)=\dfrac{x+3}{x^2-4}$, le dénominateur s'annule en $x=2$ et $x=-2$. Donc
+\[ D_F=\,]-\infty\,;\,-2[\,\cup\,]-2\,;\,2[\,\cup\,]2\,;\,+\infty[. \]
+\end{exemple}
+
+\begin{aretenir}[Simplifier une fraction rationnelle]
+On factorise le numérateur et le dénominateur, puis on simplifie le ou les facteurs
+communs. \textbf{Attention} : la simplification ne change pas $D_F$ — les valeurs
+interdites du dénominateur \emph{initial} restent exclues.
+\end{aretenir}
+
+\begin{exemple}
+$F(x)=\dfrac{x^2-1}{x^2-x}=\dfrac{(x-1)(x+1)}{x(x-1)}$. On a $D_F=\R\setminus\{0\,;\,1\}$.
+Après simplification par $(x-1)$ : $F(x)=\dfrac{x+1}{x}$ pour tout $x\in D_F$. Le réel
+$1$ reste exclu même s'il ne fait plus apparaître de division par zéro après simplification.
+\end{exemple}
+
+\begin{propriete}[Signe d'une fraction rationnelle]
+Le signe de $F(x)=\dfrac{P(x)}{Q(x)}$ s'étudie dans un \textbf{tableau de signes}
+regroupant les signes de $P$ et de $Q$, en appliquant la règle des signes du quotient.
+Aux valeurs annulant $Q$, $F$ \textbf{n'est pas définie} : on y place une double barre.
+\end{propriete}
+
+\begin{exemple}
+Étudions le signe de $F(x)=\dfrac{x-1}{x+2}$. Le numérateur s'annule en $1$, le
+dénominateur en $-2$ (valeur interdite). On lit : $F(x)>0$ sur
+$]-\infty\,;\,-2[\cup\,]1\,;\,+\infty[$, $F(x)<0$ sur $]-2\,;\,1[$, et $F(1)=0$.
+\end{exemple}
+
+\begin{remarque}
+Une fraction rationnelle peut parfois s'écrire comme \textbf{somme d'un polynôme et
+d'une fraction plus simple}. On y parvient par une division euclidienne du numérateur par
+le dénominateur. Par exemple :
+$\dfrac{x^2+1}{x-1}=\dfrac{(x-1)(x+1)+2}{x-1}=x+1+\dfrac{2}{x-1}$.
+Cette décomposition facilite l'étude du comportement de la fraction.
+\end{remarque}
+
+% ════════════════════════════════════════════════════════════
+\section{L'essentiel à retenir}
+
+\begin{synthese}
+\textbf{Polynôme.} $P(x)=a_n x^n+\dots+a_0$ ; degré = plus haut exposant à coefficient
+non nul. \textbf{Égalité} : même degré et mêmes coefficients (d'où l'\emph{identification}).
+
+\smallskip
+\textbf{Racine et facteur.} $a$ racine de $P \iff P(a)=0 \iff (x-a)$ divise $P$.
+Un polynôme de degré $n$ a au plus $n$ racines.
+
+\smallskip
+\textbf{Division euclidienne.} $A=BQ+R$ avec $R=0$ ou $\deg R<\deg B$ ; $B$ divise $A$ si $R=0$.
+
+\smallskip
+\textbf{Identités.} $a^2-b^2=(a-b)(a+b)$ ; $a^3-b^3=(a-b)(a^2+ab+b^2)$ ;
+$a^3+b^3=(a+b)(a^2-ab+b^2)$.
+
+\smallskip
+\textbf{Signe du trinôme} $ax^2+bx+c$ : du signe de $a$ \emph{sauf entre les racines}
+(si $\Delta>0$) ; toujours du signe de $a$ si $\Delta\le 0$.
+
+\smallskip
+\textbf{Fraction rationnelle} $\dfrac{P}{Q}$ : $D_F$ exclut les zéros de $Q$ ;
+simplifier sans changer $D_F$ ; signe via un tableau (double barre aux valeurs interdites).
+\end{synthese}
+
+% ════════════════════════════════════════════════════════════
+\section{Méthodes \& savoir-faire}
+
+\methode{Déterminer des coefficients par identification}
+Développer le membre où figurent les inconnues, puis égaler terme à terme les
+coefficients de même degré des deux membres ; résoudre le système obtenu.
+\begin{exemple}
+Trouvons $a,b$ tels que $\dfrac{3x-1}{x^2}=\dfrac{a}{x}+\dfrac{b}{x^2}$. En réduisant au
+même dénominateur : $\dfrac{ax+b}{x^2}$. L'identification donne $a=3$ et $b=-1$, soit
+$\dfrac{3x-1}{x^2}=\dfrac{3}{x}-\dfrac{1}{x^2}$.
+\end{exemple}
+
+\methode{Factoriser un polynôme à partir d'une racine évidente}
+Tester $0,1,-1,2,-2$\dots\ Dès qu'une valeur $a$ annule $P$, effectuer la division
+euclidienne de $P$ par $(x-a)$, puis factoriser le quotient.
+\begin{exemple}
+$P(x)=x^3+2x^2-x-2$. On a $P(1)=1+2-1-2=0$, donc $(x-1)$ divise $P$. La division donne
+$P(x)=(x-1)(x^2+3x+2)=(x-1)(x+1)(x+2)$.
+\end{exemple}
+
+\methode{Effectuer une division euclidienne de polynômes}
+Ordonner suivant les puissances décroissantes, puis diviser le terme dominant du reste
+par celui du diviseur, multiplier, soustraire, recommencer tant que $\deg(\text{reste})\ge\deg B$.
+\begin{exemple}
+$A(x)=x^3+0x^2+0x+1$ par $B(x)=x+1$. On obtient $x^3+1=(x+1)(x^2-x+1)$, reste nul :
+$x+1$ divise $x^3+1$ (c'est l'identité $a^3+b^3$ avec $b=1$).
+\end{exemple}
+
+\methode{Étudier le signe d'un trinôme}
+Calculer $\Delta=b^2-4ac$. Si $\Delta\ge 0$, trouver les racines ; appliquer la règle
+« du signe de $a$ sauf entre les racines ». Si $\Delta<0$, le trinôme garde le signe de $a$.
+\begin{exemple}
+$P(x)=-2x^2+3x+2$. $\Delta=9+16=25>0$, racines
+$x=\dfrac{-3\pm5}{-4}$, soit $x_1=-\dfrac12$ et $x_2=2$. Comme $a=-2<0$, $P>0$ entre
+$-\frac12$ et $2$, et $P<0$ à l'extérieur.
+\end{exemple}
+
+\methode{Déterminer l'ensemble de définition d'une fraction rationnelle}
+Factoriser le dénominateur et résoudre $Q(x)=0$ ; exclure ces valeurs de $\R$.
+\begin{exemple}
+$F(x)=\dfrac{2x}{x^2-3x}=\dfrac{2x}{x(x-3)}$. Le dénominateur s'annule en $0$ et $3$,
+donc $D_F=\R\setminus\{0\,;\,3\}$. (Après simplification, $F(x)=\dfrac{2}{x-3}$ sur $D_F$.)
+\end{exemple}
+
+\methode{Étudier le signe d'une fraction rationnelle par un tableau}
+Factoriser numérateur et dénominateur ; placer toutes les valeurs critiques dans un
+tableau ; lire le signe de chaque facteur puis appliquer la règle des signes du quotient,
+avec une double barre aux valeurs interdites.
+\begin{exemple}
+$F(x)=\dfrac{x+1}{x-2}$. Valeurs critiques : $-1$ (zéro) et $2$ (interdite). Le tableau
+donne $F>0$ sur $]-\infty\,;\,-1[\cup\,]2\,;\,+\infty[$ et $F<0$ sur $]-1\,;\,2[$, avec
+$F(-1)=0$ et $F$ non définie en $2$.
+\end{exemple}
