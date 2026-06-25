@@ -1,0 +1,86 @@
+\input{preamble.tex}
+
+\begin{document}
+
+% ════════════════════ COUVERTURE (provisoire LaTeX) ════════════════════
+\begin{titlepage}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[onbink] (current page.south west) rectangle (current page.north east);
+  \fill[onbo] ([yshift=-5.2cm]current page.north west) rectangle ([yshift=-9.6cm]current page.north east);
+\end{tikzpicture}
+\vspace*{2.2cm}
+\begin{center}
+  {\sffamily\bfseries\fontsize{20}{22}\selectfont\color{onbo} OnBuch}\\[0.25cm]
+  {\sffamily\color{onbpaper} Collection Réussite}
+\end{center}
+\vspace{1.4cm}
+\begin{center}
+  {\sffamily\bfseries\fontsize{54}{56}\selectfont\color{onbpaper} INFORMATIQUE}\\[0.5cm]
+  {\sffamily\bfseries\fontsize{26}{28}\selectfont\color{onbink} Terminales C · D · E}
+\end{center}
+\vfill
+\begin{center}
+  {\sffamily\fontsize{15}{18}\selectfont\color{onbpaper} Baccalauréat — Cameroun}\\[0.2cm]
+  {\sffamily\color{onbo2} Programme officiel MINESEC}\\[1.4cm]
+  {\sffamily\small\color{onbmuted} Résumés de cours · Énormément d'exercices · Tous corrigés}
+\end{center}
+\vspace{1.2cm}
+\end{titlepage}
+
+\frontmatter
+
+% ════════════════════ AVANT-PROPOS ════════════════════
+\thispagestyle{empty}
+\vspace*{0.6cm}
+{\sffamily\fontsize{30}{32}\selectfont\bfseries\color{onbink} Avant-propos}\par\vspace{4pt}
+{\color{onbo}\rule{5cm}{2.5pt}}\par\vspace{16pt}
+
+\noindent Ce fascicule couvre le programme d'\textbf{Informatique des Terminales C, D
+et E} (programme officiel MINESEC) : systèmes informatiques, codage de l'information,
+bases de données et SQL, tableur, algorithmique, langage C, réseaux et citoyenneté
+numérique.
+
+\medskip
+\noindent Sa philosophie est simple : un \textbf{cours réduit à l'essentiel}, facile à
+comprendre, et surtout \textbf{énormément d'exercices type examen}, \textbf{tous
+corrigés en détail}. Car en informatique, c'est en s'entraînant — sur des conversions,
+des requêtes SQL, des algorithmes, des programmes — que l'on progresse vraiment.
+
+\vspace{6pt}
+\begin{aretenir}
+\textbf{À propos d'OnBuch.} OnBuch est l'application éducative des élèves camerounais :
+\textbf{Léo}, ton tuteur intelligent, des \textbf{cours}, des \textbf{annales}, les
+\textbf{résultats d'examens}, les \textbf{concours} et l'agenda scolaire. Ce fascicule
+prolonge cette mission sur le papier.
+\end{aretenir}
+
+\medskip
+\noindent Bon entraînement, et \textbf{bonne réussite au Baccalauréat !}
+\par\vspace{8pt}
+\hfill{\sffamily\itshape\color{onbmuted} L'équipe OnBuch, dirigée par Ludovic Aggaï N.}
+\clearpage
+
+% ════════════════════ SOMMAIRE ════════════════════
+\thispagestyle{empty}
+\vspace*{0.6cm}
+{\sffamily\fontsize{30}{32}\selectfont\bfseries\color{onbink} Sommaire}\par\vspace{4pt}
+{\color{onbo}\rule{5cm}{2.5pt}}\par\vspace{10pt}
+{\hypersetup{linkcolor=onbink}\makeatletter\@starttoc{toc}\makeatother}
+
+% ════════════════════ CHAPITRES ════════════════════
+\mainmatter
+\include{ch01}
+\include{ch02}
+\include{ch03}
+\include{ch04}
+\include{ch05}
+\include{ch06}
+\include{ch07}
+\include{ch08}
+\include{ch09}
+\include{ch10}
+\include{ch11}
+\include{ch12}
+
+\end{document}
