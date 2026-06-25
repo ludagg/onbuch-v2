@@ -1,0 +1,366 @@
+\chapter{Angles orientés et trigonométrie}
+\textit{Jusqu'ici un angle se mesurait en degrés, sans souci de sens. La
+trigonométrie demande davantage : choisir un \emph{sens} de parcours, mesurer
+avec une unité adaptée au cercle — le \emph{radian} — et lire sur un cercle les
+fonctions cosinus, sinus et tangente. Ce chapitre installe ce langage, qui
+servira partout : géométrie, nombres complexes, analyse.}
+
+\section{Le cercle trigonométrique et le radian}
+
+\begin{definition}[Cercle trigonométrique]
+Le plan étant muni d'un repère orthonormé direct $(O,\vec{\imath},\vec{\jmath})$,
+on appelle \textbf{cercle trigonométrique} le cercle $\mathcal{C}$ de centre $O$
+et de \textbf{rayon $1$}, sur lequel on a choisi un \textbf{sens positif} (dit
+\emph{sens direct} ou \emph{trigonométrique}) : celui inverse des aiguilles d'une
+montre.
+\end{definition}
+
+\begin{definition}[Le radian]
+Le \textbf{radian} (rad) est la mesure d'un angle au centre qui \emph{intercepte
+sur le cercle trigonométrique un arc de longueur $1$}. Comme la circonférence du
+cercle de rayon $1$ vaut $2\pi$, un tour complet mesure $2\pi$ radians.
+\end{definition}
+
+\begin{propriete}[Conversion degré $\leftrightarrow$ radian]
+La mesure en degrés et la mesure en radians d'un même angle sont
+\textbf{proportionnelles}, avec
+\[ \frac{\alpha_{\deg}}{180}=\frac{\alpha_{\mathrm{rad}}}{\pi}. \]
+D'où les formules de passage :
+\[ \alpha_{\mathrm{rad}}=\frac{\pi}{180}\,\alpha_{\deg}
+   \qquad\text{et}\qquad
+   \alpha_{\deg}=\frac{180}{\pi}\,\alpha_{\mathrm{rad}}. \]
+\end{propriete}
+
+\begin{exemple}
+Convertissons quelques angles usuels.
+\begin{itemize}
+  \item $60^\circ = \dfrac{\pi}{180}\times 60 = \dfrac{\pi}{3}$ rad ;
+  \item $\dfrac{3\pi}{4}$ rad $= \dfrac{180}{\pi}\times\dfrac{3\pi}{4}=135^\circ$ ;
+  \item $90^\circ=\dfrac{\pi}{2}$ rad, $180^\circ=\pi$ rad, $360^\circ=2\pi$ rad.
+\end{itemize}
+\end{exemple}
+
+\begin{remarque}
+Le radian n'a pas d'unité « visible » : c'est un rapport de deux longueurs (arc
+sur rayon). Sauf mention contraire, en analyse les angles sont toujours exprimés
+en radians — c'est dans cette unité que les formules de dérivation de $\cos$ et
+$\sin$ seront vraies.
+\end{remarque}
+
+\section{Enroulement de la droite numérique}
+
+\begin{definition}[Enroulement]
+On munit le cercle trigonométrique du point $I(1\,;\,0)$. On « enroule » la droite
+numérique sur le cercle en faisant coïncider l'origine de la droite avec $I$, l'axe
+positif s'enroulant dans le \textbf{sens direct}. À chaque réel $x$ correspond ainsi
+un \textbf{unique point} $M$ du cercle : $x$ est la longueur algébrique de l'arc
+$\widehat{IM}$ parcouru depuis $I$.
+\end{definition}
+
+\begin{propriete}[Réels associés à un même point]
+Deux réels $x$ et $x'$ repèrent le \textbf{même point} du cercle si et seulement
+si ils diffèrent d'un nombre entier de tours :
+\[ x' = x + 2k\pi, \qquad k\in\Z. \]
+\end{propriete}
+
+\begin{illus}
+\begin{tikzpicture}[scale=2.1]
+  \draw[->,onbline] (-1.4,0)--(1.5,0) node[right,onbmuted]{$x$};
+  \draw[->,onbline] (0,-1.4)--(0,1.5) node[above,onbmuted]{$y$};
+  \draw[thick,onbo] (0,0) circle (1);
+  \coordinate (O) at (0,0);
+  \coordinate (I) at (1,0);
+  \coordinate (M) at (37:1);
+  \filldraw[onbink] (I) circle (0.6pt) node[below right,onbink]{$I$};
+  \filldraw[onbink] (0,1) circle (0.6pt) node[above left,onbink]{$J$};
+  \draw[onbo,thick] (1,0) arc (0:37:1);
+  \draw[onbblue,thick] (O)--(M);
+  \filldraw[onbblue] (M) circle (0.7pt) node[above right,onbink]{$M$};
+  \draw pic[draw=onbgreen,angle radius=0.42cm,"$x$" {onbgreen,font=\footnotesize}]{angle=I--O--M};
+  \node[onbmuted,font=\footnotesize] at (0.78,0.18) {arc $=x$};
+\end{tikzpicture}
+\fig{Figure — enroulement : au réel $x$ on associe le point $M$ tel que l'arc $\widehat{IM}$ (sens direct) ait pour longueur $x$.}
+\end{illus}
+
+\section{Angles orientés et mesures}
+
+\begin{definition}[Angle orienté de deux vecteurs]
+À tout couple de vecteurs non nuls $(\vec{u},\vec{v})$ on associe un \textbf{angle
+orienté}, noté $(\widehat{\vec{u},\vec{v}})$. Sa \textbf{mesure} (en radians) est
+définie \emph{à un multiple de $2\pi$ près} : si $\alpha$ est une mesure, toutes
+les mesures sont les réels
+\[ \alpha + 2k\pi, \qquad k\in\Z. \]
+On écrit alors $(\widehat{\vec{u},\vec{v}})=\alpha\ [2\pi]$ (« $\alpha$ modulo
+$2\pi$ »).
+\end{definition}
+
+\begin{definition}[Mesure principale]
+Parmi toutes les mesures d'un angle orienté, il en existe une et une seule qui
+appartient à l'intervalle $]-\pi\,;\,\pi]$ : on l'appelle la \textbf{mesure
+principale} de l'angle.
+\end{definition}
+
+\begin{exemple}
+Cherchons la mesure principale de $\dfrac{29\pi}{4}$. On retranche des tours
+($2\pi=\tfrac{8\pi}{4}$) :
+\[ \frac{29\pi}{4}-2\times 2\pi=\frac{29\pi}{4}-\frac{16\pi}{4}=\frac{13\pi}{4},
+   \qquad \frac{13\pi}{4}-2\pi=\frac{13\pi}{4}-\frac{8\pi}{4}=\frac{5\pi}{4}. \]
+Comme $\dfrac{5\pi}{4}>\pi$, on retire encore un tour :
+$\dfrac{5\pi}{4}-2\pi=-\dfrac{3\pi}{4}\in\,]-\pi\,;\,\pi]$. La mesure principale est
+$-\dfrac{3\pi}{4}$.
+\end{exemple}
+
+\begin{propriete}[Relation de Chasles]
+Pour trois vecteurs non nuls $\vec{u},\vec{v},\vec{w}$ :
+\[ (\widehat{\vec{u},\vec{v}})+(\widehat{\vec{v},\vec{w}})
+   =(\widehat{\vec{u},\vec{w}})\ [2\pi]. \]
+En particulier $(\widehat{\vec{v},\vec{u}})=-(\widehat{\vec{u},\vec{v}})\ [2\pi]$
+et $(\widehat{\vec{u},\vec{u}})=0\ [2\pi]$.
+\end{propriete}
+
+\section{Lignes trigonométriques d'un nombre réel}
+
+\begin{definition}[Cosinus, sinus]
+Soit $x$ un réel et $M$ le point du cercle trigonométrique associé à $x$ par
+l'enroulement. Le \textbf{cosinus} de $x$, noté $\cos x$, est l'\emph{abscisse} de
+$M$ ; le \textbf{sinus} de $x$, noté $\sin x$, est l'\emph{ordonnée} de $M$ :
+\[ M(\cos x\,;\,\sin x). \]
+\end{definition}
+
+\begin{definition}[Tangente]
+Pour tout réel $x$ tel que $\cos x\neq 0$, on appelle \textbf{tangente} de $x$ le
+nombre
+\[ \tan x = \frac{\sin x}{\cos x}. \]
+Géométriquement, $\tan x$ se lit comme l'ordonnée du point $T$ où la droite $(OM)$
+coupe la tangente au cercle menée en $I(1\,;\,0)$.
+\end{definition}
+
+\begin{illus}
+\begin{tikzpicture}[scale=2.4]
+  \draw[->,onbline] (-1.35,0)--(1.55,0) node[right,onbmuted]{$\cos$};
+  \draw[->,onbline] (0,-1.35)--(0,1.45) node[above,onbmuted]{$\sin$};
+  \draw[thick,onbo] (0,0) circle (1);
+  \coordinate (O) at (0,0);
+  \coordinate (I) at (1,0);
+  \def\ang{52}
+  \coordinate (M) at (\ang:1);
+  \filldraw[onbink] (I) circle (0.5pt) node[below,onbink,font=\footnotesize]{$I$};
+  % axe des tangentes
+  \draw[onbline,thick] (1,-1.2)--(1,1.3);
+  \draw[onbblue,thick] (O)--(\ang:1.55) coordinate (T0);
+  \coordinate (T) at (1, {tan(\ang)});
+  \filldraw[onbgreen] (T) circle (0.6pt) node[right,onbink,font=\footnotesize]{$\tan x$};
+  \draw[dashed,onbmuted] (M) -- (M|-0,0) node[below,onbink,font=\footnotesize]{$\cos x$};
+  \draw[dashed,onbmuted] (M) -- (0,0|-M) node[left,onbink,font=\footnotesize]{$\sin x$};
+  \draw[onbo,thick] (1,0) arc (0:\ang:1);
+  \filldraw[onbblue] (M) circle (0.7pt) node[above right,onbink,font=\footnotesize]{$M$};
+  \draw pic[draw=onbgreen,angle radius=0.34cm,"$x$" {onbgreen,font=\scriptsize}]{angle=I--O--M};
+\end{tikzpicture}
+\fig{Figure — lignes trigonométriques : $\cos x$ (abscisse) et $\sin x$ (ordonnée) de $M$ ; $\tan x$ sur l'axe vertical mené en $I$.}
+\end{illus}
+
+\begin{propriete}[Encadrements et signes]
+Pour tout réel $x$ : $-1\le\cos x\le 1$ et $-1\le\sin x\le 1$. Les fonctions
+$\cos$ et $\sin$ sont \textbf{périodiques de période $2\pi$}. De plus, $\cos$ est
+\textbf{paire} ($\cos(-x)=\cos x$) et $\sin$ est \textbf{impaire}
+($\sin(-x)=-\sin x$).
+\end{propriete}
+
+\section{Valeurs remarquables}
+
+\begin{propriete}[Valeurs des angles usuels]
+On lit sur le cercle (ou par la géométrie des triangles particuliers) :
+\begin{center}\renewcommand{\arraystretch}{1.6}
+\begin{tabular}{@{}c|ccccc@{}}
+\toprule
+$x$ & $0$ & $\dfrac{\pi}{6}$ & $\dfrac{\pi}{4}$ & $\dfrac{\pi}{3}$ & $\dfrac{\pi}{2}$ \\
+\midrule
+$\cos x$ & $1$ & $\dfrac{\sqrt3}{2}$ & $\dfrac{\sqrt2}{2}$ & $\dfrac{1}{2}$ & $0$ \\
+$\sin x$ & $0$ & $\dfrac{1}{2}$ & $\dfrac{\sqrt2}{2}$ & $\dfrac{\sqrt3}{2}$ & $1$ \\
+$\tan x$ & $0$ & $\dfrac{\sqrt3}{3}$ & $1$ & $\sqrt3$ & $\nexists$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{propriete}
+
+\begin{illus}
+\begin{tikzpicture}[scale=2.7]
+  \draw[->,onbline] (-1.3,0)--(1.35,0); \draw[->,onbline] (0,-1.3)--(0,1.35);
+  \draw[thick,onbo] (0,0) circle (1);
+  \coordinate (O) at (0,0);
+  \foreach \a/\lab in {0/$0$,30/$\frac{\pi}{6}$,45/$\frac{\pi}{4}$,60/$\frac{\pi}{3}$,90/$\frac{\pi}{2}$}{
+    \filldraw[onbblue] (\a:1) circle (0.55pt);
+    \draw[onbline] (O) -- (\a:1);
+    \node[onbink,font=\scriptsize] at (\a:1.16) {\lab};
+  }
+\end{tikzpicture}
+\fig{Figure — positions sur le cercle des angles remarquables $0,\ \tfrac{\pi}{6},\ \tfrac{\pi}{4},\ \tfrac{\pi}{3},\ \tfrac{\pi}{2}$ du premier quadrant.}
+\end{illus}
+
+\section{Relations fondamentales}
+
+\begin{theoreme}[Identité fondamentale]
+Pour tout réel $x$ :
+\[ \cos^2 x + \sin^2 x = 1. \]
+\end{theoreme}
+
+\begin{remarque}
+C'est l'application du théorème de Pythagore au triangle rectangle de sommets $O$,
+$M(\cos x\,;\,\sin x)$ et le projeté de $M$ sur l'axe des abscisses : l'hypoténuse
+$OM$ vaut $1$ (rayon), les côtés valent $|\cos x|$ et $|\sin x|$.
+\end{remarque}
+
+\begin{propriete}[Tangente et cosinus]
+Pour tout réel $x$ tel que $\cos x\neq 0$ :
+\[ 1 + \tan^2 x = \frac{1}{\cos^2 x}. \]
+\end{propriete}
+
+\begin{exemple}
+Sachant que $\cos x=\dfrac{3}{5}$ et que $x\in\Big]\!-\dfrac{\pi}{2}\,;\,0\Big[$,
+calculons $\sin x$ et $\tan x$. De $\sin^2 x=1-\cos^2 x=1-\dfrac{9}{25}=\dfrac{16}{25}$
+on tire $\sin x=\pm\dfrac{4}{5}$. Comme $x$ est dans le quatrième « quadrant »
+($\sin x<0$), $\sin x=-\dfrac{4}{5}$, puis
+$\tan x=\dfrac{\sin x}{\cos x}=-\dfrac{4}{3}$.
+\end{exemple}
+
+\section{Angles associés}
+
+\begin{theoreme}[Formules des angles associés]
+Pour tout réel $x$ :
+\begin{center}\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{@{}l l l@{}}
+\toprule
+\textbf{Angle} & \textbf{Cosinus} & \textbf{Sinus} \\
+\midrule
+$-x$ & $\cos(-x)=\cos x$ & $\sin(-x)=-\sin x$ \\
+$\pi-x$ & $\cos(\pi-x)=-\cos x$ & $\sin(\pi-x)=\sin x$ \\
+$\pi+x$ & $\cos(\pi+x)=-\cos x$ & $\sin(\pi+x)=-\sin x$ \\
+$\dfrac{\pi}{2}-x$ & $\cos\!\big(\tfrac{\pi}{2}-x\big)=\sin x$ & $\sin\!\big(\tfrac{\pi}{2}-x\big)=\cos x$ \\
+$\dfrac{\pi}{2}+x$ & $\cos\!\big(\tfrac{\pi}{2}+x\big)=-\sin x$ & $\sin\!\big(\tfrac{\pi}{2}+x\big)=\cos x$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{theoreme}
+
+\begin{illus}
+\begin{tikzpicture}[scale=2.6]
+  \draw[->,onbline] (-1.35,0)--(1.4,0); \draw[->,onbline] (0,-1.35)--(0,1.4);
+  \draw[thick,onbo] (0,0) circle (1);
+  \coordinate (O) at (0,0);
+  \def\ang{40}
+  \filldraw[onbblue] (\ang:1) circle (0.6pt) node[above right,onbink,font=\scriptsize]{$x$};
+  \filldraw[onbgreen] (180-\ang:1) circle (0.6pt) node[above left,onbink,font=\scriptsize]{$\pi-x$};
+  \filldraw[onbgreen] (180+\ang:1) circle (0.6pt) node[below left,onbink,font=\scriptsize]{$\pi+x$};
+  \filldraw[onbgreen] (-\ang:1) circle (0.6pt) node[below right,onbink,font=\scriptsize]{$-x$};
+  \draw[onbline] (180-\ang:1)--(\ang:1);
+  \draw[onbline] (-\ang:1)--(\ang:1);
+  \draw[onbmuted,dashed] (180+\ang:1)--(\ang:1);
+\end{tikzpicture}
+\fig{Figure — angles associés à $x$ : symétries par rapport aux axes et à l'origine donnent $-x$, $\pi-x$ et $\pi+x$.}
+\end{illus}
+
+\begin{remarque}
+Pour retrouver une formule, on visualise la symétrie : $-x$ est le symétrique de
+$x$ par rapport à l'axe $(Ox)$ (mêmes abscisses, ordonnées opposées) ; $\pi-x$ par
+rapport à l'axe $(Oy)$ ; $\pi+x$ par rapport à $O$ ; et $\tfrac{\pi}{2}-x$ échange
+abscisse et ordonnée (symétrie par rapport à la première bissectrice).
+\end{remarque}
+
+\begin{exemple}
+Calculons $\cos\dfrac{2\pi}{3}$ et $\sin\dfrac{5\pi}{6}$.
+\[ \cos\frac{2\pi}{3}=\cos\Big(\pi-\frac{\pi}{3}\Big)=-\cos\frac{\pi}{3}=-\frac12,
+   \qquad
+   \sin\frac{5\pi}{6}=\sin\Big(\pi-\frac{\pi}{6}\Big)=\sin\frac{\pi}{6}=\frac12. \]
+\end{exemple}
+
+% ════════════════════════════════════════════════════════════
+\section{L'essentiel à retenir}
+
+\begin{synthese}
+\textbf{Radian.} Tour complet $=2\pi$ rad $=360^\circ$ ; conversion
+$\alpha_{\mathrm{rad}}=\dfrac{\pi}{180}\,\alpha_{\deg}$.
+
+\smallskip
+\textbf{Mesures d'un angle orienté} : définies modulo $2\pi$ ; \emph{mesure
+principale} unique dans $]-\pi\,;\,\pi]$.
+
+\smallskip
+\textbf{Définitions} : $M(\cos x\,;\,\sin x)$ sur le cercle ;
+$\tan x=\dfrac{\sin x}{\cos x}$ (si $\cos x\neq 0$).
+
+\smallskip
+\textbf{Relations} : $\cos^2 x+\sin^2 x=1$ ; $1+\tan^2 x=\dfrac{1}{\cos^2 x}$.
+
+\smallskip
+\textbf{Valeurs remarquables.}
+\renewcommand{\arraystretch}{1.5}
+\begin{center}\color{white}
+\begin{tabular}{@{}c|ccccc@{}}
+\toprule
+$x$ & $0$ & $\frac{\pi}{6}$ & $\frac{\pi}{4}$ & $\frac{\pi}{3}$ & $\frac{\pi}{2}$ \\
+\midrule
+$\cos x$ & $1$ & $\frac{\sqrt3}{2}$ & $\frac{\sqrt2}{2}$ & $\frac12$ & $0$ \\
+$\sin x$ & $0$ & $\frac12$ & $\frac{\sqrt2}{2}$ & $\frac{\sqrt3}{2}$ & $1$ \\
+$\tan x$ & $0$ & $\frac{\sqrt3}{3}$ & $1$ & $\sqrt3$ & $\nexists$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\smallskip
+\textbf{Angles associés} : $\cos(-x)=\cos x$, $\sin(-x)=-\sin x$ ;
+$\cos(\pi-x)=-\cos x$, $\sin(\pi-x)=\sin x$ ;
+$\cos(\pi+x)=-\cos x$, $\sin(\pi+x)=-\sin x$ ;
+$\cos\!\big(\tfrac{\pi}{2}-x\big)=\sin x$, $\sin\!\big(\tfrac{\pi}{2}-x\big)=\cos x$ ;
+$\cos\!\big(\tfrac{\pi}{2}+x\big)=-\sin x$, $\sin\!\big(\tfrac{\pi}{2}+x\big)=\cos x$.
+\end{synthese}
+
+% ════════════════════════════════════════════════════════════
+\section{Méthodes \& savoir-faire}
+
+\methode{Convertir entre degrés et radians}
+Utiliser la proportionnalité : multiplier par $\dfrac{\pi}{180}$ pour passer des
+degrés aux radians, par $\dfrac{180}{\pi}$ pour l'inverse.
+\begin{exemple}
+$225^\circ=\dfrac{\pi}{180}\times 225=\dfrac{5\pi}{4}$ rad ;
+$\dfrac{7\pi}{6}$ rad $=\dfrac{180}{\pi}\times\dfrac{7\pi}{6}=210^\circ$.
+\end{exemple}
+
+\methode{Déterminer la mesure principale d'un angle}
+Ajouter ou retrancher autant de tours $2\pi$ que nécessaire pour ramener la mesure
+dans $]-\pi\,;\,\pi]$.
+\begin{exemple}
+$\dfrac{17\pi}{5}$ : on retire $2\pi=\dfrac{10\pi}{5}$ pour obtenir
+$\dfrac{7\pi}{5}$, encore trop grand ($>\pi$) ; on retire un tour de plus :
+$\dfrac{7\pi}{5}-2\pi=-\dfrac{3\pi}{5}\in\,]-\pi\,;\,\pi]$. Mesure principale :
+$-\dfrac{3\pi}{5}$.
+\end{exemple}
+
+\methode{Calculer une ligne trigo connaissant une autre}
+Utiliser $\cos^2 x+\sin^2 x=1$ pour obtenir l'inconnue au signe près, puis fixer
+le signe à l'aide du \emph{quadrant} où se trouve $x$.
+\begin{exemple}
+$\sin x=\dfrac{5}{13}$ avec $x\in\Big]\dfrac{\pi}{2}\,;\,\pi\Big[$. Alors
+$\cos^2 x=1-\dfrac{25}{169}=\dfrac{144}{169}$, donc $\cos x=\pm\dfrac{12}{13}$ ;
+comme $x$ est dans le deuxième quadrant, $\cos x<0$ : $\cos x=-\dfrac{12}{13}$.
+\end{exemple}
+
+\methode{Calculer $\cos$ ou $\sin$ d'un angle non remarquable}
+Écrire l'angle comme un angle associé ($-x$, $\pi-x$, $\pi+x$, $\tfrac{\pi}{2}\pm x$)
+d'un angle remarquable, puis appliquer la formule correspondante.
+\begin{exemple}
+$\cos\dfrac{7\pi}{6}=\cos\Big(\pi+\dfrac{\pi}{6}\Big)=-\cos\dfrac{\pi}{6}=-\dfrac{\sqrt3}{2}$.
+\end{exemple}
+
+\methode{Simplifier une expression à l'aide des angles associés}
+Remplacer chaque terme par sa forme réduite ($\cos$, $\sin$ d'un angle simple),
+puis regrouper.
+\begin{exemple}
+$A=\cos(\pi-x)+\sin\!\Big(\dfrac{\pi}{2}+x\Big)=-\cos x+\cos x=0$ pour tout réel $x$.
+\end{exemple}
+
+\methode{Utiliser la périodicité $2\pi$}
+Retrancher un multiple de $2\pi$ pour se ramener à un angle de $[0\,;\,2\pi[$ avant
+tout calcul.
+\begin{exemple}
+$\sin\dfrac{25\pi}{6}=\sin\Big(\dfrac{25\pi}{6}-4\pi\Big)=\sin\dfrac{\pi}{6}=\dfrac12$.
+\end{exemple}
