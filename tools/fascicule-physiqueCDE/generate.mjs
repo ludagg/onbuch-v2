@@ -70,8 +70,9 @@ function stripFences(s) {
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 // Lit un flux SSE OpenAI (data: {...}\n\n … data: [DONE]) et concatène le contenu.
-async function readSSE(res) {
-  let buf = '', out = '';
+// Logue la progression (caractères générés) ~toutes les 2000 car.
+async function readSSE(res, label) {
+  let buf = '', out = '', lastLog = 0;
   const dec = new TextDecoder();
   for await (const chunk of res.body) {
     buf += dec.decode(chunk, { stream: true });
@@ -84,26 +85,25 @@ async function readSSE(res) {
       if (d === '[DONE]') continue;
       try { out += JSON.parse(d).choices?.[0]?.delta?.content || ''; } catch { /* keep-alive */ }
     }
+    if (out.length - lastLog >= 2000) { lastLog = out.length; console.log(`[${label}]   …${out.length} car.`); }
   }
   return out;
 }
 
-async function callNvidia(key, messages) {
+// Appel NVIDIA en STREAMING dans les deux modes (progression + pas de timeout).
+async function callNvidia(key, messages, label = MODEL.split('/').pop()) {
   for (let attempt = 0; attempt < 5; attempt++) {
     try {
       const req = DIRECT
-        ? { headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json', Accept: 'application/json' },
-            body: JSON.stringify({ model: MODEL, messages, temperature: 0.3, top_p: 0.9, max_tokens: MAX_TOKENS, stream: false }) }
-        // Proxy Vercel /api/nv : la clé voyage dans le corps, réponse en SSE.
+        ? { headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json', Accept: 'text/event-stream' },
+            body: JSON.stringify({ model: MODEL, messages, temperature: 0.3, top_p: 0.9, max_tokens: MAX_TOKENS, stream: true }) }
+        // Proxy Vercel /api/nv : la clé voyage dans le corps, le proxy force stream:true.
         : { headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ key, model: MODEL, messages, max_tokens: MAX_TOKENS }) };
       const r = await fetch(ENDPOINT, { method: 'POST', ...req });
       if (r.status === 429 || r.status >= 500) { await sleep(2000 * 2 ** attempt); continue; }
       if (!r.ok) throw new Error(`HTTP ${r.status}: ${(await r.text()).slice(0, 300)}`);
-      const raw = DIRECT
-        ? (await r.json())?.choices?.[0]?.message?.content || ''
-        : await readSSE(r);
-      return stripFences(stripThink(raw));
+      return stripFences(stripThink(await readSSE(r, label)));
     } catch (e) {
       if (attempt === 4) throw e;
       await sleep(2000 * 2 ** attempt);
@@ -142,7 +142,7 @@ async function generateChapter(id, key) {
   let messages = [{ role: 'system', content: sys }, { role: 'user', content: user }];
 
   console.log(`[${id}] génération (modèle ${MODEL})…`);
-  let tex = await callNvidia(key, messages);
+  let tex = await callNvidia(key, messages, id);
 
   for (let round = 0; round <= MAX_FIX_ROUNDS; round++) {
     await writeFile(join(HERE, `${id}.tex`), tex);
@@ -156,7 +156,7 @@ async function generateChapter(id, key) {
       { role: 'assistant', content: tex },
       { role: 'user', content: `Ce LaTeX NE COMPILE PAS avec tectonic. Erreurs :\n${log}\n\nCorrige le problème et renvoie le chapitre LaTeX COMPLET corrigé (UNIQUEMENT le LaTeX, de \\chapter{...} à la fin). N'ajoute aucun package.` },
     ];
-    tex = await callNvidia(key, messages);
+    tex = await callNvidia(key, messages, id);
   }
   return { id, ok: false };
 }
