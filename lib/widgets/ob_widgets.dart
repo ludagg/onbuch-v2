@@ -309,7 +309,7 @@ class OBNavBar extends StatelessWidget {
     _NavTab(icon: Icons.play_lesson_rounded, label: 'Cours'),
     _NavTab(icon: Icons.auto_awesome_rounded, label: 'Tuteur'),
     _NavTab(icon: Icons.menu_book_rounded, label: 'Annales'),
-    _NavTab(icon: Icons.track_changes_rounded, label: 'Concours'),
+    _NavTab(icon: Icons.explore_rounded, label: 'Orientation'),
   ];
 
   @override

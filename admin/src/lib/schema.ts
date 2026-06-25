@@ -299,6 +299,7 @@ export const RESOURCES: Resource[] = [
       { key: 'resultsLink', label: 'Lien résultats', type: 'text' },
       { key: 'resultsDate', label: 'Date des résultats', type: 'datetime' },
       { key: 'audience', label: 'Public visé', type: 'text' },
+      { key: 'debouches', label: 'Débouchés (métiers)', type: 'textarea', help: 'Un débouché par ligne (ou séparés par « ; »). Ex. : Ingénieur génie civil ; Chef de projet… Laisse vide pour utiliser le guide automatique selon le sigle de l\'école.' },
       order
     ]
   },

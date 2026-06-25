@@ -922,7 +922,7 @@ class _QuickLinks extends StatelessWidget {
     [Icons.menu_book_rounded, 'Cours', 'go:/cours'],
     [Icons.article_rounded, 'Annales', 'go:/annales'],
     [Icons.edit_rounded, 'Exercices', 'push:/exercices'],
-    [Icons.emoji_events_rounded, 'Concours', 'go:/concours'],
+    [Icons.explore_rounded, 'Orientation', 'go:/concours'],
     [Icons.camera_alt_rounded, 'Scanner', 'push:/tutor/capture'],
   ];
 
