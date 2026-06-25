@@ -212,3 +212,117 @@ exemple à l'appui, dans le chapitre indiqué.
 \item Utiliser la matrice d'adjacence d'un graphe
 \end{itemize}
 \end{multicols}
+
+% ════════════════════════════════════════════════════════════════
+\section{Tableaux de synthèse comparatifs}
+
+\subsection{Les trois coniques}
+\begin{center}\small
+\begin{tabular}{@{}p{2.6cm}p{3.6cm}p{3.2cm}p{3.6cm}@{}}
+\toprule
+& \textbf{Ellipse} & \textbf{Parabole} & \textbf{Hyperbole}\\
+\midrule
+Équation réduite & $\frac{x^2}{a^2}+\frac{y^2}{b^2}=1$ & $y^2=2px$ & $\frac{x^2}{a^2}-\frac{y^2}{b^2}=1$\\[4pt]
+Excentricité $e$ & $0<e<1$ & $e=1$ & $e>1$\\[2pt]
+Relation & $c^2=a^2-b^2$ & — & $c^2=a^2+b^2$\\[2pt]
+Foyers & $(\pm c,0)$ & $\left(\frac p2,0\right)$ & $(\pm c,0)$\\[2pt]
+Asymptotes & aucune & aucune & $y=\pm\frac ba\,x$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Les transformations du plan}
+\begin{center}\small
+\begin{tabular}{@{}p{3cm}p{4.2cm}p{2.4cm}p{2.4cm}@{}}
+\toprule
+\textbf{Transformation} & \textbf{Écriture complexe} & \textbf{Rapport} & \textbf{Angle}\\
+\midrule
+Translation & $z'=z+b$ & $1$ & $0$\\
+Homothétie $(\Omega,k)$ & $z'=k(z-\omega)+\omega$ & $|k|$ & $0$ ou $\pi$\\
+Rotation $(\Omega,\theta)$ & $z'=\mathrm{e}^{i\theta}(z-\omega)+\omega$ & $1$ & $\theta$\\
+Similitude directe & $z'=az+b$ & $|a|$ & $\arg a$\\
+\bottomrule
+\end{tabular}
+\end{center}
+\noindent\footnotesize Centre d'une similitude directe ($a\ne1$) : $\omega=\dfrac{b}{1-a}$.\normalsize
+
+\subsection{Les lois de probabilité (Terminale C)}
+\begin{center}\small
+\begin{tabular}{@{}p{3cm}p{4.6cm}p{2.2cm}p{2.6cm}@{}}
+\toprule
+\textbf{Loi} & \textbf{Situation} & \textbf{$E(X)$} & \textbf{$V(X)$}\\
+\midrule
+Uniforme & $n$ issues équiprobables & $\frac{n+1}2$\,$^{(*)}$ & $\frac{n^2-1}{12}$\,$^{(*)}$\\[3pt]
+Binomiale $\mathcal B(n,p)$ & $n$ épreuves indép., remise & $np$ & $np(1-p)$\\[3pt]
+Hypergéométrique & tirage simultané \emph{sans} remise & $n\frac Np$\,$^{(**)}$ & —\\
+\bottomrule
+\end{tabular}
+\end{center}
+\noindent\footnotesize $^{(*)}$ pour $X$ uniforme sur $\{1,\dots,n\}$. \quad
+$^{(**)}$ proportion $\frac Np$ de « succès » dans la population, $n$ tirages.\normalsize
+
+\subsection{Caractérisations par les complexes}
+\begin{center}\small
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Propriété de} $A,B,C,D$ & \textbf{Traduction complexe}\\
+\midrule
+$A$, $B$, $C$ alignés & $\dfrac{z_C-z_A}{z_B-z_A}\in\R$\\[6pt]
+$(AB)\perp(AC)$ & $\dfrac{z_C-z_A}{z_B-z_A}\in i\R$\\[6pt]
+$ABC$ isocèle en $A$ & $|z_B-z_A|=|z_C-z_A|$\\[6pt]
+$ABC$ équilatéral direct & $z_C-z_A=\mathrm{e}^{i\pi/3}(z_B-z_A)$\\[6pt]
+$ABCD$ parallélogramme & $z_B-z_A=z_C-z_D$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% ════════════════════════════════════════════════════════════════
+\section{Lexique mathématique}
+
+\begin{description}[leftmargin=0pt,labelindent=0pt,style=unboxed,itemsep=2pt]
+\item[Argument.] Mesure de l'angle $(\vec u,\overrightarrow{OM})$ pour $M$ d'affixe $z\ne0$ ; défini modulo $2\pi$.
+\item[Asymptote.] Droite dont la courbe se rapproche indéfiniment en $\pm\infty$ (ou près d'une valeur interdite).
+\item[Barycentre.] Point $G$ « moyenne pondérée » de points affectés de coefficients de somme non nulle.
+\item[Bijection.] Application qui à chaque élément d'arrivée associe un unique antécédent.
+\item[Congruence.] $a\equiv b\ [n]$ signifie que $n$ divise $a-b$.
+\item[Continuité.] $f$ est continue en $a$ si $\lim_{x\to a}f(x)=f(a)$ (courbe « sans saut »).
+\item[Discriminant.] $\Delta=b^2-4ac$ ; son signe donne le nombre de racines de $ax^2+bx+c$.
+\item[Espérance.] Valeur moyenne $E(X)=\sum x_iP(X{=}x_i)$ d'une variable aléatoire.
+\item[Excentricité.] Réel $e\ge0$ caractérisant la forme d'une conique.
+\item[Homothétie.] Agrandissement/réduction de centre $\Omega$ et de rapport $k$.
+\item[Intégrale.] $\int_a^b f=F(b)-F(a)$ ; aire algébrique sous la courbe.
+\item[Isométrie.] Transformation qui conserve les distances (translation, rotation, symétrie).
+\item[Module.] Distance $|z|=\sqrt{a^2+b^2}=OM$ pour $z=a+ib$.
+\item[Nombre premier.] Entier $\ge2$ n'ayant que $1$ et lui-même pour diviseurs.
+\item[PGCD / PPCM.] Plus grand diviseur commun / plus petit multiple commun.
+\item[Primitive.] Fonction $F$ telle que $F'=f$.
+\item[Probabilité conditionnelle.] $P_B(A)=\frac{P(A\cap B)}{P(B)}$ : probabilité de $A$ sachant $B$.
+\item[Récurrence.] Démonstration en deux temps : initialisation puis hérédité.
+\item[Similitude directe.] Composée d'une rotation et d'une homothétie de même centre ; conserve les angles orientés.
+\item[Variance.] $V(X)=E(X^2)-E(X)^2$ ; mesure la dispersion ($\sigma=\sqrt V$).
+\end{description}
+
+% ════════════════════════════════════════════════════════════════
+\section{Index alphabétique des notions}
+
+\noindent\footnotesize Renvoi au chapitre où la notion est traitée.\normalsize
+\par\smallskip
+\begin{multicols}{2}\footnotesize\raggedright
+\textbf{A} — Arrangements (Dénombrement) · Asymptotes (Limites) · Ajustement affine (Statistiques) · Arithmétique (Arithmétique).\par
+\textbf{B} — Barycentre (Barycentre) · Bézout (Arithmétique) · Binôme de Newton (Dénombrement) · Bijection (Dérivation).\par
+\textbf{C} — Congruences (Arithmétique) · Coniques (Coniques) · Continuité (Limites) · Complexes (Nombres complexes) · Combinaisons (Dénombrement) · Corrélation (Statistiques).\par
+\textbf{D} — Dénombrement (Dénombrement) · Dérivation (Dérivation) · Déterminant (Matrices) · Division euclidienne (Arithmétique).\par
+\textbf{E} — Équations différentielles (Éq. différentielles) · Espérance (Probabilités) · Exponentielle (Exponentielle) · Ellipse (Coniques).\par
+\textbf{F} — Fermat (Arithmétique) · Fonction ln / exp (Logarithme, Exponentielle).\par
+\textbf{G} — Gauss, théorème (Arithmétique) · Graphes (Graphes) · Géométrie de l'espace (Produit scalaire).\par
+\textbf{H} — Homothétie (Similitudes) · Hyperbole (Coniques) · Loi hypergéométrique (Probabilités).\par
+\textbf{I} — Intégration, IPP (Intégrale) · Isométries (Isométries) · Index / matrice d'adjacence (Graphes).\par
+\textbf{L} — Limites (Limites) · Logarithme (Logarithme) · Lignes de niveau (Produit scalaire) · Loi binomiale (Probabilités).\par
+\textbf{M} — Matrices (Matrices) · Moivre, formule (Nombres complexes) · Méthode des moindres carrés (Statistiques).\par
+\textbf{N} — Nombres complexes (Nombres complexes) · Nombres premiers (Arithmétique).\par
+\textbf{P} — Primitives (Primitives) · Produit scalaire (Produit scalaire) · Produit vectoriel (Produit scalaire) · Probabilités (Probabilités) · Parabole (Coniques) · Pivot de Gauss (Algèbre linéaire).\par
+\textbf{R} — Récurrence (Suites) · Rotation (Similitudes) · Racines $n$-ièmes (Nombres complexes).\par
+\textbf{S} — Suites (Suites) · Similitudes (Similitudes) · Statistiques (Statistiques) · Systèmes linéaires (Algèbre linéaire).\par
+\textbf{T} — T.V.I. (Limites) · Translation (Isométries) · Tableau de variations (Dérivation).\par
+\textbf{V} — Variable aléatoire (Probabilités) · Variance (Probabilités, Statistiques) · Volume de révolution (Intégrale).\par
+\end{multicols}
