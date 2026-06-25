@@ -23,8 +23,13 @@ import { dirname, join } from 'node:path';
 
 const execFileP = promisify(execFile);
 const HERE = dirname(fileURLToPath(import.meta.url));
-const ENDPOINT = process.env.NVIDIA_ENDPOINT || 'https://integrate.api.nvidia.com/v1/chat/completions';
-const MODEL = process.env.NVIDIA_MODEL || 'deepseek-ai/deepseek-r1';
+// Appel DIRECT à NVIDIA par défaut (l'environnement atteint integrate.api.nvidia.com).
+// Repli possible via le proxy Vercel /api/nv (réponse SSE) avec NVIDIA_PROXY=1.
+const DIRECT = process.env.NVIDIA_PROXY !== '1';
+const ENDPOINT = process.env.NVIDIA_ENDPOINT ||
+  (DIRECT ? 'https://integrate.api.nvidia.com/v1/chat/completions' : 'https://onbuch-v2.vercel.app/api/nv');
+// Modèle rapide accessible à ces clés. (deepseek-r1 = id inexistant → 404.)
+const MODEL = process.env.NVIDIA_MODEL || 'deepseek-ai/deepseek-v4-flash';
 const MAX_TOKENS = Number(process.env.MAX_TOKENS || 32768);
 const MAX_FIX_ROUNDS = Number(process.env.MAX_FIX_ROUNDS || 3);
 const KEYS = (process.env.NVIDIA_API_KEYS || '').split(',').map((s) => s.trim()).filter(Boolean);
@@ -64,18 +69,41 @@ function stripFences(s) {
 }
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
+// Lit un flux SSE OpenAI (data: {...}\n\n … data: [DONE]) et concatène le contenu.
+async function readSSE(res) {
+  let buf = '', out = '';
+  const dec = new TextDecoder();
+  for await (const chunk of res.body) {
+    buf += dec.decode(chunk, { stream: true });
+    let i;
+    while ((i = buf.indexOf('\n')) >= 0) {
+      const line = buf.slice(0, i).trim();
+      buf = buf.slice(i + 1);
+      if (!line.startsWith('data:')) continue;
+      const d = line.slice(5).trim();
+      if (d === '[DONE]') continue;
+      try { out += JSON.parse(d).choices?.[0]?.delta?.content || ''; } catch { /* keep-alive */ }
+    }
+  }
+  return out;
+}
+
 async function callNvidia(key, messages) {
   for (let attempt = 0; attempt < 5; attempt++) {
     try {
-      const r = await fetch(ENDPOINT, {
-        method: 'POST',
-        headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ model: MODEL, messages, temperature: 0.3, top_p: 0.9, max_tokens: MAX_TOKENS, stream: false }),
-      });
+      const req = DIRECT
+        ? { headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json', Accept: 'application/json' },
+            body: JSON.stringify({ model: MODEL, messages, temperature: 0.3, top_p: 0.9, max_tokens: MAX_TOKENS, stream: false }) }
+        // Proxy Vercel /api/nv : la clé voyage dans le corps, réponse en SSE.
+        : { headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ key, model: MODEL, messages, max_tokens: MAX_TOKENS }) };
+      const r = await fetch(ENDPOINT, { method: 'POST', ...req });
       if (r.status === 429 || r.status >= 500) { await sleep(2000 * 2 ** attempt); continue; }
       if (!r.ok) throw new Error(`HTTP ${r.status}: ${(await r.text()).slice(0, 300)}`);
-      const data = await r.json();
-      return stripFences(stripThink(data?.choices?.[0]?.message?.content || ''));
+      const raw = DIRECT
+        ? (await r.json())?.choices?.[0]?.message?.content || ''
+        : await readSSE(r);
+      return stripFences(stripThink(raw));
     } catch (e) {
       if (attempt === 4) throw e;
       await sleep(2000 * 2 ** attempt);

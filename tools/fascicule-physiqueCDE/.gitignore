@@ -1,0 +1,6 @@
+# Fichiers temporaires de génération/compilation
+_*.log
+.build/
+*.aux
+*.out
+*.toc
