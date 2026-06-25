@@ -1,0 +1,440 @@
+\chapter{Géométrie dans l'espace (introduction)}
+\textit{Jusqu'ici, tu as travaillé dans le plan. La géométrie de l'espace ajoute une
+troisième dimension : les figures ne tiennent plus sur une feuille. Ce chapitre pose
+le vocabulaire (points, droites, plans), les règles qui disent comment ces objets se
+rencontrent, puis les outils pour calculer dans l'espace (coordonnées, vecteurs). On
+reste \emph{introductif} : l'objectif est de \og voir dans l'espace\fg{} et de
+raisonner proprement sur des positions relatives.}
+
+\section{Points, droites et plans de l'espace}
+
+\begin{definition}[Objets de base]
+L'\textbf{espace} est l'ensemble de tous les \textbf{points}. On y distingue trois
+types d'objets :
+\begin{itemize}
+  \item les \textbf{points}, notés $A,B,C,\dots$ ;
+  \item les \textbf{droites}, notées $(AB)$, $(d)$, $\Delta,\dots$ ;
+  \item les \textbf{plans}, notés $(ABC)$, $(\mathcal{P})$, $(\mathcal{Q}),\dots$
+\end{itemize}
+Un point peut \textbf{appartenir} ($\in$) ou non à une droite ou à un plan ; une
+droite peut être \textbf{incluse} ($\subset$) ou non dans un plan.
+\end{definition}
+
+\begin{remarque}
+On dessine l'espace en \textbf{perspective cavalière} : les figures du plan «~du
+fond~» sont vues de face (vraies grandeurs), et la profondeur est représentée par des
+fuyantes obliques. Les arêtes \emph{cachées} se tracent en pointillés.
+\end{remarque}
+
+\begin{aretenir}[Vocabulaire de position]
+\begin{itemize}
+  \item Des points sont \textbf{alignés} s'ils appartiennent à une même droite.
+  \item Des points sont \textbf{coplanaires} s'ils appartiennent à un même plan.
+  \item Des droites sont \textbf{coplanaires} s'il existe un plan les contenant toutes.
+\end{itemize}
+\end{aretenir}
+
+\section{Règles d'incidence}
+
+Les règles d'incidence disent \emph{quand} et \emph{comment} les objets se déterminent
+ou se rencontrent. Elles sont admises (axiomes de la géométrie de l'espace).
+
+\begin{propriete}[Déterminer une droite, déterminer un plan]
+\begin{itemize}
+  \item Par \textbf{deux points distincts} passe une \textbf{unique droite}.
+  \item Par \textbf{trois points non alignés} passe un \textbf{unique plan}.
+\end{itemize}
+On détermine aussi un unique plan par : une droite et un point hors de cette droite ;
+deux droites sécantes ; deux droites strictement parallèles.
+\end{propriete}
+
+\begin{propriete}[Droite incluse dans un plan]
+Si deux points distincts $A$ et $B$ appartiennent à un plan $(\mathcal{P})$, alors
+\textbf{toute la droite} $(AB)$ est incluse dans $(\mathcal{P})$.
+\end{propriete}
+
+\begin{theoreme}[Intersection de deux plans]
+Si deux plans distincts ont un point commun, alors leur intersection est une
+\textbf{droite} (la droite contient ce point, et tous les autres points communs).
+\end{theoreme}
+
+\begin{exemple}
+Sur un cube $ABCDEFGH$, les points $A$, $B$ et $C$ ne sont pas alignés : ils
+déterminent le plan de la face inférieure, noté $(ABC)$, qui contient aussi le point
+$D$. La droite $(AB)$ est entièrement incluse dans ce plan.
+\end{exemple}
+
+\begin{illus}
+\begin{tikzpicture}[scale=1.05,line join=round]
+  \coordinate (A) at (0,0);   \coordinate (B) at (3,0);
+  \coordinate (C) at (3.8,0.9); \coordinate (D) at (0.8,0.9);
+  \coordinate (E) at (0,2.4);  \coordinate (F) at (3,2.4);
+  \coordinate (G) at (3.8,3.3); \coordinate (H) at (0.8,3.3);
+  % faces visibles
+  \draw[thick,onbink] (A)--(B)--(F)--(E)--cycle;
+  \draw[thick,onbink] (B)--(C)--(G)--(F)--cycle;
+  \draw[thick,onbink] (E)--(F)--(G)--(H)--cycle;
+  % arêtes cachées
+  \draw[onbmuted,dashed] (A)--(D)--(C);
+  \draw[onbmuted,dashed] (D)--(H);
+  \foreach \p/\pos in {A/below left,B/below right,C/right,D/left,E/left,F/right,G/right,H/above left}
+    \filldraw[onbo] (\p) circle (1.3pt) node[\pos,onbink,font=\footnotesize]{$\p$};
+\end{tikzpicture}
+\fig{Figure — un cube $ABCDEFGH$ en perspective cavalière : arêtes visibles en trait plein, arêtes cachées en pointillés.}
+\end{illus}
+
+\section{Positions relatives de deux droites}
+
+\begin{definition}[Droites coplanaires / non coplanaires]
+Deux droites de l'espace sont :
+\begin{itemize}
+  \item \textbf{coplanaires} s'il existe un plan les contenant toutes les deux ;
+  \item \textbf{non coplanaires} sinon. On dit aussi qu'elles sont
+        \textbf{gauches}.
+\end{itemize}
+\end{definition}
+
+\begin{propriete}[Les trois cas]
+Soit $(d)$ et $(d')$ deux droites de l'espace.
+\begin{itemize}
+  \item Si elles sont \textbf{coplanaires} : elles sont soit \textbf{sécantes}
+        (un unique point commun), soit \textbf{parallèles} (strictement parallèles
+        sans point commun, ou confondues).
+  \item Si elles sont \textbf{non coplanaires} : elles n'ont \textbf{aucun point
+        commun} et ne sont \textbf{pas} parallèles.
+\end{itemize}
+\end{propriete}
+
+\begin{aretenir}
+\textbf{Attention :} dans l'espace, deux droites sans point commun ne sont pas
+forcément parallèles ! Elles peuvent être \textbf{non coplanaires}. Il ne suffit
+pas de « ne pas se couper » pour être parallèles : il faut \emph{en plus} être
+coplanaires.
+\end{aretenir}
+
+\begin{exemple}
+Sur le cube ci-dessus : $(AB)$ et $(EF)$ sont parallèles ; $(AB)$ et $(BC)$ sont
+sécantes (en $B$) ; $(AB)$ et $(CG)$ sont \textbf{non coplanaires} : aucun plan ne
+les contient toutes les deux, et pourtant elles ne se coupent pas.
+\end{exemple}
+
+\section{Position relative d'une droite et d'un plan}
+
+\begin{definition}[Les trois cas]
+Soit une droite $(d)$ et un plan $(\mathcal{P})$.
+\begin{itemize}
+  \item $(d)$ est \textbf{incluse} dans $(\mathcal{P})$ : tous ses points sont dans
+        $(\mathcal{P})$ ;
+  \item $(d)$ est \textbf{parallèle} à $(\mathcal{P})$ : elle n'a aucun point commun
+        avec $(\mathcal{P})$ ;
+  \item $(d)$ est \textbf{sécante} à $(\mathcal{P})$ : elle a un \textbf{unique}
+        point commun avec $(\mathcal{P})$.
+\end{itemize}
+\end{definition}
+
+\begin{theoreme}[Critère de parallélisme droite/plan]
+Une droite $(d)$ est parallèle à un plan $(\mathcal{P})$ \textbf{si et seulement si}
+$(d)$ est parallèle à \textbf{une} droite contenue dans $(\mathcal{P})$.
+\end{theoreme}
+
+\begin{exemple}
+La droite $(EH)$ du cube est parallèle au plan de la face $(ABC)$ : en effet $(EH)$
+est parallèle à la droite $(AD)$, qui est, elle, contenue dans le plan $(ABC)$.
+\end{exemple}
+
+\section{Position relative de deux plans}
+
+\begin{definition}[Les deux cas]
+Soit deux plans $(\mathcal{P})$ et $(\mathcal{Q})$.
+\begin{itemize}
+  \item Ils sont \textbf{parallèles} s'ils n'ont aucun point commun (parallèles
+        stricts) ou s'ils sont confondus ;
+  \item ils sont \textbf{sécants} si leur intersection est une \textbf{droite}.
+\end{itemize}
+\end{definition}
+
+\begin{propriete}[Critère de parallélisme de deux plans]
+Si deux droites sécantes d'un plan $(\mathcal{P})$ sont respectivement parallèles à
+deux droites d'un plan $(\mathcal{Q})$, alors les plans $(\mathcal{P})$ et
+$(\mathcal{Q})$ sont parallèles.
+\end{propriete}
+
+\begin{remarque}
+Sur le cube, les faces opposées sont parallèles : $(ABC)\parallel(EFG)$. Deux faces
+adjacentes sont sécantes : leur intersection est l'arête commune (par exemple
+$(ABC)\cap(BCG)=(BC)$).
+\end{remarque}
+
+\section{Parallélisme : le théorème du toit}
+
+\begin{theoreme}[Théorème du toit]
+Soit deux droites \textbf{parallèles} $(d)$ et $(d')$, l'une contenue dans un plan
+$(\mathcal{P})$, l'autre dans un plan $(\mathcal{Q})$. Si $(\mathcal{P})$ et
+$(\mathcal{Q})$ sont \textbf{sécants} selon une droite $\Delta$, alors $\Delta$ est
+\textbf{parallèle} à $(d)$ et à $(d')$.
+\end{theoreme}
+
+\begin{illus}
+\begin{tikzpicture}[scale=1.0,line join=round]
+  % deux "pans de toit" sécants selon la ligne de faîte
+  \coordinate (Pl) at (-2.2,0);  \coordinate (Pr) at (0.6,0);
+  \coordinate (Ql) at (1.4,0);   \coordinate (Qr) at (4.2,0);
+  \coordinate (Fa) at (-0.2,1.9); \coordinate (Fb) at (2.6,1.9);
+  \fill[onbsoft] (Pl)--(Pr)--(Fb)--(Fa)--cycle;
+  \fill[onbsoft] (Ql)--(Qr)--(Fb)--(Fa)--cycle;
+  \draw[thick,onbink] (Pl)--(Pr)--(Fb)--(Fa)--cycle;
+  \draw[thick,onbink] (Ql)--(Qr)--(Fb)--(Fa)--cycle;
+  % droites parallèles dans chaque plan + faîte
+  \draw[thick,onbo] (Pl)--(Pr) node[below,font=\footnotesize]{$(d)$};
+  \draw[thick,onbo] (Qr)--(Ql) node[below,font=\footnotesize]{$(d')$};
+  \draw[very thick,onbgreen] (Fa)--(Fb) node[midway,above,font=\footnotesize]{$\Delta$};
+\end{tikzpicture}
+\fig{Figure — théorème du toit : $(d)\parallel(d')$ entraîne $\Delta\parallel(d)\parallel(d')$, où $\Delta$ est l'arête (faîtage) commune aux deux plans.}
+\end{illus}
+
+\section{Orthogonalité : droite orthogonale à un plan}
+
+\begin{definition}[Droite orthogonale à un plan]
+Une droite $(d)$ est \textbf{orthogonale} à un plan $(\mathcal{P})$ si elle est
+orthogonale à \textbf{toutes} les droites de $(\mathcal{P})$.
+\end{definition}
+
+\begin{theoreme}[Critère pratique]
+Pour montrer qu'une droite $(d)$ est orthogonale à un plan $(\mathcal{P})$, il suffit
+qu'elle soit orthogonale à \textbf{deux droites sécantes} de $(\mathcal{P})$.
+\end{theoreme}
+
+\begin{propriete}
+Si une droite $(d)$ est orthogonale à un plan $(\mathcal{P})$, alors :
+\begin{itemize}
+  \item toute droite parallèle à $(d)$ est aussi orthogonale à $(\mathcal{P})$ ;
+  \item tout plan parallèle à $(\mathcal{P})$ est aussi orthogonal à $(d)$.
+\end{itemize}
+\end{propriete}
+
+\begin{exemple}
+Sur le cube, l'arête $(AE)$ est orthogonale au plan $(ABC)$ : elle est orthogonale à
+$(AB)$ et à $(AD)$, qui sont deux droites sécantes de ce plan. Elle est donc
+orthogonale à \emph{toute} droite de la face $(ABC)$.
+\end{exemple}
+
+\section{Repérage dans l'espace}
+
+\begin{definition}[Repère, coordonnées]
+Un \textbf{repère} de l'espace est un quadruplet $(O\,;\,\vec{\imath},\vec{\jmath},
+\vec{k})$ formé d'un point $O$ (l'origine) et de trois vecteurs non coplanaires.
+Tout point $M$ de l'espace se repère alors par un unique triplet $(x\,;\,y\,;\,z)$,
+ses \textbf{coordonnées}, tel que
+\[ \overrightarrow{OM}=x\,\vec{\imath}+y\,\vec{\jmath}+z\,\vec{k}. \]
+On dit que $x$ est l'\textbf{abscisse}, $y$ l'\textbf{ordonnée}, $z$ la \textbf{cote}.
+\end{definition}
+
+\begin{illus}
+\begin{tikzpicture}[scale=1.1,line join=round]
+  \coordinate (O) at (0,0);
+  \draw[->,thick,onbink] (O)--(3,0) node[right,font=\footnotesize]{$x$};
+  \draw[->,thick,onbink] (O)--(0,2.6) node[above,font=\footnotesize]{$z$};
+  \draw[->,thick,onbink] (O)--(-1.5,-1.1) node[left,font=\footnotesize]{$y$};
+  % point M(2;1;1.5) en perspective
+  \coordinate (Mx) at (2,0);
+  \coordinate (Mxy) at (1.1,-0.55);
+  \coordinate (M) at (1.1,1.05);
+  \draw[onbmuted,dashed] (O)--(Mx)--(Mxy)--(M);
+  \draw[onbmuted,dashed] (Mxy)--(0,0);
+  \filldraw[onbo] (M) circle (1.5pt) node[right,onbink,font=\footnotesize]{$M(x\,;\,y\,;\,z)$};
+\end{tikzpicture}
+\fig{Figure — repère $(O\,;\,\vec{\imath},\vec{\jmath},\vec{k})$ et coordonnées $(x\,;\,y\,;\,z)$ d'un point $M$.}
+\end{illus}
+
+\begin{propriete}[Milieu et distance (repère orthonormé)]
+Dans un repère \textbf{orthonormé}, pour $A(x_A\,;\,y_A\,;\,z_A)$ et
+$B(x_B\,;\,y_B\,;\,z_B)$ :
+\begin{itemize}
+  \item le \textbf{milieu} $I$ de $[AB]$ a pour coordonnées
+        \[ I\!\left(\frac{x_A+x_B}{2}\,;\,\frac{y_A+y_B}{2}\,;\,\frac{z_A+z_B}{2}\right); \]
+  \item la \textbf{distance} $AB$ vaut
+        \[ AB=\sqrt{(x_B-x_A)^2+(y_B-y_A)^2+(z_B-z_A)^2}. \]
+\end{itemize}
+\end{propriete}
+
+\begin{exemple}
+Pour $A(1\,;\,0\,;\,2)$ et $B(3\,;\,4\,;\,2)$ : le milieu est $I(2\,;\,2\,;\,2)$ et
+\[ AB=\sqrt{(3-1)^2+(4-0)^2+(2-2)^2}=\sqrt{4+16+0}=\sqrt{20}=2\sqrt{5}. \]
+\end{exemple}
+
+\section{Vecteurs de l'espace}
+
+Les vecteurs du plan se prolongent sans changement à l'espace : on additionne, on
+multiplie par un réel de la même façon. Seule nouveauté : il y a maintenant
+\emph{trois} directions de base.
+
+\begin{definition}[Colinéarité]
+Deux vecteurs $\vec{u}$ et $\vec{v}$ sont \textbf{colinéaires} s'il existe un réel
+$k$ tel que $\vec{v}=k\,\vec{u}$ (avec $\vec{u}\neq\vec{0}$). En coordonnées,
+$\vec{u}(x\,;\,y\,;\,z)$ et $\vec{v}(x'\,;\,y'\,;\,z')$ sont colinéaires lorsque
+$x'=kx,\ y'=ky,\ z'=kz$ pour un même $k$.
+\end{definition}
+
+\begin{propriete}
+Trois points $A$, $B$, $C$ sont \textbf{alignés} si et seulement si les vecteurs
+$\overrightarrow{AB}$ et $\overrightarrow{AC}$ sont colinéaires.
+\end{propriete}
+
+\begin{definition}[Vecteurs coplanaires]
+Trois vecteurs $\vec{u}$, $\vec{v}$, $\vec{w}$ sont \textbf{coplanaires} si l'un
+d'eux s'écrit comme combinaison des deux autres, par exemple
+\[ \vec{w}=a\,\vec{u}+b\,\vec{v}\qquad (a,b\in\R). \]
+Géométriquement, en plaçant leurs origines en un même point, leurs supports sont
+contenus dans un même plan.
+\end{definition}
+
+\begin{remarque}
+Quatre points $A$, $B$, $C$, $D$ sont coplanaires si et seulement si les vecteurs
+$\overrightarrow{AB}$, $\overrightarrow{AC}$, $\overrightarrow{AD}$ sont coplanaires.
+Cette idée sera approfondie en Terminale ; ici on se contente de la reconnaître.
+\end{remarque}
+
+\begin{exemple}
+Soit $\vec{u}(1\,;\,0\,;\,1)$, $\vec{v}(0\,;\,1\,;\,1)$ et $\vec{w}(2\,;\,1\,;\,3)$.
+On a $\vec{w}=2\,\vec{u}+1\,\vec{v}$ car $2(1\,;\,0\,;\,1)+(0\,;\,1\,;\,1)=
+(2\,;\,1\,;\,3)$. Les trois vecteurs sont donc \textbf{coplanaires}.
+\end{exemple}
+
+\section{Sections planes simples}
+
+\begin{definition}[Section plane]
+La \textbf{section} d'un solide par un plan $(\mathcal{P})$ est l'ensemble des points
+communs au solide et au plan. Pour un cube ou une pyramide, c'est un \textbf{polygone}.
+\end{definition}
+
+\begin{aretenir}[Construire une section]
+Pour tracer la section d'un solide par un plan, on cherche, face par face, les
+\textbf{segments} où le plan coupe chaque face :
+\begin{itemize}
+  \item deux points du plan situés sur une même face se relient par un segment ;
+  \item on utilise le \textbf{parallélisme} : si le plan coupe deux faces parallèles,
+        les deux traces obtenues sont parallèles.
+\end{itemize}
+La section est le polygone formé par tous ces segments mis bout à bout.
+\end{aretenir}
+
+\begin{exemple}
+Le plan passant par les milieux $I$, $J$, $K$ de trois arêtes issues d'un même
+sommet d'un cube coupe le cube selon un \textbf{triangle} $IJK$.
+\end{exemple}
+
+\begin{illus}
+\begin{tikzpicture}[scale=1.05,line join=round]
+  % pyramide à base carrée SABCD
+  \coordinate (A) at (0,0);   \coordinate (B) at (3,0);
+  \coordinate (C) at (3.8,0.9); \coordinate (D) at (0.8,0.9);
+  \coordinate (S) at (1.9,3.0);
+  \draw[onbmuted,dashed] (A)--(D)--(C);
+  \draw[thick,onbink] (A)--(B)--(C);
+  \draw[thick,onbink] (S)--(A); \draw[thick,onbink] (S)--(B); \draw[thick,onbink] (S)--(C);
+  \draw[onbmuted,dashed] (S)--(D);
+  % section parallèle à la base : milieux des arêtes latérales
+  \coordinate (P) at ($(S)!0.5!(A)$);
+  \coordinate (Q) at ($(S)!0.5!(B)$);
+  \coordinate (R) at ($(S)!0.5!(C)$);
+  \coordinate (T) at ($(S)!0.5!(D)$);
+  \draw[thick,onbo] (P)--(Q)--(R);
+  \draw[onbo,dashed] (R)--(T)--(P);
+  \foreach \p/\pos in {S/above,A/below left,B/below right,C/right,D/left}
+    \filldraw[onbink] (\p) circle (1.2pt) node[\pos,font=\footnotesize]{$\p$};
+\end{tikzpicture}
+\fig{Figure — pyramide $SABCD$ : un plan parallèle à la base la coupe selon un quadrilatère $PQRT$ semblable à la base.}
+\end{illus}
+
+% ════════════════════════════════════════════════════════════
+\section{L'essentiel à retenir}
+
+\begin{synthese}
+\textbf{Détermination.} Deux points distincts $\Rightarrow$ une droite ; trois points
+non alignés $\Rightarrow$ un plan. Si $A,B\in(\mathcal{P})$ alors $(AB)\subset(\mathcal{P})$.
+
+\smallskip
+\textbf{Deux droites.} Coplanaires : sécantes ou parallèles. Non coplanaires
+(gauches) : ni point commun, ni parallèles.
+
+\smallskip
+\textbf{Droite / plan.} Incluse, parallèle, ou sécante (un point). Critère :
+$(d)\parallel(\mathcal{P})\iff (d)$ parallèle à une droite de $(\mathcal{P})$.
+
+\smallskip
+\textbf{Deux plans.} Parallèles, ou sécants selon une droite.
+
+\smallskip
+\textbf{Théorème du toit.} $(d)\parallel(d')$, $(d)\subset(\mathcal{P})$,
+$(d')\subset(\mathcal{Q})$, $(\mathcal{P})\cap(\mathcal{Q})=\Delta$ $\Rightarrow$
+$\Delta\parallel(d)\parallel(d')$.
+
+\smallskip
+\textbf{Orthogonalité.} $(d)\perp(\mathcal{P})$ si $(d)$ orthogonale à deux droites
+sécantes de $(\mathcal{P})$.
+
+\smallskip
+\textbf{Repère orthonormé.} $I=\big(\tfrac{x_A+x_B}{2};\tfrac{y_A+y_B}{2};
+\tfrac{z_A+z_B}{2}\big)$ ; $AB=\sqrt{(x_B-x_A)^2+(y_B-y_A)^2+(z_B-z_A)^2}$.
+
+\smallskip
+\textbf{Vecteurs.} Colinéaires : $\vec{v}=k\vec{u}$ (alignement). Coplanaires :
+$\vec{w}=a\vec{u}+b\vec{v}$.
+\end{synthese}
+
+% ════════════════════════════════════════════════════════════
+\section{Méthodes \& savoir-faire}
+
+\methode{Montrer que des points sont coplanaires ou alignés}
+Pour l'alignement de $A,B,C$ : vérifier que $\overrightarrow{AB}$ et
+$\overrightarrow{AC}$ sont colinéaires. Pour la coplanarité de $A,B,C,D$ : chercher
+$a,b$ tels que $\overrightarrow{AD}=a\,\overrightarrow{AB}+b\,\overrightarrow{AC}$.
+\begin{exemple}
+$A(0;0;0)$, $B(1;1;0)$, $C(2;2;0)$. On a $\overrightarrow{AC}=(2;2;0)=2\,
+\overrightarrow{AB}$ : $\overrightarrow{AB}$ et $\overrightarrow{AC}$ sont
+colinéaires, donc $A$, $B$, $C$ sont alignés.
+\end{exemple}
+
+\methode{Reconnaître la position relative de deux droites}
+Chercher d'abord un \emph{point commun}. S'il y en a un, elles sont sécantes. Sinon,
+tester si elles sont \emph{coplanaires} (vecteurs directeurs colinéaires
+$\Rightarrow$ parallèles ; sinon, vérifier l'existence d'un plan commun) : si aucun
+plan ne les contient, elles sont \textbf{non coplanaires}.
+\begin{exemple}
+Sur un cube, $(AB)$ et $(CG)$ : pas de point commun, et leurs directions ne sont pas
+parallèles ; on conclut qu'elles sont non coplanaires (gauches).
+\end{exemple}
+
+\methode{Montrer qu'une droite est parallèle à un plan}
+Trouver, dans le plan $(\mathcal{P})$, une droite $(d')$ \textbf{parallèle} à la
+droite $(d)$ étudiée. Souvent $(d')$ est une arête bien choisie du solide.
+\begin{exemple}
+$(EH)$ est parallèle au plan $(ABC)$ car $(EH)\parallel(AD)$ et $(AD)\subset(ABC)$.
+\end{exemple}
+
+\methode{Montrer qu'une droite est orthogonale à un plan}
+Exhiber \textbf{deux droites sécantes} du plan, et montrer que la droite est
+orthogonale à chacune. Conclure par le critère pratique.
+\begin{exemple}
+$(AE)\perp(ABC)$ : on vérifie $(AE)\perp(AB)$ et $(AE)\perp(AD)$, deux droites
+sécantes de la face $(ABC)$.
+\end{exemple}
+
+\methode{Calculer une distance ou un milieu dans l'espace}
+Placer les coordonnées des points, puis appliquer directement les formules du
+repère orthonormé. Pour une longueur d'arête ou de diagonale, c'est la formule de
+distance.
+\begin{exemple}
+Diagonale d'un cube d'arête $a$ avec $A(0;0;0)$ et $G(a;a;a)$ :
+$AG=\sqrt{a^2+a^2+a^2}=a\sqrt{3}$.
+\end{exemple}
+
+\methode{Construire une section plane simple}
+Marquer les points donnés sur les arêtes. Relier deux points d'une même face par un
+segment. Utiliser le parallélisme : la trace sur deux faces parallèles est faite de
+deux segments parallèles. Fermer le polygone.
+\begin{exemple}
+Un plan parallèle à la base d'une pyramide $SABCD$, passant par les milieux des
+arêtes latérales, donne une section $PQRT$ qui est un \textbf{carré} (réduit) parallèle
+à la base.
+\end{exemple}

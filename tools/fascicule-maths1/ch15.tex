@@ -1,0 +1,439 @@
+\chapter{Transformations du plan}
+\textit{Translater une figure, la retourner devant un miroir, l'agrandir, la faire
+tourner : toutes ces opérations sont des \emph{transformations du plan}. Chacune
+déplace les points selon une règle précise, mais respecte certaines propriétés
+(distances, alignement, parallélisme, angles). Ce chapitre recense les
+transformations au programme, leurs propriétés et leurs expressions analytiques —
+des outils que tu retrouveras en géométrie, en analyse et plus tard avec les nombres
+complexes.}
+
+\section{Transformation du plan : vocabulaire}
+
+\begin{definition}[Transformation du plan]
+Une \textbf{transformation du plan} est une application $f$ qui, à tout point $M$ du
+plan, associe un unique point $M'=f(M)$, appelé \textbf{image} de $M$, et telle que
+tout point du plan possède \emph{exactement un} antécédent. On dit que $M'$ est
+l'image de $M$ et que $M$ est l'antécédent de $M'$.
+\end{definition}
+
+\begin{definition}[Point invariant]
+Un point $M$ est dit \textbf{invariant} (ou \textbf{fixe}) par la transformation $f$
+si $f(M)=M$.
+\end{definition}
+
+\begin{aretenir}[Propriétés que peut conserver une transformation]
+Selon la transformation, certaines de ces propriétés sont conservées :
+\begin{itemize}
+  \item les \textbf{distances} ($MN = M'N'$) : on parle alors d'\textbf{isométrie} ;
+  \item l'\textbf{alignement} de trois points ;
+  \item le \textbf{parallélisme} de deux droites ;
+  \item les \textbf{mesures d'angles} ;
+  \item le \textbf{barycentre} (l'image du barycentre est le barycentre des images,
+        avec les mêmes coefficients).
+\end{itemize}
+\end{aretenir}
+
+\begin{remarque}
+Toutes les transformations de ce chapitre conservent l'alignement, le parallélisme
+et le barycentre. Translation, symétries et rotation conservent \emph{aussi} les
+distances (isométries). L'homothétie, elle, \emph{multiplie} les distances par
+$|k|$ : ce n'est pas une isométrie (sauf si $k=\pm 1$).
+\end{remarque}
+
+\section{La translation}
+
+\begin{definition}[Translation de vecteur $\vec{u}$]
+Soit $\vec{u}$ un vecteur du plan. La \textbf{translation de vecteur $\vec{u}$},
+notée $t_{\vec{u}}$, est la transformation qui à tout point $M$ associe l'unique
+point $M'$ tel que
+\[ \overrightarrow{MM'}=\vec{u}. \]
+\end{definition}
+
+\begin{propriete}[Propriétés de la translation]
+Soit $t_{\vec u}$ la translation de vecteur $\vec u$.
+\begin{itemize}
+  \item Si $\vec u\neq\vec 0$, $t_{\vec u}$ n'a \textbf{aucun point invariant} ;
+        si $\vec u=\vec 0$, c'est l'identité (tout point est invariant).
+  \item C'est une \textbf{isométrie} : pour tous $M,N$ d'images $M',N'$,
+        $\ M'N'=MN$. En effet $\overrightarrow{M'N'}=\overrightarrow{MN}$.
+  \item Elle conserve l'\textbf{alignement}, le \textbf{parallélisme}, les
+        \textbf{angles} et le \textbf{barycentre}.
+\end{itemize}
+\end{propriete}
+
+\begin{theoreme}[Conservation du vecteur]
+Pour tous points $M$ et $N$ d'images $M'$ et $N'$ par $t_{\vec u}$, on a
+$\overrightarrow{M'N'}=\overrightarrow{MN}$.
+\end{theoreme}
+
+\begin{remarque}
+\textit{Démonstration.} Par définition $\overrightarrow{MM'}=\vec u$ et
+$\overrightarrow{NN'}=\vec u$. Avec la relation de Chasles,
+$\overrightarrow{M'N'}=\overrightarrow{M'M}+\overrightarrow{MN}+\overrightarrow{NN'}
+=-\vec u+\overrightarrow{MN}+\vec u=\overrightarrow{MN}$. D'où $M'N'=MN$.
+\end{remarque}
+
+\begin{propriete}[Expression analytique]
+Le plan est muni d'un repère $(O,\vec{\imath},\vec{\jmath})$ et $\vec u(a\,;\,b)$.
+La translation $t_{\vec u}$ transforme $M(x\,;\,y)$ en $M'(x'\,;\,y')$ avec
+\[ \begin{cases} x'=x+a\\[2pt] y'=y+b. \end{cases} \]
+\end{propriete}
+
+\begin{exemple}
+Avec $\vec u(3\,;\,-1)$, l'image de $A(2\,;\,5)$ est $A'(2+3\,;\,5-1)=A'(5\,;\,4)$.
+\end{exemple}
+
+\section{La symétrie centrale}
+
+\begin{definition}[Symétrie de centre $O$]
+Soit $O$ un point du plan. La \textbf{symétrie centrale de centre $O$}, notée $S_O$,
+associe à tout point $M$ l'unique point $M'$ tel que $O$ soit le \textbf{milieu} du
+segment $[MM']$, c'est-à-dire $\overrightarrow{OM'}=-\overrightarrow{OM}$.
+\end{definition}
+
+\begin{propriete}[Propriétés de la symétrie centrale]
+\begin{itemize}
+  \item Le \textbf{seul point invariant} est le centre $O$.
+  \item C'est une \textbf{isométrie} : $M'N'=MN$. En effet
+        $\overrightarrow{M'N'}=-\overrightarrow{MN}$.
+  \item Elle conserve l'alignement, le parallélisme, les angles et le barycentre.
+  \item $S_O$ est sa \textbf{propre réciproque} : $S_O\circ S_O=\mathrm{id}$.
+  \item La symétrie centrale est l'\textbf{homothétie de centre $O$ et de rapport
+        $-1$}.
+\end{itemize}
+\end{propriete}
+
+\begin{propriete}[Expression analytique]
+Si $O(x_0\,;\,y_0)$, la symétrie $S_O$ transforme $M(x\,;\,y)$ en
+$M'(x'\,;\,y')$ avec
+\[ \begin{cases} x'=2x_0-x\\[2pt] y'=2y_0-y. \end{cases} \]
+En particulier, si le centre est l'origine $O$, alors $x'=-x$ et $y'=-y$.
+\end{propriete}
+
+\begin{exemple}
+Image de $A(4\,;\,1)$ par la symétrie de centre $O(1\,;\,2)$ :
+$x'=2(1)-4=-2$, $y'=2(2)-1=3$, donc $A'(-2\,;\,3)$.
+\end{exemple}
+
+\section{La symétrie orthogonale (axiale)}
+
+\begin{definition}[Symétrie d'axe $(D)$]
+Soit $(D)$ une droite. La \textbf{symétrie orthogonale d'axe $(D)$} (ou
+\textbf{symétrie axiale}), notée $S_{(D)}$, associe à tout point $M$ le point $M'$
+tel que $(D)$ soit la \textbf{médiatrice} du segment $[MM']$. Si $M\in(D)$, alors
+$M'=M$.
+\end{definition}
+
+\begin{propriete}[Propriétés de la symétrie axiale]
+\begin{itemize}
+  \item Les \textbf{points invariants} sont exactement les points de l'axe $(D)$.
+  \item C'est une \textbf{isométrie} : elle conserve les distances.
+  \item Elle conserve l'alignement, le parallélisme, les mesures d'angles
+        (mais \textbf{inverse leur orientation}) et le barycentre.
+  \item $S_{(D)}$ est sa propre réciproque : $S_{(D)}\circ S_{(D)}=\mathrm{id}$.
+\end{itemize}
+\end{propriete}
+
+\begin{propriete}[Expressions analytiques usuelles]
+Dans un repère orthonormé, $M(x\,;\,y)$ a pour image $M'(x'\,;\,y')$ :
+\begin{center}\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{@{}l l@{}}
+\toprule
+\textbf{Axe de symétrie} & \textbf{Image $M'(x'\,;\,y')$} \\
+\midrule
+axe des abscisses $(Ox)$ & $x'=x,\quad y'=-y$ \\
+axe des ordonnées $(Oy)$ & $x'=-x,\quad y'=y$ \\
+première bissectrice $y=x$ & $x'=y,\quad y'=x$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{propriete}
+
+\begin{remarque}
+La composée de deux symétries axiales d'axes parallèles est une \textbf{translation} ;
+la composée de deux symétries axiales d'axes sécants en $O$ est une
+\textbf{rotation} de centre $O$.
+\end{remarque}
+
+\section{L'homothétie}
+
+\begin{definition}[Homothétie de centre $\Omega$ et de rapport $k$]
+Soit $\Omega$ un point et $k$ un réel \textbf{non nul}. L'\textbf{homothétie de
+centre $\Omega$ et de rapport $k$}, notée $h(\Omega,k)$, associe à tout point $M$
+l'unique point $M'$ tel que
+\[ \overrightarrow{\Omega M'}=k\,\overrightarrow{\Omega M}. \]
+\end{definition}
+
+\begin{propriete}[Propriétés de l'homothétie]
+Soit $h=h(\Omega,k)$, $k\neq 0$.
+\begin{itemize}
+  \item Le centre $\Omega$ est invariant. Si $k\neq 1$, c'est le \textbf{seul}
+        point invariant.
+  \item Pour tous $M,N$ d'images $M',N'$ : $\overrightarrow{M'N'}=k\,\overrightarrow{MN}$,
+        donc $M'N'=|k|\,MN$ (les longueurs sont \textbf{multipliées par $|k|$}).
+  \item Elle conserve l'\textbf{alignement}, le \textbf{parallélisme}
+        (une droite a pour image une droite \emph{parallèle}), les \textbf{angles}
+        et le \textbf{barycentre}.
+  \item Cas particuliers : $k=1$ donne l'identité ; $k=-1$ donne la \textbf{symétrie
+        centrale} de centre $\Omega$.
+\end{itemize}
+\end{propriete}
+
+\begin{theoreme}[Conservation du parallélisme]
+Pour tous points $M,N$ d'images $M',N'$ par $h(\Omega,k)$, on a
+$\overrightarrow{M'N'}=k\,\overrightarrow{MN}$.
+\end{theoreme}
+
+\begin{remarque}
+\textit{Démonstration.} Par définition $\overrightarrow{\Omega M'}=k\overrightarrow{\Omega M}$
+et $\overrightarrow{\Omega N'}=k\overrightarrow{\Omega N}$. Alors, avec Chasles,
+$\overrightarrow{M'N'}=\overrightarrow{\Omega N'}-\overrightarrow{\Omega M'}
+=k(\overrightarrow{\Omega N}-\overrightarrow{\Omega M})=k\,\overrightarrow{MN}$.
+Les vecteurs $\overrightarrow{M'N'}$ et $\overrightarrow{MN}$ sont colinéaires :
+$(M'N')\parallel(MN)$, et $M'N'=|k|\,MN$.
+\end{remarque}
+
+\begin{illus}
+\begin{tikzpicture}[scale=1,>={Stealth[]}]
+  \coordinate (Om) at (0,0);
+  \coordinate (A) at (1.2,0.6);
+  \coordinate (B) at (2.2,0.3);
+  \coordinate (C) at (1.7,1.5);
+  % image par k=1.8
+  \coordinate (Ap) at (2.16,1.08);
+  \coordinate (Bp) at (3.96,0.54);
+  \coordinate (Cp) at (3.06,2.7);
+  \filldraw[onbink] (Om) circle (1.6pt) node[below left,onbink]{$\Omega$};
+  \draw[thick,onbmuted] (A)--(B)--(C)--cycle;
+  \filldraw[onbo] (A) circle (1.3pt) node[below,onbink]{$A$};
+  \filldraw[onbo] (B) circle (1.3pt) node[right,onbink]{$B$};
+  \filldraw[onbo] (C) circle (1.3pt) node[above,onbink]{$C$};
+  \draw[thick,onbo] (Ap)--(Bp)--(Cp)--cycle;
+  \filldraw[onbo] (Ap) circle (1.3pt) node[below,onbink]{$A'$};
+  \filldraw[onbo] (Bp) circle (1.3pt) node[right,onbink]{$B'$};
+  \filldraw[onbo] (Cp) circle (1.3pt) node[above,onbink]{$C'$};
+  \draw[->,onbblue,dashed] (Om)--(Cp);
+  \draw[->,onbline] (Om)--(A);
+\end{tikzpicture}
+\fig{Figure — image du triangle $ABC$ par l'homothétie de centre $\Omega$ et de rapport $k=1{,}8$ : la figure est agrandie, chaque côté reste parallèle à son image.}
+\end{illus}
+
+\begin{propriete}[Expression analytique]
+Si $\Omega(x_0\,;\,y_0)$, l'homothétie $h(\Omega,k)$ transforme $M(x\,;\,y)$ en
+$M'(x'\,;\,y')$ avec
+\[ \begin{cases} x'=x_0+k(x-x_0)\\[2pt] y'=y_0+k(y-y_0). \end{cases} \]
+\end{propriete}
+
+\begin{exemple}
+Image de $A(5\,;\,2)$ par $h(\Omega,2)$ avec $\Omega(1\,;\,1)$ :
+$x'=1+2(5-1)=9$, $y'=1+2(2-1)=3$, donc $A'(9\,;\,3)$.
+\end{exemple}
+
+\section{La rotation}
+
+\begin{definition}[Rotation de centre $\Omega$ et d'angle $\theta$]
+Soit $\Omega$ un point et $\theta$ un angle orienté. La \textbf{rotation de centre
+$\Omega$ et d'angle $\theta$}, notée $r(\Omega,\theta)$, associe à tout point $M$ :
+\begin{itemize}
+  \item $\Omega$ lui-même si $M=\Omega$ ;
+  \item sinon, l'unique point $M'$ tel que $\Omega M'=\Omega M$ et
+        $\big(\overrightarrow{\Omega M},\overrightarrow{\Omega M'}\big)=\theta$.
+\end{itemize}
+\end{definition}
+
+\begin{propriete}[Propriétés de la rotation]
+\begin{itemize}
+  \item Le \textbf{centre $\Omega$} est le seul point invariant (si $\theta$ n'est
+        pas un multiple de $2\pi$).
+  \item C'est une \textbf{isométrie} : elle conserve les distances.
+  \item Elle conserve l'alignement, le parallélisme, les \textbf{mesures et
+        l'orientation des angles} et le barycentre.
+  \item Cas particuliers : $\theta=0$ donne l'identité ; $\theta=\pi$ donne la
+        \textbf{symétrie centrale} de centre $\Omega$.
+  \item La réciproque de $r(\Omega,\theta)$ est $r(\Omega,-\theta)$.
+\end{itemize}
+\end{propriete}
+
+\begin{illus}
+\begin{tikzpicture}[scale=1,>={Stealth[]}]
+  \coordinate (Om) at (0,0);
+  \coordinate (M) at (2.4,0);
+  \coordinate (Mp) at (60:2.4);
+  \filldraw[onbink] (Om) circle (1.6pt) node[below left,onbink]{$\Omega$};
+  \draw[onbline,dashed] (Om) circle (2.4);
+  \draw[->,onbmuted] (Om)--(M) node[right,onbink]{$M$};
+  \draw[->,onbo,thick] (Om)--(Mp) node[above right,onbink]{$M'$};
+  \filldraw[onbo] (M) circle (1.3pt);
+  \filldraw[onbo] (Mp) circle (1.3pt);
+  \draw[onbblue] (1,0) arc (0:60:1);
+  \node[onbblue] at (40:1.35) {$\theta$};
+\end{tikzpicture}
+\fig{Figure — rotation de centre $\Omega$ et d'angle $\theta$ : $M'$ est sur le cercle de centre $\Omega$ passant par $M$, avec $\big(\protect\overrightarrow{\Omega M},\protect\overrightarrow{\Omega M'}\big)=\theta$.}
+\end{illus}
+
+\begin{remarque}
+Au programme de Première C, on retient surtout la \emph{définition géométrique} et
+les propriétés de la rotation ; l'expression analytique générale (avec $\cos\theta$
+et $\sin\theta$) sera systématisée en Terminale, notamment grâce aux nombres
+complexes.
+\end{remarque}
+
+\section{Image d'une droite, d'un cercle}
+
+\begin{theoreme}[Image d'une droite]
+Par une translation, une symétrie (centrale ou axiale), une homothétie ou une
+rotation, l'image d'une \textbf{droite} est une \textbf{droite}. Plus précisément :
+\begin{itemize}
+  \item par une translation, l'image de $(D)$ est une droite \textbf{parallèle} à $(D)$ ;
+  \item par une homothétie, l'image de $(D)$ est une droite \textbf{parallèle} à $(D)$ ;
+  \item par une symétrie axiale ou une rotation, l'image est une droite (en général
+        non parallèle, sauf cas particuliers).
+\end{itemize}
+\end{theoreme}
+
+\begin{theoreme}[Image d'un cercle]
+L'image d'un \textbf{cercle} $\mathcal{C}$ de centre $I$ et de rayon $R$ est un cercle
+$\mathcal{C}'$ de centre $I'$ (image de $I$) et de rayon $R'$ :
+\begin{itemize}
+  \item par une \textbf{isométrie} (translation, symétrie, rotation) : $R'=R$ ;
+  \item par une \textbf{homothétie} de rapport $k$ : $R'=|k|\,R$.
+\end{itemize}
+\end{theoreme}
+
+\begin{exemple}
+Soit $\mathcal{C}$ le cercle de centre $I(1\,;\,0)$ et de rayon $2$, et $h$
+l'homothétie de centre $O$ et de rapport $3$. L'image de $I$ est $I'(3\,;\,0)$ et le
+rayon devient $|3|\times 2=6$ : $\mathcal{C}'$ a pour centre $I'(3\,;\,0)$ et rayon $6$.
+\end{exemple}
+
+\section{Composées simples}
+
+\begin{propriete}[Quelques composées à connaître]
+\begin{itemize}
+  \item $t_{\vec u}\circ t_{\vec v}=t_{\vec u+\vec v}$ : la composée de deux
+        translations est la translation de vecteur $\vec u+\vec v$.
+  \item $h(\Omega,k')\circ h(\Omega,k)=h(\Omega,kk')$ : deux homothéties de
+        \emph{même centre} se composent en multipliant les rapports.
+  \item $S_O\circ S_O=\mathrm{id}$ et $S_{(D)}\circ S_{(D)}=\mathrm{id}$ (les
+        symétries sont \textbf{involutives}).
+  \item $r(\Omega,\theta')\circ r(\Omega,\theta)=r(\Omega,\theta+\theta')$ : deux
+        rotations de même centre s'additionnent en angle.
+\end{itemize}
+\end{propriete}
+
+\begin{exemple}
+La composée de la translation de vecteur $\vec u(1\,;\,2)$ suivie de celle de vecteur
+$\vec v(3\,;\,-5)$ est la translation de vecteur $\vec u+\vec v=(4\,;\,-3)$.
+\end{exemple}
+
+\begin{remarque}
+Attention : la composition de transformations n'est pas toujours commutative
+($f\circ g\neq g\circ f$ en général). Elle l'est cependant pour deux translations,
+ou pour deux homothéties (ou rotations) de \emph{même centre}.
+\end{remarque}
+
+% ════════════════════════════════════════════════════════════
+\section{L'essentiel à retenir}
+
+\begin{synthese}
+\textbf{Définitions vectorielles.}
+$t_{\vec u}:\overrightarrow{MM'}=\vec u$\ ;\quad
+$S_O:\overrightarrow{OM'}=-\overrightarrow{OM}$\ ;\quad
+$h(\Omega,k):\overrightarrow{\Omega M'}=k\,\overrightarrow{\Omega M}$.
+
+\smallskip
+\textbf{Tableau récapitulatif.}
+\begin{center}\renewcommand{\arraystretch}{1.35}
+\color{white}
+\begin{tabular}{@{}l c c c@{}}
+\toprule
+\textbf{Transformation} & \textbf{Distances} & \textbf{Invariant(s)} & \textbf{Effet} \\
+\midrule
+Translation $t_{\vec u}$        & conservées      & aucun (si $\vec u\neq\vec 0$) & isométrie \\
+Symétrie centrale $S_O$         & conservées      & le centre $O$                 & isométrie \\
+Symétrie axiale $S_{(D)}$       & conservées      & les points de $(D)$           & isométrie \\
+Rotation $r(\Omega,\theta)$     & conservées      & le centre $\Omega$            & isométrie \\
+Homothétie $h(\Omega,k)$        & $\times|k|$     & le centre $\Omega$            & $R'=|k|R$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\smallskip
+\textbf{Toutes} conservent alignement, parallélisme, angles et barycentre.
+
+\smallskip
+\textbf{Expressions analytiques.}
+$t_{\vec u}:x'=x+a,\ y'=y+b$\ ;\quad
+$S_O$ (centre $O$) : $x'=-x,\ y'=-y$\ ;\quad
+$S_{(Ox)}:y'=-y$, $S_{(Oy)}:x'=-x$, $S_{y=x}:(x',y')=(y,x)$\ ;\quad
+$h(\Omega,k):x'=x_0+k(x-x_0),\ y'=y_0+k(y-y_0)$.
+
+\smallskip
+\textbf{Images.} Droite $\to$ droite (parallèle pour $t_{\vec u}$ et $h$) ;
+cercle $\to$ cercle (rayon $R$, ou $|k|R$ pour $h$).
+
+\smallskip
+\textbf{Composées.} $t_{\vec u}\circ t_{\vec v}=t_{\vec u+\vec v}$ ;
+$h(\Omega,k')\circ h(\Omega,k)=h(\Omega,kk')$ ;
+$S\circ S=\mathrm{id}$ ;
+$r(\Omega,\theta')\circ r(\Omega,\theta)=r(\Omega,\theta+\theta')$.
+\end{synthese}
+
+% ════════════════════════════════════════════════════════════
+\section{Méthodes \& savoir-faire}
+
+\methode{Construire l'image d'un point par une transformation}
+Revenir à la \emph{définition vectorielle} : reporter $\vec u$ depuis $M$
+(translation), prendre le symétrique par rapport à $O$ ou à $(D)$ (symétries), ou
+placer $M'$ sur la demi-droite $[\Omega M)$ avec $\Omega M'=|k|\,\Omega M$ (homothétie,
+en tenant compte du signe de $k$).
+\begin{exemple}
+Pour $h(\Omega,-2)$ : $M'$ est tel que $\overrightarrow{\Omega M'}=-2\,\overrightarrow{\Omega M}$,
+donc $M'$ est de l'autre côté de $\Omega$, à une distance $\Omega M'=2\,\Omega M$.
+\end{exemple}
+
+\methode{Calculer l'image d'un point par l'expression analytique}
+Identifier la transformation et ses paramètres ($\vec u$, centre, rapport),
+appliquer directement les formules sur les coordonnées de $M(x\,;\,y)$.
+\begin{exemple}
+Image de $A(-1\,;\,4)$ par $h(\Omega,3)$, $\Omega(2\,;\,2)$ :
+$x'=2+3(-1-2)=-7$, $y'=2+3(4-2)=8$, soit $A'(-7\,;\,8)$.
+\end{exemple}
+
+\methode{Reconnaître la nature d'une transformation par sa relation}
+Comparer la relation donnée aux définitions : $\overrightarrow{MM'}$ constant
+$\Rightarrow$ translation ; $\overrightarrow{\Omega M'}=k\,\overrightarrow{\Omega M}$
+$\Rightarrow$ homothétie (symétrie centrale si $k=-1$) ; distances conservées avec un
+seul point fixe et angle constant $\Rightarrow$ rotation.
+\begin{exemple}
+Si $\overrightarrow{AM'}=\tfrac{1}{2}\overrightarrow{AM}$ pour tout $M$, la
+transformation est l'homothétie de centre $A$ et de rapport $\tfrac{1}{2}$ : elle
+réduit les longueurs de moitié.
+\end{exemple}
+
+\methode{Déterminer l'image d'une droite ou d'un cercle}
+Pour une droite, il suffit de l'image de \emph{deux} de ses points (ou d'un point et
+de la direction). Pour un cercle, transformer le \emph{centre} puis ajuster le rayon
+($R$ pour une isométrie, $|k|R$ pour une homothétie).
+\begin{exemple}
+Image du cercle de centre $I(0\,;\,3)$, rayon $4$, par la translation de vecteur
+$\vec u(2\,;\,-1)$ : centre $I'(2\,;\,2)$, rayon inchangé $4$.
+\end{exemple}
+
+\methode{Composer deux transformations}
+Appliquer la première transformation, puis la seconde au résultat ; pour les cas
+usuels (deux translations, deux homothéties/rotations de même centre), utiliser
+directement les règles de composition.
+\begin{exemple}
+$r(\Omega,\frac{\pi}{3})\circ r(\Omega,\frac{\pi}{6})=r(\Omega,\frac{\pi}{6}+\frac{\pi}{3})
+=r(\Omega,\frac{\pi}{2})$ : une seule rotation d'un quart de tour.
+\end{exemple}
+
+\methode{Exploiter la conservation du barycentre}
+Comme l'image d'un barycentre est le barycentre des images (mêmes coefficients), pour
+transformer le milieu, l'isobarycentre ou un point particulier d'une figure, il
+suffit de transformer les sommets puis de reformer le barycentre.
+\begin{exemple}
+Si $I$ est le milieu de $[AB]$, alors son image $I'$ par toute transformation du
+chapitre est le milieu de $[A'B']$ : on transforme $A$ et $B$, et $I'$ s'en déduit.
+\end{exemple}

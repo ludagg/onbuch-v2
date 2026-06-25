@@ -1,0 +1,365 @@
+\chapter{Produit scalaire dans le plan}
+\textit{Jusqu'ici, l'addition de vecteurs et la multiplication par un réel ne
+fournissaient aucun moyen de \emph{multiplier} deux vecteurs entre eux. Le produit
+scalaire comble ce manque : il associe à deux vecteurs un \emph{nombre} qui mesure à
+la fois leurs longueurs et l'angle qu'ils forment. Cet outil, d'apparence modeste,
+permet de calculer des distances et des angles, de démontrer Al-Kashi et le théorème
+de la médiane, et de retrouver très simplement l'équation d'une droite ou d'un cercle.}
+
+\section{Définitions du produit scalaire}
+
+Dans tout ce chapitre, le plan est rapporté à un repère \textbf{orthonormé}
+$(O,\vec{\imath},\vec{\jmath})$. La \textbf{norme} d'un vecteur $\vec{u}$, notée
+$\|\vec{u}\|$, est sa longueur ; si $\vec{u}=\vec{AB}$, alors $\|\vec{u}\|=AB$.
+
+\begin{definition}[Produit scalaire — définition géométrique]
+Soient $\vec{u}$ et $\vec{v}$ deux vecteurs du plan. Leur \textbf{produit scalaire},
+noté $\vec{u}\cdot\vec{v}$, est le réel défini par :
+\[ \vec{u}\cdot\vec{v}=\|\vec{u}\|\,\|\vec{v}\|\cos\theta, \]
+où $\theta=(\widehat{\vec{u},\vec{v}})$ est une mesure de l'angle des deux vecteurs.
+Si l'un des vecteurs est nul, on pose $\vec{u}\cdot\vec{v}=0$.
+\end{definition}
+
+\begin{remarque}
+Le résultat est un \emph{nombre réel} (un « scalaire »), non un vecteur — d'où le nom.
+Comme $\cos\theta=\cos(-\theta)$, le signe de l'angle n'a pas d'importance : seule
+compte sa valeur absolue. Le signe de $\vec{u}\cdot\vec{v}$ est celui de $\cos\theta$ :
+positif si l'angle est aigu, négatif s'il est obtus, nul s'il est droit.
+\end{remarque}
+
+\begin{definition}[Produit scalaire par le projeté orthogonal]
+Soient $\vec{u}=\vec{AB}$ et $\vec{v}=\vec{AC}$ de même origine $A$. Soit $H$ le
+\textbf{projeté orthogonal} de $C$ sur la droite $(AB)$. Alors :
+\[ \vec{u}\cdot\vec{v}=\vec{AB}\cdot\vec{AC}=\vec{AB}\cdot\vec{AH}=
+   \overline{AB}\times\overline{AH}, \]
+où $\overline{AB}\times\overline{AH}$ est un produit de mesures algébriques sur l'axe
+$(AB)$ : il vaut $+AB\times AH$ si $\vec{AH}$ et $\vec{AB}$ ont le même sens,
+$-AB\times AH$ s'ils sont de sens contraires.
+\end{definition}
+
+\begin{illus}
+\begin{tikzpicture}[scale=1.15,>={Stealth[length=2.4mm]}]
+  \coordinate (A) at (0,0);
+  \coordinate (B) at (3.4,0);
+  \coordinate (C) at (2.1,1.7);
+  \coordinate (H) at (2.1,0);
+  \draw[->,thick,onbo] (A)--(B) node[midway,below=2pt,onbink]{$\vec{u}$} node[right,onbink]{$B$};
+  \draw[->,thick,onbgreen] (A)--(C) node[midway,above left=-1pt,onbink]{$\vec{v}$} node[above,onbink]{$C$};
+  \draw[dashed,onbmuted] (C)--(H);
+  \draw[onbmuted] (H)++(-0.18,0)--++(0,0.18)--++(0.18,0);
+  \filldraw[onbink] (A) circle (1.2pt) node[below left]{$A$};
+  \filldraw[onbmuted] (H) circle (1.2pt) node[below=2pt,onbink]{$H$};
+  \pic[draw=onbmuted,angle radius=8mm,"$\theta$"]{angle=B--A--C};
+\end{tikzpicture}
+\fig{Figure — projeté orthogonal : $\vec{AB}\cdot\vec{AC}=\overline{AB}\times\overline{AH}$.}
+\end{illus}
+
+\begin{propriete}[Expression analytique (coordonnées)]
+Dans un repère orthonormé, si $\vec{u}\,(x\,;\,y)$ et $\vec{v}\,(x'\,;\,y')$, alors :
+\[ \boxed{\;\vec{u}\cdot\vec{v}=xx'+yy'.\;} \]
+\end{propriete}
+
+\begin{exemple}
+Pour $\vec{u}\,(3\,;\,-1)$ et $\vec{v}\,(2\,;\,5)$ :
+$\vec{u}\cdot\vec{v}=3\times 2+(-1)\times 5=6-5=1.$ Le résultat étant positif, l'angle
+des deux vecteurs est aigu.
+\end{exemple}
+
+\begin{propriete}[Expression à l'aide des normes — identités de polarisation]
+Pour tous vecteurs $\vec{u}$ et $\vec{v}$ :
+\[ \vec{u}\cdot\vec{v}=\tfrac{1}{2}\big(\|\vec{u}\|^2+\|\vec{v}\|^2-\|\vec{u}-\vec{v}\|^2\big)
+   =\tfrac{1}{2}\big(\|\vec{u}+\vec{v}\|^2-\|\vec{u}\|^2-\|\vec{v}\|^2\big). \]
+\end{propriete}
+
+\begin{aretenir}[Quatre visages d'un même nombre]
+Toutes ces expressions définissent \emph{le même} réel $\vec{u}\cdot\vec{v}$ :
+\begin{itemize}
+  \item \textbf{angle} : $\ \|\vec{u}\|\,\|\vec{v}\|\cos\theta$ ;
+  \item \textbf{projeté} : $\ \overline{AB}\times\overline{AH}$ ;
+  \item \textbf{coordonnées} (repère orthonormé) : $\ xx'+yy'$ ;
+  \item \textbf{normes} : $\ \tfrac12\big(\|\vec{u}\|^2+\|\vec{v}\|^2-\|\vec{u}-\vec{v}\|^2\big)$.
+\end{itemize}
+On choisit la forme la mieux adaptée aux données : coordonnées pour calculer,
+angle pour mesurer, normes pour démontrer.
+\end{aretenir}
+
+\section{Propriétés algébriques}
+
+\begin{propriete}[Symétrie, bilinéarité et carré scalaire]
+Pour tous vecteurs $\vec{u},\vec{v},\vec{w}$ et tout réel $k$ :
+\begin{itemize}
+  \item \textbf{Symétrie} : $\ \vec{u}\cdot\vec{v}=\vec{v}\cdot\vec{u}$ ;
+  \item \textbf{Bilinéarité} :
+        $\ (k\vec{u})\cdot\vec{v}=k(\vec{u}\cdot\vec{v})$ et
+        $\ \vec{u}\cdot(\vec{v}+\vec{w})=\vec{u}\cdot\vec{v}+\vec{u}\cdot\vec{w}$ ;
+  \item \textbf{Carré scalaire} :
+        $\ \vec{u}\cdot\vec{u}=\|\vec{u}\|^2$, noté $\vec{u}^{\,2}$ ; en particulier
+        $\|\vec{u}\|=\sqrt{\vec{u}\cdot\vec{u}}$.
+\end{itemize}
+\end{propriete}
+
+\begin{remarque}
+La bilinéarité autorise à \emph{développer} comme avec des nombres, en remplaçant le
+produit ordinaire par le produit scalaire. On obtient ainsi les \textbf{identités
+remarquables vectorielles} :
+\[ (\vec{u}+\vec{v})^2=\|\vec{u}\|^2+2\,\vec{u}\cdot\vec{v}+\|\vec{v}\|^2,\qquad
+   (\vec{u}+\vec{v})\cdot(\vec{u}-\vec{v})=\|\vec{u}\|^2-\|\vec{v}\|^2. \]
+Attention toutefois : $\vec{u}\cdot\vec{v}=0$ n'entraîne pas $\vec{u}=\vec{0}$ ou
+$\vec{v}=\vec{0}$.
+\end{remarque}
+
+\begin{exemple}
+Développons $\|\vec{u}-\vec{v}\|^2$ avec $\|\vec{u}\|=2$, $\|\vec{v}\|=3$ et
+$\vec{u}\cdot\vec{v}=4$ :
+\[ \|\vec{u}-\vec{v}\|^2=\|\vec{u}\|^2-2\,\vec{u}\cdot\vec{v}+\|\vec{v}\|^2
+   =4-8+9=5,\quad\text{donc}\quad\|\vec{u}-\vec{v}\|=\sqrt{5}. \]
+\end{exemple}
+
+\section{Orthogonalité}
+
+\begin{definition}[Vecteurs orthogonaux]
+Deux vecteurs $\vec{u}$ et $\vec{v}$ sont \textbf{orthogonaux}, ce qu'on note
+$\vec{u}\perp\vec{v}$, lorsque leur produit scalaire est nul :
+\[ \vec{u}\perp\vec{v}\iff \vec{u}\cdot\vec{v}=0. \]
+Le vecteur nul est orthogonal à tout vecteur.
+\end{definition}
+
+\begin{remarque}
+Si $\vec{u}$ et $\vec{v}$ sont tous deux non nuls, alors $\vec{u}\cdot\vec{v}=0$
+équivaut à $\cos\theta=0$, c'est-à-dire à un angle droit. L'orthogonalité des vecteurs
+traduit donc la perpendicularité des directions.
+\end{remarque}
+
+\begin{propriete}[Critère par les coordonnées]
+En repère orthonormé, avec $\vec{u}\,(x\,;\,y)$ et $\vec{v}\,(x'\,;\,y')$ :
+\[ \vec{u}\perp\vec{v}\iff xx'+yy'=0. \]
+\end{propriete}
+
+\begin{exemple}
+$\vec{u}\,(2\,;\,3)$ et $\vec{v}\,(-3\,;\,2)$ sont orthogonaux, car
+$2\times(-3)+3\times 2=-6+6=0$. On reconnaît le procédé : à partir de $(x\,;\,y)$, le
+vecteur $(-y\,;\,x)$ lui est toujours orthogonal.
+\end{exemple}
+
+\section{Calcul de longueurs et d'angles}
+
+\begin{propriete}[Mesure d'un angle géométrique]
+Pour deux vecteurs non nuls, la définition donne directement :
+\[ \cos\theta=\frac{\vec{u}\cdot\vec{v}}{\|\vec{u}\|\,\|\vec{v}\|}. \]
+En coordonnées, avec $\vec{u}\,(x\,;\,y)$ et $\vec{v}\,(x'\,;\,y')$ :
+\[ \cos\theta=\frac{xx'+yy'}{\sqrt{x^2+y^2}\,\sqrt{x'^2+y'^2}}. \]
+\end{propriete}
+
+\begin{exemple}
+Mesurons l'angle $\widehat{BAC}$ avec $\vec{AB}\,(4\,;\,0)$ et $\vec{AC}\,(2\,;\,2)$ :
+\[ \cos\theta=\frac{4\times 2+0\times 2}{4\times 2\sqrt{2}}=\frac{8}{8\sqrt2}
+   =\frac{1}{\sqrt2}=\frac{\sqrt2}{2},\quad\text{donc}\quad\theta=45^\circ. \]
+\end{exemple}
+
+\section{Théorème d'Al-Kashi}
+
+\begin{theoreme}[Al-Kashi — loi des cosinus]
+Dans un triangle $ABC$, en posant $a=BC$, $b=CA$, $c=AB$ et $\widehat{A}$ l'angle au
+sommet $A$ :
+\[ a^2=b^2+c^2-2bc\cos\widehat{A}. \]
+On a de même $b^2=a^2+c^2-2ac\cos\widehat{B}$ et
+$c^2=a^2+b^2-2ab\cos\widehat{C}$.
+\end{theoreme}
+
+\begin{illus}
+\begin{tikzpicture}[scale=1.1,>={Stealth[length=2.4mm]}]
+  \coordinate (A) at (0,0);
+  \coordinate (B) at (4,0);
+  \coordinate (C) at (1.3,2.2);
+  \draw[thick,onbink] (A)--(B)--(C)--cycle;
+  \node[below=2pt,onbo] at ($(A)!0.5!(B)$){$c$};
+  \node[right=2pt,onbo] at ($(B)!0.5!(C)$){$a$};
+  \node[left=2pt,onbo] at ($(A)!0.5!(C)$){$b$};
+  \filldraw[onbink] (A) circle (1.3pt) node[below left]{$A$};
+  \filldraw[onbink] (B) circle (1.3pt) node[below right]{$B$};
+  \filldraw[onbink] (C) circle (1.3pt) node[above]{$C$};
+  \pic[draw=onbgreen,angle radius=7mm,"$\widehat{A}$"]{angle=B--A--C};
+\end{tikzpicture}
+\fig{Figure — triangle $ABC$ : Al-Kashi relie le côté $a$ aux deux autres et à l'angle $\widehat{A}$.}
+\end{illus}
+
+\begin{aretenir}[Démonstration]
+On part de $\vec{BC}=\vec{AC}-\vec{AB}$ et on élève au carré scalaire :
+\[ BC^2=\|\vec{AC}-\vec{AB}\|^2=\|\vec{AC}\|^2-2\,\vec{AB}\cdot\vec{AC}+\|\vec{AB}\|^2. \]
+Or $\|\vec{AC}\|=b$, $\|\vec{AB}\|=c$ et
+$\vec{AB}\cdot\vec{AC}=bc\cos\widehat{A}$. On obtient donc
+$a^2=b^2+c^2-2bc\cos\widehat{A}$. \hfill$\square$
+\end{aretenir}
+
+\begin{remarque}
+Lorsque $\widehat{A}=90^\circ$, on a $\cos\widehat{A}=0$ et Al-Kashi redonne
+$a^2=b^2+c^2$ : le théorème de Pythagore en est le cas particulier de l'angle droit.
+\end{remarque}
+
+\begin{exemple}
+Dans un triangle où $b=5$, $c=7$ et $\widehat{A}=60^\circ$, calculons $a$ :
+\[ a^2=5^2+7^2-2\times5\times7\times\cos 60^\circ=25+49-70\times\tfrac12=39,
+   \quad\text{donc}\quad a=\sqrt{39}\approx 6{,}24. \]
+\end{exemple}
+
+\section{Théorème de la médiane}
+
+\begin{theoreme}[Théorème de la médiane]
+Soit $[AB]$ un segment de milieu $I$. Pour tout point $M$ du plan :
+\[ MA^2+MB^2=2\,MI^2+\frac{AB^2}{2}. \]
+\end{theoreme}
+
+\begin{aretenir}[Démonstration]
+Puisque $I$ est le milieu de $[AB]$ : $\vec{MA}=\vec{MI}+\vec{IA}$ et
+$\vec{MB}=\vec{MI}+\vec{IB}$ avec $\vec{IB}=-\vec{IA}$. En élevant au carré :
+\[ MA^2=MI^2+2\,\vec{MI}\cdot\vec{IA}+IA^2,\qquad
+   MB^2=MI^2-2\,\vec{MI}\cdot\vec{IA}+IA^2. \]
+En additionnant, les termes en $\vec{MI}\cdot\vec{IA}$ s'éliminent ; comme
+$IA=\frac{AB}{2}$, donc $2IA^2=\frac{AB^2}{2}$, on obtient
+$MA^2+MB^2=2MI^2+\frac{AB^2}{2}$. \hfill$\square$
+\end{aretenir}
+
+\begin{remarque}
+La même décomposition donne aussi $\vec{MA}\cdot\vec{MB}=MI^2-IA^2=MI^2-\dfrac{AB^2}{4}$,
+relation très utile pour les lignes de niveau et l'équation d'un cercle (ci-dessous).
+\end{remarque}
+
+\section{Vecteur normal et équation cartésienne d'une droite}
+
+\begin{definition}[Vecteur normal à une droite]
+Un vecteur $\vec{n}$ non nul est un \textbf{vecteur normal} à une droite $(D)$ s'il
+est orthogonal à un vecteur directeur de $(D)$.
+\end{definition}
+
+\begin{theoreme}[Équation cartésienne par un vecteur normal]
+Une droite $(D)$ passant par $A(x_A\,;\,y_A)$ et de vecteur normal $\vec{n}\,(a\,;\,b)$
+est l'ensemble des points $M(x\,;\,y)$ tels que $\vec{AM}\cdot\vec{n}=0$, soit :
+\[ a(x-x_A)+b(y-y_A)=0,\quad\text{c'est-à-dire}\quad ax+by+c=0. \]
+Réciproquement, toute droite d'équation $ax+by+c=0$ admet $\vec{n}\,(a\,;\,b)$ pour
+vecteur normal.
+\end{theoreme}
+
+\begin{exemple}
+Cherchons l'équation de la droite passant par $A(1\,;\,2)$ et de vecteur normal
+$\vec{n}\,(3\,;\,-1)$. Un point $M(x\,;\,y)$ y appartient si
+$\vec{AM}\cdot\vec{n}=0$ :
+\[ 3(x-1)+(-1)(y-2)=0\iff 3x-y-1=0. \]
+\end{exemple}
+
+\section{Équation d'un cercle et lignes de niveau}
+
+\begin{theoreme}[{Cercle de diamètre $[AB]$}]
+Un point $M$ appartient au cercle de diamètre $[AB]$ si et seulement si
+$\vec{MA}\cdot\vec{MB}=0$. En coordonnées, avec $A(x_A\,;\,y_A)$ et $B(x_B\,;\,y_B)$ :
+\[ (x-x_A)(x-x_B)+(y-y_A)(y-y_B)=0. \]
+\end{theoreme}
+
+\begin{remarque}
+On retrouve la propriété de l'angle inscrit : si $M$ est distinct de $A$ et $B$,
+$\vec{MA}\cdot\vec{MB}=0$ signifie que l'angle $\widehat{AMB}$ est droit. C'est
+exactement le cercle de diamètre $[AB]$.
+\end{remarque}
+
+\begin{propriete}[Lignes de niveau de $M\mapsto\vec{MA}\cdot\vec{MB}$]
+Soit $I$ le milieu de $[AB]$. D'après la remarque sur la médiane,
+$\vec{MA}\cdot\vec{MB}=MI^2-\dfrac{AB^2}{4}$. Pour un réel $k$ fixé, la ligne de niveau
+$\big\{\,M\ \mid\ \vec{MA}\cdot\vec{MB}=k\,\big\}$ vérifie
+$MI^2=k+\dfrac{AB^2}{4}$. Selon le signe de $k+\dfrac{AB^2}{4}$ :
+\begin{itemize}
+  \item si $k+\dfrac{AB^2}{4}>0$ : c'est le \textbf{cercle} de centre $I$ et de rayon
+        $\sqrt{k+\frac{AB^2}{4}}$ ;
+  \item si $k+\dfrac{AB^2}{4}=0$ (soit $k=-\frac{AB^2}{4}$) : c'est le \textbf{point} $I$ ;
+  \item si $k+\dfrac{AB^2}{4}<0$ : l'ensemble est \textbf{vide}.
+\end{itemize}
+\end{propriete}
+
+\begin{exemple}
+Pour $AB=4$ (donc $\frac{AB^2}{4}=4$), la ligne $\vec{MA}\cdot\vec{MB}=0$ est le cercle
+de centre $I$ et de rayon $\sqrt{4}=2$ : c'est bien le cercle de diamètre $[AB]$.
+\end{exemple}
+
+% ════════════════════════════════════════════════════════════
+\section{L'essentiel à retenir}
+
+\begin{synthese}
+\textbf{Définitions équivalentes} (repère orthonormé) :
+\[ \vec{u}\cdot\vec{v}=\|\vec{u}\|\,\|\vec{v}\|\cos\theta
+   =\overline{AB}\times\overline{AH}=xx'+yy'
+   =\tfrac12\big(\|\vec{u}\|^2+\|\vec{v}\|^2-\|\vec{u}-\vec{v}\|^2\big). \]
+
+\smallskip
+\textbf{Propriétés.} Symétrie : $\vec{u}\cdot\vec{v}=\vec{v}\cdot\vec{u}$.
+Bilinéarité (on développe comme avec des nombres). Carré scalaire :
+$\vec{u}\cdot\vec{u}=\|\vec{u}\|^2$.
+
+\smallskip
+\textbf{Orthogonalité} : $\vec{u}\perp\vec{v}\iff\vec{u}\cdot\vec{v}=0\iff xx'+yy'=0$.
+
+\smallskip
+\textbf{Angle} : $\cos\theta=\dfrac{\vec{u}\cdot\vec{v}}{\|\vec{u}\|\,\|\vec{v}\|}$.
+
+\smallskip
+\textbf{Al-Kashi} : $a^2=b^2+c^2-2bc\cos\widehat{A}$ (Pythagore si $\widehat{A}=90^\circ$).
+
+\smallskip
+\textbf{Médiane} : $MA^2+MB^2=2MI^2+\dfrac{AB^2}{2}$ et
+$\vec{MA}\cdot\vec{MB}=MI^2-\dfrac{AB^2}{4}$.
+
+\smallskip
+\textbf{Droite} de normal $\vec{n}\,(a\,;\,b)$ : $ax+by+c=0$.
+\textbf{Cercle} de diamètre $[AB]$ : $\vec{MA}\cdot\vec{MB}=0$.
+\end{synthese}
+
+% ════════════════════════════════════════════════════════════
+\section{Méthodes \& savoir-faire}
+
+\methode{Calculer un produit scalaire selon les données}
+Si l'on connaît les coordonnées, utiliser $xx'+yy'$. Si l'on connaît les normes et
+l'angle, utiliser $\|\vec{u}\|\,\|\vec{v}\|\cos\theta$. Si l'on connaît seulement des
+longueurs, passer par les identités de polarisation ou le projeté orthogonal.
+\begin{exemple}
+$\vec{u}\,(-2\,;\,4)$ et $\vec{v}\,(3\,;\,1)$ :
+$\vec{u}\cdot\vec{v}=-2\times3+4\times1=-6+4=-2$ (angle obtus).
+\end{exemple}
+
+\methode{Démontrer que deux vecteurs sont orthogonaux}
+Calculer leur produit scalaire et vérifier qu'il est nul. En coordonnées, tester
+$xx'+yy'=0$.
+\begin{exemple}
+$\vec{AB}\,(5\,;\,2)$ et $\vec{AC}\,(-2\,;\,5)$ : $5\times(-2)+2\times5=-10+10=0$, donc
+$(AB)\perp(AC)$ : le triangle est rectangle en $A$.
+\end{exemple}
+
+\methode{Mesurer un angle d'un triangle}
+Calculer $\cos\theta=\dfrac{\vec{u}\cdot\vec{v}}{\|\vec{u}\|\,\|\vec{v}\|}$ à partir des
+coordonnées des vecteurs issus du sommet, puis en déduire $\theta$.
+\begin{exemple}
+$\vec{AB}\,(3\,;\,0)$, $\vec{AC}\,(0\,;\,3)$ :
+$\cos\theta=\dfrac{0}{3\times3}=0$, donc $\theta=90^\circ$.
+\end{exemple}
+
+\methode{Appliquer Al-Kashi}
+Repérer les deux côtés et l'angle compris ($a^2=b^2+c^2-2bc\cos\widehat{A}$), puis
+isoler la grandeur cherchée — un côté manquant ou bien $\cos\widehat{A}$ pour un angle.
+\begin{exemple}
+$a=7$, $b=5$, $c=8$ : $\cos\widehat{A}=\dfrac{b^2+c^2-a^2}{2bc}
+=\dfrac{25+64-49}{80}=\dfrac{40}{80}=\dfrac12$, donc $\widehat{A}=60^\circ$.
+\end{exemple}
+
+\methode{Trouver l'équation cartésienne d'une droite par un vecteur normal}
+Écrire $\vec{AM}\cdot\vec{n}=0$ avec $A$ un point connu et $\vec{n}\,(a\,;\,b)$ le
+normal, puis développer en $ax+by+c=0$.
+\begin{exemple}
+$A(2\,;\,-1)$, $\vec{n}\,(1\,;\,4)$ :
+$1\,(x-2)+4\,(y+1)=0\iff x+4y+2=0$.
+\end{exemple}
+
+\methode{Reconnaître l'ensemble défini par une condition vectorielle}
+Pour $\vec{MA}\cdot\vec{MB}=0$, c'est le cercle de diamètre $[AB]$. Pour
+$\vec{MA}\cdot\vec{MB}=k$, passer par $MI^2=k+\frac{AB^2}{4}$ (avec $I$ milieu de
+$[AB]$) et discuter selon le signe : cercle, point ou ensemble vide.
+\begin{exemple}
+$A(0\,;\,0)$, $B(4\,;\,0)$, condition $\vec{MA}\cdot\vec{MB}=0$ :
+$(x)(x-4)+y^2=0\iff x^2+y^2-4x=0\iff (x-2)^2+y^2=4$ : cercle de centre $(2\,;\,0)$,
+rayon $2$.
+\end{exemple}

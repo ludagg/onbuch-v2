@@ -1,0 +1,339 @@
+\chapter{Géométrie analytique : droites et cercles}
+\textit{La géométrie analytique traduit les figures du plan en calculs sur des
+nombres : un point devient un couple de coordonnées, une droite ou un cercle
+devient une équation. On peut alors démontrer par le calcul ce qu'on aurait fait
+à la règle et au compas — distances, milieux, parallélisme, tangence. Ce chapitre
+te donne les outils de base : coordonnées, vecteurs, équations de droites et de
+cercles.}
+
+\section{Repère du plan et coordonnées}
+
+\begin{definition}[Repère, coordonnées d'un point]
+Le plan est muni d'un \textbf{repère} $(O,\vec{\imath},\vec{\jmath})$ : un point
+$O$ (l'\textbf{origine}) et deux vecteurs non colinéaires $\vec{\imath},\vec{\jmath}$.
+Tout point $M$ s'écrit alors de manière unique
+\[ \overrightarrow{OM}=x\,\vec{\imath}+y\,\vec{\jmath}. \]
+Le couple $(x\,;\,y)$ est formé des \textbf{coordonnées} de $M$ : $x$ est
+l'\textbf{abscisse}, $y$ l'\textbf{ordonnée}. On note $M(x\,;\,y)$.
+\end{definition}
+
+\begin{remarque}
+Le repère est \textbf{orthonormé} lorsque $\vec{\imath}$ et $\vec{\jmath}$ sont
+orthogonaux et de même longueur $1$. C'est dans ce cadre que les formules de
+distance et de perpendicularité ci-dessous sont valables ; sauf mention contraire,
+on travaille en repère orthonormé.
+\end{remarque}
+
+\begin{propriete}[Distance entre deux points]
+Dans un repère \textbf{orthonormé}, la distance entre $A(x_A\,;\,y_A)$ et
+$B(x_B\,;\,y_B)$ est
+\[ AB=\sqrt{(x_B-x_A)^2+(y_B-y_A)^2}. \]
+\end{propriete}
+
+\begin{remarque}
+C'est le théorème de Pythagore appliqué au triangle rectangle dont l'hypoténuse est
+$[AB]$ et les côtés de l'angle droit ont pour longueurs $|x_B-x_A|$ et $|y_B-y_A|$.
+\end{remarque}
+
+\begin{propriete}[Coordonnées du milieu]
+Le milieu $I$ de $[AB]$ a pour coordonnées
+\[ I\left(\frac{x_A+x_B}{2}\,;\,\frac{y_A+y_B}{2}\right). \]
+\end{propriete}
+
+\begin{exemple}
+Soit $A(-1\,;\,2)$ et $B(3\,;\,5)$. Alors
+\[ AB=\sqrt{(3-(-1))^2+(5-2)^2}=\sqrt{16+9}=\sqrt{25}=5, \]
+et le milieu de $[AB]$ est $I\!\left(\dfrac{-1+3}{2}\,;\,\dfrac{2+5}{2}\right)=I\!\left(1\,;\,\dfrac{7}{2}\right)$.
+\end{exemple}
+
+\section{Vecteurs, colinéarité et déterminant}
+
+\begin{definition}[Coordonnées d'un vecteur]
+Le vecteur $\overrightarrow{AB}$ a pour coordonnées
+\[ \overrightarrow{AB}\,(x_B-x_A\,;\,y_B-y_A). \]
+Plus généralement, un vecteur $\vec{u}\,(x\,;\,y)$ est déterminé par ses deux
+coordonnées dans la base $(\vec{\imath},\vec{\jmath})$. En repère orthonormé, sa
+\textbf{norme} est $\|\vec{u}\|=\sqrt{x^2+y^2}$.
+\end{definition}
+
+\begin{definition}[Déterminant de deux vecteurs]
+Le \textbf{déterminant} des vecteurs $\vec{u}\,(x\,;\,y)$ et $\vec{v}\,(x'\,;\,y')$ est
+\[ \det(\vec{u},\vec{v})=\begin{vmatrix} x & x' \\ y & y' \end{vmatrix}=xy'-x'y. \]
+\end{definition}
+
+\begin{theoreme}[Critère de colinéarité]
+Deux vecteurs $\vec{u}$ et $\vec{v}$ sont \textbf{colinéaires} si et seulement si
+\[ \det(\vec{u},\vec{v})=xy'-x'y=0. \]
+\end{theoreme}
+
+\begin{remarque}
+Trois points $A$, $B$, $C$ sont \textbf{alignés} si et seulement si les vecteurs
+$\overrightarrow{AB}$ et $\overrightarrow{AC}$ sont colinéaires, c'est-à-dire si
+$\det(\overrightarrow{AB},\overrightarrow{AC})=0$.
+\end{remarque}
+
+\begin{exemple}
+Les vecteurs $\vec{u}\,(2\,;\,3)$ et $\vec{v}\,(4\,;\,6)$ vérifient
+$\det(\vec{u},\vec{v})=2\times 6-4\times 3=12-12=0$ : ils sont colinéaires (on a
+d'ailleurs $\vec{v}=2\vec{u}$). En revanche $\vec{w}\,(1\,;\,5)$ donne avec $\vec{u}$
+le déterminant $2\times 5-1\times 3=7\neq 0$ : $\vec{u}$ et $\vec{w}$ ne sont pas
+colinéaires.
+\end{exemple}
+
+\section{Équations d'une droite}
+
+\begin{definition}[Vecteur directeur]
+Un \textbf{vecteur directeur} d'une droite $(D)$ est un vecteur non nul $\vec{u}$
+ayant la même direction que $(D)$ (deux points distincts $A,B$ de $(D)$ donnent un
+vecteur directeur $\overrightarrow{AB}$).
+\end{definition}
+
+\begin{theoreme}[Équation cartésienne]
+Toute droite $(D)$ admet une \textbf{équation cartésienne} de la forme
+\[ ax+by+c=0,\qquad (a,b)\neq(0,0). \]
+Réciproquement, l'ensemble des points $M(x\,;\,y)$ vérifiant $ax+by+c=0$ est une
+droite. Un vecteur directeur de $(D)$ est $\vec{u}\,(-b\,;\,a)$.
+\end{theoreme}
+
+\begin{remarque}
+Le point $M(x\,;\,y)$ appartient à la droite passant par $A$ et dirigée par
+$\vec{u}$ si et seulement si $\overrightarrow{AM}$ et $\vec{u}$ sont colinéaires,
+soit $\det(\overrightarrow{AM},\vec{u})=0$. En développant ce déterminant, on
+retrouve une équation de la forme $ax+by+c=0$.
+\end{remarque}
+
+\begin{definition}[Représentation paramétrique]
+La droite passant par $A(x_A\,;\,y_A)$ et de vecteur directeur $\vec{u}\,(\alpha\,;\,\beta)$
+est l'ensemble des points $M(x\,;\,y)$ tels que, pour un réel $t$ (le \textbf{paramètre}),
+\[ \begin{cases} x=x_A+\alpha\,t \\ y=y_A+\beta\,t \end{cases}\qquad t\in\R. \]
+\end{definition}
+
+\begin{definition}[Équation réduite, coefficient directeur]
+Toute droite \emph{non parallèle} à l'axe des ordonnées admet une
+\textbf{équation réduite}
+\[ y=mx+p. \]
+Le réel $m$ est le \textbf{coefficient directeur} (la pente) et $p$ l'\textbf{ordonnée
+à l'origine}. Une droite verticale a une équation de la forme $x=k$ (pas de
+coefficient directeur).
+\end{definition}
+
+\begin{propriete}[Calcul du coefficient directeur]
+Si $A(x_A\,;\,y_A)$ et $B(x_B\,;\,y_B)$ avec $x_A\neq x_B$ sont sur la droite, alors
+\[ m=\frac{y_B-y_A}{x_B-x_A}. \]
+Le vecteur $\vec{u}\,(1\,;\,m)$ est un vecteur directeur de la droite.
+\end{propriete}
+
+\begin{illus}
+\begin{tikzpicture}[scale=0.95]
+  \draw[->,onbline] (-0.6,0)--(4.6,0) node[right,onbmuted]{$x$};
+  \draw[->,onbline] (0,-0.6)--(0,3.6) node[above,onbmuted]{$y$};
+  \foreach \x in {1,2,3,4} \draw[onbline] (\x,0.06)--(\x,-0.06) node[below,onbmuted,font=\scriptsize]{$\x$};
+  \draw[thick,onbo,domain=-0.3:4.3] plot (\x,{0.5*\x+1});
+  \node[onbo,right] at (4.3,3.15) {$y=mx+p$};
+  \filldraw[onbink] (0,1) circle (1.6pt) node[left,onbink,font=\scriptsize]{$p$};
+  \filldraw[onbgreen] (1,1.5) circle (1.6pt) node[above left,font=\scriptsize]{$A$};
+  \filldraw[onbgreen] (3,2.5) circle (1.6pt) node[above left,font=\scriptsize]{$B$};
+  \draw[dashed,onbmuted] (1,1.5)--(3,1.5) node[midway,below,font=\scriptsize]{$+2$};
+  \draw[dashed,onbmuted] (3,1.5)--(3,2.5) node[midway,right,font=\scriptsize]{$+1$};
+  \node[onbmuted,font=\scriptsize] at (3.4,1.1) {$m=\tfrac{1}{2}$};
+\end{tikzpicture}
+\fig{Figure — droite d'équation réduite $y=mx+p$ : $p$ est l'ordonnée à l'origine, $m$ mesure la montée pour un déplacement horizontal de $1$.}
+\end{illus}
+
+\section{Positions relatives de deux droites}
+
+\begin{theoreme}[Parallélisme]
+Deux droites de coefficients directeurs $m$ et $m'$ sont \textbf{parallèles} si et
+seulement si
+\[ m=m'. \]
+Avec des équations cartésiennes $ax+by+c=0$ et $a'x+b'y+c'=0$, le parallélisme
+équivaut à $ab'-a'b=0$ (vecteurs directeurs colinéaires).
+\end{theoreme}
+
+\begin{theoreme}[Perpendicularité]
+En repère \textbf{orthonormé}, deux droites de coefficients directeurs $m$ et $m'$
+sont \textbf{perpendiculaires} si et seulement si
+\[ mm'=-1. \]
+De façon générale, deux droites sont perpendiculaires si et seulement si leurs
+vecteurs directeurs $\vec{u}\,(x\,;\,y)$ et $\vec{v}\,(x'\,;\,y')$ vérifient
+$xx'+yy'=0$ (produit scalaire nul).
+\end{theoreme}
+
+\begin{remarque}
+Pour la droite $ax+by+c=0$, le vecteur $\vec{n}\,(a\,;\,b)$ est \textbf{normal}
+(orthogonal) à la droite : c'est lui qui sert à exprimer la perpendicularité et la
+distance ci-dessous.
+\end{remarque}
+
+\begin{exemple}
+Les droites $(D):y=2x+1$ et $(D'):y=2x-3$ ont le même coefficient directeur $m=2$ :
+elles sont parallèles. La droite $(\Delta):y=-\tfrac{1}{2}x+4$ vérifie
+$2\times(-\tfrac{1}{2})=-1$ : elle est perpendiculaire à $(D)$.
+\end{exemple}
+
+\begin{propriete}[Distance d'un point à une droite]
+En repère orthonormé, la distance du point $M_0(x_0\,;\,y_0)$ à la droite
+$(D):ax+by+c=0$ est
+\[ d(M_0,(D))=\frac{|a x_0+b y_0+c|}{\sqrt{a^2+b^2}}. \]
+\end{propriete}
+
+\begin{exemple}
+Distance de $M_0(1\,;\,2)$ à $(D):3x-4y+5=0$ :
+\[ d=\frac{|3\times 1-4\times 2+5|}{\sqrt{3^2+(-4)^2}}=\frac{|3-8+5|}{\sqrt{25}}
+   =\frac{0}{5}=0. \]
+La distance est nulle : le point $M_0$ appartient à la droite. Pour
+$M_1(2\,;\,0)$ : $d=\dfrac{|6-0+5|}{5}=\dfrac{11}{5}$.
+\end{exemple}
+
+\section{Équation d'un cercle}
+
+\begin{theoreme}[Équation d'un cercle]
+En repère orthonormé, le cercle de \textbf{centre} $\Omega(a\,;\,b)$ et de
+\textbf{rayon} $R>0$ est l'ensemble des points $M(x\,;\,y)$ tels que $\Omega M=R$,
+c'est-à-dire
+\[ (x-a)^2+(y-b)^2=R^2. \]
+\end{theoreme}
+
+\begin{remarque}[Démonstration]
+Un point $M(x\,;\,y)$ est sur le cercle si et seulement si $\Omega M=R$, soit
+$\Omega M^2=R^2$. Or $\Omega M^2=(x-a)^2+(y-b)^2$ d'après la formule de distance ;
+on obtient bien $(x-a)^2+(y-b)^2=R^2$.
+\end{remarque}
+
+\begin{propriete}[Forme développée]
+En développant, l'équation s'écrit
+\[ x^2+y^2-2ax-2by+c=0,\qquad \text{avec } c=a^2+b^2-R^2. \]
+Réciproquement, une équation $x^2+y^2+\alpha x+\beta y+\gamma=0$ est celle d'un
+cercle de centre $\Omega\!\left(-\tfrac{\alpha}{2}\,;\,-\tfrac{\beta}{2}\right)$
+\emph{lorsque} $R^2=\tfrac{\alpha^2}{4}+\tfrac{\beta^2}{4}-\gamma>0$ ; on l'obtient
+en regroupant les carrés (forme canonique).
+\end{propriete}
+
+\begin{exemple}
+Reconnaissons $x^2+y^2-2x+4y-4=0$. On regroupe :
+\[ (x^2-2x)+(y^2+4y)-4=0 \ \Longrightarrow\ (x-1)^2-1+(y+2)^2-4-4=0, \]
+soit $(x-1)^2+(y+2)^2=9$. C'est le cercle de centre $\Omega(1\,;\,-2)$ et de rayon
+$R=3$.
+\end{exemple}
+
+\section{Positions relatives d'une droite et d'un cercle}
+
+\begin{aretenir}[Droite et cercle]
+Soit un cercle de centre $\Omega$, de rayon $R$, et une droite $(D)$. On compare la
+distance $d=d(\Omega,(D))$ au rayon $R$ :
+\begin{itemize}
+  \item si $d>R$ : la droite ne coupe pas le cercle (\textbf{aucun} point commun) ;
+  \item si $d=R$ : la droite est \textbf{tangente} au cercle (\textbf{un} seul point) ;
+  \item si $d<R$ : la droite est \textbf{sécante} (\textbf{deux} points communs).
+\end{itemize}
+\end{aretenir}
+
+\begin{illus}
+\begin{tikzpicture}[scale=0.85]
+  \draw[thick,onbo] (0,0) circle (1.5);
+  \filldraw[onbink] (0,0) circle (1.2pt) node[below right,font=\scriptsize]{$\Omega$};
+  \draw[onbmuted,dashed] (0,0)--(1.06,1.06) node[midway,above left,font=\scriptsize]{$R$};
+  % sécante
+  \draw[thick,onbgreen] (-2.1,-1.2)--(2.1,-0.2) node[right,font=\scriptsize]{sécante};
+  % tangente
+  \draw[thick,onbblue] (-2.1,1.5)--(2.1,1.5) node[right,font=\scriptsize]{tangente};
+  \filldraw[onbblue] (0,1.5) circle (1.4pt);
+\end{tikzpicture}
+\fig{Figure — une droite tangente touche le cercle en un point ($d=R$) ; une droite sécante le traverse en deux points ($d<R$).}
+\end{illus}
+
+\begin{exemple}
+Cercle $(\mathcal{C}):(x-1)^2+(y+2)^2=9$ (centre $\Omega(1\,;\,-2)$, $R=3$) et
+droite $(D):3x-4y+5=0$. La distance vaut
+\[ d=\frac{|3\times 1-4\times(-2)+5|}{\sqrt{9+16}}=\frac{|3+8+5|}{5}=\frac{16}{5}=3{,}2. \]
+Comme $d=3{,}2>3=R$, la droite $(D)$ ne coupe pas le cercle.
+\end{exemple}
+
+\begin{remarque}
+La \textbf{tangente} au cercle en un point $T$ est la droite passant par $T$ et
+perpendiculaire au rayon $[\Omega T]$ : un vecteur normal à cette tangente est
+$\overrightarrow{\Omega T}$.
+\end{remarque}
+
+% ════════════════════════════════════════════════════════════
+\section{L'essentiel à retenir}
+
+\begin{synthese}
+\textbf{Distances et milieu} (repère orthonormé). $AB=\sqrt{(x_B-x_A)^2+(y_B-y_A)^2}$ ;
+milieu de $[AB]$ : $I\!\left(\tfrac{x_A+x_B}{2}\,;\,\tfrac{y_A+y_B}{2}\right)$.
+
+\smallskip
+\textbf{Vecteurs.} $\overrightarrow{AB}\,(x_B-x_A\,;\,y_B-y_A)$ ;
+$\det(\vec{u},\vec{v})=xy'-x'y$. Colinéarité $\iff\det=0$ ; alignement de $A,B,C
+\iff\det(\overrightarrow{AB},\overrightarrow{AC})=0$.
+
+\smallskip
+\textbf{Droites.} Cartésienne $ax+by+c=0$ (directeur $\vec{u}\,(-b\,;\,a)$, normal
+$\vec{n}\,(a\,;\,b)$) ; paramétrique $\begin{cases}x=x_A+\alpha t\\ y=y_A+\beta t\end{cases}$ ;
+réduite $y=mx+p$ avec $m=\tfrac{y_B-y_A}{x_B-x_A}$.
+
+\smallskip
+\textbf{Positions.} Parallèles $\iff m=m'$ ; perpendiculaires $\iff mm'=-1$ (ou
+$xx'+yy'=0$). Distance d'un point à une droite :
+$d=\dfrac{|ax_0+by_0+c|}{\sqrt{a^2+b^2}}$.
+
+\smallskip
+\textbf{Cercle.} Centre $\Omega(a\,;\,b)$, rayon $R$ : $(x-a)^2+(y-b)^2=R^2$.
+Droite et cercle : $d>R$ (rien), $d=R$ (tangente), $d<R$ (sécante).
+\end{synthese}
+
+% ════════════════════════════════════════════════════════════
+\section{Méthodes \& savoir-faire}
+
+\methode{Calculer une distance, un milieu, montrer un alignement}
+Appliquer directement les formules. Pour l'alignement de $A,B,C$, calculer
+$\det(\overrightarrow{AB},\overrightarrow{AC})$ : nul $\Rightarrow$ points alignés.
+\begin{exemple}
+$A(1\,;\,1)$, $B(3\,;\,2)$, $C(7\,;\,4)$. On a $\overrightarrow{AB}\,(2\,;\,1)$ et
+$\overrightarrow{AC}\,(6\,;\,3)$, d'où $\det=2\times 3-6\times 1=0$ : $A,B,C$ sont
+alignés.
+\end{exemple}
+
+\methode{Trouver l'équation d'une droite passant par deux points}
+Calculer le coefficient directeur $m=\dfrac{y_B-y_A}{x_B-x_A}$ (si $x_A\neq x_B$),
+puis $p$ en injectant les coordonnées d'un point dans $y=mx+p$.
+\begin{exemple}
+Par $A(1\,;\,2)$ et $B(3\,;\,8)$ : $m=\dfrac{8-2}{3-1}=3$, puis $2=3\times 1+p$
+donne $p=-1$. La droite est $y=3x-1$.
+\end{exemple}
+
+\methode{Écrire la droite passant par un point et dirigée (ou normale) par un vecteur}
+Si $\vec{u}\,(\alpha\,;\,\beta)$ dirige la droite par $A$, écrire
+$\det(\overrightarrow{AM},\vec{u})=0$. Si $\vec{n}\,(a\,;\,b)$ est normal, l'équation
+est $a(x-x_A)+b(y-y_A)=0$.
+\begin{exemple}
+Droite par $A(2\,;\,1)$ normale à $\vec{n}\,(3\,;\,-4)$ :
+$3(x-2)-4(y-1)=0$, soit $3x-4y-2=0$.
+\end{exemple}
+
+\methode{Tester parallélisme ou perpendicularité}
+Comparer les coefficients directeurs : $m=m'$ (parallèles), $mm'=-1$
+(perpendiculaires). Avec des équations cartésiennes, utiliser les vecteurs directeurs
+ou normaux.
+\begin{exemple}
+$(D):y=\tfrac{2}{3}x+1$ et $(D'):2x+3y-6=0$ donnent $m'=-\tfrac{2}{3}$ ; comme
+$\tfrac{2}{3}\times(-\tfrac{2}{3})=-\tfrac{4}{9}\neq -1$ et $\tfrac{2}{3}\neq-\tfrac{2}{3}$,
+les droites sont ni parallèles ni perpendiculaires : elles se coupent.
+\end{exemple}
+
+\methode{Déterminer le centre et le rayon d'un cercle}
+Partir de $x^2+y^2+\alpha x+\beta y+\gamma=0$, regrouper en carrés (forme canonique)
+pour obtenir $(x-a)^2+(y-b)^2=R^2$, puis lire $\Omega(a\,;\,b)$ et $R$.
+\begin{exemple}
+$x^2+y^2-6x+2y+6=0 \Rightarrow (x-3)^2-9+(y+1)^2-1+6=0 \Rightarrow (x-3)^2+(y+1)^2=4$ :
+centre $\Omega(3\,;\,-1)$, rayon $R=2$.
+\end{exemple}
+
+\methode{Étudier la position d'une droite et d'un cercle}
+Calculer $d=d(\Omega,(D))$ puis comparer à $R$ : $d>R$ (aucun point), $d=R$ (tangente),
+$d<R$ (sécante). On peut aussi remplacer $y$ (ou $x$) de la droite dans l'équation du
+cercle et étudier le discriminant.
+\begin{exemple}
+Cercle $(x-2)^2+y^2=4$ ($\Omega(2\,;\,0)$, $R=2$) et $(D):x=4$. La distance de
+$\Omega$ à $(D)$ est $|4-2|=2=R$ : $(D)$ est tangente au cercle.
+\end{exemple}
