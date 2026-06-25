@@ -152,6 +152,13 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               const SizedBox(height: 26),
 
+              // Nos fascicules (découverte)
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: const _FasciculesCard(),
+              ),
+              const SizedBox(height: 26),
+
               // Épreuves sauvegardées
               const _SavedSection(),
               const SizedBox(height: 26),
@@ -801,6 +808,47 @@ class _CountUnit extends StatelessWidget {
 }
 
 // ─── Tuteur CTA card ──────────────────────────────────────────────────────────
+class _FasciculesCard extends StatelessWidget {
+  const _FasciculesCard();
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => context.push('/fascicules'),
+      child: Container(
+        padding: const EdgeInsets.fromLTRB(16, 15, 14, 15),
+        decoration: BoxDecoration(
+          color: OC.o50,
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(color: OC.o100, width: 1.5),
+        ),
+        child: Row(children: [
+          Container(
+            width: 48, height: 48,
+            decoration: BoxDecoration(color: OC.o600, borderRadius: BorderRadius.circular(14)),
+            child: const Icon(Icons.auto_stories_rounded, color: Colors.white, size: 25),
+          ),
+          const SizedBox(width: 13),
+          Expanded(
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text('NOS FASCICULES',
+                  style: body(9.5, weight: FontWeight.w800, color: OC.o600).copyWith(letterSpacing: 0.1 * 9.5)),
+              const SizedBox(height: 3),
+              Text('La bibliothèque OnBuch', style: display(16.5, weight: FontWeight.w700)),
+              const SizedBox(height: 2),
+              Text('Des bouquins complets : cours + exercices corrigés 📚',
+                  maxLines: 2, overflow: TextOverflow.ellipsis,
+                  style: body(12, color: OC.ink2, weight: FontWeight.w500).copyWith(height: 1.3)),
+            ]),
+          ),
+          const SizedBox(width: 8),
+          Icon(Icons.arrow_forward_rounded, color: OC.o600, size: 20),
+        ]),
+      ),
+    );
+  }
+}
+
 class _TuteurCard extends StatelessWidget {
   const _TuteurCard();
 

@@ -41,6 +41,11 @@ const appwriteGamificationCollectionId = 'gamification';
 // progression privée par élève (trouvé / pas trouvé). Cf. tools/setup_exercises.sh.
 const appwriteExerciseChaptersCollectionId = 'exercise_chapters';
 const appwriteExerciseSheetsCollectionId = 'exercise_sheets';
+
+// ── Fascicules (livres PDF OnBuch — onglet Cours « Nos fascicules ») ─────────
+// Un fascicule = un PDF (bucket `annales_files`) + une couverture, géré par
+// l'admin. Cf. tools/setup_fascicules.sh.
+const appwriteFasciculesCollectionId = 'fascicules';
 const appwriteExerciseProgressCollectionId = 'exercise_progress';
 
 // Endpoint serverless (Vercel) qui résout une recherche de résultat pour les

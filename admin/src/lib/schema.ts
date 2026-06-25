@@ -41,6 +41,31 @@ const order: Field = { key: 'order', label: 'Ordre', type: 'number', help: 'Tri 
 
 export const RESOURCES: Resource[] = [
   {
+    id: 'fascicules',
+    collectionId: 'fascicules',
+    label: 'Fascicules',
+    singular: 'Fascicule',
+    icon: '📚',
+    titleField: 'title',
+    subtitleField: 'level',
+    orderBy: { field: 'order', dir: 'asc' },
+    fields: [
+      { key: 'title', label: 'Titre', type: 'text', required: true, help: 'ex. Mathématiques — Terminale C' },
+      { key: 'subject', label: 'Matière', type: 'text', help: 'ex. Mathématiques' },
+      { key: 'level', label: 'Classe', type: 'text', help: 'ex. Terminale C' },
+      { key: 'exam', label: 'Examen', type: 'text', help: 'ex. Baccalauréat — vide = tous' },
+      { key: 'track', label: 'Séries', type: 'text', help: 'ex. C,D,E,TI — vide = toutes' },
+      { key: 'description', label: 'Description', type: 'textarea' },
+      { key: 'pdfUrl', label: 'Lien PDF', type: 'text', required: true, help: 'URL de visualisation du PDF (bucket annales_files). Voir tools/upload_fascicule.py.' },
+      { key: 'coverUrl', label: 'Lien couverture (image)', type: 'text', help: 'URL d’une image de couverture (jpg/png). Optionnel — une couverture par défaut est générée sinon.' },
+      { key: 'author', label: 'Auteur / éditeur', type: 'text', help: 'ex. L’équipe OnBuch, dirigée par Ludovic Aggaï N.' },
+      { key: 'pages', label: 'Nombre de pages', type: 'number' },
+      { key: 'premium', label: 'Premium (payant)', type: 'boolean' },
+      order,
+      { key: 'active', label: 'Actif (cocher pour afficher)', type: 'boolean' }
+    ]
+  },
+  {
     id: 'app_config',
     collectionId: 'app_config',
     label: 'Configuration',
