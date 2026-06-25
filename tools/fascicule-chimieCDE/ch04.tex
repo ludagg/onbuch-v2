@@ -1,0 +1,270 @@
+\chapter{Les hydrocarbures aromatiques — le benzène}
+
+\textit{Les hydrocarbures aromatiques forment une famille de composés organiques stables, caractérisés par la présence d'un cycle à six atomes de carbone conjugués. Le benzène, chef de file de cette famille, est un liquide incolore, toxique, d'odeur caractéristique, découvert par Michael Faraday en 1825. Sa structure électronique particulière (délocalisation des électrons $\pi$) lui confère une réactivité spécifique : la substitution électrophile aromatique, plutôt que l'addition. Ce chapitre explore la structure, la nomenclature et les propriétés chimiques fondamentales du benzène et de ses dérivés.}
+
+% ============================================================
+\section{Structure du benzène et aromaticité}
+
+\subsection{Formule brute et formule de Kekulé}
+
+Le benzène a pour formule brute \ce{C6H6}. En 1865, August Kekulé propose une structure cyclique à six chaînons avec trois doubles liaisons alternées :
+
+\begin{illus}
+\chemfig{*6(-=-=-=)}
+\fig{Formule de Kekulé du benzène (représentation avec doubles liaisons alternées).}
+\end{illus}
+
+\begin{remarque}
+La formule de Kekulé laisse penser que le benzène possède deux isomères (selon la position des doubles liaisons). En réalité, il n'existe qu'un seul benzène : les deux formes de Kekulé sont en résonance.
+\end{remarque}
+
+\subsection{Délocalisation électronique et aromaticité}
+
+Les mesures expérimentales montrent que toutes les liaisons carbone-carbone du benzène ont la même longueur (\SI{0.139}{\nm}), intermédiaire entre une simple (\SI{0.154}{\nm}) et une double liaison (\SI{0.134}{\nm}). Ceci s'explique par la \textbf{délocalisation} des six électrons $\pi$ sur l'ensemble du cycle.
+
+\begin{definition}[Aromaticité]
+Un composé est dit \textbf{aromatique} s'il satisfait aux critères de Hückel :
+\begin{itemize}
+    \item molécule cyclique, plane ;
+    \item système conjugué (alternance simple/double liaison) ;
+    \item nombre d'électrons $\pi$ égal à $4n+2$ (avec $n$ entier naturel).
+\end{itemize}
+Pour le benzène, $n=1$ donne $6$ électrons $\pi$ : il est aromatique.
+\end{definition}
+
+\begin{propriete}[Représentation moderne du benzène]
+On représente souvent le benzène par un hexagone régulier avec un cercle inscrit, symbolisant la délocalisation des électrons $\pi$ :
+\begin{illus}
+\chemfig{*6(-=-=--)}
+\fig{Représentation simplifiée du benzène (cercle de délocalisation).}
+\end{illus}
+\end{propriete}
+
+\begin{aretenir}
+Le benzène est plus stable que ne le laisserait prévoir la formule de Kekulé. Cette \textbf{énergie de résonance} (environ \SI{150}{\kilo\joule\per\mol}) explique sa faible tendance aux réactions d'addition.
+\end{aretenir}
+
+% ============================================================
+\section{Nomenclature des dérivés benzéniques}
+
+\subsection{Dérivés monosubstitués}
+
+Le nom du composé est formé en ajoutant le nom du substituant devant le mot « benzène ». Quelques dérivés ont des noms usuels conservés :
+
+\begin{exemple}
+\begin{itemize}
+    \item \ce{C6H5-CH3} : méthylbenzène (toluène)
+    \item \ce{C6H5-OH} : hydroxybenzène (phénol)
+    \item \ce{C6H5-NH2} : aminobenzène (aniline)
+    \item \ce{C6H5-CHO} : benzaldéhyde
+    \item \ce{C6H5-COOH} : acide benzoïque
+\end{itemize}
+\end{exemple}
+
+\subsection{Dérivés disubstitués}
+
+La position relative des deux substituants est indiquée par les préfixes \textbf{ortho} (1,2), \textbf{meta} (1,3) ou \textbf{para} (1,4).
+
+\begin{illus}
+\chemfig{*6(-(-OH)=(-Cl)-=--)}
+\qquad
+\chemfig{*6(-(-OH)=-=(-Cl)--)}
+\qquad
+\chemfig{*6(-(-OH)=-=--(-Cl))}
+\fig{Ortho, méta et para-chlorophénol (de gauche à droite).}
+\end{illus}
+
+\begin{remarque}
+Lorsque le cycle porte un groupe prioritaire (OH, NH2, COOH, CHO, etc.), le nom du composé dérive de ce groupe. Par exemple, \ce{C6H4(OH)(CH3)} est le \textbf{méthylphénol} (ou crésol), pas le hydroxytoluène.
+\end{remarque}
+
+% ============================================================
+\section{Propriétés physiques du benzène}
+
+\begin{propriete}
+Le benzène est un liquide incolore, volatil, d'odeur caractéristique. Il est :
+\begin{itemize}
+    \item \textbf{toxique} et \textbf{cancérogène} (manipuler sous hotte) ;
+    \item \textbf{apolaire} : insoluble dans l'eau, miscible avec les solvants organiques (éther, cyclohexane) ;
+    \item de température d'ébullition \SI{80.1}{\celsius} (plus élevée que les alcanes de masse molaire voisine, à cause des interactions $\pi$-$\pi$).
+\end{itemize}
+\end{propriete}
+
+% ============================================================
+\section{Réactivité : la substitution électrophile aromatique (SEA)}
+
+Le benzène subit préférentiellement des réactions de \textbf{substitution} (remplacement d'un atome d'hydrogène par un groupe) plutôt que d'addition, car l'addition détruirait l'aromaticité.
+
+\subsection{Mécanisme général de la SEA}
+
+\begin{experience}[Mécanisme général]
+La substitution électrophile aromatique se déroule en deux étapes :
+\begin{enumerate}
+    \item \textbf{Formation de l'électrophile} : un réactif (halogène, acide nitrique, etc.) est activé par un catalyseur (acide de Lewis, acide fort).
+    \item \textbf{Attaque électrophile} : l'électrophile $E^+$ attaque le cycle, formant un \textbf{carbocation intermédiaire} (complexe $\sigma$ ou ion arénium). Cette étape est lente et limitante.
+    \item \textbf{Réaromatisation} : perte d'un proton ($\ce{H+}$) pour restaurer le cycle aromatique.
+\end{enumerate}
+\end{experience}
+
+\begin{illus}
+\chemfig{*6(-=-=--)}
+\quad $+$ \quad $E^+$ \quad $\longrightarrow$ \quad
+\chemfig{*6(-(-[2]H)(-[6]E)-=-=--)}
+\quad $\xrightarrow{-\ce{H+}}$ \quad
+\chemfig{*6(-=-(-E)=--)}
+\fig{Mécanisme général de la substitution électrophile aromatique.}
+\end{illus}
+
+\subsection{Halogénation (chloration, bromation)}
+
+\begin{experience}[Chloration du benzène]
+Le benzène réagit avec le dichlore en présence de chlorure de fer(III) (\ce{FeCl3}) comme catalyseur :
+\[\ce{C6H6 + Cl2 ->[FeCl3] C6H5Cl + HCl}\]
+Le produit obtenu est le \textbf{chlorobenzène}.
+\end{experience}
+
+\begin{remarque}
+La bromation utilise \ce{Br2} et \ce{FeBr3} (ou \ce{AlBr3}) comme catalyseur. L'iode est moins réactif ; la fluoration est trop violente et incontrôlable.
+\end{remarque}
+
+\subsection{Nitration}
+
+\begin{experience}[Nitration du benzène]
+Le benzène réagit avec un mélange sulfonitrique (\ce{HNO3} concentré + \ce{H2SO4} concentré) à \SI{50}{\celsius} :
+\[\ce{C6H6 + HNO3 ->[H2SO4] C6H5NO2 + H2O}\]
+Le produit est le \textbf{nitrobenzène}, un liquide jaune pâle, utilisé comme intermédiaire dans la synthèse de l'aniline.
+\end{experience}
+
+L'électrophile est l'ion nitronium \ce{NO2+}, formé par :
+\[\ce{HNO3 + 2 H2SO4 <=> NO2+ + H3O+ + 2 HSO4-}\]
+
+\subsection{Sulfonation}
+
+\begin{experience}[Sulfonation du benzène]
+Le benzène réagit avec l'acide sulfurique fumant (\ce{H2SO4} + \ce{SO3}) à chaud :
+\[\ce{C6H6 + H2SO4 ->[chaud] C6H5SO3H + H2O}\]
+Le produit est l'\textbf{acide benzènesulfonique}, un solide blanc soluble dans l'eau.
+\end{experience}
+
+\begin{remarque}
+La sulfonation est \textbf{réversible} : en milieu aqueux dilué et à chaud, l'acide benzènesulfonique s'hydrolyse pour redonner le benzène.
+\end{remarque}
+
+\subsection{Alkylation de Friedel-Crafts}
+
+\begin{experience}[Alkylation du benzène]
+Le benzène réagit avec un halogénoalcane en présence de chlorure d'aluminium (\ce{AlCl3}) :
+\[\ce{C6H6 + CH3Cl ->[AlCl3] C6H5CH3 + HCl}\]
+On obtient le \textbf{méthylbenzène} (toluène).
+\end{experience}
+
+L'électrophile est un carbocation \ce{R+} formé par :
+\[\ce{R-Cl + AlCl3 -> R+ + AlCl4-}\]
+
+\begin{remarque}
+L'alkylation de Friedel-Crafts peut conduire à des produits polyalkylés et à des réarrangements de carbocation. L'acylation de Friedel-Crafts (avec un chlorure d'acyle) évite ces inconvénients.
+\end{remarque}
+
+% ============================================================
+\section{Comparaison addition/substitution}
+
+\begin{propriete}[Réactivité du benzène vs alcènes]
+\begin{itemize}
+    \item Les \textbf{alcènes} (ex : éthylène) subissent facilement des \textbf{réactions d'addition} (dihydrogénation, hydratation, halogénation) car la double liaison est riche en électrons.
+    \item Le \textbf{benzène}, malgré ses trois doubles liaisons apparentes, ne donne pas d'addition dans des conditions douces. Il faut des conditions sévères (pression, catalyseur, température élevée) pour hydrogéner le benzène en cyclohexane :
+    \[\ce{C6H6 + 3 H2 ->[Ni, 150-200\si{\celsius}] C6H12}\]
+    \item La \textbf{substitution} est la réaction caractéristique du benzène : elle préserve l'aromaticité.
+\end{itemize}
+\end{propriete}
+
+\begin{aretenir}
+Le benzène ne décolore pas le dibrome (\ce{Br2}) à température ambiante, contrairement aux alcènes. Ce test permet de distinguer un composé aromatique d'un alcène.
+\end{aretenir}
+
+% ============================================================
+\section{L'essentiel à retenir}
+
+\begin{synthese}
+\textbf{Le benzène et les hydrocarbures aromatiques}
+\begin{itemize}
+    \item Formule brute : \ce{C6H6}. Structure cyclique plane avec 6 électrons $\pi$ délocalisés (aromaticité, règle de Hückel $4n+2$).
+    \item Représentations : Kekulé (doubles liaisons alternées) ou cercle de délocalisation.
+    \item Nomenclature : ortho (1,2), méta (1,3), para (1,4). Noms usuels : toluène, phénol, aniline, benzaldéhyde, acide benzoïque.
+    \item Réaction caractéristique : \textbf{substitution électrophile aromatique} (SEA).
+    \item Principales SEA :
+    \begin{itemize}
+        \item Halogénation : \ce{C6H6 + Cl2 ->[FeCl3] C6H5Cl + HCl}
+        \item Nitration : \ce{C6H6 + HNO3 ->[H2SO4] C6H5NO2 + H2O}
+        \item Sulfonation : \ce{C6H6 + H2SO4 ->[chaud] C6H5SO3H + H2O}
+        \item Alkylation (Friedel-Crafts) : \ce{C6H6 + R-Cl ->[AlCl3] C6H5R + HCl}
+    \end{itemize}
+    \item Le benzène ne donne pas d'addition facile (contrairement aux alcènes). Il ne décolore pas \ce{Br2} à froid.
+    \item Toxicité : cancérogène, manipuler sous hotte.
+\end{itemize}
+\end{synthese}
+
+% ============================================================
+\section{Méthodes \& savoir-faire}
+
+\methode{Reconnaître un composé aromatique}
+Un composé est aromatique s'il est cyclique, plan, conjugué et possède $4n+2$ électrons $\pi$. Vérifier ces critères sur la formule développée.
+
+\begin{exemple}
+Le naphtalène (\ce{C10H8}) possède deux cycles fusionnés et 10 électrons $\pi$ ($n=2$). Il est aromatique.
+\end{exemple}
+
+\methode{Nommer un dérivé benzénique disubstitué}
+Identifier les deux substituants, déterminer leur position relative (ortho, méta, para), et nommer en respectant l'ordre alphabétique ou la priorité des groupes fonctionnels.
+
+\begin{exemple}
+\ce{C6H4(NO2)(Cl)} avec les substituants en position 1,3 : \textbf{1-chloro-3-nitrobenzène} (ou méta-chloronitrobenzène).
+\end{exemple}
+
+\methode{Écrire l'équation d'une substitution électrophile aromatique}
+Identifier l'électrophile, écrire le réactif aromatique, puis le produit substitué et le sous-produit.
+
+\begin{exemple}
+Nitration du toluène : \ce{C6H5CH3 + HNO3 ->[H2SO4] C6H4(CH3)(NO2) + H2O}. Le groupe méthyle oriente en ortho et para.
+\end{exemple}
+
+\methode{Distinguer un alcène d'un composé aromatique}
+Ajouter quelques gouttes de dibrome (\ce{Br2}) dans le composé à tester. L'alcène décolore immédiatement le dibrome (addition). Le benzène ne le décolore pas à froid.
+
+\begin{exemple}
+Le cyclohexène décolore \ce{Br2} ; le benzène ne le décolore pas.
+\end{exemple}
+
+\methode{Représenter le mécanisme de la SEA}
+Dessiner le cycle benzénique, l'électrophile $E^+$, le carbocation intermédiaire (avec charge positive délocalisée), puis l'étape de déprotonation.
+
+\begin{exemple}
+Chloration : \ce{Cl2 + FeCl3 -> Cl+ + FeCl4-} ; attaque du cycle, formation du complexe $\sigma$, puis perte de \ce{H+}.
+\end{exemple}
+
+\methode{Calculer le rendement d'une réaction de substitution}
+Utiliser la formule : $\text{Rendement} = \frac{\text{masse obtenue}}{\text{masse théorique}} \times 100$.
+
+\begin{exemple}
+On fait réagir \SI{15.6}{\gram} de benzène avec un excès de \ce{HNO3}. On obtient \SI{18.5}{\gram} de nitrobenzène. Masse molaire : benzène \SI{78}{\gram\per\mol}, nitrobenzène \SI{123}{\gram\per\mol}. Quantité de benzène : $n = \frac{15.6}{78} = \SI{0.200}{\mol}$. Masse théorique : $0.200 \times 123 = \SI{24.6}{\gram}$. Rendement : $\frac{18.5}{24.6} \times 100 = \SI{75.2}{\%}$.
+\end{exemple}
+
+\methode{Prévoir l'orientation d'une substitution sur un dérivé monosubstitué}
+Les groupes donneurs (OH, NH2, CH3) orientent en ortho et para. Les groupes attracteurs (NO2, CN, COOH) orientent en méta.
+
+\begin{exemple}
+La nitration du phénol (\ce{C6H5OH}) donne majoritairement l'ortho et le para-nitrophénol.
+\end{exemple}
+
+\methode{Utiliser la règle de Hückel}
+Compter le nombre d'électrons $\pi$ dans le cycle conjugué. Vérifier qu'il est égal à $4n+2$.
+
+\begin{exemple}
+Le benzène : 6 électrons $\pi$ ($n=1$). Le cyclooctatétraène (\ce{C8H8}) : 8 électrons $\pi$ ($n=2$ donnerait 10), il n'est pas aromatique (non plan, instable).
+\end{exemple}
+
+\methode{Écrire la formule topologique d'un dérivé benzénique}
+Utiliser \texttt{chemfig} avec le cycle \texttt{*6(-=-=-=)} et placer les substituants aux positions voulues.
+
+\begin{exemple}
+Acide benzoïque : \chemfig{*6(-=-=(-COOH)=--)}.
+\end{exemple}

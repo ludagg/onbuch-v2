@@ -1,0 +1,317 @@
+\chapter{La cinétique chimique}
+
+\textit{La cinétique chimique étudie l'évolution temporelle des réactions chimiques. Elle permet de comprendre comment et à quelle vitesse les réactifs se transforment en produits, et quels facteurs influencent cette vitesse. Ce chapitre est fondamental pour le contrôle des procédés industriels et la compréhension des phénomènes biologiques.}
+
+\section{Vitesse d'une réaction chimique}
+
+\subsection{Définition de la vitesse de réaction}
+
+\begin{definition}[Vitesse de réaction]
+La vitesse d'une réaction chimique est la variation de la concentration d'un réactif ou d'un produit par unité de temps. On distingue :
+\begin{itemize}
+\item La \textbf{vitesse de disparition} d'un réactif : $v_{\text{disp}} = -\dfrac{\mathrm{d}[\mathrm{R}]}{\mathrm{d}t}$
+\item La \textbf{vitesse de formation} d'un produit : $v_{\text{form}} = \dfrac{\mathrm{d}[\mathrm{P}]}{\mathrm{d}t}$
+\end{itemize}
+\end{definition}
+
+\begin{propriete}[Relation entre vitesses]
+Pour une réaction $\ce{a A + b B -> c C + d D}$, les vitesses sont liées par :
+\[
+-\frac{1}{a}\frac{\mathrm{d}[\mathrm{A}]}{\mathrm{d}t} = -\frac{1}{b}\frac{\mathrm{d}[\mathrm{B}]}{\mathrm{d}t} = \frac{1}{c}\frac{\mathrm{d}[\mathrm{C}]}{\mathrm{d}t} = \frac{1}{d}\frac{\mathrm{d}[\mathrm{D}]}{\mathrm{d}t}
+\]
+Cette grandeur commune est appelée \textbf{vitesse volumique de réaction} : $v = \dfrac{1}{\nu_i}\dfrac{\mathrm{d}[\mathrm{X}_i]}{\mathrm{d}t}$.
+\end{propriete}
+
+\subsection{Vitesse moyenne et vitesse instantanée}
+
+\begin{definition}[Vitesse moyenne]
+La vitesse moyenne entre deux instants $t_1$ et $t_2$ est :
+\[
+v_{\text{moy}} = \frac{[\mathrm{X}]_{t_2} - [\mathrm{X}]_{t_1}}{t_2 - t_1}
+\]
+\end{definition}
+
+\begin{definition}[Vitesse instantanée]
+La vitesse instantanée à l'instant $t$ est la limite de la vitesse moyenne quand $\Delta t \to 0$ :
+\[
+v(t) = \lim_{\Delta t \to 0} \frac{[\mathrm{X}]_{t+\Delta t} - [\mathrm{X}]_{t}}{\Delta t} = \frac{\mathrm{d}[\mathrm{X}]}{\mathrm{d}t}
+\]
+Graphiquement, elle correspond à la pente de la tangente à la courbe $[\mathrm{X}] = f(t)$ au point considéré.
+\end{definition}
+
+\begin{exemple}
+Soit la réaction $\ce{2 H2O2 -> 2 H2O + O2}$. La concentration en $\ce{H2O2}$ évolue selon :
+\[
+\begin{array}{c|cccccc}
+t\;(\text{min}) & 0 & 5 & 10 & 15 & 20 & 30 \\ \hline
+[\ce{H2O2}]\;(\text{mol·L}^{-1}) & 0,80 & 0,60 & 0,45 & 0,34 & 0,25 & 0,14
+\end{array}
+\]
+La vitesse moyenne de disparition entre $t=0$ et $t=10$ min est :
+\[
+v_{\text{moy}} = -\frac{0,45 - 0,80}{10 - 0} = \SI{0,035}{\mol\per\litre\per\minute}
+\]
+\end{exemple}
+
+\begin{remarque}
+La vitesse instantanée est généralement plus grande au début de la réaction (quand les réactifs sont concentrés) et diminue au cours du temps.
+\end{remarque}
+
+\section{Suivi cinétique d'une réaction}
+
+\subsection{Méthodes de suivi}
+
+\begin{experience}[Suivi par conductimétrie]
+La conductimétrie mesure la conductivité $\sigma$ d'une solution, proportionnelle à la concentration des ions présents. Pour une réaction produisant ou consommant des ions, on suit $\sigma(t)$.
+\end{experience}
+
+\begin{exemple}
+Réaction $\ce{CH3COOC2H5 + HO- -> CH3COO- + C2H5OH}$ : les ions $\ce{HO-}$ sont consommés, la conductivité diminue.
+\end{exemple}
+
+\begin{experience}[Suivi par pH-métrie]
+Le pH-mètre mesure la concentration en ions $\ce{H3O+}$. Utile pour les réactions acido-basiques.
+\end{experience}
+
+\begin{experience}[Suivi par titrage]
+On prélève des échantillons à différents instants et on titre une espèce pour déterminer sa concentration. Méthode destructive mais précise.
+\end{experience}
+
+\subsection{Exploitation des courbes}
+
+\begin{propriete}[Méthode de la tangente]
+Pour déterminer la vitesse instantanée à un instant $t$ :
+\begin{enumerate}
+\item Tracer la tangente à la courbe $[\mathrm{X}] = f(t)$ au point d'abscisse $t$.
+\item Calculer la pente de cette tangente : $v(t) = \dfrac{\Delta[\mathrm{X}]}{\Delta t}$.
+\end{enumerate}
+\end{propriete}
+
+\begin{exemple}
+Sur la courbe de disparition de $\ce{H2O2}$, la tangente à $t=10$ min a une pente de $-\SI{0,022}{\mol\per\litre\per\minute}$, donc $v_{\text{disp}}(10) = \SI{0,022}{\mol\per\litre\per\minute}$.
+\end{exemple}
+
+\section{Facteurs cinétiques}
+
+\subsection{Influence de la concentration}
+
+\begin{loi}[Loi de vitesse]
+Pour une réaction $\ce{A + B -> C}$, la vitesse peut s'écrire :
+\[
+v = k\,[\mathrm{A}]^\alpha\,[\mathrm{B}]^\beta
+\]
+où $k$ est la constante de vitesse, $\alpha$ et $\beta$ les ordres partiels.
+\end{loi}
+
+\begin{propriete}
+Plus la concentration des réactifs est élevée, plus la vitesse de réaction est grande (loi des proportions).
+\end{propriete}
+
+\subsection{Influence de la température}
+
+\begin{loi}[Loi d'Arrhénius]
+La constante de vitesse $k$ varie avec la température selon :
+\[
+k = A\,e^{-E_a/RT}
+\]
+où $A$ est le facteur préexponentiel, $E_a$ l'énergie d'activation, $R$ la constante des gaz parfaits et $T$ la température absolue.
+\end{loi}
+
+\begin{propriete}
+Une augmentation de température de \SI{10}{\celsius} double approximativement la vitesse de réaction (règle de Van't Hoff).
+\end{propriete}
+
+\subsection{Influence du catalyseur}
+
+\begin{definition}[Catalyseur]
+Un catalyseur est une substance qui accélère une réaction sans être consommée. Il abaisse l'énergie d'activation.
+\end{definition}
+
+\begin{aretenir}
+Le catalyseur :
+\begin{itemize}
+\item Ne modifie pas l'équilibre thermodynamique.
+\item Est régénéré en fin de réaction.
+\item Est spécifique à certaines réactions.
+\end{itemize}
+\end{aretenir}
+
+\section{Temps de demi-réaction}
+
+\begin{definition}[Temps de demi-réaction]
+Le temps de demi-réaction $t_{1/2}$ est la durée nécessaire pour que la concentration d'un réactif diminue de moitié.
+\end{definition}
+
+\begin{propriete}
+Pour une réaction d'ordre 1 : $t_{1/2} = \dfrac{\ln 2}{k}$ (indépendant de la concentration initiale).
+Pour une réaction d'ordre 2 : $t_{1/2} = \dfrac{1}{k[\mathrm{A}]_0}$ (dépend de la concentration initiale).
+\end{propriete}
+
+\begin{exemple}
+La décomposition du $\ce{N2O5}$ ($\ce{2 N2O5 -> 4 NO2 + O2}$) est d'ordre 1 avec $k = \SI{3,38e-5}{\per\second}$ à \SI{25}{\celsius}. 
+\[
+t_{1/2} = \frac{\ln 2}{3,38\times10^{-5}} \approx \SI{20500}{\second} \approx \SI{5,7}{\hour}
+\]
+\end{exemple}
+
+\section{Catalyse}
+
+\subsection{Catalyse homogène}
+
+\begin{definition}[Catalyse homogène]
+Le catalyseur et les réactifs sont dans la même phase (généralement liquide).
+\end{definition}
+
+\begin{exemple}
+Hydrolyse du saccharose catalysée par les ions $\ce{H3O+}$ :
+\[
+\ce{C12H22O11 + H2O ->[H3O+] C6H12O6 + C6H12O6}
+\]
+\end{exemple}
+
+\subsection{Catalyse hétérogène}
+
+\begin{definition}[Catalyse hétérogène]
+Le catalyseur est dans une phase différente des réactifs (solide, gaz, liquide). La réaction se produit à la surface du catalyseur.
+\end{definition}
+
+\begin{exemple}
+Synthèse de l'ammoniac (procédé Haber) : $\ce{N2 + 3 H2 ->[Fe] 2 NH3}$.
+\end{exemple}
+
+\subsection{Catalyse enzymatique}
+
+\begin{definition}[Catalyse enzymatique]
+Catalyse biologique où l'enzyme (protéine) agit comme catalyseur spécifique.
+\end{definition}
+
+\begin{propriete}
+Les enzymes sont très spécifiques (un substrat par enzyme) et très efficaces (facteur d'accélération jusqu'à $10^{20}$).
+\end{propriete}
+
+\begin{exemple}
+L'amylase salivaire catalyse l'hydrolyse de l'amidon en maltose.
+\end{exemple}
+
+\section{L'essentiel à retenir}
+
+\begin{synthese}
+\begin{itemize}
+\item \textbf{Vitesse de réaction} : $v = \dfrac{1}{\nu_i}\dfrac{\mathrm{d}[\mathrm{X}_i]}{\mathrm{d}t}$ (pente de la tangente).
+\item \textbf{Suivi cinétique} : conductimétrie, pH-métrie, titrage.
+\item \textbf{Facteurs cinétiques} : concentration ($v \propto [\mathrm{R}]^\alpha$), température (loi d'Arrhénius), catalyseur (abaisse $E_a$).
+\item \textbf{Temps de demi-réaction} : $t_{1/2}$ dépend de l'ordre.
+\item \textbf{Catalyse} : homogène (même phase), hétérogène (surface), enzymatique (biologique).
+\item \textbf{Unités} : $v$ en $\si{\mol\per\litre\per\second}$, $k$ en $\si{\per\second}$ (ordre 1) ou $\si{\litre\per\mol\per\second}$ (ordre 2).
+\end{itemize}
+\end{synthese}
+
+\section{Méthodes \& savoir-faire}
+
+\methode{Déterminer la vitesse instantanée à partir d'une courbe}
+\begin{itemize}
+\item Tracer la tangente à la courbe $[\mathrm{X}] = f(t)$ au point considéré.
+\item Choisir deux points sur cette tangente, calculer la pente : $v = \dfrac{\Delta[\mathrm{X}]}{\Delta t}$.
+\item Attention au signe : $v_{\text{disp}} = -\text{pente}$, $v_{\text{form}} = +\text{pente}$.
+\end{itemize}
+
+\begin{exemple}
+Soit la courbe $[\mathrm{A}] = f(t)$. La tangente à $t=20$ s passe par $(0; 0,50)$ et $(40; 0,10)$. Pente $= \dfrac{0,10-0,50}{40-0} = -\SI{0,010}{\mol\per\litre\per\second}$. Donc $v_{\text{disp}}(20) = \SI{0,010}{\mol\per\litre\per\second}$.
+\end{exemple}
+
+\methode{Calculer le temps de demi-réaction}
+\begin{itemize}
+\item Déterminer l'ordre de la réaction (donné ou à trouver).
+\item Appliquer la formule correspondante.
+\item Vérifier les unités.
+\end{itemize}
+
+\begin{exemple}
+Pour une réaction d'ordre 1 avec $k = \SI{0,0231}{\per\minute}$ :
+\[
+t_{1/2} = \frac{\ln 2}{0,0231} \approx \SI{30}{\minute}
+\]
+\end{exemple}
+
+\methode{Exploiter un suivi conductimétrique}
+\begin{itemize}
+\item Établir la relation entre conductivité $\sigma$ et concentrations ioniques.
+\item Tracer $\sigma = f(t)$.
+\item En déduire $[\mathrm{X}](t)$ par étalonnage ou calcul.
+\end{itemize}
+
+\begin{exemple}
+Pour $\ce{CH3COOC2H5 + HO- -> CH3COO- + C2H5OH}$, $\sigma = \lambda_{\ce{HO-}}[\ce{HO-}] + \lambda_{\ce{CH3COO-}}[\ce{CH3COO-}]$. La diminution de $\sigma$ reflète la consommation de $\ce{HO-}$.
+\end{exemple}
+
+\methode{Utiliser la loi d'Arrhénius}
+\begin{itemize}
+\item Forme linéarisée : $\ln k = \ln A - \dfrac{E_a}{R}\cdot\dfrac{1}{T}$.
+\item Tracer $\ln k = f(1/T)$ : pente $= -E_a/R$, ordonnée à l'origine $= \ln A$.
+\end{itemize}
+
+\begin{exemple}
+À partir de $k_1$ à $T_1$ et $k_2$ à $T_2$ :
+\[
+\ln\frac{k_2}{k_1} = -\frac{E_a}{R}\left(\frac{1}{T_2} - \frac{1}{T_1}\right)
+\]
+\end{exemple}
+
+\methode{Distinguer les types de catalyse}
+\begin{itemize}
+\item Catalyse homogène : catalyseur et réactifs en solution.
+\item Catalyse hétérogène : catalyseur solide, réactifs gazeux ou liquides.
+\item Catalyse enzymatique : enzyme biologique spécifique.
+\end{itemize}
+
+\begin{exemple}
+La décomposition de $\ce{H2O2}$ par $\ce{MnO2}$ solide est une catalyse hétérogène ; par l'enzyme catalase, une catalyse enzymatique.
+\end{exemple}
+
+\methode{Déterminer l'ordre d'une réaction}
+\begin{itemize}
+\item Méthode différentielle : tracer $\ln v = f(\ln[\mathrm{A}])$ pour trouver $\alpha$.
+\item Méthode intégrale : tester si $[\mathrm{A}]$ suit une loi d'ordre 0, 1 ou 2.
+\item Méthode du temps de demi-réaction : $t_{1/2}$ constant pour ordre 1.
+\end{itemize}
+
+\begin{exemple}
+Si $[\mathrm{A}]$ diminue exponentiellement ($[\mathrm{A}] = [\mathrm{A}]_0 e^{-kt}$), la réaction est d'ordre 1.
+\end{exemple}
+
+\methode{Calculer une vitesse moyenne}
+\begin{itemize}
+\item Utiliser deux points expérimentaux.
+\item $v_{\text{moy}} = \dfrac{[\mathrm{X}]_{t_2} - [\mathrm{X}]_{t_1}}{t_2 - t_1}$.
+\item Préciser l'intervalle de temps.
+\end{itemize}
+
+\begin{exemple}
+Pour $[\mathrm{A}]_0 = \SI{0,50}{\mol\per\litre}$ et $[\mathrm{A}]_{10} = \SI{0,30}{\mol\per\litre}$ :
+\[
+v_{\text{moy}} = -\frac{0,30-0,50}{10-0} = \SI{0,020}{\mol\per\litre\per\second}
+\]
+\end{exemple}
+
+\methode{Interpréter un graphique cinétique}
+\begin{itemize}
+\item Identifier la courbe (réactif ou produit).
+\item Observer la pente initiale (vitesse initiale).
+\item Repérer le plateau (fin de réaction).
+\item Calculer $t_{1/2}$ graphiquement.
+\end{itemize}
+
+\begin{exemple}
+Sur la courbe $[\mathrm{A}] = f(t)$, $t_{1/2}$ est l'abscisse où $[\mathrm{A}] = [\mathrm{A}]_0/2$.
+\end{exemple}
+
+\methode{Prévoir l'effet d'un facteur cinétique}
+\begin{itemize}
+\item Augmentation de $[\mathrm{R}]$ : $v$ augmente.
+\item Augmentation de $T$ : $v$ augmente (loi d'Arrhénius).
+\item Ajout d'un catalyseur : $v$ augmente sans modification de l'équilibre.
+\end{itemize}
+
+\begin{exemple}
+Pour la synthèse de $\ce{NH3}$, on utilise une température modérée (\SI{450}{\celsius}) et un catalyseur au fer pour optimiser la vitesse sans trop défavoriser l'équilibre.
+\end{exemple}
