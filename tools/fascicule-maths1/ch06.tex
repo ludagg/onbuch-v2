@@ -1,0 +1,435 @@
+\chapter{Étude et représentation des fonctions}
+\textit{Tu sais désormais déterminer un domaine, calculer une limite et dériver une
+fonction. Il est temps de réunir tous ces outils dans une seule démarche : l'\textbf{étude
+complète} d'une fonction. Le but est de comprendre entièrement le comportement de $f$ —
+ses variations, ses bornes, ses asymptotes — pour en tracer une courbe fidèle. Ce
+chapitre est le point d'orgue de l'analyse de Première : maîtrise bien le \emph{plan
+d'étude}, il revient à chaque devoir et à chaque épreuve.}
+
+\section{Le plan d'étude d'une fonction}
+
+Étudier une fonction $f$, c'est suivre une suite d'étapes ordonnées qui aboutissent à
+un \textbf{tableau de variations} puis au \textbf{tracé} de sa courbe $\mathcal{C}_f$.
+
+\begin{aretenir}[Les sept étapes de l'étude complète]
+\begin{enumerate}
+  \item \textbf{Ensemble de définition} $D_f$ : on exclut les valeurs interdites
+        (dénominateur nul, radicande négatif).
+  \item \textbf{Parité / symétries} : si $D_f$ est symétrique par rapport à $0$,
+        tester $f(-x)$ ; on peut alors réduire l'intervalle d'étude.
+  \item \textbf{Limites aux bornes} de $D_f$ (et de part et d'autre des valeurs exclues).
+  \item \textbf{Dérivée} $f'$ et \textbf{signe} de $f'$.
+  \item \textbf{Tableau de variations} : on y reporte signe de $f'$, sens de variation,
+        valeurs et limites aux bornes.
+  \item \textbf{Asymptotes et branches infinies} ; quelques \textbf{points particuliers}
+        (intersections avec les axes, points remarquables).
+  \item \textbf{Tracé} de $\mathcal{C}_f$ dans un repère.
+\end{enumerate}
+\end{aretenir}
+
+\begin{remarque}
+L'ordre n'est pas décoratif : chaque étape utilise la précédente. On ne dresse pas le
+tableau de variations avant de connaître le signe de $f'$, et on ne trace pas la courbe
+avant d'avoir le tableau et les asymptotes.
+\end{remarque}
+
+\section{Domaine, symétries et intervalle d'étude}
+
+\begin{aretenir}[Réduire l'intervalle d'étude]
+Si $f$ est \textbf{paire} ou \textbf{impaire} sur $D_f$ symétrique, il suffit d'étudier
+$f$ sur $D_f\cap[0\,;\,+\infty[$ : on complète la courbe par symétrie (axe $(Oy)$ si $f$
+est paire, centre $O$ si $f$ est impaire). On gagne ainsi la moitié du travail.
+\end{aretenir}
+
+\begin{exemple}
+Pour $f(x)=\dfrac{x^2+1}{x^2-4}$, le domaine $D_f=\R\setminus\{-2\,;\,2\}$ est symétrique
+par rapport à $0$ et $f(-x)=f(x)$ : $f$ est \textbf{paire}. On l'étudie sur
+$[0\,;\,2[\,\cup\,]2\,;\,+\infty[$ et on complète par symétrie d'axe $(Oy)$.
+\end{exemple}
+
+\section{Limites aux bornes et continuité}
+
+\begin{aretenir}
+Aux bornes de $D_f$, on calcule les limites :
+\begin{itemize}
+  \item en $+\infty$ et $-\infty$ lorsque $D_f$ n'est pas borné ;
+  \item à \textbf{gauche} et à \textbf{droite} de chaque valeur réelle exclue (valeur
+        qui annule un dénominateur) ;
+  \item au bord d'un intervalle fermé, on calcule simplement l'image.
+\end{itemize}
+Ces limites donnent le comportement de $\mathcal{C}_f$ aux extrémités et révèlent les
+\textbf{asymptotes}.
+\end{aretenir}
+
+\begin{remarque}
+Pour une fonction rationnelle $\dfrac{P(x)}{Q(x)}$, la limite en $\pm\infty$ s'obtient en
+ne gardant que les \textbf{termes de plus haut degré} : $\displaystyle\lim_{x\to\pm\infty}
+\frac{a_nx^n+\cdots}{b_px^p+\cdots}=\lim_{x\to\pm\infty}\frac{a_nx^n}{b_px^p}$.
+\end{remarque}
+
+\section{Dérivée, signe et tableau de variations}
+
+\begin{theoreme}[Variations et signe de la dérivée]
+Soit $f$ dérivable sur un intervalle $I$.
+\begin{itemize}
+  \item Si $f'(x)>0$ pour tout $x$ de $I$ (sauf en des points isolés), alors $f$ est
+        \textbf{strictement croissante} sur $I$.
+  \item Si $f'(x)<0$ pour tout $x$ de $I$, alors $f$ est \textbf{strictement décroissante}.
+  \item Si $f'(x)=0$ pour tout $x$ de $I$, alors $f$ est \textbf{constante}.
+\end{itemize}
+\end{theoreme}
+
+\begin{propriete}[Extremum local]
+Si $f'$ s'\textbf{annule en changeant de signe} en $x_0$ (intérieur à $I$), alors $f$
+présente un \textbf{extremum local} en $x_0$ :
+\begin{itemize}
+  \item un \textbf{maximum} si $f'$ passe du signe $+$ au signe $-$ ;
+  \item un \textbf{minimum} si $f'$ passe du signe $-$ au signe $+$.
+\end{itemize}
+\end{propriete}
+
+\begin{aretenir}[Dresser le tableau de variations]
+Le tableau comporte trois lignes : la ligne des $x$ (avec $D_f$ et les valeurs où $f'$
+s'annule), la ligne du \textbf{signe de $f'$}, et la ligne des \textbf{variations de $f$}
+(flèches montantes/descendantes, valeurs et limites aux bornes). On y place une double
+barre verticale sous chaque valeur exclue de $D_f$.
+\end{aretenir}
+
+\begin{exemple}
+Pour $f(x)=x^3-3x$ sur $\R$, on a $f'(x)=3x^2-3=3(x-1)(x+1)$. Le signe de $f'$ est
+positif sur $]-\infty\,;\,-1]$, négatif sur $[-1\,;\,1]$, positif sur $[1\,;\,+\infty[$.
+\[
+\begin{array}{c|ccccccc}
+x        & -\infty &        & -1 &        & 1 &        & +\infty \\ \hline
+f'(x)    &         & +      & 0  & -      & 0 & +      &         \\ \hline
+         &         & \nearrow & 2 &        &   & \nearrow & +\infty \\
+f        &-\infty  &        &    & \searrow & &        &         \\
+         &         &        &    &        & -2 &       &
+\end{array}
+\]
+Maximum local $f(-1)=2$, minimum local $f(1)=-2$.
+\end{exemple}
+
+\section{Asymptotes}
+
+Les limites aux bornes décrivent comment la courbe « part à l'infini ». Lorsqu'elle
+s'approche indéfiniment d'une droite, cette droite est une \textbf{asymptote}.
+
+\begin{definition}[Asymptote verticale]
+Si $\displaystyle\lim_{x\to a^-}f(x)=\pm\infty$ ou $\displaystyle\lim_{x\to a^+}f(x)=\pm\infty$,
+la droite d'équation $x=a$ est une \textbf{asymptote verticale} à $\mathcal{C}_f$.
+\end{definition}
+
+\begin{definition}[Asymptote horizontale]
+Si $\displaystyle\lim_{x\to+\infty}f(x)=\ell$ (réel), la droite d'équation $y=\ell$ est
+une \textbf{asymptote horizontale} à $\mathcal{C}_f$ \textbf{en $+\infty$}. Définition
+analogue en $-\infty$.
+\end{definition}
+
+\begin{definition}[Asymptote oblique]
+La droite d'équation $y=ax+b$ (avec $a\neq 0$) est une \textbf{asymptote oblique} à
+$\mathcal{C}_f$ en $+\infty$ si
+\[ \lim_{x\to+\infty}\big[f(x)-(ax+b)\big]=0. \]
+Définition analogue en $-\infty$.
+\end{definition}
+
+\begin{aretenir}[Rechercher une asymptote oblique]
+\textbf{Méthode~1 (rationnelle simple).} Si $f(x)=\dfrac{P(x)}{Q(x)}$ avec
+$\deg P=\deg Q+1$, effectuer la \textbf{division euclidienne} de $P$ par $Q$ :
+\[ f(x)=ax+b+\frac{R(x)}{Q(x)},\qquad \text{avec } \frac{R(x)}{Q(x)}\xrightarrow[x\to\pm\infty]{}0. \]
+La droite $y=ax+b$ est alors asymptote oblique.
+
+\smallskip
+\textbf{Méthode~2 (générale).} Calculer successivement
+\[ a=\lim_{x\to+\infty}\frac{f(x)}{x},\qquad b=\lim_{x\to+\infty}\big[f(x)-ax\big]. \]
+Si $a$ et $b$ sont finis (et $a\neq 0$), $y=ax+b$ est asymptote oblique.
+\end{aretenir}
+
+\begin{propriete}[Position de la courbe par rapport à une asymptote oblique]
+On étudie le \textbf{signe de $f(x)-(ax+b)$}, qui vaut ici $\dfrac{R(x)}{Q(x)}$ :
+\begin{itemize}
+  \item si $f(x)-(ax+b)>0$, la courbe est \textbf{au-dessus} de l'asymptote ;
+  \item si $f(x)-(ax+b)<0$, la courbe est \textbf{en dessous} ;
+  \item le signe peut changer : la courbe peut \textbf{traverser} son asymptote.
+\end{itemize}
+\end{propriete}
+
+\begin{exemple}
+Soit $f(x)=\dfrac{x^2+1}{x}=x+\dfrac{1}{x}$. La division est déjà faite : comme
+$\dfrac{1}{x}\to 0$ en $\pm\infty$, la droite $y=x$ est asymptote oblique. De plus
+$f(x)-x=\dfrac{1}{x}$ : la courbe est \textbf{au-dessus} de l'asymptote pour $x>0$,
+\textbf{en dessous} pour $x<0$. La droite $x=0$ est asymptote verticale.
+\end{exemple}
+
+\begin{illus}
+\begin{tikzpicture}
+\begin{axis}[
+  width=10cm,height=8cm,
+  axis lines=middle,
+  xlabel={$x$},ylabel={$y$},
+  xlabel style={right},ylabel style={above},
+  xmin=-4.2,xmax=4.2,ymin=-5.2,ymax=5.2,
+  xtick={-3,-2,-1,1,2,3},ytick={-4,-2,2,4},
+  tick style={onbmuted},
+  every axis x label/.style={at={(ticklabel* cs:1)},anchor=west},
+  every axis y label/.style={at={(ticklabel* cs:1)},anchor=south},
+  clip=true]
+  % asymptote oblique y = x
+  \addplot[onbmuted,dashed,thick,domain=-4:4]{x};
+  \node[onbmuted] at (axis cs:3.2,4.4){$y=x$};
+  % asymptote verticale x = 0 : l'axe Oy joue ce rôle (dashed pour rappel)
+  % deux branches de f(x)=x+1/x
+  \addplot[onbo,very thick,smooth,samples=100,domain=0.21:4]{x+1/x};
+  \addplot[onbo,very thick,smooth,samples=100,domain=-4:-0.21]{x+1/x};
+  \node[onbo] at (axis cs:2.6,4.6){$\mathcal{C}_f$};
+\end{axis}
+\end{tikzpicture}
+\fig{Figure — courbe de $f(x)=x+\dfrac1x$ : asymptote verticale $x=0$ et asymptote oblique $y=x$ (en pointillés).}
+\end{illus}
+
+\section{Branches infinies}
+
+Quand $\displaystyle\lim_{x\to+\infty}f(x)=\pm\infty$, la courbe possède une
+\textbf{branche infinie} dont on précise la nature à l'aide de $\dfrac{f(x)}{x}$.
+
+\begin{aretenir}[Nature d'une branche infinie en $+\infty$ (approche simple)]
+On calcule $\displaystyle\lim_{x\to+\infty}\frac{f(x)}{x}$.
+\begin{itemize}
+  \item Si la limite est $0$ : branche \textbf{parabolique} de direction $(Ox)$.
+  \item Si la limite est $+\infty$ (ou $-\infty$) : branche \textbf{parabolique} de
+        direction $(Oy)$.
+  \item Si la limite est un réel $a\neq 0$, on calcule $b=\lim[f(x)-ax]$ :
+        \begin{itemize}
+          \item $b$ fini : \textbf{asymptote oblique} $y=ax+b$ ;
+          \item $b$ infini : branche parabolique de direction $y=ax$.
+        \end{itemize}
+\end{itemize}
+\end{aretenir}
+
+\begin{exemple}
+Pour $f(x)=\sqrt{x^2+x}$ (sur $[0\,;\,+\infty[$), $\dfrac{f(x)}{x}=\sqrt{1+\frac1x}\to 1$,
+puis $f(x)-x=\dfrac{x}{\sqrt{x^2+x}+x}\to\dfrac12$. La droite $y=x+\dfrac12$ est asymptote
+oblique en $+\infty$.
+\end{exemple}
+
+\section{Points particuliers et tracé}
+
+\begin{aretenir}[Avant de tracer]
+On rassemble :
+\begin{itemize}
+  \item les \textbf{intersections avec les axes} : avec $(Oy)$ on calcule $f(0)$ (si
+        $0\in D_f$) ; avec $(Ox)$ on résout $f(x)=0$ ;
+  \item les \textbf{extremums} (lus dans le tableau de variations) ;
+  \item les \textbf{asymptotes} et la \textbf{position} de la courbe par rapport à elles ;
+  \item éventuellement le \textbf{coefficient directeur des tangentes} en quelques points
+        (via $f'$), notamment aux points où la courbe coupe un axe.
+\end{itemize}
+On place ces éléments, puis on trace en respectant le sens de variation du tableau.
+\end{aretenir}
+
+\begin{remarque}
+Une courbe bien tracée \emph{respecte le tableau} : elle monte là où $f'>0$, descend là
+où $f'<0$, présente une tangente horizontale aux extremums, et longe les asymptotes
+sans jamais s'en écarter à l'infini.
+\end{remarque}
+
+\section{Application aux fonctions usuelles}
+
+\begin{propriete}[Fonctions polynômes]
+Une fonction polynôme est définie sur $\R$, n'a \textbf{aucune asymptote} et ses
+branches infinies sont \textbf{paraboliques} (de direction $(Oy)$). Sa dérivée est un
+polynôme : son signe se lit en factorisant.
+\end{propriete}
+
+\begin{propriete}[Fonctions rationnelles]
+$f=\dfrac{P}{Q}$ est définie là où $Q\neq 0$. Chaque racine de $Q$ (non racine de $P$)
+donne une \textbf{asymptote verticale}. Selon les degrés :
+\begin{itemize}
+  \item $\deg P<\deg Q$ : asymptote horizontale $y=0$ ;
+  \item $\deg P=\deg Q$ : asymptote horizontale $y=\dfrac{a_n}{b_n}$ (rapport des
+        coefficients dominants) ;
+  \item $\deg P=\deg Q+1$ : asymptote \textbf{oblique} (division euclidienne).
+\end{itemize}
+\end{propriete}
+
+\begin{propriete}[Fonctions irrationnelles simples]
+$f(x)=\sqrt{u(x)}$ est définie où $u(x)\ge 0$ ; elle a même sens de variation que $u$ là
+où $u>0$, et $f'(x)=\dfrac{u'(x)}{2\sqrt{u(x)}}$. Ses branches infinies s'étudient via
+$\dfrac{f(x)}{x}$ (souvent une asymptote oblique).
+\end{propriete}
+
+\begin{exemple}
+$f(x)=\dfrac{2x-1}{x-1}=2+\dfrac{1}{x-1}$ : asymptote verticale $x=1$, asymptote
+horizontale $y=2$ (degrés égaux, rapport $2/1$). La courbe est une hyperbole de centre
+$\Omega(1\,;\,2)$.
+\end{exemple}
+
+\section{Position relative de deux courbes}
+
+\begin{definition}[Position relative]
+Soit $f$ et $g$ définies sur un même intervalle $I$, de courbes $\mathcal{C}_f$ et
+$\mathcal{C}_g$. La \textbf{position relative} des deux courbes s'obtient en étudiant le
+\textbf{signe de la différence} $d(x)=f(x)-g(x)$ :
+\begin{itemize}
+  \item $d(x)>0$ : $\mathcal{C}_f$ est \textbf{au-dessus} de $\mathcal{C}_g$ ;
+  \item $d(x)<0$ : $\mathcal{C}_f$ est \textbf{en dessous} de $\mathcal{C}_g$ ;
+  \item $d(x)=0$ : les courbes se \textbf{coupent} (point d'intersection).
+\end{itemize}
+\end{definition}
+
+\begin{aretenir}[Méthode]
+\textbf{1.} Former $d(x)=f(x)-g(x)$ et le \textbf{factoriser}. \textbf{2.} Dresser le
+\textbf{tableau de signes} de $d(x)$. \textbf{3.} Conclure intervalle par intervalle ; les
+racines de $d$ donnent les \textbf{abscisses des points d'intersection}.
+\end{aretenir}
+
+\begin{exemple}
+Position de $\mathcal{C}_f$ ($f(x)=x^2$) par rapport à $\mathcal{C}_g$ ($g(x)=x$).
+On forme $d(x)=x^2-x=x(x-1)$. Donc $d(x)>0$ sur $]-\infty\,;\,0[\cup]1\,;\,+\infty[$
+($\mathcal{C}_f$ au-dessus), $d(x)<0$ sur $]0\,;\,1[$ ($\mathcal{C}_f$ en dessous), et les
+courbes se coupent en $O(0\,;\,0)$ et $A(1\,;\,1)$.
+\end{exemple}
+
+\begin{illus}
+\begin{tikzpicture}
+\begin{axis}[
+  width=9.5cm,height=7cm,
+  axis lines=middle,
+  xlabel={$x$},ylabel={$y$},
+  xlabel style={right},ylabel style={above},
+  xmin=-1.4,xmax=2.2,ymin=-0.8,ymax=3.4,
+  xtick={-1,1,2},ytick={1,2,3},
+  tick style={onbmuted},
+  every axis x label/.style={at={(ticklabel* cs:1)},anchor=west},
+  every axis y label/.style={at={(ticklabel* cs:1)},anchor=south},
+  clip=true]
+  \addplot[onbo,very thick,smooth,samples=80,domain=-1.2:1.85]{x^2};
+  \node[onbo] at (axis cs:1.7,3.05){$\mathcal{C}_f:\,x^2$};
+  \addplot[onbgreen,very thick,domain=-1.2:2.05]{x};
+  \node[onbgreen] at (axis cs:1.95,1.55){$\mathcal{C}_g:\,x$};
+  \filldraw[onbink] (axis cs:0,0) circle (2pt);
+  \filldraw[onbink] (axis cs:1,1) circle (2pt) node[above left,onbink]{$A$};
+\end{axis}
+\end{tikzpicture}
+\fig{Figure — position relative : $\mathcal{C}_f$ est en dessous de $\mathcal{C}_g$ sur $]0\,;\,1[$, au-dessus ailleurs ; intersections en $O$ et $A(1\,;\,1)$.}
+\end{illus}
+
+% ════════════════════════════════════════════════════════════
+\section{L'essentiel à retenir}
+
+\begin{synthese}
+\textbf{Le plan d'étude en 7 étapes.}
+\begin{enumerate}
+  \item \textbf{$D_f$} : exclure dénominateurs nuls et radicandes négatifs.
+  \item \textbf{Parité} (domaine symétrique) : $f(-x)=f(x)$ (paire, axe $Oy$) ou
+        $f(-x)=-f(x)$ (impaire, centre $O$) $\Rightarrow$ réduire l'intervalle.
+  \item \textbf{Limites} aux bornes et de part et d'autre des valeurs exclues.
+  \item \textbf{Dérivée} $f'$ et son \textbf{signe} (factoriser).
+  \item \textbf{Tableau de variations} : signe de $f'$ + flèches + valeurs/limites.
+  \item \textbf{Asymptotes} et \textbf{points particuliers}.
+  \item \textbf{Tracé} fidèle au tableau.
+\end{enumerate}
+
+\smallskip
+\textbf{Asymptotes.}
+\[ \lim_{x\to a}f=\pm\infty \Rightarrow x=a \text{ (verticale)};\quad
+   \lim_{x\to\pm\infty}f=\ell \Rightarrow y=\ell \text{ (horizontale)}. \]
+\textbf{Oblique} $y=ax+b$ : $\lim[f(x)-(ax+b)]=0$, ou division euclidienne si
+$\deg P=\deg Q+1$, ou $a=\lim\frac{f(x)}{x}$ puis $b=\lim[f(x)-ax]$.
+
+\smallskip
+\textbf{Position / asymptote} : signe de $f(x)-(ax+b)$ (au-dessus si $>0$).
+
+\smallskip
+\textbf{Position de deux courbes} : signe de $d(x)=f(x)-g(x)$ ; racines = intersections.
+\end{synthese}
+
+% ════════════════════════════════════════════════════════════
+\section{Méthodes \& savoir-faire}
+
+\methode{Mener l'étude complète d'une fonction}
+Dérouler les sept étapes dans l'ordre : domaine, parité, limites, dérivée et signe,
+tableau de variations, asymptotes et points particuliers, tracé. Ne jamais sauter le
+tableau de variations : c'est le pivot de toute l'étude.
+
+\methode{Déterminer une asymptote horizontale ou verticale}
+\textbf{Verticale} : repérer les valeurs $a$ exclues de $D_f$ et vérifier que
+$\lim_{x\to a}f=\pm\infty$. \textbf{Horizontale} : calculer $\lim_{x\to\pm\infty}f$ ; si
+la limite est un réel $\ell$, alors $y=\ell$ est asymptote.
+\begin{exemple}
+$f(x)=\dfrac{3x-2}{x+1}$. Valeur exclue $x=-1$ : $\lim_{x\to-1}f=\pm\infty$ donc $x=-1$
+asymptote verticale. En $\pm\infty$, $f(x)\to\dfrac{3x}{x}=3$ : $y=3$ asymptote horizontale.
+\end{exemple}
+
+\methode{Trouver une asymptote oblique par division euclidienne}
+Quand $\deg P=\deg Q+1$, poser la division de $P$ par $Q$ pour écrire
+$f(x)=ax+b+\dfrac{R(x)}{Q(x)}$. La droite $y=ax+b$ est asymptote oblique, et le signe de
+$\dfrac{R(x)}{Q(x)}$ donne la position de la courbe.
+\begin{exemple}
+$f(x)=\dfrac{x^2-x+1}{x-1}$. La division donne $f(x)=x+\dfrac{1}{x-1}$ (car
+$x^2-x+1=x(x-1)+1$). Donc $y=x$ est asymptote oblique ; $f(x)-x=\dfrac{1}{x-1}>0$ pour
+$x>1$ (courbe au-dessus), $<0$ pour $x<1$ (courbe en dessous).
+\end{exemple}
+
+\methode{Préciser une branche infinie par $\dfrac{f(x)}{x}$}
+Lorsque $f(x)\to\pm\infty$, calculer $\lim\dfrac{f(x)}{x}$ : limite nulle (branche
+parabolique direction $Ox$), infinie (direction $Oy$), ou réelle $a\neq 0$ (calculer
+alors $b=\lim[f(x)-ax]$ pour conclure asymptote oblique ou branche parabolique).
+\begin{exemple}
+$f(x)=x+\sqrt{x}$ sur $[0\,;\,+\infty[$ : $\dfrac{f(x)}{x}=1+\dfrac{1}{\sqrt{x}}\to 1$,
+puis $f(x)-x=\sqrt{x}\to+\infty$ : branche parabolique de direction la droite $y=x$.
+\end{exemple}
+
+\methode{Étudier la position de deux courbes}
+Former $d(x)=f(x)-g(x)$, factoriser, dresser le tableau de signes ; conclure « au-dessus /
+en dessous » et donner les abscisses d'intersection (racines de $d$).
+\begin{exemple}
+$f(x)=x^3$ et $g(x)=x$ : $d(x)=x^3-x=x(x-1)(x+1)$. La courbe $\mathcal{C}_f$ est en
+dessous de $\mathcal{C}_g$ sur $]-\infty\,;\,-1[\cup]0\,;\,1[$ et au-dessus sur
+$]-1\,;\,0[\cup]1\,;\,+\infty[$ ; intersections en $-1$, $0$ et $1$.
+\end{exemple}
+
+\methode{Exploiter parité et symétrie pour gagner du temps}
+Tester la parité avant tout long calcul : si $f$ est paire ou impaire, n'étudier que
+$[0\,;\,+\infty[$ et compléter le tracé par la symétrie correspondante.
+\begin{exemple}
+$f(x)=\dfrac{x}{x^2+1}$ est impaire (vu au chapitre 1) : on l'étudie sur $[0\,;\,+\infty[$
+puis on complète $\mathcal{C}_f$ par symétrie de centre $O$.
+\end{exemple}
+
+\methode{Étude complète d'une fonction rationnelle (modèle)}
+Étudions entièrement $f(x)=\dfrac{x^2+2}{x-1}$ en suivant les sept étapes.
+\begin{exemple}
+\textbf{1. Domaine.} $x-1\neq0$ : $D_f=\R\setminus\{1\}=\,]-\infty\,;\,1[\cup]1\,;\,+\infty[$.
+
+\textbf{2. Parité.} $D_f$ n'est pas symétrique par rapport à $0$ : $f$ n'est ni paire ni
+impaire. On étudie sur $D_f$ tout entier.
+
+\textbf{3. Forme et limites.} Division euclidienne : $x^2+2=(x-1)(x+1)+3$, donc
+\[ f(x)=x+1+\frac{3}{x-1}. \]
+En $\pm\infty$ : $f(x)\sim x\to\pm\infty$. En $1$ : $\lim_{x\to1^-}\dfrac{3}{x-1}=-\infty$
+donc $\lim_{x\to1^-}f=-\infty$ ; de même $\lim_{x\to1^+}f=+\infty$.
+
+\textbf{4. Dérivée et signe.} $f'(x)=1-\dfrac{3}{(x-1)^2}=\dfrac{(x-1)^2-3}{(x-1)^2}$. Le
+signe est celui de $(x-1)^2-3$, qui s'annule pour $x=1-\sqrt3$ et $x=1+\sqrt3$. Donc
+$f'>0$ sur $]-\infty\,;\,1-\sqrt3[$ et $]1+\sqrt3\,;\,+\infty[$, et $f'<0$ entre les deux
+(privé de $x=1$).
+
+\textbf{5. Tableau de variations.} Maximum local en $x=1-\sqrt3$, minimum local en
+$x=1+\sqrt3$ ; double barre en $x=1$.
+\[
+\begin{array}{c|ccccccccc}
+x     & -\infty & & 1-\sqrt3 & & 1 & & 1+\sqrt3 & & +\infty \\ \hline
+f'(x) & & + & 0 & - & \| & - & 0 & + & \\ \hline
+f     & -\infty & \nearrow & & \searrow & \| & & \searrow & \nearrow & +\infty
+\end{array}
+\]
+
+\textbf{6. Asymptotes et points particuliers.} $x=1$ est asymptote verticale ; $y=x+1$ est
+asymptote oblique (car $\frac{3}{x-1}\to0$). Position : $f(x)-(x+1)=\dfrac{3}{x-1}$, donc
+courbe \textbf{au-dessus} pour $x>1$, \textbf{en dessous} pour $x<1$. Intersection avec
+$(Oy)$ : $f(0)=-2$.
+
+\textbf{7. Tracé.} Deux branches d'hyperbole de centre $\Omega(1\,;\,2)$, longeant $x=1$ et
+$y=x+1$, conformes au tableau de variations.
+\end{exemple}
