@@ -1,0 +1,368 @@
+\chapter{Équations, inéquations et systèmes du second degré}
+\textit{Le second degré est l'un des outils les plus puissants du programme de
+Première C. Dès qu'une vitesse, une aire ou une trajectoire fait intervenir un
+carré, on retombe sur une expression de la forme $ax^2+bx+c$. Apprendre à la
+factoriser, à en lire le signe et à résoudre les équations associées, c'est se
+doter d'un réflexe que l'on retrouvera en géométrie, en physique et jusqu'au
+calcul intégral. Tout repose sur une seule idée : la \emph{forme canonique}.}
+
+\section{Le trinôme du second degré}
+
+\begin{definition}[Trinôme du second degré]
+On appelle \textbf{trinôme du second degré} toute expression de la forme
+\[ P(x)=ax^2+bx+c, \qquad a,b,c\in\R,\ a\neq 0. \]
+Le réel $a$ est le \textbf{coefficient dominant} ; la condition $a\neq 0$ est
+essentielle (sinon l'expression est du premier degré). L'\textbf{équation du second
+degré} associée est $ax^2+bx+c=0$.
+\end{definition}
+
+\begin{remarque}
+Si $a=0$, l'équation $bx+c=0$ est du premier degré et se résout immédiatement.
+Tout ce qui suit suppose donc $a\neq 0$ : on parle bien du \emph{second} degré.
+\end{remarque}
+
+\begin{theoreme}[Forme canonique]
+Pour tout réel $x$ et tout trinôme $P(x)=ax^2+bx+c$ avec $a\neq 0$,
+\[ ax^2+bx+c = a\!\left[\left(x+\frac{b}{2a}\right)^{\!2}-\frac{b^2-4ac}{4a^2}\right]. \]
+\end{theoreme}
+
+\begin{aretenir}[Démonstration de la forme canonique]
+On factorise $a$, puis on reconnaît le début d'un carré :
+\[ ax^2+bx+c = a\!\left(x^2+\frac{b}{a}x\right)+c
+   = a\!\left[\left(x+\frac{b}{2a}\right)^{\!2}-\frac{b^2}{4a^2}\right]+c. \]
+En remettant $c=a\cdot\dfrac{4ac}{4a^2}$ à l'intérieur du crochet, il vient
+\[ ax^2+bx+c = a\!\left[\left(x+\frac{b}{2a}\right)^{\!2}-\frac{b^2-4ac}{4a^2}\right]. \]
+Toute la résolution du second degré découle de cette identité.
+\end{aretenir}
+
+\begin{exemple}
+Mettons $P(x)=2x^2-12x+10$ sous forme canonique. On factorise $2$ :
+\[ P(x)=2(x^2-6x+5)=2\big[(x-3)^2-9+5\big]=2(x-3)^2-8. \]
+On lit immédiatement que $P$ admet un minimum égal à $-8$, atteint en $x=3$.
+\end{exemple}
+
+\section{Le discriminant et les racines}
+
+La quantité $b^2-4ac$ apparue dans la forme canonique gouverne entièrement le
+nombre de solutions de l'équation $ax^2+bx+c=0$.
+
+\begin{definition}[Discriminant]
+On appelle \textbf{discriminant} du trinôme $ax^2+bx+c$ le réel
+\[ \Delta = b^2-4ac. \]
+\end{definition}
+
+\begin{theoreme}[Nombre et valeurs des racines]
+Soit $ax^2+bx+c=0$ avec $a\neq 0$ et $\Delta=b^2-4ac$.
+\begin{itemize}
+  \item Si $\Delta>0$ : l'équation a \textbf{deux racines réelles distinctes}
+  \[ x_1=\frac{-b-\sqrt{\Delta}}{2a}, \qquad x_2=\frac{-b+\sqrt{\Delta}}{2a}. \]
+  \item Si $\Delta=0$ : l'équation a \textbf{une racine double}
+  \[ x_0=-\frac{b}{2a}. \]
+  \item Si $\Delta<0$ : l'équation n'a \textbf{aucune racine réelle}.
+\end{itemize}
+\end{theoreme}
+
+\begin{aretenir}[Pourquoi $\Delta$ décide de tout]
+À partir de la forme canonique, $ax^2+bx+c=0$ équivaut (en divisant par $a\neq 0$) à
+\[ \left(x+\frac{b}{2a}\right)^{\!2}=\frac{\Delta}{4a^2}. \]
+Un carré ne peut égaler que des quantités positives ou nulles : si $\Delta<0$, le
+second membre est négatif, donc aucune solution ; si $\Delta=0$, on obtient une
+unique valeur ; si $\Delta>0$, on extrait deux racines carrées opposées, d'où les
+deux solutions ci-dessus.
+\end{aretenir}
+
+\begin{illus}
+\begin{tikzpicture}[scale=0.78]
+  \begin{scope}
+    \draw[->,onbline] (-1.6,0)--(2.6,0) node[right,onbmuted]{$x$};
+    \draw[->,onbline] (0,-1.4)--(0,2.6);
+    \draw[thick,onbo,smooth,samples=80,domain=-0.7:1.9] plot (\x,{2*(\x-0.6)*(\x-0.6)-1});
+    \filldraw[onbink] (-0.107,0) circle (1.4pt);
+    \filldraw[onbink] (1.307,0) circle (1.4pt);
+    \node[onbmuted,below] at (0.6,-1.7) {$\Delta>0$ : deux racines};
+  \end{scope}
+  \begin{scope}[xshift=5cm]
+    \draw[->,onbline] (-1.6,0)--(2.6,0) node[right,onbmuted]{$x$};
+    \draw[->,onbline] (0,-0.6)--(0,2.6);
+    \draw[thick,onbo,smooth,samples=80,domain=-0.25:1.45] plot (\x,{2.2*(\x-0.6)*(\x-0.6)});
+    \filldraw[onbink] (0.6,0) circle (1.4pt);
+    \node[onbmuted,below] at (0.6,-0.9) {$\Delta=0$ : racine double};
+  \end{scope}
+  \begin{scope}[xshift=10cm]
+    \draw[->,onbline] (-1.6,0)--(2.6,0) node[right,onbmuted]{$x$};
+    \draw[->,onbline] (0,-0.6)--(0,2.6);
+    \draw[thick,onbo,smooth,samples=80,domain=-0.15:1.35] plot (\x,{2.2*(\x-0.6)*(\x-0.6)+0.7});
+    \node[onbmuted,below] at (0.6,-0.9) {$\Delta<0$ : aucune racine};
+  \end{scope}
+\end{tikzpicture}
+\fig{Figure — la parabole coupe l'axe $(Ox)$ en deux points, le touche, ou l'évite, selon le signe de $\Delta$.}
+\end{illus}
+
+\begin{exemple}
+Résolvons $x^2-5x+6=0$. Ici $a=1$, $b=-5$, $c=6$, donc
+$\Delta=(-5)^2-4\times 1\times 6=25-24=1>0$. D'où
+\[ x_1=\frac{5-1}{2}=2, \qquad x_2=\frac{5+1}{2}=3. \]
+L'ensemble des solutions est $S=\{2\,;\,3\}$.
+\end{exemple}
+
+\begin{remarque}
+Lorsque $b$ est pair, on peut alléger les calculs avec le \textbf{discriminant
+réduit} $\Delta'=\left(\frac{b}{2}\right)^2-ac$ : si $\Delta'>0$, les racines sont
+$x=\dfrac{-\frac{b}{2}\pm\sqrt{\Delta'}}{a}$. C'est commode mais facultatif.
+\end{remarque}
+
+\section{Somme, produit et factorisation}
+
+\begin{theoreme}[Somme et produit des racines]
+Lorsque le trinôme $ax^2+bx+c$ admet deux racines $x_1$ et $x_2$ (distinctes si
+$\Delta>0$, confondues si $\Delta=0$), alors
+\[ S=x_1+x_2=-\frac{b}{a}, \qquad P=x_1\,x_2=\frac{c}{a}. \]
+\end{theoreme}
+
+\begin{aretenir}[Vérification rapide]
+En additionnant les deux racines, $\sqrt{\Delta}$ se simplifie :
+\[ x_1+x_2=\frac{-b-\sqrt\Delta}{2a}+\frac{-b+\sqrt\Delta}{2a}=\frac{-2b}{2a}=-\frac{b}{a}. \]
+En les multipliant, on reconnaît une identité remarquable :
+\[ x_1\,x_2=\frac{(-b)^2-(\sqrt\Delta)^2}{4a^2}=\frac{b^2-\Delta}{4a^2}=\frac{4ac}{4a^2}=\frac{c}{a}. \]
+Ces relations permettent souvent de \emph{deviner} les racines sans calculer $\Delta$.
+\end{aretenir}
+
+\begin{theoreme}[Factorisation du trinôme]
+\begin{itemize}
+  \item Si $\Delta>0$, de racines $x_1,x_2$ : \quad $ax^2+bx+c=a(x-x_1)(x-x_2)$.
+  \item Si $\Delta=0$, de racine double $x_0$ : \quad $ax^2+bx+c=a(x-x_0)^2$.
+  \item Si $\Delta<0$ : le trinôme est \textbf{irréductible} dans $\R$ (pas de
+        factorisation en facteurs du premier degré).
+\end{itemize}
+\end{theoreme}
+
+\begin{exemple}
+Le trinôme $x^2-5x+6$ a pour racines $2$ et $3$ (exemple précédent), donc se
+factorise en $x^2-5x+6=(x-2)(x-3)$. Vérification immédiate : $S=2+3=5=-\frac{-5}{1}$
+et $P=2\times 3=6=\frac{6}{1}$.
+\end{exemple}
+
+\begin{remarque}
+Si $a+b+c=0$, alors $x=1$ est racine évidente et l'autre racine vaut $\frac{c}{a}$
+(car $P=\frac{c}{a}$). Par exemple $2x^2-3x+1=0$ : $2-3+1=0$, donc $x=1$ et
+$x'=\frac{1}{2}$. Ce réflexe fait gagner un temps précieux en composition.
+\end{remarque}
+
+\section{Signe du trinôme}
+
+\begin{theoreme}[Signe du trinôme du second degré]
+Le trinôme $P(x)=ax^2+bx+c$ ($a\neq 0$) est :
+\begin{itemize}
+  \item \textbf{toujours du signe de $a$} si $\Delta<0$ (aucune racine) ;
+  \item du signe de $a$ \textbf{sauf en $x_0$} où il s'annule, si $\Delta=0$ ;
+  \item du signe de $a$ \textbf{à l'extérieur} des racines, et du signe de $-a$
+        (signe contraire) \textbf{entre les racines}, si $\Delta>0$.
+\end{itemize}
+On résume cela par la formule : \emph{« le trinôme est du signe de $a$, sauf
+entre les racines »}.
+\end{theoreme}
+
+\begin{illus}
+\begin{tikzpicture}[scale=0.85]
+  \draw[->,onbline] (-2.6,0)--(2.8,0) node[right,onbmuted]{$x$};
+  \draw[->,onbline] (0,-1.6)--(0,2.2) node[above,onbmuted]{$y$};
+  \draw[thick,onbo,smooth,samples=90,domain=-1.65:1.65] plot (\x,{1.2*(\x-1)*(\x+1)});
+  \filldraw[onbink] (-1,0) circle (1.5pt) node[below left,onbink]{$x_1$};
+  \filldraw[onbink] (1,0) circle (1.5pt) node[below right,onbink]{$x_2$};
+  \node[onbgreen] at (-1.7,1.4) {$+$};
+  \node[onbgreen] at (1.7,1.4) {$+$};
+  \node[onbo] at (0,-1.3) {$-$};
+\end{tikzpicture}
+\fig{Figure — cas $a>0$ et $\Delta>0$ : le trinôme est positif à l'extérieur de $[x_1\,;\,x_2]$ et négatif entre les racines.}
+\end{illus}
+
+\begin{exemple}
+Étudions le signe de $P(x)=-x^2+x+6$. On a $a=-1<0$ et
+$\Delta=1+24=25>0$, d'où les racines $x_1=\dfrac{-1-5}{-2}=3$ et
+$x_2=\dfrac{-1+5}{-2}=-2$. Le tableau de signes :
+\begin{center}\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{c|ccccc}
+$x$ & $-\infty$ & $-2$ & & $3$ & $+\infty$ \\
+\hline
+$P(x)$ & & $-$ & $\;0\;+\;0\;$ & & $-$ \\
+\end{tabular}
+\end{center}
+Comme $a<0$, $P$ est négatif à l'extérieur de $[-2\,;\,3]$ et positif entre $-2$ et $3$.
+\end{exemple}
+
+\section{Inéquations du second degré}
+
+\begin{aretenir}[Méthode générale]
+Pour résoudre une inéquation du second degré (par exemple $ax^2+bx+c\ge 0$) :
+\begin{enumerate}
+  \item ramener tout dans un seul membre pour obtenir $\,ax^2+bx+c \;\square\; 0$ ;
+  \item calculer $\Delta$ et, s'il y a lieu, les racines ;
+  \item dresser le \textbf{tableau de signes} du trinôme ;
+  \item lire l'ensemble solution selon le sens de l'inégalité (attention aux bornes :
+        $\ge$ ou $\le$ \emph{incluent} les racines, $>$ ou $<$ les \emph{excluent}).
+\end{enumerate}
+\end{aretenir}
+
+\begin{exemple}
+Résolvons $x^2-x-6<0$. Ici $\Delta=1+24=25$, racines $x_1=-2$ et $x_2=3$, avec
+$a=1>0$ : le trinôme est positif à l'extérieur et négatif entre les racines. On
+cherche $P(x)<0$, donc
+\[ S=\,]-2\,;\,3[. \]
+Les bornes sont exclues car l'inégalité est stricte.
+\end{exemple}
+
+\begin{remarque}
+Quand $\Delta<0$, le trinôme garde un signe constant (celui de $a$). Ainsi
+$x^2+x+1>0$ est vraie pour \emph{tout} $x\in\R$ (car $a>0$ et $\Delta=-3<0$), tandis
+que $x^2+x+1<0$ n'a \emph{aucune} solution : $S=\varnothing$.
+\end{remarque}
+
+\section{Équations se ramenant au second degré}
+
+Certaines équations de degré supérieur deviennent du second degré après un
+\textbf{changement d'inconnue} bien choisi.
+
+\begin{definition}[Équation bicarrée]
+On appelle \textbf{équation bicarrée} toute équation de la forme
+\[ ax^4+bx^2+c=0, \qquad a\neq 0. \]
+En posant $X=x^2$ (avec la contrainte $X\ge 0$), elle se ramène à l'équation du
+second degré $aX^2+bX+c=0$.
+\end{definition}
+
+\begin{aretenir}[Marche à suivre pour une bicarrée]
+\begin{enumerate}
+  \item poser $X=x^2$, avec $X\ge 0$ ;
+  \item résoudre $aX^2+bX+c=0$ en $X$ ;
+  \item ne garder que les solutions $X\ge 0$ ;
+  \item revenir à $x$ : chaque $X>0$ donne $x=\pm\sqrt{X}$ ; $X=0$ donne $x=0$.
+\end{enumerate}
+\end{aretenir}
+
+\begin{exemple}
+Résolvons $x^4-5x^2+4=0$. On pose $X=x^2$ : $X^2-5X+4=0$, de racines $X=1$ et $X=4$
+(somme $5$, produit $4$), toutes deux positives. On revient à $x$ :
+\[ x^2=1\Rightarrow x=\pm 1, \qquad x^2=4\Rightarrow x=\pm 2. \]
+D'où $S=\{-2\,;\,-1\,;\,1\,;\,2\}$.
+\end{exemple}
+
+\begin{remarque}
+Le même réflexe s'applique à d'autres formes : poser $X=\sqrt{x}$ dans
+$x-3\sqrt{x}+2=0$, ou $X=\dfrac{1}{x}$ dans une équation où apparaissent $x^2$ et
+$\frac{1}{x^2}$. L'idée est toujours de \emph{nommer} le motif qui se répète pour
+faire surgir un second degré.
+\end{remarque}
+
+\section{Systèmes du second degré}
+
+\begin{theoreme}[Système somme--produit]
+Deux réels $u$ et $v$ de somme $S$ et de produit $P$ sont les \textbf{racines} du
+trinôme
+\[ t^2-St+P=0. \]
+Le système $\begin{cases} u+v=S\\ uv=P \end{cases}$ admet donc des solutions réelles
+si et seulement si $S^2-4P\ge 0$ ; les valeurs de $u$ et $v$ sont alors les deux
+racines de ce trinôme.
+\end{theoreme}
+
+\begin{exemple}
+Cherchons deux nombres dont la somme vaut $7$ et le produit $12$. Ils sont racines
+de $t^2-7t+12=0$, soit $\Delta=49-48=1$, racines $3$ et $4$. Les deux nombres sont
+donc $3$ et $4$.
+\end{exemple}
+
+\begin{aretenir}[Système d'une équation de degré 1 et d'une de degré 2]
+Pour un système du type $\begin{cases} x+y=s\\ x^2+y^2=k \end{cases}$ ou avec une
+droite et une parabole, on procède par \textbf{substitution} : tirer une inconnue de
+l'équation du premier degré, la reporter dans la seconde, puis résoudre le second
+degré obtenu.
+\end{aretenir}
+
+\begin{exemple}
+Résolvons $\begin{cases} x+y=5\\ xy=6 \end{cases}$. C'est un système
+somme--produit : $x$ et $y$ sont racines de $t^2-5t+6=0$, soit $t=2$ ou $t=3$.
+Les couples solutions sont $(2\,;\,3)$ et $(3\,;\,2)$.
+\end{exemple}
+
+% ════════════════════════════════════════════════════════════
+\section{L'essentiel à retenir}
+
+\begin{synthese}
+\textbf{Forme canonique.} $ax^2+bx+c=a\!\left[\left(x+\frac{b}{2a}\right)^2-\frac{\Delta}{4a^2}\right]$
+avec $\Delta=b^2-4ac$.
+
+\smallskip
+\textbf{Racines selon $\Delta$.}
+$\Delta>0$ : deux racines $x_{1,2}=\dfrac{-b\pm\sqrt\Delta}{2a}$ ;
+$\Delta=0$ : racine double $x_0=-\dfrac{b}{2a}$ ;
+$\Delta<0$ : aucune racine réelle.
+
+\smallskip
+\textbf{Somme et produit.} $S=x_1+x_2=-\dfrac{b}{a}$, \ $P=x_1x_2=\dfrac{c}{a}$.
+Astuce : si $a+b+c=0$ alors $x=1$ est racine.
+
+\smallskip
+\textbf{Factorisation.} $\Delta>0$ : $a(x-x_1)(x-x_2)$ ; \ $\Delta=0$ : $a(x-x_0)^2$ ;
+\ $\Delta<0$ : irréductible dans $\R$.
+
+\smallskip
+\textbf{Signe.} Le trinôme est \emph{du signe de $a$, sauf entre les racines}
+(quand $\Delta>0$) ; du signe de $a$ partout si $\Delta\le 0$.
+
+\smallskip
+\textbf{Bicarrée \& cie.} On pose $X=x^2$ (ou autre motif), on résout en $X\ge 0$,
+puis on revient à $x$.
+
+\smallskip
+\textbf{Somme--produit.} $u,v$ de somme $S$ et produit $P$ sont racines de
+$t^2-St+P=0$.
+\end{synthese}
+
+% ════════════════════════════════════════════════════════════
+\section{Méthodes \& savoir-faire}
+
+\methode{Mettre un trinôme sous forme canonique}
+Factoriser $a$, compléter le carré à partir de $x^2+\frac{b}{a}x$, puis réintégrer
+le terme constant. On lit alors directement le sommet de la parabole.
+\begin{exemple}
+$P(x)=x^2-4x+1=(x-2)^2-4+1=(x-2)^2-3$ : sommet $(2\,;\,-3)$, minimum $-3$.
+\end{exemple}
+
+\methode{Résoudre une équation du second degré}
+Identifier $a,b,c$, calculer $\Delta=b^2-4ac$, conclure selon son signe et, si
+$\Delta\ge 0$, appliquer $x=\dfrac{-b\pm\sqrt\Delta}{2a}$.
+\begin{exemple}
+$3x^2-2x-1=0$ : $\Delta=4+12=16$, $\sqrt\Delta=4$, d'où $x=\dfrac{2\pm 4}{6}$, soit
+$x=1$ ou $x=-\dfrac{1}{3}$. On vérifie avec $a+b+c=3-2-1=0$ : $x=1$ est bien racine.
+\end{exemple}
+
+\methode{Trouver les racines par la somme et le produit}
+Quand les racines sont « simples », chercher deux nombres de somme $-\frac{b}{a}$
+et de produit $\frac{c}{a}$ — souvent plus rapide que le discriminant.
+\begin{exemple}
+$x^2-7x+10=0$ : on cherche deux nombres de somme $7$ et produit $10$ : ce sont $2$
+et $5$. Donc $S=\{2\,;\,5\}$.
+\end{exemple}
+
+\methode{Résoudre une inéquation du second degré}
+Tout ramener d'un côté, calculer $\Delta$ et les racines, dresser le tableau de
+signes, puis lire l'ensemble solution selon le sens (strict ou large) de l'inégalité.
+\begin{exemple}
+$2x^2-3x-2\ge 0$ : $\Delta=9+16=25$, racines $-\frac{1}{2}$ et $2$, $a>0$. Le trinôme
+est positif à l'extérieur : $S=\,\big]-\infty\,;\,-\tfrac{1}{2}\big]\cup[2\,;\,+\infty[$
+(bornes incluses car l'inégalité est large).
+\end{exemple}
+
+\methode{Résoudre une équation se ramenant au second degré}
+Repérer le motif répété, poser un changement d'inconnue $X$, résoudre le second
+degré en $X$, vérifier les contraintes ($X\ge 0$ pour $X=x^2$), puis revenir à $x$.
+\begin{exemple}
+$x^4-13x^2+36=0$ : avec $X=x^2$, $X^2-13X+36=0$ donne $X=4$ et $X=9$, d'où
+$x\in\{-3\,;\,-2\,;\,2\,;\,3\}$.
+\end{exemple}
+
+\methode{Résoudre un système par somme--produit}
+Si le système se met sous la forme $\{u+v=S,\ uv=P\}$, écrire l'équation
+$t^2-St+P=0$ et résoudre : ses racines sont $u$ et $v$ (à l'ordre près).
+\begin{exemple}
+$\begin{cases} x+y=10\\ xy=21 \end{cases}$ : $t^2-10t+21=0$, $\Delta=16$, racines
+$3$ et $7$. Solutions : $(3\,;\,7)$ et $(7\,;\,3)$.
+\end{exemple}
