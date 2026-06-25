@@ -1,0 +1,8 @@
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+apercu-*.pdf
+_t_*.pdf
+_t_*.tex

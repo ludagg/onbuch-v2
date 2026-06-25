@@ -1,0 +1,252 @@
+% =====================================================================
+%  PRÉAMBULE — Banque 1000 exercices · Maths Tle C (OnBuch)
+%  Version DEUX COLONNES — dense, type « manuel de prépa »
+%  Compatible XeTeX / tectonic. Mêmes noms de macros que l'original.
+% =====================================================================
+
+\usepackage[french]{babel}
+\usepackage{microtype}
+
+% --- Mise en page DENSE deux colonnes ---
+\usepackage[a4paper,top=1.5cm,bottom=1.4cm,left=1.3cm,right=1.3cm,
+            headheight=13pt,headsep=0.22cm,footskip=0.5cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+\setlength{\columnsep}{16pt}
+\setlength{\columnseprule}{0.4pt}
+\renewcommand{\columnseprulecolor}{\color{onbhair}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1.2pt}
+\linespread{0.98}
+\setlength{\emergencystretch}{3.5em}   % évite les débordements de texte en colonnes étroites
+\tolerance=3000 \hbadness=10000        % accepte des lignes lâches plutôt que de déborder
+% Autorise la coupure des formules INLINE aux relations / opérateurs binaires
+% (uniquement quand la ligne déborde) : indispensable en colonnes étroites.
+\binoppenalty=80
+\relpenalty=70
+
+% --- Maths & graphiques ---
+\usepackage{amsmath,amssymb,amsthm,mathrsfs}
+\usepackage{bm}
+\usepackage{esvect}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{calc,intersections,arrows.meta,decorations.markings,patterns,shapes.geometric,backgrounds}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+
+% --- divers ---
+\usepackage{enumitem}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{etoolbox}
+\usepackage{adjustbox}
+\usepackage{pdfpages}
+\usepackage[hidelinks]{hyperref}
+
+% Auto-réduction des tableaux (tableaux de signes/variations) trop larges
+\AtBeginDocument{%
+  \BeforeBeginEnvironment{tabular}{\begin{adjustbox}{max width=\linewidth}}%
+  \AfterEndEnvironment{tabular}{\end{adjustbox}}%
+}
+
+% Displays très resserrés (gros gain en deux colonnes) ----------------
+% + auto-réduction à la largeur de COLONNE des displays \[...\] trop larges
+% (ce qui tient garde sa taille ; seules les équations trop larges sont
+%  réduites proportionnellement → plus aucun débordement dans la gouttière).
+\newsavebox{\eqbox}
+\newsavebox{\imbox}
+% Maths INLINE longues : réduites à la largeur de colonne seulement si trop larges.
+\newcommand{\fitmath}[1]{%
+  \sbox{\imbox}{\ensuremath{#1}}%
+  \ifdim\wd\imbox>\linewidth
+    \par\nobreak\vspace{1pt}\noindent
+    \makebox[\linewidth][c]{\resizebox{\linewidth}{!}{\ensuremath{\displaystyle #1}}}%
+    \par\nobreak\vspace{1pt}\noindent
+  \else \ensuremath{#1}\fi}   % branche « tient » : maths normale (reste sécable)
+\newcommand{\outputeq}{%
+  \par\addvspace{\abovedisplayskip}%
+  \noindent\makebox[\linewidth][c]{%
+    \resizebox{\ifdim\wd\eqbox>\linewidth \linewidth\else \wd\eqbox\fi}{!}{\usebox{\eqbox}}}%
+  \par\addvspace{\belowdisplayskip}%
+}
+\AtBeginDocument{%
+  \small                              % corps en \small : + de densité, équations + étroites
+  \setlength{\abovedisplayskip}{2.5pt plus 1pt minus 1pt}%
+  \setlength{\belowdisplayskip}{2.5pt plus 1pt minus 1pt}%
+  \setlength{\abovedisplayshortskip}{1pt plus 1pt}%
+  \setlength{\belowdisplayshortskip}{1.5pt plus 1pt}%
+  \setlength{\jot}{1.5pt}%
+  \def\[{\begin{lrbox}{\eqbox}$\displaystyle}%
+  \def\]{$\end{lrbox}\outputeq}%
+  % align / align* : redirigés vers aligned dans le display auto-réductible
+  \renewenvironment{align}{\[\begin{aligned}}{\end{aligned}\]}%
+  \renewenvironment{align*}{\[\begin{aligned}}{\end{aligned}\]}%
+}
+
+% =====================================================================
+%  PALETTE ONBUCH (inchangée)
+% =====================================================================
+\definecolor{onbucorange}{HTML}{E8742C}
+\definecolor{onbucorangedark}{HTML}{C8541A}
+\definecolor{onbucdark}{HTML}{2C3E50}
+\definecolor{onbuclight}{HTML}{FDF6EC}
+\definecolor{onbucgreen}{HTML}{27AE60}
+\definecolor{onbucgreendark}{HTML}{1E8449}
+\definecolor{onbucblue}{HTML}{2E5C8A}
+\definecolor{onbucbluelight}{HTML}{D6E4F0}
+\definecolor{onbucgrey}{HTML}{7F8C8D}
+\definecolor{onbucyellow}{HTML}{F39C12}
+\definecolor{onbucpurple}{HTML}{8E44AD}
+\definecolor{onbucpink}{HTML}{E91E63}
+\definecolor{onbucteal}{HTML}{16A085}
+\definecolor{onbucbg}{HTML}{FFF9F0}
+\definecolor{pagebg}{HTML}{FFFEF8}
+\definecolor{onbhair}{HTML}{E2D8CB}
+
+\hypersetup{
+  pdftitle={Banque d'exercices --- Mathématiques Tle C (Cameroun)},
+  pdfauthor={OnBuch},
+  pdfsubject={1000 exercices corrigés type Baccalauréat --- 23 chapitres}
+}
+
+% =====================================================================
+%  EN-TÊTE / PIED
+% =====================================================================
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhead[L]{\footnotesize\textcolor{onbucorange}{\rule[0.5pt]{5pt}{5pt}}\,\textcolor{onbucdark}{\bfseries Maths Tle C}}
+\fancyhead[R]{\footnotesize\textcolor{onbucgrey}{\nouppercase{\leftmark}}}
+\fancyfoot[C]{\footnotesize\textcolor{onbucgrey}{\thepage}}
+\fancypagestyle{plain}{\fancyhf{}\renewcommand{\headrulewidth}{0pt}\fancyfoot[C]{\footnotesize\textcolor{onbucgrey}{\thepage}}}
+
+% =====================================================================
+%  TITRES
+% =====================================================================
+\titleformat{\chapter}[display]
+  {\normalfont\bfseries}
+  {\tikz[baseline=(n.base)]\node[circle,fill=onbucorange,text=white,inner sep=5pt,minimum size=1.05cm,font=\Large\bfseries] (n) {\thechapter};}
+  {12pt}
+  {\LARGE\color{onbucdark}}
+  [\vspace{2pt}{\color{onbucorange}\titlerule[1.4pt]}]
+\titlespacing*{\chapter}{0pt}{2pt}{10pt}
+
+\titleformat{\section}
+  {\normalfont\normalsize\bfseries\color{onbucorangedark}}
+  {\colorbox{onbucorange}{\textcolor{white}{\,\thesection\,}}}{6pt}{}
+\titlespacing*{\section}{0pt}{6pt}{3pt}
+\titleformat{\subsection}
+  {\normalfont\small\bfseries\color{onbucblue}}
+  {\textcolor{onbucorange}{\thesubsection}}{5pt}{}
+\titlespacing*{\subsection}{0pt}{5pt}{2pt}
+% \paragraph en titre-BLOC compact (utilisé comme en-tête d'étape dans les corrigés)
+\titleformat{\paragraph}[hang]
+  {\normalfont\small\bfseries\color{onbucdark}}{}{0pt}{}
+\titlespacing*{\paragraph}{0pt}{5pt}{2pt}
+
+% =====================================================================
+%  AUTO-WRAP DEUX COLONNES par chapitre (titre pleine largeur)
+%  \chapter ferme les colonnes ouvertes, pose le titre pleine largeur,
+%  puis rouvre deux colonnes. \chapter* (présentation) reste 1 colonne.
+% =====================================================================
+\newif\ifinmc \inmcfalse
+\let\ORIchapter\chapter
+\RenewDocumentCommand{\chapter}{s o m}{%
+  \ifinmc\end{multicols}\inmcfalse\fi
+  \IfBooleanTF{#1}
+    {\ORIchapter*{#3}}%
+    {\IfNoValueTF{#2}{\ORIchapter{#3}}{\ORIchapter[#2]{#3}}%
+     \nobreak\begin{multicols}{2}\inmctrue}%
+}
+\AtEndDocument{\ifinmc\end{multicols}\inmcfalse\fi}
+
+% =====================================================================
+%  ÉNONCÉ / CORRIGÉ — en FLUX (circulent entre colonnes, jamais de débord)
+% =====================================================================
+% Énoncé : libellé non nécessaire (l'en-tête \titreexo le porte) ; léger fond ? non, flux pur.
+\newenvironment{enoncebox}[1][]{\par\nobreak\ignorespaces}{\par}
+
+% Corrigé : libellé vert en tête + filet vert fin sous le libellé.
+\newenvironment{corrigeebox}[1][]{%
+  \par\addvspace{1.5pt}\nobreak
+  \noindent{\color{onbucgreendark}\bfseries\footnotesize\textsf{\textbullet\ CORRIGÉ}}%
+  \par\nobreak\vspace{0.6pt}\noindent{\color{onbucgreen!55}\rule{\linewidth}{0.5pt}}\par\nobreak\vspace{1.2pt}%
+  \ignorespaces}{\par\addvspace{1pt}}
+
+% Contexte camerounais — court, garde une petite boîte teintée
+\newtcolorbox{contextecmr}[1][]{%
+  enhanced, breakable, frame hidden, colback=onbucbluelight!45,
+  borderline west={1.4pt}{0pt}{onbucblue},
+  left=6pt, right=3pt, top=1.2pt, bottom=1.2pt, boxsep=0pt,
+  before skip=1.5pt, after skip=1.5pt, #1
+}
+
+% « L'essentiel du cours » — compact, en tête de chapitre (dans les colonnes)
+\newtcolorbox{essentielbox}[1][]{%
+  enhanced, breakable, colback=onbuclight!55, colframe=onbucpurple,
+  boxrule=0pt, leftrule=2pt, arc=0.8mm,
+  left=6pt, right=6pt, top=3pt, bottom=3pt,
+  before skip=1pt, after skip=4pt,
+  fonttitle=\bfseries\sffamily\footnotesize\color{white},
+  coltitle=white, title={L'essentiel du cours},
+  attach boxed title to top left={xshift=5pt,yshift=-2.2mm},
+  boxed title style={colback=onbucpurple,arc=0.6mm,boxrule=0pt,size=fbox},
+  #1
+}
+
+% Méthode — flux avec libellé teal
+\newenvironment{methodebox}[1][]{%
+  \par\addvspace{1.5pt}\nobreak
+  \noindent{\color{onbucteal}\bfseries\footnotesize\textsf{\textbullet\ MÉTHODE}}%
+  \par\nobreak\vspace{0.6pt}\noindent{\color{onbucteal!55}\rule{\linewidth}{0.5pt}}\par\nobreak\vspace{1.2pt}%
+  \ignorespaces}{\par\addvspace{1pt}}
+
+% =====================================================================
+%  COMMANDES RACCOURCIES
+% =====================================================================
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\K}{\mathbb{K}}
+\renewcommand{\i}{\mathrm{i}}
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\sh}{sh}
+\renewcommand{\th}{\operatorname{th}}
+\DeclareMathOperator{\argch}{argch}
+\DeclareMathOperator{\argsh}{argsh}
+\DeclareMathOperator{\argth}{argth}
+\DeclareMathOperator{\pgcd}{pgcd}
+\DeclareMathOperator{\ppcm}{ppcm}
+\newcommand{\rep}[1]{\textcolor{onbucorangedark}{#1}}
+\newcommand{\bareme}[1]{\hfill\textcolor{onbucgrey}{\footnotesize\textit{(#1\,pts)}}}
+
+% Titre d'exercice COMPACT (numéro orange + intitulé + filet de séparation)
+\newcommand{\titreexo}[2]{%
+  \par\addvspace{5pt}\nobreak
+  \noindent{\bfseries\color{onbucorangedark}Exercice~#1}%
+  \hspace{5pt}{\footnotesize\color{onbucgrey}\textsc{#2}}%
+  \par\nobreak\vspace{1pt}\noindent{\color{onbhair}\rule{\linewidth}{0.5pt}}%
+  \par\nobreak\addvspace{1.5pt}%
+}
+\newcommand{\separateur}{\par\addvspace{3pt}}
+
+% Théorèmes
+\theoremstyle{definition}
+\newtheorem{definition}{Définition}[section]
+\newtheorem{propriete}{Propriété}[section]
+\newtheorem{theoreme}{Théorème}[section]
+\newtheorem{methodethm}{Méthode}[section]
+
+% Listes compactes
+\setlist[itemize]{itemsep=1pt,topsep=1pt,parsep=0pt,leftmargin=1.3em}
+\setlist[enumerate]{itemsep=1pt,topsep=1pt,parsep=0pt,leftmargin=1.6em}
