@@ -1,0 +1,585 @@
+\chapter{Les oscillateurs électriques}
+
+\textit{Les oscillateurs électriques sont des circuits capables de produire des tensions et des courants périodiques. Ils sont au cœur de nombreux dispositifs électroniques : horloges, émetteurs radio, capteurs, etc. Ce chapitre étudie les circuits RC, RL, LC et RLC, depuis la charge d’un condensateur jusqu’aux oscillations forcées et à la résonance. L’analogie avec l’oscillateur mécanique sera mise en évidence.}
+
+\section{Le condensateur et le dipôle RC}
+
+\subsection{Le condensateur}
+
+\begin{definition}[Condensateur]
+Un condensateur est un dipôle constitué de deux armatures conductrices séparées par un isolant (diélectrique). Il emmagasine de l’énergie électrostatique.
+\end{definition}
+
+\begin{propriete}[Capacité]
+La capacité $C$ d’un condensateur est le rapport entre la charge $q$ portée par l’armature positive et la tension $u$ à ses bornes :
+\[
+C = \frac{q}{u}
+\]
+Unité : le farad (\si{\farad}). On utilise souvent le microfarad (\SI{1}{\micro\farad} = \SI{1e-6}{\farad}) ou le nanofarad (\SI{1}{\nano\farad} = \SI{1e-9}{\farad}).
+\end{propriete}
+
+\begin{remarque}
+La charge $q$ est positive sur l’armature reliée à la borne $+$ du générateur. La relation $q = C u$ est valable en convention récepteur.
+\end{remarque}
+
+\begin{propriete}[Énergie emmagasinée]
+L’énergie électrostatique stockée dans un condensateur de capacité $C$ soumis à une tension $u$ est :
+\[
+E_C = \frac{1}{2} C u^2 = \frac{q^2}{2C}
+\]
+Unité : le joule (\si{\joule}).
+\end{propriete}
+
+\subsection{Charge et décharge d’un condensateur à travers une résistance}
+
+\begin{experience}[Charge d’un condensateur]
+On réalise le montage ci-dessous. Le condensateur, initialement déchargé, est branché en série avec une résistance $R$ et un générateur de tension continue $E$. On ferme l’interrupteur $K$ à $t=0$.
+\end{experience}
+
+\begin{illus}
+\begin{circuitikz}[scale=0.9, transform shape]
+\draw (0,0) to[battery1, l={$E$}] (0,3)
+      to[switch, l={$K$}] (3,3)
+      to[R, l={$R$}] (6,3)
+      to[C, l={$C$}, v={$u_C$}] (6,0)
+      to[short] (0,0);
+\end{circuitikz}
+\fig{Figure 7.1 — Montage de charge d’un condensateur.}
+\end{illus}
+
+\begin{loi}[Équation différentielle de la charge]
+En appliquant la loi des mailles : $E = R i + u_C$. Avec $i = \dfrac{dq}{dt} = C \dfrac{du_C}{dt}$, on obtient :
+\[
+RC \frac{du_C}{dt} + u_C = E
+\]
+\end{loi}
+
+La solution est :
+\[
+u_C(t) = E \left(1 - e^{-t/\tau}\right) \quad \text{avec} \quad \tau = RC
+\]
+
+\begin{definition}[Constante de temps $\tau$]
+La constante de temps $\tau = RC$ (en secondes) caractérise la rapidité de la charge ou de la décharge. Au bout d’un temps $t = \tau$, $u_C$ atteint \SI{63}{\%} de $E$ ; à $t = 5\tau$, le régime permanent est pratiquement atteint.
+\end{definition}
+
+\begin{remarque}
+Lors de la décharge (générateur remplacé par un court-circuit), l’équation devient $RC \dfrac{du_C}{dt} + u_C = 0$, de solution $u_C(t) = E e^{-t/\tau}$.
+\end{remarque}
+
+\begin{illus}
+\begin{tikzpicture}[scale=1.2]
+\draw[->] (0,0) -- (5,0) node[below] {$t$};
+\draw[->] (0,0) -- (0,3) node[left] {$u_C$};
+\draw[thick, blue] (0,0) .. controls (1,2) and (2,2.5) .. (4.5,2.8);
+\draw[dashed] (1,0) -- (1,1.9) node[above left] {$\tau$};
+\draw[dashed] (0,1.9) -- (1,1.9);
+\draw[dashed] (0,2.8) -- (4.5,2.8) node[right] {$E$};
+\node at (1,-0.2) {$\tau$};
+\end{tikzpicture}
+\fig{Figure 7.2 — Tension aux bornes du condensateur lors de la charge.}
+\end{illus}
+
+\section{La bobine et le dipôle RL}
+
+\subsection{La bobine et l’auto-induction}
+
+\begin{definition}[Bobine]
+Une bobine est un dipôle constitué d’un enroulement de fil conducteur. Elle est caractérisée par son inductance $L$ (en henry, \si{\henry}) et sa résistance interne $r$ (souvent négligée en première approximation).
+\end{definition}
+
+\begin{loi}[Tension aux bornes d’une bobine]
+En convention récepteur, la tension aux bornes d’une bobine parfaite ($r=0$) est :
+\[
+u_L = L \frac{di}{dt}
+\]
+Pour une bobine réelle : $u_L = r i + L \dfrac{di}{dt}$.
+\end{loi}
+
+\begin{propriete}[Énergie magnétique]
+L’énergie emmagasinée dans une bobine d’inductance $L$ parcourue par un courant $i$ est :
+\[
+E_L = \frac{1}{2} L i^2
+\]
+\end{propriete}
+
+\subsection{Établissement et rupture du courant dans un dipôle RL}
+
+\begin{experience}[Établissement du courant]
+On branche une bobine $L$ en série avec une résistance $R$ et un générateur $E$. À $t=0$, on ferme l’interrupteur.
+\end{experience}
+
+\begin{illus}
+\begin{circuitikz}[scale=0.9, transform shape]
+\draw (0,0) to[battery1, l={$E$}] (0,3)
+      to[switch, l={$K$}] (3,3)
+      to[R, l={$R$}] (6,3)
+      to[L, l={$L$}, v={$u_L$}] (6,0)
+      to[short] (0,0);
+\end{circuitikz}
+\fig{Figure 7.3 — Montage d’établissement du courant dans un dipôle RL.}
+\end{illus}
+
+\begin{loi}[Équation différentielle]
+Loi des mailles : $E = R i + L \dfrac{di}{dt}$. Soit :
+\[
+\frac{L}{R} \frac{di}{dt} + i = \frac{E}{R}
+\]
+La constante de temps du dipôle RL est $\tau = \dfrac{L}{R}$.
+\end{loi}
+
+La solution est :
+\[
+i(t) = \frac{E}{R} \left(1 - e^{-t/\tau}\right)
+\]
+
+\begin{remarque}
+Lors de la rupture du courant (générateur court-circuité), l’équation devient $\dfrac{L}{R} \dfrac{di}{dt} + i = 0$, de solution $i(t) = I_0 e^{-t/\tau}$.
+\end{remarque}
+
+\section{Oscillations libres dans un circuit LC}
+
+\subsection{Circuit LC idéal}
+
+\begin{experience}[Circuit LC]
+On relie un condensateur chargé (tension initiale $U_0$) à une bobine d’inductance $L$. On observe une tension sinusoïdale aux bornes du condensateur.
+\end{experience}
+
+\begin{illus}
+\begin{circuitikz}[scale=0.9, transform shape]
+\draw (0,0) to[C, l={$C$}, v={$u_C$}] (0,3)
+      to[L, l={$L$}] (4,3)
+      to[short] (4,0)
+      to[short] (0,0);
+\end{circuitikz}
+\fig{Figure 7.4 — Circuit LC idéal.}
+\end{illus}
+
+\begin{loi}[Équation différentielle des oscillations libres]
+Loi des mailles : $u_C + u_L = 0$. Avec $u_C = \dfrac{q}{C}$ et $u_L = L \dfrac{di}{dt} = L \dfrac{d^2q}{dt^2}$, on obtient :
+\[
+L \frac{d^2q}{dt^2} + \frac{q}{C} = 0 \quad \text{ou} \quad \frac{d^2u_C}{dt^2} + \frac{1}{LC} u_C = 0
+\]
+\end{loi}
+
+\begin{propriete}[Pulsation propre et période propre]
+La solution est sinusoïdale : $u_C(t) = U_0 \cos(\omega_0 t + \varphi)$, avec :
+\[
+\omega_0 = \frac{1}{\sqrt{LC}} \quad \text{(pulsation propre, en \si{\radian\per\second})}
+\]
+\[
+T_0 = \frac{2\pi}{\omega_0} = 2\pi \sqrt{LC} \quad \text{(période propre, en \si{\second})}
+\]
+\end{propriete}
+
+\begin{aretenir}
+Dans un circuit LC idéal, les oscillations sont sinusoïdales et non amorties. L’énergie totale $E = \frac{1}{2} C u_C^2 + \frac{1}{2} L i^2$ se conserve.
+\end{aretenir}
+
+\section{Oscillations libres amorties : circuit RLC série}
+
+\subsection{Équation différentielle}
+
+\begin{experience}[Circuit RLC série]
+On ajoute une résistance $R$ en série avec la bobine et le condensateur. Les oscillations s’amortissent.
+\end{experience}
+
+\begin{illus}
+\begin{circuitikz}[scale=0.9, transform shape]
+\draw (0,0) to[C, l={$C$}, v={$u_C$}] (0,3)
+      to[R, l={$R$}] (3,3)
+      to[L, l={$L$}] (6,3)
+      to[short] (6,0)
+      to[short] (0,0);
+\end{circuitikz}
+\fig{Figure 7.5 — Circuit RLC série.}
+\end{illus}
+
+\begin{loi}[Équation différentielle]
+Loi des mailles : $u_C + R i + L \dfrac{di}{dt} = 0$. Avec $i = C \dfrac{du_C}{dt}$, on obtient :
+\[
+LC \frac{d^2u_C}{dt^2} + RC \frac{du_C}{dt} + u_C = 0
+\]
+\end{loi}
+
+\begin{propriete}[Pseudo-période]
+Si l’amortissement est faible ($R$ petit), la tension $u_C$ est pseudo-sinusoïdale de pseudo-période :
+\[
+T \approx T_0 = 2\pi \sqrt{LC}
+\]
+L’amplitude décroît exponentiellement avec une constante de temps $\tau = \dfrac{2L}{R}$.
+\end{propriete}
+
+\begin{illus}
+\begin{tikzpicture}[scale=1.2]
+\draw[->] (0,0) -- (5,0) node[below] {$t$};
+\draw[->] (0,-2) -- (0,2) node[left] {$u_C$};
+\draw[thick, blue, domain=0:4.5, samples=100] plot (\x, {1.5*exp(-0.5*\x)*cos(4*\x r)});
+\draw[dashed, red] (0,1.5) -- (4.5,0.1);
+\draw[dashed, red] (0,-1.5) -- (4.5,-0.1);
+\end{tikzpicture}
+\fig{Figure 7.6 — Oscillations amorties dans un circuit RLC.}
+\end{illus}
+
+\section{Oscillations forcées et résonance d’intensité}
+
+\subsection{Régime sinusoïdal forcé}
+
+\begin{definition}[Oscillations forcées]
+On soumet un circuit RLC série à une tension sinusoïdale $u(t) = U_m \cos(\omega t)$ délivrée par un générateur basse fréquence (GBF). Le régime forcé s’établit après un régime transitoire.
+\end{definition}
+
+\begin{loi}[Impédance du circuit RLC série]
+L’impédance complexe du circuit est :
+\[
+\underline{Z} = R + j\left(L\omega - \frac{1}{C\omega}\right)
+\]
+Son module est :
+\[
+Z = \sqrt{R^2 + \left(L\omega - \frac{1}{C\omega}\right)^2}
+\]
+\end{loi}
+
+\subsection{Résonance d’intensité}
+
+\begin{propriete}[Résonance]
+L’intensité efficace $I$ du courant est maximale lorsque l’impédance $Z$ est minimale, soit lorsque :
+\[
+L\omega - \frac{1}{C\omega} = 0 \quad \Rightarrow \quad \omega = \omega_0 = \frac{1}{\sqrt{LC}}
+\]
+À la résonance, $I_{\text{max}} = \dfrac{U}{R}$.
+\end{propriete}
+
+\begin{illus}
+\begin{tikzpicture}[scale=1.2]
+\begin{axis}[
+  xlabel={$\omega$},
+  ylabel={$I$},
+  xmin=0, xmax=10,
+  ymin=0, ymax=1.2,
+  axis lines=left,
+  width=8cm, height=5cm,
+  samples=100
+]
+\addplot[thick, blue, domain=0.1:9] {1/sqrt(1 + (x - 3)^2/0.5^2)};
+\addplot[dashed, red] coordinates {(3,0) (3,1)};
+\node at (axis cs:3,1.1) [above] {$\omega_0$};
+\end{axis}
+\end{tikzpicture}
+\fig{Figure 7.7 — Courbe de résonance d’intensité.}
+\end{illus}
+
+\begin{remarque}
+Plus $R$ est faible, plus la résonance est aiguë (facteur de qualité $Q = \dfrac{L\omega_0}{R}$ élevé).
+\end{remarque}
+
+\section{Analogie électromécanique}
+
+\begin{propriete}[Analogie]
+Les équations différentielles de l’oscillateur électrique RLC et de l’oscillateur mécanique masse-ressort amorti sont analogues :
+\[
+\begin{array}{c|c}
+\text{Électrique} & \text{Mécanique} \\ \hline
+q \text{ (charge)} & x \text{ (position)} \\
+i = \dfrac{dq}{dt} & v = \dfrac{dx}{dt} \\
+L \text{ (inductance)} & m \text{ (masse)} \\
+\dfrac{1}{C} \text{ (inverse capacité)} & k \text{ (raideur)} \\
+R \text{ (résistance)} & \alpha \text{ (coefficient de frottement)} \\
+u_C = \dfrac{q}{C} & F_{\text{ressort}} = -k x \\
+u_L = L \dfrac{di}{dt} & F_{\text{inertie}} = m \dfrac{dv}{dt}
+\end{array}
+\]
+\end{propriete}
+
+\begin{aretenir}
+L’énergie électrique $\frac{1}{2} C u_C^2$ est analogue à l’énergie potentielle élastique $\frac{1}{2} k x^2$ ; l’énergie magnétique $\frac{1}{2} L i^2$ est analogue à l’énergie cinétique $\frac{1}{2} m v^2$.
+\end{aretenir}
+
+\section{L’essentiel à retenir}
+
+\begin{synthese}
+\begin{itemize}
+  \item \textbf{Condensateur :} $q = C u$, $E_C = \frac{1}{2} C u^2$.
+  \item \textbf{Bobine :} $u_L = L \dfrac{di}{dt}$, $E_L = \frac{1}{2} L i^2$.
+  \item \textbf{Dipôle RC :} $\tau = RC$, charge : $u_C(t) = E(1 - e^{-t/\tau})$, décharge : $u_C(t) = E e^{-t/\tau}$.
+  \item \textbf{Dipôle RL :} $\tau = L/R$, établissement : $i(t) = \frac{E}{R}(1 - e^{-t/\tau})$, rupture : $i(t) = I_0 e^{-t/\tau}$.
+  \item \textbf{Circuit LC :} $\omega_0 = \dfrac{1}{\sqrt{LC}}$, $T_0 = 2\pi\sqrt{LC}$, oscillations sinusoïdales non amorties.
+  \item \textbf{Circuit RLC :} équation $LC \ddot{u}_C + RC \dot{u}_C + u_C = 0$, pseudo-période $T \approx T_0$, amortissement exponentiel.
+  \item \textbf{Résonance :} $\omega_0 = \dfrac{1}{\sqrt{LC}}$, $I_{\text{max}} = \dfrac{U}{R}$.
+  \item \textbf{Analogie :} $q \leftrightarrow x$, $L \leftrightarrow m$, $1/C \leftrightarrow k$, $R \leftrightarrow \alpha$.
+\end{itemize}
+\end{synthese}
+
+\section{Méthodes \& savoir-faire}
+
+\methode{Déterminer la constante de temps $\tau$ d’un dipôle RC ou RL}
+Pour un dipôle RC, $\tau = RC$ ; pour un dipôle RL, $\tau = L/R$. Vérifier les unités : $R$ en \si{\ohm}, $C$ en \si{\farad}, $L$ en \si{\henry}. $\tau$ s’exprime en secondes.
+
+\begin{exemple}
+Soit $R = \SI{10}{\kilo\ohm}$ et $C = \SI{100}{\micro\farad}$. Calculer $\tau$.
+\medskip\\
+$\tau = RC = \SI{10e3}{\ohm} \times \SI{100e-6}{\farad} = \SI{1}{\second}$.
+\end{exemple}
+
+\methode{Résoudre l’équation différentielle d’un circuit RC ou RL}
+Identifier la forme $a \dfrac{dx}{dt} + x = b$. La solution est $x(t) = b + (x_0 - b) e^{-t/a}$.
+
+\begin{exemple}
+Pour la charge d’un condensateur : $RC \dfrac{du_C}{dt} + u_C = E$, avec $u_C(0)=0$. Alors $u_C(t) = E(1 - e^{-t/(RC)})$.
+\end{exemple}
+
+\methode{Calculer la période propre d’un circuit LC}
+Utiliser $T_0 = 2\pi\sqrt{LC}$. Attention aux unités : $L$ en \si{\henry}, $C$ en \si{\farad}.
+
+\begin{exemple}
+$L = \SI{10}{\milli\henry}$, $C = \SI{1}{\micro\farad}$. $T_0 = 2\pi\sqrt{\SI{10e-3}{\henry} \times \SI{1e-6}{\farad}} = 2\pi\sqrt{\SI{1e-8}{}} = \SI{6.28e-4}{\second} = \SI{0.628}{\milli\second}$.
+\end{exemple}
+
+\methode{Exploiter la courbe de résonance d’intensité}
+Identifier $\omega_0$ au maximum de $I$. La largeur de la courbe à mi-hauteur donne le facteur de qualité $Q = \dfrac{\omega_0}{\Delta\omega}$.
+
+\begin{exemple}
+Sur une courbe, $\omega_0 = \SI{5000}{\radian\per\second}$ et $\Delta\omega = \SI{200}{\radian\per\second}$. Alors $Q = \dfrac{5000}{200} = 25$.
+\end{exemple}
+
+\methode{Utiliser l’analogie électromécanique}
+Pour passer d’un système électrique à un système mécanique, remplacer $q$ par $x$, $L$ par $m$, $1/C$ par $k$, $R$ par $\alpha$.
+
+\begin{exemple}
+L’équation $L\ddot{q} + R\dot{q} + \dfrac{q}{C} = 0$ devient $m\ddot{x} + \alpha\dot{x} + kx = 0$.
+\end{exemple}
+
+\section{Exercices d’application}
+
+\rubrique{Constante de temps et charge/décharge}
+
+\exo{}\diff{1} Un condensateur de capacité $C = \SI{47}{\micro\farad}$ est chargé à travers une résistance $R = \SI{10}{\kilo\ohm}$ sous une tension $E = \SI{12}{\volt}$.
+\begin{enumerate}[label=\alph*)]
+  \item Calculer la constante de temps $\tau$.
+  \item Quelle est la tension aux bornes du condensateur après un temps $t = \tau$ ?
+  \item Au bout de combien de temps la tension atteint-elle \SI{11.4}{\volt} ?
+\end{enumerate}
+
+\exo{}\diff{1} Un dipôle RL a pour inductance $L = \SI{50}{\milli\henry}$ et résistance $R = \SI{100}{\ohm}$. Calculer $\tau$. Si $E = \SI{6}{\volt}$, quelle est l’intensité en régime permanent ?
+
+\rubrique{Oscillations libres LC et RLC}
+
+\exo{}\diff{2} Un circuit LC est constitué d’une bobine d’inductance $L = \SI{0.1}{\henry}$ et d’un condensateur de capacité $C = \SI{10}{\micro\farad}$.
+\begin{enumerate}[label=\alph*)]
+  \item Calculer la pulsation propre $\omega_0$ et la période propre $T_0$.
+  \item Le condensateur est initialement chargé sous une tension $U_0 = \SI{5}{\volt}$. Écrire $u_C(t)$ et $i(t)$.
+  \item Calculer l’énergie totale du circuit.
+\end{enumerate}
+
+\exo{}\diff{2} Dans un circuit RLC série, $L = \SI{0.2}{\henry}$, $C = \SI{20}{\micro\farad}$, $R = \SI{10}{\ohm}$. La tension initiale aux bornes du condensateur est $U_0 = \SI{10}{\volt}$.
+\begin{enumerate}[label=\alph*)]
+  \item Établir l’équation différentielle vérifiée par $u_C$.
+  \item Calculer la pseudo-période $T$.
+  \item Déterminer l’énergie dissipée par effet Joule au bout d’une pseudo-période.
+\end{enumerate}
+
+\rubrique{Résonance d’intensité}
+
+\exo{}\diff{2} Un circuit RLC série est alimenté par une tension sinusoïdale $u(t) = \SI{10}{\volt} \cos(\omega t)$. $L = \SI{0.1}{\henry}$, $C = \SI{1}{\micro\farad}$, $R = \SI{50}{\ohm}$.
+\begin{enumerate}[label=\alph*)]
+  \item Calculer la fréquence de résonance $f_0$.
+  \item Quelle est l’intensité efficace maximale ?
+  \item Tracer l’allure de la courbe $I(f)$.
+\end{enumerate}
+
+\exo{}\diff{3} On considère un circuit RLC série avec $R$ variable. Montrer que la bande passante $\Delta f$ est proportionnelle à $R$. Application numérique : $L = \SI{10}{\milli\henry}$, $C = \SI{100}{\nano\farad}$, $R = \SI{20}{\ohm}$.
+
+\rubrique{Analogie électromécanique}
+
+\exo{}\diff{1} Un oscillateur mécanique est constitué d’une masse $m = \SI{0.5}{\kilogram}$ et d’un ressort de raideur $k = \SI{20}{\newton\per\metre}$. Donner les valeurs équivalentes de $L$ et $C$ dans l’analogie électrique.
+
+\exo{}\diff{2} L’équation d’un circuit RLC est $L\ddot{q} + R\dot{q} + \dfrac{q}{C} = 0$. En déduire l’équation d’un oscillateur mécanique amorti de masse $m = \SI{0.2}{\kilogram}$, raideur $k = \SI{10}{\newton\per\metre}$ et coefficient de frottement $\alpha = \SI{0.5}{\newton\second\per\metre}$.
+
+\section{Exercices d’entraînement}
+
+\rubrique{Charge et décharge d’un condensateur}
+
+\exo{}\diff{2} Un condensateur de $C = \SI{100}{\micro\farad}$ est chargé sous $E = \SI{24}{\volt}$ puis déchargé à travers $R = \SI{1}{\kilo\ohm}$. Tracer $u_C(t)$ et $i(t)$ pour la charge et la décharge.
+
+\exo{}\diff{2} On charge un condensateur $C$ à travers $R$ avec $E = \SI{12}{\volt}$. La tension atteint \SI{7.56}{\volt} au bout de \SI{0.5}{\second}. Calculer $RC$.
+
+\exo{}\diff{3} Un condensateur initialement chargé sous $U_0 = \SI{20}{\volt}$ est déchargé à travers $R = \SI{100}{\ohm}$. Au bout de \SI{2}{\milli\second}, la tension est \SI{7.36}{\volt}. Calculer $C$.
+
+\rubrique{Établissement et rupture du courant dans une bobine}
+
+\exo{}\diff{2} Une bobine $L = \SI{0.5}{\henry}$ et $R = \SI{200}{\ohm}$ est branchée à $E = \SI{12}{\volt}$. Calculer $\tau$ et l’intensité après $2\tau$.
+
+\exo{}\diff{2} Dans un circuit RL, l’intensité atteint \SI{95}{\%} de sa valeur finale en \SI{3}{\milli\second}. Calculer $\tau$ et $L$ si $R = \SI{100}{\ohm}$.
+
+\exo{}\diff{3} On étudie la rupture du courant dans une bobine $L = \SI{0.2}{\henry}$ et $R = \SI{50}{\ohm}$. L’intensité initiale est \SI{2}{\ampere}. Calculer la tension aux bornes de la bobine à $t = \tau$.
+
+\rubrique{Oscillations libres}
+
+\exo{}\diff{2} Un circuit LC a $L = \SI{0.05}{\henry}$ et $C = \SI{2}{\micro\farad}$. Calculer $T_0$ et $\omega_0$.
+
+\exo{}\diff{2} Dans un circuit RLC, $L = \SI{0.1}{\henry}$, $C = \SI{10}{\micro\farad}$, $R = \SI{5}{\ohm}$. Déterminer le nombre d’oscillations avant que l’amplitude ne soit divisée par $e$.
+
+\exo{}\diff{3} Un circuit RLC série est le siège d’oscillations amorties. La pseudo-période mesurée est $T = \SI{2}{\milli\second}$ et le décrément logarithmique $\delta = 0.5$. Calculer $L$, $C$ et $R$ sachant que $C = \SI{1}{\micro\farad}$.
+
+\rubrique{Résonance}
+
+\exo{}\diff{2} Un circuit RLC série a $L = \SI{0.2}{\henry}$, $C = \SI{0.5}{\micro\farad}$, $R = \SI{100}{\ohm}$. Calculer $f_0$ et $I_{\text{max}}$ pour $U = \SI{5}{\volt}$.
+
+\exo{}\diff{2} La bande passante d’un circuit RLC est $\Delta f = \SI{200}{\hertz}$ pour $f_0 = \SI{2000}{\hertz}$. Calculer le facteur de qualité $Q$.
+
+\exo{}\diff{3} On veut réaliser un circuit RLC dont la résonance est la plus aiguë possible. Quels paramètres doit-on choisir ? Application : $L = \SI{10}{\milli\henry}$, $C = \SI{1}{\nano\farad}$, $R = \SI{1}{\ohm}$.
+
+\rubrique{Analogie}
+
+\exo{}\diff{2} Un oscillateur mécanique a $m = \SI{1}{\kilogram}$, $k = \SI{100}{\newton\per\metre}$, $\alpha = \SI{2}{\newton\second\per\metre}$. Donner les valeurs équivalentes $L$, $C$, $R$.
+
+\exo{}\diff{2} L’équation d’un circuit électrique est $0.1\ddot{q} + 5\dot{q} + 1000 q = 0$. Identifier $L$, $R$, $C$ et en déduire les paramètres mécaniques équivalents.
+
+\section{Sujets type Baccalauréat}
+
+\sujetbac[Étude d’un circuit RLC série]
+
+On considère le circuit RLC série ci-dessous. Le condensateur est initialement chargé sous une tension $U_0 = \SI{10}{\volt}$. À $t=0$, on ferme l’interrupteur $K$.
+
+\begin{illus}
+\begin{circuitikz}[scale=0.9, transform shape]
+\draw (0,0) to[C, l={$C=\SI{10}{\micro\farad}$}, v={$u_C$}] (0,3)
+      to[switch, l={$K$}] (2,3)
+      to[R, l={$R=\SI{20}{\ohm}$}] (4,3)
+      to[L, l={$L=\SI{0.1}{\henry}$}] (6,3)
+      to[short] (6,0)
+      to[short] (0,0);
+\end{circuitikz}
+\fig{Figure 7.8 — Circuit RLC série.}
+\end{illus}
+
+\begin{enumerate}[label=\arabic*)]
+  \item \textbf{Équation différentielle}
+  \begin{enumerate}[label=\alph*)]
+    \item Écrire la loi des mailles.
+    \item En déduire l’équation différentielle vérifiée par $u_C(t)$.
+  \end{enumerate}
+  \item \textbf{Régime pseudopériodique}
+  \begin{enumerate}[label=\alph*)]
+    \item Calculer la pulsation propre $\omega_0$ et la période propre $T_0$.
+    \item La pseudo-période $T$ est-elle égale à $T_0$ ? Justifier.
+    \item Déterminer l’expression de $u_C(t)$ en supposant l’amortissement faible.
+  \end{enumerate}
+  \item \textbf{Énergie}
+  \begin{enumerate}[label=\alph*)]
+    \item Calculer l’énergie initiale stockée dans le condensateur.
+    \item Que devient cette énergie au cours du temps ?
+  \end{enumerate}
+\end{enumerate}
+
+\sujetbac[Charge et décharge d’un condensateur]
+
+On réalise le montage ci-dessous. Le condensateur $C$ est initialement déchargé. On ferme $K_1$ à $t=0$ (charge), puis on ouvre $K_1$ et on ferme $K_2$ à $t = t_1$ (décharge).
+
+\begin{illus}
+\begin{circuitikz}[scale=0.9, transform shape]
+\draw (0,0) to[battery1, l={$E=\SI{12}{\volt}$}] (0,3)
+      to[switch, l={$K_1$}] (3,3)
+      to[R, l={$R_1=\SI{1}{\kilo\ohm}$}] (6,3)
+      to[C, l={$C=\SI{100}{\micro\farad}$}, v={$u_C$}] (6,0)
+      to[short] (0,0);
+\draw (6,3) to[short] (9,3)
+      to[switch, l={$K_2$}] (9,1.5)
+      to[R, l={$R_2=\SI{500}{\ohm}$}] (9,0)
+      to[short] (6,0);
+\end{circuitikz}
+\fig{Figure 7.9 — Montage de charge et décharge.}
+\end{illus}
+
+\begin{enumerate}[label=\arabic*)]
+  \item \textbf{Charge}
+  \begin{enumerate}[label=\alph*)]
+    \item Calculer la constante de temps $\tau_1$ de la charge.
+    \item Donner l’expression de $u_C(t)$ pour $0 \le t \le t_1$.
+    \item On ferme $K_2$ à $t_1 = \tau_1$. Quelle est la tension $u_C(t_1)$ ?
+  \end{enumerate}
+  \item \textbf{Décharge}
+  \begin{enumerate}[label=\alph*)]
+    \item Calculer la constante de temps $\tau_2$ de la décharge.
+    \item Donner l’expression de $u_C(t)$ pour $t \ge t_1$.
+    \item Au bout de combien de temps la tension devient-elle inférieure à \SI{1}{\volt} ?
+  \end{enumerate}
+\end{enumerate}
+
+\section{Corrigés}
+
+\corrige{de l’exercice 1}
+\begin{enumerate}[label=\alph*)]
+  \item $\tau = RC = \SI{10e3}{\ohm} \times \SI{47e-6}{\farad} = \SI{0.47}{\second}$.
+  \item $u_C(\tau) = E(1 - e^{-1}) = \SI{12}{\volt} \times (1 - 0.368) = \SI{7.58}{\volt}$.
+  \item $u_C(t) = E(1 - e^{-t/\tau}) \Rightarrow e^{-t/\tau} = 1 - \dfrac{u_C}{E} = 1 - \dfrac{11.4}{12} = 0.05$. Donc $t = -\tau \ln(0.05) = \SI{0.47}{\second} \times 2.996 = \SI{1.41}{\second}$.
+\end{enumerate}
+
+\corrige{de l’exercice 2}
+$\tau = \dfrac{L}{R} = \dfrac{\SI{0.05}{\henry}}{\SI{100}{\ohm}} = \SI{5e-4}{\second} = \SI{0.5}{\milli\second}$. En régime permanent, $i = \dfrac{E}{R} = \dfrac{\SI{6}{\volt}}{\SI{100}{\ohm}} = \SI{0.06}{\ampere} = \SI{60}{\milli\ampere}$.
+
+\corrige{de l’exercice 3}
+\begin{enumerate}[label=\alph*)]
+  \item $\omega_0 = \dfrac{1}{\sqrt{LC}} = \dfrac{1}{\sqrt{\SI{0.1}{\henry} \times \SI{10e-6}{\farad}}} = \dfrac{1}{\sqrt{\SI{1e-6}{}}} = \SI{1000}{\radian\per\second}$. $T_0 = \dfrac{2\pi}{\omega_0} = \dfrac{2\pi}{1000} = \SI{6.28e-3}{\second} = \SI{6.28}{\milli\second}$.
+  \item $u_C(t) = U_0 \cos(\omega_0 t) = \SI{5}{\volt} \cos(1000 t)$. $i(t) = C \dfrac{du_C}{dt} = -C U_0 \omega_0 \sin(\omega_0 t) = -\SI{10e-6}{\farad} \times \SI{5}{\volt} \times \SI{1000}{\radian\per\second} \sin(1000 t) = -\SI{0.05}{\ampere} \sin(1000 t)$.
+  \item $E = \dfrac{1}{2} C U_0^2 = \dfrac{1}{2} \times \SI{10e-6}{\farad} \times (\SI{5}{\volt})^2 = \SI{1.25e-4}{\joule}$.
+\end{enumerate}
+
+\corrige{de l’exercice 4}
+\begin{enumerate}[label=\alph*)]
+  \item Loi des mailles : $u_C + R i + L \dfrac{di}{dt} = 0$. Avec $i = C \dfrac{du_C}{dt}$, on obtient $LC \dfrac{d^2u_C}{dt^2} + RC \dfrac{du_C}{dt} + u_C = 0$. Soit $\SI{0.2}{\henry} \times \SI{20e-6}{\farad} \dfrac{d^2u_C}{dt^2} + \SI{10}{\ohm} \times \SI{20e-6}{\farad} \dfrac{du_C}{dt} + u_C = 0$, soit $4 \times 10^{-6} \ddot{u}_C + 2 \times 10^{-4} \dot{u}_C + u_C = 0$.
+  \item $T \approx T_0 = 2\pi\sqrt{LC} = 2\pi\sqrt{\SI{0.2}{\henry} \times \SI{20e-6}{\farad}} = 2\pi\sqrt{4 \times 10^{-6}} = 2\pi \times \SI{2e-3}{\second} = \SI{12.56e-3}{\second} = \SI{12.56}{\milli\second}$.
+  \item L’énergie dissipée par effet Joule est $E_J = \dfrac{1}{2} C U_0^2 - \dfrac{1}{2} C U_0^2 e^{-2t/\tau}$ avec $\tau = \dfrac{2L}{R} = \dfrac{2 \times \SI{0.2}{\henry}}{\SI{10}{\ohm}} = \SI{0.04}{\second}$. À $t = T$, $E_J = \dfrac{1}{2} \times \SI{20e-6}{\farad} \times (\SI{10}{\volt})^2 \times (1 - e^{-2 \times 0.01256/0.04}) = \SI{1e-3}{\joule} \times (1 - e^{-0.628}) = \SI{1e-3}{\joule} \times (1 - 0.533) = \SI{4.67e-4}{\joule}$.
+\end{enumerate}
+
+\corrige{de l’exercice 5}
+\begin{enumerate}[label=\alph*)]
+  \item $f_0 = \dfrac{1}{2\pi\sqrt{LC}} = \dfrac{1}{2\pi\sqrt{\SI{0.1}{\henry} \times \SI{1e-6}{\farad}}} = \dfrac{1}{2\pi \times \SI{3.16e-4}{\second}} \approx \SI{503}{\hertz}$.
+  \item $I_{\text{max}} = \dfrac{U}{R} = \dfrac{\SI{10}{\volt}}{\SI{50}{\ohm}} = \SI{0.2}{\ampere}$ (valeur efficace : $I_{\text{eff}} = \dfrac{U_{\text{eff}}}{R} = \dfrac{10/\sqrt{2}}{50} \approx \SI{0.141}{\ampere}$).
+  \item Courbe de résonance : $I$ maximal à $f_0$, décroît de part et d’autre.
+\end{enumerate}
+
+\corrige{de l’exercice 6}
+La bande passante $\Delta \omega = \dfrac{R}{L}$, donc $\Delta f = \dfrac{R}{2\pi L}$. Application : $\Delta f = \dfrac{\SI{20}{\ohm}}{2\pi \times \SI{10e-3}{\henry}} = \dfrac{20}{0.0628} \approx \SI{318}{\hertz}$.
+
+\corrige{de l’exercice 7}
+$L_{\text{éq}} = m = \SI{0.5}{\henry}$, $C_{\text{éq}} = \dfrac{1}{k} = \dfrac{1}{20} = \SI{0.05}{\farad}$.
+
+\corrige{de l’exercice 8}
+L’équation mécanique est $m\ddot{x} + \alpha\dot{x} + kx = 0$, soit $\SI{0.2}{\kilogram} \ddot{x} + \SI{0.5}{\newton\second\per\metre} \dot{x} + \SI{10}{\newton\per\metre} x = 0$. Par analogie, $L = m = \SI{0.2}{\henry}$, $R = \alpha = \SI{0.5}{\ohm}$, $\dfrac{1}{C} = k = \SI{10}{\newton\per\metre} \Rightarrow C = \SI{0.1}{\farad}$.
+
+\corrige{du sujet 1}
+\begin{enumerate}[label=\arabic*)]
+  \item \textbf{Équation différentielle}
+  \begin{enumerate}[label=\alph*)]
+    \item $u_C + R i + L \dfrac{di}{dt} = 0$.
+    \item $LC \dfrac{d^2u_C}{dt^2} + RC \dfrac{du_C}{dt} + u_C = 0$.
+  \end{enumerate}
+  \item \textbf{Régime pseudopériodique}
+  \begin{enumerate}[label=\alph*)]
+    \item $\omega_0 = \dfrac{1}{\sqrt{LC}} = \dfrac{1}{\sqrt{\SI{0.1}{\henry} \times \SI{10e-6}{\farad}}} = \SI{1000}{\radian\per\second}$. $T_0 = \dfrac{2\pi}{1000} = \SI{6.28e-3}{\second}$.
+    \item Oui, car l’amortissement est faible ($R$ petit).
+    \item $u_C(t) = U_0 e^{-t/\tau} \cos(\omega_0 t)$ avec $\tau = \dfrac{2L}{R} = \dfrac{2 \times \SI{0.1}{\henry}}{\SI{20}{\ohm}} = \SI{0.01}{\second}$.
+  \end{enumerate}
+  \item \textbf{Énergie}
+  \begin{enumerate}[label=\alph*)]
+    \item $E_0 = \dfrac{1}{2} C U_0^2 = \dfrac{1}{2} \times \SI{10e-6}{\farad} \times (\SI{10}{\volt})^2 = \SI{5e-4}{\joule}$.
+    \item Elle est dissipée progressivement par effet Joule dans la résistance.
+  \end{enumerate}
+\end{enumerate}
+
+\corrige{du sujet 2}
+\begin{enumerate}[label=\arabic*)]
+  \item \textbf{Charge}
+  \begin{enumerate}[label=\alph*)]
+    \item $\tau_1 = R_1 C = \SI{1000}{\ohm} \times \SI{100e-6}{\farad} = \SI{0.1}{\second}$.
+    \item $u_C(t) = E(1 - e^{-t/\tau_1}) = \SI{12}{\volt}(1 - e^{-10t})$.
+    \item $u_C(t_1) = \SI{12}{\volt}(1 - e^{-1}) = \SI{12}{\volt} \times 0.632 = \SI{7.58}{\volt}$.
+  \end{enumerate}
+  \item \textbf{Décharge}
+  \begin{enumerate}[label=\alph*)]
+    \item $\tau_2 = R_2 C = \SI{500}{\ohm} \times \SI{100e-6}{\farad} = \SI{0.05}{\second}$.
+    \item $u_C(t) = u_C(t_1) e^{-(t-t_1)/\tau_2} = \SI{7.58}{\volt} e^{-20(t-t_1)}$.
+    \item $u_C(t) < \SI{1}{\volt} \Rightarrow e^{-20(t-t_1)} < \dfrac{1}{7.58} \Rightarrow -20(t-t_1) < \ln(0.132) \Rightarrow t-t_1 > \dfrac{2.025}{20} = \SI{0.101}{\second}$.
+  \end{enumerate}
+\end{enumerate}
