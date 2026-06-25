@@ -7,6 +7,7 @@ import '../../data/exam_taxonomy.dart';
 import '../../services/cours_packs_service.dart';
 import '../../services/database_service.dart';
 import '../../models/annale.dart';
+import '../../models/fascicule.dart';
 
 /// Séries ESG retenues pour le Bac / Probatoire (libellé court → code).
 /// « A » est une série unique qui regroupe toutes les sous-séries A.
@@ -64,6 +65,8 @@ class _CoursLibraryHomeScreenState extends State<CoursLibraryHomeScreen> {
   Map<String, List<Pack>> _byExam = const {};
   // Cours PDF (course_docs) regroupés par examen, dans l'ordre d'affichage.
   List<MapEntry<String, List<Annale>>> _coursePdf = const [];
+  // Fascicules (livres OnBuch) pour la vitrine « Nos fascicules ».
+  List<Fascicule> _fascicules = const [];
   bool _loaded = false;
 
   @override
@@ -78,13 +81,14 @@ class _CoursLibraryHomeScreenState extends State<CoursLibraryHomeScreen> {
     final bac = await _packs.packsForExamSeries('Baccalauréat', _esgHeads);
     final prob = await _packs.packsForExamSeries('Probatoire', _esgHeads);
     final docs = await DatabaseService().getCourseDocs();
+    final fasc = await DatabaseService().getFascicules();
     int byName(Pack a, Pack b) => a.name.toLowerCase().compareTo(b.name.toLowerCase());
     final map = {
       'BEPC': bepc..sort(byName),
       'Bac ESG': bac..sort(byName),
       'Probatoire ESG': prob..sort(byName),
     };
-    if (mounted) setState(() { _byExam = map; _coursePdf = _groupCoursePdf(docs); _loaded = true; });
+    if (mounted) setState(() { _byExam = map; _coursePdf = _groupCoursePdf(docs); _fascicules = fasc; _loaded = true; });
   }
 
   /// Regroupe les cours PDF par examen (ordre Bac → Probatoire → BEPC → … →
@@ -196,42 +200,10 @@ class _CoursLibraryHomeScreenState extends State<CoursLibraryHomeScreen> {
               ),
               const SizedBox(height: 18),
 
-              // ── Bannière « Nos fascicules » (bibliothèque de livres PDF) ────
+              // ── Vitrine éditoriale « Nos fascicules » (couvertures en éventail) ──
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: GestureDetector(
-                  onTap: () => context.push('/fascicules'),
-                  child: Container(
-                    padding: const EdgeInsets.fromLTRB(16, 15, 14, 15),
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft, end: Alignment.bottomRight,
-                        colors: [OC.ink, OC.ink2],
-                      ),
-                      borderRadius: BorderRadius.circular(18),
-                      boxShadow: [BoxShadow(color: OC.ink.withValues(alpha: 0.18), blurRadius: 14, offset: const Offset(0, 6))],
-                    ),
-                    child: Row(children: [
-                      Container(
-                        width: 46, height: 46,
-                        decoration: BoxDecoration(color: OC.o600, borderRadius: BorderRadius.circular(13)),
-                        child: const Icon(Icons.auto_stories_rounded, color: Colors.white, size: 24),
-                      ),
-                      const SizedBox(width: 13),
-                      Expanded(
-                        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                          Text('Nos fascicules', style: display(17, weight: FontWeight.w800).copyWith(color: Colors.white)),
-                          const SizedBox(height: 2),
-                          Text('Les bouquins complets OnBuch — cours + exercices corrigés',
-                              maxLines: 2, overflow: TextOverflow.ellipsis,
-                              style: body(11.5, weight: FontWeight.w500).copyWith(color: Colors.white70, height: 1.25)),
-                        ]),
-                      ),
-                      const SizedBox(width: 8),
-                      const Icon(Icons.arrow_forward_rounded, color: Colors.white, size: 20),
-                    ]),
-                  ),
-                ),
+                child: _FasciculesShowcase(_fascicules),
               ),
               const SizedBox(height: 22),
 
@@ -463,3 +435,134 @@ class _FolderCard extends StatelessWidget {
   }
 }
 
+
+/// Vitrine éditoriale « Nos fascicules » : 3 couvertures en éventail (héro sombre).
+/// 100 % Dart (Transform + Image.network) → patchable Shorebird, aucun plugin natif.
+/// Repli sur une bannière simple si aucune couverture n'est disponible (hors-ligne).
+class _FasciculesShowcase extends StatelessWidget {
+  const _FasciculesShowcase(this.fascicules);
+  final List<Fascicule> fascicules;
+
+  @override
+  Widget build(BuildContext context) {
+    final covers = [for (final f in fascicules) if (f.hasCover) f.coverUrl];
+    return GestureDetector(
+      onTap: () => context.push('/fascicules'),
+      child: covers.isEmpty ? _plain() : _hero(covers.take(3).toList()),
+    );
+  }
+
+  // Une couverture de livre (image réseau, tolérante hors-ligne).
+  Widget _cover(String url, {double w = 80}) => Container(
+        width: w,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(7),
+          boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.38), blurRadius: 12, offset: const Offset(0, 6))],
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(7),
+          child: AspectRatio(
+            aspectRatio: 595 / 841,
+            child: Image.network(
+              url,
+              fit: BoxFit.cover,
+              gaplessPlayback: true,
+              errorBuilder: (_, __, ___) => Container(color: OC.o600),
+              loadingBuilder: (_, child, p) => p == null ? child : Container(color: const Color(0xFF2A211B)),
+            ),
+          ),
+        ),
+      );
+
+  // L'éventail : couverture centrale droite, deux latérales inclinées derrière.
+  Widget _fan(List<String> covers) {
+    Widget at(int i, {required double angle, required Offset shift, double scale = 1}) {
+      if (i >= covers.length) return const SizedBox.shrink();
+      return Transform.translate(
+        offset: shift,
+        child: Transform.rotate(
+          angle: angle,
+          child: Transform.scale(scale: scale, child: _cover(covers[i])),
+        ),
+      );
+    }
+    return SizedBox(
+      width: 148, height: 122,
+      child: Stack(alignment: Alignment.center, clipBehavior: Clip.none, children: [
+        at(1, angle: -0.22, shift: const Offset(-31, 7), scale: 0.82),
+        at(2, angle: 0.22, shift: const Offset(31, 7), scale: 0.82),
+        at(0, angle: -0.045, shift: const Offset(0, -6)),
+      ]),
+    );
+  }
+
+  Widget _hero(List<String> covers) => Container(
+        padding: const EdgeInsets.fromLTRB(12, 14, 16, 14),
+        decoration: BoxDecoration(
+          gradient: const RadialGradient(
+            center: Alignment(0.7, -1.0), radius: 1.4,
+            colors: [Color(0xFF3A2E25), Color(0xFF1C1714)],
+          ),
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [BoxShadow(color: OC.ink.withValues(alpha: 0.22), blurRadius: 16, offset: const Offset(0, 7))],
+        ),
+        child: Row(children: [
+          _fan(covers),
+          const SizedBox(width: 4),
+          Expanded(
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text('NOS FASCICULES',
+                  style: body(9.5, weight: FontWeight.w800, color: OC.o500).copyWith(letterSpacing: 0.13 * 9.5)),
+              const SizedBox(height: 4),
+              Text('La bibliothèque OnBuch',
+                  style: display(18, weight: FontWeight.w800).copyWith(color: Colors.white, height: 1.05)),
+              const SizedBox(height: 5),
+              Text('Les bouquins complets — cours + exercices corrigés.',
+                  maxLines: 2, overflow: TextOverflow.ellipsis,
+                  style: body(11.5, weight: FontWeight.w500).copyWith(color: const Color(0xFFD8CEC4), height: 1.3)),
+              const SizedBox(height: 11),
+              Container(
+                padding: const EdgeInsets.fromLTRB(13, 8, 11, 8),
+                decoration: BoxDecoration(color: OC.o600, borderRadius: BorderRadius.circular(12)),
+                child: Row(mainAxisSize: MainAxisSize.min, children: [
+                  Text('Ouvrir', style: body(12.5, weight: FontWeight.w700).copyWith(color: Colors.white)),
+                  const SizedBox(width: 5),
+                  const Icon(Icons.arrow_forward_rounded, color: Colors.white, size: 16),
+                ]),
+              ),
+            ]),
+          ),
+        ]),
+      );
+
+  // Repli (aucune couverture chargée) : bannière sombre simple, comme avant.
+  Widget _plain() => Container(
+        padding: const EdgeInsets.fromLTRB(16, 15, 14, 15),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [OC.ink, OC.ink2],
+          ),
+          borderRadius: BorderRadius.circular(18),
+          boxShadow: [BoxShadow(color: OC.ink.withValues(alpha: 0.18), blurRadius: 14, offset: const Offset(0, 6))],
+        ),
+        child: Row(children: [
+          Container(
+            width: 46, height: 46,
+            decoration: BoxDecoration(color: OC.o600, borderRadius: BorderRadius.circular(13)),
+            child: const Icon(Icons.auto_stories_rounded, color: Colors.white, size: 24),
+          ),
+          const SizedBox(width: 13),
+          Expanded(
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text('Nos fascicules', style: display(17, weight: FontWeight.w800).copyWith(color: Colors.white)),
+              const SizedBox(height: 2),
+              Text('Les bouquins complets OnBuch — cours + exercices corrigés',
+                  maxLines: 2, overflow: TextOverflow.ellipsis,
+                  style: body(11.5, weight: FontWeight.w500).copyWith(color: Colors.white70, height: 1.25)),
+            ]),
+          ),
+          const SizedBox(width: 8),
+          const Icon(Icons.arrow_forward_rounded, color: Colors.white, size: 20),
+        ]),
+      );
+}

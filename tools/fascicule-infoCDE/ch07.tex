@@ -1,0 +1,265 @@
+\chapter{Le tableur}
+
+\textit{Le tableur est un logiciel incontournable pour la gestion de données, les calculs automatisés et la création de graphiques. Ce chapitre présente les concepts fondamentaux (cellules, références, formules) et les fonctions essentielles pour traiter des situations de la vie courante (notes, factures, gestion).}
+
+\section{L'essentiel du cours}
+
+\subsection{Notions de base}
+\begin{itemize}
+    \item \textbf{Classeur} : fichier contenant plusieurs \textbf{feuilles de calcul}.
+    \item \textbf{Feuille de calcul} : grille composée de \textbf{lignes} (numérotées 1, 2, 3\ldots) et de \textbf{colonnes} (lettrées A, B, C\ldots).
+    \item \textbf{Cellule} : intersection d'une ligne et d'une colonne. Son adresse est par exemple \texttt{B3} (colonne B, ligne 3).
+    \item \textbf{Plage de cellules} : ensemble rectangulaire noté \texttt{A1:C5} (de A1 à C5).
+\end{itemize}
+
+\begin{definition}[Références]
+    \begin{itemize}
+        \item \textbf{Référence relative} : \texttt{A1} — se modifie lors de la recopie (ex: \texttt{=A1+1} recopié vers le bas devient \texttt{=A2+1}).
+        \item \textbf{Référence absolue} : \texttt{\$A\$1} — reste fixe lors de la recopie. On peut aussi bloquer la ligne (\texttt{A\$1}) ou la colonne (\texttt{\$A1}).
+    \end{itemize}
+\end{definition}
+
+\subsection{Formules et fonctions}
+\begin{itemize}
+    \item Une \textbf{formule} commence toujours par \texttt{=}. Exemple : \texttt{=B2*C2}.
+    \item Les \textbf{fonctions} prédéfinies simplifient les calculs :
+    \begin{itemize}
+        \item \texttt{=SOMME(plage)} : somme des valeurs.
+        \item \texttt{=MOYENNE(plage)} : moyenne arithmétique.
+        \item \texttt{=MIN(plage)} / \texttt{=MAX(plage)} : minimum / maximum.
+        \item \texttt{=NB(plage)} : nombre de cellules numériques.
+        \item \texttt{=NB.SI(plage; critère)} : nombre de cellules répondant à un critère.
+        \item \texttt{=SI(test; valeur\_si\_vrai; valeur\_si\_faux)} : condition.
+        \item \texttt{=RECHERCHEV(valeur; table; colonne; [tri])} : recherche verticale.
+    \end{itemize}
+\end{itemize}
+
+\begin{aretenir}
+    \begin{itemize}
+        \item La recopie d'une formule adapte automatiquement les références relatives.
+        \item Utiliser \texttt{\$} pour figer une référence lors de la recopie.
+        \item Les fonctions s'écrivent en majuscules ou minuscules (indifférent).
+        \item Le séparateur d'arguments est le point-virgule \texttt{;} (paramétrage français).
+    \end{itemize}
+\end{aretenir}
+
+\subsection{Graphiques}
+\begin{itemize}
+    \item Un graphique représente visuellement des données d'une plage.
+    \item Types courants : histogramme, courbe, secteur (camembert).
+    \item Pour créer un graphique : sélectionner les données, puis insérer le type souhaité.
+\end{itemize}
+
+\subsection{Exemple de feuille de calcul}
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+ & \textbf{A} & \textbf{B} & \textbf{C} & \textbf{D} & \textbf{E} \\ \hline
+1 & Nom & Maths & Physique & Moyenne & Mention \\ \hline
+2 & Paul & 15 & 12 & =MOYENNE(B2:C2) & =SI(D2>=16;"TB";SI(D2>=14;"B";SI(D2>=12;"AB";"P"))) \\ \hline
+3 & Marie & 18 & 16 & =MOYENNE(B3:C3) & =SI(D3>=16;"TB";SI(D3>=14;"B";SI(D3>=12;"AB";"P"))) \\ \hline
+\end{tabular}
+\end{center}
+
+\section{Exercices}
+
+\rubrique{Notions de base et références}
+
+\exo{}\diff{1}
+Quelle est l'adresse de la cellule située à l'intersection de la colonne G et de la ligne 12 ?
+
+\exo{}\diff{1}
+Dans une feuille de calcul, on écrit \texttt{=A1+B1} en cellule C1. On recopie cette formule vers le bas jusqu'en C5. Quelle formule se trouve en C3 ?
+
+\exo{}\diff{2}
+On saisit \texttt{=\$B\$2*C2} en D2, puis on recopie vers la droite jusqu'en F2. Quelle formule obtient-on en F2 ?
+
+\exo{}\diff{2}
+Soit la plage \texttt{A1:D4}. Combien de cellules contient-elle ?
+
+\rubrique{Formules et fonctions simples}
+
+\exo{}\diff{1}
+On a en A1=5, A2=10, A3=15. Que retourne \texttt{=SOMME(A1:A3)} ?
+
+\exo{}\diff{1}
+Mêmes données. Que retourne \texttt{=MOYENNE(A1:A3)} ?
+
+\exo{}\diff{2}
+On a B1=8, B2=12, B3=20, B4=5. Écrire une formule qui donne le minimum de ces valeurs.
+
+\exo{}\diff{2}
+Avec les mêmes données, écrire une formule qui donne le nombre de valeurs supérieures ou égales à 10.
+
+\exo{}\diff{2}
+On a C1=7, C2=14, C3=21. Que retourne \texttt{=SI(C2>10;"Grand";"Petit")} ?
+
+\exo{}\diff{3}
+Écrire une formule qui, en D1, affiche "Réussi" si la moyenne en B1 est supérieure ou égale à 10, et "Échoué" sinon.
+
+\rubrique{Recopie et références mixtes}
+
+\exo{}\diff{2}
+On saisit \texttt{=A\$1*B1} en C1, puis on recopie vers le bas jusqu'en C4. Quelle formule en C3 ?
+
+\exo{}\diff{2}
+Soit le tableau suivant :
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+ & A & B & C \\ \hline
+1 & 2 & 3 & =A1+\$B\$1 \\ \hline
+2 & 4 & 5 & \\ \hline
+3 & 6 & 7 & \\ \hline
+\end{tabular}
+\end{center}
+Quelle valeur s'affiche en C1 ? En C2 si on recopie la formule de C1 vers le bas ?
+
+\exo{}\diff{3}
+On veut calculer le prix TTC (TVA=19,25\%) dans un tableau. En A1 le prix HT, en B1 le taux TVA (0,1925). Écrire la formule en C1 pour obtenir le prix TTC, de sorte qu'en recopiant vers le bas, le taux reste fixe.
+
+\rubrique{Fonctions avancées : NB.SI, RECHERCHEV}
+
+\exo{}\diff{2}
+On a la liste des notes : A1=12, A2=15, A3=8, A4=12, A5=19. Écrire une formule qui compte le nombre de notes égales à 12.
+
+\exo{}\diff{3}
+Soit un tableau de notes (B2:B10) et de noms (A2:A10). Écrire une formule qui, à partir d'un nom saisi en D1, retourne sa note.
+
+\exo{}\diff{3}
+On a une table de correspondance : en A1:B4 (Code, Ville) : (1, Yaoundé), (2, Douala), (3, Bafoussam), (4, Garoua). En E1 on saisit un code. Écrire une formule qui affiche la ville correspondante.
+
+\rubrique{Problèmes de synthèse}
+
+\sujetbac[Gestion des notes]
+\exo{}\diff{3}
+Un professeur veut créer une feuille de calcul pour sa classe de 20 élèves. Les colonnes sont : A (Nom), B (Devoir1 /20), C (Devoir2 /20), D (Moyenne), E (Mention). Écrire :
+\begin{enumerate}
+    \item La formule en D2 pour calculer la moyenne des deux devoirs.
+    \item La formule en E2 pour afficher "Admis" si moyenne $\ge$ 10, "Ajourné" sinon.
+    \item Comment recopier ces formules pour les 20 élèves ?
+\end{enumerate}
+
+\sujetbac[Facture]
+\exo{}\diff{3}
+Une entreprise établit une facture. Les colonnes : A (Désignation), B (Quantité), C (Prix unitaire HT), D (Montant HT = Quantité × Prix unitaire), E (TVA = 19,25\% du Montant HT), F (Montant TTC = Montant HT + TVA). Écrire les formules pour les lignes 2 à 10.
+
+\sujetbac[Statistiques]
+\exo{}\diff{3}
+On a relevé les tailles (en cm) de 30 élèves dans la plage A1:A30. Écrire les formules pour :
+\begin{enumerate}
+    \item La taille moyenne.
+    \item La taille maximale.
+    \item Le nombre d'élèves mesurant plus de 170 cm.
+    \item Le nombre d'élèves mesurant entre 160 et 180 cm (inclus).
+\end{enumerate}
+
+\exo{}\diff{3}
+On veut créer un graphique en histogramme à partir des données suivantes : en A1:A5 les mois (Jan, Fév, Mar, Avr, Mai) et en B1:B5 les ventes (100, 150, 130, 170, 160). Décrire brièvement la procédure pour créer ce graphique.
+
+\exo{}\diff{3}
+Une feuille de calcul contient en A1=5, B1=10, C1=15. On écrit en D1 la formule \texttt{=A1+B1+C1}. Que vaut D1 ? Si on modifie B1 pour le mettre à 20, que devient D1 ?
+
+\exo{}\diff{3}
+On a un tableau de notes : A1=10, A2=12, A3=8, A4=15, A5=9. Écrire une formule qui donne la note la plus élevée.
+
+\exo{}\diff{3}
+Écrire une formule qui, en B1, affiche "Pair" si la valeur en A1 est paire, et "Impair" sinon. (Indice : utiliser la fonction MOD.)
+
+\exo{}\diff{3}
+On veut calculer le salaire net d'un employé. Salaire brut en A1, impôt en B1 (15\% du brut), cotisations en C1 (5\% du brut). Écrire la formule en D1 pour le salaire net.
+
+\exo{}\diff{3}
+Un magasin applique une remise de 10\% si le montant des achats dépasse 50 000 FCFA. En A1 le montant des achats, écrire la formule en B1 pour le montant à payer.
+
+\section{Corrigés}
+
+\corrige{de l'exercice 1}
+L'adresse est \texttt{G12}.
+
+\corrige{de l'exercice 2}
+En C3, on obtient \texttt{=A3+B3} (les références relatives s'adaptent : ligne +2).
+
+\corrige{de l'exercice 3}
+En D2 : \texttt{=\$B\$2*C2}. Recopié vers la droite jusqu'en F2, la colonne de C2 devient D2, E2, F2. Donc en F2 : \texttt{=\$B\$2*F2}.
+
+\corrige{de l'exercice 4}
+La plage A1:D4 a 4 colonnes (A,B,C,D) et 4 lignes (1,2,3,4), soit $4 \times 4 = 16$ cellules.
+
+\corrige{de l'exercice 5}
+\texttt{=SOMME(A1:A3)} retourne $5+10+15 = 30$.
+
+\corrige{de l'exercice 6}
+\texttt{=MOYENNE(A1:A3)} retourne $(5+10+15)/3 = 10$.
+
+\corrige{de l'exercice 7}
+\texttt{=MIN(B1:B4)} retourne 5.
+
+\corrige{de l'exercice 8}
+\texttt{=NB.SI(B1:B4;">=10")} retourne 2 (12 et 20).
+
+\corrige{de l'exercice 9}
+\texttt{=SI(C2>10;"Grand";"Petit")} retourne "Grand" car 14 > 10.
+
+\corrige{de l'exercice 10}
+En D1 : \texttt{=SI(B1>=10;"Réussi";"Échoué")}.
+
+\corrige{de l'exercice 11}
+En C1 : \texttt{=A\$1*B1}. Recopié en C3 : \texttt{=A\$1*B3} (la ligne de A\$1 est figée, la colonne de B s'adapte).
+
+\corrige{de l'exercice 12}
+En C1 : \texttt{=A1+\$B\$1} = $2+3=5$. En C2 (recopie) : \texttt{=A2+\$B\$1} = $4+3=7$.
+
+\corrige{de l'exercice 13}
+En C1 : \texttt{=A1*(1+\$B\$1)} ou \texttt{=A1+A1*\$B\$1}. Le \$B\$1 reste fixe lors de la recopie.
+
+\corrige{de l'exercice 14}
+\texttt{=NB.SI(A1:A5;12)} retourne 2 (A1 et A4).
+
+\corrige{de l'exercice 15}
+\texttt{=RECHERCHEV(D1;A2:B10;2;FAUX)}. La valeur cherchée est en D1, la table est A2:B10, on retourne la 2e colonne (note), tri FAUX pour correspondance exacte.
+
+\corrige{de l'exercice 16}
+\texttt{=RECHERCHEV(E1;A1:B4;2;FAUX)} retourne la ville correspondant au code saisi en E1.
+
+\corrige{de l'exercice 17}
+\begin{enumerate}
+    \item En D2 : \texttt{=MOYENNE(B2:C2)}.
+    \item En E2 : \texttt{=SI(D2>=10;"Admis";"Ajourné")}.
+    \item Sélectionner D2:E2, puis recopier vers le bas jusqu'à la ligne 21.
+\end{enumerate}
+
+\corrige{de l'exercice 18}
+Pour une ligne i (i de 2 à 10) :
+\begin{itemize}
+    \item Di : \texttt{=Bi*Ci}
+    \item Ei : \texttt{=Di*0,1925}
+    \item Fi : \texttt{=Di+Ei}
+\end{itemize}
+On peut aussi écrire Fi directement : \texttt{=Di*(1+0,1925)}.
+
+\corrige{de l'exercice 19}
+\begin{enumerate}
+    \item \texttt{=MOYENNE(A1:A30)}
+    \item \texttt{=MAX(A1:A30)}
+    \item \texttt{=NB.SI(A1:A30;">170")}
+    \item \texttt{=NB.SI(A1:A30;">=160")-NB.SI(A1:A30;">180")} ou \texttt{=NB.SI(A1:A30;">=160")-NB.SI(A1:A30;">180")} (attention : NB.SI ne gère pas deux critères directement ; on peut aussi utiliser \texttt{=SOMMEPROD((A1:A30>=160)*(A1:A30<=180))}).
+\end{enumerate}
+
+\corrige{de l'exercice 20}
+Sélectionner la plage A1:B5, puis dans le menu Insertion, choisir Graphique, sélectionner Histogramme, valider.
+
+\corrige{de l'exercice 21}
+D1 = 5+10+15 = 30. Si B1 devient 20, D1 = 5+20+15 = 40 (la formule se met à jour automatiquement).
+
+\corrige{de l'exercice 22}
+\texttt{=MAX(A1:A5)} retourne 15.
+
+\corrige{de l'exercice 23}
+\texttt{=SI(MOD(A1;2)=0;"Pair";"Impair")}. MOD(A1;2) donne le reste de la division par 2.
+
+\corrige{de l'exercice 24}
+En D1 : \texttt{=A1-B1-C1} avec B1 = A1*0,15 et C1 = A1*0,05. Soit directement : \texttt{=A1*(1-0,15-0,05)} = \texttt{=A1*0,8}.
+
+\corrige{de l'exercice 25}
+En B1 : \texttt{=SI(A1>50000;A1*0,9;A1)}. Si le montant dépasse 50 000 FCFA, on applique 10\% de remise (donc on paie 90\%).

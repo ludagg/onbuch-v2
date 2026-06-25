@@ -1,0 +1,416 @@
+\chapter{Internet, le web et la citoyenneté numérique}
+
+\textit{Ce chapitre présente les fondamentaux d'Internet et du web, les bases du langage HTML, les enjeux de sécurité informatique et les principes de la citoyenneté numérique. L'objectif est de comprendre le fonctionnement des réseaux, de savoir créer une page web simple et d'adopter un comportement responsable en ligne.}
+
+\section{L'essentiel du cours}
+
+\subsection{Internet et ses services}
+\begin{definition}[Internet]
+Réseau mondial de réseaux informatiques interconnectés utilisant le protocole TCP/IP. Il permet l'échange de données entre des millions d'ordinateurs.
+\end{definition}
+
+\begin{definition}[Web (World Wide Web)]
+Système hypermédia public fonctionnant sur Internet, permettant de consulter des pages web via un navigateur. Il utilise le protocole HTTP/HTTPS.
+\end{definition}
+
+Principaux services d'Internet :
+\begin{itemize}
+    \item \textbf{Web} : consultation de pages (HTTP/HTTPS)
+    \item \textbf{Messagerie électronique} : envoi de courriels (SMTP, POP3, IMAP)
+    \item \textbf{Transfert de fichiers} : FTP
+    \item \textbf{Discussion en temps réel} : messagerie instantanée, VoIP
+    \item \textbf{Réseaux sociaux} : partage de contenus
+\end{itemize}
+
+\begin{definition}[URL (Uniform Resource Locator)]
+Adresse unique d'une ressource sur le web. Format : \texttt{protocole://nom\_domaine/chemin}. Exemple : \texttt{https://www.minesec.cm/accueil.html}
+\end{definition}
+
+\begin{aretenir}
+\begin{itemize}
+    \item Un \textbf{navigateur} (Chrome, Firefox) affiche les pages web.
+    \item Un \textbf{serveur web} stocke et délivre les pages.
+    \item \textbf{HTTP} (HyperText Transfer Protocol) est le protocole de communication.
+    \item \textbf{HTTPS} = HTTP + chiffrement SSL/TLS (sécurisé).
+\end{itemize}
+\end{aretenir}
+
+\subsection{Bases du HTML}
+\begin{definition}[HTML (HyperText Markup Language)]
+Langage de balisage utilisé pour structurer le contenu des pages web. Les balises sont entourées de chevrons \texttt{< >}.
+\end{definition}
+
+Structure minimale d'une page HTML :
+\begin{ccode}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Titre de la page</title>
+  </head>
+  <body>
+    <h1>Mon titre principal</h1>
+    <p>Un paragraphe de texte.</p>
+  </body>
+</html>
+\end{ccode}
+
+Balises essentielles :
+\begin{itemize}
+    \item \texttt{<h1>} à \texttt{<h6>} : titres (niveaux 1 à 6)
+    \item \texttt{<p>} : paragraphe
+    \item \texttt{<a href="url">} : lien hypertexte
+    \item \texttt{<img src="image.jpg" alt="description">} : image
+    \item \texttt{<ul>} / \texttt{<ol>} : listes non ordonnées / ordonnées
+    \item \texttt{<table>} : tableau
+\end{itemize}
+
+\begin{exemple}
+Code HTML pour un lien vers le site du MINESEC :
+\begin{ccode}
+<a href="https://www.minesec.cm">Visiter le site du MINESEC</a>
+\end{ccode}
+\end{exemple}
+
+\subsection{Sécurité informatique}
+\begin{definition}[Malware]
+Logiciel malveillant conçu pour endommager ou infiltrer un système informatique (virus, ver, cheval de Troie, ransomware, spyware).
+\end{definition}
+
+Bonnes pratiques de sécurité :
+\begin{itemize}
+    \item Utiliser des mots de passe forts (12+ caractères, mélange de lettres, chiffres, symboles)
+    \item Ne pas réutiliser le même mot de passe sur plusieurs sites
+    \item Activer l'authentification à deux facteurs (2FA)
+    \item Mettre à jour régulièrement son système et ses logiciels
+    \item Ne pas ouvrir les pièces jointes suspectes
+    \item Utiliser un antivirus et un pare-feu
+\end{itemize}
+
+\begin{aretenir}
+\begin{itemize}
+    \item Un mot de passe fort doit être \textbf{long, complexe et unique}.
+    \item Le \textbf{phishing} (hameçonnage) est une technique d'escroquerie par email ou site frauduleux.
+    \item Les \textbf{mises à jour} corrigent les failles de sécurité.
+\end{itemize}
+\end{aretenir}
+
+\subsection{Citoyenneté et droit numériques}
+\begin{definition}[Citoyenneté numérique]
+Ensemble des droits et des devoirs des individus dans l'espace numérique : respect de la vie privée, protection des données, comportement responsable.
+\end{definition}
+
+Principes fondamentaux :
+\begin{itemize}
+    \item \textbf{Protection des données personnelles} : loi sur la protection des données (au Cameroun : loi n°2010/012 du 21 décembre 2010)
+    \item \textbf{Propriété intellectuelle} : respect du droit d'auteur (textes, images, musiques, logiciels)
+    \item \textbf{Neutralité du net} : égalité de traitement des données sur Internet
+    \item \textbf{Identité numérique} : traces laissées en ligne (réseaux sociaux, forums)
+    \item \textbf{Cyberharcèlement} : interdiction et sanctions pénales
+\end{itemize}
+
+\begin{aretenir}
+\begin{itemize}
+    \item Ne jamais divulguer ses informations personnelles (adresse, numéro de téléphone, mot de passe) en ligne.
+    \item Vérifier les sources avant de partager une information.
+    \item Respecter les autres en ligne (netiquette).
+    \item Les données publiées sur Internet peuvent être conservées indéfiniment.
+\end{itemize}
+\end{aretenir}
+
+\section{Exercices}
+
+\rubrique{Connaissances générales sur Internet et le web}
+
+\exo{}\diff{1}
+Qu'est-ce qu'Internet ?
+\begin{enumerate}
+    \item Un logiciel de navigation
+    \item Un réseau mondial d'ordinateurs interconnectés
+    \item Un moteur de recherche
+    \item Un langage de programmation
+\end{enumerate}
+
+\exo{}\diff{1}
+Que signifie l'acronyme URL ?
+\begin{enumerate}
+    \item Universal Resource Locator
+    \item Uniform Resource Locator
+    \item Unified Resource Link
+    \item Universal Reference Locator
+\end{enumerate}
+
+\exo{}\diff{1}
+Quel protocole est utilisé pour naviguer sur le web de manière sécurisée ?
+\begin{enumerate}
+    \item HTTP
+    \item HTTPS
+    \item FTP
+    \item SMTP
+\end{enumerate}
+
+\exo{}\diff{1}
+Citez trois services offerts par Internet autres que le web.
+
+\exo{}\diff{1}
+Quel est le rôle d'un navigateur web ? Donnez deux exemples.
+
+\rubrique{Compréhension du HTML}
+
+\exo{}\diff{1}
+Quelle balise HTML permet de créer un titre de niveau 1 ?
+\begin{enumerate}
+    \item \texttt{<title>}
+    \item \texttt{<h1>}
+    \item \texttt{<head>}
+    \item \texttt{<p>}
+\end{enumerate}
+
+\exo{}\diff{1}
+Écrivez le code HTML minimal d'une page web affichant « Bonjour le Cameroun ! » en titre principal.
+
+\exo{}\diff{2}
+Complétez le code HTML suivant pour créer un lien vers \texttt{https://www.minesec.cm} avec le texte « Site du MINESEC » :
+\begin{ccode}
+<a ______="https://www.minesec.cm">______</a>
+\end{ccode}
+
+\exo{}\diff{2}
+Quelle balise HTML permet d'insérer une image ? Donnez deux attributs obligatoires.
+
+\exo{}\diff{2}
+Écrivez le code HTML d'une liste non ordonnée contenant trois matières scolaires : Mathématiques, Physique, Informatique.
+
+\exo{}\diff{2}
+Quelle est la différence entre les balises \texttt{<head>} et \texttt{<body>} dans une page HTML ?
+
+\rubrique{Sécurité informatique}
+
+\exo{}\diff{1}
+Qu'est-ce qu'un malware ?
+\begin{enumerate}
+    \item Un logiciel de sécurité
+    \item Un logiciel malveillant
+    \item Un navigateur web
+    \item Un antivirus
+\end{enumerate}
+
+\exo{}\diff{1}
+Citez trois types de malwares.
+
+\exo{}\diff{2}
+Qu'est-ce que le phishing (hameçonnage) ? Donnez un exemple concret.
+
+\exo{}\diff{2}
+Un mot de passe « 123456 » est-il sécurisé ? Justifiez votre réponse et proposez un mot de passe plus fort.
+
+\exo{}\diff{2}
+Pourquoi est-il important de mettre à jour régulièrement son système d'exploitation et ses logiciels ?
+
+\exo{}\diff{3}
+\sujetbac[Lycée de Yaoundé, 2023]
+Un élève reçoit un email semblant provenir de sa banque lui demandant de cliquer sur un lien pour « vérifier son compte ». Que doit-il faire ? Expliquez les risques.
+
+\rubrique{Citoyenneté et droit numériques}
+
+\exo{}\diff{1}
+Que signifie le terme « identité numérique » ?
+
+\exo{}\diff{1}
+Citez deux droits fondamentaux liés à la citoyenneté numérique.
+
+\exo{}\diff{2}
+Qu'est-ce que le cyberharcèlement ? Donnez deux exemples de comportements constitutifs de cyberharcèlement.
+
+\exo{}\diff{2}
+Un élève télécharge une musique protégée par le droit d'auteur sans autorisation. Est-ce légal ? Justifiez.
+
+\exo{}\diff{2}
+Que recommande la loi camerounaise sur la protection des données personnelles ?
+
+\exo{}\diff{3}
+\sujetbac[Lycée de Douala, 2022]
+Un camarade de classe publie sur les réseaux sociaux une photo de vous sans votre consentement. Que pouvez-vous faire ? Quels sont vos droits ?
+
+\rubrique{Exercices de synthèse}
+
+\exo{}\diff{2}
+Associez chaque terme à sa définition :
+\begin{enumerate}
+    \item Navigateur
+    \item Serveur web
+    \item URL
+    \item HTML
+\end{enumerate}
+Définitions : A. Langage de balisage pour pages web ; B. Adresse d'une ressource sur le web ; C. Logiciel affichant les pages web ; D. Ordinateur stockant et délivrant les pages web.
+
+\exo{}\diff{2}
+Vrai ou Faux ? Justifiez.
+\begin{enumerate}
+    \item Le web et Internet sont la même chose.
+    \item Un mot de passe de 8 caractères est toujours suffisant.
+    \item Les données publiées sur Internet peuvent être supprimées définitivement.
+    \item Le protocole HTTPS chiffre les données échangées.
+\end{enumerate}
+
+\exo{}\diff{3}
+\sujetbac[Lycée de Bafoussam, 2021]
+Vous devez créer une page web simple présentant votre lycée. Écrivez le code HTML complet (structure minimale) contenant :
+\begin{itemize}
+    \item Un titre principal avec le nom du lycée
+    \item Un paragraphe décrivant le lycée
+    \item Une image (utilisez \texttt{lycee.jpg} comme source)
+    \item Un lien vers le site du MINESEC
+\end{itemize}
+
+\exo{}\diff{3}
+\sujetbac[Lycée de Garoua, 2020]
+Un site web propose un jeu en ligne gratuit. Pour y jouer, il faut fournir son nom, son adresse email et son numéro de téléphone. Analysez les risques potentiels pour la vie privée et proposez des mesures de protection.
+
+\exo{}\diff{3}
+\sujetbac[Lycée de Limbé, 2019]
+Expliquez en quoi la citoyenneté numérique implique à la fois des droits et des devoirs. Donnez trois exemples concrets de comportements responsables en ligne.
+
+\section{Corrigés}
+
+\corrige{de l'exercice 1}
+Réponse : \textbf{2. Un réseau mondial d'ordinateurs interconnectés}. Internet est un réseau de réseaux, pas un logiciel.
+
+\corrige{de l'exercice 2}
+Réponse : \textbf{2. Uniform Resource Locator}. L'URL est l'adresse uniforme d'une ressource.
+
+\corrige{de l'exercice 3}
+Réponse : \textbf{2. HTTPS}. Le S signifie Secure (SSL/TLS).
+
+\corrige{de l'exercice 4}
+Trois services : le web (pages HTML), la messagerie électronique (email), le transfert de fichiers (FTP). Autres possibles : messagerie instantanée, VoIP, réseaux sociaux.
+
+\corrige{de l'exercice 5}
+Un navigateur web est un logiciel qui permet d'afficher et de consulter des pages web. Exemples : Google Chrome, Mozilla Firefox, Safari, Microsoft Edge.
+
+\corrige{de l'exercice 6}
+Réponse : \textbf{2. \texttt{<h1>}}. La balise \texttt{<h1>} est le titre de niveau 1.
+
+\corrige{de l'exercice 7}
+Code HTML :
+\begin{ccode}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bonjour</title>
+  </head>
+  <body>
+    <h1>Bonjour le Cameroun !</h1>
+  </body>
+</html>
+\end{ccode}
+
+\corrige{de l'exercice 8}
+Code complété :
+\begin{ccode}
+<a href="https://www.minesec.cm">Site du MINESEC</a>
+\end{ccode}
+
+\corrige{de l'exercice 9}
+La balise est \texttt{<img>}. Attributs obligatoires : \texttt{src} (source de l'image) et \texttt{alt} (texte alternatif).
+
+\corrige{de l'exercice 10}
+Code HTML :
+\begin{ccode}
+<ul>
+  <li>Mathématiques</li>
+  <li>Physique</li>
+  <li>Informatique</li>
+</ul>
+\end{ccode}
+
+\corrige{de l'exercice 11}
+La balise \texttt{<head>} contient les métadonnées (titre, liens CSS, etc.) non affichées directement. La balise \texttt{<body>} contient le contenu visible de la page (textes, images, etc.).
+
+\corrige{de l'exercice 12}
+Réponse : \textbf{2. Un logiciel malveillant}. Malware = malicious software.
+
+\corrige{de l'exercice 13}
+Trois types : virus, ver, cheval de Troie, ransomware, spyware (au choix).
+
+\corrige{de l'exercice 14}
+Le phishing est une technique d'escroquerie où un fraudeur envoie un email ou un message semblant provenir d'une source fiable (banque, administration) pour voler des informations personnelles (identifiants, mots de passe). Exemple : un email imitant votre banque vous demandant de cliquer sur un lien pour « vérifier votre compte ».
+
+\corrige{de l'exercice 15}
+Non, « 123456 » n'est pas sécurisé car trop court, trop simple et très utilisé. Un mot de passe fort : « Cam3r0un!2024@Securite » (12+ caractères, mélange de lettres majuscules/minuscules, chiffres, symboles).
+
+\corrige{de l'exercice 16}
+Les mises à jour corrigent les failles de sécurité découvertes dans le système ou les logiciels. Sans elles, un attaquant peut exploiter ces failles pour infecter l'ordinateur, voler des données ou prendre le contrôle.
+
+\corrige{de l'exercice 17}
+L'élève ne doit pas cliquer sur le lien. Il doit contacter sa banque directement par téléphone ou se rendre à l'agence. Risques : le lien mène à un site frauduleux qui vole ses identifiants bancaires (phishing), permettant un vol d'argent.
+
+\corrige{de l'exercice 18}
+L'identité numérique est l'ensemble des traces et informations laissées par une personne sur Internet (comptes, publications, commentaires, données personnelles).
+
+\corrige{de l'exercice 19}
+Deux droits : droit à la protection des données personnelles, droit à la vie privée, droit à l'oubli numérique, droit d'accès à l'information (au choix).
+
+\corrige{de l'exercice 20}
+Le cyberharcèlement est un harcèlement exercé via les technologies numériques (réseaux sociaux, messageries, forums). Exemples : envoi de messages insultants répétés, publication de photos humiliantes sans consentement, exclusion d'un groupe en ligne.
+
+\corrige{de l'exercice 21}
+Non, ce n'est pas légal. La musique est protégée par le droit d'auteur. Télécharger sans autorisation constitue une violation de la propriété intellectuelle (piratage), passible de sanctions civiles et pénales.
+
+\corrige{de l'exercice 22}
+La loi camerounaise n°2010/012 du 21 décembre 2010 relative à la protection des données à caractère personnel impose le consentement de la personne pour la collecte et le traitement de ses données, le droit d'accès, de rectification et d'opposition, et la déclaration des fichiers auprès de la Commission nationale de protection des données.
+
+\corrige{de l'exercice 23}
+Vous pouvez demander au camarade de retirer la photo. S'il refuse, vous pouvez signaler le contenu au réseau social (non-respect du droit à l'image). Vous avez le droit de contrôler l'utilisation de votre image. En cas de harcèlement, porter plainte auprès des autorités (police, gendarmerie). La loi protège votre vie privée.
+
+\corrige{de l'exercice 24}
+Associations : 1-C, 2-D, 3-B, 4-A.
+
+\corrige{de l'exercice 25}
+\begin{enumerate}
+    \item \textbf{Faux}. Le web est un service d'Internet (parmi d'autres comme l'email).
+    \item \textbf{Faux}. 8 caractères peuvent être cassés par force brute. Il faut au moins 12 caractères avec complexité.
+    \item \textbf{Faux}. Les données publiées peuvent être copiées, archivées, et il est très difficile de les supprimer complètement.
+    \item \textbf{Vrai}. HTTPS chiffre les données avec SSL/TLS, protégeant contre l'interception.
+\end{enumerate}
+
+\corrige{de l'exercice 26}
+Code HTML complet :
+\begin{ccode}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mon Lycée</title>
+  </head>
+  <body>
+    <h1>Lycée de Bafoussam</h1>
+    <p>Le Lycée de Bafoussam est un établissement d'enseignement secondaire général situé dans la région de l'Ouest Cameroun.</p>
+    <img src="lycee.jpg" alt="Photo du Lycée de Bafoussam">
+    <a href="https://www.minesec.cm">Site du MINESEC</a>
+  </body>
+</html>
+\end{ccode}
+
+\corrige{de l'exercice 27}
+Risques potentiels :
+\begin{itemize}
+    \item Collecte abusive de données personnelles (nom, email, téléphone) pouvant être revendues à des publicitaires ou utilisées pour du spam.
+    \item Risque de phishing ou d'usurpation d'identité.
+    \item Profilage de l'utilisateur sans son consentement.
+\end{itemize}
+Mesures de protection :
+\begin{itemize}
+    \item Ne fournir que les informations strictement nécessaires.
+    \item Utiliser une adresse email jetable.
+    \item Lire les conditions d'utilisation et la politique de confidentialité.
+    \item Ne pas utiliser le même mot de passe que pour d'autres comptes.
+\end{itemize}
+
+\corrige{de l'exercice 28}
+La citoyenneté numérique implique des droits (accès à l'information, liberté d'expression, protection des données) et des devoirs (respect des autres, respect de la loi, protection de sa vie privée et de celle des autres).
+
+Trois exemples de comportements responsables :
+\begin{enumerate}
+    \item Vérifier les sources avant de partager une information (lutter contre les fake news).
+    \item Ne pas publier de photos ou d'informations personnelles sans consentement.
+    \item Utiliser des mots de passe forts et ne pas les partager.
+\end{enumerate}
