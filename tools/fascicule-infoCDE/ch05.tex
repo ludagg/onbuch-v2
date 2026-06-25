@@ -1,0 +1,506 @@
+\chapter{Du MCD au modèle relationnel}
+
+\textit{Le Modèle Conceptuel de Données (MCD) décrit les données sous forme d'entités et d'associations. Pour implémenter une base de données, il faut le transformer en un modèle relationnel (tables, clés). Ce chapitre présente les règles de passage du MCD au modèle relationnel.}
+
+\section{L'essentiel du cours}
+
+\subsection{Rappel : MCD}
+Un MCD est composé de :
+\begin{itemize}
+    \item \textbf{Entités} : objets du monde réel (ex. : Élève, Cours).
+    \item \textbf{Associations} : liens entre entités (ex. : suit, enseigne).
+    \item \textbf{Cardinalités} : (min, max) qui précisent le nombre de participations.
+\end{itemize}
+
+\subsection{Règles de transformation}
+
+\begin{definition}[Règle 1 : Entité → Table]
+Chaque entité devient une table. Ses propriétés deviennent les attributs de la table. La clé primaire de l'entité devient la clé primaire de la table.
+\end{definition}
+
+\begin{definition}[Règle 2 : Association de cardinalités (1,1) ou (0,1)]
+L'association est transformée en ajoutant une clé étrangère dans la table de l'entité côté "1". La clé étrangère référence la clé primaire de l'autre entité.
+\end{definition}
+
+\begin{definition}[Règle 3 : Association de cardinalités (1,n) ou (0,n)]
+L'association devient une table à part entière. Cette table contient :
+\begin{itemize}
+    \item Les clés étrangères des entités participantes (qui forment la clé primaire composée).
+    \item Les éventuelles propriétés de l'association.
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Règle 4 : Association réflexive]
+Même principe : on crée une table avec deux clés étrangères (une pour chaque rôle) ou on ajoute une clé étrangère selon les cardinalités.
+\end{definition}
+
+\begin{aretenir}
+\begin{itemize}
+    \item Une entité → une table.
+    \item Association (1,1) ou (0,1) → clé étrangère dans la table côté "1".
+    \item Association (1,n) ou (0,n) → nouvelle table avec clés étrangères.
+    \item Notation : \texttt{TABLE(\underline{clé primaire}, attribut1, attribut2, \#clé\_étrangère)}.
+\end{itemize}
+\end{aretenir}
+
+\begin{exemple}
+Soit le MCD : Élève (0,n) --- suit --- (1,1) Cours.
+\begin{itemize}
+    \item Entité Élève → \texttt{Élève(\underline{num\_élève}, nom, prénom)}
+    \item Entité Cours → \texttt{Cours(\underline{code\_cours}, intitulé)}
+    \item Association (0,n) côté Élève, (1,1) côté Cours → clé étrangère dans Élève.
+    \item Résultat : \texttt{Élève(\underline{num\_élève}, nom, prénom, \#code\_cours)}
+\end{itemize}
+\end{exemple}
+
+\section{Exercices}
+
+\rubrique{Transformation simple d'un MCD en relations}
+
+\exo{}\diff{1}
+Soit le MCD suivant : \texttt{Client (0,n) --- passe --- (1,1) Commande}. Les entités ont les propriétés :
+\begin{itemize}
+    \item Client : num\_client, nom, téléphone.
+    \item Commande : num\_commande, date, montant.
+\end{itemize}
+Donner le modèle relationnel correspondant.
+
+\exo{}\diff{1}
+MCD : \texttt{Professeur (1,n) --- enseigne --- (1,n) Matière}. Propriétés :
+\begin{itemize}
+    \item Professeur : matricule, nom, grade.
+    \item Matière : code\_mat, intitulé, coefficient.
+\end{itemize}
+Donner les relations.
+
+\exo{}\diff{1}
+MCD : \texttt{Étudiant (0,n) --- s'inscrit --- (1,1) Université}. Propriétés :
+\begin{itemize}
+    \item Étudiant : num\_etu, nom, date\_naiss.
+    \item Université : code\_uni, nom\_uni, ville.
+\end{itemize}
+Donner le modèle relationnel.
+
+\exo{}\diff{1}
+MCD : \texttt{Livre (0,n) --- est\_écrit\_par --- (1,n) Auteur}. Propriétés :
+\begin{itemize}
+    \item Livre : ISBN, titre, année.
+    \item Auteur : num\_auteur, nom, nationalité.
+\end{itemize}
+Donner les relations.
+
+\exo{}\diff{1}
+MCD : \texttt{Employé (0,n) --- travaille --- (1,1) Service}. Propriétés :
+\begin{itemize}
+    \item Employé : id\_emp, nom\_emp, salaire.
+    \item Service : id\_serv, nom\_serv, localisation.
+\end{itemize}
+Donner le modèle relationnel.
+
+\rubrique{Identification des clés primaires et étrangères}
+
+\exo{}\diff{2}
+Soit les relations suivantes issues d'un MCD :
+\begin{itemize}
+    \item \texttt{Client(\underline{id\_client}, nom, adresse)}
+    \item \texttt{Commande(\underline{num\_cmd}, date, montant, \#id\_client)}
+\end{itemize}
+Identifier les clés primaires et étrangères. Expliquer la cardinalité de l'association d'origine.
+
+\exo{}\diff{2}
+Relations :
+\begin{itemize}
+    \item \texttt{Professeur(\underline{matricule}, nom, spécialité)}
+    \item \texttt{Matière(\underline{code\_mat}, intitulé, coeff)}
+    \item \texttt{Enseigne(\underline{\#matricule}, \underline{\#code\_mat}, salle)}
+\end{itemize}
+Identifier les clés. Quelle était la cardinalité de l'association ?
+
+\exo{}\diff{2}
+Soit : \texttt{Élève(\underline{num\_el}, nom, classe, \#code\_classe)} et \texttt{Classe(\underline{code\_classe}, niveau, section)}. Donner les clés primaires et étrangères.
+
+\exo{}\diff{2}
+Relations :
+\begin{itemize}
+    \item \texttt{Projet(\underline{id\_projet}, nom, budget)}
+    \item \texttt{Employé(\underline{id\_emp}, nom, fonction)}
+    \item \texttt{Participation(\underline{\#id\_projet}, \underline{\#id\_emp}, nb\_heures)}
+\end{itemize}
+Identifier les clés. Quel type d'association cela représente-t-il ?
+
+\exo{}\diff{2}
+Soit : \texttt{Personne(\underline{num\_secu}, nom, prenom, \#num\_conjoint)} où \#num\_conjoint référence num\_secu de la même table. Expliquer ce cas particulier.
+
+\rubrique{Transformation avec associations réflexives}
+
+\exo{}\diff{2}
+MCD réflexif : \texttt{Personne (0,n) --- est\_marié\_à --- (0,1) Personne}. Propriété de Personne : id\_pers, nom, date\_naiss. Donner le modèle relationnel.
+
+\exo{}\diff{2}
+MCD réflexif : \texttt{Employé (0,n) --- supervise --- (0,n) Employé}. Propriété : id\_emp, nom, poste. Donner les relations.
+
+\exo{}\diff{2}
+MCD : \texttt{Article (0,n) --- compose --- (0,n) Article} (un article peut être composé de plusieurs articles). Propriétés : code\_art, libellé, prix. Donner le modèle relationnel.
+
+\rubrique{Exercices type Baccalauréat}
+
+\sujetbac[Cameroun 2022 -- Session normale]
+\exo{}\diff{3}
+On considère le MCD suivant pour la gestion d'une bibliothèque :
+\begin{itemize}
+    \item \texttt{Adhérent (0,n) --- emprunte --- (1,n) Livre}
+    \item Adhérent : num\_adh, nom, téléphone.
+    \item Livre : code\_livre, titre, auteur.
+    \item L'association emprunte a une propriété : date\_emprunt.
+\end{itemize}
+\begin{enumerate}
+    \item Donner le modèle relationnel.
+    \item Identifier les clés primaires et étrangères.
+    \item Écrire une requête SQL pour lister les adhérents ayant emprunté un livre le 15/03/2024.
+\end{enumerate}
+
+\sujetbac[Cameroun 2021 -- Session de remplacement]
+\exo{}\diff{3}
+MCD d'une école :
+\begin{itemize}
+    \item \texttt{Élève (0,n) --- suit --- (1,1) Cours}
+    \item \texttt{Cours (1,n) --- est\_donné\_par --- (1,1) Professeur}
+    \item Élève : num\_el, nom, classe.
+    \item Cours : code\_cours, intitulé, coeff.
+    \item Professeur : id\_prof, nom, spécialité.
+\end{itemize}
+\begin{enumerate}
+    \item Transformer en modèle relationnel.
+    \item Donner la requête SQL pour afficher les cours suivis par l'élève "Mballa".
+\end{enumerate}
+
+\sujetbac[Cameroun 2020 -- Session normale]
+\exo{}\diff{3}
+Gestion d'un hôpital :
+\begin{itemize}
+    \item \texttt{Médecin (0,n) --- consulte --- (0,n) Patient}
+    \item \texttt{Patient (0,n) --- est\_hospitalisé --- (1,1) Chambre}
+    \item Médecin : id\_med, nom, spécialité.
+    \item Patient : num\_pat, nom, maladie.
+    \item Chambre : num\_chambre, étage, capacité.
+    \item L'association consulte a une propriété : date\_consultation.
+\end{itemize}
+\begin{enumerate}
+    \item Donner le modèle relationnel.
+    \item Écrire la requête SQL pour obtenir la liste des patients hospitalisés au 1er étage.
+\end{enumerate}
+
+\sujetbac[Cameroun 2019 -- Session normale]
+\exo{}\diff{3}
+Gestion d'une entreprise :
+\begin{itemize}
+    \item \texttt{Employé (0,n) --- travaille --- (1,1) Projet}
+    \item \texttt{Projet (1,n) --- est\_dirigé\_par --- (1,1) Employé}
+    \item Employé : id\_emp, nom, fonction.
+    \item Projet : code\_projet, intitulé, budget.
+\end{itemize}
+\begin{enumerate}
+    \item Donner le modèle relationnel.
+    \item Expliquer le rôle de la clé étrangère dans la table Projet.
+\end{enumerate}
+
+\sujetbac[Cameroun 2018 -- Session de remplacement]
+\exo{}\diff{3}
+Gestion d'un club sportif :
+\begin{itemize}
+    \item \texttt{Membre (0,n) --- participe --- (1,n) Compétition}
+    \item \texttt{Compétition (0,n) --- a\_lieu\_dans --- (1,1) Salle}
+    \item Membre : num\_membre, nom, âge.
+    \item Compétition : id\_comp, nom\_comp, date.
+    \item Salle : code\_salle, nom\_salle, capacité.
+    \item L'association participe a une propriété : résultat.
+\end{itemize}
+\begin{enumerate}
+    \item Donner le modèle relationnel.
+    \item Écrire la requête SQL pour afficher les membres ayant participé à la compétition "Tournoi de Yaoundé".
+\end{enumerate}
+
+\rubrique{Exercices de synthèse}
+
+\exo{}\diff{3}
+On a le MCD suivant pour une agence de voyage :
+\begin{itemize}
+    \item \texttt{Client (0,n) --- réserve --- (1,n) Voyage}
+    \item \texttt{Voyage (0,n) --- dessert --- (1,1) Destination}
+    \item Client : id\_client, nom, email.
+    \item Voyage : code\_voyage, date\_départ, prix.
+    \item Destination : code\_dest, ville, pays.
+    \item L'association réserve a une propriété : nb\_places.
+\end{itemize}
+\begin{enumerate}
+    \item Donner le modèle relationnel.
+    \item Écrire la requête SQL pour lister les clients ayant réservé un voyage pour "Paris".
+\end{enumerate}
+
+\exo{}\diff{3}
+Gestion d'une université :
+\begin{itemize}
+    \item \texttt{Étudiant (0,n) --- s'inscrit --- (1,1) Filière}
+    \item \texttt{Filière (1,n) --- propose --- (1,n) Matière}
+    \item Étudiant : num\_etu, nom, date\_naiss.
+    \item Filière : code\_fil, nom\_fil, durée.
+    \item Matière : code\_mat, intitulé, crédits.
+\end{itemize}
+\begin{enumerate}
+    \item Donner le modèle relationnel.
+    \item Écrire la requête SQL pour afficher les matières de la filière "Informatique".
+\end{enumerate}
+
+\exo{}\diff{3}
+Gestion d'un hôtel :
+\begin{itemize}
+    \item \texttt{Client (0,n) --- occupe --- (1,1) Chambre}
+    \item \texttt{Chambre (0,n) --- est\_dans --- (1,1) Catégorie}
+    \item Client : id\_client, nom, téléphone.
+    \item Chambre : num\_chambre, prix\_nuit.
+    \item Catégorie : code\_cat, libellé, description.
+\end{itemize}
+\begin{enumerate}
+    \item Donner le modèle relationnel.
+    \item Écrire la requête SQL pour lister les clients occupant une chambre de catégorie "Suite".
+\end{enumerate}
+
+\exo{}\diff{3}
+Gestion d'un cabinet médical :
+\begin{itemize}
+    \item \texttt{Médecin (0,n) --- examine --- (0,n) Patient}
+    \item \texttt{Patient (0,n) --- a\_un\_dossier --- (1,1) Dossier}
+    \item Médecin : id\_med, nom, spécialité.
+    \item Patient : num\_pat, nom, date\_naiss.
+    \item Dossier : num\_dossier, date\_création, contenu.
+    \item L'association examine a une propriété : date\_examen.
+\end{itemize}
+\begin{enumerate}
+    \item Donner le modèle relationnel.
+    \item Écrire la requête SQL pour afficher les examens du patient "Nkwi" avec le médecin "Dr. Eyenga".
+\end{enumerate}
+
+\exo{}\diff{3}
+Gestion d'un réseau de transport :
+\begin{itemize}
+    \item \texttt{Conducteur (0,n) --- conduit --- (1,n) Bus}
+    \item \texttt{Bus (0,n) --- affecté\_à --- (1,1) Ligne}
+    \item Conducteur : id\_cond, nom, permis.
+    \item Bus : immatriculation, marque, capacité.
+    \item Ligne : code\_ligne, départ, arrivée, distance.
+    \item L'association conduit a une propriété : date\_affectation.
+\end{itemize}
+\begin{enumerate}
+    \item Donner le modèle relationnel.
+    \item Écrire la requête SQL pour lister les conducteurs affectés à la ligne "Douala-Yaoundé".
+\end{enumerate}
+
+\section{Corrigés}
+
+\corrige{de l'exercice 1}
+\begin{itemize}
+    \item \texttt{Client(\underline{num\_client}, nom, téléphone)}
+    \item \texttt{Commande(\underline{num\_commande}, date, montant, \#num\_client)}
+\end{itemize}
+Clé primaire : num\_client pour Client, num\_commande pour Commande. Clé étrangère : \#num\_client dans Commande référence num\_client de Client.
+
+\corrige{de l'exercice 2}
+\begin{itemize}
+    \item \texttt{Professeur(\underline{matricule}, nom, grade)}
+    \item \texttt{Matière(\underline{code\_mat}, intitulé, coefficient)}
+    \item \texttt{Enseigne(\underline{\#matricule}, \underline{\#code\_mat})}
+\end{itemize}
+Association (1,n) des deux côtés → nouvelle table Enseigne.
+
+\corrige{de l'exercice 3}
+\begin{itemize}
+    \item \texttt{Étudiant(\underline{num\_etu}, nom, date\_naiss, \#code\_uni)}
+    \item \texttt{Université(\underline{code\_uni}, nom\_uni, ville)}
+\end{itemize}
+Clé étrangère : \#code\_uni dans Étudiant.
+
+\corrige{de l'exercice 4}
+\begin{itemize}
+    \item \texttt{Livre(\underline{ISBN}, titre, année)}
+    \item \texttt{Auteur(\underline{num\_auteur}, nom, nationalité)}
+    \item \texttt{Écrit\_par(\underline{\#ISBN}, \underline{\#num\_auteur})}
+\end{itemize}
+
+\corrige{de l'exercice 5}
+\begin{itemize}
+    \item \texttt{Employé(\underline{id\_emp}, nom\_emp, salaire, \#id\_serv)}
+    \item \texttt{Service(\underline{id\_serv}, nom\_serv, localisation)}
+\end{itemize}
+
+\corrige{de l'exercice 6}
+Clés primaires : id\_client dans Client, num\_cmd dans Commande. Clé étrangère : \#id\_client dans Commande. Cardinalité : Client (0,n) --- passe --- (1,1) Commande (un client peut passer plusieurs commandes, une commande est passée par un seul client).
+
+\corrige{de l'exercice 7}
+Clés primaires : matricule dans Professeur, code\_mat dans Matière, (matricule, code\_mat) dans Enseigne. Clés étrangères : \#matricule et \#code\_mat dans Enseigne. Cardinalité : (1,n) des deux côtés.
+
+\corrige{de l'exercice 8}
+Clés primaires : num\_el dans Élève, code\_classe dans Classe. Clé étrangère : \#code\_classe dans Élève. Cardinalité : Élève (0,n) --- appartient --- (1,1) Classe.
+
+\corrige{de l'exercice 9}
+Clés primaires : id\_projet dans Projet, id\_emp dans Employé, (id\_projet, id\_emp) dans Participation. Clés étrangères : \#id\_projet et \#id\_emp dans Participation. Association (0,n) des deux côtés.
+
+\corrige{de l'exercice 10}
+C'est une association réflexive de type (0,1) ou (1,1). \#num\_conjoint est une clé étrangère qui référence la même table. Cela modélise le mariage : une personne peut être mariée à au plus une autre personne.
+
+\corrige{de l'exercice 11}
+\begin{itemize}
+    \item \texttt{Personne(\underline{id\_pers}, nom, date\_naiss, \#id\_conjoint)}
+\end{itemize}
+\#id\_conjoint référence id\_pers de la même table (peut être NULL).
+
+\corrige{de l'exercice 12}
+\begin{itemize}
+    \item \texttt{Employé(\underline{id\_emp}, nom, poste)}
+    \item \texttt{Supervise(\underline{\#id\_supérieur}, \underline{\#id\_subordonné})}
+\end{itemize}
+
+\corrige{de l'exercice 13}
+\begin{itemize}
+    \item \texttt{Article(\underline{code\_art}, libellé, prix)}
+    \item \texttt{Composition(\underline{\#code\_art\_composant}, \underline{\#code\_art\_composé}, quantité)}
+\end{itemize}
+
+\corrige{de l'exercice 14}
+\begin{enumerate}
+    \item \texttt{Adhérent(\underline{num\_adh}, nom, téléphone)}
+    \item \texttt{Livre(\underline{code\_livre}, titre, auteur)}
+    \item \texttt{Emprunte(\underline{\#num\_adh}, \underline{\#code\_livre}, date\_emprunt)}
+    \item Clés primaires : num\_adh, code\_livre, (num\_adh, code\_livre). Clés étrangères : \#num\_adh, \#code\_livre.
+    \item Requête SQL :
+    \begin{sqlcode}
+SELECT nom FROM Adhérent
+JOIN Emprunte ON Adhérent.num_adh = Emprunte.num_adh
+WHERE Emprunte.date_emprunt = '2024-03-15';
+    \end{sqlcode}
+\end{enumerate}
+
+\corrige{de l'exercice 15}
+\begin{enumerate}
+    \item \texttt{Élève(\underline{num\_el}, nom, classe, \#code\_cours)}
+    \item \texttt{Cours(\underline{code\_cours}, intitulé, coeff, \#id\_prof)}
+    \item \texttt{Professeur(\underline{id\_prof}, nom, spécialité)}
+    \item Requête :
+    \begin{sqlcode}
+SELECT intitulé FROM Cours
+JOIN Élève ON Cours.code_cours = Élève.code_cours
+WHERE Élève.nom = 'Mballa';
+    \end{sqlcode}
+\end{enumerate}
+
+\corrige{de l'exercice 16}
+\begin{enumerate}
+    \item \texttt{Médecin(\underline{id\_med}, nom, spécialité)}
+    \item \texttt{Patient(\underline{num\_pat}, nom, maladie, \#num\_chambre)}
+    \item \texttt{Chambre(\underline{num\_chambre}, étage, capacité)}
+    \item \texttt{Consulte(\underline{\#id\_med}, \underline{\#num\_pat}, date\_consultation)}
+    \item Requête :
+    \begin{sqlcode}
+SELECT nom FROM Patient
+JOIN Chambre ON Patient.num_chambre = Chambre.num_chambre
+WHERE Chambre.étage = 1;
+    \end{sqlcode}
+\end{enumerate}
+
+\corrige{de l'exercice 17}
+\begin{enumerate}
+    \item \texttt{Employé(\underline{id\_emp}, nom, fonction)}
+    \item \texttt{Projet(\underline{code\_projet}, intitulé, budget, \#id\_dirigeant)}
+    \item \texttt{Travaille(\underline{\#id\_emp}, \underline{\#code\_projet})}
+    \item La clé étrangère \#id\_dirigeant dans Projet indique que chaque projet est dirigé par un employé (association (1,1) côté Employé).
+\end{enumerate}
+
+\corrige{de l'exercice 18}
+\begin{enumerate}
+    \item \texttt{Membre(\underline{num\_membre}, nom, âge)}
+    \item \texttt{Compétition(\underline{id\_comp}, nom\_comp, date, \#code\_salle)}
+    \item \texttt{Salle(\underline{code\_salle}, nom\_salle, capacité)}
+    \item \texttt{Participation(\underline{\#num\_membre}, \underline{\#id\_comp}, résultat)}
+    \item Requête :
+    \begin{sqlcode}
+SELECT nom FROM Membre
+JOIN Participation ON Membre.num_membre = Participation.num_membre
+JOIN Compétition ON Participation.id_comp = Compétition.id_comp
+WHERE Compétition.nom_comp = 'Tournoi de Yaoundé';
+    \end{sqlcode}
+\end{enumerate}
+
+\corrige{de l'exercice 19}
+\begin{enumerate}
+    \item \texttt{Client(\underline{id\_client}, nom, email)}
+    \item \texttt{Destination(\underline{code\_dest}, ville, pays)}
+    \item \texttt{Voyage(\underline{code\_voyage}, date\_départ, prix, \#code\_dest)}
+    \item \texttt{Réserve(\underline{\#id\_client}, \underline{\#code\_voyage}, nb\_places)}
+    \item Requête :
+    \begin{sqlcode}
+SELECT nom FROM Client
+JOIN Réserve ON Client.id_client = Réserve.id_client
+JOIN Voyage ON Réserve.code_voyage = Voyage.code_voyage
+JOIN Destination ON Voyage.code_dest = Destination.code_dest
+WHERE Destination.ville = 'Paris';
+    \end{sqlcode}
+\end{enumerate}
+
+\corrige{de l'exercice 20}
+\begin{enumerate}
+    \item \texttt{Étudiant(\underline{num\_etu}, nom, date\_naiss, \#code\_fil)}
+    \item \texttt{Filière(\underline{code\_fil}, nom\_fil, durée)}
+    \item \texttt{Matière(\underline{code\_mat}, intitulé, crédits)}
+    \item \texttt{Propose(\underline{\#code\_fil}, \underline{\#code\_mat})}
+    \item Requête :
+    \begin{sqlcode}
+SELECT intitulé FROM Matière
+JOIN Propose ON Matière.code_mat = Propose.code_mat
+JOIN Filière ON Propose.code_fil = Filière.code_fil
+WHERE Filière.nom_fil = 'Informatique';
+    \end{sqlcode}
+\end{enumerate}
+
+\corrige{de l'exercice 21}
+\begin{enumerate}
+    \item \texttt{Client(\underline{id\_client}, nom, téléphone, \#num\_chambre)}
+    \item \texttt{Chambre(\underline{num\_chambre}, prix\_nuit, \#code\_cat)}
+    \item \texttt{Catégorie(\underline{code\_cat}, libellé, description)}
+    \item Requête :
+    \begin{sqlcode}
+SELECT nom FROM Client
+JOIN Chambre ON Client.num_chambre = Chambre.num_chambre
+JOIN Catégorie ON Chambre.code_cat = Catégorie.code_cat
+WHERE Catégorie.libellé = 'Suite';
+    \end{sqlcode}
+\end{enumerate}
+
+\corrige{de l'exercice 22}
+\begin{enumerate}
+    \item \texttt{Médecin(\underline{id\_med}, nom, spécialité)}
+    \item \texttt{Patient(\underline{num\_pat}, nom, date\_naiss, \#num\_dossier)}
+    \item \texttt{Dossier(\underline{num\_dossier}, date\_création, contenu)}
+    \item \texttt{Examine(\underline{\#id\_med}, \underline{\#num\_pat}, date\_examen)}
+    \item Requête :
+    \begin{sqlcode}
+SELECT date_examen FROM Examine
+JOIN Patient ON Examine.num_pat = Patient.num_pat
+JOIN Médecin ON Examine.id_med = Médecin.id_med
+WHERE Patient.nom = 'Nkwi' AND Médecin.nom = 'Dr. Eyenga';
+    \end{sqlcode}
+\end{enumerate}
+
+\corrige{de l'exercice 23}
+\begin{enumerate}
+    \item \texttt{Conducteur(\underline{id\_cond}, nom, permis)}
+    \item \texttt{Ligne(\underline{code\_ligne}, départ, arrivée, distance)}
+    \item \texttt{Bus(\underline{immatriculation}, marque, capacité, \#code\_ligne)}
+    \item \texttt{Conduit(\underline{\#id\_cond}, \underline{\#immatriculation}, date\_affectation)}
+    \item Requête :
+    \begin{sqlcode}
+SELECT nom FROM Conducteur
+JOIN Conduit ON Conducteur.id_cond = Conduit.id_cond
+JOIN Bus ON Conduit.immatriculation = Bus.immatriculation
+JOIN Ligne ON Bus.code_ligne = Ligne.code_ligne
+WHERE Ligne.départ = 'Douala' AND Ligne.arrivée = 'Yaoundé';
+    \end{sqlcode}
+\end{enumerate}

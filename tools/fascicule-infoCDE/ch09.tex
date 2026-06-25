@@ -1,0 +1,1008 @@
+\chapter{Tableaux et structures de données}
+
+\textit{Les tableaux sont des structures de données fondamentales en programmation. Ce chapitre présente les tableaux à une et deux dimensions, ainsi que les chaînes de caractères, avec leurs algorithmes de base : parcours, recherche, tri et comptage.}
+
+\section{L'essentiel du cours}
+
+\subsection{Tableaux à une dimension}
+
+\begin{definition}[Tableau]
+Un tableau est une structure de données qui permet de stocker plusieurs valeurs de même type dans une variable unique. Chaque élément est repéré par un indice (ou index). En algorithmique, on déclare un tableau par : \texttt{Tableau nom[taille] : Type}.
+\end{definition}
+
+\begin{propriete}
+\begin{itemize}
+    \item Le premier élément a l'indice 1 (ou 0 selon le langage).
+    \item La taille est fixée à la déclaration.
+    \item On accède à un élément par \texttt{nom[indice]}.
+\end{itemize}
+\end{propriete}
+
+\begin{aretenir}
+\begin{itemize}
+    \item \textbf{Parcours complet} : Pour i de 1 à N faire ... FinPour
+    \item \textbf{Recherche d'un élément} : parcourir jusqu'à trouver la valeur.
+    \item \textbf{Maximum/Minimum} : initialiser avec le premier élément, puis comparer.
+    \item \textbf{Somme/Moyenne} : accumuler dans une variable.
+    \item \textbf{Tri simple} : tri par sélection ou par insertion.
+\end{itemize}
+\end{aretenir}
+
+\begin{exemple}[Parcours et somme]
+\begin{algo}
+Algorithme SommeTableau
+Variables
+    T : Tableau[100] : Réel
+    N, i : Entier
+    S : Réel
+Début
+    Ecrire("Donner la taille N :")
+    Lire(N)
+    Pour i de 1 à N faire
+        Ecrire("T[", i, "] = ")
+        Lire(T[i])
+    FinPour
+    S ← 0
+    Pour i de 1 à N faire
+        S ← S + T[i]
+    FinPour
+    Ecrire("Somme = ", S)
+Fin
+\end{algo}
+\end{exemple}
+
+\subsection{Tableaux à deux dimensions}
+
+\begin{definition}[Matrice]
+Un tableau à deux dimensions (ou matrice) se déclare par : \texttt{Tableau nom[N][M] : Type}. On accède à un élément par \texttt{nom[i][j]}, où i est la ligne et j la colonne.
+\end{definition}
+
+\begin{aretenir}
+Pour parcourir une matrice, on utilise deux boucles imbriquées :
+\begin{itemize}
+    \item Boucle externe : parcours des lignes.
+    \item Boucle interne : parcours des colonnes.
+\end{itemize}
+\end{aretenir}
+
+\subsection{Chaînes de caractères}
+
+\begin{definition}[Chaîne]
+Une chaîne de caractères est une suite de caractères. En algorithmique, on la manipule comme un tableau de caractères. La longueur d'une chaîne est donnée par \texttt{Longueur(ch)}.
+\end{definition}
+
+\begin{propriete}
+Opérations courantes sur les chaînes :
+\begin{itemize}
+    \item \texttt{Concaténer(ch1, ch2)} : fusionner deux chaînes.
+    \item \texttt{SousChaîne(ch, début, longueur)} : extraire une partie.
+    \item \texttt{PosCar(ch, car)} : position d'un caractère.
+    \item \texttt{Effacer(ch, pos, nb)} : supprimer des caractères.
+\end{itemize}
+\end{propriete}
+
+\section{Exercices}
+
+\rubrique{Tableaux à une dimension : parcours et opérations de base}
+
+\exo{}\diff{1}
+Écrire un algorithme qui remplit un tableau de 10 entiers saisis au clavier, puis affiche le nombre d'éléments pairs.
+
+\exo{}\diff{1}
+Écrire un algorithme qui calcule la moyenne des notes d'une classe de N élèves (N ≤ 50). Les notes sont stockées dans un tableau.
+
+\exo{}\diff{1}
+Écrire un algorithme qui recherche la valeur maximale dans un tableau de N entiers.
+
+\exo{}\diff{1}
+Écrire un algorithme qui recherche la valeur minimale dans un tableau de N réels.
+
+\exo{}\diff{1}
+Écrire un algorithme qui calcule la somme des éléments d'un tableau de N entiers.
+
+\exo{}\diff{2}
+Écrire un algorithme qui lit un tableau de N entiers, puis affiche le nombre d'occurrences d'une valeur donnée V.
+
+\exo{}\diff{2}
+Écrire un algorithme qui vérifie si un tableau de N entiers est trié par ordre croissant.
+
+\exo{}\diff{2}
+Écrire un algorithme qui inverse l'ordre des éléments d'un tableau de N entiers.
+
+\exo{}\diff{2}
+Écrire un algorithme qui supprime toutes les occurrences d'une valeur V dans un tableau de N entiers.
+
+\exo{}\diff{2}
+Écrire un algorithme qui insère une valeur V à une position P dans un tableau de N entiers.
+
+\rubrique{Tri et recherche}
+
+\exo{}\diff{2}
+Écrire un algorithme de tri par sélection pour trier un tableau de N entiers par ordre croissant.
+
+\exo{}\diff{2}
+Écrire un algorithme de tri par insertion pour trier un tableau de N entiers par ordre décroissant.
+
+\exo{}\diff{2}
+Écrire un algorithme de recherche dichotomique dans un tableau trié de N entiers.
+
+\exo{}\diff{3}
+On dispose d'un tableau T de N entiers. Écrire un algorithme qui affiche les éléments uniques (qui apparaissent une seule fois).
+
+\exo{}\diff{3}
+Écrire un algorithme qui fusionne deux tableaux triés T1 et T2 en un seul tableau trié T3.
+
+\rubrique{Tableaux à deux dimensions}
+
+\exo{}\diff{1}
+Écrire un algorithme qui remplit une matrice M de taille N×M avec des valeurs saisies au clavier, puis affiche la matrice.
+
+\exo{}\diff{2}
+Écrire un algorithme qui calcule la somme des éléments d'une matrice N×M.
+
+\exo{}\diff{2}
+Écrire un algorithme qui affiche les éléments de la diagonale principale d'une matrice carrée N×N.
+
+\exo{}\diff{2}
+Écrire un algorithme qui recherche le maximum dans une matrice N×M.
+
+\exo{}\diff{3}
+Écrire un algorithme qui calcule le produit de deux matrices A (N×P) et B (P×M).
+
+\rubrique{Chaînes de caractères}
+
+\exo{}\diff{1}
+Écrire un algorithme qui lit une chaîne de caractères et affiche sa longueur.
+
+\exo{}\diff{2}
+Écrire un algorithme qui lit une chaîne et affiche le nombre de voyelles qu'elle contient.
+
+\exo{}\diff{2}
+Écrire un algorithme qui vérifie si une chaîne est un palindrome (se lit identique dans les deux sens).
+
+\exo{}\diff{2}
+Écrire un algorithme qui supprime les espaces d'une chaîne de caractères.
+
+\exo{}\diff{3}
+Écrire un algorithme qui lit une phrase et affiche chaque mot sur une ligne séparée.
+
+\rubrique{Exercices type Baccalauréat}
+
+\sujetbac[2023, Cameroun, C]
+On considère un tableau T de N entiers (N ≤ 100). Écrire un algorithme qui :
+\begin{enumerate}
+    \item Remplit le tableau avec des valeurs saisies au clavier.
+    \item Calcule et affiche la somme des éléments positifs.
+    \item Calcule et affiche le produit des éléments négatifs.
+    \item Affiche le nombre d'éléments nuls.
+\end{enumerate}
+
+\sujetbac[2022, Cameroun, D]
+Un professeur souhaite gérer les notes de ses 30 élèves. Écrire un algorithme qui :
+\begin{enumerate}
+    \item Saisit les notes dans un tableau.
+    \item Calcule la moyenne de la classe.
+    \item Affiche le nombre d'élèves ayant une note supérieure ou égale à 10.
+    \item Affiche la note maximale et la note minimale.
+\end{enumerate}
+
+\sujetbac[2021, Cameroun, E]
+On dispose d'un tableau T de N entiers. Écrire un algorithme qui :
+\begin{enumerate}
+    \item Trie le tableau par ordre croissant en utilisant le tri par sélection.
+    \item Demande une valeur V à rechercher.
+    \item Affiche la position de V dans le tableau trié (ou un message si absent).
+\end{enumerate}
+
+\section{Corrigés}
+
+\corrige{de l'exercice 1}
+\begin{algo}
+Algorithme CompterPairs
+Variables
+    T : Tableau[10] : Entier
+    i, nbPairs : Entier
+Début
+    nbPairs ← 0
+    Pour i de 1 à 10 faire
+        Ecrire("T[", i, "] = ")
+        Lire(T[i])
+        Si T[i] mod 2 = 0 Alors
+            nbPairs ← nbPairs + 1
+        FinSi
+    FinPour
+    Ecrire("Nombre d'éléments pairs : ", nbPairs)
+Fin
+\end{algo}
+
+\corrige{de l'exercice 2}
+\begin{algo}
+Algorithme MoyenneClasse
+Variables
+    notes : Tableau[50] : Réel
+    N, i : Entier
+    somme, moyenne : Réel
+Début
+    Ecrire("Nombre d'élèves : ")
+    Lire(N)
+    somme ← 0
+    Pour i de 1 à N faire
+        Ecrire("Note de l'élève ", i, " : ")
+        Lire(notes[i])
+        somme ← somme + notes[i]
+    FinPour
+    moyenne ← somme / N
+    Ecrire("Moyenne de la classe : ", moyenne)
+Fin
+\end{algo}
+
+\corrige{de l'exercice 3}
+\begin{algo}
+Algorithme MaximumTableau
+Variables
+    T : Tableau[100] : Entier
+    N, i, max : Entier
+Début
+    Ecrire("Taille du tableau : ")
+    Lire(N)
+    Pour i de 1 à N faire
+        Ecrire("T[", i, "] = ")
+        Lire(T[i])
+    FinPour
+    max ← T[1]
+    Pour i de 2 à N faire
+        Si T[i] > max Alors
+            max ← T[i]
+        FinSi
+    FinPour
+    Ecrire("Maximum : ", max)
+Fin
+\end{algo}
+
+\corrige{de l'exercice 4}
+\begin{algo}
+Algorithme MinimumTableau
+Variables
+    T : Tableau[100] : Réel
+    N, i : Entier
+    min : Réel
+Début
+    Ecrire("Taille du tableau : ")
+    Lire(N)
+    Pour i de 1 à N faire
+        Ecrire("T[", i, "] = ")
+        Lire(T[i])
+    FinPour
+    min ← T[1]
+    Pour i de 2 à N faire
+        Si T[i] < min Alors
+            min ← T[i]
+        FinSi
+    FinPour
+    Ecrire("Minimum : ", min)
+Fin
+\end{algo}
+
+\corrige{de l'exercice 5}
+\begin{algo}
+Algorithme SommeTableau
+Variables
+    T : Tableau[100] : Entier
+    N, i, somme : Entier
+Début
+    Ecrire("Taille du tableau : ")
+    Lire(N)
+    somme ← 0
+    Pour i de 1 à N faire
+        Ecrire("T[", i, "] = ")
+        Lire(T[i])
+        somme ← somme + T[i]
+    FinPour
+    Ecrire("Somme : ", somme)
+Fin
+\end{algo}
+
+\corrige{de l'exercice 6}
+\begin{algo}
+Algorithme Occurrences
+Variables
+    T : Tableau[100] : Entier
+    N, i, V, compteur : Entier
+Début
+    Ecrire("Taille du tableau : ")
+    Lire(N)
+    Pour i de 1 à N faire
+        Ecrire("T[", i, "] = ")
+        Lire(T[i])
+    FinPour
+    Ecrire("Valeur à rechercher : ")
+    Lire(V)
+    compteur ← 0
+    Pour i de 1 à N faire
+        Si T[i] = V Alors
+            compteur ← compteur + 1
+        FinSi
+    FinPour
+    Ecrire("Nombre d'occurrences de ", V, " : ", compteur)
+Fin
+\end{algo}
+
+\corrige{de l'exercice 7}
+\begin{algo}
+Algorithme VerifierTri
+Variables
+    T : Tableau[100] : Entier
+    N, i : Entier
+    trie : Booléen
+Début
+    Ecrire("Taille du tableau : ")
+    Lire(N)
+    Pour i de 1 à N faire
+        Ecrire("T[", i, "] = ")
+        Lire(T[i])
+    FinPour
+    trie ← Vrai
+    Pour i de 1 à N-1 faire
+        Si T[i] > T[i+1] Alors
+            trie ← Faux
+        FinSi
+    FinPour
+    Si trie Alors
+        Ecrire("Le tableau est trié par ordre croissant.")
+    Sinon
+        Ecrire("Le tableau n'est pas trié.")
+    FinSi
+Fin
+\end{algo}
+
+\corrige{de l'exercice 8}
+\begin{algo}
+Algorithme InverserTableau
+Variables
+    T : Tableau[100] : Entier
+    N, i, temp : Entier
+Début
+    Ecrire("Taille du tableau : ")
+    Lire(N)
+    Pour i de 1 à N faire
+        Ecrire("T[", i, "] = ")
+        Lire(T[i])
+    FinPour
+    Pour i de 1 à N div 2 faire
+        temp ← T[i]
+        T[i] ← T[N - i + 1]
+        T[N - i + 1] ← temp
+    FinPour
+    Ecrire("Tableau inversé :")
+    Pour i de 1 à N faire
+        Ecrire(T[i])
+    FinPour
+Fin
+\end{algo}
+
+\corrige{de l'exercice 9}
+\begin{algo}
+Algorithme SupprimerValeur
+Variables
+    T : Tableau[100] : Entier
+    N, i, j, V : Entier
+Début
+    Ecrire("Taille du tableau : ")
+    Lire(N)
+    Pour i de 1 à N faire
+        Ecrire("T[", i, "] = ")
+        Lire(T[i])
+    FinPour
+    Ecrire("Valeur à supprimer : ")
+    Lire(V)
+    i ← 1
+    TantQue i ≤ N faire
+        Si T[i] = V Alors
+            Pour j de i à N-1 faire
+                T[j] ← T[j+1]
+            FinPour
+            N ← N - 1
+        Sinon
+            i ← i + 1
+        FinSi
+    FinTantQue
+    Ecrire("Nouveau tableau :")
+    Pour i de 1 à N faire
+        Ecrire(T[i])
+    FinPour
+Fin
+\end{algo}
+
+\corrige{de l'exercice 10}
+\begin{algo}
+Algorithme InsererValeur
+Variables
+    T : Tableau[101] : Entier
+    N, i, V, P : Entier
+Début
+    Ecrire("Taille du tableau : ")
+    Lire(N)
+    Pour i de 1 à N faire
+        Ecrire("T[", i, "] = ")
+        Lire(T[i])
+    FinPour
+    Ecrire("Valeur à insérer : ")
+    Lire(V)
+    Ecrire("Position d'insertion : ")
+    Lire(P)
+    Pour i de N jusqu'à P pas -1 faire
+        T[i+1] ← T[i]
+    FinPour
+    T[P] ← V
+    N ← N + 1
+    Ecrire("Nouveau tableau :")
+    Pour i de 1 à N faire
+        Ecrire(T[i])
+    FinPour
+Fin
+\end{algo}
+
+\corrige{de l'exercice 11}
+\begin{algo}
+Algorithme TriSelection
+Variables
+    T : Tableau[100] : Entier
+    N, i, j, min, temp : Entier
+Début
+    Ecrire("Taille du tableau : ")
+    Lire(N)
+    Pour i de 1 à N faire
+        Ecrire("T[", i, "] = ")
+        Lire(T[i])
+    FinPour
+    Pour i de 1 à N-1 faire
+        min ← i
+        Pour j de i+1 à N faire
+            Si T[j] < T[min] Alors
+                min ← j
+            FinSi
+        FinPour
+        temp ← T[i]
+        T[i] ← T[min]
+        T[min] ← temp
+    FinPour
+    Ecrire("Tableau trié :")
+    Pour i de 1 à N faire
+        Ecrire(T[i])
+    FinPour
+Fin
+\end{algo}
+
+\corrige{de l'exercice 12}
+\begin{algo}
+Algorithme TriInsertion
+Variables
+    T : Tableau[100] : Entier
+    N, i, j, cle : Entier
+Début
+    Ecrire("Taille du tableau : ")
+    Lire(N)
+    Pour i de 1 à N faire
+        Ecrire("T[", i, "] = ")
+        Lire(T[i])
+    FinPour
+    Pour i de 2 à N faire
+        cle ← T[i]
+        j ← i - 1
+        TantQue j ≥ 1 et T[j] < cle faire
+            T[j+1] ← T[j]
+            j ← j - 1
+        FinTantQue
+        T[j+1] ← cle
+    FinPour
+    Ecrire("Tableau trié par ordre décroissant :")
+    Pour i de 1 à N faire
+        Ecrire(T[i])
+    FinPour
+Fin
+\end{algo}
+
+\corrige{de l'exercice 13}
+\begin{algo}
+Algorithme RechercheDichotomique
+Variables
+    T : Tableau[100] : Entier
+    N, i, V, debut, fin, milieu : Entier
+    trouve : Booléen
+Début
+    Ecrire("Taille du tableau : ")
+    Lire(N)
+    Pour i de 1 à N faire
+        Ecrire("T[", i, "] = ")
+        Lire(T[i])
+    FinPour
+    Ecrire("Valeur à rechercher : ")
+    Lire(V)
+    debut ← 1
+    fin ← N
+    trouve ← Faux
+    TantQue debut ≤ fin et non trouve faire
+        milieu ← (debut + fin) div 2
+        Si T[milieu] = V Alors
+            trouve ← Vrai
+        Sinon
+            Si T[milieu] > V Alors
+                fin ← milieu - 1
+            Sinon
+                debut ← milieu + 1
+            FinSi
+        FinSi
+    FinTantQue
+    Si trouve Alors
+        Ecrire("Valeur trouvée à la position ", milieu)
+    Sinon
+        Ecrire("Valeur non trouvée")
+    FinSi
+Fin
+\end{algo}
+
+\corrige{de l'exercice 14}
+\begin{algo}
+Algorithme ElementsUniques
+Variables
+    T : Tableau[100] : Entier
+    N, i, j : Entier
+    estUnique : Booléen
+Début
+    Ecrire("Taille du tableau : ")
+    Lire(N)
+    Pour i de 1 à N faire
+        Ecrire("T[", i, "] = ")
+        Lire(T[i])
+    FinPour
+    Ecrire("Éléments uniques :")
+    Pour i de 1 à N faire
+        estUnique ← Vrai
+        Pour j de 1 à N faire
+            Si i ≠ j et T[i] = T[j] Alors
+                estUnique ← Faux
+            FinSi
+        FinPour
+        Si estUnique Alors
+            Ecrire(T[i])
+        FinSi
+    FinPour
+Fin
+\end{algo}
+
+\corrige{de l'exercice 15}
+\begin{algo}
+Algorithme FusionTableaux
+Variables
+    T1, T2, T3 : Tableau[100] : Entier
+    N1, N2, i, j, k : Entier
+Début
+    Ecrire("Taille du premier tableau : ")
+    Lire(N1)
+    Pour i de 1 à N1 faire
+        Ecrire("T1[", i, "] = ")
+        Lire(T1[i])
+    FinPour
+    Ecrire("Taille du deuxième tableau : ")
+    Lire(N2)
+    Pour i de 1 à N2 faire
+        Ecrire("T2[", i, "] = ")
+        Lire(T2[i])
+    FinPour
+    i ← 1
+    j ← 1
+    k ← 1
+    TantQue i ≤ N1 et j ≤ N2 faire
+        Si T1[i] < T2[j] Alors
+            T3[k] ← T1[i]
+            i ← i + 1
+        Sinon
+            T3[k] ← T2[j]
+            j ← j + 1
+        FinSi
+        k ← k + 1
+    FinTantQue
+    TantQue i ≤ N1 faire
+        T3[k] ← T1[i]
+        i ← i + 1
+        k ← k + 1
+    FinTantQue
+    TantQue j ≤ N2 faire
+        T3[k] ← T2[j]
+        j ← j + 1
+        k ← k + 1
+    FinTantQue
+    Ecrire("Tableau fusionné trié :")
+    Pour i de 1 à k-1 faire
+        Ecrire(T3[i])
+    FinPour
+Fin
+\end{algo}
+
+\corrige{de l'exercice 16}
+\begin{algo}
+Algorithme AfficherMatrice
+Variables
+    M : Tableau[50][50] : Réel
+    N, Mdim, i, j : Entier
+Début
+    Ecrire("Nombre de lignes : ")
+    Lire(N)
+    Ecrire("Nombre de colonnes : ")
+    Lire(Mdim)
+    Pour i de 1 à N faire
+        Pour j de 1 à Mdim faire
+            Ecrire("M[", i, "][", j, "] = ")
+            Lire(M[i][j])
+        FinPour
+    FinPour
+    Ecrire("Matrice :")
+    Pour i de 1 à N faire
+        Pour j de 1 à Mdim faire
+            Ecrire(M[i][j])
+        FinPour
+        Ecrire("")  {saut de ligne}
+    FinPour
+Fin
+\end{algo}
+
+\corrige{de l'exercice 17}
+\begin{algo}
+Algorithme SommeMatrice
+Variables
+    M : Tableau[50][50] : Réel
+    N, Mdim, i, j : Entier
+    somme : Réel
+Début
+    Ecrire("Nombre de lignes : ")
+    Lire(N)
+    Ecrire("Nombre de colonnes : ")
+    Lire(Mdim)
+    Pour i de 1 à N faire
+        Pour j de 1 à Mdim faire
+            Ecrire("M[", i, "][", j, "] = ")
+            Lire(M[i][j])
+        FinPour
+    FinPour
+    somme ← 0
+    Pour i de 1 à N faire
+        Pour j de 1 à Mdim faire
+            somme ← somme + M[i][j]
+        FinPour
+    FinPour
+    Ecrire("Somme des éléments : ", somme)
+Fin
+\end{algo}
+
+\corrige{de l'exercice 18}
+\begin{algo}
+Algorithme DiagonalePrincipale
+Variables
+    M : Tableau[50][50] : Réel
+    N, i : Entier
+Début
+    Ecrire("Taille de la matrice carrée : ")
+    Lire(N)
+    Pour i de 1 à N faire
+        Pour j de 1 à N faire
+            Ecrire("M[", i, "][", j, "] = ")
+            Lire(M[i][j])
+        FinPour
+    FinPour
+    Ecrire("Diagonale principale :")
+    Pour i de 1 à N faire
+        Ecrire(M[i][i])
+    FinPour
+Fin
+\end{algo}
+
+\corrige{de l'exercice 19}
+\begin{algo}
+Algorithme MaximumMatrice
+Variables
+    M : Tableau[50][50] : Réel
+    N, Mdim, i, j : Entier
+    max : Réel
+Début
+    Ecrire("Nombre de lignes : ")
+    Lire(N)
+    Ecrire("Nombre de colonnes : ")
+    Lire(Mdim)
+    Pour i de 1 à N faire
+        Pour j de 1 à Mdim faire
+            Ecrire("M[", i, "][", j, "] = ")
+            Lire(M[i][j])
+        FinPour
+    FinPour
+    max ← M[1][1]
+    Pour i de 1 à N faire
+        Pour j de 1 à Mdim faire
+            Si M[i][j] > max Alors
+                max ← M[i][j]
+            FinSi
+        FinPour
+    FinPour
+    Ecrire("Maximum : ", max)
+Fin
+\end{algo}
+
+\corrige{de l'exercice 20}
+\begin{algo}
+Algorithme ProduitMatrices
+Variables
+    A, B, C : Tableau[50][50] : Réel
+    N, P, M, i, j, k : Entier
+    somme : Réel
+Début
+    Ecrire("Dimensions de A (N×P) : ")
+    Lire(N, P)
+    Ecrire("Dimensions de B (P×M) : ")
+    Lire(P, M)
+    Pour i de 1 à N faire
+        Pour j de 1 à P faire
+            Ecrire("A[", i, "][", j, "] = ")
+            Lire(A[i][j])
+        FinPour
+    FinPour
+    Pour i de 1 à P faire
+        Pour j de 1 à M faire
+            Ecrire("B[", i, "][", j, "] = ")
+            Lire(B[i][j])
+        FinPour
+    FinPour
+    Pour i de 1 à N faire
+        Pour j de 1 à M faire
+            somme ← 0
+            Pour k de 1 à P faire
+                somme ← somme + A[i][k] * B[k][j]
+            FinPour
+            C[i][j] ← somme
+        FinPour
+    FinPour
+    Ecrire("Matrice produit C :")
+    Pour i de 1 à N faire
+        Pour j de 1 à M faire
+            Ecrire(C[i][j])
+        FinPour
+        Ecrire("")
+    FinPour
+Fin
+\end{algo}
+
+\corrige{de l'exercice 21}
+\begin{algo}
+Algorithme LongueurChaine
+Variables
+    ch : Chaîne
+    longueur : Entier
+Début
+    Ecrire("Donner une chaîne : ")
+    Lire(ch)
+    longueur ← Longueur(ch)
+    Ecrire("Longueur de la chaîne : ", longueur)
+Fin
+\end{algo}
+
+\corrige{de l'exercice 22}
+\begin{algo}
+Algorithme CompterVoyelles
+Variables
+    ch : Chaîne
+    i, nbVoyelles, longueur : Entier
+    car : Caractère
+Début
+    Ecrire("Donner une chaîne : ")
+    Lire(ch)
+    longueur ← Longueur(ch)
+    nbVoyelles ← 0
+    Pour i de 1 à longueur faire
+        car ← SousChaîne(ch, i, 1)
+        Si car = 'a' ou car = 'e' ou car = 'i' ou car = 'o' ou car = 'u' ou
+           car = 'A' ou car = 'E' ou car = 'I' ou car = 'O' ou car = 'U' Alors
+            nbVoyelles ← nbVoyelles + 1
+        FinSi
+    FinPour
+    Ecrire("Nombre de voyelles : ", nbVoyelles)
+Fin
+\end{algo}
+
+\corrige{de l'exercice 23}
+\begin{algo}
+Algorithme Palindrome
+Variables
+    ch : Chaîne
+    i, longueur : Entier
+    estPalindrome : Booléen
+Début
+    Ecrire("Donner une chaîne : ")
+    Lire(ch)
+    longueur ← Longueur(ch)
+    estPalindrome ← Vrai
+    Pour i de 1 à longueur div 2 faire
+        Si SousChaîne(ch, i, 1) ≠ SousChaîne(ch, longueur - i + 1, 1) Alors
+            estPalindrome ← Faux
+        FinSi
+    FinPour
+    Si estPalindrome Alors
+        Ecrire("La chaîne est un palindrome.")
+    Sinon
+        Ecrire("La chaîne n'est pas un palindrome.")
+    FinSi
+Fin
+\end{algo}
+
+\corrige{de l'exercice 24}
+\begin{algo}
+Algorithme SupprimerEspaces
+Variables
+    ch, resultat : Chaîne
+    i, longueur : Entier
+    car : Caractère
+Début
+    Ecrire("Donner une chaîne : ")
+    Lire(ch)
+    longueur ← Longueur(ch)
+    resultat ← ""
+    Pour i de 1 à longueur faire
+        car ← SousChaîne(ch, i, 1)
+        Si car ≠ ' ' Alors
+            resultat ← Concaténer(resultat, car)
+        FinSi
+    FinPour
+    Ecrire("Chaîne sans espaces : ", resultat)
+Fin
+\end{algo}
+
+\corrige{de l'exercice 25}
+\begin{algo}
+Algorithme DecouperMots
+Variables
+    phrase, mot : Chaîne
+    i, longueur : Entier
+    car : Caractère
+Début
+    Ecrire("Donner une phrase : ")
+    Lire(phrase)
+    longueur ← Longueur(phrase)
+    mot ← ""
+    Pour i de 1 à longueur faire
+        car ← SousChaîne(phrase, i, 1)
+        Si car ≠ ' ' Alors
+            mot ← Concaténer(mot, car)
+        Sinon
+            Si mot ≠ "" Alors
+                Ecrire(mot)
+                mot ← ""
+            FinSi
+        FinSi
+    FinPour
+    Si mot ≠ "" Alors
+        Ecrire(mot)
+    FinSi
+Fin
+\end{algo}
+
+\corrige{de l'exercice 26 (Sujet Bac 2023 C)}
+\begin{algo}
+Algorithme AnalyseTableau
+Variables
+    T : Tableau[100] : Entier
+    N, i, sommePos, produitNeg, nbNuls : Entier
+Début
+    Ecrire("Taille du tableau : ")
+    Lire(N)
+    Pour i de 1 à N faire
+        Ecrire("T[", i, "] = ")
+        Lire(T[i])
+    FinPour
+    sommePos ← 0
+    produitNeg ← 1
+    nbNuls ← 0
+    Pour i de 1 à N faire
+        Si T[i] > 0 Alors
+            sommePos ← sommePos + T[i]
+        Sinon
+            Si T[i] < 0 Alors
+                produitNeg ← produitNeg * T[i]
+            Sinon
+                nbNuls ← nbNuls + 1
+            FinSi
+        FinSi
+    FinPour
+    Ecrire("Somme des positifs : ", sommePos)
+    Ecrire("Produit des négatifs : ", produitNeg)
+    Ecrire("Nombre d'éléments nuls : ", nbNuls)
+Fin
+\end{algo}
+
+\corrige{de l'exercice 27 (Sujet Bac 2022 D)}
+\begin{algo}
+Algorithme GestionNotes
+Variables
+    notes : Tableau[30] : Réel
+    i, nbSup : Entier
+    somme, moyenne, max, min : Réel
+Début
+    Pour i de 1 à 30 faire
+        Ecrire("Note de l'élève ", i, " : ")
+        Lire(notes[i])
+    FinPour
+    somme ← 0
+    max ← notes[1]
+    min ← notes[1]
+    nbSup ← 0
+    Pour i de 1 à 30 faire
+        somme ← somme + notes[i]
+        Si notes[i] > max Alors
+            max ← notes[i]
+        FinSi
+        Si notes[i] < min Alors
+            min ← notes[i]
+        FinSi
+        Si notes[i] ≥ 10 Alors
+            nbSup ← nbSup + 1
+        FinSi
+    FinPour
+    moyenne ← somme / 30
+    Ecrire("Moyenne : ", moyenne)
+    Ecrire("Nombre d'élèves ayant ≥ 10 : ", nbSup)
+    Ecrire("Note maximale : ", max)
+    Ecrire("Note minimale : ", min)
+Fin
+\end{algo}
+
+\corrige{de l'exercice 28 (Sujet Bac 2021 E)}
+\begin{algo}
+Algorithme TriEtRecherche
+Variables
+    T : Tableau[100] : Entier
+    N, i, j, min, temp, V, debut, fin, milieu : Entier
+    trouve : Booléen
+Début
+    Ecrire("Taille du tableau : ")
+    Lire(N)
+    Pour i de 1 à N faire
+        Ecrire("T[", i, "] = ")
+        Lire(T[i])
+    FinPour
+    {Tri par sélection}
+    Pour i de 1 à N-1 faire
+        min ← i
+        Pour j de i+1 à N faire
+            Si T[j] < T[min] Alors
+                min ← j
+            FinSi
+        FinPour
+        temp ← T[i]
+        T[i] ← T[min]
+        T[min] ← temp
+    FinPour
+    Ecrire("Tableau trié :")
+    Pour i de 1 à N faire
+        Ecrire(T[i])
+    FinPour
+    Ecrire("Valeur à rechercher : ")
+    Lire(V)
+    {Recherche dichotomique}
+    debut ← 1
+    fin ← N
+    trouve ← Faux
+    TantQue debut ≤ fin et non trouve faire
+        milieu ← (debut + fin) div 2
+        Si T[milieu] = V Alors
+            trouve ← Vrai
+        Sinon
+            Si T[milieu] > V Alors
+                fin ← milieu - 1
+            Sinon
+                debut ← milieu + 1
+            FinSi
+        FinSi
+    FinTantQue
+    Si trouve Alors
+        Ecrire("Valeur trouvée à la position ", milieu)
+    Sinon
+        Ecrire("Valeur non trouvée")
+    FinSi
+Fin
+\end{algo}

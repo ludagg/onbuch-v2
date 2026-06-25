@@ -1,0 +1,433 @@
+\chapter{Les réseaux informatiques}
+\textit{Un réseau informatique est un ensemble d'équipements interconnectés permettant l'échange de données et le partage de ressources. Ce chapitre présente les concepts fondamentaux des réseaux, leurs types, topologies, matériels d'interconnexion, supports de transmission et l'adressage IP.}
+
+\section{L'essentiel du cours}
+
+\subsection{Définition et intérêts d'un réseau}
+\begin{definition}[Réseau informatique]
+Un réseau informatique est un ensemble d'ordinateurs, de périphériques et d'équipements reliés entre eux pour échanger des informations et partager des ressources.
+\end{definition}
+
+\begin{aretenir}
+\textbf{Intérêts d'un réseau :}
+\begin{itemize}
+    \item Partage de ressources (imprimantes, fichiers, connexion Internet)
+    \item Communication rapide (messagerie, visioconférence)
+    \item Centralisation et sécurisation des données
+    \item Réduction des coûts (mutualisation)
+    \item Travail collaboratif
+\end{itemize}
+\end{aretenir}
+
+\subsection{Types de réseaux}
+\begin{definition}[Classification par taille]
+\begin{itemize}
+    \item \textbf{PAN (Personal Area Network)} : réseau personnel, portée de quelques mètres (Bluetooth, USB)
+    \item \textbf{LAN (Local Area Network)} : réseau local, portée jusqu'à quelques centaines de mètres (bureau, école)
+    \item \textbf{MAN (Metropolitan Area Network)} : réseau métropolitain, portée jusqu'à 50 km (ville)
+    \item \textbf{WAN (Wide Area Network)} : réseau étendu, portée mondiale (Internet)
+\end{itemize}
+\end{definition}
+
+\subsection{Topologies de réseau}
+\begin{definition}[Topologies physiques]
+\begin{itemize}
+    \item \textbf{Topologie en bus} : tous les équipements sont connectés à un câble unique (bus). Simple mais fragile.
+    \item \textbf{Topologie en étoile} : chaque équipement est connecté à un concentrateur central (switch/hub). La plus courante.
+    \item \textbf{Topologie en anneau} : chaque équipement est connecté à deux voisins, formant une boucle.
+    \item \textbf{Topologie maillée} : chaque équipement est connecté à plusieurs autres, offrant une redondance.
+\end{itemize}
+\end{definition}
+
+\begin{exemple}
+Dans une salle informatique de lycée, on utilise souvent une topologie en étoile avec un switch central.
+\end{exemple}
+
+\subsection{Matériels d'interconnexion}
+\begin{definition}[Principaux équipements]
+\begin{itemize}
+    \item \textbf{Carte réseau (NIC)} : interface permettant à un ordinateur de se connecter au réseau.
+    \item \textbf{Switch (commutateur)} : relie plusieurs équipements dans un LAN, achemine les trames.
+    \item \textbf{Routeur} : interconnecte des réseaux différents, achemine les paquets IP.
+    \item \textbf{Modem} : module/démodule les signaux pour la transmission sur ligne téléphonique ou fibre.
+    \item \textbf{Pare-feu (Firewall)} : filtre le trafic pour sécuriser le réseau.
+\end{itemize}
+\end{definition}
+
+\subsection{Supports de transmission}
+\begin{definition}[Types de supports]
+\begin{itemize}
+    \item \textbf{Câble à paires torsadées} (RJ45, Ethernet) : économique, jusqu'à 1 Gbit/s.
+    \item \textbf{Câble coaxial} : utilisé pour la télévision ou anciens réseaux.
+    \item \textbf{Fibre optique} : très haut débit (plusieurs Gbit/s), insensible aux interférences.
+    \item \textbf{Sans fil (Wi-Fi, Bluetooth)} : pratique mais moins rapide et plus sensible aux interférences.
+\end{itemize}
+\end{definition}
+
+\subsection{Adressage IP}
+\begin{definition}[Adresse IP]
+Une adresse IP (IPv4) est un nombre de 32 bits, généralement écrit en notation décimale pointée (ex: 192.168.1.1). Elle identifie de manière unique un équipement sur un réseau.
+\end{definition}
+
+\begin{propriete}[Classes d'adresses IP]
+\begin{itemize}
+    \item \textbf{Classe A} : 1.0.0.0 à 126.0.0.0, masque 255.0.0.0, 16 millions d'hôtes.
+    \item \textbf{Classe B} : 128.0.0.0 à 191.255.0.0, masque 255.255.0.0, 65 534 hôtes.
+    \item \textbf{Classe C} : 192.0.0.0 à 223.255.255.0, masque 255.255.255.0, 254 hôtes.
+    \item \textbf{Classe D} (multicast) : 224.0.0.0 à 239.255.255.255.
+    \item \textbf{Classe E} (réservée) : 240.0.0.0 à 255.255.255.255.
+\end{itemize}
+\end{propriete}
+
+\begin{aretenir}
+\textbf{Identification réseau/hôte :}
+\begin{itemize}
+    \item Le masque de sous-réseau sépare l'adresse IP en deux parties : réseau et hôte.
+    \item L'adresse réseau (tous les bits hôte à 0) identifie le réseau.
+    \item L'adresse de diffusion (tous les bits hôte à 1) permet de diffuser à tous les hôtes.
+    \item Nombre d'hôtes = $2^{\text{nombre de bits hôte}} - 2$ (on exclut réseau et diffusion).
+\end{itemize}
+\end{aretenir}
+
+\begin{exemple}
+Pour l'adresse 192.168.1.10 avec masque 255.255.255.0 :
+\begin{itemize}
+    \item Adresse réseau : 192.168.1.0
+    \item Adresse de diffusion : 192.168.1.255
+    \item Nombre d'hôtes : $2^8 - 2 = 254$
+\end{itemize}
+\end{exemple}
+
+\section{Exercices}
+
+\rubrique{Questions à choix multiples (QCM)}
+
+\exo{}\diff{1}
+Quel type de réseau couvre une ville entière ?
+\begin{enumerate}
+    \item PAN
+    \item LAN
+    \item MAN
+    \item WAN
+\end{enumerate}
+
+\exo{}\diff{1}
+Dans une topologie en étoile, quel équipement central est généralement utilisé ?
+\begin{enumerate}
+    \item Routeur
+    \item Switch
+    \item Modem
+    \item Carte réseau
+\end{enumerate}
+
+\exo{}\diff{1}
+Quel est le masque de sous-réseau par défaut d'une adresse de classe B ?
+\begin{enumerate}
+    \item 255.0.0.0
+    \item 255.255.0.0
+    \item 255.255.255.0
+    \item 255.255.255.255
+\end{enumerate}
+
+\exo{}\diff{1}
+Combien d'hôtes peut-on connecter au maximum dans un réseau de classe C ?
+\begin{enumerate}
+    \item 254
+    \item 255
+    \item 256
+    \item 65 534
+\end{enumerate}
+
+\exo{}\diff{1}
+Quel matériel permet d'interconnecter deux réseaux différents ?
+\begin{enumerate}
+    \item Switch
+    \item Hub
+    \item Routeur
+    \item Carte réseau
+\end{enumerate}
+
+\rubrique{Topologies et matériels}
+
+\exo{}\diff{1}
+Citez trois intérêts d'un réseau informatique.
+
+\exo{}\diff{1}
+Donnez la différence entre un switch et un routeur.
+
+\exo{}\diff{2}
+Dessinez un schéma simple d'un réseau en étoile avec 4 ordinateurs connectés à un switch. (Décrivez-le par un texte clair.)
+
+\exo{}\diff{2}
+Un lycée dispose de 3 salles informatiques. Chaque salle a un switch local. Les trois switchs sont reliés à un routeur central qui donne accès à Internet. Quel type de topologie globale est utilisé ? Justifiez.
+
+\exo{}\diff{2}
+Citez deux avantages et deux inconvénients de la topologie en bus.
+
+\rubrique{Adressage IP}
+
+\exo{}\diff{1}
+Donnez la classe des adresses IP suivantes :
+\begin{enumerate}
+    \item 10.0.5.1
+    \item 172.16.0.10
+    \item 192.168.1.100
+    \item 224.0.0.1
+\end{enumerate}
+
+\exo{}\diff{1}
+Pour l'adresse 192.168.10.0 avec masque 255.255.255.0, calculez :
+\begin{enumerate}
+    \item L'adresse réseau
+    \item L'adresse de diffusion
+    \item Le nombre d'hôtes possibles
+\end{enumerate}
+
+\exo{}\diff{2}
+Soit l'adresse IP 172.20.15.10 avec masque 255.255.0.0.
+\begin{enumerate}
+    \item Quelle est la classe de cette adresse ?
+    \item Quelle est l'adresse du réseau ?
+    \item Combien d'hôtes peut-on connecter ?
+\end{enumerate}
+
+\exo{}\diff{2}
+Un administrateur dispose du réseau 192.168.1.0/24. Il doit créer 4 sous-réseaux de taille égale.
+\begin{enumerate}
+    \item Quel nouveau masque doit-il utiliser ?
+    \item Donnez les adresses des 4 sous-réseaux.
+    \item Combien d'hôtes chaque sous-réseau peut-il accueillir ?
+\end{enumerate}
+
+\exo{}\diff{2}
+Pour l'adresse 10.0.0.50 avec masque 255.0.0.0 :
+\begin{enumerate}
+    \item Identifiez la partie réseau et la partie hôte.
+    \item Calculez l'adresse de diffusion.
+    \item Combien d'hôtes au total ?
+\end{enumerate}
+
+\exo{}\diff{3}
+On considère l'adresse 192.168.5.128 avec masque 255.255.255.192.
+\begin{enumerate}
+    \item Quel est le nombre de bits réservés à la partie hôte ?
+    \item Quelle est l'adresse réseau ?
+    \item Quelle est l'adresse de diffusion ?
+    \item Combien d'hôtes peut-on connecter ?
+\end{enumerate}
+
+\exo{}\diff{3}
+Une entreprise a besoin de 50 adresses IP pour ses machines. Quel masque de sous-réseau doit-elle choisir au minimum ? Justifiez.
+
+\rubrique{Calculs de débit et supports}
+
+\exo{}\diff{1}
+Un fichier de 100 Mo doit être transféré sur un réseau à 100 Mbit/s. Calculez le temps de transfert en secondes (1 Mo = 8 Mb).
+
+\exo{}\diff{2}
+Un câble fibre optique offre un débit de 1 Gbit/s. Combien de temps faut-il pour transférer un film de 5 Go ? (1 Go = 8 Gb)
+
+\exo{}\diff{2}
+Comparez la fibre optique et le câble à paires torsadées en termes de débit et de portée.
+
+\exo{}\diff{2}
+Un réseau Wi-Fi a un débit théorique de 300 Mbit/s. En pratique, on n'atteint que 60\% de ce débit. Combien de temps pour transférer un fichier de 1,5 Go ?
+
+\rubrique{Exercices type Baccalauréat}
+
+\sujetbac[2023, Cameroun]
+\exo{}\diff{2}
+Un lycée dispose de 120 ordinateurs répartis dans 3 salles. On souhaite les connecter en réseau.
+\begin{enumerate}
+    \item Proposez une topologie adaptée et justifiez.
+    \item Quel matériel d'interconnexion est nécessaire dans chaque salle ?
+    \item Si on utilise l'adresse 192.168.0.0/24, combien d'hôtes peut-on connecter ? Est-ce suffisant ?
+\end{enumerate}
+
+\sujetbac[2022, Cameroun]
+\exo{}\diff{3}
+On considère le réseau suivant : adresse IP 172.20.0.0, masque 255.255.0.0.
+\begin{enumerate}
+    \item Quelle est la classe de cette adresse ?
+    \item Combien de sous-réseaux peut-on créer si on utilise un masque 255.255.255.0 ?
+    \item Pour le sous-réseau 172.20.1.0/24, donnez l'adresse de diffusion et le nombre d'hôtes.
+\end{enumerate}
+
+\sujetbac[2021, Cameroun]
+\exo{}\diff{2}
+Un administrateur réseau doit configurer un petit réseau avec 30 machines. Il dispose de l'adresse 192.168.1.0/24.
+\begin{enumerate}
+    \item Quel masque doit-il utiliser pour avoir exactement 30 hôtes par sous-réseau ?
+    \item Donnez les adresses des sous-réseaux possibles.
+    \item Quelle est l'adresse de diffusion du premier sous-réseau ?
+\end{enumerate}
+
+\sujetbac[2020, Cameroun]
+\exo{}\diff{2}
+Expliquez le rôle du routeur dans un réseau. Donnez un exemple concret d'utilisation dans un lycée.
+
+\sujetbac[2019, Cameroun]
+\exo{}\diff{3}
+On souhaite interconnecter deux réseaux : 192.168.1.0/24 et 10.0.0.0/8.
+\begin{enumerate}
+    \item Quel équipement est nécessaire ?
+    \item Combien d'hôtes peut-on connecter dans chaque réseau ?
+    \cite{Donnez les adresses de diffusion de chaque réseau.}
+\end{enumerate}
+
+\rubrique{Questions de synthèse}
+
+\exo{}\diff{2}
+Définissez les termes suivants : LAN, masque de sous-réseau, adresse de diffusion, topologie maillée.
+
+\exo{}\diff{2}
+Quels sont les avantages et inconvénients d'un réseau sans fil par rapport à un réseau filaire ?
+
+\exo{}\diff{3}
+Un réseau d'entreprise utilise l'adresse 10.0.0.0/8. L'entreprise a 5 départements, chacun nécessitant 500 adresses.
+\begin{enumerate}
+    \item Quel masque de sous-réseau faut-il utiliser ?
+    \item Donnez les adresses des 5 sous-réseaux.
+    \item Vérifiez que chaque sous-réseau peut accueillir 500 hôtes.
+\end{enumerate}
+
+\section{Corrigés}
+
+\corrige{de l'exercice 1}
+Réponse : c) MAN (Metropolitan Area Network).
+
+\corrige{de l'exercice 2}
+Réponse : b) Switch.
+
+\corrige{de l'exercice 3}
+Réponse : b) 255.255.0.0.
+
+\corrige{de l'exercice 4}
+Réponse : a) 254 (car $2^8 - 2 = 254$).
+
+\corrige{de l'exercice 5}
+Réponse : c) Routeur.
+
+\corrige{de l'exercice 6}
+Trois intérêts : partage de ressources (imprimantes, fichiers), communication rapide (messagerie), centralisation des données.
+
+\corrige{de l'exercice 7}
+Un switch relie des équipements dans un même réseau local (LAN) et achemine les trames. Un routeur interconnecte des réseaux différents et achemine les paquets IP.
+
+\corrige{de l'exercice 8}
+Schéma : Un switch central (S) avec 4 câbles partant vers 4 ordinateurs (PC1, PC2, PC3, PC4). Chaque ordinateur est connecté directement au switch. C'est une topologie en étoile.
+
+\corrige{de l'exercice 9}
+Topologie en étoile étendue (ou hiérarchique). Chaque salle est une étoile locale (switch), et les trois switchs sont reliés à un routeur central, formant une structure arborescente.
+
+\corrige{de l'exercice 10}
+Avantages : simple à installer, économique pour petits réseaux. Inconvénients : si le câble principal est coupé, tout le réseau tombe en panne ; difficile à diagnostiquer.
+
+\corrige{de l'exercice 11}
+\begin{enumerate}
+    \item 10.0.5.1 : classe A (1-126)
+    \item 172.16.0.10 : classe B (128-191)
+    \item 192.168.1.100 : classe C (192-223)
+    \item 224.0.0.1 : classe D (224-239)
+\end{enumerate}
+
+\corrige{de l'exercice 12}
+\begin{enumerate}
+    \item Adresse réseau : 192.168.10.0
+    \item Adresse de diffusion : 192.168.10.255
+    \item Nombre d'hôtes : $2^8 - 2 = 254$
+\end{enumerate}
+
+\corrige{de l'exercice 13}
+\begin{enumerate}
+    \item Classe B (172 dans 128-191)
+    \item Adresse réseau : 172.20.0.0
+    \item Nombre d'hôtes : $2^{16} - 2 = 65 534$
+\end{enumerate}
+
+\corrige{de l'exercice 14}
+\begin{enumerate}
+    \item Pour 4 sous-réseaux, il faut 2 bits supplémentaires (car $2^2 = 4$). Nouveau masque : 255.255.255.192 (ou /26).
+    \item Sous-réseaux : 192.168.1.0/26, 192.168.1.64/26, 192.168.1.128/26, 192.168.1.192/26.
+    \item Chaque sous-réseau a 6 bits hôte, soit $2^6 - 2 = 62$ hôtes.
+\end{enumerate}
+
+\corrige{de l'exercice 15}
+\begin{enumerate}
+    \item Partie réseau : 10.0.0.0 (8 bits), partie hôte : 0.0.50 (24 bits).
+    \item Adresse de diffusion : 10.255.255.255.
+    \item Nombre d'hôtes : $2^{24} - 2 = 16 777 214$.
+\end{enumerate}
+
+\corrige{de l'exercice 16}
+Masque 255.255.255.192 = /26, soit 6 bits hôte.
+\begin{enumerate}
+    \item 6 bits hôte.
+    \item Adresse réseau : 192.168.5.128 (car 128 en binaire = 10000000, avec masque /26, les 2 premiers bits du dernier octet sont réseau : 10 000000 = 128).
+    \item Adresse de diffusion : 192.168.5.191 (car 128 + 63 = 191).
+    \item Nombre d'hôtes : $2^6 - 2 = 62$.
+\end{enumerate}
+
+\corrige{de l'exercice 17}
+Pour 50 hôtes, il faut $2^n - 2 \geq 50$, soit $2^n \geq 52$, donc $n = 6$ (car $2^6 = 64$). Masque : 32 - 6 = 26 bits, soit 255.255.255.192.
+
+\corrige{de l'exercice 18}
+Taille en bits : $100 \times 8 = 800$ Mb. Temps = $800 / 100 = 8$ secondes.
+
+\corrige{de l'exercice 19}
+Taille en bits : $5 \times 8 = 40$ Gb. Temps = $40 / 1 = 40$ secondes.
+
+\corrige{de l'exercice 20}
+Fibre optique : débit très élevé (plusieurs Gbit/s), portée jusqu'à 100 km sans répéteur, insensible aux interférences. Câble à paires torsadées : débit jusqu'à 1 Gbit/s, portée limitée à 100 m, sensible aux interférences.
+
+\corrige{de l'exercice 21}
+Débit réel : $300 \times 0,6 = 180$ Mbit/s. Taille en bits : $1,5 \times 8 = 12$ Gb = 12 000 Mb. Temps = $12 000 / 180 \approx 66,67$ secondes.
+
+\corrige{de l'exercice 22}
+\begin{enumerate}
+    \item Topologie en étoile étendue : chaque salle a un switch, les switchs sont reliés à un routeur central. Facile à gérer et à étendre.
+    \item Dans chaque salle : un switch (ou hub) pour connecter les ordinateurs.
+    \item Avec 192.168.0.0/24, on peut connecter 254 hôtes. 120 < 254, donc c'est suffisant.
+\end{enumerate}
+
+\corrige{de l'exercice 23}
+\begin{enumerate}
+    \item Classe B.
+    \item Masque 255.255.255.0 = /24, soit 8 bits supplémentaires. Nombre de sous-réseaux : $2^8 = 256$.
+    \item Pour 172.20.1.0/24 : adresse de diffusion = 172.20.1.255, nombre d'hôtes = $2^8 - 2 = 254$.
+\end{enumerate}
+
+\corrige{de l'exercice 24}
+\begin{enumerate}
+    \item Pour 30 hôtes, $2^n - 2 \geq 30$, soit $2^n \geq 32$, donc $n = 5$. Masque : 32 - 5 = 27 bits, soit 255.255.255.224.
+    \item Sous-réseaux : 192.168.1.0/27, 192.168.1.32/27, 192.168.1.64/27, etc. (8 sous-réseaux possibles).
+    \item Premier sous-réseau : 192.168.1.0/27, adresse de diffusion = 192.168.1.31.
+\end{enumerate}
+
+\corrige{de l'exercice 25}
+Le routeur interconnecte des réseaux différents (ex: LAN et Internet). Dans un lycée, il permet aux ordinateurs du réseau local d'accéder à Internet et de communiquer avec d'autres réseaux.
+
+\corrige{de l'exercice 26}
+\begin{enumerate}
+    \item Un routeur (ou une passerelle).
+    \item Réseau 192.168.1.0/24 : $2^8 - 2 = 254$ hôtes. Réseau 10.0.0.0/8 : $2^{24} - 2 = 16 777 214$ hôtes.
+    \item Adresse de diffusion de 192.168.1.0/24 : 192.168.1.255. Adresse de diffusion de 10.0.0.0/8 : 10.255.255.255.
+\end{enumerate}
+
+\corrige{de l'exercice 27}
+\begin{itemize}
+    \item LAN : réseau local, couvre une zone limitée (bureau, école).
+    \item Masque de sous-réseau : nombre de 32 bits qui sépare l'adresse IP en partie réseau et partie hôte.
+    \item Adresse de diffusion : adresse permettant d'envoyer un message à tous les hôtes d'un réseau.
+    \item Topologie maillée : chaque équipement est connecté à plusieurs autres, offrant redondance et fiabilité.
+\end{itemize}
+
+\corrige{de l'exercice 28}
+Avantages du sans-fil : mobilité, installation facile, pas de câbles. Inconvénients : débit plus faible, sensibilité aux interférences, sécurité moins robuste.
+
+\corrige{de l'exercice 29}
+\begin{enumerate}
+    \item Pour 500 hôtes, $2^n - 2 \geq 500$, soit $2^n \geq 502$, donc $n = 9$ (car $2^9 = 512$). Masque : 32 - 9 = 23 bits, soit 255.255.254.0.
+    \item Sous-réseaux : 10.0.0.0/23, 10.0.2.0/23, 10.0.4.0/23, 10.0.6.0/23, 10.0.8.0/23.
+    \item Chaque sous-réseau a 9 bits hôte, soit $2^9 - 2 = 510$ hôtes, ce qui est suffisant pour 500.
+\end{enumerate}

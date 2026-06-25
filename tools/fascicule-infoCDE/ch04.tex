@@ -1,0 +1,606 @@
+\chapter{Système d'information et modèle conceptuel des données (MCD)}
+
+\textit{Ce chapitre introduit la notion de système d'information et présente la méthode MERISE pour la modélisation conceptuelle des données. Vous apprendrez à construire et interpréter un Modèle Conceptuel de Données (MCD) à l'aide d'entités, d'associations et de cardinalités.}
+
+\section{L'essentiel du cours}
+
+\subsection*{Notion de système d'information (SI)}
+Un \textbf{système d'information} est un ensemble organisé de ressources (données, procédures, matériels, logiciels, personnel) permettant de collecter, stocker, traiter et diffuser l'information au sein d'une organisation (entreprise, administration, école…). Son objectif est d'aider à la prise de décision et au pilotage des activités.
+
+\begin{definition}[Système d'information]
+Ensemble structuré de moyens (humains, matériels, logiciels) et de données qui assurent la circulation et le traitement de l'information nécessaire au fonctionnement d'une organisation.
+\end{definition}
+
+\subsection*{Méthode MERISE}
+MERISE est une méthode française de conception de systèmes d'information, très utilisée en Afrique francophone. Elle repose sur une approche par niveaux :
+\begin{itemize}
+    \item \textbf{Niveau conceptuel} : on modélise les données (MCD) et les traitements (MCT) indépendamment de toute technologie.
+    \item \textbf{Niveau organisationnel} : on précise les contraintes de temps, de lieu et de poste de travail.
+    \item \textbf{Niveau technique} : on choisit le SGBD, le langage, etc.
+\end{itemize}
+Dans ce chapitre, nous nous intéressons uniquement au \textbf{Modèle Conceptuel de Données (MCD)}.
+
+\subsection*{Modèle Conceptuel de Données (MCD)}
+Le MCD permet de représenter de manière graphique et structurée les données d'un système d'information, sans se soucier de leur implémentation informatique. Il utilise deux concepts principaux : les \textbf{entités} et les \textbf{associations}.
+
+\begin{definition}[Entité]
+Objet du monde réel (personne, lieu, objet, concept) que l'on souhaite représenter et mémoriser. Une entité possède des \textbf{attributs} (propriétés) et un \textbf{identifiant} (attribut ou ensemble d'attributs qui permet de distinguer chaque occurrence de manière unique).
+\end{definition}
+
+\begin{definition}[Association]
+Lien sémantique entre deux ou plusieurs entités. Une association peut avoir des \textbf{attributs} propres. Elle est caractérisée par des \textbf{cardinalités} qui expriment le nombre de fois qu'une occurrence d'une entité participe à l'association.
+\end{definition}
+
+\begin{aretenir}
+\textbf{Cardinalités} : elles s'écrivent sous la forme (min, max) où min et max sont des nombres. Les valeurs possibles sont :
+\begin{itemize}
+    \item \textbf{0 ou 1} : participation optionnelle (0) ou obligatoire (1).
+    \item \textbf{1 ou n} : nombre de participations (1 = exactement une, n = plusieurs).
+\end{itemize}
+Exemples : (0,1) = au plus une ; (1,1) = exactement une ; (0,n) = zéro, une ou plusieurs ; (1,n) = au moins une.
+\end{aretenir}
+
+\begin{exemple}
+Dans une bibliothèque, un \textbf{Livre} (entité) a pour attributs : \texttt{ISBN} (identifiant), \texttt{Titre}, \texttt{Auteur}, \texttt{Année}. Un \textbf{Adhérent} (entité) a pour attributs : \texttt{NuméroAdhérent} (identifiant), \texttt{Nom}, \texttt{Prénom}. L'association \textbf{Emprunter} relie Livre et Adhérent avec les cardinalités :
+\begin{itemize}
+    \item Un adhérent peut emprunter 0 ou plusieurs livres : (0,n) côté Livre.
+    \item Un livre peut être emprunté par 0 ou 1 adhérent à un instant donné : (0,1) côté Adhérent.
+\end{itemize}
+L'association peut avoir un attribut \texttt{DateEmprunt}.
+\end{exemple}
+
+\subsection*{Règles de construction d'un MCD}
+\begin{itemize}
+    \item Chaque entité doit avoir un identifiant unique.
+    \item Les associations sont nommées par un verbe ou un groupe nominal.
+    \item Les cardinalités se lisent de l'entité vers l'association.
+    \item On évite les redondances : une information ne doit apparaître qu'une seule fois.
+\end{itemize}
+
+\section{Exercices}
+
+\rubrique{Notions de base et vocabulaire}
+
+\exo{}\diff{1}
+Qu'est-ce qu'un système d'information ? Citez trois exemples concrets dans le contexte camerounais.
+
+\exo{}\diff{1}
+Donnez la signification des cardinalités suivantes : (0,1), (1,1), (0,n), (1,n). Pour chaque cas, donnez un exemple concret.
+
+\exo{}\diff{1}
+Qu'est-ce qu'un identifiant dans une entité ? Pourquoi est-il important ?
+
+\exo{}\diff{1}
+Dans un MCD, une association peut-elle avoir des attributs ? Si oui, donnez un exemple.
+
+\rubrique{Lecture et interprétation de MCD}
+
+\exo{}\diff{2}
+On considère le MCD suivant (décrit sous forme de tableau) :
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Entité} & \textbf{Attributs} \\
+\hline
+Client & NumClient (id), Nom, Adresse \\
+\hline
+Commande & NumCommande (id), Date, Montant \\
+\hline
+\end{tabular}
+\end{center}
+Association : \textbf{Passer} entre Client et Commande, cardinalités : Client (1,n) et Commande (1,1).
+\begin{enumerate}
+    \item Que signifie la cardinalité (1,n) côté Commande ?
+    \item Que signifie la cardinalité (1,1) côté Client ?
+    \item Un client peut-il exister sans commande ? Justifiez.
+\end{enumerate}
+
+\exo{}\diff{2}
+Soit le MCD d'une école :
+\begin{itemize}
+    \item Entité \textbf{Élève} : Matricule (id), Nom, Prénom, Classe.
+    \item Entité \textbf{Cours} : CodeCours (id), Intitulé, Coefficient.
+    \item Association \textbf{Suivre} : Élève (0,n), Cours (0,n), attribut : Note.
+\end{itemize}
+\begin{enumerate}
+    \item Que signifie la cardinalité (0,n) côté Élève ?
+    \item Un cours peut-il n'avoir aucun élève ? Justifiez.
+    \item Quelle information est stockée dans l'association ?
+\end{enumerate}
+
+\exo{}\diff{2}
+Dans un hôpital, on a le MCD suivant :
+\begin{itemize}
+    \item \textbf{Médecin} : NumMed (id), Nom, Spécialité.
+    \item \textbf{Patient} : NumPat (id), Nom, DateNaissance.
+    \item Association \textbf{Consulter} : Médecin (0,n), Patient (0,n), attribut : DateConsultation.
+\end{itemize}
+\begin{enumerate}
+    \item Un médecin peut-il consulter plusieurs patients ? Justifiez.
+    \item Un patient peut-il consulter plusieurs médecins ? Justifiez.
+    \item Proposez un exemple d'occurrence pour cette association.
+\end{enumerate}
+
+\rubrique{Construction de MCD à partir d'énoncés}
+
+\exo{}\diff{2}
+Un lycée souhaite gérer ses élèves et leurs parents. Chaque élève est identifié par un numéro matricule et possède un nom, un prénom et une classe. Chaque parent est identifié par un numéro de parent et possède un nom, un prénom et un téléphone. Un élève peut avoir un ou deux parents (père et/ou mère). Un parent peut avoir un ou plusieurs enfants dans le lycée.
+\begin{enumerate}
+    \item Identifiez les entités et leurs attributs.
+    \item Déterminez l'association et ses cardinalités.
+    \item Construisez le MCD sous forme de tableau.
+\end{enumerate}
+
+\exo{}\diff{2}
+Une bibliothèque municipale gère ses livres et ses adhérents. Chaque livre a un ISBN (identifiant), un titre, un auteur et un nombre de pages. Chaque adhérent a un numéro d'adhérent (identifiant), un nom, un prénom et une adresse. Un adhérent peut emprunter plusieurs livres, mais un livre ne peut être emprunté que par un seul adhérent à la fois. On souhaite enregistrer la date d'emprunt et la date de retour prévue.
+\begin{enumerate}
+    \item Identifiez les entités et leurs attributs.
+    \item Déterminez l'association et ses cardinalités.
+    \item Quels sont les attributs de l'association ?
+    \item Construisez le MCD.
+\end{enumerate}
+
+\exo{}\diff{2}
+Une entreprise de transport gère ses véhicules et ses chauffeurs. Chaque véhicule a une immatriculation (id), une marque, un modèle et une capacité. Chaque chauffeur a un matricule (id), un nom, un prénom et un permis. Un chauffeur peut conduire plusieurs véhicules (mais un seul à la fois), et un véhicule peut être conduit par plusieurs chauffeurs (mais un seul à la fois). On souhaite enregistrer la date de début et la date de fin de chaque affectation.
+\begin{enumerate}
+    \item Identifiez les entités et leurs attributs.
+    \item Déterminez l'association et ses cardinalités.
+    \item Construisez le MCD.
+\end{enumerate}
+
+\exo{}\diff{2}
+Un hôpital souhaite modéliser la gestion des consultations. Chaque médecin est identifié par un numéro (id) et possède un nom, un prénom et une spécialité. Chaque patient est identifié par un numéro (id) et possède un nom, un prénom et une date de naissance. Un médecin peut consulter plusieurs patients, et un patient peut consulter plusieurs médecins. On souhaite enregistrer la date et l'heure de chaque consultation, ainsi que le diagnostic posé.
+\begin{enumerate}
+    \item Identifiez les entités et leurs attributs.
+    \item Déterminez l'association et ses cardinalités.
+    \item Quels sont les attributs de l'association ?
+    \item Construisez le MCD.
+\end{enumerate}
+
+\exo{}\diff{3}
+Une université gère ses étudiants, ses cours et ses enseignants. Chaque étudiant a un numéro d'étudiant (id), un nom, un prénom et une filière. Chaque cours a un code (id), un intitulé et un crédit. Chaque enseignant a un matricule (id), un nom, un prénom et un grade. Un étudiant peut s'inscrire à plusieurs cours, et un cours peut avoir plusieurs étudiants inscrits. Un enseignant peut dispenser plusieurs cours, mais un cours est dispensé par un seul enseignant. On souhaite enregistrer la note obtenue par chaque étudiant pour chaque cours.
+\begin{enumerate}
+    \item Identifiez les entités et leurs attributs.
+    \item Déterminez les associations et leurs cardinalités.
+    \item Construisez le MCD complet.
+\end{enumerate}
+
+\exo{}\diff{3}
+Une agence de location de voitures gère ses clients, ses véhicules et ses contrats. Chaque client a un numéro de client (id), un nom, un prénom et un permis de conduire. Chaque véhicule a une immatriculation (id), une marque, un modèle et un prix de location journalier. Un client peut louer plusieurs véhicules (mais un seul à la fois), et un véhicule peut être loué par plusieurs clients (mais un seul à la fois). On souhaite enregistrer la date de début, la date de fin et le montant total pour chaque location.
+\begin{enumerate}
+    \item Identifiez les entités et leurs attributs.
+    \item Déterminez l'association et ses cardinalités.
+    \item Construisez le MCD.
+\end{enumerate}
+
+\exo{}\diff{3}
+Un magasin de vente en ligne gère ses produits, ses clients et ses commandes. Chaque produit a un code (id), un nom, un prix unitaire et une quantité en stock. Chaque client a un numéro (id), un nom, un prénom et une adresse email. Un client peut passer plusieurs commandes, et une commande concerne un seul client. Une commande peut contenir plusieurs produits, et un produit peut apparaître dans plusieurs commandes. On souhaite enregistrer la quantité commandée pour chaque produit dans chaque commande, ainsi que la date de la commande.
+\begin{enumerate}
+    \item Identifiez les entités et leurs attributs.
+    \item Déterminez les associations et leurs cardinalités.
+    \item Construisez le MCD.
+\end{enumerate}
+
+\exo{}\diff{3}
+Un cabinet médical gère ses médecins, ses patients et ses rendez-vous. Chaque médecin a un numéro (id), un nom, un prénom et une spécialité. Chaque patient a un numéro (id), un nom, un prénom et un numéro de sécurité sociale. Un médecin peut avoir plusieurs rendez-vous, et un patient peut avoir plusieurs rendez-vous. Chaque rendez-vous est associé à un seul médecin et un seul patient. On souhaite enregistrer la date, l'heure et la durée de chaque rendez-vous.
+\begin{enumerate}
+    \item Identifiez les entités et leurs attributs.
+    \item Déterminez l'association et ses cardinalités.
+    \item Construisez le MCD.
+\end{enumerate}
+
+\exo{}\diff{3}
+Une école de musique gère ses élèves, ses instruments et ses cours. Chaque élève a un numéro (id), un nom, un prénom et un niveau. Chaque instrument a un code (id), un nom et un type (vent, corde, percussion). Chaque cours a un code (id), un intitulé et un horaire. Un élève peut suivre plusieurs cours, et un cours peut avoir plusieurs élèves. Un cours peut utiliser plusieurs instruments, et un instrument peut être utilisé dans plusieurs cours. On souhaite enregistrer la date d'inscription de l'élève au cours.
+\begin{enumerate}
+    \item Identifiez les entités et leurs attributs.
+    \item Déterminez les associations et leurs cardinalités.
+    \item Construisez le MCD.
+\end{enumerate}
+
+\rubrique{Exercices type Baccalauréat}
+
+\sujetbac[Cameroun -- Informatique -- MCD]
+\exo{}\diff{3}
+Une société de gestion de parc informatique souhaite modéliser la gestion de ses équipements et de ses techniciens. Chaque équipement (ordinateur, imprimante, etc.) est identifié par un numéro de série et possède un type, une marque et une date d'achat. Chaque technicien est identifié par un matricule et possède un nom, un prénom et une spécialité. Un technicien peut intervenir sur plusieurs équipements, et un équipement peut être réparé par plusieurs techniciens (mais un seul à la fois). On souhaite enregistrer la date de début et la date de fin de chaque intervention, ainsi que le coût de la main-d'œuvre.
+\begin{enumerate}
+    \item Identifiez les entités et leurs attributs.
+    \item Déterminez l'association et ses cardinalités.
+    \item Construisez le MCD sous forme de tableau.
+    \item Proposez un exemple d'occurrence pour chaque entité et pour l'association.
+\end{enumerate}
+
+\sujetbac[Cameroun -- Informatique -- MCD]
+\exo{}\diff{3}
+Une bibliothèque universitaire gère ses ouvrages, ses étudiants et ses emprunts. Chaque ouvrage a un code ISBN (id), un titre, un auteur et un nombre d'exemplaires disponibles. Chaque étudiant a un numéro d'étudiant (id), un nom, un prénom et une filière. Un étudiant peut emprunter plusieurs ouvrages, et un ouvrage peut être emprunté par plusieurs étudiants (mais un seul exemplaire à la fois). On souhaite enregistrer la date d'emprunt et la date de retour effective pour chaque emprunt.
+\begin{enumerate}
+    \item Identifiez les entités et leurs attributs.
+    \item Déterminez l'association et ses cardinalités.
+    \item Construisez le MCD.
+    \item Quelle contrainte supplémentaire pourrait-on ajouter pour éviter qu'un étudiant emprunte plus de 3 ouvrages à la fois ?
+\end{enumerate}
+
+\sujetbac[Cameroun -- Informatique -- MCD]
+\exo{}\diff{3}
+Un hôpital régional souhaite informatiser la gestion de ses services, de ses médecins et de ses patients. Chaque service a un code (id), un nom et un numéro de téléphone. Chaque médecin a un matricule (id), un nom, un prénom et une spécialité. Chaque patient a un numéro de dossier (id), un nom, un prénom et une date de naissance. Un médecin appartient à un seul service, mais un service peut avoir plusieurs médecins. Un patient peut être suivi par plusieurs médecins, et un médecin peut suivre plusieurs patients. On souhaite enregistrer la date de début et la date de fin de chaque suivi médical.
+\begin{enumerate}
+    \item Identifiez les entités et leurs attributs.
+    \item Déterminez les associations et leurs cardinalités.
+    \item Construisez le MCD complet.
+\end{enumerate}
+
+\sujetbac[Cameroun -- Informatique -- MCD]
+\exo{}\diff{3}
+Une entreprise de commerce électronique gère ses clients, ses produits et ses commandes. Chaque client a un numéro (id), un nom, un prénom et une adresse de livraison. Chaque produit a un code (id), un nom, un prix unitaire et une catégorie. Une commande est passée par un seul client et peut contenir plusieurs produits. Un produit peut apparaître dans plusieurs commandes. On souhaite enregistrer la date de la commande, la quantité commandée pour chaque produit et le statut de la commande (en cours, expédiée, livrée).
+\begin{enumerate}
+    \item Identifiez les entités et leurs attributs.
+    \item Déterminez les associations et leurs cardinalités.
+    \item Construisez le MCD.
+    \item Proposez un exemple de commande avec deux produits.
+\end{enumerate}
+
+\sujetbac[Cameroun -- Informatique -- MCD]
+\exo{}\diff{3}
+Un lycée technique gère ses classes, ses enseignants et ses matières. Chaque classe a un code (id), un niveau et une filière. Chaque enseignant a un matricule (id), un nom, un prénom et une spécialité. Chaque matière a un code (id), un intitulé et un coefficient. Un enseignant peut enseigner plusieurs matières, et une matière peut être enseignée par plusieurs enseignants. Une classe suit plusieurs matières, et une matière est enseignée dans plusieurs classes. On souhaite enregistrer le nombre d'heures par semaine pour chaque matière dans chaque classe.
+\begin{enumerate}
+    \item Identifiez les entités et leurs attributs.
+    \item Déterminez les associations et leurs cardinalités.
+    \item Construisez le MCD.
+\end{enumerate}
+
+\section{Corrigés}
+
+\corrige{de l'exercice 1}
+Un système d'information est un ensemble organisé de ressources (données, procédures, matériels, logiciels, personnel) permettant de collecter, stocker, traiter et diffuser l'information au sein d'une organisation. Exemples au Cameroun : le système d'information de la CRTV (gestion des programmes et des archives), le système d'information de la SONARA (gestion de la production et des stocks), le système d'information du MINESEC (gestion des examens et des résultats).
+
+\corrige{de l'exercice 2}
+\begin{itemize}
+    \item (0,1) : participation optionnelle, au plus une fois. Exemple : un livre peut être emprunté par 0 ou 1 adhérent.
+    \item (1,1) : participation obligatoire, exactement une fois. Exemple : une commande est passée par un seul client.
+    \item (0,n) : participation optionnelle, plusieurs fois possible. Exemple : un client peut passer 0 ou plusieurs commandes.
+    \item (1,n) : participation obligatoire, au moins une fois. Exemple : un élève doit être inscrit dans au moins une classe.
+\end{itemize}
+
+\corrige{de l'exercice 3}
+Un identifiant est un attribut (ou un ensemble d'attributs) qui permet de distinguer de manière unique chaque occurrence d'une entité. Il est important car il garantit l'unicité et permet de référencer chaque entité sans ambiguïté.
+
+\corrige{de l'exercice 4}
+Oui, une association peut avoir des attributs. Exemple : dans l'association \textbf{Emprunter} entre Livre et Adhérent, on peut avoir l'attribut \texttt{DateEmprunt}.
+
+\corrige{de l'exercice 5}
+\begin{enumerate}
+    \item La cardinalité (1,n) côté Commande signifie qu'un client peut passer une ou plusieurs commandes (au moins une).
+    \item La cardinalité (1,1) côté Client signifie qu'une commande est passée par un seul client (obligatoirement).
+    \item Non, un client ne peut pas exister sans commande car la cardinalité côté Commande est (1,n), ce qui signifie qu'un client doit avoir au moins une commande.
+\end{enumerate}
+
+\corrige{de l'exercice 6}
+\begin{enumerate}
+    \item La cardinalité (0,n) côté Élève signifie qu'un élève peut suivre zéro, un ou plusieurs cours.
+    \item Oui, un cours peut n'avoir aucun élève car la cardinalité côté Élève est (0,n), ce qui signifie qu'un cours peut avoir zéro élève.
+    \item L'association \textbf{Suivre} stocke la note obtenue par chaque élève pour chaque cours.
+\end{enumerate}
+
+\corrige{de l'exercice 7}
+\begin{enumerate}
+    \item Oui, un médecin peut consulter plusieurs patients car la cardinalité côté Patient est (0,n).
+    \item Oui, un patient peut consulter plusieurs médecins car la cardinalité côté Médecin est (0,n).
+    \item Exemple : Le Dr. Nkongo (NumMed=001) consulte le patient Mbarga (NumPat=101) le 15/03/2024.
+\end{enumerate}
+
+\corrige{de l'exercice 8}
+\begin{enumerate}
+    \item Entités : \textbf{Élève} (Matricule (id), Nom, Prénom, Classe) ; \textbf{Parent} (NumParent (id), Nom, Prénom, Téléphone).
+    \item Association \textbf{Appartenir} : Élève (1,2) -- Parent (1,n). Un élève a 1 ou 2 parents, un parent a 1 ou plusieurs enfants.
+    \item MCD :
+    \begin{center}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Entité} & \textbf{Attributs} \\
+    \hline
+    Élève & Matricule (id), Nom, Prénom, Classe \\
+    \hline
+    Parent & NumParent (id), Nom, Prénom, Téléphone \\
+    \hline
+    \end{tabular}
+    \end{center}
+    Association \textbf{Appartenir} : Élève (1,2), Parent (1,n).
+\end{enumerate}
+
+\corrige{de l'exercice 9}
+\begin{enumerate}
+    \item Entités : \textbf{Livre} (ISBN (id), Titre, Auteur, NbPages) ; \textbf{Adhérent} (NumAdherent (id), Nom, Prénom, Adresse).
+    \item Association \textbf{Emprunter} : Livre (0,1) -- Adhérent (0,n). Un livre peut être emprunté par 0 ou 1 adhérent, un adhérent peut emprunter 0 ou plusieurs livres.
+    \item Attributs de l'association : DateEmprunt, DateRetourPrevue.
+    \item MCD :
+    \begin{center}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Entité} & \textbf{Attributs} \\
+    \hline
+    Livre & ISBN (id), Titre, Auteur, NbPages \\
+    \hline
+    Adhérent & NumAdherent (id), Nom, Prénom, Adresse \\
+    \hline
+    \end{tabular}
+    \end{center}
+    Association \textbf{Emprunter} : Livre (0,1), Adhérent (0,n) avec attributs DateEmprunt, DateRetourPrevue.
+\end{enumerate}
+
+\corrige{de l'exercice 10}
+\begin{enumerate}
+    \item Entités : \textbf{Véhicule} (Immatriculation (id), Marque, Modèle, Capacité) ; \textbf{Chauffeur} (Matricule (id), Nom, Prénom, Permis).
+    \item Association \textbf{Conduire} : Véhicule (0,1) -- Chauffeur (0,1). Un véhicule peut être conduit par 0 ou 1 chauffeur à la fois, un chauffeur peut conduire 0 ou 1 véhicule à la fois.
+    \item MCD :
+    \begin{center}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Entité} & \textbf{Attributs} \\
+    \hline
+    Véhicule & Immatriculation (id), Marque, Modèle, Capacité \\
+    \hline
+    Chauffeur & Matricule (id), Nom, Prénom, Permis \\
+    \hline
+    \end{tabular}
+    \end{center}
+    Association \textbf{Conduire} : Véhicule (0,1), Chauffeur (0,1) avec attributs DateDebut, DateFin.
+\end{enumerate}
+
+\corrige{de l'exercice 11}
+\begin{enumerate}
+    \item Entités : \textbf{Médecin} (NumMed (id), Nom, Prénom, Spécialité) ; \textbf{Patient} (NumPat (id), Nom, Prénom, DateNaissance).
+    \item Association \textbf{Consulter} : Médecin (0,n) -- Patient (0,n). Un médecin peut consulter plusieurs patients, un patient peut consulter plusieurs médecins.
+    \item Attributs de l'association : DateConsultation, HeureConsultation, Diagnostic.
+    \item MCD :
+    \begin{center}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Entité} & \textbf{Attributs} \\
+    \hline
+    Médecin & NumMed (id), Nom, Prénom, Spécialité \\
+    \hline
+    Patient & NumPat (id), Nom, Prénom, DateNaissance \\
+    \hline
+    \end{tabular}
+    \end{center}
+    Association \textbf{Consulter} : Médecin (0,n), Patient (0,n) avec attributs DateConsultation, HeureConsultation, Diagnostic.
+\end{enumerate}
+
+\corrige{de l'exercice 12}
+\begin{enumerate}
+    \item Entités : \textbf{Étudiant} (NumEtudiant (id), Nom, Prénom, Filière) ; \textbf{Cours} (CodeCours (id), Intitulé, Crédit) ; \textbf{Enseignant} (Matricule (id), Nom, Prénom, Grade).
+    \item Associations :
+    \begin{itemize}
+        \item \textbf{Inscrire} entre Étudiant et Cours : Étudiant (0,n), Cours (0,n) avec attribut Note.
+        \item \textbf{Dispenser} entre Enseignant et Cours : Enseignant (0,n), Cours (1,1). Un enseignant peut dispenser plusieurs cours, un cours est dispensé par un seul enseignant.
+    \end{itemize}
+    \item MCD :
+    \begin{center}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Entité} & \textbf{Attributs} \\
+    \hline
+    Étudiant & NumEtudiant (id), Nom, Prénom, Filière \\
+    \hline
+    Cours & CodeCours (id), Intitulé, Crédit \\
+    \hline
+    Enseignant & Matricule (id), Nom, Prénom, Grade \\
+    \hline
+    \end{tabular}
+    \end{center}
+    Association \textbf{Inscrire} : Étudiant (0,n), Cours (0,n) avec attribut Note.
+    Association \textbf{Dispenser} : Enseignant (0,n), Cours (1,1).
+\end{enumerate}
+
+\corrige{de l'exercice 13}
+\begin{enumerate}
+    \item Entités : \textbf{Client} (NumClient (id), Nom, Prénom, Permis) ; \textbf{Véhicule} (Immatriculation (id), Marque, Modèle, PrixJournalier).
+    \item Association \textbf{Louer} : Client (0,n) -- Véhicule (0,n). Un client peut louer plusieurs véhicules (mais un seul à la fois), un véhicule peut être loué par plusieurs clients (mais un seul à la fois).
+    \item MCD :
+    \begin{center}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Entité} & \textbf{Attributs} \\
+    \hline
+    Client & NumClient (id), Nom, Prénom, Permis \\
+    \hline
+    Véhicule & Immatriculation (id), Marque, Modèle, PrixJournalier \\
+    \hline
+    \end{tabular}
+    \end{center}
+    Association \textbf{Louer} : Client (0,n), Véhicule (0,n) avec attributs DateDebut, DateFin, MontantTotal.
+\end{enumerate}
+
+\corrige{de l'exercice 14}
+\begin{enumerate}
+    \item Entités : \textbf{Produit} (CodeProduit (id), Nom, PrixUnitaire, QuantiteStock) ; \textbf{Client} (NumClient (id), Nom, Prénom, Email) ; \textbf{Commande} (NumCommande (id), DateCommande).
+    \item Associations :
+    \begin{itemize}
+        \item \textbf{Passer} entre Client et Commande : Client (1,n), Commande (1,1). Un client peut passer plusieurs commandes, une commande est passée par un seul client.
+        \item \textbf{Contenir} entre Commande et Produit : Commande (0,n), Produit (0,n) avec attribut QuantiteCommandee.
+    \end{itemize}
+    \item MCD :
+    \begin{center}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Entité} & \textbf{Attributs} \\
+    \hline
+    Produit & CodeProduit (id), Nom, PrixUnitaire, QuantiteStock \\
+    \hline
+    Client & NumClient (id), Nom, Prénom, Email \\
+    \hline
+    Commande & NumCommande (id), DateCommande \\
+    \hline
+    \end{tabular}
+    \end{center}
+    Association \textbf{Passer} : Client (1,n), Commande (1,1).
+    Association \textbf{Contenir} : Commande (0,n), Produit (0,n) avec attribut QuantiteCommandee.
+\end{enumerate}
+
+\corrige{de l'exercice 15}
+\begin{enumerate}
+    \item Entités : \textbf{Médecin} (NumMed (id), Nom, Prénom, Spécialité) ; \textbf{Patient} (NumPat (id), Nom, Prénom, NumSecu).
+    \item Association \textbf{RendezVous} : Médecin (0,n) -- Patient (0,n). Un médecin peut avoir plusieurs rendez-vous, un patient peut avoir plusieurs rendez-vous. Chaque rendez-vous est unique pour un couple (médecin, patient) à une date donnée.
+    \item MCD :
+    \begin{center}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Entité} & \textbf{Attributs} \\
+    \hline
+    Médecin & NumMed (id), Nom, Prénom, Spécialité \\
+    \hline
+    Patient & NumPat (id), Nom, Prénom, NumSecu \\
+    \hline
+    \end{tabular}
+    \end{center}
+    Association \textbf{RendezVous} : Médecin (0,n), Patient (0,n) avec attributs Date, Heure, Duree.
+\end{enumerate}
+
+\corrige{de l'exercice 16}
+\begin{enumerate}
+    \item Entités : \textbf{Élève} (NumEleve (id), Nom, Prénom, Niveau) ; \textbf{Instrument} (CodeInstrument (id), Nom, Type) ; \textbf{Cours} (CodeCours (id), Intitule, Horaire).
+    \item Associations :
+    \begin{itemize}
+        \item \textbf{Suivre} entre Élève et Cours : Élève (0,n), Cours (0,n) avec attribut DateInscription.
+        \item \textbf{Utiliser} entre Cours et Instrument : Cours (0,n), Instrument (0,n).
+    \end{itemize}
+    \item MCD :
+    \begin{center}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Entité} & \textbf{Attributs} \\
+    \hline
+    Élève & NumEleve (id), Nom, Prénom, Niveau \\
+    \hline
+    Instrument & CodeInstrument (id), Nom, Type \\
+    \hline
+    Cours & CodeCours (id), Intitule, Horaire \\
+    \hline
+    \end{tabular}
+    \end{center}
+    Association \textbf{Suivre} : Élève (0,n), Cours (0,n) avec attribut DateInscription.
+    Association \textbf{Utiliser} : Cours (0,n), Instrument (0,n).
+\end{enumerate}
+
+\corrige{de l'exercice 17 (type Bac)}
+\begin{enumerate}
+    \item Entités : \textbf{Équipement} (NumSerie (id), Type, Marque, DateAchat) ; \textbf{Technicien} (Matricule (id), Nom, Prénom, Spécialité).
+    \item Association \textbf{Intervenir} : Équipement (0,n) -- Technicien (0,n). Un équipement peut être réparé par plusieurs techniciens (mais un seul à la fois), un technicien peut intervenir sur plusieurs équipements.
+    \item MCD :
+    \begin{center}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Entité} & \textbf{Attributs} \\
+    \hline
+    Équipement & NumSerie (id), Type, Marque, DateAchat \\
+    \hline
+    Technicien & Matricule (id), Nom, Prénom, Spécialité \\
+    \hline
+    \end{tabular}
+    \end{center}
+    Association \textbf{Intervenir} : Équipement (0,n), Technicien (0,n) avec attributs DateDebut, DateFin, CoutMainOeuvre.
+    \item Exemples :
+    \begin{itemize}
+        \item Équipement : NumSerie=SN123, Type=Ordinateur, Marque=Dell, DateAchat=15/01/2023.
+        \item Technicien : Matricule=T001, Nom=Ngono, Prénom=Paul, Spécialité=Réseau.
+        \item Intervention : Équipement SN123, Technicien T001, DateDebut=20/03/2024, DateFin=22/03/2024, CoutMainOeuvre=50000 FCFA.
+    \end{itemize}
+\end{enumerate}
+
+\corrige{de l'exercice 18 (type Bac)}
+\begin{enumerate}
+    \item Entités : \textbf{Ouvrage} (ISBN (id), Titre, Auteur, NbExemplaires) ; \textbf{Étudiant} (NumEtudiant (id), Nom, Prénom, Filière).
+    \item Association \textbf{Emprunter} : Ouvrage (0,n) -- Étudiant (0,n). Un ouvrage peut être emprunté par plusieurs étudiants (mais un seul exemplaire à la fois), un étudiant peut emprunter plusieurs ouvrages.
+    \item MCD :
+    \begin{center}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Entité} & \textbf{Attributs} \\
+    \hline
+    Ouvrage & ISBN (id), Titre, Auteur, NbExemplaires \\
+    \hline
+    Étudiant & NumEtudiant (id), Nom, Prénom, Filière \\
+    \hline
+    \end{tabular}
+    \end{center}
+    Association \textbf{Emprunter} : Ouvrage (0,n), Étudiant (0,n) avec attributs DateEmprunt, DateRetourEffective.
+    \item On pourrait ajouter une contrainte : un étudiant ne peut avoir plus de 3 emprunts en cours simultanément. Cela se traduirait par une cardinalité (0,3) côté Ouvrage pour l'association, mais en MERISE classique, on utilise plutôt une règle de gestion.
+\end{enumerate}
+
+\corrige{de l'exercice 19 (type Bac)}
+\begin{enumerate}
+    \item Entités : \textbf{Service} (CodeService (id), Nom, Telephone) ; \textbf{Médecin} (Matricule (id), Nom, Prénom, Spécialité) ; \textbf{Patient} (NumDossier (id), Nom, Prénom, DateNaissance).
+    \item Associations :
+    \begin{itemize}
+        \item \textbf{Appartenir} entre Médecin et Service : Médecin (1,1), Service (0,n). Un médecin appartient à un seul service, un service peut avoir plusieurs médecins.
+        \item \textbf{Suivre} entre Médecin et Patient : Médecin (0,n), Patient (0,n) avec attributs DateDebut, DateFin.
+    \end{itemize}
+    \item MCD :
+    \begin{center}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Entité} & \textbf{Attributs} \\
+    \hline
+    Service & CodeService (id), Nom, Telephone \\
+    \hline
+    Médecin & Matricule (id), Nom, Prénom, Spécialité \\
+    \hline
+    Patient & NumDossier (id), Nom, Prénom, DateNaissance \\
+    \hline
+    \end{tabular}
+    \end{center}
+    Association \textbf{Appartenir} : Médecin (1,1), Service (0,n).
+    Association \textbf{Suivre} : Médecin (0,n), Patient (0,n) avec attributs DateDebut, DateFin.
+\end{enumerate}
+
+\corrige{de l'exercice 20 (type Bac)}
+\begin{enumerate}
+    \item Entités : \textbf{Client} (NumClient (id), Nom, Prénom, AdresseLivraison) ; \textbf{Produit} (CodeProduit (id), Nom, PrixUnitaire, Categorie) ; \textbf{Commande} (NumCommande (id), DateCommande, Statut).
+    \item Associations :
+    \begin{itemize}
+        \item \textbf{Passer} entre Client et Commande : Client (1,n), Commande (1,1). Un client peut passer plusieurs commandes, une commande est passée par un seul client.
+        \item \textbf{Contenir} entre Commande et Produit : Commande (0,n), Produit (0,n) avec attribut QuantiteCommandee.
+    \end{itemize}
+    \item MCD :
+    \begin{center}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Entité} & \textbf{Attributs} \\
+    \hline
+    Client & NumClient (id), Nom, Prénom, AdresseLivraison \\
+    \hline
+    Produit & CodeProduit (id), Nom, PrixUnitaire, Categorie \\
+    \hline
+    Commande & NumCommande (id), DateCommande, Statut \\
+    \hline
+    \end{tabular}
+    \end{center}
+    Association \textbf{Passer} : Client (1,n), Commande (1,1).
+    Association \textbf{Contenir} : Commande (0,n), Produit (0,n) avec attribut QuantiteCommandee.
+    \item Exemple : Commande n°1001 passée par le client C001 le 10/04/2024, statut "en cours". Elle contient 2 produits : Produit P001 (quantité 3) et Produit P002 (quantité 1).
+\end{enumerate}
+
+\corrige{de l'exercice 21 (type Bac)}
+\begin{enumerate}
+    \item Entités : \textbf{Classe} (CodeClasse (id), Niveau, Filière) ; \textbf{Enseignant} (Matricule (id), Nom, Prénom, Spécialité) ; \textbf{Matière} (CodeMatiere (id), Intitule, Coefficient).
+    \item Associations :
+    \begin{itemize}
+        \item \textbf{Enseigner} entre Enseignant et Matière : Enseignant (0,n), Matière (0,n). Un enseignant peut enseigner plusieurs matières, une matière peut être enseignée par plusieurs enseignants.
+        \item \textbf{Programmer} entre Classe et Matière : Classe (0,n), Matière (0,n) avec attribut NbHeuresSemaine.
+    \end{itemize}
+    \item MCD :
+    \begin{center}
+    \begin{tabular}{|l|l|}
+    \hline
+    \textbf{Entité} & \textbf{Attributs} \\
+    \hline
+    Classe & CodeClasse (id), Niveau, Filière \\
+    \hline
+    Enseignant & Matricule (id), Nom, Prénom, Spécialité \\
+    \hline
+    Matière & CodeMatiere (id), Intitule, Coefficient \\
+    \hline
+    \end{tabular}
+    \end{center}
+    Association \textbf{Enseigner} : Enseignant (0,n), Matière (0,n).
+    Association \textbf{Programmer} : Classe (0,n), Matière (0,n) avec attribut NbHeuresSemaine.
+\end{enumerate}

@@ -1,0 +1,479 @@
+\chapter{Le langage SQL}
+
+\textit{Le langage SQL (Structured Query Language) est le langage standard pour interroger et manipuler les bases de données relationnelles. Ce chapitre présente les commandes essentielles pour créer des tables, insérer des données, les interroger avec des requêtes simples et avancées, et les modifier.}
+
+\section{L'essentiel du cours}
+
+\subsection{Présentation du langage SQL}
+SQL est un langage déclaratif : on décrit \textbf{ce que} l'on veut obtenir, pas \textbf{comment} l'obtenir. Il se divise en plusieurs sous-langages :
+\begin{itemize}
+    \item \textbf{LDD (Langage de Définition des Données)} : \texttt{CREATE TABLE}, \texttt{ALTER TABLE}, \texttt{DROP TABLE}.
+    \item \textbf{LMD (Langage de Manipulation des Données)} : \texttt{SELECT}, \texttt{INSERT}, \texttt{UPDATE}, \texttt{DELETE}.
+\end{itemize}
+
+\subsection{Création d'une table (LDD)}
+\begin{definition}[Syntaxe CREATE TABLE]
+\begin{sqlcode}
+CREATE TABLE NomTable (
+    colonne1 type [contraintes],
+    colonne2 type [contraintes],
+    ...
+    [contrainte de table]
+);
+\end{sqlcode}
+\end{definition}
+
+Principaux types : \texttt{INTEGER}, \texttt{REAL}, \texttt{TEXT}, \texttt{VARCHAR(n)}, \texttt{DATE}.
+
+Contraintes courantes : \texttt{PRIMARY KEY}, \texttt{FOREIGN KEY}, \texttt{NOT NULL}, \texttt{UNIQUE}, \texttt{DEFAULT}.
+
+\begin{exemple}
+\begin{sqlcode}
+CREATE TABLE Eleve (
+    matricule TEXT PRIMARY KEY,
+    nom TEXT NOT NULL,
+    prenom TEXT NOT NULL,
+    date_naissance DATE,
+    classe TEXT DEFAULT 'Tle C'
+);
+\end{sqlcode}
+\end{exemple}
+
+\subsection{Insertion de données (INSERT)}
+\begin{definition}[Syntaxe INSERT]
+\begin{sqlcode}
+INSERT INTO NomTable [(colonne1, colonne2, ...)]
+VALUES (valeur1, valeur2, ...);
+\end{sqlcode}
+\end{definition}
+
+\subsection{Interrogation des données (SELECT)}
+La commande \texttt{SELECT} est la plus utilisée. Sa syntaxe générale :
+\begin{sqlcode}
+SELECT [DISTINCT] colonnes
+FROM table1 [JOIN table2 ON condition]
+[WHERE condition]
+[GROUP BY colonnes]
+[HAVING condition]
+[ORDER BY colonne [ASC|DESC]];
+\end{sqlcode}
+
+\begin{propriete}[Clauses essentielles]
+\begin{itemize}
+    \item \textbf{Projection} : \texttt{SELECT colonne1, colonne2} (choisir les colonnes).
+    \item \textbf{Sélection} : \texttt{WHERE condition} (filtrer les lignes).
+    \item \textbf{Distinct} : \texttt{SELECT DISTINCT} (éliminer les doublons).
+    \item \textbf{Tri} : \texttt{ORDER BY colonne ASC/DESC}.
+    \item \textbf{Agrégation} : \texttt{COUNT, SUM, AVG, MIN, MAX}.
+    \item \textbf{Regroupement} : \texttt{GROUP BY} (avec \texttt{HAVING} pour filtrer les groupes).
+\end{itemize}
+\end{propriete}
+
+\begin{aretenir}
+L'ordre d'exécution logique d'une requête est : \texttt{FROM} → \texttt{WHERE} → \texttt{GROUP BY} → \texttt{HAVING} → \texttt{SELECT} → \texttt{ORDER BY}.
+\end{aretenir}
+
+\subsection{Les jointures}
+Pour interroger plusieurs tables liées par des clés étrangères :
+\begin{itemize}
+    \item \textbf{INNER JOIN} : ne conserve que les lignes correspondant dans les deux tables.
+    \item \textbf{LEFT JOIN} : conserve toutes les lignes de la table de gauche, même sans correspondance.
+\end{itemize}
+
+\begin{exemple}
+\begin{sqlcode}
+-- Liste des élèves avec leur classe
+SELECT e.nom, e.prenom, c.libelle
+FROM Eleve e
+JOIN Classe c ON e.code_classe = c.code;
+\end{sqlcode}
+\end{exemple}
+
+\subsection{Mise à jour et suppression (UPDATE, DELETE)}
+\begin{definition}[Syntaxes]
+\begin{sqlcode}
+-- Mise à jour
+UPDATE NomTable
+SET colonne1 = valeur1, colonne2 = valeur2
+WHERE condition;
+
+-- Suppression
+DELETE FROM NomTable
+WHERE condition;
+\end{sqlcode}
+\end{definition}
+
+\begin{aretenir}
+Sans clause \texttt{WHERE}, \texttt{UPDATE} modifie toutes les lignes et \texttt{DELETE} supprime toutes les lignes de la table.
+\end{aretenir}
+
+\section{Exercices}
+
+\rubrique{Requêtes simples (SELECT, WHERE, ORDER BY)}
+
+\exo{}\diff{1}
+Soit la table \texttt{Etudiant} suivante :
+\begin{sqlcode}
+CREATE TABLE Etudiant (
+    id INTEGER PRIMARY KEY,
+    nom TEXT NOT NULL,
+    prenom TEXT NOT NULL,
+    ville TEXT,
+    moyenne REAL
+);
+\end{sqlcode}
+Écrire la requête SQL qui affiche le nom, le prénom et la moyenne de tous les étudiants, classés par moyenne décroissante.
+
+\exo{}\diff{1}
+Avec la même table, écrire la requête qui donne la liste des villes distinctes où habitent les étudiants.
+
+\exo{}\diff{1}
+Écrire la requête qui affiche les noms et prénoms des étudiants dont la moyenne est supérieure ou égale à 12.
+
+\exo{}\diff{1}
+Écrire la requête qui affiche les étudiants (nom, prénom) habitant à Yaoundé, classés par ordre alphabétique du nom.
+
+\rubrique{Fonctions d'agrégation et GROUP BY}
+
+\exo{}\diff{2}
+Avec la table \texttt{Etudiant}, écrire la requête qui donne le nombre total d'étudiants.
+
+\exo{}\diff{2}
+Écrire la requête qui donne la moyenne générale de tous les étudiants.
+
+\exo{}\diff{2}
+Écrire la requête qui donne, pour chaque ville, le nombre d'étudiants et la moyenne maximale.
+
+\exo{}\diff{2}
+Écrire la requête qui affiche les villes ayant au moins 3 étudiants.
+
+\rubrique{Insertion, mise à jour, suppression}
+
+\exo{}\diff{1}
+Écrire la requête qui insère un nouvel étudiant : id=15, nom='Nkwi', prenom='Paul', ville='Douala', moyenne=14.5.
+
+\exo{}\diff{2}
+Écrire la requête qui augmente la moyenne de tous les étudiants de 1 point.
+
+\exo{}\diff{2}
+Écrire la requête qui supprime les étudiants dont la moyenne est inférieure à 8.
+
+\exo{}\diff{2}
+Écrire la requête qui change la ville de l'étudiant d'id 10 en 'Bafoussam'.
+
+\rubrique{Requêtes avec jointures}
+
+On considère le schéma relationnel suivant (contexte camerounais) :
+\begin{sqlcode}
+CREATE TABLE Lycee (
+    code_lycee TEXT PRIMARY KEY,
+    nom_lycee TEXT NOT NULL,
+    ville TEXT
+);
+
+CREATE TABLE Classe (
+    code_classe TEXT PRIMARY KEY,
+    libelle TEXT NOT NULL,
+    code_lycee TEXT REFERENCES Lycee(code_lycee)
+);
+
+CREATE TABLE Eleve (
+    matricule TEXT PRIMARY KEY,
+    nom TEXT NOT NULL,
+    prenom TEXT NOT NULL,
+    code_classe TEXT REFERENCES Classe(code_classe)
+);
+
+CREATE TABLE Note (
+    id_note INTEGER PRIMARY KEY,
+    matricule TEXT REFERENCES Eleve(matricule),
+    matiere TEXT NOT NULL,
+    note REAL NOT NULL
+);
+\end{sqlcode}
+
+\exo{}\diff{2}
+Écrire la requête qui affiche le nom et le prénom de chaque élève avec le libellé de sa classe.
+
+\exo{}\diff{2}
+Écrire la requête qui affiche le nom du lycée, le libellé de la classe et le nom de l'élève pour tous les élèves.
+
+\exo{}\diff{2}
+Écrire la requête qui donne la liste des élèves (nom, prénom) ayant eu une note en Mathématiques.
+
+\exo{}\diff{3}
+Écrire la requête qui donne, pour chaque élève, son nom, son prénom et sa moyenne générale (moyenne de toutes ses notes).
+
+\exo{}\diff{3}
+Écrire la requête qui affiche les lycées (nom et ville) qui ont au moins une classe de Terminale C.
+
+\exo{}\diff{3}
+Écrire la requête qui donne, pour chaque classe, le nombre d'élèves et la moyenne des notes de Mathématiques.
+
+\rubrique{Requêtes avancées (type Bac)}
+
+\sujetbac[2023, Cameroun]
+\exo{}\diff{3}
+On considère la base de données d'une bibliothèque scolaire :
+\begin{sqlcode}
+CREATE TABLE Livre (
+    isbn TEXT PRIMARY KEY,
+    titre TEXT NOT NULL,
+    auteur TEXT,
+    annee INTEGER
+);
+
+CREATE TABLE Emprunt (
+    id_emprunt INTEGER PRIMARY KEY,
+    isbn TEXT REFERENCES Livre(isbn),
+    date_emprunt DATE,
+    date_retour DATE,
+    nom_emprunteur TEXT
+);
+\end{sqlcode}
+\begin{enumerate}
+    \item Écrire la requête qui affiche les titres des livres empruntés au moins une fois.
+    \item Écrire la requête qui donne le nombre d'emprunts pour chaque livre (titre et nombre).
+    \item Écrire la requête qui affiche les livres (titre, auteur) qui n'ont jamais été empruntés.
+    \item Écrire la requête qui donne le nombre de livres empruntés par chaque emprunteur.
+\end{enumerate}
+
+\sujetbac[2022, Cameroun]
+\exo{}\diff{3}
+Soit la base de données d'une école :
+\begin{sqlcode}
+CREATE TABLE Professeur (
+    id_prof INTEGER PRIMARY KEY,
+    nom TEXT NOT NULL,
+    specialite TEXT
+);
+
+CREATE TABLE Enseignement (
+    id_prof INTEGER REFERENCES Professeur(id_prof),
+    code_classe TEXT,
+    matiere TEXT,
+    PRIMARY KEY (id_prof, code_classe, matiere)
+);
+\end{sqlcode}
+\begin{enumerate}
+    \item Écrire la requête qui affiche les noms des professeurs de Mathématiques.
+    \item Écrire la requête qui donne, pour chaque professeur, le nombre de classes où il enseigne.
+    \item Écrire la requête qui affiche les professeurs (nom) qui enseignent dans au moins 3 classes.
+\end{enumerate}
+
+\exo{}\diff{3}
+Écrire la requête SQL qui crée la table \texttt{Professeur} ci-dessus.
+
+\exo{}\diff{3}
+Écrire la requête qui ajoute une colonne \texttt{telephone} de type TEXT à la table \texttt{Professeur}.
+
+\exo{}\diff{3}
+Écrire la requête qui supprime la table \texttt{Enseignement} (attention à l'ordre).
+
+\section{Corrigés}
+
+\corrige{de l'exercice 1}
+\begin{sqlcode}
+SELECT nom, prenom, moyenne
+FROM Etudiant
+ORDER BY moyenne DESC;
+\end{sqlcode}
+
+\corrige{de l'exercice 2}
+\begin{sqlcode}
+SELECT DISTINCT ville
+FROM Etudiant;
+\end{sqlcode}
+
+\corrige{de l'exercice 3}
+\begin{sqlcode}
+SELECT nom, prenom
+FROM Etudiant
+WHERE moyenne >= 12;
+\end{sqlcode}
+
+\corrige{de l'exercice 4}
+\begin{sqlcode}
+SELECT nom, prenom
+FROM Etudiant
+WHERE ville = 'Yaoundé'
+ORDER BY nom ASC;
+\end{sqlcode}
+
+\corrige{de l'exercice 5}
+\begin{sqlcode}
+SELECT COUNT(*) AS nombre_etudiants
+FROM Etudiant;
+\end{sqlcode}
+
+\corrige{de l'exercice 6}
+\begin{sqlcode}
+SELECT AVG(moyenne) AS moyenne_generale
+FROM Etudiant;
+\end{sqlcode}
+
+\corrige{de l'exercice 7}
+\begin{sqlcode}
+SELECT ville, COUNT(*) AS nb_etudiants, MAX(moyenne) AS max_moyenne
+FROM Etudiant
+GROUP BY ville;
+\end{sqlcode}
+
+\corrige{de l'exercice 8}
+\begin{sqlcode}
+SELECT ville, COUNT(*) AS nb_etudiants
+FROM Etudiant
+GROUP BY ville
+HAVING COUNT(*) >= 3;
+\end{sqlcode}
+
+\corrige{de l'exercice 9}
+\begin{sqlcode}
+INSERT INTO Etudiant (id, nom, prenom, ville, moyenne)
+VALUES (15, 'Nkwi', 'Paul', 'Douala', 14.5);
+\end{sqlcode}
+
+\corrige{de l'exercice 10}
+\begin{sqlcode}
+UPDATE Etudiant
+SET moyenne = moyenne + 1;
+\end{sqlcode}
+
+\corrige{de l'exercice 11}
+\begin{sqlcode}
+DELETE FROM Etudiant
+WHERE moyenne < 8;
+\end{sqlcode}
+
+\corrige{de l'exercice 12}
+\begin{sqlcode}
+UPDATE Etudiant
+SET ville = 'Bafoussam'
+WHERE id = 10;
+\end{sqlcode}
+
+\corrige{de l'exercice 13}
+\begin{sqlcode}
+SELECT e.nom, e.prenom, c.libelle
+FROM Eleve e
+JOIN Classe c ON e.code_classe = c.code_classe;
+\end{sqlcode}
+
+\corrige{de l'exercice 14}
+\begin{sqlcode}
+SELECT l.nom_lycee, c.libelle, e.nom, e.prenom
+FROM Eleve e
+JOIN Classe c ON e.code_classe = c.code_classe
+JOIN Lycee l ON c.code_lycee = l.code_lycee;
+\end{sqlcode}
+
+\corrige{de l'exercice 15}
+\begin{sqlcode}
+SELECT DISTINCT e.nom, e.prenom
+FROM Eleve e
+JOIN Note n ON e.matricule = n.matricule
+WHERE n.matiere = 'Mathématiques';
+\end{sqlcode}
+
+\corrige{de l'exercice 16}
+\begin{sqlcode}
+SELECT e.nom, e.prenom, AVG(n.note) AS moyenne_generale
+FROM Eleve e
+JOIN Note n ON e.matricule = n.matricule
+GROUP BY e.matricule, e.nom, e.prenom;
+\end{sqlcode}
+
+\corrige{de l'exercice 17}
+\begin{sqlcode}
+SELECT DISTINCT l.nom_lycee, l.ville
+FROM Lycee l
+JOIN Classe c ON l.code_lycee = c.code_lycee
+WHERE c.libelle LIKE 'Tle C';
+\end{sqlcode}
+
+\corrige{de l'exercice 18}
+\begin{sqlcode}
+SELECT c.libelle, COUNT(DISTINCT e.matricule) AS nb_eleves,
+       AVG(n.note) AS moyenne_maths
+FROM Classe c
+JOIN Eleve e ON c.code_classe = e.code_classe
+JOIN Note n ON e.matricule = n.matricule
+WHERE n.matiere = 'Mathématiques'
+GROUP BY c.code_classe, c.libelle;
+\end{sqlcode}
+
+\corrige{de l'exercice 19}
+\begin{enumerate}
+    \item 
+\begin{sqlcode}
+SELECT DISTINCT l.titre
+FROM Livre l
+JOIN Emprunt e ON l.isbn = e.isbn;
+\end{sqlcode}
+    \item 
+\begin{sqlcode}
+SELECT l.titre, COUNT(e.id_emprunt) AS nb_emprunts
+FROM Livre l
+LEFT JOIN Emprunt e ON l.isbn = e.isbn
+GROUP BY l.isbn, l.titre;
+\end{sqlcode}
+    \item 
+\begin{sqlcode}
+SELECT l.titre, l.auteur
+FROM Livre l
+LEFT JOIN Emprunt e ON l.isbn = e.isbn
+WHERE e.id_emprunt IS NULL;
+\end{sqlcode}
+    \item 
+\begin{sqlcode}
+SELECT nom_emprunteur, COUNT(*) AS nb_livres
+FROM Emprunt
+GROUP BY nom_emprunteur;
+\end{sqlcode}
+\end{enumerate}
+
+\corrige{de l'exercice 20}
+\begin{enumerate}
+    \item 
+\begin{sqlcode}
+SELECT nom
+FROM Professeur
+WHERE specialite = 'Mathématiques';
+\end{sqlcode}
+    \item 
+\begin{sqlcode}
+SELECT p.nom, COUNT(DISTINCT e.code_classe) AS nb_classes
+FROM Professeur p
+JOIN Enseignement e ON p.id_prof = e.id_prof
+GROUP BY p.id_prof, p.nom;
+\end{sqlcode}
+    \item 
+\begin{sqlcode}
+SELECT p.nom
+FROM Professeur p
+JOIN Enseignement e ON p.id_prof = e.id_prof
+GROUP BY p.id_prof, p.nom
+HAVING COUNT(DISTINCT e.code_classe) >= 3;
+\end{sqlcode}
+\end{enumerate}
+
+\corrige{de l'exercice 21}
+\begin{sqlcode}
+CREATE TABLE Professeur (
+    id_prof INTEGER PRIMARY KEY,
+    nom TEXT NOT NULL,
+    specialite TEXT
+);
+\end{sqlcode}
+
+\corrige{de l'exercice 22}
+\begin{sqlcode}
+ALTER TABLE Professeur
+ADD COLUMN telephone TEXT;
+\end{sqlcode}
+
+\corrige{de l'exercice 23}
+\begin{sqlcode}
+DROP TABLE Enseignement;
+\end{sqlcode}
+(Il faut d'abord supprimer la table \texttt{Enseignement} avant \texttt{Professeur} à cause de la clé étrangère.)

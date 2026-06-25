@@ -1,0 +1,373 @@
+\chapter{Architecture et fonctionnement de l'ordinateur}
+\textit{Ce chapitre présente la structure interne d’un ordinateur, le rôle de ses composants principaux, le modèle de von Neumann, ainsi que les notions de capacité mémoire, de fréquence et de débit.}
+
+\section{L'essentiel du cours}
+
+\subsection{Structure générale d’un ordinateur}
+Un ordinateur est composé de :
+\begin{itemize}
+    \item \textbf{L’unité centrale} : boîtier contenant le processeur, la mémoire vive et les cartes d’extension.
+    \item \textbf{Les périphériques d’entrée} : clavier, souris, scanner, microphone.
+    \item \textbf{Les périphériques de sortie} : écran, imprimante, haut-parleurs.
+    \item \textbf{Les périphériques d’entrée-sortie} : disque dur, clé USB, carte réseau.
+\end{itemize}
+
+\begin{definition}[Modèle de von Neumann]
+Proposé par John von Neumann en 1945, ce modèle décrit un ordinateur composé de quatre unités fonctionnelles reliées par des bus :
+\begin{itemize}
+    \item \textbf{L’unité arithmétique et logique (UAL)} : effectue les opérations arithmétiques (+, –, ×, ÷) et logiques (ET, OU, NON).
+    \item \textbf{L’unité de commande (UC)} : séquence les instructions (fetch, decode, execute).
+    \item \textbf{La mémoire} : stocke les données et les programmes.
+    \item \textbf{Les entrées/sorties} : permettent la communication avec l’extérieur.
+\end{itemize}
+\end{definition}
+
+\subsection{Le processeur}
+Le processeur (CPU) est le cerveau de l’ordinateur. Il contient :
+\begin{itemize}
+    \item \textbf{L’UAL} : effectue les calculs.
+    \item \textbf{L’unité de commande} : lit et interprète les instructions.
+    \item \textbf{Les registres} : mémoires très rapides et de petite taille (ex. : accumulateur, compteur ordinal, registre d’instruction).
+    \item \textbf{L’horloge} : cadence le processeur à une fréquence mesurée en Hertz (Hz). Une fréquence de 2,5 GHz signifie 2,5 milliards de cycles par seconde.
+\end{itemize}
+
+\begin{propriete}
+Le temps d’exécution d’une instruction dépend du nombre de cycles nécessaires et de la fréquence de l’horloge :
+\[
+\text{Temps} = \frac{\text{nombre de cycles}}{\text{fréquence}}
+\]
+\end{propriete}
+
+\subsection{Les mémoires}
+\begin{itemize}
+    \item \textbf{RAM (Random Access Memory)} : mémoire volatile, rapide, utilisée pour les programmes en cours d’exécution.
+    \item \textbf{ROM (Read Only Memory)} : mémoire non volatile, contient le BIOS/UEFI.
+    \item \textbf{Mémoire de masse} : disque dur (HDD/SSD), clé USB, carte SD — non volatile, capacité élevée, plus lente.
+    \item \textbf{Mémoire cache} : mémoire très rapide intégrée au processeur, de petite taille.
+\end{itemize}
+
+\begin{aretenir}
+Hiérarchie mémoire (du plus rapide/coûteux au plus lent/économique) : registres $\rightarrow$ cache L1/L2/L3 $\rightarrow$ RAM $\rightarrow$ SSD $\rightarrow$ HDD.
+\end{aretenir}
+
+\subsection{Unités de mesure de capacité}
+\begin{itemize}
+    \item 1 octet (o) = 8 bits.
+    \item 1 Kio (kibioctet) = $2^{10}$ o = 1 024 o.
+    \item 1 Mio (mébioctet) = $2^{20}$ o = 1 048 576 o.
+    \item 1 Gio (gibioctet) = $2^{30}$ o = 1 073 741 824 o.
+    \item 1 Tio (tébioctet) = $2^{40}$ o.
+\end{itemize}
+
+\begin{exemple}
+Un disque dur de 500 Gio peut stocker $500 \times 2^{30}$ octets, soit environ $5,37 \times 10^{11}$ octets.
+\end{exemple}
+
+\subsection{Les bus}
+Un bus est un ensemble de liaisons physiques (fils) qui permet le transfert de données entre les composants. On distingue :
+\begin{itemize}
+    \item \textbf{Bus de données} : transporte les données.
+    \item \textbf{Bus d’adresses} : transporte les adresses mémoire.
+    \item \textbf{Bus de commande} : transporte les signaux de contrôle.
+\end{itemize}
+
+\section{Exercices}
+
+\rubrique{Questions à choix multiples (QCM)}
+
+\exo{}\diff{1}
+Parmi les affirmations suivantes, laquelle est vraie ?
+\begin{enumerate}
+    \item La ROM est une mémoire volatile.
+    \item La RAM est une mémoire non volatile.
+    \item Le processeur contient l’UAL et l’unité de commande.
+    \item Le bus de données transporte les adresses.
+\end{enumerate}
+
+\exo{}\diff{1}
+Quel est le rôle de l’unité de commande ?
+\begin{enumerate}
+    \item Effectuer les calculs arithmétiques.
+    \item Séquencement et interprétation des instructions.
+    \item Stocker les données de façon permanente.
+    \item Gérer les entrées/sorties uniquement.
+\end{enumerate}
+
+\exo{}\diff{1}
+Laquelle de ces mémoires est la plus rapide ?
+\begin{enumerate}
+    \item Disque dur HDD.
+    \item Mémoire cache L1.
+    \item RAM DDR4.
+    \item Clé USB 3.0.
+\end{enumerate}
+
+\exo{}\diff{1}
+Un processeur cadencé à 3 GHz effectue combien de cycles par seconde ?
+\begin{enumerate}
+    \item 3 millions.
+    \item 3 milliards.
+    \item 3 mille.
+    \item 3 trillions.
+\end{enumerate}
+
+\exo{}\diff{1}
+Combien d’octets contient 1 Mio ?
+\begin{enumerate}
+    \item 1 000 000 o.
+    \item 1 048 576 o.
+    \item 1 024 o.
+    \item 1 000 o.
+\end{enumerate}
+
+\rubrique{Connaissances des composants}
+
+\exo{}\diff{1}
+Citez les quatre unités fonctionnelles du modèle de von Neumann.
+
+\exo{}\diff{1}
+Donnez le rôle de l’UAL et de l’unité de commande.
+
+\exo{}\diff{1}
+Quelle est la différence entre une mémoire volatile et une mémoire non volatile ? Donnez un exemple de chaque.
+
+\exo{}\diff{1}
+Expliquez brièvement ce qu’est un bus et citez les trois types de bus.
+
+\exo{}\diff{2}
+Un ordinateur possède une RAM de 8 Gio. Combien de bits cela représente-t-il ? (Écrire le calcul.)
+
+\exo{}\diff{2}
+Un processeur fonctionne à 2,4 GHz. Une instruction nécessite 4 cycles. Calculez le temps d’exécution de cette instruction en nanosecondes.
+
+\exo{}\diff{2}
+Un disque dur a une capacité de 1 Tio. Combien de fichiers de 500 Mio peut-il contenir au maximum ?
+
+\exo{}\diff{2}
+Quelle est la différence entre la mémoire cache et la RAM ? Pourquoi utilise-t-on plusieurs niveaux de cache ?
+
+\rubrique{Calculs de capacité et de débit}
+
+\exo{}\diff{2}
+Convertissez les valeurs suivantes en octets :
+\begin{enumerate}
+    \item 2 Kio
+    \item 5 Mio
+    \item 0,5 Gio
+\end{enumerate}
+
+\exo{}\diff{2}
+Un fichier vidéo pèse 4,7 Gio. Combien de fichiers de ce type peut-on stocker sur un disque de 2 Tio ?
+
+\exo{}\diff{2}
+Un bus de données est large de 64 bits et fonctionne à 800 MHz. Quel est le débit théorique maximal en Go/s ? (Rappel : débit = largeur × fréquence.)
+
+\exo{}\diff{3}
+Un processeur exécute un programme de 1 200 instructions. Chaque instruction prend en moyenne 3 cycles. La fréquence du processeur est de 2,5 GHz. Calculez le temps d’exécution total en microsecondes.
+
+\exo{}\diff{3}
+Un disque dur a un débit de lecture de 150 Mio/s. Combien de temps faut-il pour lire un fichier de 2 Gio ? Donnez le résultat en secondes.
+
+\rubrique{Exercices type Baccalauréat}
+
+\sujetbac[2022, Cameroun, Tle C]
+\exo{}\diff{2}
+On considère un ordinateur dont les caractéristiques sont les suivantes :
+\begin{itemize}
+    \item Processeur : 3,2 GHz
+    \item RAM : 16 Gio
+    \item Disque dur : 1 Tio
+    \item Bus de données : 64 bits à 1 600 MHz
+\end{itemize}
+\begin{enumerate}
+    \item Calculez la capacité de la RAM en bits.
+    \item Calculez le débit théorique du bus de données en Go/s.
+    \item Combien de temps faut-il pour transférer un fichier de 10 Gio via ce bus (en supposant un transfert idéal) ?
+\end{enumerate}
+
+\sujetbac[2021, Cameroun, Tle D]
+\exo{}\diff{2}
+Un technicien doit choisir entre deux disques durs :
+\begin{itemize}
+    \item Disque A : 500 Gio, débit 100 Mio/s
+    \item Disque B : 1 Tio, débit 80 Mio/s
+\end{itemize}
+\begin{enumerate}
+    \item Quel disque offre la plus grande capacité ? Justifiez.
+    \item Quel disque permet de lire un fichier de 50 Gio le plus rapidement ? Calculez le temps pour chaque disque.
+\end{enumerate}
+
+\sujetbac[2020, Cameroun, Tle E]
+\exo{}\diff{3}
+On considère le modèle de von Neumann.
+\begin{enumerate}
+    \item Dessinez un schéma simplifié de l’architecture (vous pouvez le décrire par un tableau ou un texte structuré).
+    \item Expliquez le rôle de chaque bus.
+    \item Pourquoi la mémoire cache est-elle nécessaire malgré l’augmentation de la fréquence des processeurs ?
+\end{enumerate}
+
+\rubrique{Approfondissement}
+
+\exo{}\diff{3}
+Un programme est constitué de 500 instructions. Le processeur met 4 cycles pour chaque instruction. La fréquence est de 2 GHz. Calculez le temps d’exécution. Si on double la fréquence, quel est le nouveau temps ?
+
+\exo{}\diff{3}
+Un ordinateur a une RAM de 4 Gio et un processeur 32 bits. Quelle est l’adresse maximale que le processeur peut adresser ? (Rappel : un processeur 32 bits peut adresser $2^{32}$ adresses, chaque adresse correspond à 1 octet.)
+
+\exo{}\diff{3}
+Expliquez la hiérarchie mémoire en citant au moins quatre niveaux, du plus rapide au plus lent. Pourquoi cette hiérarchie est-elle nécessaire ?
+
+\section{Corrigés}
+
+\corrige{de l'exercice 1}
+Affirmation vraie : \textbf{3. Le processeur contient l’UAL et l’unité de commande.}
+\begin{itemize}
+    \item La ROM est non volatile.
+    \item La RAM est volatile.
+    \item Le bus de données transporte les données, pas les adresses.
+\end{itemize}
+
+\corrige{de l'exercice 2}
+Réponse : \textbf{2. Séquencement et interprétation des instructions.}
+L’unité de commande lit les instructions en mémoire, les décode et coordonne leur exécution.
+
+\corrige{de l'exercice 3}
+Réponse : \textbf{2. Mémoire cache L1.}
+La mémoire cache L1 est intégrée au processeur et est la plus rapide.
+
+\corrige{de l'exercice 4}
+Réponse : \textbf{2. 3 milliards.}
+3 GHz = $3 \times 10^9$ Hz, soit 3 milliards de cycles par seconde.
+
+\corrige{de l'exercice 5}
+Réponse : \textbf{2. 1 048 576 o.}
+1 Mio = $2^{20}$ o = 1 048 576 o.
+
+\corrige{de l'exercice 6}
+Les quatre unités sont : l’UAL, l’unité de commande, la mémoire, les entrées/sorties.
+
+\corrige{de l'exercice 7}
+\begin{itemize}
+    \item \textbf{UAL} : effectue les opérations arithmétiques et logiques.
+    \item \textbf{Unité de commande} : séquence et interprète les instructions.
+\end{itemize}
+
+\corrige{de l'exercice 8}
+\begin{itemize}
+    \item \textbf{Volatile} : perd son contenu à la coupure d’alimentation (ex. : RAM).
+    \item \textbf{Non volatile} : conserve les données sans alimentation (ex. : ROM, disque dur).
+\end{itemize}
+
+\corrige{de l'exercice 9}
+Un bus est un ensemble de liaisons qui permet le transfert de données, d’adresses et de signaux de contrôle entre les composants. Les trois types : bus de données, bus d’adresses, bus de commande.
+
+\corrige{de l'exercice 10}
+8 Gio = $8 \times 2^{30}$ o = $8 \times 1\,073\,741\,824$ o = $8\,589\,934\,592$ o.
+1 o = 8 bits, donc $8\,589\,934\,592 \times 8 = 68\,719\,476\,736$ bits.
+
+\corrige{de l'exercice 11}
+Fréquence = 2,4 GHz = $2,4 \times 10^9$ Hz.
+Temps d’un cycle = $\frac{1}{2,4 \times 10^9}$ s = $4,1667 \times 10^{-10}$ s.
+4 cycles = $4 \times 4,1667 \times 10^{-10}$ s = $1,6667 \times 10^{-9}$ s = 1,6667 ns.
+
+\corrige{de l'exercice 12}
+1 Tio = $2^{40}$ o = 1 099 511 627 776 o.
+500 Mio = $500 \times 2^{20}$ o = $500 \times 1 048 576$ o = 524 288 000 o.
+Nombre de fichiers = $\frac{1 099 511 627 776}{524 288 000} \approx 2 097,15$, soit 2 097 fichiers (partie entière).
+
+\corrige{de l'exercice 13}
+La mémoire cache est plus rapide que la RAM et intégrée au processeur. On utilise plusieurs niveaux (L1, L2, L3) pour équilibrer coût, vitesse et capacité : L1 très rapide mais petite, L2 moins rapide mais plus grande, etc.
+
+\corrige{de l'exercice 14}
+\begin{enumerate}
+    \item 2 Kio = $2 \times 2^{10}$ o = 2 048 o.
+    \item 5 Mio = $5 \times 2^{20}$ o = 5 242 880 o.
+    \item 0,5 Gio = $0,5 \times 2^{30}$ o = 536 870 912 o.
+\end{enumerate}
+
+\corrige{de l'exercice 15}
+2 Tio = $2 \times 2^{40}$ o = 2 199 023 255 552 o.
+4,7 Gio = $4,7 \times 2^{30}$ o = 5 047 347 609,6 o.
+Nombre = $\frac{2 199 023 255 552}{5 047 347 609,6} \approx 435,7$, soit 435 fichiers.
+
+\corrige{de l'exercice 16}
+Largeur = 64 bits = 8 octets.
+Fréquence = 800 MHz = $800 \times 10^6$ Hz.
+Débit = $8 \times 800 \times 10^6$ o/s = $6,4 \times 10^9$ o/s = 6,4 Go/s.
+
+\corrige{de l'exercice 17}
+Nombre total de cycles = $1 200 \times 3 = 3 600$ cycles.
+Fréquence = 2,5 GHz = $2,5 \times 10^9$ Hz.
+Temps = $\frac{3 600}{2,5 \times 10^9}$ s = $1,44 \times 10^{-6}$ s = 1,44 $\mu$s.
+
+\corrige{de l'exercice 18}
+2 Gio = $2 \times 2^{30}$ o = 2 147 483 648 o.
+Débit = 150 Mio/s = $150 \times 2^{20}$ o/s = 157 286 400 o/s.
+Temps = $\frac{2 147 483 648}{157 286 400} \approx 13,65$ s.
+
+\corrige{de l'exercice 19 (type Bac 2022)}
+\begin{enumerate}
+    \item 16 Gio = $16 \times 2^{30}$ o = $16 \times 1 073 741 824$ o = 17 179 869 184 o.
+          En bits : $17 179 869 184 \times 8 = 137 438 953 472$ bits.
+    \item Largeur = 64 bits = 8 o. Fréquence = 1 600 MHz = $1,6 \times 10^9$ Hz.
+          Débit = $8 \times 1,6 \times 10^9$ o/s = $12,8 \times 10^9$ o/s = 12,8 Go/s.
+    \item 10 Gio = $10 \times 2^{30}$ o = 10 737 418 240 o.
+          Temps = $\frac{10 737 418 240}{12,8 \times 10^9} \approx 0,839$ s.
+\end{enumerate}
+
+\corrige{de l'exercice 20 (type Bac 2021)}
+\begin{enumerate}
+    \item Disque B : 1 Tio > 500 Gio (1 Tio = 1 024 Gio).
+    \item 50 Gio = $50 \times 2^{30}$ o = 53 687 091 200 o.
+          Disque A : débit = 100 Mio/s = $100 \times 2^{20}$ o/s = 104 857 600 o/s.
+          Temps A = $\frac{53 687 091 200}{104 857 600} \approx 512$ s.
+          Disque B : débit = 80 Mio/s = $80 \times 2^{20}$ o/s = 83 886 080 o/s.
+          Temps B = $\frac{53 687 091 200}{83 886 080} \approx 640$ s.
+          Le disque A est plus rapide pour la lecture.
+\end{enumerate}
+
+\corrige{de l'exercice 21 (type Bac 2020)}
+\begin{enumerate}
+    \item Schéma simplifié (description textuelle) :
+          \begin{center}
+          \begin{tabular}{|c|c|}
+          \hline
+          \textbf{Unité de commande} & \textbf{UAL} \\
+          \hline
+          \multicolumn{2}{|c|}{\textbf{Processeur}} \\
+          \hline
+          \multicolumn{2}{|c|}{$\updownarrow$ Bus} \\
+          \hline
+          \textbf{Mémoire} & \textbf{Entrées/Sorties} \\
+          \hline
+          \end{tabular}
+          \end{center}
+    \item \textbf{Bus de données} : transporte les données entre les composants.
+          \textbf{Bus d’adresses} : transporte les adresses mémoire.
+          \textbf{Bus de commande} : transporte les signaux de contrôle (lecture/écriture).
+    \item La mémoire cache compense la différence de vitesse entre le processeur (très rapide) et la RAM (plus lente). Elle stocke les données fréquemment utilisées pour réduire les temps d’attente.
+\end{enumerate}
+
+\corrige{de l'exercice 22}
+Nombre total de cycles = $500 \times 4 = 2 000$ cycles.
+Fréquence = 2 GHz = $2 \times 10^9$ Hz.
+Temps = $\frac{2 000}{2 \times 10^9}$ s = $1 \times 10^{-6}$ s = 1 $\mu$s.
+Si on double la fréquence (4 GHz), temps = $\frac{2 000}{4 \times 10^9}$ s = $0,5 \times 10^{-6}$ s = 0,5 $\mu$s.
+
+\corrige{de l'exercice 23}
+Processeur 32 bits : espace d’adressage = $2^{32}$ adresses.
+Chaque adresse correspond à 1 octet, donc capacité maximale adressable = $2^{32}$ o = 4 Gio.
+La RAM de 4 Gio est donc entièrement adressable.
+
+\corrige{de l'exercice 24}
+Hiérarchie mémoire (du plus rapide au plus lent) :
+\begin{enumerate}
+    \item Registres du processeur
+    \item Mémoire cache L1
+    \item Mémoire cache L2
+    \item Mémoire cache L3
+    \item RAM
+    \item Disque SSD
+    \item Disque HDD
+\end{enumerate}
+Cette hiérarchie est nécessaire car aucune mémoire unique ne peut être à la fois très rapide, de grande capacité et peu coûteuse. On utilise des mémoires rapides mais petites pour les données fréquemment utilisées, et des mémoires lentes mais grandes pour le stockage de masse.

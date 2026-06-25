@@ -1,0 +1,845 @@
+\chapter{Algorithmique : variables et structures de contrôle}
+
+\textit{L'algorithmique est la science de la résolution de problèmes par des suites d'instructions ordonnées. Ce chapitre présente les concepts fondamentaux pour écrire et comprendre des algorithmes : variables, types de données, opérations d'entrée-sortie, et les structures qui permettent de contrôler le déroulement du programme (conditions et boucles).}
+
+\section{L'essentiel du cours}
+
+\subsection{Notion d'algorithme}
+Un \textbf{algorithme} est une suite finie et ordonnée d'instructions qui, lorsqu'elles sont exécutées, permettent de résoudre un problème donné. Il se compose de trois parties principales :
+\begin{itemize}
+    \item \textbf{Entrée} : données fournies à l'algorithme.
+    \item \textbf{Traitement} : opérations effectuées sur les données.
+    \item \textbf{Sortie} : résultats produits par l'algorithme.
+\end{itemize}
+
+\begin{definition}[Algorithme]
+Un algorithme est une procédure pas à pas, définie de manière non ambiguë, qui transforme des données d'entrée en données de sortie en un nombre fini d'étapes.
+\end{definition}
+
+\subsection{Variables et types}
+Une \textbf{variable} est un espace mémoire nommé qui peut contenir une valeur. Chaque variable a un \textbf{type} qui détermine la nature des données qu'elle peut stocker.
+
+\begin{propriete}[Types de base]
+\begin{itemize}
+    \item \textbf{Entier} : nombres entiers (ex: 5, -12, 0)
+    \item \textbf{Réel} : nombres à virgule (ex: 3.14, -2.5)
+    \item \textbf{Caractère} : un seul caractère (ex: 'A', '7')
+    \item \textbf{Chaîne} : suite de caractères (ex: "Bonjour")
+    \item \textbf{Logique (Booléen)} : vrai ou faux (Vrai/Faux)
+\end{itemize}
+\end{propriete}
+
+\subsection{Affectation, lecture, écriture}
+
+\begin{aretenir}[Instructions de base]
+\begin{itemize}
+    \item \textbf{Affectation} : \texttt{Variable $\leftarrow$ Expression} — stocke le résultat de l'expression dans la variable.
+    \item \textbf{Lecture} : \texttt{Lire(Variable)} — permet à l'utilisateur de saisir une valeur.
+    \item \textbf{Écriture} : \texttt{Écrire(Expression)} — affiche le résultat à l'écran.
+\end{itemize}
+\end{aretenir}
+
+\begin{exemple}[Exemple simple]
+\begin{algo}
+Algorithme CalculSomme
+Variables
+    a, b, somme : Entier
+Début
+    Écrire("Entrez deux nombres :")
+    Lire(a)
+    Lire(b)
+    somme $\leftarrow$ a + b
+    Écrire("La somme est : ", somme)
+Fin
+\end{algo}
+\end{exemple}
+
+\subsection{Structures conditionnelles}
+Les structures conditionnelles permettent d'exécuter des instructions seulement si une condition est vraie.
+
+\begin{definition}[Structure Si...Alors...Sinon]
+\begin{algo}
+Si (condition) Alors
+    Instructions_si_vrai
+Sinon
+    Instructions_si_faux
+FinSi
+\end{algo}
+\end{definition}
+
+\begin{aretenir}[Opérateurs de comparaison]
+\begin{itemize}
+    \item \texttt{=} : égal à
+    \item \texttt{<>} ou \texttt{$\neq$} : différent de
+    \item \texttt{<}, \texttt{>}, \texttt{<=}, \texttt{>=} : comparaisons classiques
+    \item \texttt{ET}, \texttt{OU}, \texttt{NON} : opérateurs logiques
+\end{itemize}
+\end{aretenir}
+
+\subsection{Structures itératives (boucles)}
+Les boucles permettent de répéter un bloc d'instructions plusieurs fois.
+
+\begin{definition}[Boucle Pour]
+Utilisée quand le nombre d'itérations est connu à l'avance.
+\begin{algo}
+Pour i $\leftarrow$ debut À fin [Pas pas] Faire
+    Instructions
+FinPour
+\end{algo}
+\end{definition}
+
+\begin{definition}[Boucle Tant que]
+Utilisée quand on répète tant qu'une condition est vraie (test en début).
+\begin{algo}
+Tant que (condition) Faire
+    Instructions
+FinTantQue
+\end{algo}
+\end{definition}
+
+\begin{definition}[Boucle Répéter...Jusqu'à]
+Utilisée quand on répète jusqu'à ce qu'une condition devienne vraie (test en fin, exécutée au moins une fois).
+\begin{algo}
+Répéter
+    Instructions
+Jusqu'à (condition)
+\end{algo}
+\end{definition}
+
+\begin{aretenir}[Points clés à retenir]
+\begin{itemize}
+    \item Un algorithme commence toujours par \texttt{Algorithme Nom} et se termine par \texttt{Fin}.
+    \item Les variables doivent être déclarées dans la section \texttt{Variables}.
+    \item L'affectation se note avec une flèche $\leftarrow$.
+    \item Les conditions dans les \texttt{Si} et les boucles doivent être entre parenthèses.
+    \item La boucle \texttt{Répéter...Jusqu'à} s'exécute au moins une fois, contrairement à \texttt{Tant que}.
+    \item Pour dérouler un algorithme, on trace un tableau de valeurs des variables à chaque étape.
+\end{itemize}
+\end{aretenir}
+
+\section{Exercices}
+
+\rubrique{Notions de base : variables et affectation}
+
+\exo{}\diff{1}
+Écrire un algorithme qui demande deux nombres à l'utilisateur, calcule leur produit et affiche le résultat.
+
+\exo{}\diff{1}
+Écrire un algorithme qui échange le contenu de deux variables A et B (sans utiliser de troisième variable).
+
+\exo{}\diff{1}
+Quel est l'affichage produit par l'algorithme suivant ?
+\begin{algo}
+Algorithme Test1
+Variables
+    x, y : Entier
+Début
+    x $\leftarrow$ 5
+    y $\leftarrow$ 3
+    x $\leftarrow$ x + y
+    y $\leftarrow$ x - y
+    x $\leftarrow$ x - y
+    Écrire(x, y)
+Fin
+\end{algo}
+
+\exo{}\diff{1}
+Écrire un algorithme qui lit le nom et l'âge d'une personne, puis affiche un message du type : "Bonjour [nom], vous avez [âge] ans."
+
+\rubrique{Structures conditionnelles}
+
+\exo{}\diff{1}
+Écrire un algorithme qui lit un nombre et affiche s'il est positif, négatif ou nul.
+
+\exo{}\diff{1}
+Écrire un algorithme qui lit trois nombres et affiche le plus grand des trois.
+
+\exo{}\diff{2}
+Écrire un algorithme qui détermine si une année saisie est bissextile. Une année est bissextile si elle est divisible par 4 mais pas par 100, ou si elle est divisible par 400.
+
+\exo{}\diff{2}
+Un magasin de Yaoundé applique une remise de 10\% si le montant des achats dépasse 50 000 FCFA. Écrire un algorithme qui lit le montant des achats et affiche le montant à payer après remise éventuelle.
+
+\exo{}\diff{2}
+Écrire un algorithme qui lit deux nombres et un opérateur (+, -, *, /) et effectue l'opération correspondante. Gérer le cas de la division par zéro.
+
+\rubrique{Boucle Pour}
+
+\exo{}\diff{1}
+Écrire un algorithme qui affiche les nombres de 1 à 10.
+
+\exo{}\diff{1}
+Écrire un algorithme qui calcule la somme des N premiers entiers naturels (N saisi par l'utilisateur).
+
+\exo{}\diff{2}
+Écrire un algorithme qui lit 10 notes (sur 20) et affiche leur moyenne.
+
+\exo{}\diff{2}
+Écrire un algorithme qui affiche la table de multiplication d'un nombre saisi par l'utilisateur (de 1 à 10).
+
+\exo{}\diff{2}
+Écrire un algorithme qui calcule N! (factorielle de N), N étant saisi par l'utilisateur.
+
+\rubrique{Boucle Tant que et Répéter...Jusqu'à}
+
+\exo{}\diff{1}
+Écrire un algorithme utilisant \texttt{Tant que} qui affiche les nombres pairs de 2 à 20.
+
+\exo{}\diff{2}
+Écrire un algorithme qui demande à l'utilisateur de saisir un mot de passe (supposé "CAMEROUN") et répète la demande tant que le mot de passe est incorrect.
+
+\exo{}\diff{2}
+Écrire un algorithme qui lit une suite de nombres positifs (la saisie s'arrête quand on entre un nombre négatif) et affiche leur somme.
+
+\exo{}\diff{2}
+Écrire un algorithme utilisant \texttt{Répéter...Jusqu'à} qui demande à l'utilisateur de deviner un nombre secret (fixé à 42 dans l'algorithme) et affiche "Trop grand" ou "Trop petit" à chaque tentative.
+
+\exo{}\diff{3}
+Écrire un algorithme qui calcule la moyenne d'une série de notes saisies par l'utilisateur. La saisie s'arrête lorsque l'utilisateur entre -1.
+
+\rubrique{Déroulement et traçage d'algorithmes}
+
+\exo{}\diff{2}
+Dérouler l'algorithme suivant en complétant le tableau de valeurs pour les entrées a=7 et b=3.
+\begin{algo}
+Algorithme Division
+Variables
+    a, b, quotient, reste : Entier
+Début
+    quotient $\leftarrow$ 0
+    reste $\leftarrow$ a
+    Tant que (reste >= b) Faire
+        reste $\leftarrow$ reste - b
+        quotient $\leftarrow$ quotient + 1
+    FinTantQue
+    Écrire(quotient, reste)
+Fin
+\end{algo}
+
+\exo{}\diff{2}
+Dérouler l'algorithme suivant pour N=5.
+\begin{algo}
+Algorithme Suite
+Variables
+    N, i, u : Entier
+Début
+    Lire(N)
+    u $\leftarrow$ 0
+    Pour i $\leftarrow$ 1 À N Faire
+        u $\leftarrow$ u + i
+    FinPour
+    Écrire(u)
+Fin
+\end{algo}
+
+\exo{}\diff{3}
+Dérouler l'algorithme suivant pour la valeur saisie 1234.
+\begin{algo}
+Algorithme Mystere
+Variables
+    n, chiffre, inverse : Entier
+Début
+    Lire(n)
+    inverse $\leftarrow$ 0
+    Tant que (n > 0) Faire
+        chiffre $\leftarrow$ n MOD 10
+        inverse $\leftarrow$ inverse * 10 + chiffre
+        n $\leftarrow$ n DIV 10
+    FinTantQue
+    Écrire(inverse)
+Fin
+\end{algo}
+
+\rubrique{Exercices type Baccalauréat}
+
+\sujetbac[2020, Cameroun, C/D/E]
+\exo{}\diff{3}
+Écrire un algorithme qui lit les coefficients a, b, c d'une équation du second degré $ax^2 + bx + c = 0$ et affiche ses solutions (réelles ou complexes). On suppose que a $\neq$ 0.
+
+\sujetbac[2021, Cameroun, C/D/E]
+\exo{}\diff{3}
+Écrire un algorithme qui détermine si un nombre entier N saisi est premier. Un nombre premier est un entier supérieur à 1 qui n'a que deux diviseurs : 1 et lui-même.
+
+\sujetbac[2022, Cameroun, C/D/E]
+\exo{}\diff{3}
+Écrire un algorithme qui lit 10 notes d'élèves (sur 20) et affiche :
+\begin{itemize}
+    \item La moyenne de la classe.
+    \item Le nombre d'élèves ayant une note supérieure ou égale à 10.
+    \item La note maximale et la note minimale.
+\end{itemize}
+
+\sujetbac[2023, Cameroun, C/D/E]
+\exo{}\diff{3}
+Écrire un algorithme qui génère et affiche les N premiers termes de la suite de Fibonacci. La suite est définie par : $F_0 = 0$, $F_1 = 1$, et $F_n = F_{n-1} + F_{n-2}$ pour $n \geq 2$.
+
+\exo{}\diff{3}
+Écrire un algorithme qui lit un nombre entier positif et affiche sa représentation en binaire (sans utiliser de tableau).
+
+\exo{}\diff{3}
+Écrire un algorithme qui lit un tableau de 10 entiers et affiche le nombre d'occurrences de chaque valeur (entre 0 et 9). On suppose que les valeurs saisies sont comprises entre 0 et 9.
+
+\section{Corrigés}
+
+\corrige{de l'exercice 1}
+\begin{algo}
+Algorithme Produit
+Variables
+    a, b, produit : Entier
+Début
+    Écrire("Entrez deux nombres :")
+    Lire(a)
+    Lire(b)
+    produit $\leftarrow$ a * b
+    Écrire("Le produit est : ", produit)
+Fin
+\end{algo}
+
+\corrige{de l'exercice 2}
+Pour échanger deux variables sans troisième variable, on utilise les opérations arithmétiques :
+\begin{algo}
+Algorithme Echange
+Variables
+    A, B : Entier
+Début
+    Écrire("Entrez A et B :")
+    Lire(A)
+    Lire(B)
+    A $\leftarrow$ A + B
+    B $\leftleftarrow$ A - B
+    A $\leftarrow$ A - B
+    Écrire("Après échange : A = ", A, ", B = ", B)
+Fin
+\end{algo}
+\textbf{Explication} : Après A $\leftarrow$ A+B, A contient la somme. B $\leftarrow$ A-B donne la valeur initiale de A. Enfin A $\leftarrow$ A-B donne la valeur initiale de B.
+
+\corrige{de l'exercice 3}
+Déroulons l'algorithme pas à pas :
+\begin{itemize}
+    \item Initialement : x=5, y=3
+    \item x $\leftarrow$ x + y = 5 + 3 = 8
+    \item y $\leftarrow$ x - y = 8 - 3 = 5
+    \item x $\leftarrow$ x - y = 8 - 5 = 3
+\end{itemize}
+L'affichage est : \textbf{3 5} (les valeurs ont été échangées).
+
+\corrige{de l'exercice 4}
+\begin{algo}
+Algorithme Presentation
+Variables
+    nom : Chaîne
+    age : Entier
+Début
+    Écrire("Entrez votre nom :")
+    Lire(nom)
+    Écrire("Entrez votre âge :")
+    Lire(age)
+    Écrire("Bonjour ", nom, ", vous avez ", age, " ans.")
+Fin
+\end{algo}
+
+\corrige{de l'exercice 5}
+\begin{algo}
+Algorithme SigneNombre
+Variables
+    n : Entier
+Début
+    Écrire("Entrez un nombre :")
+    Lire(n)
+    Si (n > 0) Alors
+        Écrire("Le nombre est positif.")
+    Sinon
+        Si (n < 0) Alors
+            Écrire("Le nombre est négatif.")
+        Sinon
+            Écrire("Le nombre est nul.")
+        FinSi
+    FinSi
+Fin
+\end{algo}
+
+\corrige{de l'exercice 6}
+\begin{algo}
+Algorithme PlusGrand
+Variables
+    a, b, c, max : Entier
+Début
+    Écrire("Entrez trois nombres :")
+    Lire(a)
+    Lire(b)
+    Lire(c)
+    max $\leftarrow$ a
+    Si (b > max) Alors
+        max $\leftarrow$ b
+    FinSi
+    Si (c > max) Alors
+        max $\leftarrow$ c
+    FinSi
+    Écrire("Le plus grand est : ", max)
+Fin
+\end{algo}
+
+\corrige{de l'exercice 7}
+\begin{algo}
+Algorithme AnneeBissextile
+Variables
+    annee : Entier
+Début
+    Écrire("Entrez une année :")
+    Lire(annee)
+    Si ((annee MOD 4 = 0 ET annee MOD 100 <> 0) OU (annee MOD 400 = 0)) Alors
+        Écrire(annee, " est bissextile.")
+    Sinon
+        Écrire(annee, " n'est pas bissextile.")
+    FinSi
+Fin
+\end{algo}
+
+\corrige{de l'exercice 8}
+\begin{algo}
+Algorithme Remise
+Variables
+    montant, aPayer : Réel
+Début
+    Écrire("Entrez le montant des achats (en FCFA) :")
+    Lire(montant)
+    Si (montant > 50000) Alors
+        aPayer $\leftarrow$ montant * 0.9
+    Sinon
+        aPayer $\leftarrow$ montant
+    FinSi
+    Écrire("Montant à payer : ", aPayer, " FCFA")
+Fin
+\end{algo}
+
+\corrige{de l'exercice 9}
+\begin{algo}
+Algorithme Calculatrice
+Variables
+    a, b, resultat : Réel
+    operateur : Caractère
+Début
+    Écrire("Entrez deux nombres :")
+    Lire(a)
+    Lire(b)
+    Écrire("Entrez l'opérateur (+, -, *, /) :")
+    Lire(operateur)
+    Selon operateur
+        Cas '+' : resultat $\leftarrow$ a + b
+        Cas '-' : resultat $\leftarrow$ a - b
+        Cas '*' : resultat $\leftarrow$ a * b
+        Cas '/' : 
+            Si (b <> 0) Alors
+                resultat $\leftarrow$ a / b
+            Sinon
+                Écrire("Erreur : division par zéro !")
+                resultat $\leftarrow$ 0
+            FinSi
+        Sinon : Écrire("Opérateur invalide !")
+    FinSelon
+    Écrire("Résultat : ", resultat)
+Fin
+\end{algo}
+
+\corrige{de l'exercice 10}
+\begin{algo}
+Algorithme Compter1a10
+Variables
+    i : Entier
+Début
+    Pour i $\leftarrow$ 1 À 10 Faire
+        Écrire(i)
+    FinPour
+Fin
+\end{algo}
+
+\corrige{de l'exercice 11}
+\begin{algo}
+Algorithme SommeN
+Variables
+    N, i, somme : Entier
+Début
+    Écrire("Entrez un entier N :")
+    Lire(N)
+    somme $\leftarrow$ 0
+    Pour i $\leftarrow$ 1 À N Faire
+        somme $\leftarrow$ somme + i
+    FinPour
+    Écrire("La somme des ", N, " premiers entiers est : ", somme)
+Fin
+\end{algo}
+
+\corrige{de l'exercice 12}
+\begin{algo}
+Algorithme Moyenne10Notes
+Variables
+    i : Entier
+    note, somme, moyenne : Réel
+Début
+    somme $\leftarrow$ 0
+    Pour i $\leftarrow$ 1 À 10 Faire
+        Écrire("Entrez la note ", i, " :")
+        Lire(note)
+        somme $\leftarrow$ somme + note
+    FinPour
+    moyenne $\leftarrow$ somme / 10
+    Écrire("La moyenne est : ", moyenne)
+Fin
+\end{algo}
+
+\corrige{de l'exercice 13}
+\begin{algo}
+Algorithme TableMultiplication
+Variables
+    n, i : Entier
+Début
+    Écrire("Entrez un nombre :")
+    Lire(n)
+    Pour i $\leftarrow$ 1 À 10 Faire
+        Écrire(n, " x ", i, " = ", n * i)
+    FinPour
+Fin
+\end{algo}
+
+\corrige{de l'exercice 14}
+\begin{algo}
+Algorithme Factorielle
+Variables
+    N, i, fact : Entier
+Début
+    Écrire("Entrez un entier N :")
+    Lire(N)
+    fact $\leftarrow$ 1
+    Pour i $\leftarrow$ 2 À N Faire
+        fact $\leftarrow$ fact * i
+    FinPour
+    Écrire(N, "! = ", fact)
+Fin
+\end{algo}
+
+\corrige{de l'exercice 15}
+\begin{algo}
+Algorithme NombresPairs
+Variables
+    i : Entier
+Début
+    i $\leftarrow$ 2
+    Tant que (i <= 20) Faire
+        Écrire(i)
+        i $\leftarrow$ i + 2
+    FinTantQue
+Fin
+\end{algo}
+
+\corrige{de l'exercice 16}
+\begin{algo}
+Algorithme MotDePasse
+Variables
+    mdp : Chaîne
+Début
+    Écrire("Entrez le mot de passe :")
+    Lire(mdp)
+    Tant que (mdp <> "CAMEROUN") Faire
+        Écrire("Mot de passe incorrect. Réessayez :")
+        Lire(mdp)
+    FinTantQue
+    Écrire("Accès autorisé.")
+Fin
+\end{algo}
+
+\corrige{de l'exercice 17}
+\begin{algo}
+Algorithme SommePositifs
+Variables
+    n, somme : Entier
+Début
+    somme $\leftarrow$ 0
+    Écrire("Entrez un nombre (négatif pour arrêter) :")
+    Lire(n)
+    Tant que (n >= 0) Faire
+        somme $\leftarrow$ somme + n
+        Écrire("Entrez un nombre (négatif pour arrêter) :")
+        Lire(n)
+    FinTantQue
+    Écrire("La somme des nombres positifs est : ", somme)
+Fin
+\end{algo}
+
+\corrige{de l'exercice 18}
+\begin{algo}
+Algorithme Devinette
+Variables
+    secret, essai : Entier
+Début
+    secret $\leftarrow$ 42
+    Répéter
+        Écrire("Devinez le nombre secret :")
+        Lire(essai)
+        Si (essai > secret) Alors
+            Écrire("Trop grand !")
+        Sinon
+            Si (essai < secret) Alors
+                Écrire("Trop petit !")
+            FinSi
+        FinSi
+    Jusqu'à (essai = secret)
+    Écrire("Bravo ! Vous avez trouvé le nombre secret.")
+Fin
+\end{algo}
+
+\corrige{de l'exercice 19}
+\begin{algo}
+Algorithme MoyenneNotes
+Variables
+    note, somme, moyenne : Réel
+    nbNotes : Entier
+Début
+    somme $\leftarrow$ 0
+    nbNotes $\leftarrow$ 0
+    Écrire("Entrez une note (-1 pour terminer) :")
+    Lire(note)
+    Tant que (note <> -1) Faire
+        somme $\leftarrow$ somme + note
+        nbNotes $\leftarrow$ nbNotes + 1
+        Écrire("Entrez une note (-1 pour terminer) :")
+        Lire(note)
+    FinTantQue
+    Si (nbNotes > 0) Alors
+        moyenne $\leftarrow$ somme / nbNotes
+        Écrire("La moyenne est : ", moyenne)
+    Sinon
+        Écrire("Aucune note saisie.")
+    FinSi
+Fin
+\end{algo}
+
+\corrige{de l'exercice 20}
+Tableau de déroulement pour a=7, b=3 :
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf{Étape} & \textbf{quotient} & \textbf{reste} & \textbf{Condition (reste >= b)} & \textbf{Action} \\
+\hline
+Initial & 0 & 7 & — & — \\
+\hline
+1 & 0 & 7 & 7 >= 3 : Vrai & reste $\leftarrow$ 7-3=4, quotient $\leftarrow$ 0+1=1 \\
+\hline
+2 & 1 & 4 & 4 >= 3 : Vrai & reste $\leftarrow$ 4-3=1, quotient $\leftarrow$ 1+1=2 \\
+\hline
+3 & 2 & 1 & 1 >= 3 : Faux & Sortie de la boucle \\
+\hline
+\end{tabular}
+\end{center}
+Affichage : \textbf{2 1} (quotient = 2, reste = 1).
+
+\corrige{de l'exercice 21}
+Tableau de déroulement pour N=5 :
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{i} & \textbf{u (avant)} & \textbf{u (après)} & \textbf{Commentaire} \\
+\hline
+Initial & 0 & — & u $\leftarrow$ 0 \\
+\hline
+1 & 0 & 1 & u $\leftarrow$ 0 + 1 \\
+\hline
+2 & 1 & 3 & u $\leftarrow$ 1 + 2 \\
+\hline
+3 & 3 & 6 & u $\leftarrow$ 3 + 3 \\
+\hline
+4 & 6 & 10 & u $\leftarrow$ 6 + 4 \\
+\hline
+5 & 10 & 15 & u $\leftarrow$ 10 + 5 \\
+\hline
+\end{tabular}
+\end{center}
+Affichage : \textbf{15} (c'est la somme des 5 premiers entiers : 1+2+3+4+5=15).
+
+\corrige{de l'exercice 22}
+Tableau de déroulement pour n=1234 :
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf{Étape} & \textbf{n} & \textbf{chiffre} & \textbf{inverse} & \textbf{Condition (n > 0)} \\
+\hline
+Initial & 1234 & — & 0 & — \\
+\hline
+1 & 123 & 4 & 0*10+4=4 & 1234 > 0 : Vrai \\
+\hline
+2 & 12 & 3 & 4*10+3=43 & 123 > 0 : Vrai \\
+\hline
+3 & 1 & 2 & 43*10+2=432 & 12 > 0 : Vrai \\
+\hline
+4 & 0 & 1 & 432*10+1=4321 & 1 > 0 : Vrai \\
+\hline
+5 & 0 & — & — & 0 > 0 : Faux \\
+\hline
+\end{tabular}
+\end{center}
+Affichage : \textbf{4321} (l'inverse du nombre saisi).
+
+\corrige{de l'exercice 23}
+\begin{algo}
+Algorithme EquationSecondDegre
+Variables
+    a, b, c, discriminant : Réel
+    x1, x2, partieReelle, partieImaginaire : Réel
+Début
+    Écrire("Entrez les coefficients a, b, c :")
+    Lire(a)
+    Lire(b)
+    Lire(c)
+    discriminant $\leftarrow$ b*b - 4*a*c
+    Si (discriminant > 0) Alors
+        x1 $\leftarrow$ (-b + sqrt(discriminant)) / (2*a)
+        x2 $\leftarrow$ (-b - sqrt(discriminant)) / (2*a)
+        Écrire("Deux solutions réelles : ", x1, " et ", x2)
+    Sinon
+        Si (discriminant = 0) Alors
+            x1 $\leftarrow$ -b / (2*a)
+            Écrire("Une solution double : ", x1)
+        Sinon
+            partieReelle $\leftarrow$ -b / (2*a)
+            partieImaginaire $\leftarrow$ sqrt(-discriminant) / (2*a)
+            Écrire("Deux solutions complexes : ", partieReelle, " + i*", partieImaginaire, " et ", partieReelle, " - i*", partieImaginaire)
+        FinSi
+    FinSi
+Fin
+\end{algo}
+
+\corrige{de l'exercice 24}
+\begin{algo}
+Algorithme NombrePremier
+Variables
+    N, i : Entier
+    estPremier : Booléen
+Début
+    Écrire("Entrez un entier N :")
+    Lire(N)
+    Si (N <= 1) Alors
+        estPremier $\leftarrow$ Faux
+    Sinon
+        estPremier $\leftarrow$ Vrai
+        Pour i $\leftarrow$ 2 À N-1 Faire
+            Si (N MOD i = 0) Alors
+                estPremier $\leftarrow$ Faux
+            FinSi
+        FinPour
+    FinSi
+    Si (estPremier = Vrai) Alors
+        Écrire(N, " est un nombre premier.")
+    Sinon
+        Écrire(N, " n'est pas un nombre premier.")
+    FinSi
+Fin
+\end{algo}
+
+\corrige{de l'exercice 25}
+\begin{algo}
+Algorithme StatistiquesNotes
+Variables
+    i : Entier
+    note, somme, moyenne, max, min : Réel
+    nbReussite : Entier
+Début
+    somme $\leftarrow$ 0
+    nbReussite $\leftarrow$ 0
+    max $\leftarrow$ 0
+    min $\leftarrow$ 20
+    Pour i $\leftarrow$ 1 À 10 Faire
+        Écrire("Entrez la note ", i, " (sur 20) :")
+        Lire(note)
+        somme $\leftarrow$ somme + note
+        Si (note >= 10) Alors
+            nbReussite $\leftarrow$ nbReussite + 1
+        FinSi
+        Si (note > max) Alors
+            max $\leftarrow$ note
+        FinSi
+        Si (note < min) Alors
+            min $\leftarrow$ note
+        FinSi
+    FinPour
+    moyenne $\leftarrow$ somme / 10
+    Écrire("Moyenne de la classe : ", moyenne)
+    Écrire("Nombre d'élèves ayant la moyenne : ", nbReussite)
+    Écrire("Note maximale : ", max)
+    Écrire("Note minimale : ", min)
+Fin
+\end{algo}
+
+\corrige{de l'exercice 26}
+\begin{algo}
+Algorithme Fibonacci
+Variables
+    N, i, f0, f1, fn : Entier
+Début
+    Écrire("Entrez le nombre de termes N :")
+    Lire(N)
+    f0 $\leftarrow$ 0
+    f1 $\leftarrow$ 1
+    Si (N >= 1) Alors
+        Écrire(f0)
+    FinSi
+    Si (N >= 2) Alors
+        Écrire(f1)
+    FinSi
+    Pour i $\leftarrow$ 3 À N Faire
+        fn $\leftarrow$ f0 + f1
+        Écrire(fn)
+        f0 $\leftarrow$ f1
+        f1 $\leftarrow$ fn
+    FinPour
+Fin
+\end{algo}
+
+\corrige{de l'exercice 27}
+\begin{algo}
+Algorithme ConversionBinaire
+Variables
+    n, reste : Entier
+    binaire : Chaîne
+Début
+    Écrire("Entrez un nombre entier positif :")
+    Lire(n)
+    binaire $\leftarrow$ ""
+    Si (n = 0) Alors
+        binaire $\leftarrow$ "0"
+    Sinon
+        Tant que (n > 0) Faire
+            reste $\leftarrow$ n MOD 2
+            Si (reste = 0) Alors
+                binaire $\leftarrow$ "0" + binaire
+            Sinon
+                binaire $\leftarrow$ "1" + binaire
+            FinSi
+            n $\leftarrow$ n DIV 2
+        FinTantQue
+    FinSi
+    Écrire("Représentation binaire : ", binaire)
+Fin
+\end{algo}
+
+\corrige{de l'exercice 28}
+\begin{algo}
+Algorithme Occurrences
+Variables
+    i, valeur : Entier
+    occurrences : Tableau[0..9] d'Entier
+Début
+    Pour i $\leftarrow$ 0 À 9 Faire
+        occurrences[i] $\leftarrow$ 0
+    FinPour
+    Pour i $\leftarrow$ 1 À 10 Faire
+        Écrire("Entrez une valeur entre 0 et 9 :")
+        Lire(valeur)
+        occurrences[valeur] $\leftarrow$ occurrences[valeur] + 1
+    FinPour
+    Pour i $\leftarrow$ 0 À 9 Faire
+        Écrire("La valeur ", i, " apparaît ", occurrences[i], " fois.")
+    FinPour
+Fin
+\end{algo}

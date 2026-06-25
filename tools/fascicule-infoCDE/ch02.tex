@@ -1,0 +1,326 @@
+\chapter{Systèmes d'exploitation et maintenance}
+
+\textit{Un système d'exploitation (SE) est le logiciel de base qui gère le matériel et les logiciels d'un ordinateur. Ce chapitre résume ses rôles, les types de SE, la gestion des fichiers et les bonnes pratiques de maintenance.}
+
+\section{L'essentiel du cours}
+
+\subsection{Rôles d'un système d'exploitation}
+Le système d'exploitation (SE) est un intermédiaire entre l'utilisateur et le matériel. Ses rôles principaux sont :
+\begin{itemize}
+    \item \textbf{Gestion des ressources} : répartit le temps processeur (CPU), la mémoire vive (RAM), les périphériques (imprimante, disque dur) entre les programmes.
+    \item \textbf{Gestion des fichiers} : organise les données sur le disque (arborescence, droits d'accès).
+    \item \textbf{Gestion des processus} : lance, suspend, arrête les programmes en cours d'exécution.
+    \item \textbf{Gestion des utilisateurs} : identifie chaque utilisateur, gère les mots de passe et les permissions.
+    \item \textbf{Interface utilisateur} : offre une interface en ligne de commande (CLI) ou graphique (GUI).
+\end{itemize}
+
+\begin{definition}[Système d'exploitation]
+Logiciel fondamental qui contrôle le matériel, exécute les applications et fournit des services aux programmes.
+\end{definition}
+
+\subsection{Types de systèmes d'exploitation}
+\begin{itemize}
+    \item \textbf{Monotâche} : un seul programme à la fois (ex. : MS-DOS).
+    \item \textbf{Multitâche} : plusieurs programmes simultanément (ex. : Windows, Linux, macOS).
+    \item \textbf{Temps réel} : réaction immédiate aux événements (ex. : systèmes embarqués).
+    \item \textbf{Réseau} : gère les ressources d'un réseau (ex. : Windows Server, Linux).
+\end{itemize}
+
+\subsection{Arborescence et chemins de fichiers}
+\begin{itemize}
+    \item \textbf{Arborescence} : structure hiérarchique de dossiers (répertoires) et fichiers.
+    \item \textbf{Chemin absolu} : commence à la racine (ex. : \texttt{C:\textbackslash Utilisateurs\textbackslash Paul\textbackslash Documents}).
+    \item \textbf{Chemin relatif} : par rapport au dossier courant (ex. : \texttt{..\textbackslash Images\textbackslash photo.jpg}).
+    \item \textbf{Racine} : dossier principal (sous Windows : \texttt{C:\textbackslash}, sous Linux : \texttt{/}).
+\end{itemize}
+
+\begin{exemple}
+Sous Windows, le chemin absolu du fichier \texttt{rapport.pdf} dans le dossier \texttt{Documents} de l'utilisateur \texttt{Paul} est : \texttt{C:\textbackslash Utilisateurs\textbackslash Paul\textbackslash Documents\textbackslash rapport.pdf}.
+\end{exemple}
+
+\subsection{Commandes de base (Windows)}
+\begin{itemize}
+    \item \texttt{dir} : affiche le contenu d'un dossier.
+    \item \texttt{cd} : change de dossier.
+    \item \texttt{mkdir} : crée un dossier.
+    \item \texttt{del} : supprime un fichier.
+    \item \texttt{copy} : copie un fichier.
+    \item \texttt{ipconfig} : affiche la configuration réseau.
+    \item \texttt{tasklist} : liste les processus en cours.
+    \item \texttt{shutdown} : éteint ou redémarre l'ordinateur.
+\end{itemize}
+
+\subsection{Maintenance}
+\begin{definition}[Maintenance préventive]
+Actions régulières pour éviter les pannes : nettoyage des fichiers temporaires, défragmentation, mise à jour des logiciels, sauvegarde des données.
+\end{definition}
+
+\begin{definition}[Maintenance curative]
+Actions correctives après une panne : réparation du système, restauration des fichiers, suppression de virus.
+\end{definition}
+
+\begin{aretenir}
+\begin{itemize}
+    \item Toujours effectuer des \textbf{sauvegardes} régulières (sur disque externe, cloud).
+    \item Utiliser un \textbf{antivirus} à jour.
+    \item Ne pas ouvrir de pièces jointes suspectes.
+    \item Mettre à jour le SE et les logiciels.
+\end{itemize}
+\end{aretenir}
+
+\section{Exercices}
+
+\rubrique{Questions à choix multiples (QCM)}
+
+\exo{}\diff{1}
+Quel est le rôle principal d'un système d'exploitation ?
+\begin{enumerate}[label=\Alph*.]
+    \item Naviguer sur Internet.
+    \item Gérer les ressources matérielles et logicielles.
+    \item Créer des documents texte.
+    \item Compiler des programmes.
+\end{enumerate}
+
+\exo{}\diff{1}
+Parmi les SE suivants, lequel est un système d'exploitation multitâche ?
+\begin{enumerate}[label=\Alph*.]
+    \item MS-DOS
+    \item Windows 10
+    \item BIOS
+    \item Python
+\end{enumerate}
+
+\exo{}\diff{1}
+Sous Windows, quelle commande affiche la configuration réseau ?
+\begin{enumerate}[label=\Alph*.]
+    \item \texttt{dir}
+    \item \texttt{ipconfig}
+    \item \texttt{cd}
+    \item \texttt{del}
+\end{enumerate}
+
+\exo{}\diff{1}
+Qu'est-ce qu'un chemin absolu ?
+\begin{enumerate}[label=\Alph*.]
+    \item Un chemin qui commence à la racine.
+    \item Un chemin relatif au dossier courant.
+    \item Un chemin vers un fichier sur le bureau.
+    \item Un chemin vers un dossier système.
+\end{enumerate}
+
+\exo{}\diff{1}
+La maintenance préventive consiste à :
+\begin{enumerate}[label=\Alph*.]
+    \item Réparer une panne après qu'elle se soit produite.
+    \item Effectuer des actions régulières pour éviter les pannes.
+    \item Formater le disque dur.
+    \item Installer un nouveau système d'exploitation.
+\end{enumerate}
+
+\rubrique{Arborescence et chemins de fichiers}
+
+\exo{}\diff{2}
+Soit l'arborescence suivante :
+\begin{verbatim}
+C:\
+├── Utilisateurs
+│   ├── Paul
+│   │   ├── Documents
+│   │   │   ├── cours.pdf
+│   │   │   └── devoir.txt
+│   │   └── Images
+│   │       └── photo.jpg
+│   └── Marie
+│       └── Musique
+│           └── chanson.mp3
+└── Programmes
+    └── jeu.exe
+\end{verbatim}
+Donnez le chemin absolu de \texttt{photo.jpg}.
+
+\exo{}\diff{2}
+Dans la même arborescence, si le dossier courant est \texttt{C:\textbackslash Utilisateurs\textbackslash Paul\textbackslash Documents}, quel est le chemin relatif pour accéder à \texttt{chanson.mp3} ?
+
+\exo{}\diff{2}
+Écrivez la commande Windows pour créer un dossier nommé \texttt{TP} dans le dossier \texttt{Documents} de l'utilisateur courant.
+
+\exo{}\diff{2}
+Écrivez la commande Windows pour afficher le contenu du dossier \texttt{C:\textbackslash Windows}.
+
+\rubrique{Commandes système}
+
+\exo{}\diff{2}
+Quelle commande Windows permet de lister tous les processus en cours d'exécution ?
+
+\exo{}\diff{2}
+Quelle commande Windows permet d'éteindre l'ordinateur après 30 secondes ?
+
+\exo{}\diff{2}
+Un utilisateur veut copier le fichier \texttt{rapport.txt} du dossier \texttt{Documents} vers le dossier \texttt{Sauvegarde} sur le bureau. Écrivez la commande appropriée (chemins absolus).
+
+\rubrique{Maintenance et sécurité}
+
+\exo{}\diff{2}
+Citez trois actions de maintenance préventive.
+
+\exo{}\diff{2}
+Pourquoi est-il important de mettre à jour régulièrement son système d'exploitation ?
+
+\exo{}\diff{2}
+Qu'est-ce qu'un antivirus et quel est son rôle ?
+
+\exo{}\diff{2}
+Un ordinateur est infecté par un virus. Proposez une procédure de maintenance curative.
+
+\rubrique{Diagnostic de pannes}
+
+\exo{}\diff{3}
+Un ordinateur ne démarre pas et affiche un message d'erreur "Boot device not found". Quelle peut être la cause ? Proposez une solution.
+
+\exo{}\diff{3}
+Un utilisateur se plaint que son ordinateur est très lent. Donnez trois causes possibles et les actions correctives correspondantes.
+
+\exo{}\diff{3}
+Un logiciel se bloque systématiquement. Comment forcer sa fermeture sous Windows ?
+
+\rubrique{Exercices type Baccalauréat}
+
+\sujetbac[2020, Cameroun, Informatique Tle C]
+\exo{}\diff{3}
+Un lycée dispose de 30 ordinateurs connectés en réseau. Le système d'exploitation utilisé est Windows 10.
+\begin{enumerate}
+    \item Expliquez le rôle du système d'exploitation dans la gestion des ressources.
+    \item Proposez une commande pour afficher l'adresse IP d'un poste.
+    \item Le responsable informatique veut effectuer une sauvegarde des données des utilisateurs. Donnez deux supports de sauvegarde possibles.
+    \item Citez deux bonnes pratiques de sécurité pour protéger le réseau.
+\end{enumerate}
+
+\sujetbac[2021, Cameroun, Informatique Tle D]
+\exo{}\diff{3}
+Un technicien doit installer un nouveau système d'exploitation sur un serveur.
+\begin{enumerate}
+    \item Quels sont les deux types de systèmes d'exploitation les plus courants pour un serveur ?
+    \item Expliquez la différence entre un chemin absolu et un chemin relatif.
+    \item Le technicien doit créer un dossier \texttt{Archives} dans le répertoire racine. Écrivez la commande Windows correspondante.
+    \item Après installation, il effectue une maintenance préventive. Donnez deux exemples d'actions qu'il pourrait réaliser.
+\end{enumerate}
+
+\sujetbac[2022, Cameroun, Informatique Tle E]
+\exo{}\diff{3}
+Un utilisateur a perdu des fichiers importants à cause d'un virus.
+\begin{enumerate}
+    \item Expliquez le rôle d'un antivirus.
+    \item Proposez deux mesures de maintenance préventive pour éviter une telle situation.
+    \item Si l'ordinateur est infecté, quelle est la première action à entreprendre ?
+    \item Donnez deux commandes Windows utiles pour diagnostiquer un problème réseau.
+\end{enumerate}
+
+\rubrique{Approfondissement}
+
+\exo{}\diff{3}
+Sous Windows, la commande \texttt{taskkill /F /IM notepad.exe} permet de forcer l'arrêt du Bloc-notes. Expliquez chaque partie de cette commande.
+
+\exo{}\diff{3}
+Un administrateur veut savoir combien de processus sont en cours sur un poste. Quelle commande peut-il utiliser ? Comment interpréter le résultat ?
+
+\exo{}\diff{3}
+Proposez un plan de maintenance préventive mensuel pour un parc de 50 ordinateurs dans une école.
+
+\section{Corrigés}
+
+\corrige{1}
+Réponse : B. Le SE gère les ressources matérielles et logicielles.
+
+\corrige{2}
+Réponse : B. Windows 10 est un SE multitâche.
+
+\corrige{3}
+Réponse : B. \texttt{ipconfig} affiche la configuration réseau.
+
+\corrige{4}
+Réponse : A. Un chemin absolu commence à la racine.
+
+\corrige{5}
+Réponse : B. La maintenance préventive évite les pannes.
+
+\corrige{6}
+Le chemin absolu de \texttt{photo.jpg} est : \texttt{C:\textbackslash Utilisateurs\textbackslash Paul\textbackslash Images\textbackslash photo.jpg}.
+
+\corrige{7}
+Depuis \texttt{C:\textbackslash Utilisateurs\textbackslash Paul\textbackslash Documents}, le chemin relatif vers \texttt{chanson.mp3} est : \texttt{..\textbackslash ..\textbackslash Marie\textbackslash Musique\textbackslash chanson.mp3}.
+
+\corrige{8}
+Commande : \texttt{mkdir C:\textbackslash Utilisateurs\textbackslash \%USERNAME\%\textbackslash Documents\textbackslash TP} (ou \texttt{mkdir TP} si le dossier courant est \texttt{Documents}).
+
+\corrige{9}
+Commande : \texttt{dir C:\textbackslash Windows}.
+
+\corrige{10}
+Commande : \texttt{tasklist}.
+
+\corrige{11}
+Commande : \texttt{shutdown /s /t 30}.
+
+\corrige{12}
+Commande : \texttt{copy C:\textbackslash Utilisateurs\textbackslash Paul\textbackslash Documents\textbackslash rapport.txt C:\textbackslash Utilisateurs\textbackslash Paul\textbackslash Bureau\textbackslash Sauvegarde\textbackslash rapport.txt}.
+
+\corrige{13}
+Trois actions de maintenance préventive : nettoyage des fichiers temporaires, mise à jour des logiciels, sauvegarde régulière des données.
+
+\corrige{14}
+Les mises à jour corrigent des failles de sécurité, améliorent la stabilité et ajoutent des fonctionnalités.
+
+\corrige{15}
+Un antivirus est un logiciel qui détecte, bloque et supprime les programmes malveillants (virus, vers, chevaux de Troie).
+
+\corrige{16}
+Procédure : 1. Déconnecter l'ordinateur du réseau. 2. Lancer une analyse antivirus complète. 3. Supprimer les fichiers infectés. 4. Restaurer les fichiers à partir d'une sauvegarde si nécessaire. 5. Mettre à jour le SE et l'antivirus.
+
+\corrige{17}
+Cause probable : le disque dur n'est pas détecté (câble débranché, disque défectueux) ou l'ordre de démarrage est incorrect. Solution : vérifier les connexions du disque dur, entrer dans le BIOS/UEFI et modifier l'ordre de démarrage.
+
+\corrige{18}
+Causes possibles : 1. Trop de programmes en arrière-plan (fermer les programmes inutiles). 2. Disque dur fragmenté (lancer la défragmentation). 3. Virus (lancer une analyse antivirus).
+
+\corrige{19}
+Sous Windows, appuyer sur \texttt{Ctrl + Alt + Suppr}, sélectionner le logiciel dans le Gestionnaire des tâches, puis cliquer sur "Fin de tâche".
+
+\corrige{20}
+\begin{enumerate}
+    \item Le SE gère les ressources (CPU, mémoire, disque) en les allouant aux programmes et utilisateurs de manière équitable.
+    \item Commande : \texttt{ipconfig}.
+    \item Supports : disque dur externe, clé USB, serveur NAS, cloud.
+    \item Bonnes pratiques : utiliser un pare-feu, mettre à jour les logiciels, former les utilisateurs.
+\end{enumerate}
+
+\corrige{21}
+\begin{enumerate}
+    \item Windows Server et Linux (Ubuntu Server, CentOS).
+    \item Un chemin absolu commence à la racine (ex. \texttt{C:\textbackslash}), un chemin relatif dépend du dossier courant.
+    \item Commande : \texttt{mkdir C:\textbackslash Archives}.
+    \item Actions : nettoyage des fichiers temporaires, vérification des mises à jour.
+\end{enumerate}
+
+\corrige{22}
+\begin{enumerate}
+    \item Un antivirus détecte et supprime les logiciels malveillants.
+    \item Mesures : sauvegarder régulièrement les fichiers, ne pas ouvrir de pièces jointes suspectes.
+    \item Première action : déconnecter l'ordinateur du réseau.
+    \item Commandes : \texttt{ipconfig} et \texttt{ping}.
+\end{enumerate}
+
+\corrige{23}
+\texttt{taskkill} : commande pour arrêter un processus. \texttt{/F} : force l'arrêt. \texttt{/IM} : spécifie le nom de l'image (fichier exécutable). \texttt{notepad.exe} : nom du processus à arrêter.
+
+\corrige{24}
+Commande : \texttt{tasklist}. Le résultat affiche une liste de processus avec leur PID, nom, session et utilisation mémoire. Le nombre de lignes (hors en-tête) donne le nombre de processus.
+
+\corrige{25}
+Plan mensuel :
+\begin{itemize}
+    \item Semaine 1 : Nettoyage des fichiers temporaires et de la corbeille.
+    \item Semaine 2 : Mise à jour des logiciels et du SE.
+    \item Semaine 3 : Analyse antivirus complète.
+    \item Semaine 4 : Sauvegarde des données sur un serveur externe.
+\end{itemize}
+Ajouter une défragmentation trimestrielle et un remplacement des disques durs défectueux.

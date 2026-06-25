@@ -1,0 +1,713 @@
+\chapter{Systèmes de numération et codage de l'information}
+
+\textit{Ce chapitre présente les bases de la représentation des nombres et des caractères en informatique. Maîtriser les conversions entre bases (binaire, octal, décimal, hexadécimal) et comprendre le codage des entiers et des caractères est fondamental pour tout informaticien.}
+
+\section{L'essentiel du cours}
+
+\subsection{Systèmes de numération}
+
+Un système de numération est défini par une \textbf{base} $b$ (un entier $\geq 2$) et utilise $b$ chiffres différents (de 0 à $b-1$). La valeur d'un nombre s'écrit comme une somme de puissances de la base.
+
+\begin{definition}[Base d'un système]
+La base $b$ d'un système de numération est le nombre de chiffres distincts utilisés. Les bases les plus courantes en informatique sont :
+\begin{itemize}
+    \item \textbf{Base 2 (binaire)} : chiffres 0 et 1
+    \item \textbf{Base 8 (octal)} : chiffres 0 à 7
+    \item \textbf{Base 10 (décimal)} : chiffres 0 à 9
+    \item \textbf{Base 16 (hexadécimal)} : chiffres 0 à 9 et lettres A à F (A=10, B=11, C=12, D=13, E=14, F=15)
+\end{itemize}
+\end{definition}
+
+\begin{aretenir}
+Pour convertir un nombre d'une base $b$ vers le décimal, on utilise la formule :
+\[
+N = \sum_{i=0}^{n-1} d_i \times b^i
+\]
+où $d_i$ est le chiffre de rang $i$ (en partant de la droite, $i=0$ pour le chiffre des unités).
+\end{aretenir}
+
+\begin{exemple}
+Convertir $1101_2$ en décimal :
+\[
+1101_2 = 1\times2^3 + 1\times2^2 + 0\times2^1 + 1\times2^0 = 8 + 4 + 0 + 1 = 13_{10}
+\]
+\end{exemple}
+
+\subsection{Conversions entre bases}
+
+\begin{propriete}[Conversion décimal $\rightarrow$ binaire]
+Pour convertir un nombre décimal en binaire, on effectue des divisions successives par 2. Les restes, lus de la dernière à la première division, donnent le nombre binaire.
+\end{propriete}
+
+\begin{exemple}
+Convertir $25_{10}$ en binaire :
+\begin{align*}
+25 \div 2 &= 12 \text{ reste } 1 \\
+12 \div 2 &= 6 \text{ reste } 0 \\
+6 \div 2 &= 3 \text{ reste } 0 \\
+3 \div 2 &= 1 \text{ reste } 1 \\
+1 \div 2 &= 0 \text{ reste } 1
+\end{align*}
+En lisant les restes de bas en haut : $25_{10} = 11001_2$
+\end{exemple}
+
+\begin{aretenir}
+Pour les conversions entre binaire et hexadécimal (ou octal), on groupe les bits par paquets de 4 (pour l'hexadécimal) ou de 3 (pour l'octal) à partir de la droite.
+\end{aretenir}
+
+\subsection{Opérations en binaire}
+
+\begin{definition}[Addition binaire]
+L'addition en binaire suit les mêmes règles qu'en décimal, mais avec seulement deux chiffres :
+\begin{itemize}
+    \item $0 + 0 = 0$
+    \item $0 + 1 = 1$
+    \item $1 + 0 = 1$
+    \item $1 + 1 = 0$ avec une retenue de 1
+    \item $1 + 1 + 1 = 1$ avec une retenue de 1
+\end{itemize}
+\end{definition}
+
+\subsection{Codage des entiers}
+
+\begin{definition}[Binaire pur]
+Sur $n$ bits, on peut représenter les entiers naturels de $0$ à $2^n - 1$.
+\end{definition}
+
+\begin{definition}[Complément à 2]
+Pour représenter des entiers relatifs sur $n$ bits :
+\begin{itemize}
+    \item Les nombres positifs sont codés en binaire pur (bit de poids fort = 0)
+    \item Les nombres négatifs sont obtenus en prenant le complément à 2 du nombre positif correspondant
+\end{itemize}
+Le bit de poids fort indique le signe (0 = positif, 1 = négatif). La plage de valeurs est $[-2^{n-1}, 2^{n-1}-1]$.
+\end{definition}
+
+\begin{aretenir}
+Pour obtenir le complément à 2 d'un nombre binaire :
+\begin{enumerate}
+    \item Inverser tous les bits (complément à 1)
+    \item Ajouter 1 au résultat
+\end{enumerate}
+\end{aretenir}
+
+\subsection{Codage des caractères}
+
+\begin{definition}[Code ASCII]
+Le code ASCII (American Standard Code for Information Interchange) permet de coder les caractères sur 7 bits (128 caractères). Les codes 0 à 31 sont des caractères de contrôle, les codes 32 à 126 sont des caractères imprimables (lettres, chiffres, ponctuation).
+\end{definition}
+
+\begin{exemple}
+Le caractère 'A' a pour code ASCII 65 (en décimal), soit 1000001 en binaire.
+Le caractère 'a' a pour code ASCII 97 (en décimal), soit 1100001 en binaire.
+\end{exemple}
+
+\subsection{Unités de mesure de l'information}
+
+\begin{definition}[Unités]
+\begin{itemize}
+    \item \textbf{Bit} : unité élémentaire d'information (0 ou 1)
+    \item \textbf{Octet} : groupe de 8 bits
+    \item \textbf{Ko (Kilooctet)} : $10^3$ octets = 1000 octets
+    \item \textbf{Mo (Mégaoctet)} : $10^6$ octets = 1 000 000 octets
+    \item \textbf{Go (Gigaoctet)} : $10^9$ octets = 1 000 000 000 octets
+    \item \textbf{To (Téraoctet)} : $10^{12}$ octets
+\end{itemize}
+En informatique, on utilise aussi les préfixes binaires (Kio, Mio, Gio) basés sur des puissances de 2 :
+\begin{itemize}
+    \item 1 Kio = $2^{10}$ = 1024 octets
+    \item 1 Mio = $2^{20}$ = 1 048 576 octets
+    \item 1 Gio = $2^{30}$ = 1 073 741 824 octets
+\end{itemize}
+\end{definition}
+
+\section{Exercices}
+
+\rubrique{Conversions entre bases}
+
+\exo{}\diff{1}
+Convertir les nombres binaires suivants en décimal :
+\begin{enumerate}
+    \item $1010_2$
+    \item $110011_2$
+    \item $11111111_2$
+    \item $10000001_2$
+\end{enumerate}
+
+\exo{}\diff{1}
+Convertir les nombres décimaux suivants en binaire :
+\begin{enumerate}
+    \item $42_{10}$
+    \item $127_{10}$
+    \item $255_{10}$
+    \item $100_{10}$
+\end{enumerate}
+
+\exo{}\diff{1}
+Convertir les nombres hexadécimaux suivants en décimal :
+\begin{enumerate}
+    \item $A5_{16}$
+    \item $FF_{16}$
+    \item $1A3_{16}$
+    \item $BEEF_{16}$
+\end{enumerate}
+
+\exo{}\diff{1}
+Convertir les nombres décimaux suivants en hexadécimal :
+\begin{enumerate}
+    \item $31_{10}$
+    \item $200_{10}$
+    \item $1024_{10}$
+    \item $4095_{10}$
+\end{enumerate}
+
+\exo{}\diff{1}
+Convertir les nombres binaires suivants en hexadécimal :
+\begin{enumerate}
+    \item $10101111_2$
+    \item $110010101111_2$
+    \item $1111000011110000_2$
+\end{enumerate}
+
+\exo{}\diff{1}
+Convertir les nombres hexadécimaux suivants en binaire :
+\begin{enumerate}
+    \item $7F_{16}$
+    \item $ABC_{16}$
+    \item $DEAD_{16}$
+\end{enumerate}
+
+\exo{}\diff{2}
+Convertir les nombres octaux suivants en binaire, puis en hexadécimal :
+\begin{enumerate}
+    \item $73_8$
+    \item $245_8$
+    \item $1777_8$
+\end{enumerate}
+
+\exo{}\diff{2}
+Sans passer par le décimal, effectuer les conversions suivantes :
+\begin{enumerate}
+    \item $110101_2 \rightarrow \text{octal}$
+    \item $3A7_{16} \rightarrow \text{binaire}$
+    \item $567_8 \rightarrow \text{hexadécimal}$
+\end{enumerate}
+
+\rubrique{Opérations en binaire}
+
+\exo{}\diff{1}
+Effectuer les additions binaires suivantes :
+\begin{enumerate}
+    \item $1010_2 + 1101_2$
+    \item $1111_2 + 1_2$
+    \item $10101_2 + 1111_2$
+    \item $110011_2 + 101101_2$
+\end{enumerate}
+
+\exo{}\diff{2}
+Effectuer les additions suivantes en binaire, puis vérifier en convertissant en décimal :
+\begin{enumerate}
+    \item $1011_2 + 1110_2$
+    \item $11111_2 + 11111_2$
+    \item $101010_2 + 101010_2$
+\end{enumerate}
+
+\exo{}\diff{2}
+Un ordinateur travaille sur 8 bits. Effectuer les additions suivantes et indiquer s'il y a débordement (overflow) :
+\begin{enumerate}
+    \item $01111111_2 + 00000001_2$
+    \item $10000000_2 + 10000000_2$
+    \item $01010101_2 + 00101010_2$
+\end{enumerate}
+
+\rubrique{Codage des entiers}
+
+\exo{}\diff{1}
+Sur 8 bits, donner la représentation en binaire pur des nombres suivants :
+\begin{enumerate}
+    \item $15_{10}$
+    \item $128_{10}$
+    \item $200_{10}$
+    \item $255_{10}$
+\end{enumerate}
+
+\exo{}\diff{2}
+Sur 8 bits, donner la représentation en complément à 2 des nombres suivants :
+\begin{enumerate}
+    \item $+25_{10}$
+    \item $-25_{10}$
+    \item $+127_{10}$
+    \item $-128_{10}$
+    \item $-1_{10}$
+\end{enumerate}
+
+\exo{}\diff{2}
+Les nombres suivants sont codés en complément à 2 sur 8 bits. Donner leur valeur décimale :
+\begin{enumerate}
+    \item $00001111$
+    \item $11110001$
+    \item $10000000$
+    \item $11111111$
+\end{enumerate}
+
+\exo{}\diff{2}
+Quelle est la plage de valeurs représentables en complément à 2 sur :
+\begin{enumerate}
+    \item 8 bits ?
+    \item 16 bits ?
+    \item 32 bits ?
+\end{enumerate}
+
+\exo{}\diff{3}
+On considère le codage en complément à 2 sur 4 bits. Effectuer les opérations suivantes et indiquer si le résultat est correct :
+\begin{enumerate}
+    \item $0110 + 0011$
+    \item $0101 + 0101$
+    \item $1001 + 0111$
+    \item $1111 + 0001$
+\end{enumerate}
+
+\rubrique{Codage des caractères}
+
+\exo{}\diff{1}
+Donner le code ASCII (en décimal, binaire et hexadécimal) des caractères suivants :
+\begin{enumerate}
+    \item 'B'
+    \item 'z'
+    \item '0'
+    \item '9'
+    \item Espace
+\end{enumerate}
+
+\exo{}\diff{2}
+Décoder la phrase suivante (codes ASCII en décimal) :
+72 101 108 108 111 32 87 111 114 108 100 33
+
+\exo{}\diff{2}
+Quel est le code ASCII du caractère 'M' sachant que le code de 'A' est 65 ? Même question pour 'm' sachant que le code de 'a' est 97.
+
+\exo{}\diff{2}
+Combien de caractères différents peut-on coder avec :
+\begin{enumerate}
+    \item Le code ASCII standard (7 bits) ?
+    \item Le code ASCII étendu (8 bits) ?
+    \item Le code Unicode (16 bits) ?
+\end{enumerate}
+
+\rubrique{Unités de mesure}
+
+\exo{}\diff{1}
+Convertir :
+\begin{enumerate}
+    \item 2048 octets en Ko
+    \item 3 Mo en octets
+    \item 1 Go en Mo
+    \item 5120 octets en Kio
+\end{enumerate}
+
+\exo{}\diff{2}
+Un fichier texte contient 5000 caractères. Chaque caractère est codé sur 8 bits. Quelle est la taille du fichier en octets ? En Ko ?
+
+\exo{}\diff{2}
+Une image de 1024×768 pixels est codée sur 24 bits par pixel (couleur vraie). Quelle est sa taille en Mo ? En Mio ?
+
+\exo{}\diff{2}
+Un disque dur a une capacité de 500 Go. Combien de fichiers de 5 Mo peut-il contenir au maximum ?
+
+\exo{}\diff{3}
+On souhaite stocker une bibliothèque de 10 000 livres numériques. Chaque livre contient en moyenne 300 pages, chaque page contient 2000 caractères codés sur 8 bits. Quelle capacité de stockage (en Go) est nécessaire ?
+
+\rubrique{Exercices type Baccalauréat}
+
+\sujetbac[2020, Cameroun, C]
+\exo{}\diff{2}
+On considère les nombres suivants : $A = 110101_2$ et $B = 3A_{16}$.
+\begin{enumerate}
+    \item Convertir $A$ en décimal.
+    \item Convertir $B$ en binaire.
+    \item Effectuer l'addition $A + B$ en binaire.
+    \item Donner le résultat de l'addition en hexadécimal.
+\end{enumerate}
+
+\sujetbac[2021, Cameroun, D]
+\exo{}\diff{2}
+Un ordinateur utilise le codage en complément à 2 sur 8 bits.
+\begin{enumerate}
+    \item Coder les nombres $+45$ et $-45$.
+    \item Effectuer l'opération $45 + (-45)$ en binaire. Que constate-t-on ?
+    \item Coder le nombre $-128$. Pourquoi $-129$ ne peut-il pas être codé ?
+\end{enumerate}
+
+\sujetbac[2022, Cameroun, E]
+\exo{}\diff{3}
+Une entreprise camerounaise souhaite numériser ses archives. Chaque document est scanné en noir et blanc (1 bit par pixel) avec une résolution de 300 dpi (points par pouce). Un document A4 (21 cm × 29,7 cm) est scanné.
+\begin{enumerate}
+    \item Calculer le nombre de pixels d'un document (1 pouce = 2,54 cm).
+    \item En déduire la taille d'un document en octets.
+    \item L'entreprise a 50 000 documents à numériser. Quelle capacité de stockage (en Go) est nécessaire ?
+    \item Si on utilise une compression qui divise la taille par 10, quelle capacité est alors nécessaire ?
+\end{enumerate}
+
+\section{Corrigés}
+
+\corrige{de l'exercice 1}
+\begin{enumerate}
+    \item $1010_2 = 1\times2^3 + 0\times2^2 + 1\times2^1 + 0\times2^0 = 8 + 0 + 2 + 0 = 10_{10}$
+    \item $110011_2 = 1\times2^5 + 1\times2^4 + 0\times2^3 + 0\times2^2 + 1\times2^1 + 1\times2^0 = 32 + 16 + 0 + 0 + 2 + 1 = 51_{10}$
+    \item $11111111_2 = 1\times2^7 + 1\times2^6 + 1\times2^5 + 1\times2^4 + 1\times2^3 + 1\times2^2 + 1\times2^1 + 1\times2^0 = 128 + 64 + 32 + 16 + 8 + 4 + 2 + 1 = 255_{10}$
+    \item $10000001_2 = 1\times2^7 + 0\times2^6 + \dots + 0\times2^1 + 1\times2^0 = 128 + 0 + \dots + 0 + 1 = 129_{10}$
+\end{enumerate}
+
+\corrige{de l'exercice 2}
+\begin{enumerate}
+    \item $42_{10}$ :
+    \begin{align*}
+        42 \div 2 &= 21 \text{ reste } 0 \\
+        21 \div 2 &= 10 \text{ reste } 1 \\
+        10 \div 2 &= 5 \text{ reste } 0 \\
+        5 \div 2 &= 2 \text{ reste } 1 \\
+        2 \div 2 &= 1 \text{ reste } 0 \\
+        1 \div 2 &= 0 \text{ reste } 1
+    \end{align*}
+    Donc $42_{10} = 101010_2$
+    
+    \item $127_{10}$ :
+    \begin{align*}
+        127 \div 2 &= 63 \text{ reste } 1 \\
+        63 \div 2 &= 31 \text{ reste } 1 \\
+        31 \div 2 &= 15 \text{ reste } 1 \\
+        15 \div 2 &= 7 \text{ reste } 1 \\
+        7 \div 2 &= 3 \text{ reste } 1 \\
+        3 \div 2 &= 1 \text{ reste } 1 \\
+        1 \div 2 &= 0 \text{ reste } 1
+    \end{align*}
+    Donc $127_{10} = 1111111_2$
+    
+    \item $255_{10} = 11111111_2$ (car $255 = 2^8 - 1$)
+    
+    \item $100_{10}$ :
+    \begin{align*}
+        100 \div 2 &= 50 \text{ reste } 0 \\
+        50 \div 2 &= 25 \text{ reste } 0 \\
+        25 \div 2 &= 12 \text{ reste } 1 \\
+        12 \div 2 &= 6 \text{ reste } 0 \\
+        6 \div 2 &= 3 \text{ reste } 0 \\
+        3 \div 2 &= 1 \text{ reste } 1 \\
+        1 \div 2 &= 0 \text{ reste } 1
+    \end{align*}
+    Donc $100_{10} = 1100100_2$
+\end{enumerate}
+
+\corrige{de l'exercice 3}
+\begin{enumerate}
+    \item $A5_{16} = 10\times16^1 + 5\times16^0 = 160 + 5 = 165_{10}$
+    \item $FF_{16} = 15\times16^1 + 15\times16^0 = 240 + 15 = 255_{10}$
+    \item $1A3_{16} = 1\times16^2 + 10\times16^1 + 3\times16^0 = 256 + 160 + 3 = 419_{10}$
+    \item $BEEF_{16} = 11\times16^3 + 14\times16^2 + 14\times16^1 + 15\times16^0 = 11\times4096 + 14\times256 + 14\times16 + 15 = 45056 + 3584 + 224 + 15 = 48879_{10}$
+\end{enumerate}
+
+\corrige{de l'exercice 4}
+\begin{enumerate}
+    \item $31_{10}$ :
+    \begin{align*}
+        31 \div 16 &= 1 \text{ reste } 15 \text{ (F)} \\
+        1 \div 16 &= 0 \text{ reste } 1
+    \end{align*}
+    Donc $31_{10} = 1F_{16}$
+    
+    \item $200_{10}$ :
+    \begin{align*}
+        200 \div 16 &= 12 \text{ reste } 8 \\
+        12 \div 16 &= 0 \text{ reste } 12 \text{ (C)}
+    \end{align*}
+    Donc $200_{10} = C8_{16}$
+    
+    \item $1024_{10}$ :
+    \begin{align*}
+        1024 \div 16 &= 64 \text{ reste } 0 \\
+        64 \div 16 &= 4 \text{ reste } 0 \\
+        4 \div 16 &= 0 \text{ reste } 4
+    \end{align*}
+    Donc $1024_{10} = 400_{16}$
+    
+    \item $4095_{10}$ :
+    \begin{align*}
+        4095 \div 16 &= 255 \text{ reste } 15 \text{ (F)} \\
+        255 \div 16 &= 15 \text{ reste } 15 \text{ (F)} \\
+        15 \div 16 &= 0 \text{ reste } 15 \text{ (F)}
+    \end{align*}
+    Donc $4095_{10} = FFF_{16}$
+\end{enumerate}
+
+\corrige{de l'exercice 5}
+\begin{enumerate}
+    \item $10101111_2$ : on groupe par 4 bits : $1010\;1111$ → $A_{16}$ et $F_{16}$ → $AF_{16}$
+    \item $110010101111_2$ : $1100\;1010\;1111$ → $C_{16}$, $A_{16}$, $F_{16}$ → $CAF_{16}$
+    \item $1111000011110000_2$ : $1111\;0000\;1111\;0000$ → $F_{16}$, $0_{16}$, $F_{16}$, $0_{16}$ → $F0F0_{16}$
+\end{enumerate}
+
+\corrige{de l'exercice 6}
+\begin{enumerate}
+    \item $7F_{16}$ : $7_{16} = 0111_2$, $F_{16} = 1111_2$ → $01111111_2$
+    \item $ABC_{16}$ : $A_{16}=1010_2$, $B_{16}=1011_2$, $C_{16}=1100_2$ → $101010111100_2$
+    \item $DEAD_{16}$ : $D_{16}=1101_2$, $E_{16}=1110_2$, $A_{16}=1010_2$, $D_{16}=1101_2$ → $1101111010101101_2$
+\end{enumerate}
+
+\corrige{de l'exercice 7}
+\begin{enumerate}
+    \item $73_8$ : $7_8=111_2$, $3_8=011_2$ → $111011_2$. En hexadécimal : $0011\;1011$ → $3B_{16}$
+    \item $245_8$ : $2_8=010_2$, $4_8=100_2$, $5_8=101_2$ → $010100101_2$. En hexadécimal : $0001\;0100\;1010$ → $14A_{16}$ (en complétant à gauche avec des 0)
+    \item $1777_8$ : $1_8=001_2$, $7_8=111_2$, $7_8=111_2$, $7_8=111_2$ → $001111111111_2$. En hexadécimal : $0011\;1111\;1111$ → $3FF_{16}$
+\end{enumerate}
+
+\corrige{de l'exercice 8}
+\begin{enumerate}
+    \item $110101_2$ : on groupe par 3 bits : $110\;101$ → $6_8$ et $5_8$ → $65_8$
+    \item $3A7_{16}$ : $3_{16}=0011_2$, $A_{16}=1010_2$, $7_{16}=0111_2$ → $001110100111_2$
+    \item $567_8$ : $5_8=101_2$, $6_8=110_2$, $7_8=111_2$ → $101110111_2$. En hexadécimal : $0001\;0111\;0111$ → $177_{16}$
+\end{enumerate}
+
+\corrige{de l'exercice 9}
+\begin{enumerate}
+    \item $1010_2 + 1101_2$ :
+    \begin{align*}
+        &1010\\
+        +&1101\\
+        \hline
+        &10111
+    \end{align*}
+    Vérification : $10_{10} + 13_{10} = 23_{10} = 10111_2$
+    
+    \item $1111_2 + 1_2$ :
+    \begin{align*}
+        &1111\\
+        +&0001\\
+        \hline
+        &10000
+    \end{align*}
+    Vérification : $15_{10} + 1_{10} = 16_{10} = 10000_2$
+    
+    \item $10101_2 + 1111_2$ :
+    \begin{align*}
+        &10101\\
+        +&01111\\
+        \hline
+        &100100
+    \end{align*}
+    Vérification : $21_{10} + 15_{10} = 36_{10} = 100100_2$
+    
+    \item $110011_2 + 101101_2$ :
+    \begin{align*}
+        &110011\\
+        +&101101\\
+        \hline
+        &1100000
+    \end{align*}
+    Vérification : $51_{10} + 45_{10} = 96_{10} = 1100000_2$
+\end{enumerate}
+
+\corrige{de l'exercice 10}
+\begin{enumerate}
+    \item $1011_2 + 1110_2$ :
+    \begin{align*}
+        &1011\\
+        +&1110\\
+        \hline
+        &11001
+    \end{align*}
+    Vérification : $11_{10} + 14_{10} = 25_{10} = 11001_2$
+    
+    \item $11111_2 + 11111_2$ :
+    \begin{align*}
+        &11111\\
+        +&11111\\
+        \hline
+        &111110
+    \end{align*}
+    Vérification : $31_{10} + 31_{10} = 62_{10} = 111110_2$
+    
+    \item $101010_2 + 101010_2$ :
+    \begin{align*}
+        &101010\\
+        +&101010\\
+        \hline
+        &1010100
+    \end{align*}
+    Vérification : $42_{10} + 42_{10} = 84_{10} = 1010100_2$
+\end{enumerate}
+
+\corrige{de l'exercice 11}
+\begin{enumerate}
+    \item $01111111_2 + 00000001_2 = 10000000_2$. Pas de débordement car le résultat ($128_{10}$) est dans la plage $[0, 255]$ pour des entiers non signés sur 8 bits.
+    \item $10000000_2 + 10000000_2 = 100000000_2$ (9 bits). Il y a débordement car le résultat ($256_{10}$) dépasse la capacité de 8 bits ($255_{10}$).
+    \item $01010101_2 + 00101010_2 = 01111111_2$. Pas de débordement car le résultat ($127_{10}$) est dans la plage.
+\end{enumerate}
+
+\corrige{de l'exercice 12}
+\begin{enumerate}
+    \item $15_{10} = 00001111_2$ (sur 8 bits)
+    \item $128_{10} = 10000000_2$ (sur 8 bits)
+    \item $200_{10} = 11001000_2$ (sur 8 bits)
+    \item $255_{10} = 11111111_2$ (sur 8 bits)
+\end{enumerate}
+
+\corrige{de l'exercice 13}
+\begin{enumerate}
+    \item $+25_{10}$ : $25_{10} = 00011001_2$
+    \item $-25_{10}$ : on prend le complément à 2 de $00011001$ :
+    \begin{itemize}
+        \item Complément à 1 : $11100110$
+        \item Ajout de 1 : $11100111$
+    \end{itemize}
+    Donc $-25_{10} = 11100111_2$
+    
+    \item $+127_{10}$ : $127_{10} = 01111111_2$
+    \item $-128_{10}$ : $128_{10} = 10000000_2$, donc $-128_{10} = 10000000_2$ (car $128$ n'existe pas en complément à 2 sur 8 bits, c'est la valeur minimale)
+    \item $-1_{10}$ : $1_{10} = 00000001_2$, complément à 1 : $11111110$, ajout de 1 : $11111111_2$
+\end{enumerate}
+
+\corrige{de l'exercice 14}
+\begin{enumerate}
+    \item $00001111$ : bit de poids fort = 0 → positif → $15_{10}$
+    \item $11110001$ : bit de poids fort = 1 → négatif. On prend le complément à 2 :
+    \begin{itemize}
+        \item Complément à 1 : $00001110$
+        \item Ajout de 1 : $00001111$
+    \end{itemize}
+    Donc valeur = $-15_{10}$
+    
+    \item $10000000$ : bit de poids fort = 1 → négatif. Complément à 2 :
+    \begin{itemize}
+        \item Complément à 1 : $01111111$
+        \item Ajout de 1 : $10000000$
+    \end{itemize}
+    Donc valeur = $-128_{10}$
+    
+    \item $11111111$ : bit de poids fort = 1 → négatif. Complément à 2 :
+    \begin{itemize}
+        \item Complément à 1 : $00000000$
+        \item Ajout de 1 : $00000001$
+    \end{itemize}
+    Donc valeur = $-1_{10}$
+\end{enumerate}
+
+\corrige{de l'exercice 15}
+\begin{enumerate}
+    \item Sur 8 bits : $[-2^{7}, 2^{7}-1] = [-128, 127]$
+    \item Sur 16 bits : $[-2^{15}, 2^{15}-1] = [-32768, 32767]$
+    \item Sur 32 bits : $[-2^{31}, 2^{31}-1] = [-2147483648, 2147483647]$
+\end{enumerate}
+
+\corrige{de l'exercice 16}
+\begin{enumerate}
+    \item $0110 + 0011 = 1001$. En décimal : $6 + 3 = 9$. Résultat correct (pas de débordement).
+    \item $0101 + 0101 = 1010$. En décimal : $5 + 5 = 10$. Mais en complément à 2 sur 4 bits, $1010$ représente $-6$ (car $0110$ complément à 2 = $1010$). Il y a débordement car $10 > 7$ (valeur maximale sur 4 bits).
+    \item $1001 + 0111 = 10000$ (5 bits). En ignorant le débordement : $0000$. En décimal : $-7 + 7 = 0$. Résultat correct malgré le débordement (car le bit de retenue est ignoré).
+    \item $1111 + 0001 = 10000$ (5 bits). En ignorant le débordement : $0000$. En décimal : $-1 + 1 = 0$. Résultat correct.
+\end{enumerate}
+
+\corrige{de l'exercice 17}
+\begin{enumerate}
+    \item 'B' : code ASCII 66 (décimal) = 1000010 (binaire) = 42 (hexadécimal)
+    \item 'z' : code ASCII 122 (décimal) = 1111010 (binaire) = 7A (hexadécimal)
+    \item '0' : code ASCII 48 (décimal) = 0110000 (binaire) = 30 (hexadécimal)
+    \item '9' : code ASCII 57 (décimal) = 0111001 (binaire) = 39 (hexadécimal)
+    \item Espace : code ASCII 32 (décimal) = 0100000 (binaire) = 20 (hexadécimal)
+\end{enumerate}
+
+\corrige{de l'exercice 18}
+72 = 'H', 101 = 'e', 108 = 'l', 108 = 'l', 111 = 'o', 32 = ' ', 87 = 'W', 111 = 'o', 114 = 'r', 108 = 'l', 100 = 'd', 33 = '!'
+La phrase est : "Hello World!"
+
+\corrige{de l'exercice 19}
+Le code de 'A' est 65. 'M' est la 13e lettre de l'alphabet (A=1, B=2, ..., M=13). Donc code de 'M' = 65 + 12 = 77.
+Le code de 'a' est 97. 'm' est la 13e lettre, donc code de 'm' = 97 + 12 = 109.
+
+\corrige{de l'exercice 20}
+\begin{enumerate}
+    \item ASCII 7 bits : $2^7 = 128$ caractères différents
+    \item ASCII étendu 8 bits : $2^8 = 256$ caractères différents
+    \item Unicode 16 bits : $2^{16} = 65536$ caractères différents
+\end{enumerate}
+
+\corrige{de l'exercice 21}
+\begin{enumerate}
+    \item $2048$ octets $= 2048 / 1000 = 2,048$ Ko
+    \item $3$ Mo $= 3 \times 10^6 = 3 000 000$ octets
+    \item $1$ Go $= 1000$ Mo
+    \item $5120$ octets $= 5120 / 1024 = 5$ Kio
+\end{enumerate}
+
+\corrige{de l'exercice 22}
+Taille en octets : $5000 \times 8 / 8 = 5000$ octets
+Taille en Ko : $5000 / 1000 = 5$ Ko
+
+\corrige{de l'exercice 23}
+Nombre de pixels : $1024 \times 768 = 786432$ pixels
+Taille en bits : $786432 \times 24 = 18874368$ bits
+Taille en octets : $18874368 / 8 = 2359296$ octets
+Taille en Mo : $2359296 / 10^6 = 2,359296$ Mo
+Taille en Mio : $2359296 / 2^{20} = 2359296 / 1048576 \approx 2,25$ Mio
+
+\corrige{de l'exercice 24}
+Capacité du disque : $500$ Go $= 500 \times 10^9$ octets
+Taille d'un fichier : $5$ Mo $= 5 \times 10^6$ octets
+Nombre de fichiers : $500 \times 10^9 / (5 \times 10^6) = 100 000$ fichiers
+
+\corrige{de l'exercice 25}
+Nombre de caractères par livre : $300 \times 2000 = 600 000$ caractères
+Taille d'un livre en octets : $600 000 \times 8 / 8 = 600 000$ octets
+Taille totale : $10 000 \times 600 000 = 6 \times 10^9$ octets
+Capacité en Go : $6 \times 10^9 / 10^9 = 6$ Go
+
+\corrige{de l'exercice 26 (type Bac)}
+\begin{enumerate}
+    \item $A = 110101_2 = 1\times2^5 + 1\times2^4 + 0\times2^3 + 1\times2^2 + 0\times2^1 + 1\times2^0 = 32 + 16 + 0 + 4 + 0 + 1 = 53_{10}$
+    \item $B = 3A_{16} = 3\times16^1 + 10\times16^0 = 48 + 10 = 58_{10}$. En binaire : $58_{10} = 111010_2$
+    \item Addition en binaire :
+    \begin{align*}
+        &110101\\
+        +&111010\\
+        \hline
+        &1101111
+    \end{align*}
+    \item $1101111_2$ en hexadécimal : $0110\;1111$ → $6F_{16}$
+    Vérification : $53 + 58 = 111_{10} = 6F_{16}$
+\end{enumerate}
+
+\corrige{de l'exercice 27 (type Bac)}
+\begin{enumerate}
+    \item $+45_{10} = 00101101_2$ (sur 8 bits)
+    $-45_{10}$ : complément à 2 de $00101101$ :
+    \begin{itemize}
+        \item Complément à 1 : $11010010$
+        \item Ajout de 1 : $11010011$
+    \end{itemize}
+    Donc $-45_{10} = 11010011_2$
+    
+    \item $45 + (-45)$ en binaire :
+    \begin{align*}
+        &00101101\\
+        +&11010011\\
+        \hline
+        &100000000
+    \end{align*}
+    En ignorant le bit de retenue (9e bit), on obtient $00000000$. On constate que $45 + (-45) = 0$, ce qui est correct.
+    
+    \item $-128_{10}$ : $128_{10} = 10000000_2$, donc $-128_{10} = 10000000_2$ (c'est la valeur minimale).
+    $-129$ ne peut pas être codé car la plage du complément à 2 sur 8 bits est $[-128, 127]$, et $-129 < -128$.
+\end{enumerate}
+
+\corrige{de l'exercice 28 (type Bac)}
+\begin{enumerate}
+    \item Dimensions en pouces : $21 / 2,54 \approx 8,27$ pouces et $29,7 / 2,54 \approx 11,69$ pouces
+    Nombre de pixels : $(8,27 \times 300) \times (11,69 \times 300) = 2481 \times 3507 \approx 8 701 467$ pixels
+    
+    \item Taille en bits : $8 701 467 \times 1 = 8 701 467$ bits
+    Taille en octets : $8 701 467 / 8 \approx 1 087 683$ octets
+    
+    \item Taille totale : $50 000 \times 1 087 683 \approx 5,438 \times 10^{10}$ octets
+    Capacité en Go : $5,438 \times 10^{10} / 10^9 \approx 54,38$ Go
+    
+    \item Avec compression (facteur 10) : $54,38 / 10 \approx 5,44$ Go
+\end{enumerate}
