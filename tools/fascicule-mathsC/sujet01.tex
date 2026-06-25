@@ -1,0 +1,101 @@
+\section{Sujet n\textsuperscript{o}\,1}
+\noindent\begin{minipage}{0.5\linewidth}\footnotesize Office du Baccalauréat du Cameroun\end{minipage}%
+\hfill\begin{minipage}{0.45\linewidth}\footnotesize\raggedleft Examen : \textbf{Baccalauréat} · Série : \textbf{C/E}\\
+Épreuve : \textbf{Mathématiques} · Durée : \textbf{4\,h} · Coef. : \textbf{7}\end{minipage}
+\par\smallskip{\color{onbo}\rule{\linewidth}{1pt}}
+
+\subsection*{Partie A — Évaluation des ressources \hfill (15 points)}
+
+\noindent\textbf{Exercice 1.} \hfill\textit{(3 points)}\\
+Une urne contient $4$ boules rouges et $6$ boules vertes indiscernables au toucher. On
+tire simultanément $3$ boules. Soit $X$ le nombre de boules rouges obtenues.
+\begin{enumerate}[label=\arabic*)]
+\item Déterminer la loi de probabilité de $X$. \hfill\textit{(1,5 pt)}
+\item Calculer l'espérance mathématique $E(X)$. \hfill\textit{(0,75 pt)}
+\item Calculer la probabilité de tirer au moins une boule rouge. \hfill\textit{(0,75 pt)}
+\end{enumerate}
+
+\smallskip
+\noindent\textbf{Exercice 2.} \hfill\textit{(3 points)}\\
+\begin{enumerate}[label=\arabic*)]
+\item Résoudre dans $\Z^2$ l'équation $7x-5y=1$. \hfill\textit{(1,5 pt)}
+\item Déterminer le reste de la division euclidienne de $7^{2024}$ par $5$. \hfill\textit{(1,5 pt)}
+\end{enumerate}
+
+\smallskip
+\noindent\textbf{Exercice 3.} \hfill\textit{(4 points)}\\
+Soit $f$ définie sur $\R$ par $f(x)=(x+1)\mathrm{e}^{-x}$, de courbe $(\mathcal{C})$.
+\begin{enumerate}[label=\arabic*)]
+\item Déterminer les limites de $f$ en $-\infty$ et $+\infty$ ; interpréter graphiquement celle en $+\infty$. \hfill\textit{(1 pt)}
+\item Montrer que $f'(x)=-x\,\mathrm{e}^{-x}$ et dresser le tableau de variations de $f$. \hfill\textit{(1,5 pt)}
+\item À l'aide d'une intégration par parties, montrer que $\displaystyle\int_0^{\lambda}f(x)\,\dd x=2-(\lambda+2)\mathrm{e}^{-\lambda}$,
+puis calculer sa limite quand $\lambda\to+\infty$. \hfill\textit{(1,5 pt)}
+\end{enumerate}
+
+\smallskip
+\noindent\textbf{Exercice 4.} \hfill\textit{(5 points)}\\
+Le plan complexe est muni d'un repère orthonormé direct $(O\,;\,\vec u,\vec v)$.
+\begin{enumerate}[label=\arabic*)]
+\item Résoudre dans $\C$ l'équation $z^2-2z+4=0$ ; on note $z_1$ la solution de partie
+imaginaire positive et $z_2$ l'autre. \hfill\textit{(1 pt)}
+\item Écrire $z_1$ et $z_2$ sous forme trigonométrique et calculer $z_1^{\,3}$. \hfill\textit{(1 pt)}
+\item $A$, $B$, $C$ ont pour affixes $z_1$, $z_2$, $2$. Démontrer que le triangle $ABC$
+est isocèle et préciser son sommet principal. \hfill\textit{(1,5 pt)}
+\item Soit $S$ la similitude directe de centre $O$, de rapport $\sqrt2$ et d'angle $\frac\pi4$.
+Donner l'écriture complexe de $S$, puis l'affixe de l'image de $A$ par $S$. \hfill\textit{(1,5 pt)}
+\end{enumerate}
+
+\subsection*{Partie B — Évaluation des compétences \hfill (5 points)}
+
+\noindent\textit{Monsieur Abena, planteur de cacao à Obala, prépare la nouvelle campagne
+agricole. Il sollicite ton aide, en tant qu'élève de Terminale~C, pour trois décisions.
+Il dispose de \SI{200}{\metre} de grillage et souhaite d'abord clôturer une parcelle
+rectangulaire \emph{adossée à un mur} déjà construit (le côté longeant le mur ne se
+clôture pas). Sa production de cacao, de \SI{1,2}{\tonne} cette première année, augmente
+ensuite de \SI{8}{\percent} chaque année. Enfin, au séchage, \SI{5}{\percent} des sacs
+sont mal séchés ; un acheteur en prélève $4$ au hasard.}
+
+\begin{enumerate}[label=\textbf{Tâche \arabic*.},leftmargin=2.4em]
+\item Déterminer les dimensions de la parcelle rectangulaire d'\emph{aire maximale} qu'il
+peut clôturer, ainsi que cette aire. \hfill\textit{(1,5 pt)}
+\item Déterminer l'année à partir de laquelle sa production annuelle dépassera \SI{2}{\tonne}. \hfill\textit{(1,5 pt)}
+\item Déterminer la probabilité qu'\emph{au moins un} des $4$ sacs prélevés soit mal séché. \hfill\textit{(1,5 pt)}
+\end{enumerate}
+\par\smallskip{\footnotesize\itshape Présentation générale : 0,5 point.}
+
+% ════════════════════════════════════════════════════
+\corrige{du sujet 1}
+
+\noindent\textbf{Partie A — Exercice 1.}
+1) $\binom{10}{3}=120$ tirages. $P(X{=}k)=\dfrac{\binom4k\binom6{3-k}}{120}$ :
+$P(0)=\frac16,\ P(1)=\frac12,\ P(2)=\frac3{10},\ P(3)=\frac1{30}$.
+2) $E(X)=\frac12+\frac35+\frac1{10}=\frac65=1{,}2$.
+3) $P(X\ge1)=1-\frac16=\frac56$.
+
+\noindent\textbf{Exercice 2.}
+1) $7\times3-5\times4=1$ : une solution particulière est $(3\,;\,4)$. Par différence,
+$7(x-3)=5(y-4)$ ; $5\mid x-3$ (Gauss, $5\wedge7=1$), d'où $x=3+5k,\ y=4+7k$, $k\in\Z$.
+2) Modulo $5$ : $7\equiv2$, et $2^4=16\equiv1$. Comme $2024=4\times506$, $7^{2024}\equiv2^{2024}\equiv(2^4)^{506}\equiv1\ [5]$.
+Le reste est $\mathbf{1}$.
+
+\noindent\textbf{Exercice 3.}
+1) En $+\infty$, $f(x)\to0^+$ : la droite $y=0$ est asymptote horizontale. En $-\infty$, $f(x)\to-\infty$.
+2) $f'(x)=\mathrm{e}^{-x}-(x+1)\mathrm{e}^{-x}=-x\,\mathrm{e}^{-x}$ : $f$ croît sur $]-\infty,0]$, décroît sur $[0,+\infty[$, maximum $f(0)=1$.
+3) IPP ($u=x+1$, $v'=\mathrm{e}^{-x}$) : $\int_0^\lambda f=\big[-(x+2)\mathrm{e}^{-x}\big]_0^\lambda=2-(\lambda+2)\mathrm{e}^{-\lambda}\ \xrightarrow[\lambda\to+\infty]{}\ 2$.
+
+\noindent\textbf{Exercice 4.}
+1) $\Delta=-12$ : $z_1=1+i\sqrt3$, $z_2=1-i\sqrt3$.
+2) $z_1=2\mathrm{e}^{i\pi/3}$, $z_2=2\mathrm{e}^{-i\pi/3}$ ; $z_1^{\,3}=8\mathrm{e}^{i\pi}=-8$.
+3) $AB=2\sqrt3$, $AC=|z_1-2|=2$, $BC=|z_2-2|=2$ : $AC=BC$, triangle isocèle de sommet $C$.
+4) $S(z)=\sqrt2\,\mathrm{e}^{i\pi/4}z=(1+i)z$. Image de $A$ : $(1+i)(1+i\sqrt3)=(1-\sqrt3)+i(1+\sqrt3)$.
+
+\smallskip
+\noindent\textbf{Partie B — Situation.}
+\emph{Tâche 1.} Largeur $x$ (deux côtés), longueur $y=200-2x$. Aire $A(x)=x(200-2x)$ ;
+$A'(x)=200-4x=0$ en $x=50$. Dimensions : $x=\SI{50}{\metre}$, $y=\SI{100}{\metre}$ ; aire maximale $\SI{5000}{\metre\squared}$.
+
+\emph{Tâche 2.} Production de l'année $n$ : $u_n=1{,}2\times1{,}08^{\,n-1}$. On résout $u_n>2$,
+soit $1{,}08^{\,n-1}>\frac53$, d'où $n-1>\frac{\ln(5/3)}{\ln1{,}08}\approx6{,}6$ : à partir de la
+\textbf{8\textsuperscript{e} année} ($u_8\approx\SI{2,06}{\tonne}$).
+
+\emph{Tâche 3.} $P(\text{au moins un mal séché})=1-(0{,}95)^4\approx1-0{,}815=\mathbf{0{,}185}$, soit environ \SI{18,5}{\percent}.
