@@ -8,3 +8,5 @@ _*.log
 *-apercu.pdf
 main.pdf
 *.synctex.gz
+apercu-*.pdf
+Fascicule-*.pdf
