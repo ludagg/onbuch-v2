@@ -69,6 +69,18 @@ résumés, méthodes, et **beaucoup** d'exercices corrigés. Langue : **françai
 - Dipôles : `to[R=$R$]`, `to[L=$L$]`, `to[C=$C$]`, `to[V=$E$]` (source), `to[battery1]`,
   `to[switch]` (interrupteur), `to[ammeter]`, `to[voltmeter]`. Échelle : `[scale=0.9, transform shape]`.
 - Garde les circuits simples et fermés (mailles rectangulaires). Pas de lib externe.
+- **Labels avec `=` ou `\SI`** : TOUJOURS entre accolades, sinon « Extra } » :
+  `to[C, l={$C=\SI{10}{\micro\farad}$}, v={$u_C$}]` (PAS `l=$C=\SI{...}$`).
+
+## Pièges fréquents (déjà rencontrés — à éviter absolument)
+- Macro correction = `\corrige{...}` (jamais `\corrigé` avec accent).
+- Unités siunitx : `\metre` (pas `\meter`), `\kilo\metre` (pas `\kilometer`). Disponibles en plus :
+  `\eV \keV \MeV \GeV` (énergies) et `\nucleon` (pour `\MeV\per\nucleon`).
+- Pas de `\jour`/`\an`/`\spires`/`\tr`/`\dixieme` : pour années/tours, écris `{ans}`/`{jours}` en
+  texte dans `\SI`, ou `\num{...}~\mathrm{tr/min}`, `\num{...}~\mathrm{an}^{-1}`.
+- **Noyaux & réactions** : `mhchem` est chargé → `\ce{^{A}_{Z}X}`, `\ce{^{238}_{92}U -> ^{234}_{90}Th + ...}`.
+  ⚠️ jamais de `?` DANS `\ce{}` (le sortir : `\ce{... -> ...} + ?`).
+- Aucun `$` parasite après un `\SI{...}{...}` en plein texte (il n'ouvre pas de math).
 
 ## Règles ABSOLUES
 - **Physiquement EXACT** : vérifie toutes les valeurs, unités, applications numériques et corrigés.

@@ -22,7 +22,14 @@
 % ── Physique : unités SI + circuits électriques ─────────────────
 \usepackage{siunitx}
 \sisetup{locale=FR, per-mode=symbol, separate-uncertainty=true}
+% Unités d'énergie nucléaire (raccourcis usuels, non prédéfinis par siunitx)
+\DeclareSIUnit{\eV}{\electronvolt}
+\DeclareSIUnit{\keV}{\kilo\electronvolt}
+\DeclareSIUnit{\MeV}{\mega\electronvolt}
+\DeclareSIUnit{\GeV}{\giga\electronvolt}
+\DeclareSIUnit{\nucleon}{nucléon}
 \usepackage[siunitx,europeanresistors,europeaninductors]{circuitikz}
+\usepackage[version=4]{mhchem}   % notation noyaux/réactions : \ce{^{A}_{Z}X}
 \usepackage{graphicx}
 \usepackage[hidelinks]{hyperref}
 \hypersetup{bookmarksnumbered}
@@ -175,9 +182,9 @@
 \newcommand{\corrige}[1]{\par\smallskip\noindent{\color{onbgreen}\sffamily\bfseries\small$\blacktriangleright$ Corrigé #1}\par\nopagebreak\smallskip}
 
 % ── Raccourcis physique ─────────────────────────────────────────
-\newcommand{\vect}[1]{\overrightarrow{#1}}          % vecteur
+\DeclareRobustCommand{\vect}[1]{\overrightarrow{#1}}  % vecteur (robuste : OK dans les titres)
 \newcommand{\norm}[1]{\left\lVert #1 \right\rVert}    % norme
-\renewcommand{\vec}[1]{\overrightarrow{#1}}
+\DeclareRobustCommand{\vec}[1]{\overrightarrow{#1}}
 \newcommand{\ud}{\,\mathrm{d}}                        % d droit
 \newcommand{\dv}[2]{\dfrac{\mathrm{d}#1}{\mathrm{d}#2}}
 \newcommand{\R}{\mathbb{R}}
