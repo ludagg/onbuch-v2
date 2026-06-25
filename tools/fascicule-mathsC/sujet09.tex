@@ -1,0 +1,121 @@
+\section{Sujet n\textsuperscript{o}\,9}
+\noindent\begin{minipage}{0.5\linewidth}\footnotesize Office du Baccalauréat du Cameroun\end{minipage}%
+\hfill\begin{minipage}{0.45\linewidth}\footnotesize\raggedleft Examen : \textbf{Baccalauréat} · Série : \textbf{C/E}\\
+Épreuve : \textbf{Mathématiques} · Durée : \textbf{4\,h} · Coef. : \textbf{7}\end{minipage}
+\par\smallskip{\color{onbo}\rule{\linewidth}{1pt}}
+
+\subsection*{Partie A — Évaluation des ressources \hfill (15 points)}
+
+\noindent\textbf{Exercice 1.} \hfill\textit{(3 points)}\\
+Dans un atelier de couture, une boîte contient $7$ boutons dorés et $5$ boutons argentés,
+indiscernables au toucher. La couturière tire successivement et \emph{sans remise} $3$ boutons.
+Soit $X$ le nombre de boutons dorés obtenus.
+\begin{enumerate}[label=\arabic*)]
+\item Déterminer la loi de probabilité de $X$. \hfill\textit{(1,5 pt)}
+\item Calculer l'espérance mathématique $E(X)$. \hfill\textit{(0,75 pt)}
+\item Calculer la probabilité d'obtenir au moins deux boutons dorés. \hfill\textit{(0,75 pt)}
+\end{enumerate}
+
+\smallskip
+\noindent\textbf{Exercice 2.} \hfill\textit{(3 points)}\\
+Un menuisier découpe des planches. La longueur (en cm) de la $n$\textsuperscript{e} planche
+suit la suite $(u_n)$ définie par $u_0=2$ et $u_{n+1}=\tfrac12 u_n+3$.
+\begin{enumerate}[label=\arabic*)]
+\item On pose $v_n=u_n-6$. Montrer que $(v_n)$ est géométrique ; préciser sa raison et $v_0$. \hfill\textit{(1,5 pt)}
+\item Exprimer $u_n$ en fonction de $n$ et déterminer la limite de $(u_n)$. \hfill\textit{(1,5 pt)}
+\end{enumerate}
+
+\smallskip
+\noindent\textbf{Exercice 3.} \hfill\textit{(4 points)}\\
+Soit $f$ définie sur $]0\,;+\infty[$ par $f(x)=x-2+\ln x$, de courbe $(\mathcal{C})$.
+\begin{enumerate}[label=\arabic*)]
+\item Déterminer les limites de $f$ en $0^+$ et en $+\infty$. \hfill\textit{(1 pt)}
+\item Étudier les variations de $f$ et dresser son tableau de variations. \hfill\textit{(1 pt)}
+\item Montrer que l'équation $f(x)=0$ admet une unique solution $\alpha$ sur $]0\,;+\infty[$, puis
+justifier que $1<\alpha<2$. \hfill\textit{(1 pt)}
+\item Calculer $\displaystyle\int_1^{\mathrm{e}}\ln x\,\dd x$ à l'aide d'une intégration par parties. \hfill\textit{(1 pt)}
+\end{enumerate}
+
+\smallskip
+\noindent\textbf{Exercice 4.} \hfill\textit{(5 points)}\\
+L'espace est muni d'un repère orthonormé $(O\,;\,\vec i,\vec j,\vec k)$. On considère les points
+$A(2\,;0\,;0)$, $B(0\,;3\,;0)$, $C(0\,;0\,;6)$.
+\begin{enumerate}[label=\arabic*)]
+\item Calculer $\vec{AB}\wedge\vec{AC}$ (produit vectoriel). \hfill\textit{(1,5 pt)}
+\item En déduire une équation cartésienne du plan $(ABC)$. \hfill\textit{(1,5 pt)}
+\item Calculer la distance du point $O$ au plan $(ABC)$. \hfill\textit{(1 pt)}
+\item En déduire l'aire du triangle $ABC$ et le volume du tétraèdre $OABC$. \hfill\textit{(1 pt)}
+\end{enumerate}
+
+\subsection*{Partie B — Évaluation des compétences \hfill (5 points)}
+
+\noindent\textit{Madame Eyenga dirige un atelier d'artisanat (couture et menuiserie) à Ebolowa.
+Elle sollicite ton aide, en tant qu'élève de Terminale~C, pour trois décisions. Elle veut
+d'abord fabriquer une boîte à couture \emph{sans couvercle} à partir d'une plaque carrée de
+\SI{24}{\centi\metre} de côté, en découpant aux quatre coins des carrés identiques puis en
+relevant les bords, afin d'obtenir le \emph{volume maximal}. Son chiffre d'affaires mensuel,
+de \SI{120000}{} FCFA le premier mois, croît de \SI{6}{\percent} par mois. Enfin, sur sa
+production de pièces cousues, $4\,\%$ présentent un défaut ; une cliente en achète $6$ au hasard.}
+
+\begin{enumerate}[label=\textbf{Tâche \arabic*.},leftmargin=2.4em]
+\item Déterminer la hauteur des découpes donnant le \emph{volume maximal} de la boîte, et
+calculer ce volume. \hfill\textit{(1,5 pt)}
+\item Déterminer le mois à partir duquel son chiffre d'affaires dépassera \SI{200000}{} FCFA. \hfill\textit{(1,5 pt)}
+\item Déterminer la probabilité qu'\emph{au moins une} des $6$ pièces achetées soit défectueuse. \hfill\textit{(1,5 pt)}
+\end{enumerate}
+\par\smallskip{\footnotesize\itshape Présentation générale : 0,5 point.}
+
+% ════════════════════════════════════════════════════
+\corrige{du sujet 9}
+
+\noindent\textbf{Partie A — Exercice 1.}
+1) Tirage sans remise de $3$ parmi $12$ : on peut raisonner par combinaisons (l'ordre
+n'affecte pas $X$). $\binom{12}{3}=220$. $P(X{=}k)=\dfrac{\binom7k\binom5{3-k}}{220}$ :
+$P(0)=\frac{\binom53}{220}=\frac{10}{220}=\frac{1}{22}$,
+$P(1)=\frac{7\cdot10}{220}=\frac{70}{220}=\frac{7}{22}$,
+$P(2)=\frac{21\cdot5}{220}=\frac{105}{220}=\frac{21}{44}$,
+$P(3)=\frac{35}{220}=\frac{7}{44}$.
+(Vérif. : $\frac{2}{44}+\frac{14}{44}+\frac{21}{44}+\frac{7}{44}=\frac{44}{44}=1$.)
+2) $E(X)=n\frac{N_1}{N}=3\times\frac{7}{12}=\dfrac{7}{4}=1{,}75$.
+3) $P(X\ge2)=P(2)+P(3)=\frac{21}{44}+\frac{7}{44}=\frac{28}{44}=\dfrac{7}{11}$.
+
+\noindent\textbf{Exercice 2.}
+1) $v_{n+1}=u_{n+1}-6=\frac12 u_n+3-6=\frac12 u_n-3=\frac12(u_n-6)=\frac12 v_n$.
+Donc $(v_n)$ est géométrique de raison $q=\frac12$ et $v_0=u_0-6=-4$.
+2) $v_n=-4\big(\tfrac12\big)^n$, d'où $u_n=6-4\big(\tfrac12\big)^n=6-2^{2-n}$.
+Comme $\big(\tfrac12\big)^n\to0$, $\displaystyle\lim_{n\to+\infty}u_n=6$.
+
+\noindent\textbf{Exercice 3.}
+1) En $0^+$ : $x-2\to-2$ et $\ln x\to-\infty$, donc $f(x)\to-\infty$. En $+\infty$ : $x\to+\infty$ et
+$\ln x\to+\infty$, donc $f(x)\to+\infty$.
+2) $f'(x)=1+\frac1x>0$ sur $]0\,;+\infty[$ : $f$ est strictement croissante (de $-\infty$ à $+\infty$).
+3) $f$ continue et strictement croissante de $]0\,;+\infty[$ sur $\R$ : d'après le théorème des
+valeurs intermédiaires (bijection), $f(x)=0$ admet une unique solution $\alpha$.
+$f(1)=1-2+0=-1<0$ et $f(2)=2-2+\ln2=\ln2\approx0{,}69>0$, donc $1<\alpha<2$.
+4) IPP ($u=\ln x$, $u'=\frac1x$, $v'=1$, $v=x$) :
+$\int_1^{\mathrm e}\ln x\dd x=[x\ln x]_1^{\mathrm e}-\int_1^{\mathrm e}1\dd x=(\mathrm e\cdot1-0)-(\mathrm e-1)=1$.
+
+\noindent\textbf{Exercice 4.}
+1) $\vec{AB}=(-2\,;3\,;0)$, $\vec{AC}=(-2\,;0\,;6)$.
+$\vec{AB}\wedge\vec{AC}=\big(3\cdot6-0\cdot0\,;\,0\cdot(-2)-(-2)\cdot6\,;\,(-2)\cdot0-3\cdot(-2)\big)=(18\,;12\,;6)$.
+2) Normale $(18\,;12\,;6)$ ou simplifiée $(3\,;2\,;1)$. Le plan passe par $A(2\,;0\,;0)$ :
+$3(x-2)+2y+z=0$, soit $3x+2y+z-6=0$.
+3) $d(O,(ABC))=\dfrac{|3\cdot0+2\cdot0+0-6|}{\sqrt{9+4+1}}=\dfrac{6}{\sqrt{14}}=\dfrac{6\sqrt{14}}{14}=\dfrac{3\sqrt{14}}{7}$.
+4) Aire $=\frac12\|\vec{AB}\wedge\vec{AC}\|=\frac12\sqrt{18^2+12^2+6^2}=\frac12\sqrt{324+144+36}=\frac12\sqrt{504}=\frac12\cdot6\sqrt{14}=3\sqrt{14}$.
+Volume $OABC=\frac13\times\text{aire}\times d=\frac13\times3\sqrt{14}\times\frac{6}{\sqrt{14}}=\frac13\times18=6$.
+(Contrôle : $V=\frac16|\det(\vec{OA},\vec{OB},\vec{OC})|=\frac16\,(2\cdot3\cdot6)=6$.)
+
+\smallskip
+\noindent\textbf{Partie B — Situation.}
+\emph{Tâche 1.} Soit $x$ la hauteur des carrés découpés ($0<x<12$). La base est un carré de côté
+$24-2x$ et la hauteur $x$ : $V(x)=x(24-2x)^2$. $V'(x)=(24-2x)^2+x\cdot2(24-2x)(-2)
+=(24-2x)\big[(24-2x)-4x\big]=(24-2x)(24-6x)$.
+Sur $]0\,;12[$, $V'(x)=0$ en $x=4$ (car $24-2x>0$), avec $V'>0$ avant et $V'<0$ après : maximum en
+$x=\SI{4}{\centi\metre}$. Volume : $V(4)=4\times16^2=4\times256=\SI{1024}{\cubic\centi\metre}$.
+
+\emph{Tâche 2.} Chiffre du mois $n$ : $u_n=120000\times1{,}06^{\,n-1}$. On résout $u_n>200000$,
+soit $1{,}06^{\,n-1}>\frac{200000}{120000}=\frac53\approx1{,}667$, d'où
+$n-1>\dfrac{\ln(5/3)}{\ln1{,}06}\approx\dfrac{0{,}5108}{0{,}0583}\approx8{,}77$ : à partir du
+\textbf{10\textsuperscript{e} mois} ($u_{10}=120000\times1{,}06^9\approx\SI{202715}{}$ FCFA).
+
+\emph{Tâche 3.} $P(\text{au moins une défectueuse})=1-(0{,}96)^6\approx1-0{,}783=\mathbf{0{,}217}$, soit environ \SI{21,7}{\percent}.

@@ -1,0 +1,236 @@
+\chapter{Méga-fiche — tout le programme en un coup d'œil}
+
+\noindent Cette fiche condense \textbf{l'intégralité du programme de Terminale~C} en
+formules, énoncés clés et réflexes. À relire la veille de l'épreuve : si une ligne
+te paraît obscure, retourne au chapitre correspondant.
+
+% ════════════════════════════════════════════════════════════════
+\section{Arithmétique}
+
+\begin{aretenir}
+\textbf{Divisibilité \& congruences.} $a\equiv b\ [n]\iff n\mid(a-b)$. Les congruences
+sont compatibles avec $+$, $-$, $\times$ et les puissances : si $a\equiv b\ [n]$ et
+$c\equiv d\ [n]$, alors $a+c\equiv b+d$, $ac\equiv bd$, $a^k\equiv b^k\ [n]$.
+\end{aretenir}
+
+\begin{itemize}
+\item \textbf{Division euclidienne} : $a=bq+r$, $0\le r<|b|$, unique.
+\item \textbf{PGCD} : $\mathrm{pgcd}(a,b)=\mathrm{pgcd}(b,r)$ (algorithme d'Euclide).
+\item \textbf{Bézout} : $\mathrm{pgcd}(a,b)=d\iff \exists\,(u,v)\in\Z^2,\ au+bv=d$.
+      En particulier $a\wedge b=1\iff \exists\,(u,v),\ au+bv=1$.
+\item \textbf{Gauss} : si $a\mid bc$ et $a\wedge b=1$ alors $a\mid c$.
+\item \textbf{Équation $ax+by=c$} : solutions ssi $\mathrm{pgcd}(a,b)\mid c$. Trouver une
+      solution particulière (Bézout), puis $x=x_0+\frac{b}{d}k,\ y=y_0-\frac{a}{d}k$.
+\item \textbf{Nombres premiers} : $n$ composé admet un diviseur premier $\le\sqrt n$.
+      Décomposition unique en facteurs premiers.
+\item \textbf{Petit théorème de Fermat} : $p$ premier, $p\nmid a\Rightarrow a^{p-1}\equiv1\ [p]$.
+\item \textbf{Systèmes de numération} : écriture en base $b$ ; $\overline{a_n\dots a_0}^{\,b}=\sum a_i b^i$.
+\end{itemize}
+
+\begin{remarque}
+Pour un reste de $a^n$ modulo $p$ : cherche la \emph{période} des puissances de $a$
+modulo $p$ (le plus petit $k$ tel que $a^k\equiv1$), puis réduis $n$ modulo $k$.
+\end{remarque}
+
+% ════════════════════════════════════════════════════════════════
+\section{Nombres complexes}
+
+\begin{aretenir}
+$z=a+ib=r(\cos\theta+i\sin\theta)=r\,\mathrm{e}^{i\theta}$ avec $r=|z|=\sqrt{a^2+b^2}$ et
+$\theta=\arg z$. Module et argument : $|zz'|=|z||z'|$, $\arg(zz')=\arg z+\arg z'\ [2\pi]$.
+\end{aretenir}
+
+\begin{itemize}
+\item \textbf{Conjugué} : $\bar z=a-ib$ ; $z\bar z=|z|^2$ ; $\overline{z+z'}=\bar z+\bar{z'}$, $\overline{zz'}=\bar z\,\bar{z'}$.
+\item \textbf{Formule de Moivre} : $(\cos\theta+i\sin\theta)^n=\cos n\theta+i\sin n\theta$.
+\item \textbf{Formules d'Euler} : $\cos\theta=\dfrac{\mathrm{e}^{i\theta}+\mathrm{e}^{-i\theta}}2$, $\sin\theta=\dfrac{\mathrm{e}^{i\theta}-\mathrm{e}^{-i\theta}}{2i}$.
+\item \textbf{Racines $n$-ièmes} de $Z=R\,\mathrm{e}^{i\varphi}$ : $z_k=R^{1/n}\mathrm{e}^{i(\varphi+2k\pi)/n}$, $k=0,\dots,n-1$ (sommets d'un polygone régulier).
+\item \textbf{Équation du 2\textsuperscript{nd} degré} $az^2+bz+c=0$ ($a,b,c\in\R$) : si $\Delta<0$, $z=\dfrac{-b\pm i\sqrt{-\Delta}}{2a}$.
+\item \textbf{Interprétation géométrique} : $|z_B-z_A|=AB$ ; $\arg\dfrac{z_C-z_A}{z_B-z_A}=(\vec{AB},\vec{AC})$.
+      Triangle équilatéral, alignement, orthogonalité se lisent sur ce quotient.
+\end{itemize}
+
+% ════════════════════════════════════════════════════════════════
+\section{Analyse — limites, continuité, dérivation}
+
+\begin{aretenir}
+\textbf{Croissances comparées} : en $+\infty$, $\dfrac{\mathrm{e}^x}{x^n}\to+\infty$,
+$\dfrac{\ln x}{x^n}\to0$, $x^n\mathrm{e}^{-x}\to0$, $x^n\ln x\to0$ en $0^+$.
+\end{aretenir}
+
+\begin{itemize}
+\item \textbf{Continuité} : $f$ continue en $a$ si $\lim_{x\to a}f(x)=f(a)$.
+\item \textbf{T.V.I.} : $f$ continue sur $[a,b]$ prend toute valeur entre $f(a)$ et $f(b)$.
+      Corollaire : si de plus $f$ est \emph{strictement monotone}, $f(x)=k$ a une \emph{unique} solution.
+\item \textbf{Dérivée} : $(uv)'=u'v+uv'$, $\left(\frac uv\right)'=\frac{u'v-uv'}{v^2}$, $(u\circ v)'=v'\,(u'\circ v)$.
+\item $(\ln u)'=\frac{u'}u$, $(\mathrm{e}^u)'=u'\mathrm{e}^u$, $(u^n)'=nu'u^{n-1}$, $(\sqrt u)'=\frac{u'}{2\sqrt u}$.
+\item \textbf{Sens de variation} : signe de $f'$. \textbf{Extremum} : $f'$ s'annule en changeant de signe.
+\item \textbf{Bijection} : $f$ continue strictement monotone sur $I$ réalise une bijection de $I$ sur $f(I)$ ;
+      $(f^{-1})'(y)=\dfrac1{f'(x)}$ avec $y=f(x)$.
+\end{itemize}
+
+% ════════════════════════════════════════════════════════════════
+\section{Suites numériques}
+
+\begin{itemize}
+\item \textbf{Arithmétique} : $u_{n+1}=u_n+r$, $u_n=u_0+nr$, $\sum_{k=0}^{n}u_k=(n{+}1)\dfrac{u_0+u_n}2$.
+\item \textbf{Géométrique} : $u_{n+1}=q\,u_n$, $u_n=u_0q^n$, $\sum_{k=0}^{n}u_k=u_0\dfrac{1-q^{n+1}}{1-q}$ ($q\ne1$).
+\item \textbf{Convergence} : $|q|<1\Rightarrow q^n\to0$. Toute suite \emph{croissante majorée} (resp. décroissante minorée) converge.
+\item \textbf{Suites adjacentes} : $u$ croît, $v$ décroît, $v_n-u_n\to0$ $\Rightarrow$ même limite.
+\item \textbf{Récurrence} $u_{n+1}=f(u_n)$ : si $f$ continue et $u_n\to\ell$, alors $\ell=f(\ell)$ (point fixe).
+\item \textbf{Raisonnement par récurrence} : initialisation + hérédité.
+\end{itemize}
+
+\begin{remarque}
+Pour étudier $u_{n+1}=f(u_n)$ : montrer par récurrence que $(u_n)$ est bornée/monotone,
+ou introduire une suite auxiliaire ($v_n=u_n-\ell$ géométrique, ou $v_n=\frac1{u_n}$, etc.).
+\end{remarque}
+
+% ════════════════════════════════════════════════════════════════
+\section{Fonctions logarithme et exponentielle}
+
+\begin{aretenir}
+$\ln$ : domaine $]0,+\infty[$, $\ln(ab)=\ln a+\ln b$, $\ln\frac ab=\ln a-\ln b$, $\ln a^n=n\ln a$,
+$(\ln x)'=\frac1x$, $\ln1=0$, $\ln\mathrm{e}=1$. \quad $\exp$ : $\mathrm{e}^{a+b}=\mathrm{e}^a\mathrm{e}^b$,
+$(\mathrm{e}^x)'=\mathrm{e}^x>0$, réciproque de $\ln$.
+\end{aretenir}
+
+\begin{itemize}
+\item Limites : $\ln x\to-\infty$ en $0^+$, $\to+\infty$ en $+\infty$ ; $\mathrm{e}^x\to0$ en $-\infty$, $\to+\infty$ en $+\infty$.
+\item $\lim_{x\to0}\frac{\ln(1+x)}x=1$, $\lim_{x\to0}\frac{\mathrm{e}^x-1}x=1$.
+\item Équations/inéquations : $\ln$ et $\exp$ sont strictement croissantes (passage aux deux membres).
+\item Fonction $a^x=\mathrm{e}^{x\ln a}$ ; $\log_a x=\frac{\ln x}{\ln a}$.
+\end{itemize}
+
+% ════════════════════════════════════════════════════════════════
+\section{Primitives \& intégration}
+
+\begin{aretenir}
+$\displaystyle\int_a^b f(x)\dd x=F(b)-F(a)$ où $F'=f$. Linéarité, relation de Chasles,
+positivité ($f\ge0\Rightarrow\int_a^b f\ge0$ pour $a\le b$).
+\end{aretenir}
+
+\begin{center}\small
+\begin{tabular}{@{}ll@{\qquad}ll@{}}
+\toprule
+$f(x)$ & primitive & $f(x)$ & primitive\\
+\midrule
+$x^n\ (n\ne-1)$ & $\frac{x^{n+1}}{n+1}$ & $\frac1x$ & $\ln|x|$\\
+$\mathrm{e}^{x}$ & $\mathrm{e}^{x}$ & $\frac1{\sqrt x}$ & $2\sqrt x$\\
+$\cos x$ & $\sin x$ & $\sin x$ & $-\cos x$\\
+$u'u^n$ & $\frac{u^{n+1}}{n+1}$ & $\frac{u'}u$ & $\ln|u|$\\
+$u'\mathrm{e}^{u}$ & $\mathrm{e}^{u}$ & $\frac{u'}{\sqrt u}$ & $2\sqrt u$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{itemize}
+\item \textbf{Intégration par parties} : $\displaystyle\int_a^b u'v=\big[uv\big]_a^b-\int_a^b uv'$.
+\item \textbf{Valeur moyenne} : $\mu=\frac1{b-a}\int_a^b f$.
+\item \textbf{Aire} entre $\mathcal C_f$ et l'axe : $\int_a^b|f|$ ; entre deux courbes : $\int_a^b|f-g|$.
+\item \textbf{Volume} de révolution (axe $Ox$) : $V=\pi\int_a^b f(x)^2\dd x$.
+\end{itemize}
+
+% ════════════════════════════════════════════════════════════════
+\section{Équations différentielles}
+
+\begin{aretenir}
+$y'=ay$ : solutions $y=C\mathrm{e}^{ax}$. \quad $y'=ay+b$ : $y=C\mathrm{e}^{ax}-\frac ba$.\\
+$y''+\omega^2 y=0$ : $y=A\cos\omega x+B\sin\omega x$. \quad $y''=\omega^2 y$ : $y=A\mathrm{e}^{\omega x}+B\mathrm{e}^{-\omega x}$.
+\end{aretenir}
+La constante se détermine par une \textbf{condition initiale} $y(x_0)=y_0$ (et $y'(x_0)$ pour l'ordre 2).
+
+% ════════════════════════════════════════════════════════════════
+\section{Géométrie — barycentre \& produit scalaire}
+
+\begin{itemize}
+\item \textbf{Barycentre} $G$ de $(A_i,\alpha_i)$, $\sum\alpha_i\ne0$ : $\sum\alpha_i\,\vec{GA_i}=\vec0$ ;
+      pour tout $M$, $\sum\alpha_i\,\vec{MA_i}=\big(\sum\alpha_i\big)\vec{MG}$.
+\item \textbf{Associativité} du barycentre ; isobarycentre = centre de gravité.
+\item \textbf{Produit scalaire} : $\vec u\cdot\vec v=\|\vec u\|\,\|\vec v\|\cos\theta=x x'+y y'\ (+zz')$.
+\item $\vec u\perp\vec v\iff\vec u\cdot\vec v=0$ ; $\|\vec u\|^2=\vec u\cdot\vec u$.
+\item \textbf{Al-Kashi} : $a^2=b^2+c^2-2bc\cos\widehat A$.
+\item \textbf{Lignes de niveau} : $MA^2+MB^2=k$, $\vec{MA}\cdot\vec{MB}=k$, $\frac{MA}{MB}=k$ (cercle, droite…).
+\end{itemize}
+
+% ════════════════════════════════════════════════════════════════
+\section{Géométrie — isométries, similitudes, transformations complexes}
+
+\begin{aretenir}
+Toute \textbf{similitude directe} non triviale s'écrit $z'=az+b$ ($a\ne0$) : rapport $|a|$,
+angle $\arg a$, et (si $a\ne1$) centre unique $\Omega$ d'affixe $\omega=\frac b{1-a}$.
+\end{aretenir}
+
+\begin{itemize}
+\item \textbf{Translation} $z'=z+b$ ; \textbf{homothétie} $z'=k(z-\omega)+\omega$ ($k\in\R$) ;
+      \textbf{rotation} $z'=\mathrm{e}^{i\theta}(z-\omega)+\omega$.
+\item Les isométries conservent les distances ; les similitudes multiplient les distances par le rapport et conservent les angles.
+\item \textbf{Composition} : la composée de deux similitudes directes est une similitude directe (rapports se multiplient, angles s'ajoutent).
+\end{itemize}
+
+% ════════════════════════════════════════════════════════════════
+\section{Coniques}
+
+\begin{center}\small
+\begin{tabular}{@{}llll@{}}
+\toprule
+& Ellipse & Parabole & Hyperbole\\
+\midrule
+Équation réduite & $\frac{x^2}{a^2}+\frac{y^2}{b^2}=1$ & $y^2=2px$ & $\frac{x^2}{a^2}-\frac{y^2}{b^2}=1$\\
+Excentricité & $0<e<1$ & $e=1$ & $e>1$\\
+Définition & $MF=e\cdot d(M,\mathcal D)$ & idem & idem\\
+\bottomrule
+\end{tabular}
+\end{center}
+Foyers, directrices, asymptotes (hyperbole : $y=\pm\frac ba x$) ; $c^2=a^2-b^2$ (ellipse), $c^2=a^2+b^2$ (hyperbole).
+
+% ════════════════════════════════════════════════════════════════
+\section{Dénombrement \& probabilités}
+
+\begin{aretenir}
+Arrangements $A_n^p=\frac{n!}{(n-p)!}$ (ordonnés, sans répétition) ;
+combinaisons $\binom np=\frac{n!}{p!(n-p)!}$ (non ordonnées). $p$-listes : $n^p$ (avec répétition).
+\end{aretenir}
+
+\begin{itemize}
+\item \textbf{Binôme de Newton} : $(a+b)^n=\sum_{k=0}^n\binom nk a^k b^{n-k}$ ; $\binom nk=\binom n{n-k}$, Pascal : $\binom nk=\binom{n-1}{k-1}+\binom{n-1}k$.
+\item \textbf{Probabilité} : $P(A\cup B)=P(A)+P(B)-P(A\cap B)$ ; $P(\bar A)=1-P(A)$.
+\item \textbf{Conditionnelle} : $P_B(A)=\frac{P(A\cap B)}{P(B)}$ ; indépendance : $P(A\cap B)=P(A)P(B)$.
+\item \textbf{Probabilités totales} : $P(A)=\sum_i P(B_i)P_{B_i}(A)$ ($(B_i)$ partition) ; \textbf{Bayes}.
+\item \textbf{Variable aléatoire} : $E(X)=\sum x_iP(X{=}x_i)$, $V(X)=E(X^2)-E(X)^2$, $\sigma=\sqrt V$.
+\item \textbf{Loi binomiale} $\mathcal B(n,p)$ : $P(X{=}k)=\binom nk p^k(1-p)^{n-k}$, $E=np$, $V=np(1-p)$.
+\end{itemize}
+
+\begin{remarque}
+« Au moins un » se traite par l'événement contraire : $P(\ge1)=1-P(0)$.
+\end{remarque}
+
+% ════════════════════════════════════════════════════════════════
+\section{Statistiques}
+
+\begin{itemize}
+\item Moyenne $\bar x$, variance $V=\frac1N\sum n_i(x_i-\bar x)^2=\overline{x^2}-\bar x^2$, écart-type $\sigma=\sqrt V$.
+\item \textbf{Série double} : covariance $\mathrm{cov}(x,y)=\overline{xy}-\bar x\,\bar y$ ; coefficient de corrélation $r=\frac{\mathrm{cov}(x,y)}{\sigma_x\sigma_y}$.
+\item \textbf{Ajustement affine} (moindres carrés) : droite $y=ax+b$ avec $a=\frac{\mathrm{cov}(x,y)}{V(x)}$, passant par $(\bar x,\bar y)$.
+\end{itemize}
+
+% ════════════════════════════════════════════════════════════════
+\section{Algèbre linéaire, matrices \& graphes}
+
+\begin{itemize}
+\item \textbf{Systèmes linéaires} : résolution par combinaisons (pivot de Gauss) ; interprétation matricielle $AX=B$.
+\item \textbf{Matrices} : produit (lignes $\times$ colonnes), $I_n$ neutre ; $2\times2$ : $\det\begin{psmallmatrix}a&b\\c&d\end{psmallmatrix}=ad-bc$,
+      inversible ssi $\det\ne0$, $M^{-1}=\frac1{\det}\begin{psmallmatrix}d&-b\\-c&a\end{psmallmatrix}$.
+\item \textbf{Graphes} : sommets/arêtes, degré, matrice d'adjacence $A$ ; le coefficient $(A^k)_{ij}$ = nombre de chemins de longueur $k$ de $i$ à $j$.
+\item Graphe eulérien (parcourt chaque arête une fois) ; chaîne/cycle ; coloration.
+\end{itemize}
+
+\begin{synthese}[Les ultimes réflexes de l'épreuve]
+\textbf{1.} Lis tout le sujet, repère les questions « faciles » à sécuriser d'abord.\\
+\textbf{2.} Justifie chaque affirmation (théorème cité, hypothèses vérifiées).\\
+\textbf{3.} Soigne les figures : grandes, légendées, à la règle.\\
+\textbf{4.} En probabilités, définis clairement les événements avant de calculer.\\
+\textbf{5.} Vérifie l'homogénéité et l'ordre de grandeur de chaque résultat.\\
+\textbf{6.} Garde 10 minutes pour la \emph{Partie B} (compétences) : pose le modèle, résous, \emph{conclus par une phrase}.\\
+\textbf{7.} Présentation : numérote, encadre tes résultats, écris lisiblement — \emph{0,5 point} en jeu.
+\end{synthese}

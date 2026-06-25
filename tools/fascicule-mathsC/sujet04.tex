@@ -1,0 +1,119 @@
+\section{Sujet n\textsuperscript{o}\,4}
+\noindent\begin{minipage}{0.5\linewidth}\footnotesize Office du Baccalauréat du Cameroun\end{minipage}%
+\hfill\begin{minipage}{0.45\linewidth}\footnotesize\raggedleft Examen : \textbf{Baccalauréat} · Série : \textbf{C/E}\\
+Épreuve : \textbf{Mathématiques} · Durée : \textbf{4\,h} · Coef. : \textbf{7}\end{minipage}
+\par\smallskip{\color{onbo}\rule{\linewidth}{1pt}}
+
+\subsection*{Partie A — Évaluation des ressources \hfill (15 points)}
+
+\noindent\textbf{Exercice 1.} \hfill\textit{(3 points)}\\
+Un éleveur dispose d'un lot de $12$ poussins : $5$ de race \emph{Cobb} et $7$ de race
+\emph{Ross}. Il choisit au hasard et simultanément $4$ poussins pour une couveuse de test.
+Soit $X$ le nombre de poussins de race Cobb parmi les $4$ choisis.
+\begin{enumerate}[label=\arabic*)]
+\item Déterminer la loi de probabilité de $X$. \hfill\textit{(1,5 pt)}
+\item Calculer l'espérance mathématique $E(X)$. \hfill\textit{(0,75 pt)}
+\item Calculer la probabilité d'obtenir au moins un poussin de race Cobb. \hfill\textit{(0,75 pt)}
+\end{enumerate}
+
+\smallskip
+\noindent\textbf{Exercice 2.} \hfill\textit{(3 points)}\\
+L'éleveur conditionne ses œufs en alvéoles de $a$ œufs et en plateaux de $b$ œufs.
+\begin{enumerate}[label=\arabic*)]
+\item Résoudre dans $\Z^2$ l'équation $11x-8y=1$. \hfill\textit{(1,5 pt)}
+\item Une couveuse contient un nombre $N$ d'œufs tel que $N\equiv 3\ [11]$ et $N\equiv 5\ [8]$.
+Déterminer le plus petit entier naturel $N$ vérifiant ces deux congruences. \hfill\textit{(1,5 pt)}
+\end{enumerate}
+
+\smallskip
+\noindent\textbf{Exercice 3.} \hfill\textit{(4 points)}\\
+Soit $f$ la fonction définie sur $]0\,;\,+\infty[$ par $f(x)=x-2+\ln x$, de courbe $(\mathcal{C})$.
+\begin{enumerate}[label=\arabic*)]
+\item Déterminer les limites de $f$ en $0^+$ et en $+\infty$. Étudier le sens de variation de $f$. \hfill\textit{(1 pt)}
+\item Montrer que l'équation $f(x)=0$ admet une unique solution $\alpha$ et que $1<\alpha<2$. \hfill\textit{(1 pt)}
+\item À l'aide d'une intégration par parties, calculer $\displaystyle I=\int_1^{\mathrm e}\ln x\,\dd x$,
+puis en déduire $\displaystyle\int_1^{\mathrm e}f(x)\,\dd x$. \hfill\textit{(2 pt)}
+\end{enumerate}
+
+\smallskip
+\noindent\textbf{Exercice 4.} \hfill\textit{(5 points)}\\
+L'espace est rapporté à un repère orthonormé direct $(O\,;\,\vec\imath,\vec\jmath,\vec k)$.
+On considère les points $A(2\,;\,0\,;\,0)$, $B(0\,;\,3\,;\,0)$ et $C(0\,;\,0\,;\,6)$.
+\begin{enumerate}[label=\arabic*)]
+\item Calculer $\vec{AB}\wedge\vec{AC}$, puis en déduire l'aire du triangle $ABC$. \hfill\textit{(1,5 pt)}
+\item Déterminer une équation cartésienne du plan $(ABC)$. \hfill\textit{(1 pt)}
+\item Calculer la distance du point $O$ au plan $(ABC)$. \hfill\textit{(1 pt)}
+\item Soit $G$ le barycentre des points pondérés $(A\,;\,1)$, $(B\,;\,1)$, $(C\,;\,1)$.
+Déterminer les coordonnées de $G$, puis montrer que $\vec{OG}$ et le vecteur normal au plan
+$(ABC)$ ne sont pas colinéaires. \hfill\textit{(1,5 pt)}
+\end{enumerate}
+
+\subsection*{Partie B — Évaluation des compétences \hfill (5 points)}
+
+\noindent\textit{Monsieur Tchana exploite une ferme avicole à Bafia. Il te sollicite, en tant
+qu'élève de Terminale~C, pour trois décisions de gestion. Il veut d'abord construire un
+poulailler rectangulaire \emph{adossé à un hangar} (le côté longeant le hangar ne se grillage
+pas) avec \SI{120}{\metre} de grillage. Son cheptel, de $800$ poules cette première année,
+croît de \SI{15}{\percent} par an. Enfin, à l'éclosion, \SI{6}{\percent} des œufs ne sont pas
+viables ; un client en prélève $5$ au hasard pour contrôle.}
+
+\begin{enumerate}[label=\textbf{Tâche \arabic*.},leftmargin=2.4em]
+\item Déterminer les dimensions du poulailler rectangulaire d'\emph{aire maximale} qu'il peut
+clôturer, ainsi que cette aire. \hfill\textit{(1,5 pt)}
+\item Déterminer l'année à partir de laquelle son cheptel dépassera $2000$ poules. \hfill\textit{(1,5 pt)}
+\item Déterminer la probabilité qu'\emph{au moins un} des $5$ œufs prélevés ne soit pas viable. \hfill\textit{(1,5 pt)}
+\end{enumerate}
+\par\smallskip{\footnotesize\itshape Présentation générale : 0,5 point.}
+
+% ════════════════════════════════════════════════════
+\corrige{du sujet 4}
+
+\noindent\textbf{Partie A — Exercice 1.}
+1) $\binom{12}{4}=495$ tirages. $P(X{=}k)=\dfrac{\binom5k\binom7{4-k}}{495}$, $k\in\{0,1,2,3,4\}$ :
+$P(0)=\frac{35}{495}=\frac7{99},\ P(1)=\frac{175}{495}=\frac{35}{99},\ P(2)=\frac{210}{495}=\frac{14}{33},\ P(3)=\frac{70}{495}=\frac{14}{99},\ P(4)=\frac{5}{495}=\frac1{99}$.
+2) $E(X)=n\frac{N_1}{N}=4\times\frac{5}{12}=\frac{5}{3}\approx1{,}67$.
+3) $P(X\ge1)=1-P(0)=1-\frac{7}{99}=\frac{92}{99}\approx0{,}929$.
+
+\noindent\textbf{Exercice 2.}
+1) $11\times3-8\times4=33-32=1$ : solution particulière $(3\,;\,4)$. Par différence,
+$11(x-3)=8(y-4)$ ; comme $8\wedge11=1$, le théorème de Gauss donne $8\mid x-3$, d'où
+$x=3+8k,\ y=4+11k,\ k\in\Z$.
+2) $N\equiv3\ [11]$ donne $N=3+11t$. On veut $3+11t\equiv5\ [8]$, soit $11t\equiv2\ [8]$, c'est-à-dire
+$3t\equiv2\ [8]$. L'inverse de $3$ modulo $8$ est $3$ (car $3\times3=9\equiv1$), d'où $t\equiv6\ [8]$.
+Avec $t=6$ : $N=3+66=69$. Le plus petit entier naturel est $\mathbf{N=69}$
+(on vérifie $69=6\times11+3$ et $69=8\times8+5$).
+
+\noindent\textbf{Exercice 3.}
+1) En $0^+$, $\ln x\to-\infty$ donc $f(x)\to-\infty$. En $+\infty$, $f(x)\to+\infty$.
+$f'(x)=1+\frac1x>0$ sur $]0,+\infty[$ : $f$ est strictement croissante.
+2) $f$ est continue et strictement croissante de $]0,+\infty[$ sur $\R$, donc bijective :
+$f(x)=0$ admet une unique solution $\alpha$. $f(1)=1-2+0=-1<0$ et $f(2)=2-2+\ln2=\ln2>0$,
+donc par le théorème des valeurs intermédiaires $1<\alpha<2$.
+3) IPP ($u=\ln x$, $v'=1$) : $I=\big[x\ln x\big]_1^{\mathrm e}-\int_1^{\mathrm e}1\,\dd x=\mathrm e-(\mathrm e-1)=1$.
+Puis $\int_1^{\mathrm e}f=\int_1^{\mathrm e}(x-2)\,\dd x+I=\Big[\tfrac{x^2}2-2x\Big]_1^{\mathrm e}+1
+=\big(\tfrac{\mathrm e^2}2-2\mathrm e\big)-\big(\tfrac12-2\big)+1=\tfrac{\mathrm e^2}2-2\mathrm e+\tfrac52\approx1{,}26$.
+
+\noindent\textbf{Exercice 4.}
+1) $\vec{AB}=(-2\,;\,3\,;\,0)$, $\vec{AC}=(-2\,;\,0\,;\,6)$.
+$\vec{AB}\wedge\vec{AC}=(3\cdot6-0,\ 0\cdot(-2)-(-2)\cdot6,\ (-2)\cdot0-3\cdot(-2))=(18\,;\,12\,;\,6)$.
+$\|\vec{AB}\wedge\vec{AC}\|=\sqrt{18^2+12^2+6^2}=\sqrt{504}=6\sqrt{14}$.
+Aire $=\frac12\times6\sqrt{14}=3\sqrt{14}\approx11{,}22$.
+2) Vecteur normal $\vec n=(18\,;\,12\,;\,6)$, ou $(3\,;\,2\,;\,1)$. Le plan passe par $A(2\,;\,0\,;\,0)$ :
+$3(x-2)+2y+z=0$, soit $3x+2y+z-6=0$.
+3) $d(O,(ABC))=\dfrac{|3\cdot0+2\cdot0+0-6|}{\sqrt{3^2+2^2+1^2}}=\dfrac{6}{\sqrt{14}}=\dfrac{6\sqrt{14}}{14}=\dfrac{3\sqrt{14}}{7}\approx1{,}60$.
+4) $G=\frac13(A+B+C)=\big(\frac23\,;\,1\,;\,2\big)$, donc $\vec{OG}=(\frac23\,;\,1\,;\,2)$.
+$\vec n=(3\,;\,2\,;\,1)$ : $\frac{2/3}{3}=\frac29$ tandis que $\frac12=0{,}5\ne\frac29$, les coordonnées
+ne sont pas proportionnelles : $\vec{OG}$ et $\vec n$ ne sont pas colinéaires.
+
+\smallskip
+\noindent\textbf{Partie B — Situation.}
+\emph{Tâche 1.} On note $x$ la dimension des deux côtés perpendiculaires au hangar et
+$y=120-2x$ celle parallèle au hangar. Aire $A(x)=x(120-2x)$ ; $A'(x)=120-4x=0$ en $x=30$.
+Dimensions : $x=\SI{30}{\metre}$, $y=\SI{60}{\metre}$ ; aire maximale $=30\times60=\SI{1800}{\metre\squared}$.
+
+\emph{Tâche 2.} Cheptel de l'année $n$ : $u_n=800\times1{,}15^{\,n-1}$. On résout $u_n>2000$,
+soit $1{,}15^{\,n-1}>2{,}5$, d'où $n-1>\dfrac{\ln 2{,}5}{\ln 1{,}15}\approx6{,}56$ : à partir de la
+\textbf{8\textsuperscript{e} année} ($u_8=800\times1{,}15^{7}\approx2128$ poules).
+
+\emph{Tâche 3.} $P(\text{au moins un non viable})=1-(0{,}94)^5\approx1-0{,}734=\mathbf{0{,}266}$,
+soit environ \SI{26,6}{\percent}.

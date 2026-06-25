@@ -1,0 +1,214 @@
+\chapter{Annexes}
+
+% ════════════════════════════════════════════════════════════════
+\section{Formulaire complet}
+
+\subsection{Algèbre \& identités remarquables}
+\begin{itemize}\setlength\itemsep{2pt}
+\item $(a+b)^2=a^2+2ab+b^2$ ; $(a-b)^2=a^2-2ab+b^2$ ; $a^2-b^2=(a-b)(a+b)$.
+\item $(a+b)^3=a^3+3a^2b+3ab^2+b^3$ ; $a^3-b^3=(a-b)(a^2+ab+b^2)$ ; $a^3+b^3=(a+b)(a^2-ab+b^2)$.
+\item Binôme : $(a+b)^n=\displaystyle\sum_{k=0}^n\binom nk a^k b^{n-k}$.
+\item Second degré $ax^2+bx+c=0$ : $\Delta=b^2-4ac$ ; $x=\frac{-b\pm\sqrt\Delta}{2a}$ ; somme $-\frac ba$, produit $\frac ca$ ; $ax^2+bx+c=a(x-x_1)(x-x_2)$.
+\item Sommes usuelles : $\displaystyle\sum_{k=1}^n k=\frac{n(n+1)}2$, $\displaystyle\sum_{k=1}^n k^2=\frac{n(n+1)(2n+1)}6$, $\displaystyle\sum_{k=1}^n k^3=\left(\frac{n(n+1)}2\right)^2$.
+\end{itemize}
+
+\subsection{Trigonométrie}
+\begin{itemize}\setlength\itemsep{2pt}
+\item $\cos^2x+\sin^2x=1$ ; $1+\tan^2x=\frac1{\cos^2x}$.
+\item Addition : $\cos(a\pm b)=\cos a\cos b\mp\sin a\sin b$ ; $\sin(a\pm b)=\sin a\cos b\pm\cos a\sin b$.
+\item $\tan(a\pm b)=\dfrac{\tan a\pm\tan b}{1\mp\tan a\tan b}$.
+\item Duplication : $\cos2a=\cos^2a-\sin^2a=2\cos^2a-1=1-2\sin^2a$ ; $\sin2a=2\sin a\cos a$ ; $\tan2a=\frac{2\tan a}{1-\tan^2a}$.
+\item Linéarisation : $\cos^2a=\frac{1+\cos2a}2$ ; $\sin^2a=\frac{1-\cos2a}2$.
+\item Transformation produit$\to$somme : $\cos a\cos b=\frac12[\cos(a-b)+\cos(a+b)]$, $\sin a\sin b=\frac12[\cos(a-b)-\cos(a+b)]$, $\sin a\cos b=\frac12[\sin(a+b)+\sin(a-b)]$.
+\item Valeurs : $\cos0=1,\ \cos\frac\pi6=\frac{\sqrt3}2,\ \cos\frac\pi4=\frac{\sqrt2}2,\ \cos\frac\pi3=\frac12,\ \cos\frac\pi2=0$ (sinus en miroir).
+\end{itemize}
+
+\subsection{Complexes}
+\begin{itemize}\setlength\itemsep{2pt}
+\item $z=a+ib$, $|z|=\sqrt{a^2+b^2}$, $z\bar z=|z|^2$, $\frac1z=\frac{\bar z}{|z|^2}$.
+\item $z=r\mathrm{e}^{i\theta}$ : $|zz'|=|z||z'|$, $\arg(zz')=\arg z+\arg z'$, $z^n=r^n\mathrm{e}^{in\theta}$ (Moivre).
+\item Euler : $\mathrm{e}^{i\theta}=\cos\theta+i\sin\theta$ ; $\cos\theta=\frac{\mathrm{e}^{i\theta}+\mathrm{e}^{-i\theta}}2$, $\sin\theta=\frac{\mathrm{e}^{i\theta}-\mathrm{e}^{-i\theta}}{2i}$.
+\end{itemize}
+
+\subsection{Analyse}
+\begin{itemize}\setlength\itemsep{2pt}
+\item $\ln(ab)=\ln a+\ln b$, $\ln\frac ab=\ln a-\ln b$, $\ln a^n=n\ln a$ ; $\mathrm{e}^{a+b}=\mathrm{e}^a\mathrm{e}^b$, $(\mathrm{e}^a)^n=\mathrm{e}^{na}$.
+\item Croissances comparées : $\frac{\mathrm{e}^x}{x^n}\to+\infty$, $\frac{\ln x}{x^n}\to0$ en $+\infty$.
+\item IPP : $\int_a^b u'v=[uv]_a^b-\int_a^b uv'$.
+\end{itemize}
+
+\subsection{Probabilités \& dénombrement}
+\begin{itemize}\setlength\itemsep{2pt}
+\item $p$-listes $n^p$ ; arrangements $A_n^p=\frac{n!}{(n-p)!}$ ; combinaisons $\binom np=\frac{n!}{p!(n-p)!}$.
+\item $P(A\cup B)=P(A)+P(B)-P(A\cap B)$ ; $P_B(A)=\frac{P(A\cap B)}{P(B)}$ ; total $P(A)=\sum_iP(B_i)P_{B_i}(A)$.
+\item $\mathcal B(n,p)$ : $P(X{=}k)=\binom nk p^k q^{n-k}$ ($q=1-p$), $E=np$, $V=npq$.
+\end{itemize}
+
+% ════════════════════════════════════════════════════════════════
+\section{Tables — dérivées, primitives, trigonométrie}
+
+\subsection{Dérivées usuelles}
+\begin{center}\small
+\begin{tabular}{@{}ll@{\qquad\qquad}ll@{}}
+\toprule
+$f(x)$ & $f'(x)$ & $f(x)$ & $f'(x)$\\
+\midrule
+$k$ & $0$ & $\ln x$ & $\frac1x$\\
+$x^n$ & $nx^{n-1}$ & $\mathrm{e}^x$ & $\mathrm{e}^x$\\
+$\frac1x$ & $-\frac1{x^2}$ & $\cos x$ & $-\sin x$\\
+$\sqrt x$ & $\frac1{2\sqrt x}$ & $\sin x$ & $\cos x$\\
+$\frac1{x^n}$ & $-\frac n{x^{n+1}}$ & $\tan x$ & $1+\tan^2x=\frac1{\cos^2x}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Opérations sur les dérivées}
+\[
+(u+v)'=u'+v',\quad (ku)'=ku',\quad (uv)'=u'v+uv',\quad \left(\frac uv\right)'=\frac{u'v-uv'}{v^2},\quad (v\circ u)'=u'\cdot(v'\circ u).
+\]
+\[
+(u^n)'=nu'u^{n-1},\quad (\sqrt u)'=\frac{u'}{2\sqrt u},\quad (\ln u)'=\frac{u'}u,\quad (\mathrm{e}^u)'=u'\mathrm{e}^u.
+\]
+
+\subsection{Primitives usuelles}
+\begin{center}\small
+\begin{tabular}{@{}ll@{\qquad\qquad}ll@{}}
+\toprule
+$f(x)$ & primitive $F(x)$ & $f(x)$ & primitive $F(x)$\\
+\midrule
+$x^n\ (n\ne-1)$ & $\frac{x^{n+1}}{n+1}$ & $\frac1x$ & $\ln|x|$\\
+$\mathrm{e}^x$ & $\mathrm{e}^x$ & $\cos x$ & $\sin x$\\
+$\sin x$ & $-\cos x$ & $\frac1{\cos^2x}$ & $\tan x$\\
+$u'u^n$ & $\frac{u^{n+1}}{n+1}$ & $\frac{u'}u$ & $\ln|u|$\\
+$u'\mathrm{e}^u$ & $\mathrm{e}^u$ & $\frac{u'}{\sqrt u}$ & $2\sqrt u$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Cercle trigonométrique — valeurs remarquables}
+\begin{center}\small
+\begin{tabular}{@{}l*5{c}@{}}
+\toprule
+$x$ & $0$ & $\frac\pi6$ & $\frac\pi4$ & $\frac\pi3$ & $\frac\pi2$\\
+\midrule
+$\sin x$ & $0$ & $\frac12$ & $\frac{\sqrt2}2$ & $\frac{\sqrt3}2$ & $1$\\
+$\cos x$ & $1$ & $\frac{\sqrt3}2$ & $\frac{\sqrt2}2$ & $\frac12$ & $0$\\
+$\tan x$ & $0$ & $\frac{\sqrt3}3$ & $1$ & $\sqrt3$ & $\nexists$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Angles associés}
+\[
+\cos(-x)=\cos x,\quad \sin(-x)=-\sin x,\quad \cos(\pi-x)=-\cos x,\quad \sin(\pi-x)=\sin x,
+\]
+\[
+\cos(\pi+x)=-\cos x,\quad \sin(\pi+x)=-\sin x,\quad \cos\!\left(\tfrac\pi2-x\right)=\sin x,\quad \sin\!\left(\tfrac\pi2-x\right)=\cos x.
+\]
+
+% ════════════════════════════════════════════════════════════════
+\section{Alphabet grec \& notations mathématiques}
+
+\subsection{Alphabet grec}
+\begin{center}\small
+\begin{tabular}{@{}llll@{\quad}llll@{}}
+\toprule
+min. & maj. & nom & & min. & maj. & nom &\\
+\midrule
+$\alpha$ & $A$ & alpha & & $\nu$ & $N$ & nu &\\
+$\beta$ & $B$ & bêta & & $\xi$ & $\Xi$ & xi &\\
+$\gamma$ & $\Gamma$ & gamma & & $o$ & $O$ & omicron &\\
+$\delta$ & $\Delta$ & delta & & $\pi$ & $\Pi$ & pi &\\
+$\varepsilon$ & $E$ & epsilon & & $\rho$ & $P$ & rhô &\\
+$\zeta$ & $Z$ & zêta & & $\sigma$ & $\Sigma$ & sigma &\\
+$\eta$ & $H$ & êta & & $\tau$ & $T$ & tau &\\
+$\theta$ & $\Theta$ & thêta & & $\upsilon$ & $\Upsilon$ & upsilon &\\
+$\iota$ & $I$ & iota & & $\varphi$ & $\Phi$ & phi &\\
+$\kappa$ & $K$ & kappa & & $\chi$ & $X$ & chi &\\
+$\lambda$ & $\Lambda$ & lambda & & $\psi$ & $\Psi$ & psi &\\
+$\mu$ & $M$ & mu & & $\omega$ & $\Omega$ & oméga &\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Symboles \& notations}
+\begin{center}\small
+\begin{tabular}{@{}ll@{\qquad}ll@{}}
+\toprule
+symbole & signification & symbole & signification\\
+\midrule
+$\N,\Z,\Q,\R,\C$ & ensembles de nombres & $\forall$ & pour tout\\
+$\in,\notin$ & appartient, n'appartient pas & $\exists$ & il existe\\
+$\subset$ & est inclus dans & $\Rightarrow,\iff$ & implique, équivaut\\
+$\cup,\cap$ & union, intersection & $\emptyset$ & ensemble vide\\
+$\sum,\prod$ & somme, produit & $\mid$ & divise\\
+$\wedge$ & PGCD (ou « et ») & $|z|$ & module / valeur absolue\\
+$\equiv$ & congru & $\binom np$ & coefficient binomial\\
+$\to,\lim$ & tend vers, limite & $\infty$ & infini\\
+$\vec u\cdot\vec v$ & produit scalaire & $\vec u\wedge\vec v$ & produit vectoriel\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% ════════════════════════════════════════════════════════════════
+\section{Index des méthodes}
+
+Ce répertoire renvoie aux \textbf{savoir-faire incontournables} ; chacun est détaillé,
+exemple à l'appui, dans le chapitre indiqué.
+
+\begin{multicols}{2}\small\raggedright
+\textbf{Arithmétique}
+\begin{itemize}\setlength\itemsep{1pt}
+\item Résoudre une équation diophantienne $ax+by=c$
+\item Déterminer un PGCD (algorithme d'Euclide)
+\item Trouver les coefficients de Bézout
+\item Calculer un reste de puissance modulo $n$
+\item Étudier la divisibilité par récurrence
+\end{itemize}
+
+\textbf{Complexes}
+\begin{itemize}\setlength\itemsep{1pt}
+\item Passer de la forme algébrique à trigonométrique
+\item Résoudre $az^2+bz+c=0$ dans $\C$
+\item Calculer les racines $n$-ièmes
+\item Reconnaître la nature d'un triangle (quotient d'affixes)
+\item Déterminer l'écriture complexe d'une similitude
+\end{itemize}
+
+\textbf{Analyse}
+\begin{itemize}\setlength\itemsep{1pt}
+\item Lever une forme indéterminée (croissances comparées)
+\item Dresser un tableau de variations
+\item Appliquer le T.V.I. (existence/unicité d'une solution)
+\item Étudier une suite récurrente $u_{n+1}=f(u_n)$
+\item Calculer une intégrale par parties
+\item Calculer une aire / un volume de révolution
+\item Résoudre $y'=ay+b$ et $y''+\omega^2y=0$
+\end{itemize}
+
+\textbf{Géométrie}
+\begin{itemize}\setlength\itemsep{1pt}
+\item Construire et utiliser un barycentre
+\item Déterminer une ligne de niveau
+\item Calculer un produit scalaire / vectoriel
+\item Trouver une équation de plan dans l'espace
+\item Calculer une distance point-plan, un volume de tétraèdre
+\item Identifier les éléments d'une conique
+\end{itemize}
+
+\textbf{Probabilités \& stats}
+\begin{itemize}\setlength\itemsep{1pt}
+\item Dénombrer (listes / arrangements / combinaisons)
+\item Déterminer une loi de probabilité, $E(X)$, $V(X)$
+\item Appliquer la formule des probabilités totales / Bayes
+\item Reconnaître et utiliser une loi binomiale
+\item Réaliser un ajustement affine (moindres carrés)
+\end{itemize}
+
+\textbf{Algèbre linéaire \& graphes}
+\begin{itemize}\setlength\itemsep{1pt}
+\item Résoudre un système (pivot de Gauss)
+\item Calculer un produit / un déterminant / un inverse de matrice
+\item Utiliser la matrice d'adjacence d'un graphe
+\end{itemize}
+\end{multicols}
