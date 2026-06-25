@@ -1,0 +1,400 @@
+\chapter{Limites et continuité (introduction)}
+\textit{Que devient $f(x)$ quand $x$ s'approche d'une valeur, ou quand $x$ devient
+très grand ? Cette question — celle de la \emph{limite} — ouvre la porte de toute
+l'analyse. Dans ce chapitre, on l'aborde de façon intuitive et concrète, à partir
+de tableaux de valeurs et de lectures graphiques. On apprend aussi à reconnaître
+qu'une fonction est \emph{continue}, et à repérer les \emph{asymptotes} d'une courbe.
+Les démonstrations rigoureuses, elles, viendront en Terminale.}
+
+\section{Notion intuitive de limite en un point}
+
+\begin{aretenir}[L'idée de limite]
+Dire que $f(x)$ \textbf{tend vers} un réel $\ell$ quand $x$ \textbf{tend vers} $a$,
+c'est dire : \emph{plus $x$ s'approche de $a$, plus $f(x)$ s'approche de $\ell$}.
+On note alors
+\[ \lim_{x\to a} f(x) = \ell. \]
+\end{aretenir}
+
+\begin{exemple}
+Soit $f(x)=2x+1$. Approchons $x$ de $1$ et observons $f(x)$ :
+\begin{center}\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{@{}c|ccccc@{}}
+\toprule
+$x$    & $0{,}9$ & $0{,}99$ & $1$ & $1{,}01$ & $1{,}1$ \\
+\midrule
+$f(x)$ & $2{,}8$ & $2{,}98$ & $3$ & $3{,}02$ & $3{,}2$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+Quand $x$ s'approche de $1$ (par la gauche ou par la droite), $f(x)$ s'approche de $3$.
+On écrit $\displaystyle\lim_{x\to 1}(2x+1)=3$. Ici, c'est simplement $f(1)=3$.
+\end{exemple}
+
+\begin{remarque}
+La limite décrit le \emph{comportement de $f$ au voisinage de $a$}, pas forcément la
+valeur $f(a)$. Une limite peut exister même là où la fonction n'est pas définie : c'est
+tout l'intérêt de la notion (voir les formes indéterminées plus loin).
+\end{remarque}
+
+\begin{definition}[Limite à gauche, limite à droite]
+\begin{itemize}
+  \item La \textbf{limite à gauche} de $f$ en $a$, notée $\displaystyle\lim_{x\to a^-}f(x)$,
+        s'obtient en faisant tendre $x$ vers $a$ \emph{avec $x<a$}.
+  \item La \textbf{limite à droite} de $f$ en $a$, notée $\displaystyle\lim_{x\to a^+}f(x)$,
+        s'obtient en faisant tendre $x$ vers $a$ \emph{avec $x>a$}.
+\end{itemize}
+La limite $\displaystyle\lim_{x\to a}f(x)$ existe (et vaut $\ell$) \textbf{si et seulement si}
+les deux limites latérales existent et sont \emph{égales} à $\ell$.
+\end{definition}
+
+\section{Limite infinie en un point}
+
+\begin{aretenir}[Quand $f(x)$ « explose »]
+Si $f(x)$ devient aussi grand que l'on veut quand $x$ s'approche de $a$, on écrit
+$\displaystyle\lim_{x\to a}f(x)=+\infty$ ; si $f(x)$ devient aussi grand en valeur
+absolue mais négatif, $\displaystyle\lim_{x\to a}f(x)=-\infty$.
+\end{aretenir}
+
+\begin{exemple}
+Soit $f(x)=\dfrac{1}{x}$, et approchons $x$ de $0$ \emph{par la droite} ($x>0$) :
+\begin{center}\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{@{}c|cccc@{}}
+\toprule
+$x$    & $0{,}1$ & $0{,}01$ & $0{,}001$ & $0{,}0001$ \\
+\midrule
+$f(x)$ & $10$    & $100$    & $1000$    & $10\,000$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+Plus $x$ s'approche de $0$ par valeurs positives, plus $\frac1x$ grandit sans limite :
+$\displaystyle\lim_{x\to 0^+}\frac1x=+\infty$. À gauche ($x<0$), on trouverait de même
+$\displaystyle\lim_{x\to 0^-}\frac1x=-\infty$.
+\end{exemple}
+
+\begin{illus}
+\begin{tikzpicture}[scale=0.95]
+  \draw[->,onbline] (-3.2,0)--(3.3,0) node[right,onbmuted]{$x$};
+  \draw[->,onbline] (0,-3.1)--(0,3.2) node[above,onbmuted]{$y$};
+  \draw[thick,onbo,smooth,samples=120,domain=0.34:3] plot (\x,{1/\x});
+  \draw[thick,onbo,smooth,samples=120,domain=-3:-0.34] plot (\x,{1/\x});
+  \draw[dashed,onbmuted] (0,-3.1)--(0,3.2);
+  \node[onbmuted,right] at (0.15,2.7){asymptote $x=0$};
+\end{tikzpicture}
+\fig{Figure — la courbe de $x\mapsto \frac1x$ « monte vers le ciel » à droite de $0$ et « descend » à gauche : la droite $x=0$ est asymptote verticale.}
+\end{illus}
+
+\section{Limite en $+\infty$ et en $-\infty$}
+
+\begin{aretenir}[Comportement à l'infini]
+Étudier $\displaystyle\lim_{x\to +\infty}f(x)$, c'est observer ce que devient $f(x)$
+quand $x$ prend des valeurs de plus en plus grandes. De même en $-\infty$ avec des
+valeurs de plus en plus grandes \emph{négativement}. Le résultat peut être un réel
+$\ell$, ou $+\infty$, ou $-\infty$.
+\end{aretenir}
+
+\begin{exemple}
+Pour $f(x)=\dfrac1x$, regardons $x$ devenir grand :
+\begin{center}\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{@{}c|cccc@{}}
+\toprule
+$x$    & $10$  & $100$  & $1000$  & $10\,000$ \\
+\midrule
+$f(x)$ & $0{,}1$ & $0{,}01$ & $0{,}001$ & $0{,}0001$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+Plus $x$ grandit, plus $\frac1x$ s'approche de $0$ : $\displaystyle\lim_{x\to +\infty}\frac1x=0$.
+De même $\displaystyle\lim_{x\to -\infty}\frac1x=0$.
+\end{exemple}
+
+\section{Limites des fonctions de référence}
+
+\begin{propriete}[À connaître par cœur]
+\begin{center}\renewcommand{\arraystretch}{1.45}
+\begin{tabular}{@{}l c c c@{}}
+\toprule
+$f(x)$ & $\displaystyle\lim_{x\to -\infty}$ & $\displaystyle\lim_{x\to +\infty}$ & en $0$ \\
+\midrule
+$x$        & $-\infty$ & $+\infty$ & $0$ \\
+$x^2$      & $+\infty$ & $+\infty$ & $0$ \\
+$x^3$      & $-\infty$ & $+\infty$ & $0$ \\
+$\dfrac1x$ & $0$       & $0$       & $+\infty$ ($x\to0^+$), $-\infty$ ($x\to0^-$) \\
+$\sqrt{x}$ & (non déf.)& $+\infty$ & $0$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{propriete}
+
+\begin{remarque}
+$\sqrt{x}$ n'est définie que pour $x\ge 0$ : on n'étudie donc pas sa limite en $-\infty$,
+seulement en $+\infty$ (où elle vaut $+\infty$, mais en croissant lentement) et en $0$
+(où elle vaut $0$).
+\end{remarque}
+
+\begin{illus}
+\begin{tikzpicture}[scale=0.8]
+  \draw[->,onbline] (-0.4,0)--(4.4,0) node[right,onbmuted]{$x$};
+  \draw[->,onbline] (0,-0.4)--(0,3.2) node[above,onbmuted]{$y$};
+  \draw[thick,onbo,smooth,samples=100,domain=0:4] plot (\x,{sqrt(\x)}) node[right,onbink]{$\sqrt{x}$};
+  \draw[thick,onbgreen,smooth,samples=60,domain=0:1.78] plot (\x,{\x*\x}) node[above,onbink]{$x^2$};
+\end{tikzpicture}
+\fig{Figure — sur $[0\,;\,+\infty[$, $x^2$ croît vite, $\sqrt{x}$ croît lentement ; toutes deux tendent vers $+\infty$.}
+\end{illus}
+
+\section{Opérations sur les limites}
+
+\begin{aretenir}[Le principe]
+Pour la plupart des fonctions usuelles, la limite d'une \emph{somme}, d'un
+\emph{produit} ou d'un \emph{quotient} se calcule en faisant l'opération sur les
+limites de chaque morceau — comme si l'on remplaçait chaque morceau par sa limite.
+\end{aretenir}
+
+\begin{propriete}[Somme, produit, quotient]
+Si $\displaystyle\lim_{x\to a}f(x)=\ell$ et $\displaystyle\lim_{x\to a}g(x)=\ell'$
+(avec $\ell,\ell'$ réels), alors :
+\[ \lim_{x\to a}\big(f+g\big)=\ell+\ell',\qquad
+   \lim_{x\to a}\big(f\times g\big)=\ell\times\ell', \]
+\[ \lim_{x\to a}\frac{f}{g}=\frac{\ell}{\ell'}\quad\text{(à condition que }\ell'\neq 0). \]
+Ces règles s'étendent au cas $a=\pm\infty$, et aux limites infinies tant qu'on ne
+tombe pas sur une \emph{forme indéterminée} (voir ci-dessous).
+\end{propriete}
+
+\begin{exemple}
+Calculons $\displaystyle\lim_{x\to 2}\big(x^2+3x-1\big)$. Chaque morceau a une limite
+finie : $x^2\to 4$, $3x\to 6$, $-1\to -1$. Par somme :
+\[ \lim_{x\to 2}\big(x^2+3x-1\big)=4+6-1=9. \]
+Pour un polynôme, la limite en un point $a$ s'obtient simplement en remplaçant $x$ par $a$.
+\end{exemple}
+
+\begin{aretenir}[Règles avec l'infini (cas sans ambiguïté)]
+En notant « $\ell$ » un réel :
+\begin{itemize}
+  \item $(+\infty)+(+\infty)=+\infty$\ ;\quad $\ell+(+\infty)=+\infty$ ;
+  \item $(+\infty)\times(+\infty)=+\infty$\ ;\quad si $\ell>0$, $\ \ell\times(+\infty)=+\infty$ ;
+  \item $\dfrac{\ell}{\pm\infty}=0$\ ;\quad si $\ell>0$, $\ \dfrac{\ell}{0^+}=+\infty$ et $\dfrac{\ell}{0^-}=-\infty$.
+\end{itemize}
+La règle des signes habituelle s'applique pour $-\infty$.
+\end{aretenir}
+
+\section{Formes indéterminées}
+
+\begin{definition}[Forme indéterminée]
+Une \textbf{forme indéterminée} (F.I.) est une situation où les règles d'opérations
+\emph{ne suffisent pas} à conclure : le résultat dépend des fonctions en jeu. Les
+quatre formes à reconnaître sont
+\[ \infty-\infty,\qquad \frac{\infty}{\infty},\qquad \frac{0}{0},\qquad 0\times\infty. \]
+\end{definition}
+
+\begin{aretenir}[Techniques élémentaires pour « lever » une F.I.]
+\begin{itemize}
+  \item \textbf{Factoriser} (mettre le terme dominant en facteur) puis simplifier ;
+  \item pour une forme $\frac00$ avec un facteur commun : \textbf{simplifier} la
+        fraction après factorisation du numérateur et du dénominateur ;
+  \item se ramener à des limites de référence connues.
+\end{itemize}
+\end{aretenir}
+
+\begin{exemple}[Forme $\frac00$ : factoriser et simplifier]
+Calculons $\displaystyle\lim_{x\to 3}\frac{x^2-9}{x-3}$. En remplaçant $x$ par $3$ :
+$\frac{0}{0}$, forme indéterminée. On factorise le numérateur :
+\[ \frac{x^2-9}{x-3}=\frac{(x-3)(x+3)}{x-3}=x+3\quad(\text{pour } x\neq 3). \]
+Donc $\displaystyle\lim_{x\to 3}\frac{x^2-9}{x-3}=\lim_{x\to 3}(x+3)=6.$
+\end{exemple}
+
+\begin{exemple}[Forme $\frac{\infty}{\infty}$ : terme dominant]
+Calculons $\displaystyle\lim_{x\to +\infty}\frac{2x^2+1}{x^2+x}$. Numérateur et
+dénominateur tendent vers $+\infty$ : forme $\frac{\infty}{\infty}$. On met $x^2$ en
+facteur en haut et en bas :
+\[ \frac{2x^2+1}{x^2+x}=\frac{x^2\!\left(2+\frac1{x^2}\right)}{x^2\!\left(1+\frac1x\right)}
+   =\frac{2+\frac1{x^2}}{1+\frac1x}\xrightarrow[x\to+\infty]{}\frac{2+0}{1+0}=2. \]
+\end{exemple}
+
+\begin{exemple}[Forme $\infty-\infty$]
+Calculons $\displaystyle\lim_{x\to +\infty}\big(x^2-x\big)$. C'est $\infty-\infty$.
+On factorise par le terme dominant $x^2$ :
+\[ x^2-x=x^2\Big(1-\frac1x\Big)\xrightarrow[x\to+\infty]{}+\infty\times 1=+\infty. \]
+\end{exemple}
+
+\begin{remarque}
+Une F.I. n'a pas de réponse « toute faite » : selon les fonctions, la limite peut
+être $0$, un réel quelconque, ou $\pm\infty$. C'est pour cela qu'il faut transformer
+l'expression avant de conclure.
+\end{remarque}
+
+\section{Continuité}
+
+\begin{definition}[Continuité en un point]
+Soit $f$ définie sur un intervalle contenant $a$. On dit que $f$ est \textbf{continue
+en $a$} lorsque
+\[ \lim_{x\to a}f(x)=f(a). \]
+Autrement dit : la limite existe \emph{et} vaut la valeur de la fonction en $a$.
+\end{definition}
+
+\begin{aretenir}[Image intuitive]
+$f$ est \textbf{continue} si l'on peut tracer sa courbe \emph{sans lever le crayon} :
+pas de « saut », pas de « trou ». À l'inverse, une rupture du tracé signale une
+\textbf{discontinuité}.
+\end{aretenir}
+
+\begin{definition}[Continuité sur un intervalle]
+$f$ est \textbf{continue sur un intervalle $I$} si elle est continue en chaque point
+de $I$.
+\end{definition}
+
+\begin{propriete}[Fonctions usuelles]
+Les fonctions \textbf{polynômes} sont continues sur $\R$. Une fonction
+\textbf{rationnelle} (quotient de polynômes) est continue sur tout intervalle où son
+dénominateur ne s'annule pas. La fonction $\sqrt{x}$ est continue sur $[0\,;\,+\infty[$.
+\end{propriete}
+
+\begin{illus}
+\begin{tikzpicture}[scale=0.8]
+  \begin{scope}
+    \draw[->,onbline] (-0.4,0)--(3.4,0) node[right,onbmuted]{$x$};
+    \draw[->,onbline] (0,-0.4)--(0,3.2) node[above,onbmuted]{$y$};
+    \draw[thick,onbo,smooth,samples=60,domain=0.2:3] plot (\x,{0.6*\x+0.4});
+    \node[onbmuted,below] at (1.7,-0.4){continue (sans saut)};
+  \end{scope}
+  \begin{scope}[xshift=6cm]
+    \draw[->,onbline] (-0.4,0)--(3.4,0) node[right,onbmuted]{$x$};
+    \draw[->,onbline] (0,-0.4)--(0,3.2) node[above,onbmuted]{$y$};
+    \draw[thick,onbgreen] (0.2,0.7)--(1.5,1.3);
+    \draw[thick,onbgreen] (1.5,2.4)--(3,3);
+    \filldraw[white,draw=onbgreen] (1.5,1.3) circle (2pt);
+    \filldraw[onbgreen] (1.5,2.4) circle (2pt);
+    \node[onbmuted,below] at (1.7,-0.4){discontinue (saut en $x=1{,}5$)};
+  \end{scope}
+\end{tikzpicture}
+\fig{Figure — à gauche un tracé continu ; à droite un « saut » : la fonction n'est pas continue au point de rupture.}
+\end{illus}
+
+\begin{exemple}
+$f(x)=x^2-5x+6$ est un polynôme, donc continue sur $\R$. En particulier en $2$ :
+$\displaystyle\lim_{x\to 2}f(x)=f(2)=4-10+6=0$, ce qui confirme la continuité.
+\end{exemple}
+
+\section{Asymptotes lues sur une courbe}
+
+\begin{definition}[Asymptote verticale]
+Si $\displaystyle\lim_{x\to a^+}f(x)=\pm\infty$ ou $\displaystyle\lim_{x\to a^-}f(x)=\pm\infty$,
+la droite d'équation $\boldsymbol{x=a}$ est une \textbf{asymptote verticale} à la
+courbe $\mathcal{C}_f$.
+\end{definition}
+
+\begin{definition}[Asymptote horizontale]
+Si $\displaystyle\lim_{x\to +\infty}f(x)=\ell$ (ou $\displaystyle\lim_{x\to -\infty}f(x)=\ell$),
+avec $\ell$ réel, la droite d'équation $\boldsymbol{y=\ell}$ est une
+\textbf{asymptote horizontale} à $\mathcal{C}_f$ (en $+\infty$, resp. en $-\infty$).
+\end{definition}
+
+\begin{aretenir}[Lire une asymptote sur un dessin]
+\begin{itemize}
+  \item \textbf{Verticale} ($x=a$) : la courbe « longe » une droite verticale en
+        montant ou descendant vers l'infini près de $x=a$.
+  \item \textbf{Horizontale} ($y=\ell$) : au loin (à droite ou à gauche), la courbe
+        se rapproche d'une droite horizontale de hauteur $\ell$.
+\end{itemize}
+\end{aretenir}
+
+\begin{illus}
+\begin{tikzpicture}[scale=0.95]
+  \draw[->,onbline] (-1.2,0)--(4.4,0) node[right,onbmuted]{$x$};
+  \draw[->,onbline] (0,-1.4)--(0,3.6) node[above,onbmuted]{$y$};
+  % courbe de 1 + 1/(x-1) : asymptotes x=1 et y=1
+  \draw[thick,onbo,smooth,samples=120,domain=1.4:4.2] plot (\x,{1+1/(\x-1)});
+  \draw[thick,onbo,smooth,samples=120,domain=-1.2:0.62] plot (\x,{1+1/(\x-1)});
+  \draw[dashed,onbblue] (1,-1.4)--(1,3.6) node[above,onbblue]{$x=1$};
+  \draw[dashed,onbgreen] (-1.2,1)--(4.4,1) node[right,onbgreen]{$y=1$};
+\end{tikzpicture}
+\fig{Figure — courbe de $x\mapsto 1+\frac{1}{x-1}$ : asymptote verticale $x=1$ et asymptote horizontale $y=1$.}
+\end{illus}
+
+\begin{exemple}
+Pour $f(x)=\dfrac{1}{x-2}$ : $\displaystyle\lim_{x\to 2^+}f(x)=+\infty$, donc $x=2$
+est asymptote verticale ; et $\displaystyle\lim_{x\to\pm\infty}f(x)=0$, donc $y=0$
+(l'axe des abscisses) est asymptote horizontale.
+\end{exemple}
+
+% ════════════════════════════════════════════════════════════
+\section{L'essentiel à retenir}
+
+\begin{synthese}
+\textbf{Limite en un point.} $\displaystyle\lim_{x\to a}f(x)=\ell$ : $f(x)$ s'approche
+de $\ell$ quand $x$ s'approche de $a$. Elle existe ssi les limites à gauche et à droite
+sont égales. Si $f(x)$ « explose », la limite est $\pm\infty$.
+
+\smallskip
+\textbf{Limite à l'infini.} On regarde $f(x)$ quand $x\to\pm\infty$.
+
+\smallskip
+\textbf{Références.} $\frac1x\to 0$ en $\pm\infty$ et $\to\pm\infty$ en $0$ ;
+$x^2,\sqrt{x}\to +\infty$ en $+\infty$ ; $x^3\to\pm\infty$ selon le signe de $x$.
+
+\smallskip
+\textbf{Opérations.} La limite d'une somme/produit/quotient = somme/produit/quotient
+des limites, \emph{sauf} forme indéterminée : $\infty-\infty$, $\frac{\infty}{\infty}$,
+$\frac00$, $0\times\infty$. On lève une F.I. en \emph{factorisant} (terme dominant) puis
+en \emph{simplifiant}.
+
+\smallskip
+\textbf{Continuité.} $f$ continue en $a$ $\iff \displaystyle\lim_{x\to a}f(x)=f(a)$
+(tracé sans lever le crayon). Polynômes : continus sur $\R$.
+
+\smallskip
+\textbf{Asymptotes.} $\displaystyle\lim_{x\to a}f=\pm\infty \Rightarrow$ asymptote
+verticale $x=a$ ; $\displaystyle\lim_{x\to\pm\infty}f=\ell \Rightarrow$ asymptote
+horizontale $y=\ell$.
+\end{synthese}
+
+% ════════════════════════════════════════════════════════════
+\section{Méthodes \& savoir-faire}
+
+\methode{Conjecturer une limite à l'aide d'un tableau de valeurs}
+Choisir des valeurs de $x$ de plus en plus proches de $a$ (ou de plus en plus grandes
+pour $\pm\infty$), calculer $f(x)$, puis observer vers quel nombre — ou vers quel
+infini — se dirige $f(x)$.
+\begin{exemple}
+Pour $f(x)=\dfrac{x}{x+1}$ en $+\infty$ : avec $x=10,100,1000$ on obtient
+$0{,}909\,;\,0{,}990\,;\,0{,}999$. On conjecture $\displaystyle\lim_{x\to+\infty}f(x)=1$.
+\end{exemple}
+
+\methode{Calculer la limite d'un polynôme ou d'une fonction continue en un point $a$}
+Si la fonction est continue en $a$, il suffit de \emph{remplacer $x$ par $a$} :
+$\displaystyle\lim_{x\to a}f(x)=f(a)$.
+\begin{exemple}
+$\displaystyle\lim_{x\to -1}\big(x^3-2x+4\big)=(-1)^3-2(-1)+4=-1+2+4=5.$
+\end{exemple}
+
+\methode{Lever une forme indéterminée $\frac00$}
+Quand le remplacement donne $\frac00$, factoriser le numérateur \emph{et} le
+dénominateur, simplifier le facteur commun, puis remplacer.
+\begin{exemple}
+$\displaystyle\lim_{x\to 1}\frac{x^2-1}{x-1}=\lim_{x\to 1}\frac{(x-1)(x+1)}{x-1}
+=\lim_{x\to 1}(x+1)=2.$
+\end{exemple}
+
+\methode{Lever une forme $\frac{\infty}{\infty}$ d'une fraction rationnelle}
+Mettre en facteur le terme de plus haut degré au numérateur et au dénominateur,
+simplifier, puis utiliser $\frac1{x^n}\to 0$.
+\begin{exemple}
+$\displaystyle\lim_{x\to +\infty}\frac{3x+5}{x-2}
+=\lim_{x\to +\infty}\frac{x\!\left(3+\frac5x\right)}{x\!\left(1-\frac2x\right)}
+=\frac{3+0}{1-0}=3.$
+\end{exemple}
+
+\methode{Étudier la continuité d'une fonction en un point}
+Vérifier que $f(a)$ existe, calculer $\displaystyle\lim_{x\to a}f(x)$ (au besoin à
+gauche et à droite), puis comparer : continuité ssi limite $=f(a)$.
+\begin{exemple}
+$f(x)=\dfrac{x^2-4}{x-2}$ n'est pas définie en $2$. Mais $\displaystyle\lim_{x\to 2}f(x)
+=\lim_{x\to 2}(x+2)=4$ : on peut « prolonger par continuité » en posant $f(2)=4$.
+\end{exemple}
+
+\methode{Déterminer les asymptotes d'une courbe par les limites}
+Repérer les valeurs interdites $a$ du domaine : si $\displaystyle\lim_{x\to a}f=\pm\infty$,
+alors $x=a$ est asymptote verticale. Calculer la limite en $\pm\infty$ : si elle vaut
+un réel $\ell$, alors $y=\ell$ est asymptote horizontale.
+\begin{exemple}
+$f(x)=\dfrac{2x+1}{x-3}$ : en $x=3$, $\displaystyle\lim f=\pm\infty$ (asymptote
+verticale $x=3$) ; en $\pm\infty$, $f(x)\to 2$ (asymptote horizontale $y=2$).
+\end{exemple}
