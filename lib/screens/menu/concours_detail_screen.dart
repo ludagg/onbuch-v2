@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import '../../theme/app_theme.dart';
 import '../../models/concours.dart';
+import '../../data/orientation_guide.dart';
 import '../../utils/launch.dart';
 
 /// Fiche concours (section B des wireframes) : bannière, infos clés et onglets
@@ -17,7 +18,7 @@ class ConcoursDetailScreen extends StatefulWidget {
 
 class _ConcoursDetailScreenState extends State<ConcoursDetailScreen> {
   int _tab = 0;
-  static const _tabs = ['Aperçu', 'Dates'];
+  static const _tabs = ['Aperçu', 'Dates', 'Débouchés'];
 
   Concours get c => widget.concours ?? const Concours(id: '-', name: 'Concours', organizer: '');
 
@@ -140,10 +141,100 @@ class _ConcoursDetailScreenState extends State<ConcoursDetailScreen> {
     switch (_tab) {
       case 1:
         return _datesTab();
+      case 2:
+        return _debouchesTab();
       default:
         return _apercuTab();
     }
   }
+
+  // ── Débouchés : ce que ce concours permet de devenir ──
+  Widget _debouchesTab() {
+    final admin = (c.debouches ?? '').trim();
+    // Lignes saisies par l'admin (séparées par retour à la ligne, « ; » ou « • »).
+    final adminItems = admin
+        .split(RegExp(r'[\n;•]+'))
+        .map((e) => e.trim())
+        .where((e) => e.isNotEmpty)
+        .toList();
+    final field = matchOrientation(c.name);
+
+    if (adminItems.isEmpty && field == null) {
+      return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Text(
+          'Les débouchés de ce concours seront bientôt précisés. En attendant, '
+          'consulte le guide d\'orientation pour comprendre les grandes filières.',
+          style: body(13, color: OC.muted, weight: FontWeight.w500).copyWith(height: 1.5),
+        ),
+        const SizedBox(height: 14),
+        _guideButton(),
+      ]);
+    }
+
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      if (adminItems.isNotEmpty) ...[
+        _h('Métiers & débouchés'),
+        const SizedBox(height: 10),
+        for (final d in adminItems) _bullet(d, OC.o600),
+        const SizedBox(height: 16),
+      ],
+      if (field != null) ...[
+        _h(adminItems.isEmpty ? 'Métiers & débouchés' : 'Filière : ${field.title}'),
+        const SizedBox(height: 6),
+        Text(field.tagline, style: body(12.5, color: OC.ink2, weight: FontWeight.w600).copyWith(height: 1.4)),
+        const SizedBox(height: 10),
+        if (adminItems.isEmpty)
+          for (final d in field.debouches) _bullet(d, field.accent),
+        if (field.schools.isNotEmpty) ...[
+          const SizedBox(height: 12),
+          Text('ÉCOLES & EXEMPLES',
+              style: body(10.5, weight: FontWeight.w800, color: OC.muted).copyWith(letterSpacing: 0.06 * 10.5)),
+          const SizedBox(height: 8),
+          Wrap(spacing: 7, runSpacing: 7, children: [
+            for (final s in field.schools)
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                decoration: BoxDecoration(color: OC.panel, borderRadius: BorderRadius.circular(9)),
+                child: Text(s, style: body(11, color: OC.ink2, weight: FontWeight.w600)),
+              ),
+          ]),
+        ],
+        const SizedBox(height: 16),
+      ],
+      _guideButton(),
+    ]);
+  }
+
+  Widget _bullet(String text, Color color) => Padding(
+        padding: const EdgeInsets.only(bottom: 7),
+        child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 4),
+            child: Icon(Icons.check_circle_rounded, size: 15, color: color),
+          ),
+          const SizedBox(width: 9),
+          Expanded(child: Text(text,
+              style: body(13, color: OC.ink2, weight: FontWeight.w500).copyWith(height: 1.45))),
+        ]),
+      );
+
+  Widget _guideButton() => GestureDetector(
+        onTap: () => context.push('/orientation-guide'),
+        child: Container(
+          padding: const EdgeInsets.all(13),
+          decoration: BoxDecoration(
+            color: OC.o50, borderRadius: BorderRadius.circular(13),
+            border: Border.all(color: OC.o100, width: 1.5),
+          ),
+          child: Row(children: [
+            Icon(Icons.explore_rounded, size: 18, color: OC.o600),
+            const SizedBox(width: 11),
+            Expanded(child: Text('Voir le guide d\'orientation complet',
+                style: body(13, weight: FontWeight.w700, color: OC.o700))),
+            Icon(Icons.arrow_forward_ios_rounded, size: 14, color: OC.o600),
+          ]),
+        ),
+      );
 
   // ── Aperçu (données réelles) ──
   Widget _apercuTab() {

@@ -102,7 +102,13 @@ class _ConcoursScreenState extends State<ConcoursScreen> {
             padding: const EdgeInsets.fromLTRB(20, 6, 20, 32),
             children: [
               _searchField(),
-              const SizedBox(height: 18),
+              const SizedBox(height: 14),
+
+              // Guide d'orientation — explique les filières et leurs débouchés
+              if (!searching) ...[
+                _OrientationGuideBanner(),
+                const SizedBox(height: 18),
+              ],
 
               // Carrousel publicitaire — meilleurs centres de prépa (données admin)
               _PrepCenterCarousel(future: _prepFuture),
@@ -195,6 +201,42 @@ Widget _pill(String t, Color bg, Color fg) => Container(
     );
 
 String _frShort(DateTime d) => DateFormat('d MMM', 'fr_FR').format(d);
+
+// ─── Bannière « Guide d'orientation » ────────────────────────────────────────
+class _OrientationGuideBanner extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () => context.push('/orientation-guide'),
+      child: Container(
+        padding: const EdgeInsets.all(14),
+        decoration: BoxDecoration(
+          color: OC.o50,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: OC.o100, width: 1.5),
+        ),
+        child: Row(children: [
+          Container(
+            width: 44, height: 44,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(color: OC.o500, borderRadius: BorderRadius.circular(13)),
+            child: const Icon(Icons.explore_rounded, size: 22, color: Colors.white),
+          ),
+          const SizedBox(width: 12),
+          Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text('Guide d\'orientation', style: body(14, weight: FontWeight.w800)),
+            const SizedBox(height: 2),
+            Text('Quel concours pour quel métier ? Explore les filières et leurs débouchés.',
+                style: body(11.5, color: OC.ink2, weight: FontWeight.w500).copyWith(height: 1.3)),
+          ])),
+          const SizedBox(width: 6),
+          Icon(Icons.arrow_forward_ios_rounded, size: 15, color: OC.o600),
+        ]),
+      ),
+    );
+  }
+}
 
 // ─── Carrousel publicitaire — meilleurs centres de prépa ─────────────────────
 class _PrepCenterCarousel extends StatefulWidget {

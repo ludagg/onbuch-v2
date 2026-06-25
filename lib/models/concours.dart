@@ -12,6 +12,7 @@ class Concours {
   final String? resultsLink;
   final DateTime? resultsDate;
   final String? audience;
+  final String? debouches; // métiers / débouchés (saisis par l'admin)
   final int order;
 
   const Concours({
@@ -27,6 +28,7 @@ class Concours {
     this.resultsLink,
     this.resultsDate,
     this.audience,
+    this.debouches,
     this.order = 0,
   });
 
@@ -56,6 +58,7 @@ class Concours {
       resultsLink: _s(d['resultsLink']),
       resultsDate: dt(d['resultsDate']),
       audience: _s(d['audience']),
+      debouches: _s(d['debouches']),
       order: ord is int ? ord : int.tryParse('$ord') ?? 0,
     );
   }

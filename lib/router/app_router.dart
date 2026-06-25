@@ -44,6 +44,7 @@ import '../screens/affiche/affiche_detail_screen.dart';
 import '../models/affiche.dart';
 import '../screens/menu/concours_screen.dart';
 import '../screens/menu/concours_detail_screen.dart';
+import '../screens/menu/orientation_guide_screen.dart';
 import '../screens/menu/concours_inscription_screen.dart';
 import '../screens/menu/mes_candidatures_screen.dart';
 import '../screens/menu/concours_prep_screen.dart';
@@ -139,6 +140,7 @@ final appRouter = GoRouter(
     GoRoute(path: '/affiche', builder: (_, __) => const AfficheScreen()),
     GoRoute(path: '/affiche-detail', builder: (_, s) => AfficheDetailScreen(item: s.extra as AfficheItem?)),
     GoRoute(path: '/concours-detail', builder: (_, s) => ConcoursDetailScreen(concours: s.extra as Concours?)),
+    GoRoute(path: '/orientation-guide', builder: (_, __) => const OrientationGuideScreen()),
     GoRoute(path: '/concours-inscription', builder: (_, s) => ConcoursInscriptionScreen(concours: s.extra as Concours?)),
     GoRoute(path: '/mes-candidatures', builder: (_, __) => const MesCandidaturesScreen()),
     GoRoute(path: '/concours-prep', builder: (_, s) => ConcoursPrepScreen(concours: s.extra as Concours?)),
