@@ -31,7 +31,7 @@ const List<OrientationField> kOrientationGuide = [
   OrientationField(
     title: 'Ingénierie & Polytechnique',
     tagline: 'Concevoir, construire, innover : les métiers d\'ingénieur.',
-    keywords: ['ENSP', 'ENSPD', 'ENSPY', 'POLYTECHNIQUE', 'POLYTECH', 'ENSTP', 'ENSAI', 'EGEM', 'EGCIM', 'ENSPT', 'SUP\'PTIC', 'SUPPTIC'],
+    keywords: ['ENSP', 'ENSPD', 'ENSPY', 'POLYTECHNIQUE', 'POLYTECH', 'ENSTP', 'ENSAI', 'EGEM', 'EGCIM', 'ENSPT', 'SUP\'PTIC', 'SUPPTIC', 'FET', 'ENGINEERING', 'TECHNOLOGY', 'GENIE', 'GÉNIE'],
     schools: ['ENSP Yaoundé / Maroua', 'ENSPD Douala', 'ENSTP (travaux publics)', 'ENSAI Ngaoundéré', 'Sup\'PTIC'],
     debouches: [
       'Ingénieur génie civil, électrique, mécanique, industriel',
@@ -209,7 +209,8 @@ String _norm(String s) {
   for (final ch in up.split('')) {
     b.write(map[ch] ?? ch);
   }
-  return b.toString();
+  // Retire les apostrophes (droite et typographique) : SUP'PTIC ≡ SUPPTIC.
+  return b.toString().replaceAll('\'', '').replaceAll('’', '');
 }
 
 /// Rapproche un concours (par son nom) d'une filière du guide, si possible.
