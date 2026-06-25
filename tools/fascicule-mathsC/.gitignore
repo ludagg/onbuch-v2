@@ -1,0 +1,6 @@
+apercu-*.pdf
+*.aux
+*.log
+*.out
+*.toc
+.sk*
