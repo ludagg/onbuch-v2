@@ -35,6 +35,9 @@ résumés, méthodes, et **beaucoup** d'exercices corrigés. Langue : **françai
 ## Unités & notation physique (OBLIGATOIRE)
 - **Toujours** les valeurs avec unité via `siunitx` : `\SI{9.8}{\metre\per\second\squared}`,
   `\SI{12}{\volt}`, `\SI{50}{\hertz}`, `\SI{2e-3}{\farad}`, `\ang{30}`. Unité seule : `\si{\ohm}`.
+- **N'INVENTE JAMAIS d'unité siunitx** : `\spires`, `\tours`, `\gauss`… n'existent pas → erreur de
+  compilation. Pour un libellé NON-SI (spires/m, tr/min), écris-le en texte mathématique :
+  `\num{2000}~\mathrm{spires/m}`, `\num{3000}~\mathrm{tr/min}` (PAS `\SI{...}{...}`).
   Décimale : siunitx affiche la virgule (locale FR) automatiquement — écris le point dans `\SI`.
 - Vecteurs : `\vect{F}`, `\vect{B}`, `\vect{E}`, `\vect{v}` (jamais `\vec` brut autrement).
 - Dérivées temporelles : `\dv{x}{t}`, `\dv[2]{x}{t}` n'existe pas → écris `\ddot{x}`, `\dot{x}`.
@@ -49,6 +52,8 @@ résumés, méthodes, et **beaucoup** d'exercices corrigés. Langue : **françai
   \fig{Figure — légende courte.}
   \end{illus}
   ```
+  ⚠️ `\fig{...}` se place **APRÈS** `\end{tikzpicture}`/`\end{axis}`/`\end{circuitikz}` (jamais à
+  l'intérieur du dessin) et avant `\end{illus}` — sinon « Missing character … nullfont ».
 - **B. IMAGE EXTERNE** — pour tout schéma **trop complexe ou réaliste** à dessiner en code
   (montages expérimentaux réels, spectres de raies, figures d'interférences photographiées,
   spectres de limaille, dispositifs d'optique fins). **NE tente PAS de les dessiner.**

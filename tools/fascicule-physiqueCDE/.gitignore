@@ -4,3 +4,5 @@ _*.log
 *.aux
 *.out
 *.toc
+.chk/
+*-apercu.pdf

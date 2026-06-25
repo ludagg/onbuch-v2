@@ -31,7 +31,11 @@ const ENDPOINT = process.env.NVIDIA_ENDPOINT ||
 // Modèle rapide accessible à ces clés. (deepseek-r1 = id inexistant → 404.)
 const MODEL = process.env.NVIDIA_MODEL || 'deepseek-ai/deepseek-v4-flash';
 const MAX_TOKENS = Number(process.env.MAX_TOKENS || 32768);
-const MAX_FIX_ROUNDS = Number(process.env.MAX_FIX_ROUNDS || 3);
+// 0 par défaut : NVIDIA génère, on compile UNE fois et on s'arrête sur erreur.
+// Les corrections de compilation sont faites à la main (Claude) — chirurgical,
+// sans régénérer (zéro coût NVIDIA, zéro dérive de contenu). Mettre >0 pour
+// réactiver la correction auto par le modèle.
+const MAX_FIX_ROUNDS = Number(process.env.MAX_FIX_ROUNDS || 0);
 const KEYS = (process.env.NVIDIA_API_KEYS || '').split(',').map((s) => s.trim()).filter(Boolean);
 const CONCURRENCY = Number(process.env.CONCURRENCY || KEYS.length || 1);
 
