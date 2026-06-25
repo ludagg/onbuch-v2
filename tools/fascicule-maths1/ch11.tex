@@ -1,0 +1,402 @@
+\chapter{Statistiques à une variable}
+\textit{La statistique apprend à recueillir, organiser et résumer des données : les
+notes d'une classe, les tailles des élèves, le nombre d'enfants par famille\dots\
+Quand les valeurs sont nombreuses, on ne peut pas tout retenir : on les remplace par
+quelques nombres bien choisis — une \emph{moyenne}, une \emph{médiane}, un
+\emph{écart-type} — qui en disent l'essentiel. Ce chapitre met en place le
+vocabulaire, les représentations et ces paramètres résumés.}
+
+\section{Vocabulaire de base}
+
+\begin{definition}[Population, individu, caractère]
+La \textbf{population} est l'ensemble étudié ; chacun de ses éléments est un
+\textbf{individu} (ou unité statistique). Le \textbf{caractère} est la propriété
+observée sur chaque individu. Le nombre total d'individus est l'\textbf{effectif
+total}, noté $N$.
+\end{definition}
+
+\begin{definition}[Nature d'un caractère]
+\begin{itemize}
+  \item Un caractère est \textbf{qualitatif} si ses valeurs (appelées
+        \emph{modalités}) ne sont pas des nombres (couleur, sexe, série\dots).
+  \item Un caractère est \textbf{quantitatif} si ses valeurs sont des nombres. Il est
+        alors \textbf{discret} si ces valeurs sont isolées (nombre d'enfants, note),
+        ou \textbf{continu} si elles peuvent prendre toute valeur d'un intervalle
+        (taille, masse, durée).
+\end{itemize}
+\end{definition}
+
+\begin{exemple}
+Dans une classe de Première C du lycée de Bafoussam, on note la matière préférée
+(qualitatif), le nombre de frères et sœurs (quantitatif discret) et la taille en
+centimètres (quantitatif continu).
+\end{exemple}
+
+\begin{definition}[Effectif et fréquence]
+Soit $x_i$ une valeur (ou modalité) du caractère. L'\textbf{effectif} $n_i$ de $x_i$
+est le nombre d'individus présentant cette valeur. La \textbf{fréquence} de $x_i$ est
+\[ f_i = \frac{n_i}{N}, \qquad 0\le f_i\le 1, \qquad \sum_i f_i = 1. \]
+Elle s'exprime souvent en pourcentage : $f_i\times 100\,\%$.
+\end{definition}
+
+\begin{propriete}[Somme des effectifs]
+Si le caractère prend les valeurs $x_1,x_2,\dots,x_p$ d'effectifs $n_1,n_2,\dots,n_p$,
+alors
+\[ n_1+n_2+\dots+n_p = \sum_{i=1}^{p} n_i = N. \]
+\end{propriete}
+
+\begin{definition}[Effectifs et fréquences cumulés]
+On range les valeurs dans l'ordre croissant. L'\textbf{effectif cumulé croissant}
+d'une valeur $x_i$ est la somme des effectifs des valeurs inférieures ou égales à
+$x_i$ ; la \textbf{fréquence cumulée croissante} est la somme des fréquences
+correspondantes. On définit de même les cumuls \emph{décroissants} en sommant à
+partir de la plus grande valeur.
+\end{definition}
+
+\begin{remarque}
+La fréquence cumulée croissante de $x_i$ répond à la question : « quelle
+\emph{proportion} d'individus ont une valeur $\le x_i$ ? » Elle croît de $0$ à $1$.
+\end{remarque}
+
+\section{Séries statistiques et regroupement en classes}
+
+\begin{definition}[Série statistique]
+La donnée des valeurs $x_i$ accompagnées de leurs effectifs $n_i$ (ou fréquences
+$f_i$) constitue une \textbf{série statistique}. On la présente dans un tableau.
+\end{definition}
+
+\begin{exemple}
+Notes (sur $20$) d'un devoir de mathématiques dans une classe de $25$ élèves :
+\begin{center}\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{@{}l c c c c c c c@{}}
+\toprule
+Note $x_i$ & $6$ & $8$ & $10$ & $12$ & $14$ & $16$ & Total \\
+\midrule
+Effectif $n_i$ & $2$ & $4$ & $8$ & $6$ & $3$ & $2$ & $25$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{exemple}
+
+\begin{definition}[Regroupement en classes]
+Quand le caractère est continu (ou discret avec trop de valeurs), on regroupe les
+données en \textbf{classes}, c'est-à-dire des intervalles $[a\,;\,b[$ consécutifs.
+Pour une classe $[a\,;\,b[$ :
+\begin{itemize}
+  \item son \textbf{amplitude} est $b-a$ ;
+  \item son \textbf{centre} est $c=\dfrac{a+b}{2}$.
+\end{itemize}
+Le centre $c$ représente la classe dans tous les calculs (moyenne, variance\dots).
+\end{definition}
+
+\begin{exemple}
+Tailles (en cm) de $40$ élèves regroupées en classes d'amplitude $5$ :
+\begin{center}\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{@{}l c c c c c@{}}
+\toprule
+Classe & $[150\,;155[$ & $[155\,;160[$ & $[160\,;165[$ & $[165\,;170[$ & $[170\,;175[$ \\
+\midrule
+Centre $c_i$ & $152{,}5$ & $157{,}5$ & $162{,}5$ & $167{,}5$ & $172{,}5$ \\
+Effectif $n_i$ & $4$ & $9$ & $14$ & $8$ & $5$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{exemple}
+
+\section{Représentations graphiques}
+
+\begin{aretenir}[Quelle représentation choisir ?]
+\begin{itemize}
+  \item Caractère \textbf{discret} : \textbf{diagramme en bâtons} (un bâton de
+        hauteur $n_i$ par valeur).
+  \item Caractère \textbf{continu} (classes) : \textbf{histogramme} (des rectangles
+        accolés dont l'aire est proportionnelle à l'effectif).
+  \item \textbf{Polygone des effectifs} : ligne brisée joignant les sommets des
+        bâtons ou les milieux des sommets des rectangles.
+  \item \textbf{Courbe cumulative} : tracé des effectifs (ou fréquences) cumulés.
+\end{itemize}
+\end{aretenir}
+
+\begin{illus}
+\begin{tikzpicture}[scale=1]
+  \draw[->,onbline] (-0.3,0)--(7.4,0) node[right,onbmuted]{notes};
+  \draw[->,onbline] (0,-0.3)--(0,4.6) node[above,onbmuted]{$n_i$};
+  \foreach \y in {2,4,6,8} \draw[onbline] (-0.08,\y*0.5)--(0.08,\y*0.5) node[left,onbmuted,xshift=-2pt]{\small$\y$};
+  % bâtons : (x, effectif)
+  \foreach \x/\n/\lab in {1/2/6, 2/4/8, 3/8/10, 4/6/12, 5/3/14, 6/2/16}{
+    \draw[onbo,line width=5pt] (\x,0)--(\x,\n*0.5);
+    \node[onbmuted,below] at (\x,0) {\small\lab};
+    \filldraw[onbo] (\x,\n*0.5) circle (1.4pt);
+  }
+  % polygone des effectifs
+  \draw[onbgreen,thick] (1,1)--(2,2)--(3,4)--(4,3)--(5,1.5)--(6,1);
+\end{tikzpicture}
+\fig{Figure — diagramme en bâtons des notes (en orange) et polygone des effectifs (en vert).}
+\end{illus}
+
+\begin{illus}
+\begin{tikzpicture}[scale=1]
+  \draw[->,onbline] (-0.3,0)--(6.6,0) node[right,onbmuted]{taille (cm)};
+  \draw[->,onbline] (0,-0.3)--(0,4.4) node[above,onbmuted]{$n_i$};
+  \foreach \y in {4,9,14} \draw[onbline] (-0.08,\y*0.25)--(0.08,\y*0.25) node[left,onbmuted,xshift=-2pt]{\small$\y$};
+  % histogramme : rectangles accolés (amplitude constante), effectifs 4,9,14,8,5
+  \foreach \i/\n in {0/4, 1/9, 2/14, 3/8, 4/5}{
+    \filldraw[onbo!28,draw=onbo,line width=0.8pt] (\i*1.1+0.4,0) rectangle (\i*1.1+1.5,\n*0.25);
+  }
+  \foreach \i/\lab in {0/150, 1/155, 2/160, 3/165, 4/170, 5/175}
+    \node[onbmuted,below] at (\i*1.1+0.4,0) {\scriptsize\lab};
+\end{tikzpicture}
+\fig{Figure — histogramme des tailles (classes d'amplitude égale : les hauteurs sont proportionnelles aux effectifs).}
+\end{illus}
+
+\begin{remarque}
+Lorsque les classes n'ont \emph{pas} la même amplitude, c'est l'\textbf{aire} de
+chaque rectangle — et non sa hauteur — qui doit être proportionnelle à l'effectif :
+on porte alors en hauteur la \emph{densité} $n_i/(b_i-a_i)$.
+\end{remarque}
+
+\begin{illus}
+\begin{tikzpicture}[scale=1]
+  \draw[->,onbline] (-0.3,0)--(6.6,0) node[right,onbmuted]{taille (cm)};
+  \draw[->,onbline] (0,-0.3)--(0,4.6) node[above,onbmuted]{eff. cumulé};
+  \foreach \y/\lab in {0.25/10, 0.5/20, 0.75/30, 1/40}
+     \draw[onbline] (-0.08,\y*4)--(0.08,\y*4) node[left,onbmuted,xshift=-2pt]{\small\lab};
+  % effectifs cumulés croissants aux bornes : 150->0, 155->4, 160->13, 165->27, 170->35, 175->40
+  \draw[onbblue,very thick]
+     (0.4,0)--(1.5,{4*4/40})--(2.6,{4*13/40})--(3.7,{4*27/40})--(4.8,{4*35/40})--(5.9,{4*40/40});
+  \foreach \i/\lab in {0/150, 1/155, 2/160, 3/165, 4/170, 5/175}
+     \node[onbmuted,below] at (\i*1.1+0.4,0) {\scriptsize\lab};
+  \filldraw[onbblue] (0.4,0) circle (1.4pt);
+  \filldraw[onbblue] (1.5,{4*4/40}) circle (1.4pt);
+  \filldraw[onbblue] (2.6,{4*13/40}) circle (1.4pt);
+  \filldraw[onbblue] (3.7,{4*27/40}) circle (1.4pt);
+  \filldraw[onbblue] (4.8,{4*35/40}) circle (1.4pt);
+  \filldraw[onbblue] (5.9,4) circle (1.4pt);
+\end{tikzpicture}
+\fig{Figure — courbe (polygone) des effectifs cumulés croissants des tailles.}
+\end{illus}
+
+\section{Paramètres de position}
+
+Les paramètres de position résument la série par une valeur « centrale ».
+
+\begin{definition}[Moyenne arithmétique]
+La \textbf{moyenne} d'une série de valeurs $x_1,\dots,x_p$ d'effectifs
+$n_1,\dots,n_p$ (effectif total $N$) est
+\[ \bar x = \frac{1}{N}\sum_{i=1}^{p} n_i x_i
+   = \frac{n_1x_1+n_2x_2+\dots+n_px_p}{N}. \]
+Pour des données groupées en classes, on prend pour $x_i$ le \textbf{centre} de
+chaque classe.
+\end{definition}
+
+\begin{exemple}
+Pour les notes du tableau ($N=25$) :
+\[ \sum n_i x_i = 6\cdot2+8\cdot4+10\cdot8+12\cdot6+14\cdot3+16\cdot2
+   = 12+32+80+72+42+32 = 270, \]
+donc $\bar x = \dfrac{270}{25} = 10{,}8$. La moyenne de la classe est $10{,}8$ sur $20$.
+\end{exemple}
+
+\begin{propriete}[Linéarité de la moyenne]
+Si on transforme chaque valeur par $y_i = a\,x_i + b$ ($a,b$ réels), alors
+\[ \bar y = a\,\bar x + b. \]
+\end{propriete}
+
+\begin{definition}[Mode]
+Le \textbf{mode} est la valeur de plus grand effectif. Pour des données en classes,
+on parle de \textbf{classe modale} (la classe de plus fort effectif, à amplitude
+égale).
+\end{definition}
+
+\begin{definition}[Médiane]
+La \textbf{médiane} $M_e$ est une valeur qui partage la série \emph{ordonnée} en deux
+groupes de même effectif : au moins la moitié des valeurs lui sont inférieures ou
+égales, au moins la moitié lui sont supérieures ou égales.
+\begin{itemize}
+  \item Si $N$ est \textbf{impair}, $M_e$ est la valeur de rang $\dfrac{N+1}{2}$.
+  \item Si $N$ est \textbf{pair}, $M_e$ est la demi-somme des valeurs de rangs
+        $\dfrac{N}{2}$ et $\dfrac{N}{2}+1$.
+\end{itemize}
+\end{definition}
+
+\begin{exemple}
+Pour les notes ($N=25$, impair), la médiane est la valeur de rang $13$. Les effectifs
+cumulés croissants donnent : rangs $1$–$2$ : note $6$ ; rangs $3$–$6$ : note $8$ ;
+rangs $7$–$14$ : note $10$. Le $13^{\text{e}}$ élève a donc la note $10$ :
+$M_e = 10$.
+\end{exemple}
+
+\begin{remarque}
+La médiane n'est pas sensible aux valeurs extrêmes, contrairement à la moyenne :
+si un seul élève avait eu $0$ au lieu de $6$, $\bar x$ baisserait mais $M_e$ ne
+changerait pas. C'est pourquoi on les donne souvent ensemble.
+\end{remarque}
+
+\begin{definition}[Quartiles]
+Une fois la série ordonnée, les \textbf{quartiles} $Q_1,Q_2,Q_3$ la partagent en
+quatre parts d'effectifs voisins.
+\begin{itemize}
+  \item $Q_1$ (premier quartile) : la plus petite valeur telle qu'au moins $25\,\%$
+        des données lui sont $\le$ ;
+  \item $Q_2 = M_e$ (médiane) : au moins $50\,\%$ ;
+  \item $Q_3$ (troisième quartile) : au moins $75\,\%$.
+\end{itemize}
+\end{definition}
+
+\begin{exemple}
+Notes, $N=25$. On cherche le rang « au moins $25\,\%$ », soit $\frac{25}{4}=6{,}25$ :
+on prend le rang $7$. Or les rangs $7$–$14$ valent $10$, donc $Q_1=10$. De même,
+$\frac{3\times25}{4}=18{,}75$ donne le rang $19$ : rangs $15$–$20$ valent $12$, donc
+$Q_3=12$.
+\end{exemple}
+
+\section{Paramètres de dispersion}
+
+Deux séries peuvent avoir la même moyenne tout en étant très différentes : l'une
+serrée autour de la moyenne, l'autre étalée. Les paramètres de \textbf{dispersion}
+mesurent cet étalement.
+
+\begin{definition}[Étendue]
+L'\textbf{étendue} est la différence entre la plus grande et la plus petite valeur :
+\[ e = x_{\max} - x_{\min}. \]
+\end{definition}
+
+\begin{definition}[Variance et écart-type]
+La \textbf{variance} mesure la moyenne des carrés des écarts à la moyenne :
+\[ V = \frac{1}{N}\sum_{i=1}^{p} n_i\,(x_i - \bar x)^2. \]
+L'\textbf{écart-type} est sa racine carrée :
+\[ \sigma = \sqrt{V}. \]
+L'écart-type s'exprime dans la même unité que les données ; il est d'autant plus
+grand que les valeurs sont dispersées autour de $\bar x$.
+\end{definition}
+
+\begin{theoreme}[Formule de König–Huygens]
+La variance se calcule aussi comme « la moyenne des carrés moins le carré de la
+moyenne » :
+\[ V = \frac{1}{N}\sum_{i=1}^{p} n_i\,x_i^{\,2} \;-\; \bar x^{\,2}
+     = \overline{x^2} - \bar x^{\,2}. \]
+\end{theoreme}
+
+\begin{remarque}
+La formule de König est presque toujours plus rapide à la main : elle évite de
+calculer chaque écart $x_i-\bar x$. On dresse une colonne $n_ix_i$ et une colonne
+$n_ix_i^2$, puis on applique la formule.
+\end{remarque}
+
+\begin{exemple}
+Reprenons les notes ($N=25$, $\bar x = 10{,}8$). On calcule $\sum n_i x_i^2$ :
+\[ \sum n_i x_i^2 = 6^2\!\cdot\!2 + 8^2\!\cdot\!4 + 10^2\!\cdot\!8 + 12^2\!\cdot\!6
+   + 14^2\!\cdot\!3 + 16^2\!\cdot\!2, \]
+\[ = 72 + 256 + 800 + 864 + 588 + 512 = 3092. \]
+D'où, par la formule de König,
+\[ V = \frac{3092}{25} - (10{,}8)^2 = 123{,}68 - 116{,}64 = 7{,}04, \]
+puis $\sigma = \sqrt{7{,}04} \approx 2{,}65$. Les notes s'écartent en moyenne d'environ
+$2{,}65$ points de la moyenne $10{,}8$.
+\end{exemple}
+
+\begin{propriete}[Effet d'une transformation affine]
+Si $y_i = a\,x_i + b$, alors la dispersion ne dépend pas de $b$ :
+\[ V_y = a^2\,V_x, \qquad \sigma_y = |a|\,\sigma_x. \]
+\end{propriete}
+
+\begin{aretenir}[Lire les paramètres ensemble]
+\begin{itemize}
+  \item \textbf{Position} : $\bar x$ (moyenne), $M_e$ (médiane), mode.
+  \item \textbf{Dispersion} : étendue $e$, écart-type $\sigma$.
+\end{itemize}
+Un couple $(\bar x,\sigma)$ résume bien une série : par exemple $\bar x=10{,}8$ et
+$\sigma\approx2{,}65$ pour les notes ; deux classes de même moyenne mais d'écarts-types
+$1$ et $4$ sont très différentes (l'une homogène, l'autre hétérogène).
+\end{aretenir}
+
+% ════════════════════════════════════════════════════════════
+\section{L'essentiel à retenir}
+
+\begin{synthese}
+\textbf{Vocabulaire.} Population (effectif $N$), individu, caractère
+qualitatif / quantitatif (discret ou continu). Effectif $n_i$, fréquence
+$f_i=\dfrac{n_i}{N}$ avec $\sum f_i=1$. Effectifs/fréquences cumulés (croissants ou
+décroissants).
+
+\smallskip
+\textbf{Classes.} Pour $[a\,;\,b[$ : amplitude $b-a$, centre $c=\dfrac{a+b}{2}$ (qui
+représente la classe dans les calculs).
+
+\smallskip
+\textbf{Position.}
+\[ \bar x = \frac{1}{N}\sum n_i x_i \,;\qquad
+   M_e=Q_2 \ (\text{partage en deux}) \,;\qquad Q_1,\,Q_3 \ (\text{quarts}). \]
+Le \textbf{mode} est la valeur (ou classe) la plus fréquente.
+
+\smallskip
+\textbf{Dispersion.}
+\[ e = x_{\max}-x_{\min} \,;\qquad
+   V = \frac{1}{N}\sum n_i (x_i-\bar x)^2 = \overline{x^2}-\bar x^{\,2}
+   \ (\text{König}) \,;\qquad \sigma=\sqrt{V}. \]
+
+\smallskip
+\textbf{Transformation affine} $y=ax+b$ : $\ \bar y = a\bar x+b$, $\ V_y=a^2V_x$,
+$\ \sigma_y=|a|\,\sigma_x$.
+\end{synthese}
+
+% ════════════════════════════════════════════════════════════
+\section{Méthodes \& savoir-faire}
+
+\methode{Dresser un tableau d'effectifs et de fréquences}
+Recenser les valeurs distinctes, compter l'effectif $n_i$ de chacune, puis calculer
+$f_i=\dfrac{n_i}{N}$ (et $f_i\times100$ pour les pourcentages). Vérifier que
+$\sum n_i = N$ et $\sum f_i = 1$.
+\begin{exemple}
+Nombre d'enfants par famille : $0$ (eff.\ $3$), $1$ (eff.\ $7$), $2$ (eff.\ $10$),
+$3$ (eff.\ $4$), $4$ (eff.\ $1$). Ici $N=25$ et, par exemple,
+$f($« $2$ enfants »$)=\dfrac{10}{25}=0{,}4=40\,\%$.
+\end{exemple}
+
+\methode{Calculer une moyenne pondérée}
+Multiplier chaque valeur par son effectif, sommer, puis diviser par $N$ :
+$\bar x=\dfrac{\sum n_i x_i}{N}$. Pour des classes, remplacer $x_i$ par le centre $c_i$.
+\begin{exemple}
+Tailles groupées (centres $152{,}5\,;157{,}5\,;162{,}5\,;167{,}5\,;172{,}5$ ;
+effectifs $4\,;9\,;14\,;8\,;5$ ; $N=40$) :
+\[ \sum n_i c_i = 610+1417{,}5+2275+1340+862{,}5 = 6505,\quad
+   \bar x = \frac{6505}{40} = 162{,}625\ \text{cm}. \]
+\end{exemple}
+
+\methode{Déterminer une médiane (et les quartiles)}
+Ordonner la série, calculer les effectifs cumulés. Pour $M_e$, repérer le rang
+$\frac{N+1}{2}$ ($N$ impair) ou la demi-somme des rangs $\frac{N}{2}$ et
+$\frac{N}{2}+1$ ($N$ pair). Pour $Q_1$ et $Q_3$, repérer les rangs correspondant à
+$25\,\%$ et $75\,\%$ de $N$.
+\begin{exemple}
+Série $7,8,8,10,10,11,12,14$ ($N=8$, pair). Rangs $4$ et $5$ : valeurs $10$ et $10$,
+donc $M_e=\dfrac{10+10}{2}=10$.
+\end{exemple}
+
+\methode{Calculer une variance par la formule de König}
+Dresser les colonnes $n_ix_i$ et $n_ix_i^2$. Calculer $\bar x=\dfrac{\sum n_ix_i}{N}$,
+puis $V=\dfrac{\sum n_ix_i^2}{N}-\bar x^{\,2}$ et $\sigma=\sqrt V$. La formule de König
+évite de soustraire $\bar x$ à chaque valeur.
+\begin{exemple}
+Série $x_i=2,3,5$ d'effectifs $1,2,1$ ($N=4$). $\sum n_ix_i=2+6+5=13$, donc
+$\bar x=\frac{13}{4}=3{,}25$. $\sum n_ix_i^2=4+18+25=47$, donc
+$V=\frac{47}{4}-3{,}25^2=11{,}75-10{,}5625=1{,}1875$ et $\sigma\approx1{,}09$.
+\end{exemple}
+
+\methode{Calculer une variance par la définition (écarts à la moyenne)}
+Après avoir trouvé $\bar x$, calculer chaque écart $x_i-\bar x$, l'élever au carré, le
+pondérer par $n_i$, sommer et diviser par $N$. Utile pour comprendre le sens de $V$
+(et pour vérifier un calcul de König).
+\begin{exemple}
+Série $4,6,8$ d'effectifs égaux à $1$ ($N=3$, $\bar x=6$) :
+\[ V=\frac{1\cdot(4-6)^2+1\cdot(6-6)^2+1\cdot(8-6)^2}{3}=\frac{4+0+4}{3}=\frac{8}{3}\approx2{,}67, \]
+soit $\sigma\approx1{,}63$.
+\end{exemple}
+
+\methode{Exploiter une transformation affine pour simplifier}
+Si les valeurs sont grandes ou « décalées », poser $y_i=\dfrac{x_i-x_0}{a}$ (avec
+$x_0$ et $a$ bien choisis) simplifie les calculs ; on revient ensuite à $x$ par
+$\bar x=a\,\bar y+x_0$ et $\sigma_x=|a|\,\sigma_y$.
+\begin{exemple}
+Tailles de centres $152{,}5\,;\dots$ : en posant $y=\dfrac{c-162{,}5}{5}$ on obtient
+$y=-2,-1,0,1,2$, des entiers simples. On calcule $\bar y$ et $\sigma_y$ sur ces
+petits nombres, puis $\bar x=5\bar y+162{,}5$ et $\sigma_x=5\,\sigma_y$.
+\end{exemple}

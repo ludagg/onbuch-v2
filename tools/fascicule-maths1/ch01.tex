@@ -1,0 +1,280 @@
+\chapter{Généralités sur les fonctions numériques}
+\textit{La notion de fonction est au cœur de toute l'analyse. Avant d'apprendre à
+dériver ou à étudier des courbes, il faut savoir précisément ce qu'est une fonction,
+où elle est définie, et reconnaître ses symétries et son sens de variation. Ce
+chapitre pose ces fondations — elles te serviront dans tout le reste du programme.}
+
+\section{Fonction numérique et ensemble de définition}
+
+\begin{definition}[Fonction numérique d'une variable réelle]
+Une \textbf{fonction numérique} $f$ associe à chaque réel $x$ d'une partie $D$ de
+$\R$ \emph{au plus un} réel, noté $f(x)$ et appelé \textbf{image} de $x$ par $f$. On note
+\[ f : D \to \R,\qquad x \mapsto f(x). \]
+Si $y = f(x)$, on dit que $x$ est un \textbf{antécédent} de $y$ par $f$.
+\end{definition}
+
+\begin{remarque}
+Un réel possède \emph{au plus une} image (c'est ce qui fait de $f$ une fonction),
+mais un réel $y$ peut avoir \emph{plusieurs} antécédents, ou aucun. Par exemple, pour
+$f(x)=x^2$, le réel $4$ a deux antécédents ($-2$ et $2$) et le réel $-1$ n'en a aucun.
+\end{remarque}
+
+\begin{definition}[Ensemble de définition]
+L'\textbf{ensemble de définition} de $f$, noté $D_f$, est l'ensemble des réels $x$
+pour lesquels $f(x)$ \emph{existe} (c'est-à-dire peut être calculé).
+\end{definition}
+
+\begin{aretenir}
+Pour déterminer $D_f$, on traque les opérations « interdites » :
+\begin{itemize}
+  \item un \textbf{dénominateur} doit être non nul ;
+  \item l'expression sous une \textbf{racine carrée} doit être positive ou nulle ;
+  \item (plus tard : l'argument d'un $\ln$ doit être strictement positif).
+\end{itemize}
+$D_f$ est alors l'intersection de toutes les conditions trouvées.
+\end{aretenir}
+
+\begin{exemple}
+Déterminons $D_f$ pour $f(x)=\dfrac{\sqrt{x+2}}{x-3}$.
+\begin{itemize}
+  \item Racine : $x+2\ge 0$, soit $x\ge -2$.
+  \item Dénominateur : $x-3\neq 0$, soit $x\neq 3$.
+\end{itemize}
+D'où $D_f = [-2\,;\,3[\,\cup\,]3\,;\,+\infty[$.
+\end{exemple}
+
+\section{Représentation graphique}
+
+\begin{definition}[Courbe représentative]
+Le plan étant muni d'un repère $(O,\vec{\imath},\vec{\jmath})$, la \textbf{courbe
+représentative} de $f$ est l'ensemble
+\[ \mathcal{C}_f = \big\{\, M(x\,;\,y)\ \mid\ x\in D_f \ \text{et}\ y=f(x) \,\big\}. \]
+Un point $M(x\,;\,y)$ appartient à $\mathcal{C}_f$ \textbf{si et seulement si}
+$x\in D_f$ et $y=f(x)$.
+\end{definition}
+
+\begin{illus}
+\begin{tikzpicture}[scale=0.95]
+  \draw[->,onbline] (-3.2,0)--(3.3,0) node[right,onbmuted]{$x$};
+  \draw[->,onbline] (0,-0.6)--(0,3.2) node[above,onbmuted]{$y$};
+  \draw[thick,onbo,smooth,samples=80,domain=-1.7:1.7] plot (\x,{\x*\x});
+  \filldraw[onbo] (1.3,1.69) circle (1.6pt) node[right,onbink]{$M(x\,;\,f(x))$};
+  \draw[dashed,onbmuted] (1.3,0) node[below,onbink]{$x$} -- (1.3,1.69) -- (0,1.69) node[left,onbink]{$f(x)$};
+\end{tikzpicture}
+\fig{Figure — lecture graphique : à $x$ on associe l'ordonnée $f(x)$ du point de la courbe.}
+\end{illus}
+
+\section{Parité et éléments de symétrie}
+
+\begin{definition}[Fonction paire, fonction impaire]
+Soit $f$ définie sur un ensemble $D_f$ \textbf{symétrique par rapport à $0$}
+(c'est-à-dire : $x\in D_f \Rightarrow -x\in D_f$).
+\begin{itemize}
+  \item $f$ est \textbf{paire} si, pour tout $x\in D_f$, $\ f(-x)=f(x)$ ;
+  \item $f$ est \textbf{impaire} si, pour tout $x\in D_f$, $\ f(-x)=-f(x)$.
+\end{itemize}
+\end{definition}
+
+\begin{propriete}[Interprétation graphique]
+Dans un repère orthogonal :
+\begin{itemize}
+  \item si $f$ est \textbf{paire}, $\mathcal{C}_f$ admet l'\textbf{axe des ordonnées}
+        $(Oy)$ pour axe de symétrie ;
+  \item si $f$ est \textbf{impaire}, $\mathcal{C}_f$ admet l'\textbf{origine} $O$
+        pour centre de symétrie.
+\end{itemize}
+\end{propriete}
+
+\begin{illus}
+\begin{tikzpicture}[scale=0.8]
+  \begin{scope}
+    \draw[->,onbline] (-2.4,0)--(2.4,0); \draw[->,onbline] (0,-0.4)--(0,2.6);
+    \draw[thick,onbo,smooth,samples=60,domain=-1.5:1.5] plot (\x,{\x*\x});
+    \node[onbmuted,below] at (0,-0.4) {paire : $f(x)=x^2$};
+  \end{scope}
+  \begin{scope}[xshift=6cm]
+    \draw[->,onbline] (-2.4,0)--(2.4,0); \draw[->,onbline] (0,-2.2)--(0,2.2);
+    \draw[thick,onbgreen,smooth,samples=60,domain=-1.35:1.35] plot (\x,{\x*\x*\x});
+    \node[onbmuted,below] at (0,-2.2) {impaire : $f(x)=x^3$};
+  \end{scope}
+\end{tikzpicture}
+\fig{Figure — symétrie axiale (fonction paire) et symétrie centrale (fonction impaire).}
+\end{illus}
+
+\begin{exemple}
+Étudions la parité de $f(x)=\dfrac{x}{x^2+1}$. Son domaine $D_f=\R$ est symétrique
+par rapport à $0$. Pour tout $x\in\R$ :
+\[ f(-x)=\frac{-x}{(-x)^2+1}=\frac{-x}{x^2+1}=-f(x). \]
+Donc $f$ est \textbf{impaire} : sa courbe est symétrique par rapport à $O$.
+\end{exemple}
+
+\begin{theoreme}[Axe et centre de symétrie (cas général)]
+Soit $a,b\in\R$.
+\begin{itemize}
+  \item La droite d'équation $x=a$ est un \textbf{axe de symétrie} de $\mathcal{C}_f$
+        si et seulement si, pour tout $x$ tel que $a+x\in D_f$ : $\ f(a-x)=f(a+x)$.
+  \item Le point $\Omega(a\,;\,b)$ est un \textbf{centre de symétrie} de
+        $\mathcal{C}_f$ si et seulement si, pour tout $x$ tel que $a+x\in D_f$ :
+        $\ f(a-x)+f(a+x)=2b$.
+\end{itemize}
+\end{theoreme}
+
+\begin{remarque}
+La parité n'est que le cas particulier $a=0$ (axe $x=0$) et $\Omega=O$ (centre
+$(0\,;\,0)$). Le théorème permet de détecter une symétrie ailleurs qu'à l'origine.
+\end{remarque}
+
+\section{Sens de variation}
+
+\begin{definition}[Fonction croissante, décroissante]
+Soit $f$ définie sur un intervalle $I$. On dit que $f$ est :
+\begin{itemize}
+  \item \textbf{croissante} sur $I$ si elle conserve l'ordre :
+        $x_1<x_2 \Rightarrow f(x_1)\le f(x_2)$ (strictement croissante si $f(x_1)<f(x_2)$) ;
+  \item \textbf{décroissante} sur $I$ si elle inverse l'ordre :
+        $x_1<x_2 \Rightarrow f(x_1)\ge f(x_2)$ (strictement décroissante si $f(x_1)>f(x_2)$) ;
+  \item \textbf{monotone} sur $I$ si elle est croissante sur $I$ ou décroissante sur $I$.
+\end{itemize}
+\end{definition}
+
+\begin{aretenir}[Étudier le sens de variation par le taux de variation]
+Pour deux réels distincts $x_1,x_2$ de $I$, on forme le \textbf{taux de variation}
+\[ T=\frac{f(x_2)-f(x_1)}{x_2-x_1}. \]
+\begin{itemize}
+  \item Si $T>0$ pour tous $x_1\neq x_2$, alors $f$ est strictement croissante sur $I$ ;
+  \item si $T<0$ pour tous $x_1\neq x_2$, alors $f$ est strictement décroissante sur $I$.
+\end{itemize}
+(En Terminale, le signe de la dérivée remplacera ce calcul.)
+\end{aretenir}
+
+\begin{exemple}
+Montrons que $f(x)=x^2$ est strictement décroissante sur $]-\infty\,;\,0]$. Pour
+$x_1<x_2\le 0$ :
+\[ T=\frac{x_2^2-x_1^2}{x_2-x_1}=\frac{(x_2-x_1)(x_2+x_1)}{x_2-x_1}=x_1+x_2. \]
+Comme $x_1<0$ et $x_2\le 0$, on a $x_1+x_2<0$, donc $T<0$ : $f$ est strictement
+décroissante sur $]-\infty\,;\,0]$. (On montrerait de même qu'elle est strictement
+croissante sur $[0\,;\,+\infty[$.)
+\end{exemple}
+
+\begin{definition}[Majorant, minorant, extremum]
+Soit $f$ définie sur $D$ et $M,m\in\R$.
+\begin{itemize}
+  \item $f$ est \textbf{majorée} par $M$ si $f(x)\le M$ pour tout $x\in D$ ;
+        \textbf{minorée} par $m$ si $f(x)\ge m$ pour tout $x\in D$ ; \textbf{bornée}
+        si elle est à la fois majorée et minorée.
+  \item $f$ admet un \textbf{maximum} $M$ en $x_0$ si $f(x_0)=M$ et $f(x)\le M$ pour
+        tout $x$ ; \textbf{minimum} de façon analogue.
+\end{itemize}
+\end{definition}
+
+\section{Fonctions associées et transformations de courbes}
+
+À partir d'une fonction $f$ de courbe $\mathcal{C}_f$, on construit de nouvelles
+fonctions dont la courbe se déduit de $\mathcal{C}_f$ par une transformation simple.
+On note $\vec{u}$ le vecteur de translation.
+
+\begin{propriete}[Transformations usuelles]
+Soit $k>0$ et $a$ un réel.
+\begin{center}\renewcommand{\arraystretch}{1.35}
+\begin{tabular}{@{}l l@{}}
+\toprule
+\textbf{Nouvelle fonction} & \textbf{Sa courbe se déduit de $\mathcal{C}_f$ par\dots} \\
+\midrule
+$x\mapsto f(x)+k$   & translation de vecteur $k\,\vec{\jmath}$ (vers le haut) \\
+$x\mapsto f(x)-k$   & translation de vecteur $-k\,\vec{\jmath}$ (vers le bas) \\
+$x\mapsto f(x-a)$   & translation de vecteur $a\,\vec{\imath}$ (vers la droite) \\
+$x\mapsto -f(x)$    & symétrie par rapport à l'axe $(Ox)$ \\
+$x\mapsto f(-x)$    & symétrie par rapport à l'axe $(Oy)$ \\
+$x\mapsto |f(x)|$   & on conserve la partie au-dessus de $(Ox)$, on rabat l'autre \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{propriete}
+
+\begin{illus}
+\begin{tikzpicture}[scale=0.85]
+  \draw[->,onbline] (-2.6,0)--(2.8,0) node[right,onbmuted]{$x$};
+  \draw[->,onbline] (0,-0.5)--(0,3.4) node[above,onbmuted]{$y$};
+  \draw[thick,onbmuted,smooth,samples=60,domain=-1.5:1.5] plot (\x,{\x*\x}) node[right]{$\mathcal{C}_f$};
+  \draw[thick,onbo,smooth,samples=60,domain=-1.5:1.5] plot (\x,{\x*\x+1}) node[right]{$f(x)+1$};
+\end{tikzpicture}
+\fig{Figure — la courbe de $x\mapsto f(x)+1$ est $\mathcal{C}_f$ translatée d'un cran vers le haut.}
+\end{illus}
+
+\begin{remarque}
+La fonction $x\mapsto |f(x)|$ est très utile : elle « replie » au-dessus de l'axe des
+abscisses toute la portion de courbe située en dessous. On la rencontre dès qu'un
+énoncé fait intervenir une valeur absolue.
+\end{remarque}
+
+% ════════════════════════════════════════════════════════════
+\section{L'essentiel à retenir}
+
+\begin{synthese}
+\textbf{Ensemble de définition.} On exclut : les valeurs annulant un dénominateur,
+celles rendant négatif un radicande. $D_f$ = intersection des conditions.
+
+\smallskip
+\textbf{Appartenance à la courbe.} $M(x\,;\,y)\in\mathcal{C}_f \iff x\in D_f$ et $y=f(x)$.
+
+\smallskip
+\textbf{Parité} (sur un domaine symétrique par rapport à $0$) :
+\[ f \text{ paire} \iff f(-x)=f(x)\ (\text{axe } Oy);\qquad
+   f \text{ impaire} \iff f(-x)=-f(x)\ (\text{centre } O). \]
+\textbf{Symétries générales} : axe $x=a$ si $f(a-x)=f(a+x)$ ; centre $\Omega(a\,;\,b)$
+si $f(a-x)+f(a+x)=2b$.
+
+\smallskip
+\textbf{Sens de variation} via le taux $T=\dfrac{f(x_2)-f(x_1)}{x_2-x_1}$ :
+$T>0$ (croissante), $T<0$ (décroissante).
+
+\smallskip
+\textbf{Transformations} : $f(x)+k$ (haut), $f(x-a)$ (droite), $-f(x)$ (symétrie $Ox$),
+$f(-x)$ (symétrie $Oy$), $|f(x)|$ (rabattement).
+\end{synthese}
+
+% ════════════════════════════════════════════════════════════
+\section{Méthodes \& savoir-faire}
+
+\methode{Déterminer un ensemble de définition}
+Repérer chaque dénominateur (le poser $\neq 0$) et chaque radicande (le poser
+$\ge 0$), résoudre chaque condition, puis \emph{intersecter}.
+\begin{exemple}
+$f(x)=\dfrac{1}{\sqrt{4-x^2}}$. Ici le radicande est sous une racine \emph{et} au
+dénominateur : il faut $4-x^2>0$ (strictement, à cause du dénominateur), soit
+$-2<x<2$. Donc $D_f=\,]-2\,;\,2[$.
+\end{exemple}
+
+\methode{Étudier la parité d'une fonction}
+\textbf{1.} Vérifier que $D_f$ est symétrique par rapport à $0$ (sinon, $f$ n'est ni
+paire ni impaire). \textbf{2.} Calculer $f(-x)$ et le comparer à $f(x)$ et $-f(x)$.
+\begin{exemple}
+$f(x)=x^4-3x^2+1$ sur $\R$. On a $f(-x)=(-x)^4-3(-x)^2+1=x^4-3x^2+1=f(x)$ :
+$f$ est \textbf{paire}.
+\end{exemple}
+
+\methode{Étudier le sens de variation par le taux de variation}
+Former $T=\dfrac{f(x_2)-f(x_1)}{x_2-x_1}$, le simplifier (souvent en factorisant
+$x_2-x_1$), puis déterminer son signe sur l'intervalle étudié.
+\begin{exemple}
+$f(x)=\dfrac{1}{x}$ sur $]0\,;\,+\infty[$. Pour $0<x_1<x_2$ :
+\[ T=\frac{\frac1{x_2}-\frac1{x_1}}{x_2-x_1}=\frac{x_1-x_2}{x_1x_2(x_2-x_1)}=\frac{-1}{x_1x_2}<0. \]
+Donc $f$ est strictement décroissante sur $]0\,;\,+\infty[$.
+\end{exemple}
+
+\methode{Démontrer qu'une droite ou un point est élément de symétrie}
+Pour un axe $x=a$, prouver $f(a-x)=f(a+x)$. Pour un centre $\Omega(a\,;\,b)$, prouver
+$f(a-x)+f(a+x)=2b$.
+\begin{exemple}
+Montrons que $\Omega(0\,;\,0)$… (cas de l'imparité, déjà vu). Plus subtil :
+pour $f(x)=\dfrac{2x-1}{x-1}$, on vérifie que $\Omega(1\,;\,2)$ est centre de symétrie
+en calculant $f(1-x)+f(1+x)=4=2\times 2$.
+\end{exemple}
+
+\methode{Tracer la courbe d'une fonction associée}
+Partir de $\mathcal{C}_f$ connue et appliquer la transformation correspondante
+(translation, symétrie, rabattement) sans recalculer point par point.
+\begin{exemple}
+Connaissant la courbe de $x\mapsto x^2$, celle de $x\mapsto (x-2)^2+1$ s'obtient en
+translatant de $2$ vers la droite puis de $1$ vers le haut (sommet en $(2\,;\,1)$).
+\end{exemple}

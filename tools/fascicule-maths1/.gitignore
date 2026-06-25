@@ -1,0 +1,12 @@
+# Fichiers temporaires de génération/compilation
+_*.log
+.build/
+*.aux
+*.out
+*.toc
+.chk/
+*-apercu.pdf
+main.pdf
+*.synctex.gz
+apercu-*.pdf
+Fascicule-*.pdf

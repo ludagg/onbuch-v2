@@ -1,0 +1,389 @@
+\chapter{Suites numériques}
+\textit{Une suite, c'est une liste \emph{ordonnée} de nombres : le premier terme,
+le deuxième, le troisième\dots\ Beaucoup de situations concrètes se modélisent ainsi
+— l'argent placé à la banque qui grossit chaque année, une population qui évolue, un
+remboursement échelonné. Ce chapitre installe le vocabulaire des suites, deux grandes
+familles (arithmétiques et géométriques) que tu rencontreras partout, et les formules
+qui permettent de calculer un terme lointain ou une somme sans tout additionner.}
+
+\section{Notion de suite numérique}
+
+\begin{definition}[Suite numérique]
+Une \textbf{suite numérique} $u$ est une fonction définie sur $\N$ (ou sur une partie
+$\{n\in\N \mid n\ge n_0\}$) et à valeurs dans $\R$. À l'entier $n$ elle associe un réel
+noté $u_n$ (et non $u(n)$), appelé \textbf{terme de rang $n$}. La suite tout entière se
+note $(u_n)$ ou $(u_n)_{n\ge n_0}$.
+\end{definition}
+
+\begin{remarque}
+$u_n$ est le terme \emph{de rang} $n$ ; $u_0$ est le \textbf{premier terme} (parfois
+$u_1$ selon l'énoncé). Il ne faut pas confondre le \emph{rang} $n$ (la position, un
+entier) et le \emph{terme} $u_n$ (la valeur, un réel).
+\end{remarque}
+
+\section{Modes de génération d'une suite}
+
+Pour décrire une suite, il faut une règle qui produit ses termes. On rencontre deux
+grands procédés.
+
+\begin{definition}[Suite définie par une formule explicite]
+La suite $(u_n)$ est donnée par une \textbf{formule explicite} lorsqu'il existe une
+fonction $f$ telle que, pour tout rang $n$,
+\[ u_n = f(n). \]
+On calcule alors n'importe quel terme \emph{directement}, sans connaître les précédents.
+\end{definition}
+
+\begin{exemple}
+Soit $u_n = 2n+1$ pour $n\in\N$. Alors $u_0=1$, $u_1=3$, $u_2=5$ et, sans détour,
+$u_{50}=2\times 50+1=101$.
+\end{exemple}
+
+\begin{definition}[Suite définie par récurrence]
+La suite $(u_n)$ est définie par \textbf{récurrence} lorsqu'on se donne son premier terme
+et une relation qui exprime chaque terme à partir du précédent :
+\[ u_{0} \text{ connu},\qquad u_{n+1}=g(u_n)\ \text{ pour tout } n. \]
+Pour obtenir $u_n$, on est obligé de calculer \emph{de proche en proche} tous les termes
+qui le précèdent.
+\end{definition}
+
+\begin{exemple}
+Soit $(u_n)$ définie par $u_0=3$ et $u_{n+1}=2u_n-1$. On obtient
+$u_1=2\times 3-1=5$, puis $u_2=2\times 5-1=9$, puis $u_3=2\times 9-1=17$, etc.
+\end{exemple}
+
+\begin{remarque}
+Une suite peut admettre les deux modes à la fois. Tout l'intérêt des suites
+arithmétiques et géométriques (sections suivantes) est précisément de transformer une
+récurrence en formule explicite, donc de calculer un terme lointain sans itérer.
+\end{remarque}
+
+\begin{illus}
+\begin{tikzpicture}
+\begin{axis}[
+  width=11cm,height=6cm,
+  axis lines=middle,
+  xlabel={$n$},ylabel={$u_n$},
+  xlabel style={right},ylabel style={above},
+  xmin=-0.4,xmax=7.4,ymin=-0.5,ymax=8.5,
+  xtick={1,2,3,4,5,6,7},ytick={2,4,6,8},
+  tick style={onbmuted},
+  every axis x label/.style={at={(ticklabel* cs:1)},anchor=west},
+  every axis y label/.style={at={(ticklabel* cs:1)},anchor=south},
+  clip=true]
+  \addplot[only marks,onbo,mark=*,mark size=2pt] coordinates {
+    (0,1)(1,3)(2,5)(3,7)(4,9)};
+  \node[onbo] at (axis cs:4.7,8.0){$u_n=2n+1$};
+\end{axis}
+\end{tikzpicture}
+\fig{Figure — nuage de points d'une suite : un point $(n\,;\,u_n)$ par rang. Les points
+ne sont jamais reliés (le rang $n$ est un entier).}
+\end{illus}
+
+\section{Sens de variation d'une suite}
+
+\begin{definition}[Suite croissante, décroissante]
+Soit $(u_n)$ une suite. On dit qu'elle est :
+\begin{itemize}
+  \item \textbf{croissante} si $u_{n+1}\ge u_n$ pour tout $n$ (strictement croissante
+        si $u_{n+1}>u_n$) ;
+  \item \textbf{décroissante} si $u_{n+1}\le u_n$ pour tout $n$ (strictement
+        décroissante si $u_{n+1}<u_n$) ;
+  \item \textbf{monotone} si elle est croissante ou décroissante ;
+  \item \textbf{constante} si $u_{n+1}=u_n$ pour tout $n$.
+\end{itemize}
+\end{definition}
+
+\begin{aretenir}[Comment étudier le sens de variation]
+On dispose de deux méthodes selon la forme de la suite.
+\begin{itemize}
+  \item \textbf{Signe de la différence} $u_{n+1}-u_n$ (méthode universelle) :
+        si elle est $\ge 0$ pour tout $n$, la suite croît ; si elle est $\le 0$, elle
+        décroît.
+  \item \textbf{Comparaison du quotient à $1$}, valable \emph{uniquement si tous les
+        termes sont strictement positifs} : on compare $\dfrac{u_{n+1}}{u_n}$ à $1$
+        ($>1\Rightarrow$ croissante, $<1\Rightarrow$ décroissante).
+\end{itemize}
+\end{aretenir}
+
+\begin{exemple}
+Étudions $u_n=n^2-3n$. Pour tout $n$,
+\[ u_{n+1}-u_n=\big((n+1)^2-3(n+1)\big)-\big(n^2-3n\big)=2n-2. \]
+Ce nombre est $<0$ pour $n=0$ et $\ge 0$ dès que $n\ge 1$. La suite \emph{décroît}
+de $u_0$ à $u_1$, puis \emph{croît} ensuite : elle n'est pas monotone sur $\N$ tout entier.
+\end{exemple}
+
+\section{Suites majorées, minorées, bornées}
+
+\begin{definition}[Majorant, minorant, suite bornée]
+Soit $(u_n)$ une suite et $M,m\in\R$.
+\begin{itemize}
+  \item $(u_n)$ est \textbf{majorée} par $M$ si $u_n\le M$ pour tout $n$ ;
+  \item $(u_n)$ est \textbf{minorée} par $m$ si $u_n\ge m$ pour tout $n$ ;
+  \item $(u_n)$ est \textbf{bornée} si elle est à la fois majorée et minorée,
+        c'est-à-dire s'il existe $M\ge 0$ tel que $|u_n|\le M$ pour tout $n$.
+\end{itemize}
+\end{definition}
+
+\begin{exemple}
+La suite $u_n=\dfrac{1}{n+1}$ vérifie $0<u_n\le 1$ pour tout $n\in\N$ : elle est minorée
+par $0$ et majorée par $1$, donc \textbf{bornée}.
+\end{exemple}
+
+\begin{remarque}
+Un majorant (ou un minorant) n'est jamais unique : si $M$ majore la suite, tout réel
+plus grand la majore aussi. On cherche en général le « meilleur » majorant, mais
+n'importe lequel suffit pour prouver qu'une suite est majorée.
+\end{remarque}
+
+\section{Suites arithmétiques}
+
+\begin{definition}[Suite arithmétique]
+Une suite $(u_n)$ est \textbf{arithmétique} si l'on passe d'un terme au suivant en
+ajoutant toujours le \emph{même} réel $r$, appelé \textbf{raison} :
+\[ u_{n+1}=u_n+r \qquad \text{pour tout } n. \]
+\end{definition}
+
+\begin{aretenir}[Reconnaître une suite arithmétique]
+$(u_n)$ est arithmétique $\iff$ la différence $u_{n+1}-u_n$ est \textbf{constante} ;
+cette constante est alors la raison $r$. C'est le test à appliquer en premier.
+\end{aretenir}
+
+\begin{theoreme}[Terme général d'une suite arithmétique]
+Si $(u_n)$ est arithmétique de raison $r$, alors pour tous rangs $n$ et $p$ :
+\[ \boxed{\,u_n = u_p + (n-p)\,r\,}\qquad\text{en particulier}\qquad u_n=u_0+n\,r. \]
+\end{theoreme}
+
+\begin{exemple}[Démonstration]
+En ajoutant $r$ à chaque étape de $u_p$ jusqu'à $u_n$, on franchit $n-p$ pas :
+\[ u_n=\underbrace{u_p+\overbrace{r+r+\dots+r}^{n-p \text{ fois}}}=u_p+(n-p)\,r. \]
+\end{exemple}
+
+\begin{exemple}
+$(u_n)$ est arithmétique, $u_3=7$ et de raison $r=2$. Alors
+$u_{20}=u_3+(20-3)\times 2=7+34=41$, sans calculer les termes intermédiaires.
+\end{exemple}
+
+\begin{theoreme}[Somme de termes consécutifs]
+Pour une suite arithmétique, la somme de termes consécutifs vaut le nombre de termes
+multiplié par la \emph{moyenne} des termes extrêmes :
+\[ \boxed{\,u_0+u_1+\dots+u_n=(n+1)\,\dfrac{u_0+u_n}{2}\,}. \]
+En particulier, pour $r=1$ et $u_0=0$ : $\,0+1+2+\dots+n=\dfrac{n(n+1)}{2}$.
+\end{theoreme}
+
+\begin{exemple}[Démonstration]
+Notons $S=u_0+u_1+\dots+u_n$. Écrivons cette somme dans les deux sens et additionnons
+terme à terme :
+\[
+\begin{array}{rcccccccl}
+S &=& u_0 &+& u_1 &+&\dots&+& u_n\\
+S &=& u_n &+& u_{n-1} &+&\dots&+& u_0
+\end{array}
+\]
+Chaque colonne $u_k+u_{n-k}$ vaut $u_0+u_n$ (car $u_k+u_{n-k}=2u_0+(k+n-k)r=u_0+u_n$).
+Comme il y a $n+1$ colonnes, $2S=(n+1)(u_0+u_n)$, d'où le résultat.
+\end{exemple}
+
+\begin{illus}
+\begin{tikzpicture}
+\begin{axis}[
+  width=11cm,height=6cm,
+  axis lines=middle,
+  xlabel={$n$},ylabel={$u_n$},
+  xlabel style={right},ylabel style={above},
+  xmin=-0.4,xmax=7.4,ymin=-0.5,ymax=8.5,
+  xtick={1,2,3,4,5,6,7},ytick={2,4,6,8},
+  tick style={onbmuted},
+  every axis x label/.style={at={(ticklabel* cs:1)},anchor=west},
+  every axis y label/.style={at={(ticklabel* cs:1)},anchor=south},
+  clip=true]
+  \addplot[onbmuted,dashed,thick,domain=0:7]{1+x};
+  \addplot[only marks,onbo,mark=*,mark size=2pt] coordinates {
+    (0,1)(1,2)(2,3)(3,4)(4,5)(5,6)(6,7)};
+  \node[onbo] at (axis cs:5.4,4.6){$u_n=u_0+nr$};
+\end{axis}
+\end{tikzpicture}
+\fig{Figure — les points d'une suite arithmétique ($u_0=1$, $r=1$) sont \emph{alignés} :
+ils se trouvent sur une droite de pente $r$.}
+\end{illus}
+
+\section{Suites géométriques}
+
+\begin{definition}[Suite géométrique]
+Une suite $(u_n)$ est \textbf{géométrique} si l'on passe d'un terme au suivant en
+multipliant toujours par le \emph{même} réel $q\neq 0$, appelé \textbf{raison} :
+\[ u_{n+1}=q\,u_n \qquad \text{pour tout } n. \]
+\end{definition}
+
+\begin{aretenir}[Reconnaître une suite géométrique]
+Lorsque aucun terme n'est nul, $(u_n)$ est géométrique $\iff$ le quotient
+$\dfrac{u_{n+1}}{u_n}$ est \textbf{constant} ; cette constante est la raison $q$.
+\end{aretenir}
+
+\begin{theoreme}[Terme général d'une suite géométrique]
+Si $(u_n)$ est géométrique de raison $q$, alors pour tous rangs $n$ et $p$ :
+\[ \boxed{\,u_n = u_p\,q^{\,n-p}\,}\qquad\text{en particulier}\qquad u_n=u_0\,q^{\,n}. \]
+\end{theoreme}
+
+\begin{exemple}[Démonstration]
+En multipliant par $q$ à chaque étape de $u_p$ jusqu'à $u_n$, on multiplie $n-p$ fois :
+\[ u_n=u_p\times\underbrace{q\times q\times\dots\times q}_{n-p \text{ fois}}=u_p\,q^{\,n-p}. \]
+\end{exemple}
+
+\begin{exemple}
+$(u_n)$ est géométrique, $u_0=5$ et $q=2$. Alors $u_6=5\times 2^6=5\times 64=320$.
+\end{exemple}
+
+\begin{theoreme}[Somme de termes consécutifs]
+Si $(u_n)$ est géométrique de raison $q\neq 1$, alors
+\[ \boxed{\,u_0+u_1+\dots+u_n=u_0\,\dfrac{1-q^{\,n+1}}{1-q}\,}. \]
+(Si $q=1$, la suite est constante et la somme vaut simplement $(n+1)\,u_0$.)
+\end{theoreme}
+
+\begin{exemple}[Démonstration]
+Posons $S=u_0+u_0q+u_0q^2+\dots+u_0q^{n}$. Multiplions par $q$ :
+\[ qS=u_0q+u_0q^2+\dots+u_0q^{n}+u_0q^{n+1}. \]
+En soustrayant, presque tout se télescope :
+\[ S-qS=u_0-u_0q^{n+1}=u_0\,(1-q^{n+1}), \]
+donc $S(1-q)=u_0(1-q^{n+1})$, d'où $S=u_0\,\dfrac{1-q^{n+1}}{1-q}$ car $q\neq 1$.
+\end{exemple}
+
+\begin{illus}
+\begin{tikzpicture}
+\begin{axis}[
+  width=11cm,height=6cm,
+  axis lines=middle,
+  xlabel={$n$},ylabel={$u_n$},
+  xlabel style={right},ylabel style={above},
+  xmin=-0.4,xmax=6.4,ymin=-1,ymax=18,
+  xtick={1,2,3,4,5,6},ytick={4,8,12,16},
+  tick style={onbmuted},
+  every axis x label/.style={at={(ticklabel* cs:1)},anchor=west},
+  every axis y label/.style={at={(ticklabel* cs:1)},anchor=south},
+  clip=true]
+  \addplot[only marks,onbgreen,mark=*,mark size=2pt] coordinates {
+    (0,1)(1,1.5)(2,2.25)(3,3.375)(4,5.0625)(5,7.59)(6,11.39)};
+  \node[onbgreen] at (axis cs:4.1,13.5){$u_n=u_0\,q^{\,n}$};
+\end{axis}
+\end{tikzpicture}
+\fig{Figure — pour $q>1$ ($u_0=1$, $q=1{,}5$), les points d'une suite géométrique
+montent de plus en plus vite : la croissance est exponentielle.}
+\end{illus}
+
+\section{Applications : intérêts simples et composés}
+
+Les suites arithmétiques et géométriques modélisent deux façons de faire fructifier un
+capital, qu'on rencontre dans les banques et tontines au Cameroun.
+
+\begin{propriete}[Intérêts simples — modèle arithmétique]
+Un capital $C_0$ placé à \textbf{intérêts simples} au taux annuel $t$ rapporte chaque
+année le \emph{même} intérêt $C_0\,t$. Le capital après $n$ années,
+\[ C_n=C_0+n\,C_0\,t=C_0\,(1+n\,t), \]
+forme une suite \textbf{arithmétique} de premier terme $C_0$ et de raison $r=C_0\,t$.
+\end{propriete}
+
+\begin{exemple}
+On place $C_0=200\,000$ FCFA à intérêts simples au taux $t=5\%=0{,}05$. La raison vaut
+$r=200\,000\times 0{,}05=10\,000$ FCFA par an. Après $4$ ans :
+\[ C_4=200\,000\,(1+4\times 0{,}05)=200\,000\times 1{,}2=240\,000 \text{ FCFA}. \]
+\end{exemple}
+
+\begin{propriete}[Intérêts composés — modèle géométrique]
+Un capital $C_0$ placé à \textbf{intérêts composés} au taux annuel $t$ voit, chaque
+année, ses intérêts s'ajouter au capital, qui produit à son tour des intérêts. Le
+capital après $n$ années,
+\[ C_n=C_0\,(1+t)^{\,n}, \]
+forme une suite \textbf{géométrique} de premier terme $C_0$ et de raison $q=1+t$.
+\end{propriete}
+
+\begin{exemple}
+Mêmes données ($C_0=200\,000$ FCFA, $t=0{,}05$) mais à intérêts composés : $q=1{,}05$.
+Après $4$ ans :
+\[ C_4=200\,000\times 1{,}05^{\,4}\approx 200\,000\times 1{,}2155\approx 243\,101 \text{ FCFA}. \]
+On dépasse les $240\,000$ FCFA des intérêts simples : les intérêts qui produisent à leur
+tour des intérêts font la différence, d'autant plus nette que la durée est longue.
+\end{exemple}
+
+\begin{remarque}
+Une \textbf{tontine} où chaque membre verse une part fixe et où le total grossit
+régulièrement relève plutôt du modèle arithmétique ; un placement bancaire qui
+\emph{capitalise} les intérêts relève du modèle géométrique. Savoir distinguer les deux,
+c'est savoir choisir la bonne formule.
+\end{remarque}
+
+% ════════════════════════════════════════════════════════════
+\section{L'essentiel à retenir}
+
+\begin{synthese}
+\textbf{Vocabulaire.} Une suite $(u_n)$ associe à chaque rang $n\in\N$ un réel $u_n$.
+Génération : \emph{explicite} $u_n=f(n)$ (calcul direct) ou \emph{récurrente}
+$u_{n+1}=g(u_n)$ avec $u_0$ donné (de proche en proche).
+
+\smallskip
+\textbf{Sens de variation.} Signe de $u_{n+1}-u_n$ (universel) ; ou, si $u_n>0$,
+position de $\dfrac{u_{n+1}}{u_n}$ par rapport à $1$.
+
+\smallskip
+\textbf{Bornes.} Majorée : $u_n\le M$ ; minorée : $u_n\ge m$ ; bornée : les deux.
+
+\smallskip
+\textbf{Arithmétique} (raison $r$) : $u_{n+1}=u_n+r$, $\ u_n=u_p+(n-p)r$, et
+\[ u_0+\dots+u_n=(n+1)\,\dfrac{u_0+u_n}{2}. \]
+\textbf{Géométrique} (raison $q\neq 0$) : $u_{n+1}=q\,u_n$, $\ u_n=u_p\,q^{\,n-p}$, et
+pour $q\neq 1$ :
+\[ u_0+\dots+u_n=u_0\,\dfrac{1-q^{\,n+1}}{1-q}. \]
+
+\smallskip
+\textbf{Finance.} Intérêts simples $\to$ arithmétique : $C_n=C_0(1+nt)$.
+Intérêts composés $\to$ géométrique : $C_n=C_0(1+t)^n$.
+\end{synthese}
+
+% ════════════════════════════════════════════════════════════
+\section{Méthodes \& savoir-faire}
+
+\methode{Calculer les premiers termes d'une suite récurrente}
+Partir du premier terme donné, puis appliquer la relation $u_{n+1}=g(u_n)$ en cascade,
+en réutilisant chaque résultat pour calculer le suivant.
+\begin{exemple}
+$u_0=1$ et $u_{n+1}=\dfrac{u_n+3}{2}$. On a $u_1=\dfrac{1+3}{2}=2$, $u_2=\dfrac{2+3}{2}=2{,}5$,
+$u_3=\dfrac{2{,}5+3}{2}=2{,}75$.
+\end{exemple}
+
+\methode{Montrer qu'une suite est arithmétique (ou géométrique)}
+Calculer $u_{n+1}-u_n$ : si c'est une \emph{constante}, la suite est arithmétique
+(de raison cette constante). Sinon, si tous les termes sont non nuls, calculer
+$\dfrac{u_{n+1}}{u_n}$ : si c'est constant, la suite est géométrique.
+\begin{exemple}
+$u_n=3\times 2^{\,n}$. Alors $\dfrac{u_{n+1}}{u_n}=\dfrac{3\times 2^{\,n+1}}{3\times 2^{\,n}}=2$,
+constant : $(u_n)$ est géométrique de raison $q=2$ et de premier terme $u_0=3$.
+\end{exemple}
+
+\methode{Calculer un terme de rang élevé}
+Utiliser la formule du terme général plutôt que d'itérer : $u_n=u_p+(n-p)r$ pour une
+arithmétique, $u_n=u_p\,q^{\,n-p}$ pour une géométrique.
+\begin{exemple}
+$(u_n)$ géométrique, $u_2=12$, $q=3$. Alors $u_7=u_2\,q^{\,7-2}=12\times 3^5=12\times 243=2916$.
+\end{exemple}
+
+\methode{Déterminer la raison et le premier terme à partir de deux termes}
+Traduire les deux informations en équations avec la formule du terme général, puis
+résoudre le système.
+\begin{exemple}
+$(u_n)$ arithmétique avec $u_3=11$ et $u_8=26$. On a $u_8-u_3=(8-3)r$, soit $15=5r$,
+donc $r=3$ ; puis $u_0=u_3-3r=11-9=2$.
+\end{exemple}
+
+\methode{Calculer une somme de termes consécutifs}
+Repérer le nombre de termes et les termes extrêmes, puis appliquer la bonne formule.
+Pour l'arithmétique : (nombre de termes)~$\times$~(moyenne des extrêmes).
+\begin{exemple}
+Somme $S=5+8+11+\dots+50$ (arithmétique, $r=3$). Le nombre de termes est
+$\dfrac{50-5}{3}+1=16$, d'où $S=16\times\dfrac{5+50}{2}=16\times 27{,}5=440$.
+\end{exemple}
+
+\methode{Modéliser un placement financier}
+Identifier le type : intérêts \emph{simples} $\to$ suite arithmétique $C_n=C_0(1+nt)$ ;
+intérêts \emph{composés} $\to$ suite géométrique $C_n=C_0(1+t)^n$ ; puis appliquer.
+\begin{exemple}
+$300\,000$ FCFA placés à intérêts composés au taux $4\%$ pendant $3$ ans donnent
+$C_3=300\,000\times 1{,}04^{\,3}\approx 300\,000\times 1{,}1249\approx 337\,459$ FCFA.
+\end{exemple}

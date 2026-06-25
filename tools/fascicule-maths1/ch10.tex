@@ -1,0 +1,394 @@
+\chapter{Dénombrement}
+\textit{Dénombrer, c'est compter le nombre d'éléments d'un ensemble fini sans avoir
+à les énumérer un par un. Combien de codes secrets à quatre chiffres ? Combien de
+podiums possibles dans une course ? Combien de comités de trois délégués dans une
+classe ? Ce chapitre met en place les quelques principes et formules qui permettent
+de répondre à toutes ces questions — ils sont aussi le socle du calcul des
+probabilités que tu rencontreras juste après.}
+
+\section{Ensembles finis et cardinal}
+
+\begin{definition}[Ensemble fini, cardinal]
+Un ensemble $E$ est \textbf{fini} lorsqu'on peut compter ses éléments un par un et
+que ce comptage s'arrête. Le nombre d'éléments de $E$ s'appelle le \textbf{cardinal}
+de $E$, noté $\Card(E)$ (ou parfois $|E|$ ou $n(E)$).
+\end{definition}
+
+\begin{remarque}
+L'ensemble vide $\varnothing$ a pour cardinal $\Card(\varnothing)=0$. Un ensemble
+réduit à un seul élément a pour cardinal $1$, etc. Dans tout ce chapitre, les
+ensembles considérés sont \textbf{finis}.
+\end{remarque}
+
+\begin{exemple}
+Si $E=\{a,b,c,d,e\}$ alors $\Card(E)=5$. Si $D=\{0,1,2,\dots,9\}$ est l'ensemble des
+chiffres, alors $\Card(D)=10$.
+\end{exemple}
+
+\section{Les deux principes fondamentaux}
+
+Tout le dénombrement repose sur deux principes : on \textbf{additionne} quand on
+fait un choix \emph{ou} un autre (cas qui s'excluent), on \textbf{multiplie} quand on
+fait un choix \emph{puis} un autre (étapes successives).
+
+\begin{theoreme}[Principe additif]
+Si $A$ et $B$ sont deux ensembles finis \textbf{disjoints} (c'est-à-dire
+$A\cap B=\varnothing$), alors
+\[ \Card(A\cup B)=\Card(A)+\Card(B). \]
+Plus généralement, si une situation se décompose en plusieurs cas qui s'excluent
+deux à deux, le nombre total de possibilités est la \textbf{somme} des nombres de
+possibilités de chaque cas.
+\end{theoreme}
+
+\begin{theoreme}[Principe multiplicatif]
+Si une opération se réalise en $p$ \textbf{étapes successives}, la première offrant
+$n_1$ possibilités, la deuxième $n_2$, \dots, la $p$-ième $n_p$ (le nombre de
+possibilités d'une étape ne dépendant pas des choix faits aux précédentes), alors le
+nombre total de façons de réaliser l'opération est le \textbf{produit}
+\[ n_1\times n_2\times\cdots\times n_p. \]
+\end{theoreme}
+
+\begin{exemple}
+Un menu propose $3$ entrées \emph{puis} $4$ plats. Choisir un repas (entrée
+\emph{puis} plat) se fait de $3\times 4=12$ façons (principe multiplicatif). Si, par
+ailleurs, on peut prendre soit l'un des $3$ desserts soit l'un des $4$ fruits (mais
+pas les deux), cela fait $3+4=7$ choix de fin de repas (principe additif).
+\end{exemple}
+
+L'outil graphique qui visualise le principe multiplicatif est l'\textbf{arbre de
+choix} : à chaque étape, on dessine une branche par possibilité. Le nombre total de
+résultats est le nombre de chemins complets (donc de feuilles) de l'arbre.
+
+\begin{illus}
+\begin{tikzpicture}[scale=0.95,
+  lvl/.style={onbink,font=\small},
+  edge from parent/.style={draw,onbline,thick}]
+  % étape 1 : 2 choix (A, B) ; étape 2 : 3 choix (1,2,3)
+  \node[onbmuted,font=\footnotesize] at (-1.6,2.4) {départ};
+  \coordinate (root) at (-1.6,1.5);
+  \fill[onbo] (root) circle (2pt);
+  \foreach \i/\lab/\y in {1/A/2.6, 2/B/0.4}{
+    \coordinate (n\i) at (1,\y);
+    \fill[onbo] (n\i) circle (1.8pt);
+    \draw[onbo,thick] (root)--(n\i);
+    \node[lvl] at (0.0,{(\y+1.5)/2 + 0.18}) {\lab};
+  }
+  \foreach \lab/\y in {1/3.2, 2/2.6, 3/2.0}{
+    \coordinate (f) at (4,\y);
+    \fill[onbgreen] (f) circle (1.6pt);
+    \draw[onbgreen,thick] (n1)--(f);
+    \node[lvl,right=2pt] at (f) {(A,\lab)};
+  }
+  \foreach \lab/\y in {1/1.0, 2/0.4, 3/-0.2}{
+    \coordinate (g) at (4,\y);
+    \fill[onbgreen] (g) circle (1.6pt);
+    \draw[onbgreen,thick] (n2)--(g);
+    \node[lvl,right=2pt] at (g) {(B,\lab)};
+  }
+  \node[onbmuted,font=\footnotesize] at (1,-1.0) {2 choix};
+  \node[onbmuted,font=\footnotesize] at (4,-1.0) {$\times\,3$ choix};
+\end{tikzpicture}
+\fig{Figure — arbre de choix : $2$ possibilités à la première étape, $3$ à la
+seconde, soit $2\times 3=6$ résultats (les $6$ feuilles).}
+\end{illus}
+
+\section{Cardinal d'une réunion et produit cartésien}
+
+\begin{theoreme}[Cardinal d'une réunion (cas général)]
+Pour deux ensembles finis quelconques $A$ et $B$ :
+\[ \Card(A\cup B)=\Card(A)+\Card(B)-\Card(A\cap B). \]
+\end{theoreme}
+
+\begin{remarque}
+On retranche $\Card(A\cap B)$ car les éléments communs à $A$ et $B$ ont été comptés
+\emph{deux fois} (une fois dans $\Card(A)$, une fois dans $\Card(B)$). Quand
+$A\cap B=\varnothing$, ce terme est nul et l'on retrouve le principe additif.
+\end{remarque}
+
+\begin{exemple}
+Dans une classe de $30$ élèves, $18$ font de l'anglais (ensemble $A$), $15$ de
+l'espagnol (ensemble $B$) et $7$ font les deux. Le nombre d'élèves faisant
+\emph{au moins} une de ces deux langues est
+\[ \Card(A\cup B)=18+15-7=26. \]
+Il y a donc $30-26=4$ élèves qui n'en font aucune.
+\end{exemple}
+
+\begin{definition}[Produit cartésien]
+Le \textbf{produit cartésien} de deux ensembles $E$ et $F$ est l'ensemble des
+\textbf{couples} $(x,y)$ avec $x\in E$ et $y\in F$ :
+\[ E\times F=\big\{(x,y)\ \mid\ x\in E,\ y\in F\big\}. \]
+\end{definition}
+
+\begin{propriete}[Cardinal d'un produit cartésien]
+Si $E$ et $F$ sont finis, alors $\Card(E\times F)=\Card(E)\times\Card(F)$. Plus
+généralement, $\Card(E_1\times E_2\times\cdots\times E_p)=\Card(E_1)\times\cdots\times\Card(E_p)$.
+En particulier $\Card(E^p)=\big(\Card(E)\big)^p$.
+\end{propriete}
+
+\section{$p$-listes : tirages successifs avec remise}
+
+\begin{definition}[$p$-liste]
+Soit $E$ un ensemble à $n$ éléments. Une \textbf{$p$-liste} (ou $p$-uplet) d'éléments
+de $E$ est une suite ordonnée de $p$ éléments de $E$, \textbf{pas nécessairement
+distincts}. C'est un élément de $E^p$.
+\end{definition}
+
+On modélise par une $p$-liste tout \textbf{tirage successif avec remise} : on tire un
+élément, on le remet, on tire de nouveau, et l'\textbf{ordre compte}.
+
+\begin{theoreme}[Nombre de $p$-listes]
+Le nombre de $p$-listes d'un ensemble à $n$ éléments est
+\[ n^p. \]
+\end{theoreme}
+
+\begin{exemple}
+Un code d'accès est formé de $4$ chiffres (de $0$ à $9$), répétitions autorisées.
+Chaque position offre $10$ choix indépendants : il y a donc $10^4=10\,000$ codes
+possibles. De même, le nombre de mots de $3$ lettres (avec répétitions) sur l'alphabet
+de $26$ lettres est $26^3=17\,576$.
+\end{exemple}
+
+\begin{aretenir}
+Reconnaître une $p$-liste : tirage \textbf{successif} (l'ordre compte) \textbf{avec
+remise} (un élément peut se répéter). Formule : $n^p$.
+\end{aretenir}
+
+\section{Arrangements : tirages successifs sans remise}
+
+\begin{definition}[Arrangement]
+Soit $E$ un ensemble à $n$ éléments et $p$ un entier avec $0\le p\le n$. Un
+\textbf{arrangement} de $p$ éléments de $E$ est une suite ordonnée de $p$ éléments de
+$E$ \textbf{deux à deux distincts}.
+\end{definition}
+
+On modélise par un arrangement tout \textbf{tirage successif sans remise} : l'ordre
+compte, mais un élément déjà tiré ne peut plus l'être.
+
+\begin{theoreme}[Nombre d'arrangements]
+Le nombre d'arrangements de $p$ éléments parmi $n$ est noté $A_n^p$ et vaut
+\[ A_n^p=n(n-1)(n-2)\cdots(n-p+1)=\frac{n!}{(n-p)!}. \]
+\end{theoreme}
+
+\begin{remarque}
+On retrouve la formule par le principe multiplicatif : il y a $n$ choix pour le
+$1^{\text{er}}$ élément, puis $n-1$ pour le $2^{\text{e}}$ (l'un est déjà pris),
+\dots, et $n-p+1$ pour le $p$-ième, soit $p$ facteurs décroissants. Rappel :
+$n!=1\times 2\times\cdots\times n$ (« factorielle de $n$ ») et $0!=1$.
+\end{remarque}
+
+\begin{exemple}
+Dans une course de $8$ chevaux, le tiercé (les $3$ premiers \emph{dans l'ordre}) est
+un arrangement de $3$ chevaux parmi $8$ :
+\[ A_8^3=8\times 7\times 6=336. \]
+Il y a donc $336$ tiercés possibles.
+\end{exemple}
+
+\section{Permutations}
+
+\begin{definition}[Permutation]
+Une \textbf{permutation} d'un ensemble $E$ à $n$ éléments est un arrangement de
+\emph{tous} ses éléments, c'est-à-dire une façon d'ordonner les $n$ éléments. C'est le
+cas particulier $p=n$ d'un arrangement.
+\end{definition}
+
+\begin{theoreme}[Nombre de permutations]
+Le nombre de permutations d'un ensemble à $n$ éléments est
+\[ A_n^n=\frac{n!}{0!}=n!. \]
+\end{theoreme}
+
+\begin{exemple}
+De combien de façons $5$ personnes peuvent-elles s'asseoir sur un banc de $5$ places ?
+C'est le nombre de permutations de $5$ éléments :
+\[ 5!=5\times 4\times 3\times 2\times 1=120. \]
+\end{exemple}
+
+\section{Combinaisons : tirages simultanés}
+
+\begin{definition}[Combinaison]
+Soit $E$ un ensemble à $n$ éléments et $0\le p\le n$. Une \textbf{combinaison} de $p$
+éléments de $E$ est une \textbf{partie} de $E$ à $p$ éléments : c'est un choix de $p$
+éléments \textbf{sans tenir compte de l'ordre} et sans répétition.
+\end{definition}
+
+On modélise par une combinaison tout \textbf{tirage simultané} (on prend $p$ éléments
+d'un coup) : l'ordre \textbf{ne compte pas}.
+
+\begin{theoreme}[Nombre de combinaisons]
+Le nombre de combinaisons de $p$ éléments parmi $n$ est noté $\binom{n}{p}$ (lu
+« $p$ parmi $n$ ») et vaut
+\[ \binom{n}{p}=\frac{A_n^p}{p!}=\frac{n!}{p!\,(n-p)!}. \]
+\end{theoreme}
+
+\begin{remarque}
+On divise $A_n^p$ par $p!$ car chaque partie à $p$ éléments correspond à $p!$
+arrangements (les $p!$ ordres possibles de ces $p$ éléments) que la combinaison ne
+distingue pas.
+\end{remarque}
+
+\begin{exemple}
+Une classe compte $25$ élèves ; on choisit un comité de $3$ délégués (sans hiérarchie,
+donc l'ordre est sans importance) :
+\[ \binom{25}{3}=\frac{25\times 24\times 23}{3\times 2\times 1}=2300. \]
+\end{exemple}
+
+\subsection{Propriétés des combinaisons}
+
+\begin{propriete}[Valeurs et symétrie]
+Pour tous entiers $0\le p\le n$ :
+\[ \binom{n}{0}=\binom{n}{n}=1,\qquad \binom{n}{1}=n,\qquad
+   \boxed{\ \binom{n}{p}=\binom{n}{n-p}\ }. \]
+\end{propriete}
+
+\begin{remarque}
+La symétrie $\binom{n}{p}=\binom{n}{n-p}$ se comprend bien : choisir les $p$ éléments
+qu'on \emph{prend} revient à choisir les $n-p$ éléments qu'on \emph{laisse}.
+\end{remarque}
+
+\begin{theoreme}[Relation de Pascal]
+Pour $1\le p\le n-1$ :
+\[ \binom{n}{p}=\binom{n-1}{p-1}+\binom{n-1}{p}. \]
+\end{theoreme}
+
+Cette relation permet de construire de proche en proche le \textbf{triangle de
+Pascal} : chaque terme est la somme des deux termes situés au-dessus de lui.
+
+\begin{illus}
+\begin{tikzpicture}[scale=0.95,every node/.style={font=\small}]
+  % triangle de Pascal, lignes n=0..5
+  \def\rowA{1}
+  \foreach \row [count=\r from 0] in {%
+    {1},%
+    {1,1},%
+    {1,2,1},%
+    {1,3,3,1},%
+    {1,4,6,4,1},%
+    {1,5,10,10,5,1}}{
+    \foreach \val [count=\c from 0] in \row {
+      \node[onbink] at ({(\c - \r/2)*1.05},{-\r*0.82}) {\val};
+    }
+    \node[onbmuted,font=\footnotesize] at ({-\r/2*1.05 - 1.3},{-\r*0.82}) {$n=\r$};
+  }
+  % flèches illustrant la relation de Pascal sur la ligne n=4, terme 6
+  \draw[->,onbo,thick] ({(1-1.5)*1.05},{-3*0.82-0.18}) -- ({(2-2)*1.05},{-4*0.82+0.18});
+  \draw[->,onbo,thick] ({(2-1.5)*1.05},{-3*0.82-0.18}) -- ({(2-2)*1.05},{-4*0.82+0.18});
+\end{tikzpicture}
+\fig{Figure — triangle de Pascal : $\binom{4}{2}=6=3+3=\binom{3}{1}+\binom{3}{2}$
+(relation de Pascal, flèches oranges).}
+\end{illus}
+
+\section{Introduction au binôme de Newton}
+
+Les combinaisons fournissent les coefficients du développement d'une puissance de
+somme : ce sont les \textbf{coefficients binomiaux}.
+
+\begin{theoreme}[Formule du binôme de Newton]
+Pour tous réels $a,b$ et tout entier naturel $n$ :
+\[ (a+b)^n=\sum_{p=0}^{n}\binom{n}{p}\,a^{\,n-p}\,b^{\,p}
+   =\binom{n}{0}a^n+\binom{n}{1}a^{n-1}b+\cdots+\binom{n}{n}b^n. \]
+\end{theoreme}
+
+\begin{remarque}
+Les coefficients $\binom{n}{0},\binom{n}{1},\dots,\binom{n}{n}$ qui apparaissent sont
+exactement les nombres de la $n$-ième ligne du triangle de Pascal. La somme des
+exposants de $a$ et $b$ vaut $n$ dans chaque terme.
+\end{remarque}
+
+\begin{exemple}
+Pour $n=3$, la ligne du triangle est $1,\,3,\,3,\,1$, d'où
+\[ (a+b)^3=a^3+3a^2b+3ab^2+b^3. \]
+En prenant $a=1$ et $b=x$ : $(1+x)^3=1+3x+3x^2+x^3$.
+\end{exemple}
+
+% ════════════════════════════════════════════════════════════
+\section{L'essentiel à retenir}
+
+\begin{synthese}
+\textbf{Deux principes.} On \textbf{additionne} pour des cas qui s'excluent (un choix
+\emph{ou} un autre), on \textbf{multiplie} pour des étapes successives (un choix
+\emph{puis} un autre). \quad $\Card(A\cup B)=\Card A+\Card B-\Card(A\cap B)$.
+
+\smallskip
+\textbf{Tout dépend de deux questions :} l'\textbf{ordre} compte-t-il ? les
+\textbf{répétitions} sont-elles permises ? Soit $E$ à $n$ éléments, on choisit $p$
+objets :
+\begin{center}\renewcommand{\arraystretch}{1.4}
+\color{white}
+\begin{tabular}{@{}l c c l@{}}
+\toprule
+\textbf{Modèle} & \textbf{Ordre} & \textbf{Répétition} & \textbf{Nombre} \\
+\midrule
+$p$-liste (successif \emph{avec} remise)      & oui & oui & $n^p$ \\
+Arrangement (successif \emph{sans} remise)    & oui & non & $A_n^p=\dfrac{n!}{(n-p)!}$ \\
+Permutation ($p=n$)                           & oui & non & $n!$ \\
+Combinaison (tirage \emph{simultané})         & non & non & $\dbinom{n}{p}=\dfrac{n!}{p!\,(n-p)!}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\smallskip
+\textbf{Combinaisons :} $\binom{n}{0}=\binom{n}{n}=1$, $\ \binom{n}{1}=n$,
+$\ \binom{n}{p}=\binom{n}{n-p}$, \ et \textbf{Pascal}
+$\binom{n}{p}=\binom{n-1}{p-1}+\binom{n-1}{p}$ (triangle de Pascal).
+
+\smallskip
+\textbf{Binôme de Newton :} $\displaystyle (a+b)^n=\sum_{p=0}^{n}\binom{n}{p}a^{n-p}b^{p}$.
+\end{synthese}
+
+% ════════════════════════════════════════════════════════════
+\section{Méthodes \& savoir-faire}
+
+\methode{Choisir le bon modèle de dénombrement}
+Se poser dans l'ordre les deux questions clés. \textbf{1.} L'\emph{ordre} des objets
+choisis intervient-il ? \textbf{2.} Un objet peut-il être \emph{répété} ? Ordre
+\emph{et} répétition $\Rightarrow$ $p$-liste ($n^p$) ; ordre sans répétition
+$\Rightarrow$ arrangement ($A_n^p$) ; ni ordre ni répétition $\Rightarrow$
+combinaison ($\binom{n}{p}$). Le mot « \emph{successivement} » suggère l'ordre,
+« \emph{simultanément} » suggère la combinaison.
+\begin{exemple}
+« Tirer $3$ cartes l'une après l'autre, sans remise » : ordre oui, répétition non
+$\Rightarrow$ arrangement. « Tirer $3$ cartes d'un coup » : ordre non $\Rightarrow$
+combinaison.
+\end{exemple}
+
+\methode{Dénombrer un tirage successif (avec ou sans remise)}
+Décompter étape par étape par le principe multiplicatif. \emph{Avec} remise : chaque
+étape garde $n$ choix $\Rightarrow$ $n^p$. \emph{Sans} remise : les choix décroissent
+$n,\,n-1,\dots\Rightarrow A_n^p$.
+\begin{exemple}
+Une urne contient $7$ boules numérotées. Tirages \emph{successifs} de $3$ boules :
+\textbf{avec} remise $7^3=343$ ; \textbf{sans} remise $A_7^3=7\times 6\times 5=210$.
+\end{exemple}
+
+\methode{Former un comité (tirage simultané)}
+Quand on choisit un groupe \textbf{sans hiérarchie}, l'ordre est indifférent : on
+utilise une combinaison $\binom{n}{p}$.
+\begin{exemple}
+Choisir $4$ joueurs parmi $11$ pour une mission (sans distinction de rôle) :
+$\binom{11}{4}=\dfrac{11\times 10\times 9\times 8}{4!}=330$.
+\end{exemple}
+
+\methode{Comité avec contrainte de catégories}
+Compter \emph{dans chaque catégorie} par une combinaison, puis \textbf{multiplier} les
+résultats (principe multiplicatif).
+\begin{exemple}
+Une classe a $14$ filles et $10$ garçons. Former un comité de $2$ filles \emph{et}
+$3$ garçons : $\binom{14}{2}\times\binom{10}{3}=91\times 120=10\,920$.
+\end{exemple}
+
+\methode{Dénombrer les anagrammes d'un mot}
+Sans lettre répétée : $n!$ permutations. Si une lettre revient $k$ fois (et une
+autre $\ell$ fois, etc.), on \textbf{divise} par $k!\,\ell!\cdots$ pour ne pas compter
+plusieurs fois les mots identiques.
+\begin{exemple}
+Le mot \textsc{maths} ($5$ lettres distinctes) a $5!=120$ anagrammes. Le mot
+\textsc{erreur} ($6$ lettres : $r$ trois fois, $e$ deux fois, $u$ une fois) en a
+$\dfrac{6!}{3!\,2!\,1!}=\dfrac{720}{12}=60$.
+\end{exemple}
+
+\methode{Développer une puissance avec le binôme de Newton}
+Lire les coefficients sur la bonne ligne du triangle de Pascal, puis écrire les
+termes en faisant décroître l'exposant de $a$ et croître celui de $b$.
+\begin{exemple}
+$(2x+1)^4$ : ligne $n=4$ du triangle $=1,4,6,4,1$, avec $a=2x$, $b=1$ :
+\[ (2x+1)^4=(2x)^4+4(2x)^3+6(2x)^2+4(2x)+1=16x^4+32x^3+24x^2+8x+1. \]
+\end{exemple}

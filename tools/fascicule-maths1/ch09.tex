@@ -1,0 +1,442 @@
+\chapter{Formules et équations trigonométriques}
+\textit{Tu connais déjà le cercle trigonométrique, les valeurs remarquables et les
+fonctions $\cos$, $\sin$, $\tan$. Ce chapitre te donne les \emph{formules} qui
+relient ces fonctions entre elles — addition, duplication, linéarisation — puis te
+montre comment résoudre les \emph{équations} et \emph{inéquations} trigonométriques.
+Ce sont des outils incontournables au Probatoire comme dans toute la suite.}
+
+\section{Rappels et conventions}
+
+\begin{aretenir}[Ce qu'il faut avoir en tête]
+Un angle est mesuré en \textbf{radians}. Sur le cercle trigonométrique (de rayon
+$1$), un réel $x$ repère un point $M$ tel que $\cos x$ est son abscisse et $\sin x$
+son ordonnée. On rappelle l'\textbf{identité fondamentale}
+\[ \cos^2 x+\sin^2 x=1, \]
+ainsi que $\tan x=\dfrac{\sin x}{\cos x}$, définie pour $x\neq \dfrac{\pi}{2}+k\pi$
+($k\in\Z$). Les fonctions $\cos$ et $\sin$ sont $2\pi$-périodiques, $\tan$ est
+$\pi$-périodique.
+\end{aretenir}
+
+\begin{illus}
+\begin{tikzpicture}[scale=2.1]
+  \draw[->,onbline] (-1.35,0)--(1.4,0) node[right,onbmuted]{$x$};
+  \draw[->,onbline] (0,-1.35)--(0,1.4) node[above,onbmuted]{$y$};
+  \draw[thick,onbmuted] (0,0) circle (1);
+  \coordinate (O) at (0,0);
+  \coordinate (A) at (1,0);
+  \coordinate (M) at (50:1);
+  \draw[onbo,very thick] (O)--(M);
+  \filldraw[onbo] (M) circle (0.6pt) node[above right,onbink]{$M$};
+  \draw[dashed,onbmuted] (M)--(0.643,0) node[below,onbink]{$\cos x$};
+  \draw[dashed,onbmuted] (M)--(0,0.766) node[left,onbink]{$\sin x$};
+  \draw pic[draw=onbgreen,angle radius=0.4cm,"$x$"{onbgreen}] {angle=A--O--M};
+\end{tikzpicture}
+\fig{Figure — sur le cercle de rayon $1$, $\cos x$ est l'abscisse et $\sin x$ l'ordonnée du point $M$ repéré par $x$.}
+\end{illus}
+
+\section{Formules d'addition}
+
+\begin{theoreme}[Formules d'addition]
+Pour tous réels $a$ et $b$ :
+\begin{align*}
+  \cos(a+b) &= \cos a\cos b-\sin a\sin b, &
+  \cos(a-b) &= \cos a\cos b+\sin a\sin b,\\
+  \sin(a+b) &= \sin a\cos b+\cos a\sin b, &
+  \sin(a-b) &= \sin a\cos b-\cos a\sin b.
+\end{align*}
+Pour la tangente (lorsque tous les termes sont définis) :
+\[
+  \tan(a+b)=\frac{\tan a+\tan b}{1-\tan a\tan b},\qquad
+  \tan(a-b)=\frac{\tan a-\tan b}{1+\tan a\tan b}.
+\]
+\end{theoreme}
+
+\begin{remarque}
+Pour mémoriser : pour $\cos$, on garde le \emph{même} type de produit
+($\cos\cos$, $\sin\sin$) avec le signe \emph{opposé} à celui de l'angle ; pour
+$\sin$, on \emph{croise} ($\sin\cos$, $\cos\sin$) avec le \emph{même} signe.
+\end{remarque}
+
+\begin{exemple}
+Calculons $\cos\dfrac{\pi}{12}$. Comme $\dfrac{\pi}{12}=\dfrac{\pi}{3}-\dfrac{\pi}{4}$ :
+\[
+  \cos\frac{\pi}{12}=\cos\frac{\pi}{3}\cos\frac{\pi}{4}+\sin\frac{\pi}{3}\sin\frac{\pi}{4}
+  =\frac12\cdot\frac{\sqrt2}{2}+\frac{\sqrt3}{2}\cdot\frac{\sqrt2}{2}
+  =\frac{\sqrt2+\sqrt6}{4}.
+\]
+\end{exemple}
+
+\begin{propriete}[Angles associés (cas particuliers utiles)]
+En prenant $b=\dfrac{\pi}{2}$ ou $b=\pi$ dans les formules d'addition, on retrouve :
+\[
+  \cos\!\Big(\frac{\pi}{2}-x\Big)=\sin x,\quad
+  \sin\!\Big(\frac{\pi}{2}-x\Big)=\cos x,\quad
+  \cos(\pi-x)=-\cos x,\quad
+  \sin(\pi-x)=\sin x.
+\]
+\end{propriete}
+
+\section{Formules de duplication}
+
+\begin{theoreme}[Formules de duplication]
+Pour tout réel $a$ :
+\[
+  \cos 2a=\cos^2 a-\sin^2 a,\qquad
+  \sin 2a=2\sin a\cos a,\qquad
+  \tan 2a=\frac{2\tan a}{1-\tan^2 a}.
+\]
+En utilisant $\cos^2 a+\sin^2 a=1$, la formule de $\cos 2a$ s'écrit aussi
+\[
+  \cos 2a=2\cos^2 a-1=1-2\sin^2 a.
+\]
+\end{theoreme}
+
+\begin{exemple}[Démonstration à partir de l'addition]
+Il suffit de poser $b=a$ dans les formules d'addition. Pour le cosinus :
+\[
+  \cos 2a=\cos(a+a)=\cos a\cos a-\sin a\sin a=\cos^2 a-\sin^2 a.
+\]
+Pour le sinus :
+\[
+  \sin 2a=\sin(a+a)=\sin a\cos a+\cos a\sin a=2\sin a\cos a.
+\]
+De même $\tan 2a=\tan(a+a)=\dfrac{\tan a+\tan a}{1-\tan a\tan a}=\dfrac{2\tan a}{1-\tan^2 a}$.
+\end{exemple}
+
+\begin{exemple}
+Connaissant $\cos\dfrac{\pi}{6}=\dfrac{\sqrt3}{2}$, retrouvons $\cos\dfrac{\pi}{3}$ :
+\[
+  \cos\frac{\pi}{3}=\cos\!\Big(2\cdot\frac{\pi}{6}\Big)=2\cos^2\frac{\pi}{6}-1
+  =2\cdot\frac34-1=\frac12.
+\]
+\end{exemple}
+
+\section{Formules de linéarisation}
+
+\begin{propriete}[Linéarisation de $\cos^2$ et $\sin^2$]
+En isolant $\cos^2 a$ puis $\sin^2 a$ dans les deux écritures de $\cos 2a$, on
+obtient :
+\[
+  \cos^2 a=\frac{1+\cos 2a}{2},\qquad
+  \sin^2 a=\frac{1-\cos 2a}{2}.
+\]
+\end{propriete}
+
+\begin{remarque}
+\emph{Linéariser}, c'est remplacer une puissance ($\cos^2 a$, $\sin^2 a$) par une
+expression où les fonctions trigonométriques n'apparaissent qu'à la puissance $1$
+(ici $\cos 2a$). C'est essentiel pour calculer certaines intégrales en Terminale.
+\end{remarque}
+
+\begin{exemple}
+Calculons $\sin^2\dfrac{\pi}{8}$. Avec $a=\dfrac{\pi}{8}$, donc $2a=\dfrac{\pi}{4}$ :
+\[
+  \sin^2\frac{\pi}{8}=\frac{1-\cos\frac{\pi}{4}}{2}
+  =\frac{1-\frac{\sqrt2}{2}}{2}=\frac{2-\sqrt2}{4}.
+\]
+\end{exemple}
+
+\section{Transformation de $a\cos x+b\sin x$}
+
+\begin{theoreme}[Forme $R\cos(x-\varphi)$]
+Soit $a$ et $b$ deux réels non tous deux nuls. En posant $R=\sqrt{a^2+b^2}$, il
+existe un réel $\varphi$ tel que, pour tout réel $x$,
+\[
+  a\cos x+b\sin x=R\cos(x-\varphi),
+\]
+où $\varphi$ est déterminé par $\cos\varphi=\dfrac{a}{R}$ et $\sin\varphi=\dfrac{b}{R}$.
+\end{theoreme}
+
+\begin{exemple}
+En développant $R\cos(x-\varphi)=R(\cos\varphi\cos x+\sin\varphi\sin x)$ et en
+identifiant à $a\cos x+b\sin x$, on retrouve $R\cos\varphi=a$ et $R\sin\varphi=b$ ;
+d'où $R^2(\cos^2\varphi+\sin^2\varphi)=a^2+b^2$, soit $R=\sqrt{a^2+b^2}$.
+\end{exemple}
+
+\begin{exemple}
+Transformons $\cos x+\sqrt3\,\sin x$. Ici $a=1$, $b=\sqrt3$, donc
+$R=\sqrt{1+3}=2$. On cherche $\varphi$ avec $\cos\varphi=\dfrac12$ et
+$\sin\varphi=\dfrac{\sqrt3}{2}$ : c'est $\varphi=\dfrac{\pi}{3}$. Ainsi
+\[
+  \cos x+\sqrt3\,\sin x=2\cos\!\Big(x-\frac{\pi}{3}\Big).
+\]
+\end{exemple}
+
+\begin{aretenir}
+Cette transformation est précieuse : elle ramène une somme $a\cos x+b\sin x$ à
+\emph{une seule} fonction trigonométrique. On en déduit immédiatement que son
+maximum est $R=\sqrt{a^2+b^2}$ et son minimum $-R$, et l'on sait résoudre les
+équations $a\cos x+b\sin x=c$.
+\end{aretenir}
+
+\section{Équations trigonométriques}
+
+\subsection{Équation $\cos x=a$}
+
+\begin{theoreme}[Résolution de $\cos x=\cos\alpha$]
+L'équation $\cos x=a$ admet des solutions si et seulement si $-1\le a\le 1$. En
+écrivant $a=\cos\alpha$, on a, pour $k\in\Z$ :
+\[
+  \cos x=\cos\alpha \iff x=\alpha+2k\pi \ \text{ ou }\ x=-\alpha+2k\pi.
+\]
+\end{theoreme}
+
+\begin{illus}
+\begin{tikzpicture}[scale=2.1]
+  \draw[->,onbline] (-1.35,0)--(1.4,0) node[right,onbmuted]{$x$};
+  \draw[->,onbline] (0,-1.35)--(0,1.4) node[above,onbmuted]{$y$};
+  \draw[thick,onbmuted] (0,0) circle (1);
+  \draw[dashed,onbo] (0.5,-1.2)--(0.5,1.2);
+  \node[onbo,below right] at (0.5,-1.2){$x=a$};
+  \filldraw[onbo] (60:1) circle (0.7pt) node[above right,onbink]{$\alpha$};
+  \filldraw[onbo] (-60:1) circle (0.7pt) node[below right,onbink]{$-\alpha$};
+  \draw[onbgreen,very thick] (0,0)--(60:1);
+  \draw[onbgreen,very thick] (0,0)--(-60:1);
+\end{tikzpicture}
+\fig{Figure — $\cos x=a$ : les solutions sont les points du cercle d'abscisse $a$, symétriques par rapport à l'axe $(Ox)$.}
+\end{illus}
+
+\begin{exemple}
+Résolvons $\cos x=\dfrac12$ dans $\R$. Comme $\dfrac12=\cos\dfrac{\pi}{3}$ :
+\[
+  x=\frac{\pi}{3}+2k\pi \quad\text{ou}\quad x=-\frac{\pi}{3}+2k\pi,\qquad k\in\Z.
+\]
+Sur $]-\pi\,;\,\pi]$, les solutions sont $\dfrac{\pi}{3}$ et $-\dfrac{\pi}{3}$.
+\end{exemple}
+
+\subsection{Équation $\sin x=a$}
+
+\begin{theoreme}[Résolution de $\sin x=\sin\alpha$]
+L'équation $\sin x=a$ admet des solutions si et seulement si $-1\le a\le 1$. En
+écrivant $a=\sin\alpha$, on a, pour $k\in\Z$ :
+\[
+  \sin x=\sin\alpha \iff x=\alpha+2k\pi \ \text{ ou }\ x=\pi-\alpha+2k\pi.
+\]
+\end{theoreme}
+
+\begin{exemple}
+Résolvons $\sin x=\dfrac{\sqrt2}{2}$ dans $\R$. Comme $\dfrac{\sqrt2}{2}=\sin\dfrac{\pi}{4}$ :
+\[
+  x=\frac{\pi}{4}+2k\pi \quad\text{ou}\quad x=\pi-\frac{\pi}{4}+2k\pi=\frac{3\pi}{4}+2k\pi,\qquad k\in\Z.
+\]
+\end{exemple}
+
+\subsection{Équation $\tan x=a$}
+
+\begin{theoreme}[Résolution de $\tan x=\tan\alpha$]
+Pour tout réel $a$, l'équation $\tan x=a$ admet des solutions. En écrivant
+$a=\tan\alpha$, on a, pour $k\in\Z$ :
+\[
+  \tan x=\tan\alpha \iff x=\alpha+k\pi.
+\]
+\end{theoreme}
+
+\begin{remarque}
+La période de $\tan$ étant $\pi$ (et non $2\pi$), les solutions sont espacées de
+$\pi$ : il n'y a qu'\emph{une} famille de solutions, contre deux pour $\cos$ et
+$\sin$.
+\end{remarque}
+
+\begin{exemple}
+Résolvons $\tan x=\sqrt3$ dans $\R$. Comme $\sqrt3=\tan\dfrac{\pi}{3}$ :
+\[
+  x=\frac{\pi}{3}+k\pi,\qquad k\in\Z.
+\]
+Sur $]-\dfrac{\pi}{2}\,;\,\dfrac{\pi}{2}[$, la seule solution est $\dfrac{\pi}{3}$.
+\end{exemple}
+
+\subsection{Résolution sur un intervalle donné}
+
+\begin{aretenir}[Garder les solutions d'un intervalle]
+Pour résoudre sur un intervalle $I$ (par exemple $[0\,;\,2\pi[$), on écrit d'abord
+les solutions générales en $k$, puis on \emph{teste} les valeurs de $k$
+($\dots,-1,0,1,\dots$) et on conserve uniquement celles qui tombent dans $I$.
+\end{aretenir}
+
+\begin{exemple}
+Résolvons $\cos x=\dfrac12$ sur $[0\,;\,2\pi[$. Les solutions générales sont
+$x=\dfrac{\pi}{3}+2k\pi$ et $x=-\dfrac{\pi}{3}+2k\pi$. Dans $[0\,;\,2\pi[$ :
+$\dfrac{\pi}{3}$ (pour $k=0$) et $-\dfrac{\pi}{3}+2\pi=\dfrac{5\pi}{3}$ (pour $k=1$).
+D'où $S=\Big\{\dfrac{\pi}{3}\,;\,\dfrac{5\pi}{3}\Big\}$.
+\end{exemple}
+
+\section{Inéquations trigonométriques simples}
+
+\begin{aretenir}[Lecture sur le cercle]
+Pour résoudre une inéquation du type $\cos x\le a$ ou $\sin x\ge a$ sur un
+intervalle, on place sur le cercle les solutions de l'\emph{équation}
+correspondante, puis on lit \emph{l'arc} qui satisfait l'inégalité :
+\begin{itemize}
+  \item $\cos x$ se lit sur l'axe horizontal ($\cos x\ge a$ : arc à \emph{droite}
+        de la verticale $x=a$) ;
+  \item $\sin x$ se lit sur l'axe vertical ($\sin x\ge a$ : arc \emph{au-dessus}
+        de l'horizontale $y=a$).
+\end{itemize}
+\end{aretenir}
+
+\begin{illus}
+\begin{tikzpicture}[scale=2.1]
+  \draw[->,onbline] (-1.35,0)--(1.4,0) node[right,onbmuted]{$x$};
+  \draw[->,onbline] (0,-1.35)--(0,1.4) node[above,onbmuted]{$y$};
+  \draw[thick,onbmuted] (0,0) circle (1);
+  \draw[dashed,onbo] (0.5,-1.2)--(0.5,1.2);
+  \draw[onbo,very thick] (-60:1) arc (-60:60:1);
+  \filldraw[onbink] (60:1) circle (0.7pt) node[above right,onbink]{$\frac{\pi}{3}$};
+  \filldraw[onbink] (-60:1) circle (0.7pt) node[below right,onbink]{$-\frac{\pi}{3}$};
+  \node[onbo] at (1.05,0){};
+  \node[onbo,right] at (0.92,0.0){};
+\end{tikzpicture}
+\fig{Figure — $\cos x\ge\frac12$ : l'arc en gras (abscisses $\ge\frac12$) correspond à $x\in\big[-\frac{\pi}{3}\,;\,\frac{\pi}{3}\big]$ sur $]-\pi\,;\,\pi]$.}
+\end{illus}
+
+\begin{exemple}
+Résolvons $\cos x\ge\dfrac12$ sur $]-\pi\,;\,\pi]$. L'équation $\cos x=\dfrac12$
+donne $x=\pm\dfrac{\pi}{3}$. Le cosinus est l'abscisse du point : il est
+$\ge\dfrac12$ sur l'arc situé \emph{à droite} de la verticale, c'est-à-dire pour
+\[
+  x\in\Big[-\frac{\pi}{3}\,;\,\frac{\pi}{3}\Big].
+\]
+\end{exemple}
+
+\begin{exemple}
+Résolvons $\sin x>\dfrac{\sqrt2}{2}$ sur $[0\,;\,2\pi[$. L'équation $\sin x=\dfrac{\sqrt2}{2}$
+donne $x=\dfrac{\pi}{4}$ et $x=\dfrac{3\pi}{4}$. Le sinus est l'ordonnée : il est
+\emph{strictement} supérieur à $\dfrac{\sqrt2}{2}$ sur l'arc au-dessus de
+l'horizontale, soit
+\[
+  x\in\Big]\frac{\pi}{4}\,;\,\frac{3\pi}{4}\Big[.
+\]
+\end{exemple}
+
+\section{Allure des fonctions $\cos$ et $\sin$}
+
+\begin{illus}
+\begin{tikzpicture}
+\begin{axis}[
+  width=12cm,height=5.4cm,
+  axis lines=middle,
+  xlabel={$x$},ylabel={$y$},
+  xlabel style={right},ylabel style={above},
+  xmin=-0.4,xmax=6.9,ymin=-1.5,ymax=1.6,
+  xtick={1.5708,3.1416,4.7124,6.2832},
+  xticklabels={$\frac{\pi}{2}$,$\pi$,$\frac{3\pi}{2}$,$2\pi$},
+  ytick={-1,1},
+  tick style={onbmuted},
+  every axis x label/.style={at={(ticklabel* cs:1)},anchor=west},
+  every axis y label/.style={at={(ticklabel* cs:1)},anchor=south},
+  clip=true]
+  \addplot[onbo,very thick,smooth,samples=120,domain=0:6.2832]{cos(deg(x))};
+  \addplot[onbgreen,very thick,smooth,samples=120,domain=0:6.2832]{sin(deg(x))};
+  \node[onbo] at (axis cs:0.55,1.25){$\cos$};
+  \node[onbgreen] at (axis cs:1.05,1.25){$\sin$};
+\end{axis}
+\end{tikzpicture}
+\fig{Figure — sur $[0\,;\,2\pi]$ : la sinusoïde $\cos$ (orange) et $\sin$ (vert), de période $2\pi$, à valeurs dans $[-1\,;\,1]$.}
+\end{illus}
+
+\begin{remarque}
+Les courbes de $\cos$ et $\sin$ se déduisent l'une de l'autre par une translation
+horizontale de $\dfrac{\pi}{2}$, ce qui traduit l'égalité
+$\sin x=\cos\!\big(x-\dfrac{\pi}{2}\big)$.
+\end{remarque}
+
+% ════════════════════════════════════════════════════════════
+\section{L'essentiel à retenir}
+
+\begin{synthese}
+\textbf{Addition.}
+\[
+  \cos(a\pm b)=\cos a\cos b\mp\sin a\sin b,\qquad
+  \sin(a\pm b)=\sin a\cos b\pm\cos a\sin b,
+\]
+\[
+  \tan(a\pm b)=\frac{\tan a\pm\tan b}{1\mp\tan a\tan b}.
+\]
+
+\smallskip
+\textbf{Duplication.} $\cos 2a=\cos^2 a-\sin^2 a=2\cos^2 a-1=1-2\sin^2 a$ ;\quad
+$\sin 2a=2\sin a\cos a$ ;\quad $\tan 2a=\dfrac{2\tan a}{1-\tan^2 a}$.
+
+\smallskip
+\textbf{Linéarisation.} $\cos^2 a=\dfrac{1+\cos 2a}{2}$ ;\quad
+$\sin^2 a=\dfrac{1-\cos 2a}{2}$.
+
+\smallskip
+\textbf{Forme $R\cos(x-\varphi)$.} $a\cos x+b\sin x=R\cos(x-\varphi)$ avec
+$R=\sqrt{a^2+b^2}$, $\cos\varphi=\dfrac aR$, $\sin\varphi=\dfrac bR$
+(max $R$, min $-R$).
+
+\smallskip
+\textbf{Équations} ($k\in\Z$) :
+\[
+  \cos x=\cos\alpha \iff x=\pm\alpha+2k\pi;\qquad
+  \sin x=\sin\alpha \iff x=\alpha+2k\pi \text{ ou } x=\pi-\alpha+2k\pi;
+\]
+\[
+  \tan x=\tan\alpha \iff x=\alpha+k\pi.
+\]
+\textbf{Méthode} : écrire $a$ sous la forme $\cos\alpha$ / $\sin\alpha$ /
+$\tan\alpha$, donner la solution générale, puis garder celles de l'intervalle.
+
+\smallskip
+\textbf{Inéquations} : se lisent sur le cercle ($\cos$ en abscisse, $\sin$ en
+ordonnée) — on repère l'arc qui convient.
+\end{synthese}
+
+% ════════════════════════════════════════════════════════════
+\section{Méthodes \& savoir-faire}
+
+\methode{Calculer une valeur exacte avec les formules d'addition}
+Décomposer l'angle en somme ou différence d'angles \emph{remarquables}
+($\dfrac{\pi}{6},\dfrac{\pi}{4},\dfrac{\pi}{3}$), puis appliquer la formule
+correspondante.
+\begin{exemple}
+$\sin\dfrac{7\pi}{12}=\sin\!\Big(\dfrac{\pi}{3}+\dfrac{\pi}{4}\Big)
+=\sin\dfrac{\pi}{3}\cos\dfrac{\pi}{4}+\cos\dfrac{\pi}{3}\sin\dfrac{\pi}{4}
+=\dfrac{\sqrt6+\sqrt2}{4}.$
+\end{exemple}
+
+\methode{Exprimer $\cos 2a$, $\sin 2a$ à partir d'une donnée}
+Connaissant $\sin a$ (ou $\cos a$), utiliser $\cos^2 a+\sin^2 a=1$ pour obtenir
+l'autre, puis appliquer les formules de duplication.
+\begin{exemple}
+Si $\cos a=\dfrac35$ avec $a\in\big]0\,;\,\dfrac{\pi}{2}\big[$, alors
+$\sin a=\dfrac45$ (positif), donc $\sin 2a=2\cdot\dfrac45\cdot\dfrac35=\dfrac{24}{25}$
+et $\cos 2a=2\Big(\dfrac35\Big)^2-1=-\dfrac{7}{25}$.
+\end{exemple}
+
+\methode{Linéariser une expression}
+Remplacer $\cos^2 a$ et $\sin^2 a$ par $\dfrac{1\pm\cos 2a}{2}$ pour abaisser le
+degré.
+\begin{exemple}
+$\cos^2 x-\sin^2 x=\dfrac{1+\cos 2x}{2}-\dfrac{1-\cos 2x}{2}=\cos 2x$
+(on retrouve bien la duplication).
+\end{exemple}
+
+\methode{Transformer $a\cos x+b\sin x$ en $R\cos(x-\varphi)$}
+Calculer $R=\sqrt{a^2+b^2}$, puis identifier $\varphi$ par $\cos\varphi=\dfrac aR$
+et $\sin\varphi=\dfrac bR$ (un angle remarquable en pratique).
+\begin{exemple}
+$\sqrt3\,\cos x+\sin x$ : $R=\sqrt{3+1}=2$, $\cos\varphi=\dfrac{\sqrt3}{2}$,
+$\sin\varphi=\dfrac12$, d'où $\varphi=\dfrac{\pi}{6}$ et
+$\sqrt3\,\cos x+\sin x=2\cos\!\big(x-\dfrac{\pi}{6}\big)$.
+\end{exemple}
+
+\methode{Résoudre une équation trigonométrique sur un intervalle}
+Ramener à $\cos x=\cos\alpha$, $\sin x=\sin\alpha$ ou $\tan x=\tan\alpha$, écrire la
+solution générale en $k$, puis tester les valeurs de $k$ et garder celles de
+l'intervalle demandé.
+\begin{exemple}
+$2\sin x-1=0$ sur $[0\,;\,2\pi[$ : $\sin x=\dfrac12=\sin\dfrac{\pi}{6}$, donc
+$x=\dfrac{\pi}{6}+2k\pi$ ou $x=\dfrac{5\pi}{6}+2k\pi$ ;
+$S=\Big\{\dfrac{\pi}{6}\,;\,\dfrac{5\pi}{6}\Big\}$.
+\end{exemple}
+
+\methode{Résoudre une inéquation par lecture du cercle}
+Résoudre l'équation associée pour repérer les « bornes » sur le cercle, puis lire
+l'arc qui vérifie l'inégalité ($\cos$ en abscisse, $\sin$ en ordonnée).
+\begin{exemple}
+$\tan x\le 1$ sur $\big]-\dfrac{\pi}{2}\,;\,\dfrac{\pi}{2}\big[$ : $\tan x=1$ donne
+$x=\dfrac{\pi}{4}$ ; comme $\tan$ est croissante sur cet intervalle,
+$\tan x\le 1$ équivaut à $x\in\big]-\dfrac{\pi}{2}\,;\,\dfrac{\pi}{4}\big]$.
+\end{exemple}

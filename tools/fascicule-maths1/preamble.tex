@@ -1,0 +1,141 @@
+% OnBuch — Fascicule de Mathématiques Terminale C (compilé avec tectonic/XeLaTeX)
+\documentclass[11pt,a4paper,openany]{book}
+
+\usepackage{fontspec}
+\usepackage[french]{babel}
+\usepackage[a4paper,margin=2.2cm,top=2.6cm,bottom=2.4cm,headheight=14pt]{geometry}
+\usepackage{amsmath,amssymb,amsfonts,mathtools}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{array,booktabs}
+\usepackage{multicol}
+\usepackage{pgffor}
+\usepackage{etoolbox}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,decorations.pathreplacing,angles,quotes}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{bookmarksnumbered}
+\usepackage{pdfpages}
+\setcounter{tocdepth}{1}   % sommaire : chapitres + sections uniquement
+
+% ── Palette OnBuch ──────────────────────────────────────────────
+\definecolor{onbo}{HTML}{F2620E}
+\definecolor{onbo2}{HTML}{FF8A2B}
+\definecolor{onbgreen}{HTML}{1E9E63}
+\definecolor{onbink}{HTML}{241B12}
+\definecolor{onbpaper}{HTML}{FFFBF7}
+\definecolor{onbsoft}{HTML}{FFF1E3}
+\definecolor{onbline}{HTML}{E8DDD3}
+\definecolor{onbmuted}{HTML}{8A7B6D}
+\definecolor{onbblue}{HTML}{2D6CDF}
+
+\setlist[enumerate]{leftmargin=1.7em,itemsep=3pt,topsep=3pt}
+\setlist[itemize]{leftmargin=1.5em,itemsep=2pt,topsep=2pt}
+
+% ── En-têtes / pieds ────────────────────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[LE]{\small\textsf{\color{onbmuted}\thepage\quad·\quad OnBuch}}
+\fancyhead[RE]{}
+\fancyhead[LO]{}
+\fancyhead[RO]{\small\textsf{\color{onbmuted}\leftmark\quad·\quad\thepage}}
+\fancyfoot[C]{\small\textsf{\color{onbmuted}Mathématiques · Première C · Probatoire}}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+
+% ── Titres de chapitre (gros numéro orange) ─────────────────────
+\titleformat{\chapter}[display]
+  {\sffamily}
+  {\hfill\fontsize{72}{72}\selectfont\bfseries\color{onbo}\thechapter}
+  {6pt}
+  {\Huge\bfseries\color{onbink}\filright}
+  [\vspace{4pt}{\color{onbo}\titlerule[2.5pt]}]
+\titlespacing*{\chapter}{0pt}{10pt}{26pt}
+
+\titleformat{\section}
+  {\sffamily\Large\bfseries\color{onbink}}{\color{onbo}\thesection}{0.6em}{}
+  [{\color{onbline}\titlerule[1pt]}]
+\titleformat{\subsection}
+  {\sffamily\large\bfseries\color{onbo}}{\thesubsection}{0.6em}{}
+
+% ── Compteurs d'exercices par chapitre ──────────────────────────
+\newcounter{exo}[chapter]
+\newcommand{\exo}[1]{\par\medskip\noindent{\color{onbo}\sffamily\bfseries\large Exercice \refstepcounter{exo}\theexo}\;{\sffamily\bfseries #1}\par\nopagebreak\smallskip}
+\newcommand{\methode}[1]{\par\medskip\noindent{\color{onbblue}\sffamily\bfseries Méthode\;:\;}{\sffamily\bfseries\color{onbink}#1}\par\smallskip}
+
+% Rubrique d'exercices (catégorie thématique)
+\newcommand{\rubrique}[1]{\par\medskip\noindent
+  {\color{onbo}\sffamily\bfseries\large$\blacktriangleright$\;#1}%
+  \par\vspace{-4pt}\noindent{\color{onbline}\rule{\linewidth}{0.8pt}}\par\smallskip}
+
+% Niveau de difficulté (étoiles) : \diff{1..3}
+\newcommand{\diff}[1]{\hfill{\color{onbo2}\small%
+  \ifcase#1\or\faStarSolid\or\faStarSolid\faStarSolid\or\faStarSolid\faStarSolid\faStarSolid\fi}}
+% étoile simple (sans fontawesome) pour robustesse
+\renewcommand{\diff}[1]{{\color{onbo2}\small\ifcase#1\or$\star$\or$\star\star$\or$\star\star\star$\fi}}
+
+% Légende de figure centrée
+\newcommand{\fig}[1]{\par\vspace{2pt}\centerline{\footnotesize\itshape\color{onbmuted}#1}\par\smallskip}
+% Encadré "figure/illustration"
+\newtcolorbox{illus}{colback=white,colframe=onbline,boxrule=0.8pt,arc=4pt,
+  left=8pt,right=8pt,top=8pt,bottom=6pt,halign=center,breakable}
+
+% ── Boîtes pédagogiques ─────────────────────────────────────────
+\newtcolorbox{definition}[1][]{colback=onbpaper,colframe=onbo,boxrule=0pt,
+  leftrule=3pt,arc=3pt,left=12pt,right=12pt,top=8pt,bottom=8pt,breakable,
+  title={\sffamily\bfseries Définition},coltitle=onbo,colbacktitle=onbpaper,
+  fonttitle=\sffamily\bfseries,attach title to upper={\quad#1\par\smallskip}}
+
+\newtcolorbox{theoreme}[1][]{colback=white,colframe=onbgreen,boxrule=0pt,
+  leftrule=3pt,arc=3pt,left=12pt,right=12pt,top=8pt,bottom=8pt,breakable,
+  title={\sffamily\bfseries Théorème},coltitle=onbgreen,colbacktitle=white,
+  fonttitle=\sffamily\bfseries,attach title to upper={\;\;\textmd{\itshape#1}\par\smallskip}}
+
+\newtcolorbox{propriete}[1][]{colback=white,colframe=onbgreen!75,boxrule=0pt,
+  leftrule=3pt,arc=3pt,left=12pt,right=12pt,top=8pt,bottom=8pt,breakable,
+  title={\sffamily\bfseries Propriété},coltitle=onbgreen!85!black,colbacktitle=white,
+  fonttitle=\sffamily\bfseries,attach title to upper={\;\;\textmd{\itshape#1}\par\smallskip}}
+
+\newtcolorbox{remarque}{colback=onbsoft,colframe=onbsoft,boxrule=0pt,arc=3pt,
+  left=12pt,right=12pt,top=6pt,bottom=6pt,breakable,
+  before upper={\textbf{\color{onbo}Remarque.}\ }}
+
+\newtcolorbox{exemple}{colback=white,colframe=onbline,boxrule=0.8pt,arc=3pt,
+  left=12pt,right=12pt,top=6pt,bottom=6pt,breakable,
+  before upper={\textbf{\color{onbink}\sffamily Exemple.}\ }}
+
+\newtcolorbox{aretenir}{enhanced,colback=onbsoft,colframe=onbo,boxrule=1pt,arc=6pt,
+  left=12pt,right=12pt,top=8pt,bottom=8pt,breakable,
+  title={\sffamily\bfseries À retenir},coltitle=white,colbacktitle=onbo,fonttitle=\sffamily\bfseries}
+
+% ── Synthèse de fin de chapitre (« L'essentiel — fiche de révision ») ──
+\newtcolorbox{synthese}[1][L'essentiel du chapitre]{enhanced,breakable,
+  colback=onbink,colframe=onbink,boxrule=0pt,arc=6pt,
+  left=14pt,right=14pt,top=10pt,bottom=10pt,
+  fontupper=\color{white},
+  title={\sffamily\bfseries\large #1},coltitle=white,colbacktitle=onbo,
+  fonttitle=\sffamily\bfseries}
+
+% Sujet « type Baccalauréat » (mise en avant)
+\newcounter{sujet}[chapter]
+\newcommand{\sujetbac}[1][]{\par\medskip\noindent
+  {\color{onbo}\sffamily\bfseries\large Sujet \refstepcounter{sujet}\thesujet\ — type Baccalauréat}%
+  \ifstrempty{#1}{}{\;{\sffamily\itshape\color{onbmuted}(#1)}}%
+  \par\vspace{-4pt}\noindent{\color{onbo}\rule{\linewidth}{1.2pt}}\par\smallskip}
+
+% Correction (titre vert, sécable)
+\newcommand{\corrige}[1]{\par\smallskip\noindent{\color{onbgreen}\sffamily\bfseries\small$\blacktriangleright$ Corrigé #1}\par\nopagebreak\smallskip}
+
+% Raccourcis maths
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\dd}{\,\mathrm{d}}
+\DeclareMathOperator{\Card}{Card}

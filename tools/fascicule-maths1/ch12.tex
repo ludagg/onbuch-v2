@@ -1,0 +1,375 @@
+\providecommand{\bary}{\operatorname{bary}}
+\chapter{Barycentre et lignes de niveau}
+\textit{Le barycentre généralise la notion de « point d'équilibre » : c'est le centre
+de gravité d'un système de points affectés de masses (les coefficients). Cet outil
+unifie de nombreux problèmes de géométrie — points alignés, droites concourantes,
+ensembles de points — et permet, grâce à la fonction vectorielle de Leibniz, de
+réduire des sommes vectorielles à un seul vecteur. Il débouche naturellement sur la
+recherche de \emph{lignes de niveau}, ces ensembles de points caractérisés par une
+condition métrique.}
+
+\section{Barycentre de deux points pondérés}
+
+\begin{definition}[Point pondéré, barycentre de deux points]
+Un \textbf{point pondéré} est un couple $(A,\alpha)$ formé d'un point $A$ et d'un réel
+$\alpha$ appelé \textbf{coefficient} (ou masse). Soit $(A,\alpha)$ et $(B,\beta)$ deux
+points pondérés tels que $\alpha+\beta\neq 0$. On appelle \textbf{barycentre} de
+$(A,\alpha)$ et $(B,\beta)$ l'unique point $G$ vérifiant
+\[ \alpha\,\vec{GA}+\beta\,\vec{GB}=\vec{0}. \]
+On note $G=\bary\{(A,\alpha),(B,\beta)\}$.
+\end{definition}
+
+\begin{theoreme}[Existence et unicité]
+Si $\alpha+\beta\neq 0$, le barycentre $G$ de $(A,\alpha)$ et $(B,\beta)$ existe et
+est unique. De plus, pour tout point $O$ du plan,
+\[ \vec{OG}=\frac{\alpha}{\alpha+\beta}\,\vec{OA}+\frac{\beta}{\alpha+\beta}\,\vec{OB}. \]
+\end{theoreme}
+
+\begin{remarque}
+\textbf{Démonstration.} En insérant le point $O$ par la relation de Chasles dans
+$\alpha\,\vec{GA}+\beta\,\vec{GB}=\vec{0}$ :
+\[ \alpha(\vec{GO}+\vec{OA})+\beta(\vec{GO}+\vec{OB})=\vec{0}
+   \;\Longrightarrow\;(\alpha+\beta)\vec{GO}+\alpha\,\vec{OA}+\beta\,\vec{OB}=\vec{0}. \]
+Comme $\alpha+\beta\neq 0$, on peut diviser :
+$\vec{OG}=\dfrac{\alpha\,\vec{OA}+\beta\,\vec{OB}}{\alpha+\beta}$. Cette formule
+\emph{construit} $G$ à partir de $O$, ce qui prouve à la fois son existence et son
+unicité.
+\end{remarque}
+
+\begin{propriete}[Le barycentre appartient à la droite $(AB)$]
+Le barycentre $G$ de $(A,\alpha)$ et $(B,\beta)$ (avec $\alpha+\beta\neq0$ et
+$A\neq B$) est situé sur la droite $(AB)$. En prenant $O=A$, on obtient en effet
+\[ \vec{AG}=\frac{\beta}{\alpha+\beta}\,\vec{AB}, \]
+ce qui place $G$ sur $(AB)$. Il est \emph{entre} $A$ et $B$ lorsque $\alpha$ et
+$\beta$ sont de même signe.
+\end{propriete}
+
+\begin{illus}
+\begin{tikzpicture}[scale=1]
+  \coordinate (A) at (0,0);
+  \coordinate (B) at (5,0);
+  \coordinate (G) at (3.333,0);
+  \draw[onbline,thick] (-0.6,0)--(5.6,0);
+  \filldraw[onbink] (A) circle (1.6pt) node[below=3pt]{$A$ ($\alpha=1$)};
+  \filldraw[onbink] (B) circle (1.6pt) node[below=3pt]{$B$ ($\beta=2$)};
+  \filldraw[onbo] (G) circle (2pt) node[above=4pt,onbo]{$G$};
+  \draw[->,onbo,thick] (G)--($(G)+(-1.2,0.9)$) node[left,onbink]{$\vec{GA}$};
+  \draw[->,onbgreen,thick] (G)--($(G)+(0.8,0.9)$) node[right,onbink]{$\vec{GB}$};
+\end{tikzpicture}
+\fig{Figure — barycentre de $(A,1)$ et $(B,2)$ : $\vec{AG}=\tfrac{2}{3}\vec{AB}$, $G$ est plus proche du point de plus grand coefficient.}
+\end{illus}
+
+\begin{propriete}[Homogénéité]
+Le barycentre est \textbf{inchangé} si l'on multiplie tous les coefficients par un même
+réel non nul $k$ : pour tout $k\neq 0$,
+\[ \bary\{(A,\alpha),(B,\beta)\}=\bary\{(A,k\alpha),(B,k\beta)\}. \]
+\end{propriete}
+
+\begin{remarque}
+\textbf{Démonstration.} $G$ vérifie $\alpha\,\vec{GA}+\beta\,\vec{GB}=\vec{0}$. En
+multipliant par $k\neq0$ : $k\alpha\,\vec{GA}+k\beta\,\vec{GB}=\vec{0}$, qui est
+exactement la relation définissant le barycentre de $(A,k\alpha)$ et $(B,k\beta)$.
+Comme ce dernier est unique, c'est le même point $G$.
+\end{remarque}
+
+\begin{aretenir}
+Grâce à l'homogénéité, on peut toujours \textbf{simplifier} ou \textbf{normaliser}
+les coefficients : par exemple, $\bary\{(A,4),(B,6)\}=\bary\{(A,2),(B,3)\}$, et l'on
+peut imposer $\alpha+\beta=1$ en divisant par la somme.
+\end{aretenir}
+
+\section{Isobarycentre}
+
+\begin{definition}[Isobarycentre]
+Lorsque tous les coefficients sont \textbf{égaux} (et non nuls), le barycentre est
+appelé \textbf{isobarycentre} des points. Par homogénéité, on peut alors prendre tous
+les coefficients égaux à $1$.
+\end{definition}
+
+\begin{propriete}[Isobarycentre du segment, isobarycentre du triangle]\leavevmode
+\begin{itemize}
+  \item L'isobarycentre de deux points $A$ et $B$ est le \textbf{milieu} $I$ de
+        $[AB]$ : $\ \vec{IA}+\vec{IB}=\vec{0}$.
+  \item L'isobarycentre de trois points non alignés $A,B,C$ est le \textbf{centre de
+        gravité} $G$ du triangle $ABC$, point de concours des médianes situé aux
+        $\tfrac{2}{3}$ de chaque médiane à partir du sommet.
+\end{itemize}
+\end{propriete}
+
+\begin{exemple}
+Pour le centre de gravité $G$ du triangle $ABC$, on a
+$\vec{GA}+\vec{GB}+\vec{GC}=\vec{0}$. En prenant $O=A$, il vient
+$\vec{AG}=\tfrac13(\vec{AB}+\vec{AC})$. Si $A'$ est le milieu de $[BC]$, alors
+$\vec{AB}+\vec{AC}=2\vec{AA'}$, donc $\vec{AG}=\tfrac23\vec{AA'}$ : $G$ est bien aux
+deux tiers de la médiane $(AA')$.
+\end{exemple}
+
+\section{Barycentre de $n$ points pondérés}
+
+\begin{definition}[Barycentre de $n$ points]
+Soit $(A_1,\alpha_1),\dots,(A_n,\alpha_n)$ des points pondérés tels que
+$\alpha_1+\alpha_2+\cdots+\alpha_n\neq 0$. Le \textbf{barycentre} $G$ de ce système
+est l'unique point vérifiant
+\[ \sum_{i=1}^{n}\alpha_i\,\vec{GA_i}=\vec{0}. \]
+\end{definition}
+
+\begin{theoreme}[Coordonnées du barycentre]
+Pour tout point $O$, $\displaystyle\vec{OG}=\frac{1}{\sum_i\alpha_i}\sum_{i=1}^{n}\alpha_i\,\vec{OA_i}$.
+En particulier, dans un repère $(O,\vec{\imath},\vec{\jmath})$, si $A_i$ a pour
+coordonnées $(x_i\,;\,y_i)$, alors $G$ a pour coordonnées
+\[ x_G=\frac{\sum_i\alpha_i x_i}{\sum_i\alpha_i},\qquad
+   y_G=\frac{\sum_i\alpha_i y_i}{\sum_i\alpha_i}. \]
+\end{theoreme}
+
+\begin{exemple}
+Dans un repère, soit $A(1\,;\,2)$, $B(4\,;\,0)$, $C(-2\,;\,3)$ et
+$G=\bary\{(A,2),(B,1),(C,1)\}$. La somme des coefficients vaut $4$, donc
+\[ x_G=\frac{2(1)+1(4)+1(-2)}{4}=\frac{4}{4}=1,\qquad
+   y_G=\frac{2(2)+1(0)+1(3)}{4}=\frac{7}{4}. \]
+D'où $G\!\left(1\,;\,\tfrac74\right)$.
+\end{exemple}
+
+\begin{illus}
+\begin{tikzpicture}[scale=0.9]
+  \coordinate (A) at (0,0);
+  \coordinate (B) at (4.5,0.6);
+  \coordinate (C) at (1.4,3.2);
+  \coordinate (G) at ($0.5*(A)+0.25*(B)+0.25*(C)$);
+  \draw[onbline,thick] (A)--(B)--(C)--cycle;
+  \filldraw[onbink] (A) circle (1.6pt) node[below left]{$A$ ($2$)};
+  \filldraw[onbink] (B) circle (1.6pt) node[right]{$B$ ($1$)};
+  \filldraw[onbink] (C) circle (1.6pt) node[above]{$C$ ($1$)};
+  \filldraw[onbo] (G) circle (2pt) node[below right=1pt,onbo]{$G$};
+  \draw[->,onbmuted] (G)--(A);
+  \draw[->,onbmuted] (G)--(B);
+  \draw[->,onbmuted] (G)--(C);
+\end{tikzpicture}
+\fig{Figure — barycentre de trois points pondérés : $2\,\vec{GA}+\vec{GB}+\vec{GC}=\vec{0}$. Le point $G$ est attiré vers $A$, de plus grand coefficient.}
+\end{illus}
+
+\section{Fonction vectorielle de Leibniz}
+
+\begin{definition}[Fonction vectorielle de Leibniz]
+Soit un système de points pondérés $(A_i,\alpha_i)_{1\le i\le n}$. La \textbf{fonction
+vectorielle de Leibniz} associée est l'application qui à tout point $M$ du plan associe
+le vecteur
+\[ \vec{f}(M)=\sum_{i=1}^{n}\alpha_i\,\vec{MA_i}. \]
+\end{definition}
+
+\begin{theoreme}[Réduction de la fonction de Leibniz]
+On pose $S=\displaystyle\sum_{i=1}^{n}\alpha_i$.
+\begin{itemize}
+  \item Si $S\neq 0$, en notant $G$ le barycentre du système, on a pour tout $M$ :
+        \[ \vec{f}(M)=S\,\vec{MG}. \]
+  \item Si $S=0$, alors $\vec{f}(M)$ est un vecteur \textbf{constant}, indépendant
+        de $M$.
+\end{itemize}
+\end{theoreme}
+
+\begin{remarque}
+\textbf{Démonstration.} Pour tout $i$, $\vec{MA_i}=\vec{MG}+\vec{GA_i}$ (Chasles).
+Donc
+\[ \vec{f}(M)=\sum_i\alpha_i(\vec{MG}+\vec{GA_i})
+   =\Big(\sum_i\alpha_i\Big)\vec{MG}+\sum_i\alpha_i\,\vec{GA_i}=S\,\vec{MG}+\vec{0}, \]
+car $\sum_i\alpha_i\,\vec{GA_i}=\vec{0}$ par définition de $G$. Lorsque $S=0$, le
+terme $S\,\vec{MG}$ disparaît : $\vec{f}(M)=\sum_i\alpha_i\,\vec{GA_i}$ ne dépend plus
+de $M$ (on peut aussi le voir directement : $\vec{f}(N)-\vec{f}(M)=S\,\vec{NM}=\vec{0}$).
+\end{remarque}
+
+\begin{aretenir}
+La réduction $\vec{f}(M)=S\,\vec{MG}$ est l'outil-clé : elle remplace une somme de
+plusieurs vecteurs par un \textbf{unique} vecteur dirigé vers le barycentre. C'est ce
+qui rend les lignes de niveau calculables.
+\end{aretenir}
+
+\section{Associativité du barycentre}
+
+\begin{theoreme}[Associativité — barycentres partiels]
+Dans un système de points pondérés de somme non nulle, on ne change pas le barycentre
+$G$ en \textbf{remplaçant} plusieurs points par leur barycentre partiel affecté de la
+\emph{somme} de leurs coefficients (à condition que cette somme partielle soit non
+nulle).
+\end{theoreme}
+
+\begin{exemple}
+Soit $G=\bary\{(A,\alpha),(B,\beta),(C,\gamma)\}$ avec $\alpha+\beta\neq0$. En posant
+$H=\bary\{(A,\alpha),(B,\beta)\}$, on a
+\[ G=\bary\{(H,\alpha+\beta),(C,\gamma)\}. \]
+\textbf{Justification.} Pour $H$, $\alpha\,\vec{HA}+\beta\,\vec{HB}=\vec{0}$. En
+écrivant la fonction de Leibniz du système initial en $M=G$ et en réduisant le couple
+$(A,\alpha),(B,\beta)$ via $H$ : $\alpha\,\vec{GA}+\beta\,\vec{GB}=(\alpha+\beta)\vec{GH}$.
+Donc $(\alpha+\beta)\vec{GH}+\gamma\,\vec{GC}=\vec{0}$, ce qui caractérise bien $G$ comme
+barycentre de $(H,\alpha+\beta)$ et $(C,\gamma)$.
+\end{exemple}
+
+\begin{remarque}
+L'associativité est très commode pour \textbf{construire} un barycentre de trois points
+ou plus : on regroupe d'abord deux points, on construit leur barycentre partiel, puis on
+termine sur la droite reliant ce point au troisième.
+\end{remarque}
+
+\section{Lignes de niveau}
+
+Une \textbf{ligne de niveau} d'une application $M\mapsto \varphi(M)$ est, pour un réel
+$k$ fixé, l'ensemble des points $M$ tels que $\varphi(M)=k$. Le barycentre permet de
+reconnaître la nature de plusieurs lignes de niveau classiques.
+
+\subsection{Ligne de niveau de $M\mapsto MA^2+MB^2$}
+
+\begin{theoreme}[Ensemble $\{M\mid MA^2+MB^2=k\}$]
+Soit $A,B$ deux points distincts et $I$ le milieu de $[AB]$. Pour tout point $M$,
+\[ MA^2+MB^2=2\,MI^2+\frac{AB^2}{2}. \]
+La ligne de niveau $\{M\mid MA^2+MB^2=k\}$ est donc :
+\begin{itemize}
+  \item un \textbf{cercle} de centre $I$ si $k>\dfrac{AB^2}{2}$ ;
+  \item réduite au seul point $I$ si $k=\dfrac{AB^2}{2}$ ;
+  \item \textbf{vide} si $k<\dfrac{AB^2}{2}$.
+\end{itemize}
+\end{theoreme}
+
+\begin{remarque}
+\textbf{Démonstration.} On utilise $MA^2=\vec{MA}\cdot\vec{MA}$ et l'introduction du
+milieu $I$ : $\vec{MA}=\vec{MI}+\vec{IA}$, $\vec{MB}=\vec{MI}+\vec{IB}$. Alors
+\[ MA^2+MB^2=2\,MI^2+2\,\vec{MI}\cdot(\vec{IA}+\vec{IB})+IA^2+IB^2. \]
+Or $\vec{IA}+\vec{IB}=\vec{0}$ ($I$ milieu) et $IA=IB=\tfrac{AB}{2}$, d'où
+$IA^2+IB^2=\tfrac{AB^2}{2}$. On obtient $MA^2+MB^2=2\,MI^2+\tfrac{AB^2}{2}$. L'équation
+$\varphi(M)=k$ se ramène à $MI^2=\tfrac12\!\left(k-\tfrac{AB^2}{2}\right)$, d'où la
+discussion selon le signe du membre de droite.
+\end{remarque}
+
+\subsection{Ligne de niveau de $M\mapsto \dfrac{MA}{MB}$}
+
+\begin{theoreme}[Ensemble $\big\{M\mid \tfrac{MA}{MB}=k\big\}$]
+Soit $A,B$ deux points distincts et $k>0$. L'ensemble des points $M$ (avec $M\neq B$)
+tels que $\dfrac{MA}{MB}=k$, c'est-à-dire $MA=k\,MB$, est :
+\begin{itemize}
+  \item la \textbf{médiatrice} de $[AB]$ si $k=1$ ;
+  \item un \textbf{cercle} (dit cercle d'Apollonius) si $k\neq 1$.
+\end{itemize}
+\end{theoreme}
+
+\begin{remarque}
+\textbf{Démonstration.} La condition $MA=k\,MB$ équivaut, en élevant au carré, à
+$MA^2-k^2MB^2=0$, soit $\vec{MA}^2-k^2\vec{MB}^2=0$. C'est la fonction de Leibniz
+$\varphi(M)=\vec{MA}\cdot\vec{MA}-k^2\,\vec{MB}\cdot\vec{MB}$ des points pondérés
+$(A,1)$ et $(B,-k^2)$, de somme $1-k^2$.
+
+\smallskip
+\textbf{Cas $k=1$ :} la somme $1-k^2=0$. On écrit
+$MA^2-MB^2=(\vec{MA}-\vec{MB})\cdot(\vec{MA}+\vec{MB})=\vec{BA}\cdot 2\vec{MI}$ ($I$
+milieu de $[AB]$). La condition $\vec{BA}\cdot\vec{MI}=0$ caractérise la
+\textbf{médiatrice} de $[AB]$.
+
+\smallskip
+\textbf{Cas $k\neq1$ :} la somme $1-k^2\neq0$ ; soit $G=\bary\{(A,1),(B,-k^2)\}$. La
+réduction donne $\vec{MA}^2-k^2\vec{MB}^2=(1-k^2)\,MG^2+C$, où $C$ est une constante ne
+dépendant que de $A,B,k$. L'équation devient $MG^2=\text{constante}$, c'est-à-dire un
+\textbf{cercle} de centre $G$ (le point $G$ et le point $G'=\bary\{(A,1),(B,k^2)\}$ en
+sont d'ailleurs deux points diamétralement opposés).
+\end{remarque}
+
+\begin{illus}
+\begin{tikzpicture}[scale=1]
+  \coordinate (A) at (0,0);
+  \coordinate (B) at (4,0);
+  \coordinate (I) at (2,0);
+  % cercle de niveau MA/MB = 2 : centre approximatif
+  \draw[onbline,thick] (-1,0)--(6.4,0);
+  \filldraw[onbink] (A) circle (1.6pt) node[below=3pt]{$A$};
+  \filldraw[onbink] (B) circle (1.6pt) node[below=3pt]{$B$};
+  % médiatrice
+  \draw[onbgreen,thick,dashed] (2,-2)--(2,2.2) node[above,onbgreen]{$k=1$ : médiatrice};
+  % cercle d'Apollonius pour k=2 : points A'=bary(1,-4)... centre sur (AB)
+  \draw[onbo,thick] (4.667,0) circle (1.333) ;
+  \node[onbo] at (5.9,1.1) {$k\neq1$ : cercle};
+\end{tikzpicture}
+\fig{Figure — lignes de niveau de $M\mapsto MA/MB$ : médiatrice de $[AB]$ pour $k=1$, cercle d'Apollonius pour $k\neq1$.}
+\end{illus}
+
+% ════════════════════════════════════════════════════════════
+\section{L'essentiel à retenir}
+
+\begin{synthese}
+\textbf{Barycentre de deux points.} $G=\bary\{(A,\alpha),(B,\beta)\}$ avec
+$\alpha+\beta\neq0$ : $\ \alpha\,\vec{GA}+\beta\,\vec{GB}=\vec{0}$. Pour tout $O$,
+$\vec{OG}=\dfrac{\alpha\,\vec{OA}+\beta\,\vec{OB}}{\alpha+\beta}$. $G\in(AB)$.
+
+\smallskip
+\textbf{Homogénéité.} Multiplier tous les coefficients par $k\neq0$ ne change pas $G$.
+On peut donc simplifier ou imposer $\sum\alpha_i=1$.
+
+\smallskip
+\textbf{Isobarycentre.} Coefficients égaux : milieu de $[AB]$ (2 points), centre de
+gravité du triangle (3 points, aux $\tfrac23$ des médianes).
+
+\smallskip
+\textbf{Coordonnées.} $x_G=\dfrac{\sum\alpha_i x_i}{\sum\alpha_i}$,
+$y_G=\dfrac{\sum\alpha_i y_i}{\sum\alpha_i}$.
+
+\smallskip
+\textbf{Leibniz.} $\vec{f}(M)=\sum\alpha_i\,\vec{MA_i}$. Si $S=\sum\alpha_i\neq0$ :
+$\vec{f}(M)=S\,\vec{MG}$. Si $S=0$ : vecteur constant.
+
+\smallskip
+\textbf{Associativité.} On peut remplacer un sous-système par son barycentre partiel
+affecté de la somme de ses coefficients.
+
+\smallskip
+\textbf{Lignes de niveau.} $MA^2+MB^2=2MI^2+\tfrac{AB^2}{2}$ ($I$ milieu) $\Rightarrow$
+cercle de centre $I$. $\dfrac{MA}{MB}=k$ : médiatrice si $k=1$, cercle (Apollonius) si
+$k\neq1$.
+\end{synthese}
+
+% ════════════════════════════════════════════════════════════
+\section{Méthodes \& savoir-faire}
+
+\methode{Construire le barycentre de deux points}
+Utiliser $\vec{AG}=\dfrac{\beta}{\alpha+\beta}\,\vec{AB}$ : on place $G$ sur $(AB)$ à
+partir de $A$. On peut d'abord simplifier les coefficients par homogénéité.
+\begin{exemple}
+$G=\bary\{(A,3),(B,1)\}$ : $\vec{AG}=\tfrac{1}{4}\vec{AB}$, $G$ est au quart de $[AB]$
+à partir de $A$ (côté $A$, qui porte le plus gros coefficient).
+\end{exemple}
+
+\methode{Calculer les coordonnées d'un barycentre}
+Sommer les coefficients (vérifier $\neq0$), puis appliquer
+$x_G=\tfrac{\sum\alpha_i x_i}{\sum\alpha_i}$ et idem pour $y_G$.
+\begin{exemple}
+$A(2\,;\,-1)$, $B(0\,;\,3)$, $G=\bary\{(A,1),(B,3)\}$ : somme $=4$,
+$x_G=\tfrac{1\cdot2+3\cdot0}{4}=\tfrac12$, $y_G=\tfrac{1\cdot(-1)+3\cdot3}{4}=2$.
+Donc $G\!\left(\tfrac12\,;\,2\right)$.
+\end{exemple}
+
+\methode{Réduire une somme vectorielle $\sum\alpha_i\,\vec{MA_i}$}
+Calculer $S=\sum\alpha_i$. Si $S\neq0$, introduire le barycentre $G$ :
+$\sum\alpha_i\,\vec{MA_i}=S\,\vec{MG}$. Si $S=0$, la somme est constante : la calculer
+en un point commode (par exemple $M=A_1$).
+\begin{exemple}
+Simplifions $\vec{MA}+\vec{MB}-2\vec{MC}$. Ici $S=1+1-2=0$ : la somme est constante,
+égale à $\vec{MA}+\vec{MB}-2\vec{MC}$ évaluée en $M=C$, soit $\vec{CA}+\vec{CB}$.
+\end{exemple}
+
+\methode{Utiliser l'associativité pour construire un barycentre}
+Regrouper deux points en un barycentre partiel $H$ affecté de la somme de leurs
+coefficients, puis terminer la construction sur la droite reliant $H$ au point restant.
+\begin{exemple}
+$G=\bary\{(A,1),(B,1),(C,2)\}$ : poser $I=$ milieu de $[AB]$ ($=\bary\{(A,1),(B,1)\}$),
+puis $G=\bary\{(I,2),(C,2)\}=$ milieu de $[IC]$.
+\end{exemple}
+
+\methode{Déterminer la ligne de niveau de $M\mapsto MA^2+MB^2$}
+Introduire le milieu $I$ de $[AB]$ et utiliser $MA^2+MB^2=2MI^2+\tfrac{AB^2}{2}$ ;
+isoler $MI^2$ et discuter le signe pour conclure (cercle, point, ou ensemble vide).
+\begin{exemple}
+$A,B$ avec $AB=4$ : $\{M\mid MA^2+MB^2=16\}$ donne $2MI^2+8=16$, soit $MI^2=4$ : c'est
+le cercle de centre $I$ et de rayon $2$.
+\end{exemple}
+
+\methode{Déterminer la ligne de niveau de $M\mapsto \dfrac{MA}{MB}$}
+Écrire $MA=k\,MB$, élever au carré pour obtenir $MA^2-k^2MB^2=0$. Si $k=1$ : médiatrice
+de $[AB]$. Si $k\neq1$ : introduire le barycentre $G=\bary\{(A,1),(B,-k^2)\}$ pour
+ramener l'équation à $MG^2=\text{cste}$, donc un cercle de centre $G$.
+\begin{exemple}
+$\{M\mid MA=2\,MB\}$ : $k=2\neq1$, donc l'ensemble est un cercle de centre
+$G=\bary\{(A,1),(B,-4)\}$, point de la droite $(AB)$.
+\end{exemple}
