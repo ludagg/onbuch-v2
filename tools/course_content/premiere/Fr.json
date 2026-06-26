@@ -1,0 +1,774 @@
+{
+  "code": "Fr",
+  "level": "Première",
+  "chapters": [
+    {
+      "title": "Le commentaire composé : méthode",
+      "video": "https://www.youtube.com/watch?v=8wYI8eY8m2M",
+      "lesson": "# Le commentaire composé : méthode\n\nLe **commentaire composé** est l'un des trois exercices majeurs de l'épreuve écrite de français au Probatoire, à côté de la **dissertation** et de la **contraction de texte**. Il consiste à **étudier un texte littéraire** (poème, extrait de roman, de théâtre, page d'essai) pour en montrer **l'intérêt** et en dégager la **signification** et la **construction**, sans le paraphraser.\n\n## Définition et enjeux\n\nCommenter, ce n'est pas **raconter** ou **résumer** le texte : c'est l'**expliquer méthodiquement** en reliant constamment le **fond** (ce que le texte dit) à la **forme** (la manière dont il le dit). Le correcteur attend que vous prouviez vos idées par des **citations précises** et par l'analyse des **procédés d'écriture** (figures de style, lexique, syntaxe, rythme, sonorités).\n\nL'erreur capitale à éviter est la **paraphrase** : redire en moins bien ce que le texte dit déjà.\n\n## Les étapes de la préparation\n\n**1. La lecture analytique.** Lisez le texte au moins trois fois. La première pour le sens global, la deuxième crayon en main pour repérer les procédés, la troisième pour vérifier vos hypothèses.\n\n**2. La situation du texte.** Identifiez l'**auteur**, l'**œuvre**, l'**époque**, le **genre** et le **registre** (lyrique, tragique, comique, pathétique, polémique…).\n\n**3. Le repérage des procédés.** Relevez le **champ lexical** dominant, les **figures de style**, les **temps verbaux**, les **types de phrases**, la **ponctuation**, le **rythme**. Chaque procédé doit être relié à un **effet de sens**.\n\n**4. La problématique.** Formulez une question centrale : *En quoi ce texte… ?* ou *Comment l'auteur parvient-il à… ?*\n\n**5. Le plan.** Le commentaire composé se construit en **deux ou trois axes de lecture** (parties), chacun subdivisé en **sous-parties**. Chaque axe correspond à un **centre d'intérêt** majeur, jamais à un découpage linéaire du texte.\n\n## La rédaction\n\nL'**introduction** comporte : une **amorce** (entrée en matière), la **présentation du texte** (auteur, œuvre, contexte), la **problématique** et l'**annonce du plan**.\n\nLe **développement** présente chaque axe dans un paragraphe organisé : une **idée directrice**, des **citations**, l'**analyse des procédés**, une **interprétation**. On soigne les **transitions** entre les parties.\n\nLa **conclusion** fait le **bilan** des axes étudiés, répond à la problématique, puis ouvre sur une **perspective** (autre œuvre, autre auteur, prolongement).\n\n## Exemple rédigé\n\nSoit ce vers de **Victor Hugo** (*Les Contemplations*, « Demain, dès l'aube… ») :\n\n> « **Je marcherai les yeux fixés sur mes pensées,**\n> **Sans rien voir au dehors, sans entendre aucun bruit** »\n\n**Idée directrice** : ces vers traduisent l'**enfermement du poète dans sa douleur**.\n\n**Analyse** : la **double négation** « *sans rien voir* », « *sans entendre aucun bruit* » exprime la **coupure totale** avec le monde extérieur. Le futur « *je marcherai* » montre une marche **déterminée, mécanique**. Les « *yeux fixés sur mes pensées* » créent une **image** du repli intérieur : le regard ne se tourne plus vers le paysage mais vers le **deuil** que porte le père. Hugo se dirige en effet vers la tombe de sa fille Léopoldine. Ainsi la forme — négations, futur, image du regard intérieur — **donne à voir** la souffrance muette du deuil. Voilà ce qu'est commenter : montrer comment la forme **construit** le sens.\n\n## À retenir\n\n- Le commentaire composé **explique** un texte ; il ne le **paraphrase** ni ne le **résume** jamais.\n- Il relie toujours le **fond** à la **forme** : chaque idée s'appuie sur une **citation** et l'**analyse d'un procédé**.\n- Le plan est **thématique** (axes de lecture, centres d'intérêt), **non linéaire**.\n- Structure : **introduction** (amorce, présentation, problématique, annonce du plan) → **développement** (axes, transitions) → **conclusion** (bilan, ouverture).\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Quel est le défaut majeur à éviter dans un commentaire composé ?",
+            "options": [
+              "La citation",
+              "La paraphrase",
+              "L'analyse des procédés",
+              "La problématique"
+            ],
+            "answer": 1,
+            "explanation": "La paraphrase consiste à redire le texte sans l'expliquer ; c'est l'erreur capitale du commentaire."
+          },
+          {
+            "q": "Le plan d'un commentaire composé est :",
+            "options": [
+              "Linéaire, vers par vers",
+              "Thématique, par axes de lecture",
+              "Chronologique",
+              "Alphabétique"
+            ],
+            "answer": 1,
+            "explanation": "On construit le commentaire en axes de lecture (centres d'intérêt), non en suivant le texte ligne à ligne."
+          },
+          {
+            "q": "Que doit relier en permanence le commentaire ?",
+            "options": [
+              "Le titre et l'auteur",
+              "Le fond et la forme",
+              "Le début et la fin",
+              "Le narrateur et le lecteur"
+            ],
+            "answer": 1,
+            "explanation": "Commenter, c'est montrer comment la forme (procédés) construit le fond (sens)."
+          },
+          {
+            "q": "Que contient l'introduction d'un commentaire ?",
+            "options": [
+              "Seulement le plan",
+              "Amorce, présentation, problématique, annonce du plan",
+              "Un résumé du texte",
+              "La biographie complète de l'auteur"
+            ],
+            "answer": 1,
+            "explanation": "L'introduction enchaîne amorce, présentation du texte, problématique et annonce du plan."
+          },
+          {
+            "q": "Sur quoi s'appuie obligatoirement chaque idée du développement ?",
+            "options": [
+              "Sur une opinion personnelle",
+              "Sur une citation et l'analyse d'un procédé",
+              "Sur un résumé",
+              "Sur la biographie de l'auteur"
+            ],
+            "answer": 1,
+            "explanation": "Toute affirmation doit être prouvée par une citation précise et l'analyse d'un procédé d'écriture."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Le résumé de texte",
+      "video": "https://www.youtube.com/watch?v=Q8Whc1n2v3o",
+      "lesson": "# Le résumé de texte\n\nLe **résumé de texte** est un exercice de **reformulation fidèle et condensée** d'un texte argumentatif ou explicatif. Il s'agit de restituer, en un nombre de mots imposé (souvent le **quart** du texte de départ), l'**essentiel** de la pensée de l'auteur, en respectant son **système d'énonciation** et l'**ordre** de son raisonnement.\n\n## Les règles d'or\n\n**1. La fidélité.** On ne déforme jamais la pensée de l'auteur, on n'ajoute aucune idée personnelle, on ne porte aucun jugement. Le résumé est **objectif**.\n\n**2. La reformulation.** On reformule **avec ses propres mots** : il est interdit de recopier des phrases entières du texte. On remplace les expressions par des **synonymes** et des **termes plus généraux**.\n\n**3. Le respect de l'énonciation.** Si l'auteur dit « **je** », on garde le « je ». Si l'auteur s'adresse au lecteur, on conserve ce rapport. On ne dit jamais « *l'auteur dit que…* » : on **prend en charge** son discours comme s'il était le nôtre.\n\n**4. Le respect de l'ordre.** On suit la **progression** du raisonnement : mêmes étapes, mêmes liens logiques (cause, conséquence, opposition, concession).\n\n**5. La contrainte de longueur.** On respecte le nombre de mots demandé, avec une **marge de tolérance** (généralement ± 10 %). On indique le **nombre de mots** à la fin.\n\n## La méthode pratique\n\nD'abord, **lire le texte** entièrement pour en saisir la **thèse** et le **plan**. Ensuite, **découper le texte en unités de sens** (paragraphes ou groupes d'idées). Pour chaque unité, dégager l'**idée essentielle** en éliminant les **exemples**, les **redites**, les **citations** illustratives et les **détails** secondaires. Enfin, **relier** ces idées par des **connecteurs logiques** pour reconstituer un texte cohérent et fluide.\n\n## Ce qu'il faut éliminer et conserver\n\nOn **élimine** : les exemples, les énumérations illustratives, les répétitions, les chiffres précis (sauf s'ils sont l'essentiel), les figures de style ornementales. On **conserve** : la thèse, les arguments principaux, les articulations logiques, les nuances importantes (concessions, restrictions).\n\n## Exemple rédigé\n\n**Texte de départ (≈ 50 mots)** :\n> « La lecture est, à mes yeux, irremplaçable. Quand je lis un roman, par exemple *Le Père Goriot* de Balzac, je voyage dans le temps et dans l'espace. Je rencontre des personnages que jamais je n'aurais croisés. Bref, le livre élargit mon expérience du monde et nourrit mon imagination. »\n\n**Résumé (≈ 13 mots, soit le quart)** :\n> « **La lecture, irremplaçable, enrichit mon expérience du monde et stimule mon imagination.** »\n\n**Analyse du procédé** : on a supprimé l'**exemple** (*Le Père Goriot*), la **reformulation illustrative** (« voyager dans le temps ») et conservé l'**idée essentielle** en gardant le « je » de l'énonciation. La phrase « *élargit mon expérience* » est reformulée en « *enrichit mon expérience* », « *nourrit mon imagination* » en « *stimule mon imagination* ».\n\n## À retenir\n\n- Le résumé est **fidèle**, **objectif**, **reformulé** : interdiction de recopier ou de juger.\n- On respecte l'**énonciation** (« je » reste « je ») et l'**ordre** du raisonnement.\n- On supprime **exemples, redites, détails** ; on garde **thèse, arguments, liens logiques**.\n- On respecte la **longueur** imposée (généralement le quart, ± 10 %) et on **compte les mots**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Dans un résumé, si l'auteur écrit « je », on doit :",
+            "options": [
+              "Le remplacer par « il »",
+              "Garder le « je »",
+              "Écrire « l'auteur »",
+              "Supprimer le pronom"
+            ],
+            "answer": 1,
+            "explanation": "Le résumé respecte le système d'énonciation : le « je » de l'auteur est conservé."
+          },
+          {
+            "q": "Que faut-il éliminer en priorité dans un résumé ?",
+            "options": [
+              "La thèse",
+              "Les exemples et les redites",
+              "Les liens logiques",
+              "Les arguments principaux"
+            ],
+            "answer": 1,
+            "explanation": "On supprime exemples, répétitions et détails secondaires pour ne garder que l'essentiel."
+          },
+          {
+            "q": "Le résumé doit respecter :",
+            "options": [
+              "Une nouvelle organisation des idées",
+              "L'ordre du raisonnement de l'auteur",
+              "L'ordre alphabétique",
+              "Un plan thématique libre"
+            ],
+            "answer": 1,
+            "explanation": "On suit fidèlement la progression et les étapes du raisonnement original."
+          },
+          {
+            "q": "Quelle est la longueur habituelle d'un résumé ?",
+            "options": [
+              "La moitié du texte",
+              "Le quart du texte (± 10 %)",
+              "Le double du texte",
+              "Trois lignes fixes"
+            ],
+            "answer": 1,
+            "explanation": "Le résumé fait généralement le quart du texte de départ, avec une marge de tolérance."
+          },
+          {
+            "q": "Peut-on ajouter son opinion personnelle dans un résumé ?",
+            "options": [
+              "Oui, à la fin",
+              "Oui, dans l'introduction",
+              "Non, le résumé est objectif",
+              "Oui, si on la justifie"
+            ],
+            "answer": 2,
+            "explanation": "Le résumé est strictement objectif : aucun jugement ni aucune idée personnelle."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La contraction de texte",
+      "video": "https://www.youtube.com/watch?v=Q8Whc1n2v3o",
+      "lesson": "# La contraction de texte\n\nLa **contraction de texte** est une épreuve proche du résumé, mais elle est souvent associée à une ou plusieurs **questions de vocabulaire** et à un **essai** (production écrite argumentée). Elle évalue trois compétences : la **compréhension**, la **reformulation** et l'**expression personnelle**.\n\n## Les composantes de l'épreuve\n\nL'épreuve de contraction comporte généralement **trois parties** :\n\n**1. Le résumé (ou contraction proprement dite).** On condense le texte au nombre de mots imposé, en respectant les règles vues précédemment (fidélité, reformulation, énonciation, ordre).\n\n**2. L'explication de termes ou la question de vocabulaire.** On explique, dans leur **contexte**, le sens de mots ou d'expressions soulignés dans le texte. On donne le sens **précis**, pas une définition de dictionnaire détachée du texte.\n\n**3. La discussion ou l'essai.** À partir d'une **thèse** du texte, on rédige un **développement argumenté** où l'on prend position, en illustrant par des **exemples** tirés de la culture, de la littérature ou de l'expérience.\n\n## La technique de contraction\n\nLa contraction exige une grande **rigueur** : il faut souvent réduire un texte de 600 mots à 150 mots. Pour cela on procède par **degrés de généralisation** : remplacer plusieurs termes particuliers par un **terme générique** (par exemple « *le lion, le tigre, la panthère* » → « *les fauves* », ou mieux « *les grands félins* »). On **nominalise** les propositions (« *parce que les hommes sont libres* » → « *en raison de la liberté humaine* ») pour gagner des mots tout en gardant le sens.\n\n## Les connecteurs logiques\n\nLa cohérence de la contraction repose sur les **connecteurs logiques** qui restituent l'**architecture du raisonnement** : *d'abord, ensuite, enfin* (succession) ; *or, mais, cependant, toutefois* (opposition) ; *donc, ainsi, par conséquent* (conséquence) ; *parce que, car, en effet* (cause) ; *certes… mais* (concession). Bien employés, ils prouvent que l'on a compris la **logique** du texte.\n\n## Exemple rédigé\n\n**Texte (≈ 40 mots)** :\n> « Les jeunes Camerounais quittent souvent les campagnes pour la ville, attirés par l'école, l'emploi et les loisirs. Mais cet exode appauvrit les villages, vidés de leurs forces vives, et surcharge les cités qui ne peuvent loger tout le monde. »\n\n**Contraction (≈ 20 mots)** :\n> « **L'attrait urbain provoque un exode des jeunes ruraux, qui appauvrit les campagnes tout en saturant les villes.** »\n\n**Analyse** : on a **généralisé** (« *l'école, l'emploi, les loisirs* » → « *l'attrait urbain* »), **nominalisé** (« *vidés de leurs forces vives* » → « *appauvrit*») et conservé le lien d'**opposition** du texte (« *mais* » devient ici la nuance « *tout en* »).\n\n## À retenir\n\n- La contraction associe souvent **résumé**, **vocabulaire** et **essai**.\n- On condense par **généralisation** (termes génériques) et **nominalisation**.\n- Les **connecteurs logiques** restituent l'architecture du raisonnement.\n- Comme le résumé, elle reste **fidèle**, **objective** et respecte l'**énonciation**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "L'épreuve de contraction comporte souvent en plus du résumé :",
+            "options": [
+              "Un dessin",
+              "Une question de vocabulaire et un essai",
+              "Une dictée",
+              "Une récitation"
+            ],
+            "answer": 1,
+            "explanation": "Elle associe généralement contraction, explication de termes et discussion argumentée."
+          },
+          {
+            "q": "Remplacer « le lion, le tigre, la panthère » par « les grands félins » est :",
+            "options": [
+              "Une paraphrase",
+              "Une généralisation",
+              "Une répétition",
+              "Une digression"
+            ],
+            "answer": 1,
+            "explanation": "On résume des termes particuliers par un terme générique : c'est la généralisation."
+          },
+          {
+            "q": "« Parce que les hommes sont libres » devient « en raison de la liberté humaine » : c'est :",
+            "options": [
+              "Une nominalisation",
+              "Une métaphore",
+              "Une énumération",
+              "Une question rhétorique"
+            ],
+            "answer": 0,
+            "explanation": "Transformer une proposition en groupe nominal pour gagner des mots est une nominalisation."
+          },
+          {
+            "q": "À quoi servent les connecteurs logiques dans la contraction ?",
+            "options": [
+              "À allonger le texte",
+              "À restituer l'architecture du raisonnement",
+              "À donner son avis",
+              "À orner le style"
+            ],
+            "answer": 1,
+            "explanation": "Ils montrent qu'on a compris la logique du texte (cause, opposition, conséquence)."
+          },
+          {
+            "q": "Dans la partie discussion/essai, l'élève :",
+            "options": [
+              "Reste neutre",
+              "Prend position et argumente",
+              "Recopie le texte",
+              "Résume à nouveau"
+            ],
+            "answer": 1,
+            "explanation": "La discussion est une production personnelle où l'on défend un point de vue argumenté."
+          }
+        ]
+      }
+    },
+    {
+      "title": "L'argumentation et le texte argumentatif",
+      "video": "https://www.youtube.com/watch?v=Q8Whc1n2v3o",
+      "lesson": "# L'argumentation et le texte argumentatif\n\n**Argumenter**, c'est défendre une **opinion** (une **thèse**) en cherchant à **convaincre** ou à **persuader** un destinataire, à l'aide d'**arguments** et d'**exemples**. Le texte argumentatif est partout : éditorial, essai, discours, plaidoyer, fable, conte philosophique, lettre ouverte.\n\n## Les notions clés\n\nLa **thèse** est l'**opinion défendue** par l'auteur. La **thèse adverse** (ou antithèse) est l'opinion **opposée**, que l'auteur réfute. L'**argument** est une **raison** qui appuie la thèse. L'**exemple** est un **fait précis** qui illustre l'argument. La **réfutation** consiste à montrer la faiblesse de la thèse adverse.\n\n## Convaincre et persuader\n\n**Convaincre** s'adresse à la **raison** : on emploie une argumentation **logique**, des **preuves**, des **connecteurs** (donc, parce que, en effet). **Persuader** s'adresse à la **sensibilité** : on touche les **émotions**, on emploie des **images**, un **ton** pathétique ou indigné, on interpelle le destinataire. Un bon texte argumentatif combine souvent les deux.\n\n## L'argumentation directe et indirecte\n\nL'argumentation est **directe** quand l'auteur défend ouvertement sa thèse (essai, discours, article). Elle est **indirecte** quand elle passe par une **fiction** porteuse de sens : la **fable** (La Fontaine), le **conte philosophique** (*Candide* de Voltaire), l'**apologue**. La fiction rend l'argumentation **plaisante** (*placere*) et **instructive** (*docere*).\n\n## Les types d'arguments\n\nL'**argument d'autorité** s'appuie sur une référence reconnue (« *comme l'a dit Aristote…* »). L'**argument par l'exemple** part d'un cas concret. L'**argument logique** repose sur un raisonnement (déduction, induction). L'**argument par analogie** procède par comparaison. L'**argument ad hominem** vise l'adversaire lui-même (à manier avec prudence).\n\n## Les connecteurs argumentatifs\n\nIls structurent le raisonnement : *d'une part… d'autre part* (addition) ; *or, mais, en revanche, pourtant* (opposition) ; *donc, ainsi, c'est pourquoi* (conséquence) ; *car, puisque, en effet* (cause) ; *certes… mais, bien que* (concession). La **concession** est habile : on accorde un point à l'adversaire pour mieux le réfuter ensuite.\n\n## Exemple rédigé\n\nDans le discours de **Victor Hugo** contre la misère (1849), l'orateur affirme :\n\n> « **La misère est une maladie du corps social comme la lèpre était une maladie du corps humain ; la misère peut disparaître comme la lèpre a disparu.** »\n\n**Analyse** : Hugo défend la **thèse** que la misère peut être supprimée. Il emploie un **argument par analogie** (la misère comparée à la lèpre) qui **convainc** par la logique : si une maladie a disparu, une autre le peut. Mais l'image de la « *maladie du corps social* » **persuade** aussi en frappant l'imagination. Convaincre et persuader se conjuguent.\n\n## À retenir\n\n- Argumenter = défendre une **thèse** par des **arguments** illustrés d'**exemples**.\n- **Convaincre** vise la raison (logique, preuves) ; **persuader** vise les émotions.\n- L'argumentation est **directe** (essai, discours) ou **indirecte** (fable, conte philosophique).\n- La **concession** (certes… mais) renforce l'argumentation en désarmant l'adversaire.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "La thèse est :",
+            "options": [
+              "Un exemple précis",
+              "L'opinion défendue par l'auteur",
+              "Un connecteur logique",
+              "Le titre du texte"
+            ],
+            "answer": 1,
+            "explanation": "La thèse est l'opinion ou le point de vue que l'auteur cherche à faire admettre."
+          },
+          {
+            "q": "Convaincre s'adresse surtout :",
+            "options": [
+              "À la sensibilité",
+              "À la raison",
+              "À l'imagination seule",
+              "À la mémoire"
+            ],
+            "answer": 1,
+            "explanation": "Convaincre fait appel à la raison par des preuves et une argumentation logique."
+          },
+          {
+            "q": "Candide de Voltaire est un exemple d'argumentation :",
+            "options": [
+              "Directe",
+              "Indirecte",
+              "Nulle",
+              "Mathématique"
+            ],
+            "answer": 1,
+            "explanation": "Le conte philosophique défend des idées à travers une fiction : argumentation indirecte."
+          },
+          {
+            "q": "« Certes… mais » introduit :",
+            "options": [
+              "Une cause",
+              "Une concession",
+              "Une énumération",
+              "Une comparaison"
+            ],
+            "answer": 1,
+            "explanation": "La concession accorde un point à l'adversaire avant de le réfuter."
+          },
+          {
+            "q": "Comparer la misère à la lèpre est un argument :",
+            "options": [
+              "D'autorité",
+              "Par analogie",
+              "Ad hominem",
+              "Par chiffres"
+            ],
+            "answer": 1,
+            "explanation": "L'analogie rapproche deux réalités pour appuyer la thèse par comparaison."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les figures de style",
+      "video": "https://www.youtube.com/watch?v=cV3i4dzN0nM",
+      "lesson": "# Les figures de style\n\nLes **figures de style** (ou figures de rhétorique) sont des **procédés d'écriture** qui donnent au langage une force expressive particulière. Les repérer et les interpréter est indispensable au **commentaire de texte**. On les classe en grandes familles.\n\n## Les figures d'analogie (ressemblance)\n\nLa **comparaison** rapproche deux éléments à l'aide d'un **outil de comparaison** (comme, tel, pareil à, ressembler) : « *Il est fort **comme** un lion* ». La **métaphore** fait le même rapprochement **sans outil** : « *Ce **lion** s'élança au combat* » (= cet homme courageux). La **personnification** attribue des traits humains à une chose ou un animal : « *Le vent **gémissait*** ». L'**allégorie** représente une idée abstraite sous une forme concrète : la Justice représentée par une femme aux yeux bandés.\n\n## Les figures d'opposition\n\nL'**antithèse** rapproche deux mots ou idées **opposés** : « *Ici l'**ombre**, là la **lumière*** ». L'**oxymore** unit dans une même expression deux termes contradictoires : « *un **soleil noir*** », « *cette **obscure clarté*** » (Corneille). Le **chiasme** croise les termes (ABBA) : « *Il faut **manger pour vivre** et non **vivre pour manger*** ».\n\n## Les figures d'amplification et d'atténuation\n\nL'**hyperbole** exagère : « *Je meurs de faim* ». La **gradation** énumère en intensité croissante : « *Va, cours, vole et nous venge* » (Corneille). La **litote** dit moins pour suggérer plus : « *Va, je ne te **hais** point* » (= je t'aime, Corneille). L'**euphémisme** atténue une réalité brutale : « *il nous a **quittés*** » (= il est mort).\n\n## Les figures de construction et de sonorité\n\nL'**anaphore** répète un mot en début de phrases ou de vers : « ***Paris** outragé ! **Paris** brisé ! **Paris** martyrisé ! » (de Gaulle). L'**énumération** accumule les termes. L'**allitération** répète des consonnes : « *Pour qui sont ces **s**erpents qui **s**ifflent **s**ur vos têtes ?* » (Racine, sifflement du serpent). L'**assonance** répète des voyelles.\n\n## Les figures de substitution\n\nLa **métonymie** désigne une réalité par un terme lié : « *boire un **verre*** » (= le contenu du verre). La **synecdoque** nomme le tout par la partie ou inversement : « *une **voile** à l'horizon* » (= un bateau). La **périphrase** remplace un mot par une expression : « *la **Ville Lumière*** » (= Paris).\n\n## Exemple rédigé\n\nDans le vers de **Racine** (*Andromaque*) :\n\n> « **Pour qui sont ces serpents qui sifflent sur vos têtes ?** »\n\n**Analyse** : l'**allitération** en *[s]* (« *ces serpents qui sifflent sur* ») **imite le sifflement** des serpents : la sonorité **mime le sens**. C'est une figure de sonorité au service de l'horreur tragique. De plus, les serpents sont une **métonymie** des Furies qui poursuivent Oreste, devenu fou. Le vers conjugue donc **sonorité** et **substitution** pour produire l'effet d'épouvante.\n\n## À retenir\n\n- Figures d'**analogie** : comparaison, métaphore, personnification, allégorie.\n- Figures d'**opposition** : antithèse, oxymore, chiasme.\n- Figures d'**amplification/atténuation** : hyperbole, gradation, litote, euphémisme.\n- Figures de **sonorité/construction** : allitération, assonance, anaphore, énumération.\n- Figures de **substitution** : métonymie, synecdoque, périphrase.\n- En commentaire, **nommer** la figure ne suffit pas : il faut en interpréter l'**effet**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "« Ce lion s'élança au combat » (pour désigner un homme courageux) est :",
+            "options": [
+              "Une comparaison",
+              "Une métaphore",
+              "Une litote",
+              "Une métonymie"
+            ],
+            "answer": 1,
+            "explanation": "La métaphore rapproche deux éléments sans outil de comparaison (pas de « comme »)."
+          },
+          {
+            "q": "« Un soleil noir » est :",
+            "options": [
+              "Une hyperbole",
+              "Un oxymore",
+              "Une anaphore",
+              "Une périphrase"
+            ],
+            "answer": 1,
+            "explanation": "L'oxymore unit deux termes contradictoires dans une même expression."
+          },
+          {
+            "q": "« Va, je ne te hais point » (pour « je t'aime ») est :",
+            "options": [
+              "Une hyperbole",
+              "Une litote",
+              "Une gradation",
+              "Un chiasme"
+            ],
+            "answer": 1,
+            "explanation": "La litote dit moins pour faire entendre davantage."
+          },
+          {
+            "q": "« Boire un verre » (= le contenu) est :",
+            "options": [
+              "Une métonymie",
+              "Une allégorie",
+              "Une assonance",
+              "Une antithèse"
+            ],
+            "answer": 0,
+            "explanation": "La métonymie désigne une réalité par un terme qui lui est lié (le contenant pour le contenu)."
+          },
+          {
+            "q": "La répétition de consonnes (« qui sifflent sur vos têtes ») est :",
+            "options": [
+              "Une assonance",
+              "Une allitération",
+              "Une anaphore",
+              "Une énumération"
+            ],
+            "answer": 1,
+            "explanation": "L'allitération répète des consonnes ; ici le [s] imite le sifflement."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La versification et la poésie",
+      "video": "https://www.youtube.com/watch?v=9oSb3xqVQ6Y",
+      "lesson": "# La versification et la poésie\n\nLa **poésie** est l'art du langage qui privilégie la **musicalité**, les **images** et le **rythme**. La **versification** est l'ensemble des **règles** qui organisent le **vers** français. Maîtriser ce vocabulaire est nécessaire pour commenter un poème.\n\n## Le vers et sa mesure\n\nUn **vers** est une ligne de poésie. On le mesure en comptant ses **syllabes** (on parle de **pieds**). Les vers les plus courants sont :\n- l'**alexandrin** (12 syllabes), vers noble par excellence ;\n- le **décasyllabe** (10 syllabes) ;\n- l'**octosyllabe** (8 syllabes).\n\nLe **e muet** se compte s'il est suivi d'une consonne, mais pas en fin de vers ni devant une voyelle.\n\n> « **Maî/tre Cor/beau, / sur un / ar/bre per/ché** » → 8 syllabes (octosyllabe).\n\nLa **diérèse** sépare en deux syllabes ce qu'on prononce d'ordinaire en une (« *li-on* » → deux syllabes) ; la **synérèse** fait l'inverse.\n\n## Le rythme : césure et coupe\n\nL'alexandrin classique se partage en deux **hémistiches** de 6 syllabes par une **césure** centrale :\n> « *Je le vis, je rougis, // je pâlis à sa vue* » (Racine).\n\nL'**enjambement** prolonge la phrase au-delà du vers ; le **rejet** rejette un mot court au vers suivant ; le **contre-rejet** l'annonce à la fin du vers précédent.\n\n## Les rimes\n\nLes **rimes** sont les sonorités identiques en fin de vers. Selon la **disposition** :\n- **rimes plates** (ou suivies) : AABB ;\n- **rimes croisées** : ABAB ;\n- **rimes embrassées** : ABBA.\n\nSelon la **richesse** : **pauvre** (1 son commun), **suffisante** (2 sons), **riche** (3 sons ou plus). On distingue aussi les rimes **féminines** (terminées par un e muet) et **masculines**.\n\n## Les formes poétiques\n\nLe **sonnet** est un poème de **14 vers** (deux quatrains + deux tercets), forme reine depuis la Renaissance. La **ballade**, l'**ode**, le **rondeau** sont des formes fixes anciennes. Le **poème en prose** (Baudelaire) et le **vers libre** (Apollinaire, Rimbaud) abandonnent les règles classiques au XIXe-XXe siècle.\n\n## Les fonctions de la poésie\n\nLa poésie peut être **lyrique** (expression des sentiments), **épique** (célébration de héros), **engagée** (combat politique), **didactique** ou **descriptive**. Le **registre lyrique** domine : « je », thèmes de l'amour, du temps, de la mort, de la nature.\n\n## Exemple rédigé\n\nSoit l'alexandrin de **Baudelaire** (*L'Albatros*) :\n\n> « **Ses ailes de géant l'empêchent de marcher.** »\n\n**Analyse** : comptons les syllabes : « *Ses-ai-les-de-gé-ant // l'em-pê-chent-de-mar-cher* » = 6 + 6 = **12 syllabes**, c'est bien un **alexandrin** avec **césure** à l'hémistiche. Le **rythme** ample du premier hémistiche (« ailes de géant ») contraste avec la lourdeur du second (« l'empêchent de marcher »), traduisant le **décalage** entre la grandeur de l'albatros en vol et sa maladresse au sol — image du poète incompris. La forme **épouse** ainsi le sens.\n\n## À retenir\n\n- On mesure le vers en **syllabes** : alexandrin (12), décasyllabe (10), octosyllabe (8).\n- L'alexandrin classique a une **césure** au milieu (deux **hémistiches** de 6).\n- **Rimes** : plates (AABB), croisées (ABAB), embrassées (ABBA) ; pauvres/suffisantes/riches.\n- Le **sonnet** = 14 vers (2 quatrains + 2 tercets) ; au XIXe-XXe siècle : **vers libre** et **poème en prose**.\n- Registre dominant : **lyrique** (expression des sentiments).\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Un alexandrin compte :",
+            "options": [
+              "8 syllabes",
+              "10 syllabes",
+              "12 syllabes",
+              "14 syllabes"
+            ],
+            "answer": 2,
+            "explanation": "L'alexandrin est le vers de douze syllabes, partagé en deux hémistiches de six."
+          },
+          {
+            "q": "Des rimes disposées ABBA sont :",
+            "options": [
+              "Plates",
+              "Croisées",
+              "Embrassées",
+              "Pauvres"
+            ],
+            "answer": 2,
+            "explanation": "La disposition ABBA correspond aux rimes embrassées."
+          },
+          {
+            "q": "Un sonnet comporte :",
+            "options": [
+              "10 vers",
+              "12 vers",
+              "14 vers",
+              "16 vers"
+            ],
+            "answer": 2,
+            "explanation": "Le sonnet est composé de 14 vers : deux quatrains et deux tercets."
+          },
+          {
+            "q": "La pause centrale de l'alexandrin s'appelle :",
+            "options": [
+              "L'enjambement",
+              "La césure",
+              "Le rejet",
+              "La diérèse"
+            ],
+            "answer": 1,
+            "explanation": "La césure partage l'alexandrin en deux hémistiches de six syllabes."
+          },
+          {
+            "q": "Le registre dominant de la poésie qui exprime les sentiments est :",
+            "options": [
+              "Le comique",
+              "Le lyrique",
+              "Le polémique",
+              "Le didactique"
+            ],
+            "answer": 1,
+            "explanation": "Le registre lyrique exprime les émotions personnelles (amour, temps, mort, nature)."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Le théâtre : genre et registres",
+      "video": "https://www.youtube.com/watch?v=7s1Q2X3pYbM",
+      "lesson": "# Le théâtre : genre et registres\n\nLe **théâtre** est un genre littéraire destiné à être **représenté** sur scène. Le texte écrit (le **texte dramatique**) n'est qu'une partie de l'œuvre ; la **mise en scène**, le **jeu** des acteurs, les **décors** la complètent. C'est ce qu'on appelle la **double énonciation** : le personnage parle à un autre personnage, mais aussi, à travers lui, l'auteur parle au **spectateur**.\n\n## Le vocabulaire du théâtre\n\nL'**acte** est une grande division de la pièce ; la **scène** est une subdivision marquée par l'entrée ou la sortie d'un personnage. Les **didascalies** sont les indications scéniques (en italique) données par l'auteur (décor, gestes, ton). La **tirade** est une longue réplique. Le **monologue** est un discours d'un personnage seul. L'**aparté** est une parole dite « à part », entendue du spectateur mais pas des autres personnages. La **stichomythie** est un échange de répliques très brèves et vives.\n\n## La structure dramatique\n\nUne pièce classique suit un schéma : l'**exposition** (présentation de la situation et des personnages), le **nœud** (l'intrigue se complique), les **péripéties** (rebondissements), le **dénouement** (résolution). Le théâtre classique respectait la **règle des trois unités** : unité d'**action** (une seule intrigue), de **temps** (24 heures), de **lieu** (un seul lieu), ainsi que la **bienséance** (ne pas choquer) et la **vraisemblance**.\n\n## Les genres théâtraux\n\nLa **tragédie** met en scène des personnages nobles, un destin funeste, des passions violentes ; elle vise la **catharsis** (purification des passions) et s'achève souvent par la mort (Corneille, Racine). La **comédie** fait rire en peignant les défauts des hommes pour les corriger : *castigat ridendo mores* (« elle corrige les mœurs par le rire » — Molière). Le **drame romantique** (Hugo) mêle tragique et comique, sublime et grotesque, et rejette les unités.\n\n## Les registres au théâtre\n\nLe **registre tragique** suscite la terreur et la pitié face à un destin inéluctable. Le **registre comique** provoque le rire (comique de mots, de gestes, de situation, de caractère). Le **registre pathétique** émeut, fait pleurer. Le **registre lyrique** exprime les sentiments. Un même texte peut mêler plusieurs registres.\n\n## Exemple rédigé\n\nDans *Le Cid* de **Corneille**, Rodrigue, déchiré entre l'amour pour Chimène et l'honneur de sa famille, s'écrie dans un **monologue** (les stances) :\n\n> « **Percé jusques au fond du cœur**\n> **D'une atteinte imprévue aussi bien que mortelle,**\n> **Misérable vengeur d'une juste querelle,**\n> **Et malheureux objet d'une injuste rigueur** »\n\n**Analyse** : c'est un **monologue** délibératif où Rodrigue, seul, expose son **dilemme** tragique. L'**antithèse** « *juste querelle* / *injuste rigueur* » traduit le **déchirement** : agir par honneur, c'est perdre Chimène. Le registre est **tragique** (« *mortelle* », « *misérable* », « *malheureux* ») et **lyrique** (plainte du cœur « *percé* »). Le théâtre donne ici à entendre la voix intérieure du héros.\n\n## À retenir\n\n- Le théâtre repose sur la **double énonciation** (personnage↔personnage, auteur↔spectateur).\n- Vocabulaire : **acte, scène, didascalie, tirade, monologue, aparté, stichomythie**.\n- Structure : **exposition → nœud → péripéties → dénouement** ; règle classique des **trois unités**.\n- Genres : **tragédie** (catharsis), **comédie** (corrige les mœurs en riant), **drame romantique**.\n- Registres : **tragique, comique, pathétique, lyrique** — souvent mêlés.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Les indications scéniques en italique données par l'auteur s'appellent :",
+            "options": [
+              "Les tirades",
+              "Les didascalies",
+              "Les apartés",
+              "Les stances"
+            ],
+            "answer": 1,
+            "explanation": "Les didascalies précisent décor, gestes, ton, entrées et sorties."
+          },
+          {
+            "q": "Un personnage seul qui parle à voix haute prononce :",
+            "options": [
+              "Une stichomythie",
+              "Un monologue",
+              "Un dialogue",
+              "Une réplique"
+            ],
+            "answer": 1,
+            "explanation": "Le monologue est le discours d'un personnage seul sur scène."
+          },
+          {
+            "q": "La règle des trois unités concerne l'action, le temps et :",
+            "options": [
+              "Le lieu",
+              "Le registre",
+              "La rime",
+              "Le décor"
+            ],
+            "answer": 0,
+            "explanation": "Les trois unités classiques sont : action, temps (24 h) et lieu."
+          },
+          {
+            "q": "« Castigat ridendo mores » est la devise de :",
+            "options": [
+              "La tragédie",
+              "La comédie",
+              "L'épopée",
+              "Le sonnet"
+            ],
+            "answer": 1,
+            "explanation": "La comédie « corrige les mœurs par le rire »."
+          },
+          {
+            "q": "La purification des passions visée par la tragédie se nomme :",
+            "options": [
+              "La catharsis",
+              "La diérèse",
+              "La mimésis",
+              "La litote"
+            ],
+            "answer": 0,
+            "explanation": "La catharsis est l'effet de purification des passions chez le spectateur de tragédie."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Le roman et la nouvelle",
+      "video": "https://www.youtube.com/watch?v=2yQ3F8kV8nE",
+      "lesson": "# Le roman et la nouvelle\n\nLe **roman** est un récit en prose, long, qui raconte les aventures de **personnages** dans un cadre **spatio-temporel** donné. La **nouvelle** est un récit **bref**, à l'**intrigue resserrée**, qui produit souvent une **chute** (fin inattendue). Tous deux appartiennent au genre **narratif**.\n\n## Le narrateur et le point de vue (focalisation)\n\nLe **narrateur** est la voix qui raconte ; il ne faut pas le confondre avec l'**auteur**. On distingue :\n- la **focalisation zéro** (narrateur **omniscient**) : il sait tout, voit dans la tête de tous les personnages ;\n- la **focalisation interne** : le récit est limité au **point de vue d'un personnage** ;\n- la **focalisation externe** : le narrateur rapporte seulement ce qui est **visible**, comme une caméra, sans accès aux pensées.\n\nLe récit peut être à la **première personne** (« je », narrateur-personnage) ou à la **troisième personne**.\n\n## Le rythme du récit\n\nLe narrateur joue avec le **temps** : la **scène** (dialogue, durée réelle), le **sommaire** (résumé d'une longue période en quelques lignes), l'**ellipse** (passage sous silence d'un moment), la **pause** (description qui suspend l'action). L'ordre peut être bouleversé par l'**analepse** (retour en arrière, flashback) et la **prolepse** (anticipation).\n\n## Le personnage de roman\n\nLe personnage est construit par son **portrait** (physique et moral), ses **actes**, ses **paroles**, le **regard** des autres. Il peut être un **héros** valeureux, un **anti-héros** médiocre, un **personnage type**. Le **schéma actantiel** distingue le **sujet** (qui agit), l'**objet** (ce qu'il vise), les **adjuvants** (qui aident) et les **opposants** (qui font obstacle).\n\n## Les paroles rapportées\n\nLe **discours direct** rapporte les paroles telles quelles, entre guillemets. Le **discours indirect** les intègre dans une subordonnée (« il dit qu'il viendrait »). Le **discours indirect libre** mêle la voix du narrateur et celle du personnage, sans guillemets ni subordonnée, procédé cher à Flaubert.\n\n## Exemple rédigé\n\nDans *Le Père Goriot* de **Balzac**, le narrateur décrit la pension Vauquer :\n\n> « **Cette pièce exhale une odeur sans nom dans la langue, et qu'il faudrait appeler l'odeur de pension.** »\n\n**Analyse** : le narrateur est **omniscient** (**focalisation zéro**) ; il commente, juge, en sait plus que les personnages. Ce passage est une **pause descriptive** qui **suspend l'action** pour planter le décor. Le détail réaliste (« *l'odeur de pension* ») crée l'**illusion référentielle** propre au roman réaliste : le décor **caractérise** les habitants par leur médiocrité. Chez Balzac, le **milieu** explique l'**homme**.\n\n## À retenir\n\n- Le **roman** est long, la **nouvelle** brève (intrigue resserrée, **chute**).\n- Le **narrateur** n'est pas l'auteur ; **focalisations** : zéro (omniscient), interne, externe.\n- Rythme : **scène, sommaire, ellipse, pause** ; ordre : **analepse** (retour), **prolepse** (anticipation).\n- Personnage analysé par le **schéma actantiel** (sujet, objet, adjuvants, opposants).\n- Paroles : discours **direct**, **indirect**, **indirect libre**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Un narrateur qui sait tout et lit dans toutes les pensées adopte :",
+            "options": [
+              "La focalisation interne",
+              "La focalisation externe",
+              "La focalisation zéro (omniscient)",
+              "Aucune focalisation"
+            ],
+            "answer": 2,
+            "explanation": "La focalisation zéro correspond au narrateur omniscient, qui sait et voit tout."
+          },
+          {
+            "q": "Un retour en arrière dans le récit est :",
+            "options": [
+              "Une prolepse",
+              "Une analepse",
+              "une ellipse",
+              "Un sommaire"
+            ],
+            "answer": 1,
+            "explanation": "L'analepse (flashback) revient sur un événement antérieur."
+          },
+          {
+            "q": "La nouvelle se caractérise souvent par :",
+            "options": [
+              "Sa longueur",
+              "Sa chute (fin inattendue)",
+              "L'absence de personnages",
+              "L'absence d'intrigue"
+            ],
+            "answer": 1,
+            "explanation": "Récit bref, la nouvelle se termine fréquemment par une chute surprenante."
+          },
+          {
+            "q": "Dans le schéma actantiel, celui qui fait obstacle au sujet est :",
+            "options": [
+              "L'adjuvant",
+              "L'objet",
+              "L'opposant",
+              "Le destinateur"
+            ],
+            "answer": 2,
+            "explanation": "L'opposant contrarie l'action du sujet vers son objet."
+          },
+          {
+            "q": "« Il dit qu'il viendrait » est du discours :",
+            "options": [
+              "Direct",
+              "Indirect",
+              "Indirect libre",
+              "Narrativisé seul"
+            ],
+            "answer": 1,
+            "explanation": "Les paroles intégrées dans une subordonnée relèvent du discours indirect."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les grands mouvements littéraires",
+      "video": "https://www.youtube.com/watch?v=Q1Q3J3kQF8c",
+      "lesson": "# Les grands mouvements littéraires\n\nUn **mouvement littéraire** est un ensemble d'auteurs partageant, à une époque, une même **vision** de la littérature, des mêmes **thèmes** et procédés. Connaître les mouvements permet de **situer** un texte et d'en éclairer le sens.\n\n## L'humanisme (XVIe siècle)\n\nL'**humanisme** naît à la **Renaissance**. Il place l'**homme** au centre, redécouvre l'**Antiquité** gréco-latine, croit au **progrès** et à l'**éducation**. Devise : la confiance en la raison humaine. Auteurs : **Rabelais** (*Gargantua*, *Pantagruel*), **Montaigne** (*Les Essais*), **Ronsard** (la Pléiade).\n\n## Le classicisme (XVIIe siècle)\n\nLe **classicisme** prône l'**ordre**, la **mesure**, la **raison**, l'**imitation des Anciens**. Il vise l'**idéal de l'honnête homme**, le respect des **règles** (les trois unités, la bienséance) et la peinture des **passions universelles**. *Plaire et instruire*. Auteurs : **Molière**, **Racine**, **Corneille**, **La Fontaine**, **Boileau**.\n\n## Le romantisme (début XIXe siècle)\n\nLe **romantisme** réagit contre la rigueur classique. Il exalte le **moi**, les **sentiments**, l'**imagination**, la **nature**, le **rêve**, la **mélancolie** (le « **mal du siècle** »). Il revendique la **liberté** de l'artiste. Auteurs : **Victor Hugo**, **Lamartine**, **Musset**, **Vigny**.\n\n## Le réalisme et le naturalisme (milieu-fin XIXe)\n\nLe **réalisme** veut peindre la réalité **telle qu'elle est**, sans l'idéaliser, y compris le quotidien, le peuple, la laideur. Auteurs : **Balzac**, **Flaubert**, **Maupassant**. Le **naturalisme** (**Zola**) pousse plus loin : il applique au roman une démarche **scientifique**, étudiant l'influence de l'**hérédité** et du **milieu** sur l'homme.\n\n## Le symbolisme (fin XIXe siècle)\n\nLe **symbolisme** rejette le réalisme : le poète cherche à suggérer un **monde caché** derrière les apparences, par les **symboles**, la **musicalité**, les **correspondances**. « *Suggérer, voilà le rêve* » (Mallarmé). Auteurs : **Baudelaire** (précurseur), **Verlaine**, **Rimbaud**, **Mallarmé**.\n\n## Exemple rédigé\n\nComparons deux conceptions de la nature. Le **romantique** Lamartine écrit :\n\n> « **Ô temps, suspends ton vol ! et vous, heures propices, suspendez votre cours !** »\n\nLe **réaliste** Flaubert, lui, décrit minutieusement les comices agricoles dans *Madame Bovary*.\n\n**Analyse** : chez **Lamartine**, la nature et le temps sont le miroir des **sentiments** : l'**apostrophe** lyrique et l'**exclamation** trahissent l'émotion du moi romantique. Chez **Flaubert**, au contraire, l'écriture **réaliste** observe la société sans l'idéaliser, avec exactitude. Deux mouvements, deux regards : l'un tourné vers l'**intériorité**, l'autre vers le **réel**. Situer un texte dans son mouvement éclaire donc son projet.\n\n## À retenir\n\n- **Humanisme** (XVIe) : l'homme, l'Antiquité, le savoir (Rabelais, Montaigne).\n- **Classicisme** (XVIIe) : raison, mesure, règles, plaire et instruire (Molière, Racine).\n- **Romantisme** (XIXe) : le moi, les sentiments, la nature, le mal du siècle (Hugo, Lamartine).\n- **Réalisme/Naturalisme** (XIXe) : peindre le réel, l'hérédité et le milieu (Balzac, Flaubert, Zola).\n- **Symbolisme** (fin XIXe) : suggérer, symboles, musicalité (Baudelaire, Verlaine, Rimbaud, Mallarmé).\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Rabelais et Montaigne appartiennent au mouvement :",
+            "options": [
+              "Romantisme",
+              "Humanisme",
+              "Naturalisme",
+              "Symbolisme"
+            ],
+            "answer": 1,
+            "explanation": "L'humanisme du XVIe siècle place l'homme et le savoir antique au centre (Rabelais, Montaigne)."
+          },
+          {
+            "q": "Le « mal du siècle » et l'exaltation du moi caractérisent :",
+            "options": [
+              "Le classicisme",
+              "Le romantisme",
+              "Le réalisme",
+              "L'humanisme"
+            ],
+            "answer": 1,
+            "explanation": "Le romantisme exalte les sentiments, la mélancolie et la liberté du moi."
+          },
+          {
+            "q": "Émile Zola est le chef de file du :",
+            "options": [
+              "Symbolisme",
+              "Naturalisme",
+              "Classicisme",
+              "Romantisme"
+            ],
+            "answer": 1,
+            "explanation": "Zola fonde le naturalisme, qui étudie l'hérédité et le milieu de façon quasi scientifique."
+          },
+          {
+            "q": "« Suggérer, voilà le rêve » résume l'idéal :",
+            "options": [
+              "Réaliste",
+              "Classique",
+              "Symboliste",
+              "Humaniste"
+            ],
+            "answer": 2,
+            "explanation": "Le symbolisme cherche à suggérer un sens caché par symboles et musicalité (Mallarmé)."
+          },
+          {
+            "q": "Le classicisme se caractérise par :",
+            "options": [
+              "Le rejet des règles",
+              "L'ordre, la raison et la mesure",
+              "Le culte du moi",
+              "L'imitation de la science"
+            ],
+            "answer": 1,
+            "explanation": "Le classicisme prône l'ordre, la raison, la mesure et le respect des règles."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La littérature négro-africaine",
+      "video": "https://www.youtube.com/watch?v=4iY3xK9d5Zo",
+      "lesson": "# La littérature négro-africaine\n\nLa **littérature négro-africaine d'expression française** désigne l'ensemble des œuvres écrites en français par des auteurs d'Afrique noire et de la diaspora. Au programme camerounais, elle occupe une place centrale, car elle exprime l'**identité**, l'**histoire** et les **luttes** du continent.\n\n## La Négritude\n\nLa **Négritude** est le grand mouvement fondateur, né dans les années **1930** à Paris autour de trois étudiants : **Aimé Césaire** (Martinique), **Léopold Sédar Senghor** (Sénégal) et **Léon-Gontran Damas** (Guyane). Césaire forge le mot dans *Cahier d'un retour au pays natal*. La Négritude est la **revendication fière** des valeurs de la civilisation noire, en réaction contre le **mépris colonial** et l'**assimilation**. Elle affirme : « *La Négritude est la simple reconnaissance du fait d'être noir, et l'acceptation de ce fait* » (Césaire).\n\n## Les thèmes majeurs\n\nLa littérature négro-africaine traite : de la **dénonciation de la colonisation** et de ses violences ; du **conflit des cultures** (tradition africaine / modernité occidentale) ; de la **valorisation des racines** (ancêtres, masques, rythmes, oralité) ; de l'**exil** et du **retour au pays** ; des **désillusions des indépendances** (corruption, dictatures).\n\n## Les genres et les auteurs\n\nEn **poésie** : **Senghor** (*Chants d'ombre*, hymne à la femme noire et à l'Afrique). En **roman** : **Ferdinand Oyono**, Camerounais (*Une vie de boy*, *Le Vieux Nègre et la médaille*) qui dénonce avec ironie le colonialisme ; **Mongo Beti**, Camerounais (*Ville cruelle*, *Le Pauvre Christ de Bomba*) ; **Camara Laye** (*L'Enfant noir*) ; **Cheikh Hamidou Kane** (*L'Aventure ambiguë*, sur le tiraillement culturel) ; **Ahmadou Kourouma** (*Les Soleils des indépendances*). Au **théâtre** : **Guillaume Oyônô Mbia**, Camerounais (*Trois prétendants… un mari*), comédie sur la dot et la modernité.\n\n## L'oralité et le style\n\nCette littérature puise dans la **tradition orale** : **contes**, **proverbes**, **épopées** (l'épopée de Soundjata), figure du **griot**. Le style mêle souvent le **français** à des **tournures africaines**, des **images** tirées de la nature et de la vie villageoise, un **rythme** proche du chant.\n\n## Exemple rédigé\n\nDans *Une vie de boy* de **Ferdinand Oyono**, le jeune Toundi, domestique du commandant blanc, note dans son journal :\n\n> « **Le chien du Roi est le Roi des chiens.** »\n\n**Analyse** : ce **proverbe** d'apparence simple condense toute l'**ironie** du roman. Toundi croit s'élever en servant les Blancs, comme un chien royal qui se croit roi : illusion tragique, car il reste un **dominé**. Oyono utilise la **sagesse orale africaine** (le proverbe) pour **dénoncer** l'aliénation coloniale. Le procédé montre comment la littérature négro-africaine met l'**héritage oral** au service d'une **critique politique**.\n\n## À retenir\n\n- La **Négritude** (Césaire, Senghor, Damas, années 1930) revendique fièrement les valeurs noires contre le mépris colonial.\n- Thèmes : **colonisation**, **conflit des cultures**, **valorisation des racines**, **désillusions des indépendances**.\n- Auteurs camerounais majeurs : **Ferdinand Oyono**, **Mongo Beti**, **Guillaume Oyônô Mbia**.\n- Le style s'inspire de l'**oralité** : contes, proverbes, épopées, figure du **griot**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Qui a forgé le mot « Négritude » ?",
+            "options": [
+              "Senghor",
+              "Aimé Césaire",
+              "Mongo Beti",
+              "Camara Laye"
+            ],
+            "answer": 1,
+            "explanation": "Aimé Césaire crée le terme dans Cahier d'un retour au pays natal."
+          },
+          {
+            "q": "Une vie de boy a été écrit par l'auteur camerounais :",
+            "options": [
+              "Ferdinand Oyono",
+              "Cheikh Hamidou Kane",
+              "Ahmadou Kourouma",
+              "Léon Damas"
+            ],
+            "answer": 0,
+            "explanation": "Ferdinand Oyono, écrivain camerounais, est l'auteur d'Une vie de boy."
+          },
+          {
+            "q": "La Négritude est née :",
+            "options": [
+              "Au XVIIe siècle",
+              "Dans les années 1930",
+              "Après l'an 2000",
+              "Au Moyen Âge"
+            ],
+            "answer": 1,
+            "explanation": "Le mouvement naît dans les années 1930 autour de Césaire, Senghor et Damas."
+          },
+          {
+            "q": "Trois prétendants… un mari, comédie sur la dot, est de :",
+            "options": [
+              "Guillaume Oyônô Mbia",
+              "Mongo Beti",
+              "Senghor",
+              "Camara Laye"
+            ],
+            "answer": 0,
+            "explanation": "Guillaume Oyônô Mbia, dramaturge camerounais, en est l'auteur."
+          },
+          {
+            "q": "Quelle source orale nourrit cette littérature ?",
+            "options": [
+              "Le sonnet",
+              "Les proverbes et les contes",
+              "L'alexandrin",
+              "Le théâtre antique"
+            ],
+            "answer": 1,
+            "explanation": "Elle puise dans contes, proverbes, épopées et la figure du griot."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les registres littéraires",
+      "video": "https://www.youtube.com/watch?v=8wYI8eY8m2M",
+      "lesson": "# Les registres littéraires\n\nLe **registre** (ou **tonalité**) est l'**effet** qu'un texte produit sur le lecteur : faire rire, émouvoir, effrayer, indigner… Identifier le registre est essentiel pour comprendre l'**intention** d'un auteur et commenter un texte.\n\n## Le registre comique\n\nIl provoque le **rire** ou le **sourire**. On distingue le **comique de mots** (jeux de mots, calembours), de **gestes** (chutes, coups), de **situation** (quiproquos, retournements), de **caractère** (peinture d'un défaut, comme l'avarice d'Harpagon). Procédés : exagération, répétition, contraste.\n\n## Le registre tragique\n\nIl inspire **terreur** et **pitié** devant un destin **inéluctable**. L'homme est écrasé par la **fatalité**, les **dieux**, la **passion**. Lexique de la mort, du destin, du malheur ; ton solennel. Exemple : Phèdre dévorée par une passion interdite chez Racine.\n\n## Le registre pathétique\n\nIl cherche à **émouvoir**, à faire **pleurer**, à susciter la **compassion**. Lexique de la souffrance, exclamations, interjections, situations malheureuses (deuil, séparation, mort d'un enfant).\n\n## Le registre lyrique\n\nIl exprime les **sentiments personnels** (amour, joie, tristesse, nostalgie). Marques : « je », apostrophes, exclamations, musicalité, thèmes de l'amour, du temps, de la nature.\n\n## Le registre épique\n\nIl **célèbre** des exploits et des héros, amplifie la réalité (hyperboles, pluriels, énumérations, merveilleux). On parle de **souffle épique**. Exemple : les batailles dans *La Légende des siècles* de Hugo.\n\n## Les registres polémique, satirique et ironique\n\nLe registre **polémique** attaque violemment un adversaire (indignation, accusations). Le registre **satirique** critique en se moquant. L'**ironie** consiste à dire le **contraire** de ce que l'on pense pour mieux dénoncer (« *Quelle belle journée !* » sous la pluie). Le registre **fantastique** fait surgir l'inquiétant et le surnaturel dans le réel.\n\n## Exemple rédigé\n\nDans *Candide*, **Voltaire** écrit, à propos de la guerre :\n\n> « **Rien n'était si beau, si leste, si brillant, si bien ordonné que les deux armées.** »\n\n**Analyse** : ce passage est **ironique**. Voltaire dit le **contraire** de sa pensée : il feint d'admirer la guerre (« *si beau, si brillant* ») alors qu'il va aussitôt en décrire l'**horreur** (les morts, les villages brûlés). La **gradation** d'adjectifs mélioratifs **prépare le contraste** avec la boucherie réelle. Le registre **ironique** sert ici une intention **polémique** : dénoncer la cruauté absurde de la guerre. Reconnaître le registre, c'est saisir le **vrai message** de l'auteur.\n\n## À retenir\n\n- Le **registre** = l'**effet** produit sur le lecteur (rire, peur, émotion, indignation…).\n- **Comique** (rire), **tragique** (fatalité), **pathétique** (émotion), **lyrique** (sentiments).\n- **Épique** (exploits amplifiés), **polémique** (attaque), **satirique** (moquerie), **fantastique** (surnaturel inquiétant).\n- L'**ironie** dit le contraire de ce qu'on pense pour **dénoncer**.\n- Un texte peut **mêler** plusieurs registres.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Le registre qui inspire terreur et pitié face à la fatalité est :",
+            "options": [
+              "Le comique",
+              "Le tragique",
+              "Le lyrique",
+              "L'épique"
+            ],
+            "answer": 1,
+            "explanation": "Le registre tragique met l'homme face à un destin inéluctable."
+          },
+          {
+            "q": "Dire le contraire de ce qu'on pense pour dénoncer, c'est :",
+            "options": [
+              "Le lyrisme",
+              "L'ironie",
+              "Le pathétique",
+              "L'épopée"
+            ],
+            "answer": 1,
+            "explanation": "L'ironie exprime le contraire de sa pensée pour mieux critiquer."
+          },
+          {
+            "q": "Le registre qui célèbre des exploits héroïques amplifiés est :",
+            "options": [
+              "Le satirique",
+              "L'épique",
+              "Le pathétique",
+              "Le comique"
+            ],
+            "answer": 1,
+            "explanation": "Le registre épique amplifie la réalité pour célébrer héros et exploits."
+          },
+          {
+            "q": "Le quiproquo relève surtout du comique de :",
+            "options": [
+              "Mots",
+              "Situation",
+              "Caractère",
+              "Gestes"
+            ],
+            "answer": 1,
+            "explanation": "Le quiproquo (malentendu) est un ressort du comique de situation."
+          },
+          {
+            "q": "Le registre lyrique se reconnaît à :",
+            "options": [
+              "L'exagération guerrière",
+              "L'expression du « je » et des sentiments",
+              "Le rire",
+              "Le surnaturel"
+            ],
+            "answer": 1,
+            "explanation": "Le lyrisme exprime les émotions personnelles à la première personne."
+          }
+        ]
+      }
+    },
+    {
+      "title": "L'énonciation et les types de textes",
+      "video": "https://www.youtube.com/watch?v=Q8Whc1n2v3o",
+      "lesson": "# L'énonciation et les types de textes\n\nL'**énonciation** est l'acte de **produire un énoncé** dans une situation précise. Étudier l'énonciation, c'est répondre aux questions : **Qui** parle ? **À qui** ? **Où** ? **Quand** ? Les **types de textes** classent les énoncés selon leur **visée** (raconter, décrire, expliquer, argumenter…).\n\n## La situation d'énonciation\n\nLa **situation d'énonciation** réunit l'**émetteur** (locuteur), le **récepteur** (destinataire), le **lieu** et le **moment**. Les **indices de l'énonciation** sont :\n- les **pronoms personnels** « je / tu / nous / vous » et les **possessifs** correspondants ;\n- les **indicateurs de temps et de lieu** rattachés au moment présent : *ici, maintenant, hier, demain, aujourd'hui* ;\n- les **temps** du discours (présent, passé composé, futur) ;\n- les marques de **jugement** (modalisateurs, termes mélioratifs/péjoratifs).\n\n## Énoncé ancré ou coupé de la situation\n\nL'**énoncé ancré dans la situation d'énonciation** (le **discours**) contient des indices renvoyant à celui qui parle (lettre, dialogue, discours) : « *Je te verrai demain ici.* » L'**énoncé coupé de la situation** (le **récit historique**) gomme ces indices et emploie la **3e personne**, le **passé simple/imparfait**, des repères autonomes (*ce jour-là, la veille*) : « *Il la revit le lendemain en ce lieu.* »\n\n## Les types de textes\n\n- Le texte **narratif** **raconte** des événements (récit, roman, conte) : verbes d'action, temps du passé, progression chronologique.\n- Le texte **descriptif** **décrit** un lieu, un objet, un personnage : imparfait, indicateurs spatiaux, expansions du nom, champ lexical des sens.\n- Le texte **explicatif** (ou informatif) **fait comprendre** : présent de vérité générale, lexique précis, connecteurs logiques, ton neutre.\n- Le texte **argumentatif** **défend une thèse** : connecteurs logiques, marques de jugement, modalisateurs.\n- Le texte **injonctif** **donne des ordres ou des conseils** (recette, mode d'emploi) : impératif, infinitif.\n\nUn même texte peut mêler plusieurs types (un roman raconte, décrit et parfois argumente).\n\n## Les modalisateurs\n\nLes **modalisateurs** révèlent l'**attitude** du locuteur face à son énoncé : la **certitude** (*assurément, il est certain que*), le **doute** (*peut-être, sans doute, il semble*), le **jugement** (adjectifs mélioratifs : *admirable* ; péjoratifs : *minable*), les **modes** (conditionnel d'information non vérifiée).\n\n## Exemple rédigé\n\nComparons deux phrases :\n1. « **Je suis arrivé ici hier et je repartirai demain.** »\n2. « **Il arriva là-bas la veille et repartit le lendemain.** »\n\n**Analyse** : la phrase 1 est un **énoncé ancré dans la situation d'énonciation** (du **discours**) : « *je* », « *ici* », « *hier* », « *demain* », passé composé et futur renvoient à celui qui parle et au moment présent. La phrase 2 est un **énoncé coupé** (du **récit**) : « *il* », « *là-bas* », « *la veille* », « *le lendemain* », passé simple — repères **autonomes**, sans lien avec un locuteur présent. Repérer ces indices permet d'identifier le **type d'énonciation** d'un texte.\n\n## À retenir\n\n- L'**énonciation** répond à : **qui** parle, **à qui**, **où**, **quand**.\n- **Indices** : pronoms (je/tu), repères (ici/hier/demain), temps du discours, modalisateurs.\n- Énoncé **ancré** (discours : je, présent, ici/hier) vs **coupé** (récit : il, passé simple, là-bas/la veille).\n- **Types de textes** : narratif, descriptif, explicatif, argumentatif, injonctif (souvent mêlés).\n- Les **modalisateurs** expriment certitude, doute ou jugement du locuteur.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Lequel est un indice d'énonciation ?",
+            "options": [
+              "Le passé simple",
+              "Le pronom « je » et l'adverbe « ici »",
+              "La troisième personne seule",
+              "L'expression « la veille »"
+            ],
+            "answer": 1,
+            "explanation": "« je », « ici », « hier » ancrent l'énoncé dans la situation d'énonciation (discours)."
+          },
+          {
+            "q": "« Il arriva là-bas la veille » est un énoncé :",
+            "options": [
+              "Ancré dans la situation (discours)",
+              "Coupé de la situation (récit)",
+              "Injonctif",
+              "Descriptif"
+            ],
+            "answer": 1,
+            "explanation": "3e personne, passé simple, « là-bas », « la veille » : repères autonomes du récit."
+          },
+          {
+            "q": "Une recette de cuisine relève surtout du type :",
+            "options": [
+              "Narratif",
+              "Injonctif",
+              "Argumentatif",
+              "Descriptif"
+            ],
+            "answer": 1,
+            "explanation": "La recette donne des consignes (impératif/infinitif) : type injonctif."
+          },
+          {
+            "q": "Le présent de vérité générale et le ton neutre caractérisent le texte :",
+            "options": [
+              "Explicatif",
+              "Narratif",
+              "Injonctif",
+              "Lyrique"
+            ],
+            "answer": 0,
+            "explanation": "Le texte explicatif fait comprendre avec neutralité et présent de vérité générale."
+          },
+          {
+            "q": "« Peut-être », « sans doute » sont des :",
+            "options": [
+              "Connecteurs de cause",
+              "Modalisateurs de doute",
+              "Pronoms personnels",
+              "Temps verbaux"
+            ],
+            "answer": 1,
+            "explanation": "Ces termes modalisent l'énoncé en exprimant le doute du locuteur."
+          }
+        ]
+      }
+    }
+  ]
+}
