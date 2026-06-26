@@ -66,6 +66,52 @@ export const RESOURCES: Resource[] = [
     ]
   },
   {
+    id: 'universities',
+    collectionId: 'universities',
+    label: 'Universités',
+    singular: 'Université',
+    icon: '🏛️',
+    titleField: 'name',
+    subtitleField: 'city',
+    orderBy: { field: 'order', dir: 'asc' },
+    fields: [
+      { key: 'name', label: 'Nom', type: 'text', required: true, help: 'ex. Université de Yaoundé I' },
+      { key: 'acronym', label: 'Sigle', type: 'text', help: 'ex. UY1' },
+      { key: 'city', label: 'Ville', type: 'text', required: true, help: 'ex. Yaoundé' },
+      { key: 'type', label: 'Type', type: 'select', options: ['Publique', 'Privée'] },
+      { key: 'fields', label: 'Domaines phares', type: 'text', help: 'Séparés par des virgules, ex. Sciences, Médecine, Génie' },
+      { key: 'website', label: 'Site officiel', type: 'text', help: 'URL https://…' },
+      { key: 'description', label: 'Description', type: 'textarea' },
+      { key: 'founded', label: 'Année de création', type: 'number' },
+      { key: 'rank', label: 'Classement (1 = en tête)', type: 'number', help: '0 = non classé.' },
+      order,
+      { key: 'active', label: 'Actif (cocher pour afficher)', type: 'boolean' }
+    ]
+  },
+  {
+    id: 'bourses',
+    collectionId: 'bourses',
+    label: 'Bourses',
+    singular: 'Bourse',
+    icon: '🎓',
+    titleField: 'title',
+    subtitleField: 'destination',
+    orderBy: { field: 'order', dir: 'asc' },
+    fields: [
+      { key: 'title', label: 'Titre', type: 'text', required: true, help: 'ex. Bourse du gouvernement chinois (CSC)' },
+      { key: 'provider', label: 'Organisme', type: 'text', help: 'ex. Gouvernement chinois' },
+      { key: 'level', label: 'Niveaux', type: 'text', help: 'ex. Licence · Master · Doctorat' },
+      { key: 'destination', label: 'Destination', type: 'text', help: 'Pays/zone, ex. Chine, Cameroun' },
+      { key: 'coverage', label: 'Prise en charge', type: 'text', help: 'ex. Frais + logement + allocation' },
+      { key: 'deadline', label: 'Échéance', type: 'text', help: 'Texte libre, ex. Mars (annuel)' },
+      { key: 'description', label: 'Description', type: 'textarea' },
+      { key: 'link', label: 'Lien officiel', type: 'text', help: 'URL de candidature / information' },
+      { key: 'tags', label: 'Mots-clés', type: 'text', help: 'Séparés par des virgules, ex. Étranger, Complète' },
+      order,
+      { key: 'active', label: 'Actif (cocher pour afficher)', type: 'boolean' }
+    ]
+  },
+  {
     id: 'app_config',
     collectionId: 'app_config',
     label: 'Configuration',

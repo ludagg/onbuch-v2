@@ -17,6 +17,11 @@ const appwriteExamsCollectionId = 'exams';
 const appwriteSchoolCalendarCollectionId = 'school_calendar';
 const appwriteConcoursCollectionId = 'concours';
 const appwritePrepCentersCollectionId = 'prep_centers';
+// Annuaire des universités et liste des bourses (page Orientation). Gérés par
+// l'admin, avec repli sur des listes curées embarquées (lib/data). Cf.
+// tools/setup_universites.sh et tools/setup_bourses.sh.
+const appwriteUniversitiesCollectionId = 'universities';
+const appwriteBoursesCollectionId = 'bourses';
 const appwriteConcoursResourcesCollectionId = 'concours_resources';
 const appwriteConcoursApplicationsCollectionId = 'concours_applications';
 const appwriteSubjectsCollectionId = 'subjects';
