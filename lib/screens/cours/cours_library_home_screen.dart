@@ -305,14 +305,48 @@ class _CoursLibraryHomeScreenState extends State<CoursLibraryHomeScreen> {
     );
   }
 
-  /// Section « Mes matières » : affiche directement les matières destinées à
-  /// l'élève (catalogue déjà filtré par sa classe = examen + série, comme les
-  /// annales). Petite note sur la classe choisie + accès pour la modifier dans
-  /// le profil. Si aucune classe n'est définie, invite à la choisir.
+  /// Construit la liste des matières à afficher : on part de la liste
+  /// **complète** de la classe (taxonomie, comme les Annales) et on rattache à
+  /// chaque matière son pack si la base en propose un. Les packs sans
+  /// correspondance dans la taxonomie sont ajoutés à la fin (rien n'est caché).
+  List<_MatiereEntry> _matiereEntries() {
+    final catalogue = _packs.catalogue;
+    final names = _packs.classSubjects;
+    String norm(String s) => s.trim().toLowerCase();
+    final used = <String>{};
+    Pack? match(String name) {
+      final n = norm(name);
+      for (final p in catalogue) {
+        if (!used.contains(p.id) && norm(p.name) == n) return p;
+      }
+      for (final p in catalogue) {
+        if (used.contains(p.id)) continue;
+        final pn = norm(p.name);
+        if (pn.contains(n) || n.contains(pn)) return p;
+      }
+      return null;
+    }
+
+    final out = <_MatiereEntry>[];
+    for (final name in names) {
+      final p = match(name);
+      if (p != null) used.add(p.id);
+      out.add(_MatiereEntry(name, p));
+    }
+    for (final p in catalogue) {
+      if (!used.contains(p.id)) out.add(_MatiereEntry(p.name, p));
+    }
+    return out;
+  }
+
+  /// Section « Mes matières » : affiche **toutes** les matières de la classe de
+  /// l'élève (liste complète issue de la taxonomie, comme la page Annales), avec
+  /// les icônes de matière. Note sur la classe choisie + accès pour la modifier
+  /// dans le profil. Si aucune classe n'est définie, invite à la choisir.
   Widget _mySubjectsSection(BuildContext context) {
     final cls = _packs.classLabel;
-    final subjects = _packs.catalogue;
     final hasClass = _packs.examLabel.trim().isNotEmpty || _packs.serieLabel.trim().isNotEmpty;
+    final entries = hasClass ? _matiereEntries() : const <_MatiereEntry>[];
 
     // Retour du profil : forcer la relecture (la classe a pu changer) pour
     // refiltrer les matières, puis recharger le reste de la page.
@@ -328,9 +362,9 @@ class _CoursLibraryHomeScreenState extends State<CoursLibraryHomeScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Row(children: [
           Text('Mes matières', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
-          if (_loaded && hasClass && subjects.isNotEmpty) ...[
+          if (_loaded && hasClass && entries.isNotEmpty) ...[
             const SizedBox(width: 8),
-            Text('${subjects.length}', style: body(12, weight: FontWeight.w700, color: OC.muted)),
+            Text('${entries.length}', style: body(12, weight: FontWeight.w700, color: OC.muted)),
           ],
           const Spacer(),
           GestureDetector(
@@ -391,7 +425,7 @@ class _CoursLibraryHomeScreenState extends State<CoursLibraryHomeScreen> {
             ),
           ),
         )
-      else if (subjects.isEmpty)
+      else if (entries.isEmpty)
         Padding(
           padding: const EdgeInsets.fromLTRB(20, 4, 20, 4),
           child: Text('Aucune matière disponible pour ta classe pour le moment.',
@@ -404,15 +438,26 @@ class _CoursLibraryHomeScreenState extends State<CoursLibraryHomeScreen> {
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             crossAxisCount: 2,
-            mainAxisSpacing: 11,
-            crossAxisSpacing: 11,
-            childAspectRatio: 2.3,
+            mainAxisSpacing: 10,
+            crossAxisSpacing: 10,
+            childAspectRatio: 2.4,
             children: [
-              for (final p in subjects)
-                _SubjectTile(p, () async {
-                  await context.push('/cours/pack?id=${p.id}');
-                  _load();
-                }),
+              for (final e in entries)
+                _SubjectTile(
+                  name: e.name,
+                  pack: e.pack,
+                  onTap: () async {
+                    if (e.pack != null) {
+                      await context.push('/cours/pack?id=${e.pack!.id}');
+                      if (mounted) _load();
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text('Cours bientôt disponible pour ${e.name}.'),
+                        behavior: SnackBarBehavior.floating,
+                      ));
+                    }
+                  },
+                ),
             ],
           ),
         ),
@@ -510,53 +555,54 @@ class _QuickCard extends StatelessWidget {
   }
 }
 
-/// Tuile compacte d'une matière de l'élève (grille « Mes matières »).
-/// Badge (code/initiales) + nom + nb de leçons ; ouvre le pack au tap.
-class _SubjectTile extends StatelessWidget {
-  final Pack pack;
-  final VoidCallback onTap;
-  const _SubjectTile(this.pack, this.onTap);
+/// Une matière de la classe : son nom (taxonomie) + son pack si la base en
+/// propose un (sinon `null` → « Bientôt »).
+class _MatiereEntry {
+  final String name;
+  final Pack? pack;
+  const _MatiereEntry(this.name, this.pack);
+}
 
-  String get _badge {
-    final c = pack.code.trim();
-    if (c.isNotEmpty) return c.length > 3 ? c.substring(0, 3).toUpperCase() : c.toUpperCase();
-    final words = pack.name.trim().split(RegExp(r'\s+')).where((w) => w.isNotEmpty).toList();
-    if (words.isEmpty) return '?';
-    if (words.length == 1) return words.first.substring(0, words.first.length >= 2 ? 2 : 1).toUpperCase();
-    return (words[0][0] + words[1][0]).toUpperCase();
-  }
+/// Tuile d'une matière de l'élève (grille « Mes matières »). Icône de matière
+/// (`SubjLogo`, même rendu que la page Annales) + nom + statut. Ouvre le pack
+/// s'il existe, sinon signale qu'il arrive bientôt.
+class _SubjectTile extends StatelessWidget {
+  final String name;
+  final Pack? pack;
+  final VoidCallback onTap;
+  const _SubjectTile({required this.name, required this.pack, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    final sub = pack.lessons > 0 ? '${pack.lessons} leçon${pack.lessons > 1 ? 's' : ''}' : 'Pack de cours';
+    final p = pack;
+    final label = p == null
+        ? 'Bientôt'
+        : (p.lessons > 0 ? '${p.lessons} leçon${p.lessons > 1 ? 's' : ''}' : 'Disponible');
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.all(11),
+        padding: const EdgeInsets.fromLTRB(11, 11, 12, 11),
         decoration: BoxDecoration(
           color: OC.paper,
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(14),
           border: Border.all(color: OC.line, width: 1.5),
         ),
         child: Row(children: [
-          Container(
-            width: 42, height: 42,
-            decoration: BoxDecoration(color: OC.o50, borderRadius: BorderRadius.circular(12)),
-            alignment: Alignment.center,
-            child: Text(_badge, style: display(13, weight: FontWeight.w800, color: OC.o600)),
-          ),
-          const SizedBox(width: 10),
+          SubjLogo(name, size: 38),
+          const SizedBox(width: 11),
           Expanded(
-            child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text(pack.name, style: body(12.5, weight: FontWeight.w700), maxLines: 2, overflow: TextOverflow.ellipsis),
-              const SizedBox(height: 2),
-              Text(sub, style: body(10.5, color: OC.muted, weight: FontWeight.w600), maxLines: 1, overflow: TextOverflow.ellipsis),
+            child: Column(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(name, style: body(13, weight: FontWeight.w700), maxLines: 1, overflow: TextOverflow.ellipsis),
+              const SizedBox(height: 1),
+              Row(children: [
+                if (p?.premium == true) ...[
+                  const Icon(Icons.lock_outline_rounded, size: 11, color: Color(0xFFA6701A)),
+                  const SizedBox(width: 3),
+                ],
+                Flexible(child: Text(label, style: body(10.5, color: OC.muted, weight: FontWeight.w600), maxLines: 1, overflow: TextOverflow.ellipsis)),
+              ]),
             ]),
           ),
-          if (pack.premium) ...[
-            const SizedBox(width: 4),
-            const Icon(Icons.lock_outline_rounded, size: 14, color: Color(0xFFA6701A)),
-          ],
         ]),
       ),
     );
