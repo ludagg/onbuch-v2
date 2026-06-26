@@ -20,6 +20,7 @@ import '../../models/home_announcement.dart';
 import '../../models/affiche.dart';
 import '../../models/social_link.dart';
 import '../../models/annale.dart';
+import '../../models/fascicule.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -145,18 +146,9 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               const SizedBox(height: 22),
 
-              // Raccourcis
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: _Shortcuts(),
-              ),
-              const SizedBox(height: 26),
-
-              // Nos fascicules (découverte)
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: const _FasciculesCard(),
-              ),
+              // Nos fascicules — carrousel de couvertures qui défile en boucle
+              // (directement sur la page, sans conteneur)
+              const _FasciculesCarousel(),
               const SizedBox(height: 26),
 
               // Épreuves sauvegardées
@@ -808,45 +800,137 @@ class _CountUnit extends StatelessWidget {
 }
 
 // ─── Tuteur CTA card ──────────────────────────────────────────────────────────
-class _FasciculesCard extends StatelessWidget {
-  const _FasciculesCard();
+// ─── Carrousel « Nos fascicules » — couvertures qui défilent en boucle ───────
+// Présenté directement sur la page (sans carte/conteneur). Les couvertures se
+// suivent les unes à côté des autres et avancent en continu (boucle infinie).
+class _FasciculesCarousel extends StatefulWidget {
+  const _FasciculesCarousel();
+  @override
+  State<_FasciculesCarousel> createState() => _FasciculesCarouselState();
+}
+
+class _FasciculesCarouselState extends State<_FasciculesCarousel>
+    with SingleTickerProviderStateMixin {
+  static const double _coverW = 116;
+  static const double _coverH = 164;
+  static const double _gap = 14;
+  static const double _ext = _coverW + _gap; // largeur d'un élément
+  static const double _speed = 22; // pixels / seconde
+
+  final _scroll = ScrollController();
+  Ticker? _ticker;
+  Duration _last = Duration.zero;
+  List<Fascicule> _items = const [];
+
+  @override
+  void initState() {
+    super.initState();
+    DatabaseService().getFascicules().then((list) {
+      if (!mounted) return;
+      final withPdf = list.where((f) => f.hasPdf).toList();
+      setState(() => _items = withPdf);
+      if (withPdf.length > 1) {
+        _ticker = createTicker(_tick)..start();
+      }
+    });
+  }
+
+  void _tick(Duration now) {
+    if (!_scroll.hasClients || _items.isEmpty) return;
+    final dt = (now - _last).inMicroseconds / 1e6;
+    _last = now;
+    if (dt <= 0 || dt > 0.5) return; // ignore les sauts (1er frame, retour en avant-plan)
+    final loop = _items.length * _ext; // longueur d'un cycle complet
+    var off = _scroll.offset + _speed * dt;
+    if (off >= loop) off -= loop; // bouclage transparent (le set suivant est identique)
+    _scroll.jumpTo(off);
+  }
+
+  void _open(Fascicule f) {
+    if (!f.hasPdf) return;
+    context.push('/annales/pdf', extra: {
+      'url': f.pdfUrl,
+      'title': f.title,
+      'subtitle': f.shelfSubtitle.isEmpty ? 'Fascicule OnBuch' : f.shelfSubtitle,
+      'offlineId': 'fascicule:${f.id}',
+    });
+  }
+
+  @override
+  void dispose() {
+    _ticker?.dispose();
+    _scroll.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => context.push('/fascicules'),
-      child: Container(
-        padding: const EdgeInsets.fromLTRB(16, 15, 14, 15),
-        decoration: BoxDecoration(
-          color: OC.o50,
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: OC.o100, width: 1.5),
-        ),
+    if (_items.isEmpty) return const SizedBox.shrink();
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      // Petit intitulé (avec marge) ; le carrousel, lui, va bord à bord.
+      Padding(
+        padding: const EdgeInsets.fromLTRB(20, 0, 20, 12),
         child: Row(children: [
-          Container(
-            width: 48, height: 48,
-            decoration: BoxDecoration(color: OC.o600, borderRadius: BorderRadius.circular(14)),
-            child: const Icon(Icons.auto_stories_rounded, color: Colors.white, size: 25),
-          ),
-          const SizedBox(width: 13),
-          Expanded(
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text('NOS FASCICULES',
-                  style: body(9.5, weight: FontWeight.w800, color: OC.o600).copyWith(letterSpacing: 0.1 * 9.5)),
-              const SizedBox(height: 3),
-              Text('La bibliothèque OnBuch', style: display(16.5, weight: FontWeight.w700)),
-              const SizedBox(height: 2),
-              Text('Des bouquins complets : cours + exercices corrigés 📚',
-                  maxLines: 2, overflow: TextOverflow.ellipsis,
-                  style: body(12, color: OC.ink2, weight: FontWeight.w500).copyWith(height: 1.3)),
-            ]),
-          ),
+          Text('Nos fascicules', style: display(18, weight: FontWeight.w700)),
           const SizedBox(width: 8),
-          Icon(Icons.arrow_forward_rounded, color: OC.o600, size: 20),
+          Text('la bibliothèque OnBuch',
+              style: body(12, color: OC.muted, weight: FontWeight.w600)),
+          const Spacer(),
+          GestureDetector(
+            onTap: () => context.push('/fascicules'),
+            child: Text('Tout voir', style: body(12.5, weight: FontWeight.w800, color: OC.o600)),
+          ),
         ]),
+      ),
+      SizedBox(
+        height: _coverH,
+        child: ListView.builder(
+          controller: _scroll,
+          scrollDirection: Axis.horizontal,
+          physics: const BouncingScrollPhysics(),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          itemExtent: _ext,
+          // « infini » : on boucle sur la liste (le défilement repart au début).
+          itemCount: _items.isEmpty ? 0 : _items.length * 1000,
+          itemBuilder: (_, i) => _cover(_items[i % _items.length]),
+        ),
+      ),
+    ]);
+  }
+
+  Widget _cover(Fascicule f) {
+    return Padding(
+      padding: const EdgeInsets.only(right: _gap),
+      child: GestureDetector(
+        onTap: () => _open(f),
+        child: Container(
+          width: _coverW,
+          clipBehavior: Clip.antiAlias,
+          decoration: BoxDecoration(
+            color: OC.panel,
+            borderRadius: BorderRadius.circular(12),
+            boxShadow: [
+              BoxShadow(color: OC.ink.withValues(alpha: 0.12), blurRadius: 12, offset: const Offset(0, 6)),
+            ],
+          ),
+          child: f.hasCover
+              ? Image.network(f.coverUrl, fit: BoxFit.cover,
+                  errorBuilder: (_, __, ___) => _fallback(f),
+                  loadingBuilder: (c, child, p) => p == null ? child : _fallback(f))
+              : _fallback(f),
+        ),
       ),
     );
   }
+
+  Widget _fallback(Fascicule f) => Container(
+        color: OC.darkHero,
+        padding: const EdgeInsets.all(10),
+        alignment: Alignment.bottomLeft,
+        child: Text(f.title,
+            maxLines: 4, overflow: TextOverflow.ellipsis,
+            style: display(12, weight: FontWeight.w700, color: Colors.white).copyWith(height: 1.15)),
+      );
 }
 
 class _TuteurCard extends StatelessWidget {
@@ -970,93 +1054,6 @@ class _QuickLinks extends StatelessWidget {
                 ),
               ),
             ]),
-          ),
-        );
-      }),
-    );
-  }
-}
-
-class _Shortcuts extends StatelessWidget {
-  // [icône, libellé, accent, fond pastille, route (ou null si à venir)]
-  static final _items = [
-    [Icons.description_outlined, 'Résultats', OC.o600, OC.o50, '/results'],
-    [Icons.event_note_rounded, 'Campus', OC.blue, OC.blueBg, '/campus'],
-    [Icons.paid_outlined, 'Crédits', OC.warn, OC.warnBg, '/credits'],
-    [Icons.groups_outlined, 'Communauté', OC.good, OC.goodBg, '/communaute'],
-  ];
-
-  void _onTap(BuildContext context, String label, String? route) {
-    if (route != null) {
-      context.go(route);
-      return;
-    }
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('$label — bientôt disponible',
-            style: body(13, weight: FontWeight.w600, color: Colors.white)),
-        backgroundColor: OC.ink,
-        behavior: SnackBarBehavior.floating,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        duration: const Duration(seconds: 2),
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: List.generate(_items.length, (i) {
-        final it = _items[i];
-        return Expanded(
-          child: Padding(
-            padding: EdgeInsets.only(left: i > 0 ? 11 : 0),
-            child: GestureDetector(
-              behavior: HitTestBehavior.opaque,
-              onTap: () => _onTap(context, it[1] as String, it[4] as String?),
-              child: Column(children: [
-                AspectRatio(
-                  aspectRatio: 1,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: OC.paper,
-                      borderRadius: BorderRadius.circular(18),
-                      border: Border.all(color: OC.line, width: 1.5),
-                      boxShadow: [
-                        BoxShadow(color: OC.ink.withValues(alpha: 0.04), blurRadius: 10, offset: const Offset(0, 4)),
-                      ],
-                    ),
-                    child: Center(
-                      child: Container(
-                        width: 44,
-                        height: 44,
-                        decoration: BoxDecoration(
-                          color: it[3] as Color,
-                          borderRadius: BorderRadius.circular(13),
-                        ),
-                        child: Icon(it[0] as IconData, size: 23, color: it[2] as Color),
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 9),
-                // Libellé sur une seule ligne, centré, qui s'ajuste pour ne
-                // jamais se couper (ex. « Communauté » ne déborde plus).
-                SizedBox(
-                  width: double.infinity,
-                  child: FittedBox(
-                    fit: BoxFit.scaleDown,
-                    alignment: Alignment.center,
-                    child: Text(
-                      it[1] as String,
-                      maxLines: 1,
-                      softWrap: false,
-                      style: body(12, weight: FontWeight.w700, color: OC.ink2),
-                    ),
-                  ),
-                ),
-              ]),
-            ),
           ),
         );
       }),

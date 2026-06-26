@@ -1,0 +1,461 @@
+\section{Sujet TI n\textsuperscript{o}\,3 — Cybercafé}
+
+\begin{center}
+\setlength{\fboxsep}{8pt}
+\fcolorbox{onbline}{white}{%
+\begin{minipage}{0.92\linewidth}
+\small\sffamily
+\begin{tabular}{@{}p{0.30\linewidth}@{\hfill}p{0.34\linewidth}@{\hfill}p{0.28\linewidth}@{}}
+\textbf{Office du Baccalauréat}\newline du Cameroun\newline Session 2025
+&
+\textbf{Série} : TI\newline \textbf{Épreuve} : Algorithmique\newline et Programmation
+&
+\textbf{Durée} : 03 heures\newline \textbf{Coef.} : 04
+\\
+\end{tabular}
+\par\smallskip
+{\color{onbline}\rule{\linewidth}{0.8pt}}
+\par\smallskip
+\centering\textbf{ÉPREUVE D'ALGORITHMIQUE ET PROGRAMMATION}
+\end{minipage}}
+\end{center}
+
+\begin{remarque}
+Sujet type \emph{original} OnBuch, calqué sur la structure réelle de l'épreuve
+d'Algorithmique et Programmation de la série~TI (deux parties de 10~points :
+programmation web puis programmation procédurale en~C). Les corrigés qui suivent
+la mention « Corrigé » sont proposés par OnBuch.
+\end{remarque}
+
+\noindent\textbf{Contexte.} Le \textit{Cyber « LumièreNet »}, situé au quartier
+Briqueterie à Yaoundé, loue des postes de connexion Internet aux élèves et
+étudiants. Le gérant souhaite informatiser le suivi de ses sessions de connexion.
+Pour chaque session, on note le \textbf{numéro de poste}, le \textbf{nom du
+client}, l'\textbf{heure de début}, la \textbf{durée} (en minutes) et le
+\textbf{montant} facturé (en FCFA). Le tarif appliqué est de \textbf{300~FCFA
+l'heure}. On vous demande, à travers les deux parties suivantes, de l'aider à
+construire l'outil web puis le module en langage~C.
+
+% =====================================================================
+\subsection*{Partie I — Programmation web \hfill (10 points)}
+
+\textbf{Exercice 1 — Page d'accueil HTML et JavaScript.} \hfill \textbf{(4 points)}
+
+\smallskip
+Le gérant veut une page d'accueil contenant un petit \textbf{simulateur de coût}
+qui, à partir d'une durée saisie en minutes, affiche le montant à payer (au tarif
+de 300~FCFA l'heure), sans recharger la page.
+
+\begin{enumerate}[label=\textbf{\arabic*-},leftmargin=2.2em]
+\item Définir : \textbf{page web statique}, \textbf{balise}, \textbf{événement
+\code{onclick}}. \hfill \textbf{0,75pt}
+\item Donner la différence fondamentale entre un script \textbf{JavaScript} et un
+script \textbf{PHP} quant au lieu de leur exécution. \hfill \textbf{0,5pt}
+\item Écrire le code \textbf{HTML} d'un formulaire contenant : un champ de saisie
+de durée (en minutes) d'identifiant \code{duree}, un bouton « Calculer » et une
+zone de résultat d'identifiant \code{resultat}. \hfill \textbf{1,5pt}
+\item Écrire la fonction \textbf{JavaScript} \code{calculerCout()} qui lit la
+durée saisie, calcule le montant \emph{(montant $=$ durée $\div\,60 \times 300$,
+arrondi à l'entier)} et l'affiche, suivi de « FCFA », dans la zone
+\code{resultat}. \hfill \textbf{1,25pt}
+\end{enumerate}
+
+\bigskip
+\textbf{Exercice 2 — Enregistrement des sessions (PHP + MySQL).} \hfill \textbf{(6 points)}
+
+\smallskip
+Le gérant dispose d'une base de données \textbf{CYBER\_DB} contenant la table
+\textbf{SESSIONS} décrite ci-dessous. Un formulaire permet d'enregistrer une
+nouvelle session ; un script PHP l'insère dans la base puis affiche la liste des
+sessions du jour dans un tableau HTML.
+
+\begin{center}\small
+\begin{tabular}{@{}|l|l|l|@{}}
+\hline
+\textbf{Champ} & \textbf{Type} & \textbf{Description}\\
+\hline
+id        & INT (clé primaire, auto) & identifiant de la session\\
+poste     & INT          & numéro de poste\\
+client    & VARCHAR(50)  & nom du client\\
+debut     & TIME         & heure de début\\
+duree     & INT          & durée en minutes\\
+montant   & INT          & montant en FCFA\\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{enumerate}[label=\textbf{\arabic*-},leftmargin=2.2em]
+\item \begin{enumerate}[label=\textbf{\alph*)},leftmargin=2em]
+  \item Définir : \textbf{SGBD}, \textbf{requête SQL}, \textbf{clé primaire}. \hfill \textbf{0,75pt}
+  \item Citer les \textbf{quatre} opérations de base du CRUD et donner, pour
+  chacune, le mot-clé SQL correspondant. \hfill \textbf{1pt}
+  \end{enumerate}
+\item Écrire l'instruction \textbf{SQL} qui crée la table \textbf{SESSIONS}
+décrite ci-dessus. \hfill \textbf{1pt}
+\item Écrire le script \textbf{PHP} (fichier \code{enregistrer.php}) qui :
+  \begin{enumerate}[label=\textbf{\alph*)},leftmargin=2em]
+  \item se connecte à la base \textbf{CYBER\_DB} avec \code{mysqli} (serveur
+  \code{localhost}, utilisateur \code{root}, mot de passe vide) ; \hfill \textbf{0,75pt}
+  \item récupère par \code{\$\_POST} le poste, le client et la durée envoyés par
+  le formulaire, calcule le montant \emph{($300 \times$ durée $\div\,60$, arrondi)}
+  et \textbf{insère} la session (heure de début $=$ heure courante). \hfill \textbf{1,5pt}
+  \end{enumerate}
+\item Écrire la requête SQL et le code PHP qui \textbf{affichent dans un tableau
+HTML} toutes les sessions enregistrées (colonnes : poste, client, durée, montant). \hfill \textbf{1pt}
+\end{enumerate}
+
+% =====================================================================
+\subsection*{Partie II — Programmation procédurale en C \hfill (10 points)}
+
+\textbf{Exercice 1 — Structure Session et chiffre d'affaires.} \hfill \textbf{(5 points)}
+
+\smallskip
+Pour le module hors-ligne du cyber, on représente une session de connexion par un
+enregistrement (\code{struct}) regroupant le numéro de poste, le nom du client, la
+durée (en minutes) et le montant (en FCFA). On gère un \textbf{tableau} de telles
+sessions.
+
+\begin{enumerate}[label=\textbf{\arabic*-},leftmargin=2.2em]
+\item Définir : \textbf{structure} (enregistrement), \textbf{tableau de
+structures}. \hfill \textbf{0,5pt}
+\item Déclarer en langage~C la structure \code{Session} possédant les champs :
+\code{poste} (entier), \code{client} (chaîne de 30 caractères), \code{duree}
+(entier) et \code{montant} (entier). \hfill \textbf{1pt}
+\item Déclarer un tableau \code{tab} de 50 sessions, puis écrire l'instruction qui
+affecte au champ \code{montant} de la \textbf{première} session la valeur
+\code{1500}. \hfill \textbf{0,75pt}
+\item Écrire la fonction \code{int chiffreAffaires(Session t[], int n)} qui reçoit
+le tableau et le nombre \code{n} de sessions, et \textbf{retourne} la somme des
+montants de toutes les sessions (le chiffre d'affaires total). \hfill \textbf{1,5pt}
+\item Écrire la fonction \code{int sessionPlusLongue(Session t[], int n)} qui
+retourne l'\textbf{indice} de la session de plus longue durée. \hfill \textbf{1,25pt}
+\end{enumerate}
+
+\bigskip
+\textbf{Exercice 2 — Lecture d'un programme C.} \hfill \textbf{(5 points)}
+
+\smallskip
+On donne ci-dessous un programme C \textbf{numéroté ligne par ligne}. Il affiche la
+table de multiplication d'un nombre saisi par l'utilisateur.
+
+\begin{codec}
+1   #include <stdio.h>
+2
+3   int main(void) {
+4       int n, i, produit;
+5       printf("Entrez un nombre : ");
+6       scanf("%d", &n);
+7       for (i = 1; i <= 10; i++) {
+8           produit = n * i;
+9           printf("%d x %d = %d\n", n, i, produit);
+10      }
+11      return 0;
+12  }
+\end{codec}
+
+\begin{enumerate}[label=\textbf{\arabic*-},leftmargin=2.2em]
+\item Donner le \textbf{rôle} de chacune des lignes \textbf{4}, \textbf{6},
+\textbf{7} et \textbf{8}. \hfill \textbf{1pt}
+\item En supposant que l'utilisateur saisit la valeur \textbf{5}, dresser la
+\textbf{trace pas-à-pas} (valeurs de \code{i} et \code{produit}) pour les
+\textbf{trois premières} itérations de la boucle, puis donner la dernière ligne
+affichée. \hfill \textbf{1,5pt}
+\item Réécrire l'instruction de la ligne~8 en utilisant l'\textbf{opérateur
+ternaire} de sorte que \code{produit} reçoive le double de \code{n*i} si \code{i}
+est pair, et \code{n*i} sinon. \hfill \textbf{1pt}
+\item La boucle de la ligne~7 est \textbf{itérative} (\code{for}). Écrire une
+fonction \textbf{récursive} \code{void table(int n, int i)} qui affiche la même
+table de multiplication (de \code{i=1} à \code{i=10}). \hfill \textbf{1,5pt}
+\end{enumerate}
+
+% =====================================================================
+\corrige{du sujet TI n\textsuperscript{o}3}
+
+\subsection*{Partie I — Programmation web}
+
+\textbf{Ex.1 — 1) Définitions.}
+\begin{itemize}
+\item \emph{Page web statique} : page dont le contenu est fixe ; il est livré tel
+quel au navigateur, sans traitement côté serveur ni modification dynamique.
+\item \emph{Balise} : marqueur du langage HTML, écrit entre chevrons
+(\code{<...>}), qui délimite et qualifie un élément de la page (ex. \code{<p>},
+\code{<input>}).
+\item \emph{Événement \code{onclick}} : événement déclenché par un \textbf{clic}
+de l'utilisateur sur un élément ; il permet d'associer à ce clic l'appel d'une
+fonction JavaScript.
+\end{itemize}
+
+\textbf{Ex.1 — 2) JavaScript vs PHP.} Un script \textbf{JavaScript} s'exécute
+\textbf{côté client} (dans le navigateur du visiteur), tandis qu'un script
+\textbf{PHP} s'exécute \textbf{côté serveur} (le serveur interprète le code et
+n'envoie au navigateur que le HTML produit).
+
+\textbf{Ex.1 — 3) Formulaire HTML.}
+
+\begin{codehtml}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Cyber LumièreNet — Simulateur</title>
+</head>
+<body>
+  <h1>Cyber LumièreNet</h1>
+  <p>Durée (en minutes) : <input type="text" id="duree"></p>
+  <button onclick="calculerCout()">Calculer</button>
+  <p id="resultat"></p>
+
+  <script src="script.js"></script>
+</body>
+</html>
+\end{codehtml}
+
+\textbf{Ex.1 — 4) Fonction JavaScript \code{calculerCout}.}
+
+\begin{codejs}
+function calculerCout() {
+  var minutes = parseInt(document.getElementById("duree").value);
+  var montant = Math.round(minutes / 60 * 300);   // 300 FCFA par heure
+  document.getElementById("resultat").innerHTML = montant + " FCFA";
+}
+\end{codejs}
+
+\begin{remarque}
+\code{parseInt} convertit le texte saisi en entier ; \code{Math.round} arrondit le
+montant. Pour 90~minutes : $90/60 \times 300 = 450$, donc « 450 FCFA ».
+\end{remarque}
+
+\medskip
+\textbf{Ex.2 — 1.a) Définitions.}
+\begin{itemize}
+\item \emph{SGBD} (Système de Gestion de Base de Données) : logiciel qui permet de
+créer, stocker, organiser et manipuler les données d'une base (ex. MySQL).
+\item \emph{Requête SQL} : instruction écrite en langage SQL adressée au SGBD pour
+agir sur les données (créer, lire, modifier, supprimer).
+\item \emph{Clé primaire} : champ (ou ensemble de champs) qui identifie de manière
+\textbf{unique} chaque enregistrement d'une table.
+\end{itemize}
+
+\textbf{Ex.2 — 1.b) Opérations CRUD et mots-clés SQL.}
+\begin{center}\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Opération} & \textbf{Signification} & \textbf{Mot-clé SQL}\\
+\midrule
+Create & Créer / insérer  & \code{INSERT}\\
+Read   & Lire / consulter & \code{SELECT}\\
+Update & Modifier         & \code{UPDATE}\\
+Delete & Supprimer        & \code{DELETE}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Ex.2 — 2) Création de la table SESSIONS.}
+
+\begin{codesql}
+CREATE TABLE SESSIONS (
+    id      INT AUTO_INCREMENT PRIMARY KEY,
+    poste   INT,
+    client  VARCHAR(50),
+    debut   TIME,
+    duree   INT,
+    montant INT
+);
+\end{codesql}
+
+\textbf{Ex.2 — 3) Script \code{enregistrer.php} : connexion, \code{\$\_POST} et
+insertion.}
+
+\begin{codephp}
+<?php
+  // a) Connexion à la base CYBER_DB avec mysqli
+  $cnx = new mysqli("localhost", "root", "", "CYBER_DB");
+  if ($cnx->connect_error) {
+      die("Échec de connexion : " . $cnx->connect_error);
+  }
+
+  // b) Récupération des données du formulaire (méthode POST)
+  $poste  = $_POST["poste"];
+  $client = $_POST["client"];
+  $duree  = $_POST["duree"];
+
+  // Calcul du montant : 300 FCFA / heure, arrondi
+  $montant = round(300 * $duree / 60);
+
+  // Heure de début = heure courante
+  $debut = date("H:i:s");
+
+  // Insertion de la session dans la table
+  $sql = "INSERT INTO SESSIONS (poste, client, debut, duree, montant)
+          VALUES ('$poste', '$client', '$debut', '$duree', '$montant')";
+
+  if ($cnx->query($sql)) {
+      echo "<p>Session enregistrée : $client, $montant FCFA.</p>";
+  } else {
+      echo "<p>Erreur : " . $cnx->error . "</p>";
+  }
+?>
+\end{codephp}
+
+\begin{remarque}
+Le formulaire d'appel (fichier \code{form.html}) enverrait ces données ainsi :
+\code{<form method="post" action="enregistrer.php">} avec trois champs nommés
+\code{poste}, \code{client} et \code{duree}, puis un bouton de soumission.
+\end{remarque}
+
+\textbf{Ex.2 — 4) Requête de lecture et affichage dans un tableau HTML.} On
+ajoute, à la suite du script précédent, la lecture de toutes les sessions :
+
+\begin{codephp}
+<?php
+  // Requête de lecture
+  $res = $cnx->query("SELECT poste, client, duree, montant FROM SESSIONS");
+
+  echo "<table border='1'>";
+  echo "<tr><th>Poste</th><th>Client</th><th>Durée</th><th>Montant</th></tr>";
+
+  // Parcours des lignes et affichage
+  while ($ligne = $res->fetch_assoc()) {
+      echo "<tr>";
+      echo "<td>" . $ligne["poste"]   . "</td>";
+      echo "<td>" . $ligne["client"]  . "</td>";
+      echo "<td>" . $ligne["duree"]   . " min</td>";
+      echo "<td>" . $ligne["montant"] . " FCFA</td>";
+      echo "</tr>";
+  }
+  echo "</table>";
+
+  $cnx->close();
+?>
+\end{codephp}
+
+\subsection*{Partie II — Programmation procédurale en C}
+
+\textbf{Ex.1 — 1) Définitions.}
+\begin{itemize}
+\item \emph{Structure (enregistrement)} : type de données défini par le
+programmeur qui regroupe sous un même nom plusieurs champs de types éventuellement
+différents.
+\item \emph{Tableau de structures} : tableau dont chaque case est une structure ;
+il permet de stocker une collection d'enregistrements de même type (ici, plusieurs
+sessions).
+\end{itemize}
+
+\textbf{Ex.1 — 2) Déclaration de la structure \code{Session}.}
+
+\begin{codec}
+typedef struct {
+    int  poste;
+    char client[30];
+    int  duree;     // durée en minutes
+    int  montant;   // montant en FCFA
+} Session;
+\end{codec}
+
+\textbf{Ex.1 — 3) Tableau de 50 sessions et affectation.}
+
+\begin{codec}
+Session tab[50];
+tab[0].montant = 1500;   // première session : indice 0
+\end{codec}
+
+\textbf{Ex.1 — 4) Fonction \code{chiffreAffaires}.}
+
+\begin{codec}
+int chiffreAffaires(Session t[], int n) {
+    int i, total = 0;
+    for (i = 0; i < n; i++) {
+        total = total + t[i].montant;   // cumul des montants
+    }
+    return total;
+}
+\end{codec}
+
+\textbf{Ex.1 — 5) Fonction \code{sessionPlusLongue}.} Elle retourne l'indice de la
+session dont la durée est la plus grande.
+
+\begin{codec}
+int sessionPlusLongue(Session t[], int n) {
+    int i, indiceMax = 0;
+    for (i = 1; i < n; i++) {
+        if (t[i].duree > t[indiceMax].duree) {
+            indiceMax = i;
+        }
+    }
+    return indiceMax;
+}
+\end{codec}
+
+\begin{remarque}
+On suppose $n \geq 1$. On initialise \code{indiceMax} à 0 (première session) puis
+on compare chaque durée à celle de la meilleure session trouvée jusque-là.
+\end{remarque}
+
+\medskip
+\textbf{Ex.2 — 1) Rôle des lignes.}
+\begin{itemize}
+\item \textbf{Ligne 4} : déclaration des trois variables entières \code{n}
+(le nombre), \code{i} (le compteur de boucle) et \code{produit} (le résultat).
+\item \textbf{Ligne 6} : lecture au clavier de la valeur de \code{n} (\code{scanf}),
+rangée à l'adresse de \code{n} grâce à l'opérateur \code{\&}.
+\item \textbf{Ligne 7} : début de la boucle \code{for} qui fait varier \code{i} de
+1 à 10 inclus (10 itérations).
+\item \textbf{Ligne 8} : calcul du produit \code{n * i} et affectation à la
+variable \code{produit}.
+\end{itemize}
+
+\textbf{Ex.2 — 2) Trace pas-à-pas pour \code{n = 5}.}
+
+\begin{center}\small
+\begin{tabular}{@{}cccl@{}}
+\toprule
+\textbf{Itération} & \textbf{i} & \textbf{produit} & \textbf{Affichage}\\
+\midrule
+1 & 1 & 5  & \code{5 x 1 = 5}\\
+2 & 2 & 10 & \code{5 x 2 = 10}\\
+3 & 3 & 15 & \code{5 x 3 = 15}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent La boucle se poursuit jusqu'à \code{i = 10} ; la \textbf{dernière} ligne
+affichée est \code{5 x 10 = 50}.
+
+\textbf{Ex.2 — 3) Ligne 8 avec l'opérateur ternaire.} Le double si \code{i} est
+pair, sinon \code{n*i} :
+
+\begin{codec}
+produit = (i % 2 == 0) ? 2 * n * i : n * i;
+\end{codec}
+
+\begin{remarque}
+La condition \code{i \% 2 == 0} teste la parité de \code{i} : si le reste de la
+division par 2 est nul, \code{i} est pair et \code{produit} reçoit \code{2*n*i} ;
+sinon il reçoit \code{n*i}.
+\end{remarque}
+
+\textbf{Ex.2 — 4) Version récursive \code{table}.}
+
+\begin{codec}
+void table(int n, int i) {
+    if (i > 10) {
+        return;                          // cas d'arrêt
+    }
+    printf("%d x %d = %d\n", n, i, n * i);
+    table(n, i + 1);                     // appel récursif
+}
+\end{codec}
+
+\noindent On l'appelle par \code{table(n, 1);} pour obtenir la table complète de
+\code{n}, identique à la version itérative.
+
+\begin{aretenir}
+Sujet en deux moitiés de 10 points : (I) un \textbf{simulateur} HTML/JavaScript
+(événement \code{onclick}, lecture d'un champ, calcul, affichage) puis un module
+\textbf{PHP/MySQL} (connexion \code{mysqli}, récupération par \code{\$\_POST},
+\code{INSERT}, puis \code{SELECT} affiché dans un tableau HTML) ; (II) un
+\textbf{tableau de \code{struct}} (\code{Session}) avec une fonction de
+\textbf{chiffre d'affaires} et de \textbf{recherche du maximum}, puis la
+\textbf{lecture} d'un programme C (rôles, trace, opérateur \textbf{ternaire},
+passage \textbf{itératif$\rightarrow$récursif}).
+\end{aretenir}

@@ -1,0 +1,528 @@
+\section{Sujet TI n\textsuperscript{o}\,1 — Bibliothèque scolaire}
+
+\begin{synthese}[Un sujet type d'examen]
+Voici un \textbf{sujet type} de Baccalauréat, série \textbf{TI}, épreuve
+\textbf{Algorithmique et Programmation}, calqué sur la structure réelle de
+l'examen. Il réunit une \textbf{Partie I — Programmation web} (HTML, JavaScript,
+PHP, MySQL) et une \textbf{Partie II — Programmation procédurale en C}
+(structures, fonctions, trace). Contexte : la gestion informatisée de la
+\textbf{bibliothèque d'un lycée camerounais}. Compose d'abord seul, dans les
+conditions de l'examen, puis confronte ta copie au corrigé détaillé qui suit.
+\end{synthese}
+
+% =====================================================================
+%  EN-TÊTE DU SUJET
+% =====================================================================
+\begin{center}
+\fbox{\begin{minipage}{0.93\linewidth}
+\centering\sffamily
+{\bfseries OFFICE DU BACCALAURÉAT DU CAMEROUN}\\[1pt]
+{\footnotesize Examen : Baccalauréat de l'Enseignement Secondaire Technique}\\[3pt]
+\rule{0.6\linewidth}{0.4pt}\\[3pt]
+{\large\bfseries SUJET TYPE — Session de juin}\\[2pt]
+{\bfseries Série : TI}\\[3pt]
+{\bfseries Épreuve : Algorithmique et Programmation}\\[2pt]
+\begin{tabular}{@{}l@{\quad}c@{\quad}l@{}}
+Durée : \textbf{03 heures} & $\bullet$ & Coefficient : \textbf{04}
+\end{tabular}\\[3pt]
+\rule{0.6\linewidth}{0.4pt}\\[2pt]
+{\footnotesize\itshape L'épreuve comporte deux parties indépendantes, notées
+chacune sur 10 points. L'usage de la calculatrice n'est pas autorisé.}
+\end{minipage}}
+\end{center}
+
+\medskip
+\noindent\textbf{Contexte général.} \emph{« Le Lycée Bilingue de Bafoussam
+souhaite informatiser la gestion de sa bibliothèque scolaire, jusque-là tenue
+sur des registres papier. L'établissement confie à un stagiaire en informatique
+le développement d'une petite application web de gestion du fonds documentaire :
+une page permet de saisir les caractéristiques d'un livre, et ces informations
+sont enregistrées dans une base de données nommée \code{BIBLIO\_DB}, dont la
+table principale est nommée \code{LIVRES} (champs : titre, auteur, catégorie,
+nombre d'exemplaires). En parallèle, un programme en langage C est écrit pour
+gérer hors ligne la liste des ouvrages. »}
+
+% =====================================================================
+%  PARTIE I — PROGRAMMATION WEB
+% =====================================================================
+\subsection*{Partie I — Programmation web \hfill (10 points)}
+\addcontentsline{toc}{subsection}{Sujet TI nº1 — Partie I : Programmation web}
+
+\subsubsection*{Exercice 1 — Programmation HTML et JavaScript \hfill (03,5 pts)}
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+\item \textbf{(0,25 pt)} Définir : \emph{page web statique}.
+\item \textbf{(0,25 pt)} Citer le langage qui permet de structurer le contenu
+d'une page web et celui qui permet de la rendre interactive côté client.
+\item \textbf{(1,5 pt)} Écrire le code HTML affichant le formulaire de saisie
+d'un livre (nommé \code{bookForm}). La méthode est \code{POST} et le fichier de
+traitement est nommé \code{ajouter\_livre.php}. Les champs sont respectivement
+\emph{« Titre »}, \emph{« Auteur »}, \emph{« Catégorie »}, \emph{« Nombre
+d'exemplaires »} et le bouton \emph{« Ajouter »}. On utilisera un tableau de 05
+lignes et 02 colonnes. Le formulaire appellera, au clic du bouton, une fonction
+JavaScript de validation nommée \code{validateForm()}.
+\item \textbf{(1,5 pt)} On veut, au clic du bouton \emph{« Ajouter »}, vérifier
+que les champs \emph{Titre}, \emph{Auteur} et \emph{Catégorie} ne sont pas vides,
+et que le champ \emph{Nombre d'exemplaires} contient bien une valeur numérique
+(et non du texte). Si tout est correct, une boîte de dialogue affiche
+\emph{« Livre prêt à être enregistré »} ; sinon, elle affiche
+\emph{« Saisie invalide : vérifiez les champs »} et l'envoi du formulaire est
+annulé. Écrire en JavaScript le code de la fonction \code{validateForm()}.
+\end{enumerate}
+
+\subsubsection*{Exercice 2 — Programmation PHP et MySQL \hfill (06,5 pts)}
+
+\noindent On s'intéresse maintenant à la base de données \code{BIBLIO\_DB} et au
+moyen d'y accéder depuis le script de traitement \code{ajouter\_livre.php}.
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+\item \textbf{(0,25 pt)} Définir : \emph{base de données}.
+\item \textbf{(0,25 pt)} Donner la signification du sigle \emph{SGBD}.
+\item \textbf{(0,25 pt)} Indiquer le côté (client ou serveur) où s'exécute un
+script PHP.
+\item \textbf{(0,75 pt)} Donner les éléments constitutifs d'un environnement
+intégré de développement web dynamique (citer au moins trois éléments).
+\item \textbf{(1 pt)} Donner le rôle des fonctions suivantes :
+\code{mysqli\_connect()} ; \code{mysqli\_query()}.
+\item \textbf{(0,5 pt)} Présenter la différence entre les fonctions
+\code{mysqli\_fetch\_assoc()} et \code{mysqli\_fetch\_row()}.
+\item \textbf{(1,75 pt)} Écrire le code PHP du fichier \code{ajouter\_livre.php}
+qui : (a) se connecte à la base \code{BIBLIO\_DB} (hôte \code{localhost},
+utilisateur \code{root}, mot de passe vide) ; (b) récupère les données envoyées
+par le formulaire ; (c) les affiche dans un tableau HTML (une ligne par champ).
+\item \textbf{(1,75 pt)} Écrire la requête SQL, puis le code PHP, permettant
+\textbf{d'insérer} le nouveau livre dans la table \code{LIVRES} à partir des
+données récupérées du formulaire, en signalant le succès ou l'échec de
+l'opération.
+\end{enumerate}
+
+% =====================================================================
+%  PARTIE II — PROGRAMMATION PROCÉDURALE EN C
+% =====================================================================
+\subsection*{Partie II — Programmation procédurale en C \hfill (10 points)}
+\addcontentsline{toc}{subsection}{Sujet TI nº1 — Partie II : Programmation en C}
+
+\subsubsection*{Exercice 1 \hfill (5 pts)}
+
+\noindent\emph{« Pour gérer la bibliothèque hors ligne, on caractérise chaque
+livre par un code (entier), un titre (chaîne), un auteur (chaîne) et un nombre
+d'exemplaires (entier). On souhaite ranger l'ensemble des ouvrages dans un
+tableau, puis disposer d'une fonction permettant de retrouver rapidement un
+livre à partir de son code. »} Réaliser les tâches ci-dessous.
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+\item \textbf{(1,5 pt)} Donner l'instruction C permettant de déclarer une
+structure d'enregistrement nommée \code{Livre} contenant les caractéristiques
+décrites dans le texte (les chaînes seront des tableaux de 50 caractères).
+\item \textbf{(0,5 pt)} Donner l'instruction C permettant de déclarer un tableau
+\code{biblio} de 200 éléments de type \code{struct Livre}.
+\item \textbf{(0,5 pt)} Donner deux avantages de l'utilisation des fonctions
+dans un programme.
+\item \textbf{(2,5 pts)} Donner en C le code de définition de la fonction
+\code{rechercherLivre} qui recherche un livre par son code dans le tableau, en
+utilisant la \textbf{recherche séquentielle}. Si le livre est trouvé, la
+fonction affiche son titre, son auteur et son nombre d'exemplaires, puis renvoie
+l'indice de la case trouvée ; sinon elle affiche le message \emph{« Aucun livre
+ne correspond à ce code »} et renvoie $-1$. L'en-tête imposé de la fonction est :
+\code{int rechercherLivre(struct Livre biblio[], int n, int code)}.
+\end{enumerate}
+
+\subsubsection*{Exercice 2 \hfill (5 pts)}
+
+\noindent On donne le programme C ci-dessous, qui calcule la \textbf{somme des
+chiffres} d'un entier naturel saisi par l'utilisateur (les numéros de ligne 1 à
+22 sont rappelés en commentaire pour pouvoir y faire référence) :
+
+\begin{codec}
+/* 1*/  /* Calcul de la somme des chiffres d'un entier naturel */
+/* 2*/  #include <stdio.h>
+/* 3*/  #include <stdlib.h>
+/* 4*/  int sommeChiffres(int n);
+/* 5*/  int main() {
+/* 6*/      int x, s;
+/* 7*/      printf("Entrez un entier naturel : ");
+/* 8*/      scanf("%d", &x);
+/* 9*/      if (x < 0) {
+/*10*/          printf("Nombre negatif non autorise !\n");
+/*11*/      }
+/*12*/      else {
+/*13*/          s = sommeChiffres(x);
+/*14*/          printf("Somme des chiffres de %d = %d\n", x, s);
+/*15*/      }
+/*16*/      return 0;
+/*17*/  }
+/*18*/  int sommeChiffres(int n) {
+/*19*/      int somme = 0;
+/*20*/      while (n != 0) { somme = somme + n % 10; n = n / 10; }
+/*21*/      return somme;
+/*22*/  }
+\end{codec}
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+\item Donner le rôle de :
+  \begin{enumerate}[label=\textbf{1.\arabic*}]
+  \item \textbf{(0,25 pt)} la ligne 4 (la déclaration
+  \code{int sommeChiffres(int n);}) ;
+  \item \textbf{(0,25 pt)} la ligne 8 (\code{scanf("\%d", \&x);}).
+  \end{enumerate}
+\item \textbf{(0,5 pt)} Présenter la différence fondamentale entre la variable
+\code{x} (ligne 6) et la variable \code{n} (ligne 18) dans ce programme.
+\item \textbf{(1,5 pt)} Exécuter pas à pas la fonction \code{sommeChiffres}
+lorsque \code{x = 472} (présenter la trace dans un tableau : tours de boucle,
+valeurs de \code{n}, de \code{n \% 10} et de \code{somme}).
+\item \textbf{(1 pt)} Réécrire les instructions de la structure \code{if/else}
+(lignes 9 à 15) en utilisant l'opérateur ternaire (\code{ ? : }) pour déterminer
+le message, l'affichage de la somme restant inchangé.
+\item \textbf{(1,5 pt)} Réécrire la fonction \code{sommeChiffres} sous forme
+\textbf{récursive}.
+\end{enumerate}
+
+% =====================================================================
+%  CORRIGÉ
+% =====================================================================
+\corrige{du sujet TI n\textsuperscript{o}\,1}
+
+\subsubsection*{Partie I — Exercice 1 (HTML / JavaScript)}
+
+\textbf{1. Définition — page web statique.} Une \emph{page web statique} est une
+page dont le contenu est figé : il est écrit une fois pour toutes en HTML et
+s'affiche à l'identique pour tous les visiteurs, sans traitement côté serveur ni
+accès à une base de données. (Par opposition, une page \emph{dynamique} est
+générée à la volée, par exemple par PHP.)
+
+\medskip
+\textbf{2. Langages.} Le langage qui structure le contenu d'une page web est
+\textbf{HTML} ; celui qui la rend interactive côté client est \textbf{JavaScript}.
+
+\medskip
+\textbf{3. Formulaire HTML (\code{bookForm}) avec tableau 5$\times$2.}
+
+\begin{codehtml}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Ajout d'un livre</title>
+  <script src="validation.js"></script>
+</head>
+<body>
+  <h2>Nouveau livre</h2>
+  <form name="bookForm" method="POST" action="ajouter_livre.php"
+        onsubmit="return validateForm()">
+    <table border="1" cellpadding="6">
+      <tr>
+        <td>Titre</td>
+        <td><input type="text" name="titre" id="titre"></td>
+      </tr>
+      <tr>
+        <td>Auteur</td>
+        <td><input type="text" name="auteur" id="auteur"></td>
+      </tr>
+      <tr>
+        <td>Catégorie</td>
+        <td><input type="text" name="categorie" id="categorie"></td>
+      </tr>
+      <tr>
+        <td>Nombre d'exemplaires</td>
+        <td><input type="text" name="nbExemplaires" id="nbExemplaires"></td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center">
+          <input type="submit" name="ajouter" value="Ajouter">
+        </td>
+      </tr>
+    </table>
+  </form>
+</body>
+</html>
+\end{codehtml}
+
+\fig{Tableau de 5 lignes $\times$ 2 colonnes ; la validation est déclenchée par \code{onsubmit}.}
+
+\begin{remarque}
+On donne à chaque champ un attribut \code{id} pour pouvoir le retrouver facilement
+en JavaScript avec \code{document.getElementById}. Le champ
+\emph{nombre d'exemplaires} est de type \code{text} (et non \code{number}) afin de
+pouvoir contrôler nous-mêmes, en JavaScript, qu'une valeur numérique a bien été
+saisie.
+\end{remarque}
+
+\medskip
+\textbf{4. Fonction \code{validateForm()}.}
+
+\begin{codejs}
+function validateForm() {
+  // Récupération des valeurs saisies (sans espaces superflus)
+  var titre  = document.getElementById("titre").value.trim();
+  var auteur = document.getElementById("auteur").value.trim();
+  var categorie = document.getElementById("categorie").value.trim();
+  var nbExp  = document.getElementById("nbExemplaires").value.trim();
+
+  // 1) Les trois champs texte doivent etre non vides
+  if (titre === "" || auteur === "" || categorie === "") {
+    alert("Saisie invalide : verifiez les champs");
+    return false;   // annule l'envoi du formulaire
+  }
+
+  // 2) Le nombre d'exemplaires doit etre une valeur numerique
+  if (nbExp === "" || isNaN(nbExp)) {
+    alert("Saisie invalide : verifiez les champs");
+    return false;
+  }
+
+  // Tout est correct
+  alert("Livre pret a etre enregistre");
+  return true;    // autorise l'envoi vers ajouter_livre.php
+}
+\end{codejs}
+
+\begin{remarque}
+\code{isNaN(nbExp)} renvoie \code{true} quand la valeur \emph{n'est pas un
+nombre}. En renvoyant \code{false}, la fonction empêche l'envoi du formulaire
+(grâce à \code{onsubmit="return validateForm()"}).
+\end{remarque}
+
+\subsubsection*{Partie I — Exercice 2 (PHP / MySQL)}
+
+\textbf{1. Définition — base de données.} Une \emph{base de données} est un
+ensemble structuré et organisé de données, stockées de façon durable, de manière
+à pouvoir être facilement recherchées, consultées et mises à jour.
+
+\medskip
+\textbf{2. SGBD.} \emph{Système de Gestion de Base de Données} (en anglais
+\emph{DBMS}). Exemples : MySQL, PostgreSQL, Oracle.
+
+\medskip
+\textbf{3. Côté d'exécution de PHP.} Un script PHP s'exécute du \textbf{côté
+serveur} ; le navigateur du client ne reçoit que le résultat (du HTML).
+
+\medskip
+\textbf{4. Éléments d'un environnement intégré de développement web.} On retrouve
+au minimum : un \textbf{serveur web} (Apache), un \textbf{interpréteur PHP} et un
+\textbf{serveur de base de données} (MySQL/MariaDB). Une suite comme
+\emph{WampServer} ou \emph{XAMPP} regroupe ces trois éléments ; on y ajoute en
+général un éditeur de code et l'outil d'administration \emph{phpMyAdmin}.
+
+\medskip
+\textbf{5. Rôle des fonctions.}
+\begin{itemize}
+\item \code{mysqli\_connect()} : ouvre une connexion au serveur MySQL et
+sélectionne la base de données ; elle renvoie un identifiant de connexion.
+\item \code{mysqli\_query()} : envoie (exécute) une requête SQL sur la base via
+la connexion ouverte ; pour un \code{SELECT}, elle renvoie un jeu de résultats.
+\end{itemize}
+
+\medskip
+\textbf{6. Différence \code{mysqli\_fetch\_assoc()} / \code{mysqli\_fetch\_row()}.}
+Les deux extraient une ligne du résultat sous forme de tableau, mais :
+\code{mysqli\_fetch\_assoc()} renvoie un tableau \textbf{associatif} indexé par
+le \emph{nom des colonnes} (ex. \code{\$row["titre"]}), tandis que
+\code{mysqli\_fetch\_row()} renvoie un tableau \textbf{indexé numériquement} à
+partir de 0 (ex. \code{\$row[0]}).
+
+\medskip
+\textbf{7. \code{ajouter\_livre.php} — connexion, récupération, affichage.}
+
+\begin{codephp}
+<?php
+  // (a) Connexion a la base BIBLIO_DB
+  $conn = mysqli_connect("localhost", "root", "", "BIBLIO_DB");
+  if (!$conn) {
+    die("Echec de la connexion : " . mysqli_connect_error());
+  }
+
+  // (b) Recuperation des donnees envoyees par le formulaire (methode POST)
+  $titre        = $_POST["titre"];
+  $auteur       = $_POST["auteur"];
+  $categorie    = $_POST["categorie"];
+  $nbExemplaires = $_POST["nbExemplaires"];
+
+  // (c) Affichage des donnees dans un tableau HTML
+  echo "<table border='1' cellpadding='6'>";
+  echo "<tr><td>Titre</td><td>" . $titre . "</td></tr>";
+  echo "<tr><td>Auteur</td><td>" . $auteur . "</td></tr>";
+  echo "<tr><td>Categorie</td><td>" . $categorie . "</td></tr>";
+  echo "<tr><td>Nombre d'exemplaires</td><td>" . $nbExemplaires . "</td></tr>";
+  echo "</table>";
+?>
+\end{codephp}
+
+\medskip
+\textbf{8. Requête SQL d'insertion + code PHP.} La requête SQL d'insertion est :
+
+\begin{codesql}
+INSERT INTO LIVRES (titre, auteur, categorie, nbExemplaires)
+VALUES ('Things Fall Apart', 'Chinua Achebe', 'Roman', 12);
+\end{codesql}
+
+\noindent En PHP, en réutilisant les données récupérées du formulaire :
+
+\begin{codephp}
+<?php
+  // Construction de la requete avec les valeurs du formulaire
+  $sql = "INSERT INTO LIVRES (titre, auteur, categorie, nbExemplaires)
+          VALUES ('$titre', '$auteur', '$categorie', '$nbExemplaires')";
+
+  // Execution de la requete
+  if (mysqli_query($conn, $sql)) {
+    echo "<p>Livre ajoute avec succes !</p>";
+  } else {
+    echo "<p>Echec de l'ajout : " . mysqli_error($conn) . "</p>";
+  }
+
+  mysqli_close($conn);   // fermeture de la connexion
+?>
+\end{codephp}
+
+\begin{remarque}
+Dans une application réelle, on protégerait la requête contre les injections SQL
+(requêtes préparées, \code{mysqli\_real\_escape\_string}). Au Bac TI, l'écriture
+directe ci-dessus est acceptée.
+\end{remarque}
+
+\subsubsection*{Partie II — Exercice 1 (structures et fonctions en C)}
+
+\textbf{1. Déclaration de la structure \code{Livre}.}
+
+\begin{codec}
+struct Livre {
+    int  code;             /* code du livre (entier)        */
+    char titre[50];        /* titre (chaine de 50 car.)     */
+    char auteur[50];       /* auteur (chaine de 50 car.)    */
+    int  nbExemplaires;    /* nombre d'exemplaires (entier) */
+};
+\end{codec}
+
+\medskip
+\textbf{2. Déclaration du tableau \code{biblio}.}
+
+\begin{codec}
+struct Livre biblio[200];
+\end{codec}
+
+\medskip
+\textbf{3. Deux avantages des fonctions.}
+\begin{itemize}
+\item Elles évitent la répétition du code : on écrit un traitement une seule fois
+et on l'appelle autant de fois que nécessaire (réutilisabilité).
+\item Elles rendent le programme plus lisible et plus facile à corriger, en le
+découpant en blocs courts ayant chacun un rôle précis (modularité).
+\end{itemize}
+
+\medskip
+\textbf{4. Fonction \code{rechercherLivre} (recherche séquentielle).}
+
+\begin{codec}
+int rechercherLivre(struct Livre biblio[], int n, int code) {
+    int i;
+    for (i = 0; i < n; i++) {
+        if (biblio[i].code == code) {        /* livre trouve */
+            printf("Titre   : %s\n", biblio[i].titre);
+            printf("Auteur  : %s\n", biblio[i].auteur);
+            printf("Exempl. : %d\n", biblio[i].nbExemplaires);
+            return i;                        /* indice de la case trouvee */
+        }
+    }
+    printf("Aucun livre ne correspond a ce code\n");
+    return -1;                               /* non trouve */
+}
+\end{codec}
+
+\begin{remarque}
+On parcourt le tableau case par case (de l'indice 0 à \code{n-1}) : c'est la
+\emph{recherche séquentielle}. Dès que le code recherché est rencontré, on
+affiche les informations et on quitte la fonction avec \code{return}, sans
+parcourir le reste du tableau.
+\end{remarque}
+
+\subsubsection*{Partie II — Exercice 2 (programme « somme des chiffres »)}
+
+\textbf{1. Rôle des lignes.}
+\begin{itemize}
+\item \textbf{Ligne 4} (\code{int sommeChiffres(int n);}) : c'est le
+\emph{prototype} (déclaration) de la fonction. Il annonce au compilateur le nom
+de la fonction, le type de son paramètre (\code{int}) et le type de sa valeur de
+retour (\code{int}), avant son utilisation dans \code{main}.
+\item \textbf{Ligne 8} (\code{scanf("\%d", \&x);}) : elle lit au clavier un
+entier saisi par l'utilisateur et le range dans la variable \code{x} (le
+\code{\&} fournit l'adresse de \code{x}).
+\end{itemize}
+
+\medskip
+\textbf{2. Différence entre \code{x} et \code{n}.} \code{x} est une variable
+\textbf{locale à \code{main}} : elle contient la valeur saisie par l'utilisateur.
+\code{n} est le \textbf{paramètre formel} de la fonction \code{sommeChiffres} :
+c'est une variable locale à la fonction qui reçoit une \emph{copie} de la valeur
+de \code{x} au moment de l'appel (passage par valeur). Modifier \code{n} dans la
+fonction ne change donc pas \code{x} dans \code{main}.
+
+\medskip
+\textbf{3. Trace pour \code{x = 472}.} La fonction est appelée avec \code{n = 472}
+et \code{somme = 0}. La boucle \code{while} tourne tant que \code{n != 0} :
+
+\begin{center}\small
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+\textbf{Tour} & \textbf{n (début)} & \textbf{n \% 10} & \textbf{somme} & \textbf{n (fin = n / 10)}\\
+\midrule
+1 & 472 & 2 & 0 + 2 = 2  & 47\\
+2 & 47  & 7 & 2 + 7 = 9  & 4\\
+3 & 4   & 4 & 9 + 4 = 13 & 0\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent À l'issue du tour 3, \code{n} vaut 0 : la boucle s'arrête. La fonction
+renvoie \code{somme = 13}. Le programme affiche :
+\emph{« Somme des chiffres de 472 = 13 »}.
+
+\medskip
+\textbf{4. Réécriture du \code{if/else} avec l'opérateur ternaire.} Le bloc des
+lignes 9 à 15 peut se réécrire ainsi (on choisit le message avec le ternaire) :
+
+\begin{codec}
+char *message = (x < 0) ? "Nombre negatif non autorise !"
+                        : "OK";
+if (x < 0)
+    printf("%s\n", message);
+else {
+    s = sommeChiffres(x);
+    printf("Somme des chiffres de %d = %d\n", x, s);
+}
+\end{codec}
+
+\noindent Une forme plus compacte, lorsqu'on ne veut afficher qu'un message :
+
+\begin{codec}
+(x < 0) ? printf("Nombre negatif non autorise !\n")
+        : printf("Somme des chiffres de %d = %d\n", x, sommeChiffres(x));
+\end{codec}
+
+\medskip
+\textbf{5. Version récursive de \code{sommeChiffres}.}
+
+\begin{codec}
+int sommeChiffres(int n) {
+    if (n == 0)                       /* cas de base */
+        return 0;
+    return (n % 10) + sommeChiffres(n / 10);   /* dernier chiffre + reste */
+}
+\end{codec}
+
+\begin{remarque}
+À chaque appel, on isole le dernier chiffre avec \code{n \% 10}, puis on relance
+la fonction sur \code{n / 10} (le nombre privé de son dernier chiffre).
+La récursion s'arrête quand \code{n} vaut 0 : c'est le \emph{cas de base},
+indispensable pour éviter une récursion infinie.
+\end{remarque}
+
+\begin{aretenir}
+Un sujet TI se compose toujours de deux parties indépendantes notées sur 10.
+\textbf{Partie web} : sache écrire un formulaire HTML dans un tableau, une
+fonction \code{validateForm()} (champs non vides, \code{isNaN}, \code{return
+false}), une connexion \code{mysqli\_connect} et une requête (\code{INSERT},
+\code{SELECT}, \code{DELETE}). \textbf{Partie C} : maîtrise la déclaration d'une
+\code{struct}, un tableau de structures, la recherche séquentielle, la trace
+pas-à-pas d'une boucle et le passage d'une version itérative à une version
+récursive.
+\end{aretenir}

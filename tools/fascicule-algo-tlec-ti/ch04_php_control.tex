@@ -1,0 +1,718 @@
+\chapter{Structures de contrôle en PHP}
+
+\begin{synthese}[Au programme]
+Donner de l'intelligence à un script : prendre des décisions avec \code{if},
+\code{else}, \code{elseif}, l'opérateur ternaire et \code{switch} ; répéter des
+traitements avec \code{while}, \code{do…while}, \code{for} et \code{foreach} ;
+maîtriser \code{break}, \code{continue} et la fonction \code{date()}. Ce sont les
+outils qui transforment une page statique en application web dynamique.
+\end{synthese}
+
+\section{Pourquoi des structures de contrôle ?}
+
+Jusqu'ici, nos scripts exécutaient leurs instructions \textbf{les unes après les
+autres}, de haut en bas. Mais un vrai programme doit \textbf{choisir} (afficher
+« Admis » ou « Recalé » selon la moyenne) et \textbf{répéter} (afficher la table de
+multiplication de 7). Les \textbf{structures de contrôle} pilotent cet ordre
+d'exécution.
+
+\begin{definition}
+On distingue deux grandes familles de structures de contrôle :
+\begin{itemize}
+  \item les structures \textbf{conditionnelles} (ou de \emph{sélection}) :
+        \code{if}, \code{elseif}, \code{else}, \code{switch} ;
+  \item les structures \textbf{répétitives} (ou \emph{boucles}) : \code{while},
+        \code{do…while}, \code{for}, \code{foreach}.
+\end{itemize}
+\end{definition}
+
+\section{Les conditions}
+
+\subsection{La condition simple : \texttt{if}}
+
+\begin{definition}
+L'instruction \code{if} (« si ») exécute un bloc d'instructions \textbf{uniquement
+si} une condition est vraie. La condition est une expression qui vaut \code{true}
+(vrai) ou \code{false} (faux).
+\end{definition}
+
+\begin{syntaxe}
+\code{if (condition) \{ instructions si vrai \}}
+\end{syntaxe}
+
+\begin{codephp}
+<?php
+  $moyenne = 12.5;
+  if ($moyenne >= 10) {
+    echo "Félicitations, vous êtes admis !";
+  }
+?>
+\end{codephp}
+
+\fig{Si la moyenne atteint 10, le message s'affiche ; sinon, rien ne se passe.}
+
+\begin{attention}
+La condition se place entre parenthèses \code{( )} et le bloc entre accolades
+\code{\{ \}}. Attention à utiliser \code{==} (comparaison) et \textbf{non} \code{=}
+(affectation) : \code{if (\$x = 5)} affecte 5 à \code{\$x} au lieu de tester, une
+erreur très fréquente.
+\end{attention}
+
+\subsection{Choisir entre deux cas : \texttt{if…else}}
+
+\begin{definition}
+\code{else} (« sinon ») fournit un bloc à exécuter \textbf{quand la condition est
+fausse}. Exactement un des deux blocs est exécuté.
+\end{definition}
+
+\begin{codephp}
+<?php
+  $moyenne = 8;
+  if ($moyenne >= 10) {
+    echo "Résultat : ADMIS";
+  } else {
+    echo "Résultat : RECALÉ";
+  }
+?>
+\end{codephp}
+
+\subsection{Choisir parmi plusieurs cas : \texttt{if…elseif…else}}
+
+Quand il y a plus de deux possibilités, on enchaîne les conditions avec
+\code{elseif}. PHP teste les conditions \textbf{dans l'ordre} et s'arrête à la
+première qui est vraie.
+
+\begin{codephp}
+<?php
+  // Mention au baccalauréat selon la moyenne
+  $moyenne = 14.5;
+  if ($moyenne >= 16) {
+    echo "Mention : Très Bien";
+  } elseif ($moyenne >= 14) {
+    echo "Mention : Bien";
+  } elseif ($moyenne >= 12) {
+    echo "Mention : Assez Bien";
+  } elseif ($moyenne >= 10) {
+    echo "Mention : Passable";
+  } else {
+    echo "Ajourné";
+  }
+?>
+\end{codephp}
+
+\fig{Pour 14,5 : le test \texttt{>= 16} échoue, \texttt{>= 14} réussit, on affiche « Bien ».}
+
+\begin{attention}
+L'\textbf{ordre des tests compte}. Si on plaçait \code{\$moyenne >= 10} en premier,
+toutes les bonnes moyennes afficheraient « Passable », car \code{14.5 >= 10} est
+déjà vrai. On va donc \textbf{du plus exigeant au moins exigeant}.
+\end{attention}
+
+\subsection{L'opérateur ternaire}
+
+\begin{definition}
+L'opérateur \textbf{ternaire} \code{? :} est un raccourci pour un \code{if…else}
+qui choisit \textbf{entre deux valeurs}. On le lit : « \emph{condition} ? \emph{valeur
+si vrai} : \emph{valeur si faux} ».
+\end{definition}
+
+\begin{syntaxe}
+\code{condition ? valeurSiVrai : valeurSiFaux}
+\end{syntaxe}
+
+\begin{codephp}
+<?php
+  $moyenne = 11;
+  $resultat = ($moyenne >= 10) ? "Admis" : "Recalé";
+  echo "Décision : $resultat";   // affiche : Décision : Admis
+?>
+\end{codephp}
+
+\begin{remarque}
+Le ternaire est pratique pour une affectation courte, mais pour plusieurs cas ou
+des blocs longs, le \code{if…elseif…else} reste plus lisible.
+\end{remarque}
+
+\section{L'instruction \texttt{switch}}
+
+\begin{definition}
+\code{switch} compare une \textbf{même variable} à plusieurs valeurs précises
+(\code{case}). C'est plus lisible qu'une longue suite de \code{elseif} lorsqu'on
+teste l'égalité avec des valeurs fixes.
+\end{definition}
+
+\begin{syntaxe}
+\code{switch (\$var) \{ case valeur1: ... break; case valeur2: ... break; default: ... \}}
+\end{syntaxe}
+
+\begin{codephp}
+<?php
+  // Afficher la filière selon un code saisi
+  $code = "TI";
+  switch ($code) {
+    case "A4":
+      echo "Série A4 (littéraire)";
+      break;
+    case "C":
+      echo "Série C (mathématiques)";
+      break;
+    case "TI":
+      echo "Série TI (technologies de l'information)";
+      break;
+    default:
+      echo "Série inconnue";
+  }
+?>
+\end{codephp}
+
+\fig{Sans le \texttt{break}, l'exécution « tomberait » dans le case suivant.}
+
+\begin{attention}
+Le mot-clé \code{break} est \textbf{indispensable} à la fin de chaque \code{case} :
+il arrête le \code{switch}. Sans lui, PHP continue d'exécuter les \code{case}
+suivants (effet de « cascade »). Le bloc \code{default} est optionnel et joue le
+rôle du \code{else}.
+\end{attention}
+
+\begin{exemple}
+On peut volontairement \textbf{regrouper} des cas en omettant le \code{break} :
+\begin{codephp}
+<?php
+  $jour = "samedi";
+  switch ($jour) {
+    case "samedi":
+    case "dimanche":
+      echo "C'est le week-end !";
+      break;
+    default:
+      echo "C'est un jour de cours.";
+  }
+?>
+\end{codephp}
+\end{exemple}
+
+\section{Opérateurs de comparaison et logiques}
+
+Une condition repose sur des \textbf{opérateurs} qui renvoient \code{true} ou
+\code{false}.
+
+\begin{center}\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Opérateur} & \textbf{Signification} & \textbf{Exemple vrai}\\
+\midrule
+\code{==}  & égal (valeur)            & \code{5 == "5"}\\
+\code{===} & identique (valeur + type)& \code{5 === 5}\\
+\code{!=}  & différent                & \code{4 != 5}\\
+\code{<}   & inférieur                & \code{3 < 10}\\
+\code{>}   & supérieur                & \code{10 > 3}\\
+\code{<=}  & inférieur ou égal        & \code{10 <= 10}\\
+\code{>=}  & supérieur ou égal        & \code{12 >= 10}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{attention}
+\code{==} compare seulement les valeurs : \code{5 == "5"} est \textbf{vrai} (PHP
+convertit la chaîne en nombre). \code{===} compare \textbf{valeur ET type} :
+\code{5 === "5"} est \textbf{faux} (entier contre chaîne). En cas de doute, préfère
+\code{===}, plus sûr.
+\end{attention}
+
+Les \textbf{opérateurs logiques} combinent plusieurs conditions :
+
+\begin{center}\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Opérateur} & \textbf{Nom} & \textbf{Vrai quand\dots}\\
+\midrule
+\code{\&\&} & ET  & les deux conditions sont vraies\\
+\code{||}   & OU  & au moins une condition est vraie\\
+\code{!}    & NON & la condition est fausse (inverse)\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{codephp}
+<?php
+  $age = 17;
+  $moyenne = 11;
+  // Admis ET majeur ?
+  if ($moyenne >= 10 && $age >= 18) {
+    echo "Admis et majeur";
+  }
+  // Boursier si moyenne très haute OU situation sociale
+  $boursier = ($moyenne >= 16) || ($age < 16);
+  // Inverser une condition avec !
+  if (!($moyenne >= 10)) {
+    echo "Doit repasser l'examen";
+  }
+?>
+\end{codephp}
+
+\section{Les boucles}
+
+\begin{definition}
+Une \textbf{boucle} répète un bloc d'instructions tant qu'une condition reste vraie.
+Le bloc répété s'appelle le \textbf{corps} de la boucle, et chaque répétition une
+\textbf{itération}.
+\end{definition}
+
+\subsection{La boucle \texttt{while}}
+
+\code{while} (« tant que ») teste la condition \textbf{avant} chaque itération. Si
+elle est fausse dès le départ, le corps n'est jamais exécuté.
+
+\begin{syntaxe}
+\code{while (condition) \{ instructions \}}
+\end{syntaxe}
+
+\begin{codephp}
+<?php
+  // Compter de 1 à 5
+  $i = 1;
+  while ($i <= 5) {
+    echo $i . " ";   // affiche : 1 2 3 4 5
+    $i = $i + 1;     // ou $i++  : ne pas oublier !
+  }
+?>
+\end{codephp}
+
+\begin{attention}
+Il faut \textbf{toujours} faire évoluer la variable de la condition (ici \code{\$i++})
+à l'intérieur du corps. Sinon la condition reste vraie pour toujours : c'est une
+\textbf{boucle infinie} qui bloque le serveur.
+\end{attention}
+
+\subsection{La boucle \texttt{do…while}}
+
+\code{do…while} teste la condition \textbf{après} chaque itération : le corps est
+donc exécuté \textbf{au moins une fois}, même si la condition est fausse au départ.
+
+\begin{syntaxe}
+\code{do \{ instructions \} while (condition);}
+\end{syntaxe}
+
+\begin{codephp}
+<?php
+  $i = 10;
+  do {
+    echo "Exécuté une fois, $i = $i";  // s'affiche bien
+  } while ($i < 5);                     // la condition est pourtant fausse
+?>
+\end{codephp}
+
+\fig{Le point-virgule après \texttt{while(...)} est obligatoire ici.}
+
+\subsection{La boucle \texttt{for}}
+
+\begin{definition}
+La boucle \code{for} regroupe en une seule ligne les trois étapes d'une répétition
+comptée : l'\textbf{initialisation}, la \textbf{condition} et l'\textbf{incrément}.
+C'est la boucle idéale quand on connaît le nombre de tours à l'avance.
+\end{definition}
+
+\begin{syntaxe}
+\code{for (initialisation; condition; incrément) \{ instructions \}}
+\end{syntaxe}
+
+\begin{codephp}
+<?php
+  // Table de multiplication de 7
+  $n = 7;
+  for ($i = 1; $i <= 10; $i++) {
+    echo "$n x $i = " . ($n * $i) . "<br>";
+  }
+?>
+\end{codephp}
+
+\fig{Affiche : 7 x 1 = 7, 7 x 2 = 14, … jusqu'à 7 x 10 = 70.}
+
+\begin{exemple}
+\textbf{Somme des entiers de 1 à n} avec une boucle \code{for} :
+\begin{codephp}
+<?php
+  $n = 100;
+  $somme = 0;
+  for ($i = 1; $i <= $n; $i++) {
+    $somme = $somme + $i;   // ou $somme += $i;
+  }
+  echo "Somme de 1 à $n = $somme";   // 5050
+?>
+\end{codephp}
+\end{exemple}
+
+\begin{exemple}
+\textbf{Compter à rebours} en faisant \textbf{décroître} le compteur :
+\begin{codephp}
+<?php
+  for ($i = 5; $i >= 1; $i--) {
+    echo $i . "... ";   // affiche : 5... 4... 3... 2... 1...
+  }
+  echo "Décollage !";
+?>
+\end{codephp}
+\end{exemple}
+
+\subsection{La boucle \texttt{foreach} (parcours de tableau)}
+
+\begin{definition}
+\code{foreach} parcourt \textbf{tous les éléments d'un tableau}, un par un, sans se
+soucier des indices. C'est la boucle naturelle pour traiter une liste (élèves,
+notes, produits\dots).
+\end{definition}
+
+\begin{syntaxe}
+\code{foreach (\$tableau as \$valeur) \{ ... \}} \quad ou \\
+\code{foreach (\$tableau as \$cle => \$valeur) \{ ... \}}
+\end{syntaxe}
+
+\begin{codephp}
+<?php
+  // Liste des élèves d'une classe de Tle TI
+  $eleves = ["Awa", "Bello", "Chimène", "Ngono"];
+  foreach ($eleves as $eleve) {
+    echo "Élève : $eleve <br>";
+  }
+?>
+\end{codephp}
+
+Avec la forme \code{\$cle => \$valeur}, on récupère aussi l'indice (ou la clé pour
+un tableau associatif) :
+
+\begin{codephp}
+<?php
+  $notes = ["Maths" => 14, "PHP" => 16, "Réseaux" => 11];
+  foreach ($notes as $matiere => $note) {
+    echo "$matiere : $note / 20 <br>";
+  }
+?>
+\end{codephp}
+
+\fig{Les tableaux seront étudiés en détail au chapitre suivant.}
+
+\section{Maîtriser les boucles : \texttt{break} et \texttt{continue}}
+
+\begin{definition}
+À l'intérieur d'une boucle :
+\begin{itemize}
+  \item \code{break} \textbf{sort immédiatement} de la boucle ;
+  \item \code{continue} \textbf{saute le reste du tour} et passe directement à
+        l'itération suivante.
+\end{itemize}
+\end{definition}
+
+\begin{codephp}
+<?php
+  // S'arrêter dès qu'on trouve un élève recalé
+  $moyennes = [12, 15, 8, 14, 16];
+  foreach ($moyennes as $m) {
+    if ($m < 10) {
+      echo "Un élève recalé trouvé (moyenne $m), on arrête.";
+      break;          // on quitte la boucle
+    }
+    echo "OK ($m) ";
+  }
+?>
+\end{codephp}
+
+\begin{codephp}
+<?php
+  // Afficher seulement les nombres pairs de 1 à 10
+  for ($i = 1; $i <= 10; $i++) {
+    if ($i % 2 != 0) {
+      continue;       // impair : on saute ce tour
+    }
+    echo $i . " ";    // affiche : 2 4 6 8 10
+  }
+?>
+\end{codephp}
+
+\section{La fonction \texttt{date()}}
+
+\begin{definition}
+La fonction \code{date(\$format)} renvoie la date et l'heure \textbf{du serveur},
+mises en forme selon une chaîne de \textbf{format}. Chaque lettre du format
+représente un élément de la date.
+\end{definition}
+
+\begin{center}\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Lettre} & \textbf{Signification} & \textbf{Exemple}\\
+\midrule
+\code{d} & jour (2 chiffres)      & \code{26}\\
+\code{m} & mois (2 chiffres)      & \code{06}\\
+\code{Y} & année (4 chiffres)     & \code{2026}\\
+\code{H} & heure (00 à 23)        & \code{14}\\
+\code{i} & minutes (00 à 59)      & \code{05}\\
+\code{N} & jour de la semaine (1=lundi) & \code{5}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{codephp}
+<?php
+  // Afficher la date et l'heure du jour
+  echo "Nous sommes le " . date("d/m/Y") . "<br>";
+  echo "Il est " . date("H:i") . "<br>";
+?>
+\end{codephp}
+
+\begin{exemple}
+\textbf{Salutation selon l'heure.} On combine \code{date("H")} (l'heure sous forme
+de nombre) et un \code{if…elseif…else} :
+\begin{codephp}
+<?php
+  $heure = (int) date("H");   // ex. 14 ; (int) force un entier
+  if ($heure < 12) {
+    echo "Bonjour et bonne matinée !";
+  } elseif ($heure < 18) {
+    echo "Bon après-midi !";
+  } else {
+    echo "Bonne soirée !";
+  }
+?>
+\end{codephp}
+\end{exemple}
+
+\begin{exemple}
+\textbf{Afficher le nom du jour} grâce à \code{date("N")} et un tableau :
+\begin{codephp}
+<?php
+  $jours = [1 => "Lundi", "Mardi", "Mercredi", "Jeudi",
+            "Vendredi", "Samedi", "Dimanche"];
+  $numero = (int) date("N");          // 1 = lundi … 7 = dimanche
+  echo "Aujourd'hui, c'est " . $jours[$numero];
+?>
+\end{codephp}
+\end{exemple}
+
+\begin{methode}
+\textbf{Construire une condition correcte.} (1)~Identifier la donnée à tester
+(moyenne, âge, quantité\dots) ; (2)~choisir le bon opérateur de comparaison ;
+(3)~ordonner les cas du plus précis au plus général ; (4)~vérifier qu'\textbf{un
+seul} bloc s'exécute pour chaque valeur d'entrée.
+\end{methode}
+
+\section{Exercices}
+
+\rubrique{Application}
+
+\exo{Pair ou impair}\diff{1}
+Une variable \code{\$nombre} contient un entier. Écris un script qui affiche
+« pair » si le nombre est pair, « impair » sinon. (Indice : un nombre est pair si
+\code{\$nombre \% 2 == 0}.)
+
+\exo{Admission}\diff{1}
+La variable \code{\$moyenne} contient la moyenne d'un élève. Affiche « Admis » si
+elle vaut au moins 10, sinon « Recalé », en utilisant l'\textbf{opérateur ternaire}.
+
+\exo{Le plus grand de trois nombres}\diff{2}
+Trois notes sont rangées dans \code{\$a}, \code{\$b} et \code{\$c}. Affiche la plus
+grande des trois à l'aide de conditions.
+
+\exo{Compte à rebours}\diff{1}
+À l'aide d'une boucle \code{for}, affiche un compte à rebours de 10 jusqu'à 1, puis
+le mot « Partez ! ».
+
+\exo{Table de multiplication}\diff{2}
+La variable \code{\$n} contient un entier. Affiche sa table de multiplication
+(de \code{\$n}~$\times$~1 à \code{\$n}~$\times$~10) à l'aide d'une boucle.
+
+\rubrique{Entraînement}
+
+\exo{Prix avec remise selon la quantité}\diff{2}
+Dans une librairie de Yaoundé, un cahier coûte 500 FCFA. Si le client achète 10
+cahiers ou plus, il bénéficie de 10\,\% de remise ; à partir de 50 cahiers, la
+remise est de 20\,\%. La quantité est dans \code{\$qte}. Calcule et affiche le prix
+total à payer en francs CFA.
+
+\exo{Mention au baccalauréat}\diff{2}
+La variable \code{\$moyenne} contient une moyenne sur 20. Affiche la mention :
+« Très Bien » ($\geq 16$), « Bien » ($\geq 14$), « Assez Bien » ($\geq 12$),
+« Passable » ($\geq 10$) ou « Ajourné » sinon.
+
+\exo{Table de multiplication en HTML}\diff{2}
+Reprends la table de multiplication de \code{\$n}, mais affiche-la dans un véritable
+\textbf{tableau HTML} (balises \code{<table>}, \code{<tr>}, \code{<td>}).
+
+\exo{Somme et moyenne de n notes}\diff{3}
+On dispose d'un tableau \code{\$notes} contenant les notes d'un élève (par exemple
+\code{[12, 15, 8, 14, 16]}). Calcule et affiche la \textbf{somme} et la
+\textbf{moyenne} de ces notes, ainsi que le verdict « Admis » ou « Recalé ».
+
+\exo{FizzBuzz scolaire}\diff{3}
+Pour les nombres de 1 à 30, affiche : « Récré » si le nombre est divisible par 3,
+« Pause » s'il est divisible par 5, « Récré-Pause » s'il est divisible par 3 ET
+par 5, et le nombre lui-même sinon.
+
+\exo{Année bissextile}\diff{3}
+La variable \code{\$annee} contient une année. Affiche si elle est bissextile.
+(Règle : une année est bissextile si elle est divisible par 4 \textbf{et} non
+divisible par 100, \textbf{ou} si elle est divisible par 400.)
+
+\section{Corrigés}
+
+\corrige{de l'exercice 1}
+\begin{codephp}
+<?php
+  $nombre = 7;
+  if ($nombre % 2 == 0) {
+    echo "$nombre est pair";
+  } else {
+    echo "$nombre est impair";
+  }
+?>
+\end{codephp}
+
+\corrige{de l'exercice 2}
+\begin{codephp}
+<?php
+  $moyenne = 11.5;
+  $resultat = ($moyenne >= 10) ? "Admis" : "Recalé";
+  echo $resultat;
+?>
+\end{codephp}
+
+\corrige{de l'exercice 3}
+\begin{codephp}
+<?php
+  $a = 12; $b = 17; $c = 9;
+  $max = $a;                 // on suppose que $a est le plus grand
+  if ($b > $max) {
+    $max = $b;
+  }
+  if ($c > $max) {
+    $max = $c;
+  }
+  echo "La plus grande note est : $max";
+?>
+\end{codephp}
+
+\corrige{de l'exercice 4}
+\begin{codephp}
+<?php
+  for ($i = 10; $i >= 1; $i--) {
+    echo $i . " ";
+  }
+  echo "Partez !";
+?>
+\end{codephp}
+
+\corrige{de l'exercice 5}
+\begin{codephp}
+<?php
+  $n = 8;
+  for ($i = 1; $i <= 10; $i++) {
+    echo "$n x $i = " . ($n * $i) . "<br>";
+  }
+?>
+\end{codephp}
+
+\corrige{de l'exercice 6}
+\begin{codephp}
+<?php
+  $prixUnitaire = 500;   // FCFA
+  $qte = 60;
+  if ($qte >= 50) {
+    $remise = 0.20;
+  } elseif ($qte >= 10) {
+    $remise = 0.10;
+  } else {
+    $remise = 0;
+  }
+  $total = $prixUnitaire * $qte * (1 - $remise);
+  echo "Total à payer : " . $total . " FCFA";
+?>
+\end{codephp}
+
+\corrige{de l'exercice 7}
+\begin{codephp}
+<?php
+  $moyenne = 14.5;
+  if ($moyenne >= 16) {
+    echo "Très Bien";
+  } elseif ($moyenne >= 14) {
+    echo "Bien";
+  } elseif ($moyenne >= 12) {
+    echo "Assez Bien";
+  } elseif ($moyenne >= 10) {
+    echo "Passable";
+  } else {
+    echo "Ajourné";
+  }
+?>
+\end{codephp}
+
+\corrige{de l'exercice 8}
+\begin{codephp}
+<?php
+  $n = 6;
+  echo "<table border='1'>";
+  for ($i = 1; $i <= 10; $i++) {
+    echo "<tr>";
+    echo "<td>$n x $i</td>";
+    echo "<td>" . ($n * $i) . "</td>";
+    echo "</tr>";
+  }
+  echo "</table>";
+?>
+\end{codephp}
+
+\corrige{de l'exercice 9}
+\begin{codephp}
+<?php
+  $notes = [12, 15, 8, 14, 16];
+  $somme = 0;
+  foreach ($notes as $note) {
+    $somme += $note;
+  }
+  $moyenne = $somme / count($notes);   // count() compte les éléments
+  echo "Somme : $somme <br>";
+  echo "Moyenne : " . round($moyenne, 2) . " / 20 <br>";
+  echo ($moyenne >= 10) ? "Admis" : "Recalé";
+?>
+\end{codephp}
+
+\fig{La fonction \texttt{count()} renvoie le nombre d'éléments d'un tableau.}
+
+\corrige{de l'exercice 10}
+\begin{codephp}
+<?php
+  for ($i = 1; $i <= 30; $i++) {
+    if ($i % 3 == 0 && $i % 5 == 0) {
+      echo "Récré-Pause <br>";
+    } elseif ($i % 3 == 0) {
+      echo "Récré <br>";
+    } elseif ($i % 5 == 0) {
+      echo "Pause <br>";
+    } else {
+      echo $i . " <br>";
+    }
+  }
+?>
+\end{codephp}
+
+\fig{On teste d'abord le cas « divisible par 3 ET 5 », sinon il ne serait jamais atteint.}
+
+\corrige{de l'exercice 11}
+\begin{codephp}
+<?php
+  $annee = 2024;
+  if (($annee % 4 == 0 && $annee % 100 != 0) || ($annee % 400 == 0)) {
+    echo "$annee est bissextile";
+  } else {
+    echo "$annee n'est pas bissextile";
+  }
+?>
+\end{codephp}
+
+\begin{aretenir}
+Un script intelligent \textbf{décide} (\code{if}, \code{elseif}, \code{else},
+ternaire, \code{switch}) et \textbf{répète} (\code{while}, \code{do…while},
+\code{for}, \code{foreach}). Ordonne tes conditions du plus précis au plus général,
+n'oublie jamais le \code{break} dans un \code{switch} ni de faire évoluer le
+compteur d'une boucle, et choisis \code{for} quand tu connais le nombre de tours,
+\code{while} sinon.
+\end{aretenir}

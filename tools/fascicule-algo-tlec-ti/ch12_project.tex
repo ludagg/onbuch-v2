@@ -1,0 +1,555 @@
+\chapter{Projet guidé : la calculatrice (et plus)}
+
+\begin{synthese}[Au programme]
+Mener un projet de programmation du début à la fin : du \textbf{cahier des charges}
+au programme testé. On produit une \textbf{calculatrice} complète en C (menu, quatre
+opérations, gestion de la division par zéro), puis un mini-logiciel de
+\textbf{gestion des notes d'une classe} (tableau de structures). C'est la synthèse
+de toute l'année : conditions, boucles, fonctions, tableaux et structures réunis.
+\end{synthese}
+
+\section{La démarche de projet}
+
+Jusqu'ici, tu as appris des « briques » : variables, \code{if}, boucles, fonctions,
+tableaux, structures. Un \textbf{projet} consiste à assembler ces briques pour
+construire un logiciel qui rend un service. On ne se jette pas sur le clavier : on
+suit une \textbf{démarche}.
+
+\begin{definition}
+La \textbf{démarche de projet} est l'enchaînement organisé des étapes qui mènent
+d'un besoin exprimé à un programme fonctionnel et fiable. Les cinq étapes sont :
+\textbf{cahier des charges}, \textbf{analyse}, \textbf{algorithme}, \textbf{codage},
+\textbf{test et débogage}.
+\end{definition}
+
+\subsection{Les cinq étapes}
+
+\begin{enumerate}[label=\arabic*)]
+  \item \textbf{Cahier des charges} — On écrit, en français, \emph{ce que le
+        programme doit faire} : les entrées, les traitements, les sorties, les cas
+        particuliers. C'est le contrat. Exemple : « le programme doit additionner
+        deux nombres saisis par l'utilisateur et afficher le résultat ».
+  \item \textbf{Analyse} — On découpe le problème en sous-problèmes plus simples
+        (méthode \emph{descendante}). Chaque sous-problème deviendra souvent une
+        \textbf{fonction}.
+  \item \textbf{Algorithme} — On écrit la solution en pseudo-code ou par un
+        organigramme, sans se soucier du langage. On vérifie la logique « sur le
+        papier ».
+  \item \textbf{Codage} — On traduit l'algorithme dans le langage choisi (ici, le
+        \textbf{C}), en respectant la syntaxe.
+  \item \textbf{Test et débogage} — On exécute le programme avec des jeux d'essai
+        (valeurs normales \emph{et} cas limites), on repère les erreurs
+        (\emph{bugs}) et on les corrige.
+\end{enumerate}
+
+\begin{methode}
+\textbf{Réussir un projet de programmation.}
+(1)~Lis le sujet et \textbf{reformule} le besoin avec tes mots ;
+(2)~liste les \textbf{entrées}, le \textbf{traitement} et les \textbf{sorties} ;
+(3)~découpe en \textbf{fonctions} (une fonction = une tâche) ;
+(4)~code et compile \textbf{morceau par morceau} ;
+(5)~teste chaque cas, surtout les \textbf{cas limites} (zéro, valeur négative,
+saisie vide).
+\end{methode}
+
+\begin{remarque}
+Un bon réflexe : compiler souvent. Un programme qui grossit de 200 lignes avant la
+première compilation est très difficile à déboguer. Mieux vaut écrire 10 lignes,
+compiler, vérifier, puis continuer.
+\end{remarque}
+
+\subsection{Repérer entrées, traitement, sorties}
+
+Avant tout projet, on remplit ce petit tableau. Pour notre calculatrice :
+
+\begin{center}\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Entrées} & \textbf{Traitement} & \textbf{Sorties}\\
+\midrule
+Le choix de l'opération & Choisir la bonne opération & Le résultat du calcul\\
+Le premier nombre & Calculer & Un message d'erreur si\\
+Le second nombre & (gérer la division par 0) & division par zéro\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Projet 1 — La calculatrice en C}
+
+\subsection{Cahier des charges}
+
+\begin{definition}
+Le \textbf{cahier des charges} décrit précisément le comportement attendu du
+logiciel. C'est le document de référence : si le programme le respecte, le travail
+est réussi.
+\end{definition}
+
+\noindent\textbf{Cahier des charges de la calculatrice :}
+\begin{enumerate}[label=\arabic*)]
+  \item Le programme affiche un \textbf{menu} : 1) Addition, 2) Soustraction,
+        3) Multiplication, 4) Division, 5) Quitter.
+  \item L'utilisateur \textbf{choisit} une opération en tapant son numéro.
+  \item Pour une opération de calcul, le programme demande \textbf{deux nombres}.
+  \item Il \textbf{affiche le résultat} de l'opération.
+  \item Pour la division, si le second nombre est \textbf{zéro}, il affiche un
+        message d'erreur et ne calcule pas.
+  \item Après chaque opération, le programme \textbf{recommence} (réaffiche le
+        menu) tant que l'utilisateur n'a pas choisi « Quitter ».
+\end{enumerate}
+
+\subsection{Conception (analyse + algorithme)}
+
+On découpe le problème. Le menu doit se répéter : c'est une \textbf{boucle}. Comme
+le menu doit s'afficher \emph{au moins une fois}, on choisit une boucle
+\code{do\dots while}. À l'intérieur, selon le choix, on exécute une opération
+différente : c'est un \code{switch}.
+
+Chaque opération devient une \textbf{fonction} : \code{addition}, \code{soustraction},
+\code{multiplication}, \code{division}. Une fonction qui prend deux nombres et
+renvoie un résultat est un bon découpage.
+
+\begin{methode}
+\textbf{Structure générale (pseudo-code).}
+\begin{enumerate}[label=\arabic*)]
+  \item Répéter :
+  \item \quad afficher le menu ;
+  \item \quad lire \code{choix} ;
+  \item \quad selon \code{choix} : 1\,$\to$\,addition, 2\,$\to$\,soustraction,
+        3\,$\to$\,multiplication, 4\,$\to$\,division, 5\,$\to$\,quitter ;
+  \item Tant que \code{choix} $\ne$ 5.
+\end{enumerate}
+\end{methode}
+
+\begin{attention}
+La \textbf{division par zéro} est interdite en mathématiques \emph{et} en
+informatique : diviser par 0 provoque un comportement indéfini (souvent un plantage
+du programme). Il faut \textbf{toujours} tester le diviseur avant de diviser.
+\end{attention}
+
+\subsection{Le code complet commenté}
+
+On utilise le type \code{double} pour accepter les nombres décimaux (ex. 14,5).
+Voici le programme complet, prêt à compiler avec \code{gcc calculatrice.c}.
+
+\begin{codec}
+/* calculatrice.c -- calculatrice a menu (OnBuch, Tle TI) */
+#include <stdio.h>
+
+/* --- Une fonction par operation : chacune renvoie un double --- */
+double addition(double a, double b) {
+    return a + b;
+}
+
+double soustraction(double a, double b) {
+    return a - b;
+}
+
+double multiplication(double a, double b) {
+    return a * b;
+}
+
+/* La division renvoie a/b SEULEMENT si b est non nul. */
+double division(double a, double b) {
+    return a / b;
+}
+
+int main(void) {
+    int choix;       /* le numero choisi dans le menu     */
+    double a, b;     /* les deux nombres a calculer        */
+
+    do {
+        /* 1. Afficher le menu */
+        printf("\n===== CALCULATRICE OnBuch =====\n");
+        printf("1. Addition\n");
+        printf("2. Soustraction\n");
+        printf("3. Multiplication\n");
+        printf("4. Division\n");
+        printf("5. Quitter\n");
+        printf("Votre choix : ");
+        scanf("%d", &choix);
+
+        /* 2. Si on calcule (choix 1 a 4), lire les deux nombres */
+        if (choix >= 1 && choix <= 4) {
+            printf("Premier nombre  : ");
+            scanf("%lf", &a);
+            printf("Second nombre   : ");
+            scanf("%lf", &b);
+        }
+
+        /* 3. Choisir l'operation */
+        switch (choix) {
+            case 1:
+                printf("Resultat : %.2f\n", addition(a, b));
+                break;
+            case 2:
+                printf("Resultat : %.2f\n", soustraction(a, b));
+                break;
+            case 3:
+                printf("Resultat : %.2f\n", multiplication(a, b));
+                break;
+            case 4:
+                /* GESTION DE LA DIVISION PAR ZERO */
+                if (b == 0) {
+                    printf("Erreur : division par zero impossible !\n");
+                } else {
+                    printf("Resultat : %.2f\n", division(a, b));
+                }
+                break;
+            case 5:
+                printf("Au revoir !\n");
+                break;
+            default:
+                printf("Choix invalide, recommencez.\n");
+        }
+    } while (choix != 5);   /* 4. Recommencer tant que != 5 */
+
+    return 0;
+}
+\end{codec}
+
+\fig{Calculatrice complète : menu, fonctions, switch et gestion de la division par zéro.}
+
+\begin{remarque}
+On lit un \code{double} avec \code{\%lf} dans \code{scanf} (le « l » est obligatoire),
+mais on l'affiche avec \code{\%f} (ou \code{\%.2f} pour deux décimales) dans
+\code{printf}. C'est une distinction classique qui piège les débutants.
+\end{remarque}
+
+\subsection{Tests}
+
+On vérifie le programme avec des \textbf{jeux d'essai} : des valeurs choisies pour
+couvrir le cas normal \emph{et} les cas limites.
+
+\begin{center}\small
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{Choix} & \textbf{a} & \textbf{b} & \textbf{Résultat attendu}\\
+\midrule
+1 (addition) & 7 & 3 & 10,00\\
+2 (soustraction) & 7 & 3 & 4,00\\
+3 (multiplication) & 7 & 3 & 21,00\\
+4 (division) & 7 & 2 & 3,50\\
+4 (division) & 7 & 0 & message d'erreur\\
+9 (inexistant) & --- & --- & « Choix invalide »\\
+5 (quitter) & --- & --- & fin du programme\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{methode}
+\textbf{Déboguer.} Si un résultat est faux : (1)~vérifie le \textbf{format}
+(\code{\%lf} en lecture, \code{\%f} en affichage) ; (2)~ajoute des \code{printf}
+temporaires pour afficher les valeurs de \code{a}, \code{b}, \code{choix} ;
+(3)~relis l'algorithme : la logique est-elle bonne ?
+\end{methode}
+
+\subsection{Améliorations possibles}
+
+Le projet de base fonctionne ; on peut l'enrichir :
+\begin{itemize}
+  \item ajouter le \textbf{modulo} (reste de la division entière) ;
+  \item ajouter la \textbf{puissance} ($a^b$) ;
+  \item calculer la \textbf{moyenne} de deux nombres ;
+  \item enregistrer l'historique des calculs dans un tableau.
+\end{itemize}
+Ces extensions sont l'objet des exercices à la fin du chapitre.
+
+\section{Projet 2 — Gestion des notes d'une classe}
+
+Second projet de synthèse : un mini-logiciel pour un professeur du \emph{Lycée
+Bilingue de Bafoussam}. Il gère les moyennes d'une classe à l'aide d'un
+\textbf{tableau de structures}.
+
+\subsection{Cahier des charges}
+
+\begin{enumerate}[label=\arabic*)]
+  \item Chaque élève est décrit par un \textbf{nom} et une \textbf{moyenne}.
+  \item Le programme propose un \textbf{menu} : 1) Ajouter un élève, 2) Afficher la
+        liste, 3) Moyenne de la classe, 4) Major (meilleur élève), 5) Quitter.
+  \item On peut enregistrer jusqu'à 50 élèves.
+  \item Le programme recommence tant qu'on n'a pas choisi « Quitter ».
+\end{enumerate}
+
+\subsection{Conception}
+
+On définit une \textbf{structure} \code{Eleve} regroupant le nom et la moyenne.
+Les élèves sont rangés dans un \textbf{tableau} de \code{Eleve}. Une variable
+\code{nb} compte combien d'élèves ont été saisis. Chaque action du menu devient une
+\textbf{fonction}.
+
+\begin{syntaxe}
+\code{struct Eleve \{ char nom[30]; float moyenne; \};}\quad puis un tableau :
+\code{struct Eleve classe[50];}
+\end{syntaxe}
+
+\begin{remarque}
+On passe le tableau \code{classe} et le nombre \code{nb} aux fonctions. En C, un
+tableau passé à une fonction peut être \textbf{modifié} par celle-ci (il est passé
+par son adresse). C'est pourquoi \code{ajouter} peut renvoyer le nouveau \code{nb}.
+\end{remarque}
+
+\subsection{Le code complet commenté}
+
+\begin{codec}
+/* notes.c -- gestion des notes d'une classe (OnBuch, Tle TI) */
+#include <stdio.h>
+#include <string.h>
+
+#define MAX 50   /* nombre maximal d'eleves */
+
+/* Un eleve : un nom et une moyenne */
+struct Eleve {
+    char  nom[30];
+    float moyenne;
+};
+
+/* Ajoute un eleve, renvoie le nouveau nombre d'eleves */
+int ajouter(struct Eleve classe[], int nb) {
+    if (nb >= MAX) {
+        printf("Classe pleine !\n");
+        return nb;
+    }
+    printf("Nom de l'eleve   : ");
+    scanf("%s", classe[nb].nom);
+    printf("Moyenne sur 20   : ");
+    scanf("%f", &classe[nb].moyenne);
+    return nb + 1;   /* un eleve de plus */
+}
+
+/* Affiche la liste des eleves */
+void afficher(struct Eleve classe[], int nb) {
+    int i;
+    if (nb == 0) {
+        printf("Aucun eleve enregistre.\n");
+        return;
+    }
+    printf("\n--- Liste de la classe ---\n");
+    for (i = 0; i < nb; i++) {
+        printf("%d. %-15s %.2f/20\n", i + 1, classe[i].nom, classe[i].moyenne);
+    }
+}
+
+/* Calcule et affiche la moyenne de la classe */
+void moyenneClasse(struct Eleve classe[], int nb) {
+    int i;
+    float somme = 0;
+    if (nb == 0) {
+        printf("Aucun eleve : moyenne impossible.\n");
+        return;
+    }
+    for (i = 0; i < nb; i++) {
+        somme = somme + classe[i].moyenne;
+    }
+    printf("Moyenne de la classe : %.2f/20\n", somme / nb);
+}
+
+/* Affiche le major (meilleure moyenne) */
+void major(struct Eleve classe[], int nb) {
+    int i, indiceMax;
+    if (nb == 0) {
+        printf("Aucun eleve enregistre.\n");
+        return;
+    }
+    indiceMax = 0;                       /* on suppose le 1er meilleur */
+    for (i = 1; i < nb; i++) {
+        if (classe[i].moyenne > classe[indiceMax].moyenne) {
+            indiceMax = i;               /* on a trouve mieux */
+        }
+    }
+    printf("Major : %s avec %.2f/20\n",
+           classe[indiceMax].nom, classe[indiceMax].moyenne);
+}
+
+int main(void) {
+    struct Eleve classe[MAX];   /* le tableau d'eleves */
+    int nb = 0;                 /* nombre d'eleves saisis */
+    int choix;
+
+    do {
+        printf("\n===== GESTION DES NOTES =====\n");
+        printf("1. Ajouter un eleve\n");
+        printf("2. Afficher la liste\n");
+        printf("3. Moyenne de la classe\n");
+        printf("4. Major de la classe\n");
+        printf("5. Quitter\n");
+        printf("Votre choix : ");
+        scanf("%d", &choix);
+
+        switch (choix) {
+            case 1: nb = ajouter(classe, nb);   break;
+            case 2: afficher(classe, nb);       break;
+            case 3: moyenneClasse(classe, nb);  break;
+            case 4: major(classe, nb);          break;
+            case 5: printf("Au revoir !\n");    break;
+            default: printf("Choix invalide.\n");
+        }
+    } while (choix != 5);
+
+    return 0;
+}
+\end{codec}
+
+\fig{Gestion des notes : structure Eleve, tableau, et une fonction par action du menu.}
+
+\begin{attention}
+\code{scanf("\%s", classe[nb].nom)} lit un mot \textbf{sans espace} : tape
+\code{Awa} et non \code{Awa Bello}. Pour gérer les prénoms composés, il faudrait
+\code{fgets}, hors programme ici : on s'en tient à un seul mot.
+\end{attention}
+
+\begin{remarque}
+Dans \code{scanf("\%f", \&classe[nb].moyenne)} on met le \code{\&} (adresse) car on
+lit \emph{vers} une variable. Mais pour \code{classe[nb].nom}, qui est un tableau
+de caractères, on n'écrit \textbf{pas} de \code{\&} : le nom d'un tableau est déjà
+une adresse.
+\end{remarque}
+
+\section{Exercices}
+
+\rubrique{Application}
+
+\exo{Étendre la calculatrice : le modulo}\diff{1}
+Ajoute au Projet 1 une option « 6. Modulo » qui affiche le reste de la division
+entière de \code{a} par \code{b} (opérateur \code{\%} sur des entiers). Que faut-il
+prévoir si \code{b} vaut 0 ?
+
+\exo{Étendre la calculatrice : la puissance}\diff{2}
+Ajoute une option « 7. Puissance » qui calcule $a^b$ ($b$ entier positif) à l'aide
+d'une fonction \code{puissance(double a, int b)} utilisant une boucle (sans
+\code{pow}).
+
+\exo{Mention au bulletin}\diff{1}
+Dans le Projet 2, écris une fonction \code{mention(float m)} qui affiche la mention
+selon la moyenne : $\geq 16$ « Très Bien », $\geq 14$ « Bien », $\geq 12$
+« Assez Bien », $\geq 10$ « Passable », sinon « Insuffisant ». Appelle-la dans
+\code{afficher}.
+
+\exo{Compter les admis}\diff{2}
+Ajoute au Projet 2 une option « Nombre d'admis » : une fonction \code{compterAdmis}
+qui renvoie le nombre d'élèves ayant une moyenne $\geq 10$, et affiche le résultat
+ainsi que le taux de réussite en pourcentage.
+
+\rubrique{Entraînement}
+
+\exo{Trier les élèves par moyenne}\diff{3}
+Écris une fonction \code{trier(struct Eleve classe[], int nb)} qui range les élèves
+de la meilleure à la moins bonne moyenne par un \textbf{tri par sélection}. Ajoute
+une option de menu « Classement » qui trie puis affiche la liste.
+
+\exo{Historique de la calculatrice}\diff{3}
+Modifie la calculatrice pour qu'elle enregistre chaque résultat dans un tableau
+\code{double historique[100]}. Ajoute une option « Afficher l'historique » qui
+liste tous les calculs effectués depuis le lancement.
+
+\exo{Moyenne pondérée}\diff{2}
+Une matière a une note et un coefficient. Définis une structure \code{Matiere} avec
+un nom, une note et un coefficient (entier), saisis 4 matières et calcule la moyenne
+pondérée $\dfrac{\sum (\text{note}\times\text{coef})}{\sum \text{coef}}$.
+
+\exo{Recherche d'un élève}\diff{2}
+Dans le Projet 2, ajoute une option « Rechercher » qui demande un nom et affiche la
+moyenne de l'élève correspondant, ou « Élève introuvable » sinon (parcours du
+tableau + \code{strcmp}).
+
+\section{Corrigés}
+
+\corrige{de l'exercice 1}
+Le modulo n'existe que pour les \textbf{entiers} en C (opérateur \code{\%}). On
+ajoute un \code{case 6} et on protège contre le diviseur nul, exactement comme la
+division.
+\begin{codec}
+case 6:
+    if ((int)b == 0) {
+        printf("Erreur : modulo par zero impossible !\n");
+    } else {
+        printf("Reste : %d\n", (int)a % (int)b);
+    }
+    break;
+\end{codec}
+On pense aussi à ajouter la ligne \code{printf("6. Modulo\\n");} dans le menu et à
+modifier le test de lecture en \code{if (choix >= 1 \&\& choix <= 6)}.
+
+\corrige{de l'exercice 2}
+La puissance se calcule en multipliant \code{a} par lui-même \code{b} fois.
+\begin{codec}
+double puissance(double a, int b) {
+    double resultat = 1;   /* a^0 vaut 1 */
+    int i;
+    for (i = 1; i <= b; i++) {
+        resultat = resultat * a;
+    }
+    return resultat;
+}
+\end{codec}
+Dans \code{main}, on ajoute le \code{case 7} : \code{printf("Resultat : \%.2f\\n",
+puissance(a, (int)b));}.
+
+\corrige{de l'exercice 3}
+Une cascade de \code{if\dots else if} testée de la plus haute mention à la plus
+basse.
+\begin{codec}
+void mention(float m) {
+    if      (m >= 16) printf(" -> Tres Bien\n");
+    else if (m >= 14) printf(" -> Bien\n");
+    else if (m >= 12) printf(" -> Assez Bien\n");
+    else if (m >= 10) printf(" -> Passable\n");
+    else              printf(" -> Insuffisant\n");
+}
+\end{codec}
+Dans \code{afficher}, après chaque ligne d'élève, on appelle
+\code{mention(classe[i].moyenne);}.
+
+\corrige{de l'exercice 4}
+On compte les moyennes $\geq 10$, puis on calcule le pourcentage.
+\begin{codec}
+int compterAdmis(struct Eleve classe[], int nb) {
+    int i, admis = 0;
+    for (i = 0; i < nb; i++) {
+        if (classe[i].moyenne >= 10) {
+            admis = admis + 1;
+        }
+    }
+    return admis;
+}
+\end{codec}
+Appel dans le menu :
+\begin{codec}
+int a = compterAdmis(classe, nb);
+printf("Admis : %d / %d\n", a, nb);
+if (nb > 0) {
+    printf("Taux de reussite : %.1f%%\n", 100.0 * a / nb);
+}
+\end{codec}
+
+\corrige{de l'exercice 5}
+\textbf{Tri par sélection} : à chaque tour, on cherche le maximum dans la partie non
+triée et on l'échange avec le premier élément non trié.
+\begin{codec}
+void trier(struct Eleve classe[], int nb) {
+    int i, j, iMax;
+    struct Eleve temp;
+    for (i = 0; i < nb - 1; i++) {
+        iMax = i;
+        for (j = i + 1; j < nb; j++) {
+            if (classe[j].moyenne > classe[iMax].moyenne) {
+                iMax = j;
+            }
+        }
+        /* echange classe[i] et classe[iMax] */
+        temp = classe[i];
+        classe[i] = classe[iMax];
+        classe[iMax] = temp;
+    }
+}
+\end{codec}
+L'échange de deux structures se fait simplement avec une variable temporaire
+\code{temp} de type \code{struct Eleve}. Dans le menu, on appelle \code{trier} puis
+\code{afficher}.
+
+\begin{aretenir}
+Un projet se mène par \textbf{étapes} : cahier des charges $\to$ analyse $\to$
+algorithme $\to$ codage $\to$ test. On \textbf{découpe} en fonctions (une fonction
+= une tâche), on \textbf{compile souvent} et on \textbf{teste les cas limites}
+(division par zéro, classe vide). C'est cette méthode, plus que le code lui-même,
+qui fait le bon programmeur.
+\end{aretenir}

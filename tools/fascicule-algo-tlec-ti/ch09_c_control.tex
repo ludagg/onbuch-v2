@@ -1,0 +1,897 @@
+\chapter{Structures de contrôle en C}
+
+\begin{synthese}[Au programme]
+Faire \emph{décider} et \emph{répéter} un programme C. On étudie les alternatives
+(\code{if}, \code{if\dots else}, \code{switch}), la valeur des booléens (0 = faux,
+tout le reste = vrai) et les trois boucles (\code{for}, \code{while},
+\code{do\dots while}), puis \code{break} et \code{continue}. C'est le cœur de tout
+algorithme : sans elles, un programme ne ferait qu'exécuter ses lignes une à une.
+\end{synthese}
+
+\section{Pourquoi des structures de contrôle ?}
+
+Jusqu'ici, un programme C s'exécute \textbf{ligne après ligne}, du haut vers le bas.
+Mais un vrai programme doit \emph{choisir} (« si la moyenne est $\geq 10$, l'élève
+est admis, \emph{sinon} il redouble ») et \emph{répéter} (« afficher les 53 élèves
+de la classe »). Les \textbf{structures de contrôle} modifient cet ordre linéaire :
+elles dirigent le flot d'exécution.
+
+\begin{definition}
+Une \textbf{structure de contrôle} est une instruction qui commande l'enchaînement
+des autres instructions. On distingue deux grandes familles : les \textbf{structures
+alternatives} (faire un choix) et les \textbf{structures itératives} ou
+\textbf{boucles} (répéter un traitement).
+\end{definition}
+
+\begin{remarque}
+Tous les exemples de ce chapitre sont des programmes C complets et compilables. On
+suppose en tête de fichier la ligne \code{\#include <stdio.h>}, qui donne accès à
+\code{printf} (afficher) et \code{scanf} (lire au clavier).
+\end{remarque}
+
+\section{Les alternatives}
+
+\subsection{Le \texttt{if} simple}
+
+L'instruction \code{if} exécute un bloc \textbf{seulement si} une condition est vraie.
+
+\begin{syntaxe}
+\code{if (condition) \{ instructions \}}
+\end{syntaxe}
+
+\begin{codec}
+#include <stdio.h>
+
+int main(void) {
+    int age;
+    printf("Quel age as-tu ? ");
+    scanf("%d", &age);
+
+    if (age >= 18) {
+        printf("Tu es majeur.\n");   // exécuté si age >= 18
+    }
+
+    printf("Fin du programme.\n");   // toujours exécuté
+    return 0;
+}
+\end{codec}
+
+\fig{Le bloc entre accolades n'est exécuté que si la condition est vraie.}
+
+\begin{attention}
+La condition est entre parenthèses, et on n'écrit \textbf{jamais} de point-virgule
+juste après le \code{)}. Écrire \code{if (age >= 18);} crée un bloc vide : le test
+ne sert alors à rien et le bloc suivant s'exécute toujours.
+\end{attention}
+
+\subsection{Le \texttt{if\dots else}}
+
+Le \code{else} fournit une issue \emph{de secours} : il s'exécute quand la condition
+est fausse.
+
+\begin{syntaxe}
+\code{if (condition) \{ \dots \} else \{ \dots \}}
+\end{syntaxe}
+
+\begin{codec}
+#include <stdio.h>
+
+int main(void) {
+    float moyenne;
+    printf("Saisis la moyenne de l'eleve : ");
+    scanf("%f", &moyenne);
+
+    if (moyenne >= 10) {
+        printf("Admis.\n");
+    } else {
+        printf("Redouble.\n");
+    }
+    return 0;
+}
+\end{codec}
+
+\begin{exemple}
+Premier exemple classique : déterminer si un entier est \textbf{pair ou impair}.
+Un nombre est pair si le reste de sa division par 2 vaut 0 (opérateur \code{\%}).
+\end{exemple}
+
+\begin{codec}
+#include <stdio.h>
+
+int main(void) {
+    int n;
+    printf("Entre un entier : ");
+    scanf("%d", &n);
+
+    if (n % 2 == 0) {
+        printf("%d est pair.\n", n);
+    } else {
+        printf("%d est impair.\n", n);
+    }
+    return 0;
+}
+\end{codec}
+
+\fig{pair / impair — le test n\%2 == 0 vaut le cœur de l'algorithme.}
+
+\textbf{Trace} pour \code{n = 7} : \code{7 \% 2} vaut \code{1}, donc \code{1 == 0} est
+faux $\rightarrow$ on exécute le \code{else} $\rightarrow$ affichage
+« 7 est impair. ».
+
+\subsection{Le \texttt{if\dots else if\dots else}}
+
+Pour trier parmi \textbf{plusieurs cas exclusifs}, on enchaîne des \code{else if}.
+Le programme évalue les conditions de haut en bas et s'arrête à la \textbf{première}
+qui est vraie.
+
+\begin{codec}
+#include <stdio.h>
+
+int main(void) {
+    float moy;
+    printf("Moyenne de l'eleve (sur 20) : ");
+    scanf("%f", &moy);
+
+    if (moy >= 16) {
+        printf("Mention Tres Bien.\n");
+    } else if (moy >= 14) {
+        printf("Mention Bien.\n");
+    } else if (moy >= 12) {
+        printf("Mention Assez Bien.\n");
+    } else if (moy >= 10) {
+        printf("Mention Passable.\n");
+    } else {
+        printf("Ajourne.\n");
+    }
+    return 0;
+}
+\end{codec}
+
+\fig{Une moyenne de 14,5 affiche « Mention Bien » : la 2e condition est la première vraie.}
+
+\begin{remarque}
+L'ordre des tests compte. Comme on s'arrête à la première condition vraie, il est
+inutile d'écrire \code{else if (moy >= 14 \&\& moy < 16)} : si on est arrivé à ce
+\code{else if}, c'est que \code{moy >= 16} était \emph{déjà} faux.
+\end{remarque}
+
+\subsection{L'imbrication}
+
+On peut placer un \code{if} \emph{à l'intérieur} d'un autre. C'est utile quand un
+second test ne se pose que si le premier est validé.
+
+\begin{codec}
+#include <stdio.h>
+
+int main(void) {
+    int age;
+    float moyenne;
+    printf("Age : ");      scanf("%d", &age);
+    printf("Moyenne : ");  scanf("%f", &moyenne);
+
+    if (moyenne >= 10) {              // condition extérieure
+        if (age <= 20) {             // condition intérieure
+            printf("Admis et peut concourir.\n");
+        } else {
+            printf("Admis mais hors limite d'age.\n");
+        }
+    } else {
+        printf("Non admis.\n");
+    }
+    return 0;
+}
+\end{codec}
+
+\begin{attention}
+Au-delà de deux niveaux d'imbrication, le code devient illisible. On préfère alors
+des conditions combinées (\code{\&\&}, \code{||}) ou un \code{switch}.
+\end{attention}
+
+\section{Le \texttt{switch\dots case}}
+
+Quand on compare \textbf{une même variable} à plusieurs valeurs \emph{constantes}, le
+\code{switch} est plus clair qu'une longue chaîne de \code{else if}.
+
+\begin{syntaxe}
+\code{switch (expression) \{ case v1: \dots break; case v2: \dots break; default: \dots \}}
+\end{syntaxe}
+
+\begin{codec}
+#include <stdio.h>
+
+int main(void) {
+    int jour;
+    printf("Numero du jour (1 a 7) : ");
+    scanf("%d", &jour);
+
+    switch (jour) {
+        case 1: printf("Lundi\n");    break;
+        case 2: printf("Mardi\n");    break;
+        case 3: printf("Mercredi\n"); break;
+        case 4: printf("Jeudi\n");    break;
+        case 5: printf("Vendredi\n"); break;
+        case 6:
+        case 7: printf("Week-end\n"); break;   // 6 et 7 partagent le meme bloc
+        default: printf("Numero invalide\n");
+    }
+    return 0;
+}
+\end{codec}
+
+\fig{switch des jours — les cas 6 et 7 « tombent » sur le même traitement.}
+
+\begin{attention}
+Le \code{break} est \textbf{indispensable} : sans lui, l'exécution continue dans le
+\code{case} suivant (effet « cascade » ou \emph{fall-through}). On l'utilise
+volontairement ici pour 6 et 7 ; ailleurs, l'oublier est un bug fréquent. Le
+\code{default} (facultatif) traite tous les autres cas.
+\end{attention}
+
+\begin{remarque}
+Un \code{switch} ne fonctionne qu'avec des valeurs \textbf{entières} (ou des
+caractères, qui sont des entiers en C) et \textbf{constantes}. On ne peut pas écrire
+\code{case moy >= 10:} ni \code{case 3.5:}.
+\end{remarque}
+
+\section{Les booléens en C}
+
+Le C n'a pas, à l'origine, de type « booléen » dédié. Il utilise les \textbf{entiers}.
+
+\begin{propriete}[Vrai et faux en C]
+La valeur \code{0} signifie \textbf{faux}. \textbf{Toute} autre valeur (1, 42, $-3$\dots)
+signifie \textbf{vrai}. Une comparaison comme \code{a < b} produit \code{1} si elle
+est vraie, \code{0} si elle est fausse.
+\end{propriete}
+
+\begin{codec}
+#include <stdio.h>
+
+int main(void) {
+    int x = 7;
+    printf("%d\n", x > 3);   // affiche 1 (vrai)
+    printf("%d\n", x > 10);  // affiche 0 (faux)
+
+    if (x) {                 // x vaut 7, donc "vrai"
+        printf("x est non nul, donc considere comme vrai.\n");
+    }
+    return 0;
+}
+\end{codec}
+
+\begin{attention}
+Ne confonds pas \code{=} (affectation) et \code{==} (comparaison). \code{if (x = 0)}
+\emph{affecte} 0 à \code{x} puis teste 0 (faux) : c'est presque toujours une erreur.
+On voulait \code{if (x == 0)}.
+\end{attention}
+
+\begin{remarque}
+Les opérateurs logiques sont \code{\&\&} (ET), \code{||} (OU) et \code{!} (NON). Par
+exemple \code{(moy >= 10 \&\& moy < 12)} est vrai uniquement si les deux conditions
+le sont. Depuis la norme C99, on peut aussi inclure \code{<stdbool.h>} pour écrire
+\code{bool}, \code{true} et \code{false} — mais ce ne sont que des noms pour 1 et 0.
+\end{remarque}
+
+\section{Les boucles}
+
+Une \textbf{boucle} répète un bloc d'instructions tant qu'une condition reste vraie.
+Le C en propose trois.
+
+\subsection{La boucle \texttt{for}}
+
+Idéale quand on connaît \textbf{à l'avance le nombre de répétitions}. Elle regroupe
+sur une ligne l'\emph{initialisation}, la \emph{condition} et l'\emph{incrément}.
+
+\begin{syntaxe}
+\code{for (initialisation ; condition ; incrément) \{ instructions \}}
+\end{syntaxe}
+
+\begin{codec}
+#include <stdio.h>
+
+int main(void) {
+    int i;
+    // Affiche la table de multiplication de 7
+    for (i = 1; i <= 10; i++) {
+        printf("7 x %d = %d\n", i, 7 * i);
+    }
+    return 0;
+}
+\end{codec}
+
+\fig{Table de multiplication — i va de 1 à 10, le corps s'exécute 10 fois.}
+
+\textbf{Fonctionnement.} (1)~\code{i = 1} (une seule fois) ; (2)~on teste
+\code{i <= 10} ; si vrai, on exécute le corps ; (3)~on fait \code{i++} ; (4)~retour
+au test. Quand \code{i} atteint 11, \code{11 <= 10} est faux : la boucle s'arrête.
+
+\subsection{La boucle \texttt{while}}
+
+Idéale quand on \textbf{ne sait pas} combien de fois répéter, mais qu'on connaît la
+\emph{condition d'arrêt}. La condition est testée \textbf{avant} chaque tour.
+
+\begin{syntaxe}
+\code{while (condition) \{ instructions \}}
+\end{syntaxe}
+
+\begin{codec}
+#include <stdio.h>
+
+int main(void) {
+    int n = 10;
+    // Compte a rebours de 10 jusqu'a 1
+    while (n >= 1) {
+        printf("%d ", n);
+        n--;                 // sans cette ligne, boucle infinie !
+    }
+    printf("Decollage !\n");
+    return 0;
+}
+\end{codec}
+
+\fig{Compte à rebours : 10 9 8 7 6 5 4 3 2 1 Decollage !}
+
+\begin{attention}
+Dans une boucle \code{while}, il faut que \textbf{quelque chose dans le corps fasse
+évoluer la condition} vers le faux (ici \code{n--}). Sinon la boucle ne s'arrête
+jamais : c'est une \textbf{boucle infinie}.
+\end{attention}
+
+\subsection{La boucle \texttt{do\dots while}}
+
+Variante du \code{while} où la condition est testée \textbf{après} le corps. Le bloc
+est donc exécuté \textbf{au moins une fois}. Pratique pour redemander une saisie.
+
+\begin{syntaxe}
+\code{do \{ instructions \} while (condition);}
+\end{syntaxe}
+
+\begin{codec}
+#include <stdio.h>
+
+int main(void) {
+    int note;
+    // Redemande tant que la note n'est pas entre 0 et 20
+    do {
+        printf("Entre une note (0 a 20) : ");
+        scanf("%d", &note);
+    } while (note < 0 || note > 20);
+
+    printf("Note valide : %d\n", note);
+    return 0;
+}
+\end{codec}
+
+\fig{do\dots while — la saisie est toujours demandée au moins une fois.}
+
+\begin{attention}
+Le \code{do\dots while} se termine par un \textbf{point-virgule} après le
+\code{while(\dots)}. C'est le seul cas où l'on en met un après une parenthèse de
+condition.
+\end{attention}
+
+\begin{methode}
+\textbf{Choisir la bonne boucle.}
+\begin{enumerate}[label=\arabic*)]
+  \item Je connais le \textbf{nombre exact} de tours (parcourir 1 à 10, n élèves
+    déjà connus) $\rightarrow$ \code{for}.
+  \item Je m'arrête sur une \textbf{condition} dont je ne connais pas le nombre de
+    tours (« tant que l'utilisateur ne tape pas 0 ») $\rightarrow$ \code{while}.
+  \item Comme le cas précédent, mais le corps doit s'exécuter \textbf{au moins une
+    fois} (menu, contrôle de saisie) $\rightarrow$ \code{do\dots while}.
+\end{enumerate}
+Les trois sont interchangeables : tout \code{for} peut se réécrire en \code{while}.
+On choisit celle qui rend l'intention la plus \emph{lisible}.
+\end{methode}
+
+\section{\texttt{break} et \texttt{continue}}
+
+Ces deux mots-clés modifient le déroulement d'une boucle.
+
+\begin{itemize}
+  \item \code{break} : \textbf{sort immédiatement} de la boucle (ou du \code{switch}).
+  \item \code{continue} : \textbf{saute la fin du tour} et passe directement au tour
+    suivant.
+\end{itemize}
+
+\begin{codec}
+#include <stdio.h>
+
+int main(void) {
+    int i;
+    for (i = 1; i <= 10; i++) {
+        if (i == 7) {
+            break;        // on quitte la boucle des que i vaut 7
+        }
+        printf("%d ", i);
+    }
+    printf("\n");         // affiche : 1 2 3 4 5 6
+    return 0;
+}
+\end{codec}
+
+\begin{codec}
+#include <stdio.h>
+
+int main(void) {
+    int i;
+    for (i = 1; i <= 10; i++) {
+        if (i % 2 == 0) {
+            continue;     // on saute les nombres pairs
+        }
+        printf("%d ", i);
+    }
+    printf("\n");         // affiche : 1 3 5 7 9
+    return 0;
+}
+\end{codec}
+
+\section{Exemples complets et tracés}
+
+\subsection{Plus grand de deux, puis de trois nombres}
+
+\begin{codec}
+#include <stdio.h>
+
+int main(void) {
+    int a, b, c;
+    printf("Trois entiers : ");
+    scanf("%d %d %d", &a, &b, &c);
+
+    int max = a;             // on suppose a le plus grand
+    if (b > max) max = b;    // b est-il plus grand ?
+    if (c > max) max = c;    // c est-il plus grand ?
+
+    printf("Le plus grand est %d\n", max);
+    return 0;
+}
+\end{codec}
+
+\fig{Recherche du maximum — on part d'un candidat, on le corrige.}
+
+\textbf{Trace} pour \code{a=4, b=9, c=2} : \code{max=4} ; \code{9>4} vrai
+$\rightarrow$ \code{max=9} ; \code{2>9} faux $\rightarrow$ \code{max} reste 9.
+Résultat : 9.
+
+\subsection{Valeur absolue}
+
+\begin{codec}
+#include <stdio.h>
+
+int main(void) {
+    int x;
+    printf("Entre un entier : ");
+    scanf("%d", &x);
+
+    if (x < 0) {
+        x = -x;             // on rend x positif
+    }
+    printf("Valeur absolue : %d\n", x);
+    return 0;
+}
+\end{codec}
+
+\subsection{Somme et moyenne de \texttt{n} notes}
+
+\begin{codec}
+#include <stdio.h>
+
+int main(void) {
+    int n, i;
+    float note, somme = 0;
+
+    printf("Combien de notes ? ");
+    scanf("%d", &n);
+
+    for (i = 1; i <= n; i++) {
+        printf("Note %d : ", i);
+        scanf("%f", &note);
+        somme = somme + note;     // accumulation
+    }
+
+    printf("Somme : %.2f\n", somme);
+    printf("Moyenne : %.2f\n", somme / n);
+    return 0;
+}
+\end{codec}
+
+\fig{Le \og total \fg{} \code{somme} est mis à 0 puis augmenté à chaque tour.}
+
+\subsection{Factorielle par boucle}
+
+La factorielle $n! = 1 \times 2 \times \dots \times n$ se calcule par accumulation
+multiplicative.
+
+\begin{codec}
+#include <stdio.h>
+
+int main(void) {
+    int n, i;
+    long fact = 1;          // long : les factorielles grandissent vite
+
+    printf("Entre n : ");
+    scanf("%d", &n);
+
+    for (i = 2; i <= n; i++) {
+        fact = fact * i;
+    }
+    printf("%d! = %ld\n", n, fact);
+    return 0;
+}
+\end{codec}
+
+\textbf{Trace} pour \code{n=4} : \code{fact=1} ; i=2 $\rightarrow$ \code{fact=2} ;
+i=3 $\rightarrow$ \code{fact=6} ; i=4 $\rightarrow$ \code{fact=24}. Résultat : 24.
+
+\subsection{PGCD par soustractions successives et par Euclide}
+
+\begin{codec}
+#include <stdio.h>
+
+int main(void) {
+    int a, b;
+    printf("Deux entiers positifs : ");
+    scanf("%d %d", &a, &b);
+
+    // Methode des soustractions successives
+    while (a != b) {
+        if (a > b) {
+            a = a - b;
+        } else {
+            b = b - a;
+        }
+    }
+    printf("PGCD = %d\n", a);
+    return 0;
+}
+\end{codec}
+
+\begin{codec}
+#include <stdio.h>
+
+int main(void) {
+    int a, b, r;
+    printf("Deux entiers positifs : ");
+    scanf("%d %d", &a, &b);
+
+    // Methode d'Euclide (par restes) : plus rapide
+    while (b != 0) {
+        r = a % b;          // reste de a divise par b
+        a = b;
+        b = r;
+    }
+    printf("PGCD = %d\n", a);
+    return 0;
+}
+\end{codec}
+
+\fig{PGCD(48, 36) : Euclide donne 48\%36=12, puis 36\%12=0 → PGCD = 12.}
+
+\section{Exercices}
+
+\rubrique{Application}
+
+\exo{Signe d'un nombre}\diff{1}
+Écris un programme qui lit un entier et affiche s'il est \emph{strictement positif},
+\emph{strictement négatif} ou \emph{nul} (utilise \code{if\dots else if\dots else}).
+
+\exo{Pair ou impair}\diff{1}
+Lis un entier au clavier et indique s'il est pair ou impair.
+
+\exo{Plus grand de trois}\diff{1}
+Lis trois entiers et affiche le plus grand des trois.
+
+\exo{Mention selon la moyenne}\diff{2}
+Lis une moyenne entière sur 20. À l'aide d'un \code{switch} portant sur la
+\textbf{tranche} (\code{(int)(moy) / 2} ou un calcul de ton choix), affiche la
+mention : Très Bien ($\geq 16$), Bien ($\geq 14$), Assez Bien ($\geq 12$),
+Passable ($\geq 10$), Ajourné sinon.
+
+\exo{Somme des \texttt{n} premiers entiers}\diff{2}
+Lis un entier \code{n} et calcule $1 + 2 + \dots + n$ avec une boucle \code{for}.
+
+\exo{Table de multiplication}\diff{1}
+Lis un entier \code{m} et affiche sa table de multiplication de 1 à 10.
+
+\rubrique{Entraînement}
+
+\exo{Nombre de chiffres d'un entier}\diff{2}
+Lis un entier positif et compte combien de chiffres il possède (ex. 4520 en a 4).
+\emph{Indice} : divise par 10 jusqu'à atteindre 0.
+
+\exo{Contrôle de saisie}\diff{2}
+À l'aide d'un \code{do\dots while}, demande l'âge d'un élève et redemande tant qu'il
+n'est pas compris entre 6 et 25.
+
+\exo{Compte à rebours}\diff{1}
+Lis un entier \code{n} et affiche le compte à rebours de \code{n} jusqu'à 1, puis
+« Termine ! ».
+
+\exo{Factorielle}\diff{2}
+Lis \code{n} et affiche \code{n!} en utilisant une boucle \code{while}.
+
+\exo{Vérifier si un nombre est premier}\diff{3}
+Lis un entier \code{n} ($\geq 2$) et détermine s'il est premier (divisible seulement
+par 1 et lui-même). \emph{Indice} : teste les diviseurs de 2 à $n-1$ et utilise
+\code{break} dès qu'un diviseur est trouvé.
+
+\exo{Suite de Fibonacci}\diff{3}
+La suite de Fibonacci est définie par $F_0 = 0$, $F_1 = 1$ et
+$F_n = F_{n-1} + F_{n-2}$. Lis \code{n} et affiche les \code{n} premiers termes
+(0, 1, 1, 2, 3, 5, 8\dots) à l'aide d'une boucle.
+
+\exo{PGCD d'Euclide}\diff{2}
+Lis deux entiers positifs et affiche leur PGCD par la méthode des restes.
+
+\section{Corrigés}
+
+\corrige{de l'exercice 1}
+\begin{codec}
+#include <stdio.h>
+
+int main(void) {
+    int n;
+    printf("Entre un entier : ");
+    scanf("%d", &n);
+
+    if (n > 0) {
+        printf("Strictement positif.\n");
+    } else if (n < 0) {
+        printf("Strictement negatif.\n");
+    } else {
+        printf("Nul.\n");
+    }
+    return 0;
+}
+\end{codec}
+
+\corrige{de l'exercice 2}
+\begin{codec}
+#include <stdio.h>
+
+int main(void) {
+    int n;
+    printf("Entre un entier : ");
+    scanf("%d", &n);
+
+    if (n % 2 == 0) {
+        printf("%d est pair.\n", n);
+    } else {
+        printf("%d est impair.\n", n);
+    }
+    return 0;
+}
+\end{codec}
+
+\corrige{de l'exercice 3}
+\begin{codec}
+#include <stdio.h>
+
+int main(void) {
+    int a, b, c;
+    printf("Trois entiers : ");
+    scanf("%d %d %d", &a, &b, &c);
+
+    int max = a;
+    if (b > max) max = b;
+    if (c > max) max = c;
+
+    printf("Le plus grand est %d\n", max);
+    return 0;
+}
+\end{codec}
+
+\corrige{de l'exercice 4}
+On ramène la moyenne à un \emph{numéro de tranche} entier, puis on bascule dessus.
+
+\begin{codec}
+#include <stdio.h>
+
+int main(void) {
+    int moy;
+    printf("Moyenne entiere (0 a 20) : ");
+    scanf("%d", &moy);
+
+    switch (moy / 2) {        // 16..20 -> 8,9,10 ; 14,15 -> 7 ; etc.
+        case 10:
+        case 9:
+        case 8:  printf("Tres Bien\n");  break;   // moy >= 16
+        case 7:  printf("Bien\n");       break;   // moy 14-15
+        case 6:  printf("Assez Bien\n"); break;   // moy 12-13
+        case 5:  printf("Passable\n");   break;   // moy 10-11
+        default: printf("Ajourne\n");             // moy < 10
+    }
+    return 0;
+}
+\end{codec}
+
+\begin{remarque}
+Comme \code{moy} est un entier, \code{moy / 2} est une division \textbf{entière} :
+\code{16/2 = 8}, \code{17/2 = 8}, \code{15/2 = 7}\dots Chaque tranche de mention
+correspond ainsi à une ou plusieurs valeurs de \code{moy / 2}.
+\end{remarque}
+
+\corrige{de l'exercice 5}
+\begin{codec}
+#include <stdio.h>
+
+int main(void) {
+    int n, i, somme = 0;
+    printf("Entre n : ");
+    scanf("%d", &n);
+
+    for (i = 1; i <= n; i++) {
+        somme = somme + i;
+    }
+    printf("1 + 2 + ... + %d = %d\n", n, somme);
+    return 0;
+}
+\end{codec}
+
+\corrige{de l'exercice 6}
+\begin{codec}
+#include <stdio.h>
+
+int main(void) {
+    int m, i;
+    printf("Entre un entier : ");
+    scanf("%d", &m);
+
+    for (i = 1; i <= 10; i++) {
+        printf("%d x %d = %d\n", m, i, m * i);
+    }
+    return 0;
+}
+\end{codec}
+
+\corrige{de l'exercice 7}
+\begin{codec}
+#include <stdio.h>
+
+int main(void) {
+    int n, chiffres = 0;
+    printf("Entre un entier positif : ");
+    scanf("%d", &n);
+
+    if (n == 0) {
+        chiffres = 1;        // le nombre 0 a un chiffre
+    } else {
+        while (n > 0) {
+            n = n / 10;      // on retire le dernier chiffre
+            chiffres++;
+        }
+    }
+    printf("Nombre de chiffres : %d\n", chiffres);
+    return 0;
+}
+\end{codec}
+
+\corrige{de l'exercice 8}
+\begin{codec}
+#include <stdio.h>
+
+int main(void) {
+    int age;
+    do {
+        printf("Age de l'eleve (6 a 25) : ");
+        scanf("%d", &age);
+    } while (age < 6 || age > 25);
+
+    printf("Age valide : %d\n", age);
+    return 0;
+}
+\end{codec}
+
+\corrige{de l'exercice 9}
+\begin{codec}
+#include <stdio.h>
+
+int main(void) {
+    int n;
+    printf("Entre n : ");
+    scanf("%d", &n);
+
+    while (n >= 1) {
+        printf("%d ", n);
+        n--;
+    }
+    printf("Termine !\n");
+    return 0;
+}
+\end{codec}
+
+\corrige{de l'exercice 10}
+\begin{codec}
+#include <stdio.h>
+
+int main(void) {
+    int n, i = 2;
+    long fact = 1;
+    printf("Entre n : ");
+    scanf("%d", &n);
+
+    while (i <= n) {
+        fact = fact * i;
+        i++;
+    }
+    printf("%d! = %ld\n", n, fact);
+    return 0;
+}
+\end{codec}
+
+\corrige{de l'exercice 11}
+On suppose le nombre premier, et on cherche un diviseur. Dès qu'on en trouve un,
+\code{break} arrête la recherche.
+
+\begin{codec}
+#include <stdio.h>
+
+int main(void) {
+    int n, i, premier = 1;    // 1 = vrai (on suppose premier)
+    printf("Entre un entier (>= 2) : ");
+    scanf("%d", &n);
+
+    for (i = 2; i < n; i++) {
+        if (n % i == 0) {     // i divise n
+            premier = 0;      // donc n n'est pas premier
+            break;            // inutile de continuer
+        }
+    }
+
+    if (premier) {
+        printf("%d est premier.\n", n);
+    } else {
+        printf("%d n'est pas premier.\n", n);
+    }
+    return 0;
+}
+\end{codec}
+
+\corrige{de l'exercice 12}
+\begin{codec}
+#include <stdio.h>
+
+int main(void) {
+    int n, i;
+    long a = 0, b = 1, suivant;   // F0 = 0, F1 = 1
+    printf("Combien de termes ? ");
+    scanf("%d", &n);
+
+    for (i = 1; i <= n; i++) {
+        printf("%ld ", a);        // on affiche le terme courant
+        suivant = a + b;          // terme suivant
+        a = b;
+        b = suivant;
+    }
+    printf("\n");
+    return 0;
+}
+\end{codec}
+
+\fig{Pour n=7, la boucle affiche : 0 1 1 2 3 5 8}
+
+\corrige{de l'exercice 13}
+\begin{codec}
+#include <stdio.h>
+
+int main(void) {
+    int a, b, r;
+    printf("Deux entiers positifs : ");
+    scanf("%d %d", &a, &b);
+
+    while (b != 0) {
+        r = a % b;
+        a = b;
+        b = r;
+    }
+    printf("PGCD = %d\n", a);
+    return 0;
+}
+\end{codec}
+
+\begin{aretenir}
+On \textbf{décide} avec \code{if / else if / else} et \code{switch} (un \code{break}
+à chaque \code{case} !). En C, \textbf{0 = faux} et \textbf{tout le reste = vrai} ;
+gare à \code{=} qui n'est pas \code{==}. On \textbf{répète} avec \code{for} (nombre
+de tours connu), \code{while} (condition d'arrêt) ou \code{do\dots while} (au moins
+un tour). \code{break} sort de la boucle, \code{continue} passe au tour suivant.
+\end{aretenir}

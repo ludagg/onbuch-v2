@@ -1,0 +1,798 @@
+\chapter{Tableaux, tri et enregistrements en C}
+
+\begin{synthese}[Au programme]
+Ranger plusieurs valeurs sous un même nom grâce aux \textbf{tableaux}, les
+parcourir avec une boucle, calculer somme, moyenne, minimum et maximum, rechercher
+une valeur, puis \textbf{trier par sélection}. On découvre aussi les
+\textbf{matrices} (tableaux à deux dimensions) et les \textbf{enregistrements}
+(\code{struct}) pour décrire une fiche élève. C'est le cœur de la manipulation de
+données en langage C.
+\end{synthese}
+
+\section{Les tableaux à une dimension}
+
+Jusqu'ici, chaque valeur tenait dans une variable. Mais comment stocker les
+\textbf{60 notes} d'une classe de Terminale~TI ? Déclarer \code{n1}, \code{n2},
+\dots, \code{n60} serait absurde. Le \textbf{tableau} résout ce problème : un seul
+nom regroupe plusieurs cases de \textbf{même type}, numérotées par un \textbf{indice}.
+
+\begin{definition}
+Un \textbf{tableau} (\emph{array}) est une suite de cases mémoire contiguës, de
+même type, désignées par un nom unique. On accède à chaque case par son
+\textbf{indice} (sa position), qui commence à \textbf{0} en langage C.
+\end{definition}
+
+\subsection{Déclaration}
+
+\begin{syntaxe}
+\code{type nom[taille];}\quad — par exemple \code{int t[10];}
+\end{syntaxe}
+
+La déclaration \code{int t[10];} réserve \textbf{10 cases} d'entiers, d'indices
+\code{0} à \code{9}. La \textbf{taille} doit être une constante connue à la
+compilation.
+
+\begin{codec}
+int t[10];          // 10 entiers : t[0], t[1], ..., t[9]
+float notes[60];    // 60 notes décimales
+char nom[30];       // 30 caractères (une chaîne)
+\end{codec}
+
+\begin{attention}
+Un tableau de taille \code{10} possède les indices \textbf{0 à 9}. La case
+\code{t[10]} \textbf{n'existe pas} : y accéder est une erreur classique
+(\emph{débordement}) qui plante le programme ou corrompt la mémoire.
+\end{attention}
+
+\subsection{Initialisation et accès}
+
+On peut donner les valeurs dès la déclaration, entre accolades~:
+
+\begin{codec}
+int t[5] = {12, 7, 25, 3, 18};   // les 5 cases sont remplies
+int u[5] = {0};                  // toutes les cases à 0
+int v[] = {4, 8, 15};            // taille déduite : 3 cases
+\end{codec}
+
+On lit ou modifie une case avec \code{nom[indice]}~:
+
+\begin{codec}
+t[0] = 20;              // on change la 1re case
+int x = t[2];           // x reçoit la valeur de la 3e case (25)
+t[4] = t[4] + 1;        // on incrémente la dernière case
+\end{codec}
+
+\begin{remarque}
+L'indice peut être une variable~: \code{t[i]}. C'est ce qui permet de parcourir
+tout le tableau avec une boucle \code{for} en faisant varier \code{i}.
+\end{remarque}
+
+\subsection{Saisie et affichage par une boucle}
+
+Pour remplir ou afficher un tableau, on utilise une boucle \code{for} dont le
+compteur sert d'indice.
+
+\begin{codec}
+// Programme en langage C
+#include <stdio.h>
+
+int main() {
+    int notes[5];
+    int i;
+
+    // SAISIE des 5 notes
+    for (i = 0; i < 5; i++) {
+        printf("Note numero %d : ", i + 1);
+        scanf("%d", &notes[i]);     // &notes[i] : adresse de la case
+    }
+
+    // AFFICHAGE des 5 notes
+    printf("Vous avez saisi : ");
+    for (i = 0; i < 5; i++) {
+        printf("%d ", notes[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
+\end{codec}
+
+\fig{La boucle parcourt les indices 0 à 4 : un seul code pour toutes les cases.}
+
+\begin{attention}
+Dans \code{scanf}, on met le \code{\&} devant la case~: \code{scanf("\%d", \&notes[i])}.
+Il indique l'\textbf{adresse} où ranger la valeur lue.
+\end{attention}
+
+\subsection{Passer un tableau à une fonction}
+
+Quand on transmet un tableau à une fonction, le C passe en réalité l'\textbf{adresse}
+de sa première case. La fonction travaille donc \textbf{directement} sur le tableau
+original~: toute modification est conservée. On doit aussi passer la \textbf{taille},
+car la fonction ne la connaît pas.
+
+\begin{codec}
+// Programme en langage C
+#include <stdio.h>
+
+// Affiche les n premieres cases du tableau t
+void afficher(int t[], int n) {
+    int i;
+    for (i = 0; i < n; i++) {
+        printf("%d ", t[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    int tab[4] = {10, 20, 30, 40};
+    afficher(tab, 4);     // affiche : 10 20 30 40
+    return 0;
+}
+\end{codec}
+
+\begin{remarque}
+Dans l'en-tête \code{void afficher(int t[], int n)}, les crochets \code{[]} restent
+\textbf{vides}~: la fonction accepte un tableau de n'importe quelle longueur, et
+\code{n} précise combien de cases utiliser.
+\end{remarque}
+
+\section{Algorithmes classiques sur un tableau}
+
+Une poignée de schémas reviennent sans cesse. Apprends-les par cœur~: tous reposent
+sur une boucle qui parcourt le tableau.
+
+\subsection{Somme et moyenne}
+
+On utilise un \textbf{accumulateur} initialisé à \code{0}, auquel on ajoute chaque
+case.
+
+\begin{codec}
+// Programme en langage C
+#include <stdio.h>
+
+int main() {
+    float notes[5] = {12.0, 15.5, 8.0, 14.0, 11.5};
+    int i;
+    float somme = 0.0;
+
+    for (i = 0; i < 5; i++) {
+        somme = somme + notes[i];   // on accumule
+    }
+    float moyenne = somme / 5;      // division par le nombre de notes
+
+    printf("Somme   : %.2f\n", somme);
+    printf("Moyenne : %.2f\n", moyenne);
+    return 0;
+}
+\end{codec}
+
+\fig{Sortie : Somme : 61.00 \quad Moyenne : 12.20}
+
+\subsection{Minimum et maximum}
+
+On suppose d'abord que la \textbf{première case} est le maximum, puis on la compare
+à toutes les autres et on garde la plus grande.
+
+\begin{methode}
+\textbf{Chercher le maximum.} (1)~\code{max} reçoit \code{t[0]}~; (2)~pour chaque
+case suivante, si \code{t[i] > max} alors \code{max} reçoit \code{t[i]}~; (3)~à la
+fin, \code{max} contient la plus grande valeur. (Pour le minimum, on remplace
+\code{>} par \code{<}.)
+\end{methode}
+
+\begin{codec}
+// Programme en langage C
+#include <stdio.h>
+
+int main() {
+    int t[6] = {14, 9, 23, 7, 31, 18};
+    int i;
+    int max = t[0];     // hypothese : la 1re case est le max
+
+    for (i = 1; i < 6; i++) {       // on commence a l'indice 1
+        if (t[i] > max) {
+            max = t[i];
+        }
+    }
+    printf("Le maximum est %d\n", max);   // affiche 31
+    return 0;
+}
+\end{codec}
+
+\begin{attention}
+On initialise \code{max} avec \code{t[0]}, \textbf{jamais} avec \code{0}~: si toutes
+les valeurs étaient négatives, partir de \code{0} donnerait un résultat faux.
+\end{attention}
+
+\subsection{Recherche séquentielle d'une valeur}
+
+Pour savoir si une valeur \code{cherchee} se trouve dans le tableau, on parcourt
+les cases une à une~: c'est la \textbf{recherche séquentielle} (ou linéaire).
+
+\begin{codec}
+// Programme en langage C
+#include <stdio.h>
+
+int main() {
+    int t[6] = {14, 9, 23, 7, 31, 18};
+    int cherchee = 23;
+    int i;
+    int trouve = 0;     // 0 = pas encore trouve (faux)
+    int position = -1;
+
+    for (i = 0; i < 6; i++) {
+        if (t[i] == cherchee) {
+            trouve = 1;         // on l'a trouvee (vrai)
+            position = i;       // on retient sa position
+        }
+    }
+
+    if (trouve == 1) {
+        printf("Valeur trouvee a l'indice %d\n", position);
+    } else {
+        printf("Valeur absente du tableau\n");
+    }
+    return 0;
+}
+\end{codec}
+
+\fig{Le drapeau \code{trouve} (0/1) mémorise le résultat de la recherche.}
+
+\section{Le tri par sélection}
+
+\textbf{Trier} un tableau, c'est ranger ses valeurs dans l'ordre croissant (ou
+décroissant). Le \textbf{tri par sélection} est la méthode la plus simple à
+comprendre et figure au programme de Terminale~TI.
+
+\subsection{Le principe}
+
+\begin{definition}
+Le \textbf{tri par sélection} consiste à~: chercher le plus petit élément du
+tableau et le placer en première position~; puis chercher le plus petit parmi
+\textbf{ce qui reste} et le placer en deuxième position~; et ainsi de suite jusqu'à
+la fin.
+\end{definition}
+
+À chaque tour, on \textbf{sélectionne} le minimum de la partie non triée et on
+l'\textbf{échange} avec la première case de cette partie.
+
+\begin{methode}
+\textbf{Tri par sélection (pseudo-algorithme).}
+\begin{enumerate}[label=\arabic*)]
+  \item Pour \code{i} allant de \code{0} à \code{n-2}~:
+  \item \quad poser \code{iMin = i} (position du plus petit présumé)~;
+  \item \quad pour \code{j} allant de \code{i+1} à \code{n-1}~: si \code{t[j] < t[iMin]} alors \code{iMin = j}~;
+  \item \quad échanger \code{t[i]} et \code{t[iMin]}.
+\end{enumerate}
+\end{methode}
+
+\subsection{Trace sur un exemple}
+
+Trions le tableau \code{[5, 3, 8, 1]} ($n = 4$). Chaque ligne montre l'état après
+l'échange du tour~$i$ ; la partie \textbf{triée} est à gauche du trait.
+
+\begin{center}\small
+\begin{tabular}{@{}clll@{}}
+\toprule
+\textbf{Tour} & \textbf{Plus petit trouvé} & \textbf{Échange} & \textbf{Tableau}\\
+\midrule
+Départ & --- & --- & 5\ \ 3\ \ 8\ \ 1\\
+$i=0$ & 1 (indice 3) & t[0] $\leftrightarrow$ t[3] & \textbf{1} $|$ 3\ \ 8\ \ 5\\
+$i=1$ & 3 (indice 1) & aucun (déjà en place) & 1\ \ \textbf{3} $|$ 8\ \ 5\\
+$i=2$ & 5 (indice 3) & t[2] $\leftrightarrow$ t[3] & 1\ \ 3\ \ \textbf{5} $|$ 8\\
+Fin & --- & --- & 1\ \ 3\ \ 5\ \ 8\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\fig{En 3 tours (n-1), le tableau est trié dans l'ordre croissant.}
+
+\subsection{Code C complet}
+
+\begin{codec}
+// Programme en langage C
+#include <stdio.h>
+
+int main() {
+    int t[6] = {5, 3, 8, 1, 9, 2};
+    int n = 6;
+    int i, j, iMin, temp;
+
+    // TRI PAR SELECTION
+    for (i = 0; i < n - 1; i++) {
+        iMin = i;                       // plus petit presume : la case i
+        for (j = i + 1; j < n; j++) {
+            if (t[j] < t[iMin]) {
+                iMin = j;               // on a trouve plus petit
+            }
+        }
+        // echange de t[i] et t[iMin] via une variable temporaire
+        temp = t[i];
+        t[i] = t[iMin];
+        t[iMin] = temp;
+    }
+
+    // affichage du tableau trie
+    printf("Tableau trie : ");
+    for (i = 0; i < n; i++) {
+        printf("%d ", t[i]);
+    }
+    printf("\n");
+    return 0;
+}
+\end{codec}
+
+\fig{Sortie : Tableau trie : 1 2 3 5 8 9}
+
+\begin{attention}
+L'\textbf{échange} de deux cases passe \textbf{obligatoirement} par une variable
+temporaire (\code{temp}). Écrire directement \code{t[i] = t[iMin];} puis
+\code{t[iMin] = t[i];} écrase la première valeur et perd une donnée.
+\end{attention}
+
+\section{Les tableaux à deux dimensions (matrices)}
+
+Un tableau à \textbf{deux dimensions} se représente comme un \textbf{tableau de
+lignes et de colonnes}, exactement comme un tableau de notes par élève et par
+matière.
+
+\begin{syntaxe}
+\code{type nom[lignes][colonnes];}\quad — par exemple \code{int m[3][4];}
+\end{syntaxe}
+
+\code{int m[3][4];} déclare une matrice de \textbf{3 lignes} et \textbf{4 colonnes},
+soit 12 cases. On accède à une case par \code{m[i][j]} (ligne \code{i}, colonne
+\code{j}).
+
+\begin{codec}
+// Programme en langage C
+#include <stdio.h>
+
+int main() {
+    int m[2][3] = { {1, 2, 3},
+                    {4, 5, 6} };   // 2 lignes, 3 colonnes
+    int i, j;
+
+    // PARCOURS DOUBLE : une boucle par dimension
+    for (i = 0; i < 2; i++) {           // pour chaque ligne
+        for (j = 0; j < 3; j++) {       // pour chaque colonne
+            printf("%d\t", m[i][j]);
+        }
+        printf("\n");       // retour a la ligne apres chaque ligne
+    }
+    return 0;
+}
+\end{codec}
+
+\fig{Le parcours d'une matrice utilise deux boucles imbriquées (lignes, colonnes).}
+
+\begin{remarque}
+La boucle \textbf{extérieure} parcourt les lignes (\code{i}), la boucle
+\textbf{intérieure} parcourt les colonnes (\code{j}). On affiche un retour à la
+ligne (\code{\\n}) après chaque ligne pour obtenir un beau tableau.
+\end{remarque}
+
+\section{Les enregistrements (struct)}
+
+Un tableau regroupe des valeurs de \textbf{même type}. Mais une fiche élève réunit
+un \textbf{nom} (texte), un \textbf{âge} (entier) et une \textbf{moyenne} (décimal)~:
+des types différents. L'\textbf{enregistrement} (\code{struct}) permet de les
+rassembler sous un seul nom.
+
+\begin{definition}
+Un \textbf{enregistrement} (mot-clé \code{struct}) est un type composé qui regroupe
+plusieurs variables, appelées \textbf{champs}, pouvant être de types différents.
+\end{definition}
+
+\subsection{Définir une structure}
+
+\begin{codec}
+struct Eleve {
+    char nom[30];       // champ texte
+    int age;            // champ entier
+    float moyenne;      // champ decimal
+};                      // ne pas oublier le point-virgule final
+\end{codec}
+
+\begin{attention}
+La définition d'une \code{struct} se termine par un \textbf{point-virgule} après
+l'accolade fermante. C'est une erreur de débutant très fréquente de l'oublier.
+\end{attention}
+
+\subsection{Déclarer une variable et accéder aux champs}
+
+On accède à un champ avec le \textbf{point} (\code{.})~: \code{variable.champ}.
+
+\begin{codec}
+// Programme en langage C
+#include <stdio.h>
+#include <string.h>
+
+struct Eleve {
+    char nom[30];
+    int age;
+    float moyenne;
+};
+
+int main() {
+    struct Eleve e1;            // une variable de type struct Eleve
+
+    strcpy(e1.nom, "Awa");      // copie un texte dans un champ char[]
+    e1.age = 17;                // affectation directe pour les autres
+    e1.moyenne = 14.5;
+
+    printf("Nom     : %s\n", e1.nom);
+    printf("Age     : %d ans\n", e1.age);
+    printf("Moyenne : %.2f\n", e1.moyenne);
+    return 0;
+}
+\end{codec}
+
+\begin{remarque}
+Un champ \code{char nom[30]} est un tableau de caractères~: on ne peut pas écrire
+\code{e1.nom = "Awa";}. On copie le texte avec \code{strcpy} (de la bibliothèque
+\code{<string.h>}).
+\end{remarque}
+
+\subsection{Un tableau de structures}
+
+On peut créer un \textbf{tableau de \code{struct}} pour gérer toute une classe~:
+chaque case est une fiche complète.
+
+\begin{codec}
+// Programme en langage C
+#include <stdio.h>
+#include <string.h>
+
+struct Eleve {
+    char nom[30];
+    int age;
+    float moyenne;
+};
+
+int main() {
+    struct Eleve classe[2];     // tableau de 2 eleves
+
+    strcpy(classe[0].nom, "Awa");
+    classe[0].age = 17;
+    classe[0].moyenne = 14.5;
+
+    strcpy(classe[1].nom, "Bello");
+    classe[1].age = 18;
+    classe[1].moyenne = 11.0;
+
+    int i;
+    for (i = 0; i < 2; i++) {
+        printf("%s (%d ans) : %.2f\n",
+               classe[i].nom, classe[i].age, classe[i].moyenne);
+    }
+    return 0;
+}
+\end{codec}
+
+\fig{Chaque case \code{classe[i]} est un enregistrement complet (nom, âge, moyenne).}
+
+\section{Exemple complet : la fiche élève}
+
+Réunissons tout~: saisir une classe, l'afficher, puis trouver le \textbf{meilleur
+élève} (plus forte moyenne).
+
+\begin{codec}
+// Programme en langage C
+#include <stdio.h>
+
+struct Eleve {
+    char nom[30];
+    int age;
+    float moyenne;
+};
+
+int main() {
+    struct Eleve classe[3];
+    int n = 3;
+    int i;
+
+    // SAISIE
+    for (i = 0; i < n; i++) {
+        printf("Eleve %d - nom : ", i + 1);
+        scanf("%s", classe[i].nom);     // pas de & : nom est deja un tableau
+        printf("Eleve %d - age : ", i + 1);
+        scanf("%d", &classe[i].age);
+        printf("Eleve %d - moyenne : ", i + 1);
+        scanf("%f", &classe[i].moyenne);
+    }
+
+    // AFFICHAGE
+    printf("\n--- Liste de la classe ---\n");
+    for (i = 0; i < n; i++) {
+        printf("%s : %.2f\n", classe[i].nom, classe[i].moyenne);
+    }
+
+    // MEILLEUR ELEVE (plus forte moyenne)
+    int iMax = 0;
+    for (i = 1; i < n; i++) {
+        if (classe[i].moyenne > classe[iMax].moyenne) {
+            iMax = i;
+        }
+    }
+    printf("\nMajor de la classe : %s (%.2f)\n",
+           classe[iMax].nom, classe[iMax].moyenne);
+    return 0;
+}
+\end{codec}
+
+\fig{On retrouve le schéma du \emph{maximum}, appliqué au champ \code{moyenne}.}
+
+\begin{remarque}
+Pour lire un nom avec \code{scanf("\%s", classe[i].nom)}, on ne met \textbf{pas} de
+\code{\&}~: \code{classe[i].nom} est un tableau, c'est déjà une adresse. En
+revanche, \code{age} et \code{moyenne} en réclament un.
+\end{remarque}
+
+\section{Exercices}
+
+\rubrique{Application}
+
+\exo{Somme et moyenne}\diff{1}
+Un tableau \code{int notes[5] = \{12, 8, 15, 10, 14\};} contient 5 notes. Écris un
+programme qui calcule et affiche leur somme et leur moyenne.
+
+\exo{Minimum et maximum}\diff{1}
+À partir du tableau \code{int t[6] = \{17, 4, 23, 9, 1, 30\};}, affiche la plus
+petite et la plus grande valeur.
+
+\exo{Compter les admis}\diff{2}
+Un tableau \code{float moy[8]} contient les moyennes de 8 élèves d'un lycée de
+Bafoussam. Écris un programme qui compte et affiche le nombre d'élèves
+\textbf{admis} (moyenne supérieure ou égale à 10).
+
+\exo{Recherche d'une valeur}\diff{2}
+On donne un tableau \code{int t[7] = \{5, 12, 8, 20, 3, 17, 9\};} et un entier
+\code{cherchee = 20}. Indique si cette valeur est présente, et à quelle position.
+
+\rubrique{Entraînement}
+
+\exo{Inverser un tableau}\diff{2}
+Écris un programme qui inverse l'ordre des éléments d'un tableau \code{t} de 6
+entiers (par exemple les valeurs 1 à 6)~: la première case échange avec la
+dernière, la deuxième avec l'avant-dernière, etc. Affiche ensuite le résultat.
+
+\exo{Tri par sélection}\diff{3}
+Saisis 5 entiers dans un tableau, trie-le par \textbf{sélection} dans l'ordre
+croissant, puis affiche le tableau trié.
+
+\exo{Gestion de produits}\diff{3}
+Une boutique de Douala gère ses articles avec une structure \code{Produit}
+possédant les champs \code{nom} (texte), \code{quantite} (entier) et \code{prix}
+(décimal). Saisis 3~produits, affiche-les, puis indique le produit le
+\textbf{plus cher} (en francs CFA).
+
+\exo{Afficher une matrice}\diff{2}
+Déclare et initialise une matrice \code{int m[3][3]} avec des valeurs de ton choix,
+puis affiche-la sous forme de tableau (lignes et colonnes alignées).
+
+\section{Corrigés}
+
+\corrige{de l'exercice 1}
+\begin{codec}
+// Programme en langage C
+#include <stdio.h>
+
+int main() {
+    int notes[5] = {12, 8, 15, 10, 14};
+    int i, somme = 0;
+
+    for (i = 0; i < 5; i++) {
+        somme = somme + notes[i];
+    }
+    float moyenne = (float) somme / 5;    // (float) pour un resultat decimal
+
+    printf("Somme   : %d\n", somme);
+    printf("Moyenne : %.2f\n", moyenne);
+    return 0;
+}
+\end{codec}
+La somme vaut \code{59} et la moyenne \code{11.80}. Le \code{(float)} force la
+division décimale (sinon \code{59 / 5} donnerait \code{11} en entier).
+
+\corrige{de l'exercice 2}
+\begin{codec}
+// Programme en langage C
+#include <stdio.h>
+
+int main() {
+    int t[6] = {17, 4, 23, 9, 1, 30};
+    int i;
+    int min = t[0], max = t[0];
+
+    for (i = 1; i < 6; i++) {
+        if (t[i] < min) min = t[i];
+        if (t[i] > max) max = t[i];
+    }
+    printf("Minimum : %d\n", min);   // 1
+    printf("Maximum : %d\n", max);   // 30
+    return 0;
+}
+\end{codec}
+Une seule boucle suffit pour trouver le minimum \textbf{et} le maximum, en
+initialisant les deux avec \code{t[0]}.
+
+\corrige{de l'exercice 3}
+\begin{codec}
+// Programme en langage C
+#include <stdio.h>
+
+int main() {
+    float moy[8] = {12.0, 8.5, 15.0, 9.0, 10.0, 7.5, 13.5, 11.0};
+    int i, admis = 0;
+
+    for (i = 0; i < 8; i++) {
+        if (moy[i] >= 10.0) {
+            admis = admis + 1;      // on compte
+        }
+    }
+    printf("Nombre d'admis : %d sur 8\n", admis);   // 5
+    return 0;
+}
+\end{codec}
+On utilise un \textbf{compteur} (\code{admis}) incrémenté chaque fois que la
+condition \code{moy[i] >= 10.0} est vraie.
+
+\corrige{de l'exercice 4}
+\begin{codec}
+// Programme en langage C
+#include <stdio.h>
+
+int main() {
+    int t[7] = {5, 12, 8, 20, 3, 17, 9};
+    int cherchee = 20;
+    int i, position = -1;
+
+    for (i = 0; i < 7; i++) {
+        if (t[i] == cherchee) {
+            position = i;       // on memorise l'indice
+        }
+    }
+
+    if (position != -1) {
+        printf("Valeur %d trouvee a l'indice %d\n", cherchee, position);
+    } else {
+        printf("Valeur %d absente\n", cherchee);
+    }
+    return 0;
+}
+\end{codec}
+Ici \code{20} est à l'indice \code{3}. La variable \code{position} vaut \code{-1}
+tant que rien n'est trouvé, ce qui sert de signal d'absence.
+
+\corrige{de l'exercice 5}
+\begin{codec}
+// Programme en langage C
+#include <stdio.h>
+
+int main() {
+    int t[6] = {1, 2, 3, 4, 5, 6};
+    int n = 6, i, temp;
+
+    // on echange t[i] avec t[n-1-i], jusqu'au milieu
+    for (i = 0; i < n / 2; i++) {
+        temp = t[i];
+        t[i] = t[n - 1 - i];
+        t[n - 1 - i] = temp;
+    }
+
+    for (i = 0; i < n; i++) {
+        printf("%d ", t[i]);    // affiche : 6 5 4 3 2 1
+    }
+    printf("\n");
+    return 0;
+}
+\end{codec}
+On ne parcourt que la \textbf{moitié} du tableau (\code{i < n/2})~: chaque tour
+échange une case du début avec la case symétrique de la fin.
+
+\corrige{de l'exercice 6}
+\begin{codec}
+// Programme en langage C
+#include <stdio.h>
+
+int main() {
+    int t[5];
+    int i, j, iMin, temp;
+
+    for (i = 0; i < 5; i++) {
+        printf("Entier %d : ", i + 1);
+        scanf("%d", &t[i]);
+    }
+
+    // tri par selection
+    for (i = 0; i < 4; i++) {           // jusqu'a n-2 (soit 3)
+        iMin = i;
+        for (j = i + 1; j < 5; j++) {
+            if (t[j] < t[iMin]) iMin = j;
+        }
+        temp = t[i];
+        t[i] = t[iMin];
+        t[iMin] = temp;
+    }
+
+    printf("Tableau trie : ");
+    for (i = 0; i < 5; i++) printf("%d ", t[i]);
+    printf("\n");
+    return 0;
+}
+\end{codec}
+
+\corrige{de l'exercice 7}
+\begin{codec}
+// Programme en langage C
+#include <stdio.h>
+
+struct Produit {
+    char nom[30];
+    int quantite;
+    float prix;
+};
+
+int main() {
+    struct Produit stock[3];
+    int i, iCher = 0;
+
+    for (i = 0; i < 3; i++) {
+        printf("Produit %d - nom : ", i + 1);
+        scanf("%s", stock[i].nom);
+        printf("Produit %d - quantite : ", i + 1);
+        scanf("%d", &stock[i].quantite);
+        printf("Produit %d - prix (FCFA) : ", i + 1);
+        scanf("%f", &stock[i].prix);
+    }
+
+    printf("\n--- Inventaire ---\n");
+    for (i = 0; i < 3; i++) {
+        printf("%s : %d unites a %.0f FCFA\n",
+               stock[i].nom, stock[i].quantite, stock[i].prix);
+    }
+
+    // produit le plus cher
+    for (i = 1; i < 3; i++) {
+        if (stock[i].prix > stock[iCher].prix) iCher = i;
+    }
+    printf("\nProduit le plus cher : %s (%.0f FCFA)\n",
+           stock[iCher].nom, stock[iCher].prix);
+    return 0;
+}
+\end{codec}
+
+\corrige{de l'exercice 8}
+\begin{codec}
+// Programme en langage C
+#include <stdio.h>
+
+int main() {
+    int m[3][3] = { {1, 2, 3},
+                    {4, 5, 6},
+                    {7, 8, 9} };
+    int i, j;
+
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 3; j++) {
+            printf("%d\t", m[i][j]);
+        }
+        printf("\n");
+    }
+    return 0;
+}
+\end{codec}
+Les deux boucles imbriquées parcourent lignes (\code{i}) puis colonnes (\code{j})~;
+le \code{\\n} après la boucle interne sépare les lignes.
+
+\begin{aretenir}
+Un \textbf{tableau} regroupe des valeurs de même type, indexées à partir de
+\textbf{0}, qu'on parcourt avec une boucle \code{for}. Les schémas
+\textbf{somme/moyenne}, \textbf{min/max} et \textbf{recherche} sont à connaître par
+cœur. Le \textbf{tri par sélection} place à chaque tour le plus petit élément
+restant, via un \textbf{échange} avec variable temporaire. Une \code{struct}
+rassemble des champs de types différents (fiche élève)~; on y accède avec le point
+(\code{.}) et on copie un nom avec \code{strcpy}.
+\end{aretenir}

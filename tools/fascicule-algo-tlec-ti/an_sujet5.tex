@@ -1,0 +1,493 @@
+\section{Sujet TI n\textsuperscript{o}\,5 — Boutique en ligne}
+
+\begin{center}
+\setlength{\fboxsep}{8pt}
+\fcolorbox{onbline}{white}{%
+\begin{minipage}{0.92\linewidth}
+\small\sffamily
+\begin{tabular}{@{}p{0.30\linewidth}@{\hfill}p{0.32\linewidth}@{\hfill}p{0.30\linewidth}@{}}
+\textbf{Office du Baccalauréat}\newline du Cameroun\newline Examen : \textbf{Baccalauréat}
+&
+\textbf{Série} : TI\newline \textbf{Épreuve} : Algorithmique\newline et Programmation
+&
+\textbf{Durée} : 03 heures\newline \textbf{Coef.} : 04\newline Session : Juin
+\\
+\end{tabular}
+\par\smallskip
+{\color{onbline}\rule{\linewidth}{0.8pt}}
+\par\smallskip
+\centering\textbf{ÉPREUVE D'ALGORITHMIQUE ET PROGRAMMATION}\par
+\footnotesize\textit{Le candidat traitera obligatoirement les deux parties. La calculatrice n'est pas autorisée.}
+\end{minipage}}
+\end{center}
+
+\medskip
+\noindent\textbf{Contexte.} La coopérative \textbf{« BoutikCM »}, basée à Douala,
+souhaite vendre ses articles en ligne et gérer ses commandes par informatique. Elle
+utilise une base de données nommée \code{SHOP\_DB} contenant une table \code{ARTICLES}
+qui décrit chaque produit du catalogue :
+
+\begin{center}\small
+\begin{tabular}{@{}|l|l|c|c|@{}}
+\hline
+\textbf{reference} & \textbf{designation} & \textbf{prix\_unitaire} & \textbf{quantite}\\
+\hline
+ART01 & Sac de riz 5 kg  & 4500  & 20\\
+\hline
+ART02 & Bidon d'huile 1 L & 1200 & 35\\
+\hline
+ART03 & Savon de Ngaoundéré & 350 & 80\\
+\hline
+ART04 & Cahier 200 pages & 600 & 50\\
+\hline
+\end{tabular}
+\end{center}
+
+\noindent Les prix sont exprimés en \textbf{francs CFA (FCFA)}. On vous demande
+d'écrire une partie du logiciel de cette boutique.
+
+% =====================================================================
+\subsection*{Partie I — Programmation web \hfill (10 points)}
+
+\textbf{Exercice 1 — Page d'accueil HTML et JavaScript. \hfill (4 points)}
+
+\smallskip
+La page d'accueil du site présente un petit \emph{simulateur de commande} : le client
+saisit le prix unitaire d'un article et la quantité voulue, puis clique sur un bouton
+\textbf{« Calculer le montant »} pour afficher le montant total à payer.
+
+\begin{enumerate}[label=\textbf{\arabic*-},leftmargin=2.2em]
+\item Définir : \textbf{balise}, \textbf{événement}, \textbf{fonction} (en JavaScript). \hfill \textbf{0,75pt}
+\item Écrire le code \textbf{HTML} d'un formulaire contenant deux zones de saisie
+(\code{id="pu"} et \code{id="qte"}), un bouton « Calculer le montant » et une zone de
+texte \code{id="total"} qui recevra le résultat. \hfill \textbf{1,5pt}
+\item Écrire en \textbf{JavaScript} la fonction \code{montant()} qui lit les deux
+valeurs saisies, calcule le produit prix~$\times$~quantité et affiche le résultat dans
+la zone \code{id="total"}. \hfill \textbf{1,25pt}
+\item Écrire l'instruction (attribut \code{onclick}) qui appelle la fonction
+\code{montant()} lorsqu'on clique sur le bouton. \hfill \textbf{0,5pt}
+\end{enumerate}
+
+\bigskip
+\textbf{Exercice 2 — Gestion de la table ARTICLES en PHP/MySQL. \hfill (6 points)}
+
+\smallskip
+L'administrateur de BoutikCM gère son catalogue depuis une page PHP connectée à la base
+\code{SHOP\_DB} (serveur \code{localhost}, utilisateur \code{root}, mot de passe vide).
+
+\begin{enumerate}[label=\textbf{\arabic*-},leftmargin=2.2em]
+\item \begin{enumerate}[label=\textbf{\alph*)},leftmargin=2em]
+  \item Définir : \textbf{base de données}, \textbf{SGBD}. \hfill \textbf{0,5pt}
+  \item Citer le rôle des langages \textbf{PHP} et \textbf{SQL} dans cette application. \hfill \textbf{0,5pt}
+  \item Donner la requête \textbf{SQL} qui crée la table \code{ARTICLES} (champ
+  \code{reference} clé primaire de type texte, \code{designation} texte,
+  \code{prix\_unitaire} et \code{quantite} entiers). \hfill \textbf{1pt}
+  \end{enumerate}
+\item Écrire le code PHP qui \textbf{se connecte} à la base \code{SHOP\_DB} avec
+\code{mysqli\_connect}, puis affiche \textbf{tous} les articles dans un \textbf{tableau
+HTML} de quatre colonnes (référence, désignation, prix unitaire, quantité). \hfill \textbf{2pts}
+\item L'administrateur saisit dans un formulaire le \textbf{nom} (la désignation) d'un
+article à retirer du catalogue. À la réception (méthode \code{POST}, champ
+\code{nom\_article}), on souhaite \textbf{supprimer} de la table \code{ARTICLES} la
+ligne dont la désignation correspond, puis \textbf{ré-afficher} la table mise à jour.
+  \begin{enumerate}[label=\textbf{\alph*)},leftmargin=2em]
+  \item Écrire le formulaire HTML qui envoie le nom de l'article par la méthode POST. \hfill \textbf{0,5pt}
+  \item Écrire le code PHP qui récupère le nom saisi via \code{\$\_POST}, exécute la
+  requête \code{DELETE \dots\ WHERE} correspondante, affiche un message de confirmation,
+  puis ré-affiche le contenu de la table \code{ARTICLES}. \hfill \textbf{1,5pt}
+  \end{enumerate}
+\end{enumerate}
+
+% =====================================================================
+\subsection*{Partie II — Programmation procédurale en C \hfill (10 points)}
+
+\textbf{Exercice 1 — Structure Article et montant d'une commande. \hfill (5 points)}
+
+\smallskip
+On modélise un article du catalogue par une structure C nommée \code{Article}, possédant
+les champs \code{reference} (chaîne), \code{designation} (chaîne), \code{prix} (entier) et
+\code{quantite} (entier, la quantité commandée).
+
+\begin{enumerate}[label=\textbf{\arabic*-},leftmargin=2.2em]
+\item Définir : \textbf{structure (enregistrement)}, \textbf{tableau de structures}. \hfill \textbf{0,75pt}
+\item Déclarer en C la structure \code{Article} avec ses quatre champs, puis déclarer un
+tableau \code{commande} de 4 articles. \hfill \textbf{1,25pt}
+\item On souhaite calculer le \textbf{montant total} d'une commande, c'est-à-dire la somme
+des $prix \times quantite$ de tous ses articles. Écrire la fonction imposée :
+\begin{center}
+\code{int montantTotal(Article cmd[], int n)}
+\end{center}
+qui reçoit le tableau \code{cmd} de \code{n} articles et \textbf{retourne} le montant total
+en FCFA. \hfill \textbf{2pts}
+\item Écrire le \code{main} qui remplit le tableau \code{commande} avec les quatre articles
+du contexte (mêmes quantités que le tableau de l'énoncé), appelle \code{montantTotal} et
+affiche le résultat. \hfill \textbf{1pt}
+\end{enumerate}
+
+\bigskip
+\textbf{Exercice 2 — Étude d'un programme C. \hfill (5 points)}
+
+\smallskip
+On donne le programme C suivant, dont les lignes sont numérotées :
+
+\begin{codec}
+1   #include <stdio.h>
+2
+3   int mystere(int t[], int n) {
+4       int m = t[0];
+5       for (int i = 1; i < n; i++) {
+6           if (t[i] > m)
+7               m = t[i];
+8       }
+9       return m;
+10  }
+11
+12  int main(void) {
+13      int stock[5] = {20, 35, 80, 50, 12};
+14      int r = mystere(stock, 5);
+15      printf("Resultat = %d\n", r);
+16      return 0;
+17  }
+\end{codec}
+
+\begin{enumerate}[label=\textbf{\arabic*-},leftmargin=2.2em]
+\item Indiquer le rôle des lignes \textbf{4}, \textbf{6} et \textbf{9}, puis donner en une
+phrase le \textbf{rôle global} de la fonction \code{mystere}. \hfill \textbf{1,25pt}
+\item Faire la \textbf{trace pas-à-pas} de l'exécution de \code{mystere(stock, 5)} : donner,
+pour chaque valeur de \code{i}, la valeur de \code{m}. Quelle valeur s'affiche à la ligne~15 ? \hfill \textbf{1,5pt}
+\item Réécrire la \textbf{ligne 6-7} (le \code{if}) en utilisant l'\textbf{opérateur
+ternaire} \code{? :} en une seule instruction. \hfill \textbf{1pt}
+\item La fonction \code{mystere} est \textbf{itérative}. En écrire une version
+\textbf{récursive} \code{int maxRec(int t[], int n)} qui retourne le même résultat. \hfill \textbf{1,25pt}
+\end{enumerate}
+
+% =====================================================================
+\corrige{du sujet TI n\textsuperscript{o}5}
+
+\subsection*{Partie I — Programmation web}
+
+\textbf{Exercice 1.}
+
+\smallskip
+\textbf{1- Définitions.}
+\begin{itemize}
+\item \emph{Balise} : élément du langage HTML, écrit entre chevrons (ex. \code{<p>}),
+qui délimite et structure un contenu de la page (la plupart vont par paire :
+ouvrante \code{<p>} et fermante \code{</p>}).
+\item \emph{Événement} : action de l'utilisateur ou du navigateur (clic, survol,
+chargement…) à laquelle une page peut réagir grâce à un gestionnaire comme \code{onclick}.
+\item \emph{Fonction} (JavaScript) : bloc d'instructions nommé, défini par le mot-clé
+\code{function}, que l'on peut appeler à volonté pour réaliser un traitement et
+éventuellement retourner une valeur.
+\end{itemize}
+
+\textbf{2- Formulaire HTML.}
+
+\begin{codehtml}
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="utf-8"><title>BoutikCM - Simulateur</title></head>
+<body>
+  <h2>Simulateur de commande</h2>
+  <p>Prix unitaire (FCFA) : <input type="text" id="pu"></p>
+  <p>Quantite : <input type="text" id="qte"></p>
+  <p>
+    <input type="button" value="Calculer le montant" onclick="montant()">
+  </p>
+  <p>Montant total : <input type="text" id="total"></p>
+  <script src="boutik.js"></script>
+</body>
+</html>
+\end{codehtml}
+
+\textbf{3- Fonction \code{montant()} en JavaScript.}
+
+\begin{codejs}
+function montant() {
+  var pu  = parseFloat(document.getElementById("pu").value);
+  var qte = parseFloat(document.getElementById("qte").value);
+  var total = pu * qte;                                  // produit
+  document.getElementById("total").value = total;        // affichage
+}
+\end{codejs}
+
+\textbf{4- Appel au clic.} L'attribut placé sur le bouton est :
+
+\begin{codehtml}
+<input type="button" value="Calculer le montant" onclick="montant()">
+\end{codehtml}
+
+Le clic déclenche \code{onclick="montant()"}, qui exécute la fonction et écrit le
+montant dans la zone \code{id="total"}.
+
+\bigskip
+\textbf{Exercice 2.}
+
+\smallskip
+\textbf{1.a) Définitions.}
+\begin{itemize}
+\item \emph{Base de données} : ensemble structuré de données organisées (ici en tables)
+de façon à être facilement consultées, mises à jour et partagées.
+\item \emph{SGBD} (Système de Gestion de Base de Données) : logiciel qui permet de créer,
+manipuler et administrer une base de données (ex. MySQL).
+\end{itemize}
+
+\textbf{1.b) Rôle de PHP et SQL.}
+\begin{itemize}
+\item \textbf{PHP} : langage côté serveur qui produit la page web dynamique et dialogue
+avec la base (connexion, envoi des requêtes, affichage des résultats).
+\item \textbf{SQL} : langage de requêtes utilisé pour créer la table et manipuler les
+données (\code{SELECT}, \code{INSERT}, \code{DELETE}…).
+\end{itemize}
+
+\textbf{1.c) Création de la table.}
+
+\begin{codesql}
+CREATE TABLE ARTICLES (
+    reference     VARCHAR(10) PRIMARY KEY,
+    designation   VARCHAR(50),
+    prix_unitaire INT,
+    quantite      INT
+);
+\end{codesql}
+
+\textbf{2- Connexion et affichage de tous les articles.}
+
+\begin{codephp}
+<?php
+  // Connexion a la base SHOP_DB
+  $cnx = mysqli_connect("localhost", "root", "", "SHOP_DB");
+  if (!$cnx) {
+    die("Connexion impossible : " . mysqli_connect_error());
+  }
+
+  // Lecture de tous les articles
+  $res = mysqli_query($cnx, "SELECT * FROM ARTICLES");
+
+  echo "<table border='1'>";
+  echo "<tr><th>Reference</th><th>Designation</th>";
+  echo "<th>Prix unitaire</th><th>Quantite</th></tr>";
+
+  while ($ligne = mysqli_fetch_assoc($res)) {
+    echo "<tr>";
+    echo "<td>" . $ligne["reference"]     . "</td>";
+    echo "<td>" . $ligne["designation"]   . "</td>";
+    echo "<td>" . $ligne["prix_unitaire"] . " FCFA</td>";
+    echo "<td>" . $ligne["quantite"]      . "</td>";
+    echo "</tr>";
+  }
+  echo "</table>";
+
+  mysqli_close($cnx);
+?>
+\end{codephp}
+
+\textbf{3.a) Formulaire HTML (méthode POST).}
+
+\begin{codehtml}
+<form action="supprimer.php" method="post">
+  <label>Nom de l'article a supprimer :</label>
+  <input type="text" name="nom_article">
+  <input type="submit" value="Supprimer">
+</form>
+\end{codehtml}
+
+\textbf{3.b) Code PHP : suppression puis ré-affichage.}
+
+\begin{codephp}
+<?php
+  // Connexion
+  $cnx = mysqli_connect("localhost", "root", "", "SHOP_DB");
+  if (!$cnx) {
+    die("Connexion impossible : " . mysqli_connect_error());
+  }
+
+  // 1) Recuperation du nom saisi et suppression
+  $nom = $_POST["nom_article"];
+  $sql = "DELETE FROM ARTICLES WHERE designation = '$nom'";
+
+  if (mysqli_query($cnx, $sql)) {
+    echo "<p>L'article \"$nom\" a ete supprime.</p>";
+  } else {
+    echo "<p>Erreur : " . mysqli_error($cnx) . "</p>";
+  }
+
+  // 2) Re-affichage de la table mise a jour
+  $res = mysqli_query($cnx, "SELECT * FROM ARTICLES");
+  echo "<table border='1'>";
+  echo "<tr><th>Reference</th><th>Designation</th>";
+  echo "<th>Prix unitaire</th><th>Quantite</th></tr>";
+  while ($ligne = mysqli_fetch_assoc($res)) {
+    echo "<tr>";
+    echo "<td>" . $ligne["reference"]     . "</td>";
+    echo "<td>" . $ligne["designation"]   . "</td>";
+    echo "<td>" . $ligne["prix_unitaire"] . " FCFA</td>";
+    echo "<td>" . $ligne["quantite"]      . "</td>";
+    echo "</tr>";
+  }
+  echo "</table>";
+
+  mysqli_close($cnx);
+?>
+\end{codephp}
+
+\begin{remarque}
+La condition \code{WHERE designation = '\$nom'} est indispensable : sans
+\code{WHERE}, la requête \code{DELETE FROM ARTICLES} viderait toute la table. Si
+plusieurs articles portent la même désignation, ils sont tous supprimés.
+\end{remarque}
+
+\subsection*{Partie II — Programmation procédurale en C}
+
+\textbf{Exercice 1.}
+
+\smallskip
+\textbf{1- Définitions.}
+\begin{itemize}
+\item \emph{Structure (enregistrement)} : type de données composé regroupant sous un seul
+nom plusieurs champs de types éventuellement différents (ex. une référence, un prix…).
+\item \emph{Tableau de structures} : tableau dont chaque case est une structure ; il permet
+de stocker une collection d'enregistrements de même type (ici plusieurs articles).
+\end{itemize}
+
+\textbf{2- Déclaration de la structure et du tableau.}
+
+\begin{codec}
+typedef struct {
+    char reference[10];
+    char designation[50];
+    int  prix;
+    int  quantite;
+} Article;
+
+Article commande[4];
+\end{codec}
+
+\textbf{3- Fonction \code{montantTotal} imposée.}
+
+\begin{codec}
+int montantTotal(Article cmd[], int n) {
+    int total = 0;
+    for (int i = 0; i < n; i++) {
+        total = total + cmd[i].prix * cmd[i].quantite;
+    }
+    return total;
+}
+\end{codec}
+
+\textbf{4- Programme principal.}
+
+\begin{codec}
+#include <stdio.h>
+#include <string.h>
+
+typedef struct {
+    char reference[10];
+    char designation[50];
+    int  prix;
+    int  quantite;
+} Article;
+
+int montantTotal(Article cmd[], int n) {
+    int total = 0;
+    for (int i = 0; i < n; i++) {
+        total = total + cmd[i].prix * cmd[i].quantite;
+    }
+    return total;
+}
+
+int main(void) {
+    Article commande[4];
+
+    strcpy(commande[0].reference, "ART01");
+    strcpy(commande[0].designation, "Sac de riz 5 kg");
+    commande[0].prix = 4500;  commande[0].quantite = 20;
+
+    strcpy(commande[1].reference, "ART02");
+    strcpy(commande[1].designation, "Bidon d'huile 1 L");
+    commande[1].prix = 1200;  commande[1].quantite = 35;
+
+    strcpy(commande[2].reference, "ART03");
+    strcpy(commande[2].designation, "Savon de Ngaoundere");
+    commande[2].prix = 350;   commande[2].quantite = 80;
+
+    strcpy(commande[3].reference, "ART04");
+    strcpy(commande[3].designation, "Cahier 200 pages");
+    commande[3].prix = 600;   commande[3].quantite = 50;
+
+    int total = montantTotal(commande, 4);
+    printf("Montant total de la commande : %d FCFA\n", total);
+
+    return 0;
+}
+\end{codec}
+
+Calcul : $4500\times20 + 1200\times35 + 350\times80 + 600\times50
+= 90000 + 42000 + 28000 + 30000 = \mathbf{190000}$~FCFA. Le programme affiche
+« Montant total de la commande : 190000 FCFA ».
+
+\bigskip
+\textbf{Exercice 2.}
+
+\smallskip
+\textbf{1- Rôle des lignes et de la fonction.}
+\begin{itemize}
+\item \textbf{Ligne 4} : \code{int m = t[0];} initialise \code{m} avec le \emph{premier}
+élément du tableau (candidat de départ pour le maximum).
+\item \textbf{Ligne 6} : \code{if (t[i] > m)} teste si l'élément courant est strictement
+\emph{supérieur} au maximum provisoire \code{m}.
+\item \textbf{Ligne 9} : \code{return m;} retourne au programme appelant la valeur trouvée
+(le maximum).
+\item \textbf{Rôle global} : la fonction \code{mystere} retourne le \textbf{plus grand
+élément} (le maximum) d'un tableau d'entiers de taille \code{n}.
+\end{itemize}
+
+\textbf{2- Trace pas-à-pas de \code{mystere(stock, 5)}} avec
+\code{stock = {20, 35, 80, 50, 12}}. Au départ \code{m = t[0] = 20}.
+
+\begin{center}\small
+\begin{tabular}{@{}cccl@{}}
+\toprule
+\textbf{i} & \textbf{t[i]} & \textbf{t[i] > m ?} & \textbf{m après l'étape}\\
+\midrule
+1 & 35 & 35 > 20 \;: oui  & m = 35\\
+2 & 80 & 80 > 35 \;: oui  & m = 80\\
+3 & 50 & 50 > 80 \;: non  & m = 80\\
+4 & 12 & 12 > 80 \;: non  & m = 80\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+À la fin \code{m = 80}, donc la fonction retourne \textbf{80}. La ligne~15 affiche
+« Resultat = 80 ».
+
+\textbf{3- Le \code{if} avec l'opérateur ternaire.} On remplace les lignes 6-7 par :
+
+\begin{codec}
+m = (t[i] > m) ? t[i] : m;
+\end{codec}
+
+\textbf{4- Version récursive \code{maxRec}.} Le maximum des \code{n} premiers éléments est
+le plus grand entre le dernier élément \code{t[n-1]} et le maximum des \code{n-1} premiers.
+Le cas de base est un tableau d'un seul élément.
+
+\begin{codec}
+int maxRec(int t[], int n) {
+    if (n == 1)
+        return t[0];                 // cas de base : un seul element
+    int m = maxRec(t, n - 1);        // maximum des n-1 premiers
+    return (t[n-1] > m) ? t[n-1] : m;
+}
+\end{codec}
+
+L'appel \code{maxRec(stock, 5)} retourne lui aussi \textbf{80}.
+
+\begin{aretenir}
+Sujet en deux moitiés de 10 points. \textbf{Web} : un simulateur HTML/JS (fonction
+\code{montant()} et \code{onclick}), puis du PHP/MySQL — connexion \code{mysqli\_connect},
+affichage en \textbf{tableau HTML}, et surtout une \textbf{suppression} \code{DELETE \dots\
+WHERE designation = '\$nom'} récupérée par \code{\$\_POST} suivie d'un \textbf{ré-affichage}.
+\textbf{C} : une \code{struct Article}, un \textbf{tableau de structures} et la fonction
+imposée \code{montantTotal} ; puis l'étude d'un programme (rôle, \textbf{trace},
+\textbf{ternaire}, passage \textbf{itératif}~$\leftrightarrow$~\textbf{récursif}).
+\end{aretenir}

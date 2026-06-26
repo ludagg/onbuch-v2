@@ -1,0 +1,535 @@
+\chapter{L'environnement de développement web}
+
+\begin{synthese}[Au programme]
+Comprendre l'architecture \textbf{client/serveur} et le cycle requête/réponse HTTP,
+identifier le rôle d'un \textbf{serveur web} (Apache, Nginx, IIS), installer et
+configurer un \textbf{environnement intégré} (WampServer, XAMPP, LAMP), repérer le
+\textbf{répertoire racine} et le \textbf{port d'écoute}, puis \textbf{héberger un
+site en local} avant d'évoquer la mise en ligne.
+\end{synthese}
+
+\section{L'architecture client/serveur}
+
+Tout site web dynamique repose sur un dialogue entre deux acteurs : un
+\textbf{client} et un \textbf{serveur}. Avant d'écrire la moindre ligne de PHP, il
+faut bien comprendre qui fait quoi.
+
+\begin{definition}
+Dans le modèle \textbf{client/serveur}, le \textbf{client} demande un service et le
+\textbf{serveur} le fournit. Sur le Web, le client est le \textbf{navigateur}
+(Chrome, Firefox, Edge\dots) et le serveur est un \textbf{serveur web} qui héberge
+les pages et répond aux demandes.
+\end{definition}
+
+\subsection{Le client : le navigateur}
+
+Le navigateur est le logiciel installé sur la machine de l'utilisateur. Son rôle :
+\begin{itemize}
+  \item envoyer une \textbf{requête} lorsqu'on saisit une adresse (URL) ou qu'on
+        clique sur un lien ;
+  \item recevoir la \textbf{réponse} du serveur (du code HTML, des images, du CSS\dots) ;
+  \item \textbf{afficher} la page à l'écran après l'avoir interprétée.
+\end{itemize}
+Le navigateur ne « voit » jamais le code PHP : il ne reçoit que du HTML déjà
+fabriqué par le serveur.
+
+\subsection{Le serveur web}
+
+\begin{definition}
+Un \textbf{serveur web} est un logiciel (et la machine qui l'héberge) qui reste en
+permanence à l'écoute des requêtes des clients, recherche la ressource demandée
+(une page, une image\dots) et la renvoie au navigateur.
+\end{definition}
+
+Les serveurs web les plus répandus sont :
+\begin{itemize}
+  \item \textbf{Apache} (\emph{Apache HTTP Server}) : libre, gratuit, le plus utilisé
+        pour apprendre et pour de nombreux sites ;
+  \item \textbf{Nginx} : réputé pour sa rapidité et sa faible consommation, très
+        utilisé sur les gros sites ;
+  \item \textbf{IIS} (\emph{Internet Information Services}) : le serveur web de
+        Microsoft, intégré à Windows Server.
+\end{itemize}
+
+\begin{remarque}
+Le mot « serveur » désigne tantôt le \emph{logiciel} (Apache), tantôt la
+\emph{machine} (un ordinateur puissant allumé en permanence). Sur ton propre PC, le
+même ordinateur peut jouer à la fois le rôle de client \emph{et} de serveur : c'est
+exactement ce qu'on fait quand on installe WampServer pour tester un site en local.
+\end{remarque}
+
+\subsection{Le cycle requête / réponse HTTP}
+
+Le navigateur et le serveur communiquent grâce à un langage commun : le protocole
+\textbf{HTTP} (\emph{HyperText Transfer Protocol}). L'échange suit toujours le même
+cycle en quatre temps.
+
+\begin{enumerate}[label=\arabic*)]
+  \item \textbf{Requête.} L'utilisateur saisit \code{http://www.onbuch.cm/index.php}.
+        Le navigateur envoie une \textbf{requête HTTP} au serveur (« donne-moi la
+        page \code{index.php} »).
+  \item \textbf{Traitement.} Le serveur web reçoit la requête. Si la page contient
+        du PHP, il fait \textbf{exécuter} le code par le préprocesseur PHP (qui peut
+        interroger une base de données).
+  \item \textbf{Réponse.} Le serveur renvoie une \textbf{réponse HTTP} contenant la
+        page \textbf{HTML} finale (le résultat, plus le code PHP).
+  \item \textbf{Affichage.} Le navigateur interprète le HTML reçu et affiche la page
+        à l'utilisateur.
+\end{enumerate}
+
+\begin{center}
+\small
+\begin{tikzpicture}[font=\sffamily\small]
+  % boîtes
+  \node[draw=onbblue, very thick, rounded corners, fill=onbblue!6,
+        minimum width=3.1cm, minimum height=1.5cm, align=center]
+        (client) at (0,0) {\textbf{CLIENT}\\\footnotesize Navigateur\\\footnotesize (Chrome, Firefox)};
+  \node[draw=onbo, very thick, rounded corners, fill=onbsoft,
+        minimum width=3.1cm, minimum height=1.5cm, align=center]
+        (serveur) at (8,0) {\textbf{SERVEUR WEB}\\\footnotesize Apache + PHP\\\footnotesize + base de données};
+  % flèche requête
+  \draw[->, >=latex, very thick, onbblue]
+        ([yshift=4pt]client.east) -- node[above, midway, onbblue]{\footnotesize 1. Requête HTTP}
+        node[below, midway, onbmuted]{\footnotesize \code{GET /index.php}} ([yshift=4pt]serveur.west);
+  % flèche réponse
+  \draw[->, >=latex, very thick, onbo]
+        ([yshift=-10pt]serveur.west) -- node[above, midway, onbo]{\footnotesize 3. Réponse HTTP}
+        node[below, midway, onbmuted]{\footnotesize page HTML} ([yshift=-10pt]client.east);
+  % traitement
+  \node[onbmuted, align=center, font=\sffamily\footnotesize] at (8,-1.6)
+        {2. Exécution du PHP\\(génération du HTML)};
+\end{tikzpicture}
+\end{center}
+
+\fig{Le cycle requête/réponse HTTP : le client demande, le serveur exécute puis répond.}
+
+\section{Les environnements intégrés de développement web}
+
+Pour développer un site PHP, il faut au minimum trois logiciels qui fonctionnent
+ensemble. Plutôt que de les installer un par un, on utilise un \textbf{environnement
+intégré} qui les regroupe en une seule installation.
+
+\begin{definition}
+Un \textbf{environnement intégré de développement web} est une suite logicielle qui
+réunit, prêts à l'emploi, un \textbf{serveur web}, un \textbf{SGBD} (système de
+gestion de base de données) et un \textbf{préprocesseur} de langage côté serveur.
+\end{definition}
+
+\subsection{Les trois composants}
+
+Quel que soit l'environnement choisi, on retrouve toujours les mêmes briques :
+
+\begin{center}\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Composant} & \textbf{Logiciel typique} & \textbf{Rôle}\\
+\midrule
+Serveur web    & Apache              & Reçoit les requêtes, renvoie les pages\\
+SGBD           & MySQL / MariaDB     & Stocke et gère les données (base de données)\\
+Préprocesseur  & PHP                 & Exécute le code et fabrique le HTML\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{remarque}
+On parle souvent d'\textbf{outil AMP} : \textbf{A}pache + \textbf{M}ySQL +
+\textbf{P}HP. La première lettre indique le système d'exploitation : \textbf{W}AMP
+(Windows), \textbf{L}AMP (Linux), \textbf{M}AMP (macOS).
+\end{remarque}
+
+\subsection{Les environnements les plus courants}
+
+\begin{center}\small
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{Environnement} & \textbf{Système} & \textbf{Répertoire racine} & \textbf{Particularité}\\
+\midrule
+WampServer & Windows        & \code{www}    & Très répandu dans les lycées\\
+XAMPP      & Multi-plateforme & \code{htdocs} & Marche sous Windows, Linux, macOS\\
+EasyPHP    & Windows        & \code{www}    & Léger, simple à installer\\
+LAMP       & Linux          & \code{/var/www/html} & Installé paquet par paquet\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{remarque}
+\textbf{LAMP} n'est pas un logiciel unique à télécharger : c'est l'ensemble
+\textbf{L}inux + \textbf{A}pache + \textbf{M}ySQL + \textbf{P}HP qu'on installe
+généralement avec le gestionnaire de paquets (par exemple
+\code{sudo apt install apache2 mysql-server php}). WampServer, XAMPP et EasyPHP, eux,
+s'installent en un seul fichier d'installation.
+\end{remarque}
+
+\section{Installer et configurer l'environnement}
+
+L'installation d'un environnement comme WampServer ou XAMPP se résume à télécharger
+le programme depuis le site officiel, puis à suivre l'assistant. Une fois installé,
+le logiciel place une icône dans la \textbf{zone de notification} (à côté de
+l'horloge) qui permet de piloter les services.
+
+\begin{methode}
+\textbf{Installer WampServer et tester l'installation.}
+\begin{enumerate}[label=\arabic*)]
+  \item \textbf{Télécharger} WampServer depuis le site officiel
+        (\code{wampserver.com}) en choisissant la version 32 ou 64 bits qui
+        correspond à ton Windows.
+  \item \textbf{Lancer l'installeur} et accepter les options par défaut (dossier
+        d'installation \code{C:\textbackslash wamp64}). Laisser installer les
+        composants Apache, MySQL et PHP.
+  \item \textbf{Démarrer WampServer} : une icône apparaît près de l'horloge. Elle
+        devient \textbf{verte} quand tous les services sont actifs (orange = un
+        service manque, rouge = aucun service).
+  \item \textbf{Tester} : ouvrir le navigateur et saisir \code{http://localhost}.
+        La page d'accueil de WampServer doit s'afficher : l'installation est réussie.
+  \item \textbf{Créer une première page} : déposer un fichier \code{essai.php} dans
+        le dossier \code{www}, puis ouvrir \code{http://localhost/essai.php}.
+\end{enumerate}
+\end{methode}
+
+\begin{attention}
+Sur certains réseaux de lycées ou de cybercafés, un autre logiciel (Skype, un
+antivirus, ou un autre serveur) peut déjà utiliser le port 80 et empêcher Apache de
+démarrer (icône orange). Dans ce cas, il faut soit fermer ce logiciel, soit
+\textbf{changer le port d'écoute} d'Apache (voir plus loin).
+\end{attention}
+
+\section{Démarrer et arrêter les services}
+
+Un \textbf{service} est un logiciel qui tourne en arrière-plan. Dans WampServer ou
+XAMPP, les deux services essentiels sont \textbf{Apache} (le serveur web) et
+\textbf{MySQL} (le SGBD).
+
+\begin{itemize}
+  \item \textbf{WampServer} : un clic \emph{gauche} sur l'icône ouvre un menu avec
+        \emph{Start All Services}, \emph{Stop All Services} et \emph{Restart All
+        Services}. Le menu \emph{Apache} (et \emph{MySQL}) permet aussi de démarrer
+        ou arrêter chaque service séparément.
+  \item \textbf{XAMPP} : le \emph{Control Panel} affiche chaque module avec un bouton
+        \emph{Start} / \emph{Stop}. Un voyant vert signale qu'un service est démarré.
+\end{itemize}
+
+\begin{remarque}
+Il faut \textbf{redémarrer} (\emph{Restart}) Apache à chaque fois qu'on modifie un
+fichier de configuration (comme \code{httpd.conf}), sinon le changement n'est pas pris
+en compte. En revanche, modifier une simple page \code{.php} ne nécessite aucun
+redémarrage : il suffit de recharger la page dans le navigateur.
+\end{remarque}
+
+\section{Le répertoire racine}
+
+\begin{definition}
+Le \textbf{répertoire racine} (\emph{document root}) est le dossier dans lequel le
+serveur web va chercher les pages à servir. Tout fichier placé dans ce dossier
+devient accessible depuis le navigateur via \code{http://localhost/}.
+\end{definition}
+
+Le nom du répertoire racine dépend de l'environnement :
+\begin{itemize}
+  \item \textbf{WampServer} : \code{www} (par exemple \code{C:\textbackslash wamp64\textbackslash www}) ;
+  \item \textbf{XAMPP} : \code{htdocs} (par exemple \code{C:\textbackslash xampp\textbackslash htdocs}) ;
+  \item \textbf{LAMP (Linux)} : \code{/var/www/html}.
+\end{itemize}
+
+\begin{exemple}
+Sous WampServer, le fichier \code{C:\textbackslash wamp64\textbackslash www\textbackslash bulletin.php}
+est accessible à l'adresse \code{http://localhost/bulletin.php}. Si on le range dans
+un sous-dossier \code{lycee}, l'adresse devient \code{http://localhost/lycee/bulletin.php}.
+\end{exemple}
+
+\begin{attention}
+Une page placée \textbf{en dehors} du répertoire racine (par exemple sur le Bureau)
+ne pourra \textbf{pas} être servie par Apache : le navigateur ne la trouvera pas à
+l'adresse \code{http://localhost/}. Place toujours tes fichiers \code{.php} dans
+\code{www} (ou \code{htdocs}).
+\end{attention}
+
+\section{Le port d'écoute}
+
+\begin{definition}
+Un \textbf{port} est un numéro qui identifie un service réseau sur une machine.
+Le serveur web Apache « écoute » par défaut sur le \textbf{port 80}, le port standard
+du protocole HTTP. C'est pourquoi on peut écrire \code{http://localhost} sans préciser
+de numéro.
+\end{definition}
+
+\begin{remarque}
+Quand aucun port n'est précisé, le navigateur utilise automatiquement le port 80 pour
+\code{http}. Écrire \code{http://localhost} revient donc exactement à écrire
+\code{http://localhost:80}.
+\end{remarque}
+
+\subsection{Identifier et modifier le port}
+
+Le port d'écoute d'Apache est défini dans son fichier de configuration principal,
+\code{httpd.conf}. On y trouve une ligne \code{Listen} :
+
+\begin{center}\small
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Environnement} & \textbf{Emplacement de \code{httpd.conf}}\\
+\midrule
+WampServer & \code{C:\textbackslash wamp64\textbackslash bin\textbackslash apache\textbackslash apache2.x.x\textbackslash conf}\\
+XAMPP      & \code{C:\textbackslash xampp\textbackslash apache\textbackslash conf}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Dans WampServer, on peut ouvrir directement ce fichier par le menu de l'icône :
+\emph{Apache} $\rightarrow$ \emph{httpd.conf}. La ligne à repérer est :
+
+\begin{verbatim}
+# Fichier httpd.conf - port d'ecoute d'Apache
+Listen 80
+\end{verbatim}
+
+\fig{La directive \code{Listen} fixe le port sur lequel Apache attend les requêtes.}
+
+Pour faire écouter Apache sur un autre port (par exemple le \textbf{8080}, souvent
+utilisé quand le port 80 est déjà occupé), on remplace la valeur :
+
+\begin{verbatim}
+# Apache ecoute desormais sur le port 8080
+Listen 8080
+\end{verbatim}
+
+\begin{methode}
+\textbf{Changer le port d'écoute d'Apache.}
+\begin{enumerate}[label=\arabic*)]
+  \item Ouvrir le fichier \code{httpd.conf} (menu \emph{Apache}).
+  \item Remplacer la ligne \code{Listen 80} par \code{Listen 8080}.
+  \item Si elle existe, modifier aussi la ligne \code{ServerName localhost:80} en
+        \code{ServerName localhost:8080}.
+  \item \textbf{Enregistrer} le fichier et \textbf{redémarrer} Apache.
+  \item Accéder désormais au site avec le port dans l'URL :
+        \code{http://localhost:8080}.
+\end{enumerate}
+\end{methode}
+
+\begin{attention}
+Après avoir changé le port, l'adresse \code{http://localhost} (port 80) ne fonctionne
+plus : il faut impérativement préciser le nouveau port, comme dans
+\code{http://localhost:8080}. Et il ne faut pas oublier de redémarrer Apache, sinon
+l'ancien réglage reste actif.
+\end{attention}
+
+\section{Héberger un site}
+
+\subsection{En local (sur sa propre machine)}
+
+Héberger un site « en local », c'est le faire fonctionner sur son propre ordinateur,
+sans connexion Internet. C'est la méthode idéale pour développer et tester avant la
+mise en ligne.
+
+\begin{methode}
+\textbf{Héberger un site en local.}
+\begin{enumerate}[label=\arabic*)]
+  \item \textbf{Placer le dossier} du site dans le répertoire racine. Exemple : copier
+        le dossier \code{notesonline} dans \code{C:\textbackslash wamp64\textbackslash www}.
+  \item \textbf{Démarrer les services} : lancer Apache (serveur web) et MySQL (si le
+        site utilise une base de données). L'icône WampServer doit être verte.
+  \item \textbf{Ouvrir le navigateur} et saisir l'adresse du site :
+        \code{http://localhost/notesonline/}. Le serveur cherche alors un fichier
+        \code{index.php} (ou \code{index.html}) dans ce dossier.
+  \item \textbf{Naviguer} dans le site comme s'il était en ligne, mais visible
+        uniquement depuis cette machine.
+\end{enumerate}
+\end{methode}
+
+\begin{remarque}
+L'adresse \code{localhost} (ou son équivalent numérique \code{127.0.0.1}) désigne
+toujours « ma propre machine ». Un site en local n'est donc pas accessible depuis
+Internet : il faut un véritable hébergeur pour le rendre public.
+\end{remarque}
+
+\subsection{En ligne (mise en production)}
+
+Une fois le site terminé et testé en local, on le publie sur Internet pour qu'il soit
+accessible à tous. Il faut alors deux choses :
+
+\begin{itemize}
+  \item un \textbf{hébergeur} : une entreprise qui loue de l'espace sur un serveur web
+        allumé en permanence et connecté à Internet (par exemple OVH, Ionos, ou un
+        hébergeur local camerounais comme Camtel/Blue) ;
+  \item un \textbf{nom de domaine} : l'adresse facile à retenir du site (par exemple
+        \code{www.onbuch.cm}), à louer auprès d'un bureau d'enregistrement. Le suffixe
+        \code{.cm} est réservé aux sites du Cameroun.
+\end{itemize}
+
+\begin{exemple}
+Un lycée de Yaoundé développe son site de publication des résultats. Il le teste
+d'abord en local sous WampServer (\code{http://localhost/resultats/}). Une fois prêt,
+il loue le nom de domaine \code{lycee-bilingue.cm} et un hébergement, puis transfère
+ses fichiers \code{.php} sur le serveur de l'hébergeur (généralement par \textbf{FTP}).
+Le site est alors accessible depuis n'importe quel ordinateur du monde.
+\end{exemple}
+
+\begin{remarque}
+Pour transférer les fichiers vers l'hébergeur, on utilise le plus souvent le protocole
+\textbf{FTP} (\emph{File Transfer Protocol}) avec un logiciel comme FileZilla, ou bien
+l'interface d'administration fournie par l'hébergeur.
+\end{remarque}
+
+\section{Exercices}
+
+\rubrique{Application}
+
+\exo{Client ou serveur ?}\diff{1}
+Pour chaque élément, indique s'il joue le rôle de \textbf{client} ou de
+\textbf{serveur} : a) Mozilla Firefox ; b) Apache ; c) le navigateur d'un téléphone ;
+d) Nginx ; e) Google Chrome.
+
+\exo{Vrai ou faux ?}\diff{1}
+Réponds par vrai ou faux et justifie : a) le navigateur exécute le code PHP ;
+b) Apache est un serveur web ; c) HTTP est le protocole utilisé entre le navigateur
+et le serveur web ; d) le client envoie la réponse et le serveur la requête ;
+e) un site en local est visible depuis Internet.
+
+\exo{Associer composant et rôle}\diff{1}
+Associe chaque composant d'un environnement WAMP à son rôle :
+\begin{enumerate}[label=\arabic*)]
+  \item Apache \qquad a) exécute le code et fabrique le HTML
+  \item MySQL  \qquad b) stocke et gère les données
+  \item PHP    \qquad c) reçoit les requêtes et renvoie les pages
+\end{enumerate}
+
+\exo{Le bon répertoire racine}\diff{1}
+Donne le nom du répertoire racine pour : a) WampServer ; b) XAMPP ; c) LAMP sous
+Linux. Où faut-il placer un fichier \code{accueil.php} sous WampServer pour qu'il soit
+accessible à \code{http://localhost/accueil.php} ?
+
+\exo{Décoder une URL}\diff{2}
+On donne l'adresse \code{http://localhost:8080/ecole/notes.php}. Indique :
+a) le port d'écoute utilisé ; b) le sous-dossier du site dans le répertoire racine ;
+c) le nom du fichier demandé ; d) pourquoi le port \code{8080} apparaît ici alors qu'il
+n'apparaît pas dans \code{http://localhost/}.
+
+\rubrique{Entraînement}
+
+\exo{Changer le port d'écoute}\diff{2}
+Le port 80 est déjà occupé par un autre logiciel et Apache refuse de démarrer (icône
+orange). Décris la procédure complète pour faire écouter Apache sur le port \code{8081},
+en précisant le fichier modifié, la ligne à changer et l'adresse à utiliser ensuite.
+
+\exo{Procédure d'hébergement local}\diff{2}
+Un camarade t'envoie un dossier \code{cantine} contenant son site PHP. Décris, étape
+par étape, ce que tu dois faire pour l'exécuter sur ta machine avec WampServer, depuis
+la copie du dossier jusqu'à l'affichage dans le navigateur.
+
+\exo{Le cycle requête/réponse}\diff{2}
+Un élève saisit \code{http://www.onbuch.cm/resultats.php} dans son navigateur. Décris,
+dans l'ordre, les quatre étapes du cycle requête/réponse HTTP jusqu'à l'affichage de la
+page, en précisant à quel moment le code PHP est exécuté.
+
+\exo{De local à en ligne}\diff{3}
+Le club informatique d'un lycée de Douala a terminé son site sous XAMPP
+(\code{http://localhost/club/}). a) Pourquoi ce site n'est-il pas encore visible par
+les élèves chez eux ? b) Cite les \textbf{deux} éléments à acquérir pour le mettre en
+ligne. c) Par quel moyen transfère-t-on les fichiers vers l'hébergeur ?
+
+\section{Corrigés}
+
+\corrige{de l'exercice 1}
+Le \textbf{client} est le logiciel qui demande et affiche les pages (un navigateur) ;
+le \textbf{serveur} est le logiciel qui héberge et renvoie les pages.
+\begin{itemize}
+  \item a) Mozilla Firefox $\rightarrow$ \textbf{client} (navigateur) ;
+  \item b) Apache $\rightarrow$ \textbf{serveur} (serveur web) ;
+  \item c) navigateur d'un téléphone $\rightarrow$ \textbf{client} ;
+  \item d) Nginx $\rightarrow$ \textbf{serveur} (serveur web) ;
+  \item e) Google Chrome $\rightarrow$ \textbf{client} (navigateur).
+\end{itemize}
+
+\corrige{de l'exercice 2}
+\begin{enumerate}[label=\alph*)]
+  \item \textbf{Faux} : le PHP s'exécute sur le \emph{serveur}, pas dans le navigateur.
+  \item \textbf{Vrai} : Apache est bien un serveur web.
+  \item \textbf{Vrai} : HTTP est le protocole d'échange entre client et serveur web.
+  \item \textbf{Faux} : c'est le client qui envoie la \emph{requête} et le serveur qui
+        renvoie la \emph{réponse}.
+  \item \textbf{Faux} : un site en local (\code{localhost}) n'est visible que sur la
+        machine elle-même, pas depuis Internet.
+\end{enumerate}
+
+\corrige{de l'exercice 3}
+\begin{itemize}
+  \item 1 $\rightarrow$ c) Apache reçoit les requêtes et renvoie les pages ;
+  \item 2 $\rightarrow$ b) MySQL stocke et gère les données ;
+  \item 3 $\rightarrow$ a) PHP exécute le code et fabrique le HTML.
+\end{itemize}
+
+\corrige{de l'exercice 4}
+Le répertoire racine est : a) \code{www} pour WampServer ; b) \code{htdocs} pour
+XAMPP ; c) \code{/var/www/html} pour LAMP sous Linux. Sous WampServer, le fichier
+\code{accueil.php} doit être placé directement dans le dossier \code{www}
+(c'est-à-dire \code{C:\textbackslash wamp64\textbackslash www\textbackslash accueil.php})
+pour être accessible à \code{http://localhost/accueil.php}.
+
+\corrige{de l'exercice 5}
+Dans \code{http://localhost:8080/ecole/notes.php} :
+\begin{enumerate}[label=\alph*)]
+  \item le port d'écoute est \textbf{8080} (la valeur après les deux-points) ;
+  \item le sous-dossier du site est \code{ecole} (placé dans le répertoire racine) ;
+  \item le fichier demandé est \code{notes.php} ;
+  \item le port \code{8080} apparaît parce qu'Apache a été configuré sur ce port (au
+        lieu du 80 par défaut). Dans \code{http://localhost/}, le port n'est pas écrit
+        car le navigateur utilise automatiquement le port 80, valeur par défaut de HTTP.
+\end{enumerate}
+
+\corrige{de l'exercice 6}
+Procédure pour faire écouter Apache sur le port 8081 :
+\begin{enumerate}[label=\arabic*)]
+  \item ouvrir le fichier de configuration \code{httpd.conf} d'Apache (menu
+        \emph{Apache} $\rightarrow$ \emph{httpd.conf} dans WampServer) ;
+  \item remplacer la ligne \code{Listen 80} par \code{Listen 8081} (et, si présente,
+        \code{ServerName localhost:80} par \code{ServerName localhost:8081}) ;
+  \item enregistrer le fichier ;
+  \item redémarrer Apache (\emph{Restart Services}) pour appliquer le changement ;
+  \item accéder au site avec le nouveau port : \code{http://localhost:8081/}.
+\end{enumerate}
+
+\corrige{de l'exercice 7}
+Pour exécuter le dossier \code{cantine} sous WampServer :
+\begin{enumerate}[label=\arabic*)]
+  \item copier le dossier \code{cantine} dans le répertoire racine
+        \code{C:\textbackslash wamp64\textbackslash www} ;
+  \item démarrer WampServer et lancer les services Apache (et MySQL si le site utilise
+        une base de données) : l'icône doit devenir verte ;
+  \item ouvrir le navigateur et saisir \code{http://localhost/cantine/} ;
+  \item le serveur affiche le fichier \code{index.php} du dossier ; on peut alors
+        naviguer dans le site.
+\end{enumerate}
+
+\corrige{de l'exercice 8}
+Cycle requête/réponse pour \code{http://www.onbuch.cm/resultats.php} :
+\begin{enumerate}[label=\arabic*)]
+  \item \textbf{Requête} : le navigateur (client) envoie une requête HTTP au serveur
+        pour demander la page \code{resultats.php} ;
+  \item \textbf{Traitement} : le serveur web reçoit la requête et fait \textbf{exécuter
+        le code PHP} de la page (c'est à ce moment que le PHP s'exécute, éventuellement
+        en interrogeant une base de données) ;
+  \item \textbf{Réponse} : le serveur renvoie au navigateur la page \textbf{HTML}
+        produite par le PHP ;
+  \item \textbf{Affichage} : le navigateur interprète le HTML reçu et affiche la page à
+        l'élève.
+\end{enumerate}
+
+\corrige{de l'exercice 9}
+\begin{enumerate}[label=\alph*)]
+  \item Le site n'est visible que sur la machine du club car \code{localhost} désigne
+        cette seule machine ; il n'est pas accessible depuis Internet.
+  \item Pour le mettre en ligne, il faut acquérir : un \textbf{hébergeur} (un serveur
+        connecté à Internet en permanence) et un \textbf{nom de domaine}
+        (par exemple \code{club-douala.cm}).
+  \item On transfère les fichiers vers l'hébergeur par \textbf{FTP} (avec un logiciel
+        comme FileZilla) ou via l'interface d'administration de l'hébergeur.
+\end{enumerate}
+
+\begin{aretenir}
+Sur le Web, le \textbf{client} (navigateur) envoie une \textbf{requête HTTP} et le
+\textbf{serveur web} (Apache) renvoie une \textbf{réponse} : la page HTML. Un
+environnement intégré (WampServer, XAMPP, LAMP) réunit \textbf{Apache + MySQL + PHP}.
+On place ses pages dans le \textbf{répertoire racine} (\code{www} ou \code{htdocs}),
+Apache écoute par défaut sur le \textbf{port 80} (modifiable via \code{Listen} dans
+\code{httpd.conf}), et on teste tout en local sur \code{http://localhost/} avant la
+mise en ligne (hébergeur + nom de domaine).
+\end{aretenir}

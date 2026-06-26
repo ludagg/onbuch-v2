@@ -1,0 +1,591 @@
+\section{Sujet TI n\textsuperscript{o}\,2 — Pharmacie}
+
+\begin{synthese}[Un sujet type, calqué sur l'examen]
+Voici un \textbf{sujet type} d'« Algorithmique et Programmation », série \textbf{TI},
+construit exactement comme à l'examen : une \textbf{Partie I — Programmation web}
+(HTML, JavaScript, PHP, MySQL) sur \textbf{10 points} et une \textbf{Partie II —
+Programmation procédurale en C} (structures, fonctions, récursivité) sur
+\textbf{10 points}. Le fil conducteur : la gestion informatisée d'une
+\textbf{pharmacie}. Compose d'abord seul, dans les conditions de l'examen, puis
+confronte ta copie au corrigé détaillé.
+\end{synthese}
+
+% =====================================================================
+%  EN-TÊTE DU SUJET
+% =====================================================================
+\begin{center}
+\fbox{\begin{minipage}{0.93\linewidth}
+\centering\sffamily
+{\bfseries OFFICE DU BACCALAURÉAT DU CAMEROUN}\\[1pt]
+{\footnotesize Examen : Baccalauréat de l'Enseignement Secondaire Technique}\\[3pt]
+\rule{0.6\linewidth}{0.4pt}\\[3pt]
+{\large\bfseries SUJET TYPE n\textsuperscript{o}\,2}\\[2pt]
+{\bfseries Série : TI}\\[2pt]
+{\bfseries Épreuve : Algorithmique et Programmation}\\[3pt]
+\begin{tabular}{@{}l@{\quad}c@{\quad}l@{}}
+Durée : \textbf{03 heures} & $\bullet$ & Coefficient : \textbf{04}
+\end{tabular}\\[3pt]
+\rule{0.6\linewidth}{0.4pt}\\[2pt]
+{\footnotesize\itshape L'épreuve comporte deux parties indépendantes, notées chacune sur 10 points.}
+\end{minipage}}
+\end{center}
+
+% =====================================================================
+%  PARTIE I — PROGRAMMATION WEB
+% =====================================================================
+\subsection*{Partie I — Programmation web \hfill (10 points)}
+\addcontentsline{toc}{subsection}{Sujet TI n°2 — Partie I : Programmation web}
+
+\noindent\textbf{Contexte.} \emph{« La \textbf{Pharmacie de la Cité Verte}, à Yaoundé,
+souhaite informatiser la gestion de son stock de médicaments. On vous confie le
+développement d'un module web modulaire qui permet d'\textbf{ajouter de nouveaux
+médicaments} au stock et de \textbf{mettre à jour les quantités après chaque vente}.
+Les médicaments sont enregistrés dans une base de données nommée \code{PHARMA\_DB},
+dont la table principale est nommée \code{MEDICAMENTS}. Chaque médicament est
+caractérisé par son \textbf{nom}, sa \textbf{catégorie}, son \textbf{prix} (en FCFA)
+et sa \textbf{quantité en stock}. »}
+
+\subsubsection*{Exercice 1 — Programmation HTML et JavaScript \hfill (03,5 pts)}
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+\item \textbf{(0,5 pt)} Définir : \emph{page web dynamique} ; \emph{langage de script}.
+\item \textbf{(1,5 pt)} Écrire le code HTML affichant le formulaire (nommé
+\code{medForm}) d'ajout d'un médicament. La méthode est \code{POST} et le fichier de
+traitement est nommé \code{ajout\_med.php}. Les champs sont, dans l'ordre,
+\emph{« Nom du médicament »}, \emph{« Catégorie »}, \emph{« Prix (FCFA) »},
+\emph{« Quantité »} et un bouton \emph{« Ajouter »}. Vous présenterez le formulaire
+sous forme d'un tableau de \textbf{05 lignes} et \textbf{02 colonnes}. La balise
+\code{<form>} appellera, à la soumission, une fonction de validation JavaScript
+nommée \code{validateForm()}.
+\item \textbf{(0,25 pt)} Citer un attribut HTML qui rend obligatoire la saisie d'un
+champ de formulaire côté navigateur.
+\item \textbf{(1,25 pt)} On souhaite, au clic du bouton \emph{« Ajouter »}, vérifier
+la saisie : tous les champs doivent être renseignés, et de plus le \textbf{prix} ainsi
+que la \textbf{quantité} doivent être des nombres \textbf{strictement positifs}. Si une
+règle n'est pas respectée, un message d'erreur adéquat est affiché dans une boîte de
+dialogue et l'envoi du formulaire est annulé ; sinon le message
+\emph{« Médicament prêt à être enregistré »} est affiché et le formulaire est envoyé.
+Écrire en JavaScript le code de la fonction \code{validateForm()}.
+\end{enumerate}
+
+\subsubsection*{Exercice 2 — Programmation PHP et MySQL \hfill (06,5 pts)}
+
+\noindent On s'intéresse maintenant à la base de données \code{PHARMA\_DB} et aux scripts
+PHP qui y accèdent.
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+\item \textbf{(0,25 pt)} Donner la signification du sigle \emph{SGBD}.
+\item \textbf{(0,25 pt)} Donner la signification de \emph{PHP}.
+\item \textbf{(0,5 pt)} Indiquer le côté (client ou serveur) où s'exécute un script PHP,
+puis donner un avantage qui en découle.
+\item \textbf{(0,5 pt)} Citer les quatre opérations de base du \emph{CRUD} sur une table,
+et donner pour chacune l'instruction SQL correspondante.
+\item \textbf{(1,5 pt)} Écrire le script PHP \code{ajout\_med.php} qui, à la réception du
+formulaire de l'exercice 1, se connecte à la base \code{PHARMA\_DB} (hôte
+\code{localhost}, utilisateur \code{root}, mot de passe vide), récupère les champs envoyés
+par la méthode \code{POST} et les \textbf{insère} dans la table \code{MEDICAMENTS}.
+\item \textbf{(0,75 pt)} Donner le rôle des fonctions suivantes :
+\code{mysqli\_connect()} ; \code{mysqli\_query()} ; \code{mysqli\_fetch\_assoc()}.
+\item \textbf{(2 pts)} Après chaque vente, on doit \textbf{mettre à jour le stock}. On
+dispose d'un formulaire qui saisit le \emph{nom} du médicament vendu et la
+\emph{quantité vendue}. Écrire un script PHP \code{vente.php} qui décrémente la quantité
+en stock du médicament concerné (\code{quantite = quantite - quantité vendue}) au moyen
+d'une requête \code{UPDATE}, puis \textbf{réaffiche} le contenu de la table
+\code{MEDICAMENTS} dans un \textbf{tableau HTML} (nom, catégorie, prix, quantité).
+\item \textbf{(0,5 pt)} Écrire la requête SQL qui sélectionne le nom et la quantité des
+médicaments dont le stock est \textbf{inférieur à 10} (médicaments à recommander).
+\end{enumerate}
+
+% =====================================================================
+%  PARTIE II — PROGRAMMATION PROCÉDURALE EN C
+% =====================================================================
+\subsection*{Partie II — Programmation procédurale en C \hfill (10 points)}
+\addcontentsline{toc}{subsection}{Sujet TI n°2 — Partie II : Programmation en C}
+
+\subsubsection*{Exercice 1 \hfill (5 pts)}
+
+\noindent\emph{« Pour gérer hors-ligne le stock de la pharmacie, on écrit un programme C.
+Chaque médicament est caractérisé par un \textbf{code} (entier), un \textbf{nom} (chaîne),
+un \textbf{prix} (réel, en FCFA) et une \textbf{quantité} en stock (entier). Les
+médicaments sont rangés dans un tableau. On vous demande d'aider à implémenter les
+fonctions de gestion. »}
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+\item \textbf{(1,5 pt)} Donner l'instruction C permettant de déclarer une structure
+d'enregistrement nommée \code{Medicament} regroupant les caractéristiques décrites dans
+le texte.
+\item \textbf{(0,5 pt)} Donner l'instruction C permettant de déclarer un tableau \code{stock}
+de 200 médicaments.
+\item \textbf{(0,5 pt)} Donner deux avantages de l'utilisation des fonctions dans un programme.
+\item \textbf{(2,5 pts)} Écrire la définition de la fonction \code{medsEnRupture} qui parcourt
+le tableau et \textbf{affiche le nom de chaque médicament en rupture de stock}
+(c'est-à-dire dont la quantité est égale à 0), puis \textbf{retourne le nombre} de
+médicaments en rupture trouvés. Si aucun médicament n'est en rupture, la fonction affiche
+le message \emph{« Aucune rupture de stock »}. L'en-tête imposé de la fonction est :
+\code{int medsEnRupture(struct Medicament stock[], int n)}, où \code{n} est le nombre de
+médicaments du tableau.
+\end{enumerate}
+
+\subsubsection*{Exercice 2 \hfill (5 pts)}
+
+\noindent On donne le programme C ci-dessous, qui calcule le \textbf{PGCD} de deux entiers
+par la \textbf{méthode des soustractions successives} (les numéros de ligne 1 à 24 sont
+rappelés en commentaire pour pouvoir y faire référence) :
+
+\begin{codec}
+/* 1*/  /* PGCD de deux entiers par soustractions successives */
+/* 2*/  #include <stdio.h>
+/* 3*/  #include <stdlib.h>
+/* 4*/  int a, b;
+/* 5*/  int pgcd(int x, int y);
+/* 6*/  int main() {
+/* 7*/      printf("Entrez deux entiers strictement positifs: ");
+/* 8*/      scanf("%d %d", &a, &b);
+/* 9*/      if (a <= 0 || b <= 0) {
+/*10*/          printf("Valeurs invalides !\n");
+/*11*/      }
+/*12*/      else {
+/*13*/          printf("PGCD(%d, %d) = %d\n", a, b, pgcd(a, b));
+/*14*/      }
+/*15*/      return EXIT_SUCCESS;
+/*16*/  }
+/*17*/  int pgcd(int x, int y) {
+/*18*/      if (x == y) {
+/*19*/          return x;
+/*20*/      }
+/*21*/      if (x > y)
+/*22*/          return pgcd(x - y, y);
+/*23*/      return pgcd(x, y - x);
+/*24*/  }
+\end{codec}
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+\item Donner le rôle de :
+  \begin{enumerate}[label=\textbf{1.\arabic*}]
+  \item \textbf{(0,25 pt)} la ligne 5 (\code{int pgcd(int x, int y);}) ;
+  \item \textbf{(0,25 pt)} la ligne 8 (\code{scanf("\%d \%d", \&a, \&b);}).
+  \end{enumerate}
+\item \textbf{(0,5 pt)} Donner la différence fondamentale entre les variables \code{a} et
+\code{b} d'une part, et les paramètres \code{x} et \code{y} d'autre part.
+\item \textbf{(1,5 pt)} Exécuter pas à pas ce programme pour \code{a = 18} et \code{b = 12}
+(présenter la trace, de préférence dans un tableau).
+\item \textbf{(1 pt)} Réécrire les instructions de la structure \code{if/else} des lignes
+9 à 13 en utilisant l'opérateur ternaire (\code{ ? : }).
+\item \textbf{(1,25 pt)} Réécrire la fonction \code{pgcd} sous sa forme \textbf{itérative}
+(boucle, sans récursivité).
+\end{enumerate}
+
+% =====================================================================
+%  CORRIGÉ
+% =====================================================================
+\corrige{du sujet TI n°2}
+
+\subsubsection*{Partie I — Exercice 1 (HTML / JavaScript)}
+
+\textbf{1. Définitions.}
+\begin{itemize}
+  \item \emph{Page web dynamique} : page web dont le contenu est
+  \textbf{généré au moment de la requête} par un programme exécuté sur le serveur (PHP,
+  etc.), souvent à partir d'une base de données. Son contenu peut donc varier d'une visite
+  à l'autre (contrairement à une page statique au contenu figé).
+  \item \emph{Langage de script} : langage interprété (non compilé) servant à
+  \textbf{automatiser des traitements} à l'intérieur d'un environnement hôte — par exemple
+  PHP côté serveur ou JavaScript côté navigateur.
+\end{itemize}
+
+\medskip
+\textbf{2. Formulaire HTML (\code{medForm}) avec tableau 5$\times$2.}
+
+\begin{codehtml}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Ajout d'un médicament</title>
+  <script src="validation.js"></script>
+</head>
+<body>
+  <h2>Nouveau médicament</h2>
+  <form name="medForm" method="POST" action="ajout_med.php"
+        onsubmit="return validateForm()">
+    <table border="1" cellpadding="6">
+      <tr>
+        <td>Nom du médicament</td>
+        <td><input type="text" name="nom"></td>
+      </tr>
+      <tr>
+        <td>Catégorie</td>
+        <td><input type="text" name="categorie"></td>
+      </tr>
+      <tr>
+        <td>Prix (FCFA)</td>
+        <td><input type="number" name="prix"></td>
+      </tr>
+      <tr>
+        <td>Quantité</td>
+        <td><input type="number" name="quantite"></td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center">
+          <input type="submit" name="ajouter" value="Ajouter">
+        </td>
+      </tr>
+    </table>
+  </form>
+</body>
+</html>
+\end{codehtml}
+
+\fig{Tableau de 5 lignes $\times$ 2 colonnes ; la validation est lancée par \code{onsubmit}.}
+
+\begin{remarque}
+Le formulaire porte le nom \code{medForm}, la méthode est \code{POST} et \code{action}
+pointe vers \code{ajout\_med.php}. L'attribut \code{onsubmit="return validateForm()"}
+bloque l'envoi du formulaire lorsque la fonction retourne \code{false}.
+\end{remarque}
+
+\medskip
+\textbf{3. Attribut rendant un champ obligatoire.} L'attribut \code{required} (ex.
+\code{<input type="text" name="nom" required>}) impose au navigateur de refuser l'envoi
+si le champ est vide.
+
+\medskip
+\textbf{4. Fonction \code{validateForm()}.}
+
+\begin{codejs}
+function validateForm() {
+  // Récupération des champs du formulaire medForm
+  var f = document.forms["medForm"];
+  var nom       = f["nom"].value;
+  var categorie = f["categorie"].value;
+  var prix      = f["prix"].value;
+  var quantite  = f["quantite"].value;
+
+  // 1) Tous les champs doivent être renseignés
+  if (nom === "" || categorie === "" || prix === "" || quantite === "") {
+    alert("Tous les champs sont obligatoires.");
+    return false;   // annule l'envoi du formulaire
+  }
+
+  // 2) Le prix et la quantité doivent être strictement positifs
+  if (parseFloat(prix) <= 0 || isNaN(prix)) {
+    alert("Le prix doit être un nombre strictement positif.");
+    return false;
+  }
+  if (parseInt(quantite) <= 0 || isNaN(quantite)) {
+    alert("La quantité doit être un nombre strictement positif.");
+    return false;
+  }
+
+  // Saisie valide
+  alert("Médicament prêt à être enregistré");
+  return true;      // autorise l'envoi vers ajout_med.php
+}
+\end{codejs}
+
+\begin{remarque}
+\code{return false} empêche la soumission (saisie incorrecte) ; \code{return true} laisse
+le formulaire partir vers \code{ajout\_med.php}. \code{parseFloat}/\code{parseInt}
+convertissent le texte saisi en nombre, et \code{isNaN} détecte une saisie non numérique.
+\end{remarque}
+
+\subsubsection*{Partie I — Exercice 2 (PHP / MySQL)}
+
+\textbf{1. Signification de SGBD.} \emph{SGBD} = \textbf{Système de Gestion de Base de
+Données} (ex. MySQL / MariaDB) : logiciel qui crée, stocke, interroge et sécurise les
+données d'une base.
+
+\medskip
+\textbf{2. Signification de PHP.} \emph{PHP} signifie \textbf{PHP: Hypertext Preprocessor}
+(à l'origine \emph{Personal Home Page}).
+
+\medskip
+\textbf{3. Côté d'exécution de PHP + avantage.} Un script PHP s'exécute \textbf{du côté
+serveur}. Avantage : le serveur peut se connecter à la \textbf{base de données} et lire
+des fichiers en toute sécurité, et le \textbf{code source PHP n'est jamais visible} par le
+client (le navigateur ne reçoit que le HTML produit).
+
+\medskip
+\textbf{4. Les quatre opérations CRUD et leur instruction SQL.}
+
+\begin{center}\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Opération} & \textbf{Signification} & \textbf{Instruction SQL}\\
+\midrule
+\textbf{C}reate & Créer / insérer  & \code{INSERT INTO}\\
+\textbf{R}ead   & Lire / consulter & \code{SELECT}\\
+\textbf{U}pdate & Mettre à jour    & \code{UPDATE}\\
+\textbf{D}elete & Supprimer        & \code{DELETE}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\medskip
+\textbf{5. Script \code{ajout\_med.php} : connexion + \code{\$\_POST} + \code{INSERT}.}
+
+\begin{codephp}
+<?php
+// ajout_med.php — insère un nouveau médicament dans MEDICAMENTS
+if (isset($_POST["ajouter"])) {
+    // Connexion à la base PHARMA_DB
+    $conn = mysqli_connect("localhost", "root", "", "PHARMA_DB");
+    if (!$conn) {
+        die("Connexion echouee: " . mysqli_connect_error());
+    }
+
+    // Récupération des champs envoyés par le formulaire (méthode POST)
+    $nom       = $_POST["nom"];
+    $categorie = $_POST["categorie"];
+    $prix      = $_POST["prix"];
+    $quantite  = $_POST["quantite"];
+
+    // Insertion dans la table MEDICAMENTS
+    $sql = "INSERT INTO MEDICAMENTS (nom, categorie, prix, quantite)
+            VALUES ('$nom', '$categorie', $prix, $quantite)";
+
+    if (mysqli_query($conn, $sql)) {
+        echo "<p>Médicament '$nom' ajouté avec succès.</p>";
+    } else {
+        echo "<p>Erreur : " . mysqli_error($conn) . "</p>";
+    }
+    mysqli_close($conn);
+}
+?>
+\end{codephp}
+
+\medskip
+\textbf{6. Rôle des fonctions.}
+\begin{itemize}
+  \item \code{mysqli\_connect()} : \textbf{ouvre une connexion} au serveur MySQL et
+  sélectionne la base (hôte, utilisateur, mot de passe, nom de la base). Elle renvoie un
+  identifiant de connexion utilisé par les requêtes suivantes.
+  \item \code{mysqli\_query()} : \textbf{exécute une requête SQL} sur la connexion ouverte.
+  Pour un \code{SELECT}, elle renvoie un résultat à parcourir ; pour
+  \code{INSERT}/\code{UPDATE}/\code{DELETE}, elle renvoie \code{true} en cas de succès.
+  \item \code{mysqli\_fetch\_assoc()} : récupère la \textbf{ligne courante} d'un résultat de
+  \code{SELECT} sous forme de \textbf{tableau associatif} (clés = noms des colonnes). À
+  chaque appel, on avance d'une ligne ; elle renvoie \code{NULL} quand il n'y a plus de ligne.
+\end{itemize}
+
+\medskip
+\textbf{7. Script \code{vente.php} : \code{UPDATE} du stock + ré-affichage du tableau.}
+
+\begin{codephp}
+<?php
+// vente.php — décrémente le stock après une vente puis réaffiche la table
+$conn = mysqli_connect("localhost", "root", "", "PHARMA_DB");
+if (!$conn) {
+    die("Connexion echouee: " . mysqli_connect_error());
+}
+
+// Si le formulaire de vente a été soumis
+if (isset($_POST["vendre"])) {
+    $nom    = $_POST["nom"];
+    $qteVue = (int) $_POST["qte_vendue"];
+
+    // Mise à jour du stock : quantite = quantite - quantité vendue
+    $sql = "UPDATE MEDICAMENTS
+            SET quantite = quantite - $qteVue
+            WHERE nom = '$nom'";
+
+    if (mysqli_query($conn, $sql)) {
+        echo "<p>Vente enregistrée : $qteVue x $nom.</p>";
+    } else {
+        echo "<p>Erreur : " . mysqli_error($conn) . "</p>";
+    }
+}
+?>
+
+<!-- Formulaire de saisie de la vente -->
+<form method="POST" action="vente.php">
+  Nom du médicament :
+  <input type="text" name="nom">
+  Quantité vendue :
+  <input type="number" name="qte_vendue">
+  <input type="submit" name="vendre" value="Vendre">
+</form>
+
+<!-- Affichage du contenu de la table modifiée dans un tableau HTML -->
+<table border="1" cellpadding="6">
+  <tr>
+    <th>Nom</th>
+    <th>Catégorie</th>
+    <th>Prix (FCFA)</th>
+    <th>Quantité</th>
+  </tr>
+  <?php
+  $result = mysqli_query($conn, "SELECT nom, categorie, prix, quantite FROM MEDICAMENTS");
+  while ($row = mysqli_fetch_assoc($result)) {
+      echo "<tr>";
+      echo "<td>" . $row["nom"] . "</td>";
+      echo "<td>" . $row["categorie"] . "</td>";
+      echo "<td>" . $row["prix"] . "</td>";
+      echo "<td>" . $row["quantite"] . "</td>";
+      echo "</tr>";
+  }
+  mysqli_close($conn);
+  ?>
+</table>
+\end{codephp}
+
+\begin{attention}
+En production, on ne concatène jamais une saisie utilisateur directement dans une requête
+(risque d'\textbf{injection SQL}) : on emploie des \textbf{requêtes préparées}. Ici, le
+code reste au niveau attendu en Terminale TI.
+\end{attention}
+
+\medskip
+\textbf{8. Requête SQL des médicaments à recommander (stock $<$ 10).}
+
+\begin{codesql}
+SELECT nom, quantite FROM MEDICAMENTS WHERE quantite < 10;
+\end{codesql}
+
+\subsubsection*{Partie II — Exercice 1 (structures et fonctions en C)}
+
+\textbf{1. Déclaration de la structure \code{Medicament}.}
+
+\begin{codec}
+struct Medicament {
+    int   code;        /* code du médicament (entier)        */
+    char  nom[50];     /* nom (chaîne de caractères)         */
+    float prix;        /* prix en FCFA (réel)                */
+    int   quantite;    /* quantité en stock (entier)         */
+};
+\end{codec}
+
+\medskip
+\textbf{2. Déclaration d'un tableau \code{stock} de 200 médicaments.}
+
+\begin{codec}
+struct Medicament stock[200];
+\end{codec}
+
+\medskip
+\textbf{3. Deux avantages des fonctions.}
+\begin{itemize}
+  \item Elles évitent la \textbf{répétition de code} (réutilisation) : un traitement écrit
+  une seule fois est appelé autant de fois que nécessaire ;
+  \item Elles rendent le programme plus \textbf{lisible, structuré et facile à
+  maintenir/déboguer} (découpage en sous-problèmes — programmation modulaire).
+\end{itemize}
+
+\medskip
+\textbf{4. Définition de la fonction \code{medsEnRupture}.}
+
+\begin{codec}
+#include <stdio.h>
+
+int medsEnRupture(struct Medicament stock[], int n) {
+    int i;
+    int nb = 0;   /* compteur de médicaments en rupture */
+
+    for (i = 0; i < n; i++) {
+        if (stock[i].quantite == 0) {      /* rupture de stock */
+            printf("Rupture : %s\n", stock[i].nom);
+            nb++;
+        }
+    }
+
+    if (nb == 0) {
+        printf("Aucune rupture de stock\n");
+    }
+
+    return nb;   /* nombre de médicaments en rupture */
+}
+\end{codec}
+
+\begin{remarque}
+On parcourt tout le tableau ; pour chaque médicament dont \code{quantite == 0}, on affiche
+son nom et on incrémente le compteur \code{nb}. Après le parcours, si \code{nb} vaut 0,
+aucun médicament n'est en rupture : on affiche le message correspondant. Enfin la fonction
+retourne \code{nb}.
+\end{remarque}
+
+\subsubsection*{Partie II — Exercice 2 (PGCD récursif par soustractions)}
+
+\textbf{1. Rôle des lignes.}
+\begin{itemize}
+  \item \textbf{Ligne 5} — \code{int pgcd(int x, int y);} : c'est le \textbf{prototype}
+  (déclaration anticipée) de la fonction \code{pgcd}. Il annonce au compilateur, avant
+  \code{main}, le nom de la fonction, son type de retour (\code{int}) et le type de ses
+  paramètres, pour qu'elle puisse être appelée dans \code{main} (ligne 13) alors qu'elle
+  n'est définie qu'ensuite (ligne 17).
+  \item \textbf{Ligne 8} — \code{scanf("\%d \%d", \&a, \&b);} : \textbf{lit au clavier} deux
+  entiers saisis par l'utilisateur et les \textbf{range dans \code{a} et \code{b}}
+  (l'opérateur \code{\&} fournit l'adresse de chaque variable).
+\end{itemize}
+
+\medskip
+\textbf{2. Différence entre \code{a}, \code{b} et \code{x}, \code{y}.} \code{a} et \code{b}
+sont des variables \textbf{globales} (déclarées ligne 4, hors de toute fonction : visibles
+dans tout le programme), tandis que \code{x} et \code{y} sont des variables \textbf{locales}
+— ce sont les \textbf{paramètres} de la fonction \code{pgcd} (ils n'existent que pendant
+l'exécution de la fonction et reçoivent une copie des valeurs passées à l'appel).
+
+\medskip
+\textbf{3. Trace d'exécution pour \code{a = 18} et \code{b = 12}.} L'appel
+\code{pgcd(18, 12)} déclenche une suite d'appels récursifs : à chaque étape, on soustrait
+le plus petit du plus grand, jusqu'à l'égalité \code{x == y}.
+
+\begin{center}\small
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{Appel} & \textbf{\code{x == y} ?} & \textbf{\code{x > y} ?} & \textbf{Appel suivant / retour}\\
+\midrule
+\code{pgcd(18, 12)} & non & oui & \code{pgcd(18-12, 12) = pgcd(6, 12)}\\
+\code{pgcd(6, 12)}  & non & non & \code{pgcd(6, 12-6) = pgcd(6, 6)}\\
+\code{pgcd(6, 6)}   & oui & --- & \code{return 6}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent La valeur \code{6} remonte alors à travers tous les appels. Le programme affiche :
+\code{PGCD(18, 12) = 6}.
+
+\medskip
+\textbf{4. Réécriture des lignes 9 à 13 avec l'opérateur ternaire.}
+
+\begin{codec}
+(a <= 0 || b <= 0)
+    ? printf("Valeurs invalides !\n")
+    : printf("PGCD(%d, %d) = %d\n", a, b, pgcd(a, b));
+\end{codec}
+
+\begin{remarque}
+L'opérateur ternaire \code{condition ? expr\_si\_vrai : expr\_si\_faux} remplace le
+\code{if/else}. Si \code{(a <= 0 || b <= 0)} est vrai, on affiche le message d'erreur ;
+sinon on calcule et on affiche \code{pgcd(a, b)}.
+\end{remarque}
+
+\medskip
+\textbf{5. Version itérative de la fonction \code{pgcd}.}
+
+\begin{codec}
+int pgcd(int x, int y) {
+    while (x != y) {       /* tant que les deux valeurs diffèrent */
+        if (x > y)
+            x = x - y;     /* on retire le plus petit du plus grand */
+        else
+            y = y - x;
+    }
+    return x;              /* quand x == y, c'est le PGCD */
+}
+\end{codec}
+
+\begin{remarque}
+La boucle \code{while} reproduit la récursivité : on soustrait à répétition le plus petit du
+plus grand jusqu'à l'égalité. Pour \code{x = 18}, \code{y = 12} : $18,12 \to 6,12 \to 6,6$,
+d'où le PGCD \code{6}, comme la version récursive.
+\end{remarque}
+
+\begin{aretenir}
+Au Bac TI, la \textbf{Partie web} attend du code \emph{exact} : un \code{<form>} (méthode
+\code{POST}, \code{action}), une validation JavaScript (\code{return false} bloque l'envoi),
+\code{mysqli\_connect} + \code{\$\_POST} côté serveur, une requête \textbf{CRUD}
+(ici \code{INSERT} puis \code{UPDATE}) et l'affichage d'un \code{SELECT} dans un
+\code{<table>}. La \textbf{Partie C} attend une \code{struct} bien typée, un parcours de
+tableau avec compteur, et la maîtrise de la \textbf{récursivité} (cas de base + cas récursif)
+face à sa version \textbf{itérative}.
+\end{aretenir}
