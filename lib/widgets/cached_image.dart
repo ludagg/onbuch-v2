@@ -20,6 +20,7 @@ class CachedImage extends StatefulWidget {
   final double? height;
   final ImageErrorWidgetBuilder? errorBuilder;
   final ImageLoadingBuilder? loadingBuilder;
+  final bool gaplessPlayback;
 
   const CachedImage(
     this.url, {
@@ -29,6 +30,7 @@ class CachedImage extends StatefulWidget {
     this.height,
     this.errorBuilder,
     this.loadingBuilder,
+    this.gaplessPlayback = true,
   });
 
   @override
@@ -73,7 +75,7 @@ class _CachedImageState extends State<CachedImage> {
         fit: widget.fit,
         width: widget.width,
         height: widget.height,
-        gaplessPlayback: true,
+        gaplessPlayback: widget.gaplessPlayback,
         errorBuilder: widget.errorBuilder,
       );
     }
@@ -84,6 +86,7 @@ class _CachedImageState extends State<CachedImage> {
         fit: widget.fit,
         width: widget.width,
         height: widget.height,
+        gaplessPlayback: widget.gaplessPlayback,
         errorBuilder: widget.errorBuilder,
         loadingBuilder: widget.loadingBuilder,
       );
