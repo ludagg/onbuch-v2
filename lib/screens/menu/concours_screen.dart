@@ -416,7 +416,7 @@ class _PrepCenterCarouselState extends State<_PrepCenterCarousel> {
       ]),
       const SizedBox(height: 10),
       SizedBox(
-        height: 160,
+        height: 104,
         child: PageView.builder(
           controller: _pc,
           itemCount: _items.length,
@@ -470,27 +470,31 @@ class _PrepCenterCarouselState extends State<_PrepCenterCarousel> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(15),
+              padding: const EdgeInsets.all(12),
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Row(children: [_pill('Pub', Colors.white24, Colors.white)]),
+                Row(children: [const Spacer(), _pill('Pub', Colors.white24, Colors.white)]),
                 const Spacer(),
-                Text(p.name, maxLines: 2, overflow: TextOverflow.ellipsis,
-                    style: display(18, weight: FontWeight.w700, color: Colors.white).copyWith(height: 1.1)),
-                if (meta.isNotEmpty) ...[
-                  const SizedBox(height: 4),
-                  Text(meta, maxLines: 1, overflow: TextOverflow.ellipsis,
-                      style: body(12, color: Colors.white.withValues(alpha: 0.82), weight: FontWeight.w500)),
-                ],
-                const SizedBox(height: 11),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 8),
-                  decoration: BoxDecoration(color: OC.o500, borderRadius: BorderRadius.circular(11)),
-                  child: Row(mainAxisSize: MainAxisSize.min, children: [
-                    Text('Découvrir', style: body(12.5, weight: FontWeight.w700, color: Colors.white)),
-                    const SizedBox(width: 6),
-                    const Icon(Icons.arrow_forward_rounded, size: 15, color: Colors.white),
-                  ]),
-                ),
+                Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
+                  Expanded(child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    Text(p.name, maxLines: 1, overflow: TextOverflow.ellipsis,
+                        style: display(15.5, weight: FontWeight.w700, color: Colors.white).copyWith(height: 1.1)),
+                    if (meta.isNotEmpty) ...[
+                      const SizedBox(height: 2),
+                      Text(meta, maxLines: 1, overflow: TextOverflow.ellipsis,
+                          style: body(11, color: Colors.white.withValues(alpha: 0.82), weight: FontWeight.w500)),
+                    ],
+                  ])),
+                  const SizedBox(width: 10),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 6),
+                    decoration: BoxDecoration(color: OC.o500, borderRadius: BorderRadius.circular(10)),
+                    child: Row(mainAxisSize: MainAxisSize.min, children: [
+                      Text('Découvrir', style: body(11.5, weight: FontWeight.w700, color: Colors.white)),
+                      const SizedBox(width: 5),
+                      const Icon(Icons.arrow_forward_rounded, size: 13, color: Colors.white),
+                    ]),
+                  ),
+                ]),
               ]),
             ),
           ]),
