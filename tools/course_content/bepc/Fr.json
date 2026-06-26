@@ -5,72 +5,898 @@
     {
       "title": "Les classes grammaticales (natures de mots)",
       "video": "https://www.youtube.com/watch?v=8sgGTwjUkN8",
-      "lesson": "# Les classes grammaticales (natures de mots)\n\n## Introduction\n\nChaque mot de la langue française appartient à une **classe grammaticale** (on dit aussi **nature**). Connaître la classe d'un mot, c'est savoir à quelle catégorie il appartient : nom, verbe, adjectif, etc. La classe d'un mot **ne change jamais** : on la trouve dans le dictionnaire. Il ne faut pas confondre la **classe** (nature) et la **fonction** (rôle du mot dans la phrase).\n\nOn distingue les **classes variables** (les mots changent de forme : genre, nombre, personne…) et les **classes invariables** (les mots ne changent jamais).\n\n## I. Les classes variables\n\n### 1. Le nom (substantif)\nIl désigne un être, une chose, une idée. Il est **commun** (*un élève, une ville*) ou **propre** (*Yaoundé, Paul*). Il varie en genre et en nombre.\n> **Exemple :** *Le **professeur** corrige les **copies**.*\n\n### 2. Le déterminant\nIl introduit le nom et s'accorde avec lui : articles (*le, un, des*), déterminants possessifs (*mon, ta, nos*), démonstratifs (*ce, cette, ces*), numéraux (*trois*), indéfinis (*plusieurs, chaque*).\n> **Exemple :** ***Cette** maison, **mes** cahiers, **plusieurs** villages.*\n\n### 3. L'adjectif qualificatif\nIl exprime une qualité du nom et s'accorde avec lui.\n> **Exemple :** *un ciel **bleu**, une route **dangereuse**.*\n\n### 4. Le pronom\nIl remplace un nom ou un groupe nominal : personnels (*je, il, nous, le, lui*), possessifs (*le mien*), démonstratifs (*celui-ci*), relatifs (*qui, que, dont*), interrogatifs (*qui ? lequel ?*), indéfinis (*personne, certains*).\n> **Exemple :** *Paul est absent, **il** est malade.*\n\n### 5. Le verbe\nIl exprime une action ou un état. Il se conjugue (personne, temps, mode).\n> **Exemple :** *Les enfants **jouent** dans la cour.*\n\n## II. Les classes invariables\n\n### 1. L'adverbe\nIl modifie un verbe, un adjectif ou un autre adverbe : *vite, beaucoup, hier, très, ne… pas*.\n> **Exemple :** *Elle court **vite**. Il est **très** poli.*\n\n### 2. La préposition\nElle introduit un complément : *à, de, dans, par, pour, sans, avec, sur, sous*.\n> **Exemple :** *Le livre est **sur** la table.*\n\n### 3. La conjonction\n- **De coordination** : *mais, ou, et, donc, or, ni, car*.\n- **De subordination** : *que, quand, comme, si, parce que, lorsque*.\n> **Exemple :** *Je travaille **car** je veux réussir.*\n\n### 4. L'interjection\nElle exprime une émotion : *Oh ! Hélas ! Aïe ! Bravo !*\n\n## Exercices corrigés\n\n**Énoncé :** Indique la classe grammaticale de chaque mot souligné.\n*Le **vieux** pêcheur rentrait **lentement** **vers** son village.*\n\n**Correction :**\n- **vieux** : adjectif qualificatif (qualifie *pêcheur*).\n- **lentement** : adverbe (modifie le verbe *rentrait*).\n- **vers** : préposition (introduit *son village*).\n\n**Énoncé 2 :** Trouve la classe de *que* dans : *Je sais **que** tu viendras* puis dans *Le livre **que** je lis est passionnant.*\n**Correction :** Dans la 1re phrase, *que* est une **conjonction de subordination** ; dans la 2e, c'est un **pronom relatif** (il remplace *le livre*).\n\n## À retenir\n\n- Il existe **9 classes grammaticales** : 5 variables (nom, déterminant, adjectif, pronom, verbe) et 4 invariables (adverbe, préposition, conjonction, interjection).\n- La **classe** (nature) ne change jamais ; la **fonction** dépend de la phrase.\n- Un même mot peut changer de classe selon le contexte (*le bien* = nom ; *bien manger* = adverbe)."
+      "lesson": "# Les classes grammaticales (natures de mots)\n\n## Introduction\n\nChaque mot de la langue française appartient à une **classe grammaticale** (on dit aussi **nature**). Connaître la classe d'un mot, c'est savoir à quelle catégorie il appartient : nom, verbe, adjectif, etc. La classe d'un mot **ne change jamais** : on la trouve dans le dictionnaire. Il ne faut pas confondre la **classe** (nature) et la **fonction** (rôle du mot dans la phrase).\n\nOn distingue les **classes variables** (les mots changent de forme : genre, nombre, personne…) et les **classes invariables** (les mots ne changent jamais).\n\n## I. Les classes variables\n\n### 1. Le nom (substantif)\nIl désigne un être, une chose, une idée. Il est **commun** (*un élève, une ville*) ou **propre** (*Yaoundé, Paul*). Il varie en genre et en nombre.\n> **Exemple :** *Le **professeur** corrige les **copies**.*\n\n### 2. Le déterminant\nIl introduit le nom et s'accorde avec lui : articles (*le, un, des*), déterminants possessifs (*mon, ta, nos*), démonstratifs (*ce, cette, ces*), numéraux (*trois*), indéfinis (*plusieurs, chaque*).\n> **Exemple :** ***Cette** maison, **mes** cahiers, **plusieurs** villages.*\n\n### 3. L'adjectif qualificatif\nIl exprime une qualité du nom et s'accorde avec lui.\n> **Exemple :** *un ciel **bleu**, une route **dangereuse**.*\n\n### 4. Le pronom\nIl remplace un nom ou un groupe nominal : personnels (*je, il, nous, le, lui*), possessifs (*le mien*), démonstratifs (*celui-ci*), relatifs (*qui, que, dont*), interrogatifs (*qui ? lequel ?*), indéfinis (*personne, certains*).\n> **Exemple :** *Paul est absent, **il** est malade.*\n\n### 5. Le verbe\nIl exprime une action ou un état. Il se conjugue (personne, temps, mode).\n> **Exemple :** *Les enfants **jouent** dans la cour.*\n\n## II. Les classes invariables\n\n### 1. L'adverbe\nIl modifie un verbe, un adjectif ou un autre adverbe : *vite, beaucoup, hier, très, ne… pas*.\n> **Exemple :** *Elle court **vite**. Il est **très** poli.*\n\n### 2. La préposition\nElle introduit un complément : *à, de, dans, par, pour, sans, avec, sur, sous*.\n> **Exemple :** *Le livre est **sur** la table.*\n\n### 3. La conjonction\n- **De coordination** : *mais, ou, et, donc, or, ni, car*.\n- **De subordination** : *que, quand, comme, si, parce que, lorsque*.\n> **Exemple :** *Je travaille **car** je veux réussir.*\n\n### 4. L'interjection\nElle exprime une émotion : *Oh ! Hélas ! Aïe ! Bravo !*\n\n## Exercices corrigés\n\n**Énoncé :** Indique la classe grammaticale de chaque mot souligné.\n*Le **vieux** pêcheur rentrait **lentement** **vers** son village.*\n\n**Correction :**\n- **vieux** : adjectif qualificatif (qualifie *pêcheur*).\n- **lentement** : adverbe (modifie le verbe *rentrait*).\n- **vers** : préposition (introduit *son village*).\n\n**Énoncé 2 :** Trouve la classe de *que* dans : *Je sais **que** tu viendras* puis dans *Le livre **que** je lis est passionnant.*\n**Correction :** Dans la 1re phrase, *que* est une **conjonction de subordination** ; dans la 2e, c'est un **pronom relatif** (il remplace *le livre*).\n\n## À retenir\n\n- Il existe **9 classes grammaticales** : 5 variables (nom, déterminant, adjectif, pronom, verbe) et 4 invariables (adverbe, préposition, conjonction, interjection).\n- La **classe** (nature) ne change jamais ; la **fonction** dépend de la phrase.\n- Un même mot peut changer de classe selon le contexte (*le bien* = nom ; *bien manger* = adverbe).",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Combien existe-t-il de classes grammaticales (natures) en français ?",
+            "options": [
+              "5",
+              "7",
+              "9",
+              "12"
+            ],
+            "answer": 2,
+            "explanation": "Il y a 9 classes : 5 variables (nom, déterminant, adjectif, pronom, verbe) et 4 invariables (adverbe, préposition, conjonction, interjection)."
+          },
+          {
+            "q": "Dans « Elle court vite », quelle est la classe de « vite » ?",
+            "options": [
+              "Adjectif",
+              "Adverbe",
+              "Préposition",
+              "Verbe"
+            ],
+            "answer": 1,
+            "explanation": "« vite » modifie le verbe « court » : c'est un adverbe."
+          },
+          {
+            "q": "Quel mot est une préposition ?",
+            "options": [
+              "mais",
+              "vite",
+              "sous",
+              "oh"
+            ],
+            "answer": 2,
+            "explanation": "« sous » introduit un complément : c'est une préposition. « mais » est une conjonction, « vite » un adverbe, « oh » une interjection."
+          },
+          {
+            "q": "Dans « Le livre que je lis », « que » est :",
+            "options": [
+              "Conjonction de subordination",
+              "Pronom relatif",
+              "Adverbe",
+              "Préposition"
+            ],
+            "answer": 1,
+            "explanation": "« que » remplace « le livre » (antécédent) : c'est un pronom relatif."
+          },
+          {
+            "q": "Laquelle de ces classes est INVARIABLE ?",
+            "options": [
+              "Le nom",
+              "L'adjectif",
+              "La conjonction",
+              "Le pronom"
+            ],
+            "answer": 2,
+            "explanation": "La conjonction est invariable, comme l'adverbe, la préposition et l'interjection."
+          }
+        ]
+      }
     },
     {
       "title": "Les fonctions grammaticales",
       "video": "https://www.youtube.com/watch?v=Q3aQ0Q0Q0Q0",
-      "lesson": "# Les fonctions grammaticales\n\n## Introduction\n\nLa **fonction** d'un mot ou d'un groupe de mots, c'est le **rôle** qu'il joue dans la phrase. Contrairement à la classe grammaticale (la nature), la fonction **dépend de la phrase**. Un même mot peut occuper des fonctions différentes selon les phrases. La plupart des fonctions s'organisent autour du **verbe**.\n\n## I. Les fonctions liées au verbe\n\n### 1. Le sujet\nIl commande l'accord du verbe ; on le trouve en posant *« Qui est-ce qui… ? »* ou *« Qu'est-ce qui… ? »*.\n> **Exemple :** ***Les élèves*** *écoutent.* → *Qui est-ce qui écoute ?* → *les élèves*.\n\n### 2. Les compléments d'objet (COD, COI, COS)\nIls complètent le verbe.\n- **COD** (sans préposition) : *« qui ? quoi ? »* → *Il lit **un roman**.*\n- **COI** (avec préposition) : *« à qui ? de quoi ? »* → *Il parle **à son père**.*\n- **COS** (second complément) : *Il offre un cadeau **à sa mère**.*\n\n### 3. L'attribut du sujet\nIl exprime une qualité ou un état attribué au sujet par un **verbe d'état** (*être, paraître, sembler, devenir, rester*).\n> **Exemple :** *Le ciel est **bleu**. Il devient **médecin**.*\n\n### 4. Les compléments circonstanciels (CC)\nIls indiquent les circonstances : **temps** (*hier*), **lieu** (*à l'école*), **manière** (*avec soin*), **cause** (*à cause de la pluie*), **but** (*pour réussir*). Ils sont souvent **déplaçables et supprimables**.\n> **Exemple :** ***Hier***, *nous avons travaillé* ***dans la cour***.\n\n## II. Les fonctions liées au nom\n\n### 1. L'épithète\nAdjectif placé directement à côté du nom, sans verbe.\n> **Exemple :** *une **belle** journée.*\n\n### 2. Le complément du nom\nGroupe introduit par une préposition qui complète un nom.\n> **Exemple :** *le cahier **de Paul**, une tasse **à café**.*\n\n### 3. L'apposition\nElle désigne la même réalité que le nom et est souvent isolée par une virgule.\n> **Exemple :** *Yaoundé, **capitale du Cameroun**, est une grande ville.*\n\n## Exercices corrigés\n\n**Énoncé :** Donne la fonction des groupes soulignés.\n*Pendant les vacances, **mon oncle** a offert **un vélo** **à mon frère**.*\n\n**Correction :**\n- **Pendant les vacances** : complément circonstanciel de temps.\n- **mon oncle** : sujet du verbe *a offert*.\n- **un vélo** : COD de *a offert*.\n- **à mon frère** : COS (complément d'objet second).\n\n**Énoncé 2 :** Quelle est la fonction de *intelligent* dans *Cet élève est intelligent* ?\n**Correction :** *intelligent* est **attribut du sujet** *cet élève* (verbe d'état *est*).\n\n## À retenir\n\n- La **fonction** = rôle dans la phrase ; elle **change** selon les phrases.\n- Fonctions du verbe : **sujet, COD, COI, COS, attribut, CC**.\n- Fonctions du nom : **épithète, complément du nom, apposition**.\n- Le CC est généralement **déplaçable et supprimable** ; le COD ne l'est pas."
+      "lesson": "# Les fonctions grammaticales\n\n## Introduction\n\nLa **fonction** d'un mot ou d'un groupe de mots, c'est le **rôle** qu'il joue dans la phrase. Contrairement à la classe grammaticale (la nature), la fonction **dépend de la phrase**. Un même mot peut occuper des fonctions différentes selon les phrases. La plupart des fonctions s'organisent autour du **verbe**.\n\n## I. Les fonctions liées au verbe\n\n### 1. Le sujet\nIl commande l'accord du verbe ; on le trouve en posant *« Qui est-ce qui… ? »* ou *« Qu'est-ce qui… ? »*.\n> **Exemple :** ***Les élèves*** *écoutent.* → *Qui est-ce qui écoute ?* → *les élèves*.\n\n### 2. Les compléments d'objet (COD, COI, COS)\nIls complètent le verbe.\n- **COD** (sans préposition) : *« qui ? quoi ? »* → *Il lit **un roman**.*\n- **COI** (avec préposition) : *« à qui ? de quoi ? »* → *Il parle **à son père**.*\n- **COS** (second complément) : *Il offre un cadeau **à sa mère**.*\n\n### 3. L'attribut du sujet\nIl exprime une qualité ou un état attribué au sujet par un **verbe d'état** (*être, paraître, sembler, devenir, rester*).\n> **Exemple :** *Le ciel est **bleu**. Il devient **médecin**.*\n\n### 4. Les compléments circonstanciels (CC)\nIls indiquent les circonstances : **temps** (*hier*), **lieu** (*à l'école*), **manière** (*avec soin*), **cause** (*à cause de la pluie*), **but** (*pour réussir*). Ils sont souvent **déplaçables et supprimables**.\n> **Exemple :** ***Hier***, *nous avons travaillé* ***dans la cour***.\n\n## II. Les fonctions liées au nom\n\n### 1. L'épithète\nAdjectif placé directement à côté du nom, sans verbe.\n> **Exemple :** *une **belle** journée.*\n\n### 2. Le complément du nom\nGroupe introduit par une préposition qui complète un nom.\n> **Exemple :** *le cahier **de Paul**, une tasse **à café**.*\n\n### 3. L'apposition\nElle désigne la même réalité que le nom et est souvent isolée par une virgule.\n> **Exemple :** *Yaoundé, **capitale du Cameroun**, est une grande ville.*\n\n## Exercices corrigés\n\n**Énoncé :** Donne la fonction des groupes soulignés.\n*Pendant les vacances, **mon oncle** a offert **un vélo** **à mon frère**.*\n\n**Correction :**\n- **Pendant les vacances** : complément circonstanciel de temps.\n- **mon oncle** : sujet du verbe *a offert*.\n- **un vélo** : COD de *a offert*.\n- **à mon frère** : COS (complément d'objet second).\n\n**Énoncé 2 :** Quelle est la fonction de *intelligent* dans *Cet élève est intelligent* ?\n**Correction :** *intelligent* est **attribut du sujet** *cet élève* (verbe d'état *est*).\n\n## À retenir\n\n- La **fonction** = rôle dans la phrase ; elle **change** selon les phrases.\n- Fonctions du verbe : **sujet, COD, COI, COS, attribut, CC**.\n- Fonctions du nom : **épithète, complément du nom, apposition**.\n- Le CC est généralement **déplaçable et supprimable** ; le COD ne l'est pas.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Comment trouve-t-on le sujet d'un verbe ?",
+            "options": [
+              "En posant « à qui ? »",
+              "En posant « qui est-ce qui ? »",
+              "En supprimant le verbe",
+              "En le déplaçant"
+            ],
+            "answer": 1,
+            "explanation": "On pose « Qui est-ce qui… ? » ou « Qu'est-ce qui… ? » avant le verbe."
+          },
+          {
+            "q": "Dans « Il parle à son père », « à son père » est :",
+            "options": [
+              "COD",
+              "COI",
+              "Sujet",
+              "Attribut"
+            ],
+            "answer": 1,
+            "explanation": "Le complément introduit par une préposition (« à ») est un COI."
+          },
+          {
+            "q": "Quel verbe introduit un attribut du sujet ?",
+            "options": [
+              "manger",
+              "courir",
+              "sembler",
+              "écrire"
+            ],
+            "answer": 2,
+            "explanation": "« sembler » est un verbe d'état, comme être, paraître, devenir, rester."
+          },
+          {
+            "q": "Le complément circonstanciel est généralement :",
+            "options": [
+              "Impossible à supprimer",
+              "Déplaçable et supprimable",
+              "Toujours sujet",
+              "Un adjectif"
+            ],
+            "answer": 1,
+            "explanation": "Le CC est le plus souvent déplaçable et supprimable, contrairement au COD."
+          },
+          {
+            "q": "Dans « le cahier de Paul », « de Paul » est :",
+            "options": [
+              "Épithète",
+              "Apposition",
+              "Complément du nom",
+              "Attribut"
+            ],
+            "answer": 2,
+            "explanation": "« de Paul » complète le nom « cahier » : c'est un complément du nom."
+          }
+        ]
+      }
     },
     {
       "title": "La conjugaison : temps et modes",
       "video": "https://www.youtube.com/watch?v=oVfVvUE5j0o",
-      "lesson": "# La conjugaison : temps et modes\n\n## Introduction\n\nConjuguer un verbe, c'est le faire varier selon la **personne**, le **temps** et le **mode**. Le **mode** indique la manière dont l'action est envisagée ; le **temps** situe l'action dans la chronologie (passé, présent, futur).\n\n## I. Les modes personnels et impersonnels\n\nLes **modes personnels** se conjuguent à toutes les personnes : **indicatif, conditionnel, subjonctif, impératif**.\nLes **modes impersonnels** ne varient pas en personne : **infinitif, participe, gérondif**.\n\n## II. L'indicatif : le mode du réel\n\nC'est le mode qui exprime des faits réels. Il possède de nombreux temps.\n- **Présent** : *je chante*.\n- **Imparfait** (action en cours / habitude dans le passé) : *je chantais*.\n- **Passé simple** (récit, action brève et achevée) : *je chantai, il chanta*.\n- **Passé composé** : *j'ai chanté*.\n- **Plus-que-parfait** (antériorité dans le passé) : *j'avais chanté*.\n- **Futur simple** : *je chanterai*.\n- **Futur antérieur** : *j'aurai chanté*.\n\n> **Emploi clé du récit :** l'**imparfait** sert au décor et à l'arrière-plan ; le **passé simple** fait avancer l'action.\n> *Il **marchait** (imparfait) quand soudain il **tomba** (passé simple).*\n\n## III. Les autres modes personnels\n\n### Le conditionnel\nExprime une action soumise à une condition, un souhait, le futur dans le passé.\n> **Exemple :** *Si j'avais de l'argent, je **voyagerais**.*\n\n### Le subjonctif\nMode du souhait, du doute, de la volonté ; souvent après *que*.\n> **Exemple :** *Il faut que tu **fasses** tes devoirs.*\n\n### L'impératif\nMode de l'ordre, du conseil (sans sujet exprimé), à 3 personnes.\n> **Exemple :** ***Travaille ! Travaillons ! Travaillez !***\n\n## IV. Les modes impersonnels\n\n- **Infinitif** : *chanter, avoir chanté*.\n- **Participe** : présent (*chantant*), passé (*chanté*).\n- **Gérondif** : *en chantant* (exprime la simultanéité, le moyen).\n> **Exemple :** *Il étudie **en écoutant** de la musique.*\n\n## Exercices corrigés\n\n**Énoncé :** Conjugue *finir* à la personne demandée.\n1. *Je …* (imparfait) — 2. *Il …* (passé simple) — 3. *Que nous …* (subjonctif présent).\n\n**Correction :**\n1. *Je **finissais***. — 2. *Il **finit*** (passé simple). — 3. *Que nous **finissions***.\n\n**Énoncé 2 :** Mets au temps correct : *Hier, pendant qu'il (lire), le téléphone (sonner).*\n**Correction :** *Hier, pendant qu'il **lisait** (imparfait, arrière-plan), le téléphone **sonna** (passé simple, action brève).*\n\n## À retenir\n\n- **4 modes personnels** : indicatif, conditionnel, subjonctif, impératif.\n- **3 modes impersonnels** : infinitif, participe, gérondif.\n- Dans un récit : **imparfait** = décor/durée ; **passé simple** = actions de premier plan.\n- Le **subjonctif** suit souvent *que* (volonté, doute, sentiment)."
+      "lesson": "# La conjugaison : temps et modes\n\n## Introduction\n\nConjuguer un verbe, c'est le faire varier selon la **personne**, le **temps** et le **mode**. Le **mode** indique la manière dont l'action est envisagée ; le **temps** situe l'action dans la chronologie (passé, présent, futur).\n\n## I. Les modes personnels et impersonnels\n\nLes **modes personnels** se conjuguent à toutes les personnes : **indicatif, conditionnel, subjonctif, impératif**.\nLes **modes impersonnels** ne varient pas en personne : **infinitif, participe, gérondif**.\n\n## II. L'indicatif : le mode du réel\n\nC'est le mode qui exprime des faits réels. Il possède de nombreux temps.\n- **Présent** : *je chante*.\n- **Imparfait** (action en cours / habitude dans le passé) : *je chantais*.\n- **Passé simple** (récit, action brève et achevée) : *je chantai, il chanta*.\n- **Passé composé** : *j'ai chanté*.\n- **Plus-que-parfait** (antériorité dans le passé) : *j'avais chanté*.\n- **Futur simple** : *je chanterai*.\n- **Futur antérieur** : *j'aurai chanté*.\n\n> **Emploi clé du récit :** l'**imparfait** sert au décor et à l'arrière-plan ; le **passé simple** fait avancer l'action.\n> *Il **marchait** (imparfait) quand soudain il **tomba** (passé simple).*\n\n## III. Les autres modes personnels\n\n### Le conditionnel\nExprime une action soumise à une condition, un souhait, le futur dans le passé.\n> **Exemple :** *Si j'avais de l'argent, je **voyagerais**.*\n\n### Le subjonctif\nMode du souhait, du doute, de la volonté ; souvent après *que*.\n> **Exemple :** *Il faut que tu **fasses** tes devoirs.*\n\n### L'impératif\nMode de l'ordre, du conseil (sans sujet exprimé), à 3 personnes.\n> **Exemple :** ***Travaille ! Travaillons ! Travaillez !***\n\n## IV. Les modes impersonnels\n\n- **Infinitif** : *chanter, avoir chanté*.\n- **Participe** : présent (*chantant*), passé (*chanté*).\n- **Gérondif** : *en chantant* (exprime la simultanéité, le moyen).\n> **Exemple :** *Il étudie **en écoutant** de la musique.*\n\n## Exercices corrigés\n\n**Énoncé :** Conjugue *finir* à la personne demandée.\n1. *Je …* (imparfait) — 2. *Il …* (passé simple) — 3. *Que nous …* (subjonctif présent).\n\n**Correction :**\n1. *Je **finissais***. — 2. *Il **finit*** (passé simple). — 3. *Que nous **finissions***.\n\n**Énoncé 2 :** Mets au temps correct : *Hier, pendant qu'il (lire), le téléphone (sonner).*\n**Correction :** *Hier, pendant qu'il **lisait** (imparfait, arrière-plan), le téléphone **sonna** (passé simple, action brève).*\n\n## À retenir\n\n- **4 modes personnels** : indicatif, conditionnel, subjonctif, impératif.\n- **3 modes impersonnels** : infinitif, participe, gérondif.\n- Dans un récit : **imparfait** = décor/durée ; **passé simple** = actions de premier plan.\n- Le **subjonctif** suit souvent *que* (volonté, doute, sentiment).",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Lequel est un mode personnel ?",
+            "options": [
+              "L'infinitif",
+              "Le participe",
+              "Le subjonctif",
+              "Le gérondif"
+            ],
+            "answer": 2,
+            "explanation": "Le subjonctif se conjugue à toutes les personnes : c'est un mode personnel."
+          },
+          {
+            "q": "Dans un récit, quel temps fait avancer l'action ?",
+            "options": [
+              "L'imparfait",
+              "Le passé simple",
+              "Le présent",
+              "Le conditionnel"
+            ],
+            "answer": 1,
+            "explanation": "Le passé simple exprime les actions de premier plan ; l'imparfait sert au décor."
+          },
+          {
+            "q": "« en chantant » est :",
+            "options": [
+              "Un infinitif",
+              "Un participe passé",
+              "Un gérondif",
+              "Un subjonctif"
+            ],
+            "answer": 2,
+            "explanation": "« en + participe présent » forme le gérondif."
+          },
+          {
+            "q": "Après « Il faut que », on emploie :",
+            "options": [
+              "L'indicatif",
+              "Le subjonctif",
+              "Le conditionnel",
+              "L'impératif"
+            ],
+            "answer": 1,
+            "explanation": "« Il faut que » exprime la nécessité et entraîne le subjonctif : « que tu fasses »."
+          },
+          {
+            "q": "« Si j'avais de l'argent, je voyagerais » : « voyagerais » est au :",
+            "options": [
+              "Futur simple",
+              "Conditionnel présent",
+              "Imparfait",
+              "Subjonctif"
+            ],
+            "answer": 1,
+            "explanation": "L'action soumise à une condition s'exprime au conditionnel présent."
+          }
+        ]
+      }
     },
     {
       "title": "Les types et les formes de phrases",
       "video": "https://www.youtube.com/watch?v=hF7uHkrU0aE",
-      "lesson": "# Les types et les formes de phrases\n\n## Introduction\n\nToute phrase a un **type** (déclaratif, interrogatif, injonctif, exclamatif) qui correspond à l'intention de celui qui parle, et des **formes** (affirmative/négative, active/passive, neutre/emphatique) qui s'ajoutent au type. Type et forme se combinent.\n\n## I. Les quatre types de phrases\n\n### 1. La phrase déclarative\nElle énonce un fait, donne une information ; elle se termine par un **point**.\n> **Exemple :** *Le train arrive à huit heures.*\n\n### 2. La phrase interrogative\nElle pose une question ; elle se termine par un **point d'interrogation**.\n- Totale (réponse oui/non) : *Viens-tu ?*\n- Partielle (mot interrogatif) : *Quand viens-tu ?*\n\n### 3. La phrase injonctive (impérative)\nElle exprime un ordre, un conseil, une interdiction.\n> **Exemple :** *Ferme la porte. Ne cours pas.*\n\n### 4. La phrase exclamative\nElle exprime un sentiment ; elle se termine par un **point d'exclamation**.\n> **Exemple :** *Quel beau spectacle !*\n\n## II. Les formes de phrases\n\n### 1. Forme affirmative / négative\nLa négation encadre le verbe : *ne… pas, ne… plus, ne… jamais, ne… rien, ne… personne*.\n> **Exemple :** *Il travaille.* → *Il **ne** travaille **pas**.*\n\n### 2. Forme active / passive\nÀ la voix passive, le COD devient sujet, le sujet devient **complément d'agent** (introduit par *par*).\n> **Active :** *Le chat mange la souris.*\n> **Passive :** *La souris est mangée **par le chat**.*\n\n### 3. Forme neutre / emphatique\nLa forme emphatique met un élément en relief : présentatif (*c'est… qui/que*) ou détachement.\n> **Exemple :** ***C'est Paul qui*** *a gagné. Ce livre, **je l'**ai déjà lu.*\n\n## Exercices corrigés\n\n**Énoncé :** Indique le type et la forme de : *N'oublie jamais tes promesses !*\n**Correction :** Type **injonctif** (ordre), forme **négative** (*ne… jamais*) et **exclamative** par la ponctuation.\n\n**Énoncé 2 :** Mets à la voix passive : *Les élèves ont planté ces arbres.*\n**Correction :** *Ces arbres **ont été plantés** par les élèves.*\n\n**Énoncé 3 :** Transforme à la forme emphatique : *Marie a réussi l'examen.*\n**Correction :** ***C'est Marie qui*** *a réussi l'examen.*\n\n## À retenir\n\n- **4 types** : déclaratif, interrogatif, injonctif, exclamatif.\n- **Formes** : affirmative/négative, active/passive, neutre/emphatique.\n- Une phrase a **un seul type** mais peut cumuler **plusieurs formes**.\n- Au passif : COD → sujet ; sujet → complément d'agent (*par*)."
+      "lesson": "# Les types et les formes de phrases\n\n## Introduction\n\nToute phrase a un **type** (déclaratif, interrogatif, injonctif, exclamatif) qui correspond à l'intention de celui qui parle, et des **formes** (affirmative/négative, active/passive, neutre/emphatique) qui s'ajoutent au type. Type et forme se combinent.\n\n## I. Les quatre types de phrases\n\n### 1. La phrase déclarative\nElle énonce un fait, donne une information ; elle se termine par un **point**.\n> **Exemple :** *Le train arrive à huit heures.*\n\n### 2. La phrase interrogative\nElle pose une question ; elle se termine par un **point d'interrogation**.\n- Totale (réponse oui/non) : *Viens-tu ?*\n- Partielle (mot interrogatif) : *Quand viens-tu ?*\n\n### 3. La phrase injonctive (impérative)\nElle exprime un ordre, un conseil, une interdiction.\n> **Exemple :** *Ferme la porte. Ne cours pas.*\n\n### 4. La phrase exclamative\nElle exprime un sentiment ; elle se termine par un **point d'exclamation**.\n> **Exemple :** *Quel beau spectacle !*\n\n## II. Les formes de phrases\n\n### 1. Forme affirmative / négative\nLa négation encadre le verbe : *ne… pas, ne… plus, ne… jamais, ne… rien, ne… personne*.\n> **Exemple :** *Il travaille.* → *Il **ne** travaille **pas**.*\n\n### 2. Forme active / passive\nÀ la voix passive, le COD devient sujet, le sujet devient **complément d'agent** (introduit par *par*).\n> **Active :** *Le chat mange la souris.*\n> **Passive :** *La souris est mangée **par le chat**.*\n\n### 3. Forme neutre / emphatique\nLa forme emphatique met un élément en relief : présentatif (*c'est… qui/que*) ou détachement.\n> **Exemple :** ***C'est Paul qui*** *a gagné. Ce livre, **je l'**ai déjà lu.*\n\n## Exercices corrigés\n\n**Énoncé :** Indique le type et la forme de : *N'oublie jamais tes promesses !*\n**Correction :** Type **injonctif** (ordre), forme **négative** (*ne… jamais*) et **exclamative** par la ponctuation.\n\n**Énoncé 2 :** Mets à la voix passive : *Les élèves ont planté ces arbres.*\n**Correction :** *Ces arbres **ont été plantés** par les élèves.*\n\n**Énoncé 3 :** Transforme à la forme emphatique : *Marie a réussi l'examen.*\n**Correction :** ***C'est Marie qui*** *a réussi l'examen.*\n\n## À retenir\n\n- **4 types** : déclaratif, interrogatif, injonctif, exclamatif.\n- **Formes** : affirmative/négative, active/passive, neutre/emphatique.\n- Une phrase a **un seul type** mais peut cumuler **plusieurs formes**.\n- Au passif : COD → sujet ; sujet → complément d'agent (*par*).",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Combien existe-t-il de types de phrases ?",
+            "options": [
+              "2",
+              "3",
+              "4",
+              "5"
+            ],
+            "answer": 2,
+            "explanation": "Quatre types : déclaratif, interrogatif, injonctif, exclamatif."
+          },
+          {
+            "q": "« Ferme la porte. » est une phrase de type :",
+            "options": [
+              "Déclaratif",
+              "Interrogatif",
+              "Injonctif",
+              "Exclamatif"
+            ],
+            "answer": 2,
+            "explanation": "Elle exprime un ordre : c'est le type injonctif (impératif)."
+          },
+          {
+            "q": "À la voix passive, le sujet de l'actif devient :",
+            "options": [
+              "COD",
+              "Attribut",
+              "Complément d'agent",
+              "Sujet"
+            ],
+            "answer": 2,
+            "explanation": "Le sujet de l'actif devient complément d'agent, introduit par « par »."
+          },
+          {
+            "q": "Quelle est la forme de « C'est Paul qui a gagné » ?",
+            "options": [
+              "Négative",
+              "Passive",
+              "Emphatique",
+              "Interrogative"
+            ],
+            "answer": 2,
+            "explanation": "Le présentatif « c'est… qui » met Paul en relief : forme emphatique."
+          },
+          {
+            "q": "Une phrase a :",
+            "options": [
+              "Plusieurs types à la fois",
+              "Un seul type mais plusieurs formes possibles",
+              "Toujours une seule forme",
+              "Ni type ni forme"
+            ],
+            "answer": 1,
+            "explanation": "Une phrase n'a qu'un seul type mais peut cumuler plusieurs formes."
+          }
+        ]
+      }
     },
     {
       "title": "La phrase simple et la phrase complexe",
       "video": "https://www.youtube.com/watch?v=Q5z3R7gJ0Yo",
-      "lesson": "# La phrase simple et la phrase complexe\n\n## Introduction\n\nUne **proposition** est un ensemble de mots organisé autour d'un **verbe conjugué**. Le nombre de propositions permet de distinguer la **phrase simple** (une seule proposition) de la **phrase complexe** (plusieurs propositions).\n\n## I. La phrase simple\n\nElle contient **un seul verbe conjugué**, donc une seule proposition, dite **indépendante**.\n> **Exemple :** *Le soleil brille.* (1 verbe → phrase simple)\n\n## II. La phrase complexe\n\nElle contient **plusieurs verbes conjugués**, donc plusieurs propositions. Ces propositions peuvent être reliées de trois façons.\n\n### 1. La juxtaposition\nLes propositions sont séparées par un signe de ponctuation (virgule, point-virgule, deux-points).\n> **Exemple :** *Il pleut, la route est glissante.*\n\n### 2. La coordination\nLes propositions sont reliées par une **conjonction de coordination** (*mais, ou, et, donc, or, ni, car*) ou un adverbe de liaison.\n> **Exemple :** *Il pleut **mais** nous sortirons.*\n\n### 3. La subordination\nUne proposition **subordonnée** dépend d'une proposition **principale** et lui est reliée par un mot subordonnant (conjonction *que/quand…*, pronom relatif *qui/que…*).\n> **Exemple :** *Je sais [**que tu réussiras**].* (subordonnée dépendant de *je sais*)\n\n## III. Les propositions indépendantes\n\nUne proposition **indépendante** ne dépend de personne et personne ne dépend d'elle. Les propositions juxtaposées et coordonnées sont des indépendantes.\n> **Exemple :** *J'ouvre la fenêtre **et** je respire.* (deux indépendantes coordonnées)\n\n## Exercices corrigés\n\n**Énoncé :** Indique si la phrase est simple ou complexe, puis précise le lien entre propositions.\n1. *Les oiseaux chantent dans le jardin.*\n2. *Le vent souffle, les feuilles tombent.*\n3. *Je resterai à la maison parce qu'il pleut.*\n\n**Correction :**\n1. **Phrase simple** (un seul verbe : *chantent*).\n2. **Phrase complexe**, propositions **juxtaposées** (séparées par une virgule).\n3. **Phrase complexe**, **subordination** (subordonnée *parce qu'il pleut* dépend de *je resterai*).\n\n**Énoncé 2 :** Combien de propositions dans : *Quand le maître entra, les élèves se levèrent et ils saluèrent.* ?\n**Correction :** **Trois** propositions (3 verbes : *entra, se levèrent, saluèrent*) : une subordonnée + deux indépendantes coordonnées par *et*.\n\n## À retenir\n\n- **Proposition** = groupe de mots autour d'un **verbe conjugué**.\n- **Phrase simple** = 1 verbe conjugué ; **phrase complexe** = plusieurs.\n- Trois liens : **juxtaposition** (ponctuation), **coordination** (*mais, ou, et…*), **subordination** (principale + subordonnée)."
+      "lesson": "# La phrase simple et la phrase complexe\n\n## Introduction\n\nUne **proposition** est un ensemble de mots organisé autour d'un **verbe conjugué**. Le nombre de propositions permet de distinguer la **phrase simple** (une seule proposition) de la **phrase complexe** (plusieurs propositions).\n\n## I. La phrase simple\n\nElle contient **un seul verbe conjugué**, donc une seule proposition, dite **indépendante**.\n> **Exemple :** *Le soleil brille.* (1 verbe → phrase simple)\n\n## II. La phrase complexe\n\nElle contient **plusieurs verbes conjugués**, donc plusieurs propositions. Ces propositions peuvent être reliées de trois façons.\n\n### 1. La juxtaposition\nLes propositions sont séparées par un signe de ponctuation (virgule, point-virgule, deux-points).\n> **Exemple :** *Il pleut, la route est glissante.*\n\n### 2. La coordination\nLes propositions sont reliées par une **conjonction de coordination** (*mais, ou, et, donc, or, ni, car*) ou un adverbe de liaison.\n> **Exemple :** *Il pleut **mais** nous sortirons.*\n\n### 3. La subordination\nUne proposition **subordonnée** dépend d'une proposition **principale** et lui est reliée par un mot subordonnant (conjonction *que/quand…*, pronom relatif *qui/que…*).\n> **Exemple :** *Je sais [**que tu réussiras**].* (subordonnée dépendant de *je sais*)\n\n## III. Les propositions indépendantes\n\nUne proposition **indépendante** ne dépend de personne et personne ne dépend d'elle. Les propositions juxtaposées et coordonnées sont des indépendantes.\n> **Exemple :** *J'ouvre la fenêtre **et** je respire.* (deux indépendantes coordonnées)\n\n## Exercices corrigés\n\n**Énoncé :** Indique si la phrase est simple ou complexe, puis précise le lien entre propositions.\n1. *Les oiseaux chantent dans le jardin.*\n2. *Le vent souffle, les feuilles tombent.*\n3. *Je resterai à la maison parce qu'il pleut.*\n\n**Correction :**\n1. **Phrase simple** (un seul verbe : *chantent*).\n2. **Phrase complexe**, propositions **juxtaposées** (séparées par une virgule).\n3. **Phrase complexe**, **subordination** (subordonnée *parce qu'il pleut* dépend de *je resterai*).\n\n**Énoncé 2 :** Combien de propositions dans : *Quand le maître entra, les élèves se levèrent et ils saluèrent.* ?\n**Correction :** **Trois** propositions (3 verbes : *entra, se levèrent, saluèrent*) : une subordonnée + deux indépendantes coordonnées par *et*.\n\n## À retenir\n\n- **Proposition** = groupe de mots autour d'un **verbe conjugué**.\n- **Phrase simple** = 1 verbe conjugué ; **phrase complexe** = plusieurs.\n- Trois liens : **juxtaposition** (ponctuation), **coordination** (*mais, ou, et…*), **subordination** (principale + subordonnée).",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Une proposition s'organise autour :",
+            "options": [
+              "D'un nom",
+              "D'un verbe conjugué",
+              "D'un adjectif",
+              "D'une préposition"
+            ],
+            "answer": 1,
+            "explanation": "Une proposition est un groupe de mots autour d'un verbe conjugué."
+          },
+          {
+            "q": "« Le soleil brille. » est une phrase :",
+            "options": [
+              "Complexe",
+              "Simple",
+              "Coordonnée",
+              "Subordonnée"
+            ],
+            "answer": 1,
+            "explanation": "Un seul verbe conjugué : c'est une phrase simple."
+          },
+          {
+            "q": "« Il pleut, la route est glissante. » : les propositions sont :",
+            "options": [
+              "Juxtaposées",
+              "Coordonnées",
+              "Subordonnées",
+              "Relatives"
+            ],
+            "answer": 0,
+            "explanation": "Elles sont séparées par une virgule, sans mot de liaison : juxtaposition."
+          },
+          {
+            "q": "Quel mot coordonne deux propositions ?",
+            "options": [
+              "que",
+              "qui",
+              "mais",
+              "lorsque"
+            ],
+            "answer": 2,
+            "explanation": "« mais » est une conjonction de coordination ; « que/qui/lorsque » subordonnent."
+          },
+          {
+            "q": "Combien de propositions dans « Quand il entra, ils se levèrent et ils saluèrent. » ?",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4"
+            ],
+            "answer": 2,
+            "explanation": "Trois verbes conjugués (entra, se levèrent, saluèrent) = trois propositions."
+          }
+        ]
+      }
     },
     {
       "title": "Les propositions subordonnées",
       "video": "https://www.youtube.com/watch?v=Q0v3jM6mD9w",
-      "lesson": "# Les propositions subordonnées\n\n## Introduction\n\nLa proposition **subordonnée** dépend d'une proposition **principale**. Elle est introduite par un **mot subordonnant** et occupe une **fonction** dans la phrase (comme un nom, un adjectif ou un complément circonstanciel). On distingue principalement trois grandes catégories : **relative**, **complétive** (conjonctive), et **circonstancielle**.\n\n## I. La proposition subordonnée relative\n\nElle est introduite par un **pronom relatif** (*qui, que, quoi, dont, où, lequel*). Elle complète un nom appelé **antécédent** : elle a la fonction de **complément de l'antécédent** (épithète).\n> **Exemple :** *Le livre [**que tu m'as prêté**] est passionnant.* (*que* a pour antécédent *le livre*)\n\nRappel des relatifs :\n- **qui** = sujet : *l'homme **qui** parle*.\n- **que** = COD : *le film **que** j'aime*.\n- **dont** = complément avec *de* : *l'élève **dont** je parle*.\n- **où** = lieu/temps : *la ville **où** je suis né*.\n\n## II. La proposition subordonnée complétive (conjonctive)\n\nElle est introduite par la conjonction **que** et occupe souvent la fonction de **COD** du verbe principal.\n> **Exemple :** *Je crois [**que tu as raison**].* (*que tu as raison* = COD de *crois*)\n\nLa **subordonnée interrogative indirecte** en fait partie : *Je me demande [**si tu viendras**].*\n\n## III. La proposition subordonnée circonstancielle\n\nElle joue le rôle d'un **complément circonstanciel**. Elle est introduite par une conjonction de subordination et exprime :\n- **le temps** : *quand, lorsque, dès que, avant que* → *Je sortirai **quand il fera beau**.*\n- **la cause** : *parce que, puisque, comme* → *Il reste **parce qu'il est malade**.*\n- **le but** : *afin que, pour que* → *Je travaille **pour que tu sois fier**.*\n- **la conséquence** : *si bien que, de sorte que* → *Il pleut **si bien que** la route est inondée.*\n- **la condition** : *si, à condition que* → ***Si tu travailles**, tu réussiras.*\n- **la concession/opposition** : *bien que, quoique, alors que* → ***Bien qu'il pleuve**, il sort.*\n\n## Exercices corrigés\n\n**Énoncé :** Identifie la nature et la fonction de la subordonnée soulignée.\n1. *J'espère [**que tu viendras**].*\n2. *La maison [**où je suis né**] a été vendue.*\n3. *[**Comme il pleuvait**], nous sommes restés.*\n\n**Correction :**\n1. Subordonnée **complétive** (conjonctive), fonction **COD** de *j'espère*.\n2. Subordonnée **relative** (antécédent *la maison*), fonction complément de l'antécédent.\n3. Subordonnée **circonstancielle de cause**, introduite par *comme*.\n\n**Énoncé 2 :** Souligne la principale dans : *Bien qu'il soit fatigué, il continue de travailler.*\n**Correction :** Principale = ***il continue de travailler*** ; subordonnée circonstancielle de concession = *Bien qu'il soit fatigué*.\n\n## À retenir\n\n- **Relative** : pronom relatif (*qui, que, dont, où*), complète un **nom** (antécédent).\n- **Complétive** : conjonction **que**, souvent **COD** du verbe.\n- **Circonstancielle** : conjonction de subordination ; exprime temps, cause, but, conséquence, condition, concession.\n- Le **subjonctif** s'emploie après *bien que, pour que, avant que, à condition que…*"
+      "lesson": "# Les propositions subordonnées\n\n## Introduction\n\nLa proposition **subordonnée** dépend d'une proposition **principale**. Elle est introduite par un **mot subordonnant** et occupe une **fonction** dans la phrase (comme un nom, un adjectif ou un complément circonstanciel). On distingue principalement trois grandes catégories : **relative**, **complétive** (conjonctive), et **circonstancielle**.\n\n## I. La proposition subordonnée relative\n\nElle est introduite par un **pronom relatif** (*qui, que, quoi, dont, où, lequel*). Elle complète un nom appelé **antécédent** : elle a la fonction de **complément de l'antécédent** (épithète).\n> **Exemple :** *Le livre [**que tu m'as prêté**] est passionnant.* (*que* a pour antécédent *le livre*)\n\nRappel des relatifs :\n- **qui** = sujet : *l'homme **qui** parle*.\n- **que** = COD : *le film **que** j'aime*.\n- **dont** = complément avec *de* : *l'élève **dont** je parle*.\n- **où** = lieu/temps : *la ville **où** je suis né*.\n\n## II. La proposition subordonnée complétive (conjonctive)\n\nElle est introduite par la conjonction **que** et occupe souvent la fonction de **COD** du verbe principal.\n> **Exemple :** *Je crois [**que tu as raison**].* (*que tu as raison* = COD de *crois*)\n\nLa **subordonnée interrogative indirecte** en fait partie : *Je me demande [**si tu viendras**].*\n\n## III. La proposition subordonnée circonstancielle\n\nElle joue le rôle d'un **complément circonstanciel**. Elle est introduite par une conjonction de subordination et exprime :\n- **le temps** : *quand, lorsque, dès que, avant que* → *Je sortirai **quand il fera beau**.*\n- **la cause** : *parce que, puisque, comme* → *Il reste **parce qu'il est malade**.*\n- **le but** : *afin que, pour que* → *Je travaille **pour que tu sois fier**.*\n- **la conséquence** : *si bien que, de sorte que* → *Il pleut **si bien que** la route est inondée.*\n- **la condition** : *si, à condition que* → ***Si tu travailles**, tu réussiras.*\n- **la concession/opposition** : *bien que, quoique, alors que* → ***Bien qu'il pleuve**, il sort.*\n\n## Exercices corrigés\n\n**Énoncé :** Identifie la nature et la fonction de la subordonnée soulignée.\n1. *J'espère [**que tu viendras**].*\n2. *La maison [**où je suis né**] a été vendue.*\n3. *[**Comme il pleuvait**], nous sommes restés.*\n\n**Correction :**\n1. Subordonnée **complétive** (conjonctive), fonction **COD** de *j'espère*.\n2. Subordonnée **relative** (antécédent *la maison*), fonction complément de l'antécédent.\n3. Subordonnée **circonstancielle de cause**, introduite par *comme*.\n\n**Énoncé 2 :** Souligne la principale dans : *Bien qu'il soit fatigué, il continue de travailler.*\n**Correction :** Principale = ***il continue de travailler*** ; subordonnée circonstancielle de concession = *Bien qu'il soit fatigué*.\n\n## À retenir\n\n- **Relative** : pronom relatif (*qui, que, dont, où*), complète un **nom** (antécédent).\n- **Complétive** : conjonction **que**, souvent **COD** du verbe.\n- **Circonstancielle** : conjonction de subordination ; exprime temps, cause, but, conséquence, condition, concession.\n- Le **subjonctif** s'emploie après *bien que, pour que, avant que, à condition que…*",
+      "quiz": {
+        "questions": [
+          {
+            "q": "La subordonnée relative est introduite par :",
+            "options": [
+              "Une conjonction",
+              "Un pronom relatif",
+              "Un adverbe",
+              "Une préposition"
+            ],
+            "answer": 1,
+            "explanation": "La relative est introduite par un pronom relatif (qui, que, dont, où...)."
+          },
+          {
+            "q": "Dans « Je crois que tu as raison », la subordonnée a la fonction de :",
+            "options": [
+              "Sujet",
+              "COD",
+              "CC de temps",
+              "Épithète"
+            ],
+            "answer": 1,
+            "explanation": "La complétive « que tu as raison » est COD du verbe « crois »."
+          },
+          {
+            "q": "« parce que » introduit une circonstancielle de :",
+            "options": [
+              "But",
+              "Temps",
+              "Cause",
+              "Condition"
+            ],
+            "answer": 2,
+            "explanation": "« parce que » exprime la cause."
+          },
+          {
+            "q": "Quel pronom relatif est COD ?",
+            "options": [
+              "qui",
+              "que",
+              "dont",
+              "où"
+            ],
+            "answer": 1,
+            "explanation": "« que » est généralement COD : « le film que j'aime »."
+          },
+          {
+            "q": "Après « bien que », on emploie le :",
+            "options": [
+              "Indicatif",
+              "Conditionnel",
+              "Subjonctif",
+              "Impératif"
+            ],
+            "answer": 2,
+            "explanation": "« bien que » (concession) entraîne le subjonctif : « bien qu'il pleuve »."
+          }
+        ]
+      }
     },
     {
       "title": "Le discours rapporté (direct et indirect)",
       "video": "https://www.youtube.com/watch?v=N1cQ0lRfQ5E",
-      "lesson": "# Le discours rapporté (direct et indirect)\n\n## Introduction\n\nRapporter des paroles, c'est restituer ce que quelqu'un a dit. On peut le faire de plusieurs manières : le **discours direct** (les paroles exactes), le **discours indirect** (les paroles intégrées à la phrase), et le **discours indirect libre**.\n\n## I. Le discours direct\n\nLes paroles sont rapportées **telles quelles**, avec :\n- des **guillemets** (« … ») et souvent un **tiret** dans le dialogue ;\n- une **proposition incise** (*dit-il, répondit-elle*) ;\n- la ponctuation expressive conservée.\n> **Exemple :** *Le maître dit : « **Sortez vos cahiers !** »*\n\n## II. Le discours indirect\n\nLes paroles sont **intégrées** à la phrase par un **verbe introducteur** (*dire, affirmer, demander…*) et une **subordonnée**. On supprime guillemets et ponctuation expressive.\n> **Direct :** *Il dit : « Je suis fatigué. »*\n> **Indirect :** *Il dit **qu'il était fatigué**.*\n\n### Les transformations nécessaires\n1. **Les pronoms et possessifs** changent : *« je »* → *il* ; *« mon »* → *son*.\n2. **Les mots subordonnants** :\n   - phrase déclarative → *que* ;\n   - question totale → *si* ;\n   - question partielle → mot interrogatif (*ce que, où, quand, pourquoi*).\n3. **Les temps** (si le verbe introducteur est au passé) : présent → imparfait ; futur → conditionnel ; passé composé → plus-que-parfait.\n4. **Les indicateurs de temps/lieu** : *aujourd'hui* → *ce jour-là* ; *hier* → *la veille* ; *ici* → *là*.\n\n> **Exemple complet :**\n> **Direct :** *Elle me demanda : « Que fais-tu ici aujourd'hui ? »*\n> **Indirect :** *Elle me demanda **ce que je faisais là ce jour-là**.*\n\n## III. Le discours indirect libre\n\nIl mêle les deux : les paroles sont rapportées sans guillemets ni *que*, mais avec les temps du récit. Très utilisé en littérature.\n> **Exemple :** *Il regarda le ciel. Pourquoi fallait-il qu'il pleuve aujourd'hui ?*\n\n## Exercices corrigés\n\n**Énoncé :** Transforme au discours indirect.\n1. *Paul dit : « Je viendrai demain. »*\n2. *Elle demanda : « As-tu fini tes devoirs ? »*\n\n**Correction :**\n1. *Paul dit **qu'il viendrait le lendemain**.* (présent→… ici *dit* au passé : futur → conditionnel ; *demain* → *le lendemain*)\n2. *Elle demanda **si j'avais fini mes devoirs**.* (question totale → *si* ; *tes* → *mes* ; passé composé → plus-que-parfait)\n\n**Énoncé 2 :** Repasse au discours direct : *Le médecin lui répondit qu'il devait se reposer ce jour-là.*\n**Correction :** *Le médecin lui répondit : « Vous devez vous reposer aujourd'hui. »*\n\n## À retenir\n\n- **Direct** : paroles exactes, guillemets, incise (*dit-il*).\n- **Indirect** : subordonnée après un verbe introducteur ; on change **pronoms, temps, indicateurs**, et le mot subordonnant (*que / si / ce que…*).\n- Verbe introducteur **au passé** → concordance des temps (présent→imparfait, futur→conditionnel).\n- **Indirect libre** : ni guillemets ni *que*, mais temps du récit."
+      "lesson": "# Le discours rapporté (direct et indirect)\n\n## Introduction\n\nRapporter des paroles, c'est restituer ce que quelqu'un a dit. On peut le faire de plusieurs manières : le **discours direct** (les paroles exactes), le **discours indirect** (les paroles intégrées à la phrase), et le **discours indirect libre**.\n\n## I. Le discours direct\n\nLes paroles sont rapportées **telles quelles**, avec :\n- des **guillemets** (« … ») et souvent un **tiret** dans le dialogue ;\n- une **proposition incise** (*dit-il, répondit-elle*) ;\n- la ponctuation expressive conservée.\n> **Exemple :** *Le maître dit : « **Sortez vos cahiers !** »*\n\n## II. Le discours indirect\n\nLes paroles sont **intégrées** à la phrase par un **verbe introducteur** (*dire, affirmer, demander…*) et une **subordonnée**. On supprime guillemets et ponctuation expressive.\n> **Direct :** *Il dit : « Je suis fatigué. »*\n> **Indirect :** *Il dit **qu'il était fatigué**.*\n\n### Les transformations nécessaires\n1. **Les pronoms et possessifs** changent : *« je »* → *il* ; *« mon »* → *son*.\n2. **Les mots subordonnants** :\n   - phrase déclarative → *que* ;\n   - question totale → *si* ;\n   - question partielle → mot interrogatif (*ce que, où, quand, pourquoi*).\n3. **Les temps** (si le verbe introducteur est au passé) : présent → imparfait ; futur → conditionnel ; passé composé → plus-que-parfait.\n4. **Les indicateurs de temps/lieu** : *aujourd'hui* → *ce jour-là* ; *hier* → *la veille* ; *ici* → *là*.\n\n> **Exemple complet :**\n> **Direct :** *Elle me demanda : « Que fais-tu ici aujourd'hui ? »*\n> **Indirect :** *Elle me demanda **ce que je faisais là ce jour-là**.*\n\n## III. Le discours indirect libre\n\nIl mêle les deux : les paroles sont rapportées sans guillemets ni *que*, mais avec les temps du récit. Très utilisé en littérature.\n> **Exemple :** *Il regarda le ciel. Pourquoi fallait-il qu'il pleuve aujourd'hui ?*\n\n## Exercices corrigés\n\n**Énoncé :** Transforme au discours indirect.\n1. *Paul dit : « Je viendrai demain. »*\n2. *Elle demanda : « As-tu fini tes devoirs ? »*\n\n**Correction :**\n1. *Paul dit **qu'il viendrait le lendemain**.* (présent→… ici *dit* au passé : futur → conditionnel ; *demain* → *le lendemain*)\n2. *Elle demanda **si j'avais fini mes devoirs**.* (question totale → *si* ; *tes* → *mes* ; passé composé → plus-que-parfait)\n\n**Énoncé 2 :** Repasse au discours direct : *Le médecin lui répondit qu'il devait se reposer ce jour-là.*\n**Correction :** *Le médecin lui répondit : « Vous devez vous reposer aujourd'hui. »*\n\n## À retenir\n\n- **Direct** : paroles exactes, guillemets, incise (*dit-il*).\n- **Indirect** : subordonnée après un verbe introducteur ; on change **pronoms, temps, indicateurs**, et le mot subordonnant (*que / si / ce que…*).\n- Verbe introducteur **au passé** → concordance des temps (présent→imparfait, futur→conditionnel).\n- **Indirect libre** : ni guillemets ni *que*, mais temps du récit.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Le discours direct utilise :",
+            "options": [
+              "La conjonction que",
+              "Des guillemets et une incise",
+              "Le subjonctif",
+              "Aucune ponctuation"
+            ],
+            "answer": 1,
+            "explanation": "Le discours direct rapporte les paroles exactes avec guillemets et incise (dit-il)."
+          },
+          {
+            "q": "Au discours indirect, une question totale est introduite par :",
+            "options": [
+              "que",
+              "si",
+              "ce que",
+              "où"
+            ],
+            "answer": 1,
+            "explanation": "Une question totale (oui/non) devient une subordonnée introduite par « si »."
+          },
+          {
+            "q": "« Je suis fatigué » (verbe introducteur au passé) devient :",
+            "options": [
+              "qu'il est fatigué",
+              "qu'il était fatigué",
+              "qu'il sera fatigué",
+              "qu'il soit fatigué"
+            ],
+            "answer": 1,
+            "explanation": "Avec un verbe introducteur au passé, le présent devient imparfait."
+          },
+          {
+            "q": "Au discours indirect, « aujourd'hui » devient :",
+            "options": [
+              "demain",
+              "ce jour-là",
+              "la veille",
+              "ici"
+            ],
+            "answer": 1,
+            "explanation": "L'indicateur de temps « aujourd'hui » devient « ce jour-là »."
+          },
+          {
+            "q": "Le discours indirect libre :",
+            "options": [
+              "Utilise toujours des guillemets",
+              "N'utilise ni guillemets ni que",
+              "Emploie l'impératif",
+              "Est réservé aux questions"
+            ],
+            "answer": 1,
+            "explanation": "Le discours indirect libre se passe de guillemets et de « que », tout en gardant les temps du récit."
+          }
+        ]
+      }
     },
     {
       "title": "Le récit et le schéma narratif",
       "video": "https://www.youtube.com/watch?v=4lFz6T7lP9k",
-      "lesson": "# Le récit et le schéma narratif\n\n## Introduction\n\nLe **récit** raconte une histoire, réelle ou imaginaire, qui se déroule dans le temps. Tout récit structuré suit une organisation appelée **schéma narratif** (les grandes étapes de l'histoire). On y trouve aussi un **schéma actanciel** (les rôles des personnages).\n\n## I. Les cinq étapes du schéma narratif\n\n1. **La situation initiale** : on présente le cadre, les personnages, le moment ; tout est stable (imparfait).\n2. **L'élément perturbateur (ou déclencheur)** : un événement vient rompre l'équilibre (souvent au passé simple, marqué par *soudain, un jour*).\n3. **Les péripéties (ou actions)** : la suite des événements provoqués par la perturbation.\n4. **Le dénouement (élément de résolution)** : l'événement qui met fin aux péripéties.\n5. **La situation finale** : un nouvel équilibre est établi.\n\n> **Exemple bref :**\n> *(Initiale)* Un berger gardait paisiblement son troupeau. *(Perturbateur)* Un jour, un loup attaqua. *(Péripéties)* Le berger appela à l'aide, courut, se défendit. *(Dénouement)* Les villageois arrivèrent et chassèrent le loup. *(Finale)* Le troupeau fut de nouveau en sécurité.\n\n## II. Le narrateur et le point de vue\n\n- **Narrateur interne** : un personnage raconte (*je*).\n- **Narrateur externe** : il raconte de l'extérieur, sans participer.\n- **Points de vue (focalisations)** : **interne** (on voit par un personnage), **externe** (témoin neutre), **omniscient** (le narrateur sait tout).\n\n## III. Le schéma actanciel\n\nIl répartit les rôles : le **héros (sujet)** poursuit un **objet (quête)** ; il est aidé par des **adjuvants** et gêné par des **opposants** ; un **destinateur** lance la quête et un **destinataire** en profite.\n\n## IV. Les temps du récit\n\n- **Imparfait** : description, arrière-plan, habitude.\n- **Passé simple** : actions de premier plan qui font avancer le récit.\n> *Il **dormait** (imparfait) quand un bruit le **réveilla** (passé simple).*\n\n## Exemple rédigé\n\n**Consigne :** Rédige un court récit respectant le schéma narratif.\n\n*Chaque matin, Aïssatou parcourait le long chemin de l'école sans crainte (situation initiale). Un jour, à mi-parcours, une pluie violente s'abattit et emporta le petit pont (élément perturbateur). La fillette chercha un autre passage, glissa, perdit son cartable, puis aperçut un pêcheur sur sa pirogue (péripéties). L'homme la fit traverser en toute sécurité (dénouement). Depuis ce jour, Aïssatou n'oublia jamais de remercier le vieux pêcheur (situation finale).*\n\n## À retenir\n\n- Le schéma narratif comporte **5 étapes** : situation initiale → élément perturbateur → péripéties → dénouement → situation finale.\n- L'**imparfait** plante le décor, le **passé simple** fait avancer l'action.\n- Le **point de vue** peut être interne, externe ou omniscient.\n- Le **schéma actanciel** : sujet, objet, adjuvants, opposants, destinateur, destinataire."
+      "lesson": "# Le récit et le schéma narratif\n\n## Introduction\n\nLe **récit** raconte une histoire, réelle ou imaginaire, qui se déroule dans le temps. Tout récit structuré suit une organisation appelée **schéma narratif** (les grandes étapes de l'histoire). On y trouve aussi un **schéma actanciel** (les rôles des personnages).\n\n## I. Les cinq étapes du schéma narratif\n\n1. **La situation initiale** : on présente le cadre, les personnages, le moment ; tout est stable (imparfait).\n2. **L'élément perturbateur (ou déclencheur)** : un événement vient rompre l'équilibre (souvent au passé simple, marqué par *soudain, un jour*).\n3. **Les péripéties (ou actions)** : la suite des événements provoqués par la perturbation.\n4. **Le dénouement (élément de résolution)** : l'événement qui met fin aux péripéties.\n5. **La situation finale** : un nouvel équilibre est établi.\n\n> **Exemple bref :**\n> *(Initiale)* Un berger gardait paisiblement son troupeau. *(Perturbateur)* Un jour, un loup attaqua. *(Péripéties)* Le berger appela à l'aide, courut, se défendit. *(Dénouement)* Les villageois arrivèrent et chassèrent le loup. *(Finale)* Le troupeau fut de nouveau en sécurité.\n\n## II. Le narrateur et le point de vue\n\n- **Narrateur interne** : un personnage raconte (*je*).\n- **Narrateur externe** : il raconte de l'extérieur, sans participer.\n- **Points de vue (focalisations)** : **interne** (on voit par un personnage), **externe** (témoin neutre), **omniscient** (le narrateur sait tout).\n\n## III. Le schéma actanciel\n\nIl répartit les rôles : le **héros (sujet)** poursuit un **objet (quête)** ; il est aidé par des **adjuvants** et gêné par des **opposants** ; un **destinateur** lance la quête et un **destinataire** en profite.\n\n## IV. Les temps du récit\n\n- **Imparfait** : description, arrière-plan, habitude.\n- **Passé simple** : actions de premier plan qui font avancer le récit.\n> *Il **dormait** (imparfait) quand un bruit le **réveilla** (passé simple).*\n\n## Exemple rédigé\n\n**Consigne :** Rédige un court récit respectant le schéma narratif.\n\n*Chaque matin, Aïssatou parcourait le long chemin de l'école sans crainte (situation initiale). Un jour, à mi-parcours, une pluie violente s'abattit et emporta le petit pont (élément perturbateur). La fillette chercha un autre passage, glissa, perdit son cartable, puis aperçut un pêcheur sur sa pirogue (péripéties). L'homme la fit traverser en toute sécurité (dénouement). Depuis ce jour, Aïssatou n'oublia jamais de remercier le vieux pêcheur (situation finale).*\n\n## À retenir\n\n- Le schéma narratif comporte **5 étapes** : situation initiale → élément perturbateur → péripéties → dénouement → situation finale.\n- L'**imparfait** plante le décor, le **passé simple** fait avancer l'action.\n- Le **point de vue** peut être interne, externe ou omniscient.\n- Le **schéma actanciel** : sujet, objet, adjuvants, opposants, destinateur, destinataire.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Quelle est la première étape du schéma narratif ?",
+            "options": [
+              "Le dénouement",
+              "La situation initiale",
+              "L'élément perturbateur",
+              "Les péripéties"
+            ],
+            "answer": 1,
+            "explanation": "Le récit commence par la situation initiale, équilibre de départ."
+          },
+          {
+            "q": "L'élément perturbateur :",
+            "options": [
+              "Clôt le récit",
+              "Rompt l'équilibre initial",
+              "Décrit le décor",
+              "Présente les personnages"
+            ],
+            "answer": 1,
+            "explanation": "L'élément perturbateur déclenche l'histoire en rompant l'équilibre."
+          },
+          {
+            "q": "Quand le narrateur sait tout, le point de vue est :",
+            "options": [
+              "Interne",
+              "Externe",
+              "Omniscient",
+              "Neutre"
+            ],
+            "answer": 2,
+            "explanation": "Le point de vue omniscient permet au narrateur de tout savoir."
+          },
+          {
+            "q": "Dans le schéma actanciel, qui poursuit la quête ?",
+            "options": [
+              "L'opposant",
+              "Le sujet (héros)",
+              "Le destinataire",
+              "L'adjuvant"
+            ],
+            "answer": 1,
+            "explanation": "Le sujet (héros) poursuit l'objet de la quête."
+          },
+          {
+            "q": "« Il dormait quand un bruit le réveilla. » : « réveilla » est :",
+            "options": [
+              "Imparfait, arrière-plan",
+              "Passé simple, premier plan",
+              "Présent",
+              "Futur"
+            ],
+            "answer": 1,
+            "explanation": "Le passé simple « réveilla » marque l'action de premier plan."
+          }
+        ]
+      }
     },
     {
       "title": "La description et le portrait",
       "video": "https://www.youtube.com/watch?v=3kP4dM2nQ0c",
-      "lesson": "# La description et le portrait\n\n## Introduction\n\n**Décrire**, c'est représenter par des mots un lieu, un objet ou un personnage, de manière à le faire « voir » au lecteur. Le **portrait** est la description d'un personnage. La description enrichit le récit : elle crée l'atmosphère, donne des informations et oriente le jugement du lecteur.\n\n## I. Les outils de la description\n\n### 1. Le vocabulaire des cinq sens\nUne bonne description fait appel à la **vue** (couleurs, formes), l'**ouïe** (sons), l'**odorat**, le **goût**, le **toucher**.\n> **Exemple :** *Le marché bruissait de cris, l'air sentait le poisson grillé et la poussière chaude collait à la peau.*\n\n### 2. Les indicateurs spatiaux\nPour organiser l'espace : *à droite, au loin, devant, au premier plan, à l'arrière-plan, sous, au-dessus*.\n\n### 3. Les expansions du nom\nElles précisent le nom : **adjectifs épithètes**, **compléments du nom**, **propositions relatives**.\n> **Exemple :** *une cour **immense**, **aux murs lézardés**, **où jouaient des enfants**.*\n\n### 4. Les figures de style\n**Comparaisons** et **métaphores** rendent la description vivante.\n> **Exemple :** *Ses yeux brillaient **comme deux braises**.*\n\n## II. Le portrait\n\nLe portrait comporte :\n- le **portrait physique** : taille, visage, vêtements, allure.\n- le **portrait moral** : caractère, qualités, défauts, comportements.\nUn portrait peut être **mélioratif** (valorisant) ou **péjoratif** (dévalorisant), selon le regard du narrateur.\n\n> **Exemple de portrait :** *C'était un homme grand et sec, au visage buriné par le soleil. Sous d'épais sourcils, son regard vif trahissait une intelligence rusée. Toujours souriant, il savait mettre chacun à l'aise, mais nul ne se fiait à sa parole.*\n\n## III. L'ordre de la description\n\nOn suit un ordre logique : du **général au particulier**, ou de **haut en bas**, ou du **premier plan vers l'arrière-plan**, afin que le lecteur se repère.\n\n## Exemple rédigé\n\n**Consigne :** Fais le portrait valorisant d'une personne âgée que tu admires.\n\n*Grand-mère était une petite femme menue, au dos légèrement courbé par les années. Son visage ridé, doux comme un vieux tissu, s'éclairait d'un sourire dès qu'un enfant approchait. Ses mains noueuses, infatigables, savaient tout faire : tresser, cuisiner, soigner. Patiente et généreuse, elle écoutait sans jamais juger. Près d'elle, le monde semblait toujours plus calme.*\n\n## À retenir\n\n- **Décrire** = faire voir par les mots, en mobilisant les **cinq sens** et un **ordre clair**.\n- Outils : **expansions du nom** (adjectifs, compléments, relatives), **indicateurs spatiaux**, **figures de style**.\n- Le **portrait** = physique + moral ; il peut être **mélioratif** ou **péjoratif**.\n- La description sert le récit : ambiance, information, jugement."
+      "lesson": "# La description et le portrait\n\n## Introduction\n\n**Décrire**, c'est représenter par des mots un lieu, un objet ou un personnage, de manière à le faire « voir » au lecteur. Le **portrait** est la description d'un personnage. La description enrichit le récit : elle crée l'atmosphère, donne des informations et oriente le jugement du lecteur.\n\n## I. Les outils de la description\n\n### 1. Le vocabulaire des cinq sens\nUne bonne description fait appel à la **vue** (couleurs, formes), l'**ouïe** (sons), l'**odorat**, le **goût**, le **toucher**.\n> **Exemple :** *Le marché bruissait de cris, l'air sentait le poisson grillé et la poussière chaude collait à la peau.*\n\n### 2. Les indicateurs spatiaux\nPour organiser l'espace : *à droite, au loin, devant, au premier plan, à l'arrière-plan, sous, au-dessus*.\n\n### 3. Les expansions du nom\nElles précisent le nom : **adjectifs épithètes**, **compléments du nom**, **propositions relatives**.\n> **Exemple :** *une cour **immense**, **aux murs lézardés**, **où jouaient des enfants**.*\n\n### 4. Les figures de style\n**Comparaisons** et **métaphores** rendent la description vivante.\n> **Exemple :** *Ses yeux brillaient **comme deux braises**.*\n\n## II. Le portrait\n\nLe portrait comporte :\n- le **portrait physique** : taille, visage, vêtements, allure.\n- le **portrait moral** : caractère, qualités, défauts, comportements.\nUn portrait peut être **mélioratif** (valorisant) ou **péjoratif** (dévalorisant), selon le regard du narrateur.\n\n> **Exemple de portrait :** *C'était un homme grand et sec, au visage buriné par le soleil. Sous d'épais sourcils, son regard vif trahissait une intelligence rusée. Toujours souriant, il savait mettre chacun à l'aise, mais nul ne se fiait à sa parole.*\n\n## III. L'ordre de la description\n\nOn suit un ordre logique : du **général au particulier**, ou de **haut en bas**, ou du **premier plan vers l'arrière-plan**, afin que le lecteur se repère.\n\n## Exemple rédigé\n\n**Consigne :** Fais le portrait valorisant d'une personne âgée que tu admires.\n\n*Grand-mère était une petite femme menue, au dos légèrement courbé par les années. Son visage ridé, doux comme un vieux tissu, s'éclairait d'un sourire dès qu'un enfant approchait. Ses mains noueuses, infatigables, savaient tout faire : tresser, cuisiner, soigner. Patiente et généreuse, elle écoutait sans jamais juger. Près d'elle, le monde semblait toujours plus calme.*\n\n## À retenir\n\n- **Décrire** = faire voir par les mots, en mobilisant les **cinq sens** et un **ordre clair**.\n- Outils : **expansions du nom** (adjectifs, compléments, relatives), **indicateurs spatiaux**, **figures de style**.\n- Le **portrait** = physique + moral ; il peut être **mélioratif** ou **péjoratif**.\n- La description sert le récit : ambiance, information, jugement.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Décrire, c'est surtout :",
+            "options": [
+              "Donner son avis",
+              "Faire voir par les mots",
+              "Raconter une action",
+              "Argumenter"
+            ],
+            "answer": 1,
+            "explanation": "La description fait « voir » un lieu, un objet ou un personnage."
+          },
+          {
+            "q": "Le portrait moral concerne :",
+            "options": [
+              "La taille et le visage",
+              "Les vêtements",
+              "Le caractère et le comportement",
+              "Le décor"
+            ],
+            "answer": 2,
+            "explanation": "Le portrait moral décrit le caractère, les qualités et les défauts."
+          },
+          {
+            "q": "Un portrait péjoratif est :",
+            "options": [
+              "Valorisant",
+              "Dévalorisant",
+              "Neutre",
+              "Comique"
+            ],
+            "answer": 1,
+            "explanation": "Péjoratif = dévalorisant ; mélioratif = valorisant."
+          },
+          {
+            "q": "Quelle expansion du nom enrichit la description ?",
+            "options": [
+              "La proposition relative",
+              "L'adverbe",
+              "La conjonction",
+              "L'interjection"
+            ],
+            "answer": 0,
+            "explanation": "Les expansions du nom (adjectifs, compléments du nom, propositions relatives) enrichissent la description."
+          },
+          {
+            "q": "« Ses yeux brillaient comme deux braises » est :",
+            "options": [
+              "Une métaphore",
+              "Une comparaison",
+              "Une litote",
+              "Un euphémisme"
+            ],
+            "answer": 1,
+            "explanation": "L'outil « comme » indique une comparaison."
+          }
+        ]
+      }
     },
     {
       "title": "Le texte argumentatif (initiation)",
       "video": "https://www.youtube.com/watch?v=oN0o5J3oQ9k",
-      "lesson": "# Le texte argumentatif (initiation)\n\n## Introduction\n\n**Argumenter**, c'est défendre une **opinion (thèse)** pour convaincre ou persuader le lecteur. Le texte argumentatif s'oppose au texte qui se contente d'informer ou de raconter : il cherche à faire **adhérer** à un point de vue.\n\n## I. Les notions clés\n\n- **Le thème** : le sujet dont on parle (*la lecture, le travail des enfants*).\n- **La thèse** : l'opinion défendue (*la lecture est indispensable*).\n- **Les arguments** : les idées qui justifient la thèse.\n- **Les exemples** : les faits concrets qui illustrent chaque argument.\n- **La thèse adverse** : l'opinion contraire, que l'on peut réfuter.\n\n## II. Convaincre et persuader\n\n- **Convaincre** : s'adresser à la **raison** (logique, preuves, arguments).\n- **Persuader** : s'adresser aux **sentiments** (émotion, vocabulaire affectif, questions oratoires).\n\n## III. Organiser l'argumentation : les connecteurs logiques\n\nIls structurent le raisonnement :\n- **Ajouter** : *de plus, en outre, d'ailleurs*.\n- **Classer** : *d'abord, ensuite, enfin*.\n- **Opposer** : *mais, cependant, pourtant, en revanche*.\n- **Donner une cause** : *car, en effet, parce que*.\n- **Donner une conséquence** : *donc, c'est pourquoi, par conséquent*.\n- **Conclure** : *en conclusion, finalement, pour conclure*.\n\n> **Exemple :** *La lecture enrichit le vocabulaire. **De plus**, elle développe l'imagination. **C'est pourquoi** il faut lire chaque jour.*\n\n## IV. Construire un paragraphe argumentatif\n\nUn paragraphe efficace suit le schéma : **argument → explication → exemple**.\n> *Le sport est bon pour la santé (argument). En effet, il renforce le cœur et les muscles (explication). Ainsi, une personne qui marche chaque jour tombe moins malade (exemple).*\n\n## Exemple rédigé\n\n**Sujet :** *Pensez-vous que la télévision soit utile aux élèves ?*\n\n*La télévision peut être très utile aux élèves. D'abord, elle informe : les journaux et les documentaires font connaître le monde et l'actualité. De plus, elle instruit : certaines émissions scientifiques ou culturelles complètent les cours. Cependant, regardée sans mesure, elle fait perdre du temps et fatigue les yeux. C'est pourquoi je pense que la télévision est utile à condition d'être choisie avec soin et regardée avec modération.*\n\n## À retenir\n\n- Texte argumentatif = défendre une **thèse** par des **arguments** illustrés d'**exemples**.\n- **Convaincre** (raison) / **persuader** (sentiments).\n- Les **connecteurs logiques** organisent le raisonnement (ajout, opposition, cause, conséquence, conclusion).\n- Un bon paragraphe : **argument → explication → exemple**."
+      "lesson": "# Le texte argumentatif (initiation)\n\n## Introduction\n\n**Argumenter**, c'est défendre une **opinion (thèse)** pour convaincre ou persuader le lecteur. Le texte argumentatif s'oppose au texte qui se contente d'informer ou de raconter : il cherche à faire **adhérer** à un point de vue.\n\n## I. Les notions clés\n\n- **Le thème** : le sujet dont on parle (*la lecture, le travail des enfants*).\n- **La thèse** : l'opinion défendue (*la lecture est indispensable*).\n- **Les arguments** : les idées qui justifient la thèse.\n- **Les exemples** : les faits concrets qui illustrent chaque argument.\n- **La thèse adverse** : l'opinion contraire, que l'on peut réfuter.\n\n## II. Convaincre et persuader\n\n- **Convaincre** : s'adresser à la **raison** (logique, preuves, arguments).\n- **Persuader** : s'adresser aux **sentiments** (émotion, vocabulaire affectif, questions oratoires).\n\n## III. Organiser l'argumentation : les connecteurs logiques\n\nIls structurent le raisonnement :\n- **Ajouter** : *de plus, en outre, d'ailleurs*.\n- **Classer** : *d'abord, ensuite, enfin*.\n- **Opposer** : *mais, cependant, pourtant, en revanche*.\n- **Donner une cause** : *car, en effet, parce que*.\n- **Donner une conséquence** : *donc, c'est pourquoi, par conséquent*.\n- **Conclure** : *en conclusion, finalement, pour conclure*.\n\n> **Exemple :** *La lecture enrichit le vocabulaire. **De plus**, elle développe l'imagination. **C'est pourquoi** il faut lire chaque jour.*\n\n## IV. Construire un paragraphe argumentatif\n\nUn paragraphe efficace suit le schéma : **argument → explication → exemple**.\n> *Le sport est bon pour la santé (argument). En effet, il renforce le cœur et les muscles (explication). Ainsi, une personne qui marche chaque jour tombe moins malade (exemple).*\n\n## Exemple rédigé\n\n**Sujet :** *Pensez-vous que la télévision soit utile aux élèves ?*\n\n*La télévision peut être très utile aux élèves. D'abord, elle informe : les journaux et les documentaires font connaître le monde et l'actualité. De plus, elle instruit : certaines émissions scientifiques ou culturelles complètent les cours. Cependant, regardée sans mesure, elle fait perdre du temps et fatigue les yeux. C'est pourquoi je pense que la télévision est utile à condition d'être choisie avec soin et regardée avec modération.*\n\n## À retenir\n\n- Texte argumentatif = défendre une **thèse** par des **arguments** illustrés d'**exemples**.\n- **Convaincre** (raison) / **persuader** (sentiments).\n- Les **connecteurs logiques** organisent le raisonnement (ajout, opposition, cause, conséquence, conclusion).\n- Un bon paragraphe : **argument → explication → exemple**.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "La thèse, c'est :",
+            "options": [
+              "Le sujet abordé",
+              "L'opinion défendue",
+              "Un exemple",
+              "Un connecteur"
+            ],
+            "answer": 1,
+            "explanation": "La thèse est l'opinion que l'on défend."
+          },
+          {
+            "q": "Convaincre s'adresse surtout :",
+            "options": [
+              "Aux sentiments",
+              "À la raison",
+              "À l'imagination",
+              "à la mémoire"
+            ],
+            "answer": 1,
+            "explanation": "Convaincre fait appel à la raison ; persuader fait appel aux sentiments."
+          },
+          {
+            "q": "Quel connecteur exprime la conséquence ?",
+            "options": [
+              "car",
+              "de plus",
+              "c'est pourquoi",
+              "cependant"
+            ],
+            "answer": 2,
+            "explanation": "« c'est pourquoi » introduit une conséquence."
+          },
+          {
+            "q": "Dans un paragraphe argumentatif, l'exemple sert à :",
+            "options": [
+              "Contredire l'argument",
+              "Illustrer l'argument",
+              "Conclure le texte",
+              "Poser une question"
+            ],
+            "answer": 1,
+            "explanation": "L'exemple illustre et appuie l'argument."
+          },
+          {
+            "q": "« cependant » sert à :",
+            "options": [
+              "Ajouter",
+              "Opposer",
+              "Conclure",
+              "Donner une cause"
+            ],
+            "answer": 1,
+            "explanation": "« cependant » marque l'opposition."
+          }
+        ]
+      }
     },
     {
       "title": "Les figures de style",
       "video": "https://www.youtube.com/watch?v=zJ5g2rO9j7Q",
-      "lesson": "# Les figures de style\n\n## Introduction\n\nLes **figures de style** sont des procédés d'expression qui donnent de la force, de l'image ou de la musicalité au langage. On les rencontre surtout en poésie et dans les textes littéraires. Elles se classent en plusieurs familles : figures d'**analogie**, d'**insistance**, d'**opposition**, d'**atténuation/exagération**, et de **construction/sonorité**.\n\n## I. Les figures d'analogie (ressemblance)\n\n### 1. La comparaison\nRapproche deux éléments à l'aide d'un **outil de comparaison** (*comme, tel, semblable à, ainsi que*).\n> **Exemple :** *Il est fort **comme** un lion.*\n\n### 2. La métaphore\nComparaison **sans outil** : on rapproche directement.\n> **Exemple :** *Cet homme est **un lion** au combat.*\n\n### 3. La personnification\nAttribue des caractères humains à une chose ou un animal.\n> **Exemple :** *Le vent **gémissait** dans la nuit.*\n\n## II. Les figures d'insistance et d'exagération\n\n### 1. L'hyperbole\nExagère pour frapper l'esprit.\n> **Exemple :** *Je te l'ai dit **mille fois** !*\n\n### 2. La répétition / l'anaphore\nReprend un mot ; l'**anaphore** répète un mot en début de phrases successives.\n> **Exemple :** ***Rien** ne sert de courir, **rien** ne sert de crier.*\n\n### 3. La gradation\nÉnumère en intensité croissante (ou décroissante).\n> **Exemple :** *Il pleure, il sanglote, il hurle de douleur.*\n\n## III. Les figures d'opposition\n\n### 1. L'antithèse\nOppose deux mots ou idées.\n> **Exemple :** *Ici la **joie**, là-bas la **tristesse**.*\n\n### 2. L'oxymore\nUnit deux mots de sens contraire.\n> **Exemple :** *un **silence assourdissant**.*\n\n## IV. Les figures d'atténuation\n\n### 1. L'euphémisme\nAdoucit une réalité brutale.\n> **Exemple :** *Il nous a **quittés**.* (= il est mort)\n\n### 2. La litote\nDit peu pour suggérer beaucoup (souvent par la négation).\n> **Exemple :** *Ce n'est **pas mauvais**.* (= c'est très bon)\n\n## V. Sonorités\n\n- **L'allitération** : répétition de consonnes (*Pour qui sont ces serpents qui sifflent…*).\n- **L'assonance** : répétition de voyelles.\n\n## Exercices corrigés\n\n**Énoncé :** Nomme la figure de style.\n1. *Cette nouvelle me brise le cœur.*\n2. *Tu es rapide comme l'éclair.*\n3. *Une obscure clarté tombe des étoiles.*\n\n**Correction :**\n1. **Métaphore** (le cœur n'est pas réellement brisé).\n2. **Comparaison** (outil *comme*).\n3. **Oxymore** (*obscure* / *clarté* sont contraires).\n\n## À retenir\n\n- **Comparaison** (avec outil) vs **métaphore** (sans outil).\n- **Personnification** : du vivant à l'inanimé.\n- **Hyperbole** = exagération ; **euphémisme/litote** = atténuation.\n- **Antithèse** (deux idées opposées) vs **oxymore** (deux mots contraires côte à côte)."
+      "lesson": "# Les figures de style\n\n## Introduction\n\nLes **figures de style** sont des procédés d'expression qui donnent de la force, de l'image ou de la musicalité au langage. On les rencontre surtout en poésie et dans les textes littéraires. Elles se classent en plusieurs familles : figures d'**analogie**, d'**insistance**, d'**opposition**, d'**atténuation/exagération**, et de **construction/sonorité**.\n\n## I. Les figures d'analogie (ressemblance)\n\n### 1. La comparaison\nRapproche deux éléments à l'aide d'un **outil de comparaison** (*comme, tel, semblable à, ainsi que*).\n> **Exemple :** *Il est fort **comme** un lion.*\n\n### 2. La métaphore\nComparaison **sans outil** : on rapproche directement.\n> **Exemple :** *Cet homme est **un lion** au combat.*\n\n### 3. La personnification\nAttribue des caractères humains à une chose ou un animal.\n> **Exemple :** *Le vent **gémissait** dans la nuit.*\n\n## II. Les figures d'insistance et d'exagération\n\n### 1. L'hyperbole\nExagère pour frapper l'esprit.\n> **Exemple :** *Je te l'ai dit **mille fois** !*\n\n### 2. La répétition / l'anaphore\nReprend un mot ; l'**anaphore** répète un mot en début de phrases successives.\n> **Exemple :** ***Rien** ne sert de courir, **rien** ne sert de crier.*\n\n### 3. La gradation\nÉnumère en intensité croissante (ou décroissante).\n> **Exemple :** *Il pleure, il sanglote, il hurle de douleur.*\n\n## III. Les figures d'opposition\n\n### 1. L'antithèse\nOppose deux mots ou idées.\n> **Exemple :** *Ici la **joie**, là-bas la **tristesse**.*\n\n### 2. L'oxymore\nUnit deux mots de sens contraire.\n> **Exemple :** *un **silence assourdissant**.*\n\n## IV. Les figures d'atténuation\n\n### 1. L'euphémisme\nAdoucit une réalité brutale.\n> **Exemple :** *Il nous a **quittés**.* (= il est mort)\n\n### 2. La litote\nDit peu pour suggérer beaucoup (souvent par la négation).\n> **Exemple :** *Ce n'est **pas mauvais**.* (= c'est très bon)\n\n## V. Sonorités\n\n- **L'allitération** : répétition de consonnes (*Pour qui sont ces serpents qui sifflent…*).\n- **L'assonance** : répétition de voyelles.\n\n## Exercices corrigés\n\n**Énoncé :** Nomme la figure de style.\n1. *Cette nouvelle me brise le cœur.*\n2. *Tu es rapide comme l'éclair.*\n3. *Une obscure clarté tombe des étoiles.*\n\n**Correction :**\n1. **Métaphore** (le cœur n'est pas réellement brisé).\n2. **Comparaison** (outil *comme*).\n3. **Oxymore** (*obscure* / *clarté* sont contraires).\n\n## À retenir\n\n- **Comparaison** (avec outil) vs **métaphore** (sans outil).\n- **Personnification** : du vivant à l'inanimé.\n- **Hyperbole** = exagération ; **euphémisme/litote** = atténuation.\n- **Antithèse** (deux idées opposées) vs **oxymore** (deux mots contraires côte à côte).",
+      "quiz": {
+        "questions": [
+          {
+            "q": "« Il est fort comme un lion » est :",
+            "options": [
+              "Une métaphore",
+              "Une comparaison",
+              "Une personnification",
+              "Une hyperbole"
+            ],
+            "answer": 1,
+            "explanation": "La présence de l'outil « comme » indique une comparaison."
+          },
+          {
+            "q": "« Cet homme est un lion au combat » est :",
+            "options": [
+              "Une comparaison",
+              "Une métaphore",
+              "Une litote",
+              "Un euphémisme"
+            ],
+            "answer": 1,
+            "explanation": "Le rapprochement se fait sans outil : c'est une métaphore."
+          },
+          {
+            "q": "« Un silence assourdissant » est :",
+            "options": [
+              "Une antithèse",
+              "Un oxymore",
+              "Une gradation",
+              "Une anaphore"
+            ],
+            "answer": 1,
+            "explanation": "Deux mots de sens contraire côte à côte : c'est un oxymore."
+          },
+          {
+            "q": "« Je te l'ai dit mille fois » est :",
+            "options": [
+              "Une litote",
+              "Une hyperbole",
+              "Un euphémisme",
+              "Une personnification"
+            ],
+            "answer": 1,
+            "explanation": "L'exagération « mille fois » est une hyperbole."
+          },
+          {
+            "q": "« Il nous a quittés » (= il est mort) est :",
+            "options": [
+              "Une hyperbole",
+              "Un euphémisme",
+              "Une métaphore",
+              "Une antithèse"
+            ],
+            "answer": 1,
+            "explanation": "Adoucir une réalité brutale est un euphémisme."
+          }
+        ]
+      }
     },
     {
       "title": "Le résumé de texte",
       "video": "https://www.youtube.com/watch?v=Q9oQ9o9o9o9",
-      "lesson": "# Le résumé de texte\n\n## Introduction\n\nLe **résumé** consiste à réduire un texte tout en gardant **l'essentiel de son sens** et en respectant son **ordre des idées** et son **système d'énonciation**. C'est un exercice fréquent au BEPC : il évalue la compréhension et la capacité à reformuler avec ses propres mots.\n\n## I. Les règles d'or du résumé\n\n1. **Respecter le sens** : ne rien ajouter, ne rien déformer, ne pas donner son avis.\n2. **Reformuler** : utiliser ses propres mots, pas de copier-coller de phrases entières.\n3. **Suivre l'ordre** des idées de l'auteur.\n4. **Respecter l'énonciation** : si l'auteur dit *je*, on garde *je* ; on conserve les temps.\n5. **Respecter la longueur** demandée (souvent **un quart** du texte), avec une **tolérance** (± 10 %).\n6. **Indiquer le nombre de mots** à la fin.\n\n## II. La méthode étape par étape\n\n1. **Lire le texte plusieurs fois** pour le comprendre globalement.\n2. **Repérer le thème** et la **thèse** ou l'idée directrice.\n3. **Découper le texte** en parties (idées principales) ; numéroter.\n4. **Souligner les mots-clés** ; supprimer exemples, répétitions, détails secondaires.\n5. **Reformuler** chaque idée principale en une phrase courte.\n6. **Relier** les idées avec des connecteurs logiques.\n7. **Compter les mots** et ajuster.\n\n## III. Que garder, que supprimer ?\n\n- **On garde** : les idées principales, l'enchaînement logique, la thèse.\n- **On supprime** : les exemples, les citations, les énumérations longues, les répétitions, les détails illustratifs.\n- **On condense** : une énumération peut devenir un mot général (*pommes, mangues, oranges* → *des fruits*).\n\n## Exemple rédigé\n\n**Texte de départ (≈ 60 mots) :**\n*« Beaucoup de jeunes passent des heures sur leur téléphone. Ils échangent des messages, regardent des vidéos, jouent à des jeux. Cet usage excessif a des effets néfastes : il réduit le temps consacré aux études, fatigue les yeux et isole des autres. Pour éviter ces dangers, il faudrait limiter le temps d'écran et privilégier les activités réelles. »*\n\n**Résumé (≈ 25 mots, soit un quart) :**\n*L'usage excessif du téléphone chez les jeunes nuit aux études, à la santé et aux relations. Il faudrait donc limiter le temps d'écran et préférer les activités réelles.*\n\nOn remarque : les exemples (*messages, vidéos, jeux*) ont été condensés, l'ordre et le sens sont respectés, le texte est reformulé.\n\n## À retenir\n\n- Résumer = réduire (souvent au **quart**) **sans trahir** le sens ni l'ordre.\n- **Reformuler** avec ses propres mots ; **ne pas donner son avis**.\n- **Supprimer** exemples et détails ; **condenser** les énumérations.\n- **Indiquer le nombre de mots** à la fin."
+      "lesson": "# Le résumé de texte\n\n## Introduction\n\nLe **résumé** consiste à réduire un texte tout en gardant **l'essentiel de son sens** et en respectant son **ordre des idées** et son **système d'énonciation**. C'est un exercice fréquent au BEPC : il évalue la compréhension et la capacité à reformuler avec ses propres mots.\n\n## I. Les règles d'or du résumé\n\n1. **Respecter le sens** : ne rien ajouter, ne rien déformer, ne pas donner son avis.\n2. **Reformuler** : utiliser ses propres mots, pas de copier-coller de phrases entières.\n3. **Suivre l'ordre** des idées de l'auteur.\n4. **Respecter l'énonciation** : si l'auteur dit *je*, on garde *je* ; on conserve les temps.\n5. **Respecter la longueur** demandée (souvent **un quart** du texte), avec une **tolérance** (± 10 %).\n6. **Indiquer le nombre de mots** à la fin.\n\n## II. La méthode étape par étape\n\n1. **Lire le texte plusieurs fois** pour le comprendre globalement.\n2. **Repérer le thème** et la **thèse** ou l'idée directrice.\n3. **Découper le texte** en parties (idées principales) ; numéroter.\n4. **Souligner les mots-clés** ; supprimer exemples, répétitions, détails secondaires.\n5. **Reformuler** chaque idée principale en une phrase courte.\n6. **Relier** les idées avec des connecteurs logiques.\n7. **Compter les mots** et ajuster.\n\n## III. Que garder, que supprimer ?\n\n- **On garde** : les idées principales, l'enchaînement logique, la thèse.\n- **On supprime** : les exemples, les citations, les énumérations longues, les répétitions, les détails illustratifs.\n- **On condense** : une énumération peut devenir un mot général (*pommes, mangues, oranges* → *des fruits*).\n\n## Exemple rédigé\n\n**Texte de départ (≈ 60 mots) :**\n*« Beaucoup de jeunes passent des heures sur leur téléphone. Ils échangent des messages, regardent des vidéos, jouent à des jeux. Cet usage excessif a des effets néfastes : il réduit le temps consacré aux études, fatigue les yeux et isole des autres. Pour éviter ces dangers, il faudrait limiter le temps d'écran et privilégier les activités réelles. »*\n\n**Résumé (≈ 25 mots, soit un quart) :**\n*L'usage excessif du téléphone chez les jeunes nuit aux études, à la santé et aux relations. Il faudrait donc limiter le temps d'écran et préférer les activités réelles.*\n\nOn remarque : les exemples (*messages, vidéos, jeux*) ont été condensés, l'ordre et le sens sont respectés, le texte est reformulé.\n\n## À retenir\n\n- Résumer = réduire (souvent au **quart**) **sans trahir** le sens ni l'ordre.\n- **Reformuler** avec ses propres mots ; **ne pas donner son avis**.\n- **Supprimer** exemples et détails ; **condenser** les énumérations.\n- **Indiquer le nombre de mots** à la fin.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Un résumé doit généralement faire :",
+            "options": [
+              "La moitié du texte",
+              "Le quart du texte",
+              "Le double du texte",
+              "Trois lignes"
+            ],
+            "answer": 1,
+            "explanation": "Le résumé représente le plus souvent environ un quart du texte (avec une tolérance)."
+          },
+          {
+            "q": "Dans un résumé, on doit :",
+            "options": [
+              "Donner son avis",
+              "Respecter le sens et l'ordre",
+              "Copier des phrases entières",
+              "Ajouter des exemples"
+            ],
+            "answer": 1,
+            "explanation": "On respecte le sens et l'ordre des idées, sans donner son avis."
+          },
+          {
+            "q": "Que faut-il supprimer dans un résumé ?",
+            "options": [
+              "Les idées principales",
+              "Les exemples et détails",
+              "La thèse",
+              "L'enchaînement logique"
+            ],
+            "answer": 1,
+            "explanation": "On supprime exemples, répétitions et détails secondaires."
+          },
+          {
+            "q": "Reformuler signifie :",
+            "options": [
+              "Recopier le texte",
+              "Utiliser ses propres mots",
+              "Traduire le texte",
+              "Allonger le texte"
+            ],
+            "answer": 1,
+            "explanation": "Reformuler, c'est exprimer les idées avec ses propres mots."
+          },
+          {
+            "q": "Si l'auteur dit « je », dans le résumé on :",
+            "options": [
+              "Met « il »",
+              "Garde « je »",
+              "Met « nous »",
+              "Supprime le pronom"
+            ],
+            "answer": 1,
+            "explanation": "On respecte le système d'énonciation : on garde « je »."
+          }
+        ]
+      }
     },
     {
       "title": "La rédaction (expression écrite)",
       "video": "https://www.youtube.com/watch?v=2sJ4kT9oQ2c",
-      "lesson": "# La rédaction (expression écrite)\n\n## Introduction\n\nLa **rédaction** est l'épreuve reine du BEPC : il s'agit de produire un texte cohérent (récit, description, lettre, texte argumentatif) à partir d'un **sujet**. Réussir une rédaction suppose une **méthode** : comprendre le sujet, organiser ses idées, rédiger, puis se relire.\n\n## I. Comprendre le sujet\n\n- **Lire attentivement** la consigne et **souligner les mots-clés** : ils indiquent le **type de texte** (raconter, décrire, argumenter), le **sujet**, et parfois les **personnes/temps** imposés.\n> *« Racontez un événement qui vous a marqué »* → récit, *je*, temps du passé.\n\n## II. Organiser : le plan\n\nAvant de rédiger, on dresse un **brouillon** :\n- **Récit** : suivre le schéma narratif (situation initiale → perturbation → péripéties → dénouement → situation finale).\n- **Texte argumentatif** : introduction (thèse) → arguments + exemples → conclusion.\n- **Lettre** : en-tête (lieu, date), formule d'appel, corps, formule de politesse, signature.\n\n## III. Rédiger : les exigences\n\n1. **Une introduction** qui présente le sujet et accroche le lecteur.\n2. **Un développement** organisé en **paragraphes** (un paragraphe = une idée), avec des **connecteurs**.\n3. **Une conclusion** qui clôt le texte.\n4. **La cohérence** : pas de contradiction, un fil conducteur, des temps cohérents.\n5. **La langue** : phrases variées, vocabulaire précis et riche, orthographe et ponctuation soignées.\n\n## IV. Améliorer son style\n\n- **Éviter les répétitions** : utiliser des synonymes et des pronoms.\n- **Varier les phrases** : alterner phrases courtes et longues, simples et complexes.\n- **Employer des images** : comparaisons, métaphores (avec modération).\n- **Bannir le langage familier** dans un texte scolaire.\n\n## V. Se relire (étape indispensable)\n\nGarder **5 à 10 minutes** pour vérifier :\n- les **accords** (sujet-verbe, nom-adjectif, participe passé) ;\n- les **temps** des verbes ;\n- la **ponctuation** et les **majuscules** ;\n- l'**orthographe** des mots difficiles.\n\n## Exemple rédigé\n\n**Sujet :** *Racontez en quelques lignes le jour de votre rentrée scolaire.*\n\n*Ce matin-là, je marchais vers le collège, le cœur serré (situation initiale). Soudain, devant le portail, je reconnus mon ancien ami Bekolo, que je croyais parti loin (élément perturbateur). Nous nous racontâmes nos vacances, puis rejoignîmes ensemble notre nouvelle classe, intimidés mais heureux (péripéties). Quand la cloche sonna, mes craintes s'étaient envolées (dénouement). Cette rentrée resta pour moi celle des retrouvailles (situation finale).*\n\n## À retenir\n\n- **4 étapes** : comprendre le sujet → faire un plan → rédiger → se relire.\n- Structurer en **introduction, développement (paragraphes), conclusion**.\n- Utiliser des **connecteurs** et **varier** ses phrases.\n- **Toujours se relire** pour les accords, les temps et l'orthographe."
+      "lesson": "# La rédaction (expression écrite)\n\n## Introduction\n\nLa **rédaction** est l'épreuve reine du BEPC : il s'agit de produire un texte cohérent (récit, description, lettre, texte argumentatif) à partir d'un **sujet**. Réussir une rédaction suppose une **méthode** : comprendre le sujet, organiser ses idées, rédiger, puis se relire.\n\n## I. Comprendre le sujet\n\n- **Lire attentivement** la consigne et **souligner les mots-clés** : ils indiquent le **type de texte** (raconter, décrire, argumenter), le **sujet**, et parfois les **personnes/temps** imposés.\n> *« Racontez un événement qui vous a marqué »* → récit, *je*, temps du passé.\n\n## II. Organiser : le plan\n\nAvant de rédiger, on dresse un **brouillon** :\n- **Récit** : suivre le schéma narratif (situation initiale → perturbation → péripéties → dénouement → situation finale).\n- **Texte argumentatif** : introduction (thèse) → arguments + exemples → conclusion.\n- **Lettre** : en-tête (lieu, date), formule d'appel, corps, formule de politesse, signature.\n\n## III. Rédiger : les exigences\n\n1. **Une introduction** qui présente le sujet et accroche le lecteur.\n2. **Un développement** organisé en **paragraphes** (un paragraphe = une idée), avec des **connecteurs**.\n3. **Une conclusion** qui clôt le texte.\n4. **La cohérence** : pas de contradiction, un fil conducteur, des temps cohérents.\n5. **La langue** : phrases variées, vocabulaire précis et riche, orthographe et ponctuation soignées.\n\n## IV. Améliorer son style\n\n- **Éviter les répétitions** : utiliser des synonymes et des pronoms.\n- **Varier les phrases** : alterner phrases courtes et longues, simples et complexes.\n- **Employer des images** : comparaisons, métaphores (avec modération).\n- **Bannir le langage familier** dans un texte scolaire.\n\n## V. Se relire (étape indispensable)\n\nGarder **5 à 10 minutes** pour vérifier :\n- les **accords** (sujet-verbe, nom-adjectif, participe passé) ;\n- les **temps** des verbes ;\n- la **ponctuation** et les **majuscules** ;\n- l'**orthographe** des mots difficiles.\n\n## Exemple rédigé\n\n**Sujet :** *Racontez en quelques lignes le jour de votre rentrée scolaire.*\n\n*Ce matin-là, je marchais vers le collège, le cœur serré (situation initiale). Soudain, devant le portail, je reconnus mon ancien ami Bekolo, que je croyais parti loin (élément perturbateur). Nous nous racontâmes nos vacances, puis rejoignîmes ensemble notre nouvelle classe, intimidés mais heureux (péripéties). Quand la cloche sonna, mes craintes s'étaient envolées (dénouement). Cette rentrée resta pour moi celle des retrouvailles (situation finale).*\n\n## À retenir\n\n- **4 étapes** : comprendre le sujet → faire un plan → rédiger → se relire.\n- Structurer en **introduction, développement (paragraphes), conclusion**.\n- Utiliser des **connecteurs** et **varier** ses phrases.\n- **Toujours se relire** pour les accords, les temps et l'orthographe.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Quelle est la première étape d'une rédaction ?",
+            "options": [
+              "Rédiger directement",
+              "Comprendre le sujet",
+              "Se relire",
+              "Compter les mots"
+            ],
+            "answer": 1,
+            "explanation": "Il faut d'abord comprendre le sujet et souligner les mots-clés."
+          },
+          {
+            "q": "Un bon développement s'organise en :",
+            "options": [
+              "Une seule phrase",
+              "Paragraphes (une idée par paragraphe)",
+              "Un dialogue",
+              "Une liste"
+            ],
+            "answer": 1,
+            "explanation": "Le développement se structure en paragraphes, une idée par paragraphe."
+          },
+          {
+            "q": "Pour éviter les répétitions, on utilise :",
+            "options": [
+              "Le langage familier",
+              "Des synonymes et des pronoms",
+              "Toujours le même mot",
+              "Des abréviations"
+            ],
+            "answer": 1,
+            "explanation": "Les synonymes et les pronoms évitent les répétitions."
+          },
+          {
+            "q": "L'étape de relecture sert surtout à :",
+            "options": [
+              "Allonger le texte",
+              "Vérifier accords, temps et orthographe",
+              "Changer le sujet",
+              "Ajouter un dialogue"
+            ],
+            "answer": 1,
+            "explanation": "La relecture vérifie accords, temps des verbes, ponctuation et orthographe."
+          },
+          {
+            "q": "Dans un texte scolaire, on évite :",
+            "options": [
+              "Les connecteurs",
+              "Le langage familier",
+              "Les paragraphes",
+              "La conclusion"
+            ],
+            "answer": 1,
+            "explanation": "Le langage familier est à bannir dans une rédaction scolaire."
+          }
+        ]
+      }
     },
     {
       "title": "Le vocabulaire et le sens des mots",
       "video": "https://www.youtube.com/watch?v=7oP9j3kQ0Yc",
-      "lesson": "# Le vocabulaire et le sens des mots\n\n## Introduction\n\nMaîtriser le **vocabulaire**, c'est comprendre et employer les mots avec précision. Cela suppose de connaître la **formation des mots**, les **relations de sens** (synonymes, antonymes…), et les **différents sens** qu'un mot peut prendre. C'est un atout majeur pour la lecture, le résumé et la rédaction.\n\n## I. La formation des mots\n\n### 1. Le radical\nC'est l'élément porteur du sens de base : *terre* dans *terrain, terrestre, atterrir*.\n\n### 2. La dérivation : préfixes et suffixes\n- **Préfixe** (devant le radical) : *in-* (*incapable*), *re-* (*refaire*), *dé-* (*défaire*).\n- **Suffixe** (après le radical) : *-able* (*lavable*), *-tion* (*action*), *-eur* (*chanteur*).\n> **Famille de mots :** *port → porter, apporter, transport, portable, porteur.*\n\n### 3. La composition\nUn mot composé est formé de plusieurs mots : *porte-monnaie, chou-fleur, arc-en-ciel*.\n\n## II. Les relations de sens\n\n- **Synonymes** : mots de sens proche (*joli / beau*).\n- **Antonymes (contraires)** : *grand / petit, monter / descendre*.\n- **Homonymes** : même prononciation, sens différents (*ver, vert, vers, verre*).\n- **Paronymes** : mots proches qui se confondent (*conjecture / conjoncture*).\n- **Champ lexical** : ensemble de mots liés à un même thème (*école : élève, cahier, professeur, leçon*).\n\n## III. Les sens d'un mot\n\n### 1. Sens propre et sens figuré\n- **Sens propre** : sens premier, concret (*la racine de l'arbre*).\n- **Sens figuré** : sens imagé (*la racine du mal*).\n\n### 2. Sens dénoté et connoté\n- **Dénotation** : sens neutre du dictionnaire.\n- **Connotation** : valeurs ajoutées (*serpent* connote la ruse, la traîtrise).\n\n### 3. La polysémie\nUn même mot a plusieurs sens selon le contexte : *une glace* (miroir / dessert / eau gelée).\n\n## IV. Les niveaux de langue\n\n- **Soutenu** : *Je suis fort contrarié.*\n- **Courant** : *Je suis fâché.*\n- **Familier** : *Je suis vénère.*\nLe niveau doit être adapté à la situation (à l'écrit scolaire : niveau **courant** ou **soutenu**).\n\n## Exercices corrigés\n\n**Énoncé :** \n1. Donne un synonyme et un antonyme de *courageux*.\n2. Indique si *Il a le cœur sur la main* est au sens propre ou figuré.\n3. Forme deux mots de la famille de *jour*.\n\n**Correction :**\n1. Synonyme : *brave / vaillant* ; antonyme : *peureux / lâche*.\n2. **Sens figuré** (= il est généreux).\n3. *journée, journal, séjour, ajourner* (deux suffisent).\n\n## À retenir\n\n- Les mots se forment par **dérivation** (préfixe/suffixe) et **composition**.\n- Relations de sens : **synonymes, antonymes, homonymes, paronymes, champ lexical**.\n- Un mot a souvent un **sens propre** et un **sens figuré** (polysémie).\n- Adapter le **niveau de langue** à la situation (soutenu, courant, familier)."
+      "lesson": "# Le vocabulaire et le sens des mots\n\n## Introduction\n\nMaîtriser le **vocabulaire**, c'est comprendre et employer les mots avec précision. Cela suppose de connaître la **formation des mots**, les **relations de sens** (synonymes, antonymes…), et les **différents sens** qu'un mot peut prendre. C'est un atout majeur pour la lecture, le résumé et la rédaction.\n\n## I. La formation des mots\n\n### 1. Le radical\nC'est l'élément porteur du sens de base : *terre* dans *terrain, terrestre, atterrir*.\n\n### 2. La dérivation : préfixes et suffixes\n- **Préfixe** (devant le radical) : *in-* (*incapable*), *re-* (*refaire*), *dé-* (*défaire*).\n- **Suffixe** (après le radical) : *-able* (*lavable*), *-tion* (*action*), *-eur* (*chanteur*).\n> **Famille de mots :** *port → porter, apporter, transport, portable, porteur.*\n\n### 3. La composition\nUn mot composé est formé de plusieurs mots : *porte-monnaie, chou-fleur, arc-en-ciel*.\n\n## II. Les relations de sens\n\n- **Synonymes** : mots de sens proche (*joli / beau*).\n- **Antonymes (contraires)** : *grand / petit, monter / descendre*.\n- **Homonymes** : même prononciation, sens différents (*ver, vert, vers, verre*).\n- **Paronymes** : mots proches qui se confondent (*conjecture / conjoncture*).\n- **Champ lexical** : ensemble de mots liés à un même thème (*école : élève, cahier, professeur, leçon*).\n\n## III. Les sens d'un mot\n\n### 1. Sens propre et sens figuré\n- **Sens propre** : sens premier, concret (*la racine de l'arbre*).\n- **Sens figuré** : sens imagé (*la racine du mal*).\n\n### 2. Sens dénoté et connoté\n- **Dénotation** : sens neutre du dictionnaire.\n- **Connotation** : valeurs ajoutées (*serpent* connote la ruse, la traîtrise).\n\n### 3. La polysémie\nUn même mot a plusieurs sens selon le contexte : *une glace* (miroir / dessert / eau gelée).\n\n## IV. Les niveaux de langue\n\n- **Soutenu** : *Je suis fort contrarié.*\n- **Courant** : *Je suis fâché.*\n- **Familier** : *Je suis vénère.*\nLe niveau doit être adapté à la situation (à l'écrit scolaire : niveau **courant** ou **soutenu**).\n\n## Exercices corrigés\n\n**Énoncé :** \n1. Donne un synonyme et un antonyme de *courageux*.\n2. Indique si *Il a le cœur sur la main* est au sens propre ou figuré.\n3. Forme deux mots de la famille de *jour*.\n\n**Correction :**\n1. Synonyme : *brave / vaillant* ; antonyme : *peureux / lâche*.\n2. **Sens figuré** (= il est généreux).\n3. *journée, journal, séjour, ajourner* (deux suffisent).\n\n## À retenir\n\n- Les mots se forment par **dérivation** (préfixe/suffixe) et **composition**.\n- Relations de sens : **synonymes, antonymes, homonymes, paronymes, champ lexical**.\n- Un mot a souvent un **sens propre** et un **sens figuré** (polysémie).\n- Adapter le **niveau de langue** à la situation (soutenu, courant, familier).",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Le préfixe se place :",
+            "options": [
+              "Après le radical",
+              "Devant le radical",
+              "À la fin du mot",
+              "Entre deux radicaux"
+            ],
+            "answer": 1,
+            "explanation": "Le préfixe se place devant le radical (ex. : re-faire)."
+          },
+          {
+            "q": "« grand » et « petit » sont :",
+            "options": [
+              "Des synonymes",
+              "Des antonymes",
+              "Des homonymes",
+              "Des paronymes"
+            ],
+            "answer": 1,
+            "explanation": "Ce sont des contraires : des antonymes."
+          },
+          {
+            "q": "« ver, vert, verre, vers » sont :",
+            "options": [
+              "Des synonymes",
+              "Des antonymes",
+              "Des homonymes",
+              "Des préfixes"
+            ],
+            "answer": 2,
+            "explanation": "Même prononciation, sens et orthographe différents : des homonymes."
+          },
+          {
+            "q": "« la racine du mal » emploie le mot « racine » au sens :",
+            "options": [
+              "Propre",
+              "Figuré",
+              "Familier",
+              "Dénoté"
+            ],
+            "answer": 1,
+            "explanation": "« racine » y est employé au sens figuré (sens imagé)."
+          },
+          {
+            "q": "« Je suis vénère » appartient au niveau de langue :",
+            "options": [
+              "Soutenu",
+              "Courant",
+              "Familier",
+              "Littéraire"
+            ],
+            "answer": 2,
+            "explanation": "« vénère » relève du niveau de langue familier."
+          }
+        ]
+      }
     }
   ]
 }
