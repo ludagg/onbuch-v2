@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math' as math;
 import 'dart:ui' show PathOperation;
 import 'package:flutter/material.dart';
+import '../../widgets/cached_image.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
@@ -488,7 +489,7 @@ class _AnnouncementCard extends StatelessWidget {
         child: Stack(fit: StackFit.expand, children: [
           // Image de fond (couvrante) + repli silencieux sur le fond coloré.
           if (a.hasImage)
-            Image.network(a.imageUrl, fit: BoxFit.cover,
+            CachedImage(a.imageUrl, fit: BoxFit.cover,
                 errorBuilder: (_, __, ___) => const SizedBox.shrink()),
           // Voile pour la lisibilité du texte clair sur image (haut ET bas
           // assombris ; centre plus clair pour laisser respirer l'image).
@@ -914,7 +915,7 @@ class _FasciculesCarouselState extends State<_FasciculesCarousel>
             ],
           ),
           child: f.hasCover
-              ? Image.network(f.coverUrl, fit: BoxFit.cover,
+              ? CachedImage(f.coverUrl, fit: BoxFit.cover,
                   errorBuilder: (_, __, ___) => _fallback(f),
                   loadingBuilder: (c, child, p) => p == null ? child : _fallback(f))
               : _fallback(f),
@@ -1256,7 +1257,7 @@ Widget _articleImage(String? url, double iconSize) {
   if (url == null || url.isEmpty) {
     return Center(child: Icon(Icons.image_outlined, color: OC.faint, size: iconSize));
   }
-  return Image.network(
+  return CachedImage(
     url,
     fit: BoxFit.cover,
     width: double.infinity,
@@ -1485,7 +1486,7 @@ Widget _afficheCard(BuildContext context, AfficheItem a) {
       ),
       child: Stack(fit: StackFit.expand, children: [
         if (hasImg)
-          Image.network(a.imageUrl!, fit: BoxFit.cover,
+          CachedImage(a.imageUrl!, fit: BoxFit.cover,
               errorBuilder: (_, __, ___) => Container(color: OC.panel),
               loadingBuilder: (_, c, p) => p == null ? c : Container(color: OC.panel))
         else

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../widgets/cached_image.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import '../../theme/app_theme.dart';
@@ -74,7 +75,7 @@ class _AfficheScreenState extends State<AfficheScreen> {
             aspectRatio: 16 / 7,
             child: Stack(fit: StackFit.expand, children: [
               if (hasImg)
-                Image.network(a.imageUrl!, fit: BoxFit.cover,
+                CachedImage(a.imageUrl!, fit: BoxFit.cover,
                     errorBuilder: (_, __, ___) => Container(color: OC.panel),
                     loadingBuilder: (_, c, p) => p == null ? c : Container(color: OC.panel))
               else

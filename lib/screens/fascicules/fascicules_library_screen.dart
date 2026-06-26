@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../widgets/cached_image.dart';
 import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
@@ -144,7 +145,7 @@ class _FasciculeCard extends StatelessWidget {
                 ],
               ),
               child: f.hasCover
-                  ? Image.network(
+                  ? CachedImage(
                       f.coverUrl,
                       fit: BoxFit.cover,
                       width: double.infinity,

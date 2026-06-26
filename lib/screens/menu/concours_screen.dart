@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import '../../widgets/cached_image.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import '../../theme/app_theme.dart';
@@ -340,7 +341,7 @@ class _PrepCenterCarouselState extends State<_PrepCenterCarousel> {
           ),
           child: Stack(fit: StackFit.expand, children: [
             if (p.imageUrl != null)
-              Image.network(p.imageUrl!, fit: BoxFit.cover,
+              CachedImage(p.imageUrl!, fit: BoxFit.cover,
                   errorBuilder: (_, __, ___) => const SizedBox.shrink()),
             DecoratedBox(
               decoration: BoxDecoration(

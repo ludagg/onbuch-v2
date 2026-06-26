@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../widgets/cached_image.dart';
 import 'package:intl/intl.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
@@ -32,7 +33,7 @@ class AfficheDetailScreen extends StatelessWidget {
             child: AspectRatio(
               aspectRatio: 16 / 9,
               child: hasImg
-                  ? Image.network(a.imageUrl!, fit: BoxFit.cover,
+                  ? CachedImage(a.imageUrl!, fit: BoxFit.cover,
                       errorBuilder: (_, __, ___) => _cover(),
                       loadingBuilder: (_, c, p) => p == null ? c : Container(color: OC.panel))
                   : _cover(),
@@ -112,7 +113,7 @@ class AfficheDetailScreen extends StatelessWidget {
       decoration: BoxDecoration(color: OC.o50, borderRadius: BorderRadius.circular(13)),
       clipBehavior: Clip.antiAlias,
       child: has
-          ? Image.network(a.partnerLogo!, fit: BoxFit.cover,
+          ? CachedImage(a.partnerLogo!, fit: BoxFit.cover,
               errorBuilder: (_, __, ___) => Icon(Icons.handshake_outlined, color: OC.o600, size: 24))
           : Icon(Icons.handshake_outlined, color: OC.o600, size: 24),
     );
