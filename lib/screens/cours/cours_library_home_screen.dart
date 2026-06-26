@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
 import '../../widgets/skeletons.dart';
+import '../../widgets/leo_mascot.dart';
 import '../../data/exam_taxonomy.dart';
 import '../../services/cours_packs_service.dart';
 import '../../services/database_service.dart';
@@ -162,6 +163,19 @@ class _CoursLibraryHomeScreenState extends State<CoursLibraryHomeScreen> {
           builder: (context, _) => ListView(
             padding: const EdgeInsets.fromLTRB(0, 4, 0, 24),
             children: [
+              // En-tête : Léo (à gauche) + accroche sur la même ligne.
+              Padding(
+                padding: const EdgeInsets.fromLTRB(14, 0, 20, 14),
+                child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+                  const LeoMascot(size: 56, mood: LeoMood.wave),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Text("Qu'est-ce qu'on révise aujourd'hui ?",
+                        style: display(19, weight: FontWeight.w800).copyWith(height: 1.12)),
+                  ),
+                ]),
+              ),
+
               // Recherche → recherche transverse Cours
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
