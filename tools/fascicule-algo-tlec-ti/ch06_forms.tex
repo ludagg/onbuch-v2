@@ -1,0 +1,571 @@
+\chapter{Formulaires et variables superglobales}
+
+\begin{synthese}[Au programme]
+Récupérer et traiter les données d'un formulaire HTML dans un script PHP : les
+variables \textbf{superglobales} (\code{\$\_GET}, \code{\$\_POST}\dots), le choix
+entre les méthodes \textbf{GET} et \textbf{POST}, la validation et la sécurisation
+des saisies, l'envoi vers la même page et le téléversement (\emph{upload}) de
+fichiers. C'est le c\oe ur d'une application web \emph{interactive}.
+\end{synthese}
+
+\section{Le rôle d'un formulaire}
+
+Jusqu'ici, nos scripts affichaient des données fixées dans le code. Un site
+\emph{dynamique} doit au contraire \textbf{recevoir des informations de
+l'utilisateur} : un nom, un mot de passe, le prix d'un produit\dots Ces
+informations sont saisies dans un \textbf{formulaire HTML}, puis envoyées au
+serveur, où un script PHP les récupère et les traite.
+
+\begin{definition}
+Un \textbf{formulaire} est une zone d'une page HTML (balise \code{<form>})
+contenant des champs de saisie (\code{<input>}, \code{<textarea>},
+\code{<select>}\dots). Quand l'utilisateur valide, le navigateur envoie les
+données vers le fichier indiqué par l'attribut \code{action}, selon la
+\code{method} choisie (\code{get} ou \code{post}).
+\end{definition}
+
+\begin{codehtml}
+<form action="traitement.php" method="post">
+  <input type="text" name="nom">
+  <input type="submit" value="Envoyer">
+</form>
+\end{codehtml}
+
+\fig{Chaque champ porte un attribut \texttt{name} : c'est la clé qui permettra à
+PHP de retrouver la valeur saisie.}
+
+\begin{attention}
+La donnée envoyée est repérée par l'attribut \code{name} du champ, \emph{pas} par
+son \code{id}. Si un champ n'a pas de \code{name}, sa valeur n'est jamais
+transmise au serveur.
+\end{attention}
+
+\section{Les variables superglobales}
+
+\begin{definition}
+Une variable \textbf{superglobale} est un tableau associatif fourni
+automatiquement par PHP, accessible \textbf{partout} dans le script (même à
+l'intérieur d'une fonction) sans avoir à le déclarer. Son nom commence par
+\code{\$\_} et s'écrit en majuscules.
+\end{definition}
+
+Voici les superglobales au programme de Terminale TI.
+
+\begin{center}\small
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Superglobale} & \textbf{Contenu}\\
+\midrule
+\code{\$\_GET}     & Données envoyées par la méthode \textsc{get} (visibles dans l'URL)\\
+\code{\$\_POST}    & Données envoyées par la méthode \textsc{post} (cachées dans la requête)\\
+\code{\$\_REQUEST} & Réunion de \code{\$\_GET}, \code{\$\_POST} et des cookies\\
+\code{\$\_FILES}   & Informations sur les fichiers téléversés (\emph{upload})\\
+\code{\$\_SERVER}  & Informations sur le serveur et la requête (URL, méthode\dots)\\
+\code{\$\_SESSION} & Données conservées d'une page à l'autre pour un visiteur\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{remarque}
+Ces tableaux sont \textbf{associatifs} : on accède à une valeur par sa clé, qui
+est le \code{name} du champ. Par exemple, \code{\$\_POST['nom']} contient la valeur
+du champ \code{name="nom"} envoyé en \textsc{post}.
+\end{remarque}
+
+\begin{exemple}
+Quelques cases utiles de \code{\$\_SERVER} : \code{\$\_SERVER['REQUEST\_METHOD']}
+vaut \code{"GET"} ou \code{"POST"} ; \code{\$\_SERVER['PHP\_SELF']} contient le nom
+du fichier courant.
+\end{exemple}
+
+\section{Méthodes GET et POST}
+
+Le navigateur peut transmettre les données de deux façons, choisies par
+l'attribut \code{method} du formulaire.
+
+\subsection{La méthode GET}
+
+Les données sont ajoutées \textbf{à la fin de l'URL}, après un point
+d'interrogation, sous forme \code{cle=valeur} séparées par des \code{\&} :
+
+\begin{syntaxe}
+\code{http://localhost/page.php?ville=Douala\&annee=2026}
+\end{syntaxe}
+
+Elles sont récupérées dans \code{\$\_GET['ville']} et \code{\$\_GET['annee']}.
+Comme tout est visible dans l'URL, on peut placer le lien dans un favori ou le
+partager.
+
+\subsection{La méthode POST}
+
+Les données sont placées dans le \textbf{corps de la requête}, invisibles dans
+l'URL. Elles sont récupérées dans \code{\$\_POST}. C'est la méthode à utiliser
+pour les mots de passe, les longs textes et tout ce qui modifie le serveur
+(création, suppression\dots).
+
+\subsection{Tableau comparatif}
+
+\begin{center}\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Critère} & \textbf{GET} & \textbf{POST}\\
+\midrule
+Visibilité     & Visible dans l'URL        & Cachée dans la requête\\
+Récupération   & \code{\$\_GET}            & \code{\$\_POST}\\
+Taille         & Limitée (URL courte)      & Très grande (fichiers OK)\\
+Favori/partage & Possible                  & Impossible\\
+Sécurité       & Faible (mot de passe nu)  & Meilleure (non affichée)\\
+Usage typique  & Recherche, filtre, lien   & Connexion, enregistrement\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{methode}
+\textbf{Quelle méthode choisir ?} Utilise \textsc{get} pour une \emph{lecture}
+qu'on peut refaire sans risque (recherche, pagination, filtre) ; utilise
+\textsc{post} dès qu'il y a un \emph{secret} (mot de passe), une \emph{grande}
+quantité de données, un \emph{fichier}, ou une action qui \emph{modifie} les
+données (ajout, suppression).
+\end{methode}
+
+\begin{attention}
+\textsc{get} n'est jamais sécurisé : la valeur s'affiche en clair dans la barre
+d'adresse et reste dans l'historique. Ne fais \textbf{jamais} transiter un mot de
+passe en \textsc{get}.
+\end{attention}
+
+\section{Récupérer les valeurs d'un formulaire}
+
+Voyons un cas complet en deux fichiers : la page HTML qui contient le formulaire,
+et le script PHP qui reçoit les données.
+
+\subsection{Le formulaire : \texttt{formulaire.html}}
+
+\begin{codehtml}
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="utf-8"><title>Inscription</title></head>
+<body>
+  <h1>Inscription au club informatique</h1>
+  <form action="traitement.php" method="post">
+    <p>Nom :    <input type="text" name="nom"></p>
+    <p>Classe : <input type="text" name="classe"></p>
+    <p>Ville :  <input type="text" name="ville"></p>
+    <p><input type="submit" value="Valider"></p>
+  </form>
+</body>
+</html>
+\end{codehtml}
+
+\subsection{Le traitement : \texttt{traitement.php}}
+
+\begin{codephp}
+<?php
+  // On lit chaque champ par son attribut name
+  $nom    = $_POST['nom'];
+  $classe = $_POST['classe'];
+  $ville  = $_POST['ville'];
+
+  echo "<h1>Bienvenue $nom !</h1>";
+  echo "<p>Classe : $classe — Ville : $ville</p>";
+?>
+\end{codephp}
+
+\fig{Le champ \texttt{name="nom"} du formulaire devient \texttt{\$\_POST['nom']}
+dans le script.}
+
+\begin{remarque}
+Si le formulaire utilisait \code{method="get"}, le code serait identique en
+remplaçant \code{\$\_POST} par \code{\$\_GET}, et les valeurs apparaîtraient dans
+l'URL \code{traitement.php?nom=\dots\&classe=\dots}.
+\end{remarque}
+
+\section{Valider et sécuriser les données}
+
+Ne jamais faire confiance aux données reçues : un champ peut être vide, absent,
+ou contenir du code malveillant. Quatre fonctions sont au programme.
+
+\subsection{\texttt{isset()} et \texttt{empty()}}
+
+\begin{itemize}
+  \item \code{isset(\$\_POST['nom'])} renvoie \code{true} si la clé existe
+        (le formulaire a bien été envoyé) ;
+  \item \code{empty(\$\_POST['nom'])} renvoie \code{true} si la valeur est
+        vide (\code{""}, \code{0}, non définie).
+\end{itemize}
+
+\begin{codephp}
+<?php
+  // A-t-on bien reçu le formulaire ?
+  if (isset($_POST['nom']) && !empty($_POST['nom'])) {
+    echo "Bonjour " . $_POST['nom'];
+  } else {
+    echo "Le nom est obligatoire.";
+  }
+?>
+\end{codephp}
+
+\subsection{\texttt{trim()} et \texttt{htmlspecialchars()}}
+
+\begin{itemize}
+  \item \code{trim(\$texte)} supprime les espaces inutiles en début et fin de
+        chaîne ;
+  \item \code{htmlspecialchars(\$texte)} transforme les caractères
+        dangereux (\code{<}, \code{>}, \code{\&}, \code{"}) en entités HTML, ce
+        qui empêche l'injection de code (\emph{faille XSS}).
+\end{itemize}
+
+\begin{codephp}
+<?php
+  // Nettoyage standard d'un champ texte
+  $nom = trim($_POST['nom']);              // retire les espaces
+  $nom = htmlspecialchars($nom);           // neutralise le HTML
+  echo "Nom sécurisé : $nom";
+?>
+\end{codephp}
+
+\begin{attention}
+Sans \code{htmlspecialchars}, un visiteur pourrait saisir
+\code{<script>\dots</script>} et faire exécuter son code dans la page : c'est une
+attaque classique. Affiche \textbf{toujours} les données utilisateur à travers
+cette fonction.
+\end{attention}
+
+\section{Envoyer le formulaire vers la même page}
+
+On peut faire pointer l'action du formulaire vers le fichier lui-même : il suffit
+de laisser \code{action} vide. Le même fichier affiche alors le formulaire
+\emph{et} traite la réponse. On distingue les deux cas en testant la méthode de la
+requête.
+
+\begin{codephp}
+<?php
+  $message = "";
+  // Le formulaire a-t-il été soumis ?
+  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $nom = trim($_POST['nom']);
+    if ($nom !== "") {
+      $message = "Merci, " . htmlspecialchars($nom) . " !";
+    } else {
+      $message = "Veuillez saisir votre nom.";
+    }
+  }
+?>
+<form action="" method="post">
+  <input type="text" name="nom">
+  <input type="submit" value="OK">
+</form>
+<p><?php echo $message; ?></p>
+\end{codephp}
+
+\fig{\texttt{action=""} renvoie vers la page courante : un seul fichier suffit.}
+
+\section{Exemple fil rouge : gestion d'un produit}
+
+Construisons un mini-écran de \textbf{gestion de stock} pour une boutique de
+Yaoundé. L'utilisateur saisit un produit (nom, prix unitaire en FCFA, quantité) ;
+la page PHP récupère, valide, puis affiche un récapitulatif avec le
+\textbf{montant total}.
+
+\subsection{Le formulaire (HTML)}
+
+\begin{codehtml}
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="utf-8"><title>Gestion de produit</title></head>
+<body>
+  <h1>Ajouter un produit</h1>
+  <form action="produit.php" method="post">
+    <p>Nom du produit : <input type="text" name="produit"></p>
+    <p>Prix unitaire (FCFA) : <input type="number" name="prix"></p>
+    <p>Quantité : <input type="number" name="quantite"></p>
+    <p><input type="submit" value="Enregistrer"></p>
+  </form>
+</body>
+</html>
+\end{codehtml}
+
+\subsection{Le traitement (PHP) : \texttt{produit.php}}
+
+\begin{codephp}
+<?php
+  // 1. Vérifier que tous les champs sont présents
+  if (isset($_POST['produit'], $_POST['prix'], $_POST['quantite'])) {
+
+    // 2. Nettoyer le nom du produit
+    $produit  = htmlspecialchars(trim($_POST['produit']));
+    // 3. Convertir prix et quantité en nombres entiers
+    $prix     = (int) $_POST['prix'];
+    $quantite = (int) $_POST['quantite'];
+
+    // 4. Valider : champ non vide et valeurs positives
+    if ($produit === "" || $prix <= 0 || $quantite <= 0) {
+      echo "<p>Erreur : saisie incomplète ou valeurs invalides.</p>";
+    } else {
+      // 5. Calculer le montant total
+      $total = $prix * $quantite;
+
+      // 6. Afficher le récapitulatif
+      echo "<h2>Récapitulatif</h2>";
+      echo "<ul>";
+      echo "<li>Produit : $produit</li>";
+      echo "<li>Prix unitaire : $prix FCFA</li>";
+      echo "<li>Quantité : $quantite</li>";
+      echo "<li><strong>Total : $total FCFA</strong></li>";
+      echo "</ul>";
+    }
+  } else {
+    echo "<p>Veuillez remplir le formulaire.</p>";
+  }
+?>
+\end{codephp}
+
+\fig{Saisir « Cahier », 350 et 12 affiche un total de 4\,200 FCFA.}
+
+\begin{remarque}
+La conversion \code{(int) \$\_POST['prix']} (appelée \emph{transtypage}) garantit
+qu'on manipule bien un nombre avant de multiplier. Sans elle, une saisie comme
+\code{"12abc"} pourrait fausser le calcul.
+\end{remarque}
+
+\section{Téléverser un fichier : \texttt{\$\_FILES}}
+
+Pour envoyer un fichier (photo, PDF), le formulaire doit respecter trois règles :
+méthode \code{post}, attribut \code{enctype="multipart/form-data"}, et un champ
+\code{<input type="file">}.
+
+\begin{codehtml}
+<form action="upload.php" method="post" enctype="multipart/form-data">
+  <input type="file" name="photo">
+  <input type="submit" value="Envoyer">
+</form>
+\end{codehtml}
+
+Côté PHP, le fichier reçu est décrit dans \code{\$\_FILES['photo']}, un tableau
+contenant notamment :
+
+\begin{center}\small
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Clé} & \textbf{Signification}\\
+\midrule
+\code{['name']}     & Nom d'origine du fichier (ex. \code{recu.pdf})\\
+\code{['tmp\_name']} & Emplacement temporaire sur le serveur\\
+\code{['size']}     & Taille en octets\\
+\code{['error']}    & Code d'erreur (\code{0} si tout va bien)\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Le fichier arrive d'abord dans un dossier \textbf{temporaire} ; on le déplace
+ensuite vers son emplacement définitif avec \code{move\_uploaded\_file()}.
+
+\begin{codephp}
+<?php
+  if (isset($_FILES['photo']) && $_FILES['photo']['error'] === 0) {
+    $source      = $_FILES['photo']['tmp_name'];
+    $destination = "uploads/" . $_FILES['photo']['name'];
+
+    // Déplacer le fichier temporaire vers le dossier uploads/
+    if (move_uploaded_file($source, $destination)) {
+      echo "Fichier reçu : " . $_FILES['photo']['name'];
+    } else {
+      echo "Échec de l'enregistrement.";
+    }
+  } else {
+    echo "Aucun fichier valide reçu.";
+  }
+?>
+\end{codephp}
+
+\begin{attention}
+\code{move\_uploaded\_file} est la \textbf{seule} façon sûre de récupérer un
+fichier téléversé : elle vérifie que le fichier provient bien d'un envoi HTTP. Le
+dossier de destination (\code{uploads/}) doit exister et être accessible en
+écriture.
+\end{attention}
+
+\section{Exercices}
+
+\rubrique{Application}
+
+\exo{Lire un champ}\diff{1}
+Un formulaire en \code{method="post"} contient un champ \code{name="prenom"}.
+Écris la ligne PHP qui récupère sa valeur dans une variable \code{\$prenom}.
+
+\exo{GET ou POST ?}\diff{1}
+Pour chacune de ces situations, indique la méthode la plus adaptée :
+(a)~recherche d'un cours par mot-clé ; (b)~saisie d'un mot de passe ;
+(c)~envoi d'une photo de profil ; (d)~filtre des résultats par ville.
+
+\exo{Formulaire de contact}\diff{1}
+Écris le formulaire HTML d'une page \emph{Contact} (champs : \code{nom},
+\code{email}, et un \code{<textarea name="message">}), qui envoie en \textsc{post}
+vers \code{contact.php}. Écris ensuite \code{contact.php} qui affiche
+« Message de \dots » suivi du contenu reçu.
+
+\exo{Total d'une commande}\diff{1}
+Une page reçoit en \textsc{post} un \code{prix} et une \code{quantite}. Écris le
+script qui calcule et affiche le total en FCFA.
+
+\exo{Champs obligatoires}\diff{2}
+Un formulaire d'inscription envoie \code{nom} et \code{classe}. Écris le script
+qui refuse l'enregistrement (message d'erreur) si l'un des deux champs est vide,
+et affiche sinon « Inscription de \dots en classe de \dots ».
+
+\rubrique{Entraînement}
+
+\exo{Basculer GET en POST}\diff{2}
+On donne ce formulaire de recherche en \textsc{get} :
+\code{<form action="recherche.php" method="get">} avec un champ
+\code{name="motcle"}, traité par \code{echo \$\_GET['motcle'];}. Réécris le
+formulaire \emph{et} le traitement en méthode \textsc{post}.
+
+\exo{Page de connexion}\diff{2}
+Écris une page \code{connexion.php} (formulaire + traitement dans le même fichier)
+qui demande un \code{login} et un \code{motdepasse}. Si \code{login} vaut
+\code{"admin"} et \code{motdepasse} vaut \code{"onbuch2026"}, affiche « Connexion
+réussie » ; sinon « Identifiants incorrects ».
+
+\exo{Facture de fournitures}\diff{2}
+Un formulaire reçoit le nom d'un article, son prix unitaire (FCFA) et la quantité.
+Affiche un récapitulatif sécurisé (\code{htmlspecialchars}) et le total. Refuse les
+prix ou quantités négatifs.
+
+\exo{Conversion FCFA $\to$ euros}\diff{2}
+Une page reçoit en \textsc{post} un montant en FCFA (\code{name="montant"}).
+Affiche sa valeur en euros sachant que $1\,\text{€} = 656$ FCFA. Arrondis à deux
+décimales.
+
+\exo{Calculatrice de moyenne}\diff{3}
+Un formulaire envoie trois notes (\code{note1}, \code{note2}, \code{note3}) en
+\textsc{post}. Vérifie que les trois champs sont remplis, convertis-les en
+nombres, puis affiche la moyenne arrondie à deux décimales et la mention
+(\emph{Admis} si moyenne $\geq 10$, sinon \emph{Ajourné}).
+
+\section{Corrigés}
+
+\corrige{de l'exercice 1}
+\begin{codephp}
+<?php
+  $prenom = $_POST['prenom'];
+?>
+\end{codephp}
+
+\corrige{de l'exercice 2}
+(a)~\textsc{get} (recherche, action sans risque) ;
+(b)~\textsc{post} (un mot de passe ne doit jamais apparaître dans l'URL) ;
+(c)~\textsc{post} (envoi de fichier obligatoirement en \textsc{post}) ;
+(d)~\textsc{get} (filtre que l'on peut mettre en favori).
+
+\corrige{de l'exercice 3}
+\begin{codehtml}
+<form action="contact.php" method="post">
+  <p>Nom : <input type="text" name="nom"></p>
+  <p>Email : <input type="text" name="email"></p>
+  <p>Message :<br><textarea name="message"></textarea></p>
+  <p><input type="submit" value="Envoyer"></p>
+</form>
+\end{codehtml}
+\begin{codephp}
+<?php
+  $nom     = htmlspecialchars(trim($_POST['nom']));
+  $email   = htmlspecialchars(trim($_POST['email']));
+  $message = htmlspecialchars(trim($_POST['message']));
+
+  echo "<h2>Message de $nom ($email)</h2>";
+  echo "<p>$message</p>";
+?>
+\end{codephp}
+
+\corrige{de l'exercice 4}
+\begin{codephp}
+<?php
+  $prix     = (int) $_POST['prix'];
+  $quantite = (int) $_POST['quantite'];
+  $total    = $prix * $quantite;
+  echo "Total : $total FCFA";
+?>
+\end{codephp}
+
+\corrige{de l'exercice 5}
+\begin{codephp}
+<?php
+  $nom    = trim($_POST['nom']);
+  $classe = trim($_POST['classe']);
+
+  if ($nom === "" || $classe === "") {
+    echo "Erreur : le nom et la classe sont obligatoires.";
+  } else {
+    $nom    = htmlspecialchars($nom);
+    $classe = htmlspecialchars($classe);
+    echo "Inscription de $nom en classe de $classe.";
+  }
+?>
+\end{codephp}
+
+\corrige{de l'exercice 6}
+On remplace \code{method="get"} par \code{method="post"} et \code{\$\_GET} par
+\code{\$\_POST}.
+\begin{codehtml}
+<form action="recherche.php" method="post">
+  <input type="text" name="motcle">
+  <input type="submit" value="Rechercher">
+</form>
+\end{codehtml}
+\begin{codephp}
+<?php
+  echo htmlspecialchars($_POST['motcle']);
+?>
+\end{codephp}
+
+\corrige{de l'exercice 7}
+\begin{codephp}
+<?php
+  $message = "";
+  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $login = trim($_POST['login']);
+    $mdp   = trim($_POST['motdepasse']);
+    if ($login === "admin" && $mdp === "onbuch2026") {
+      $message = "Connexion réussie";
+    } else {
+      $message = "Identifiants incorrects";
+    }
+  }
+?>
+<form action="" method="post">
+  <p>Login : <input type="text" name="login"></p>
+  <p>Mot de passe : <input type="password" name="motdepasse"></p>
+  <p><input type="submit" value="Se connecter"></p>
+</form>
+<p><?php echo $message; ?></p>
+\end{codephp}
+
+\corrige{de l'exercice 10}
+\begin{codephp}
+<?php
+  if (isset($_POST['note1'], $_POST['note2'], $_POST['note3'])
+      && $_POST['note1'] !== "" && $_POST['note2'] !== ""
+      && $_POST['note3'] !== "") {
+
+    $n1 = (float) $_POST['note1'];
+    $n2 = (float) $_POST['note2'];
+    $n3 = (float) $_POST['note3'];
+
+    $moyenne = ($n1 + $n2 + $n3) / 3;
+    $mention = ($moyenne >= 10) ? "Admis" : "Ajourné";
+
+    echo "Moyenne : " . round($moyenne, 2) . " — " . $mention;
+  } else {
+    echo "Veuillez remplir les trois notes.";
+  }
+?>
+\end{codephp}
+
+\begin{aretenir}
+Un formulaire envoie ses champs (\code{name}) vers PHP, qui les lit dans une
+\textbf{superglobale} : \code{\$\_POST} (caché) ou \code{\$\_GET} (dans l'URL).
+Toujours \textbf{valider} (\code{isset}, \code{empty}) et \textbf{sécuriser}
+(\code{trim}, \code{htmlspecialchars}) avant d'utiliser une donnée reçue. Un
+upload exige \code{enctype="multipart/form-data"} et \code{move\_uploaded\_file()}.
+\end{aretenir}

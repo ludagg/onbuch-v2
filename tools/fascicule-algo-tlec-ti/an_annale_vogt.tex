@@ -1,0 +1,573 @@
+\section{Bac Blanc 2025 — Collège F.-X. Vogt}
+
+\begin{synthese}[Une vraie annale]
+Voici, transcrite fidèlement, l'épreuve de \textbf{Baccalauréat Blanc} (séquence 06)
+du \textbf{Collège Mgr François-Xavier Vogt}, année 2024/2025, série \textbf{TI}.
+Elle réunit, comme à l'examen, une \textbf{Partie I — Programmation web} (HTML,
+JavaScript, PHP, MySQL) et une \textbf{Partie II — Programmation procédurale en C}
+(structures, fonctions, récursivité). Barèmes d'origine conservés. Cherche d'abord
+seul, puis confronte ta copie au corrigé complet.
+\end{synthese}
+
+% =====================================================================
+%  EN-TÊTE DU SUJET
+% =====================================================================
+\begin{center}
+\fbox{\begin{minipage}{0.93\linewidth}
+\centering\sffamily
+{\bfseries COLLÈGE Mgr FRANÇOIS-XAVIER VOGT}\\[1pt]
+{\footnotesize Département : Informatique}\\[3pt]
+\rule{0.6\linewidth}{0.4pt}\\[3pt]
+{\large\bfseries BACCALAURÉAT BLANC — Séquence 06}\\[2pt]
+{\bfseries Année scolaire : 2024/2025}\\[3pt]
+{\bfseries Épreuve : Algorithmique et Programmation}\\[2pt]
+{\bfseries Niveau : T\textsuperscript{les} TI}\\[3pt]
+\begin{tabular}{@{}l@{\quad}c@{\quad}l@{}}
+Durée : \textbf{03 heures} & $\bullet$ & Coefficient : \textbf{04}
+\end{tabular}\\[3pt]
+\rule{0.6\linewidth}{0.4pt}\\[2pt]
+{\footnotesize\itshape L'épreuve comporte deux parties indépendantes, notées chacune sur 10 points.}
+\end{minipage}}
+\end{center}
+
+% =====================================================================
+%  PARTIE I — PROGRAMMATION WEB
+% =====================================================================
+\subsection*{Partie I — Programmation web \hfill (10 points)}
+\addcontentsline{toc}{subsection}{Vogt 2025 — Partie I : Programmation web}
+
+\noindent\textbf{Contexte.} \emph{« Vous êtes stagiaire au sein d'une entreprise locale de
+commerce électronique. L'un des projets consiste à développer une application web pour la
+gestion des commandes de produits et sa publication via un hébergeur web dynamique.
+L'entreprise opte pour une programmation modulaire et vous êtes chargé du module d'ajout de
+nouveaux produits. Ce module consiste à créer deux pages web. Une page permet de saisir les
+détails du produit, et ces détails seront stockés dans une base de données nommée
+\code{ECOM\_DB}, où l'une des tables est nommée \code{PRODUITS}. »}
+
+\subsubsection*{Exercice 1 — Programmation HTML et JavaScript \hfill (03 pts)}
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+\item \textbf{(0,25 pt)} Définir : \emph{Application web}.
+\item \textbf{(1,25 pt)} Écrire le code HTML pour afficher le formulaire (nommé
+\code{productForm}). La méthode est \code{POST}, et le fichier de traitement est nommé
+\code{save\_product.php}. Les noms des champs du formulaire sont respectivement
+\emph{« Nom du produit »}, \emph{« Catégorie »}, \emph{« Prix »}, \emph{« Quantité »} et
+\emph{« Enregistrer »}. Vous pouvez utiliser un tableau de 05 lignes et 02 colonnes. Inclure
+une fonction JavaScript de validation de formulaire nommée \code{validateForm()}.
+\item \textbf{(0,5 pt)} Préciser une autre méthode de récupération des données d'un
+formulaire, puis donner un avantage de la méthode \code{POST} sur cette autre méthode.
+\item \textbf{(0,75 pt)} On désire récupérer les données issues du formulaire et les
+enregistrer en vérifiant juste que tous les champs sont renseignés. Si c'est le cas, le
+message \emph{« Produit enregistré avec succès »} est affiché dans une boîte de dialogue ;
+ou bien \emph{« Échec d'enregistrement du produit »} dans le cas contraire. Écrire en
+JavaScript le code de la fonction \code{validateForm()} permettant d'effectuer cette tâche
+au clic du bouton \emph{« Enregistrer »}.
+\end{enumerate}
+
+\subsubsection*{Exercice 2 — Programmation PHP et MySQL \hfill (07 pts)}
+
+\noindent On s'intéresse maintenant à la base de données \code{ECOM\_DB} et au moyen d'y accéder.
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+\item \textbf{(0,25 pt)} Définir : \emph{Hébergeur web}.
+\item \textbf{(0,25 pt)} Donner la signification de \emph{PHP}.
+\item \textbf{(0,5 pt)} Donner deux avantages du PHP par rapport à JavaScript.
+\item \textbf{(0,75 pt)} Donner les éléments constitutifs d'un environnement intégré de
+développement web.
+\item \textbf{(0,25 pt)} Indiquer le côté dans lequel sont exécutés les scripts PHP.
+\item \textbf{(1,5 pt)} Écrire un code PHP qui, au clic du bouton \emph{« Envoyer »},
+récupère les informations du formulaire et les affiche. On prendra pour nom d'hôte
+\code{localhost}, l'utilisateur \code{root} et le mot de passe vide.
+\end{enumerate}
+
+\noindent Soit l'extrait de code ci-dessous :
+
+\begin{codephp}
+<?php
+$result = mysqli_query($conn, "SELECT Product_Name, Category, Price FROM PRODUCTS") or die("ERREUR: " . mysqli_error($conn));
+while ($row = mysqli_fetch_array($result)) {
+    echo "Nom du produit: " . $row["Product_Name"] . "<br/>";
+    echo "Catégorie: " . $row["Category"] . "<br/>";
+    echo "Prix: " . $row["Price"] . "<br/>";
+}
+?>
+\end{codephp}
+
+\begin{enumerate}[label=\textbf{\arabic*.}, start=7]
+\item \textbf{(1 pt)} Donner le rôle des fonctions ci-dessous :
+\code{mysqli\_fetch\_assoc()} ; \code{die()}.
+\item \textbf{(0,5 pt)} Présenter la différence entre les fonctions
+\code{mysqli\_fetch\_array()} et \code{mysqli\_fetch\_row()}.
+\item \textbf{(2 pts)} Écrire un code PHP qui permet de supprimer un produit de la base de
+données, à partir du nom saisi dans un formulaire adéquat, puis d'afficher le contenu de la
+table modifiée dans un tableau HTML.
+\end{enumerate}
+
+% =====================================================================
+%  PARTIE II — PROGRAMMATION PROCÉDURALE EN C
+% =====================================================================
+\subsection*{Partie II — Programmation procédurale en C \hfill (10 points)}
+\addcontentsline{toc}{subsection}{Vogt 2025 — Partie II : Programmation en C}
+
+\subsubsection*{Exercice 1 \hfill (5 pts)}
+
+\noindent\emph{« Fadil a été choisi pour écrire un programme C permettant de gérer les
+stagiaires caractérisés par leur numéro d'inscription (entier), nom (chaîne), prénom
+(chaîne), filière (chaîne) et moyenne (réel). On lui a notamment confié la partie consistant
+à implémenter trois fonctions : Enregistrement, Modification et Recherche. »} Aider Fadil à
+réaliser les tâches ci-dessous.
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+\item \textbf{(1,5 pt)} Donner l'instruction C permettant de déclarer une structure
+d'enregistrement nommée \code{stagiaire} pour gérer les stagiaires avec les caractéristiques
+données dans le texte.
+\item \textbf{(0,5 pt)} Donner l'instruction C permettant de déclarer un tableau \code{T} de
+100 stagiaires.
+\item \textbf{(0,5 pt)} Donner deux avantages de l'utilisation des fonctions dans un programme.
+\item \textbf{(2,5 pts)} Donner en C le code de définition de la fonction \code{Rechercher}
+permettant de rechercher un stagiaire par son numéro d'inscription dans un tableau. La
+fonction affiche le nom, le prénom et la filière du stagiaire recherché. Dans le cas où le
+stagiaire n'est pas présent dans le tableau, la fonction affiche le message :
+\emph{« Aucun stagiaire ne correspond à ce numéro d'inscription »}. La fonction prend comme
+paramètres le tableau de stagiaires \code{T}, sa taille \code{n} et le numéro d'inscription à
+rechercher \code{num\_insc}. L'en-tête de la fonction est :
+\code{void Rechercher(struct stagiaire T[], int n, int num\_insc)}.
+\end{enumerate}
+
+\subsubsection*{Exercice 2 \hfill (5 pts)}
+
+\noindent On donne le programme C ci-dessous, qui calcule la factorielle d'un nombre (les
+numéros de ligne 1 à 27 sont rappelés en commentaire pour pouvoir y faire référence) :
+
+\begin{codec}
+/* 1*/  /* Exemple de fonction recurrente. Calcul de la factorielle d'un nombre */
+/* 2*/  #include <stdio.h>
+/* 3*/  #include <stdlib.h>
+/* 4*/  unsigned int f, x;
+/* 5*/  unsigned int factorielle(unsigned int a);
+/* 6*/  int main() {
+/* 7*/      puts("Entrez une valeur entiere entre 1 et 8: ");
+/* 8*/      scanf("%d", &x);
+/* 9*/      if (x > 8 || x < 1) {
+/*10*/          printf("On a dit entre 1 to 8 !");
+/*11*/      }
+/*12*/      else {
+/*13*/          f = factorielle(x);
+/*14*/          printf("Factorielle %u egal %u\n", x, f);
+/*15*/      }
+/*16*/      exit(EXIT_SUCCESS);
+/*17*/  }
+/*18*/  unsigned int factorielle(unsigned int a) {
+/*19*/      if (a == 1) {
+/*20*/          return 1;
+/*21*/      }
+/*22*/      else {
+/*23*/          a *= factorielle(a-1);
+/*24*/          return a;
+/*25*/      }
+/*26*/  }
+/*27*/
+\end{codec}
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+\item Donner le rôle de :
+  \begin{enumerate}[label=\textbf{1.\arabic*}]
+  \item \textbf{(0,25 pt)} la ligne 5 (la déclaration \code{unsigned int factorielle(unsigned int a);}) ;
+  \item \textbf{(0,25 pt)} la ligne 8 (\code{scanf("\%d", \&x);}).
+  \end{enumerate}
+\item \textbf{(0,5 pt)} Donner la différence fondamentale entre la variable \code{x} et la
+variable \code{a} dans ce code.
+\item \textbf{(1,5 pt)} Exécuter pas à pas ce programme lorsque la valeur de \code{x = 6}
+(présenter la trace, de préférence dans un tableau).
+\item \textbf{(1 pt)} Réécrire les instructions de la structure \code{if/else} (lignes 9 à 13)
+en utilisant l'opérateur ternaire (\code{ ? : }).
+\item \textbf{(1,5 pt)} Réécrire la version itérative de la fonction \code{factorielle}.
+\end{enumerate}
+
+% =====================================================================
+%  CORRIGÉ
+% =====================================================================
+\corrige{de l'annale Vogt 2025}
+
+\subsubsection*{Partie I — Exercice 1 (HTML / JavaScript)}
+
+\textbf{1. Définition — Application web.} Une \emph{application web} est un logiciel
+applicatif accessible et exécuté à travers un navigateur web, via le réseau Internet ou un
+intranet. Côté serveur, elle s'appuie sur un langage dynamique (PHP, etc.) et, le plus
+souvent, sur une base de données ; l'utilisateur n'installe rien sur sa machine.
+
+\medskip
+\textbf{2. Formulaire HTML (\code{productForm}) avec tableau 5$\times$2.}
+
+\begin{codehtml}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Ajout d'un produit</title>
+  <script src="validation.js"></script>
+</head>
+<body>
+  <h2>Nouveau produit</h2>
+  <form name="productForm" method="POST" action="save_product.php"
+        onsubmit="return validateForm()">
+    <table border="1" cellpadding="6">
+      <tr>
+        <td>Nom du produit</td>
+        <td><input type="text" name="Nom du produit"></td>
+      </tr>
+      <tr>
+        <td>Catégorie</td>
+        <td><input type="text" name="Catégorie"></td>
+      </tr>
+      <tr>
+        <td>Prix</td>
+        <td><input type="number" name="Prix"></td>
+      </tr>
+      <tr>
+        <td>Quantité</td>
+        <td><input type="number" name="Quantité"></td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center">
+          <input type="submit" name="Enregistrer" value="Enregistrer">
+        </td>
+      </tr>
+    </table>
+  </form>
+</body>
+</html>
+\end{codehtml}
+
+\fig{Tableau de 5 lignes $\times$ 2 colonnes ; la validation est déclenchée par \code{onsubmit}.}
+
+\begin{remarque}
+Le formulaire porte le nom \code{productForm}, la méthode est \code{POST} et l'attribut
+\code{action} pointe vers \code{save\_product.php}. L'attribut \code{onsubmit="return
+validateForm()"} bloque l'envoi si la fonction retourne \code{false}.
+\end{remarque}
+
+\medskip
+\textbf{3. Autre méthode + avantage de POST.} L'autre méthode de récupération des données
+d'un formulaire est la méthode \textbf{GET} (les données circulent dans l'URL, après le
+\code{?}). Un avantage de \code{POST} sur \code{GET} : avec \code{POST}, les données sont
+transmises dans le \emph{corps} de la requête (elles n'apparaissent pas dans l'URL), ce qui
+est plus \textbf{sûr/discret} et permet d'envoyer un \textbf{volume de données plus
+important} (GET est limité par la longueur de l'URL).
+
+\medskip
+\textbf{4. Fonction \code{validateForm()}.}
+
+\begin{codejs}
+function validateForm() {
+  // Récupération des champs du formulaire productForm
+  var f = document.forms["productForm"];
+  var nom       = f["Nom du produit"].value;
+  var categorie = f["Catégorie"].value;
+  var prix      = f["Prix"].value;
+  var quantite  = f["Quantité"].value;
+
+  // Vérifie que tous les champs sont renseignés
+  if (nom === "" || categorie === "" || prix === "" || quantite === "") {
+    alert("Échec d'enregistrement du produit");
+    return false;   // empêche l'envoi du formulaire
+  } else {
+    alert("Produit enregistré avec succès");
+    return true;    // autorise l'envoi vers save_product.php
+  }
+}
+\end{codejs}
+
+\begin{remarque}
+\code{return false} empêche la soumission (les champs sont incomplets) ; \code{return true}
+laisse le formulaire partir vers \code{save\_product.php}. La fonction est appelée par
+l'attribut \code{onsubmit="return validateForm()"} placé sur la balise \code{<form>}.
+\end{remarque}
+
+\subsubsection*{Partie I — Exercice 2 (PHP / MySQL)}
+
+\textbf{1. Définition — Hébergeur web.} Un \emph{hébergeur web} est une entreprise (ou un
+prestataire) qui met à disposition des serveurs connectés en permanence à Internet pour
+stocker les fichiers d'un site web et le rendre accessible 24h/24 aux internautes (souvent
+avec base de données, nom de domaine, etc.).
+
+\medskip
+\textbf{2. Signification de PHP.} \emph{PHP} signifie \textbf{PHP: Hypertext Preprocessor}
+(à l'origine \emph{Personal Home Page}).
+
+\medskip
+\textbf{3. Deux avantages du PHP par rapport à JavaScript.}
+\begin{itemize}
+  \item PHP s'exécute \textbf{côté serveur} : il peut se connecter à une base de données et
+  manipuler des fichiers du serveur en toute sécurité (le code source n'est pas visible par
+  le client) ;
+  \item PHP permet de \textbf{générer dynamiquement du HTML} et de gérer la persistance des
+  données (sessions, base de données), alors que JavaScript (côté client) ne peut pas
+  accéder directement à la base de données.
+\end{itemize}
+
+\medskip
+\textbf{4. Éléments constitutifs d'un environnement intégré de développement web.} Un EID web
+(de type WampServer/XAMPP) regroupe : un \textbf{serveur web} (Apache), un
+\textbf{interpréteur PHP} (le langage serveur), un \textbf{SGBD} (MySQL / MariaDB) et un
+outil d'administration de la base (\textbf{phpMyAdmin}). On y ajoute un \textbf{éditeur de
+code} et un \textbf{navigateur web}.
+
+\medskip
+\textbf{5. Côté d'exécution des scripts PHP.} Les scripts PHP sont exécutés \textbf{du côté
+serveur} (server side).
+
+\medskip
+\textbf{6. Code PHP de récupération et d'affichage des données du formulaire.}
+
+\begin{codephp}
+<?php
+// save_product.php — récupère et affiche les données du formulaire
+if (isset($_POST["Enregistrer"])) {
+    // Connexion à la base ECOM_DB
+    $conn = mysqli_connect("localhost", "root", "", "ECOM_DB");
+    if (!$conn) {
+        die("Connexion echouee: " . mysqli_connect_error());
+    }
+
+    // Récupération des champs envoyés par le formulaire (méthode POST)
+    $nom       = $_POST["Nom du produit"];
+    $categorie = $_POST["Catégorie"];
+    $prix      = $_POST["Prix"];
+    $quantite  = $_POST["Quantité"];
+
+    // Affichage des informations reçues
+    echo "Nom du produit : " . $nom . "<br/>";
+    echo "Catégorie : "      . $categorie . "<br/>";
+    echo "Prix : "           . $prix . " FCFA<br/>";
+    echo "Quantité : "       . $quantite . "<br/>";
+
+    mysqli_close($conn);
+}
+?>
+\end{codephp}
+
+\medskip
+\textbf{7. Rôle des fonctions.}
+\begin{itemize}
+  \item \code{mysqli\_fetch\_assoc()} : récupère la \emph{ligne courante} d'un résultat de
+  requête \code{SELECT} sous forme de \textbf{tableau associatif}, dont les clés sont les
+  \textbf{noms des colonnes} (ex. \code{\$row["Product\_Name"]}). À chaque appel, on avance
+  d'une ligne ; elle renvoie \code{NULL} quand il n'y a plus de lignes.
+  \item \code{die()} : \textbf{arrête immédiatement l'exécution} du script PHP (équivalent de
+  \code{exit()}) ; on lui passe souvent un message qui sera affiché avant l'arrêt. Elle sert
+  à interrompre proprement le script en cas d'erreur (échec de connexion ou de requête).
+\end{itemize}
+
+\medskip
+\textbf{8. Différence entre \code{mysqli\_fetch\_array()} et \code{mysqli\_fetch\_row()}.}
+\code{mysqli\_fetch\_row()} renvoie la ligne sous forme de tableau \textbf{indexé
+numériquement} uniquement (accès par \code{\$row[0]}, \code{\$row[1]}\dots). En revanche,
+\code{mysqli\_fetch\_array()} renvoie par défaut un tableau \textbf{à la fois indexé
+numériquement ET associatif} (accès possible par \code{\$row[0]} \emph{ou} par
+\code{\$row["nom\_colonne"]}).
+
+\medskip
+\textbf{9. Code PHP de suppression d'un produit + ré-affichage du tableau.}
+
+\begin{codephp}
+<?php
+// delete_product.php — supprime un produit puis réaffiche la table
+$conn = mysqli_connect("localhost", "root", "", "ECOM_DB");
+if (!$conn) {
+    die("Connexion echouee: " . mysqli_connect_error());
+}
+
+// Si le formulaire de suppression a été soumis
+if (isset($_POST["supprimer"])) {
+    $nom = $_POST["nom_produit"];
+    $sql = "DELETE FROM PRODUITS WHERE Product_Name = '" . $nom . "'";
+    if (mysqli_query($conn, $sql)) {
+        echo "<p>Produit supprimé : " . $nom . "</p>";
+    } else {
+        echo "<p>Erreur : " . mysqli_error($conn) . "</p>";
+    }
+}
+?>
+
+<!-- Formulaire de saisie du nom à supprimer -->
+<form method="POST" action="delete_product.php">
+  Nom du produit à supprimer :
+  <input type="text" name="nom_produit">
+  <input type="submit" name="supprimer" value="Supprimer">
+</form>
+
+<!-- Affichage du contenu de la table modifiée dans un tableau HTML -->
+<table border="1" cellpadding="6">
+  <tr>
+    <th>Nom du produit</th>
+    <th>Catégorie</th>
+    <th>Prix</th>
+  </tr>
+  <?php
+  $result = mysqli_query($conn, "SELECT Product_Name, Category, Price FROM PRODUITS");
+  while ($row = mysqli_fetch_assoc($result)) {
+      echo "<tr>";
+      echo "<td>" . $row["Product_Name"] . "</td>";
+      echo "<td>" . $row["Category"] . "</td>";
+      echo "<td>" . $row["Price"] . "</td>";
+      echo "</tr>";
+  }
+  mysqli_close($conn);
+  ?>
+</table>
+\end{codephp}
+
+\begin{attention}
+En production, on ne concatène jamais directement une saisie utilisateur dans une requête
+(risque d'injection SQL). On utiliserait une \textbf{requête préparée}. Ici, le code suit le
+niveau attendu à l'examen Terminale TI.
+\end{attention}
+
+\subsubsection*{Partie II — Exercice 1 (structures et fonctions en C)}
+
+\textbf{1. Déclaration de la structure \code{stagiaire}.}
+
+\begin{codec}
+struct stagiaire {
+    int   num_insc;      /* numéro d'inscription (entier)   */
+    char  nom[50];       /* nom (chaîne de caractères)      */
+    char  prenom[50];    /* prénom (chaîne de caractères)   */
+    char  filiere[50];   /* filière (chaîne de caractères)  */
+    float moyenne;       /* moyenne (réel)                  */
+};
+\end{codec}
+
+\medskip
+\textbf{2. Déclaration d'un tableau \code{T} de 100 stagiaires.}
+
+\begin{codec}
+struct stagiaire T[100];
+\end{codec}
+
+\medskip
+\textbf{3. Deux avantages des fonctions.}
+\begin{itemize}
+  \item Elles évitent la \textbf{répétition de code} (réutilisation) : on écrit un traitement
+  une seule fois puis on l'appelle autant de fois que nécessaire ;
+  \item Elles rendent le programme plus \textbf{lisible, structuré et facile à maintenir/}
+  \textbf{déboguer} (découpage en sous-problèmes — programmation modulaire).
+\end{itemize}
+
+\medskip
+\textbf{4. Définition de la fonction \code{Rechercher}.}
+
+\begin{codec}
+#include <stdio.h>
+
+void Rechercher(struct stagiaire T[], int n, int num_insc) {
+    int i;
+    int trouve = 0;   /* drapeau : 0 = non trouvé, 1 = trouvé */
+
+    for (i = 0; i < n; i++) {
+        if (T[i].num_insc == num_insc) {
+            printf("Nom    : %s\n", T[i].nom);
+            printf("Prénom : %s\n", T[i].prenom);
+            printf("Filière: %s\n", T[i].filiere);
+            trouve = 1;
+            break;   /* numéro d'inscription unique : on s'arrête */
+        }
+    }
+
+    if (trouve == 0) {
+        printf("Aucun stagiaire ne correspond à ce numéro d'inscription\n");
+    }
+}
+\end{codec}
+
+\begin{remarque}
+On parcourt le tableau du début à la fin. Dès qu'un \code{num\_insc} correspond, on affiche
+le nom, le prénom et la filière, on lève le drapeau \code{trouve} et on sort de la boucle. Si
+aucune correspondance n'est trouvée après le parcours, on affiche le message d'absence.
+\end{remarque}
+
+\subsubsection*{Partie II — Exercice 2 (factorielle récursive)}
+
+\textbf{1. Rôle des lignes.}
+\begin{itemize}
+  \item \textbf{Ligne 5} — \code{unsigned int factorielle(unsigned int a);} : c'est le
+  \textbf{prototype} (déclaration anticipée) de la fonction \code{factorielle}. Il annonce au
+  compilateur, avant \code{main}, le nom de la fonction, son type de retour
+  (\code{unsigned int}) et le type de son paramètre, pour qu'elle puisse être appelée dans
+  \code{main} (ligne 13) alors qu'elle n'est définie qu'ensuite (ligne 18).
+  \item \textbf{Ligne 8} — \code{scanf("\%d", \&x);} : \textbf{lit au clavier} un entier
+  saisi par l'utilisateur et le \textbf{range dans la variable \code{x}} (l'opérateur
+  \code{\&} fournit l'adresse de \code{x}).
+\end{itemize}
+
+\medskip
+\textbf{2. Différence fondamentale entre \code{x} et \code{a}.} \code{x} est une variable
+\textbf{globale} (déclarée ligne 4, hors de toute fonction : visible dans tout le programme),
+tandis que \code{a} est une variable \textbf{locale} — c'est le \textbf{paramètre} de la
+fonction \code{factorielle} (elle n'existe que pendant l'exécution de la fonction et reçoit
+une copie de la valeur passée à l'appel).
+
+\medskip
+\textbf{3. Trace d'exécution pour \code{x = 6}.} L'appel \code{factorielle(6)} déclenche une
+suite d'appels récursifs jusqu'au cas de base \code{a == 1}, puis les valeurs « remontent ».
+
+\begin{center}\small
+\begin{tabular}{@{}clcl@{}}
+\toprule
+\textbf{Appel} & \textbf{Test \code{a==1} ?} & \textbf{Calcul} & \textbf{Valeur retournée}\\
+\midrule
+\code{factorielle(6)} & non & \code{6 * factorielle(5)} & \code{6 * 120 = 720}\\
+\code{factorielle(5)} & non & \code{5 * factorielle(4)} & \code{5 * 24  = 120}\\
+\code{factorielle(4)} & non & \code{4 * factorielle(3)} & \code{4 * 6   = 24}\\
+\code{factorielle(3)} & non & \code{3 * factorielle(2)} & \code{3 * 2   = 6}\\
+\code{factorielle(2)} & non & \code{2 * factorielle(1)} & \code{2 * 1   = 2}\\
+\code{factorielle(1)} & oui & cas de base & \code{1}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent En remontant : $1 \to 2 \to 6 \to 24 \to 120 \to 720$. Le programme affiche donc :
+\code{Factorielle 6 egal 720}.
+
+\medskip
+\textbf{4. Réécriture des lignes 9 à 13 avec l'opérateur ternaire.}
+
+\begin{codec}
+(x > 8 || x < 1)
+    ? printf("On a dit entre 1 to 8 !")
+    : printf("Factorielle %u egal %u\n", x, f = factorielle(x));
+\end{codec}
+
+\begin{remarque}
+L'opérateur ternaire \code{condition ? valeur\_si\_vrai : valeur\_si\_faux} remplace le
+\code{if/else}. Si \code{(x > 8 || x < 1)} est vrai, on affiche le message d'erreur ; sinon
+on calcule \code{f = factorielle(x)} et on l'affiche.
+\end{remarque}
+
+\medskip
+\textbf{5. Version itérative de la fonction \code{factorielle}.}
+
+\begin{codec}
+unsigned int factorielle(unsigned int a) {
+    unsigned int resultat = 1;
+    unsigned int i;
+    for (i = 2; i <= a; i++) {
+        resultat *= i;   /* resultat = resultat * i */
+    }
+    return resultat;     /* factorielle(1) et factorielle(0) renvoient 1 */
+}
+\end{codec}
+
+\begin{remarque}
+La boucle multiplie \code{resultat} par tous les entiers de 2 à \code{a}. Pour \code{a = 6} :
+$1\times2\times3\times4\times5\times6 = 720$, comme la version récursive.
+\end{remarque}
+
+\begin{aretenir}
+Au Bac TI, la \textbf{Partie web} attend du code \emph{exact} : un \code{<form>} (méthode,
+\code{action}), une validation JavaScript (\code{return false} bloque l'envoi),
+\code{mysqli\_connect} + \code{\$\_POST} côté serveur, et l'affichage d'un \code{SELECT} dans
+un \code{<table>}. La \textbf{Partie C} attend une \code{struct} bien typée, un parcours de
+tableau avec drapeau pour la recherche, et la maîtrise de la \textbf{récursivité} (cas de
+base + cas récursif) face à sa version \textbf{itérative}.
+\end{aretenir}

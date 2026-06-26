@@ -1,0 +1,604 @@
+\chapter{Introduction au langage C}
+
+\begin{synthese}[Au programme]
+Découvrir le langage C, un langage \textbf{compilé} servant à créer des
+applications monopostes (\emph{stand alone}). Écrire, compiler et exécuter un
+premier programme, manipuler les types de base, les constantes, les
+entrées/sorties (\code{printf}, \code{scanf}) et les opérateurs. C'est le socle
+de toute programmation procédurale.
+\end{synthese}
+
+\section{Qu'est-ce que le langage C ?}
+
+\begin{definition}
+Le \textbf{langage C} est un langage de programmation \textbf{compilé} et
+\textbf{procédural}. Un programme C est traduit \emph{une fois pour toutes} en
+langage machine par un outil appelé \textbf{compilateur} ; on obtient alors un
+fichier \textbf{exécutable} que l'ordinateur lance directement, sans avoir besoin
+du code source ni du compilateur.
+\end{definition}
+
+Le C sert à écrire des \textbf{applications monopostes} (en anglais
+\emph{stand alone}) : des logiciels qui fonctionnent seuls sur une machine, sans
+serveur ni navigateur. C'est par exemple le cas d'une calculatrice, d'un logiciel
+de gestion d'une boutique à Douala, ou d'un programme de calcul de moyennes pour
+un lycée.
+
+\begin{remarque}
+Contrairement à PHP qui est \emph{interprété} (le serveur lit et exécute le code à
+chaque visite), le C est \emph{compilé} : on traduit le code source en exécutable
+\textbf{avant} de l'utiliser. Un programme compilé est donc plus rapide et peut
+être distribué sans dévoiler le code source.
+\end{remarque}
+
+\begin{propriete}[Du code source à l'exécutable]
+Le fichier source porte l'extension \code{.c}. Le compilateur (par exemple
+\textbf{gcc}) le transforme en un fichier exécutable (\code{.exe} sous Windows).
+On résume la chaîne ainsi : \textbf{écrire} $\rightarrow$ \textbf{compiler}
+$\rightarrow$ \textbf{exécuter}.
+\end{propriete}
+
+\section{Structure d'un programme C}
+
+Tout programme C s'organise autour d'une fonction obligatoire appelée
+\code{main} (« principale »). C'est par elle que l'exécution commence.
+
+\begin{syntaxe}
+\code{\#include <stdio.h>}\\[2pt]
+\code{int main() \{}\quad \textit{instructions\dots}\quad \code{return 0; \}}
+\end{syntaxe}
+
+Voici le tout premier programme : il affiche un message à l'écran.
+
+\begin{codec}
+#include <stdio.h>   /* bibliotheque des entrees/sorties standard */
+
+int main()           /* fonction principale : point de depart */
+{
+    printf("Bonjour le monde !\n");  /* affiche le message */
+    return 0;        /* indique au systeme que tout s'est bien passe */
+}
+\end{codec}
+
+\fig{Premier programme C : il affiche « Bonjour le monde ! ».}
+
+Analysons chaque ligne :
+\begin{itemize}
+  \item \code{\#include <stdio.h>} charge la bibliothèque \emph{standard
+    input/output}, indispensable pour utiliser \code{printf} et \code{scanf} ;
+  \item \code{int main()} déclare la fonction principale ; les accolades
+    \code{\{} et \code{\}} délimitent son contenu (le \emph{corps}) ;
+  \item \code{printf(...)} affiche du texte à l'écran ;
+  \item \code{return 0;} termine le programme en signalant qu'il s'est bien
+    déroulé.
+\end{itemize}
+
+\begin{attention}
+Chaque instruction se termine par un point-virgule \code{;}. Le C distingue les
+majuscules des minuscules : \code{main} et \code{Main} ne sont pas la même chose.
+Les commentaires s'écrivent entre \code{/*} et \code{*/}, ou après \code{//}
+jusqu'à la fin de la ligne.
+\end{attention}
+
+\section{Compiler et exécuter : les IDE}
+
+Pour écrire et compiler du C, on utilise un \textbf{IDE} (environnement de
+développement intégré) qui réunit l'éditeur de texte et le compilateur. Les plus
+répandus dans les lycées camerounais sont \textbf{Code::Blocks} et
+\textbf{Dev-C++}.
+
+\begin{methode}
+\textbf{Écrire, compiler, exécuter avec Code::Blocks.}
+\begin{enumerate}[label=\arabic*)]
+  \item \textbf{Écrire} : créer un nouveau fichier source \code{.c} et taper le
+    programme ;
+  \item \textbf{Compiler} : cliquer sur \emph{Build} (icône engrenage) ; le
+    compilateur vérifie la syntaxe et produit l'exécutable ;
+  \item \textbf{Exécuter} : cliquer sur \emph{Run} (flèche verte) ; une fenêtre
+    console s'ouvre et affiche le résultat.
+\end{enumerate}
+On peut aussi tout faire d'un coup avec \emph{Build and Run} (engrenage + flèche).
+\end{methode}
+
+\subsection{Gérer les erreurs de compilation}
+
+Quand le compilateur rencontre une faute (point-virgule oublié, accolade non
+fermée, nom mal orthographié), il refuse de produire l'exécutable et affiche un
+message d'\textbf{erreur} indiquant le \emph{numéro de la ligne} fautive.
+
+\begin{exemple}
+Si l'on oublie le \code{;} après \code{printf("Bonjour")}, gcc affiche un message
+du type \emph{« expected ';' before 'return' »} : il faut corriger la ligne
+indiquée, puis recompiler.
+\end{exemple}
+
+\begin{remarque}
+On distingue les \textbf{erreurs} (\emph{errors}), qui empêchent la compilation,
+des \textbf{avertissements} (\emph{warnings}), qui n'empêchent pas la compilation
+mais signalent un risque. On corrige toujours les erreurs en premier, en partant
+de la \textbf{première} ligne signalée.
+\end{remarque}
+
+\section{Les types de base}
+
+Une \textbf{variable} est un espace mémoire nommé qui stocke une valeur. En C,
+on doit \textbf{déclarer} chaque variable en précisant son \textbf{type} avant de
+l'utiliser.
+
+\begin{center}\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Type} & \textbf{Contenu} & \textbf{Exemple}\\
+\midrule
+\code{int}    & nombre entier            & \code{int age = 17;}\\
+\code{float}  & nombre décimal (simple)  & \code{float prix = 250.0;}\\
+\code{double} & nombre décimal (précis)  & \code{double pi = 3.14159;}\\
+\code{char}   & un seul caractère        & \code{char lettre = 'A';}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{syntaxe}
+\textit{type}\ \textit{nomVariable}\ \code{=}\ \textit{valeur}\code{;}\\
+Exemple : \code{int n = 5;} \quad ou simplement \code{int n;} (sans valeur).
+\end{syntaxe}
+
+\begin{codec}
+#include <stdio.h>
+
+int main()
+{
+    int age = 17;             /* un entier */
+    float taille = 1.75;      /* un decimal */
+    double moyenne = 14.85;   /* un decimal plus precis */
+    char initiale = 'A';      /* un caractere, entre apostrophes */
+
+    printf("Age : %d ans\n", age);
+    printf("Taille : %.2f m\n", taille);
+    printf("Moyenne : %.2f / 20\n", moyenne);
+    printf("Initiale : %c\n", initiale);
+    return 0;
+}
+\end{codec}
+
+\fig{Déclaration et affichage des quatre types de base.}
+
+\begin{attention}
+Un \code{char} se note entre apostrophes simples : \code{'A'}. Une chaîne de
+caractères (plusieurs lettres) se note entre guillemets doubles : \code{"Awa"}.
+Ne confonds pas \code{'A'} (un caractère) et \code{"A"} (une chaîne).
+\end{attention}
+
+\section{Les constantes}
+
+Une \textbf{constante} est une valeur qui ne change jamais pendant l'exécution.
+En C, on la définit de deux façons.
+
+\begin{itemize}
+  \item Avec la directive \code{\#define}, placée \textbf{avant} le \code{main} :
+  \item Avec le mot-clé \code{const}, dans une déclaration de variable :
+\end{itemize}
+
+\begin{codec}
+#include <stdio.h>
+#define PI 3.14159          /* constante par #define (pas de point-virgule) */
+#define ETABLISSEMENT "Lycee de Maroua"
+
+int main()
+{
+    const int TVA = 19;     /* constante par const */
+    printf("%s\n", ETABLISSEMENT);
+    printf("PI = %f, TVA = %d %%\n", PI, TVA);
+    return 0;
+}
+\end{codec}
+
+\fig{Deux manières de définir une constante : \code{\#define} et \code{const}.}
+
+\begin{remarque}
+Par convention, on écrit les noms de constantes en \textbf{MAJUSCULES}. La
+directive \code{\#define} ne se termine \textbf{pas} par un point-virgule.
+\end{remarque}
+
+\section{Les entrées/sorties : \texttt{printf} et \texttt{scanf}}
+
+\subsection{Afficher avec \texttt{printf}}
+
+La fonction \code{printf} affiche du texte. Pour insérer la valeur d'une variable,
+on utilise un \textbf{format} (commençant par \code{\%}) à l'endroit voulu, puis on
+donne la variable après la virgule.
+
+\begin{center}\small
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Format} & \textbf{Pour afficher\dots}\\
+\midrule
+\code{\%d} & un entier (\code{int})\\
+\code{\%f} & un décimal (\code{float}/\code{double})\\
+\code{\%c} & un caractère (\code{char})\\
+\code{\%s} & une chaîne de caractères\\
+\code{\textbackslash n} & un retour à la ligne\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{codec}
+#include <stdio.h>
+
+int main()
+{
+    int n = 25;
+    float p = 1500.5;
+    printf("Quantite : %d articles\n", n);
+    printf("Prix : %.2f FCFA\n", p);     /* %.2f : 2 chiffres apres la virgule */
+    return 0;
+}
+\end{codec}
+
+\fig{\code{\%d} pour un entier, \code{\%.2f} pour un décimal à deux chiffres.}
+
+\subsection{Saisir avec \texttt{scanf}}
+
+La fonction \code{scanf} permet à l'utilisateur de \textbf{saisir} une valeur au
+clavier. On indique le format, puis l'adresse de la variable avec le symbole
+\code{\&} (« esperluette ») devant son nom.
+
+\begin{syntaxe}
+\code{scanf("\%d", \&variable);}\quad — le \code{\&} est \textbf{obligatoire}.
+\end{syntaxe}
+
+\begin{codec}
+#include <stdio.h>
+
+int main()
+{
+    int age;
+    printf("Quel est ton age ? ");
+    scanf("%d", &age);     /* le & est indispensable */
+    printf("Tu as %d ans.\n", age);
+    return 0;
+}
+\end{codec}
+
+\fig{Saisie d'un entier au clavier avec \code{scanf} et le \code{\&}.}
+
+\begin{attention}
+Dans un \code{scanf}, on met \textbf{toujours} le symbole \code{\&} devant le nom
+de la variable (sauf pour les chaînes \code{\%s}). Oublier le \code{\&} est
+l'erreur la plus fréquente du débutant : le programme se compile mais
+\textbf{plante} à l'exécution.
+\end{attention}
+
+\begin{remarque}
+Le code \code{\textbackslash n} dans un texte signifie « passer à la ligne
+suivante ». Ce n'est pas affiché tel quel : il déplace le curseur à la ligne. Sans
+\code{\textbackslash n}, tous les affichages restent collés sur la même ligne.
+\end{remarque}
+
+\section{Les opérateurs}
+
+\subsection{Arithmétiques, comparaison, logiques}
+
+\begin{center}\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Catégorie} & \textbf{Opérateurs} & \textbf{Exemple}\\
+\midrule
+Arithmétiques & \code{+ - * / \%}       & \code{17 \% 5} vaut \code{2} (reste)\\
+Comparaison   & \code{== != < > <= >=}  & \code{a == b} (égalité)\\
+Logiques      & \code{\&\& || !}        & \code{x>0 \&\& x<20}\\
+Affectation   & \code{= += -= *= /=}    & \code{s += 1} (ajoute 1 à \code{s})\\
+Incrément.    & \code{++ --}            & \code{n++} (ajoute 1 à \code{n})\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{attention}
+Attention à ne pas confondre l'\textbf{affectation} \code{=} (« reçoit ») et la
+\textbf{comparaison} \code{==} (« est égal à »). \code{a = 5} range 5 dans
+\code{a} ; \code{a == 5} teste si \code{a} vaut 5.
+\end{attention}
+
+\subsection{Affectation composée et incrémentation}
+
+Les opérateurs composés sont des raccourcis très utilisés :
+\begin{itemize}
+  \item \code{s += 3} équivaut à \code{s = s + 3} ; de même \code{-=}, \code{*=},
+    \code{/=} ;
+  \item \code{n++} ajoute 1 à \code{n} (incrémentation) ; \code{n--} retire 1
+    (décrémentation).
+\end{itemize}
+
+\begin{codec}
+#include <stdio.h>
+
+int main()
+{
+    int total = 10;
+    total += 5;    /* total vaut maintenant 15 */
+    total -= 2;    /* total vaut 13 */
+    total++;       /* total vaut 14 */
+    printf("Total = %d\n", total);
+
+    int reste = 17 % 5;   /* reste de 17 divise par 5 : 2 */
+    printf("17 modulo 5 = %d\n", reste);
+    return 0;
+}
+\end{codec}
+
+\fig{Affectations composées, incrémentation et opérateur modulo \code{\%}.}
+
+\section{Exemples complets}
+
+\subsection{Somme de deux entiers saisis}
+
+\begin{codec}
+#include <stdio.h>
+
+int main()
+{
+    int a, b, somme;
+    printf("Entrez deux entiers : ");
+    scanf("%d %d", &a, &b);   /* deux valeurs separees par un espace */
+    somme = a + b;
+    printf("La somme est %d\n", somme);
+    return 0;
+}
+\end{codec}
+
+\fig{Saisie de deux entiers et affichage de leur somme.}
+
+\subsection{Convertir une note sur 20 en pourcentage}
+
+\begin{codec}
+#include <stdio.h>
+
+int main()
+{
+    float note, pourcent;
+    printf("Entrez la note sur 20 : ");
+    scanf("%f", &note);
+    pourcent = note / 20.0 * 100.0;   /* regle de trois */
+    printf("Soit %.1f %%\n", pourcent);
+    return 0;
+}
+\end{codec}
+
+\fig{Conversion d'une note sur 20 en pourcentage.}
+
+\subsection{Périmètre et aire d'un rectangle}
+
+\begin{codec}
+#include <stdio.h>
+
+int main()
+{
+    float longueur, largeur;
+    printf("Longueur (m) : ");
+    scanf("%f", &longueur);
+    printf("Largeur (m) : ");
+    scanf("%f", &largeur);
+
+    float perimetre = 2 * (longueur + largeur);
+    float aire = longueur * largeur;
+    printf("Perimetre = %.2f m\n", perimetre);
+    printf("Aire = %.2f m2\n", aire);
+    return 0;
+}
+\end{codec}
+
+\fig{Calcul du périmètre et de l'aire d'un terrain rectangulaire.}
+
+\section{Exercices}
+
+\rubrique{Application}
+
+\exo{Message d'accueil}\diff{1}
+Écris un programme C qui affiche, chacun sur une ligne, ton nom, ton lycée et ta
+ville (exemple : Awa, Lycée de Maroua, Maroua).
+
+\exo{Somme et produit}\diff{1}
+Demande à l'utilisateur de saisir deux entiers, puis affiche leur somme et leur
+produit.
+
+\exo{Moyenne de trois notes}\diff{1}
+Demande trois notes sur 20 (type \code{float}) et affiche leur moyenne avec deux
+décimales.
+
+\exo{Âge de l'élève}\diff{1}
+Demande l'âge de l'utilisateur (entier) et affiche le message
+\emph{« Tu as \dots\ ans. »}.
+
+\rubrique{Entraînement}
+
+\exo{Conversion FCFA $\rightarrow$ euros}\diff{2}
+Sachant que 1 euro vaut 656 FCFA, demande un montant en FCFA et affiche sa valeur
+en euros (deux décimales).
+
+\exo{Échanger deux variables}\diff{2}
+Demande deux entiers \code{a} et \code{b}, échange leurs valeurs à l'aide d'une
+variable temporaire, puis affiche-les après l'échange.
+
+\exo{Quotient et reste}\diff{2}
+Demande deux entiers et affiche le \textbf{quotient} (\code{/}) et le
+\textbf{reste} (\code{\%}) de la division du premier par le second.
+
+\exo{Périmètre d'un cercle}\diff{2}
+En utilisant une constante \code{PI} définie par \code{\#define}, demande le rayon
+d'un cercle et affiche son périmètre ($2 \times \pi \times r$) et son aire
+($\pi \times r^2$).
+
+\exo{Prix TTC}\diff{3}
+Un commerçant de Bafoussam applique une TVA de 19,25\,\%. Demande le prix hors
+taxe (HT) d'un article, puis affiche le prix toutes taxes comprises (TTC) avec
+deux décimales.
+
+\exo{Compteur}\diff{3}
+Déclare un entier \code{n} valant 100. À l'aide des opérateurs composés et de
+l'incrémentation, applique : ajoute 50, retire 10, multiplie par 2, ajoute 1.
+Affiche le résultat après chaque opération.
+
+\section{Corrigés}
+
+\corrige{de l'exercice 1}
+\begin{codec}
+#include <stdio.h>
+
+int main()
+{
+    printf("Awa\n");
+    printf("Lycee de Maroua\n");
+    printf("Maroua\n");
+    return 0;
+}
+\end{codec}
+
+\corrige{de l'exercice 2}
+\begin{codec}
+#include <stdio.h>
+
+int main()
+{
+    int a, b;
+    printf("Entrez deux entiers : ");
+    scanf("%d %d", &a, &b);
+    printf("Somme = %d\n", a + b);
+    printf("Produit = %d\n", a * b);
+    return 0;
+}
+\end{codec}
+
+\corrige{de l'exercice 3}
+\begin{codec}
+#include <stdio.h>
+
+int main()
+{
+    float n1, n2, n3, moyenne;
+    printf("Entrez trois notes : ");
+    scanf("%f %f %f", &n1, &n2, &n3);
+    moyenne = (n1 + n2 + n3) / 3.0;
+    printf("Moyenne = %.2f / 20\n", moyenne);
+    return 0;
+}
+\end{codec}
+
+\corrige{de l'exercice 4}
+\begin{codec}
+#include <stdio.h>
+
+int main()
+{
+    int age;
+    printf("Quel est ton age ? ");
+    scanf("%d", &age);
+    printf("Tu as %d ans.\n", age);
+    return 0;
+}
+\end{codec}
+
+\corrige{de l'exercice 5}
+\begin{codec}
+#include <stdio.h>
+
+int main()
+{
+    float fcfa, euros;
+    printf("Montant en FCFA : ");
+    scanf("%f", &fcfa);
+    euros = fcfa / 656.0;
+    printf("Soit %.2f euros\n", euros);
+    return 0;
+}
+\end{codec}
+
+\corrige{de l'exercice 6}
+\begin{codec}
+#include <stdio.h>
+
+int main()
+{
+    int a, b, temp;
+    printf("Entrez a et b : ");
+    scanf("%d %d", &a, &b);
+
+    temp = a;    /* on garde a dans temp */
+    a = b;       /* a recoit b */
+    b = temp;    /* b recoit l'ancien a */
+
+    printf("Apres echange : a = %d, b = %d\n", a, b);
+    return 0;
+}
+\end{codec}
+
+\corrige{de l'exercice 7}
+\begin{codec}
+#include <stdio.h>
+
+int main()
+{
+    int a, b;
+    printf("Entrez deux entiers : ");
+    scanf("%d %d", &a, &b);
+    printf("Quotient = %d\n", a / b);
+    printf("Reste = %d\n", a % b);
+    return 0;
+}
+\end{codec}
+
+\corrige{de l'exercice 8}
+\begin{codec}
+#include <stdio.h>
+#define PI 3.14159
+
+int main()
+{
+    float r, perimetre, aire;
+    printf("Rayon du cercle : ");
+    scanf("%f", &r);
+    perimetre = 2 * PI * r;
+    aire = PI * r * r;
+    printf("Perimetre = %.2f\n", perimetre);
+    printf("Aire = %.2f\n", aire);
+    return 0;
+}
+\end{codec}
+
+\corrige{de l'exercice 9}
+\begin{codec}
+#include <stdio.h>
+
+int main()
+{
+    float ht, ttc;
+    printf("Prix HT (FCFA) : ");
+    scanf("%f", &ht);
+    ttc = ht * 1.1925;     /* +19,25 % de TVA */
+    printf("Prix TTC = %.2f FCFA\n", ttc);
+    return 0;
+}
+\end{codec}
+
+\corrige{de l'exercice 10}
+\begin{codec}
+#include <stdio.h>
+
+int main()
+{
+    int n = 100;
+    n += 50;   printf("n = %d\n", n);   /* 150 */
+    n -= 10;   printf("n = %d\n", n);   /* 140 */
+    n *= 2;    printf("n = %d\n", n);   /* 280 */
+    n++;       printf("n = %d\n", n);   /* 281 */
+    return 0;
+}
+\end{codec}
+
+\begin{aretenir}
+Un programme C est \textbf{compilé} en exécutable. Il commence toujours par
+\code{\#include <stdio.h>} et la fonction \code{int main() \{ \dots\ return 0; \}}.
+On déclare les variables avec leur type (\code{int}, \code{float}, \code{double},
+\code{char}), on affiche avec \code{printf} (\code{\%d}, \code{\%f}, \code{\%c},
+\code{\%s}, \code{\textbackslash n}) et on saisit avec \code{scanf} sans jamais
+oublier le \code{\&}.
+\end{aretenir}

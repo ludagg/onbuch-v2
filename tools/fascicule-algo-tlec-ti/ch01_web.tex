@@ -1,0 +1,760 @@
+\chapter{Pages web et formulaires (rappels)}
+
+\begin{synthese}[Au programme]
+Avant de programmer côté serveur en PHP, il faut maîtriser le socle qui s'exécute
+dans le navigateur de l'élève : le \textbf{HTML} (structure de la page), les
+\textbf{formulaires} (saisie de l'utilisateur) et le \textbf{JavaScript} (vérification
+de la saisie). C'est la base de tout site web dynamique.
+\end{synthese}
+
+\section{Structure d'une page HTML}
+
+\begin{definition}
+\textbf{HTML} (\emph{HyperText Markup Language}) est le langage de \textbf{balisage}
+qui décrit la structure d'une page web. Une balise s'écrit entre chevrons : une
+balise \textbf{ouvrante} \code{<p>} et une balise \textbf{fermante} \code{</p>}
+entourent un contenu. Le navigateur lit le HTML et l'\textbf{affiche}.
+\end{definition}
+
+Toute page commence par une déclaration \code{<!DOCTYPE html>} qui indique qu'il
+s'agit d'une page HTML moderne. Le document se divise en deux parties :
+le \code{<head>} (informations sur la page : titre, encodage) et le \code{<body>}
+(le contenu visible).
+
+\begin{codehtml}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">           <!-- accents : é è à ç -->
+  <title>Lycée Bilingue de Bafoussam</title>
+</head>
+<body>
+  <h1>Bienvenue au lycée</h1>       <!-- titre principal -->
+  <h2>Classe de Terminale TI</h2>   <!-- sous-titre -->
+  <p>Cette page presente nos eleves.</p>  <!-- paragraphe -->
+  <a href="cours.html">Voir les cours</a> <!-- lien -->
+</body>
+</html>
+\end{codehtml}
+
+\fig{Squelette minimal d'une page HTML : doctype, en-tête et corps.}
+
+\begin{propriete}[Balises courantes]
+\code{<h1>} à \code{<h6>} : titres (du plus grand au plus petit) ; \code{<p>} :
+paragraphe ; \code{<br>} : saut de ligne ; \code{<a href="...">} : lien ;
+\code{<img src="..." alt="...">} : image ; \code{<ul>}/\code{<ol>} avec \code{<li>} :
+listes ; \code{<div>} et \code{<span>} : conteneurs neutres.
+\end{propriete}
+
+\begin{attention}
+Certaines balises sont \textbf{vides} (sans contenu) et ne se ferment pas :
+\code{<br>}, \code{<img>}, \code{<input>}, \code{<meta>}. Les autres doivent
+\textbf{toujours} être refermées : à chaque \code{<p>} correspond un \code{</p>}.
+\end{attention}
+
+\section{Les formulaires HTML}
+
+Un formulaire permet à l'utilisateur (un élève, un parent\dots) de \textbf{saisir}
+des informations puis de les \textbf{envoyer} au serveur. C'est par lui que les
+données entrent dans une application web.
+
+\subsection{La balise \texttt{<form>}}
+
+\begin{syntaxe}
+\code{<form action="traitement.php" method="post"> \dots champs \dots </form>}
+\end{syntaxe}
+
+\begin{itemize}
+  \item \code{action} : l'adresse du fichier (souvent un script PHP) qui va
+        \textbf{traiter} les données envoyées ;
+  \item \code{method} : la façon d'envoyer les données. \code{post} (les données
+        sont cachées, recommandé pour les formulaires) ou \code{get} (les données
+        apparaissent dans l'URL).
+\end{itemize}
+
+\begin{attention}
+Chaque champ destiné à être envoyé \textbf{doit} posséder un attribut \code{name}.
+C'est ce nom que le serveur (PHP) utilisera pour récupérer la valeur. Un champ
+\textbf{sans} \code{name} n'est pas transmis.
+\end{attention}
+
+\subsection{Les champs de saisie : \texttt{<input>}}
+
+La balise \code{<input>} change de comportement selon son attribut \code{type}.
+
+\begin{center}\small
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{type} & \textbf{Rôle}\\
+\midrule
+\code{text} & saisie d'une ligne de texte (nom, ville\dots)\\
+\code{password} & saisie masquée (mot de passe : \texttt{••••})\\
+\code{number} & nombre uniquement (âge, note)\\
+\code{email} & adresse e-mail (format vérifié par le navigateur)\\
+\code{radio} & bouton radio : un seul choix dans un groupe\\
+\code{checkbox} & case à cocher : choix multiples\\
+\code{submit} & bouton qui envoie le formulaire\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{codehtml}
+<form action="inscription.php" method="post">
+
+  <!-- Champ texte avec une étiquette cliquable -->
+  <label for="nom">Nom de l'élève :</label>
+  <input type="text" id="nom" name="nom">
+  <br>
+
+  <!-- Mot de passe (saisie masquée) -->
+  <label for="mdp">Mot de passe :</label>
+  <input type="password" id="mdp" name="mdp">
+  <br>
+
+  <!-- Nombre : l'âge -->
+  <label for="age">Âge :</label>
+  <input type="number" id="age" name="age">
+  <br>
+
+  <!-- Adresse e-mail -->
+  <label for="mail">E-mail :</label>
+  <input type="email" id="mail" name="mail">
+  <br>
+
+  <!-- Boutons radio : un SEUL choix (même name) -->
+  Sexe :
+  <input type="radio" name="sexe" value="M"> Masculin
+  <input type="radio" name="sexe" value="F"> Féminin
+  <br>
+
+  <!-- Case à cocher -->
+  <input type="checkbox" name="interne" value="oui"> Élève interne
+  <br>
+
+  <!-- Bouton d'envoi -->
+  <input type="submit" value="S'inscrire">
+</form>
+\end{codehtml}
+
+\fig{Un formulaire d'inscription complet utilisant plusieurs types de champs.}
+
+\begin{remarque}
+La balise \code{<label for="nom">} est reliée au champ dont l'\code{id} vaut
+\code{nom}. Cliquer sur l'étiquette place alors le curseur dans le champ : c'est
+plus pratique, surtout sur téléphone.
+\end{remarque}
+
+\subsection{Liste déroulante : \texttt{<select>}}
+
+Pour proposer un choix dans une liste fixe (la série, la classe\dots), on utilise
+\code{<select>} qui contient des \code{<option>}.
+
+\begin{codehtml}
+<label for="serie">Série :</label>
+<select id="serie" name="serie">
+  <option value="TI">Terminale TI</option>
+  <option value="C">Terminale C</option>
+  <option value="D">Terminale D</option>
+</select>
+\end{codehtml}
+
+\fig{La valeur envoyée est celle de l'attribut \code{value} de l'option choisie.}
+
+\subsection{Zone de texte : \texttt{<textarea>}}
+
+Pour un texte long (une remarque, une adresse complète), on emploie
+\code{<textarea>}, qui s'écrit sur plusieurs lignes.
+
+\begin{codehtml}
+<label for="obs">Observations :</label><br>
+<textarea id="obs" name="obs" rows="4" cols="40">
+Écrivez ici...
+</textarea>
+\end{codehtml}
+
+\section{Les tableaux HTML}
+
+\begin{definition}
+Un \textbf{tableau} HTML organise des données en lignes et colonnes. Il se construit
+avec \code{<table>} (le tableau), \code{<tr>} (\emph{table row} : une ligne),
+\code{<th>} (\emph{table header} : cellule d'en-tête) et \code{<td>}
+(\emph{table data} : cellule ordinaire).
+\end{definition}
+
+\begin{codehtml}
+<table border="1">
+  <!-- Première ligne : les en-têtes -->
+  <tr>
+    <th>Matière</th>
+    <th>Note /20</th>
+  </tr>
+  <!-- Lignes de données -->
+  <tr>
+    <td>Informatique</td>
+    <td>16</td>
+  </tr>
+  <tr>
+    <td>Mathématiques</td>
+    <td>13</td>
+  </tr>
+</table>
+\end{codehtml}
+
+\fig{Un tableau de notes : une ligne d'en-tête (\code{<th>}) puis les données (\code{<td>}).}
+
+\begin{remarque}
+L'attribut \code{border="1"} dessine une bordure simple. Dans un vrai site, on
+préfère colorer et espacer les cellules avec du \textbf{CSS}, mais \code{border}
+suffit pour visualiser la structure pendant l'apprentissage.
+\end{remarque}
+
+\section{JavaScript : les bases}
+
+\begin{definition}
+\textbf{JavaScript} (abrégé \textbf{JS}) est un langage de programmation qui
+s'exécute \textbf{dans le navigateur}, donc \textbf{côté client}. Il sert à rendre
+la page \emph{interactive} : réagir à un clic, vérifier un formulaire, modifier le
+contenu affiché.
+\end{definition}
+
+On insère du JavaScript dans la balise \code{<script>}, généralement juste avant
+\code{</body>}.
+
+\begin{syntaxe}
+\code{<script>}\quad \textit{instructions JavaScript\dots}\quad \code{</script>}
+\end{syntaxe}
+
+\subsection{Variables et types}
+
+On déclare une variable avec \code{let} (modifiable), \code{const} (constante,
+non modifiable) ou l'ancien mot-clé \code{var}. JavaScript devine le type tout seul.
+
+\begin{codejs}
+<script>
+  let nom = "Awa";         // chaîne de caractères
+  let age = 17;            // nombre
+  const PI = 3.14;         // constante (ne change plus)
+  let estAdmis = true;     // booléen (true ou false)
+  // Afficher dans la console du navigateur
+  console.log(nom, age, estAdmis);
+</script>
+\end{codejs}
+
+\begin{attention}
+En JavaScript, chaque instruction se termine par un point-virgule \code{;} et les
+mots-clés s'écrivent en \textbf{minuscules}. \code{Let} ou \code{LET} provoquent
+une erreur : il faut écrire \code{let}.
+\end{attention}
+
+\subsection{Opérateurs}
+
+\begin{center}\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Catégorie} & \textbf{Opérateurs} & \textbf{Exemple}\\
+\midrule
+Arithmétiques & \code{+ - * / \%} & \code{age + 1}\\
+Comparaison & \code{== != < > <= >=} & \code{note >= 10}\\
+Égalité stricte & \code{=== !==} & \code{type === "number"}\\
+Logiques & \code{\&\& || !} & \code{x>0 \&\& x<20}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{remarque}
+Le \code{+} sert aussi à \textbf{coller} deux chaînes :
+\code{"Bon" + "jour"} donne \code{"Bonjour"}. C'est la \emph{concaténation}.
+\end{remarque}
+
+\subsection{Fonctions, condition et boucle}
+
+Une \textbf{fonction} regroupe des instructions sous un nom, pour les réutiliser.
+Elle peut \textbf{retourner} un résultat avec \code{return}.
+
+\begin{codejs}
+<script>
+  // Fonction qui calcule une moyenne de deux notes
+  function moyenne(n1, n2) {
+    return (n1 + n2) / 2;
+  }
+
+  let m = moyenne(12, 16);   // m vaut 14
+
+  // Condition : if ... else
+  if (m >= 10) {
+    console.log("Admis avec " + m);
+  } else {
+    console.log("Recalé");
+  }
+
+  // Boucle for : compter de 1 à 5
+  for (let i = 1; i <= 5; i = i + 1) {
+    console.log("Élève numéro " + i);
+  }
+</script>
+\end{codejs}
+
+\fig{Fonction, condition \code{if/else} et boucle \code{for} : les briques de base.}
+
+\section{JavaScript et la page}
+
+JavaScript devient vraiment utile quand il \textbf{réagit} aux actions de
+l'utilisateur et \textbf{lit} le contenu de la page.
+
+\subsection{Les événements}
+
+Un \textbf{événement} est une action de l'utilisateur (clic, envoi de formulaire).
+On y associe du code grâce à des attributs HTML :
+
+\begin{itemize}
+  \item \code{onclick} : se déclenche au clic sur un élément (souvent un bouton) ;
+  \item \code{onsubmit} : se déclenche quand on envoie un formulaire.
+\end{itemize}
+
+\subsection{Lire un champ et afficher un message}
+
+Pour récupérer ce que l'élève a tapé, on retrouve le champ par son \code{id}, puis
+on lit sa propriété \code{.value}. La fonction \code{alert(\dots)} affiche, elle,
+une petite fenêtre d'information.
+
+\begin{syntaxe}
+\code{document.getElementById("id").value} renvoie le texte saisi dans le champ
+dont l'attribut \code{id} vaut \code{"id"}.
+\end{syntaxe}
+
+\begin{codehtml}
+<input type="text" id="ville" name="ville">
+<button onclick="direBonjour()">Saluer</button>
+
+<script>
+  function direBonjour() {
+    // On lit la valeur tapée dans le champ "ville"
+    let v = document.getElementById("ville").value;
+    alert("Bonjour, élève de " + v + " !");
+  }
+</script>
+\end{codehtml}
+
+\fig{Au clic, la fonction lit le champ \code{ville} et affiche un message avec \code{alert}.}
+
+\begin{methode}
+\textbf{Tester du JavaScript.} (1)~Enregistre le fichier avec l'extension
+\code{.html} ; (2)~ouvre-le directement dans un navigateur (Chrome, Firefox) ;
+(3)~ouvre la \textbf{console} (touche \code{F12}) pour voir les messages
+\code{console.log} et les éventuelles erreurs.
+\end{methode}
+
+\section{Contrôle de saisie d'un formulaire}
+
+\begin{definition}
+Le \textbf{contrôle de saisie} (ou \emph{validation}) consiste à vérifier, avec
+JavaScript, que les informations tapées par l'utilisateur sont \textbf{correctes}
+\textbf{avant} de les envoyer au serveur. Cela évite d'enregistrer des données
+fausses ou vides.
+\end{definition}
+
+\subsection{Le principe : bloquer l'envoi}
+
+On relie une fonction de vérification à l'événement \code{onsubmit} du formulaire.
+\textbf{Règle d'or} : si la fonction renvoie \code{false}, le formulaire
+\textbf{n'est pas envoyé} ; si elle renvoie \code{true}, l'envoi continue.
+
+\begin{syntaxe}
+\code{<form onsubmit="return verifier()" \dots>} : l'envoi est annulé quand
+\code{verifier()} renvoie \code{false}.
+\end{syntaxe}
+
+\subsection{Les vérifications utiles}
+
+\begin{itemize}
+  \item \textbf{Champ vide} : comparer la valeur à la chaîne vide
+        (\code{valeur === ""}) ;
+  \item \textbf{Valeur numérique} : convertir avec \code{Number(valeur)} et tester
+        avec \code{isNaN(...)} (\emph{is Not a Number}, « n'est pas un nombre ») ;
+  \item \textbf{Longueur} : la propriété \code{.length} donne le nombre de
+        caractères (\code{mdp.length < 6}) ;
+  \item \textbf{Format simple} : chercher un caractère, par exemple le \code{@}
+        d'un e-mail avec \code{valeur.indexOf("@")} (vaut \code{-1} s'il est absent).
+\end{itemize}
+
+\subsection{Exemple complet}
+
+Voici un formulaire d'inscription complet avec sa fonction de validation. La
+fonction vérifie successivement chaque champ et renvoie \code{false} dès qu'un
+problème est détecté, ce qui \textbf{bloque} l'envoi.
+
+\begin{codehtml}
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="utf-8"><title>Inscription</title></head>
+<body>
+
+<h2>Inscription — Lycée de Garoua</h2>
+
+<!-- L'envoi n'a lieu que si verifier() renvoie true -->
+<form action="inscription.php" method="post"
+      onsubmit="return verifier()">
+
+  <label for="nom">Nom :</label>
+  <input type="text" id="nom" name="nom"><br>
+
+  <label for="age">Âge :</label>
+  <input type="text" id="age" name="age"><br>
+
+  <label for="mdp">Mot de passe :</label>
+  <input type="password" id="mdp" name="mdp"><br>
+
+  <input type="submit" value="S'inscrire">
+</form>
+
+<script>
+  function verifier() {
+    // 1) Lire les valeurs tapées par l'élève
+    let nom = document.getElementById("nom").value;
+    let age = document.getElementById("age").value;
+    let mdp = document.getElementById("mdp").value;
+
+    // 2) Le nom ne doit pas être vide
+    if (nom === "") {
+      alert("Le nom est obligatoire.");
+      return false;          // on bloque l'envoi
+    }
+
+    // 3) L'âge doit être un nombre strictement positif
+    if (isNaN(age) || age === "") {
+      alert("L'âge doit être un nombre.");
+      return false;
+    }
+    if (Number(age) <= 0) {
+      alert("L'âge doit être positif.");
+      return false;
+    }
+
+    // 4) Le mot de passe doit faire au moins 6 caractères
+    if (mdp.length < 6) {
+      alert("Mot de passe : 6 caractères minimum.");
+      return false;
+    }
+
+    // 5) Tout est correct : on autorise l'envoi
+    return true;
+  }
+</script>
+
+</body>
+</html>
+\end{codehtml}
+
+\fig{Formulaire + fonction \code{verifier()} : chaque \code{return false} empêche l'envoi.}
+
+\begin{attention}
+La validation JavaScript améliore le confort de l'élève, mais elle s'exécute dans
+\textbf{son} navigateur : un utilisateur malintentionné peut la contourner. Les
+données devront \textbf{toujours} être revérifiées côté serveur (en PHP, au
+chapitre sur les formulaires).
+\end{attention}
+
+\section{Exercices}
+
+\rubrique{Application}
+
+\exo{Page de présentation}\diff{1}
+Écris une page HTML complète (doctype, head, body) qui affiche le titre
+\emph{« Lycée Technique de Douala »}, un sous-titre \emph{« Terminale TI »} et un
+paragraphe de présentation de ton choix.
+
+\exo{Formulaire d'inscription d'un élève}\diff{1}
+Crée un formulaire (méthode \code{post}, action \code{inscrire.php}) avec : un champ
+texte \emph{Nom}, un champ texte \emph{Prénom}, un champ \code{number} \emph{Âge},
+une liste déroulante \emph{Série} (TI, C, D) et un bouton d'envoi. Chaque champ doit
+avoir un \code{name} et un \code{label}.
+
+\exo{Tableau des notes}\diff{1}
+Construis un tableau HTML à deux colonnes (\emph{Matière}, \emph{Note /20}) et trois
+lignes de données : Informatique 15, Français 11, Physique 13. Ajoute une ligne
+d'en-tête avec \code{<th>}.
+
+\exo{Choix multiples}\diff{2}
+Réalise un formulaire demandant le \emph{sexe} (deux boutons radio M/F) et les
+\emph{options choisies} (cases à cocher : Sport, Musique, Club informatique).
+Termine par un bouton d'envoi.
+
+\exo{Saluer l'élève}\diff{2}
+Crée un champ texte (\code{id="prenom"}) et un bouton. Au clic sur le bouton, une
+fonction JavaScript lit le prénom et affiche, avec \code{alert}, le message
+\emph{« Bienvenue, \dots ! »}.
+
+\rubrique{Entraînement}
+
+\exo{Validation de l'âge}\diff{2}
+À partir d'un formulaire contenant un champ \emph{Âge}, écris une fonction
+JavaScript reliée à \code{onsubmit} qui bloque l'envoi si l'âge n'est pas un nombre
+ou s'il n'est pas strictement positif.
+
+\exo{Deux mots de passe identiques}\diff{2}
+Crée un formulaire avec deux champs \code{password} (\emph{Mot de passe} et
+\emph{Confirmation}). Écris une fonction qui bloque l'envoi si les deux valeurs sont
+différentes, ou si le mot de passe fait moins de 6 caractères.
+
+\exo{Calculer une moyenne}\diff{2}
+Trois champs \code{number} contiennent trois notes. Au clic sur un bouton, une
+fonction JavaScript calcule la moyenne et l'affiche avec \code{alert}, en précisant
+\emph{« Admis »} si la moyenne est $\geq 10$, sinon \emph{« Recalé »}.
+
+\exo{E-mail valide (format simple)}\diff{3}
+Dans un formulaire d'inscription, ajoute un champ \emph{e-mail}. Écris une fonction
+de validation qui bloque l'envoi si le champ est vide ou s'il ne contient pas le
+caractère \code{@} (utilise \code{indexOf}).
+
+\exo{Inscription complète vérifiée}\diff{3}
+Reprends le formulaire de l'exercice 2 et écris une seule fonction \code{verifier()}
+qui contrôle : nom non vide, prénom non vide, âge numérique et positif. L'envoi ne
+doit avoir lieu que si tout est correct.
+
+\section{Corrigés}
+
+\corrige{de l'exercice 1}
+\begin{codehtml}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Lycée Technique de Douala</title>
+</head>
+<body>
+  <h1>Lycée Technique de Douala</h1>
+  <h2>Terminale TI</h2>
+  <p>Notre classe forme les futurs techniciens en informatique
+     de la ville de Douala.</p>
+</body>
+</html>
+\end{codehtml}
+
+\corrige{de l'exercice 2}
+\begin{codehtml}
+<form action="inscrire.php" method="post">
+  <label for="nom">Nom :</label>
+  <input type="text" id="nom" name="nom"><br>
+
+  <label for="prenom">Prénom :</label>
+  <input type="text" id="prenom" name="prenom"><br>
+
+  <label for="age">Âge :</label>
+  <input type="number" id="age" name="age"><br>
+
+  <label for="serie">Série :</label>
+  <select id="serie" name="serie">
+    <option value="TI">Terminale TI</option>
+    <option value="C">Terminale C</option>
+    <option value="D">Terminale D</option>
+  </select><br>
+
+  <input type="submit" value="S'inscrire">
+</form>
+\end{codehtml}
+
+\corrige{de l'exercice 3}
+\begin{codehtml}
+<table border="1">
+  <tr>
+    <th>Matière</th>
+    <th>Note /20</th>
+  </tr>
+  <tr><td>Informatique</td><td>15</td></tr>
+  <tr><td>Français</td><td>11</td></tr>
+  <tr><td>Physique</td><td>13</td></tr>
+</table>
+\end{codehtml}
+
+\corrige{de l'exercice 4}
+\begin{codehtml}
+<form action="choix.php" method="post">
+  Sexe :
+  <input type="radio" name="sexe" value="M"> Masculin
+  <input type="radio" name="sexe" value="F"> Féminin
+  <br>
+  Options :
+  <input type="checkbox" name="sport" value="oui"> Sport
+  <input type="checkbox" name="musique" value="oui"> Musique
+  <input type="checkbox" name="club" value="oui"> Club informatique
+  <br>
+  <input type="submit" value="Valider">
+</form>
+\end{codehtml}
+
+\corrige{de l'exercice 5}
+\begin{codehtml}
+<input type="text" id="prenom" name="prenom">
+<button onclick="saluer()">Saluer</button>
+
+<script>
+  function saluer() {
+    // Lecture du prénom tapé
+    let p = document.getElementById("prenom").value;
+    alert("Bienvenue, " + p + " !");
+  }
+</script>
+\end{codehtml}
+
+\corrige{de l'exercice 6}
+\begin{codehtml}
+<form action="age.php" method="post" onsubmit="return verifierAge()">
+  <label for="age">Âge :</label>
+  <input type="text" id="age" name="age">
+  <input type="submit" value="Envoyer">
+</form>
+
+<script>
+  function verifierAge() {
+    let age = document.getElementById("age").value;
+    // Doit être un nombre
+    if (isNaN(age) || age === "") {
+      alert("L'âge doit être un nombre.");
+      return false;
+    }
+    // Doit être strictement positif
+    if (Number(age) <= 0) {
+      alert("L'âge doit être positif.");
+      return false;
+    }
+    return true;   // tout est correct : envoi autorisé
+  }
+</script>
+\end{codehtml}
+
+\corrige{de l'exercice 7}
+\begin{codehtml}
+<form action="compte.php" method="post" onsubmit="return verifierMdp()">
+  <label for="mdp">Mot de passe :</label>
+  <input type="password" id="mdp" name="mdp"><br>
+
+  <label for="conf">Confirmation :</label>
+  <input type="password" id="conf" name="conf"><br>
+
+  <input type="submit" value="Créer le compte">
+</form>
+
+<script>
+  function verifierMdp() {
+    let mdp = document.getElementById("mdp").value;
+    let conf = document.getElementById("conf").value;
+
+    // Longueur minimale
+    if (mdp.length < 6) {
+      alert("Le mot de passe doit faire au moins 6 caractères.");
+      return false;
+    }
+    // Les deux saisies doivent être identiques
+    if (mdp !== conf) {
+      alert("Les deux mots de passe sont différents.");
+      return false;
+    }
+    return true;
+  }
+</script>
+\end{codehtml}
+
+\corrige{de l'exercice 8}
+\begin{codehtml}
+N1 : <input type="number" id="n1"><br>
+N2 : <input type="number" id="n2"><br>
+N3 : <input type="number" id="n3"><br>
+<button onclick="calculer()">Calculer la moyenne</button>
+
+<script>
+  function calculer() {
+    // On convertit chaque saisie en nombre
+    let n1 = Number(document.getElementById("n1").value);
+    let n2 = Number(document.getElementById("n2").value);
+    let n3 = Number(document.getElementById("n3").value);
+
+    let moy = (n1 + n2 + n3) / 3;
+
+    if (moy >= 10) {
+      alert("Moyenne : " + moy + " — Admis");
+    } else {
+      alert("Moyenne : " + moy + " — Recalé");
+    }
+  }
+</script>
+\end{codehtml}
+
+\corrige{de l'exercice 9}
+\begin{codehtml}
+<form action="inscrire.php" method="post" onsubmit="return verifierMail()">
+  <label for="mail">E-mail :</label>
+  <input type="text" id="mail" name="mail">
+  <input type="submit" value="Envoyer">
+</form>
+
+<script>
+  function verifierMail() {
+    let mail = document.getElementById("mail").value;
+
+    // Champ vide ?
+    if (mail === "") {
+      alert("L'e-mail est obligatoire.");
+      return false;
+    }
+    // Le caractère @ est-il présent ? indexOf vaut -1 sinon
+    if (mail.indexOf("@") === -1) {
+      alert("E-mail invalide : le caractère @ est manquant.");
+      return false;
+    }
+    return true;
+  }
+</script>
+\end{codehtml}
+
+\corrige{de l'exercice 10}
+\begin{codehtml}
+<form action="inscrire.php" method="post" onsubmit="return verifier()">
+  <label for="nom">Nom :</label>
+  <input type="text" id="nom" name="nom"><br>
+
+  <label for="prenom">Prénom :</label>
+  <input type="text" id="prenom" name="prenom"><br>
+
+  <label for="age">Âge :</label>
+  <input type="text" id="age" name="age"><br>
+
+  <input type="submit" value="S'inscrire">
+</form>
+
+<script>
+  function verifier() {
+    let nom = document.getElementById("nom").value;
+    let prenom = document.getElementById("prenom").value;
+    let age = document.getElementById("age").value;
+
+    // Nom et prénom obligatoires
+    if (nom === "") {
+      alert("Le nom est obligatoire.");
+      return false;
+    }
+    if (prenom === "") {
+      alert("Le prénom est obligatoire.");
+      return false;
+    }
+    // Âge : un nombre strictement positif
+    if (isNaN(age) || age === "") {
+      alert("L'âge doit être un nombre.");
+      return false;
+    }
+    if (Number(age) <= 0) {
+      alert("L'âge doit être positif.");
+      return false;
+    }
+    return true;   // formulaire correct : envoi autorisé
+  }
+</script>
+\end{codehtml}
+
+\begin{aretenir}
+Le \textbf{HTML} structure la page, le \textbf{formulaire} (\code{<form>}, champs
+\code{<input>}, attribut \code{name}) recueille la saisie, et le \textbf{JavaScript}
+la \textbf{contrôle} dans le navigateur. La règle clé du contrôle de saisie :
+\code{onsubmit="return verifier()"} et un \code{return false} pour
+\textbf{bloquer} l'envoi tant qu'un champ est invalide. Mais ce contrôle reste
+côté client : on revérifiera toujours côté serveur.
+\end{aretenir}

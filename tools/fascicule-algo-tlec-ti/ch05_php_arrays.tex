@@ -1,0 +1,774 @@
+\chapter{Tableaux et fonctions en PHP}
+
+\begin{synthese}[Au programme]
+Ranger plusieurs valeurs dans un même \textbf{tableau} (indexé ou associatif),
+le parcourir avec \code{for} et \code{foreach}, exploiter les fonctions prêtes à
+l'emploi (\code{count}, \code{sort}, \code{in\_array}\dots), puis écrire ses
+propres \textbf{fonctions} pour organiser et réutiliser son code.
+\end{synthese}
+
+\section{Les tableaux indexés}
+
+Jusqu'ici, une variable ne contenait qu'\emph{une seule} valeur. Pour gérer les
+notes d'une classe de 40 élèves, il faudrait 40 variables\,! Le \textbf{tableau}
+règle ce problème : il stocke plusieurs valeurs sous un seul nom.
+
+\begin{definition}
+Un \textbf{tableau} (\emph{array}) est une variable capable de contenir
+\textbf{plusieurs valeurs}. Dans un tableau \textbf{indexé}, chaque valeur est
+repérée par un numéro de position appelé \textbf{indice}, qui commence à
+\textbf{0}.
+\end{definition}
+
+\subsection{Créer un tableau}
+
+PHP offre deux écritures équivalentes : la fonction \code{array()} ou les
+crochets \code{[]} (plus courte, recommandée).
+
+\begin{codephp}
+<?php
+  // Écriture classique
+  $eleves = array("Awa", "Bello", "Chimene", "Daniel");
+  // Écriture courte (identique)
+  $villes = ["Yaoundé", "Douala", "Maroua", "Bafoussam"];
+
+  // Un tableau vide, que l'on remplira ensuite
+  $notes = [];
+?>
+\end{codephp}
+
+\begin{syntaxe}
+\code{\$tableau = [valeur0, valeur1, valeur2, \dots];}
+\end{syntaxe}
+
+\subsection{Accéder à une valeur par son indice}
+
+On écrit le nom du tableau suivi de l'indice entre crochets. Le \textbf{premier}
+élément porte l'indice \code{0}, le deuxième \code{1}, etc.
+
+\begin{codephp}
+<?php
+  $eleves = ["Awa", "Bello", "Chimene", "Daniel"];
+  echo $eleves[0];   // affiche : Awa
+  echo $eleves[2];   // affiche : Chimene
+
+  // On peut aussi modifier une case
+  $eleves[1] = "Bello Ngono";
+  echo $eleves[1];   // affiche : Bello Ngono
+?>
+\end{codephp}
+
+\begin{attention}
+Un tableau de 4 éléments a pour indices \code{0}, \code{1}, \code{2} et \code{3}.
+Le dernier indice est donc \textbf{4 - 1 = 3}. Accéder à \code{\$eleves[4]}
+renvoie une valeur \code{NULL} et déclenche un avertissement.
+\end{attention}
+
+\subsection{Ajouter un élément}
+
+Pour ajouter une valeur à la fin d'un tableau, on utilise des crochets
+\textbf{vides} \code{[]} : PHP choisit automatiquement le bon indice.
+
+\begin{codephp}
+<?php
+  $notes = [];          // tableau vide
+  $notes[] = 12;        // va à l'indice 0
+  $notes[] = 15.5;      // va à l'indice 1
+  $notes[] = 9;         // va à l'indice 2
+  echo $notes[1];       // affiche : 15.5
+?>
+\end{codephp}
+
+\begin{remarque}
+\code{\$notes[] = 12;} signifie « ajoute 12 à la fin ». On verra plus loin la
+fonction \code{array\_push} qui fait la même chose et permet d'ajouter plusieurs
+valeurs d'un coup.
+\end{remarque}
+
+\section{Parcourir un tableau indexé}
+
+\subsection{Avec la boucle \texttt{for}}
+
+Comme les indices vont de \code{0} à \code{count(\$t) - 1}, la boucle \code{for}
+est naturelle. La fonction \code{count} donne le \textbf{nombre d'éléments}.
+
+\begin{codephp}
+<?php
+  $eleves = ["Awa", "Bello", "Chimene", "Daniel"];
+  $n = count($eleves);          // n vaut 4
+
+  for ($i = 0; $i < $n; $i++) {
+    echo ($i + 1) . ". " . $eleves[$i] . "<br>";
+  }
+?>
+\end{codephp}
+
+\begin{exemple}
+Le code ci-dessus affiche :\\
+\code{1. Awa}\quad \code{2. Bello}\quad \code{3. Chimene}\quad \code{4. Daniel}
+(chacun sur sa ligne grâce à \code{<br>}).
+\end{exemple}
+
+\subsection{Avec la boucle \texttt{foreach}}
+
+\code{foreach} parcourt \textbf{toutes} les valeurs sans se soucier des indices :
+c'est la façon la plus simple et la plus sûre de lire un tableau.
+
+\begin{syntaxe}
+\code{foreach (\$tableau as \$valeur) \{ \dots \}}
+\end{syntaxe}
+
+\begin{codephp}
+<?php
+  $villes = ["Yaoundé", "Douala", "Maroua"];
+
+  foreach ($villes as $ville) {
+    echo "Ville : " . $ville . "<br>";
+  }
+?>
+\end{codephp}
+
+\begin{remarque}
+Avec \code{foreach}, pas besoin de gérer un compteur ni de connaître la taille du
+tableau : on est sûr de ne sortir ni avant le début ni après la fin.
+\end{remarque}
+
+\section{Les tableaux associatifs}
+
+Dans un tableau indexé, les clés sont des numéros. Dans un tableau
+\textbf{associatif}, on remplace ces numéros par des \textbf{clés} de notre choix
+(le plus souvent des mots), associées chacune à une valeur.
+
+\begin{definition}
+Un \textbf{tableau associatif} relie des \textbf{clés} (\emph{keys}) à des
+\textbf{valeurs} (\emph{values}) grâce à la flèche \code{=>}. La clé sert
+d'« étiquette » pour retrouver la valeur.
+\end{definition}
+
+\begin{codephp}
+<?php
+  // clé    =>  valeur
+  $eleve = [
+    "nom"     => "Awa Mballa",
+    "classe"  => "Tle TI",
+    "moyenne" => 14.5,
+    "ville"   => "Garoua"
+  ];
+
+  echo $eleve["nom"];       // affiche : Awa Mballa
+  echo $eleve["moyenne"];   // affiche : 14.5
+?>
+\end{codephp}
+
+\begin{syntaxe}
+\code{\$t = ["cle1" => valeur1, "cle2" => valeur2, \dots];}\\
+Accès : \code{\$t["cle1"]}
+\end{syntaxe}
+
+\subsection{Parcourir un tableau associatif}
+
+Pour obtenir à la fois la clé \textbf{et} la valeur, on utilise la forme complète
+de \code{foreach} avec \code{=>}.
+
+\begin{syntaxe}
+\code{foreach (\$tableau as \$cle => \$valeur) \{ \dots \}}
+\end{syntaxe}
+
+\begin{codephp}
+<?php
+  $eleve = [
+    "nom"     => "Awa Mballa",
+    "classe"  => "Tle TI",
+    "moyenne" => 14.5
+  ];
+
+  foreach ($eleve as $cle => $valeur) {
+    echo $cle . " : " . $valeur . "<br>";
+  }
+  // Affiche :
+  // nom : Awa Mballa
+  // classe : Tle TI
+  // moyenne : 14.5
+?>
+\end{codephp}
+
+\begin{exemple}
+On peut bâtir un \textbf{répertoire} reliant le nom d'un élève à sa moyenne, puis
+le parcourir pour afficher chaque résultat :
+\end{exemple}
+
+\begin{codephp}
+<?php
+  $moyennes = [
+    "Awa"     => 14.5,
+    "Bello"   => 9.0,
+    "Chimene" => 16.25,
+    "Daniel"  => 11.75
+  ];
+
+  foreach ($moyennes as $nom => $moy) {
+    echo $nom . " a obtenu " . $moy . "/20<br>";
+  }
+?>
+\end{codephp}
+
+\section{Les tableaux à plusieurs dimensions}
+
+Une case d'un tableau peut elle-même contenir\dots\ un autre tableau\,! On obtient
+un \textbf{tableau multidimensionnel}, très pratique pour représenter une
+\textbf{liste de fiches} (une ligne par élève, plusieurs colonnes par ligne).
+
+\begin{definition}
+Un \textbf{tableau à deux dimensions} est un tableau dont chaque valeur est
+elle-même un tableau. On accède à un élément avec \textbf{deux} indices ou clés :
+\code{\$t[i][j]}.
+\end{definition}
+
+\begin{codephp}
+<?php
+  // Une fiche par élève (tableau de tableaux associatifs)
+  $classe = [
+    ["nom" => "Awa",     "moyenne" => 14.5],
+    ["nom" => "Bello",   "moyenne" => 9.0],
+    ["nom" => "Chimene", "moyenne" => 16.25]
+  ];
+
+  // Accès : 1re fiche, clé "nom"
+  echo $classe[0]["nom"];       // affiche : Awa
+  echo $classe[2]["moyenne"];   // affiche : 16.25
+
+  // Parcours complet
+  foreach ($classe as $fiche) {
+    echo $fiche["nom"] . " : " . $fiche["moyenne"] . "/20<br>";
+  }
+?>
+\end{codephp}
+
+\begin{remarque}
+Cette structure « tableau de fiches » est exactement ce que renverra une requête
+de base de données MySQL (une ligne = une fiche). La maîtriser ici prépare le
+chapitre sur PHP/MySQL.
+\end{remarque}
+
+\section{Fonctions utiles sur les tableaux}
+
+PHP fournit de nombreuses fonctions toutes prêtes. Voici les plus courantes au
+programme.
+
+\begin{center}\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Fonction} & \textbf{Rôle} & \textbf{Exemple}\\
+\midrule
+\code{count(\$t)}        & nombre d'éléments      & \code{count([4,5,6])} → \code{3}\\
+\code{sort(\$t)}         & trie en ordre croissant & \code{[3,1,2]} → \code{[1,2,3]}\\
+\code{rsort(\$t)}        & trie en ordre décroissant & \code{[3,1,2]} → \code{[3,2,1]}\\
+\code{in\_array(\$v,\$t)} & \$v est-il dans \$t ?   & renvoie \code{true}/\code{false}\\
+\code{array\_push(\$t,\$v)} & ajoute \$v à la fin  & comme \code{\$t[] = \$v;}\\
+\code{implode(\$sep,\$t)} & colle en une chaîne    & \code{implode(", ",\$t)}\\
+\code{explode(\$sep,\$s)} & découpe une chaîne en tableau & \code{explode(",",\$s)}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{codephp}
+<?php
+  $notes = [12, 8, 15, 9, 17];
+
+  echo count($notes);            // 5
+
+  sort($notes);                  // $notes devient [8, 9, 12, 15, 17]
+  rsort($notes);                 // $notes devient [17, 15, 12, 9, 8]
+
+  if (in_array(15, $notes)) {
+    echo "La note 15 existe.";
+  }
+
+  array_push($notes, 20);        // ajoute 20 à la fin
+
+  // implode : tableau -> chaîne
+  $eleves = ["Awa", "Bello", "Chimene"];
+  echo implode(" - ", $eleves);  // affiche : Awa - Bello - Chimene
+
+  // explode : chaîne -> tableau
+  $liste = "Yaoundé;Douala;Maroua";
+  $villes = explode(";", $liste); // ["Yaoundé", "Douala", "Maroua"]
+  echo $villes[1];               // affiche : Douala
+?>
+\end{codephp}
+
+\begin{attention}
+\code{sort} et \code{rsort} \textbf{modifient directement} le tableau passé en
+argument (on ne récupère pas le résultat avec un \code{=}). Après
+\code{sort(\$notes);}, c'est \code{\$notes} lui-même qui est trié.
+\end{attention}
+
+\section{Les fonctions}
+
+Quand un même calcul revient souvent (calculer une moyenne, décider d'une
+admission\dots), on l'enferme dans une \textbf{fonction} que l'on appelle ensuite
+autant de fois que nécessaire. C'est la clé d'un code clair et réutilisable.
+
+\begin{definition}
+Une \textbf{fonction} est un bloc d'instructions portant un \textbf{nom}. On la
+\textbf{déclare} une fois, puis on l'\textbf{appelle} par son nom. Elle peut
+recevoir des \textbf{paramètres} (données d'entrée) et \textbf{renvoyer} un
+résultat avec \code{return}.
+\end{definition}
+
+\subsection{Déclarer et appeler une fonction}
+
+\begin{syntaxe}
+\code{function nom(\$param1, \$param2) \{ \dots\ return \$resultat; \}}
+\end{syntaxe}
+
+\begin{codephp}
+<?php
+  // Déclaration : on définit la fonction
+  function carre($x) {
+    return $x * $x;
+  }
+
+  // Appel : on l'utilise
+  echo carre(5);        // affiche : 25
+  $r = carre(9);        // $r vaut 81
+  echo $r;
+?>
+\end{codephp}
+
+\begin{remarque}
+\code{return} \textbf{renvoie} une valeur \emph{et arrête} la fonction : les
+instructions placées après ne sont pas exécutées. Une fonction sans \code{return}
+peut tout de même travailler (par exemple afficher quelque chose avec
+\code{echo}).
+\end{remarque}
+
+\subsection{Paramètres par défaut}
+
+On peut donner une valeur \textbf{par défaut} à un paramètre : si l'appel ne la
+précise pas, cette valeur est utilisée.
+
+\begin{codephp}
+<?php
+  // La devise vaut "FCFA" si on ne la précise pas
+  function prix($montant, $devise = "FCFA") {
+    return $montant . " " . $devise;
+  }
+
+  echo prix(2500);          // affiche : 2500 FCFA
+  echo prix(10, "euros");   // affiche : 10 euros
+?>
+\end{codephp}
+
+\subsection{Portée des variables}
+
+\begin{definition}
+La \textbf{portée} (\emph{scope}) d'une variable est la zone du programme où elle
+existe. Une variable créée \textbf{dans} une fonction est \textbf{locale} : elle
+n'existe pas en dehors. Une variable créée en dehors est \textbf{globale} et
+n'est, par défaut, \textbf{pas visible} à l'intérieur d'une fonction.
+\end{definition}
+
+\begin{codephp}
+<?php
+  $tva = 0.1925;   // variable globale
+
+  function montantTTC($ht) {
+    global $tva;            // on rend $tva visible ici
+    return $ht * (1 + $tva);
+  }
+
+  echo montantTTC(1000);    // affiche : 1192.5
+?>
+\end{codephp}
+
+\begin{attention}
+Sans le mot-clé \code{global}, la variable \code{\$tva} serait \code{NULL} à
+l'intérieur de la fonction. Mieux encore : on évite \code{global} en
+\textbf{passant} la donnée en paramètre, ce qui rend la fonction plus claire.
+\end{attention}
+
+\section{Quelques fonctions PHP utiles}
+
+\subsection{Sur les chaînes de caractères}
+
+\begin{center}\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Fonction} & \textbf{Rôle} & \textbf{Exemple}\\
+\midrule
+\code{strlen(\$s)}            & longueur (nb de caractères) & \code{strlen("Awa")} → \code{3}\\
+\code{strtoupper(\$s)}        & tout en majuscules     & → \code{"AWA"}\\
+\code{strtolower(\$s)}        & tout en minuscules     & → \code{"awa"}\\
+\code{substr(\$s,\$d,\$l)}    & extrait une portion    & \code{substr("Yaoundé",0,3)} → \code{"Yao"}\\
+\code{str\_replace(\$a,\$b,\$s)} & remplace \$a par \$b & remplace dans \$s\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{codephp}
+<?php
+  $nom = "Awa Mballa";
+
+  echo strlen($nom);                 // 10 (l'espace compte)
+  echo strtoupper($nom);             // AWA MBALLA
+  echo strtolower($nom);             // awa mballa
+  echo substr($nom, 0, 3);           // Awa (3 caractères dès l'indice 0)
+  echo str_replace("a", "@", $nom);  // Aw@ Mb@ll@
+?>
+\end{codephp}
+
+\subsection{Sur les nombres}
+
+\begin{center}\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Fonction} & \textbf{Rôle} & \textbf{Exemple}\\
+\midrule
+\code{round(\$x,\$d)}  & arrondit à \$d décimales & \code{round(14.567,2)} → \code{14.57}\\
+\code{abs(\$x)}        & valeur absolue           & \code{abs(-5)} → \code{5}\\
+\code{max(\$a,\$b,\dots)} & le plus grand         & \code{max(8,15,9)} → \code{15}\\
+\code{min(\$a,\$b,\dots)} & le plus petit         & \code{min(8,15,9)} → \code{8}\\
+\code{rand(\$a,\$b)}   & entier aléatoire \$a..\$b & \code{rand(1,6)} (dé)\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{codephp}
+<?php
+  echo round(14.567, 2);   // 14.57
+  echo abs(-8);            // 8
+  echo max(8, 15, 9);     // 15
+  echo min(8, 15, 9);     // 8
+  echo rand(1, 6);        // un entier au hasard entre 1 et 6
+
+  // max et min acceptent aussi un tableau
+  $notes = [12, 8, 17, 9];
+  echo max($notes);       // 17
+?>
+\end{codephp}
+
+\section{Exemples complets}
+
+\begin{exemple}
+\textbf{Moyenne d'un tableau de notes.} On parcourt le tableau pour cumuler la
+somme, puis on divise par le nombre de notes.
+\end{exemple}
+
+\begin{codephp}
+<?php
+  $notes = [12, 8, 15, 9, 17];
+  $somme = 0;
+
+  foreach ($notes as $note) {
+    $somme = $somme + $note;
+  }
+
+  $moyenne = $somme / count($notes);
+  echo "Moyenne de la classe : " . round($moyenne, 2) . "/20";
+  // affiche : Moyenne de la classe : 12.2/20
+?>
+\end{codephp}
+
+\begin{exemple}
+\textbf{Fonction \code{estAdmis}.} Elle reçoit une moyenne et renvoie \code{true}
+si l'élève est admis (moyenne $\geq 10$), \code{false} sinon.
+\end{exemple}
+
+\begin{codephp}
+<?php
+  function estAdmis($moyenne) {
+    return $moyenne >= 10;
+  }
+
+  $moy = 11.5;
+  if (estAdmis($moy)) {
+    echo "Admis";
+  } else {
+    echo "Non admis";
+  }
+?>
+\end{codephp}
+
+\begin{exemple}
+\textbf{Fonction qui calcule une moyenne.} On regroupe le calcul précédent dans
+une fonction réutilisable, qui reçoit un tableau et renvoie la moyenne.
+\end{exemple}
+
+\begin{codephp}
+<?php
+  function moyenne($notes) {
+    $somme = 0;
+    foreach ($notes as $n) {
+      $somme = $somme + $n;
+    }
+    return $somme / count($notes);
+  }
+
+  $classeA = [12, 8, 15, 9, 17];
+  $classeB = [10, 11, 14];
+
+  echo round(moyenne($classeA), 2);  // 12.2
+  echo round(moyenne($classeB), 2);  // 11.67
+?>
+\end{codephp}
+
+\begin{remarque}
+Une fois \code{moyenne} écrite, on la réutilise pour n'importe quelle classe sans
+réécrire la boucle. C'est tout l'intérêt des fonctions : \textbf{écrire une fois,
+réutiliser partout}.
+\end{remarque}
+
+\section{Exercices}
+
+\rubrique{Application}
+
+\exo{Afficher un tableau}\diff{1}
+On donne \code{\$villes = ["Yaoundé", "Douala", "Maroua", "Bafoussam"]}. Affiche
+chaque ville précédée de son numéro de position (1, 2, 3, 4), une par ligne.
+
+\exo{Max, min, somme et moyenne}\diff{1}
+Soit \code{\$notes = [12, 8, 15, 9, 17, 6]}. Affiche la plus grande note, la plus
+petite, la somme totale et la moyenne arrondie à deux décimales.
+
+\exo{Rechercher un élève}\diff{1}
+On dispose de \code{\$classe = ["Awa", "Bello", "Chimene", "Daniel"]}. Écris un
+script qui indique si l'élève « Chimene » figure dans la liste, puis si « Eric »
+y figure.
+
+\exo{Compter les admis}\diff{2}
+Soit le tableau associatif suivant :
+\begin{codephp}
+$moyennes = ["Awa"=>14, "Bello"=>8, "Chimene"=>16, "Daniel"=>9, "Eric"=>11];
+\end{codephp}
+Compte combien d'élèves sont admis (moyenne $\geq 10$) et affiche le résultat.
+
+\exo{Fonction \texttt{mention}}\diff{2}
+Écris une fonction \code{mention(\$m)} qui renvoie : « Excellent » si
+$m \geq 16$, « Bien » si $14 \leq m < 16$, « Assez bien » si $12 \leq m < 14$,
+« Passable » si $10 \leq m < 12$ et « Insuffisant » sinon. Teste-la sur quelques
+moyennes.
+
+\rubrique{Entraînement}
+
+\exo{Inverser un tableau}\diff{2}
+Sans utiliser la fonction toute prête \code{array\_reverse}, écris un script qui
+construit un nouveau tableau contenant les éléments de \code{\$t = [10, 20, 30,
+40]} dans l'ordre inverse, puis l'affiche.
+
+\exo{Bulletin de la classe}\diff{2}
+Soit le tableau de fiches :
+\begin{codephp}
+$classe = [["nom"=>"Awa","moy"=>14], ["nom"=>"Bello","moy"=>8], ["nom"=>"Chimene","moy"=>16]];
+\end{codephp}
+Affiche pour chaque élève son nom, sa moyenne et sa mention (réutilise la
+fonction \code{mention} de l'exercice 5).
+
+\exo{Fréquences des notes}\diff{3}
+On donne \code{\$notes = [12, 8, 12, 15, 8, 12, 9]}. Construis un tableau
+associatif qui compte combien de fois chaque note apparaît, puis affiche le
+résultat sous la forme \code{12 -> 3 fois}.
+
+\exo{Initiales}\diff{3}
+Écris une fonction \code{initiales(\$nomComplet)} qui, à partir d'une chaîne
+de noms séparés par des espaces, renvoie les initiales en majuscules. Par
+exemple, \code{"Awa Mballa Ngono"} doit donner \code{"A.M.N."}.
+Indice : utilise \code{explode}, puis \code{substr} et \code{strtoupper}.
+
+\section{Corrigés}
+
+\corrige{de l'exercice 1}
+\begin{codephp}
+<?php
+  $villes = ["Yaoundé", "Douala", "Maroua", "Bafoussam"];
+
+  for ($i = 0; $i < count($villes); $i++) {
+    echo ($i + 1) . ". " . $villes[$i] . "<br>";
+  }
+  // On pouvait aussi utiliser foreach avec un compteur séparé.
+?>
+\end{codephp}
+
+\corrige{de l'exercice 2}
+\begin{codephp}
+<?php
+  $notes = [12, 8, 15, 9, 17, 6];
+
+  $somme = 0;
+  foreach ($notes as $n) {
+    $somme = $somme + $n;
+  }
+
+  echo "Maximum : " . max($notes) . "<br>";
+  echo "Minimum : " . min($notes) . "<br>";
+  echo "Somme : " . $somme . "<br>";
+  echo "Moyenne : " . round($somme / count($notes), 2);
+?>
+\end{codephp}
+
+\corrige{de l'exercice 3}
+\begin{codephp}
+<?php
+  $classe = ["Awa", "Bello", "Chimene", "Daniel"];
+
+  if (in_array("Chimene", $classe)) {
+    echo "Chimene est dans la classe.<br>";
+  } else {
+    echo "Chimene est absente.<br>";
+  }
+
+  if (in_array("Eric", $classe)) {
+    echo "Eric est dans la classe.";
+  } else {
+    echo "Eric n'est pas dans la classe.";
+  }
+?>
+\end{codephp}
+
+\corrige{de l'exercice 4}
+\begin{codephp}
+<?php
+  $moyennes = [
+    "Awa"     => 14,
+    "Bello"   => 8,
+    "Chimene" => 16,
+    "Daniel"  => 9,
+    "Eric"    => 11
+  ];
+
+  $nbAdmis = 0;
+  foreach ($moyennes as $nom => $moy) {
+    if ($moy >= 10) {
+      $nbAdmis = $nbAdmis + 1;
+    }
+  }
+
+  echo "Nombre d'admis : " . $nbAdmis . " sur " . count($moyennes);
+  // affiche : Nombre d'admis : 3 sur 5
+?>
+\end{codephp}
+
+\corrige{de l'exercice 5}
+\begin{codephp}
+<?php
+  function mention($m) {
+    if ($m >= 16) {
+      return "Excellent";
+    } elseif ($m >= 14) {
+      return "Bien";
+    } elseif ($m >= 12) {
+      return "Assez bien";
+    } elseif ($m >= 10) {
+      return "Passable";
+    } else {
+      return "Insuffisant";
+    }
+  }
+
+  echo mention(17);   // Excellent
+  echo mention(13);   // Assez bien
+  echo mention(7);    // Insuffisant
+?>
+\end{codephp}
+
+\begin{remarque}
+On teste les seuils du plus grand au plus petit. Dès qu'une condition est vraie,
+\code{return} renvoie la mention et arrête la fonction : inutile de re-tester
+$m < 16$, c'est déjà garanti par l'ordre des \code{elseif}.
+\end{remarque}
+
+\corrige{de l'exercice 6}
+\begin{codephp}
+<?php
+  $t = [10, 20, 30, 40];
+  $inverse = [];
+
+  for ($i = count($t) - 1; $i >= 0; $i--) {
+    $inverse[] = $t[$i];   // on ajoute du dernier vers le premier
+  }
+
+  // Affichage
+  foreach ($inverse as $valeur) {
+    echo $valeur . " ";    // affiche : 40 30 20 10
+  }
+?>
+\end{codephp}
+
+\corrige{de l'exercice 7}
+\begin{codephp}
+<?php
+  function mention($m) {
+    if ($m >= 16)      return "Excellent";
+    elseif ($m >= 14)  return "Bien";
+    elseif ($m >= 12)  return "Assez bien";
+    elseif ($m >= 10)  return "Passable";
+    else               return "Insuffisant";
+  }
+
+  $classe = [
+    ["nom" => "Awa",     "moy" => 14],
+    ["nom" => "Bello",   "moy" => 8],
+    ["nom" => "Chimene", "moy" => 16]
+  ];
+
+  foreach ($classe as $eleve) {
+    echo $eleve["nom"] . " : " . $eleve["moy"]
+       . "/20 (" . mention($eleve["moy"]) . ")<br>";
+  }
+  // Awa : 14/20 (Bien)
+  // Bello : 8/20 (Insuffisant)
+  // Chimene : 16/20 (Excellent)
+?>
+\end{codephp}
+
+\corrige{de l'exercice 8}
+\begin{codephp}
+<?php
+  $notes = [12, 8, 12, 15, 8, 12, 9];
+  $freq = [];   // tableau associatif note => nombre
+
+  foreach ($notes as $n) {
+    if (in_array($n, array_keys($freq))) {
+      $freq[$n] = $freq[$n] + 1;   // déjà vue : on incrémente
+    } else {
+      $freq[$n] = 1;               // première fois
+    }
+  }
+
+  foreach ($freq as $note => $nombre) {
+    echo $note . " -> " . $nombre . " fois<br>";
+  }
+  // 12 -> 3 fois
+  // 8 -> 2 fois
+  // 15 -> 1 fois
+  // 9 -> 1 fois
+?>
+\end{codephp}
+
+\corrige{de l'exercice 9}
+\begin{codephp}
+<?php
+  function initiales($nomComplet) {
+    $mots = explode(" ", $nomComplet);   // découpe sur les espaces
+    $resultat = "";
+
+    foreach ($mots as $mot) {
+      $premiere = substr($mot, 0, 1);    // 1re lettre du mot
+      $resultat = $resultat . strtoupper($premiere) . ".";
+    }
+
+    return $resultat;
+  }
+
+  echo initiales("Awa Mballa Ngono");   // affiche : A.M.N.
+?>
+\end{codephp}
+
+\begin{aretenir}
+Un \textbf{tableau} regroupe plusieurs valeurs : indices numériques (départ à
+\code{0}) ou clés \code{=>} valeurs. On le parcourt avec \code{foreach}
+(\code{\$t as \$cle => \$val}) et on l'exploite avec \code{count}, \code{sort},
+\code{in\_array}\dots\ Une \textbf{fonction} (\code{function nom(\$p) \{ return
+\dots; \}}) enferme un calcul pour l'\textbf{écrire une fois et le réutiliser
+partout}.
+\end{aretenir}

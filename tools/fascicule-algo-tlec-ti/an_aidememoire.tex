@@ -1,0 +1,589 @@
+\chapter{Aide-mémoire}
+
+\begin{synthese}[Mode d'emploi]
+Cette annexe rassemble, sous forme de fiches de référence denses, l'essentiel de
+la syntaxe vue dans le fascicule : \textbf{PHP}, \textbf{SQL}, l'extension
+\textbf{mysqli} (PHP + MySQL) et le langage \textbf{C}. Une dernière fiche met en
+correspondance PHP et C. À consulter pendant les TP et les révisions.
+\end{synthese}
+
+\section{Aide-mémoire PHP}
+
+\subsection{Balises, commentaires et instructions}
+
+\begin{syntaxe}
+\code{<?php}\quad \textit{instructions\dots}\quad \code{?>} \qquad — fichier en
+\code{.php}, chaque instruction se termine par \code{;}.
+\end{syntaxe}
+
+\begin{codephp}
+<?php
+  // commentaire sur une ligne
+  # autre commentaire sur une ligne
+  /* commentaire
+     sur plusieurs lignes */
+  echo "Bonjour OnBuch";   // une instruction = un point-virgule
+?>
+\end{codephp}
+
+\subsection{Variables et constantes}
+
+Une variable commence \textbf{toujours} par \code{\$}. PHP est typé
+dynamiquement : le type dépend de la valeur affectée.
+
+\begin{codephp}
+<?php
+  $nom    = "Awa";              // string  (chaîne)
+  $age    = 17;                 // int     (entier)
+  $moy    = 14.5;               // float   (décimal)
+  $admis  = true;               // bool    (true / false)
+  define("VILLE", "Maroua");    // constante (sans $)
+  const TVA = 0.1925;           // autre forme de constante
+?>
+\end{codephp}
+
+\begin{center}\small
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Type} & \textbf{Exemple de valeur}\\
+\midrule
+\code{int}    & \code{42}, \code{-7}, \code{0}\\
+\code{float}  & \code{14.5}, \code{3.14}\\
+\code{string} & \code{"Awa"}, \code{'Lycée'}\\
+\code{bool}   & \code{true}, \code{false}\\
+\code{array}  & \code{[1, 2, 3]}\\
+\code{NULL}   & \code{null}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Afficher : \texttt{echo} et \texttt{print}}
+
+\begin{itemize}
+  \item \code{echo} affiche une ou plusieurs valeurs séparées par des virgules ;
+  \item \code{print} affiche une seule valeur et renvoie \code{1} ;
+  \item \code{.} concatène (colle) deux chaînes ; \code{.=} ajoute à la fin.
+\end{itemize}
+
+\begin{codephp}
+<?php
+  $nom = "Awa"; $age = 17;
+  echo "Élève : $nom",  " (", $age, " ans)";   // virgules
+  echo "Élève : " . $nom . " (" . $age . ")";  // concaténation
+  echo "Bonjour {$nom} !";                      // accolades dans "..."
+  echo 'Texte brut : $nom';                     // '...' n'interprète pas $
+?>
+\end{codephp}
+
+\subsection{Opérateurs}
+
+\begin{center}\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Catégorie} & \textbf{Opérateurs} & \textbf{Exemple}\\
+\midrule
+Arithmétiques & \code{+ - * / \% **} & \code{\$x \% 2} (reste)\\
+Affectation   & \code{= += -= *= /= .=} & \code{\$s .= "!"}\\
+Comparaison   & \code{== != < > <= >=} & \code{\$a <= \$b}\\
+Identité      & \code{=== !==} & \code{\$a === \$b} (valeur + type)\\
+Logiques      & \code{\&\& || !} & \code{\$x>0 \&\& \$x<10}\\
+Incrémentation & \code{++ -{}-} & \code{\$i++}\\
+Ternaire      & \code{? :} & \code{\$m>=10 ? "Admis":"Échec"}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Structures de contrôle}
+
+\begin{codephp}
+<?php
+  // if / elseif / else
+  if ($moy >= 16)      { echo "Très bien"; }
+  elseif ($moy >= 10)  { echo "Admis"; }
+  else                 { echo "Échec"; }
+
+  // switch
+  switch ($jour) {
+    case 1: echo "Lundi"; break;
+    case 2: echo "Mardi"; break;
+    default: echo "Autre";
+  }
+?>
+\end{codephp}
+
+\begin{codephp}
+<?php
+  // for : compteur connu
+  for ($i = 1; $i <= 5; $i++) { echo $i; }
+
+  // while : tant que la condition est vraie
+  $n = 1;
+  while ($n <= 5) { echo $n; $n++; }
+
+  // do...while : exécute au moins une fois
+  $n = 1;
+  do { echo $n; $n++; } while ($n <= 5);
+
+  // foreach : parcourir un tableau
+  foreach ($notes as $note) { echo $note; }
+  foreach ($eleve as $cle => $valeur) { echo "$cle = $valeur"; }
+?>
+\end{codephp}
+
+\begin{remarque}
+\code{break} sort de la boucle (ou du \code{switch}) ; \code{continue} passe
+directement à l'itération suivante.
+\end{remarque}
+
+\subsection{Tableaux}
+
+\begin{codephp}
+<?php
+  // tableau indexé (clés 0, 1, 2...)
+  $notes = [12, 15, 9, 18];
+  echo $notes[0];           // 12
+  $notes[] = 11;            // ajoute en fin
+
+  // tableau associatif (clé => valeur)
+  $eleve = ["nom" => "Awa", "age" => 17, "ville" => "Maroua"];
+  echo $eleve["nom"];       // Awa
+?>
+\end{codephp}
+
+\begin{center}\small
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Fonction} & \textbf{Rôle}\\
+\midrule
+\code{count(\$t)}            & nombre d'éléments\\
+\code{sort(\$t)}             & trie par valeurs croissantes\\
+\code{rsort(\$t)}            & trie par valeurs décroissantes\\
+\code{in\_array(\$v, \$t)}   & \code{true} si \code{\$v} est dans \code{\$t}\\
+\code{array\_push(\$t, \$v)} & ajoute \code{\$v} en fin\\
+\code{implode(",", \$t)}     & tableau $\rightarrow$ chaîne « 12,15,9 »\\
+\code{explode(",", \$s)}     & chaîne $\rightarrow$ tableau\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Fonctions}
+
+\begin{syntaxe}
+\code{function nom(\$param1, \$param2 = défaut) \{ \dots return \$valeur; \}}
+\end{syntaxe}
+
+\begin{codephp}
+<?php
+  function moyenne($a, $b, $c) {
+    return ($a + $b + $c) / 3;   // return renvoie le résultat
+  }
+  function bonjour($nom = "élève") {  // valeur par défaut
+    return "Bonjour $nom";
+  }
+  echo moyenne(12, 15, 9);   // 12
+  echo bonjour();            // Bonjour élève
+?>
+\end{codephp}
+
+\subsection{Superglobales (formulaires \& serveur)}
+
+\begin{center}\small
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Superglobale} & \textbf{Contenu}\\
+\midrule
+\code{\$\_GET}     & données passées dans l'URL (\code{?id=3})\\
+\code{\$\_POST}    & données d'un formulaire (\code{method="post"})\\
+\code{\$\_REQUEST} & \code{\$\_GET} + \code{\$\_POST} réunis\\
+\code{\$\_FILES}   & fichiers téléversés (upload)\\
+\code{\$\_SERVER}  & infos serveur (\code{REQUEST\_METHOD}, \dots)\\
+\code{\$\_SESSION} & variables de session\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{codephp}
+<?php
+  // récupérer un champ de formulaire envoyé en POST
+  $nom = $_POST["nom"];
+  $age = $_GET["age"];
+
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    echo "Formulaire envoyé : " . $_POST["nom"];
+  }
+?>
+\end{codephp}
+
+\begin{attention}
+Ne jamais faire confiance aux données reçues. Vérifie l'existence avec
+\code{isset(\$\_POST["nom"])} avant de les utiliser.
+\end{attention}
+
+\subsection{Fonctions utiles}
+
+\begin{center}\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Fonction} & \textbf{Rôle} & \textbf{Exemple $\rightarrow$ résultat}\\
+\midrule
+\code{strlen(\$s)}        & longueur d'une chaîne & \code{strlen("Awa")} $\rightarrow$ 3\\
+\code{strtoupper(\$s)}    & majuscules            & \code{"awa"} $\rightarrow$ \code{AWA}\\
+\code{strtolower(\$s)}    & minuscules            & \code{"AWA"} $\rightarrow$ \code{awa}\\
+\code{trim(\$s)}          & enlève les espaces    & \code{" x "} $\rightarrow$ \code{x}\\
+\code{round(\$n, 2)}      & arrondit              & \code{round(14.567,2)} $\rightarrow$ 14.57\\
+\code{abs(\$n)}           & valeur absolue        & \code{abs(-5)} $\rightarrow$ 5\\
+\code{rand(1, 6)}         & entier aléatoire      & \code{rand(1,6)} $\rightarrow$ 4\\
+\code{date("d/m/Y")}      & date du jour          & $\rightarrow$ \code{26/06/2026}\\
+\code{isset(\$v)}         & \code{\$v} existe ?   & \code{true / false}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Aide-mémoire SQL}
+
+\subsection{Types de données courants}
+
+\begin{center}\small
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Type} & \textbf{Usage}\\
+\midrule
+\code{INT}          & nombre entier (âge, identifiant)\\
+\code{FLOAT}        & nombre décimal (moyenne, prix)\\
+\code{VARCHAR(n)}   & chaîne de longueur variable, max \code{n}\\
+\code{TEXT}         & texte long\\
+\code{DATE}         & date au format \code{AAAA-MM-JJ}\\
+\code{BOOLEAN}      & vrai / faux (0 ou 1)\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Créer une table}
+
+\begin{codesql}
+CREATE TABLE eleves (
+  id        INT PRIMARY KEY AUTO_INCREMENT,
+  nom       VARCHAR(50) NOT NULL,
+  age       INT,
+  moyenne   FLOAT,
+  ville     VARCHAR(40),
+  inscrit   DATE
+);
+\end{codesql}
+
+\begin{remarque}
+La \textbf{clé primaire} (\code{PRIMARY KEY}) identifie chaque ligne de façon unique.
+\code{AUTO\_INCREMENT} fait que la base attribue elle-même les valeurs 1, 2, 3, \dots
+\end{remarque}
+
+\subsection{Insérer des données}
+
+\begin{codesql}
+INSERT INTO eleves (nom, age, moyenne, ville, inscrit)
+VALUES ('Awa', 17, 14.5, 'Maroua', '2026-09-01');
+
+INSERT INTO eleves (nom, age) VALUES ('Bello', 18);
+\end{codesql}
+
+\subsection{Lire : SELECT}
+
+\begin{codesql}
+SELECT * FROM eleves;                       -- toutes les colonnes
+SELECT nom, moyenne FROM eleves;            -- colonnes choisies
+
+SELECT * FROM eleves
+WHERE moyenne >= 10                         -- filtre (condition)
+ORDER BY moyenne DESC;                      -- tri décroissant
+
+SELECT * FROM eleves WHERE ville = 'Maroua' AND age > 16;
+SELECT COUNT(*) FROM eleves;                -- nombre de lignes
+\end{codesql}
+
+\begin{center}\small
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Clause} & \textbf{Rôle}\\
+\midrule
+\code{WHERE}    & condition de sélection\\
+\code{ORDER BY} & tri (\code{ASC} croissant, \code{DESC} décroissant)\\
+\code{AND OR}   & combiner des conditions\\
+\code{LIKE}     & motif texte (\code{'A\%'} = commence par A)\\
+\code{LIMIT n}  & limiter à \code{n} lignes\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Modifier et supprimer}
+
+\begin{codesql}
+UPDATE eleves SET moyenne = 16 WHERE nom = 'Awa';
+
+DELETE FROM eleves WHERE id = 5;
+\end{codesql}
+
+\begin{attention}
+Un \code{UPDATE} ou un \code{DELETE} \textbf{sans} \code{WHERE} modifie ou supprime
+\textbf{toutes} les lignes de la table. Toujours préciser la condition !
+\end{attention}
+
+\section{Aide-mémoire mysqli (PHP + MySQL)}
+
+\subsection{Fonctions essentielles}
+
+\begin{center}\small
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Fonction} & \textbf{Rôle}\\
+\midrule
+\code{mysqli\_connect(h,u,p,bd)} & se connecter au serveur MySQL\\
+\code{mysqli\_select\_db(\$c,bd)} & choisir la base de données\\
+\code{mysqli\_query(\$c, \$sql)}  & exécuter une requête SQL\\
+\code{mysqli\_fetch\_assoc(\$r)}  & 1 ligne en tableau associatif\\
+\code{mysqli\_fetch\_row(\$r)}    & 1 ligne en tableau indexé\\
+\code{mysqli\_fetch\_array(\$r)}  & 1 ligne (indexé + associatif)\\
+\code{mysqli\_num\_rows(\$r)}     & nombre de lignes du résultat\\
+\code{mysqli\_close(\$c)}         & fermer la connexion\\
+\code{mysqli\_connect\_error()}   & message d'erreur de connexion\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Squelette de connexion}
+
+\begin{codephp}
+<?php
+  $serveur = "localhost";
+  $user    = "root";
+  $passe   = "";
+  $base    = "onbuch";
+
+  // connexion (die() arrête le script en cas d'échec)
+  $conn = mysqli_connect($serveur, $user, $passe, $base)
+          or die("Connexion impossible : " . mysqli_connect_error());
+?>
+\end{codephp}
+
+\subsection{Lire et afficher (boucle)}
+
+\begin{codephp}
+<?php
+  $sql = "SELECT nom, moyenne FROM eleves ORDER BY moyenne DESC";
+  $res = mysqli_query($conn, $sql);
+
+  if (mysqli_num_rows($res) > 0) {
+    // parcourir chaque ligne du résultat
+    while ($ligne = mysqli_fetch_assoc($res)) {
+      echo $ligne["nom"] . " : " . $ligne["moyenne"] . "<br>";
+    }
+  } else {
+    echo "Aucun élève trouvé.";
+  }
+
+  mysqli_close($conn);   // toujours fermer à la fin
+?>
+\end{codephp}
+
+\begin{remarque}
+\code{mysqli\_fetch\_assoc} renvoie un tableau dont les clés sont les \emph{noms
+de colonnes} (\code{\$ligne["nom"]}). \code{mysqli\_fetch\_row} renvoie des clés
+numériques (\code{\$ligne[0]}).
+\end{remarque}
+
+\subsection{Insérer depuis un formulaire}
+
+\begin{codephp}
+<?php
+  $nom = $_POST["nom"];
+  $age = $_POST["age"];
+  $sql = "INSERT INTO eleves (nom, age) VALUES ('$nom', $age)";
+  if (mysqli_query($conn, $sql)) {
+    echo "Élève ajouté !";
+  } else {
+    echo "Erreur : " . mysqli_error($conn);
+  }
+?>
+\end{codephp}
+
+\section{Aide-mémoire langage C}
+
+\subsection{Structure d'un programme}
+
+\begin{codec}
+#include <stdio.h>      /* bibliothèque entrées / sorties */
+#include <stdlib.h>
+
+int main() {
+    printf("Bonjour OnBuch\n");
+    return 0;           /* 0 = le programme s'est bien terminé */
+}
+\end{codec}
+
+\subsection{Types et déclarations}
+
+\begin{center}\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Type} & \textbf{Contenu} & \textbf{Format printf/scanf}\\
+\midrule
+\code{int}    & entier        & \code{\%d}\\
+\code{float}  & décimal       & \code{\%f}\\
+\code{double} & décimal précis & \code{\%lf}\\
+\code{char}   & 1 caractère   & \code{\%c}\\
+\code{char[]} & chaîne        & \code{\%s}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{codec}
+int age = 17;             /* déclaration + initialisation */
+float moyenne = 14.5;
+char lettre = 'A';
+char nom[30] = "Awa";     /* chaîne = tableau de char */
+\end{codec}
+
+\subsection{Afficher et lire : printf / scanf}
+
+\begin{codec}
+int age;
+float moy;
+printf("Entre ton age : ");
+scanf("%d", &age);              /* & = adresse de la variable */
+printf("Entre ta moyenne : ");
+scanf("%f", &moy);
+printf("Age : %d, moyenne : %.2f\n", age, moy);
+\end{codec}
+
+\begin{attention}
+Dans \code{scanf}, on met \code{\&} devant le nom de la variable (sauf pour une
+chaîne \code{char[]}). \code{\textbackslash n} = retour à la ligne,
+\code{\%.2f} = 2 décimales.
+\end{attention}
+
+\subsection{Opérateurs}
+
+\begin{center}\small
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Catégorie} & \textbf{Opérateurs}\\
+\midrule
+Arithmétiques & \code{+ - * / \%}\\
+Comparaison   & \code{== != < > <= >=}\\
+Logiques      & \code{\&\& || !}\\
+Affectation   & \code{= += -= *= /=}\\
+Incrémentation & \code{++ -{}-}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Structures de contrôle}
+
+\begin{codec}
+/* if / else if / else */
+if (moy >= 16)       printf("Tres bien");
+else if (moy >= 10)  printf("Admis");
+else                 printf("Echec");
+
+/* switch */
+switch (jour) {
+    case 1: printf("Lundi"); break;
+    case 2: printf("Mardi"); break;
+    default: printf("Autre");
+}
+\end{codec}
+
+\begin{codec}
+/* for */
+for (int i = 1; i <= 5; i++) printf("%d ", i);
+
+/* while */
+int n = 1;
+while (n <= 5) { printf("%d ", n); n++; }
+
+/* do...while : exécute au moins une fois */
+n = 1;
+do { printf("%d ", n); n++; } while (n <= 5);
+\end{codec}
+
+\subsection{Fonctions}
+
+\begin{syntaxe}
+\code{type nom(type param1, type param2) \{ \dots return valeur; \}}
+\end{syntaxe}
+
+\begin{codec}
+/* fonction qui renvoie un float */
+float moyenne(int a, int b, int c) {
+    return (a + b + c) / 3.0;
+}
+
+/* fonction sans retour : void */
+void saluer(char nom[]) {
+    printf("Bonjour %s\n", nom);
+}
+
+int main() {
+    printf("%.2f\n", moyenne(12, 15, 9));
+    saluer("Awa");
+    return 0;
+}
+\end{codec}
+
+\subsection{Tableaux et structures}
+
+\begin{codec}
+/* tableau de 4 entiers */
+int notes[4] = {12, 15, 9, 18};
+printf("%d", notes[0]);          /* 12 */
+
+for (int i = 0; i < 4; i++)
+    printf("%d ", notes[i]);
+
+/* structure (struct) : regrouper plusieurs champs */
+struct Eleve {
+    char nom[30];
+    int  age;
+    float moyenne;
+};
+
+struct Eleve e1 = {"Awa", 17, 14.5};
+printf("%s a %d ans\n", e1.nom, e1.age);   /* accès par . */
+\end{codec}
+
+\section{Correspondance PHP \texorpdfstring{$\leftrightarrow$}{<->} C}
+
+Les deux langages partagent une syntaxe proche (héritée du C). Voici les
+différences à connaître pour passer de l'un à l'autre.
+
+\begin{center}\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Élément} & \textbf{PHP} & \textbf{C}\\
+\midrule
+Variable     & \code{\$age = 17;}            & \code{int age = 17;}\\
+Décimal      & \code{\$m = 14.5;}            & \code{float m = 14.5;}\\
+Chaîne       & \code{\$nom = "Awa";}         & \code{char nom[] = "Awa";}\\
+Affichage    & \code{echo \$age;}            & \code{printf("\%d", age);}\\
+Saisie       & \code{\$\_POST["x"]}          & \code{scanf("\%d", \&x);}\\
+Condition    & \code{if (\$x > 0) \{ \}}     & \code{if (x > 0) \{ \}}\\
+Boucle for   & \code{for(\$i=0;\$i<5;\$i++)} & \code{for(int i=0;i<5;i++)}\\
+Fonction     & \code{function f()\{return;\}} & \code{int f()\{return 0;\}}\\
+Commentaire  & \code{// \dots} ou \code{\# \dots} & \code{// \dots} ou \code{/* \dots */}\\
+Tableau      & \code{[12, 15, 9]}            & \code{\{12, 15, 9\}}\\
+Fin d'instr. & \code{;}                      & \code{;}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{remarque}
+Différence majeure : en \textbf{PHP}, on ne déclare pas le type des variables (typage
+dynamique) et tout commence par \code{\$} ; en \textbf{C}, chaque variable a un type
+fixe déclaré à l'avance (typage statique) et il faut compiler le programme avant de
+l'exécuter.
+\end{remarque}
+
+\begin{aretenir}
+Garde ces fiches à portée de main : \textbf{PHP} pour le web dynamique côté serveur,
+\textbf{SQL} pour interroger la base, \textbf{mysqli} pour relier les deux, et
+\textbf{C} pour la programmation procédurale. La logique (conditions, boucles,
+fonctions) est la même partout : seule la syntaxe change.
+\end{aretenir}

@@ -1,0 +1,394 @@
+\section{Sujet TI n\textsuperscript{o}\,4 — Gestion des notes}
+
+\begin{center}
+\setlength{\fboxsep}{8pt}
+\fcolorbox{onbline}{white}{%
+\begin{minipage}{0.92\linewidth}
+\small\sffamily
+\begin{tabular}{@{}p{0.46\linewidth}@{\hfill}p{0.46\linewidth}@{}}
+\textbf{RÉPUBLIQUE DU CAMEROUN}\newline Paix -- Travail -- Patrie\newline \textbf{OFFICE DU BACCALAURÉAT}
+&
+\textbf{Série} : TI\newline \textbf{Épreuve} : Algorithmique et Programmation\newline \textbf{Durée} : 03 heures \quad\textbf{Coef.} : 04
+\\
+\end{tabular}
+\par\smallskip
+{\color{onbline}\rule{\linewidth}{0.8pt}}
+\par\smallskip
+\centering\textbf{EXAMEN : BACCALAURÉAT TECHNIQUE \quad SESSION : JUIN}
+\end{minipage}}
+\end{center}
+
+\begin{remarque}
+Sujet type \textbf{original} OnBuch, calqué sur la structure réelle de l'épreuve
+d'Algorithmique et Programmation du Baccalauréat série TI. Les deux parties sont
+\textbf{obligatoires} et notées sur 10 points chacune. Les corrigés placés après
+la mention « Corrigé » ne font pas partie du sujet à composer.
+\end{remarque}
+
+\noindent\textbf{Contexte.} Le Lycée Technique de Bafoussam souhaite informatiser
+la gestion des notes de ses élèves. L'administration dispose d'une base de données
+\textbf{\texttt{SCOLA\_DB}} contenant une table \textbf{\texttt{ELEVES}} décrite ci-dessous.
+Les notes sont sur 20 ; un élève est déclaré \textbf{ADMIS} lorsque sa moyenne est
+supérieure ou égale à 10. Vous êtes recruté(e) comme développeur pour réaliser
+l'application web et les modules de traitement en langage C.
+
+\begin{center}\small
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{Champ} & \textbf{Type} & \textbf{Clé} & \textbf{Description}\\
+\midrule
+\code{matricule} & VARCHAR(10) & primaire & matricule de l'élève\\
+\code{nom}       & VARCHAR(50) &           & nom et prénom\\
+\code{classe}    & VARCHAR(15) &           & ex. : \og Tle\,TI \fg{}\\
+\code{moyenne}   & DECIMAL(4,2)&           & moyenne sur 20\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% =====================================================================
+\subsection*{Partie I — Programmation web \hfill (10 points)}
+
+\textbf{Exercice 1 — Saisie et validation côté client (HTML / JavaScript) \hfill (4 points)}
+
+\begin{enumerate}[label=\textbf{\arabic*-},leftmargin=2.2em]
+\item Définir : \textbf{site web dynamique}, \textbf{langage de script côté client}.
+\hfill \textbf{1pt}
+\item On souhaite une page \code{saisie.html} contenant un formulaire de saisie d'une
+note. Le formulaire, présenté \textbf{sous forme de tableau} (balise \code{<table>}),
+comporte trois champs : le \emph{matricule} de l'élève, le \emph{nom} de la matière
+et la \emph{note} obtenue ; il se termine par un bouton \og Valider \fg{}. Le
+formulaire envoie ses données à \code{traitement.php} par la méthode \code{POST}.
+Écrire le code HTML de ce formulaire. \hfill \textbf{1,5pt}
+\item Écrire la fonction JavaScript \code{validateForm()} appelée à la soumission du
+formulaire. Elle doit vérifier que la note saisie est un nombre \textbf{compris entre
+0 et 20}. Si la note est invalide, la fonction affiche un message avec \code{alert()}
+et renvoie \code{false} (la soumission est annulée) ; sinon elle renvoie \code{true}.
+\hfill \textbf{1,5pt}
+\end{enumerate}
+
+\medskip
+\textbf{Exercice 2 — Traitement serveur et base de données (PHP / MySQL) \hfill (6 points)}
+
+\begin{enumerate}[label=\textbf{\arabic*-},leftmargin=2.2em]
+\item Questions de cours : \hfill \textbf{1,5pt}
+  \begin{enumerate}[label=\textbf{\alph*)},leftmargin=2em]
+  \item Citer deux différences entre le langage PHP et le langage JavaScript. \hfill \textbf{0,5pt}
+  \item À quoi sert la super-globale \code{\$\_POST} ? \hfill \textbf{0,5pt}
+  \item Donner le rôle de la fonction \code{mysqli\_connect()}. \hfill \textbf{0,5pt}
+  \end{enumerate}
+\item Le script \code{traitement.php} reçoit les données du formulaire. Écrire le code
+PHP qui : (a) se connecte au serveur MySQL (hôte \code{localhost}, utilisateur
+\code{root}, mot de passe vide) et à la base \code{SCOLA\_DB} avec \code{mysqli\_connect()} ;
+(b) récupère le matricule et la note transmis par \code{\$\_POST} ; (c) insère un nouvel
+élève dans la table \code{ELEVES} grâce à une requête \textbf{INSERT} (on prendra
+\code{classe = "Tle TI"}). \hfill \textbf{2pt}
+\item Écrire le script \code{admis.php} qui sélectionne dans la table \code{ELEVES}
+\textbf{tous les élèves admis} (moyenne supérieure ou égale à 10) à l'aide d'une
+requête \code{SELECT \dots WHERE}, puis affiche le résultat dans un \textbf{tableau HTML}
+(colonnes : matricule, nom, moyenne, mention). \hfill \textbf{2pt}
+\item Écrire la requête \textbf{UPDATE} qui corrige la moyenne de l'élève de matricule
+\code{"BAF015"} en la fixant à \code{13.50}. \hfill \textbf{0,5pt}
+\end{enumerate}
+
+% =====================================================================
+\subsection*{Partie II — Programmation procédurale en C \hfill (10 points)}
+
+\textbf{Exercice 1 — Structures et fonctions \hfill (5 points)}
+
+On modélise un élève par la structure suivante :
+\begin{codec}
+struct Eleve {
+  char nom[50];
+  char classe[15];
+  float moyenne;   // sur 20
+};
+\end{codec}
+
+\begin{enumerate}[label=\textbf{\arabic*-},leftmargin=2.2em]
+\item Donner deux \textbf{avantages} de l'utilisation des fonctions en programmation. \hfill \textbf{1pt}
+\item Déclarer un tableau \code{classe} de 30 éléments de type \code{struct Eleve},
+puis écrire les instructions qui lisent au clavier la moyenne de la classe pour
+l'élève d'indice 0 (\code{scanf}). \hfill \textbf{1pt}
+\item Écrire la fonction \code{float moyenneClasse(struct Eleve t[], int n)} qui reçoit
+le tableau et le nombre \code{n} d'élèves, et renvoie la \textbf{moyenne générale} de la
+classe (moyenne des moyennes). \hfill \textbf{1,5pt}
+\item Écrire la fonction \code{void afficherMajor(struct Eleve t[], int n)} qui
+affiche le nom et la moyenne du \textbf{major} de la classe (l'élève ayant la plus
+forte moyenne). \hfill \textbf{1,5pt}
+\end{enumerate}
+
+\medskip
+\textbf{Exercice 2 — Lecture, trace et réécriture d'un programme C \hfill (5 points)}
+
+On donne le programme C suivant, dont les lignes sont numérotées. Il trie un tableau
+de moyennes par ordre croissant selon le principe du \textbf{tri par sélection}.
+
+\begin{codec}
+1   #include <stdio.h>
+2   void trier(float t[], int n) {
+3     int i, j, imin;
+4     float tmp;
+5     for (i = 0; i < n - 1; i++) {
+6       imin = i;
+7       for (j = i + 1; j < n; j++) {
+8         if (t[j] < t[imin])
+9           imin = j;
+10      }
+11      tmp = t[i];
+12      t[i] = t[imin];
+13      t[imin] = tmp;
+14    }
+15  }
+16  int main() {
+17    float notes[5] = {12, 8, 15, 6, 10};
+18    int k;
+19    trier(notes, 5);
+20    for (k = 0; k < 5; k++)
+21      printf("%.1f ", notes[k]);
+22    return 0;
+23  }
+\end{codec}
+
+\begin{enumerate}[label=\textbf{\arabic*-},leftmargin=2.2em]
+\item Donner le rôle des lignes \textbf{6}, \textbf{8--9} et \textbf{11--13}. \hfill \textbf{1,5pt}
+\item Quelle est la différence entre les variables \code{imin} et \code{tmp} (leur
+rôle dans l'algorithme) ? \hfill \textbf{1pt}
+\item Effectuer la \textbf{trace} du contenu du tableau \code{notes} après chaque
+tour complet de la boucle externe (ligne 5), puis donner l'\textbf{affichage} produit
+par le programme. \hfill \textbf{1,5pt}
+\item Réécrire l'instruction conditionnelle des lignes \textbf{8--9} en utilisant
+l'\textbf{opérateur ternaire}. \hfill \textbf{1pt}
+\end{enumerate}
+
+% =====================================================================
+\corrige{du sujet TI n\textsuperscript{o}\,4}
+
+\subsection*{Partie I — Programmation web}
+
+\corrige{Exercice 1 (HTML / JavaScript)}
+
+\textbf{1-} \emph{Site web dynamique} : site dont les pages sont générées au moment
+de la requête par un programme côté serveur (PHP), souvent à partir d'une base de
+données ; le contenu peut changer d'un visiteur à l'autre.\\
+\emph{Langage de script côté client} : langage (ex. JavaScript) interprété par le
+\textbf{navigateur} du visiteur, qui agit sur la page sans solliciter le serveur
+(validation de formulaire, animations).
+
+\smallskip
+\textbf{2-} Formulaire HTML présenté en tableau :
+\begin{codehtml}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Saisie d'une note</title>
+  <script src="valid.js"></script>
+</head>
+<body>
+  <h2>Lycée Technique de Bafoussam - Saisie d'une note</h2>
+  <form action="traitement.php" method="post" onsubmit="return validateForm()">
+    <table border="1" cellpadding="6">
+      <tr>
+        <td>Matricule :</td>
+        <td><input type="text" name="matricule" id="matricule"></td>
+      </tr>
+      <tr>
+        <td>Matiere :</td>
+        <td><input type="text" name="matiere" id="matiere"></td>
+      </tr>
+      <tr>
+        <td>Note (/20) :</td>
+        <td><input type="text" name="note" id="note"></td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center">
+          <input type="submit" value="Valider">
+        </td>
+      </tr>
+    </table>
+  </form>
+</body>
+</html>
+\end{codehtml}
+
+\textbf{3-} Fonction de validation (fichier \code{valid.js}) :
+\begin{codejs}
+function validateForm() {
+  // On recupere la valeur saisie et on la convertit en nombre
+  var note = parseFloat(document.getElementById("note").value);
+  // Verification : nombre valide ET compris entre 0 et 20
+  if (isNaN(note) || note < 0 || note > 20) {
+    alert("La note doit etre un nombre compris entre 0 et 20 !");
+    return false;   // annule l'envoi du formulaire
+  }
+  return true;      // la note est valide : on soumet
+}
+\end{codejs}
+
+\corrige{Exercice 2 (PHP / MySQL)}
+
+\textbf{1-} \emph{Cours.}
+\begin{enumerate}[label=\textbf{\alph*)},leftmargin=2em]
+\item PHP s'exécute \textbf{côté serveur} (le client ne voit jamais le code), tandis
+que JavaScript s'exécute \textbf{côté client} dans le navigateur. PHP peut accéder à
+une base de données ; JavaScript agit sur la page affichée.
+\item \code{\$\_POST} est un tableau associatif qui contient les données envoyées par
+un formulaire HTML avec la méthode \code{post} (on y accède par le nom des champs).
+\item \code{mysqli\_connect()} établit la \textbf{connexion} entre le script PHP et le
+serveur de base de données MySQL ; elle renvoie un identifiant de connexion.
+\end{enumerate}
+
+\smallskip
+\textbf{2-} Script \code{traitement.php} :
+\begin{codephp}
+<?php
+  // (a) Connexion au serveur MySQL et a la base SCOLA_DB
+  $conn = mysqli_connect("localhost", "root", "", "SCOLA_DB");
+  if (!$conn) {
+    die("Echec de connexion : " . mysqli_connect_error());
+  }
+
+  // (b) Recuperation des donnees du formulaire
+  $matricule = $_POST["matricule"];
+  $note      = $_POST["note"];
+
+  // (c) Insertion du nouvel eleve dans la table ELEVES
+  $sql = "INSERT INTO ELEVES (matricule, nom, classe, moyenne)
+          VALUES ('$matricule', '', 'Tle TI', $note)";
+  if (mysqli_query($conn, $sql)) {
+    echo "Eleve enregistre avec succes.";
+  } else {
+    echo "Erreur : " . mysqli_error($conn);
+  }
+  mysqli_close($conn);
+?>
+\end{codephp}
+
+\smallskip
+\textbf{3-} Script \code{admis.php} (sélection des admis + tableau HTML) :
+\begin{codephp}
+<?php
+  $conn = mysqli_connect("localhost", "root", "", "SCOLA_DB");
+  // Selection de tous les eleves admis (moyenne >= 10)
+  $sql = "SELECT matricule, nom, moyenne FROM ELEVES WHERE moyenne >= 10";
+  $res = mysqli_query($conn, $sql);
+
+  echo "<table border='1' cellpadding='6'>";
+  echo "<tr><th>Matricule</th><th>Nom</th><th>Moyenne</th><th>Mention</th></tr>";
+
+  // Parcours ligne par ligne du resultat
+  while ($eleve = mysqli_fetch_assoc($res)) {
+    $moy = $eleve["moyenne"];
+    // Determination de la mention
+    if ($moy >= 16)      $mention = "Tres Bien";
+    elseif ($moy >= 14)  $mention = "Bien";
+    elseif ($moy >= 12)  $mention = "Assez Bien";
+    else                 $mention = "Passable";
+
+    echo "<tr>";
+    echo "<td>" . $eleve["matricule"] . "</td>";
+    echo "<td>" . $eleve["nom"] . "</td>";
+    echo "<td>" . $moy . "</td>";
+    echo "<td>" . $mention . "</td>";
+    echo "</tr>";
+  }
+  echo "</table>";
+  mysqli_close($conn);
+?>
+\end{codephp}
+
+\smallskip
+\textbf{4-} Requête de mise à jour :
+\begin{codesql}
+UPDATE ELEVES SET moyenne = 13.50 WHERE matricule = 'BAF015';
+\end{codesql}
+
+\subsection*{Partie II — Programmation procédurale en C}
+
+\corrige{Exercice 1 (Structures et fonctions)}
+
+\textbf{1-} \emph{Avantages des fonctions :} (i) elles évitent la répétition du code
+(une même tâche est écrite une seule fois puis appelée autant de fois que nécessaire) ;
+(ii) elles rendent le programme plus \textbf{lisible} et plus facile à corriger
+(découpage en sous-problèmes, réutilisation).
+
+\smallskip
+\textbf{2-} Déclaration du tableau et lecture d'une moyenne :
+\begin{codec}
+struct Eleve classe[30];
+printf("Moyenne de l'eleve 0 : ");
+scanf("%f", &classe[0].moyenne);
+\end{codec}
+
+\smallskip
+\textbf{3-} Moyenne générale de la classe :
+\begin{codec}
+float moyenneClasse(struct Eleve t[], int n) {
+  int i;
+  float somme = 0;
+  for (i = 0; i < n; i++)
+    somme = somme + t[i].moyenne;   // on cumule les moyennes
+  return somme / n;                 // moyenne des moyennes
+}
+\end{codec}
+
+\smallskip
+\textbf{4-} Affichage du major :
+\begin{codec}
+void afficherMajor(struct Eleve t[], int n) {
+  int i, imax = 0;
+  for (i = 1; i < n; i++) {
+    if (t[i].moyenne > t[imax].moyenne)
+      imax = i;                     // on retient l'indice du maximum
+  }
+  printf("Major : %s (%.2f / 20)\n", t[imax].nom, t[imax].moyenne);
+}
+\end{codec}
+
+\corrige{Exercice 2 (Lecture et trace)}
+
+\textbf{1-} \emph{Rôle des lignes :}
+\begin{itemize}
+\item \textbf{ligne 6} (\code{imin = i;}) : on suppose au départ que le plus petit
+élément du sous-tableau non trié se trouve à la position \code{i}.
+\item \textbf{lignes 8--9} : on compare chaque élément suivant à l'élément le plus
+petit trouvé ; si \code{t[j]} est plus petit, on mémorise son indice dans \code{imin}.
+\item \textbf{lignes 11--13} : on \textbf{échange} l'élément de position \code{i} avec
+le plus petit élément trouvé (\code{t[imin]}), à l'aide de la variable \code{tmp}.
+\end{itemize}
+
+\smallskip
+\textbf{2-} \code{imin} est un \textbf{indice} (entier) : il repère la position du
+minimum courant. \code{tmp} est une variable \textbf{temporaire} (un flottant) qui
+sert uniquement à conserver une valeur le temps d'effectuer l'échange de deux cases.
+
+\smallskip
+\textbf{3-} \emph{Trace.} Tableau initial : \code{[12, 8, 15, 6, 10]}.
+\begin{center}\small
+\begin{tabular}{@{}cl@{}}
+\toprule
+\textbf{Après le tour i =} & \textbf{Contenu du tableau}\\
+\midrule
+0 & \code{[6, 8, 15, 12, 10]}\\
+1 & \code{[6, 8, 15, 12, 10]}\\
+2 & \code{[6, 8, 10, 12, 15]}\\
+3 & \code{[6, 8, 10, 12, 15]}\\
+\bottomrule
+\end{tabular}
+\end{center}
+\textbf{Affichage produit} : \code{6.0 8.0 10.0 12.0 15.0}
+
+\smallskip
+\textbf{4-} Réécriture des lignes 8--9 avec l'opérateur ternaire :
+\begin{codec}
+imin = (t[j] < t[imin]) ? j : imin;
+\end{codec}
+
+\begin{aretenir}
+Côté \textbf{web}, on valide d'abord la saisie en \textbf{JavaScript} (note entre 0
+et 20, \code{alert} + \code{return false}), puis on traite et on stocke côté
+\textbf{serveur} en \textbf{PHP/MySQL} (\code{mysqli\_connect}, \code{\$\_POST},
+\code{SELECT \dots WHERE moyenne >= 10}). Côté \textbf{C}, une \code{struct} regroupe
+les informations d'un élève et les \textbf{fonctions} (moyenne, major, tri par
+sélection) découpent le traitement en sous-problèmes réutilisables.
+\end{aretenir}

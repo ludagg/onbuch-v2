@@ -1,0 +1,67 @@
+\documentclass[11pt,a4paper,openany]{book}
+\input{preamble.tex}
+\usepackage{pdfpages}
+\begin{document}
+
+\input{cover.tex}
+\frontmatter
+
+% ── Avant-propos ──
+\thispagestyle{empty}
+\vspace*{0.5cm}
+{\sffamily\fontsize{28}{30}\selectfont\bfseries\color{onbink} Avant-propos}\par\vspace{4pt}
+{\color{onbo}\rule{5cm}{2.5pt}}\par\vspace{14pt}
+\noindent Ce fascicule accompagne l'élève de \textbf{Terminale TI} (Technologies de
+l'Information) dans la maîtrise du module \textbf{Algorithmique \& Programmation} du
+programme officiel camerounais (MINESEC). Il couvre, pas à pas et par la pratique,
+la \textbf{programmation web dynamique} (HTML, JavaScript, \textbf{PHP} et \textbf{MySQL})
+puis la \textbf{programmation procédurale} en \textbf{langage C} (applications monopostes).
+
+\medskip
+\noindent Chaque chapitre propose : un \textbf{cours clair et illustré}, du \textbf{code
+entièrement commenté} (avec coloration syntaxique), des \textbf{méthodes}, des
+\textbf{exercices corrigés} progressifs et un encadré \emph{« L'essentiel »}. Le livre
+se termine par des \textbf{aide-mémoire} et des \textbf{sujets type Baccalauréat corrigés}.
+
+\medskip
+% Encadré simple (sans tcolorbox) pour éviter une fuite d'état avant \@starttoc.
+\begingroup\setlength{\fboxsep}{12pt}%
+\noindent\colorbox{onbsoft}{\parbox{\dimexpr\linewidth-2\fboxsep\relax}{%
+{\sffamily\bfseries\color{onbo}À retenir — comment travailler ?}\\[2pt]
+Lis le cours, \emph{tape et exécute} chaque exemple sur ta machine (WampServer / XAMPP
+pour le web, Code::Blocks pour le C), puis cherche les exercices seul avant de regarder
+le corrigé. On ne programme bien qu'en programmant.}}%
+\endgroup\par
+
+\medskip
+\hfill{\sffamily\itshape\color{onbmuted} L'équipe OnBuch}
+\clearpage
+
+% ── Sommaire ──
+\thispagestyle{empty}
+\vspace*{0.4cm}
+{\sffamily\fontsize{28}{30}\selectfont\bfseries\color{onbink} Sommaire}\par\vspace{4pt}
+{\color{onbo}\rule{5cm}{2.5pt}}\par\vspace{8pt}
+{\hypersetup{linkcolor=onbink}\makeatletter\@starttoc{toc}\makeatother}
+
+\mainmatter
+% ── Partie web ──
+\include{ch01_web}
+\include{ch02_env}
+\include{ch03_php_intro}
+\include{ch04_php_control}
+\include{ch05_php_arrays}
+\include{ch06_forms}
+\include{ch07_mysql}
+% ── Partie C ──
+\include{ch08_c_intro}
+\include{ch09_c_control}
+\include{ch10_c_func}
+\include{ch11_c_arrays}
+\include{ch12_project}
+% ── Annexes ──
+\appendix
+\include{an_aidememoire}
+\include{an_sujets}
+
+\end{document}

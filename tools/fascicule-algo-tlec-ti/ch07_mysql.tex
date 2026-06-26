@@ -1,0 +1,708 @@
+\chapter{PHP et MySQL : les bases de données}
+
+\begin{synthese}[Au programme]
+Stocker durablement des données dans une base relationnelle MySQL, écrire les
+requêtes SQL essentielles (\code{CREATE}, \code{INSERT}, \code{SELECT},
+\code{UPDATE}, \code{DELETE}), puis interfacer cette base depuis PHP avec
+l'extension \code{mysqli} : se connecter, exécuter une requête, lire et afficher
+les résultats. C'est le cœur de toute application web de gestion.
+\end{synthese}
+
+\section{La base de données relationnelle}
+
+Jusqu'ici, dès que le script PHP se termine, les données disparaissent. Pour
+\textbf{conserver} les notes d'un élève, la liste des produits d'une boutique de
+Douala ou les inscriptions à un concours, on a besoin d'une \textbf{base de
+données}. Le logiciel qui la gère s'appelle un \textbf{SGBD} (Système de Gestion
+de Base de Données) ; ici, ce sera \textbf{MySQL}.
+
+\begin{definition}
+Une \textbf{base de données relationnelle} organise l'information dans des
+\textbf{tables}. Une table ressemble à un tableau à deux dimensions :
+\begin{itemize}
+  \item une \textbf{ligne} (ou \emph{enregistrement}) représente \textbf{un}
+  élément concret (un élève, un produit\dots) ;
+  \item une \textbf{colonne} (ou \emph{champ}) représente une \textbf{propriété}
+  commune à tous les éléments (le nom, la classe, la moyenne\dots).
+\end{itemize}
+\end{definition}
+
+\begin{exemple}
+La table \code{eleves} du Lycée de Maroua :
+
+\begin{center}\small
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{id} & \textbf{nom} & \textbf{classe} & \textbf{moyenne}\\
+\midrule
+1 & Awa Bello   & Tle TI & 14.50\\
+2 & Jean Mballa & Tle TI & 9.75\\
+3 & Sandrine Eto & Tle TI & 16.00\\
+\bottomrule
+\end{tabular}
+\end{center}
+\fig{Trois enregistrements (lignes) et quatre champs (colonnes).}
+\end{exemple}
+
+\begin{definition}
+La \textbf{clé primaire} (\emph{primary key}) est un champ dont la valeur est
+\textbf{unique} pour chaque ligne : elle identifie un enregistrement sans
+ambiguïté. On utilise très souvent un champ \code{id} entier qui
+\textbf{s'incrémente automatiquement} (\code{AUTO\_INCREMENT}).
+\end{definition}
+
+\begin{remarque}
+Deux élèves peuvent porter le même nom, mais jamais le même \code{id}. La clé
+primaire sert justement à distinguer puis à retrouver précisément une ligne, par
+exemple pour la modifier ou la supprimer.
+\end{remarque}
+
+\section{Le langage SQL}
+
+On dialogue avec MySQL grâce au langage \textbf{SQL} (\emph{Structured Query
+Language}). Une instruction SQL s'appelle une \textbf{requête}. Par convention,
+on écrit les mots-clés en \textbf{MAJUSCULES} et on termine chaque requête par un
+point-virgule \code{;}.
+
+\subsection{Créer une table : \texttt{CREATE TABLE}}
+
+\begin{syntaxe}
+\code{CREATE TABLE} \textit{nom\_table} \code{(} \textit{champ type contraintes}, \dots \code{);}
+\end{syntaxe}
+
+\begin{codesql}
+CREATE TABLE eleves (
+  id       INT AUTO_INCREMENT PRIMARY KEY,  -- clé primaire auto-incrémentée
+  nom      VARCHAR(60) NOT NULL,            -- texte court, obligatoire
+  classe   VARCHAR(20) NOT NULL,
+  moyenne  DECIMAL(4,2) DEFAULT 0           -- nombre : 2 décimales (ex. 14.50)
+);
+\end{codesql}
+
+\begin{remarque}
+Les principaux types : \code{INT} (entier), \code{VARCHAR(n)} (chaîne d'au plus
+\code{n} caractères), \code{DECIMAL(t,d)} (nombre décimal), \code{TEXT} (texte
+long), \code{DATE} (une date). \code{NOT NULL} interdit une valeur vide.
+\end{remarque}
+
+\subsection{Insérer des données : \texttt{INSERT INTO}}
+
+\begin{syntaxe}
+\code{INSERT INTO} \textit{table} \code{(}\textit{champs}\code{) VALUES (}\textit{valeurs}\code{);}
+\end{syntaxe}
+
+\begin{codesql}
+INSERT INTO eleves (nom, classe, moyenne)
+VALUES ('Awa Bello', 'Tle TI', 14.50);
+
+-- On ne précise pas id : MySQL le génère tout seul (1, 2, 3, ...)
+INSERT INTO eleves (nom, classe, moyenne)
+VALUES ('Jean Mballa', 'Tle TI', 9.75);
+\end{codesql}
+
+\begin{attention}
+Les valeurs de type texte (\code{VARCHAR}, \code{TEXT}, \code{DATE}) se mettent
+entre apostrophes simples \code{'\dots'}. Les nombres, eux, s'écrivent sans
+apostrophes.
+\end{attention}
+
+\subsection{Lire des données : \texttt{SELECT}}
+
+C'est la requête la plus utilisée : elle \textbf{interroge} la table et renvoie
+les lignes demandées.
+
+\begin{syntaxe}
+\code{SELECT} \textit{champs} \code{FROM} \textit{table} \code{WHERE} \textit{condition} \code{ORDER BY} \textit{champ};
+\end{syntaxe}
+
+\begin{codesql}
+SELECT * FROM eleves;                    -- toutes les colonnes, toutes les lignes
+
+SELECT nom, moyenne FROM eleves;         -- seulement deux colonnes
+
+SELECT * FROM eleves WHERE moyenne >= 10;        -- les admis
+
+SELECT * FROM eleves WHERE classe = 'Tle TI';    -- filtre par classe
+
+SELECT * FROM eleves ORDER BY moyenne DESC;      -- du plus fort au plus faible
+\end{codesql}
+
+\begin{remarque}
+L'étoile \code{*} signifie « toutes les colonnes ». \code{ORDER BY \dots\ ASC}
+trie en ordre croissant (par défaut), \code{DESC} en ordre décroissant. Le mot
+\code{WHERE} introduit une \textbf{condition} de filtrage.
+\end{remarque}
+
+\subsection{Modifier des données : \texttt{UPDATE}}
+
+\begin{syntaxe}
+\code{UPDATE} \textit{table} \code{SET} \textit{champ = valeur} \code{WHERE} \textit{condition};
+\end{syntaxe}
+
+\begin{codesql}
+UPDATE eleves SET moyenne = 15.25 WHERE id = 1;
+
+UPDATE eleves SET classe = 'Tle TI2' WHERE classe = 'Tle TI';
+\end{codesql}
+
+\begin{attention}
+\textbf{Ne jamais oublier le \code{WHERE} !} Sans condition,
+\code{UPDATE eleves SET moyenne = 0;} mettrait la moyenne de \textbf{tous} les
+élèves à zéro.
+\end{attention}
+
+\subsection{Supprimer des données : \texttt{DELETE}}
+
+\begin{syntaxe}
+\code{DELETE FROM} \textit{table} \code{WHERE} \textit{condition};
+\end{syntaxe}
+
+\begin{codesql}
+DELETE FROM eleves WHERE id = 2;          -- supprime l'élève n°2
+
+DELETE FROM eleves WHERE moyenne < 5;     -- supprime plusieurs lignes
+\end{codesql}
+
+\begin{attention}
+Comme pour \code{UPDATE}, sans \code{WHERE} la requête \code{DELETE FROM eleves;}
+vide \textbf{toute} la table. On supprime presque toujours par clé primaire
+(\code{WHERE id = \dots}).
+\end{attention}
+
+\section{phpMyAdmin}
+
+\begin{definition}
+\textbf{phpMyAdmin} est une application web qui permet d'administrer une base
+MySQL à la souris, depuis le navigateur, sans écrire (au début) de code. Livré
+avec WampServer et XAMPP, on l'ouvre à l'adresse
+\code{http://localhost/phpmyadmin}.
+\end{definition}
+
+On y crée une base, on y ajoute des tables et des lignes via des formulaires, et
+surtout on dispose d'un onglet \textbf{SQL} où l'on tape directement les requêtes
+vues plus haut pour les tester. C'est l'outil idéal pour préparer sa base
+\textbf{avant} de l'interfacer avec PHP.
+
+\begin{methode}
+\textbf{Préparer sa base avec phpMyAdmin.} (1)~Ouvrir
+\code{http://localhost/phpmyadmin} ; (2)~cliquer sur \emph{Nouvelle base de
+données}, la nommer \code{lycee} ; (3)~onglet \emph{SQL} : coller le
+\code{CREATE TABLE eleves} puis \emph{Exécuter} ; (4)~ajouter quelques lignes
+avec \code{INSERT INTO}.
+\end{methode}
+
+\section{Se connecter à MySQL depuis PHP : \texttt{mysqli}}
+
+Pour piloter MySQL depuis un script, PHP fournit l'extension \textbf{mysqli}
+(\emph{MySQL improved}). On l'utilise ici en \textbf{style procédural} : de
+simples fonctions \code{mysqli\_xxx()}.
+
+\begin{definition}
+\code{mysqli\_connect(\$hote, \$utilisateur, \$mot\_de\_passe, \$base)} ouvre une
+connexion au serveur MySQL et renvoie un \textbf{identifiant de connexion}.
+\end{definition}
+
+En local (WampServer/XAMPP), l'hôte est \code{localhost}, l'utilisateur est
+\code{root} et le mot de passe est en général \textbf{vide}.
+
+\begin{codephp}
+<?php
+  // connexion.php — on se connecte une seule fois, puis on inclut ce fichier
+  $hote = "localhost";
+  $user = "root";
+  $pass = "";          // mot de passe vide en local
+  $base = "lycee";
+
+  // Tentative de connexion
+  $cnx = mysqli_connect($hote, $user, $pass, $base);
+
+  // Gestion de l'erreur : si la connexion échoue, on arrête tout
+  if (!$cnx) {
+    die("Échec de la connexion : " . mysqli_connect_error());
+  }
+
+  // (Optionnel) accents corrects : on travaille en UTF-8
+  mysqli_set_charset($cnx, "utf8");
+?>
+\end{codephp}
+\fig{Le script \code{connexion.php}, réutilisé par toutes les pages.}
+
+\begin{remarque}
+La fonction \code{die("\dots")} (synonyme de \code{exit}) affiche un message puis
+\textbf{stoppe} immédiatement le script. \code{mysqli\_connect\_error()} renvoie
+la raison exacte de l'échec (mauvais mot de passe, base inexistante\dots).
+\end{remarque}
+
+\section{Exécuter une requête : \texttt{mysqli\_query}}
+
+\begin{definition}
+\code{mysqli\_query(\$cnx, \$requete)} envoie une requête SQL au serveur. Pour un
+\code{SELECT}, elle renvoie un \textbf{jeu de résultats} ; pour
+\code{INSERT}/\code{UPDATE}/\code{DELETE}, elle renvoie \code{true} en cas de
+succès, \code{false} en cas d'erreur.
+\end{definition}
+
+\begin{codephp}
+<?php
+  require "connexion.php";   // on récupère $cnx
+
+  $sql = "SELECT * FROM eleves";
+  $res = mysqli_query($cnx, $sql);
+
+  if (!$res) {
+    die("Erreur de requête : " . mysqli_error($cnx));
+  }
+?>
+\end{codephp}
+
+\begin{remarque}
+\code{require "connexion.php";} insère le fichier de connexion ; on récupère
+ainsi la variable \code{\$cnx} sans réécrire le code à chaque page.
+\code{mysqli\_error(\$cnx)} donne le détail d'une erreur de requête.
+\end{remarque}
+
+\section{Lire les résultats d'un \texttt{SELECT}}
+
+Le jeu de résultats contient plusieurs lignes. On les parcourt \textbf{une par
+une} avec une boucle \code{while} et la fonction \code{mysqli\_fetch\_assoc} :
+elle renvoie la ligne suivante sous forme de \textbf{tableau associatif}
+(\code{\$ligne["nom"]}, \code{\$ligne["moyenne"]}\dots), puis \code{false}
+quand il n'y a plus de ligne.
+
+\begin{syntaxe}
+\code{while (\$ligne = mysqli\_fetch\_assoc(\$res)) \{ \dots\ \}}
+\end{syntaxe}
+
+\begin{codephp}
+<?php
+  require "connexion.php";
+  $res = mysqli_query($cnx, "SELECT * FROM eleves ORDER BY nom");
+?>
+<table border="1">
+  <tr><th>Nom</th><th>Classe</th><th>Moyenne</th></tr>
+<?php
+  // On parcourt chaque ligne du résultat
+  while ($ligne = mysqli_fetch_assoc($res)) {
+    echo "<tr>";
+    echo "<td>" . $ligne["nom"]     . "</td>";
+    echo "<td>" . $ligne["classe"]  . "</td>";
+    echo "<td>" . $ligne["moyenne"] . "</td>";
+    echo "</tr>";
+  }
+?>
+</table>
+\end{codephp}
+\fig{Affichage de la table \code{eleves} dans un tableau HTML.}
+
+\subsection{Les autres fonctions de lecture}
+
+\begin{itemize}
+  \item \code{mysqli\_fetch\_assoc(\$res)} : ligne en tableau \textbf{associatif}
+  (\code{\$ligne["nom"]}) — la plus lisible ;
+  \item \code{mysqli\_fetch\_row(\$res)} : ligne en tableau \textbf{numéroté}
+  (\code{\$ligne[0]}, \code{\$ligne[1]}\dots) ;
+  \item \code{mysqli\_fetch\_array(\$res)} : les deux à la fois (par index
+  \textbf{et} par nom) ;
+  \item \code{mysqli\_num\_rows(\$res)} : le \textbf{nombre} de lignes
+  renvoyées.
+\end{itemize}
+
+\begin{codephp}
+<?php
+  require "connexion.php";
+  $res = mysqli_query($cnx, "SELECT * FROM eleves WHERE moyenne >= 10");
+
+  // Compter avant d'afficher
+  $nb = mysqli_num_rows($res);
+  echo "<p>Nombre d'admis : $nb</p>";
+
+  if ($nb == 0) {
+    echo "<p>Aucun élève admis pour le moment.</p>";
+  } else {
+    while ($e = mysqli_fetch_assoc($res)) {
+      echo "<p>" . $e["nom"] . " — " . $e["moyenne"] . "</p>";
+    }
+  }
+?>
+\end{codephp}
+
+\section{Insérer, modifier, supprimer depuis PHP}
+
+Les requêtes \code{INSERT}, \code{UPDATE} et \code{DELETE} se lancent aussi avec
+\code{mysqli\_query}. Le plus souvent, leurs valeurs proviennent d'un
+\textbf{formulaire} (\code{\$\_POST} ou \code{\$\_GET}).
+
+\subsection{Ajouter (INSERT) à partir d'un formulaire}
+
+\begin{codehtml}
+<!-- ajouter.php : le formulaire -->
+<form method="post" action="ajouter.php">
+  Nom :     <input type="text"   name="nom"><br>
+  Classe :  <input type="text"   name="classe"><br>
+  Moyenne : <input type="number" name="moyenne" step="0.01"><br>
+  <input type="submit" value="Ajouter">
+</form>
+\end{codehtml}
+
+\begin{codephp}
+<?php
+  require "connexion.php";
+
+  // Le formulaire a-t-il été envoyé ?
+  if (isset($_POST["nom"])) {
+    // On récupère les données saisies
+    $nom     = $_POST["nom"];
+    $classe  = $_POST["classe"];
+    $moyenne = $_POST["moyenne"];
+
+    // On construit puis on exécute la requête INSERT
+    $sql = "INSERT INTO eleves (nom, classe, moyenne)
+            VALUES ('$nom', '$classe', $moyenne)";
+
+    if (mysqli_query($cnx, $sql)) {
+      echo "<p>Élève ajouté avec succès.</p>";
+    } else {
+      echo "<p>Erreur : " . mysqli_error($cnx) . "</p>";
+    }
+  }
+?>
+\end{codephp}
+
+\begin{attention}
+Dans la requête, le \code{\$nom} et la \code{\$classe} sont du texte : ils restent
+entre apostrophes \code{'\$nom'}. La \code{\$moyenne} est un nombre : pas
+d'apostrophes.
+\end{attention}
+
+\subsection{Modifier (UPDATE)}
+
+\begin{codephp}
+<?php
+  require "connexion.php";
+
+  $id      = $_POST["id"];       // id de l'élève à modifier
+  $moyenne = $_POST["moyenne"];  // nouvelle moyenne
+
+  $sql = "UPDATE eleves SET moyenne = $moyenne WHERE id = $id";
+
+  if (mysqli_query($cnx, $sql)) {
+    echo "<p>Moyenne mise à jour.</p>";
+  } else {
+    echo "<p>Erreur : " . mysqli_error($cnx) . "</p>";
+  }
+?>
+\end{codephp}
+
+\subsection{Supprimer (DELETE)}
+
+On supprime une ligne précise grâce à sa clé primaire. L'\code{id} est souvent
+passé dans l'URL (\code{supprimer.php?id=2}), donc lu dans \code{\$\_GET}.
+
+\begin{codephp}
+<?php
+  require "connexion.php";
+
+  $id = $_GET["id"];      // ex. supprimer.php?id=2
+
+  $sql = "DELETE FROM eleves WHERE id = $id";
+
+  if (mysqli_query($cnx, $sql)) {
+    echo "<p>Élève supprimé.</p>";
+  } else {
+    echo "<p>Erreur : " . mysqli_error($cnx) . "</p>";
+  }
+?>
+\end{codephp}
+
+\section{Fermer la connexion : \texttt{mysqli\_close}}
+
+À la fin du script, on libère la connexion au serveur.
+
+\begin{codephp}
+<?php
+  mysqli_close($cnx);   // bonne pratique en fin de page
+?>
+\end{codephp}
+
+\begin{remarque}
+PHP ferme automatiquement la connexion à la fin de l'exécution de la page ;
+\code{mysqli\_close} reste une bonne habitude, surtout pour les longs scripts.
+\end{remarque}
+
+\section{Application fil rouge : gestion des élèves}
+
+Réunissons tout dans une \textbf{mini-application} de gestion des élèves : on
+affiche la liste, on ajoute un élève, on en supprime un. Trois fichiers
+suffisent.
+
+\subsection{1. \texttt{connexion.php}}
+
+\begin{codephp}
+<?php
+  $cnx = mysqli_connect("localhost", "root", "", "lycee");
+  if (!$cnx) {
+    die("Connexion impossible : " . mysqli_connect_error());
+  }
+  mysqli_set_charset($cnx, "utf8");
+?>
+\end{codephp}
+
+\subsection{2. \texttt{liste.php} — afficher, ajouter, supprimer}
+
+\begin{codephp}
+<?php require "connexion.php"; ?>
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="utf-8"><title>Gestion des élèves</title></head>
+<body>
+  <h1>Liste des élèves — Lycée de Maroua</h1>
+
+<?php
+  // --- AJOUT (formulaire envoyé en POST) ---
+  if (isset($_POST["nom"])) {
+    $nom     = $_POST["nom"];
+    $classe  = $_POST["classe"];
+    $moyenne = $_POST["moyenne"];
+    $sql = "INSERT INTO eleves (nom, classe, moyenne)
+            VALUES ('$nom', '$classe', $moyenne)";
+    mysqli_query($cnx, $sql);
+  }
+
+  // --- SUPPRESSION (id passé dans l'URL) ---
+  if (isset($_GET["suppr"])) {
+    $id = $_GET["suppr"];
+    mysqli_query($cnx, "DELETE FROM eleves WHERE id = $id");
+  }
+?>
+
+  <!-- Formulaire d'ajout -->
+  <form method="post" action="liste.php">
+    <input type="text"   name="nom"     placeholder="Nom">
+    <input type="text"   name="classe"  placeholder="Classe">
+    <input type="number" name="moyenne" step="0.01" placeholder="Moyenne">
+    <input type="submit" value="Ajouter">
+  </form>
+
+  <!-- Tableau des élèves -->
+  <table border="1" cellpadding="6">
+    <tr><th>Id</th><th>Nom</th><th>Classe</th><th>Moyenne</th><th>Action</th></tr>
+<?php
+  $res = mysqli_query($cnx, "SELECT * FROM eleves ORDER BY moyenne DESC");
+  while ($e = mysqli_fetch_assoc($res)) {
+    echo "<tr>";
+    echo "<td>" . $e["id"]      . "</td>";
+    echo "<td>" . $e["nom"]     . "</td>";
+    echo "<td>" . $e["classe"]  . "</td>";
+    echo "<td>" . $e["moyenne"] . "</td>";
+    // Lien de suppression : on passe l'id dans l'URL
+    echo "<td><a href='liste.php?suppr=" . $e["id"] . "'>Supprimer</a></td>";
+    echo "</tr>";
+  }
+?>
+  </table>
+
+<?php mysqli_close($cnx); ?>
+</body>
+</html>
+\end{codephp}
+\fig{Une seule page gère l'affichage, l'ajout et la suppression : c'est une
+mini-application CRUD complète.}
+
+\begin{remarque}
+\textbf{CRUD} résume les quatre opérations de base d'une application de gestion :
+\emph{Create} (INSERT), \emph{Read} (SELECT), \emph{Update} (UPDATE) et
+\emph{Delete} (DELETE). Tu sais désormais les réaliser toutes les quatre.
+\end{remarque}
+
+\begin{attention}
+Ces exemples sont volontairement simples pour le programme TI. Dans une vraie
+application, on \textbf{n'insère jamais} directement \code{\$\_POST} dans une
+requête (risque d'\emph{injection SQL}) : on nettoie les données. Retiens
+l'idée ; les techniques de sécurisation se voient en études supérieures.
+\end{attention}
+
+\section{Exercices}
+
+\rubrique{Application}
+
+\exo{Créer une table}\diff{1}
+Écris la requête SQL qui crée une table \code{produits} avec les champs :
+\code{id} (entier, clé primaire auto-incrémentée), \code{designation}
+(texte, 50 caractères), \code{prix} (nombre décimal), \code{stock} (entier).
+
+\exo{Insérer des lignes}\diff{1}
+Insère dans la table \code{produits} deux articles d'une boutique de Yaoundé :
+un « Cahier 200 pages » à 350 FCFA (stock 120) et un « Stylo bleu Bic »
+à 100 FCFA (stock 500).
+
+\exo{Sélectionner les admis}\diff{1}
+Écris la requête qui affiche le nom et la moyenne de tous les élèves
+\textbf{admis} (moyenne supérieure ou égale à 10), triés de la meilleure
+moyenne à la moins bonne.
+
+\exo{Mettre à jour}\diff{1}
+Écris la requête qui augmente de 50 le stock du produit dont l'\code{id} vaut 1.
+
+\exo{Supprimer}\diff{1}
+Écris la requête qui supprime tous les produits en rupture de stock
+(\code{stock = 0}).
+
+\exo{Afficher une table en HTML}\diff{2}
+Écris le script PHP qui se connecte à la base \code{lycee}, lit la table
+\code{produits} et affiche \code{designation}, \code{prix} et \code{stock}
+dans un tableau HTML.
+
+\exo{Compter les enregistrements}\diff{2}
+Écris le script PHP qui affiche le \textbf{nombre} d'élèves de la classe
+\code{'Tle TI'} contenus dans la table \code{eleves}.
+
+\rubrique{Entraînement}
+
+\exo{Recherche par nom}\diff{2}
+Un formulaire envoie en POST un champ \code{recherche}. Écris le script PHP qui
+affiche tous les élèves dont le nom \textbf{contient} le texte saisi (on
+utilisera \code{LIKE} et le caractère \code{\%}).
+
+\exo{Moyenne de la classe}\diff{2}
+Écris une requête SQL qui calcule la \textbf{moyenne générale} (moyenne des
+moyennes) de tous les élèves de la table \code{eleves} (fonction \code{AVG}).
+
+\exo{Formulaire de modification}\diff{3}
+Écris un script \code{modifier.php} qui reçoit en POST un \code{id} et une
+nouvelle \code{moyenne}, met à jour l'élève correspondant, puis affiche un
+message de confirmation.
+
+\section{Corrigés}
+
+\corrige{de l'exercice 1}
+\begin{codesql}
+CREATE TABLE produits (
+  id          INT AUTO_INCREMENT PRIMARY KEY,
+  designation VARCHAR(50) NOT NULL,
+  prix        DECIMAL(8,2) DEFAULT 0,
+  stock       INT DEFAULT 0
+);
+\end{codesql}
+
+\corrige{de l'exercice 2}
+\begin{codesql}
+INSERT INTO produits (designation, prix, stock)
+VALUES ('Cahier 200 pages', 350, 120);
+
+INSERT INTO produits (designation, prix, stock)
+VALUES ('Stylo bleu Bic', 100, 500);
+\end{codesql}
+
+\corrige{de l'exercice 3}
+\begin{codesql}
+SELECT nom, moyenne FROM eleves
+WHERE moyenne >= 10
+ORDER BY moyenne DESC;
+\end{codesql}
+
+\corrige{de l'exercice 4}
+\begin{codesql}
+UPDATE produits SET stock = stock + 50 WHERE id = 1;
+\end{codesql}
+
+\corrige{de l'exercice 5}
+\begin{codesql}
+DELETE FROM produits WHERE stock = 0;
+\end{codesql}
+
+\corrige{de l'exercice 6}
+\begin{codephp}
+<?php
+  $cnx = mysqli_connect("localhost", "root", "", "lycee");
+  if (!$cnx) {
+    die("Connexion impossible : " . mysqli_connect_error());
+  }
+  $res = mysqli_query($cnx, "SELECT * FROM produits");
+?>
+<table border="1">
+  <tr><th>Désignation</th><th>Prix (FCFA)</th><th>Stock</th></tr>
+<?php
+  while ($p = mysqli_fetch_assoc($res)) {
+    echo "<tr>";
+    echo "<td>" . $p["designation"] . "</td>";
+    echo "<td>" . $p["prix"]        . "</td>";
+    echo "<td>" . $p["stock"]       . "</td>";
+    echo "</tr>";
+  }
+  mysqli_close($cnx);
+?>
+</table>
+\end{codephp}
+
+\corrige{de l'exercice 7}
+\begin{codephp}
+<?php
+  $cnx = mysqli_connect("localhost", "root", "", "lycee");
+  $res = mysqli_query($cnx, "SELECT * FROM eleves WHERE classe = 'Tle TI'");
+  $nb  = mysqli_num_rows($res);
+  echo "<p>La classe de Tle TI compte $nb élève(s).</p>";
+  mysqli_close($cnx);
+?>
+\end{codephp}
+
+\corrige{de l'exercice 8}
+On colle le texte saisi entre deux \code{\%} : \code{LIKE '\%mot\%'} cherche le
+mot n'importe où dans le nom.
+\begin{codephp}
+<?php
+  $cnx = mysqli_connect("localhost", "root", "", "lycee");
+  $mot = $_POST["recherche"];
+
+  $sql = "SELECT * FROM eleves WHERE nom LIKE '%$mot%'";
+  $res = mysqli_query($cnx, $sql);
+
+  if (mysqli_num_rows($res) == 0) {
+    echo "<p>Aucun élève trouvé.</p>";
+  } else {
+    while ($e = mysqli_fetch_assoc($res)) {
+      echo "<p>" . $e["nom"] . " (" . $e["classe"] . ")</p>";
+    }
+  }
+  mysqli_close($cnx);
+?>
+\end{codephp}
+
+\corrige{de l'exercice 9}
+\begin{codesql}
+SELECT AVG(moyenne) AS moyenne_generale FROM eleves;
+\end{codesql}
+
+\corrige{de l'exercice 10}
+\begin{codephp}
+<?php
+  // modifier.php
+  $cnx = mysqli_connect("localhost", "root", "", "lycee");
+  if (!$cnx) {
+    die("Connexion impossible : " . mysqli_connect_error());
+  }
+
+  if (isset($_POST["id"])) {
+    $id      = $_POST["id"];
+    $moyenne = $_POST["moyenne"];
+
+    $sql = "UPDATE eleves SET moyenne = $moyenne WHERE id = $id";
+
+    if (mysqli_query($cnx, $sql)) {
+      echo "<p>Élève n°$id mis à jour : nouvelle moyenne = $moyenne.</p>";
+    } else {
+      echo "<p>Erreur : " . mysqli_error($cnx) . "</p>";
+    }
+  }
+  mysqli_close($cnx);
+?>
+\end{codephp}
+
+\begin{aretenir}
+Pour interfacer une base MySQL en PHP procédural : \textbf{(1)} se connecter avec
+\code{mysqli\_connect} (et \code{die} + \code{mysqli\_connect\_error} en cas
+d'échec) ; \textbf{(2)} exécuter la requête avec \code{mysqli\_query} ;
+\textbf{(3)} pour un \code{SELECT}, parcourir le résultat avec
+\code{while (\$l = mysqli\_fetch\_assoc(\$res))} ; \textbf{(4)} fermer avec
+\code{mysqli\_close}. En SQL, n'oublie \textbf{jamais} le \code{WHERE} dans un
+\code{UPDATE} ou un \code{DELETE}.
+\end{aretenir}

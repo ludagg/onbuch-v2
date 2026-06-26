@@ -1,0 +1,162 @@
+\chapter{Premiers pas en PHP}
+
+\begin{synthese}[Au programme]
+Insérer du PHP dans une page HTML, comprendre où s'exécute un script, déclarer
+variables et constantes, utiliser les opérateurs et afficher des données avec
+\code{echo} et \code{print}. C'est le socle de toute application web dynamique.
+\end{synthese}
+
+\section{Qu'est-ce que PHP ?}
+
+\begin{definition}
+\textbf{PHP} (\emph{PHP: Hypertext Preprocessor}) est un langage de script
+\textbf{exécuté côté serveur}. Le serveur interprète le code PHP, puis envoie au
+navigateur du client une page \textbf{HTML} ordinaire : le visiteur ne voit jamais
+le code PHP.
+\end{definition}
+
+\begin{remarque}
+Contrairement à JavaScript qui s'exécute dans le navigateur (côté \emph{client}),
+PHP s'exécute sur le \emph{serveur}. C'est pour cela qu'on peut, avec PHP, se
+connecter à une base de données ou lire des fichiers du serveur en toute sécurité.
+\end{remarque}
+
+\section{Insérer du PHP dans une page}
+
+Un script PHP se place entre les balises \code{<?php} et \code{?>}. Le fichier doit
+porter l'extension \code{.php}.
+
+\begin{syntaxe}
+\code{<?php}\quad \textit{instructions PHP\dots}\quad \code{?>}
+\end{syntaxe}
+
+\begin{codephp}
+<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="utf-8"><title>Ma première page</title></head>
+<body>
+  <h1>Bonjour</h1>
+  <?php
+    // Ceci est un commentaire sur une ligne
+    echo "<p>Bienvenue sur OnBuch, il est " . date("H:i") . " !</p>";
+  ?>
+</body>
+</html>
+\end{codephp}
+
+\fig{Le code PHP est noyé dans le HTML ; seul son résultat est envoyé au client.}
+
+\begin{attention}
+N'oublie jamais le point-virgule \code{;} à la fin de chaque instruction PHP, ni la
+balise fermante \code{?>}. Un oubli provoque une erreur de syntaxe (\emph{Parse error}).
+\end{attention}
+
+\section{Variables et constantes}
+
+\begin{definition}
+Une \textbf{variable} est un espace mémoire nommé qui stocke une valeur modifiable.
+En PHP, le nom d'une variable commence \textbf{toujours} par le symbole \code{\$}.
+\end{definition}
+
+\begin{codephp}
+<?php
+  $nom = "Awa";          // chaîne de caractères
+  $age = 17;              // entier
+  $moyenne = 14.5;        // nombre décimal
+  $estAdmis = true;       // booléen
+  define("ETABLISSEMENT", "Lycée de Maroua");  // constante
+  echo "Élève : $nom ($age ans) — " . ETABLISSEMENT;
+?>
+\end{codephp}
+
+\begin{propriete}[Règles de nommage]
+Un nom de variable commence par \code{\$} suivi d'une lettre ou d'un \code{\_},
+puis de lettres, chiffres ou \code{\_}. PHP distingue les majuscules des minuscules :
+\code{\$nom} et \code{\$Nom} sont deux variables différentes.
+\end{propriete}
+
+\section{Afficher : \texttt{echo} et \texttt{print}}
+
+\begin{itemize}
+  \item \code{echo} affiche une ou plusieurs valeurs (séparées par des virgules) ;
+  \item \code{print} affiche une seule valeur et renvoie \code{1} ;
+  \item l'opérateur de concaténation \code{.} colle deux chaînes.
+\end{itemize}
+
+\begin{exemple}
+\code{echo "Total : ", 3 + 4;} affiche \code{Total : 7}, tandis que
+\code{echo "3 + 4";} affiche littéralement \code{3 + 4}.
+\end{exemple}
+
+\section{Les opérateurs}
+
+\begin{center}\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Catégorie} & \textbf{Opérateurs} & \textbf{Exemple}\\
+\midrule
+Arithmétiques & \code{+ - * / \% **} & \code{\$x \% 2} (reste)\\
+Comparaison & \code{== != < > <= >= ===} & \code{\$a === \$b}\\
+Logiques & \code{\&\& || !} & \code{\$x>0 \&\& \$x<10}\\
+Affectation & \code{= += -= *= .=} & \code{\$s .= "!"}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{methode}
+\textbf{Tester un script PHP en local.} (1)~Lancer le serveur (WampServer/XAMPP) ;
+(2)~placer le fichier \code{.php} dans le dossier \code{www} (ou \code{htdocs}) ;
+(3)~ouvrir \code{http://localhost/monfichier.php} dans le navigateur.
+\end{methode}
+
+\section{Exercices}
+
+\rubrique{Application}
+
+\exo{Première page dynamique}\diff{1}
+Écris un script PHP qui affiche dans une page HTML le message
+\emph{« Nous sommes le \dots »} suivi de la date du jour.
+
+\exo{Calculs et affichage}\diff{1}
+On donne \code{\$a = 7} et \code{\$b = 3}. Affiche, chacune sur une ligne, la somme,
+la différence, le produit, le quotient et le reste de la division de \code{\$a} par \code{\$b}.
+
+\exo{Bulletin}\diff{2}
+Trois notes sont stockées dans \code{\$n1}, \code{\$n2}, \code{\$n3}. Calcule et affiche
+la moyenne avec deux décimales (fonction \code{round}).
+
+\section{Corrigés}
+
+\corrige{de l'exercice 1}
+\begin{codephp}
+<?php
+  echo "<p>Nous sommes le " . date("d/m/Y") . "</p>";
+?>
+\end{codephp}
+
+\corrige{de l'exercice 2}
+\begin{codephp}
+<?php
+  $a = 7; $b = 3;
+  echo "Somme : ", $a + $b, "<br>";
+  echo "Différence : ", $a - $b, "<br>";
+  echo "Produit : ", $a * $b, "<br>";
+  echo "Quotient : ", $a / $b, "<br>";
+  echo "Reste : ", $a % $b;
+?>
+\end{codephp}
+
+\corrige{de l'exercice 3}
+\begin{codephp}
+<?php
+  $n1 = 12; $n2 = 15; $n3 = 9;
+  $moyenne = ($n1 + $n2 + $n3) / 3;
+  echo "Moyenne : " . round($moyenne, 2);
+?>
+\end{codephp}
+
+\begin{aretenir}
+PHP s'exécute \textbf{côté serveur} entre \code{<?php} et \code{?>}. Les variables
+commencent par \code{\$}, chaque instruction finit par \code{;}, et \code{echo}
+sert à renvoyer du HTML au navigateur.
+\end{aretenir}

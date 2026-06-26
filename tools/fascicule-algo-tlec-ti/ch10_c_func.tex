@@ -1,0 +1,676 @@
+\chapter{Les fonctions en C}
+
+\begin{synthese}[Au programme]
+Découper un programme en \textbf{fonctions} : déclarer un prototype, écrire une
+définition, appeler la fonction et lui passer des \textbf{paramètres}. Comprendre
+le rôle de \code{return}, la différence entre variables \textbf{locales} et
+\textbf{globales}, et maîtriser la \textbf{récursivité} (factorielle, puissance,
+Fibonacci). C'est l'outil qui rend un programme C lisible et réutilisable.
+\end{synthese}
+
+\section{Pourquoi des fonctions ?}
+
+Jusqu'ici, tout notre code tenait dans la fonction \code{main}. Mais dès qu'un
+programme grandit, écrire tout d'un seul bloc devient illisible et on recopie
+sans cesse les mêmes calculs. La solution : isoler chaque traitement dans une
+\textbf{fonction} qu'on appelle au besoin.
+
+\begin{definition}
+Une \textbf{fonction} est un sous-programme nommé qui réalise une tâche précise.
+On l'écrit \textbf{une seule fois}, puis on l'\textbf{appelle} autant de fois que
+nécessaire. Elle peut recevoir des données (les \textbf{paramètres}) et renvoyer
+un résultat (la valeur de \textbf{retour}).
+\end{definition}
+
+Trois bénéfices immédiats :
+\begin{itemize}
+  \item \textbf{Réutiliser} : on écrit le calcul de la moyenne une fois, on s'en
+        sert pour chaque élève du lycée.
+  \item \textbf{Structurer} : un gros problème se découpe en petites fonctions
+        simples, faciles à lire et à corriger.
+  \item \textbf{Tester} : chaque fonction se vérifie séparément.
+\end{itemize}
+
+\begin{remarque}
+Tu connais déjà des fonctions : \code{printf} et \code{scanf} de la bibliothèque
+\code{<stdio.h>}, ou \code{sqrt} de \code{<math.h>}, sont des fonctions écrites
+par d'autres et que tu appelles. Tu vas maintenant écrire les tiennes.
+\end{remarque}
+
+\section{Déclarer une fonction}
+
+\subsection{La définition}
+
+Définir une fonction, c'est écrire son code complet. La structure est toujours
+la même.
+
+\begin{syntaxe}
+\code{type nom(parametres)} \code{\{}\ \textit{instructions}\ \code{return valeur;}\ \code{\}}
+\end{syntaxe}
+
+\begin{itemize}
+  \item \code{type} : le type de la valeur renvoyée (\code{int}, \code{float},
+        \code{double}, \code{char}\dots ou \code{void} si la fonction ne renvoie rien) ;
+  \item \code{nom} : le nom de la fonction (mêmes règles qu'une variable) ;
+  \item \code{parametres} : la liste des données reçues, séparées par des virgules,
+        chacune précédée de son type ;
+  \item entre accolades : le \textbf{corps} de la fonction ;
+  \item \code{return} : renvoie le résultat \textbf{et} termine la fonction.
+\end{itemize}
+
+\begin{codec}
+// Fonction qui calcule le carre d'un entier
+int carre(int x) {
+    int resultat = x * x;   // on calcule le carre
+    return resultat;        // on renvoie le resultat
+}
+\end{codec}
+\fig{Ici \texttt{int} est le type de retour, \texttt{carre} le nom, \texttt{int x} le paramètre.}
+
+\subsection{Le rôle de \texttt{return}}
+
+\begin{definition}
+L'instruction \code{return} fait deux choses : elle \textbf{renvoie} une valeur à
+l'endroit qui a appelé la fonction, et elle \textbf{arrête} immédiatement la
+fonction (les instructions situées après ne sont pas exécutées).
+\end{definition}
+
+La valeur renvoyée par \code{return} doit être du même type que celui annoncé
+devant le nom de la fonction. Une fonction \code{int} renvoie un entier, une
+fonction \code{float} renvoie un décimal.
+
+\begin{exemple}
+Dans \code{int carre(int x)}, l'appel \code{carre(5)} vaut \code{25}. On peut
+l'utiliser comme une valeur : \code{int s = carre(5) + carre(3);} place \code{34}
+dans \code{s}.
+\end{exemple}
+
+\subsection{Les fonctions \texttt{void} (procédures)}
+
+Certaines fonctions n'ont pas de résultat à renvoyer : elles se contentent
+d'\emph{agir} (afficher quelque chose, par exemple). Leur type de retour est
+alors \code{void} (« vide »), et elles n'utilisent pas \code{return valeur;}.
+On les appelle souvent des \textbf{procédures}.
+
+\begin{codec}
+// Procedure : elle affiche, mais ne renvoie rien
+void afficherLigne(void) {
+    printf("--------------------\n");
+}
+\end{codec}
+
+\begin{remarque}
+Le mot \code{void} entre les parenthèses indique que la fonction ne prend
+\textbf{aucun} paramètre. On peut aussi laisser les parenthèses vides :
+\code{void afficherLigne()}.
+\end{remarque}
+
+\section{Appeler une fonction}
+
+\textbf{Appeler} une fonction, c'est l'exécuter en écrivant son nom suivi des
+valeurs à lui transmettre entre parenthèses (les \textbf{arguments}).
+
+\begin{codec}
+#include <stdio.h>
+
+int carre(int x) {
+    return x * x;
+}
+
+int main(void) {
+    int n = 6;
+    int c = carre(n);              // appel : on passe 6, on recupere 36
+    printf("Le carre de %d est %d\n", n, c);
+    printf("Le carre de 4 est %d\n", carre(4));  // appel direct
+    return 0;
+}
+\end{codec}
+\fig{Affiche : « Le carre de 6 est 36 » puis « Le carre de 4 est 16 ».}
+
+\subsection{Le passage des paramètres par valeur}
+
+\begin{propriete}[Passage par valeur]
+En C, les paramètres sont passés \textbf{par valeur} : la fonction reçoit une
+\textbf{copie} de l'argument. Modifier le paramètre à l'intérieur de la fonction
+\textbf{ne change pas} la variable d'origine de l'appelant.
+\end{propriete}
+
+\begin{codec}
+#include <stdio.h>
+
+void doubler(int x) {
+    x = x * 2;                 // on modifie la COPIE locale
+    printf("Dans la fonction : x = %d\n", x);
+}
+
+int main(void) {
+    int a = 10;
+    doubler(a);                // on passe une copie de a
+    printf("Dans main : a = %d\n", a);   // a vaut toujours 10 !
+    return 0;
+}
+\end{codec}
+\fig{Affiche « Dans la fonction : x = 20 » puis « Dans main : a = 10 ».}
+
+\begin{attention}
+La variable \code{a} de \code{main} n'est pas modifiée : la fonction travaille sur
+sa propre copie. Pour qu'une fonction modifie réellement une variable de
+l'appelant, il faut les \textbf{pointeurs} (chapitre dédié) ; ce n'est pas l'objet
+de ce chapitre.
+\end{attention}
+
+\subsection{Vocabulaire : paramètre ou argument ?}
+
+\begin{itemize}
+  \item le \textbf{paramètre} est la variable écrite dans la définition
+        (\code{int x} dans \code{carre(int x)}) ;
+  \item l'\textbf{argument} est la valeur réellement transmise lors de l'appel
+        (\code{6} dans \code{carre(6)}).
+\end{itemize}
+
+\section{Où placer les fonctions : le prototype}
+
+Le compilateur lit le fichier de haut en bas. Il doit \textbf{connaître} une
+fonction avant qu'on l'appelle. Deux solutions.
+
+\begin{enumerate}[label=\arabic*)]
+  \item Écrire la définition complète \textbf{avant} \code{main}.
+  \item Écrire seulement le \textbf{prototype} avant \code{main}, et la définition
+        complète après. C'est la méthode recommandée car \code{main} reste en haut.
+\end{enumerate}
+
+\begin{definition}
+Un \textbf{prototype} (ou \emph{déclaration}) annonce au compilateur le nom de la
+fonction, son type de retour et le type de ses paramètres, suivi d'un
+point-virgule. Il ne contient pas le corps.
+\end{definition}
+
+\begin{syntaxe}
+\code{type nom(types des parametres);}\quad ex.\quad \code{int carre(int x);}
+\end{syntaxe}
+
+\begin{codec}
+#include <stdio.h>
+
+int carre(int x);        // PROTOTYPE (avant main)
+
+int main(void) {
+    printf("%d\n", carre(7));   // l'appel est valide grace au prototype
+    return 0;
+}
+
+int carre(int x) {       // DEFINITION (apres main)
+    return x * x;
+}
+\end{codec}
+
+\begin{remarque}
+Dans un prototype, on peut omettre le nom des paramètres :
+\code{int carre(int);} est correct. On garde souvent les noms pour la lisibilité.
+\end{remarque}
+
+\section{Variables locales et globales : la portée}
+
+\begin{definition}
+La \textbf{portée} (\emph{scope}) d'une variable est la zone du programme où cette
+variable existe et peut être utilisée.
+\end{definition}
+
+\subsection{Variables locales}
+
+Une variable déclarée \textbf{à l'intérieur} d'une fonction est \textbf{locale} :
+elle n'existe que pendant l'exécution de cette fonction et reste invisible aux
+autres. Les paramètres sont également des variables locales.
+
+\begin{codec}
+#include <stdio.h>
+
+void fonctionA(void) {
+    int compteur = 5;    // locale a fonctionA
+    printf("A : %d\n", compteur);
+}
+
+int main(void) {
+    int compteur = 100;  // une AUTRE variable locale a main
+    fonctionA();
+    printf("main : %d\n", compteur);   // affiche 100
+    return 0;
+}
+\end{codec}
+\fig{Les deux \texttt{compteur} portent le même nom mais sont indépendants.}
+
+\subsection{Variables globales}
+
+Une variable déclarée \textbf{en dehors} de toute fonction (souvent en haut du
+fichier) est \textbf{globale} : toutes les fonctions peuvent la lire et la
+modifier.
+
+\begin{codec}
+#include <stdio.h>
+
+int total = 0;           // variable GLOBALE
+
+void ajouter(int montant) {
+    total = total + montant;   // accede a la globale
+}
+
+int main(void) {
+    ajouter(2000);       // en francs CFA
+    ajouter(3500);
+    printf("Total : %d FCFA\n", total);   // affiche 5500
+    return 0;
+}
+\end{codec}
+
+\begin{attention}
+Les variables globales sont à utiliser \textbf{avec parcimonie} : comme n'importe
+quelle fonction peut les modifier, elles rendent les erreurs difficiles à
+retrouver. Préfère toujours des variables locales et le passage de paramètres.
+\end{attention}
+
+\section{Quelques fonctions utiles}
+
+\subsection{Maximum de deux entiers}
+
+\begin{codec}
+// Renvoie le plus grand des deux entiers a et b
+int max(int a, int b) {
+    if (a > b) {
+        return a;        // return arrete la fonction ici
+    }
+    return b;            // atteint seulement si a <= b
+}
+\end{codec}
+
+\subsection{Tester la parité}
+
+\begin{codec}
+// Renvoie 1 si n est pair, 0 sinon
+int estPair(int n) {
+    return (n % 2 == 0);   // la condition vaut 1 (vrai) ou 0 (faux)
+}
+\end{codec}
+
+\begin{remarque}
+En C, une condition vraie vaut \code{1} et une condition fausse vaut \code{0}.
+On peut donc directement renvoyer le résultat d'un test, comme ci-dessus.
+\end{remarque}
+
+\subsection{Moyenne de trois notes}
+
+\begin{codec}
+#include <stdio.h>
+
+// Moyenne de trois notes (valeurs decimales)
+float moyenne(float a, float b, float c) {
+    return (a + b + c) / 3.0;
+}
+
+int main(void) {
+    float m = moyenne(12.5, 9.0, 15.5);
+    printf("Moyenne : %.2f / 20\n", m);   // affiche 12.33 / 20
+    return 0;
+}
+\end{codec}
+\fig{Le type de retour \texttt{float} permet de garder les décimales.}
+
+\section{La récursivité}
+
+\subsection{Le principe}
+
+\begin{definition}
+Une fonction est dite \textbf{récursive} lorsqu'elle s'\textbf{appelle elle-même}.
+Pour qu'elle s'arrête, elle doit comporter deux parties :
+\begin{itemize}
+  \item un \textbf{cas de base} : une situation simple où le résultat est connu
+        directement, sans nouvel appel ;
+  \item un \textbf{cas récursif} : la fonction se rappelle sur un problème
+        \textbf{plus petit}, qui se rapproche du cas de base.
+\end{itemize}
+\end{definition}
+
+\begin{attention}
+Sans cas de base, ou si les appels ne se rapprochent jamais du cas de base, la
+fonction s'appelle indéfiniment : c'est la \textbf{récursion infinie}. Le
+programme finit par planter (\emph{stack overflow}, débordement de pile). Vérifie
+\textbf{toujours} qu'il existe un cas de base atteignable.
+\end{attention}
+
+\subsection{La factorielle}
+
+Rappel mathématique : $n! = n \times (n-1) \times \dots \times 2 \times 1$, avec
+$0! = 1$. On remarque que $n! = n \times (n-1)!$. Le cas de base est $0! = 1$.
+
+\begin{codec}
+// Factorielle de n, version recursive
+int factorielle(int n) {
+    if (n == 0) {            // CAS DE BASE
+        return 1;
+    }
+    return n * factorielle(n - 1);   // CAS RECURSIF
+}
+\end{codec}
+
+\subsection{La pile d'appels}
+
+Pour calculer \code{factorielle(4)}, l'ordinateur empile les appels, puis les
+résout en remontant :
+
+\begin{exemple}
+\code{factorielle(4)} = 4 $\times$ \code{factorielle(3)}\\
+\hspace*{2em}= 4 $\times$ (3 $\times$ \code{factorielle(2)})\\
+\hspace*{2em}= 4 $\times$ (3 $\times$ (2 $\times$ \code{factorielle(1)}))\\
+\hspace*{2em}= 4 $\times$ (3 $\times$ (2 $\times$ (1 $\times$ \code{factorielle(0)})))\\
+\hspace*{2em}= 4 $\times$ 3 $\times$ 2 $\times$ 1 $\times$ \textbf{1} = \textbf{24}
+\end{exemple}
+
+Chaque appel est mis en attente dans une zone mémoire appelée la \textbf{pile}
+(\emph{stack}) tant que le suivant n'a pas renvoyé son résultat. Quand le cas de
+base \code{factorielle(0)} renvoie \code{1}, la pile se vide en sens inverse.
+
+\subsection{La puissance}
+
+$x^n$ se calcule récursivement : $x^0 = 1$ (cas de base) et
+$x^n = x \times x^{n-1}$.
+
+\begin{codec}
+// Calcule x puissance n (n entier positif), version recursive
+int puissance(int x, int n) {
+    if (n == 0) {            // CAS DE BASE : x^0 = 1
+        return 1;
+    }
+    return x * puissance(x, n - 1);   // CAS RECURSIF
+}
+\end{codec}
+
+\subsection{Somme de 1 à n}
+
+La fonction \code{somme(n)} calcule $1 + 2 + \dots + n$. Cas de base :
+\code{somme(0)} vaut \code{0} ; cas récursif : \code{somme(n) = n + somme(n-1)}.
+
+\begin{codec}
+// Somme des entiers de 1 a n, version recursive
+int somme(int n) {
+    if (n == 0) {
+        return 0;            // CAS DE BASE
+    }
+    return n + somme(n - 1); // CAS RECURSIF
+}
+\end{codec}
+
+\subsection{La suite de Fibonacci}
+
+La suite de Fibonacci est définie par \code{F(0) = 0}, \code{F(1) = 1} et
+\code{F(n) = F(n-1) + F(n-2)} pour \code{n >= 2}. Elle a donc \textbf{deux} cas
+de base.
+
+\begin{codec}
+// n-ieme terme de la suite de Fibonacci, version recursive
+int fibonacci(int n) {
+    if (n == 0) return 0;    // CAS DE BASE
+    if (n == 1) return 1;    // CAS DE BASE
+    return fibonacci(n - 1) + fibonacci(n - 2);   // deux appels
+}
+\end{codec}
+
+\begin{remarque}
+La version récursive de Fibonacci est élégante mais \textbf{lente} pour les grands
+\code{n} : elle recalcule plusieurs fois les mêmes termes. Pour \code{fibonacci(40)},
+elle fait des millions d'appels. La version itérative (une boucle) est alors bien
+plus efficace.
+\end{remarque}
+
+\subsection{Itératif ou récursif ?}
+
+Tout calcul récursif peut s'écrire avec une boucle (\textbf{itératif}), et
+réciproquement. Comparons la factorielle.
+
+\begin{codec}
+// Factorielle, version ITERATIVE (avec une boucle)
+int factorielleIter(int n) {
+    int produit = 1;
+    for (int i = 2; i <= n; i++) {
+        produit = produit * i;
+    }
+    return produit;
+}
+\end{codec}
+
+\begin{center}\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Critère} & \textbf{Récursif} & \textbf{Itératif}\\
+\midrule
+Lisibilité & souvent plus proche des maths & plus terre à terre\\
+Mémoire & consomme la pile (un cadre par appel) & quasi nulle\\
+Vitesse & plus lent (appels) & en général plus rapide\\
+Risque & récursion infinie / débordement & boucle infinie\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{methode}
+\textbf{Écrire une fonction récursive.} (1)~Identifier le \textbf{cas de base}
+(la plus petite valeur, où la réponse est immédiate). (2)~Exprimer le résultat de
+\code{f(n)} en fonction de \code{f(n-1)} (ou d'un cas plus petit). (3)~Vérifier
+que chaque appel \textbf{rapproche} du cas de base.
+\end{methode}
+
+\section{Exercices}
+
+\rubrique{Application}
+
+\exo{Minimum de deux entiers}\diff{1}
+Écris une fonction \code{int min(int a, int b)} qui renvoie le plus petit des deux
+entiers. Teste-la dans \code{main} avec \code{min(8, 3)}.
+
+\exo{Valeur absolue}\diff{1}
+Écris une fonction \code{int valeurAbsolue(int n)} qui renvoie la valeur absolue de
+\code{n} (par exemple \code{-7} donne \code{7}).
+
+\exo{Mention au baccalauréat}\diff{2}
+Écris une fonction \code{void afficherMention(float moyenne)} qui affiche la mention
+obtenue : \emph{Passable} si la moyenne est entre 10 et 12, \emph{Assez bien} entre
+12 et 14, \emph{Bien} entre 14 et 16, \emph{Très bien} à partir de 16, et
+\emph{Recalé} en dessous de 10 (notes sur 20).
+
+\exo{Factorielle dans les deux styles}\diff{2}
+Écris la fonction \code{factorielle} en version \textbf{récursive}, puis en version
+\textbf{itérative}. Appelle les deux dans \code{main} pour vérifier qu'elles
+donnent le même résultat pour \code{5}.
+
+\rubrique{Entraînement}
+
+\exo{Nombre premier}\diff{2}
+Écris une fonction \code{int estPremier(int n)} qui renvoie \code{1} si \code{n} est
+un nombre premier, \code{0} sinon. Rappel : un nombre premier n'est divisible que
+par \code{1} et par lui-même, et est strictement supérieur à \code{1}.
+
+\exo{PGCD}\diff{3}
+Écris une fonction \code{int pgcd(int a, int b)} qui calcule le plus grand commun
+diviseur de \code{a} et \code{b} par l'algorithme d'Euclide (soustractions
+successives, ou \code{pgcd(a, b) = pgcd(b, a \% b)} avec \code{pgcd(a, 0) = a}).
+
+\exo{Somme des chiffres}\diff{3}
+Écris une fonction \textbf{récursive} \code{int sommeChiffres(int n)} qui renvoie la
+somme des chiffres de \code{n}. Par exemple \code{sommeChiffres(237)} vaut
+\code{2 + 3 + 7 = 12}. Indice : le dernier chiffre est \code{n \% 10}, et le reste
+du nombre est \code{n / 10}.
+
+\exo{Puissance}\diff{2}
+Écris une fonction \code{puissance(int x, int n)} en version récursive, puis appelle
+\code{puissance(2, 10)} dans \code{main} (le résultat doit valoir \code{1024}).
+
+\section{Corrigés}
+
+\corrige{de l'exercice 1}
+\begin{codec}
+#include <stdio.h>
+
+int min(int a, int b) {
+    if (a < b) {
+        return a;
+    }
+    return b;
+}
+
+int main(void) {
+    printf("Le minimum est %d\n", min(8, 3));   // affiche 3
+    return 0;
+}
+\end{codec}
+
+\corrige{de l'exercice 2}
+\begin{codec}
+#include <stdio.h>
+
+int valeurAbsolue(int n) {
+    if (n < 0) {
+        return -n;     // -(-7) = 7
+    }
+    return n;
+}
+
+int main(void) {
+    printf("%d\n", valeurAbsolue(-7));   // affiche 7
+    printf("%d\n", valeurAbsolue(4));    // affiche 4
+    return 0;
+}
+\end{codec}
+
+\corrige{de l'exercice 3}
+\begin{codec}
+#include <stdio.h>
+
+void afficherMention(float moyenne) {
+    if (moyenne < 10) {
+        printf("Recale\n");
+    } else if (moyenne < 12) {
+        printf("Passable\n");
+    } else if (moyenne < 14) {
+        printf("Assez bien\n");
+    } else if (moyenne < 16) {
+        printf("Bien\n");
+    } else {
+        printf("Tres bien\n");
+    }
+}
+
+int main(void) {
+    afficherMention(13.5);   // affiche Assez bien
+    afficherMention(16.2);   // affiche Tres bien
+    return 0;
+}
+\end{codec}
+
+\corrige{de l'exercice 4}
+\begin{codec}
+#include <stdio.h>
+
+// Version recursive
+int factorielle(int n) {
+    if (n == 0) {
+        return 1;
+    }
+    return n * factorielle(n - 1);
+}
+
+// Version iterative
+int factorielleIter(int n) {
+    int produit = 1;
+    for (int i = 2; i <= n; i++) {
+        produit = produit * i;
+    }
+    return produit;
+}
+
+int main(void) {
+    printf("Recursive : %d\n", factorielle(5));      // 120
+    printf("Iterative : %d\n", factorielleIter(5));  // 120
+    return 0;
+}
+\end{codec}
+
+\corrige{de l'exercice 5}
+\begin{codec}
+#include <stdio.h>
+
+int estPremier(int n) {
+    if (n < 2) {
+        return 0;            // 0 et 1 ne sont pas premiers
+    }
+    for (int d = 2; d < n; d++) {
+        if (n % d == 0) {    // n est divisible par d
+            return 0;        // donc pas premier
+        }
+    }
+    return 1;                // aucun diviseur trouve : premier
+}
+
+int main(void) {
+    printf("%d\n", estPremier(7));    // 1 (premier)
+    printf("%d\n", estPremier(12));   // 0 (non premier)
+    return 0;
+}
+\end{codec}
+
+\corrige{de l'exercice 6}
+\begin{codec}
+#include <stdio.h>
+
+// Algorithme d'Euclide, version recursive
+int pgcd(int a, int b) {
+    if (b == 0) {
+        return a;            // CAS DE BASE
+    }
+    return pgcd(b, a % b);   // CAS RECURSIF
+}
+
+int main(void) {
+    printf("PGCD(48, 36) = %d\n", pgcd(48, 36));   // 12
+    return 0;
+}
+\end{codec}
+
+\corrige{de l'exercice 7}
+\begin{codec}
+#include <stdio.h>
+
+// Somme des chiffres, version recursive
+int sommeChiffres(int n) {
+    if (n == 0) {
+        return 0;                  // CAS DE BASE
+    }
+    return (n % 10) + sommeChiffres(n / 10);   // dernier chiffre + le reste
+}
+
+int main(void) {
+    printf("%d\n", sommeChiffres(237));   // 12
+    return 0;
+}
+\end{codec}
+
+\corrige{de l'exercice 8}
+\begin{codec}
+#include <stdio.h>
+
+int puissance(int x, int n) {
+    if (n == 0) {
+        return 1;
+    }
+    return x * puissance(x, n - 1);
+}
+
+int main(void) {
+    printf("2^10 = %d\n", puissance(2, 10));   // 1024
+    return 0;
+}
+\end{codec}
+
+\begin{aretenir}
+Une fonction se \textbf{déclare} (\code{type nom(params)\{ \dots return v; \}}),
+s'\textbf{appelle} par son nom et reçoit ses arguments \textbf{par valeur} (une
+copie). Place un \textbf{prototype} avant \code{main}. Une fonction
+\textbf{récursive} s'appelle elle-même : elle a \textbf{toujours} un \textbf{cas
+de base} pour s'arrêter, sinon c'est la récursion infinie.
+\end{aretenir}
