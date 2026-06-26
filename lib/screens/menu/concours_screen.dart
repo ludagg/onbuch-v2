@@ -109,9 +109,9 @@ class _ConcoursScreenState extends State<ConcoursScreen> {
               _searchField(),
               const SizedBox(height: 14),
 
-              // Guide d'orientation — explique les filières et leurs débouchés
+              // 4 accès Orientation (2×2) : Université · Concours · Filières · Bourses
               if (!searching) ...[
-                _OrientationGuideBanner(),
+                const _OrientationQuad(),
                 const SizedBox(height: 18),
               ],
 
@@ -269,39 +269,91 @@ class _IntroHeadlineState extends State<_IntroHeadline> {
   }
 }
 
-// ─── Bannière « Guide d'orientation » ────────────────────────────────────────
-class _OrientationGuideBanner extends StatelessWidget {
+// ─── 4 accès Orientation (2×2) ───────────────────────────────────────────────
+// Université · Concours · Filières & cursus · Bourses.
+class _OrientationQuad extends StatelessWidget {
+  const _OrientationQuad();
+
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return Column(children: [
+      Row(children: [
+        _QuadButton(
+          icon: Icons.account_balance_rounded,
+          title: 'Université',
+          subtitle: 'Classement & villes',
+          color: OC.blue,
+          onTap: () => context.push('/universites'),
+        ),
+        const SizedBox(width: 11),
+        _QuadButton(
+          icon: Icons.emoji_events_rounded,
+          title: 'Concours',
+          subtitle: 'Tous les concours',
+          color: OC.o600,
+          onTap: () => context.push('/concours-all'),
+        ),
+      ]),
+      const SizedBox(height: 11),
+      Row(children: [
+        _QuadButton(
+          icon: Icons.explore_rounded,
+          title: 'Filières & cursus',
+          subtitle: 'Débouchés par voie',
+          color: const Color(0xFF7A5AE0),
+          onTap: () => context.push('/orientation-guide'),
+        ),
+        const SizedBox(width: 11),
+        _QuadButton(
+          icon: Icons.savings_rounded,
+          title: 'Bourses',
+          subtitle: 'Financer ses études',
+          color: OC.good,
+          onTap: () => context.push('/bourses'),
+        ),
+      ]),
+    ]);
+  }
+}
+
+class _QuadButton extends StatelessWidget {
+  final IconData icon;
+  final String title, subtitle;
+  final Color color;
+  final VoidCallback onTap;
+  const _QuadButton({
+    required this.icon, required this.title, required this.subtitle,
+    required this.color, required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(child: GestureDetector(
       behavior: HitTestBehavior.opaque,
-      onTap: () => context.push('/orientation-guide'),
+      onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.all(14),
+        padding: const EdgeInsets.all(13),
         decoration: BoxDecoration(
-          color: OC.o50,
+          color: OC.paper,
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: OC.o100, width: 1.5),
+          border: Border.all(color: OC.line, width: 1.5),
         ),
         child: Row(children: [
           Container(
-            width: 44, height: 44,
+            width: 40, height: 40,
             alignment: Alignment.center,
-            decoration: BoxDecoration(color: OC.o500, borderRadius: BorderRadius.circular(13)),
-            child: const Icon(Icons.explore_rounded, size: 22, color: Colors.white),
+            decoration: BoxDecoration(color: color.withValues(alpha: 0.13), borderRadius: BorderRadius.circular(12)),
+            child: Icon(icon, size: 21, color: color),
           ),
-          const SizedBox(width: 12),
+          const SizedBox(width: 10),
           Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text('Guide d\'orientation', style: body(14, weight: FontWeight.w800)),
-            const SizedBox(height: 2),
-            Text('Quel concours pour quel métier ? Explore les filières et leurs débouchés.',
-                style: body(11.5, color: OC.ink2, weight: FontWeight.w500).copyWith(height: 1.3)),
+            Text(title, style: body(12.5, weight: FontWeight.w800), maxLines: 1, overflow: TextOverflow.ellipsis),
+            const SizedBox(height: 1),
+            Text(subtitle, style: body(9.5, color: OC.muted, weight: FontWeight.w600), maxLines: 1, overflow: TextOverflow.ellipsis),
           ])),
-          const SizedBox(width: 6),
-          Icon(Icons.arrow_forward_ios_rounded, size: 15, color: OC.o600),
         ]),
       ),
-    );
+    ));
   }
 }
 

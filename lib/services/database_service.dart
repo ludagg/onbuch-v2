@@ -24,6 +24,10 @@ import '../models/exam_series.dart';
 import '../models/fascicule.dart';
 import '../models/social_link.dart';
 import '../models/annale.dart';
+import '../models/university.dart';
+import '../models/bourse.dart';
+import '../data/universities.dart';
+import '../data/bourses.dart';
 import 'appwrite_client.dart';
 
 class DatabaseService {
@@ -681,6 +685,36 @@ class DatabaseService {
       );
       return res.documents.map((d) => {...d.data, '\$id': d.$id}).toList();
     }, (raw) => raw.map((m) => PrepCenter.fromMap(m, id: m['\$id'] as String)).toList());
+  }
+
+  /// Annuaire des universités (admin), avec repli sur la liste curée embarquée
+  /// si la collection est absente/vide ou hors-ligne. Seules les actives.
+  Future<List<University>> getUniversities({int limit = 100}) async {
+    final list = await _cachedList<University>('universities:$limit', () async {
+      final res = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteUniversitiesCollectionId,
+        queries: [Query.orderAsc('order'), Query.limit(limit)],
+      );
+      return res.documents.map((d) => {...d.data, '\$id': d.$id}).toList();
+    }, (raw) => raw.map((m) => University.fromMap(m, id: m['\$id'] as String)).toList());
+    final active = list.where((u) => u.active).toList();
+    return active.isEmpty ? List<University>.from(kUniversities) : active;
+  }
+
+  /// Liste des bourses (admin), avec repli sur la liste curée embarquée si la
+  /// collection est absente/vide ou hors-ligne. Seules les actives.
+  Future<List<Bourse>> getBourses({int limit = 100}) async {
+    final list = await _cachedList<Bourse>('bourses:$limit', () async {
+      final res = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteBoursesCollectionId,
+        queries: [Query.orderAsc('order'), Query.limit(limit)],
+      );
+      return res.documents.map((d) => {...d.data, '\$id': d.$id}).toList();
+    }, (raw) => raw.map((m) => Bourse.fromMap(m, id: m['\$id'] as String)).toList());
+    final active = list.where((b) => b.active).toList();
+    return active.isEmpty ? List<Bourse>.from(kBourses) : active;
   }
 
   /// Ressources de préparation aux concours (triées par `order`).
