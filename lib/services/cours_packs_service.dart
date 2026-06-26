@@ -3,10 +3,12 @@ import 'package:appwrite/appwrite.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import '../appwrite_config.dart';
+import '../data/exam_taxonomy.dart';
 import '../models/course.dart';
 import 'appwrite_client.dart';
 import 'auth_service.dart';
 import 'database_service.dart';
+import 'exam_structure_service.dart';
 import 'tutor_service.dart';
 
 /// Un module de pack = un chapitre.
@@ -85,12 +87,60 @@ class CoursPacks extends ChangeNotifier {
   bool loaded = false;
   String examLabel = '';
   String serieLabel = '';
+  String serieCode = '';
 
   String get classLabel {
     final e = _short(examLabel);
     final s = serieLabel.trim();
     if (e.isEmpty) return s.isEmpty ? '' : 'Série $s';
     return s.isEmpty ? e : '$e · Série $s';
+  }
+
+  /// Liste **complète** des matières de la classe de l'élève, lue dans la
+  /// taxonomie (même source que la page Annales) — donc TOUTES les matières de
+  /// la série, pas seulement celles qui ont déjà un pack en base. Vide si la
+  /// classe n'est pas définie ou introuvable dans la taxonomie.
+  List<String> get classSubjects {
+    final exam = examLabel.trim();
+    if (exam.isEmpty) return const [];
+    final tax = ExamStructureService.instance.taxonomy;
+    ExamNode? root = tax[exam];
+    if (root == null) {
+      for (final e in tax.entries) {
+        if (_examAlias(e.key.trim().toLowerCase(), exam.toLowerCase())) { root = e.value; break; }
+      }
+    }
+    if (root == null) return const [];
+    // Examen composé directement par matières (ex. BEPC) : pas de série.
+    if (root.children.isEmpty && root.subjects.isNotEmpty) return root.subjects;
+    final leaf = _findSerieLeaf(root, serieCode.trim(), serieLabel.trim());
+    return leaf?.subjects ?? const [];
+  }
+
+  /// Trouve la feuille « série/filière » correspondant au code (prioritaire) ou
+  /// au libellé du profil, par parcours en profondeur de la taxonomie.
+  static ExamNode? _findSerieLeaf(ExamNode root, String code, String label) {
+    final c = code.toLowerCase();
+    final l = label.toLowerCase();
+    ExamNode? loose; // repli : correspondance souple sur le libellé
+    ExamNode? walk(ExamNode n) {
+      if (n.isLeaf) {
+        if (c.isNotEmpty && n.code.trim().toLowerCase() == c) return n;
+        if (l.isNotEmpty) {
+          final nl = n.label.trim().toLowerCase();
+          if (nl == l) return n;
+          loose ??= (nl.startsWith(l) || l.startsWith(nl) || nl.contains(l)) ? n : null;
+        }
+        return null;
+      }
+      for (final ch in n.children) {
+        final r = walk(ch);
+        if (r != null) return r;
+      }
+      return null;
+    }
+
+    return walk(root) ?? loose;
   }
 
   static String _short(String exam) {
@@ -108,17 +158,19 @@ class CoursPacks extends ChangeNotifier {
     final db = DatabaseService();
 
     // Profil élève (examen + série) pour filtrer comme les annales.
-    String? exam, serie;
+    String? exam, serie, serieC;
     try {
       final user = await AuthService().getCurrentUser();
       if (user != null) {
         final p = await db.getUserProfile(user.$id);
         exam = p?['examen']?.toString();
         serie = p?['serie']?.toString();
+        serieC = p?['serieCode']?.toString();
       }
     } catch (_) {}
     examLabel = exam ?? '';
     serieLabel = serie ?? '';
+    serieCode = serieC ?? '';
 
     final subjects = await db.getSubjects();
     final chapters = await db.getChapters();
