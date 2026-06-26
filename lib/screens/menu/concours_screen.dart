@@ -102,6 +102,10 @@ class _ConcoursScreenState extends State<ConcoursScreen> {
           return ListView(
             padding: const EdgeInsets.fromLTRB(20, 6, 20, 32),
             children: [
+              if (!searching) ...[
+                _IntroHeadline(),
+                const SizedBox(height: 14),
+              ],
               _searchField(),
               const SizedBox(height: 14),
 
@@ -202,6 +206,21 @@ Widget _pill(String t, Color bg, Color fg) => Container(
     );
 
 String _frShort(DateTime d) => DateFormat('d MMM', 'fr_FR').format(d);
+
+// ─── Phrase d'accroche (au-dessus de la recherche) ───────────────────────────
+class _IntroHeadline extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Text('ORIENTATION · PARCOURS SUP',
+          style: body(10.5, weight: FontWeight.w800, color: OC.o600)
+              .copyWith(letterSpacing: 0.12 * 10.5)),
+      const SizedBox(height: 8),
+      Text('Trouve le meilleur parcours sup pour toi',
+          style: display(25, weight: FontWeight.w700, color: OC.ink).copyWith(height: 1.12)),
+    ]);
+  }
+}
 
 // ─── Bannière « Guide d'orientation » ────────────────────────────────────────
 class _OrientationGuideBanner extends StatelessWidget {
