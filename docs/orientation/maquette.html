@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OnBuch — Maquette Orientation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* ── Palette OC (clair) ── */
+    --o200:#F8D399; --o500:#F59321; --o600:#E07A0C; --o700:#A85607;
+    --o50:#FFF6E8; --o100:#FCE9C7;
+    --ink:#1C1714; --ink2:#5B5048; --muted:#978B80; --faint:#C9BFB5;
+    --line:#EFE8E1; --line2:#E4DACE; --paper:#FFFFFF; --bg:#FAF6F1; --panel:#F6F0EA;
+    --good:#1E9E63; --goodBg:#E7F4EC; --blue:#2D6CDF; --blueBg:#E7EEFB;
+    --warn:#C9781C; --warnBg:#FBEFDD;
+  }
+  .dark{
+    --o200:#F8D399; --o500:#F59321; --o600:#F0A23C; --o700:#F3B670;
+    --o50:#2C2012; --o100:#3C2D18;
+    --ink:#F4EEE7; --ink2:#C7BDB2; --muted:#998E83; --faint:#6E645A;
+    --line:#2E2720; --line2:#3A322B; --paper:#1F1B17; --bg:#15120F; --panel:#2A231D;
+    --good:#3CC489; --goodBg:#12281C; --blue:#5E97FF; --blueBg:#16243E;
+    --warn:#E2A24A; --warnBg:#2C2110;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-font-smoothing:antialiased;}
+  body{
+    background:#0d0b09;
+    font-family:'Plus Jakarta Sans',sans-serif;
+    display:flex; flex-wrap:wrap; gap:40px; justify-content:center;
+    padding:48px 24px; min-height:100vh;
+  }
+  .display{font-family:'Space Grotesk',sans-serif;letter-spacing:-0.02em;}
+
+  /* ── Cadre téléphone ── */
+  .phone{
+    width:360px; height:760px; border-radius:46px; padding:11px;
+    background:#000; box-shadow:0 30px 80px rgba(0,0,0,.55);
+    position:relative; flex-shrink:0;
+  }
+  .screen{
+    width:100%; height:100%; border-radius:36px; overflow:hidden;
+    background:var(--bg); color:var(--ink); position:relative;
+    display:flex; flex-direction:column;
+  }
+  .notch{
+    position:absolute; top:13px; left:50%; transform:translateX(-50%);
+    width:118px; height:30px; background:#000; border-radius:18px; z-index:50;
+  }
+  .label{
+    position:absolute; bottom:-30px; left:0; right:0; text-align:center;
+    color:#8a8178; font-size:12px; font-weight:600; letter-spacing:.04em;
+    text-transform:uppercase;
+  }
+
+  /* ── Barre de statut ── */
+  .statusbar{
+    height:50px; flex-shrink:0; display:flex; align-items:flex-end;
+    justify-content:space-between; padding:0 26px 6px; font-size:13px; font-weight:700;
+    font-family:'Space Grotesk'; color:var(--ink);
+  }
+
+  /* ── Scroll body ── */
+  .body{flex:1; overflow:hidden; position:relative;}
+  .scroll{padding:4px 18px 90px; height:100%; overflow:hidden;}
+
+  /* ── En-tête de page ── */
+  .topbar{display:flex; align-items:center; justify-content:space-between; padding:4px 2px 14px;}
+  .topbar .ttl{font-size:13px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--muted);}
+  .iconbtn{width:36px; height:36px; border-radius:12px; background:var(--paper); border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center; color:var(--ink2); font-size:17px;}
+
+  /* ── HERO question ── */
+  .hero{
+    background:linear-gradient(135deg,var(--o50),var(--o100));
+    border:1px solid var(--o100); border-radius:24px; padding:26px 22px 24px;
+    position:relative; overflow:hidden;
+  }
+  .hero .kicker{font-size:12px; font-weight:800; color:var(--o700); letter-spacing:.06em;
+    text-transform:uppercase; margin-bottom:14px; display:flex; align-items:center; gap:7px;}
+  .leo-dot{width:22px;height:22px;border-radius:50%;background:var(--o500);display:inline-flex;
+    align-items:center;justify-content:center;font-size:13px;}
+  .hero h1{
+    font-family:'Space Grotesk'; font-size:27px; font-weight:700; line-height:1.12;
+    color:var(--ink); letter-spacing:-0.02em; min-height:96px;
+  }
+  .cursor{display:inline-block; width:3px; height:0.95em; background:var(--o600);
+    margin-left:2px; vertical-align:-2px; animation:blink 1s steps(1) infinite; border-radius:2px;}
+  @keyframes blink{50%{opacity:0;}}
+
+  /* ── Barre de recherche ── */
+  .searchrow{display:flex; gap:10px; margin-top:20px;}
+  .search{
+    flex:1; height:54px; background:var(--paper); border:1px solid var(--line2);
+    border-radius:16px; display:flex; align-items:center; gap:11px; padding:0 16px;
+    box-shadow:0 2px 10px rgba(0,0,0,.03);
+  }
+  .search .mag{font-size:18px; color:var(--muted);}
+  .search .ph{color:var(--muted); font-size:15px; font-weight:500;}
+  .leobtn{
+    width:54px; height:54px; border-radius:16px;
+    background:linear-gradient(135deg,#FFB347,#F59321 52%,#E07A0C);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+    box-shadow:0 6px 16px rgba(224,122,12,.35); position:relative;
+  }
+  .leobtn .face{font-size:25px;}
+  .leobtn .spark{position:absolute; top:-5px; right:-5px; width:20px; height:20px; border-radius:50%;
+    background:var(--good); color:#fff; font-size:11px; display:flex; align-items:center; justify-content:center;
+    border:2px solid var(--bg);}
+
+  /* ── puces suggestions ── */
+  .chips{display:flex; gap:8px; margin-top:14px; flex-wrap:wrap;}
+  .chip{padding:8px 14px; border-radius:20px; background:var(--paper); border:1px solid var(--line);
+    font-size:13px; font-weight:600; color:var(--ink2);}
+  .chip.on{background:var(--o50); border-color:var(--o100); color:var(--o700);}
+
+  /* ── Section titre ── */
+  .sec{margin-top:26px;}
+  .sec .h{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:12px; padding:0 2px;}
+  .sec .h .t{font-family:'Space Grotesk'; font-size:18px; font-weight:700; letter-spacing:-0.01em;}
+  .sec .h .more{font-size:13px; font-weight:700; color:var(--o600);}
+  .sec .sub{font-size:13px; color:var(--muted); margin:-8px 2px 12px;}
+
+  /* ── carte concours ── */
+  .card{background:var(--paper); border:1px solid var(--line); border-radius:18px; padding:15px 16px; margin-bottom:11px;}
+  .crow{display:flex; gap:13px; align-items:center;}
+  .badge{width:46px; height:46px; border-radius:13px; flex-shrink:0; display:flex; align-items:center;
+    justify-content:center; font-size:21px; font-family:'Space Grotesk'; font-weight:700;}
+  .b-med{background:var(--badBg,#FBEAE5); color:#D2462E;}
+  .b-poly{background:var(--blueBg); color:var(--blue);}
+  .b-ens{background:var(--goodBg); color:var(--good);}
+  .ctitle{font-size:15px; font-weight:700; color:var(--ink); line-height:1.2;}
+  .cmeta{font-size:12.5px; color:var(--muted); margin-top:3px;}
+  .pill{font-size:11px; font-weight:700; padding:4px 9px; border-radius:8px; white-space:nowrap;}
+  .p-open{background:var(--goodBg); color:var(--good);}
+  .p-soon{background:var(--warnBg); color:var(--warn);}
+
+  /* ── carte université ── */
+  .uni{background:var(--paper); border:1px solid var(--line); border-radius:18px; overflow:hidden; margin-bottom:11px;}
+  .uni .top{height:74px; background:linear-gradient(120deg,var(--o600),var(--o700)); position:relative;
+    display:flex; align-items:flex-end; padding:11px 14px;}
+  .uni .top .dist{position:absolute; top:11px; right:11px; background:rgba(0,0,0,.28); color:#fff;
+    font-size:11px; font-weight:700; padding:5px 9px; border-radius:9px; display:flex; gap:4px; align-items:center;}
+  .uni .top .nm{color:#fff; font-family:'Space Grotesk'; font-weight:700; font-size:16px; letter-spacing:-0.01em;}
+  .uni .meta{display:flex; gap:18px; padding:12px 14px;}
+  .uni .meta .it{display:flex; flex-direction:column; gap:2px;}
+  .uni .meta .k{font-size:11px; color:var(--muted); font-weight:600; text-transform:uppercase; letter-spacing:.04em;}
+  .uni .meta .v{font-size:14px; font-weight:700; color:var(--ink); font-family:'Space Grotesk';}
+
+  /* ── carte frais ── */
+  .fees{background:linear-gradient(135deg,var(--o50),var(--o100)); border:1px solid var(--o100);
+    border-radius:18px; padding:16px;}
+  .fees .frow{display:flex; justify-content:space-between; align-items:center; padding:9px 0;}
+  .fees .frow + .frow{border-top:1px solid var(--o100);}
+  .fees .k{font-size:14px; color:var(--ink2); font-weight:600;}
+  .fees .v{font-family:'Space Grotesk'; font-weight:700; font-size:15px; color:var(--o700);}
+
+  /* ── bottom nav ── */
+  .nav{position:absolute; bottom:0; left:0; right:0; height:74px; background:var(--paper);
+    border-top:1px solid var(--line); display:flex; align-items:flex-start; padding:11px 6px 0; z-index:40;}
+  .nav .it{flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; color:var(--muted); font-size:10px; font-weight:600;}
+  .nav .it .ic{font-size:20px;}
+  .nav .it.on{color:var(--o600);}
+  .fade{position:absolute; bottom:74px; left:0; right:0; height:36px; z-index:39;
+    background:linear-gradient(transparent,var(--bg));}
+
+  .annot{color:#8a8178; max-width:340px; font-size:13.5px; line-height:1.5;}
+  .annot b{color:#cbbfae;}
+  .annot h3{color:#e8dcc8; font-family:'Space Grotesk'; font-size:15px; margin-bottom:8px; font-weight:700;}
+</style>
+</head>
+<body>
+
+<!-- ════════ ÉCRAN 1 : HERO (clair) ════════ -->
+<div class="phone">
+  <div class="notch"></div>
+  <div class="screen" id="s1">
+    <div class="statusbar"><span>9:41</span><span>📶 🔋</span></div>
+    <div class="body"><div class="scroll">
+      <div class="topbar">
+        <span class="ttl">Orientation</span>
+        <div class="iconbtn">☰</div>
+      </div>
+
+      <div class="hero">
+        <div class="kicker"><span class="leo-dot">🦉</span> Léo · Conseiller d'orientation</div>
+        <h1 class="display"><span id="tw"></span><span class="cursor"></span></h1>
+      </div>
+
+      <div class="searchrow">
+        <div class="search"><span class="mag">🔍</span><span class="ph">Médecine, droit, informatique…</span></div>
+        <div class="leobtn"><span class="face">🦉</span><span class="spark">✦</span></div>
+      </div>
+
+      <div class="chips">
+        <span class="chip on">🔥 Populaires</span>
+        <span class="chip">Santé</span>
+        <span class="chip">Ingénierie</span>
+        <span class="chip">Droit</span>
+        <span class="chip">Gestion</span>
+      </div>
+
+      <div class="sec">
+        <div class="h"><span class="t">Explore par domaine</span></div>
+        <div class="card"><div class="crow">
+          <div class="badge b-med">🩺</div>
+          <div style="flex:1"><div class="ctitle">Santé & Médecine</div><div class="cmeta">8 concours · 5 universités</div></div>
+          <span style="color:var(--faint);font-size:20px">›</span>
+        </div></div>
+        <div class="card"><div class="crow">
+          <div class="badge b-poly">⚙️</div>
+          <div style="flex:1"><div class="ctitle">Ingénierie & Polytechnique</div><div class="cmeta">12 concours · 6 universités</div></div>
+          <span style="color:var(--faint);font-size:20px">›</span>
+        </div></div>
+      </div>
+    </div></div>
+
+    <div class="fade"></div>
+    <div class="nav">
+      <div class="it"><span class="ic">▦</span>Tableau</div>
+      <div class="it"><span class="ic">🏆</span>Concours</div>
+      <div class="it on"><span class="ic">🧭</span>Orientation</div>
+      <div class="it"><span class="ic">📄</span>Annales</div>
+      <div class="it"><span class="ic">📚</span>Cours</div>
+    </div>
+  </div>
+  <div class="label">Écran 1 · Accueil (clair)</div>
+</div>
+
+<!-- ════════ ÉCRAN 2 : CONTENU (sombre) ════════ -->
+<div class="phone">
+  <div class="notch"></div>
+  <div class="screen dark">
+    <div class="statusbar"><span>9:41</span><span>📶 🔋</span></div>
+    <div class="body"><div class="scroll">
+      <div class="topbar">
+        <span class="ttl">Résultats · « Informatique »</span>
+        <div class="iconbtn">←</div>
+      </div>
+
+      <div class="sec" style="margin-top:6px">
+        <div class="h"><span class="t">Concours offerts</span><span class="more">Tout voir</span></div>
+        <div class="card"><div class="crow">
+          <div class="badge b-poly">PO</div>
+          <div style="flex:1"><div class="ctitle">ENSPY — Génie Informatique</div><div class="cmeta">Polytechnique Yaoundé · Bac C/D</div></div>
+          <span class="pill p-open">● Ouvert</span>
+        </div></div>
+        <div class="card"><div class="crow">
+          <div class="badge b-ens">FS</div>
+          <div style="flex:1"><div class="ctitle">Licence Informatique</div><div class="cmeta">Fac des Sciences UY1 · Bac C/D/E</div></div>
+          <span class="pill p-soon">Bientôt</span>
+        </div></div>
+        <div class="card"><div class="crow">
+          <div class="badge b-med">IU</div>
+          <div style="flex:1"><div class="ctitle">IUT — Génie Logiciel</div><div class="cmeta">Douala · Bac toutes séries</div></div>
+          <span class="pill p-open">● Ouvert</span>
+        </div></div>
+      </div>
+
+      <div class="sec">
+        <div class="h"><span class="t">Universités près de toi</span></div>
+        <div class="sub">📍 Yaoundé · triées par distance</div>
+        <div class="uni">
+          <div class="top"><span class="dist">📍 2,4 km</span><span class="nm">Université de Yaoundé I</span></div>
+          <div class="meta">
+            <div class="it"><span class="k">Type</span><span class="v">Publique</span></div>
+            <div class="it"><span class="k">Filières info</span><span class="v">4</span></div>
+            <div class="it"><span class="k">Frais / an</span><span class="v">50 000 F</span></div>
+          </div>
+        </div>
+        <div class="uni">
+          <div class="top"><span class="dist">📍 6,1 km</span><span class="nm">ENSP Yaoundé</span></div>
+          <div class="meta">
+            <div class="it"><span class="k">Type</span><span class="v">Grande école</span></div>
+            <div class="it"><span class="k">Filières info</span><span class="v">2</span></div>
+            <div class="it"><span class="k">Frais / an</span><span class="v">50 000 F</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sec">
+        <div class="h"><span class="t">Frais & repères</span></div>
+        <div class="fees">
+          <div class="frow"><span class="k">Frais d'inscription concours</span><span class="v">10 000 F</span></div>
+          <div class="frow"><span class="k">Scolarité publique / an</span><span class="v">50 000 F</span></div>
+          <div class="frow"><span class="k">Durée moyenne licence</span><span class="v">3 ans</span></div>
+        </div>
+      </div>
+    </div></div>
+
+    <div class="fade"></div>
+    <div class="nav">
+      <div class="it"><span class="ic">▦</span>Tableau</div>
+      <div class="it"><span class="ic">🏆</span>Concours</div>
+      <div class="it on"><span class="ic">🧭</span>Orientation</div>
+      <div class="it"><span class="ic">📄</span>Annales</div>
+      <div class="it"><span class="ic">📚</span>Cours</div>
+    </div>
+  </div>
+  <div class="label">Écran 2 · Résultats domaine (sombre)</div>
+</div>
+
+<div class="annot">
+  <h3>Ce que montre la maquette</h3>
+  <p>• L'accueil pose la <b>question qui s'écrit toute seule</b> (anime en boucle ici).<br>
+  • La <b>barre de recherche</b> + le <b>bouton Léo orientation</b> (pastille verte = il est dispo, distinct du Tuteur).<br>
+  • Des <b>puces</b> de domaines populaires pour démarrer sans taper.<br>
+  • Après recherche : <b>concours</b> (statut ouvert/bientôt), <b>universités triées par distance</b> (📍 GPS ou ville), et un bloc <b>frais & repères</b>.<br>
+  • Onglet <b>Orientation</b> ajouté à la bottom nav.<br><br>
+  <i>Données factices — on branchera sur Appwrite ensuite.</i></p>
+</div>
+
+<script>
+  const phrases = [
+    "Quel domaine t'intéresse ?",
+    "Tu veux faire quoi après le Bac ?",
+    "Médecine, droit, ingénierie… ?",
+    "Trouvons ta voie ensemble."
+  ];
+  const el = document.getElementById('tw');
+  let p = 0, c = 0, deleting = false;
+  function tick(){
+    const full = phrases[p];
+    if(!deleting){
+      c++; el.textContent = full.slice(0,c);
+      if(c === full.length){ deleting = true; return setTimeout(tick, 1700); }
+    } else {
+      c--; el.textContent = full.slice(0,c);
+      if(c === 0){ deleting = false; p = (p+1)%phrases.length; }
+    }
+    setTimeout(tick, deleting ? 35 : 65);
+  }
+  tick();
+</script>
+</body>
+</html>
