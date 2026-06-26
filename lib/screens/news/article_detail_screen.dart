@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../widgets/cached_image.dart';
 import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
@@ -49,7 +50,7 @@ class ArticleDetailScreen extends StatelessWidget {
             flexibleSpace: FlexibleSpaceBar(
               background: Stack(fit: StackFit.expand, children: [
                 if (hasImage)
-                  Image.network(
+                  CachedImage(
                     a.imageUrl!,
                     fit: BoxFit.cover,
                     errorBuilder: (_, __, ___) => const _CoverFallback(),

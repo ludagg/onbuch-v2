@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'appwrite_client.dart';
 import 'database_service.dart';
 import 'disk_cache.dart';
+import 'image_store_io.dart' if (dart.library.html) 'image_store_stub.dart';
 import 'push_service.dart';
 import 'analytics_service.dart';
 
@@ -281,6 +282,7 @@ class AuthService extends ChangeNotifier {
       await _clearNameCache();
       DatabaseService.clearCache();
       await DiskCache.clear();
+      await clearImageCache();
       await PushService.instance.unregister();
       notifyListeners();
     }

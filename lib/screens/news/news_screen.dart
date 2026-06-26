@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../widgets/cached_image.dart';
 import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
@@ -83,7 +84,7 @@ class _ArticleItem extends StatelessWidget {
               child: SizedBox(
                 width: 96,
                 child: hasImg
-                    ? Image.network(article.imageUrl!, fit: BoxFit.cover,
+                    ? CachedImage(article.imageUrl!, fit: BoxFit.cover,
                         errorBuilder: (_, __, ___) => Container(color: cat.tint,
                             child: Center(child: Icon(Icons.article_outlined, color: cat.accent, size: 26))),
                         loadingBuilder: (_, child, p) => p == null ? child : Container(color: OC.panel))

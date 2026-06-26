@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../widgets/cached_image.dart';
 import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
@@ -463,7 +464,7 @@ class _FasciculesShowcase extends StatelessWidget {
           borderRadius: BorderRadius.circular(7),
           child: AspectRatio(
             aspectRatio: 595 / 841,
-            child: Image.network(
+            child: CachedImage(
               url,
               fit: BoxFit.cover,
               gaplessPlayback: true,
