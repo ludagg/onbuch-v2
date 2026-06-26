@@ -1,0 +1,774 @@
+{
+  "code": "HG",
+  "level": "3ème",
+  "chapters": [
+    {
+      "title": "La Première Guerre mondiale (1914-1918)",
+      "video": "https://www.youtube.com/watch?v=Lh3x2W8s2cE",
+      "lesson": "# La Première Guerre mondiale (1914-1918)\n\n## Introduction\n\nLa **Première Guerre mondiale**, appelee a l'epoque la **Grande Guerre**, oppose de **1914 a 1918** les plus grandes puissances de l'epoque. C'est le premier conflit de l'histoire a mobiliser autant d'hommes, de moyens industriels et de territoires (Europe, colonies d'Afrique et d'Asie). Elle fait environ **10 millions de morts** et bouleverse profondement le monde.\n\n## I. Les causes de la guerre\n\n### 1. Les causes lointaines\n- Les **rivalites economiques et coloniales** entre les grandes puissances (Allemagne, France, Royaume-Uni).\n- Le **nationalisme** et les revanches (la France veut reprendre l'**Alsace-Lorraine** perdue en 1871).\n- La **course aux armements** et les **systemes d'alliances** :\n  - la **Triple-Alliance** (ou Triplice) : **Allemagne, Autriche-Hongrie, Italie** ;\n  - la **Triple-Entente** : **France, Royaume-Uni, Russie**.\n\n### 2. La cause immediate\nL'**assassinat de l'archiduc Francois-Ferdinand**, heritier du trone d'Autriche-Hongrie, le **28 juin 1914** a **Sarajevo** par un nationaliste serbe. Le jeu des alliances entraine l'Europe dans la guerre en quelques semaines.\n\n## II. Les grandes phases de la guerre\n\n### 1. La guerre de mouvement (1914)\nLes armees se deplacent rapidement. L'Allemagne envahit la Belgique et le nord de la France. Elle est arretee a la **bataille de la Marne** (septembre 1914).\n\n### 2. La guerre de position ou guerre de tranchees (1915-1917)\nLes soldats s'enterrent dans des **tranchees**. Le front se fige. Batailles meurtrieres de **Verdun** et de la **Somme** en **1916** (des centaines de milliers de morts).\n\n### 3. Le tournant et la fin (1917-1918)\n- **1917** : la **Russie** se retire (Revolution bolchevique) ; les **Etats-Unis** entrent en guerre aux cotes de l'Entente.\n- **11 novembre 1918** : signature de l'**armistice** qui met fin aux combats.\n\n## III. Le role de l'Afrique et du Cameroun\n\nL'Afrique participe a la guerre : les colonies fournissent des **soldats** (les **tirailleurs**) et des **ressources**. Au **Cameroun**, alors colonie allemande, les troupes franco-britanniques chassent les Allemands en **1916**.\n\n## IV. Les consequences\n\n- **Bilan humain** : environ **10 millions de morts**, des millions de blesses et de mutiles.\n- Le **traite de Versailles** (1919) : l'Allemagne, declaree responsable, doit payer de lourdes reparations.\n- Creation de la **Societe des Nations (SDN)** pour maintenir la paix.\n- Bouleversement des cartes : disparition des empires (austro-hongrois, ottoman) ; le Cameroun est partage entre la **France** et le **Royaume-Uni** sous mandat de la SDN.\n\n## Reperes et chiffres cles\n\n- **28 juin 1914** : assassinat de Sarajevo.\n- **1914** : debut de la guerre ; bataille de la Marne.\n- **1916** : batailles de Verdun et de la Somme.\n- **1917** : entree des Etats-Unis, retrait de la Russie.\n- **11 novembre 1918** : armistice.\n- **1919** : traite de Versailles.\n- Bilan : environ **10 millions de morts**.\n\n## Exercice / sujet corrige\n\n**Sujet : Presentez les causes et les consequences de la Premiere Guerre mondiale.**\n\n**Corrige (plan redige) :**\n*Introduction :* La Premiere Guerre mondiale (1914-1918) est le premier grand conflit mondial.\n\n*1. Les causes :* causes lointaines (rivalites coloniales, nationalisme, alliances rivales : Triplice contre Triple-Entente) et cause immediate (assassinat de Francois-Ferdinand le 28 juin 1914 a Sarajevo).\n\n*2. Les consequences :* humaines (10 millions de morts), territoriales (traite de Versailles de 1919, disparition d'empires, partage du Cameroun), politiques (creation de la SDN).\n\n*Conclusion :* la Grande Guerre a marque la fin d'une epoque et prepare, par ses injustices, la Seconde Guerre mondiale.\n\n## A retenir\n\nLa Premiere Guerre mondiale (**1914-1918**) oppose la **Triple-Entente** a la **Triple-Alliance**. Declenchee par l'**assassinat de Sarajevo** (28 juin 1914), marquee par la **guerre des tranchees** (Verdun, 1916), elle se termine par l'**armistice du 11 novembre 1918** et le **traite de Versailles** (1919). Bilan : **10 millions de morts** et un monde profondement transforme.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Quel evenement declenche la Premiere Guerre mondiale ?",
+            "options": [
+              "L'assassinat de Francois-Ferdinand a Sarajevo",
+              "L'invasion de la Pologne",
+              "La prise de la Bastille",
+              "La crise de 1929"
+            ],
+            "answer": 0,
+            "explanation": "L'assassinat de l'archiduc Francois-Ferdinand le 28 juin 1914 a Sarajevo est la cause immediate du conflit."
+          },
+          {
+            "q": "Quelles puissances forment la Triple-Entente ?",
+            "options": [
+              "Allemagne, Autriche-Hongrie, Italie",
+              "France, Royaume-Uni, Russie",
+              "Etats-Unis, Japon, Chine",
+              "Espagne, Portugal, Italie"
+            ],
+            "answer": 1,
+            "explanation": "La Triple-Entente reunit la France, le Royaume-Uni et la Russie face a la Triple-Alliance."
+          },
+          {
+            "q": "Quand est signe l'armistice qui met fin a la guerre ?",
+            "options": [
+              "Le 14 juillet 1918",
+              "Le 1er septembre 1918",
+              "Le 11 novembre 1918",
+              "Le 8 mai 1918"
+            ],
+            "answer": 2,
+            "explanation": "L'armistice est signe le 11 novembre 1918."
+          },
+          {
+            "q": "Comment appelle-t-on la guerre ou les soldats s'enterrent face a face ?",
+            "options": [
+              "La guerre eclair",
+              "La guerre de tranchees",
+              "La guerre froide",
+              "La guerre navale"
+            ],
+            "answer": 1,
+            "explanation": "De 1915 a 1917, c'est la guerre de position ou guerre de tranchees (Verdun, la Somme)."
+          },
+          {
+            "q": "Quel traite met officiellement fin a la guerre en 1919 ?",
+            "options": [
+              "Le traite de Rome",
+              "Le traite de Versailles",
+              "Le traite de Berlin",
+              "Le traite de Vienne"
+            ],
+            "answer": 1,
+            "explanation": "Le traite de Versailles (1919) declare l'Allemagne responsable et cree la SDN."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La Seconde Guerre mondiale (1939-1945)",
+      "video": "https://www.youtube.com/watch?v=q2Z05oUmEss",
+      "lesson": "# La Seconde Guerre mondiale (1939-1945)\n\n## Introduction\n\nLa **Seconde Guerre mondiale** (**1939-1945**) est le conflit le plus meurtrier de l'histoire de l'humanite, avec environ **50 a 60 millions de morts**. C'est une **guerre totale** et une **guerre ideologique** qui oppose les democraties et l'URSS aux regimes **fascistes** et **nazis**.\n\n## I. Les causes\n\n- Les **frustrations** nees du **traite de Versailles** (humiliation de l'Allemagne).\n- La **crise economique de 1929** qui favorise la montee des **dictatures** : **Hitler** (Allemagne nazie), **Mussolini** (Italie fasciste), militaristes au **Japon**.\n- La **politique expansionniste** d'Hitler et l'echec de la SDN a empecher les agressions.\n\n## II. Les grandes phases\n\n### 1. Les victoires de l'Axe (1939-1942)\n- **1er septembre 1939** : l'Allemagne envahit la **Pologne**. Le 3 septembre, la France et le Royaume-Uni declarent la guerre.\n- **1940** : la **France est vaincue** en six semaines (guerre eclair ou Blitzkrieg). L'**appel du general de Gaulle** le **18 juin 1940** depuis Londres.\n- La guerre devient mondiale : attaque de l'URSS (1941) et de **Pearl Harbor** par le Japon (decembre 1941, entree des Etats-Unis).\n\n### 2. Le tournant (1942-1943)\nVictoires alliees : **Stalingrad** (1943, defaite allemande en URSS), El-Alamein, Pacifique.\n\n### 3. La victoire des Allies (1944-1945)\n- **6 juin 1944** : **debarquement de Normandie**.\n- **8 mai 1945** : capitulation de l'**Allemagne**.\n- **6 et 9 aout 1945** : bombes atomiques sur **Hiroshima** et **Nagasaki**.\n- **2 septembre 1945** : capitulation du **Japon**, fin de la guerre.\n\n## III. Les caracteres de la guerre\n\n- Une **guerre totale** : mobilisation de toute l'economie et des populations.\n- Une **guerre d'extermination** : le **genocide des Juifs** (**Shoah**, environ **6 millions** de victimes) et des Tziganes dans les camps de concentration et d'extermination.\n- La participation de l'**Afrique** et du **Cameroun** : soldats (tirailleurs) et ressources fournis a la France libre.\n\n## IV. Les consequences\n\n- **Bilan humain** : **50 a 60 millions de morts**.\n- Creation de l'**ONU** (**Organisation des Nations unies, 1945**) pour maintenir la paix.\n- Deux **superpuissances** dominent : les **Etats-Unis** et l'**URSS** -> debut de la **Guerre froide**.\n- Affaiblissement des puissances coloniales europeennes -> acceleration de la **decolonisation**.\n\n## Reperes et chiffres cles\n\n- **1er septembre 1939** : invasion de la Pologne, debut de la guerre.\n- **18 juin 1940** : appel du general de Gaulle.\n- **1943** : bataille de Stalingrad (tournant).\n- **6 juin 1944** : debarquement de Normandie.\n- **8 mai 1945** : capitulation de l'Allemagne.\n- **6 et 9 aout 1945** : Hiroshima et Nagasaki.\n- **2 septembre 1945** : capitulation du Japon.\n- Bilan : **50 a 60 millions de morts** ; Shoah : **6 millions de Juifs**.\n\n## Exercice / sujet corrige\n\n**Sujet : Pourquoi peut-on dire que la Seconde Guerre mondiale est une guerre totale et ideologique ?**\n\n**Corrige (idees principales) :**\n- *Guerre totale :* tous les moyens sont mobilises (economie, science, populations civiles), tous les continents sont touches, et les civils sont des cibles (bombardements, Hiroshima).\n- *Guerre ideologique :* affrontement entre democraties, communisme et regimes fascistes/nazis ; le nazisme conduit au genocide des Juifs (Shoah).\n- *Conclusion :* par son ampleur et sa barbarie, elle debouche sur l'ONU et la Guerre froide.\n\n## A retenir\n\nLa Seconde Guerre mondiale (**1939-1945**) oppose les **Allies** a l'**Axe** (Allemagne, Italie, Japon). Guerre **totale** et **ideologique**, elle est marquee par le **genocide des Juifs**. Elle se termine par la **capitulation allemande** (8 mai 1945) et **japonaise** (2 septembre 1945) apres **Hiroshima**. Bilan : **50 a 60 millions de morts**, naissance de l'**ONU** et debut de la **Guerre froide**.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Quel evenement marque le debut de la Seconde Guerre mondiale ?",
+            "options": [
+              "L'attaque de Pearl Harbor",
+              "L'invasion de la Pologne le 1er septembre 1939",
+              "Le debarquement de Normandie",
+              "La bataille de Stalingrad"
+            ],
+            "answer": 1,
+            "explanation": "L'invasion de la Pologne par l'Allemagne le 1er septembre 1939 declenche la guerre."
+          },
+          {
+            "q": "Qui lance l'appel du 18 juin 1940 ?",
+            "options": [
+              "Winston Churchill",
+              "Le general de Gaulle",
+              "Franklin Roosevelt",
+              "Philippe Petain"
+            ],
+            "answer": 1,
+            "explanation": "Le general de Gaulle appelle a la resistance depuis Londres le 18 juin 1940."
+          },
+          {
+            "q": "Quelle bataille marque le tournant de la guerre a l'Est en 1943 ?",
+            "options": [
+              "Verdun",
+              "Stalingrad",
+              "La Marne",
+              "El-Alamein"
+            ],
+            "answer": 1,
+            "explanation": "La defaite allemande a Stalingrad en 1943 marque le tournant du conflit."
+          },
+          {
+            "q": "Comment nomme-t-on le genocide des Juifs ?",
+            "options": [
+              "La Shoah",
+              "Le Blitzkrieg",
+              "L'Anschluss",
+              "La Glasnost"
+            ],
+            "answer": 0,
+            "explanation": "La Shoah designe l'extermination d'environ 6 millions de Juifs par les nazis."
+          },
+          {
+            "q": "Quelle organisation est creee en 1945 pour maintenir la paix ?",
+            "options": [
+              "La SDN",
+              "L'OTAN",
+              "L'ONU",
+              "L'Union europeenne"
+            ],
+            "answer": 2,
+            "explanation": "L'Organisation des Nations unies (ONU) est creee en 1945."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La colonisation et l'imperialisme en Afrique",
+      "video": "https://www.youtube.com/watch?v=2Z1lU3uXUPE",
+      "lesson": "# La colonisation et l'imperialisme en Afrique\n\n## Introduction\n\nAu **XIXe siecle**, les puissances europeennes etendent leur domination sur presque toute l'**Afrique**. C'est l'**imperialisme** : la volonte d'un Etat d'imposer son autorite politique, economique et culturelle sur d'autres territoires. En quelques decennies, l'Afrique est presque entierement partagee et colonisee.\n\n## I. Les causes de la colonisation\n\n### 1. Les causes economiques\n- Besoin de **matieres premieres** (coton, caoutchouc, minerais, cacao, cafe).\n- Recherche de **debouches** pour vendre les produits industriels europeens.\n- Besoin de **main-d'oeuvre** et de nouvelles terres.\n\n### 2. Les causes politiques et strategiques\n- **Prestige national** : posseder un grand empire renforce la puissance d'un pays.\n- Controle de **points strategiques** (canal de Suez, routes maritimes).\n\n### 3. Les causes ideologiques\n- Pretendu **devoir de civiliser** les peuples africains et de diffuser le christianisme : une ideologie qui servait a justifier la domination.\n\n## II. La conquete et le partage de l'Afrique\n\n- Les **explorations** (Livingstone, Stanley, Brazza) ouvrent la voie.\n- La **Conference de Berlin** (**1884-1885**) fixe les regles du partage de l'Afrique entre les Europeens.\n- Vers **1914**, presque toute l'Afrique est colonisee (sauf l'**Ethiopie** et le **Liberia**).\n- Principales puissances : **France**, **Royaume-Uni**, mais aussi Allemagne, Portugal, Belgique, Italie, Espagne.\n\n## III. Les systemes de colonisation\n\n- **L'administration directe** (assimilation, surtout francaise) : les colonises sont administres directement par la metropole.\n- **L'administration indirecte** (indirect rule, surtout britannique) : on s'appuie sur les chefs locaux.\n- Mise en place de l'**economie de traite** : exploitation des ressources, **travail force**, cultures imposees, impots.\n\n## IV. Les consequences de la colonisation\n\n- **Consequences negatives** : perte de souverainete, exploitation, travail force, frontieres artificielles, mepris des cultures africaines.\n- **Consequences positives limitees** : routes, chemins de fer, ecoles, hopitaux (mais surtout au service de la colonisation).\n- Naissance d'un sentiment de revolte qui debouchera sur la **decolonisation**.\n\n## Reperes et chiffres cles\n\n- **XIXe siecle** : grande phase de la colonisation.\n- **1884-1885** : Conference de Berlin (partage de l'Afrique).\n- **1914** : presque toute l'Afrique est colonisee.\n- Seuls **l'Ethiopie** et le **Liberia** restent independants.\n\n## Exercice / sujet corrige\n\n**Sujet : Expliquez les causes de la colonisation europeenne en Afrique au XIXe siecle.**\n\n**Corrige (idees principales) :**\n- *Causes economiques :* matieres premieres, debouches, main-d'oeuvre.\n- *Causes politiques :* prestige et puissance, points strategiques.\n- *Causes ideologiques :* pretendu devoir de civiliser.\n- *Conclusion :* ces causes aboutissent au partage organise a la Conference de Berlin (1884-1885).\n\n## A retenir\n\nAu **XIXe siecle**, l'Europe colonise l'Afrique pour des raisons **economiques**, **politiques** et **ideologiques**. La **Conference de Berlin (1884-1885)** organise le partage du continent. Vers **1914**, toute l'Afrique est colonisee sauf l'**Ethiopie** et le **Liberia**. La colonisation impose l'**economie de traite** et le **travail force**.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Quelle conference organise le partage de l'Afrique ?",
+            "options": [
+              "La Conference de Yalta",
+              "La Conference de Berlin (1884-1885)",
+              "La Conference de Bandoeng",
+              "La Conference de Versailles"
+            ],
+            "answer": 1,
+            "explanation": "La Conference de Berlin de 1884-1885 fixe les regles du partage de l'Afrique."
+          },
+          {
+            "q": "Quels pays africains echappent a la colonisation vers 1914 ?",
+            "options": [
+              "L'Egypte et le Maroc",
+              "L'Ethiopie et le Liberia",
+              "Le Cameroun et le Congo",
+              "Le Ghana et le Nigeria"
+            ],
+            "answer": 1,
+            "explanation": "Seuls l'Ethiopie et le Liberia restent independants."
+          },
+          {
+            "q": "Qu'est-ce que l'imperialisme ?",
+            "options": [
+              "Le commerce libre entre nations egales",
+              "La domination politique et economique d'un Etat sur d'autres",
+              "Une alliance militaire defensive",
+              "Un systeme democratique"
+            ],
+            "answer": 1,
+            "explanation": "L'imperialisme est la volonte d'un Etat d'imposer sa domination sur d'autres territoires."
+          },
+          {
+            "q": "Quel systeme britannique s'appuie sur les chefs locaux ?",
+            "options": [
+              "L'assimilation",
+              "L'administration directe",
+              "L'indirect rule (administration indirecte)",
+              "Le travail force"
+            ],
+            "answer": 2,
+            "explanation": "L'indirect rule britannique gouverne en s'appuyant sur les chefs traditionnels."
+          },
+          {
+            "q": "Quelle pratique caracterise l'exploitation coloniale ?",
+            "options": [
+              "Le travail force",
+              "Le suffrage universel",
+              "La gratuite de l'ecole",
+              "L'independance economique"
+            ],
+            "answer": 0,
+            "explanation": "L'economie de traite reposait notamment sur le travail force et les cultures imposees."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La decolonisation et les independances africaines",
+      "video": "https://www.youtube.com/watch?v=Q1c1Oa3Pk1g",
+      "lesson": "# La decolonisation et les independances africaines\n\n## Introduction\n\nLa **decolonisation** est le processus par lequel les peuples colonises **accedent a l'independance** et reprennent leur souverainete. En Afrique, ce mouvement se deroule surtout entre **1945 et 1965**, apres la Seconde Guerre mondiale. **1960** est appelee l'**annee de l'Afrique** car de nombreux pays deviennent independants.\n\n## I. Les causes de la decolonisation\n\n### 1. L'affaiblissement des puissances coloniales\nLa **Seconde Guerre mondiale** (1939-1945) a ruine et affaibli les pays europeens.\n\n### 2. La montee du nationalisme africain\nDes **elites instruites** et des **leaders** reclament l'independance : **Kwame Nkrumah** (Ghana), **Leopold Sedar Senghor** (Senegal), **Sekou Toure** (Guinee), **Ahmadou Ahidjo** et **Ruben Um Nyobe** (Cameroun).\n\n### 3. Le contexte international favorable\n- L'**ONU** defend le **droit des peuples a disposer d'eux-memes**.\n- Les **Etats-Unis** et l'**URSS** sont hostiles au colonialisme.\n- La **Conference de Bandoeng** (**1955**) marque l'eveil des peuples d'Asie et d'Afrique.\n\n## II. Les formes de la decolonisation\n\n### 1. La decolonisation pacifique (negociee)\nIndependance obtenue par negociations : la plupart des colonies francaises et britanniques (Ghana en **1957**, Cameroun en **1960**, Senegal, etc.).\n\n### 2. La decolonisation violente (guerre de liberation)\nIndependance arrachee par la lutte armee : **Algerie** (guerre de 1954-1962), Angola, Mozambique, etc.\n\n## III. Les grandes etapes\n\n- **1957** : le **Ghana** (Nkrumah) est le premier pays d'Afrique noire a etre independant.\n- **1960** : **annee de l'Afrique** -> **17 pays** africains deviennent independants (dont le **Cameroun**, le 1er janvier 1960).\n- **1962** : independance de l'**Algerie**.\n- **1963** : creation de l'**Organisation de l'unite africaine (OUA)** a Addis-Abeba.\n\n## IV. Les consequences\n\n- Naissance de nombreux **Etats independants**.\n- Difficultes : **frontieres heritees de la colonisation**, instabilite politique, **dependance economique** (neocolonialisme), coups d'Etat.\n- Volonte d'**unite africaine** (OUA, puis **Union africaine** en 2002).\n\n## Reperes et chiffres cles\n\n- **1955** : Conference de Bandoeng.\n- **1957** : independance du Ghana (1er pays d'Afrique noire).\n- **1960** : annee de l'Afrique, 17 pays independants.\n- **1962** : independance de l'Algerie.\n- **1963** : creation de l'OUA.\n\n## Exercice / sujet corrige\n\n**Sujet : Quelles sont les causes de la decolonisation de l'Afrique apres 1945 ?**\n\n**Corrige (idees principales) :**\n- *Affaiblissement* des puissances coloniales par la Seconde Guerre mondiale.\n- *Montee du nationalisme* africain (Nkrumah, Senghor, Um Nyobe...).\n- *Contexte international favorable :* ONU, Etats-Unis et URSS anticolonialistes, Conference de Bandoeng (1955).\n- *Conclusion :* ces causes aboutissent aux independances, dont l'annee phare est 1960.\n\n## A retenir\n\nLa **decolonisation** africaine se deroule surtout de **1945 a 1965**. Causee par l'**affaiblissement de l'Europe**, la **montee du nationalisme** et un **contexte international favorable**, elle prend deux formes : **pacifique** ou **violente** (Algerie). Le **Ghana** est independant en **1957**, et **1960** est l'**annee de l'Afrique**. L'**OUA** est creee en **1963**.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Quelle annee est appelee l'annee de l'Afrique ?",
+            "options": [
+              "1945",
+              "1955",
+              "1960",
+              "1963"
+            ],
+            "answer": 2,
+            "explanation": "En 1960, 17 pays africains accedent a l'independance."
+          },
+          {
+            "q": "Quel est le premier pays d'Afrique noire a devenir independant ?",
+            "options": [
+              "Le Senegal",
+              "Le Ghana (1957)",
+              "Le Cameroun",
+              "L'Algerie"
+            ],
+            "answer": 1,
+            "explanation": "Le Ghana de Kwame Nkrumah devient independant en 1957."
+          },
+          {
+            "q": "Quelle conference de 1955 marque l'eveil des peuples d'Asie et d'Afrique ?",
+            "options": [
+              "La Conference de Berlin",
+              "La Conference de Bandoeng",
+              "La Conference de Yalta",
+              "La Conference de Berlin-Ouest"
+            ],
+            "answer": 1,
+            "explanation": "La Conference de Bandoeng (1955) symbolise l'eveil afro-asiatique."
+          },
+          {
+            "q": "Quel pays obtient son independance apres une guerre violente en 1962 ?",
+            "options": [
+              "Le Cameroun",
+              "Le Ghana",
+              "L'Algerie",
+              "Le Senegal"
+            ],
+            "answer": 2,
+            "explanation": "L'Algerie obtient son independance en 1962 apres une longue guerre."
+          },
+          {
+            "q": "Quelle organisation est creee en 1963 pour l'unite africaine ?",
+            "options": [
+              "L'ONU",
+              "L'OUA",
+              "L'OTAN",
+              "La CEDEAO"
+            ],
+            "answer": 1,
+            "explanation": "L'Organisation de l'unite africaine (OUA) est creee en 1963 a Addis-Abeba."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Le Cameroun colonial : conquete et administration",
+      "video": "https://www.youtube.com/watch?v=2Z1lU3uXUPE",
+      "lesson": "# Le Cameroun colonial : conquete et administration\n\n## Introduction\n\nAvant la colonisation, le territoire du **Cameroun** etait peuple de nombreux royaumes et chefferies (Bamoun, Bamileke, peuples cotiers comme les Douala, royaumes du Nord...). A partir de **1884**, le Cameroun connait trois periodes de domination etrangere : **allemande**, puis **francaise** et **britannique**. Ce chapitre etudie la conquete et l'administration coloniale du Cameroun.\n\n## I. La periode allemande (1884-1916)\n\n- Le **12 juillet 1884**, l'explorateur allemand **Gustav Nachtigal** signe avec les **chefs Douala** (rois **Bell** et **Akwa**) un **traite de protectorat** : le Cameroun devient une colonie allemande (**Kamerun**).\n- Les Allemands etendent leur domination vers l'interieur, parfois par la force (resistances de nombreux peuples).\n- Ils developpent l'**economie de plantation** (cacao, palmier a huile, banane), construisent des routes, le **chemin de fer** et le port de Douala, mais imposent le **travail force**.\n\n## II. Le passage sous mandat francais et britannique\n\n- Pendant la **Premiere Guerre mondiale**, les troupes **franco-britanniques** chassent les Allemands du Cameroun en **1916**.\n- En **1919**, le Cameroun est **partage** : la **France** administre la plus grande partie (**Cameroun oriental**), le **Royaume-Uni** une partie occidentale.\n- En **1922**, la **SDN** place ces territoires sous **mandat** ; apres 1945, l'**ONU** les place sous **tutelle**. Le but officiel : preparer le territoire a l'autonomie.\n\n## III. L'administration coloniale\n\n- La **France** applique l'**administration directe** (assimilation) : impots, **indigenat** (systeme de lois discriminatoires), travail force jusqu'aux annees 1940.\n- Le **Royaume-Uni** applique l'**indirect rule** en s'appuyant sur les chefs traditionnels.\n- Mise en valeur economique : plantations, infrastructures, mais au service de la metropole.\n\n## IV. L'exploitation et les resistances\n\n- Les populations subissent le **travail force**, les **cultures obligatoires** et les **impots**.\n- De nombreuses **resistances** marquent la periode, preparant le nationalisme.\n\n## Reperes et chiffres cles\n\n- **12 juillet 1884** : traite germano-douala, naissance du Kamerun allemand.\n- **1916** : depart des Allemands (Premiere Guerre mondiale).\n- **1919** : partage entre France et Royaume-Uni.\n- **1922** : mandat de la SDN ; apres 1945 : tutelle de l'ONU.\n\n## Exercice / sujet corrige\n\n**Sujet : Presentez les differentes dominations coloniales qu'a connues le Cameroun.**\n\n**Corrige (idees principales) :**\n- *Domination allemande (1884-1916) :* protectorat signe le 12 juillet 1884, plantations, travail force.\n- *Depart des Allemands (1916)* pendant la Premiere Guerre mondiale.\n- *Partage (1919) :* France et Royaume-Uni ; mandat de la SDN (1922) puis tutelle de l'ONU.\n- *Conclusion :* cette triple domination a fortement marque l'histoire et les frontieres du Cameroun.\n\n## A retenir\n\nLe Cameroun devient colonie **allemande** par le **traite du 12 juillet 1884** (Nachtigal et les chefs Douala). Apres le depart des Allemands en **1916**, il est **partage en 1919** entre la **France** et le **Royaume-Uni**, sous **mandat** de la **SDN** (1922) puis **tutelle** de l'**ONU**. La colonisation impose le **travail force** et l'exploitation, mais suscite aussi des resistances.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Quelle est la premiere puissance a coloniser le Cameroun ?",
+            "options": [
+              "La France",
+              "Le Royaume-Uni",
+              "L'Allemagne",
+              "Le Portugal"
+            ],
+            "answer": 2,
+            "explanation": "Le Cameroun devient colonie allemande par le traite du 12 juillet 1884."
+          },
+          {
+            "q": "Qui signe le traite de protectorat de 1884 avec les chefs Douala ?",
+            "options": [
+              "Stanley",
+              "Gustav Nachtigal",
+              "Brazza",
+              "Livingstone"
+            ],
+            "answer": 1,
+            "explanation": "Gustav Nachtigal signe le traite avec les rois Bell et Akwa le 12 juillet 1884."
+          },
+          {
+            "q": "En quelle annee les Allemands quittent-ils le Cameroun ?",
+            "options": [
+              "1884",
+              "1916",
+              "1922",
+              "1945"
+            ],
+            "answer": 1,
+            "explanation": "Les troupes franco-britanniques chassent les Allemands en 1916."
+          },
+          {
+            "q": "Comment le Cameroun est-il administre apres 1919 ?",
+            "options": [
+              "Par l'Allemagne seule",
+              "Partage entre la France et le Royaume-Uni",
+              "Par les Etats-Unis",
+              "Independant"
+            ],
+            "answer": 1,
+            "explanation": "En 1919, le Cameroun est partage entre la France et le Royaume-Uni."
+          },
+          {
+            "q": "Quel organisme place le Cameroun sous mandat en 1922 ?",
+            "options": [
+              "L'ONU",
+              "La SDN",
+              "L'OUA",
+              "L'OTAN"
+            ],
+            "answer": 1,
+            "explanation": "La Societe des Nations (SDN) place le Cameroun sous mandat en 1922."
+          }
+        ]
+      }
+    },
+    {
+      "title": "L'accession du Cameroun a l'independance et la reunification",
+      "video": "https://www.youtube.com/watch?v=Q1c1Oa3Pk1g",
+      "lesson": "# L'accession du Cameroun a l'independance et la reunification\n\n## Introduction\n\nApres des decennies de domination etrangere, le **Cameroun** accede a l'**independance** en **1960**, puis realise sa **reunification** en **1961**. Ce chapitre retrace le combat nationaliste, l'independance du Cameroun francais, puis l'unification des deux Cameroun (oriental et occidental).\n\n## I. La naissance du nationalisme camerounais\n\n- Creation de l'**Union des Populations du Cameroun (UPC)** en **1948**, dirigee par **Ruben Um Nyobe**, **Felix-Roland Moumie** et **Ernest Ouandie**.\n- L'UPC reclame l'**independance** et la **reunification** des deux Cameroun.\n- Le parti est interdit en **1955** ; la lutte devient parfois violente. **Ruben Um Nyobe** est tue en **1958**.\n\n## II. L'accession a l'independance (1960)\n\n- Sous tutelle de l'**ONU**, le Cameroun sous administration francaise marche vers l'autonomie.\n- **Ahmadou Ahidjo** devient Premier ministre puis joue un role central.\n- Le **1er janvier 1960**, le **Cameroun francais** devient independant : c'est la **Republique du Cameroun**. **Ahmadou Ahidjo** en devient le **premier president**.\n\n## III. La reunification (1961)\n\n- Le **Cameroun britannique** etait divise en deux parties : le **Southern Cameroons** (Cameroun meridional) et le **Northern Cameroons** (Cameroun septentrional).\n- Un **referendum** organise par l'ONU le **11 fevrier 1961** demande aux populations de choisir leur avenir :\n  - le **Cameroun septentrional** vote son rattachement au **Nigeria** ;\n  - le **Cameroun meridional** vote son rattachement a la **Republique du Cameroun**.\n- Le **1er octobre 1961**, le **Cameroun meridional** se reunit a la Republique du Cameroun : naissance de la **Republique federale du Cameroun** (deux Etats federes).\n\n## IV. Vers l'Etat unitaire\n\n- Le **20 mai 1972** : un **referendum** transforme l'Etat federal en **Etat unitaire** : la **Republique unie du Cameroun**. Le 20 mai devient la **Fete nationale**.\n- En **1984**, le pays prend le nom de **Republique du Cameroun**.\n\n## Reperes et chiffres cles\n\n- **1948** : creation de l'UPC (Ruben Um Nyobe).\n- **1955** : interdiction de l'UPC.\n- **1er janvier 1960** : independance du Cameroun francais ; Ahmadou Ahidjo president.\n- **11 fevrier 1961** : referendum d'autodetermination.\n- **1er octobre 1961** : reunification ; Republique federale du Cameroun.\n- **20 mai 1972** : Etat unitaire (Fete nationale).\n\n## Exercice / sujet corrige\n\n**Sujet : Decrivez les etapes de l'accession du Cameroun a l'independance et a la reunification.**\n\n**Corrige (plan redige) :**\n*Introduction :* le Cameroun, apres la colonisation, accede a l'independance puis se reunifie.\n\n*1. Le combat nationaliste :* creation de l'UPC (1948), revendication de l'independance et de la reunification, repression (mort de Um Nyobe en 1958).\n\n*2. L'independance :* le 1er janvier 1960, le Cameroun francais devient independant (Ahmadou Ahidjo president).\n\n*3. La reunification :* referendum du 11 fevrier 1961, rattachement du Cameroun meridional, naissance de la Republique federale le 1er octobre 1961, puis Etat unitaire le 20 mai 1972.\n\n*Conclusion :* le 20 mai est aujourd'hui la Fete nationale du Cameroun.\n\n## A retenir\n\nLe **Cameroun francais** devient independant le **1er janvier 1960** (**Ahmadou Ahidjo**, premier president). Apres le **referendum du 11 fevrier 1961**, le **Cameroun meridional** rejoint la Republique : c'est la **reunification du 1er octobre 1961** (Republique federale). Le **20 mai 1972**, l'Etat devient **unitaire** : le **20 mai** est la **Fete nationale**.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Quel parti nationaliste reclame l'independance des 1948 ?",
+            "options": [
+              "Le RDPC",
+              "L'UPC",
+              "L'OUA",
+              "Le RDA"
+            ],
+            "answer": 1,
+            "explanation": "L'Union des Populations du Cameroun (UPC), dirigee par Ruben Um Nyobe, est creee en 1948."
+          },
+          {
+            "q": "Quelle est la date de l'independance du Cameroun francais ?",
+            "options": [
+              "Le 1er octobre 1961",
+              "Le 20 mai 1972",
+              "Le 1er janvier 1960",
+              "Le 11 fevrier 1961"
+            ],
+            "answer": 2,
+            "explanation": "Le Cameroun francais devient independant le 1er janvier 1960."
+          },
+          {
+            "q": "Qui est le premier president de la Republique du Cameroun ?",
+            "options": [
+              "Paul Biya",
+              "Ruben Um Nyobe",
+              "Ahmadou Ahidjo",
+              "John Ngu Foncha"
+            ],
+            "answer": 2,
+            "explanation": "Ahmadou Ahidjo devient le premier president du Cameroun independant."
+          },
+          {
+            "q": "Que se passe-t-il le 1er octobre 1961 ?",
+            "options": [
+              "L'independance du Cameroun",
+              "La reunification (Cameroun meridional + Republique)",
+              "La creation de l'UPC",
+              "La naissance de l'Etat unitaire"
+            ],
+            "answer": 1,
+            "explanation": "Le 1er octobre 1961, le Cameroun meridional se reunit a la Republique : c'est la reunification."
+          },
+          {
+            "q": "Que celebre-t-on le 20 mai au Cameroun ?",
+            "options": [
+              "L'independance",
+              "La reunification",
+              "La Fete nationale (Etat unitaire de 1972)",
+              "La fete de la jeunesse"
+            ],
+            "answer": 2,
+            "explanation": "Le 20 mai 1972, l'Etat unitaire est cree ; le 20 mai est la Fete nationale."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La Guerre froide (initiation, 1947-1991)",
+      "video": "https://www.youtube.com/watch?v=I79TpDe3t2g",
+      "lesson": "# La Guerre froide (initiation, 1947-1991)\n\n## Introduction\n\nApres la Seconde Guerre mondiale, le monde se divise en **deux blocs** opposes, diriges par les deux **superpuissances** : les **Etats-Unis** (bloc de l'Ouest, capitaliste) et l'**URSS** (bloc de l'Est, communiste). Cet affrontement, sans guerre directe entre les deux Grands, est appele la **Guerre froide** (**1947-1991**).\n\n## I. La naissance des deux blocs\n\n- En **1945**, les Etats-Unis et l'URSS sortent vainqueurs et deviennent les deux **superpuissances**.\n- Deux modeles s'opposent :\n  - le **bloc de l'Ouest** : **democratie liberale** et **capitalisme** (Etats-Unis) ;\n  - le **bloc de l'Est** : **regime communiste** et **economie planifiee** (URSS).\n- **1947** : le **plan Marshall** (aide americaine a l'Europe) marque le debut de la Guerre froide.\n\n## II. Les caracteres de la Guerre froide\n\n- C'est une **guerre indirecte** : les deux Grands ne s'affrontent jamais directement, par peur de l'**arme nucleaire**.\n- Une **course aux armements** et une **course a l'espace** (conquete spatiale).\n- Des **alliances militaires** : l'**OTAN** (Ouest, 1949) face au **Pacte de Varsovie** (Est, 1955).\n- Une **guerre ideologique** et de **propagande**.\n\n## III. Les grandes crises\n\n- Le **blocus de Berlin** (1948-1949) et la construction du **mur de Berlin** (**1961**), symbole de la division.\n- La **guerre de Coree** (1950-1953).\n- La **crise de Cuba** (**1962**), qui faillit declencher une guerre nucleaire.\n- La **guerre du Vietnam**.\n\n## IV. La fin de la Guerre froide\n\n- L'URSS s'affaiblit. **Gorbatchev** lance des reformes.\n- **1989** : **chute du mur de Berlin**.\n- **1991** : **disparition de l'URSS** -> fin de la Guerre froide. Les Etats-Unis deviennent la seule superpuissance.\n\n## Reperes et chiffres cles\n\n- **1947** : plan Marshall, debut de la Guerre froide.\n- **1949** : creation de l'OTAN.\n- **1961** : construction du mur de Berlin.\n- **1962** : crise de Cuba.\n- **1989** : chute du mur de Berlin.\n- **1991** : disparition de l'URSS, fin de la Guerre froide.\n\n## Exercice / sujet corrige\n\n**Sujet : Qu'est-ce que la Guerre froide ? Pourquoi parle-t-on de guerre froide ?**\n\n**Corrige (idees principales) :**\n- *Definition :* affrontement entre les deux superpuissances (Etats-Unis et URSS) et leurs blocs, de 1947 a 1991.\n- *Pourquoi froide :* les deux Grands ne s'affrontent jamais directement par les armes, par peur du nucleaire ; ils s'opposent par la propagande, les alliances et des conflits indirects (Coree, Vietnam).\n- *Conclusion :* elle s'acheve avec la chute du mur de Berlin (1989) et la fin de l'URSS (1991).\n\n## A retenir\n\nLa **Guerre froide** (**1947-1991**) oppose les **Etats-Unis** (bloc de l'Ouest, capitaliste) a l'**URSS** (bloc de l'Est, communiste). C'est une **guerre indirecte** (sans affrontement direct), marquee par la **course aux armements**, le **mur de Berlin** (1961) et la **crise de Cuba** (1962). Elle se termine avec la **chute du mur de Berlin** (**1989**) et la **disparition de l'URSS** (**1991**).",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Quelles sont les deux superpuissances de la Guerre froide ?",
+            "options": [
+              "La France et le Royaume-Uni",
+              "Les Etats-Unis et l'URSS",
+              "La Chine et le Japon",
+              "L'Allemagne et l'Italie"
+            ],
+            "answer": 1,
+            "explanation": "La Guerre froide oppose les Etats-Unis (Ouest) et l'URSS (Est)."
+          },
+          {
+            "q": "Pourquoi parle-t-on de guerre froide ?",
+            "options": [
+              "Parce qu'elle se deroule au pole Nord",
+              "Parce que les deux Grands ne s'affrontent jamais directement",
+              "Parce qu'elle dure peu de temps",
+              "Parce qu'il n'y a aucune tension"
+            ],
+            "answer": 1,
+            "explanation": "Les deux superpuissances ne s'affrontent jamais directement par peur du nucleaire."
+          },
+          {
+            "q": "Quel mur devient le symbole de la division en 1961 ?",
+            "options": [
+              "Le mur de Chine",
+              "Le mur de Berlin",
+              "Le mur des Lamentations",
+              "Le mur de l'Atlantique"
+            ],
+            "answer": 1,
+            "explanation": "Le mur de Berlin, construit en 1961, symbolise la division Est-Ouest."
+          },
+          {
+            "q": "Quelle crise de 1962 faillit declencher une guerre nucleaire ?",
+            "options": [
+              "La crise de Berlin",
+              "La crise de Cuba",
+              "La guerre de Coree",
+              "La guerre du Vietnam"
+            ],
+            "answer": 1,
+            "explanation": "La crise de Cuba (1962) a failli declencher une guerre nucleaire."
+          },
+          {
+            "q": "Quel evenement marque la fin de la Guerre froide ?",
+            "options": [
+              "La chute du mur de Berlin (1989) et la fin de l'URSS (1991)",
+              "La creation de l'ONU",
+              "Le plan Marshall",
+              "La crise de 1929"
+            ],
+            "answer": 0,
+            "explanation": "La chute du mur (1989) puis la disparition de l'URSS (1991) mettent fin a la Guerre froide."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Le Cameroun : relief, climat, vegetation et hydrographie",
+      "video": "https://www.youtube.com/watch?v=3z6Z2sQ1HpA",
+      "lesson": "# Le Cameroun : relief, climat, vegetation et hydrographie\n\n## Introduction\n\nLe **Cameroun** est un pays d'**Afrique centrale** situe au fond du **golfe de Guinee**. Sa superficie est d'environ **475 000 km2**. On le surnomme **l'Afrique en miniature** car on y trouve une grande diversite de **reliefs**, de **climats**, de **vegetations** et de **cours d'eau**, a l'image de tout le continent.\n\n## I. La situation et les frontieres\n\n- Le Cameroun s'etend de la **cote atlantique** (golfe de Guinee) au sud-ouest jusqu'au **lac Tchad** au nord.\n- Il a des frontieres avec le **Nigeria** (ouest), le **Tchad** et la **Republique centrafricaine** (est), le **Congo**, le **Gabon** et la **Guinee equatoriale** (sud).\n\n## II. Le relief\n\nOn distingue plusieurs grands ensembles :\n- les **plaines cotieres** (basses terres) le long de l'Atlantique ;\n- les **plateaux du Sud** (plateau sud-camerounais) ;\n- les **hautes terres de l'Ouest** (region bamileke, monts du massif de l'Ouest) ;\n- le **mont Cameroun** (**4 095 m**), point culminant, un **volcan actif** ;\n- la **plaine du Nord** et les monts **Mandara** (extreme-nord).\n\n## III. Le climat\n\nLe climat varie du sud au nord :\n- au **sud**, climat **equatorial** : chaud et humide, pluies abondantes toute l'annee ;\n- au **centre**, climat **tropical humide** : deux saisons (seche et pluvieuse) ;\n- au **nord**, climat **tropical sec (soudano-sahelien)** : longue saison seche, chaleur forte.\n\n## IV. La vegetation\n\nLa vegetation suit le climat :\n- au sud, la **foret dense equatoriale** ;\n- au centre, la **savane arboree** ;\n- au nord, la **savane herbeuse** puis la **steppe** (vegetation rare, type sahelien).\n\n## V. L'hydrographie\n\nLe Cameroun possede un riche reseau de cours d'eau :\n- le **fleuve Sanaga**, le plus long et le plus important (utilise pour l'**hydroelectricite**, barrages d'Edea et de Song-Loulou) ;\n- le **Wouri**, le **Nyong**, la **Benoue** (au nord), le **Logone** ;\n- le **lac Tchad** au nord (en partie camerounais).\n\n## Reperes et chiffres cles\n\n- Superficie : environ **475 000 km2**.\n- Point culminant : **mont Cameroun (4 095 m)**, volcan actif.\n- Fleuve principal : la **Sanaga**.\n- Surnom : **l'Afrique en miniature**.\n- Trois grands climats : equatorial, tropical humide, tropical sec.\n\n## Exercice / sujet corrige\n\n**Sujet : Pourquoi dit-on que le Cameroun est l'Afrique en miniature ?**\n\n**Corrige (idees principales) :**\n- *Diversite du relief :* plaines, plateaux, hautes terres, montagnes (mont Cameroun 4 095 m).\n- *Diversite du climat :* equatorial au sud, tropical humide au centre, tropical sec au nord.\n- *Diversite de la vegetation :* foret dense, savanes, steppe.\n- *Conclusion :* cette variete, comparable a celle de tout le continent, justifie le surnom.\n\n## A retenir\n\nLe **Cameroun** (≈ **475 000 km2**), surnomme **l'Afrique en miniature**, presente une grande diversite : un **relief** varie (mont Cameroun, **4 095 m**, point culminant), trois **climats** (equatorial au sud, tropical au centre, sec au nord), une **vegetation** etagee (foret dense -> savane -> steppe) et un riche reseau **hydrographique** domine par la **Sanaga**.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Quel est le point culminant du Cameroun ?",
+            "options": [
+              "Le mont Mandara",
+              "Le mont Cameroun (4 095 m)",
+              "Le plateau bamileke",
+              "Le mont Kenya"
+            ],
+            "answer": 1,
+            "explanation": "Le mont Cameroun, volcan actif, culmine a 4 095 m."
+          },
+          {
+            "q": "Quel est le fleuve le plus important du Cameroun ?",
+            "options": [
+              "Le Nyong",
+              "Le Wouri",
+              "La Sanaga",
+              "La Benoue"
+            ],
+            "answer": 2,
+            "explanation": "La Sanaga est le plus long fleuve, exploite pour l'hydroelectricite (Edea, Song-Loulou)."
+          },
+          {
+            "q": "Quel surnom donne-t-on au Cameroun ?",
+            "options": [
+              "Le chateau d'eau",
+              "L'Afrique en miniature",
+              "Le grenier de l'Afrique",
+              "Le poumon vert"
+            ],
+            "answer": 1,
+            "explanation": "On l'appelle l'Afrique en miniature a cause de la diversite de ses milieux."
+          },
+          {
+            "q": "Quel climat domine au sud du Cameroun ?",
+            "options": [
+              "Le climat equatorial chaud et humide",
+              "Le climat desertique",
+              "Le climat mediterraneen",
+              "Le climat polaire"
+            ],
+            "answer": 0,
+            "explanation": "Le sud connait un climat equatorial chaud et humide avec des pluies abondantes."
+          },
+          {
+            "q": "Quelle vegetation domine dans l'extreme-nord du Cameroun ?",
+            "options": [
+              "La foret dense",
+              "La savane et la steppe",
+              "La toundra",
+              "La mangrove"
+            ],
+            "answer": 1,
+            "explanation": "Au nord, climat sec : on trouve la savane herbeuse puis la steppe."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La population du Cameroun",
+      "video": "https://www.youtube.com/watch?v=3z6Z2sQ1HpA",
+      "lesson": "# La population du Cameroun\n\n## Introduction\n\nLa **population** est l'ensemble des habitants d'un pays. Au Cameroun, elle est nombreuse, **jeune** et **inegalement repartie**. Etudier la population (la **demographie**) permet de comprendre les besoins en ecoles, en emplois et en equipements du pays.\n\n## I. Le nombre et la croissance\n\n- La population du Cameroun depasse aujourd'hui **27 millions d'habitants** (estimation).\n- C'est une population en **forte croissance** : le **taux de natalite** est eleve.\n- Consequence : une population **tres jeune** (une grande partie a moins de 20 ans).\n\n## II. La repartition de la population\n\nLa population est **inegalement repartie** :\n- les zones les plus **peuplees** : les **hautes terres de l'Ouest** (region bamileke), la zone du **mont Cameroun**, les grandes villes et l'**extreme-nord** ;\n- les zones les moins peuplees : le **sud forestier** (foret dense) et l'**est**, peu peuples (faible **densite**).\n- La **densite** moyenne tourne autour de **50 habitants/km2**, mais elle est tres variable selon les regions.\n\n## III. La diversite de la population\n\n- Le Cameroun compte de **nombreux peuples et ethnies** (plus de 200 groupes) : Bamileke, Beti, Douala, Bamoun, Peuls, etc.\n- Deux **langues officielles** : le **francais** et l'**anglais** (heritage colonial).\n- Plusieurs **religions** : christianisme, islam, religions traditionnelles.\n\n## IV. L'urbanisation et les mouvements de population\n\n- Le Cameroun connait une forte **urbanisation** : de plus en plus d'habitants vivent en ville.\n- Les deux plus grandes villes sont **Douala** (capitale economique) et **Yaounde** (capitale politique).\n- L'**exode rural** : depart des campagnes vers les villes a la recherche de travail.\n\n## V. Les atouts et les problemes\n\n- **Atouts** : une population jeune et dynamique, une main-d'oeuvre abondante.\n- **Problemes** : **chomage** des jeunes, besoin d'ecoles et d'hopitaux, pression sur les villes (logement, transport).\n\n## Reperes et chiffres cles\n\n- Population : plus de **27 millions d'habitants**.\n- Densite moyenne : environ **50 hab./km2** (tres inegale).\n- Deux langues officielles : **francais** et **anglais**.\n- Capitale politique : **Yaounde** ; capitale economique : **Douala**.\n- Population **jeune** (forte natalite).\n\n## Exercice / sujet corrige\n\n**Sujet : Decrivez les caracteristiques de la population camerounaise.**\n\n**Corrige (idees principales) :**\n- *Nombre et croissance :* plus de 27 millions d'habitants, forte croissance, population jeune.\n- *Repartition :* inegale (Ouest et villes peuples, Sud et Est peu peuples).\n- *Diversite :* nombreuses ethnies, deux langues officielles, plusieurs religions.\n- *Conclusion :* cette population jeune est un atout mais pose des defis (emploi, equipements).\n\n## A retenir\n\nLa population du Cameroun (**plus de 27 millions d'habitants**) est **jeune**, en **forte croissance** et **inegalement repartie** (Ouest et villes denses, Sud et Est vides). Elle est **diverse** (plus de 200 ethnies, **deux langues officielles** : francais et anglais). L'**urbanisation** est forte (**Douala**, **Yaounde**), ce qui pose des defis d'emploi et d'equipement.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Quelle est une caracteristique principale de la population camerounaise ?",
+            "options": [
+              "Elle est vieillissante",
+              "Elle est jeune et en forte croissance",
+              "Elle diminue chaque annee",
+              "Elle est uniformement repartie"
+            ],
+            "answer": 1,
+            "explanation": "La population est jeune et croit rapidement a cause d'une forte natalite."
+          },
+          {
+            "q": "Quelles sont les deux langues officielles du Cameroun ?",
+            "options": [
+              "Le francais et l'allemand",
+              "Le francais et l'anglais",
+              "L'anglais et le portugais",
+              "Le francais et l'espagnol"
+            ],
+            "answer": 1,
+            "explanation": "Le francais et l'anglais sont les deux langues officielles (heritage colonial)."
+          },
+          {
+            "q": "Quelle est la capitale politique du Cameroun ?",
+            "options": [
+              "Douala",
+              "Yaounde",
+              "Bafoussam",
+              "Garoua"
+            ],
+            "answer": 1,
+            "explanation": "Yaounde est la capitale politique ; Douala est la capitale economique."
+          },
+          {
+            "q": "Comment est repartie la population sur le territoire ?",
+            "options": [
+              "De facon egale partout",
+              "De facon inegale",
+              "Seulement dans le desert",
+              "Uniquement sur la cote"
+            ],
+            "answer": 1,
+            "explanation": "La population est inegalement repartie : Ouest et villes denses, Sud et Est peu peuples."
+          },
+          {
+            "q": "Qu'appelle-t-on l'exode rural ?",
+            "options": [
+              "Le depart des villes vers les campagnes",
+              "Le depart des campagnes vers les villes",
+              "L'emigration vers l'etranger",
+              "La baisse de la natalite"
+            ],
+            "answer": 1,
+            "explanation": "L'exode rural est le depart des habitants des campagnes vers les villes."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les activites economiques du Cameroun",
+      "video": "https://www.youtube.com/watch?v=3z6Z2sQ1HpA",
+      "lesson": "# Les activites economiques du Cameroun\n\n## Introduction\n\nL'**economie** du Cameroun repose sur trois grands secteurs : l'**agriculture** (secteur primaire), l'**industrie** (secteur secondaire) et le **commerce et les services** (secteur tertiaire). Grace a la diversite de ses milieux et de ses ressources, le Cameroun est l'une des economies les plus importantes d'Afrique centrale.\n\n## I. L'agriculture (secteur primaire)\n\nL'agriculture occupe la majorite de la population active. On distingue :\n- les **cultures vivrieres** (pour se nourrir) : **manioc, mais, plantain, igname, mil, arachide** ;\n- les **cultures de rente** (pour l'exportation) : **cacao, cafe, coton, banane, hevea, huile de palme**.\nLe Cameroun pratique aussi l'**elevage** (bovins au Nord), la **peche** (cote et fleuves) et l'**exploitation forestiere** (bois).\n\n## II. L'industrie (secteur secondaire)\n\n- Le Cameroun possede des **ressources minieres et energetiques** : **petrole** (Rio del Rey), **gaz**, **bauxite**, **fer**, et un fort potentiel **hydroelectrique** (barrages d'**Edea**, **Song-Loulou**, **Lom Pangar**, **Memve'ele**).\n- Industries : agro-alimentaire, textile, aluminium (**Alucam** a Edea), raffinage du petrole (**Sonara** a Limbe), cimenterie.\n- L'industrie est surtout concentree a **Douala**.\n\n## III. Le commerce et les services (secteur tertiaire)\n\n- Le **commerce interieur** : marches locaux et grandes villes.\n- Le **commerce exterieur** : le Cameroun **exporte** des matieres premieres (petrole, cacao, cafe, bois, coton) et **importe** des produits manufactures.\n- Le **port de Douala** est le principal port du pays et dessert les pays voisins enclaves (Tchad, Centrafrique).\n- Les **services** se developpent : transports, banques, telecommunications, tourisme.\n\n## IV. Les atouts et les problemes\n\n- **Atouts** : ressources variees, position de carrefour en Afrique centrale, port de Douala.\n- **Problemes** : dependance aux **matieres premieres** (prix variables), insuffisance des infrastructures, faible **transformation locale** des produits, chomage.\n\n## Reperes et chiffres cles\n\n- Trois secteurs : **primaire** (agriculture), **secondaire** (industrie), **tertiaire** (commerce/services).\n- Cultures de rente : **cacao, cafe, coton, banane**.\n- Energie : **petrole** + **hydroelectricite** (barrages d'Edea, Lom Pangar...).\n- Principal port : **Douala**.\n- Industries phares : **Alucam** (aluminium), **Sonara** (raffinerie).\n\n## Exercice / sujet corrige\n\n**Sujet : Presentez les principales activites economiques du Cameroun.**\n\n**Corrige (idees principales) :**\n- *Agriculture :* cultures vivrieres (manioc, mais...) et de rente (cacao, cafe, coton, banane), elevage, peche, bois.\n- *Industrie :* petrole, hydroelectricite, aluminium (Alucam), raffinage (Sonara), concentree a Douala.\n- *Commerce et services :* exportations de matieres premieres, importations de produits finis, port de Douala, services.\n- *Conclusion :* une economie riche mais encore dependante des matieres premieres.\n\n## A retenir\n\nL'economie du Cameroun repose sur l'**agriculture** (cultures **vivrieres** et de **rente** : cacao, cafe, coton, banane), l'**industrie** (petrole, **hydroelectricite**, aluminium **Alucam**, raffinage **Sonara**, concentree a **Douala**) et le **commerce** (exportations de matieres premieres via le **port de Douala**). Principal defi : sortir de la **dependance** aux matieres premieres.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Quelles sont les principales cultures de rente (d'exportation) du Cameroun ?",
+            "options": [
+              "Le manioc et le mais",
+              "Le cacao, le cafe, le coton et la banane",
+              "Le ble et l'orge",
+              "La pomme de terre et la tomate"
+            ],
+            "answer": 1,
+            "explanation": "Le cacao, le cafe, le coton et la banane sont les grandes cultures de rente."
+          },
+          {
+            "q": "Quel est le principal port du Cameroun ?",
+            "options": [
+              "Le port de Kribi",
+              "Le port de Douala",
+              "Le port de Limbe",
+              "Le port de Garoua"
+            ],
+            "answer": 1,
+            "explanation": "Douala est le principal port et dessert les pays voisins enclaves."
+          },
+          {
+            "q": "Quelle ressource energetique majeure le Cameroun produit-il via des barrages ?",
+            "options": [
+              "L'energie solaire",
+              "L'hydroelectricite",
+              "L'energie eolienne",
+              "Le charbon"
+            ],
+            "answer": 1,
+            "explanation": "Les barrages (Edea, Song-Loulou, Lom Pangar) produisent de l'hydroelectricite."
+          },
+          {
+            "q": "A quel secteur appartient l'agriculture ?",
+            "options": [
+              "Au secteur primaire",
+              "Au secteur secondaire",
+              "Au secteur tertiaire",
+              "Au secteur public"
+            ],
+            "answer": 0,
+            "explanation": "L'agriculture fait partie du secteur primaire."
+          },
+          {
+            "q": "Quel est un probleme majeur de l'economie camerounaise ?",
+            "options": [
+              "L'absence de ressources naturelles",
+              "La dependance aux matieres premieres",
+              "L'absence de population active",
+              "L'exces d'industries"
+            ],
+            "answer": 1,
+            "explanation": "L'economie depend trop des matieres premieres dont les prix varient."
+          }
+        ]
+      }
+    },
+    {
+      "title": "L'Afrique : presentation generale",
+      "video": "https://www.youtube.com/watch?v=Q1c1Oa3Pk1g",
+      "lesson": "# L'Afrique : presentation generale\n\n## Introduction\n\nL'**Afrique** est le **deuxieme plus grand continent** du monde apres l'Asie. Avec une superficie d'environ **30 millions de km2** et plus de **1,4 milliard d'habitants**, c'est un continent riche en ressources, a la population tres jeune, mais qui fait face a de nombreux defis de developpement.\n\n## I. La situation et les dimensions\n\n- L'Afrique est traversee en son milieu par l'**equateur** : elle est donc a cheval sur les deux hemispheres.\n- Elle est entouree par l'**ocean Atlantique** (ouest), l'**ocean Indien** (est) et la **mer Mediterranee** (nord).\n- Superficie : environ **30 millions de km2** ; elle compte **54 Etats**.\n\n## II. Le relief, le climat et la vegetation\n\n- **Relief** : de vastes **plateaux**, quelques montagnes (**Kilimandjaro, 5 895 m**, point culminant), de grandes plaines et le **grand rift** a l'est.\n- **Climats** (du nord au sud, autour de l'equateur) : **desertique** (Sahara au nord, Kalahari/Namib au sud), **tropical** (savanes), **equatorial** (foret dense au centre), **mediterraneen** aux extremites.\n- **Fleuves** importants : le **Nil** (le plus long du monde), le **Congo**, le **Niger**, le **Zambeze**.\n\n## III. La population\n\n- Plus de **1,4 milliard d'habitants**, population **tres jeune** et en **forte croissance**.\n- Grande diversite de **peuples**, de **langues** et de **religions**.\n- Forte **urbanisation** (grandes villes : Lagos, Le Caire, Kinshasa).\n\n## IV. Les ressources et les defis\n\n- **Richesses** : petrole, or, diamant, cuivre, bauxite, terres agricoles, forets.\n- **Defis** : **pauvrete**, faible industrialisation, conflits, dependance aux matieres premieres, besoin d'education et de sante.\n- Volonte d'**unite** : l'**Union africaine (UA)**, creee en **2002** (heritiere de l'OUA de 1963), siege a **Addis-Abeba** (Ethiopie).\n\n## Reperes et chiffres cles\n\n- Superficie : environ **30 millions de km2** (2e continent).\n- Population : plus de **1,4 milliard d'habitants**.\n- **54 Etats**.\n- Point culminant : le **Kilimandjaro (5 895 m)**.\n- Fleuve le plus long : le **Nil**.\n- **Union africaine (UA)** creee en **2002**, siege a Addis-Abeba.\n\n## Exercice / sujet corrige\n\n**Sujet : Presentez les principales caracteristiques du continent africain.**\n\n**Corrige (idees principales) :**\n- *Dimensions :* 2e continent, ≈ 30 millions de km2, 54 Etats, traverse par l'equateur.\n- *Milieux :* plateaux et montagnes (Kilimandjaro), climats varies (desert, savane, foret), grands fleuves (Nil, Congo).\n- *Population :* plus de 1,4 milliard d'habitants, jeune et en forte croissance.\n- *Ressources et defis :* riches ressources mais pauvrete et faible industrialisation ; UA pour l'unite.\n\n## A retenir\n\nL'**Afrique** est le **2e continent** (≈ **30 millions de km2**, **54 Etats**), traverse par l'**equateur**. Elle presente des **climats varies** (desert, savane, foret), de grands fleuves (**Nil**, **Congo**) et le point culminant **Kilimandjaro** (**5 895 m**). Sa population depasse **1,4 milliard d'habitants**, jeune et en forte croissance. Riche en ressources mais confrontee a la **pauvrete**, elle vise l'unite avec l'**Union africaine** (2002).",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Quel rang occupe l'Afrique parmi les continents par sa superficie ?",
+            "options": [
+              "Le 1er",
+              "Le 2e (apres l'Asie)",
+              "Le 3e",
+              "Le 4e"
+            ],
+            "answer": 1,
+            "explanation": "L'Afrique est le 2e plus grand continent apres l'Asie."
+          },
+          {
+            "q": "Quel est le point culminant de l'Afrique ?",
+            "options": [
+              "Le mont Cameroun",
+              "Le Kilimandjaro (5 895 m)",
+              "Le mont Kenya",
+              "L'Atlas"
+            ],
+            "answer": 1,
+            "explanation": "Le Kilimandjaro (5 895 m), en Tanzanie, est le sommet de l'Afrique."
+          },
+          {
+            "q": "Combien d'Etats compte l'Afrique ?",
+            "options": [
+              "27",
+              "54",
+              "100",
+              "12"
+            ],
+            "answer": 1,
+            "explanation": "L'Afrique compte 54 Etats."
+          },
+          {
+            "q": "Quel est le fleuve le plus long d'Afrique ?",
+            "options": [
+              "Le Congo",
+              "Le Nil",
+              "Le Niger",
+              "Le Zambeze"
+            ],
+            "answer": 1,
+            "explanation": "Le Nil est le fleuve le plus long d'Afrique (et l'un des plus longs du monde)."
+          },
+          {
+            "q": "Quelle organisation represente l'unite africaine depuis 2002 ?",
+            "options": [
+              "L'ONU",
+              "L'Union africaine (UA)",
+              "L'OTAN",
+              "L'Union europeenne"
+            ],
+            "answer": 1,
+            "explanation": "L'Union africaine, creee en 2002, succede a l'OUA."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les grands ensembles du monde",
+      "video": "https://www.youtube.com/watch?v=I79TpDe3t2g",
+      "lesson": "# Les grands ensembles du monde\n\n## Introduction\n\nLe **monde** est divise en **grands ensembles** : des **continents**, mais aussi des groupes de pays qui se ressemblent par leur **niveau de developpement** ou leur **organisation**. On oppose souvent les **pays developpes** (le **Nord**) aux **pays en developpement** (le **Sud**). Comprendre ces grands ensembles aide a situer le Cameroun et l'Afrique dans le monde.\n\n## I. Les continents\n\nLa Terre compte plusieurs grands ensembles physiques :\n- l'**Asie** (le plus vaste et le plus peuple) ;\n- l'**Afrique** (2e continent) ;\n- l'**Amerique** (du Nord et du Sud) ;\n- l'**Europe** ;\n- l'**Oceanie** ;\n- l'**Antarctique** (continent glace, presque inhabite).\n\n## II. L'opposition Nord / Sud\n\n- Le **Nord** : les **pays developpes** (Amerique du Nord, Europe, Japon, etc.). Ils sont **riches**, **industrialises**, avec un bon niveau de vie.\n- Le **Sud** : les **pays en developpement** (la plupart de l'Afrique, de l'Amerique latine, de l'Asie). Ils sont souvent **moins riches**, exportent des matieres premieres et connaissent davantage de **pauvrete**.\n- Cette opposition est mesuree par des indicateurs comme le **PIB** ou l'**IDH** (indice de developpement humain).\n\n## III. La mondialisation\n\n- La **mondialisation** est la mise en relation croissante des pays du monde par les **echanges** (commerce, transports, information, internet).\n- Elle est dominee par de grandes puissances : les **Etats-Unis**, l'**Union europeenne**, la **Chine**, le **Japon**.\n- De grandes **entreprises multinationales** organisent une grande partie des echanges mondiaux.\n\n## IV. Les grandes organisations internationales\n\n- L'**ONU** : maintien de la paix et cooperation entre Etats.\n- Des **regroupements regionaux** : l'**Union europeenne (UE)**, l'**Union africaine (UA)**, la **CEMAC** et la **CEDEAO** en Afrique.\n- La place du Cameroun : un pays du **Sud**, membre de l'**ONU**, de l'**UA** et de la **CEMAC** (Afrique centrale).\n\n## Reperes et chiffres cles\n\n- **Continents** : Asie, Afrique, Amerique, Europe, Oceanie, Antarctique.\n- Opposition **Nord** (developpe) / **Sud** (en developpement).\n- Indicateurs : **PIB**, **IDH**.\n- Grandes puissances : **Etats-Unis, Union europeenne, Chine, Japon**.\n- Organisations : **ONU**, **UE**, **UA**, **CEMAC**, **CEDEAO**.\n\n## Exercice / sujet corrige\n\n**Sujet : Expliquez l'opposition entre les pays du Nord et les pays du Sud.**\n\n**Corrige (idees principales) :**\n- *Le Nord :* pays developpes, riches, industrialises, niveau de vie eleve (Europe, Amerique du Nord, Japon).\n- *Le Sud :* pays en developpement, plus pauvres, exportateurs de matieres premieres (Afrique, Amerique latine, une partie de l'Asie).\n- *Mesure :* on compare grace au PIB et a l'IDH.\n- *Conclusion :* le Cameroun appartient au Sud et cherche a se developper.\n\n## A retenir\n\nLe monde se divise en **grands ensembles** : les **continents** (Asie, Afrique, Amerique, Europe, Oceanie, Antarctique) et l'opposition entre le **Nord** (pays **developpes**) et le **Sud** (pays **en developpement**), mesuree par le **PIB** et l'**IDH**. La **mondialisation** relie les pays par les echanges, domines par les **Etats-Unis**, l'**UE**, la **Chine** et le **Japon**. Le Cameroun est un pays du **Sud**, membre de l'**ONU**, de l'**UA** et de la **CEMAC**.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Comment appelle-t-on l'ensemble des pays developpes et riches ?",
+            "options": [
+              "Le Sud",
+              "Le Nord",
+              "L'Est",
+              "L'Ouest"
+            ],
+            "answer": 1,
+            "explanation": "Les pays developpes et riches forment le Nord."
+          },
+          {
+            "q": "A quel ensemble appartient le Cameroun ?",
+            "options": [
+              "Au Nord developpe",
+              "Au Sud en developpement",
+              "A l'Oceanie",
+              "A l'Antarctique"
+            ],
+            "answer": 1,
+            "explanation": "Le Cameroun est un pays du Sud, en developpement."
+          },
+          {
+            "q": "Quel indicateur mesure le developpement humain d'un pays ?",
+            "options": [
+              "Le PIB seulement",
+              "L'IDH (indice de developpement humain)",
+              "La superficie",
+              "Le nombre de fleuves"
+            ],
+            "answer": 1,
+            "explanation": "L'IDH mesure le niveau de developpement humain (sante, education, revenu)."
+          },
+          {
+            "q": "Qu'est-ce que la mondialisation ?",
+            "options": [
+              "La fermeture des frontieres",
+              "La mise en relation croissante des pays par les echanges",
+              "Une guerre mondiale",
+              "La fin du commerce"
+            ],
+            "answer": 1,
+            "explanation": "La mondialisation est l'intensification des echanges entre les pays du monde."
+          },
+          {
+            "q": "Quelle organisation regionale regroupe les pays d'Afrique centrale dont le Cameroun ?",
+            "options": [
+              "La CEDEAO",
+              "L'Union europeenne",
+              "La CEMAC",
+              "L'OTAN"
+            ],
+            "answer": 2,
+            "explanation": "La CEMAC regroupe les pays d'Afrique centrale, dont le Cameroun."
+          }
+        ]
+      }
+    }
+  ]
+}
