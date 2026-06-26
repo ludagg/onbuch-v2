@@ -102,6 +102,10 @@ class _ConcoursScreenState extends State<ConcoursScreen> {
           return ListView(
             padding: const EdgeInsets.fromLTRB(20, 6, 20, 32),
             children: [
+              if (!searching) ...[
+                _IntroHeadline(),
+                const SizedBox(height: 14),
+              ],
               _searchField(),
               const SizedBox(height: 14),
 
@@ -202,6 +206,68 @@ Widget _pill(String t, Color bg, Color fg) => Container(
     );
 
 String _frShort(DateTime d) => DateFormat('d MMM', 'fr_FR').format(d);
+
+// ─── Phrase d'accroche (au-dessus de la recherche) ───────────────────────────
+// Le titre s'écrit avec une animation de frappe à chaque ouverture de la page.
+class _IntroHeadline extends StatefulWidget {
+  @override
+  State<_IntroHeadline> createState() => _IntroHeadlineState();
+}
+
+class _IntroHeadlineState extends State<_IntroHeadline> {
+  static const _full = 'Trouve le meilleur parcours sup pour toi';
+  Timer? _typer;
+  Timer? _caret;
+  int _shown = 0;
+  bool _caretOn = true;
+
+  @override
+  void initState() {
+    super.initState();
+    // Frappe lettre par lettre.
+    _typer = Timer.periodic(const Duration(milliseconds: 55), (t) {
+      if (!mounted) return;
+      if (_shown >= _full.length) { t.cancel(); return; }
+      setState(() => _shown++);
+    });
+    // Curseur clignotant.
+    _caret = Timer.periodic(const Duration(milliseconds: 530), (_) {
+      if (!mounted) return;
+      setState(() => _caretOn = !_caretOn);
+    });
+  }
+
+  @override
+  void dispose() {
+    _typer?.cancel();
+    _caret?.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final typing = _shown < _full.length;
+    return Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+      Text('ORIENTATION · PARCOURS SUP',
+          textAlign: TextAlign.center,
+          style: body(10.5, weight: FontWeight.w800, color: OC.o600)
+              .copyWith(letterSpacing: 0.12 * 10.5)),
+      const SizedBox(height: 10),
+      Text.rich(
+        TextSpan(children: [
+          TextSpan(text: _full.substring(0, _shown)),
+          // Le curseur reste visible pendant la frappe, puis clignote.
+          TextSpan(
+            text: '|',
+            style: TextStyle(color: (typing || _caretOn) ? OC.o500 : Colors.transparent),
+          ),
+        ]),
+        textAlign: TextAlign.center,
+        style: display(25, weight: FontWeight.w700, color: OC.ink).copyWith(height: 1.18),
+      ),
+    ]);
+  }
+}
 
 // ─── Bannière « Guide d'orientation » ────────────────────────────────────────
 class _OrientationGuideBanner extends StatelessWidget {
