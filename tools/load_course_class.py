@@ -58,8 +58,12 @@ for f in sorted(glob.glob(os.path.join(BASE, '*.json'))):
             print("  ! fail", d['code'], i, cc, out[:120])
             continue
         cid = json.loads(out)['$id']
-        api('POST', "/collections/lessons/documents", {"documentId": cid, "data": {"chapterId": cid, "content": ch['lesson'], "createdAt": now}})
-        api('POST', "/collections/quizzes/documents", {"documentId": cid, "data": {"chapterId": cid, "content": json.dumps(ch['quiz'], ensure_ascii=False), "createdAt": now}})
+        lesson = ch.get('lesson', '')
+        if lesson:
+            api('POST', "/collections/lessons/documents", {"documentId": cid, "data": {"chapterId": cid, "content": lesson, "createdAt": now}})
+        quiz = ch.get('quiz')
+        if quiz and quiz.get('questions'):
+            api('POST', "/collections/quizzes/documents", {"documentId": cid, "data": {"chapterId": cid, "content": json.dumps(quiz, ensure_ascii=False), "createdAt": now}})
         ok += 1
     print(f"  ✓ {d['code']}: {ok} chapitres")
 print(f"Terminé ({CLS}).")
