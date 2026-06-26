@@ -1,235 +1,1094 @@
 {
-  "subject": "Philosophie",
-  "code": "Ph",
-  "series": "toutes séries",
-  "chapters": [
-    {
-      "title": "La conscience et l'inconscient",
-      "lesson": "# La conscience et l'inconscient\n\n## Problématique\n\n« Connais-toi toi-même », exhortait Socrate. Mais le moi est-il transparent à lui-même ? L'homme se définit traditionnellement comme un être conscient, capable de se prendre lui-même pour objet de pensée. Pourtant, si une part de nous-mêmes échappe à notre regard, la conscience perd son privilège de souveraineté. La question est donc : la conscience suffit-elle à définir la subjectivité humaine, ou faut-il admettre l'existence d'un inconscient psychique ?\n\n## Définitions\n\nLa **conscience** est le savoir immédiat que le sujet a de lui-même et du monde. On distingue la *conscience spontanée* (présence à soi dans l'action) et la *conscience réfléchie* (retour de la pensée sur elle-même). L'**inconscient**, au sens fort, désigne un ensemble de représentations refoulées, actives bien qu'ignorées du sujet.\n\n## La conscience comme fondement du sujet : Descartes\n\nDescartes, dans les *Méditations métaphysiques*, fait de la conscience le roc indubitable : je puis douter de tout, mais non du fait que je pense. Le *cogito* — « je pense, donc je suis » — pose la conscience comme certitude première. La pensée est ainsi entièrement transparente à elle-même : rien dans l'esprit n'échappe à l'esprit. Kant prolongera cette intuition avec le « Je pense » qui doit pouvoir accompagner toutes mes représentations et fonde l'unité de l'expérience.\n\n## La conscience morale et l'existence : Sartre\n\nÊtre conscient, c'est aussi être responsable. La conscience morale, voix intérieure qui juge, fait de l'homme un être de devoir (Rousseau). Pour Sartre, la conscience est liberté : l'homme « est condamné à être libre », il se choisit à chaque instant. Nier sa liberté en se réfugiant derrière un déterminisme, c'est tomber dans la *mauvaise foi*. Sartre refuse précisément l'inconscient freudien, qui serait pour lui une excuse, une façon de se déresponsabiliser.\n\n## La découverte de l'inconscient : Freud\n\nFreud opère une « blessure narcissique » : après Copernic (la Terre n'est pas le centre) et Darwin (l'homme est un animal), il montre que « le moi n'est pas maître dans sa propre maison ». Les actes manqués, les lapsus, les rêves, les symptômes névrotiques révèlent un sens caché. L'appareil psychique se structure en *ça* (pulsions), *moi* (instance de réalité) et *surmoi* (interdits intériorisés). Le **refoulement** chasse hors de la conscience des désirs inacceptables, qui continuent pourtant d'agir. L'inconscient n'est donc pas une simple absence de conscience, mais un système dynamique régi par ses propres lois.\n\n## Critiques et enjeux\n\nL'inconscient menace-t-il la liberté ? Alain et Sartre y voient un risque de fatalisme. Mais Freud rétorque que la cure analytique vise précisément à élargir le champ de la conscience : « Là où était le ça, le moi doit advenir. » Connaître son inconscient, c'est gagner en liberté, non la perdre.\n\n## Ancrage africain\n\nDans plusieurs traditions camerounaises et africaines, la personne ne se réduit pas à une conscience individuelle isolée : elle s'inscrit dans une communauté, une lignée, un rapport aux ancêtres. La sagesse *ubuntu* — « je suis parce que nous sommes » — rappelle que le sujet se constitue dans la relation. Les rêves, les rites de divination témoignent aussi d'une attention ancienne à ce qui, en l'homme, dépasse la conscience claire. La psychanalyse africaine cherche ainsi à articuler l'inconscient freudien et les représentations culturelles du sujet.\n\n## Ouverture\n\nLa conscience demeure le lieu de la responsabilité et de la dignité humaine ; mais reconnaître l'inconscient invite à plus d'humilité et de lucidité. Loin de s'opposer, conscience et inconscient dessinent ensemble la profondeur du sujet humain.\n\n> **Méthode** : pour une dissertation (« La conscience suffit-elle à se connaître ? »), construire un plan dialectique — thèse (la conscience fonde le sujet), antithèse (l'inconscient la limite), synthèse (la connaissance de soi comme tâche). Pour une explication de texte de Freud, dégager la thèse, expliquer les concepts, puis discuter.",
-      "quiz": {
-        "questions": [
-          {
-            "q": "Quel philosophe fait du « je pense, donc je suis » le fondement indubitable du sujet ?",
-            "options": ["Freud", "Descartes", "Sartre", "Marx"],
-            "answer": 1,
-            "explanation": "Le cogito (« je pense, donc je suis ») est l'argument central de Descartes dans les Méditations métaphysiques."
-          },
-          {
-            "q": "Selon Freud, qu'est-ce que le refoulement ?",
-            "options": ["L'oubli volontaire d'un souvenir", "Le mécanisme qui chasse hors de la conscience des désirs inacceptables", "La maîtrise rationnelle des passions", "La disparition définitive d'une pulsion"],
-            "answer": 1,
-            "explanation": "Le refoulement écarte de la conscience des représentations inacceptables, qui continuent d'agir dans l'inconscient."
-          },
-          {
-            "q": "Quelles sont les trois instances de l'appareil psychique selon Freud ?",
-            "options": ["Corps, âme, esprit", "Raison, volonté, désir", "Ça, moi, surmoi", "Conscient, préconscient, perception"],
-            "answer": 2,
-            "explanation": "Freud distingue le ça (pulsions), le moi (réalité) et le surmoi (interdits intériorisés)."
-          },
-          {
-            "q": "Pour Sartre, se réfugier derrière un déterminisme inconscient relève de :",
-            "options": ["La bonne foi", "La mauvaise foi", "La conscience réfléchie", "Le surmoi"],
-            "answer": 1,
-            "explanation": "Sartre nomme « mauvaise foi » le refus de sa liberté et de sa responsabilité."
-          },
-          {
-            "q": "Que désigne l'expression « le moi n'est pas maître dans sa propre maison » ?",
-            "options": ["La toute-puissance de la conscience", "La limitation de la conscience par l'inconscient", "La supériorité de la raison", "L'autonomie absolue du sujet"],
-            "answer": 1,
-            "explanation": "Cette formule de Freud souligne que la conscience ne contrôle pas tout : l'inconscient la déborde."
-          }
-        ]
-      }
-    },
-    {
-      "title": "La liberté",
-      "lesson": "# La liberté\n\n## Problématique\n\nL'homme se croit spontanément libre : il décide, choisit, agit. Pourtant les sciences (physiques, biologiques, sociales) montrent partout des causes qui déterminent les phénomènes. L'homme échappe-t-il à ce déterminisme universel ? Être libre, est-ce faire ce que l'on veut, ou bien obéir à une loi que l'on se donne ? La liberté est-elle un fait ou une conquête ?\n\n## Définitions\n\nAu sens commun, la **liberté** est l'absence de contrainte : pouvoir agir selon ses désirs. Philosophiquement, on distingue la *liberté d'indifférence* (choisir indépendamment de toute raison), la *liberté politique* (n'obéir qu'aux lois) et la *liberté morale* (autonomie de la volonté). Son contraire est le **déterminisme**, thèse selon laquelle tout effet a une cause nécessaire.\n\n## L'illusion du libre arbitre : Spinoza\n\nSpinoza conteste le sentiment de liberté : « Les hommes se croient libres parce qu'ils ont conscience de leurs actions, mais ignorent les causes qui les déterminent. » La pierre qui tombe, si elle pensait, croirait choisir sa chute. La vraie liberté, pour Spinoza, n'est pas l'absence de cause mais la connaissance de la nécessité : comprendre ce qui nous détermine pour cesser d'en être esclave.\n\n## La liberté comme autonomie : Kant et Rousseau\n\nRousseau distingue la liberté naturelle (faire ce qu'on veut) et la liberté civile, qui naît du contrat social : « l'obéissance à la loi qu'on s'est prescrite est liberté ». Kant approfondit : est libre la volonté qui se donne à elle-même sa loi morale (autonomie), par opposition à la volonté soumise à ses penchants (hétéronomie). La liberté n'est donc pas le caprice mais la capacité d'agir par devoir.\n\n## La liberté comme condition humaine : Sartre\n\nPour Sartre, l'homme « est condamné à être libre » : il n'a pas de nature préalable, « l'existence précède l'essence ». Même contraint, l'homme choisit son attitude. Cette liberté est angoissante car totalement responsable : « nous sommes seuls, sans excuses ». Refuser cette liberté, c'est la mauvaise foi.\n\n## Les obstacles : déterminismes sociaux et historiques\n\nMarx rappelle que « les hommes font leur histoire, mais dans des conditions qu'ils n'ont pas choisies ». Les déterminismes économiques et sociaux pèsent sur les individus. Bourdieu montrera le poids des habitus. La liberté n'est donc pas un don, mais une libération à conquérir contre l'aliénation.\n\n## Ancrage africain\n\nLes indépendances africaines des années 1960 incarnent une exigence collective de liberté contre la domination coloniale. Mais penseurs comme Frantz Fanon (*Les Damnés de la terre*) montrent que la liberté politique formelle ne suffit pas : il faut une libération économique, culturelle et mentale réelle. Au Cameroun, l'enjeu de la liberté se joue aussi dans l'articulation entre traditions communautaires et droits individuels modernes : être libre, est-ce s'émanciper de la communauté, ou s'y accomplir ?\n\n## Ouverture\n\nLa liberté n'est ni une pure illusion ni un fait donné : elle est un projet, une tâche. Comprendre nos déterminismes (Spinoza), se donner une loi (Kant), assumer nos choix (Sartre), lutter contre l'aliénation (Marx) : autant de chemins d'une libération jamais achevée.\n\n> **Méthode** : pour « Sommes-nous vraiment libres ? », éviter le piège du sentiment immédiat. Plan possible : la liberté comme sentiment vécu, sa remise en cause par les déterminismes, la liberté comme conquête de l'autonomie.",
-      "quiz": {
-        "questions": [
-          {
-            "q": "Selon Spinoza, pourquoi les hommes se croient-ils libres ?",
-            "options": ["Parce qu'ils connaissent les causes de leurs actes", "Parce qu'ils ont conscience de leurs actions mais ignorent leurs causes", "Parce qu'ils obéissent à la loi morale", "Parce qu'ils sont déterminés par Dieu"],
-            "answer": 1,
-            "explanation": "Pour Spinoza, le sentiment de liberté vient de l'ignorance des causes qui nous déterminent."
-          },
-          {
-            "q": "Chez Kant, l'autonomie de la volonté désigne :",
-            "options": ["Faire ce que l'on désire", "Obéir à ses penchants", "Se donner à soi-même sa loi morale", "Suivre les coutumes"],
-            "answer": 2,
-            "explanation": "L'autonomie kantienne est la volonté qui se prescrit sa propre loi morale, par opposition à l'hétéronomie."
-          },
-          {
-            "q": "Quelle formule résume la conception sartrienne de la liberté ?",
-            "options": ["L'homme est un loup pour l'homme", "L'homme est condamné à être libre", "La liberté est la connaissance de la nécessité", "Le moi n'est pas maître dans sa maison"],
-            "answer": 1,
-            "explanation": "Sartre affirme que l'homme, sans nature préalable, est « condamné à être libre »."
-          },
-          {
-            "q": "Pour Rousseau, la liberté civile consiste à :",
-            "options": ["Faire tout ce que l'on veut", "Obéir à la loi qu'on s'est prescrite", "Vivre sans aucune loi", "Suivre la force du plus fort"],
-            "answer": 1,
-            "explanation": "Rousseau définit la liberté civile comme l'obéissance à la loi qu'on s'est donnée par le contrat social."
-          },
-          {
-            "q": "Quel auteur a écrit Les Damnés de la terre, ouvrage majeur sur la libération coloniale ?",
-            "options": ["Karl Marx", "Frantz Fanon", "Jean-Paul Sartre", "Léopold Sédar Senghor"],
-            "answer": 1,
-            "explanation": "Frantz Fanon, dans Les Damnés de la terre, analyse la libération réelle au-delà de l'indépendance formelle."
-          }
-        ]
-      }
-    },
-    {
-      "title": "La vérité",
-      "lesson": "# La vérité\n\n## Problématique\n\nChacun prétend dire vrai, mais les opinions se contredisent. Qu'est-ce qui distingue une vérité d'une simple croyance ? La vérité est-elle accessible à l'homme, ou condamné à l'erreur et au doute ? Existe-t-il une vérité absolue, ou seulement des vérités relatives à chaque culture, époque ou individu ?\n\n## Définitions\n\nLa **vérité** se définit classiquement comme l'*adéquation* (correspondance) entre la pensée et son objet, ou entre le discours et la réalité (*adaequatio rei et intellectus*). On distingue la *vérité-correspondance* (un énoncé est vrai s'il correspond aux faits), la *vérité-cohérence* (s'il s'accorde sans contradiction avec d'autres énoncés) et la vérité comme dévoilement. Son contraire : l'**erreur** (croire vrai ce qui est faux) et le **mensonge** (dire faux sciemment).\n\n## Le doute comme chemin vers le vrai : Descartes\n\nPour atteindre une vérité certaine, Descartes pratique le *doute méthodique* : rejeter comme faux tout ce qui peut être mis en doute. Les sens trompent, les raisonnements peuvent errer, le rêve imite la veille, et un « malin génie » pourrait nous abuser. Mais une certitude résiste : je ne puis douter que je doute, donc que je pense, donc que je suis. Le *cogito* devient le critère de toute vérité : est vrai ce qui se présente « clairement et distinctement ».\n\n## Vérités de raison et vérités de fait : Leibniz et l'expérience\n\nLeibniz distingue les *vérités de raison* (nécessaires, comme les mathématiques, dont le contraire est impossible) et les *vérités de fait* (contingentes, vérifiées par l'expérience). Les premières relèvent de la démonstration, les secondes de l'observation. La science combine les deux : Bachelard montrera que la vérité scientifique se construit contre l'opinion première, par rupture épistémologique.\n\n## La vérité a-t-elle une histoire ?\n\nHegel pense la vérité comme un processus : le vrai est le résultat d'un développement dialectique, « le vrai est le tout ». Pour Nietzsche au contraire, les « vérités » ne sont que des illusions utiles, des métaphores oubliées au service de la vie. Cette critique invite à la prudence sans nécessairement sombrer dans le relativisme : reconnaître que nos vérités sont historiques n'interdit pas de chercher mieux.\n\n## Vérité et utilité\n\nLe pragmatisme (James) définit le vrai par ses effets : est vrai ce qui réussit, ce qui est utile. Mais cette thèse est dangereuse : une croyance fausse peut être utile, et une vérité dérangeante reste vraie. La vérité ne se réduit pas à l'efficacité.\n\n## Ancrage africain\n\nLes traditions orales africaines transmettent la vérité par les proverbes, les contes, la parole des anciens : « la vérité est comme l'or, elle ne rouille pas ». La sagesse y est validée par l'expérience collective et la cohérence avec l'ordre du monde. La rencontre avec la science moderne pose la question : comment articuler vérités traditionnelles et vérités scientifiques sans mépriser ni absolutiser ni l'une ni l'autre ? Le philosophe camerounais doit penser ce dialogue des savoirs.\n\n## Ouverture\n\nLa vérité est exigeante : elle suppose le courage de douter, la rigueur de la démonstration et l'humilité face à ses propres limites. Loin d'être un trésor possédé, elle est une recherche infinie. « La vérité vous rendra libres » : chercher le vrai est aussi un devoir moral.\n\n> **Méthode** : pour « Toutes les opinions se valent-elles ? », ne pas confondre tolérance et relativisme. Distinguer opinion, croyance et savoir, puis montrer que la vérité se construit par la raison et la preuve.",
-      "quiz": {
-        "questions": [
-          {
-            "q": "La définition classique de la vérité comme « adéquation » désigne :",
-            "options": ["L'accord entre les hommes", "La correspondance entre la pensée et son objet", "L'utilité d'une croyance", "La cohérence des sentiments"],
-            "answer": 1,
-            "explanation": "La vérité-correspondance est l'adéquation entre la pensée (ou le discours) et la réalité."
-          },
-          {
-            "q": "En quoi consiste le doute méthodique de Descartes ?",
-            "options": ["Douter par scepticisme définitif", "Rejeter comme faux tout ce qui peut être mis en doute pour trouver le certain", "Croire tout ce que disent les sens", "Suivre l'opinion commune"],
-            "answer": 1,
-            "explanation": "Le doute méthodique est provisoire : il sert à atteindre une vérité indubitable, le cogito."
-          },
-          {
-            "q": "Selon Leibniz, les vérités de raison sont :",
-            "options": ["Contingentes et vérifiées par l'expérience", "Nécessaires et démontrables, leur contraire étant impossible", "Toujours fausses", "Des illusions utiles"],
-            "answer": 1,
-            "explanation": "Les vérités de raison (mathématiques) sont nécessaires ; les vérités de fait sont contingentes."
-          },
-          {
-            "q": "Quel philosophe considère les « vérités » comme des illusions, des métaphores au service de la vie ?",
-            "options": ["Hegel", "Descartes", "Nietzsche", "Leibniz"],
-            "answer": 2,
-            "explanation": "Nietzsche critique la prétention de la vérité, qu'il rapporte à des métaphores oubliées utiles à la vie."
-          },
-          {
-            "q": "Pourquoi la thèse pragmatiste (le vrai = l'utile) est-elle critiquable ?",
-            "options": ["Parce qu'une croyance fausse peut être utile", "Parce que l'expérience ne prouve rien", "Parce que les mathématiques sont inutiles", "Parce que la vérité n'existe pas"],
-            "answer": 0,
-            "explanation": "Une croyance peut être utile sans être vraie, donc utilité et vérité ne se confondent pas."
-          }
-        ]
-      }
-    },
-    {
-      "title": "L'État et la société",
-      "lesson": "# L'État et la société\n\n## Problématique\n\nLes hommes vivent en société, mais pourquoi obéissent-ils à un pouvoir, l'État ? Celui-ci est-il un instrument de libération ou d'oppression ? L'autorité politique repose-t-elle sur la force ou sur le droit ? Existe-t-il un État légitime, et à quelles conditions ?\n\n## Définitions\n\nLa **société** est l'ensemble des individus liés par des rapports d'échange et de coopération. L'**État** est l'institution qui détient, sur un territoire, le pouvoir politique, le droit et — selon Max Weber — « le monopole de la violence physique légitime ». On distingue le pouvoir *de fait* (la force) et le pouvoir *de droit* (l'autorité légitime).\n\n## L'État né du contrat : Hobbes, Locke, Rousseau\n\nLes théories du contrat social imaginent un *état de nature* précédant l'État. Pour **Hobbes** (*Léviathan*), cet état est une « guerre de tous contre tous » où « l'homme est un loup pour l'homme » : les hommes, par peur, cèdent leurs droits à un souverain absolu garant de la paix. **Locke** voit dans l'état de nature des droits naturels (vie, liberté, propriété) que l'État doit protéger, sous peine de résistance légitime. **Rousseau** (*Du contrat social*) fonde l'État sur la *volonté générale* : le peuple souverain n'obéit qu'à lui-même ; la souveraineté appartient au peuple.\n\n## L'État, instrument de domination : Marx\n\nMarx renverse la perspective : l'État n'est pas neutre, il est « le comité qui gère les affaires communes de la classe dominante ». Il sert à maintenir l'ordre social favorable aux possédants. Dans la société communiste sans classes, l'État devrait « dépérir ». Cette critique reste précieuse pour interroger les inégalités derrière l'apparente neutralité du droit.\n\n## La séparation des pouvoirs et l'État de droit\n\nMontesquieu (*De l'esprit des lois*) montre que « le pouvoir arrête le pouvoir » : pour éviter le despotisme, il faut séparer les pouvoirs législatif, exécutif et judiciaire. L'**État de droit** soumet le pouvoir lui-même à la loi et garantit les libertés, par opposition à l'arbitraire.\n\n## Ancrage africain et camerounais\n\nL'État africain post-colonial hérite de frontières et d'institutions importées, qui ne recoupent pas toujours les solidarités ethniques et communautaires précoloniales. Penseurs comme Achille Mbembe analysent la « postcolonie » et les rapports de pouvoir qui en découlent. Au Cameroun, l'enjeu est de construire un État de droit qui articule l'unité nationale, la diversité culturelle (plus de 250 communautés), et la tradition des chefferies. La légitimité de l'État ne se décrète pas : elle se construit par la justice, le service du bien commun et la participation citoyenne.\n\n## Ouverture\n\nL'État est nécessaire pour sortir de la violence et garantir le droit, mais il peut devenir oppresseur. La question n'est donc pas seulement « faut-il un État ? » mais « quel État, au service de qui ? ». Un État légitime est celui qui, soumis au droit, vise le bien commun et respecte la liberté des citoyens.\n\n> **Méthode** : pour « L'État est-il l'ennemi de la liberté ? », opposer la vision libérale (l'État protège la liberté) et la critique (il peut l'opprimer), puis distinguer État de droit et État despotique.",
-      "quiz": {
-        "questions": [
-          {
-            "q": "Selon Max Weber, l'État détient :",
-            "options": ["Le monopole de la richesse", "Le monopole de la violence physique légitime", "Le monopole de la vérité", "Le monopole de la religion"],
-            "answer": 1,
-            "explanation": "Weber définit l'État par le monopole de la violence physique légitime sur un territoire."
-          },
-          {
-            "q": "Pour Hobbes, l'état de nature se caractérise par :",
-            "options": ["La paix et l'abondance", "La guerre de tous contre tous", "La volonté générale", "La séparation des pouvoirs"],
-            "answer": 1,
-            "explanation": "Hobbes décrit l'état de nature comme une guerre de tous contre tous, où l'homme est un loup pour l'homme."
-          },
-          {
-            "q": "Sur quoi Rousseau fonde-t-il la souveraineté de l'État ?",
-            "options": ["La force du plus fort", "Le droit divin", "La volonté générale du peuple", "La classe dominante"],
-            "answer": 2,
-            "explanation": "Dans Du contrat social, Rousseau fonde la souveraineté sur la volonté générale du peuple."
-          },
-          {
-            "q": "Selon Marx, l'État est :",
-            "options": ["Neutre et au-dessus des classes", "Un instrument au service de la classe dominante", "Une institution divine", "Inutile dès l'origine"],
-            "answer": 1,
-            "explanation": "Marx voit l'État comme le « comité gérant les affaires de la classe dominante »."
-          },
-          {
-            "q": "Quel penseur a théorisé la séparation des pouvoirs dans De l'esprit des lois ?",
-            "options": ["Hobbes", "Montesquieu", "Locke", "Weber"],
-            "answer": 1,
-            "explanation": "Montesquieu défend la séparation des pouvoirs : « le pouvoir arrête le pouvoir »."
-          }
-        ]
-      }
-    },
-    {
-      "title": "Le travail et la technique",
-      "lesson": "# Le travail et la technique\n\n## Problématique\n\nLe travail est souvent vécu comme une peine, un fardeau : « tu gagneras ton pain à la sueur de ton front ». Pourtant il est aussi ce par quoi l'homme transforme le monde et se réalise. Le travail est-il une malédiction ou une source de dignité et d'humanité ? Et la technique, qui prolonge le travail, libère-t-elle l'homme ou l'asservit-elle ?\n\n## Définitions\n\nLe **travail** est l'activité par laquelle l'homme transforme la nature pour satisfaire ses besoins, en y déployant un effort. La **technique** est l'ensemble des procédés et outils permettant cette transformation efficace. À distinguer du *jeu* (gratuit) et de la *praxis* pure.\n\n## Le travail humanise : Hegel et Marx\n\nDans la *dialectique du maître et de l'esclave* (Hegel), c'est paradoxalement l'esclave, par le travail, qui s'élève : en transformant la nature, il se transforme lui-même, prend conscience de soi et acquiert une maîtrise que le maître oisif n'a pas. **Marx** reprend cette idée : le travail est l'activité par laquelle l'homme se produit lui-même, « l'homme se reconnaît dans un monde qu'il a créé ». Le travail est donc proprement humain : l'abeille fait des alvéoles, mais l'architecte conçoit d'abord son œuvre en idée.\n\n## L'aliénation du travail : Marx\n\nMais dans le système capitaliste, le travail se retourne contre le travailleur : c'est l'**aliénation**. L'ouvrier ne possède ni ses outils ni le produit de son travail ; il est dépossédé, réduit à une marchandise, séparé de son activité. Le travail, qui devrait épanouir, abrutit. Marx appelle à dépasser cette aliénation pour rendre au travail son sens humain.\n\n## La technique : libération ou menace ?\n\nBergson voit dans l'homme un « *Homo faber* », fabricant d'outils : l'intelligence est d'abord faculté de fabriquer. Descartes promettait, grâce à la science, de nous rendre « comme maîtres et possesseurs de la nature ». La technique libère du besoin, allège la peine. Mais Heidegger met en garde : la technique moderne « arraisonne » la nature, la réduit à un stock à exploiter, et risque de transformer l'homme lui-même en ressource. Hans Jonas (*Le Principe responsabilité*) insiste : la puissance technique impose une éthique nouvelle, tournée vers l'avenir et la planète.\n\n## Ancrage africain et camerounais\n\nDans de nombreuses sociétés africaines, le travail n'est pas seulement individuel mais communautaire et solidaire : les travaux champêtres collectifs, l'entraide, structurent le lien social. Le développement du Cameroun pose la question de la technique : comment intégrer les innovations (numérique, agriculture moderne) sans détruire les savoir-faire artisanaux et l'équilibre écologique ? Le défi est d'un développement qui valorise le travail comme dignité et non comme simple exploitation des ressources et des hommes.\n\n## Ouverture\n\nLe travail est à la fois contrainte et accomplissement : il peut aliéner ou humaniser, selon les rapports sociaux qui l'organisent. La technique décuple notre pouvoir, mais ce pouvoir exige une responsabilité accrue. La vraie question n'est pas de fuir le travail, mais de le rendre digne, et de maîtriser la technique au lieu d'en être l'esclave.\n\n> **Méthode** : pour « Le travail n'est-il qu'une contrainte ? », montrer d'abord le travail comme peine, puis comme humanisation, enfin comme réalité ambivalente selon son organisation sociale.",
-      "quiz": {
-        "questions": [
-          {
-            "q": "Dans la dialectique hégélienne du maître et de l'esclave, qui s'élève par le travail ?",
-            "options": ["Le maître", "L'esclave", "Aucun des deux", "L'État"],
-            "answer": 1,
-            "explanation": "C'est l'esclave qui, en transformant la nature par le travail, accède à la conscience de soi."
-          },
-          {
-            "q": "Qu'appelle Marx l'aliénation du travail ?",
-            "options": ["Le repos du travailleur", "La dépossession du travailleur séparé de son activité et de son produit", "La fierté de l'ouvrier", "L'absence de travail"],
-            "answer": 1,
-            "explanation": "L'aliénation est la dépossession du travailleur, réduit à une marchandise dans le système capitaliste."
-          },
-          {
-            "q": "Bergson définit l'homme comme « Homo faber », c'est-à-dire :",
-            "options": ["L'homme qui pense", "L'homme qui joue", "L'homme qui fabrique des outils", "L'homme religieux"],
-            "answer": 2,
-            "explanation": "Pour Bergson, l'intelligence est d'abord faculté de fabriquer : l'homme est Homo faber."
-          },
-          {
-            "q": "Quelle promesse Descartes associe-t-il à la science et à la technique ?",
-            "options": ["Rendre l'homme immortel", "Rendre l'homme comme maître et possesseur de la nature", "Supprimer tout travail", "Abolir l'État"],
-            "answer": 1,
-            "explanation": "Descartes annonce que la science nous rendra « comme maîtres et possesseurs de la nature »."
-          },
-          {
-            "q": "Selon Heidegger, le danger de la technique moderne est de :",
-            "options": ["Supprimer la pauvreté", "Réduire la nature et l'homme à un simple stock à exploiter", "Libérer totalement l'homme", "Rendre le travail inutile"],
-            "answer": 1,
-            "explanation": "Heidegger critique l'« arraisonnement » : la technique réduit la nature, et l'homme, à une ressource exploitable."
-          }
-        ]
-      }
-    },
-    {
-      "title": "Le bonheur",
-      "lesson": "# Le bonheur\n\n## Problématique\n\nTous les hommes recherchent le bonheur : il semble être la fin ultime de l'existence. Mais qu'est-ce que le bonheur ? Est-ce le plaisir, la satisfaction des désirs, ou autre chose ? Peut-on l'atteindre, et par quels moyens ? Le bonheur dépend-il de nous ou des circonstances ? Et faut-il rechercher le bonheur, ou plutôt agir bien ?\n\n## Définitions\n\nLe **bonheur** est un état de satisfaction durable et complète, à distinguer du *plaisir* (satisfaction passagère et sensible) et de la *joie* (émotion vive). Étymologiquement, *bonheur* vient de « bon » et « heur » (la chance), ce qui suggère une part de hasard. La recherche du bonheur s'appelle l'*eudémonisme*.\n\n## Le bonheur comme plaisir : l'hédonisme et l'épicurisme\n\nPour les hédonistes, le bonheur réside dans le plaisir. Mais **Épicure** raffine cette thèse : tous les plaisirs ne se valent pas. Il distingue les désirs *naturels et nécessaires* (manger, boire), *naturels non nécessaires* (les raffinements) et *vains* (la gloire, la richesse). Le sage limite ses désirs pour atteindre l'*ataraxie* : l'absence de trouble du corps et de l'âme. Le bonheur épicurien est sobriété, non débauche.\n\n## Le bonheur comme maîtrise de soi : le stoïcisme\n\nPour les stoïciens (Épictète, Sénèque, Marc Aurèle), le bonheur réside dans la vertu et l'accord avec la raison. Il faut distinguer « ce qui dépend de nous » (nos jugements, nos désirs) et « ce qui ne dépend pas de nous » (la richesse, la maladie, la mort). Le sage ne désire que ce qui dépend de lui : il atteint ainsi la tranquillité, quelles que soient les circonstances. « Ne demande pas que les choses arrivent comme tu le veux, mais veuille-les comme elles arrivent. »\n\n## Le bonheur comme accomplissement : Aristote\n\nPour **Aristote**, le bonheur (*eudaimonia*) n'est pas le plaisir mais le « bien vivre » conforme à la fonction propre de l'homme : la vie selon la raison et la vertu. Le bonheur suppose une vie entière, des amis, certains biens extérieurs, et l'exercice de l'excellence. Il est activité, non passivité.\n\n## Bonheur et morale : Kant\n\nKant opère une rupture : la morale ne commande pas de rechercher le bonheur, mais d'agir par devoir. Au lieu de chercher à être heureux, il faut « se rendre digne du bonheur ». Le bonheur ne peut être le fondement de la morale car il est trop variable et subjectif. Freud, plus pessimiste, doute même que le bonheur durable soit possible : le « malaise dans la civilisation » naît du renoncement pulsionnel exigé par la vie sociale.\n\n## Ancrage africain\n\nDans la sagesse africaine et camerounaise, le bonheur n'est pas d'abord individuel : il se vit dans la communauté, la famille élargie, la solidarité (*ubuntu*). Être heureux, c'est être en harmonie avec les autres, les ancêtres et la nature, et accomplir son rôle dans le groupe. Cette conception communautaire offre une alternative à l'individualisme du bonheur-consommation : le bonheur s'y pense comme lien et non comme possession.\n\n## Ouverture\n\nLe bonheur n'est ni une simple chance ni un pur état de plaisir : il se construit par la sagesse, la maîtrise de ses désirs, la vertu et la qualité des liens. Peut-être faut-il, plutôt que de courir après le bonheur, vivre bien — et le bonheur viendra de surcroît.\n\n> **Méthode** : pour « Le bonheur dépend-il de nous ? », opposer les conceptions stoïcienne (le bonheur dépend de nos jugements) et plus réaliste (le bonheur dépend aussi des circonstances), puis nuancer.",
-      "quiz": {
-        "questions": [
-          {
-            "q": "Qu'est-ce que l'ataraxie chez Épicure ?",
-            "options": ["La recherche de tous les plaisirs", "L'absence de trouble du corps et de l'âme", "La richesse et la gloire", "La souffrance volontaire"],
-            "answer": 1,
-            "explanation": "L'ataraxie est la tranquillité, l'absence de trouble, obtenue par la limitation des désirs."
-          },
-          {
-            "q": "La distinction stoïcienne fondamentale oppose :",
-            "options": ["Le plaisir et la douleur", "Ce qui dépend de nous et ce qui n'en dépend pas", "Le corps et l'âme", "La vertu et le vice"],
-            "answer": 1,
-            "explanation": "Les stoïciens distinguent ce qui dépend de nous (nos jugements) de ce qui n'en dépend pas."
-          },
-          {
-            "q": "Pour Aristote, le bonheur (eudaimonia) est :",
-            "options": ["Le plaisir des sens", "L'absence de tout désir", "L'activité de l'âme selon la raison et la vertu", "La richesse matérielle"],
-            "answer": 2,
-            "explanation": "Aristote définit le bonheur comme le bien vivre conforme à la raison et à la vertu."
-          },
-          {
-            "q": "Selon Kant, la morale commande de :",
-            "options": ["Rechercher le bonheur avant tout", "Se rendre digne du bonheur en agissant par devoir", "Fuir tout plaisir", "Satisfaire tous ses désirs"],
-            "answer": 1,
-            "explanation": "Kant subordonne le bonheur au devoir : il faut d'abord se rendre digne du bonheur."
-          },
-          {
-            "q": "Quels désirs Épicure juge-t-il vains ?",
-            "options": ["Manger et boire", "Les désirs naturels et nécessaires", "La gloire et la richesse illimitée", "Le repos"],
-            "answer": 2,
-            "explanation": "Pour Épicure, les désirs de gloire et de richesse illimitée sont vains et sources de trouble."
-          }
-        ]
-      }
-    }
-  ]
+ "code": "Ph",
+ "level": "Terminale",
+ "chapters": [
+  {
+   "title": "La conscience et l'inconscient",
+   "video": "https://www.youtube.com/watch?v=Q2gYh6Q1qWk",
+   "lesson": "# La conscience et l'inconscient\n\n## Introduction\n\n**La conscience** désigne la connaissance immédiate que le sujet a de lui-même et du monde. Étymologiquement, *cum scientia* signifie « accompagné de savoir » : avoir conscience, c'est savoir que l'on sait. L'homme se distingue de l'animal en ce qu'il ne se contente pas d'exister, mais qu'il sait qu'il existe et peut se prendre lui-même pour objet de réflexion.\n\nOr, l'hypothèse de **l'inconscient** vient ébranler la souveraineté de la conscience : si une partie de notre vie psychique nous échappe, sommes-nous encore maîtres de nous-mêmes ? La conscience est-elle transparente à elle-même ? Le **problème** est donc le suivant : **la conscience suffit-elle à définir le sujet, ou faut-il admettre que l'essentiel de notre psychisme demeure inconscient ?** L'enjeu est considérable : il touche à la liberté, à la responsabilité morale et à la connaissance de soi.\n\n## I. La conscience fonde le sujet\n\n**Descartes** établit la conscience comme première certitude. Dans le doute méthodique, je peux douter de tout, sauf du fait que je doute, donc que je pense : **« Je pense, donc je suis »** (*cogito ergo sum*). La conscience de soi est le socle inébranlable de toute connaissance. Le sujet est avant tout une **chose pensante** (*res cogitans*), transparente à elle-même.\n\n**Kant** ajoute que le **« Je pense »** doit pouvoir accompagner toutes nos représentations : c'est l'unité de l'aperception qui fait de moi un sujet identique à travers le temps. Posséder le « Je » dans sa représentation élève l'homme infiniment au-dessus de tous les autres êtres vivants : il est une **personne**, et non une simple chose.\n\n**Husserl** montre enfin que toute conscience est **conscience de quelque chose** : c'est l'**intentionnalité**. La conscience n'est pas une boîte close, elle est tout entière tournée vers le monde, elle l'illumine de sens.\n\n## II. La découverte de l'inconscient\n\n**Freud** opère ce qu'il nomme une « troisième blessure narcissique » de l'humanité : après Copernic (la Terre n'est pas le centre du monde) et Darwin (l'homme descend de l'animal), il affirme que **« le moi n'est pas maître dans sa propre maison »**. L'inconscient n'est pas une simple absence de conscience, mais un **système psychique** doté de sa propre logique, peuplé de désirs refoulés.\n\nFreud distingue trois instances : le **ça** (pôle des pulsions), le **moi** (médiateur soumis au principe de réalité) et le **surmoi** (intériorisation des interdits). Les **actes manqués**, les **lapsus**, les **rêves** (« voie royale vers l'inconscient ») trahissent ce qui est refoulé. Le refoulement explique que des contenus pénibles soient maintenus hors de la conscience tout en continuant d'agir sur nous.\n\n## III. Une hypothèse contestée : mauvaise foi ou liberté ?\n\n**Sartre** refuse l'inconscient au nom de la liberté. Postuler un inconscient, c'est se donner une excuse, se déresponsabiliser. Sartre lui oppose la notion de **mauvaise foi** : je me mens à moi-même tout en sachant la vérité. Le « censeur » freudien devrait connaître le refoulé pour le refouler : l'inconscient reste donc une conscience qui se dissimule. L'homme est **« condamné à être libre »**, sans pouvoir se réfugier derrière un déterminisme intérieur.\n\n**Alain**, dans la même veine, voit dans l'inconscient une commodité dangereuse, « un autre moi-même » qu'on rend responsable de nos fautes.\n\n## Repères et exemples\n\n- **Distinction conscience immédiate / réfléchie** : la conscience spontanée (je perçois) et la conscience qui se prend pour objet (je sais que je perçois).\n- **Le cogito de Descartes** (*Méditations métaphysiques*, II, 1641).\n- **Freud**, *L'Interprétation des rêves* (1900), *Introduction à la psychanalyse* (1916).\n- **Exemple du lapsus** : un président de séance qui ouvre la réunion en disant « la séance est levée » trahit son désir réel.\n- **Repère objectif/subjectif** : la conscience morale (savoir le bien) et la conscience psychologique (se savoir exister).\n\n## Sujets de dissertation corrigés\n\n**Sujet : « Peut-on tout attendre de la conscience pour se connaître soi-même ? »**\n\n*Problématique* : La connaissance de soi semble relever par excellence de la conscience, puisque j'ai un accès direct à mes pensées. Mais cette transparence est-elle réelle ? Ne suis-je pas, par certains côtés, un étranger pour moi-même ?\n\n*Plan détaillé* :\n- **I. La conscience est la voie privilégiée de la connaissance de soi.** Le cogito cartésien donne au sujet un accès immédiat et certain à son existence. Je suis ce que j'ai conscience d'être : mes pensées, mes intentions, mes choix me sont donnés sans intermédiaire.\n- **II. Mais la conscience se trompe et s'ignore.** Les passions, les habitudes, l'amour-propre (Pascal, La Rochefoucauld) nous masquent nos vrais mobiles. Freud montre que l'essentiel — le désir refoulé — agit hors de la conscience. La connaissance de soi exige alors un détour : interprétation des rêves, des actes manqués, parole de l'autre (psychanalyse).\n- **III. Se connaître est une tâche, non un donné.** Contre le déterminisme de l'inconscient, Sartre rappelle que je me définis par mes actes. La connaissance de soi n'est jamais achevée : elle suppose un travail réflexif et une honnêteté envers soi (lutte contre la mauvaise foi).\n\n*Conclusion* : La conscience est nécessaire mais non suffisante. Se connaître exige de conjuguer l'introspection, l'interprétation de ce qui échappe à la conscience, et l'effort de lucidité sur soi.\n\n## À retenir\n\n- **La conscience** fonde le sujet : Descartes (cogito), Kant (le « Je pense »), Husserl (intentionnalité).\n- **L'inconscient freudien** est un système psychique structuré (ça/moi/surmoi) qui se manifeste par rêves, lapsus, actes manqués.\n- **Sartre** rejette l'inconscient au profit de la liberté et de la mauvaise foi.\n- L'enjeu : maîtrise de soi, liberté et responsabilité morale.",
+   "quiz": {
+    "questions": [
+     {
+      "q": "Quelle formule résume la première certitude cartésienne ?",
+      "options": [
+       "L'homme est un loup pour l'homme",
+       "Je pense, donc je suis",
+       "Connais-toi toi-même",
+       "Dieu est mort"
+      ],
+      "answer": 1,
+      "explanation": "« Je pense, donc je suis » (cogito ergo sum) est la première certitude que Descartes dégage du doute méthodique."
+     },
+     {
+      "q": "Selon Freud, par quelle voie accède-t-on le mieux à l'inconscient ?",
+      "options": [
+       "La logique",
+       "Le rêve",
+       "La perception",
+       "La démonstration"
+      ],
+      "answer": 1,
+      "explanation": "Freud qualifie le rêve de « voie royale vers l'inconscient »."
+     },
+     {
+      "q": "Quelles sont les trois instances de la deuxième topique freudienne ?",
+      "options": [
+       "Corps, âme, esprit",
+       "Ça, moi, surmoi",
+       "Vrai, beau, bien",
+       "Sens, raison, foi"
+      ],
+      "answer": 1,
+      "explanation": "Freud distingue le ça (pulsions), le moi (réalité) et le surmoi (interdits)."
+     },
+     {
+      "q": "Quel philosophe rejette l'inconscient au nom de la liberté et parle de « mauvaise foi » ?",
+      "options": [
+       "Sartre",
+       "Hegel",
+       "Marx",
+       "Bergson"
+      ],
+      "answer": 0,
+      "explanation": "Sartre refuse l'inconscient et lui oppose la mauvaise foi, mensonge à soi-même."
+     },
+     {
+      "q": "Que signifie l'intentionnalité de la conscience chez Husserl ?",
+      "options": [
+       "La conscience est mauvaise",
+       "Toute conscience est conscience de quelque chose",
+       "La conscience est inconsciente",
+       "La conscience est une illusion"
+      ],
+      "answer": 1,
+      "explanation": "Husserl montre que toute conscience est conscience de quelque chose : elle est tournée vers le monde."
+     }
+    ]
+   }
+  },
+  {
+   "title": "Le désir",
+   "video": "https://www.youtube.com/watch?v=8wU8lH3kV6Y",
+   "lesson": "# Le désir\n\n## Introduction\n\n**Le désir** est la tendance vers un objet que l'on imagine source de satisfaction. À la différence du **besoin**, qui vise un objet déterminé et nécessaire à la survie (boire, manger), le désir vise un objet souvent indéterminé, illimité, et lié à l'imagination. Désirer, c'est éprouver un **manque** et tendre vers ce qui le comblerait.\n\nMais le désir pose un problème : faut-il y voir la marque de notre finitude et la source de notre malheur, ou bien l'expression même de notre vitalité et de notre puissance d'exister ? **Le désir est-il un obstacle au bonheur ou la condition de toute vie heureuse ?** L'enjeu est éthique : doit-on combattre nos désirs ou les accomplir ?\n\n## I. Le désir comme manque et source de souffrance\n\n**Platon**, dans *Le Banquet*, fait du désir (*Éros*) l'enfant de *Poros* (la ressource) et de *Pénia* (la pauvreté) : le désir est toujours désir de ce que l'on n'a pas. Il est donc structurellement marqué par le manque. Mais Platon en fait aussi un moteur d'élévation : de la beauté des corps, l'âme peut s'élever vers la beauté en soi, vers l'Idée.\n\n**Schopenhauer** radicalise cette analyse : la vie oscille « comme un pendule entre la souffrance et l'ennui ». Tant que le désir n'est pas satisfait, nous souffrons du manque ; sitôt comblé, l'ennui nous gagne, et un nouveau désir renaît. Le désir est ainsi voué à une insatisfaction perpétuelle.\n\nLes **stoïciens** et **Épicure** invitent dès lors à la **maîtrise des désirs**. Épicure distingue les désirs naturels et nécessaires (à satisfaire), naturels mais non nécessaires (à modérer) et vains (à écarter). Le sage atteint l'*ataraxie*, la tranquillité de l'âme.\n\n## II. Le désir comme puissance d'exister\n\n**Spinoza** renverse la perspective : **« le désir est l'essence même de l'homme »**. Loin d'être un manque, il est *conatus*, effort par lequel chaque être persévère dans son être. Spinoza précise que **« nous ne désirons pas une chose parce que nous la jugeons bonne, mais nous la jugeons bonne parce que nous la désirons »** : le désir est premier, il est affirmation de vie.\n\n**Hegel** montre que le désir est fondamentalement **désir de reconnaissance**. Dans la dialectique du maître et de l'esclave, ce que l'homme désire au fond, ce n'est pas tel ou tel objet, mais d'être reconnu par une autre conscience. Le désir humain est désir du désir de l'autre.\n\n## III. Désir, illusion et imagination\n\n**Rousseau** souligne le rôle de l'imagination : « Malheur à qui n'a plus rien à désirer ! » Le bonheur du désir est moins dans la possession que dans l'attente. **« On jouit moins de ce qu'on obtient que de ce qu'on espère. »** Le désir se nourrit de l'imaginaire et risque de nous faire courir après des chimères.\n\n**René Girard** ajoute la notion de **désir mimétique** : nous désirons selon le désir de l'autre, par imitation. L'objet n'est désirable que parce qu'un autre le désire, ce qui engendre rivalité et violence.\n\n## Repères et exemples\n\n- **Distinction besoin / désir** : la soif (besoin) et le désir d'un grand cru (désir).\n- **Le mythe d'Éros** dans *Le Banquet* de Platon.\n- **Le tonneau des Danaïdes** : image du désir qu'on ne peut jamais combler.\n- **Épicure**, *Lettre à Ménécée* : classification des désirs.\n- **Spinoza**, *Éthique*, III : le conatus et la définition du désir.\n\n## Sujets de dissertation corrigés\n\n**Sujet : « Le désir est-il la marque de notre imperfection ? »**\n\n*Problématique* : Désirer, c'est manquer ; le désir semble donc révéler une incomplétude, une imperfection de l'homme. Mais ne faut-il pas plutôt y voir le signe de sa richesse et de sa puissance créatrice ?\n\n*Plan détaillé* :\n- **I. Le désir révèle un manque et une imperfection.** Platon et Schopenhauer : le désir est manque, insatisfaction, souffrance. L'homme parfait (le sage, le dieu) ne désirerait rien.\n- **II. Mais le désir est puissance d'exister.** Spinoza : le désir est l'essence de l'homme, conatus, affirmation de vie. Sans désir, pas d'action, pas de création, pas de vie.\n- **III. Le désir nous humanise.** Hegel : le désir de reconnaissance fonde le rapport à autrui et la culture. Loin d'être une imperfection, le désir est le ressort de la liberté et de l'histoire humaine, à condition d'être éclairé par la raison.\n\n*Conclusion* : Le désir manifeste notre finitude, mais cette finitude est créatrice. Bien orienté, le désir n'est pas une faiblesse à corriger mais une force à cultiver.\n\n## À retenir\n\n- **Désir** = tendance vers un objet imaginé satisfaisant ; différent du **besoin** (nécessité vitale).\n- **Le désir-manque** : Platon (Éros), Schopenhauer (pendule souffrance/ennui), Épicure (maîtrise).\n- **Le désir-puissance** : Spinoza (conatus, désir = essence de l'homme), Hegel (reconnaissance).\n- **Désir mimétique** (Girard), rôle de l'imagination (Rousseau).",
+   "quiz": {
+    "questions": [
+     {
+      "q": "Pour Spinoza, le désir est :",
+      "options": [
+       "Un défaut à corriger",
+       "L'essence même de l'homme",
+       "Une illusion de l'imagination",
+       "Une pulsion animale"
+      ],
+      "answer": 1,
+      "explanation": "Spinoza affirme dans l'Éthique que « le désir est l'essence même de l'homme »."
+     },
+     {
+      "q": "Dans Le Banquet, de qui Éros est-il l'enfant selon Platon ?",
+      "options": [
+       "De Zeus et Héra",
+       "De Poros (la ressource) et Pénia (la pauvreté)",
+       "D'Aphrodite seule",
+       "Du Ciel et de la Terre"
+      ],
+      "answer": 1,
+      "explanation": "Le désir, fils de Poros et Pénia, est toujours désir de ce qui manque."
+     },
+     {
+      "q": "Selon Schopenhauer, la vie humaine oscille entre :",
+      "options": [
+       "Le vrai et le faux",
+       "La souffrance et l'ennui",
+       "Le bien et le mal",
+       "La raison et la passion"
+      ],
+      "answer": 1,
+      "explanation": "Le désir non satisfait fait souffrir, le désir comblé engendre l'ennui."
+     },
+     {
+      "q": "Quel philosophe analyse le désir comme désir de reconnaissance ?",
+      "options": [
+       "Hegel",
+       "Épicure",
+       "Descartes",
+       "Bergson"
+      ],
+      "answer": 0,
+      "explanation": "Hegel montre que le désir humain est fondamentalement désir d'être reconnu par autrui."
+     },
+     {
+      "q": "Le « désir mimétique » est un concept de :",
+      "options": [
+       "René Girard",
+       "Sartre",
+       "Kant",
+       "Marx"
+      ],
+      "answer": 0,
+      "explanation": "René Girard montre que nous désirons par imitation du désir d'autrui."
+     }
+    ]
+   }
+  },
+  {
+   "title": "Autrui",
+   "video": "https://www.youtube.com/watch?v=2tdRzWgL5vE",
+   "lesson": "# Autrui\n\n## Introduction\n\n**Autrui**, c'est l'autre homme, mon semblable et pourtant différent de moi : un alter ego, un autre moi-même qui n'est pourtant pas moi. Le rapport à autrui pose un double problème. D'abord un problème de **connaissance** : puis-je vraiment connaître autrui, accéder à sa conscience qui m'est par essence inaccessible ? Ensuite un problème **éthique** : autrui est-il un rival qui me menace ou la condition de mon humanité ?\n\n**Le problème** central est donc : **autrui est-il un obstacle pour moi, ou bien la condition même de ma conscience de moi et de mon humanité ?** L'enjeu engage la possibilité de la vie commune, de la morale et de la reconnaissance.\n\n## I. Autrui, mon semblable : la connaissance par analogie\n\n**Husserl** pose qu'autrui m'est donné par **analogie** (*apprésentation*) : je perçois son corps comme semblable au mien et j'en infère qu'il abrite, comme moi, une conscience. Mais autrui reste toujours une conscience que je ne peux atteindre directement : je n'ai accès qu'à ses manifestations extérieures.\n\n**Sartre** radicalise : autrui me révèle à moi-même par le **regard**. Quand autrui me regarde, je deviens objet pour lui ; j'éprouve la honte, c'est-à-dire la conscience d'être vu, jugé, figé. **« Autrui est le médiateur indispensable entre moi et moi-même. »** J'ai besoin d'autrui pour saisir certains aspects de mon être (« je suis tel qu'autrui me voit »). Mais cette médiation est conflictuelle : « l'enfer, c'est les autres ».\n\n## II. Autrui, rival : le conflit des consciences\n\n**Hobbes** part d'un état de nature où **« l'homme est un loup pour l'homme »** (*homo homini lupus*) : chacun étant rival de chacun, autrui est d'abord une menace. C'est la peur de la mort violente qui pousse les hommes à instituer un pouvoir commun.\n\n**Hegel**, dans la **dialectique du maître et de l'esclave**, montre que les consciences s'affrontent d'abord dans une lutte pour la reconnaissance. Chacun veut être reconnu par l'autre comme conscience libre ; cette lutte à mort débouche sur la domination, puis se renverse : par le travail, l'esclave se transforme et accède à une conscience supérieure.\n\n## III. Autrui, condition de mon humanité : le visage\n\n**Levinas** opère un renversement éthique : autrui n'est pas d'abord un objet de connaissance ni un rival, mais un **visage** qui m'appelle et m'oblige. Le visage d'autrui, dans sa nudité et sa fragilité, me dit « Tu ne tueras point » : il fonde une **responsabilité** infinie. Autrui me précède et me met en cause : l'éthique est « philosophie première ».\n\n**Kant** rappelle enfin qu'autrui, comme personne, doit toujours être traité **« comme une fin, et jamais simplement comme un moyen »**. Autrui possède une dignité, non un prix : il commande le respect.\n\n## Repères et exemples\n\n- **Distinction identité / altérité** : ce qui me ressemble et ce qui me distingue.\n- **Robinson Crusoé** (et *Vendredi* de Tournier) : sans autrui, l'homme se déstructure.\n- **Sartre**, *L'Être et le Néant* : le regard, la honte ; *Huis clos* : « l'enfer, c'est les autres ».\n- **Levinas**, *Totalité et Infini* : le visage et la responsabilité.\n- **Hegel**, *Phénoménologie de l'esprit* : maître et esclave.\n\n## Sujets de dissertation corrigés\n\n**Sujet : « Autrui est-il un obstacle à ma liberté ? »**\n\n*Problématique* : La présence d'autrui semble limiter ma liberté : son regard me juge, ses droits bornent les miens. Mais autrui n'est-il pas aussi ce qui me permet de devenir une conscience libre ?\n\n*Plan détaillé* :\n- **I. Autrui limite et menace ma liberté.** Sartre : le regard d'autrui me chosifie, me fige en objet. Hobbes : à l'état de nature, autrui est un rival dangereux. Ma liberté semble s'arrêter là où commence celle d'autrui.\n- **II. Mais autrui est la condition de ma conscience de moi.** Sartre lui-même : autrui est le médiateur entre moi et moi-même. Hegel : c'est par la lutte pour la reconnaissance que je m'élève à la conscience de ma liberté.\n- **III. Autrui fonde une liberté responsable.** Levinas : le visage d'autrui m'oblige et me rend responsable ; Kant : respecter autrui comme une fin. Loin de nier ma liberté, autrui lui donne son sens éthique : être libre, c'est répondre d'autrui.\n\n*Conclusion* : Autrui borne ma liberté, mais cette limite est aussi ce qui l'institue et la rend humaine. Sans autrui, il n'y aurait ni conscience de soi, ni morale, ni liberté véritable.\n\n## À retenir\n\n- **Autrui** = alter ego, autre moi-même, à la fois semblable et inaccessible.\n- **Connaissance d'autrui** : par analogie (Husserl), par le regard (Sartre, qui me chosifie).\n- **Autrui rival** : Hobbes (« l'homme est un loup pour l'homme »), Hegel (lutte pour la reconnaissance).\n- **Autrui condition et obligation** : Levinas (le visage, la responsabilité), Kant (le respect de la personne).",
+   "quiz": {
+    "questions": [
+     {
+      "q": "Pour Sartre, comment autrui me révèle-t-il à moi-même ?",
+      "options": [
+       "Par la parole",
+       "Par le regard",
+       "Par le toucher",
+       "Par la raison"
+      ],
+      "answer": 1,
+      "explanation": "Le regard d'autrui me transforme en objet et me fait éprouver la honte : autrui est médiateur entre moi et moi-même."
+     },
+     {
+      "q": "La formule « l'homme est un loup pour l'homme » est de :",
+      "options": [
+       "Rousseau",
+       "Hobbes",
+       "Levinas",
+       "Hegel"
+      ],
+      "answer": 1,
+      "explanation": "Hobbes décrit ainsi l'état de nature où autrui est d'abord une menace."
+     },
+     {
+      "q": "Chez Levinas, qu'est-ce qui fonde la responsabilité envers autrui ?",
+      "options": [
+       "Le contrat",
+       "Le visage",
+       "La force",
+       "La raison"
+      ],
+      "answer": 1,
+      "explanation": "Le visage d'autrui, dans sa fragilité, m'oblige et fonde une responsabilité infinie."
+     },
+     {
+      "q": "La dialectique du maître et de l'esclave est l'œuvre de :",
+      "options": [
+       "Hegel",
+       "Kant",
+       "Descartes",
+       "Épicure"
+      ],
+      "answer": 0,
+      "explanation": "Hegel décrit la lutte des consciences pour la reconnaissance dans la Phénoménologie de l'esprit."
+     },
+     {
+      "q": "Selon Kant, autrui doit être traité :",
+      "options": [
+       "Comme un simple moyen",
+       "Toujours aussi comme une fin",
+       "Comme un objet",
+       "Comme un rival"
+      ],
+      "answer": 1,
+      "explanation": "La personne doit toujours être traitée comme une fin, jamais simplement comme un moyen."
+     }
+    ]
+   }
+  },
+  {
+   "title": "La perception",
+   "video": "https://www.youtube.com/watch?v=Vp9zw5j2qF4",
+   "lesson": "# La perception\n\n## Introduction\n\n**La perception** est l'acte par lequel nous prenons connaissance du monde extérieur grâce à nos sens. Elle semble nous livrer immédiatement les choses telles qu'elles sont. Pourtant, dès qu'on l'examine, la perception se révèle problématique : nos sens nous trompent-ils ? Percevons-nous le réel, ou seulement une construction de notre esprit ?\n\n**Le problème** est le suivant : **la perception nous donne-t-elle accès à la réalité, ou bien interpose-t-elle un voile entre nous et les choses ?** L'enjeu touche à la valeur de notre connaissance sensible et au rapport entre le corps et l'esprit.\n\n## I. La perception est trompeuse : le primat de l'entendement\n\n**Descartes** se méfie des sens. Le morceau de cire change d'apparence quand on l'approche du feu (forme, couleur, odeur disparaissent), et pourtant je juge que c'est la même cire. **« C'est donc le seul entendement qui la conçoit. »** Ce n'est pas l'œil qui perçoit la cire comme substance, mais l'esprit qui juge. La perception sensible doit être corrigée par la raison ; les illusions (le bâton brisé dans l'eau) montrent que les sens, seuls, induisent en erreur.\n\nPour les **empiristes** comme **Berkeley**, la perception est plus radicalement subjective : **« être, c'est être perçu »** (*esse est percipi*). Nous ne percevons jamais que nos propres idées, non des objets indépendants.\n\n## II. La perception est un acte de l'esprit qui construit l'objet\n\n**Kant** montre que percevoir, ce n'est pas recevoir passivement, mais **construire**. L'esprit ordonne la matière sensible grâce aux formes a priori de l'**espace** et du **temps**, puis aux catégories de l'entendement. Nous ne percevons donc jamais la chose en soi (le *noumène*), mais le phénomène, tel qu'il nous apparaît à travers les structures de notre esprit.\n\n**Alain** souligne ce travail du jugement : **« percevoir, c'est juger »**. Quand je vois un cube, je n'en perçois jamais que trois faces ; pourtant je perçois un cube. C'est mon esprit qui complète et interprète. L'erreur des sens n'existe pas : ce sont nos jugements qui se trompent.\n\n## III. La perception comme rapport vécu au monde : le corps\n\n**Merleau-Ponty** dépasse l'opposition entre objectivisme et subjectivisme. La perception n'est ni une pure réception passive ni une pure construction intellectuelle : elle est un **rapport vécu** au monde par le **corps propre**. Je ne perçois pas avec un pur esprit, mais comme un être incarné, situé, engagé dans le monde. La perception a une profondeur, un horizon, une épaisseur charnelle que l'analyse intellectualiste oublie.\n\n**Bergson** ajoute que la perception est tournée vers l'**action** : nous ne percevons pas tout, mais seulement ce qui intéresse notre action possible sur les choses. Percevoir, c'est sélectionner.\n\n## Repères et exemples\n\n- **Distinction sensation / perception** : la sensation est brute (une tache colorée), la perception est interprétée (« je vois une table »).\n- **Le bâton brisé dans l'eau** : illusion d'optique corrigée par le jugement.\n- **Le morceau de cire** (Descartes, *Méditations*, II).\n- **Le cube vu de trois faces** (Alain) : la perception complète le donné.\n- **Les illusions d'optique** (Müller-Lyer) : montrent l'écart entre sensation et perception.\n\n## Sujets de dissertation corrigés\n\n**Sujet : « Peut-on se fier à nos sens ? »**\n\n*Problématique* : Nos sens semblent nous tromper (illusions, hallucinations) ; pourtant, sans eux, nous n'aurions aucun contact avec le monde. Faut-il s'en méfier ou leur faire confiance ?\n\n*Plan détaillé* :\n- **I. Les sens nous trompent.** Descartes : illusions perceptives, rêve. Les sens livrent des apparences variables ; la raison doit les corriger.\n- **II. Mais l'erreur vient du jugement, non des sens.** Alain : « percevoir, c'est juger ». Les sens ne mentent pas ; c'est notre interprétation qui se trompe. Bien analysées, les illusions deviennent compréhensibles.\n- **III. La perception est notre rapport originaire au monde.** Merleau-Ponty : par le corps propre, la perception nous ouvre au monde réel. On ne peut tout fonder sur la raison sans s'appuyer d'abord sur l'expérience perceptive. Se fier à ses sens, à condition de les éduquer, est la base de toute science.\n\n*Conclusion* : Nos sens ne sont pas infaillibles, mais ils ne sont pas trompeurs par nature : c'est notre jugement qui doit être éduqué. La perception, corrigée par la raison, demeure notre accès premier et indispensable au réel.\n\n## À retenir\n\n- **Perception** = connaissance du monde par les sens ; à distinguer de la **sensation** (brute) qu'elle interprète.\n- **Méfiance** : Descartes (le morceau de cire, l'entendement juge), Berkeley (esse est percipi).\n- **Construction** : Kant (formes a priori espace/temps), Alain (percevoir, c'est juger).\n- **Rapport incarné** : Merleau-Ponty (le corps propre), Bergson (perception orientée vers l'action).",
+   "quiz": {
+    "questions": [
+     {
+      "q": "Dans l'exemple du morceau de cire, Descartes conclut que la cire est connue par :",
+      "options": [
+       "Les sens seuls",
+       "Le seul entendement",
+       "L'imagination",
+       "Les habitudes"
+      ],
+      "answer": 1,
+      "explanation": "Descartes montre que c'est l'esprit (l'entendement), et non les sens, qui conçoit la cire comme substance."
+     },
+     {
+      "q": "« Percevoir, c'est juger » est une formule de :",
+      "options": [
+       "Alain",
+       "Kant",
+       "Bergson",
+       "Berkeley"
+      ],
+      "answer": 0,
+      "explanation": "Alain souligne que toute perception suppose un jugement de l'esprit qui complète le donné sensible."
+     },
+     {
+      "q": "Selon Kant, nous percevons toujours :",
+      "options": [
+       "La chose en soi",
+       "Le phénomène",
+       "Le néant",
+       "L'idée pure"
+      ],
+      "answer": 1,
+      "explanation": "Nous ne percevons que le phénomène, structuré par l'espace, le temps et les catégories, jamais le noumène."
+     },
+     {
+      "q": "Quel philosophe insiste sur le rôle du « corps propre » dans la perception ?",
+      "options": [
+       "Merleau-Ponty",
+       "Descartes",
+       "Platon",
+       "Hobbes"
+      ],
+      "answer": 0,
+      "explanation": "Merleau-Ponty fait de la perception un rapport vécu et incarné au monde."
+     },
+     {
+      "q": "La formule « esse est percipi » (être, c'est être perçu) est de :",
+      "options": [
+       "Berkeley",
+       "Spinoza",
+       "Hegel",
+       "Kant"
+      ],
+      "answer": 0,
+      "explanation": "L'empiriste Berkeley soutient que nous ne percevons que nos idées : être, c'est être perçu."
+     }
+    ]
+   }
+  },
+  {
+   "title": "La raison et le réel",
+   "video": "https://www.youtube.com/watch?v=GE4VfQ0HhVc",
+   "lesson": "# La raison et le réel\n\n## Introduction\n\n**La raison** est la faculté de penser, de juger et de connaître selon des principes. Elle exige que la réalité soit ordonnée, intelligible, soumise à des lois. **Le réel** désigne ce qui existe effectivement, indépendamment de nos pensées. Le problème naît de leur rencontre : le réel est-il rationnel ? La raison parvient-elle à saisir le monde tel qu'il est, ou bien lui impose-t-elle un ordre qui n'est pas le sien ?\n\n**Le problème** : **la raison nous permet-elle de connaître le réel tel qu'il est, ou bien construit-elle seulement une image cohérente du monde ?** L'enjeu est celui de la possibilité même de la science et de la métaphysique.\n\n## I. Le réel est rationnel : l'intelligibilité du monde\n\n**Platon** distingue le monde sensible (changeant, illusoire) et le monde intelligible des **Idées** (éternelles, vraies). La raison seule, en se détournant des sens, accède à la réalité véritable. La science suppose un ordre stable que seule la raison peut atteindre.\n\n**Leibniz** pose le **principe de raison suffisante** : « rien n'est sans raison ». Tout ce qui arrive a une cause, une explication. Le réel est donc entièrement intelligible. De même, le **principe de causalité** suppose que les mêmes causes produisent les mêmes effets.\n\n**Hegel** affirme l'identité de la raison et du réel : **« Tout ce qui est rationnel est réel, et tout ce qui est réel est rationnel. »** L'histoire elle-même est le déploiement de la Raison. Rien n'échappe à l'intelligibilité.\n\n## II. La raison construit l'ordre du réel\n\n**Kant** opère une « révolution copernicienne » : ce n'est pas l'esprit qui se règle sur les objets, mais les objets qui se règlent sur les structures de notre esprit. Les lois que nous découvrons dans la nature, c'est la raison qui les y met. Mais cela a un prix : nous ne connaissons que les **phénomènes**, jamais les choses en soi. La raison, lorsqu'elle veut dépasser l'expérience (Dieu, l'âme, le monde), tombe dans des **antinomies** insolubles.\n\n**Bachelard** montre que la raison scientifique progresse en **rompant** avec l'expérience immédiate et le sens commun : il faut surmonter des **obstacles épistémologiques**. La science construit ses objets ; le réel scientifique n'est pas donné mais conquis contre les illusions premières.\n\n## III. Les limites de la raison : l'irrationnel et le réel\n\nLe réel résiste parfois à la raison. **Pascal** distingue l'« esprit de géométrie » et l'« esprit de finesse », et rappelle que **« le cœur a ses raisons que la raison ne connaît point »** : certaines réalités (la foi, l'amour) échappent à la raison démonstrative.\n\nLa science contemporaine elle-même (mécanique quantique, indéterminisme) suggère que le réel n'est pas intégralement déterministe. Pourtant, la raison ne renonce pas : elle élargit ses cadres (probabilités, statistiques) pour penser même l'incertain. La raison reste un **idéal régulateur** : présupposer que le monde est intelligible est la condition de toute recherche.\n\n## Repères et exemples\n\n- **Distinction en fait / en droit** : ce qui est et ce qui devrait être.\n- **Principe de raison suffisante** (Leibniz) et **principe de causalité**.\n- **La caverne de Platon** : sortir des apparences pour atteindre l'intelligible.\n- **La révolution copernicienne de Kant** : l'objet se règle sur le sujet.\n- **Bachelard**, *La Formation de l'esprit scientifique* : obstacles épistémologiques.\n\n## Sujets de dissertation corrigés\n\n**Sujet : « Le réel est-il rationnel ? »**\n\n*Problématique* : La science présuppose que le monde obéit à des lois ; mais le hasard, le désordre, l'imprévisible semblent échapper à la raison. Le réel est-il, en lui-même, rationnel, ou la rationalité est-elle un cadre que nous projetons sur lui ?\n\n*Plan détaillé* :\n- **I. Le réel semble rationnel.** Leibniz (raison suffisante), Hegel (le réel est rationnel). La réussite de la science prouve que la nature obéit à des lois intelligibles.\n- **II. Mais c'est la raison qui ordonne le réel.** Kant : nous ne connaissons que les phénomènes, mis en forme par notre esprit. Bachelard : la science construit ses objets contre l'expérience immédiate. La rationalité serait alors une condition de la connaissance, non une propriété du réel en soi.\n- **III. La rationalité comme idéal régulateur.** Même là où le réel résiste (hasard, quantique), la raison étend ses cadres. Postuler l'intelligibilité du monde reste la condition de toute science. Le réel n'est pas donné comme rationnel, mais la raison le rend tel par un travail jamais achevé.\n\n*Conclusion* : Le réel n'est pas spontanément transparent à la raison, mais la raison ne cesse de le conquérir. La rationalité est moins un fait acquis qu'une tâche infinie et un pari fécond.\n\n## À retenir\n\n- **Raison** = faculté de connaître selon des principes ; **réel** = ce qui existe indépendamment de nous.\n- **Le réel est rationnel** : Platon (Idées), Leibniz (raison suffisante), Hegel.\n- **La raison construit le réel connu** : Kant (phénomène/noumène, révolution copernicienne), Bachelard (obstacles épistémologiques).\n- **Limites** : Pascal (le cœur a ses raisons), l'indéterminisme ; la rationalité comme idéal régulateur.",
+   "quiz": {
+    "questions": [
+     {
+      "q": "Le principe selon lequel « rien n'est sans raison » est de :",
+      "options": [
+       "Leibniz",
+       "Pascal",
+       "Hume",
+       "Sartre"
+      ],
+      "answer": 0,
+      "explanation": "C'est le principe de raison suffisante formulé par Leibniz : tout a une raison d'être."
+     },
+     {
+      "q": "« Tout ce qui est rationnel est réel et tout ce qui est réel est rationnel » est une formule de :",
+      "options": [
+       "Hegel",
+       "Kant",
+       "Descartes",
+       "Platon"
+      ],
+      "answer": 0,
+      "explanation": "Hegel affirme ainsi l'identité de la raison et du réel."
+     },
+     {
+      "q": "La « révolution copernicienne » de Kant signifie que :",
+      "options": [
+       "La Terre tourne autour du Soleil",
+       "L'objet se règle sur les structures de l'esprit",
+       "La raison est inutile",
+       "Le réel n'existe pas"
+      ],
+      "answer": 1,
+      "explanation": "Pour Kant, ce sont les objets qui se conforment aux structures a priori de notre esprit."
+     },
+     {
+      "q": "Selon Bachelard, la science progresse en :",
+      "options": [
+       "Suivant le sens commun",
+       "Rompant avec l'expérience immédiate",
+       "Refusant l'expérience",
+       "Imitant la nature"
+      ],
+      "answer": 1,
+      "explanation": "Bachelard montre qu'il faut surmonter des obstacles épistémologiques et rompre avec l'expérience première."
+     },
+     {
+      "q": "« Le cœur a ses raisons que la raison ne connaît point » est de :",
+      "options": [
+       "Pascal",
+       "Leibniz",
+       "Hegel",
+       "Kant"
+      ],
+      "answer": 0,
+      "explanation": "Pascal souligne les limites de la raison démonstrative face à certaines réalités."
+     }
+    ]
+   }
+  },
+  {
+   "title": "La vérité",
+   "video": "https://www.youtube.com/watch?v=YBpdzqg6h3o",
+   "lesson": "# La vérité\n\n## Introduction\n\n**La vérité** désigne l'accord de la pensée avec son objet : une proposition est vraie quand ce qu'elle affirme correspond à ce qui est. Mais cette définition simple soulève d'immenses difficultés. Existe-t-il des vérités absolues, ou toute vérité est-elle relative ? Comment distinguer le vrai du faux, et qui décide de ce qui est vrai ?\n\n**Le problème** : **la vérité est-elle une, universelle et accessible à tous, ou bien dépend-elle des individus, des époques et des cultures ?** L'enjeu est crucial : sans vérité, ni science, ni justice, ni dialogue ne sont possibles.\n\n## I. La vérité comme accord de la pensée avec son objet\n\nLa conception classique définit la vérité comme **adéquation** : *adaequatio rei et intellectus*, accord de la chose et de l'esprit. Une affirmation est vraie si elle correspond à la réalité.\n\n**Descartes** cherche un critère sûr : est vrai ce que je conçois **clairement et distinctement**. L'**évidence** est la marque du vrai. Mais Descartes distingue la vérité (rapport de la pensée à la chose) de la **certitude** (état psychologique du sujet) : on peut être certain à tort.\n\n**Spinoza** ajoute : **« le vrai est l'indice de lui-même et du faux »** (*verum index sui et falsi*). La vérité n'a pas besoin d'un signe extérieur pour se manifester ; comme la lumière se montre elle-même, l'idée vraie porte en elle sa propre évidence.\n\n## II. La vérité comme construction : cohérence et démonstration\n\nEn mathématiques et en logique, le vrai n'est pas l'accord avec le réel mais la **cohérence** interne d'un système : est vrai ce qui se déduit sans contradiction d'axiomes posés. C'est la vérité **formelle**.\n\n**Kant** distingue les vérités de l'expérience (jugements synthétiques a posteriori) et les vérités nécessaires et universelles. La vérité scientifique se construit par l'union des concepts (entendement) et de l'expérience (sensibilité). Mais elle reste limitée aux phénomènes.\n\n**Le pragmatisme** (William **James**, **Peirce**) propose un autre critère : est vrai ce qui « réussit », ce qui a des effets pratiques bénéfiques, ce qui fonctionne. La vérité se mesure à ses conséquences.\n\n## III. Relativité et exigence de vérité\n\nLes **sophistes** (Protagoras) soutenaient déjà que **« l'homme est la mesure de toute chose »** : chacun a sa vérité, tout est relatif. **Nietzsche** radicalise : il n'y a pas de faits, seulement des interprétations ; les « vérités » sont des « illusions dont on a oublié qu'elles le sont ».\n\nMais le relativisme se réfute lui-même : affirmer « tout est relatif » comme une vérité absolue est contradictoire. La science progresse précisément parce qu'elle vise une vérité indépendante des opinions. **Bachelard** montre que la vérité scientifique est révisable mais non arbitraire : elle se rectifie sans cesse. La vérité est donc moins une possession qu'une **recherche**, un idéal qui oriente la pensée.\n\n## Repères et exemples\n\n- **Distinction vérité / réalité** : le réel est ce qui est, la vérité est une propriété des énoncés.\n- **Distinction croire / savoir** : croire, c'est tenir pour vrai sans preuve ; savoir, c'est tenir pour vrai avec justification.\n- **L'évidence cartésienne** (clarté et distinction).\n- **« L'homme est la mesure de toute chose »** (Protagoras) : le relativisme sophistique.\n- **Le pragmatisme** de William James.\n\n## Sujets de dissertation corrigés\n\n**Sujet : « Toutes les vérités sont-elles relatives ? »**\n\n*Problématique* : L'expérience montre que les opinions varient selon les individus et les cultures ; faut-il en conclure que toute vérité est relative ? Mais une vérité relative n'est-elle pas une contradiction ?\n\n*Plan détaillé* :\n- **I. Les vérités semblent relatives.** Protagoras, Nietzsche : nos vérités dépendent de notre point de vue, de notre culture, de nos intérêts. L'histoire des sciences montre que ce qu'on tenait pour vrai a souvent été réfuté.\n- **II. Mais le relativisme se contredit.** Affirmer « tout est relatif » comme une vérité absolue est contradictoire. Les vérités mathématiques et logiques sont universelles. La science vise un vrai indépendant des opinions.\n- **III. La vérité comme recherche partagée.** La vérité n'est ni une possession définitive ni une pure relativité : elle est une conquête, révisable mais non arbitraire (Bachelard). Elle suppose des critères communs (cohérence, expérience, argumentation) qui dépassent les points de vue particuliers.\n\n*Conclusion* : Toutes les vérités ne sont pas relatives. Si nos opinions varient, la vérité reste un idéal universel que la raison poursuit et qui rend possible le dialogue et la science.\n\n## À retenir\n\n- **Vérité** = accord de la pensée avec son objet (adéquation) ; à distinguer de la **réalité** et de la **certitude**.\n- **Critères** : évidence (Descartes), le vrai indice de soi (Spinoza), cohérence (logique), efficacité (pragmatisme).\n- **Relativisme** : Protagoras (« l'homme est la mesure »), Nietzsche (interprétations) — mais il se réfute lui-même.\n- La vérité est moins une possession qu'une **recherche** rigoureuse et révisable.",
+   "quiz": {
+    "questions": [
+     {
+      "q": "La définition classique de la vérité comme « adéquation » signifie :",
+      "options": [
+       "Accord de la pensée avec son objet",
+       "Cohérence interne",
+       "Utilité pratique",
+       "Croyance partagée"
+      ],
+      "answer": 0,
+      "explanation": "La vérité-adéquation est l'accord (adaequatio) entre l'esprit et la chose."
+     },
+     {
+      "q": "Pour Descartes, le critère du vrai est :",
+      "options": [
+       "L'utilité",
+       "L'évidence (idées claires et distinctes)",
+       "L'autorité",
+       "La majorité"
+      ],
+      "answer": 1,
+      "explanation": "Descartes tient pour vrai ce qu'il conçoit clairement et distinctement : l'évidence."
+     },
+     {
+      "q": "« L'homme est la mesure de toute chose » est la thèse relativiste de :",
+      "options": [
+       "Protagoras",
+       "Platon",
+       "Descartes",
+       "Spinoza"
+      ],
+      "answer": 0,
+      "explanation": "Le sophiste Protagoras soutient que toute vérité est relative à l'individu."
+     },
+     {
+      "q": "Pour le pragmatisme (James), est vrai ce qui :",
+      "options": [
+       "Est éternel",
+       "Réussit et a des effets pratiques bénéfiques",
+       "Est démontré a priori",
+       "Plaît au plus grand nombre"
+      ],
+      "answer": 1,
+      "explanation": "Le pragmatisme mesure la vérité à ses conséquences pratiques."
+     },
+     {
+      "q": "« Le vrai est l'indice de lui-même et du faux » est de :",
+      "options": [
+       "Spinoza",
+       "Kant",
+       "Nietzsche",
+       "Pascal"
+      ],
+      "answer": 0,
+      "explanation": "Spinoza : l'idée vraie porte en elle sa propre évidence (verum index sui)."
+     }
+    ]
+   }
+  },
+  {
+   "title": "La démonstration",
+   "video": "https://www.youtube.com/watch?v=p6j5gG3Kp7M",
+   "lesson": "# La démonstration\n\n## Introduction\n\n**Démontrer**, c'est établir une vérité de manière rigoureuse, en la déduisant nécessairement d'autres propositions tenues pour vraies. La démonstration est le modèle de la rigueur, incarné par les mathématiques. Mais cette rigueur a un prix : toute démonstration part de principes qui, eux, ne sont pas démontrés.\n\n**Le problème** : **la démonstration est-elle le seul mode d'accès à la vérité, et peut-elle tout fonder, y compris ses propres principes ?** L'enjeu concerne la portée et les limites de la raison déductive.\n\n## I. La démonstration, modèle de la rigueur\n\n**Aristote**, dans les *Seconds Analytiques*, fonde la logique du **syllogisme** : de prémisses vraies, on tire nécessairement une conclusion vraie (« Tous les hommes sont mortels ; or Socrate est un homme ; donc Socrate est mortel »). La démonstration produit un savoir certain et universel.\n\n**Euclide**, dans les *Éléments*, donne le modèle de la méthode **axiomatique** : à partir de définitions, d'axiomes et de postulats, on déduit l'ensemble des théorèmes de la géométrie. C'est l'idéal de la science déductive.\n\n**Descartes** étend cette rigueur à toute la pensée : les quatre règles de la méthode (évidence, analyse, synthèse, dénombrement) doivent conduire l'esprit « par ordre » du simple au complexe. Les « longues chaînes de raisons » des géomètres sont le modèle de toute connaissance certaine.\n\n## II. Les limites de la démonstration : principes indémontrables\n\nToute démonstration suppose des **prémisses** qu'elle ne démontre pas. Sous peine de régression à l'infini, il faut s'arrêter à des **principes premiers**. Aristote l'avait vu : les axiomes ne se démontrent pas, ils se saisissent par l'**intuition** (*nous*). Pascal le confirme : **« nous connaissons la vérité non seulement par la raison, mais encore par le cœur »** ; le cœur sent les premiers principes (espace, temps, nombre) que la raison utilise sans pouvoir les prouver.\n\n**Pascal** distingue ainsi l'**esprit de géométrie** (qui démontre à partir de principes) et l'**esprit de finesse** (qui saisit d'un coup d'œil des principes nombreux et subtils). Vouloir tout démontrer serait une exigence vaine : « il est aussi ridicule de demander des démonstrations en morale qu'il est ridicule de demander des sentiments en géométrie ».\n\n## III. Démontrer, argumenter, prouver\n\nLa démonstration ne s'applique pas à tout. En sciences expérimentales, on ne démontre pas une loi : on l'**établit** par l'expérience et on la confirme. En morale, en politique, en droit, on ne démontre pas : on **argumente**, on persuade, on délibère.\n\n**Leibniz** distingue les **vérités de raison** (nécessaires, démontrables par analyse, comme les mathématiques) et les **vérités de fait** (contingentes, fondées sur l'expérience). La démonstration ne vaut absolument que pour les premières.\n\nLe **théorème d'incomplétude de Gödel** (1931) montre enfin qu'aucun système formel suffisamment riche ne peut démontrer toutes ses vérités ni prouver sa propre cohérence : la démonstration a des limites internes.\n\n## Repères et exemples\n\n- **Distinction démontrer / prouver / argumenter** : démontrer (déduction logique), prouver (établir par l'expérience), argumenter (persuader par des raisons).\n- **Le syllogisme** d'Aristote.\n- **La méthode axiomatique** d'Euclide.\n- **Pascal** : esprit de géométrie / esprit de finesse ; le cœur et les premiers principes.\n- **Leibniz** : vérités de raison / vérités de fait.\n\n## Sujets de dissertation corrigés\n\n**Sujet : « Une vérité doit-elle être démontrée pour être admise ? »**\n\n*Problématique* : La démonstration paraît le seul moyen sûr d'établir une vérité ; mais toute démonstration repose sur des principes indémontrables. Faut-il, pour admettre une vérité, exiger toujours une démonstration ?\n\n*Plan détaillé* :\n- **I. La démonstration est le modèle de la vérité certaine.** Euclide, Descartes : seule la déduction rigoureuse garantit une connaissance universelle et nécessaire. Sans démonstration, on reste dans l'opinion.\n- **II. Mais on ne peut pas tout démontrer.** Toute démonstration part de principes non démontrés (Aristote, Pascal : le cœur saisit les premiers principes). Exiger une démonstration de tout conduit à une régression à l'infini.\n- **III. D'autres voies d'accès à la vérité.** Vérités de fait (Leibniz) établies par l'expérience ; vérités morales et pratiques qui relèvent de l'argumentation et de la délibération. Une vérité peut être admise sur la base de l'intuition, de l'expérience ou d'un accord raisonné.\n\n*Conclusion* : La démonstration est le plus haut degré de rigueur, mais elle ne fonde pas tout. Admettre une vérité suppose, selon les domaines, démonstration, preuve expérimentale ou argumentation rationnelle.\n\n## À retenir\n\n- **Démontrer** = établir une vérité par déduction nécessaire à partir de prémisses.\n- **Modèles** : syllogisme (Aristote), axiomatique (Euclide), méthode (Descartes).\n- **Limites** : tout repose sur des principes indémontrables saisis par intuition (Pascal, Aristote) ; incomplétude (Gödel).\n- **Distinguer** démontrer (logique), prouver (expérience), argumenter (persuasion) ; vérités de raison / de fait (Leibniz).",
+   "quiz": {
+    "questions": [
+     {
+      "q": "Le syllogisme « Tous les hommes sont mortels ; Socrate est un homme ; donc Socrate est mortel » illustre la logique de :",
+      "options": [
+       "Aristote",
+       "Pascal",
+       "Descartes",
+       "Gödel"
+      ],
+      "answer": 0,
+      "explanation": "Aristote fonde la logique du syllogisme dans les Seconds Analytiques."
+     },
+     {
+      "q": "Le modèle de la méthode axiomatique en géométrie est donné par :",
+      "options": [
+       "Euclide",
+       "Leibniz",
+       "Hume",
+       "Kant"
+      ],
+      "answer": 0,
+      "explanation": "Les Éléments d'Euclide déduisent les théorèmes à partir d'axiomes et de postulats."
+     },
+     {
+      "q": "Selon Pascal, les premiers principes sont connus par :",
+      "options": [
+       "La démonstration",
+       "Le cœur (l'intuition)",
+       "La majorité",
+       "L'expérience seule"
+      ],
+      "answer": 1,
+      "explanation": "Pascal : le cœur sent les premiers principes que la raison utilise sans les démontrer."
+     },
+     {
+      "q": "Leibniz distingue les vérités de raison (nécessaires) des :",
+      "options": [
+       "Vérités de fait (contingentes)",
+       "Vérités absolues",
+       "Vérités révélées",
+       "Vérités utiles"
+      ],
+      "answer": 0,
+      "explanation": "Les vérités de fait sont contingentes et fondées sur l'expérience, contrairement aux vérités de raison démontrables."
+     },
+     {
+      "q": "Le théorème d'incomplétude qui limite la démonstration formelle est dû à :",
+      "options": [
+       "Gödel",
+       "Euclide",
+       "Aristote",
+       "Spinoza"
+      ],
+      "answer": 0,
+      "explanation": "Gödel (1931) montre qu'un système formel riche ne peut prouver toutes ses vérités ni sa propre cohérence."
+     }
+    ]
+   }
+  },
+  {
+   "title": "La théorie et l'expérience",
+   "video": "https://www.youtube.com/watch?v=Ysd2A7Y9z2A",
+   "lesson": "# La théorie et l'expérience\n\n## Introduction\n\n**La théorie** est une construction de l'esprit, un ensemble cohérent d'hypothèses et de lois qui visent à expliquer le réel. **L'expérience** est le contact avec les faits : soit l'expérience vécue, soit l'**expérimentation** scientifique. La connaissance scientifique semble naître de leur rencontre, mais leur rapport est problématique : la science part-elle des faits, ou des idées ?\n\n**Le problème** : **la connaissance vient-elle de l'expérience, qui fournit les faits, ou de la théorie, qui les organise et les rend intelligibles ?** L'enjeu est la nature même de la méthode scientifique.\n\n## I. Tout vient de l'expérience : l'empirisme\n\n**Aristote** affirmait déjà : « il n'y a rien dans l'intellect qui n'ait d'abord été dans les sens ». **Locke** et **Hume** développent l'**empirisme** : l'esprit est à la naissance une « table rase » (*tabula rasa*) ; toutes nos idées viennent de l'expérience sensible. Hume montre que même le principe de causalité n'est qu'une **habitude** née de la répétition : nous ne voyons pas la cause, nous voyons seulement une succession constante.\n\n**Claude Bernard**, dans l'*Introduction à l'étude de la médecine expérimentale*, fait de l'expérimentation le juge suprême : l'expérience confirme ou réfute l'hypothèse. La science est expérimentale.\n\n## II. La théorie précède et organise l'expérience\n\nMais l'expérience seule ne suffit pas. **Kant** montre que l'esprit n'est pas passif : il faut des cadres a priori pour que l'expérience soit possible. **« Des intuitions sans concepts sont aveugles. »** On n'observe jamais sans une idée directrice.\n\n**Claude Bernard** lui-même le reconnaît : l'expérimentation suppose une **hypothèse** préalable. C'est l'« idée préconçue » qui guide l'observation : « l'expérience est une observation provoquée dans un but de contrôle ». Sans théorie, on ne sait pas quoi observer.\n\n**Bachelard** radicalise : **« rien n'est donné, tout est construit »**. Le fait scientifique n'est pas constaté, il est conquis, construit, contre l'expérience première et le sens commun. La théorie précède l'instrument et l'observation.\n\n## III. Le rapport dialectique : conjecture et réfutation\n\n**Karl Popper** propose le critère de **falsifiabilité** : une théorie est scientifique non parce qu'elle est vérifiable, mais parce qu'elle est **réfutable**. La science procède par conjectures (théories audacieuses) et réfutations (expériences qui peuvent les démentir). Une théorie qu'aucune expérience ne pourrait réfuter n'est pas scientifique (ex. l'astrologie).\n\nLe rapport est donc **dialectique** : la théorie propose, l'expérience dispose ; mais l'expérience elle-même est toujours guidée par la théorie. La science avance par allers-retours entre l'idée et le fait, sans jamais que l'un puisse se passer de l'autre.\n\n## Repères et exemples\n\n- **Distinction expérience / expérimentation** : l'expérience est vécue et subie, l'expérimentation est provoquée et contrôlée.\n- **La tabula rasa** (Locke) : l'esprit vierge à la naissance.\n- **L'analyse de la causalité par Hume** : habitude et croyance.\n- **La méthode hypothético-déductive** de Claude Bernard.\n- **Le critère de falsifiabilité** de Popper.\n\n## Sujets de dissertation corrigés\n\n**Sujet : « L'expérience suffit-elle à fonder la connaissance scientifique ? »**\n\n*Problématique* : La science semble reposer sur les faits, sur l'observation et l'expérimentation. Mais l'expérience, sans idée directrice, peut-elle à elle seule produire un savoir ?\n\n*Plan détaillé* :\n- **I. La connaissance vient de l'expérience.** Empirisme (Locke, Hume) : toutes nos idées dérivent des sens. Claude Bernard : l'expérimentation est le juge des hypothèses. Sans expérience, la théorie reste spéculation vide.\n- **II. Mais l'expérience suppose une théorie.** Kant : pas d'observation sans concept. Claude Bernard lui-même : il faut une hypothèse pour expérimenter. Bachelard : le fait scientifique est construit, non donné.\n- **III. Le rapport dialectique théorie/expérience.** Popper : conjectures et réfutations. La science progresse par l'aller-retour entre l'idée et le fait. L'expérience ne fonde rien seule, mais aucune théorie ne vaut sans être confrontée à l'expérience.\n\n*Conclusion* : L'expérience est nécessaire mais non suffisante. La connaissance scientifique naît de l'union réglée de la théorie, qui interprète, et de l'expérience, qui contrôle.\n\n## À retenir\n\n- **Théorie** = construction explicative de l'esprit ; **expérience/expérimentation** = contact réglé avec les faits.\n- **Empirisme** : Locke (table rase), Hume (causalité = habitude).\n- **Primat de la théorie** : Kant (« intuitions sans concepts aveugles »), Bachelard (« tout est construit »), Claude Bernard (l'hypothèse précède).\n- **Méthode** : hypothético-déductive (Claude Bernard), falsifiabilité (Popper).",
+   "quiz": {
+    "questions": [
+     {
+      "q": "Pour les empiristes comme Locke, l'esprit à la naissance est :",
+      "options": [
+       "Déjà rempli d'idées innées",
+       "Une table rase (tabula rasa)",
+       "Pure raison",
+       "Inconscient"
+      ],
+      "answer": 1,
+      "explanation": "L'empirisme soutient que l'esprit est une table rase et que toutes les idées viennent de l'expérience."
+     },
+     {
+      "q": "Pour Hume, le principe de causalité repose sur :",
+      "options": [
+       "Une intuition rationnelle",
+       "Une habitude née de la répétition",
+       "Une démonstration",
+       "Une révélation"
+      ],
+      "answer": 1,
+      "explanation": "Hume montre que la causalité n'est qu'une habitude née de la succession constante des phénomènes."
+     },
+     {
+      "q": "Selon Claude Bernard, l'expérimentation suppose d'abord :",
+      "options": [
+       "Aucune idée préalable",
+       "Une hypothèse (idée directrice)",
+       "Le hasard",
+       "La tradition"
+      ],
+      "answer": 1,
+      "explanation": "Pour Claude Bernard, toute expérimentation est guidée par une hypothèse préalable."
+     },
+     {
+      "q": "« Rien n'est donné, tout est construit » résume la pensée de :",
+      "options": [
+       "Bachelard",
+       "Hume",
+       "Locke",
+       "Popper"
+      ],
+      "answer": 0,
+      "explanation": "Bachelard insiste sur la construction du fait scientifique contre l'expérience immédiate."
+     },
+     {
+      "q": "Pour Popper, une théorie est scientifique si elle est :",
+      "options": [
+       "Vérifiable à l'infini",
+       "Falsifiable (réfutable)",
+       "Indémontrable",
+       "Acceptée par tous"
+      ],
+      "answer": 1,
+      "explanation": "Le critère de scientificité de Popper est la falsifiabilité : une théorie doit pouvoir être réfutée."
+     }
+    ]
+   }
+  },
+  {
+   "title": "La liberté",
+   "video": "https://www.youtube.com/watch?v=hN3GbiCmkrk",
+   "lesson": "# La liberté\n\n## Introduction\n\n**La liberté** se définit d'abord comme l'absence de contrainte, le pouvoir de faire ce que l'on veut. Mais ce pouvoir d'agir suppose un pouvoir plus profond : celui de vouloir, de choisir, de se déterminer soi-même. Or, tout dans la nature semble soumis à des causes : nos actes échappent-ils au déterminisme ? La liberté est-elle réelle ou illusoire ?\n\n**Le problème** : **l'homme est-il réellement libre, ou n'est-il que le jouet de causes qui le déterminent à son insu ?** L'enjeu est immense : sans liberté, pas de responsabilité, pas de morale, pas de droit.\n\n## I. La liberté comme illusion : le déterminisme\n\n**Spinoza** soutient que la liberté est une illusion née de l'ignorance des causes. **« Les hommes se croient libres parce qu'ils ont conscience de leurs actions, mais ignorent les causes qui les déterminent. »** La pierre qui tombe se croirait libre si elle avait conscience de son mouvement. Nous prenons notre ignorance des causes pour une absence de causes.\n\nLe **déterminisme** scientifique généralise : tout phénomène a une cause ; l'homme, partie de la nature, y est soumis. **Freud** ajoute le déterminisme psychique : nos choix sont commandés par des désirs inconscients. Le **conditionnement** social, l'éducation, la culture pèsent aussi sur nos décisions.\n\n## II. La liberté comme pouvoir de la volonté\n\nContre le déterminisme, **Descartes** affirme que la liberté de la volonté est si évidente qu'elle se connaît sans preuve. Le libre arbitre est même ce qui nous rend semblables à Dieu. Mais la plus haute liberté n'est pas l'indifférence (hésiter entre deux options sans raison) : c'est de vouloir le bien et le vrai parce qu'on les a clairement reconnus.\n\n**Kant** distingue deux ordres. Comme être sensible (phénomène), l'homme est soumis au déterminisme de la nature. Mais comme être raisonnable (noumène), il est libre : il peut agir par **devoir**, contre ses penchants. **La liberté est l'autonomie** : se donner à soi-même sa propre loi morale. Être libre, ce n'est pas faire ce qu'on veut, c'est obéir à la raison.\n\n## III. La liberté comme condition de l'homme : Sartre\n\n**Sartre** radicalise : **« l'existence précède l'essence »**. L'homme n'a pas de nature fixée d'avance ; il se fait par ses choix. Il est donc **« condamné à être libre »** : même ne pas choisir, c'est encore choisir. Cette liberté absolue s'accompagne d'une **responsabilité** totale et d'une **angoisse**. Se réfugier derrière des excuses (caractère, inconscient, circonstances), c'est de la **mauvaise foi**.\n\nMais cette liberté n'est pas sans limites. **Marx** rappelle que les hommes font leur histoire, mais dans des conditions qu'ils n'ont pas choisies. **Bergson** propose une voie médiane : nous sommes libres dans les actes qui expriment notre personnalité tout entière, qui jaillissent de notre **moi profond**, et non dans nos actes machinaux.\n\n## Repères et exemples\n\n- **Distinction liberté / libre arbitre / libération** : le pouvoir d'agir, le pouvoir de choisir, le processus de se libérer.\n- **L'image de la pierre de Spinoza** : l'illusion de la liberté.\n- **L'âne de Buridan** : la liberté d'indifférence menant à la paralysie.\n- **Kant** : la liberté comme autonomie (se donner sa propre loi).\n- **Sartre**, *L'existentialisme est un humanisme* : « condamné à être libre ».\n\n## Sujets de dissertation corrigés\n\n**Sujet : « Être libre, est-ce faire ce que l'on veut ? »**\n\n*Problématique* : Spontanément, on identifie la liberté au fait de faire ce qu'on veut, sans contrainte. Mais nos désirs sont-ils vraiment nôtres ? Faire ce qu'on veut, est-ce être libre ou être esclave de ses passions ?\n\n*Plan détaillé* :\n- **I. Être libre, c'est faire ce que l'on veut.** La liberté comme absence de contrainte (sens commun, libéraux). Faire ce qu'on veut suppose l'absence d'obstacles extérieurs.\n- **II. Mais faire ce qu'on veut peut être un esclavage.** Spinoza : nos désirs sont déterminés à notre insu. Platon : l'homme qui suit toutes ses passions est esclave de ses désirs. Faire ce qu'on veut sans savoir pourquoi, ce n'est pas être libre.\n- **III. La liberté véritable est autonomie.** Kant : être libre, c'est se donner à soi-même sa loi, obéir à la raison plutôt qu'aux penchants. Descartes : la plus haute liberté est de vouloir le bien reconnu. La liberté n'est pas l'arbitraire, mais la maîtrise de soi.\n\n*Conclusion* : Être libre n'est pas simplement faire ce qu'on veut, mais vouloir ce que l'on a reconnu comme bon et raisonnable. La liberté est moins une absence de contrainte qu'une maîtrise de soi.\n\n## À retenir\n\n- **Liberté** = pouvoir d'agir et de se déterminer soi-même ; à distinguer du **libre arbitre** et de la **libération**.\n- **Déterminisme** : Spinoza (illusion née de l'ignorance des causes), Freud, conditionnements.\n- **Libre arbitre** : Descartes (évidence du libre arbitre, refus de l'indifférence).\n- **Autonomie** : Kant (se donner sa propre loi morale). **Liberté-condition** : Sartre (« condamné à être libre », mauvaise foi), Bergson (moi profond).",
+   "quiz": {
+    "questions": [
+     {
+      "q": "Pour Spinoza, les hommes se croient libres parce qu'ils :",
+      "options": [
+       "Choisissent vraiment",
+       "Ignorent les causes qui les déterminent",
+       "Obéissent à Dieu",
+       "Suivent la raison"
+      ],
+      "answer": 1,
+      "explanation": "Spinoza : la liberté est une illusion née de l'ignorance des causes de nos actions."
+     },
+     {
+      "q": "Pour Kant, la liberté véritable est :",
+      "options": [
+       "Faire ce qu'on veut",
+       "L'autonomie (se donner sa propre loi)",
+       "L'indifférence",
+       "Suivre ses passions"
+      ],
+      "answer": 1,
+      "explanation": "La liberté kantienne est l'autonomie : obéir à la loi morale qu'on se donne par la raison."
+     },
+     {
+      "q": "« L'homme est condamné à être libre » est une formule de :",
+      "options": [
+       "Sartre",
+       "Spinoza",
+       "Descartes",
+       "Bergson"
+      ],
+      "answer": 0,
+      "explanation": "Sartre affirme que l'homme, sans nature fixée, est condamné à choisir et donc à être libre."
+     },
+     {
+      "q": "Pour Sartre, se réfugier derrière des excuses pour nier sa liberté s'appelle :",
+      "options": [
+       "La mauvaise foi",
+       "L'angoisse",
+       "L'aliénation",
+       "L'autonomie"
+      ],
+      "answer": 0,
+      "explanation": "La mauvaise foi est le mensonge à soi-même par lequel on fuit sa liberté et sa responsabilité."
+     },
+     {
+      "q": "Selon Bergson, nous sommes vraiment libres dans les actes qui :",
+      "options": [
+       "Sont machinaux",
+       "Expriment notre moi profond",
+       "Imitent autrui",
+       "Suivent l'habitude"
+      ],
+      "answer": 1,
+      "explanation": "Bergson situe la liberté dans les actes qui jaillissent de la personnalité tout entière, du moi profond."
+     }
+    ]
+   }
+  },
+  {
+   "title": "Le devoir",
+   "video": "https://www.youtube.com/watch?v=8YQVfM3wnE0",
+   "lesson": "# Le devoir\n\n## Introduction\n\n**Le devoir** est ce que l'on doit faire, l'obligation morale qui s'impose à la conscience. Il se distingue de la contrainte extérieure : le devoir m'oblige, mais ne me force pas — je peux y manquer. D'où vient cette obligation ? Est-elle universelle, ou relative à chaque société ? Et faut-il agir par devoir, ou par inclination ?\n\n**Le problème** : **le devoir moral est-il fondé en raison et universel, ou n'est-il qu'un produit de l'éducation, de la société et des intérêts ?** L'enjeu est celui de la valeur de la morale.\n\n## I. Le devoir comme loi de la raison : Kant\n\n**Kant** fonde la morale du devoir (la morale **déontologique**). Une action n'a de valeur morale que si elle est accomplie **par devoir**, et non simplement **conformément au devoir** par intérêt ou par inclination. Le commerçant honnête par calcul agit conformément au devoir ; seul celui qui est honnête parce que c'est son devoir agit moralement.\n\nLe devoir s'exprime par un **impératif catégorique** (inconditionnel), distinct des impératifs hypothétiques (« si tu veux X, fais Y »). Sa formule : **« Agis seulement d'après la maxime telle que tu puisses vouloir en même temps qu'elle devienne une loi universelle. »** Une seconde formule : **« Agis de telle sorte que tu traites l'humanité, en toi comme en autrui, toujours comme une fin, et jamais simplement comme un moyen. »**\n\nLe devoir suppose la **bonne volonté** : « Il n'est rien dans le monde qui puisse être tenu pour bon sans restriction, si ce n'est une bonne volonté. » Et il suppose la **liberté** : « tu dois, donc tu peux ».\n\n## II. Critiques du devoir : intérêt, utilité, vie\n\n**L'utilitarisme** (Bentham, **Mill**) rejette la morale du devoir abstrait : une action est bonne si elle produit le plus grand bonheur pour le plus grand nombre. La conséquence, et non l'intention, fonde la valeur morale. La morale doit être utile.\n\n**Nietzsche** dénonce dans le devoir kantien une « morale d'esclaves » : l'obéissance à la loi, le renoncement, le sacrifice seraient l'expression du ressentiment des faibles contre les forts. Le devoir étoufferait la vie. Il faut, dit-il, « réévaluer toutes les valeurs ».\n\n**Freud** voit dans le sentiment du devoir l'effet du **surmoi**, intériorisation des interdits parentaux et sociaux. La voix de la conscience morale ne serait qu'un écho de l'autorité.\n\n## III. Devoir, conscience et autrui\n\nMalgré ces critiques, le devoir reste central. **Rousseau** voyait dans la conscience morale une « voix divine » : « Conscience ! Conscience ! Instinct divin… juge infaillible du bien et du mal. » **Bergson** distingue une morale **close** (la pression du devoir social, l'obligation) et une morale **ouverte** (l'élan de l'amour, l'aspiration des grandes âmes, des héros et des saints qui appellent au dépassement).\n\nLe devoir engage enfin la responsabilité envers autrui (Levinas) et envers les générations futures : **Hans Jonas** formule un « principe responsabilité » pour la technique et l'écologie. Le devoir n'est pas une simple contrainte : il est l'expression de notre dignité d'êtres libres et raisonnables.\n\n## Repères et exemples\n\n- **Distinction obligation / contrainte** : l'obligation morale oblige sans forcer ; la contrainte force physiquement.\n- **Distinction conforme au devoir / par devoir** (Kant) : l'intérêt vs. le respect de la loi.\n- **L'impératif catégorique** et ses formules (universalité, humanité comme fin).\n- **Le surmoi** freudien : origine psychique du sentiment de devoir.\n- **Morale close / morale ouverte** (Bergson).\n\n## Sujets de dissertation corrigés\n\n**Sujet : « Le devoir s'oppose-t-il au bonheur ? »**\n\n*Problématique* : Le devoir semble exiger le sacrifice de nos inclinations et donc de notre bonheur. Mais une vie sans devoir serait-elle vraiment heureuse ? Devoir et bonheur sont-ils nécessairement opposés ?\n\n*Plan détaillé* :\n- **I. Le devoir semble s'opposer au bonheur.** Kant : agir par devoir, c'est agir contre ses inclinations ; le devoir commande même au prix du sacrifice. La morale exige parfois de renoncer à notre satisfaction.\n- **II. Mais le bonheur ne saurait être immoral.** Une vie heureuse au mépris du devoir (égoïsme, injustice) n'est pas un vrai bonheur. Kant : le devoir nous rend dignes d'être heureux. La conscience d'avoir bien agi procure une satisfaction morale.\n- **III. Devoir et bonheur peuvent se concilier.** Les morales eudémonistes (Aristote, les Anciens) : la vertu est la voie du vrai bonheur. Bergson : la morale ouverte, l'élan vers autrui, est source de joie. Faire son devoir n'exclut pas, mais accomplit l'humanité de l'homme.\n\n*Conclusion* : Le devoir contrarie parfois le plaisir immédiat, mais non le bonheur véritable, qui suppose l'estime de soi et l'accord avec la raison. Devoir et bonheur, loin de s'exclure, peuvent se réconcilier dans une vie droite.\n\n## À retenir\n\n- **Devoir** = obligation morale qui oblige sans forcer ; à distinguer de la **contrainte**.\n- **Kant** : agir **par devoir** (et non par intérêt), impératif catégorique, humanité comme fin, bonne volonté.\n- **Critiques** : utilitarisme (Mill : le plus grand bonheur), Nietzsche (morale d'esclaves), Freud (surmoi).\n- **Conscience et autrui** : Rousseau (voix de la conscience), Bergson (morale close/ouverte), Jonas (responsabilité).",
+   "quiz": {
+    "questions": [
+     {
+      "q": "Pour Kant, une action a une valeur morale si elle est accomplie :",
+      "options": [
+       "Par intérêt",
+       "Par devoir",
+       "Par habitude",
+       "Par plaisir"
+      ],
+      "answer": 1,
+      "explanation": "Kant distingue agir par devoir (valeur morale) et agir seulement conformément au devoir (par intérêt)."
+     },
+     {
+      "q": "L'impératif catégorique commande d'agir selon une maxime qu'on pourrait vouloir comme :",
+      "options": [
+       "Loi universelle",
+       "Règle personnelle",
+       "Coutume locale",
+       "Intérêt particulier"
+      ],
+      "answer": 0,
+      "explanation": "« Agis seulement d'après la maxime telle que tu puisses vouloir qu'elle devienne une loi universelle. »"
+     },
+     {
+      "q": "L'utilitarisme (Mill) juge une action bonne si elle produit :",
+      "options": [
+       "Le plus grand bonheur du plus grand nombre",
+       "Le respect de la loi",
+       "L'obéissance à Dieu",
+       "La pureté de l'intention"
+      ],
+      "answer": 0,
+      "explanation": "L'utilitarisme évalue la moralité par les conséquences : le plus grand bonheur pour le plus grand nombre."
+     },
+     {
+      "q": "Qui dénonce la morale du devoir comme une « morale d'esclaves » ?",
+      "options": [
+       "Nietzsche",
+       "Kant",
+       "Rousseau",
+       "Bergson"
+      ],
+      "answer": 0,
+      "explanation": "Nietzsche y voit l'expression du ressentiment des faibles contre la vie."
+     },
+     {
+      "q": "Bergson distingue la morale close (obligation sociale) de la morale :",
+      "options": [
+       "Ouverte (élan, amour)",
+       "Fermée",
+       "Utilitaire",
+       "Hypothétique"
+      ],
+      "answer": 0,
+      "explanation": "La morale ouverte est l'élan d'amour des grandes âmes qui dépasse la pression du devoir social."
+     }
+    ]
+   }
+  },
+  {
+   "title": "Le bonheur",
+   "video": "https://www.youtube.com/watch?v=q5sY9X0zZ8M",
+   "lesson": "# Le bonheur\n\n## Introduction\n\n**Le bonheur** est un état de satisfaction complète et durable, l'aspiration de tout homme. Aristote en faisait le souverain bien, la fin ultime de toutes nos actions : on veut tout le reste en vue du bonheur, et le bonheur pour lui-même. Mais qu'est-ce qui rend heureux ? Le plaisir, la vertu, la richesse ? Et le bonheur est-il à notre portée ?\n\n**Le problème** : **le bonheur dépend-il de nous, et en quoi consiste-t-il vraiment ?** L'enjeu est de savoir si l'on peut connaître et atteindre le bonheur, et par quels moyens.\n\n## I. Le bonheur comme plaisir : l'hédonisme et l'épicurisme\n\nPour les **hédonistes** (Aristippe), le bonheur réside dans le **plaisir**. Mais **Épicure** corrige : le vrai plaisir n'est pas l'excès, c'est l'absence de troubles, l'*ataraxie*. Il faut distinguer les plaisirs (en mouvement / stables) et sélectionner les désirs : satisfaire les désirs naturels et nécessaires, écarter les désirs vains. Le bonheur épicurien est une sagesse de la mesure : « Quand nous disons que le plaisir est le souverain bien, nous ne parlons pas des plaisirs des débauchés. »\n\nMais le plaisir suffit-il ? **Schopenhauer** objecte que le désir, source de plaisir, est aussi source de souffrance : la quête du plaisir nous condamne à osciller entre manque et ennui.\n\n## II. Le bonheur comme maîtrise de soi : le stoïcisme\n\nLes **stoïciens** (Épictète, Marc Aurèle, Sénèque) fondent le bonheur sur la **vertu** et la maîtrise de soi. Il faut distinguer ce qui **dépend de nous** (nos jugements, nos désirs) de ce qui **ne dépend pas de nous** (le corps, la richesse, la réputation, les événements). Le sage ne s'attache qu'à ce qui dépend de lui et accepte le reste : **« Ne demande pas que les choses arrivent comme tu le veux, mais veux-les comme elles arrivent »** (Épictète). Le bonheur est alors une tranquillité conquise par la raison, indépendante des circonstances.\n\n## III. Bonheur, vertu et illusion\n\n**Aristote** propose une voie médiane : le bonheur (*eudaimonia*) n'est ni le simple plaisir ni un pur détachement, mais l'**activité de l'âme conforme à la vertu**, sur une vie entière. Il faut aussi un minimum de biens extérieurs (santé, amis, ressources). Le bonheur est une pratique, non un état passif.\n\n**Kant** met en garde : le bonheur est un « idéal de l'imagination », trop indéterminé pour servir de boussole morale. On ne sait pas avec certitude ce qui nous rendra heureux. La morale ne commande donc pas de rechercher le bonheur, mais de se rendre **digne** d'être heureux.\n\n**Pascal** dénonce le **divertissement** : faute de pouvoir supporter sa condition (misère, mortalité), l'homme se détourne de lui-même par l'agitation. Le vrai bonheur ne se trouve pas dans la fuite, mais demande de savoir « demeurer en repos dans une chambre ». **Freud** enfin doute que le bonheur durable soit possible : le programme du principe de plaisir est « irréalisable ».\n\n## Repères et exemples\n\n- **Distinction plaisir / bonheur / joie** : le plaisir est ponctuel et corporel, le bonheur est durable et global, la joie est l'intensification de notre puissance d'exister (Spinoza).\n- **L'ataraxie** d'Épicure et l'apathie stoïcienne.\n- **La distinction « ce qui dépend de nous » / « ce qui ne dépend pas de nous »** (Épictète, *Manuel*).\n- **L'eudaimonia** d'Aristote (*Éthique à Nicomaque*).\n- **Le divertissement** selon Pascal (*Pensées*).\n\n## Sujets de dissertation corrigés\n\n**Sujet : « Le bonheur dépend-il de nous ? »**\n\n*Problématique* : Le bonheur semble dépendre de circonstances que nous ne maîtrisons pas (santé, fortune, événements). Mais ne dépend-il pas surtout de notre manière de juger et de vivre ?\n\n*Plan détaillé* :\n- **I. Le bonheur semble ne pas dépendre de nous.** Il dépend de la chance, des biens extérieurs, de la santé (sens commun, Aristote reconnaît le rôle des biens extérieurs). On ne décide pas d'être heureux.\n- **II. Mais le bonheur dépend de nos jugements.** Stoïcisme : distinguer ce qui dépend de nous (jugements, désirs) de ce qui n'en dépend pas. Épicure : la sagesse du désir. Le bonheur se conquiert par la maîtrise de soi.\n- **III. Le bonheur, entre maîtrise et limites.** Kant : le bonheur est trop indéterminé pour être pleinement maîtrisé ; visons plutôt à en être dignes. Aristote : le bonheur est une activité vertueuse qui dépend de nous, mais suppose aussi des conditions. Le bonheur dépend de nous pour l'essentiel — notre attitude — sans dépendre entièrement de nous.\n\n*Conclusion* : Le bonheur n'est pas entièrement en notre pouvoir, mais l'essentiel — notre manière de juger, de désirer et d'agir — dépend de nous. La sagesse consiste à cultiver ce qui dépend de nous et à accepter le reste.\n\n## À retenir\n\n- **Bonheur** = satisfaction complète et durable ; fin ultime selon Aristote (eudaimonia).\n- **Hédonisme/épicurisme** : Épicure (ataraxie, sélection des désirs).\n- **Stoïcisme** : Épictète (ce qui dépend / ne dépend pas de nous), maîtrise de soi.\n- **Vertu et limites** : Aristote (activité vertueuse), Kant (se rendre digne du bonheur), Pascal (divertissement).",
+   "quiz": {
+    "questions": [
+     {
+      "q": "Pour Épicure, le vrai bonheur est :",
+      "options": [
+       "L'excès de plaisirs",
+       "L'ataraxie (absence de troubles)",
+       "La richesse",
+       "La gloire"
+      ],
+      "answer": 1,
+      "explanation": "Épicure définit le bonheur comme ataraxie, tranquillité de l'âme obtenue par la sélection des désirs."
+     },
+     {
+      "q": "« Ne demande pas que les choses arrivent comme tu le veux, mais veux-les comme elles arrivent » est de :",
+      "options": [
+       "Épictète",
+       "Aristote",
+       "Kant",
+       "Pascal"
+      ],
+      "answer": 0,
+      "explanation": "Cette maxime stoïcienne d'Épictète résume la distinction entre ce qui dépend et ne dépend pas de nous."
+     },
+     {
+      "q": "Pour Aristote, le bonheur (eudaimonia) est :",
+      "options": [
+       "Le plaisir des sens",
+       "L'activité de l'âme conforme à la vertu",
+       "L'absence de désir",
+       "La richesse"
+      ],
+      "answer": 1,
+      "explanation": "Aristote définit le bonheur comme activité vertueuse de l'âme sur une vie entière."
+     },
+     {
+      "q": "Selon Kant, le bonheur est :",
+      "options": [
+       "Un commandement moral absolu",
+       "Un idéal de l'imagination, indéterminé",
+       "Facile à atteindre",
+       "Le seul bien"
+      ],
+      "answer": 1,
+      "explanation": "Kant juge le bonheur trop indéterminé pour servir de loi morale ; il faut se rendre digne d'être heureux."
+     },
+     {
+      "q": "Le « divertissement » qui détourne l'homme de sa condition est dénoncé par :",
+      "options": [
+       "Pascal",
+       "Épicure",
+       "Sénèque",
+       "Mill"
+      ],
+      "answer": 0,
+      "explanation": "Pascal montre que l'homme fuit sa misère par l'agitation du divertissement."
+     }
+    ]
+   }
+  },
+  {
+   "title": "Le travail et la technique",
+   "video": "https://www.youtube.com/watch?v=Q4kQ7xq9YJ8",
+   "lesson": "# Le travail et la technique\n\n## Introduction\n\n**Le travail** est l'activité par laquelle l'homme transforme la nature pour satisfaire ses besoins. **La technique** désigne l'ensemble des procédés et des outils mis en œuvre dans cette transformation. Travail et technique distinguent l'homme de l'animal : ils sont le signe de sa capacité à façonner le monde. Mais sont-ils une malédiction ou une voie d'humanisation ? La technique nous libère-t-elle ou nous asservit-elle ?\n\n**Le problème** : **le travail et la technique humanisent-ils l'homme, ou risquent-ils de l'aliéner et de le déshumaniser ?** L'enjeu est anthropologique et politique.\n\n## I. Le travail, malédiction ou humanisation\n\nLa tradition (la **Genèse** : « tu gagneras ton pain à la sueur de ton front »), comme l'Antiquité grecque, voyait le travail comme une **peine**, réservée aux esclaves, indigne de l'homme libre.\n\nMais les Modernes en font une **humanisation**. **Hegel**, dans la dialectique du maître et de l'esclave, montre que c'est l'esclave qui, par le **travail**, transforme la nature, accède à la conscience de soi et s'élève au-dessus du maître oisif. **« Par le travail, la conscience servile vient à soi-même. »** En façonnant le monde, l'homme se façonne lui-même.\n\n**Marx** précise : le travail est ce qui distingue l'homme de l'animal. « Ce qui distingue le plus mauvais architecte de l'abeille la plus experte, c'est qu'il a construit la cellule dans sa tête avant de la construire dans la ruche. » Le travail humain est conscient et planifié ; par lui, l'homme produit son existence et fait son histoire.\n\n## II. L'aliénation du travail : Marx\n\nMais dans le système capitaliste, **Marx** montre que le travail devient **aliéné** (étranger à l'ouvrier). Le travailleur ne possède ni les moyens de production, ni le produit de son travail ; il vend sa force de travail comme une marchandise. Avec la **division du travail** et le machinisme, l'ouvrier est réduit à un geste répétitif, dépossédé du sens de son activité. Le travail, qui devrait épanouir, devient une souffrance et une dépossession de soi. Marx appelle à une libération qui rende le travail à sa vocation humaine.\n\n## III. La technique : promesse et menace\n\n**Descartes** annonçait que la science nous rendrait **« comme maîtres et possesseurs de la nature »** : la technique est au service de l'homme, pour soulager sa peine et améliorer sa vie.\n\nMais la technique moderne inquiète. **Heidegger** y voit un mode de dévoilement du monde où tout, y compris l'homme, devient « fonds » disponible, exploitable : c'est l'**arraisonnement** (*Gestell*). La technique nous fait oublier l'être. **Hannah Arendt** distingue le travail (cycle vital), l'œuvre (fabrication d'un monde durable) et l'action (politique), et s'inquiète d'une société où ne reste que le travail. **Hans Jonas** appelle enfin à un **principe responsabilité** : la puissance technique, qui menace la planète et les générations futures, exige une éthique nouvelle.\n\n## Repères et exemples\n\n- **Distinction travail / œuvre / action** (Hannah Arendt).\n- **La dialectique du maître et de l'esclave** (Hegel) : le travail libère l'esclave.\n- **L'aliénation** du travail (Marx, *Manuscrits de 1844*).\n- **« Maîtres et possesseurs de la nature »** (Descartes, *Discours de la méthode*).\n- **L'arraisonnement** technique (Heidegger) ; le principe responsabilité (Jonas).\n\n## Sujets de dissertation corrigés\n\n**Sujet : « Le travail n'est-il qu'une contrainte ? »**\n\n*Problématique* : Le travail apparaît d'abord comme une peine, une nécessité subie pour survivre. Mais ne fait-il pas aussi l'homme, en lui permettant de se réaliser et de transformer le monde ?\n\n*Plan détaillé* :\n- **I. Le travail est une contrainte.** La Genèse, l'Antiquité : le travail est peine et servitude. Marx : dans le capitalisme, le travail aliéné dépossède l'ouvrier. Le travail semble subi par nécessité.\n- **II. Mais le travail humanise.** Hegel : par le travail, l'esclave accède à la conscience de soi. Marx : le travail distingue l'homme de l'animal, il est création consciente. En transformant la nature, l'homme se transforme et se réalise.\n- **III. Travail libérateur ou aliénant selon ses conditions.** Le travail peut épanouir (métier choisi, œuvre) ou aliéner (division parcellaire, exploitation). C'est l'organisation sociale du travail qui décide. Restituer au travail son sens humain, c'est en faire une libération.\n\n*Conclusion* : Le travail n'est pas qu'une contrainte : il est aussi le moyen par lequel l'homme s'humanise et fait son histoire. Tout dépend des conditions dans lesquelles il s'exerce.\n\n## À retenir\n\n- **Travail** = transformation de la nature pour satisfaire les besoins ; **technique** = moyens de cette transformation.\n- **Humanisation** : Hegel (le travail libère l'esclave), Marx (le travail distingue l'homme de l'animal).\n- **Aliénation** : Marx (le travail capitaliste dépossède l'ouvrier).\n- **Technique** : Descartes (« maîtres et possesseurs de la nature »), Heidegger (arraisonnement), Arendt, Jonas (responsabilité).",
+   "quiz": {
+    "questions": [
+     {
+      "q": "Pour Hegel, dans la dialectique du maître et de l'esclave, qui accède à la conscience de soi par le travail ?",
+      "options": [
+       "Le maître",
+       "L'esclave",
+       "Le philosophe",
+       "Le roi"
+      ],
+      "answer": 1,
+      "explanation": "C'est l'esclave qui, en transformant la nature par le travail, s'élève à la conscience de soi."
+     },
+     {
+      "q": "Selon Marx, ce qui distingue l'architecte de l'abeille, c'est que l'architecte :",
+      "options": [
+       "Travaille plus vite",
+       "Conçoit l'œuvre dans sa tête avant de la réaliser",
+       "Ne travaille jamais",
+       "Est plus fort"
+      ],
+      "answer": 1,
+      "explanation": "Le travail humain est conscient et planifié, contrairement à l'activité instinctive de l'animal."
+     },
+     {
+      "q": "Le concept d'aliénation du travail est central chez :",
+      "options": [
+       "Marx",
+       "Descartes",
+       "Heidegger",
+       "Arendt"
+      ],
+      "answer": 0,
+      "explanation": "Marx montre comment le travail capitaliste aliène l'ouvrier, dépossédé du produit et du sens de son travail."
+     },
+     {
+      "q": "« Maîtres et possesseurs de la nature » est une formule de :",
+      "options": [
+       "Descartes",
+       "Marx",
+       "Hegel",
+       "Jonas"
+      ],
+      "answer": 0,
+      "explanation": "Descartes, dans le Discours de la méthode, annonce la maîtrise technique de la nature par la science."
+     },
+     {
+      "q": "Qui distingue le travail, l'œuvre et l'action ?",
+      "options": [
+       "Hannah Arendt",
+       "Heidegger",
+       "Marx",
+       "Hegel"
+      ],
+      "answer": 0,
+      "explanation": "Hannah Arendt distingue ces trois activités humaines dans Condition de l'homme moderne."
+     }
+    ]
+   }
+  },
+  {
+   "title": "L'art",
+   "video": "https://www.youtube.com/watch?v=2qF0p3oG3sQ",
+   "lesson": "# L'art\n\n## Introduction\n\n**L'art** désigne la production d'œuvres dont la valeur est d'abord esthétique, et la faculté de créer le beau. À distinguer de la **technique** (production utilitaire) et de la nature. L'œuvre d'art ne sert à rien, et pourtant elle nous touche profondément. Que cherche l'artiste ? Imiter le réel, exprimer une émotion, créer du nouveau ? Et qu'est-ce que le beau : une qualité de l'objet ou un sentiment du sujet ?\n\n**Le problème** : **l'art a-t-il pour fin d'imiter le réel ou de le transfigurer, et le jugement de beauté est-il subjectif ou universel ?** L'enjeu touche à la valeur et au sens de la création.\n\n## I. L'art comme imitation : la mimésis\n\nPour **Platon**, l'art est **imitation** (*mimésis*). Le peintre imite le lit fabriqué par l'artisan, qui imite lui-même l'Idée du lit. L'art est donc une copie de copie, éloigné de la vérité, et même dangereux car il flatte les passions. Platon se méfie des artistes.\n\n**Aristote** réhabilite la mimésis : imiter procure du plaisir et permet d'apprendre. La tragédie, en imitant des actions, produit la **catharsis**, purgation des passions (pitié et terreur). L'art imite non le réel tel qu'il est, mais tel qu'il pourrait ou devrait être : il a une valeur de connaissance.\n\n## II. L'art comme expression et création\n\nÀ l'âge moderne, l'art n'imite plus : il **exprime** et **crée**. **Hegel** définit l'art comme « la manifestation sensible de l'Idée » : l'œuvre rend visible le spirituel. Mais Hegel annonce aussi que l'art, comme moyen le plus haut d'accès à l'absolu, appartient désormais au passé (« l'art est pour nous chose passée »), dépassé par la religion et la philosophie.\n\n**Kant** analyse le **jugement de goût** : le beau est ce qui plaît universellement, sans concept et sans intérêt. Le plaisir esthétique est **désintéressé** (je ne désire pas posséder l'objet beau). Et bien que subjectif, le jugement de goût prétend à l'**universalité** : quand je dis « c'est beau », j'exige l'assentiment d'autrui. Le **génie**, lui, est « le talent qui donne ses règles à l'art » : il crée des œuvres exemplaires sans suivre de règles préétablies.\n\n## III. Art, vérité et beauté\n\nL'art dit-il quelque chose de vrai ? **Bergson** voit dans l'artiste celui qui perçoit la réalité plus directement que nous, débarrassé des voiles utilitaires : l'art nous fait voir ce que nous ne voyons pas. **Heidegger** affirme que l'œuvre d'art est « mise en œuvre de la vérité » : elle dévoile un monde.\n\nQuant à la beauté, elle n'est ni purement objective ni purement subjective. Contre le relativisme (« des goûts et des couleurs on ne discute pas »), Kant maintient qu'on peut discuter du beau : il y a une éducation du goût. L'art, enfin, ne se réduit pas au beau : l'art moderne et contemporain explore le laid, l'informe, le provocant, élargissant la question : non plus « qu'est-ce qui est beau ? », mais « qu'est-ce qui fait œuvre d'art ? ».\n\n## Repères et exemples\n\n- **Distinction art / technique / nature** : le beau, l'utile, le donné.\n- **La mimésis** (Platon, Aristote) et la **catharsis** tragique.\n- **Le jugement de goût** désintéressé et universel (Kant, *Critique de la faculté de juger*).\n- **Le génie** (Kant) : « le talent qui donne ses règles à l'art ».\n- **« L'art est la manifestation sensible de l'Idée »** (Hegel).\n\n## Sujets de dissertation corrigés\n\n**Sujet : « L'art n'est-il qu'une imitation de la nature ? »**\n\n*Problématique* : L'art semble chercher à reproduire fidèlement le réel (réalisme, ressemblance). Mais l'œuvre se réduit-elle à une copie ? Imiter, est-ce le but de l'art, ou bien l'art crée-t-il autre chose que ce qui est ?\n\n*Plan détaillé* :\n- **I. L'art imite la nature.** Platon, Aristote : l'art est mimésis. La ressemblance, le réalisme témoignent de cette vocation imitative ; imiter procure plaisir et connaissance.\n- **II. Mais imiter n'est pas le but de l'art.** Une simple copie n'a pas de valeur artistique (la photographie banale n'est pas de l'art). Hegel : l'art exprime l'Idée. L'art transfigure le réel, l'idéalise ou le réinvente. Bergson : l'artiste nous fait voir autrement.\n- **III. L'art est création.** Kant : le génie crée des œuvres originales. L'art moderne s'affranchit de l'imitation (abstraction, art conceptuel). L'art ne reproduit pas le monde : il en ajoute un, il crée du sens et de la beauté.\n\n*Conclusion* : L'art n'est pas qu'imitation : même quand il imite, il transfigure. Sa vocation est moins de copier le réel que de le révéler et d'en créer une vision nouvelle.\n\n## À retenir\n\n- **Art** = création du beau et d'œuvres à valeur esthétique ; à distinguer de la **technique** (utilité).\n- **Imitation (mimésis)** : Platon (copie de copie, méfiance), Aristote (plaisir, catharsis, connaissance).\n- **Expression/création** : Hegel (manifestation sensible de l'Idée), Kant (génie, jugement de goût désintéressé et universel).\n- **Vérité de l'art** : Bergson (voir autrement), Heidegger (mise en œuvre de la vérité).",
+   "quiz": {
+    "questions": [
+     {
+      "q": "Pour Platon, l'art est avant tout :",
+      "options": [
+       "Une création divine",
+       "Une imitation (copie de copie)",
+       "Une science",
+       "Un travail utile"
+      ],
+      "answer": 1,
+      "explanation": "Platon fait de l'art une imitation éloignée de la vérité : copie de copie, qu'il regarde avec méfiance."
+     },
+     {
+      "q": "La catharsis (purgation des passions) par la tragédie est une idée de :",
+      "options": [
+       "Aristote",
+       "Hegel",
+       "Kant",
+       "Bergson"
+      ],
+      "answer": 0,
+      "explanation": "Aristote attribue à la tragédie une fonction de catharsis : purgation de la pitié et de la terreur."
+     },
+     {
+      "q": "Pour Kant, le plaisir esthétique du beau est :",
+      "options": [
+       "Intéressé",
+       "Désintéressé et prétend à l'universalité",
+       "Purement individuel",
+       "Utilitaire"
+      ],
+      "answer": 1,
+      "explanation": "Le jugement de goût est désintéressé et exige l'assentiment universel sans concept."
+     },
+     {
+      "q": "« L'art est la manifestation sensible de l'Idée » est une définition de :",
+      "options": [
+       "Hegel",
+       "Platon",
+       "Aristote",
+       "Heidegger"
+      ],
+      "answer": 0,
+      "explanation": "Hegel définit ainsi l'art comme expression sensible du spirituel."
+     },
+     {
+      "q": "Pour Kant, le génie est :",
+      "options": [
+       "Le talent qui donne ses règles à l'art",
+       "Celui qui imite le mieux",
+       "Un savant",
+       "Un artisan habile"
+      ],
+      "answer": 0,
+      "explanation": "Kant définit le génie comme le talent par lequel la nature donne ses règles à l'art."
+     }
+    ]
+   }
+  },
+  {
+   "title": "La religion",
+   "video": "https://www.youtube.com/watch?v=Hh9P0r4G6Jg",
+   "lesson": "# La religion\n\n## Introduction\n\n**La religion** (du latin *religare*, relier, ou *relegere*, recueillir) est un ensemble de croyances et de pratiques relatives au sacré, qui relient les hommes entre eux et à une réalité transcendante. Phénomène universel, présent dans toutes les cultures, la religion pose la question de son origine et de sa valeur : répond-elle à un besoin profond de l'homme, ou n'est-elle qu'une illusion ? Est-elle compatible avec la raison ?\n\n**Le problème** : **la religion est-elle une vérité sur le sens de l'existence, ou une illusion née des peurs et des désirs humains ?** L'enjeu touche au rapport entre la foi et la raison, et au sens de l'existence.\n\n## I. La foi et la raison\n\nLa question des rapports entre foi et raison traverse la philosophie. **Saint Thomas d'Aquin** les concilie : la raison peut démontrer l'existence de Dieu (les « cinq voies »), et la foi vient compléter, sans la contredire, ce que la raison ne peut atteindre seule. **Pascal**, au contraire, sépare les ordres : Dieu est affaire de cœur, non de raison démonstrative. Son **pari** propose un calcul : il est plus rationnel de parier que Dieu existe (gain infini) que l'inverse. **« Le cœur a ses raisons que la raison ne connaît point. »**\n\n**Kant** montre que la raison théorique ne peut ni prouver ni réfuter l'existence de Dieu (les preuves classiques échouent). Mais la raison **pratique** (morale) postule Dieu et l'immortalité comme conditions du souverain bien. Kant « limite le savoir pour faire place à la croyance ».\n\n## II. La religion comme illusion : les soupçons modernes\n\nTrois grands « maîtres du soupçon » critiquent la religion.\n\n**Feuerbach** : la religion est une **aliénation**. L'homme projette dans un Dieu imaginaire ses propres qualités (bonté, puissance, sagesse), puis s'agenouille devant cette projection. « Ce n'est pas Dieu qui a créé l'homme, c'est l'homme qui a créé Dieu à son image. »\n\n**Marx** reprend et radicalise : la religion est **« l'opium du peuple »**, « le soupir de la créature opprimée ». Elle console les hommes de leur misère réelle au lieu de les pousser à la transformer ; elle détourne de la lutte sociale.\n\n**Freud** voit dans la religion une **illusion** née du désir : Dieu est une figure du père protecteur, projeté pour apaiser l'angoisse face à la nature et à la mort. La religion serait une « névrose obsessionnelle de l'humanité », destinée à être dépassée par la science.\n\n**Nietzsche** enfin proclame que **« Dieu est mort »** : la croyance religieuse a perdu sa force ; il faut en assumer les conséquences et réinventer les valeurs.\n\n## III. La fonction sociale et le sens du religieux\n\n**Durkheim**, sociologue, montre que la religion n'est pas qu'illusion : elle a une **fonction sociale** essentielle. Le sacré, c'est la société elle-même qui se vénère à travers ses symboles ; la religion crée du lien, de la cohésion, une conscience collective. Elle est constitutive du « faire société ».\n\n**Bergson** distingue une religion **statique** (close, défensive, fonction de cohésion sociale) et une religion **dynamique** (ouverte, mystique, élan d'amour universel). La religion répond aussi à une exigence de **sens** : face à la mort, à la souffrance, à l'injustice, elle propose une espérance que la science ne donne pas. Croyants et incroyants peuvent reconnaître que la question religieuse touche à ce qu'il y a de plus profond dans la condition humaine.\n\n## Repères et exemples\n\n- **Distinction croire / savoir** : la foi (adhésion sans preuve) et le savoir (justification rationnelle).\n- **Les preuves de l'existence de Dieu** (Thomas d'Aquin) et leur critique (Kant).\n- **Le pari de Pascal** (*Pensées*).\n- **« L'opium du peuple »** (Marx) ; la religion comme **illusion** (Freud).\n- **La fonction sociale du sacré** (Durkheim) ; religion close/ouverte (Bergson).\n\n## Sujets de dissertation corrigés\n\n**Sujet : « La religion est-elle l'ennemie de la raison ? »**\n\n*Problématique* : La foi semble s'opposer à la raison : elle demande de croire sans preuve. Mais la religion est-elle nécessairement irrationnelle, ou peut-elle coexister avec la raison, voire la nourrir ?\n\n*Plan détaillé* :\n- **I. La religion semble s'opposer à la raison.** Elle repose sur la foi, le mystère, la révélation, là où la raison exige preuves et démonstrations. Les soupçons (Feuerbach, Marx, Freud) y voient une illusion qui aliène et endort la raison critique.\n- **II. Mais foi et raison ne s'excluent pas.** Thomas d'Aquin : la raison prépare et complète la foi. Pascal, Kant : la raison reconnaît ses limites et fait place à la croyance. La religion peut s'accompagner d'une réflexion exigeante (théologie).\n- **III. Religion et raison, deux ordres distincts.** La religion répond à des questions de sens (mort, souffrance, espérance) que la science ne traite pas. Durkheim : sa fonction est sociale. Loin d'être l'ennemie de la raison, la religion occupe un autre ordre, à condition de ne pas confondre foi et savoir, ni de soumettre la raison à la croyance.\n\n*Conclusion* : La religion n'est pas par essence l'ennemie de la raison. Elle le devient quand elle prétend dicter le savoir ; mais bien comprise, elle relève d'un ordre distinct, celui du sens et de l'espérance, que la raison peut respecter.\n\n## À retenir\n\n- **Religion** = croyances et pratiques relatives au sacré, reliant les hommes au transcendant et entre eux.\n- **Foi et raison** : Thomas d'Aquin (conciliation), Pascal (le pari, le cœur), Kant (postulats de la raison pratique).\n- **Soupçons** : Feuerbach (projection/aliénation), Marx (« opium du peuple »), Freud (illusion, figure du père), Nietzsche (« Dieu est mort »).\n- **Fonction et sens** : Durkheim (fonction sociale du sacré), Bergson (religion close/ouverte).",
+   "quiz": {
+    "questions": [
+     {
+      "q": "« La religion est l'opium du peuple » est une formule de :",
+      "options": [
+       "Marx",
+       "Freud",
+       "Durkheim",
+       "Pascal"
+      ],
+      "answer": 0,
+      "explanation": "Marx voit dans la religion une consolation illusoire qui détourne de la lutte sociale."
+     },
+     {
+      "q": "Pour Feuerbach, la religion est :",
+      "options": [
+       "Une projection de l'homme dans un Dieu imaginaire",
+       "Une preuve rationnelle",
+       "Un fait social neutre",
+       "Une science"
+      ],
+      "answer": 0,
+      "explanation": "Feuerbach : l'homme projette ses propres qualités dans Dieu, qu'il a créé à son image."
+     },
+     {
+      "q": "Freud explique la religion comme :",
+      "options": [
+       "Une illusion née du désir (figure du père protecteur)",
+       "Une vérité révélée",
+       "Une démonstration logique",
+       "Un contrat social"
+      ],
+      "answer": 0,
+      "explanation": "Pour Freud, Dieu est une projection du père, illusion née de l'angoisse et du désir de protection."
+     },
+     {
+      "q": "Le pari sur l'existence de Dieu est proposé par :",
+      "options": [
+       "Pascal",
+       "Thomas d'Aquin",
+       "Kant",
+       "Durkheim"
+      ],
+      "answer": 0,
+      "explanation": "Le pari de Pascal montre qu'il est rationnel de parier que Dieu existe (gain infini)."
+     },
+     {
+      "q": "Durkheim souligne surtout que la religion remplit une fonction :",
+      "options": [
+       "Sociale (cohésion, lien collectif)",
+       "Économique",
+       "Purement individuelle",
+       "Scientifique"
+      ],
+      "answer": 0,
+      "explanation": "Pour Durkheim, le sacré exprime la société elle-même et assure la cohésion sociale."
+     }
+    ]
+   }
+  },
+  {
+   "title": "L'État",
+   "video": "https://www.youtube.com/watch?v=L7Qd5gT0qXc",
+   "lesson": "# L'État\n\n## Introduction\n\n**L'État** est l'organisation politique d'une société : l'ensemble des institutions (gouvernement, administration, justice, armée) qui détiennent le pouvoir et exercent l'autorité sur un territoire. Max Weber le définit par le **monopole de la violence légitime**. L'État est-il un mal nécessaire qui contraint notre liberté, ou la condition de la liberté et de la justice ? D'où tire-t-il sa légitimité ?\n\n**Le problème** : **l'État est-il un instrument de domination qui aliène les individus, ou la condition de leur liberté et de la vie en société ?** L'enjeu est celui de la légitimité du pouvoir et de l'obéissance.\n\n## I. L'État comme sortie de l'état de nature : le contrat social\n\nLes théories du **contrat social** fondent l'État sur l'accord des individus.\n\n**Hobbes** : à l'état de nature règne « la guerre de tous contre tous », car « l'homme est un loup pour l'homme ». Par peur de la mort violente, les hommes cèdent tous leurs droits à un souverain absolu, le **Léviathan**, qui garantit la sécurité. L'État est nécessaire pour assurer la paix.\n\n**Locke** : l'état de nature connaît déjà des droits naturels (vie, liberté, propriété), mais ils sont mal protégés. Les hommes instituent un État **limité**, dont le rôle est de garantir ces droits ; si l'État les viole, le peuple a un droit de résistance. C'est le fondement du **libéralisme politique**.\n\n**Rousseau** : le contrat social authentique ne consiste pas à se soumettre à un maître, mais à s'associer en mettant tout en commun sous la direction de la **volonté générale**. **« L'obéissance à la loi qu'on s'est prescrite est liberté. »** L'État légitime exprime la souveraineté du peuple.\n\n## II. La nature et la fin de l'État\n\n**Aristote** voyait l'État (la *polis*) non comme un artifice, mais comme **naturel** : « l'homme est par nature un animal politique » (*zoon politikon*). La cité permet à l'homme de réaliser pleinement son humanité ; elle vise le « bien-vivre », non la simple survie.\n\n**Hegel** fait de l'État la réalisation suprême de l'esprit objectif : il est « la réalité en acte de l'Idée morale », le lieu où s'accomplit la liberté concrète, dépassant les intérêts particuliers de la société civile. L'État n'est pas l'ennemi de la liberté : il en est l'accomplissement.\n\n## III. La critique de l'État : domination et dépérissement\n\n**Marx** renverse cette vision : l'État n'est pas neutre, il est **l'instrument de domination** de la classe dominante. « Le pouvoir politique n'est que le pouvoir organisé d'une classe pour l'oppression d'une autre. » Avec la fin des classes, l'État doit **dépérir**.\n\nLes **anarchistes** (Bakounine, Proudhon) rejettent tout État comme principe d'oppression. À l'opposé, on craint aussi l'**État totalitaire** (analysé par Hannah **Arendt**), qui absorbe la société entière et détruit la liberté. Entre l'anarchie et le despotisme, la question reste : comment concevoir un État qui garantisse à la fois l'ordre et la liberté ? La réponse moderne est l'**État de droit**, où le pouvoir est lui-même soumis à la loi et séparé (Montesquieu : séparation des pouvoirs).\n\n## Repères et exemples\n\n- **Distinction légal / légitime** : ce qui est conforme à la loi et ce qui est juste, fondé en droit.\n- **L'état de nature et le contrat social** (Hobbes, Locke, Rousseau).\n- **« L'homme est un animal politique »** (Aristote).\n- **Le monopole de la violence légitime** (Max Weber).\n- **La séparation des pouvoirs** (Montesquieu) ; l'État de droit.\n\n## Sujets de dissertation corrigés\n\n**Sujet : « L'État est-il l'ennemi de la liberté individuelle ? »**\n\n*Problématique* : L'État, par ses lois et sa contrainte, semble limiter la liberté de chacun. Mais sans État, la liberté de tous serait-elle possible ? L'État détruit-il la liberté ou la garantit-il ?\n\n*Plan détaillé* :\n- **I. L'État semble limiter la liberté.** Il contraint par ses lois, détient le monopole de la force. Marx : l'État est un instrument de domination de classe. L'État totalitaire (Arendt) montre où peut conduire l'extension du pouvoir.\n- **II. Mais l'État est la condition de la liberté.** Hobbes : sans État, c'est la guerre de tous contre tous, et nulle liberté. Locke : l'État garantit les droits naturels. La loi protège la liberté de chacun contre l'arbitraire des autres.\n- **III. L'État légitime accomplit la liberté.** Rousseau : obéir à la loi qu'on s'est prescrite, c'est être libre. L'État de droit (Montesquieu) soumet le pouvoir à la loi et sépare les pouvoirs. Loin de nier la liberté, un État juste la rend réelle et la protège.\n\n*Conclusion* : L'État peut menacer la liberté quand il devient despotique, mais il en est aussi la condition. Un État de droit, fondé sur la volonté générale et la séparation des pouvoirs, n'est pas l'ennemi mais le garant de la liberté.\n\n## À retenir\n\n- **État** = institutions détenant le pouvoir ; **monopole de la violence légitime** (Weber).\n- **Contrat social** : Hobbes (Léviathan, sécurité), Locke (droits naturels, État limité), Rousseau (volonté générale, souveraineté du peuple).\n- **État naturel et accompli** : Aristote (animal politique), Hegel (réalisation de la liberté).\n- **Critiques** : Marx (instrument de domination, dépérissement), anarchisme, totalitarisme (Arendt) ; réponse : l'État de droit, séparation des pouvoirs (Montesquieu).",
+   "quiz": {
+    "questions": [
+     {
+      "q": "Max Weber définit l'État par :",
+      "options": [
+       "Le monopole de la violence légitime",
+       "La richesse",
+       "La religion d'État",
+       "Le nombre d'habitants"
+      ],
+      "answer": 0,
+      "explanation": "Pour Weber, l'État détient le monopole de la violence physique légitime sur un territoire."
+     },
+     {
+      "q": "Chez Hobbes, l'état de nature est :",
+      "options": [
+       "Un paradis",
+       "La guerre de tous contre tous",
+       "Une société juste",
+       "Un État de droit"
+      ],
+      "answer": 1,
+      "explanation": "Hobbes décrit l'état de nature comme une guerre de tous contre tous, justifiant le Léviathan."
+     },
+     {
+      "q": "Pour Rousseau, le contrat social légitime repose sur :",
+      "options": [
+       "La soumission à un maître absolu",
+       "La volonté générale",
+       "La force du plus fort",
+       "La tradition"
+      ],
+      "answer": 1,
+      "explanation": "Rousseau fonde l'État légitime sur la volonté générale et la souveraineté du peuple."
+     },
+     {
+      "q": "« L'homme est par nature un animal politique » est une thèse de :",
+      "options": [
+       "Aristote",
+       "Hobbes",
+       "Marx",
+       "Montesquieu"
+      ],
+      "answer": 0,
+      "explanation": "Aristote affirme que l'homme s'accomplit dans la cité (polis), naturellement politique."
+     },
+     {
+      "q": "Pour Marx, l'État est essentiellement :",
+      "options": [
+       "Neutre",
+       "Un instrument de domination de classe",
+       "La réalisation de la liberté",
+       "Naturel"
+      ],
+      "answer": 1,
+      "explanation": "Marx voit l'État comme l'instrument d'oppression de la classe dominante, voué à dépérir."
+     }
+    ]
+   }
+  },
+  {
+   "title": "La justice et le droit",
+   "video": "https://www.youtube.com/watch?v=Z9rXxq2bH6w",
+   "lesson": "# La justice et le droit\n\n## Introduction\n\n**La justice** est à la fois une vertu (donner à chacun ce qui lui revient) et un idéal (l'ordre social équitable). **Le droit** est l'ensemble des règles qui organisent la vie en société et que la force publique fait respecter. On distingue le **droit positif** (les lois effectivement en vigueur dans une société donnée) et le **droit naturel** (les principes universels de justice, valables en tout temps et tout lieu). Une loi peut-elle être injuste ? Et au nom de quoi la juger ?\n\n**Le problème** : **le juste se réduit-il à ce qui est légal, ou existe-t-il une justice qui transcende les lois positives et permet de les juger ?** L'enjeu touche à la légitimité des lois et au sens de l'égalité.\n\n## I. Justice et loi : légalité et légitimité\n\nLe juste se confond-il avec le légal ? Pour les **positivistes du droit** (Kelsen), le droit est ce que posent les lois ; juger une loi « injuste » au nom d'une justice supérieure est sans fondement objectif. Mais l'histoire (lois esclavagistes, lois nazies) montre qu'une loi peut être **légale** sans être **légitime**.\n\n**Antigone** (Sophocle) incarne ce conflit : elle enfreint la loi de Créon (le droit positif) au nom des « lois non écrites » des dieux (le droit naturel). Le procès de **Nuremberg** a jugé des actes pourtant légaux selon le droit nazi, au nom d'une justice supérieure : c'est reconnaître un droit au-dessus des lois.\n\n**Pascal**, sceptique, note que « ne pouvant faire qu'il soit force d'obéir à la justice, on a fait qu'il soit juste d'obéir à la force » : la justice sans la force est impuissante.\n\n## II. Les formes de la justice\n\n**Aristote** distingue plusieurs sens de la justice. La justice **distributive** répartit les biens, les honneurs et les charges selon le **mérite** de chacun : c'est une **égalité proportionnelle** (à chacun selon son mérite). La justice **commutative** (corrective) rétablit l'égalité dans les échanges et répare les torts : c'est une **égalité arithmétique** (la même mesure pour tous). Aristote introduit aussi l'**équité** (*epieikeia*) : correction de la loi, trop générale, dans les cas particuliers où son application stricte serait injuste.\n\nL'égalité est ainsi au cœur de la justice. Mais quelle égalité ? Égalité stricte (le même pour tous) ou égalité proportionnelle (à chacun selon ses besoins, son mérite, son travail) ?\n\n## III. Fonder la justice : du contrat à l'équité\n\n**Le droit naturel** moderne (Locke) fonde la justice sur des droits inhérents à l'homme (vie, liberté, propriété) que le droit positif doit protéger. La **Déclaration des droits de l'homme** prolonge cette idée : il existe des droits universels et inaliénables.\n\n**John Rawls**, dans *Théorie de la justice*, propose une conception de la **justice comme équité**. Derrière un « voile d'ignorance » (où nul ne connaît sa future place dans la société), des individus rationnels choisiraient deux principes : l'égale liberté pour tous, et des inégalités acceptables seulement si elles profitent aux plus défavorisés. La justice n'est ni la simple égalité ni le simple mérite, mais l'équité.\n\n**Kant** rappelle enfin que le droit doit respecter la dignité de la personne. La justice n'est pas la vengeance : la peine n'a de sens que si elle respecte l'homme comme une fin. Le droit articule ainsi la liberté de chacun avec celle de tous.\n\n## Repères et exemples\n\n- **Distinction légal / légitime** et **droit positif / droit naturel**.\n- **Justice distributive / commutative** et **équité** (Aristote, *Éthique à Nicomaque*).\n- **Antigone** de Sophocle : lois non écrites contre loi de la cité.\n- **Le voile d'ignorance** (Rawls) : la justice comme équité.\n- **« On a fait qu'il soit juste d'obéir à la force »** (Pascal).\n\n## Sujets de dissertation corrigés\n\n**Sujet : « Le juste se réduit-il au légal ? »**\n\n*Problématique* : Obéir à la loi semble être le critère du juste. Mais une loi peut-elle être injuste ? Si oui, le juste dépasse le légal, et au nom de quoi ?\n\n*Plan détaillé* :\n- **I. Le juste, c'est le légal.** Le droit positif fixe ce qui est juste dans une société ; sans loi commune, chacun jugerait selon son intérêt (Hobbes, positivisme juridique). Obéir à la loi assure l'ordre et la paix.\n- **II. Mais une loi peut être injuste.** Lois esclavagistes, lois nazies : le légal n'est pas toujours légitime. Antigone, Nuremberg : on juge les lois au nom d'une justice supérieure (droit naturel, droits de l'homme).\n- **III. La justice comme idéal régulateur.** Le juste dépasse le légal sans s'en passer : le droit naturel et l'équité (Aristote, Rawls) permettent de critiquer et de réformer les lois. Le juste est un idéal qui oriente le droit positif vers plus d'équité.\n\n*Conclusion* : Le juste ne se réduit pas au légal. La loi positive est nécessaire, mais elle doit être jugée à l'aune d'une justice plus haute — équité, droits de l'homme, dignité — qui permet de la perfectionner.\n\n## À retenir\n\n- **Justice** = vertu et idéal de l'équité ; **droit** = règles sociales sanctionnées par la force publique.\n- **Distinctions clés** : légal / légitime ; droit positif / droit naturel.\n- **Aristote** : justice distributive (égalité proportionnelle, au mérite), commutative (égalité arithmétique), équité.\n- **Fondements** : droit naturel et droits de l'homme (Locke) ; justice comme équité et voile d'ignorance (Rawls) ; dignité de la personne (Kant).",
+   "quiz": {
+    "questions": [
+     {
+      "q": "La distinction entre droit positif et droit naturel oppose :",
+      "options": [
+       "Les lois en vigueur et les principes universels de justice",
+       "La justice et la force",
+       "Le pénal et le civil",
+       "La loi et le règlement"
+      ],
+      "answer": 0,
+      "explanation": "Le droit positif est l'ensemble des lois effectives ; le droit naturel, les principes universels de justice."
+     },
+     {
+      "q": "Aristote appelle « justice distributive » celle qui :",
+      "options": [
+       "Répare les torts à égalité",
+       "Répartit biens et honneurs selon le mérite",
+       "Punit les crimes",
+       "Égalise les échanges"
+      ],
+      "answer": 1,
+      "explanation": "La justice distributive répartit selon le mérite : égalité proportionnelle, distincte de la justice commutative."
+     },
+     {
+      "q": "Antigone, chez Sophocle, oppose à la loi de Créon :",
+      "options": [
+       "Les lois non écrites des dieux",
+       "La force militaire",
+       "La richesse",
+       "La volonté du peuple"
+      ],
+      "answer": 0,
+      "explanation": "Antigone invoque les lois non écrites (droit naturel) contre le droit positif de Créon."
+     },
+     {
+      "q": "Le « voile d'ignorance » est un dispositif imaginé par :",
+      "options": [
+       "Rawls",
+       "Aristote",
+       "Kant",
+       "Pascal"
+      ],
+      "answer": 0,
+      "explanation": "Rawls propose le voile d'ignorance pour fonder la justice comme équité."
+     },
+     {
+      "q": "L'équité (epieikeia) chez Aristote consiste à :",
+      "options": [
+       "Appliquer la loi à la lettre",
+       "Corriger la loi générale dans les cas particuliers",
+       "Supprimer toute loi",
+       "Punir plus sévèrement"
+      ],
+      "answer": 1,
+      "explanation": "L'équité corrige la généralité de la loi là où son application stricte serait injuste."
+     }
+    ]
+   }
+  },
+  {
+   "title": "La société et les échanges",
+   "video": "https://www.youtube.com/watch?v=0bWlT8oYwQk",
+   "lesson": "# La société et les échanges\n\n## Introduction\n\n**La société** est l'ensemble organisé des individus vivant ensemble selon des règles communes. **Les échanges** — de biens, de services, de paroles, de signes — en sont le tissu vivant. L'homme est-il naturellement sociable, ou la société est-elle un artifice né de l'intérêt ? Les échanges nous unissent-ils ou nous divisent-ils ? La société est-elle au service de l'individu, ou l'individu au service de la société ?\n\n**Le problème** : **la vie en société est-elle naturelle et bénéfique à l'homme, ou résulte-t-elle d'un calcul intéressé qui peut l'aliéner ?** L'enjeu est de comprendre le lien social et la valeur de l'échange.\n\n## I. La société, naturelle ou artificielle ?\n\nPour **Aristote**, l'homme est naturellement un « animal politique » : il ne se suffit pas à lui-même et ne s'accomplit que dans la cité. La société est naturelle, et qui peut vivre seul est « ou une bête, ou un dieu ».\n\nPour les théoriciens du contrat (**Hobbes**, **Rousseau**), la société est au contraire un **artifice**, né d'un accord. Rousseau imagine un homme de la nature solitaire mais bon, que la société a à la fois perfectionné et corrompu : « l'homme est né libre, et partout il est dans les fers ». La société développe la raison et la moralité, mais aussi l'inégalité et l'amour-propre.\n\n**Kant** parle d'« insociable sociabilité » : l'homme a un penchant à entrer en société, mais aussi à s'en isoler. C'est cet antagonisme même qui, en stimulant les talents, fait progresser l'humanité.\n\n## II. Les échanges : du don au marché\n\n**Marcel Mauss**, dans *Essai sur le don*, montre que l'échange n'est pas seulement économique : dans les sociétés archaïques, le **don** (donner, recevoir, rendre) crée et entretient le lien social. L'échange est avant tout un fait social total, qui tisse des alliances.\n\n**Lévi-Strauss** généralise : l'échange (des biens, des femmes par l'exogamie, des messages par le langage) est la structure même de toute société et le passage de la nature à la culture. Échanger, c'est faire société.\n\n**Adam Smith** analyse l'échange marchand : la **division du travail** et le commerce enrichissent les nations. Chacun, en poursuivant son intérêt, contribue, comme guidé par une « main invisible », au bien commun. L'échange économique est facteur de prospérité et de paix (le « doux commerce » de Montesquieu).\n\n## III. Le lien social : solidarité, intérêt et aliénation\n\n**Durkheim** distingue deux formes de **solidarité** : la solidarité **mécanique** (sociétés traditionnelles, fondée sur la ressemblance) et la solidarité **organique** (sociétés modernes, fondée sur la division du travail et la complémentarité). Les échanges fondés sur la spécialisation créent une interdépendance qui fait tenir la société.\n\nMais **Marx** dénonce une société où les échanges marchands masquent des rapports de domination : le **fétichisme de la marchandise** fait oublier que derrière les choses échangées se cachent des rapports sociaux et l'exploitation du travail. L'argent, mesure universelle, peut dissoudre les liens humains en relations d'intérêt.\n\nLa société repose ainsi sur une tension : les échanges peuvent unir (don, solidarité, commerce pacificateur) ou diviser (intérêt, domination, inégalité). La vie en société est à la fois le lieu de l'épanouissement de l'homme et celui de ses conflits.\n\n## Repères et exemples\n\n- **Distinction nature / culture** : ce qui est inné et ce qui s'acquiert en société.\n- **L'insociable sociabilité** (Kant).\n- **Le don** comme fait social total (Mauss) ; l'échange fondateur de la culture (Lévi-Strauss).\n- **La main invisible** et la division du travail (Adam Smith) ; le « doux commerce » (Montesquieu).\n- **Solidarité mécanique / organique** (Durkheim) ; le fétichisme de la marchandise (Marx).\n\n## Sujets de dissertation corrigés\n\n**Sujet : « Les échanges rapprochent-ils les hommes ? »**\n\n*Problématique* : L'échange semble créer du lien : on échange pour s'entendre, commercer, vivre ensemble. Mais l'échange n'est-il pas aussi le lieu de la rivalité et de l'intérêt qui opposent les hommes ?\n\n*Plan détaillé* :\n- **I. Les échanges rapprochent les hommes.** Mauss : le don crée le lien social. Lévi-Strauss : échanger, c'est faire société. Montesquieu, Smith : le commerce adoucit les mœurs et favorise la paix. L'échange fonde la culture et l'interdépendance (Durkheim).\n- **II. Mais les échanges peuvent diviser.** L'échange marchand est aussi rivalité, calcul d'intérêt. Marx : le fétichisme de la marchandise masque l'exploitation ; l'argent peut dissoudre les liens humains. La concurrence oppose les hommes.\n- **III. L'échange, lien ambivalent à civiliser.** Tout dépend de la nature de l'échange : don et réciprocité unissent, échange purement intéressé divise. La société doit régler les échanges (droit, justice) pour qu'ils rapprochent au lieu de diviser.\n\n*Conclusion* : Les échanges rapprochent les hommes quand ils reposent sur la réciprocité et la justice, mais peuvent les diviser quand domine le seul intérêt. Faire des échanges un lien plutôt qu'un conflit est une tâche éthique et politique.\n\n## À retenir\n\n- **Société** = vie organisée en commun ; **échanges** = circulation de biens, services, paroles qui tissent le lien social.\n- **Naturelle ou artificielle** : Aristote (animal politique), Rousseau/Hobbes (contrat), Kant (insociable sociabilité).\n- **Théories de l'échange** : Mauss (le don), Lévi-Strauss (échange = culture), Smith (main invisible, division du travail).\n- **Lien social** : Durkheim (solidarité mécanique/organique), Marx (fétichisme de la marchandise, domination).",
+   "quiz": {
+    "questions": [
+     {
+      "q": "L'expression « insociable sociabilité » de l'homme est de :",
+      "options": [
+       "Kant",
+       "Aristote",
+       "Rousseau",
+       "Mauss"
+      ],
+      "answer": 0,
+      "explanation": "Kant désigne ainsi le penchant de l'homme à la fois à s'associer et à s'isoler, moteur du progrès."
+     },
+     {
+      "q": "Pour Marcel Mauss, le don dans les sociétés archaïques :",
+      "options": [
+       "Est purement économique",
+       "Crée et entretient le lien social",
+       "Est sans importance",
+       "Est interdit"
+      ],
+      "answer": 1,
+      "explanation": "Mauss montre que le triple geste donner-recevoir-rendre tisse les alliances : c'est un fait social total."
+     },
+     {
+      "q": "La « main invisible » qui conduit l'intérêt privé au bien commun est une idée de :",
+      "options": [
+       "Adam Smith",
+       "Marx",
+       "Durkheim",
+       "Lévi-Strauss"
+      ],
+      "answer": 0,
+      "explanation": "Adam Smith décrit comment la poursuite de l'intérêt individuel sert, par la main invisible, l'intérêt général."
+     },
+     {
+      "q": "Durkheim oppose la solidarité mécanique à la solidarité :",
+      "options": [
+       "Organique",
+       "Naturelle",
+       "Politique",
+       "Religieuse"
+      ],
+      "answer": 0,
+      "explanation": "La solidarité organique des sociétés modernes repose sur la division du travail et la complémentarité."
+     },
+     {
+      "q": "Le « fétichisme de la marchandise » est un concept de :",
+      "options": [
+       "Marx",
+       "Smith",
+       "Kant",
+       "Mauss"
+      ],
+      "answer": 0,
+      "explanation": "Marx montre que l'échange marchand masque les rapports sociaux et l'exploitation du travail."
+     }
+    ]
+   }
+  }
+ ]
 }
