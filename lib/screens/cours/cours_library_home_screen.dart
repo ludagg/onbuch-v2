@@ -197,7 +197,11 @@ class _CoursLibraryHomeScreenState extends State<CoursLibraryHomeScreen> {
                   ),
                 ),
               ),
-              const SizedBox(height: 18),
+              const SizedBox(height: 20),
+
+              // ── Mes matières : les matières de la classe de l'élève ─────────
+              _mySubjectsSection(context),
+              const SizedBox(height: 22),
 
               // Accès rapides : Mes cours · Panier · Catalogue
               Padding(
@@ -301,6 +305,120 @@ class _CoursLibraryHomeScreenState extends State<CoursLibraryHomeScreen> {
     );
   }
 
+  /// Section « Mes matières » : affiche directement les matières destinées à
+  /// l'élève (catalogue déjà filtré par sa classe = examen + série, comme les
+  /// annales). Petite note sur la classe choisie + accès pour la modifier dans
+  /// le profil. Si aucune classe n'est définie, invite à la choisir.
+  Widget _mySubjectsSection(BuildContext context) {
+    final cls = _packs.classLabel;
+    final subjects = _packs.catalogue;
+    final hasClass = _packs.examLabel.trim().isNotEmpty || _packs.serieLabel.trim().isNotEmpty;
+
+    // Retour du profil : forcer la relecture (la classe a pu changer) pour
+    // refiltrer les matières, puis recharger le reste de la page.
+    Future<void> editClass() async {
+      await context.push('/edit-profile');
+      await _packs.refresh();
+      if (mounted) _load();
+    }
+
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      // En-tête : titre + compteur + accès « Ma classe / Choisir ».
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Row(children: [
+          Text('Mes matières', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
+          if (_loaded && hasClass && subjects.isNotEmpty) ...[
+            const SizedBox(width: 8),
+            Text('${subjects.length}', style: body(12, weight: FontWeight.w700, color: OC.muted)),
+          ],
+          const Spacer(),
+          GestureDetector(
+            onTap: editClass,
+            child: Row(mainAxisSize: MainAxisSize.min, children: [
+              Icon(Icons.tune_rounded, size: 14, color: OC.o600),
+              const SizedBox(width: 4),
+              Text(hasClass ? 'Ma classe' : 'Choisir', style: body(12, weight: FontWeight.w700, color: OC.o600)),
+            ]),
+          ),
+        ]),
+      ),
+      const SizedBox(height: 4),
+      // Note : d'après la classe choisie, modifiable dans le profil.
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Text(
+          hasClass
+              ? 'D\'après ta classe${cls.isEmpty ? '' : ' · $cls'}. Modifie-la dans ton profil si besoin.'
+              : 'Choisis ta classe dans ton profil pour voir directement tes matières ici.',
+          style: body(11.5, color: OC.muted, weight: FontWeight.w500).copyWith(height: 1.3),
+        ),
+      ),
+      const SizedBox(height: 13),
+      // Corps : grille des matières, état vide, ou invitation à choisir la classe.
+      if (!_loaded)
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(children: List.generate(3, (_) => const SkeletonRow())),
+        )
+      else if (!hasClass)
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: GestureDetector(
+            onTap: editClass,
+            child: Container(
+              padding: const EdgeInsets.all(14),
+              decoration: BoxDecoration(
+                color: OC.o50,
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: OC.o100, width: 1.5),
+              ),
+              child: Row(children: [
+                Container(
+                  width: 42, height: 42,
+                  decoration: BoxDecoration(color: OC.paper, borderRadius: BorderRadius.circular(12)),
+                  child: Icon(Icons.school_rounded, size: 21, color: OC.o600),
+                ),
+                const SizedBox(width: 12),
+                Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Text('Choisis ta classe', style: body(13.5, weight: FontWeight.w700)),
+                  const SizedBox(height: 2),
+                  Text('Examen + série → on affiche tes matières directement.',
+                      style: body(11, color: OC.muted, weight: FontWeight.w500)),
+                ])),
+                Icon(Icons.chevron_right_rounded, size: 18, color: OC.o600),
+              ]),
+            ),
+          ),
+        )
+      else if (subjects.isEmpty)
+        Padding(
+          padding: const EdgeInsets.fromLTRB(20, 4, 20, 4),
+          child: Text('Aucune matière disponible pour ta classe pour le moment.',
+              style: body(12.5, color: OC.muted, weight: FontWeight.w500)),
+        )
+      else
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: GridView.count(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            crossAxisCount: 2,
+            mainAxisSpacing: 11,
+            crossAxisSpacing: 11,
+            childAspectRatio: 2.3,
+            children: [
+              for (final p in subjects)
+                _SubjectTile(p, () async {
+                  await context.push('/cours/pack?id=${p.id}');
+                  _load();
+                }),
+            ],
+          ),
+        ),
+    ]);
+  }
+
   Widget _emptyCoursePdf() => Padding(
         padding: const EdgeInsets.fromLTRB(20, 24, 20, 8),
         child: Column(children: [
@@ -389,6 +507,59 @@ class _QuickCard extends StatelessWidget {
         ]),
       ),
     ));
+  }
+}
+
+/// Tuile compacte d'une matière de l'élève (grille « Mes matières »).
+/// Badge (code/initiales) + nom + nb de leçons ; ouvre le pack au tap.
+class _SubjectTile extends StatelessWidget {
+  final Pack pack;
+  final VoidCallback onTap;
+  const _SubjectTile(this.pack, this.onTap);
+
+  String get _badge {
+    final c = pack.code.trim();
+    if (c.isNotEmpty) return c.length > 3 ? c.substring(0, 3).toUpperCase() : c.toUpperCase();
+    final words = pack.name.trim().split(RegExp(r'\s+')).where((w) => w.isNotEmpty).toList();
+    if (words.isEmpty) return '?';
+    if (words.length == 1) return words.first.substring(0, words.first.length >= 2 ? 2 : 1).toUpperCase();
+    return (words[0][0] + words[1][0]).toUpperCase();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final sub = pack.lessons > 0 ? '${pack.lessons} leçon${pack.lessons > 1 ? 's' : ''}' : 'Pack de cours';
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(11),
+        decoration: BoxDecoration(
+          color: OC.paper,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: OC.line, width: 1.5),
+        ),
+        child: Row(children: [
+          Container(
+            width: 42, height: 42,
+            decoration: BoxDecoration(color: OC.o50, borderRadius: BorderRadius.circular(12)),
+            alignment: Alignment.center,
+            child: Text(_badge, style: display(13, weight: FontWeight.w800, color: OC.o600)),
+          ),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(pack.name, style: body(12.5, weight: FontWeight.w700), maxLines: 2, overflow: TextOverflow.ellipsis),
+              const SizedBox(height: 2),
+              Text(sub, style: body(10.5, color: OC.muted, weight: FontWeight.w600), maxLines: 1, overflow: TextOverflow.ellipsis),
+            ]),
+          ),
+          if (pack.premium) ...[
+            const SizedBox(width: 4),
+            const Icon(Icons.lock_outline_rounded, size: 14, color: Color(0xFFA6701A)),
+          ],
+        ]),
+      ),
+    );
   }
 }
 
