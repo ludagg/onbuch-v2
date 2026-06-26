@@ -1,0 +1,838 @@
+{
+  "code": "SV",
+  "level": "3ème",
+  "chapters": [
+    {
+      "title": "La puberté et la maturation sexuelle",
+      "video": "https://www.youtube.com/watch?v=2C8Q3aQEdSY",
+      "lesson": "# La puberté et la maturation sexuelle\n\n## Introduction\n\nEntre l'enfance et l'âge adulte, le corps humain subit de profondes transformations qui le rendent capable de **se reproduire**. Cette période de changements s'appelle la **puberté**. Elle se manifeste par l'apparition des **caractères sexuels secondaires** et par la mise en route du fonctionnement des **appareils reproducteurs**. Comprendre la puberté permet de mieux accepter son corps, de respecter celui des autres et d'aborder sereinement la vie d'adulte.\n\n## I. Qu'est-ce que la puberté ?\n\nLa **puberté** est l'ensemble des transformations physiques, physiologiques et psychologiques qui marquent le passage de l'enfant à l'adulte capable de se reproduire.\n\n- Chez la **fille**, elle débute généralement entre **9 et 13 ans**.\n- Chez le **garçon**, elle débute généralement entre **11 et 15 ans**.\n\nCes âges sont **indicatifs** : chaque individu évolue à son propre rythme. La puberté est déclenchée par des **hormones** sécrétées par le cerveau (l'**hypophyse**) qui stimulent les **glandes sexuelles** : les **ovaires** chez la fille, les **testicules** chez le garçon.\n\n## II. Les caractères sexuels\n\nOn distingue deux catégories de caractères sexuels.\n\n**1. Les caractères sexuels primaires** : ce sont les organes reproducteurs présents dès la naissance (ovaires et utérus chez la fille, testicules et pénis chez le garçon). Ils deviennent **fonctionnels** à la puberté.\n\n**2. Les caractères sexuels secondaires** : ils apparaissent à la puberté et différencient l'homme de la femme.\n\n| Chez la fille | Chez le garçon |\n|---|---|\n| Développement des seins | Mue de la voix (voix grave) |\n| Élargissement du bassin | Élargissement des épaules |\n| Apparition des règles | Apparition de la barbe |\n| Pilosité (pubis, aisselles) | Pilosité (pubis, aisselles, visage) |\n\n## III. Le rôle des hormones\n\n> **schéma décrit** : un dessin du cerveau montre l'hypophyse (petite glande sous le cerveau) reliée par des flèches aux ovaires et aux testicules. De ces glandes partent d'autres flèches vers tout le corps, symbolisant l'action des hormones sexuelles.\n\nL'**hypophyse**, située à la base du cerveau, libère des hormones qui circulent dans le sang et atteignent les glandes sexuelles. En réponse :\n- les **ovaires** produisent des **ovules** et l'hormone femelle (**œstrogène**) ;\n- les **testicules** produisent des **spermatozoïdes** et l'hormone mâle (**testostérone**).\n\nCes hormones sexuelles commandent l'apparition des caractères sexuels secondaires.\n\n## IV. Les manifestations de la maturation\n\n- Chez la fille, la puberté se traduit par l'apparition des **premières règles** (la **ménarche**) : c'est le signe que les ovaires fonctionnent et qu'une grossesse devient possible.\n- Chez le garçon, elle se traduit par les **premières éjaculations** : c'est le signe que les testicules produisent des spermatozoïdes.\n\nLa puberté s'accompagne aussi de changements **psychologiques** : recherche d'autonomie, émotions plus fortes, intérêt pour l'autre sexe. Une **hygiène corporelle** rigoureuse (douche, propreté) devient indispensable car la transpiration augmente.\n\n## Exercices corrigés\n\n### Exercice 1\n**Énoncé** : Définis le mot « puberté » et cite deux caractères sexuels secondaires chez la fille.\n\n**Correction** :\nLa **puberté** est l'ensemble des transformations qui font passer l'enfant à l'état d'adulte capable de se reproduire. Deux caractères sexuels secondaires chez la fille : le **développement des seins** et l'**apparition des règles** (on accepte aussi : élargissement du bassin, pilosité).\n\n### Exercice 2\n**Énoncé** : Pourquoi dit-on que la puberté est commandée par le cerveau ?\n\n**Correction** :\nLa puberté est déclenchée par l'**hypophyse**, une glande située à la base du cerveau. Celle-ci libère des hormones qui stimulent les **ovaires** et les **testicules**. Ces glandes produisent alors les hormones sexuelles responsables des transformations du corps. C'est donc bien le cerveau qui **commande** le départ de la puberté.\n\n### Exercice 3\n**Énoncé** : Awa a 11 ans et n'a pas encore ses règles, alors que sa camarade Ngono, du même âge, les a déjà. Awa s'inquiète. Que lui réponds-tu ?\n\n**Correction** :\nIl n'y a aucune raison de s'inquiéter. La puberté commence à des **âges différents** selon les filles (entre 9 et 13 ans environ). Chaque corps évolue à son **propre rythme**. Awa entrera dans sa puberté quand son organisme y sera prêt : tout est parfaitement normal.\n\n## À retenir\n\n- La **puberté** rend le corps capable de **se reproduire**.\n- Elle est déclenchée par l'**hypophyse** (cerveau) qui stimule **ovaires** et **testicules**.\n- Les **caractères sexuels secondaires** différencient l'homme de la femme.\n- Premières **règles** (fille) et premières **éjaculations** (garçon) marquent la maturation.\n- Une bonne **hygiène corporelle** est essentielle pendant cette période.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Quelle glande du cerveau déclenche la puberté ?",
+            "options": [
+              "L'hypophyse",
+              "Le foie",
+              "Le pancréas",
+              "La thyroïde"
+            ],
+            "answer": 0,
+            "explanation": "L'hypophyse, à la base du cerveau, libère des hormones qui stimulent les glandes sexuelles."
+          },
+          {
+            "q": "Quel est un caractère sexuel secondaire chez le garçon ?",
+            "options": [
+              "L'apparition des règles",
+              "La mue de la voix",
+              "Le développement des seins",
+              "L'élargissement du bassin"
+            ],
+            "answer": 1,
+            "explanation": "La voix qui devient grave (mue de la voix) est un caractère sexuel secondaire masculin."
+          },
+          {
+            "q": "Les ovules sont produits par :",
+            "options": [
+              "Les testicules",
+              "L'utérus",
+              "Les ovaires",
+              "L'hypophyse"
+            ],
+            "answer": 2,
+            "explanation": "Les ovaires, glandes sexuelles femelles, produisent les ovules."
+          },
+          {
+            "q": "Les premières règles chez la fille signifient que :",
+            "options": [
+              "Elle est malade",
+              "Ses ovaires fonctionnent",
+              "Sa puberté est finie",
+              "Elle ne peut plus grandir"
+            ],
+            "answer": 1,
+            "explanation": "Les premières règles indiquent que les ovaires sont devenus fonctionnels."
+          },
+          {
+            "q": "L'hormone sexuelle mâle s'appelle :",
+            "options": [
+              "L'œstrogène",
+              "L'insuline",
+              "La testostérone",
+              "L'adrénaline"
+            ],
+            "answer": 2,
+            "explanation": "La testostérone, produite par les testicules, est l'hormone sexuelle masculine."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les appareils reproducteurs humains",
+      "video": "https://www.youtube.com/watch?v=K8gEpKbF8U0",
+      "lesson": "# Les appareils reproducteurs humains\n\n## Introduction\n\nLa reproduction humaine met en jeu deux appareils complémentaires : l'**appareil reproducteur masculin** et l'**appareil reproducteur féminin**. Chacun produit des **cellules reproductrices** (les **gamètes**) et permet leur rencontre. Connaître l'anatomie de ces appareils est indispensable pour comprendre la fécondation, la grossesse et la contraception.\n\n## I. L'appareil reproducteur masculin\n\n> **schéma décrit** : vue de profil. On voit deux **testicules** logés dans les **bourses** (scrotum), un canal (le **spermiducte**) qui remonte, traverse la **prostate** et les **vésicules séminales**, puis débouche dans l'**urètre** qui parcourt le **pénis**.\n\nSes principaux organes :\n- les **testicules** : glandes qui produisent les **spermatozoïdes** et l'hormone **testostérone** ;\n- les **spermiductes** (canaux déférents) : conduisent les spermatozoïdes ;\n- les **vésicules séminales** et la **prostate** : produisent un liquide nourricier ;\n- l'**urètre** : conduit le sperme vers l'extérieur (et aussi l'urine, mais jamais en même temps) ;\n- le **pénis** : organe d'accouplement.\n\nLe **sperme** est un liquide blanchâtre formé des spermatozoïdes et des sécrétions des glandes. Le spermatozoïde possède une **tête**, une **pièce intermédiaire** et un **flagelle** qui lui permet de se déplacer.\n\n## II. L'appareil reproducteur féminin\n\n> **schéma décrit** : vue de face. Deux **ovaires** sont reliés à l'**utérus** par les **trompes**. L'utérus, organe creux en forme de poire, se prolonge par le **vagin** qui s'ouvre à l'extérieur par la **vulve**.\n\nSes principaux organes :\n- les **ovaires** : glandes qui produisent les **ovules** et les hormones femelles ;\n- les **trompes** (oviductes) : conduisent l'ovule vers l'utérus, lieu de la **fécondation** ;\n- l'**utérus** : organe musculeux creux où se développe le futur bébé ;\n- le **vagin** : conduit reliant l'utérus à l'extérieur ;\n- la **vulve** : ensemble des organes génitaux externes.\n\n## III. La production des gamètes\n\n| | Gamète mâle | Gamète femelle |\n|---|---|---|\n| Nom | spermatozoïde | ovule |\n| Produit par | testicules | ovaires |\n| Taille | très petit, mobile | gros, immobile |\n| Production | continue dès la puberté | une fois par cycle (≈ 28 jours) |\n\nLe garçon produit des **millions de spermatozoïdes** en permanence dès la puberté. La fille libère **un seul ovule** environ tous les 28 jours : c'est l'**ovulation**.\n\n## IV. Le cycle de l'ovaire\n\nChez la femme, l'ovaire libère un ovule au milieu du cycle, vers le **14e jour**. Si l'ovule n'est pas fécondé, la **paroi de l'utérus** (qui s'était épaissie pour accueillir un embryon) se détruit et est évacuée : ce sont les **règles** (menstruations). Un nouveau cycle recommence alors.\n\n## Exercices corrigés\n\n### Exercice 1\n**Énoncé** : Cite trois organes de l'appareil reproducteur féminin et donne le rôle de chacun.\n\n**Correction** :\n- Les **ovaires** : produisent les ovules et les hormones femelles.\n- Les **trompes** : conduisent l'ovule et sont le lieu de la fécondation.\n- L'**utérus** : accueille et nourrit le futur bébé pendant la grossesse.\n\n### Exercice 2\n**Énoncé** : Compare le spermatozoïde et l'ovule (taille, mobilité, nombre produit).\n\n**Correction** :\nLe **spermatozoïde** est un gamète **très petit** et **mobile** grâce à son flagelle ; il est produit par **millions** en continu. L'**ovule** est un gamète **gros** et **immobile** ; il est libéré **un seul** par cycle. Le spermatozoïde va donc à la rencontre de l'ovule.\n\n### Exercice 3\n**Énoncé** : Explique pourquoi une femme a ses règles si l'ovule n'est pas fécondé.\n\n**Correction** :\nÀ chaque cycle, la paroi de l'utérus s'**épaissit** pour pouvoir accueillir un embryon. Si l'ovule n'est **pas fécondé**, il n'y a pas d'embryon à nourrir : la paroi épaissie se **détruit** et est évacuée par le vagin sous forme de sang. Ce sont les **règles**.\n\n## À retenir\n\n- L'appareil **masculin** produit les **spermatozoïdes** (testicules) ; l'appareil **féminin** produit les **ovules** (ovaires).\n- La **fécondation** a lieu dans les **trompes** ; le bébé se développe dans l'**utérus**.\n- Le spermatozoïde est **petit et mobile** ; l'ovule est **gros et immobile**.\n- L'**ovulation** libère un ovule vers le 14e jour ; sans fécondation surviennent les **règles**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Où sont produits les spermatozoïdes ?",
+            "options": [
+              "Dans la prostate",
+              "Dans les testicules",
+              "Dans l'urètre",
+              "Dans le pénis"
+            ],
+            "answer": 1,
+            "explanation": "Les testicules produisent les spermatozoïdes et la testostérone."
+          },
+          {
+            "q": "Dans quel organe se déroule la fécondation ?",
+            "options": [
+              "L'utérus",
+              "Le vagin",
+              "Les trompes",
+              "Les ovaires"
+            ],
+            "answer": 2,
+            "explanation": "La rencontre entre l'ovule et le spermatozoïde a lieu dans les trompes."
+          },
+          {
+            "q": "L'organe où se développe le futur bébé est :",
+            "options": [
+              "L'ovaire",
+              "L'utérus",
+              "La trompe",
+              "Le vagin"
+            ],
+            "answer": 1,
+            "explanation": "L'utérus, organe musculeux creux, accueille et nourrit l'embryon puis le fœtus."
+          },
+          {
+            "q": "L'ovulation correspond à :",
+            "options": [
+              "La libération d'un ovule par l'ovaire",
+              "La production de spermatozoïdes",
+              "Les règles",
+              "La fécondation"
+            ],
+            "answer": 0,
+            "explanation": "L'ovulation est la libération d'un ovule par l'ovaire vers le 14e jour du cycle."
+          },
+          {
+            "q": "Le sperme est :",
+            "options": [
+              "Un gamète femelle",
+              "Une hormone",
+              "Un liquide contenant les spermatozoïdes",
+              "Une glande"
+            ],
+            "answer": 2,
+            "explanation": "Le sperme est le liquide formé des spermatozoïdes et des sécrétions des glandes."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La fécondation, la grossesse et l'accouchement",
+      "video": "https://www.youtube.com/watch?v=Ny0Vc3lDyd8",
+      "lesson": "# La fécondation, la grossesse et l'accouchement\n\n## Introduction\n\nLorsque les appareils reproducteurs masculin et féminin sont fonctionnels, la rencontre d'un **spermatozoïde** et d'un **ovule** peut donner naissance à un nouvel être humain. Ce chapitre suit ce parcours extraordinaire : de la **fécondation** au **développement de l'embryon**, puis à la **naissance**.\n\n## I. La fécondation\n\nLa **fécondation** est l'union d'un **spermatozoïde** et d'un **ovule** pour former une cellule unique : la **cellule-œuf** (ou zygote).\n\n> **schéma décrit** : dans une trompe, de nombreux spermatozoïdes entourent un gros ovule ; un seul réussit à pénétrer. La fusion des deux noyaux forme la cellule-œuf.\n\n- Lors d'un rapport sexuel, des **millions de spermatozoïdes** sont déposés dans le vagin.\n- Ils remontent vers les **trompes** où peut se trouver un ovule.\n- Un **seul** spermatozoïde pénètre l'ovule : c'est la fécondation.\n- La cellule-œuf contient désormais les informations héréditaires du **père** et de la **mère**.\n\n## II. De la cellule-œuf à l'embryon\n\nLa cellule-œuf se **divise** de nombreuses fois en descendant vers l'utérus. Au bout de quelques jours, elle s'**implante** dans la paroi de l'utérus : c'est la **nidation**. Le début de la grossesse est marqué par l'**arrêt des règles**.\n\nL'amas de cellules formé s'appelle l'**embryon** pendant les **2 premiers mois**, puis le **fœtus** à partir du 3e mois.\n\n## III. La vie du fœtus dans l'utérus\n\n> **schéma décrit** : dans l'utérus, le fœtus flotte dans une poche remplie de **liquide amniotique**. Il est relié au **placenta** par le **cordon ombilical**.\n\n- Le **placenta** est un organe collé à la paroi de l'utérus ; il assure les **échanges** entre la mère et l'enfant.\n- Le **cordon ombilical** relie le fœtus au placenta.\n- À travers le placenta, le fœtus reçoit le **dioxygène** et les **nutriments**, et rejette le **dioxyde de carbone** et les **déchets**.\n- Le **liquide amniotique** protège le fœtus contre les chocs.\n\nLa grossesse dure environ **9 mois** (40 semaines).\n\n## IV. L'accouchement\n\nÀ la fin de la grossesse, l'utérus se **contracte** fortement : ce sont les **contractions**. Le col de l'utérus s'ouvre, la poche des eaux se rompt, et le bébé sort par le **vagin** : c'est l'**accouchement**. Le cordon ombilical est ensuite coupé. La mère peut alors nourrir le bébé avec son **lait** (allaitement).\n\n## Exercices corrigés\n\n### Exercice 1\n**Énoncé** : Définis la fécondation et indique où elle a lieu.\n\n**Correction** :\nLa **fécondation** est l'**union d'un spermatozoïde et d'un ovule** qui forme une cellule unique appelée **cellule-œuf**. Elle a lieu dans les **trompes** de l'appareil reproducteur féminin.\n\n### Exercice 2\n**Énoncé** : Quel est le rôle du placenta et du cordon ombilical ?\n\n**Correction** :\nLe **placenta** assure les **échanges** entre la mère et le fœtus : il apporte le dioxygène et les nutriments, et évacue le dioxyde de carbone et les déchets. Le **cordon ombilical** relie le fœtus au placenta et transporte ces substances. Ensemble, ils permettent au fœtus de **vivre et grandir** dans l'utérus.\n\n### Exercice 3\n**Énoncé** : Une femme enceinte fume et boit de l'alcool. En t'appuyant sur le rôle du placenta, explique le danger pour le bébé.\n\n**Correction** :\nLe placenta laisse passer de la mère vers le fœtus non seulement les nutriments utiles, mais aussi des substances **nocives** comme la **nicotine** du tabac et l'**alcool**. Ces produits passent dans le sang du fœtus et peuvent provoquer un **retard de croissance**, des **malformations** ou une naissance prématurée. La femme enceinte doit donc **éviter** tabac et alcool.\n\n## À retenir\n\n- La **fécondation** = union d'un spermatozoïde et d'un ovule → **cellule-œuf**, dans les **trompes**.\n- La cellule-œuf se divise puis s'implante dans l'utérus (**nidation**) ; les **règles s'arrêtent**.\n- **Embryon** (2 premiers mois) puis **fœtus** ; nourri par le **placenta** via le **cordon ombilical**.\n- La grossesse dure environ **9 mois** et se termine par l'**accouchement**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "La cellule formée par la fécondation s'appelle :",
+            "options": [
+              "L'embryon",
+              "La cellule-œuf",
+              "Le fœtus",
+              "Le placenta"
+            ],
+            "answer": 1,
+            "explanation": "L'union du spermatozoïde et de l'ovule forme la cellule-œuf (zygote)."
+          },
+          {
+            "q": "Le placenta sert à :",
+            "options": [
+              "Protéger des chocs",
+              "Couper le cordon",
+              "Assurer les échanges entre la mère et le fœtus",
+              "Produire les ovules"
+            ],
+            "answer": 2,
+            "explanation": "Le placenta permet les échanges de nutriments, gaz et déchets entre mère et fœtus."
+          },
+          {
+            "q": "Combien de spermatozoïdes féconde l'ovule ?",
+            "options": [
+              "Un seul",
+              "Deux",
+              "Des milliers",
+              "Aucun"
+            ],
+            "answer": 0,
+            "explanation": "Un seul spermatozoïde pénètre l'ovule pour réaliser la fécondation."
+          },
+          {
+            "q": "La grossesse dure environ :",
+            "options": [
+              "3 mois",
+              "6 mois",
+              "9 mois",
+              "12 mois"
+            ],
+            "answer": 2,
+            "explanation": "La grossesse humaine dure environ 9 mois soit 40 semaines."
+          },
+          {
+            "q": "Le liquide qui protège le fœtus des chocs est :",
+            "options": [
+              "Le sang",
+              "Le liquide amniotique",
+              "Le lait",
+              "Le sperme"
+            ],
+            "answer": 1,
+            "explanation": "Le liquide amniotique entoure le fœtus et amortit les chocs."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La contraception et la maîtrise de la reproduction",
+      "video": "https://www.youtube.com/watch?v=yQ0Z2vN3sJg",
+      "lesson": "# La contraception et la maîtrise de la reproduction\n\n## Introduction\n\nAvoir un enfant est une décision importante. Grâce à la science, il est possible de **choisir le moment** d'une grossesse et d'**éviter une grossesse non désirée**. L'ensemble des moyens utilisés pour cela s'appelle la **contraception**. Ce chapitre présente les principales méthodes et insiste sur la responsabilité de chacun.\n\n## I. Qu'est-ce que la contraception ?\n\nLa **contraception** est l'ensemble des méthodes qui **empêchent une grossesse** lors d'un rapport sexuel. Une grossesse précoce (chez une adolescente) présente des **risques** pour la santé de la mère et du bébé, et peut interrompre la scolarité. La contraception permet une **maîtrise de la reproduction**.\n\n## II. Les principales méthodes contraceptives\n\n> **schéma décrit** : un tableau d'images montre un préservatif masculin, une plaquette de pilules et un dispositif (stérilet) en forme de T.\n\n**1. Le préservatif** (masculin ou féminin) : c'est une barrière qui empêche les spermatozoïdes d'atteindre l'ovule. **Avantage majeur** : il protège **aussi des IST** (voir chapitre suivant). C'est le seul moyen à double protection.\n\n**2. La pilule** : un comprimé pris chaque jour par la femme. Il contient des **hormones** qui **bloquent l'ovulation** : sans ovule libéré, pas de fécondation possible.\n\n**3. Le stérilet (DIU)** : petit dispositif placé dans l'utérus par un médecin ; il **empêche la nidation** de la cellule-œuf.\n\n**4. Les méthodes naturelles** : éviter les rapports pendant la **période d'ovulation**. Ces méthodes sont **peu fiables** car le cycle est irrégulier.\n\n| Méthode | Action | Protège des IST ? |\n|---|---|---|\n| Préservatif | barrière mécanique | **Oui** |\n| Pilule | bloque l'ovulation | Non |\n| Stérilet | empêche la nidation | Non |\n\n## III. La contraception, une affaire de responsabilité\n\nLa contraception concerne **les deux partenaires**, garçon et fille. Elle doit s'accompagner d'**informations fiables** (centre de santé, médecin). Il faut se méfier des **fausses croyances** : par exemple, on peut tomber enceinte dès le **premier rapport**, et le retrait n'est **pas** une méthode sûre.\n\nL'**avortement** n'est pas une méthode de contraception : c'est l'interruption d'une grossesse déjà commencée, qui comporte des **risques** lorsqu'il est pratiqué dans de mauvaises conditions.\n\n## Exercices corrigés\n\n### Exercice 1\n**Énoncé** : Définis la contraception et cite deux méthodes contraceptives.\n\n**Correction** :\nLa **contraception** est l'ensemble des méthodes qui **empêchent une grossesse** lors d'un rapport sexuel. Deux méthodes : le **préservatif** et la **pilule** (on accepte aussi le stérilet).\n\n### Exercice 2\n**Énoncé** : Pourquoi le préservatif est-il considéré comme la meilleure protection pour les jeunes ?\n\n**Correction** :\nLe préservatif a un **double rôle** : il empêche la **grossesse** (barrière contre les spermatozoïdes) **et** il protège des **infections sexuellement transmissibles (IST)**. Aucune autre méthode courante ne protège des IST. C'est pourquoi il est particulièrement conseillé aux jeunes.\n\n### Exercice 3\n**Énoncé** : Explique pourquoi la pilule empêche une grossesse.\n\n**Correction** :\nLa pilule contient des **hormones**. Prises chaque jour, ces hormones **bloquent l'ovulation** : l'ovaire ne libère plus d'ovule. Sans ovule, le spermatozoïde n'a rien à féconder : il n'y a donc **pas de fécondation** ni de grossesse.\n\n## À retenir\n\n- La **contraception** empêche une grossesse non désirée.\n- Le **préservatif** = barrière + **protection contre les IST** (double protection).\n- La **pilule** bloque l'**ovulation** ; le **stérilet** empêche la **nidation**.\n- La contraception est l'affaire **des deux partenaires** et nécessite des informations fiables.\n- L'**avortement** n'est pas un moyen de contraception.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Quel moyen contraceptif protège AUSSI des IST ?",
+            "options": [
+              "La pilule",
+              "Le préservatif",
+              "Le stérilet",
+              "La méthode naturelle"
+            ],
+            "answer": 1,
+            "explanation": "Le préservatif est le seul moyen courant à double protection : grossesse et IST."
+          },
+          {
+            "q": "La pilule agit en :",
+            "options": [
+              "Bloquant l'ovulation",
+              "Tuant les microbes",
+              "Empêchant la nidation par un fil",
+              "Faisant barrière physique"
+            ],
+            "answer": 0,
+            "explanation": "Les hormones de la pilule empêchent l'ovaire de libérer un ovule."
+          },
+          {
+            "q": "Le stérilet (DIU) empêche surtout :",
+            "options": [
+              "La fabrication de sperme",
+              "La nidation de la cellule-œuf",
+              "Les règles",
+              "L'ovulation uniquement"
+            ],
+            "answer": 1,
+            "explanation": "Placé dans l'utérus, le stérilet empêche l'implantation (nidation) de la cellule-œuf."
+          },
+          {
+            "q": "Peut-on tomber enceinte dès le premier rapport ?",
+            "options": [
+              "Non, jamais",
+              "Oui, c'est possible",
+              "Seulement après 20 ans",
+              "Seulement si on est marié"
+            ],
+            "answer": 1,
+            "explanation": "Une grossesse est possible dès le premier rapport non protégé."
+          },
+          {
+            "q": "L'avortement est :",
+            "options": [
+              "Une méthode de contraception sûre",
+              "L'interruption d'une grossesse déjà commencée",
+              "Un moyen de bloquer l'ovulation",
+              "Un préservatif féminin"
+            ],
+            "answer": 1,
+            "explanation": "L'avortement interrompt une grossesse en cours ; ce n'est pas un moyen de contraception."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les infections sexuellement transmissibles (IST) et le VIH/SIDA",
+      "video": "https://www.youtube.com/watch?v=7Q0X1aQ5kqg",
+      "lesson": "# Les infections sexuellement transmissibles (IST) et le VIH/SIDA\n\n## Introduction\n\nCertaines maladies se transmettent principalement lors des **rapports sexuels** : ce sont les **infections sexuellement transmissibles (IST)**. La plus grave, le **SIDA**, n'a pas de remède définitif. Connaître ces infections et les moyens de s'en protéger est une question de **santé** et de **survie**.\n\n## I. Que sont les IST ?\n\nLes **IST** sont des maladies provoquées par des **microbes** (bactéries, virus, champignons) qui se transmettent surtout par les **rapports sexuels non protégés**.\n\nExemples d'IST : la **gonococcie** (chaude-pisse), la **syphilis**, l'**hépatite B**, et surtout le **SIDA**.\n\nLes signes peuvent être : **brûlures** en urinant, **écoulements**, **boutons**, **démangeaisons**… Mais attention : certaines IST, comme le SIDA, ne donnent **aucun signe** pendant des années.\n\n## II. Le VIH et le SIDA\n\n- Le **VIH** est un **virus** qui s'attaque aux **globules blancs**, c'est-à-dire aux cellules qui nous **défendent** contre les maladies.\n- Quand les défenses sont détruites, la personne devient malade : c'est le **SIDA** (Syndrome d'Immuno-Déficience Acquise).\n- Une personne **séropositive** porte le virus mais peut paraître en **bonne santé** : elle peut donc le transmettre sans le savoir.\n\n> **schéma décrit** : un globule blanc est attaqué par de nombreux virus VIH (petites sphères) qui le détruisent ; le corps, privé de défenses, est envahi par d'autres microbes.\n\n## III. Les modes de transmission du VIH\n\nLe VIH se transmet par :\n1. les **rapports sexuels non protégés** ;\n2. le **sang** (seringues souillées, transfusion non contrôlée, objets tranchants partagés : lame, aiguille) ;\n3. de la **mère à l'enfant** (pendant la grossesse, l'accouchement ou l'allaitement).\n\nLe VIH **ne se transmet PAS** par : se serrer la main, partager un repas, les piqûres de moustiques, la toux, ou utiliser les mêmes toilettes.\n\n## IV. Comment se protéger ?\n\n- **Abstinence** ou **fidélité** à un partenaire non infecté.\n- Utilisation du **préservatif** lors des rapports.\n- Ne **jamais partager** les objets tranchants (lames, aiguilles).\n- Exiger du **matériel à usage unique** chez le coiffeur, le tatoueur, à l'hôpital.\n- Faire un **test de dépistage** pour connaître son statut.\n\nIl existe des **traitements** (les antirétroviraux) qui permettent de **vivre longtemps** avec le VIH, mais ils ne **guérissent pas** : la prévention reste essentielle.\n\n## Exercices corrigés\n\n### Exercice 1\n**Énoncé** : Que signifie le sigle « SIDA » et quel organe du système de défense le virus attaque-t-il ?\n\n**Correction** :\n**SIDA** signifie **Syndrome d'Immuno-Déficience Acquise**. Le virus responsable, le **VIH**, attaque les **globules blancs**, les cellules chargées de défendre l'organisme. En les détruisant, il affaiblit les défenses du corps.\n\n### Exercice 2\n**Énoncé** : Cite trois modes de transmission du VIH et deux situations où il NE se transmet PAS.\n\n**Correction** :\n**Transmission** : (1) rapports sexuels non protégés, (2) sang (seringues, objets tranchants partagés), (3) de la mère à l'enfant. **Pas de transmission** : se serrer la main, partager un repas (on accepte : piqûre de moustique, toilettes communes).\n\n### Exercice 3\n**Énoncé** : Pourquoi dit-on qu'une personne séropositive peut transmettre le VIH sans le savoir ?\n\n**Correction** :\nUne personne **séropositive** porte le virus dans son sang, mais peut rester pendant des années **sans aucun signe** de maladie : elle paraît en bonne santé. Comme elle ignore qu'elle est infectée, elle peut **transmettre le VIH** à d'autres lors de rapports non protégés. C'est pourquoi le **dépistage** est si important.\n\n## À retenir\n\n- Les **IST** se transmettent par les **rapports sexuels non protégés**.\n- Le **VIH** attaque les **globules blancs** ; sa forme grave est le **SIDA**.\n- Transmission : **sexe**, **sang**, **mère → enfant**. Pas par contacts ordinaires.\n- Protection : **préservatif**, **fidélité/abstinence**, objets **non partagés**, **dépistage**.\n- Les traitements aident à vivre avec le VIH mais ne le **guérissent pas**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Le VIH s'attaque principalement aux :",
+            "options": [
+              "Globules rouges",
+              "Globules blancs",
+              "Os",
+              "Muscles"
+            ],
+            "answer": 1,
+            "explanation": "Le VIH détruit les globules blancs, qui défendent l'organisme contre les maladies."
+          },
+          {
+            "q": "Le VIH NE se transmet PAS par :",
+            "options": [
+              "Les rapports sexuels non protégés",
+              "Une seringue souillée",
+              "Une poignée de main",
+              "La mère à l'enfant"
+            ],
+            "answer": 2,
+            "explanation": "Le VIH ne se transmet pas par les contacts ordinaires comme se serrer la main."
+          },
+          {
+            "q": "Le meilleur moyen d'éviter les IST lors d'un rapport est :",
+            "options": [
+              "La pilule",
+              "Le préservatif",
+              "Le stérilet",
+              "Boire de l'eau"
+            ],
+            "answer": 1,
+            "explanation": "Le préservatif protège à la fois de la grossesse et des IST."
+          },
+          {
+            "q": "Une personne séropositive :",
+            "options": [
+              "Est toujours visiblement malade",
+              "Ne peut pas transmettre le virus",
+              "Porte le virus et peut paraître en bonne santé",
+              "Est guérie du VIH"
+            ],
+            "answer": 2,
+            "explanation": "Une personne séropositive porte le virus mais peut sembler en bonne santé."
+          },
+          {
+            "q": "Les antirétroviraux :",
+            "options": [
+              "Guérissent définitivement le SIDA",
+              "Permettent de vivre longtemps avec le VIH sans le guérir",
+              "Sont des préservatifs",
+              "Préviennent la grossesse"
+            ],
+            "answer": 1,
+            "explanation": "Les traitements antirétroviraux contrôlent le virus mais ne guérissent pas le SIDA."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La digestion et la nutrition",
+      "video": "https://www.youtube.com/watch?v=Y3xUL2lj4mE",
+      "lesson": "# La digestion et la nutrition\n\n## Introduction\n\nPour vivre, grandir et bouger, notre corps a besoin d'**énergie** et de **matériaux** qu'il puise dans les **aliments**. Mais les aliments tels qu'on les avale sont trop **gros** pour passer dans le sang. Ils doivent être transformés en petites molécules : c'est le rôle de la **digestion**. Ce chapitre explique comment l'appareil digestif transforme les aliments et comment les **nutriments** passent dans le sang.\n\n## I. L'appareil digestif\n\n> **schéma décrit** : un long tube part de la **bouche**, traverse l'**œsophage**, l'**estomac**, l'**intestin grêle** (très long, en boucles) puis le **gros intestin**, et se termine par l'**anus**. À côté, des glandes (foie, pancréas, glandes salivaires) y déversent des sucs.\n\nL'appareil digestif comprend :\n- le **tube digestif** : bouche → œsophage → estomac → intestin grêle → gros intestin → anus ;\n- les **glandes digestives** : glandes salivaires, foie, pancréas, qui produisent des **sucs digestifs**.\n\n## II. La transformation des aliments\n\nLa **digestion** est la transformation des aliments en **nutriments** assimilables. Elle est à la fois **mécanique** et **chimique**.\n\n- **Action mécanique** : les **dents** broient (mastication), l'estomac brasse les aliments.\n- **Action chimique** : les **sucs digestifs** contiennent des **enzymes** qui découpent les grosses molécules en **petites molécules** (les nutriments).\n\nExemple : l'**amidon** du pain est transformé en **glucose** (sucre simple) ; les **protéines** en **acides aminés** ; les **lipides** (graisses) en plus petites molécules de graisse.\n\n## III. L'absorption intestinale\n\n> **schéma décrit** : la paroi de l'intestin grêle est tapissée de petits replis (les **villosités**) très irrigués par des vaisseaux sanguins. Les nutriments traversent cette paroi et entrent dans le sang.\n\nL'**absorption** est le passage des **nutriments** du tube digestif vers le **sang**, au niveau de l'**intestin grêle**. La paroi de l'intestin est repliée en **villosités** qui augmentent énormément la surface d'échange. Le sang distribue ensuite les nutriments à **tous les organes**.\n\nCe qui n'est **pas digéré** (déchets, fibres) continue vers le **gros intestin** et est évacué par l'**anus** sous forme d'**excréments**.\n\n## IV. Bien se nourrir\n\nUn **repas équilibré** doit apporter :\n- des **glucides** (sucres : riz, pain, igname) → énergie ;\n- des **lipides** (graisses : huile, arachide) → énergie de réserve ;\n- des **protéines** (viande, poisson, haricot) → construction du corps ;\n- des **vitamines** et **sels minéraux** (fruits, légumes) → bon fonctionnement ;\n- de l'**eau**, indispensable.\n\nUne mauvaise alimentation provoque des maladies : **malnutrition**, **kwashiorkor** (manque de protéines), **obésité** (excès).\n\n## Exercices corrigés\n\n### Exercice 1\n**Énoncé** : Définis la digestion et nomme les deux types d'actions qui la composent.\n\n**Correction** :\nLa **digestion** est la **transformation des aliments en nutriments** assimilables par l'organisme. Elle comprend une **action mécanique** (mastication par les dents, brassage par l'estomac) et une **action chimique** (les enzymes des sucs digestifs découpent les grosses molécules).\n\n### Exercice 2\n**Énoncé** : Explique le rôle des villosités de l'intestin grêle.\n\n**Correction** :\nLes **villosités** sont de petits replis de la paroi de l'intestin grêle. Elles **augmentent la surface d'échange** entre le tube digestif et le sang. Grâce à elles, l'**absorption** des nutriments (leur passage dans le sang) se fait plus efficacement, et tous les organes peuvent ensuite être nourris.\n\n### Exercice 3\n**Énoncé** : Un enfant ne mange que du riz et de la bouillie, sans viande, poisson ni haricot. Quel risque court-il ? Pourquoi ?\n\n**Correction** :\nCet enfant manque de **protéines** (apportées par la viande, le poisson, le haricot). Or les protéines servent à **construire et réparer** le corps. Il risque une maladie de carence appelée **kwashiorkor** (gonflement, retard de croissance, fatigue). Il faudrait **équilibrer** son alimentation en ajoutant des aliments riches en protéines.\n\n## À retenir\n\n- La **digestion** transforme les aliments en **nutriments** (action mécanique + chimique).\n- Les **enzymes** des sucs digestifs découpent les grosses molécules (amidon → glucose…).\n- L'**absorption** se fait dans l'**intestin grêle**, grâce aux **villosités**, vers le **sang**.\n- Un **repas équilibré** apporte glucides, lipides, protéines, vitamines, sels minéraux et eau.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "La digestion transforme les aliments en :",
+            "options": [
+              "Excréments",
+              "Nutriments",
+              "Microbes",
+              "Vitamines uniquement"
+            ],
+            "answer": 1,
+            "explanation": "La digestion découpe les aliments en nutriments assimilables par le sang."
+          },
+          {
+            "q": "L'absorption des nutriments se fait surtout dans :",
+            "options": [
+              "L'estomac",
+              "L'œsophage",
+              "L'intestin grêle",
+              "Le gros intestin"
+            ],
+            "answer": 2,
+            "explanation": "C'est dans l'intestin grêle, grâce aux villosités, que les nutriments passent dans le sang."
+          },
+          {
+            "q": "Les substances qui découpent les aliments chimiquement sont :",
+            "options": [
+              "Les enzymes",
+              "Les villosités",
+              "Les vitamines",
+              "Les nutriments"
+            ],
+            "answer": 0,
+            "explanation": "Les enzymes des sucs digestifs réalisent la transformation chimique des aliments."
+          },
+          {
+            "q": "L'amidon du pain est transformé en :",
+            "options": [
+              "Acides aminés",
+              "Glucose",
+              "Graisses",
+              "Eau"
+            ],
+            "answer": 1,
+            "explanation": "L'amidon, un glucide, est digéré en glucose, un sucre simple."
+          },
+          {
+            "q": "Le manque de protéines chez l'enfant provoque :",
+            "options": [
+              "L'obésité",
+              "Le kwashiorkor",
+              "Le SIDA",
+              "La carie"
+            ],
+            "answer": 1,
+            "explanation": "Le kwashiorkor est une maladie de carence en protéines."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La respiration et l'appareil respiratoire",
+      "video": "https://www.youtube.com/watch?v=Cz5Sl3w_zVE",
+      "lesson": "# La respiration et l'appareil respiratoire\n\n## Introduction\n\nÀ chaque instant, sans même y penser, nous **respirons**. Cette fonction permet à notre corps de capter le **dioxygène** de l'air, indispensable à la vie, et de rejeter le **dioxyde de carbone**, un déchet. Ce chapitre décrit l'appareil respiratoire et le mécanisme des échanges gazeux.\n\n## I. L'appareil respiratoire\n\n> **schéma décrit** : l'air entre par le **nez** et la **bouche**, descend par la **trachée**, qui se divise en deux **bronches**, puis en fines **bronchioles**, et se termine par de minuscules sacs : les **alvéoles pulmonaires**, regroupées dans les deux **poumons**.\n\nL'appareil respiratoire comprend :\n- les **voies respiratoires** : fosses nasales, trachée, bronches, bronchioles ;\n- les **poumons** : deux organes spongieux contenant des millions d'**alvéoles**.\n\n## II. Les mouvements respiratoires\n\nLa respiration comporte deux mouvements :\n- l'**inspiration** : l'air **entre** dans les poumons (la cage thoracique se soulève, le **diaphragme** s'abaisse) ;\n- l'**expiration** : l'air **sort** des poumons (la cage thoracique s'abaisse, le diaphragme remonte).\n\nUn adulte au repos réalise environ **15 à 20 mouvements respiratoires par minute**.\n\n## III. Les échanges gazeux\n\n> **schéma décrit** : une alvéole pulmonaire est entourée de petits vaisseaux sanguins (capillaires). Le dioxygène (O2) passe de l'alvéole vers le sang ; le dioxyde de carbone (CO2) passe du sang vers l'alvéole.\n\nAu niveau des **alvéoles pulmonaires** se produisent les **échanges gazeux** :\n- le **dioxygène (O2)** de l'air passe dans le **sang** ;\n- le **dioxyde de carbone (CO2)**, déchet du corps, passe du sang vers l'air et est rejeté.\n\nOn le prouve en comparant l'air **inspiré** et l'air **expiré** :\n\n| Gaz | Air inspiré | Air expiré |\n|---|---|---|\n| Dioxygène | beaucoup (≈ 21 %) | moins (≈ 16 %) |\n| Dioxyde de carbone | très peu (≈ 0,04 %) | beaucoup (≈ 4 %) |\n\nL'air expiré est aussi plus **chaud** et plus **humide**. Une expérience simple : l'air expiré **trouble l'eau de chaux**, ce qui prouve la présence de **CO2**.\n\n## IV. Respiration et hygiène\n\nLe sang riche en O2 nourrit tous les organes. Pour protéger nos poumons, il faut :\n- respirer un **air pur**, éviter la **fumée** (tabac, foyers fumants) et la **poussière** ;\n- ne pas **fumer** : le tabac provoque des maladies graves (bronchite, cancer du poumon) ;\n- aérer les **pièces** ;\n- soigner les maladies respiratoires (rhume, tuberculose).\n\n## Exercices corrigés\n\n### Exercice 1\n**Énoncé** : Cite dans l'ordre le trajet de l'air de l'extérieur jusqu'aux alvéoles.\n\n**Correction** :\nL'air suit le trajet : **fosses nasales (nez)** → **trachée** → **bronches** → **bronchioles** → **alvéoles pulmonaires**. C'est dans les alvéoles que se font les échanges gazeux avec le sang.\n\n### Exercice 2\n**Énoncé** : Quelle expérience permet de montrer que l'air expiré contient du dioxyde de carbone ?\n\n**Correction** :\nOn souffle l'air **expiré** dans de l'**eau de chaux** (limpide au départ). L'eau de chaux **se trouble** (devient blanchâtre). Or l'eau de chaux se trouble en présence de **dioxyde de carbone (CO2)**. Cette expérience prouve donc que l'air expiré contient beaucoup de CO2.\n\n### Exercice 3\n**Énoncé** : Compare l'air inspiré et l'air expiré pour le dioxygène et le dioxyde de carbone, puis explique cette différence.\n\n**Correction** :\nL'air **inspiré** contient **plus de dioxygène** et **moins de CO2** que l'air **expiré**. Cette différence s'explique par les **échanges gazeux** dans les alvéoles : le sang **prélève** du dioxygène (donc il en reste moins) et **rejette** du dioxyde de carbone (donc il y en a plus à la sortie). C'est la preuve que les poumons enrichissent le sang en O2.\n\n## À retenir\n\n- L'appareil respiratoire = **voies respiratoires** + **poumons** (avec les **alvéoles**).\n- **Inspiration** : l'air entre ; **expiration** : l'air sort (rôle du **diaphragme**).\n- Échanges gazeux dans les **alvéoles** : le **O2** entre dans le sang, le **CO2** est rejeté.\n- L'air expiré **trouble l'eau de chaux** → présence de **CO2**.\n- Le **tabac** et l'air pollué nuisent aux poumons.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Les échanges gazeux se font dans :",
+            "options": [
+              "La trachée",
+              "Les bronches",
+              "Les alvéoles pulmonaires",
+              "Le nez"
+            ],
+            "answer": 2,
+            "explanation": "C'est au niveau des alvéoles pulmonaires que O2 et CO2 s'échangent avec le sang."
+          },
+          {
+            "q": "Pendant l'inspiration :",
+            "options": [
+              "L'air sort des poumons",
+              "L'air entre dans les poumons",
+              "Le diaphragme remonte",
+              "Rien ne bouge"
+            ],
+            "answer": 1,
+            "explanation": "À l'inspiration, l'air entre, la cage thoracique se soulève et le diaphragme s'abaisse."
+          },
+          {
+            "q": "L'air expiré contient, par rapport à l'air inspiré :",
+            "options": [
+              "Plus de dioxygène",
+              "Plus de dioxyde de carbone",
+              "Moins de vapeur d'eau",
+              "Aucun changement"
+            ],
+            "answer": 1,
+            "explanation": "L'air expiré est plus riche en CO2 et plus pauvre en O2."
+          },
+          {
+            "q": "L'eau de chaux se trouble en présence de :",
+            "options": [
+              "Dioxygène",
+              "Azote",
+              "Dioxyde de carbone",
+              "Vapeur d'eau"
+            ],
+            "answer": 2,
+            "explanation": "Le trouble de l'eau de chaux révèle la présence de dioxyde de carbone."
+          },
+          {
+            "q": "Le gaz prélevé par le sang dans les poumons est :",
+            "options": [
+              "Le dioxyde de carbone",
+              "Le dioxygène",
+              "L'azote",
+              "La fumée"
+            ],
+            "answer": 1,
+            "explanation": "Le sang prélève le dioxygène (O2) au niveau des alvéoles."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La circulation sanguine et le cœur",
+      "video": "https://www.youtube.com/watch?v=ruN3kjbsYQc",
+      "lesson": "# La circulation sanguine et le cœur\n\n## Introduction\n\nLes nutriments issus de la digestion et le dioxygène capté par les poumons doivent être **transportés** jusqu'à chaque organe. C'est le rôle du **sang**, propulsé par le **cœur** dans un réseau de **vaisseaux**. Ce chapitre étudie l'appareil circulatoire, véritable « système de transport » du corps.\n\n## I. Le sang\n\nLe **sang** est un liquide rouge qui circule dans tout le corps. Il est composé :\n- d'un liquide jaunâtre, le **plasma** ;\n- des **globules rouges** : ils transportent le **dioxygène** (grâce à l'hémoglobine) ;\n- des **globules blancs** : ils **défendent** l'organisme contre les microbes ;\n- des **plaquettes** : elles permettent la **coagulation** (arrêt des saignements).\n\n## II. L'appareil circulatoire\n\n> **schéma décrit** : au centre, le **cœur** ; il est relié à un réseau de tuyaux. Les **artères** partent du cœur, les **veines** y reviennent, et de fins **capillaires** relient les deux au niveau des organes.\n\nIl comprend :\n- le **cœur** : muscle creux qui joue le rôle de **pompe** ;\n- les **vaisseaux sanguins** :\n  - les **artères** : transportent le sang **du cœur vers les organes** ;\n  - les **veines** : ramènent le sang **des organes vers le cœur** ;\n  - les **capillaires** : minuscules vaisseaux où se font les **échanges** avec les organes.\n\n## III. Le cœur, une pompe\n\n> **schéma décrit** : le cœur est divisé en deux moitiés (droite et gauche), chacune formée d'une **oreillette** (en haut) et d'un **ventricule** (en bas).\n\nLe cœur est un muscle qui se **contracte** et se **relâche** sans arrêt : ce sont les **battements cardiaques** (environ **70 par minute** au repos). À chaque battement, il **pousse le sang** dans les artères. On peut sentir ce rythme en prenant son **pouls** au poignet.\n\n## IV. Le rôle de la circulation\n\nLe sang assure le **transport** dans tout le corps :\n- il **apporte** aux organes le **dioxygène** (des poumons) et les **nutriments** (de l'intestin) ;\n- il **emporte** les **déchets** : le **dioxyde de carbone** (vers les poumons) et les autres déchets (vers les reins).\n\n> **schéma décrit** : un grand circuit montre le sang allant du cœur aux poumons (pour se charger en O2) puis du cœur à tous les organes du corps.\n\nAinsi, **digestion, respiration et circulation** travaillent ensemble pour nourrir chaque cellule.\n\n## Exercices corrigés\n\n### Exercice 1\n**Énoncé** : Cite les quatre composants du sang et donne le rôle des globules rouges et des globules blancs.\n\n**Correction** :\nLes quatre composants sont : le **plasma**, les **globules rouges**, les **globules blancs** et les **plaquettes**. Les **globules rouges** transportent le **dioxygène** ; les **globules blancs** **défendent** l'organisme contre les microbes.\n\n### Exercice 2\n**Énoncé** : Quelle est la différence entre une artère et une veine ?\n\n**Correction** :\nLes **artères** transportent le sang **du cœur vers les organes** ; les **veines** ramènent le sang **des organes vers le cœur**. Les deux sont reliés au niveau des organes par les **capillaires**, où se font les échanges.\n\n### Exercice 3\n**Énoncé** : Après un effort (course), le cœur de Bello bat plus vite. Explique pourquoi.\n\n**Correction** :\nPendant l'effort, les **muscles** travaillent beaucoup et ont besoin de **plus de dioxygène et de nutriments**. Pour répondre à ce besoin, le cœur bat **plus vite** afin d'**accélérer la circulation** du sang et d'apporter rapidement ce qu'il faut aux muscles. C'est pourquoi le pouls s'accélère pendant et après la course.\n\n## À retenir\n\n- Le **sang** = **plasma** + **globules rouges** (transport O2) + **globules blancs** (défense) + **plaquettes** (coagulation).\n- Le **cœur** est une **pompe** qui propulse le sang (≈ **70 battements/min**).\n- **Artères** : du cœur vers les organes ; **veines** : des organes vers le cœur ; **capillaires** : échanges.\n- La circulation **apporte** O2 et nutriments et **emporte** les déchets (CO2…).\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Les globules rouges servent à transporter :",
+            "options": [
+              "Le dioxyde de carbone uniquement",
+              "Le dioxygène",
+              "Les microbes",
+              "Les nutriments seulement"
+            ],
+            "answer": 1,
+            "explanation": "Les globules rouges transportent le dioxygène grâce à l'hémoglobine."
+          },
+          {
+            "q": "Les vaisseaux qui ramènent le sang au cœur sont :",
+            "options": [
+              "Les artères",
+              "Les veines",
+              "Les capillaires",
+              "Les bronches"
+            ],
+            "answer": 1,
+            "explanation": "Les veines ramènent le sang des organes vers le cœur."
+          },
+          {
+            "q": "Le cœur est essentiellement :",
+            "options": [
+              "Un os",
+              "Une glande",
+              "Un muscle qui pompe le sang",
+              "Un filtre"
+            ],
+            "answer": 2,
+            "explanation": "Le cœur est un muscle creux qui joue le rôle de pompe."
+          },
+          {
+            "q": "Les cellules qui défendent contre les microbes sont :",
+            "options": [
+              "Les globules rouges",
+              "Les globules blancs",
+              "Les plaquettes",
+              "Le plasma"
+            ],
+            "answer": 1,
+            "explanation": "Les globules blancs assurent la défense de l'organisme."
+          },
+          {
+            "q": "Les plaquettes permettent :",
+            "options": [
+              "Le transport de l'O2",
+              "La coagulation du sang",
+              "La digestion",
+              "La respiration"
+            ],
+            "answer": 1,
+            "explanation": "Les plaquettes interviennent dans la coagulation pour arrêter les saignements."
+          }
+        ]
+      }
+    },
+    {
+      "title": "L'excrétion et l'appareil urinaire",
+      "video": "https://www.youtube.com/watch?v=t6sB3hM1qzE",
+      "lesson": "# L'excrétion et l'appareil urinaire\n\n## Introduction\n\nLe fonctionnement des organes produit en permanence des **déchets** qui, s'ils s'accumulaient, **empoisonneraient** le corps. L'organisme doit donc les **éliminer** : c'est l'**excrétion**. Ce chapitre s'intéresse surtout à l'**appareil urinaire**, qui filtre le sang et fabrique l'urine.\n\n## I. Qu'est-ce que l'excrétion ?\n\nL'**excrétion** est l'**élimination des déchets** produits par le fonctionnement des organes. Ces déchets sont évacués par plusieurs voies :\n- l'**urine** (par les reins) → déchets dissous dans l'eau ;\n- la **sueur** (par la peau) → eau, sels, un peu de déchets ;\n- l'**air expiré** (par les poumons) → dioxyde de carbone.\n\n## II. L'appareil urinaire\n\n> **schéma décrit** : deux **reins** en forme de haricot, situés en bas du dos, sont reliés chacun par un tube (l'**uretère**) à la **vessie**, une poche. De la vessie part l'**urètre** qui évacue l'urine à l'extérieur.\n\nL'appareil urinaire comprend :\n- les deux **reins** : ils **filtrent le sang** et fabriquent l'**urine** ;\n- les **uretères** : conduisent l'urine des reins à la vessie ;\n- la **vessie** : poche qui **stocke** l'urine ;\n- l'**urètre** : évacue l'urine à l'extérieur.\n\n## III. Le rôle des reins\n\nLes **reins** sont de véritables **filtres**. Le sang qui les traverse y dépose ses **déchets** (en particulier l'**urée**) et son **excès d'eau et de sels**. Ce mélange forme l'**urine**.\n\n> **schéma décrit** : du sang « sale » (chargé de déchets) entre dans le rein par une artère ; il en ressort « propre » par une veine. Les déchets retirés forment l'urine qui descend vers la vessie.\n\nL'**urine** contient surtout : de l'**eau**, de l'**urée**, des **sels minéraux** en excès. Elle ne contient **normalement pas** de sucre ni de sang : leur présence est le signe d'une **maladie**.\n\n## IV. Hygiène et santé de l'appareil urinaire\n\n- **Boire suffisamment d'eau** (au moins 1,5 L par jour) aide les reins à éliminer les déchets.\n- **Ne pas se retenir** trop longtemps d'uriner.\n- Avoir une bonne **hygiène intime** pour éviter les **infections urinaires**.\n- L'analyse d'urine permet de **dépister** certaines maladies (diabète si présence de sucre).\n\n## Exercices corrigés\n\n### Exercice 1\n**Énoncé** : Définis l'excrétion et cite trois organes excréteurs avec le déchet qu'ils éliminent.\n\n**Correction** :\nL'**excrétion** est l'**élimination des déchets** produits par le corps. Trois organes excréteurs :\n- les **reins** → éliminent l'**urée** dans l'urine ;\n- la **peau** → élimine l'eau et des sels dans la **sueur** ;\n- les **poumons** → éliminent le **dioxyde de carbone**.\n\n### Exercice 2\n**Énoncé** : Décris le trajet de l'urine depuis sa formation jusqu'à l'extérieur.\n\n**Correction** :\nL'urine est fabriquée dans les **reins** (filtration du sang). Elle descend ensuite par les **uretères** jusqu'à la **vessie**, où elle est **stockée**. Quand la vessie est pleine, l'urine est évacuée à l'extérieur par l'**urètre**.\n\n### Exercice 3\n**Énoncé** : Une analyse montre du **sucre** dans l'urine d'un patient. Que peut-on en déduire ?\n\n**Correction** :\nNormalement, l'urine **ne contient pas de sucre** : les reins ne le laissent pas passer. La présence de sucre dans l'urine est donc **anormale** ; c'est souvent le signe d'une maladie appelée **diabète**. Le patient doit consulter un médecin pour confirmer et se faire soigner.\n\n## À retenir\n\n- L'**excrétion** = élimination des **déchets** du corps.\n- Voies : **urine** (reins), **sueur** (peau), **CO2** (poumons).\n- Les **reins filtrent le sang** et fabriquent l'**urine** (eau + **urée** + sels).\n- Trajet de l'urine : **reins → uretères → vessie → urètre**.\n- Du **sucre** dans l'urine = signe possible de **diabète**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Les reins servent à :",
+            "options": [
+              "Digérer les aliments",
+              "Filtrer le sang et fabriquer l'urine",
+              "Pomper le sang",
+              "Respirer"
+            ],
+            "answer": 1,
+            "explanation": "Les reins filtrent le sang et en retirent les déchets pour former l'urine."
+          },
+          {
+            "q": "L'organe qui stocke l'urine est :",
+            "options": [
+              "L'uretère",
+              "La vessie",
+              "L'urètre",
+              "Le rein"
+            ],
+            "answer": 1,
+            "explanation": "La vessie est la poche qui stocke l'urine avant son évacuation."
+          },
+          {
+            "q": "Le principal déchet éliminé par l'urine est :",
+            "options": [
+              "Le glucose",
+              "L'urée",
+              "Le dioxygène",
+              "Le sang"
+            ],
+            "answer": 1,
+            "explanation": "L'urée, déchet azoté, est éliminée dans l'urine."
+          },
+          {
+            "q": "Le dioxyde de carbone est éliminé par :",
+            "options": [
+              "Les reins",
+              "La peau",
+              "Les poumons",
+              "La vessie"
+            ],
+            "answer": 2,
+            "explanation": "Le CO2 est rejeté par les poumons lors de l'expiration."
+          },
+          {
+            "q": "La présence de sucre dans l'urine peut révéler :",
+            "options": [
+              "Une bonne santé",
+              "Le diabète",
+              "Une grippe",
+              "Une fracture"
+            ],
+            "answer": 1,
+            "explanation": "Du sucre dans l'urine est un signe possible de diabète."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Le système nerveux et les organes des sens",
+      "video": "https://www.youtube.com/watch?v=Sv7Qvgr0E84",
+      "lesson": "# Le système nerveux et les organes des sens\n\n## Introduction\n\nNotre corps **perçoit** ce qui l'entoure, **réfléchit** et **commande** ses mouvements. Ces fonctions sont assurées par le **système nerveux**, qui reçoit des informations grâce aux **organes des sens**. Ce chapitre étudie l'organisation du système nerveux et le trajet d'un message nerveux.\n\n## I. Les organes des sens\n\nNous percevons le monde grâce à **cinq sens**, chacun lié à un organe :\n\n| Sens | Organe |\n|---|---|\n| La vue | l'**œil** |\n| L'ouïe | l'**oreille** |\n| L'odorat | le **nez** |\n| Le goût | la **langue** |\n| Le toucher | la **peau** |\n\nCes organes captent les **informations** (lumière, son, odeur, saveur, contact) et les transforment en **messages nerveux**.\n\n## II. Le système nerveux\n\n> **schéma décrit** : dans la tête, le **cerveau** ; il se prolonge le long de la colonne vertébrale par la **moelle épinière**. De cet axe partent des **nerfs** qui se ramifient dans tout le corps.\n\nLe système nerveux comprend :\n- les **centres nerveux** : le **cerveau** (dans le crâne) et la **moelle épinière** (dans la colonne vertébrale) ;\n- les **nerfs** : câbles qui relient les centres nerveux à tous les organes.\n\nOn distingue deux types de nerfs :\n- les **nerfs sensitifs** : conduisent les messages **des organes vers le cerveau** ;\n- les **nerfs moteurs** : conduisent les ordres **du cerveau vers les muscles**.\n\n## III. Le trajet d'un message nerveux\n\n> **schéma décrit** : une main touche un objet chaud. Un message part de la peau, monte par un nerf sensitif jusqu'au centre nerveux ; un ordre redescend par un nerf moteur jusqu'au muscle, et la main se retire.\n\nLorsqu'on touche un objet, le trajet est :\n**organe des sens (récepteur)** → **nerf sensitif** → **centre nerveux** (analyse) → **nerf moteur** → **muscle (effecteur)** → mouvement.\n\nOn distingue :\n- les **actes volontaires** : commandés par le **cerveau** après réflexion (ex. écrire) ;\n- les **actes réflexes** : très rapides, automatiques, commandés par la **moelle épinière** (ex. retirer sa main d'une épine). Le réflexe **protège** le corps.\n\n## IV. Hygiène du système nerveux\n\nPour bien fonctionner, le système nerveux a besoin de :\n- **sommeil** suffisant (le cerveau récupère) ;\n- **éviter l'alcool et les drogues**, qui perturbent le cerveau ;\n- protéger la **tête** (casque) et la **colonne vertébrale** des chocs.\n\nIl faut aussi protéger les **organes des sens** : ne pas regarder le soleil en face, éviter les **bruits forts**, etc.\n\n## Exercices corrigés\n\n### Exercice 1\n**Énoncé** : Cite les cinq sens et l'organe correspondant à chacun.\n\n**Correction** :\n- la **vue** → l'**œil** ;\n- l'**ouïe** → l'**oreille** ;\n- l'**odorat** → le **nez** ;\n- le **goût** → la **langue** ;\n- le **toucher** → la **peau**.\n\n### Exercice 2\n**Énoncé** : Décris le trajet du message nerveux lorsqu'on touche un objet.\n\n**Correction** :\nLe message suit le trajet : **récepteur** (organe des sens, ex. la peau) → **nerf sensitif** → **centre nerveux** (cerveau ou moelle épinière, qui analyse) → **nerf moteur** → **muscle** (effecteur) qui réalise le mouvement.\n\n### Exercice 3\n**Énoncé** : Quelle est la différence entre un acte volontaire et un acte réflexe ? Donne un exemple de chacun.\n\n**Correction** :\nUn **acte volontaire** est **décidé** par le cerveau après réflexion (exemple : **écrire** une lettre). Un **acte réflexe** est **automatique et très rapide**, commandé par la **moelle épinière**, sans réflexion (exemple : **retirer sa main** d'un objet piquant). Le réflexe sert à **protéger** rapidement le corps.\n\n## À retenir\n\n- Les **cinq sens** : vue (œil), ouïe (oreille), odorat (nez), goût (langue), toucher (peau).\n- Le système nerveux = **centres nerveux** (cerveau + moelle épinière) + **nerfs**.\n- **Nerfs sensitifs** : organes → cerveau ; **nerfs moteurs** : cerveau → muscles.\n- **Acte volontaire** (cerveau, réfléchi) ≠ **acte réflexe** (moelle épinière, automatique, protecteur).\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "L'organe du goût est :",
+            "options": [
+              "L'œil",
+              "La langue",
+              "Le nez",
+              "La peau"
+            ],
+            "answer": 1,
+            "explanation": "La langue est l'organe du goût ; elle perçoit les saveurs."
+          },
+          {
+            "q": "Les centres nerveux sont :",
+            "options": [
+              "Le cerveau et la moelle épinière",
+              "Les muscles et les os",
+              "Les nerfs uniquement",
+              "Le cœur et les poumons"
+            ],
+            "answer": 0,
+            "explanation": "Le cerveau et la moelle épinière constituent les centres nerveux."
+          },
+          {
+            "q": "Les nerfs qui conduisent les ordres vers les muscles sont :",
+            "options": [
+              "Sensitifs",
+              "Moteurs",
+              "Optiques",
+              "Digestifs"
+            ],
+            "answer": 1,
+            "explanation": "Les nerfs moteurs portent les ordres du centre nerveux vers les muscles."
+          },
+          {
+            "q": "Retirer rapidement sa main d'une épine est :",
+            "options": [
+              "Un acte volontaire",
+              "Un acte réflexe",
+              "Une décision longue",
+              "Une maladie"
+            ],
+            "answer": 1,
+            "explanation": "C'est un acte réflexe, automatique et rapide, commandé par la moelle épinière."
+          },
+          {
+            "q": "Dans le trajet d'un message, l'organe des sens joue le rôle de :",
+            "options": [
+              "Effecteur",
+              "Récepteur",
+              "Muscle",
+              "Os"
+            ],
+            "answer": 1,
+            "explanation": "L'organe des sens capte l'information : c'est le récepteur."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les microbes, l'hygiène et la santé",
+      "video": "https://www.youtube.com/watch?v=Xb8H5d3Yc1Q",
+      "lesson": "# Les microbes, l'hygiène et la santé\n\n## Introduction\n\nDe nombreuses maladies sont causées par des êtres vivants **invisibles à l'œil nu** : les **microbes**. Pour rester en bonne santé, il faut comprendre comment ils nous attaquent, comment le corps se **défend** et comment l'**hygiène** et la **vaccination** nous protègent. Ce chapitre est essentiel pour la santé de tous.\n\n## I. Qu'est-ce qu'un microbe ?\n\nUn **microbe** (ou micro-organisme) est un être vivant **microscopique**. On en distingue plusieurs sortes :\n- les **bactéries** (ex. responsables du choléra, de la tuberculose) ;\n- les **virus** (ex. grippe, VIH, rougeole) ;\n- les **champignons microscopiques** (ex. mycoses) ;\n- les **protozoaires** (ex. le plasmodium, qui donne le **paludisme**).\n\nAttention : tous les microbes ne sont pas dangereux. Certains sont **utiles** (fabrication du yaourt, du pain, digestion).\n\n## II. Comment les microbes pénètrent dans le corps\n\n> **schéma décrit** : des flèches montrent les portes d'entrée des microbes : la bouche (eau et aliments souillés), le nez (air), une blessure de la peau, et une piqûre de moustique.\n\nLes microbes entrent par :\n- la **bouche** : eau et aliments **souillés** (choléra, fièvre typhoïde) ;\n- le **nez** : air contenant des microbes (grippe, tuberculose) ;\n- la **peau** : à travers une **blessure** ;\n- des **piqûres** : moustique (paludisme), seringue souillée.\n\n## III. Comment le corps se défend\n\nLe corps possède des **moyens de défense** :\n1. des **barrières** : la **peau** intacte et les **muqueuses** empêchent l'entrée des microbes ;\n2. les **globules blancs** : ils **détruisent** les microbes qui ont pénétré (certains les « mangent ») ;\n3. la **fièvre** : la montée de température aide à combattre l'infection.\n\nQuand les microbes l'emportent, on tombe **malade**. On peut alors prendre des **médicaments** : les **antibiotiques** tuent les **bactéries** (mais **pas** les virus).\n\n## IV. Hygiène et prévention\n\nPour éviter les maladies microbiennes :\n- se **laver les mains** avec du savon, surtout avant de manger et après les toilettes ;\n- boire de l'**eau potable** (bouillie ou traitée) ;\n- bien **cuire** les aliments, les protéger des mouches ;\n- dormir sous une **moustiquaire** imprégnée (paludisme) ;\n- se faire **vacciner**.\n\nLa **vaccination** est un moyen de **protection** : on introduit dans le corps un microbe **affaibli ou tué**. Le corps fabrique alors des **défenses** (anticorps) ; il sera **prêt à se défendre** si le vrai microbe attaque plus tard. Le vaccin **prévient** la maladie (rougeole, tétanos, fièvre jaune…).\n\n## Exercices corrigés\n\n### Exercice 1\n**Énoncé** : Cite trois sortes de microbes et donne pour chacun un exemple de maladie.\n\n**Correction** :\n- les **bactéries** → le **choléra** (ou la tuberculose) ;\n- les **virus** → la **grippe** (ou la rougeole, le SIDA) ;\n- les **protozoaires** → le **paludisme** (plasmodium).\n\n### Exercice 2\n**Énoncé** : Explique comment la vaccination protège des maladies.\n\n**Correction** :\nLors d'une **vaccination**, on introduit dans le corps un microbe **affaibli ou tué**, incapable de rendre malade. En réponse, l'organisme fabrique des **défenses** (anticorps). Ainsi, si le **vrai microbe** attaque plus tard, le corps le **reconnaît** et se **défend immédiatement** : la personne ne tombe pas malade. Le vaccin **prévient** donc la maladie.\n\n### Exercice 3\n**Énoncé** : Pourquoi est-il important de se laver les mains avant de manger ?\n\n**Correction** :\nLes mains touchent de nombreux objets et peuvent être couvertes de **microbes invisibles**. Si on mange sans se laver les mains, ces microbes entrent dans le corps par la **bouche** avec les aliments et peuvent provoquer des maladies (diarrhées, choléra, fièvre typhoïde). Se laver les mains avec du **savon** élimine ces microbes : c'est un geste d'hygiène qui **protège la santé**.\n\n## À retenir\n\n- Un **microbe** est un être vivant **microscopique** : bactéries, virus, champignons, protozoaires.\n- Portes d'entrée : **bouche**, **nez**, **peau blessée**, **piqûres**.\n- Défenses du corps : **peau/muqueuses**, **globules blancs**, **fièvre**.\n- **Antibiotiques** = contre les **bactéries** (pas les virus).\n- **Hygiène** (mains, eau potable, moustiquaire) et **vaccination** préviennent les maladies.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Le paludisme est causé par :",
+            "options": [
+              "Une bactérie",
+              "Un virus",
+              "Un protozoaire (plasmodium)",
+              "Un champignon"
+            ],
+            "answer": 2,
+            "explanation": "Le paludisme est dû au plasmodium, un protozoaire transmis par le moustique."
+          },
+          {
+            "q": "Les antibiotiques agissent contre :",
+            "options": [
+              "Les virus",
+              "Les bactéries",
+              "Tous les microbes",
+              "Les piqûres"
+            ],
+            "answer": 1,
+            "explanation": "Les antibiotiques tuent les bactéries mais sont inefficaces contre les virus."
+          },
+          {
+            "q": "Les cellules du sang qui détruisent les microbes sont :",
+            "options": [
+              "Les globules rouges",
+              "Les plaquettes",
+              "Les globules blancs",
+              "Le plasma"
+            ],
+            "answer": 2,
+            "explanation": "Les globules blancs défendent l'organisme en détruisant les microbes."
+          },
+          {
+            "q": "La vaccination introduit dans le corps :",
+            "options": [
+              "Un microbe affaibli ou tué",
+              "Un antibiotique",
+              "Du sucre",
+              "Un globule rouge"
+            ],
+            "answer": 0,
+            "explanation": "Le vaccin contient un microbe affaibli ou tué qui déclenche les défenses du corps."
+          },
+          {
+            "q": "Pour éviter le paludisme, il faut surtout :",
+            "options": [
+              "Boire de l'eau de chaux",
+              "Dormir sous une moustiquaire",
+              "Manger du sucre",
+              "Se couvrir la tête"
+            ],
+            "answer": 1,
+            "explanation": "La moustiquaire imprégnée protège des piqûres de moustique vecteur du paludisme."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les roches et le sol",
+      "video": "https://www.youtube.com/watch?v=2bL1nA7G7Bw",
+      "lesson": "# Les roches et le sol\n\n## Introduction\n\nSous nos pieds se trouve un monde minéral fait de **roches** et de **sol**. Ces matériaux fournissent les **matériaux de construction**, les **minerais** et la terre qui nourrit les **plantes**. Ce chapitre découvre les grandes familles de roches et l'importance du sol pour l'agriculture.\n\n## I. Les roches\n\nUne **roche** est un matériau **naturel** qui constitue le sous-sol et les montagnes. On distingue trois grandes familles :\n\n**1. Les roches magmatiques** : formées par le **refroidissement** d'un magma (roche fondue venue des profondeurs). Exemple : le **granite**, le **basalte**.\n\n**2. Les roches sédimentaires** : formées par le **dépôt** et le tassement de débris (sable, boue, restes d'êtres vivants) sur de longues durées. Exemples : le **calcaire**, le **grès**, l'**argile**.\n\n**3. Les roches métamorphiques** : anciennes roches **transformées** par la chaleur et la pression. Exemple : le **marbre**, le **gneiss**.\n\n> **schéma décrit** : trois échantillons de roches sont posés côte à côte : un granite (grains brillants), un calcaire (clair, tendre) et un marbre (veiné).\n\nOn reconnaît une roche à sa **couleur**, sa **dureté**, sa **structure** (grains ou non) et sa **réaction** à certains produits (le calcaire fait des **bulles** avec un acide).\n\n## II. L'utilité des roches\n\nLes roches sont très utiles à l'homme :\n- **construction** : pierres, sable, gravier, ciment (à partir du calcaire) ;\n- **minerais** : on en extrait les **métaux** (fer, aluminium, or, bauxite) ;\n- **énergie** : charbon, pétrole (roches/combustibles) ;\n- **industrie** : argile pour les **briques** et la **poterie**.\n\n## III. Le sol\n\nLe **sol** est la couche **superficielle** de la Terre où poussent les plantes. Il provient de la **destruction des roches** (par le froid, la chaleur, l'eau, les racines) mélangée à des restes d'êtres vivants.\n\n> **schéma décrit** : une coupe verticale du sol montre, de haut en bas : une couche sombre riche en débris (l'**humus**), puis une couche de terre mélangée à des cailloux, puis la **roche-mère** au fond.\n\nLe sol contient :\n- de l'**humus** : matière issue de la décomposition des végétaux et animaux ; il rend le sol **fertile** ;\n- des **éléments minéraux** (sable, argile, cailloux) ;\n- de l'**eau** et de l'**air** dans ses interstices ;\n- des **êtres vivants** (vers de terre, microbes) qui l'aèrent et le décomposent.\n\n## IV. Protéger le sol\n\nUn bon sol est **fertile** : il nourrit les cultures. Mais le sol est **fragile** :\n- l'**érosion** (eau de pluie, vent) emporte la bonne terre, surtout sur les sols **nus** ;\n- la **surexploitation** l'épuise.\n\nPour le protéger : **planter des arbres**, faire des **cultures en terrasses** sur les pentes, **fumer** le sol (fumier, compost), et **éviter les feux de brousse**.\n\n## Exercices corrigés\n\n### Exercice 1\n**Énoncé** : Cite les trois grandes familles de roches et donne un exemple de chacune.\n\n**Correction** :\n- les roches **magmatiques** : le **granite** (ou le basalte) ;\n- les roches **sédimentaires** : le **calcaire** (ou le grès, l'argile) ;\n- les roches **métamorphiques** : le **marbre** (ou le gneiss).\n\n### Exercice 2\n**Énoncé** : Qu'est-ce que l'humus et pourquoi est-il important pour l'agriculture ?\n\n**Correction** :\nL'**humus** est la matière sombre issue de la **décomposition** des végétaux et des animaux morts. Il enrichit le sol en éléments nutritifs et le rend **fertile**. Grâce à l'humus, les plantes trouvent dans le sol ce dont elles ont besoin pour bien pousser : c'est pourquoi il est essentiel à l'**agriculture**.\n\n### Exercice 3\n**Énoncé** : Sur une colline défrichée et laissée nue, la terre fertile disparaît après chaque pluie. Explique pourquoi et propose deux solutions.\n\n**Correction** :\nSur un sol **nu**, rien ne retient la terre : l'eau de pluie qui ruisselle **emporte** la couche fertile (l'humus). C'est l'**érosion**. Deux solutions : **planter des arbres** et des herbes dont les racines retiennent le sol, et réaliser des **cultures en terrasses** sur la pente pour ralentir l'eau. On peut aussi éviter les feux de brousse.\n\n## À retenir\n\n- Une **roche** est un matériau naturel : familles **magmatique**, **sédimentaire**, **métamorphique**.\n- Les roches servent à la **construction**, fournissent des **minerais** et de l'**énergie**.\n- Le **sol** vient de la **destruction des roches** + restes d'êtres vivants ; l'**humus** le rend **fertile**.\n- Le sol est menacé par l'**érosion** ; on le protège (arbres, terrasses, fumure).\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Le granite est une roche :",
+            "options": [
+              "Sédimentaire",
+              "Magmatique",
+              "Métamorphique",
+              "Vivante"
+            ],
+            "answer": 1,
+            "explanation": "Le granite se forme par refroidissement d'un magma : c'est une roche magmatique."
+          },
+          {
+            "q": "L'humus rend le sol :",
+            "options": [
+              "Stérile",
+              "Fertile",
+              "Plus dur",
+              "Imperméable"
+            ],
+            "answer": 1,
+            "explanation": "L'humus, issu de la décomposition, enrichit le sol et le rend fertile."
+          },
+          {
+            "q": "Le calcaire est une roche :",
+            "options": [
+              "Magmatique",
+              "Sédimentaire",
+              "Métamorphique",
+              "Métallique"
+            ],
+            "answer": 1,
+            "explanation": "Le calcaire se forme par dépôt de débris : c'est une roche sédimentaire."
+          },
+          {
+            "q": "L'enlèvement de la terre fertile par l'eau ou le vent s'appelle :",
+            "options": [
+              "L'humus",
+              "L'érosion",
+              "La fertilisation",
+              "La sédimentation des métaux"
+            ],
+            "answer": 1,
+            "explanation": "L'érosion est l'emport de la couche de terre par l'eau ou le vent."
+          },
+          {
+            "q": "Pour protéger un sol en pente, on peut :",
+            "options": [
+              "Le laisser nu",
+              "Faire des cultures en terrasses",
+              "Allumer des feux de brousse",
+              "Enlever les arbres"
+            ],
+            "answer": 1,
+            "explanation": "Les cultures en terrasses ralentissent l'eau et limitent l'érosion."
+          }
+        ]
+      }
+    },
+    {
+      "title": "L'eau dans la nature et la protection de l'environnement",
+      "video": "https://www.youtube.com/watch?v=al-do-HGuIk",
+      "lesson": "# L'eau dans la nature et la protection de l'environnement\n\n## Introduction\n\nL'**eau** est indispensable à toute vie. Elle circule sans cesse entre la mer, le ciel et la terre selon le **cycle de l'eau**. Mais cette ressource, comme l'air et le sol, est **menacée** par les activités humaines. Ce chapitre relie le cycle de l'eau et la nécessité de **protéger l'environnement**.\n\n## I. L'eau dans la nature\n\nL'eau existe sur Terre sous trois états :\n- **liquide** : mers, rivières, lacs, pluie, nappes souterraines ;\n- **solide** : glace, neige ;\n- **gazeux** : vapeur d'eau (invisible) dans l'air.\n\nL'eau **douce** (rivières, lacs, nappes) ne représente qu'une **faible partie** de l'eau de la planète : elle est donc **précieuse**.\n\n## II. Le cycle de l'eau\n\n> **schéma décrit** : le soleil chauffe la mer ; l'eau s'évapore et monte (évaporation). En altitude, la vapeur se refroidit et forme les nuages (condensation). Les nuages donnent la pluie (précipitations) qui ruisselle vers les rivières et s'infiltre dans le sol, puis retourne à la mer.\n\nLe **cycle de l'eau** comprend :\n1. l'**évaporation** : la chaleur du soleil transforme l'eau des mers et rivières en **vapeur** ;\n2. la **condensation** : en altitude, la vapeur se refroidit et forme les **nuages** ;\n3. les **précipitations** : les nuages donnent la **pluie** (ou la neige) ;\n4. le **ruissellement et l'infiltration** : l'eau coule vers les rivières ou s'infiltre dans le sol (**nappes**), puis revient à la mer.\n\nL'eau **recommence** ce cycle indéfiniment : il n'y a ni début ni fin.\n\n## III. L'eau, source de vie et de santé\n\n- L'eau est nécessaire à la **boisson**, à l'**agriculture**, à l'**hygiène**.\n- Mais une **eau souillée** transmet des maladies : **choléra**, fièvre typhoïde, diarrhées.\n- Pour avoir une **eau potable**, on peut la **bouillir**, la **filtrer** ou la **traiter** (eau de Javel, comprimés).\n\n## IV. La protection de l'environnement\n\nL'**environnement** (eau, air, sol, êtres vivants) est menacé par les activités humaines :\n- la **pollution de l'eau** : déchets, eaux usées, produits chimiques jetés dans les rivières ;\n- la **pollution de l'air** : fumées des usines, des voitures, des feux ;\n- la **déforestation** : couper les arbres détruit les sols et la faune ;\n- les **ordures** mal gérées qui bouchent les caniveaux (inondations, maladies).\n\nPour **protéger l'environnement**, chacun peut :\n- **ne pas jeter** les déchets n'importe où ; **trier** et **recycler** ;\n- **planter des arbres** (reboisement) ;\n- **économiser l'eau** et ne pas la polluer ;\n- **éviter les feux de brousse** ;\n- **assainir** : toilettes propres, évacuation des eaux usées.\n\nProtéger l'environnement, c'est **protéger notre santé** et celle des **générations futures** : c'est le **développement durable**.\n\n## Exercices corrigés\n\n### Exercice 1\n**Énoncé** : Cite et explique brièvement les quatre étapes du cycle de l'eau.\n\n**Correction** :\n1. **Évaporation** : le soleil transforme l'eau des mers en vapeur.\n2. **Condensation** : en altitude, la vapeur se refroidit et forme les nuages.\n3. **Précipitations** : les nuages donnent la pluie (ou la neige).\n4. **Ruissellement et infiltration** : l'eau coule vers les rivières ou pénètre dans le sol, puis retourne à la mer. Le cycle recommence.\n\n### Exercice 2\n**Énoncé** : Pourquoi faut-il rendre l'eau potable avant de la boire, et comment ?\n\n**Correction** :\nUne eau **non traitée** peut contenir des **microbes** responsables de maladies graves (choléra, typhoïde, diarrhées). Avant de la boire, il faut la rendre **potable** pour détruire ces microbes. On peut la **faire bouillir**, la **filtrer**, ou la **traiter** avec de l'eau de Javel ou des comprimés désinfectants.\n\n### Exercice 3\n**Énoncé** : Cite trois gestes simples que tu peux faire chaque jour pour protéger l'environnement, en expliquant l'intérêt de chacun.\n\n**Correction** :\n- **Jeter les déchets dans une poubelle** (et non par terre) : cela évite la pollution du sol et de l'eau et débouche les caniveaux.\n- **Économiser l'eau** (fermer le robinet) : l'eau douce est rare et précieuse.\n- **Planter ou protéger les arbres** : ils retiennent le sol, purifient l'air et abritent la faune.\n(On accepte aussi : éviter les feux de brousse, recycler, ne pas polluer les rivières.)\n\n## À retenir\n\n- L'eau existe à l'état **liquide**, **solide** et **gazeux** ; l'eau **douce** est rare et précieuse.\n- Le **cycle de l'eau** : **évaporation → condensation → précipitations → ruissellement/infiltration**.\n- Une **eau souillée** transmet des maladies ; il faut la rendre **potable** (bouillir, filtrer, traiter).\n- L'**environnement** (eau, air, sol) est menacé par la **pollution** et la **déforestation**.\n- Protéger l'environnement (déchets, reboisement, économie d'eau) = protéger la **santé** et l'**avenir**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "La transformation de l'eau liquide en vapeur sous l'effet du soleil s'appelle :",
+            "options": [
+              "La condensation",
+              "L'évaporation",
+              "L'infiltration",
+              "Les précipitations"
+            ],
+            "answer": 1,
+            "explanation": "L'évaporation transforme l'eau liquide en vapeur grâce à la chaleur du soleil."
+          },
+          {
+            "q": "Les nuages se forment par :",
+            "options": [
+              "Évaporation",
+              "Condensation de la vapeur d'eau",
+              "Ruissellement",
+              "Infiltration"
+            ],
+            "answer": 1,
+            "explanation": "En altitude, la vapeur se refroidit et se condense pour former les nuages."
+          },
+          {
+            "q": "Une eau souillée peut transmettre :",
+            "options": [
+              "Le choléra",
+              "Une fracture",
+              "Le diabète",
+              "La carie"
+            ],
+            "answer": 0,
+            "explanation": "L'eau souillée transmet des maladies comme le choléra et la fièvre typhoïde."
+          },
+          {
+            "q": "Pour rendre une eau potable, on peut :",
+            "options": [
+              "La saler",
+              "La faire bouillir",
+              "Y jeter des déchets",
+              "La laisser au soleil sans rien faire"
+            ],
+            "answer": 1,
+            "explanation": "Faire bouillir l'eau détruit les microbes et la rend potable."
+          },
+          {
+            "q": "Un geste qui protège l'environnement est :",
+            "options": [
+              "Brûler la brousse",
+              "Couper tous les arbres",
+              "Planter des arbres (reboisement)",
+              "Jeter les déchets dans la rivière"
+            ],
+            "answer": 2,
+            "explanation": "Le reboisement protège le sol, purifie l'air et abrite la faune."
+          }
+        ]
+      }
+    }
+  ]
+}
