@@ -1,0 +1,774 @@
+{
+  "code": "HG",
+  "level": "Première",
+  "chapters": [
+    {
+      "title": "La révolution industrielle et ses conséquences",
+      "video": "https://www.youtube.com/watch?v=6_QqQ1mQp0g",
+      "lesson": "# La révolution industrielle et ses conséquences\n\n## Introduction\nLa **révolution industrielle** désigne l'ensemble des transformations techniques, économiques et sociales qui font passer une société agricole et artisanale à une société dominée par l'**industrie** et la **machine**. Née en **Grande-Bretagne** vers **1760-1780**, elle gagne l'Europe continentale et les États-Unis au **XIXe siècle**. Pourquoi et comment cette mutation a-t-elle bouleversé le monde occidental ?\n\n## I. Les origines et les facteurs de la révolution industrielle\nLa Grande-Bretagne réunit les conditions favorables :\n- **Des capitaux** accumulés par le commerce colonial et la traite négrière.\n- **Une main-d'œuvre** disponible grâce à la **révolution agricole** (enclosures, rendements accrus) qui libère des paysans vers les villes.\n- **Des matières premières** abondantes : **charbon** et **fer**.\n- **Un marché** vaste grâce à l'empire colonial et à la maîtrise des mers.\n- **Un esprit d'entreprise** et des innovations techniques.\n\n## II. Les grandes innovations techniques\n- **1769** : **James Watt** perfectionne la **machine à vapeur**, source d'énergie nouvelle.\n- L'industrie **textile** (filature, tissage mécanique) est la première touchée.\n- La **métallurgie** progresse grâce au **coke** (remplaçant le charbon de bois).\n- **1814-1825** : **George Stephenson** développe la **locomotive** ; la première ligne de chemin de fer **Stockton-Darlington** ouvre en **1825**.\n- Seconde révolution industrielle (à partir de **1870-1880**) : l'**électricité**, le **pétrole**, le **moteur à explosion**, la **chimie** et l'**acier** (procédé Bessemer).\n\n## III. Les conséquences économiques\n- Naissance de la **grande usine** (factory system) et de la production de masse.\n- Essor des **transports** : chemin de fer, navires à vapeur, télégraphe.\n- Concentration des entreprises ; développement du **capitalisme industriel** et financier.\n- Croissance des échanges et du **commerce mondial**.\n\n## IV. Les conséquences sociales\n- Naissance de deux classes nouvelles : la **bourgeoisie** industrielle (propriétaire des moyens de production) et le **prolétariat** ouvrier.\n- **Exode rural** et **urbanisation** rapide ; développement de villes industrielles (Manchester, Liverpool).\n- Conditions de travail dures : journées de **12 à 16 heures**, travail des femmes et des enfants, bas salaires, logements insalubres.\n- Apparition de la **question sociale** et des premières luttes ouvrières.\n\n## Repères et chiffres clés\n- **Vers 1760-1780** : début de la révolution industrielle en Grande-Bretagne.\n- **1769** : machine à vapeur de **James Watt**.\n- **1825** : première ligne de chemin de fer (Stockton-Darlington).\n- **1870-1880** : seconde révolution industrielle (électricité, pétrole).\n- Population de **Manchester** : de 75 000 (1801) à plus de 300 000 (1851).\n\n## Sujet type corrigé\n**Sujet : « La révolution industrielle a profondément transformé les sociétés du XIXe siècle. » Analysez cette affirmation.**\n\n*Problématique :* En quoi les mutations techniques et économiques de la révolution industrielle ont-elles bouleversé les structures sociales du XIXe siècle ?\n\n*Plan proposé :*\n- **I. Une révolution technique et économique** : nouvelles énergies (vapeur, charbon), grande usine, capitalisme.\n- **II. De nouvelles structures sociales** : bourgeoisie et prolétariat, urbanisation, exode rural.\n- **III. La question sociale** : misère ouvrière, prise de conscience et premières revendications.\n\n## À retenir\n- La révolution industrielle naît en **Grande-Bretagne** vers **1760-1780**.\n- Elle repose sur la **machine à vapeur**, le **charbon** et le **fer**.\n- Elle crée le couple **bourgeoisie / prolétariat** et la **question sociale**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Dans quel pays naît la révolution industrielle ?",
+            "options": [
+              "La France",
+              "La Grande-Bretagne",
+              "L'Allemagne",
+              "Les États-Unis"
+            ],
+            "answer": 1,
+            "explanation": "La révolution industrielle débute en Grande-Bretagne vers 1760-1780."
+          },
+          {
+            "q": "Qui perfectionne la machine à vapeur en 1769 ?",
+            "options": [
+              "George Stephenson",
+              "James Watt",
+              "Thomas Edison",
+              "Henry Ford"
+            ],
+            "answer": 1,
+            "explanation": "James Watt perfectionne la machine à vapeur en 1769."
+          },
+          {
+            "q": "Quelle industrie est touchée la première par la mécanisation ?",
+            "options": [
+              "La métallurgie",
+              "L'industrie textile",
+              "La chimie",
+              "L'automobile"
+            ],
+            "answer": 1,
+            "explanation": "L'industrie textile (filature, tissage) est la première mécanisée."
+          },
+          {
+            "q": "Quelles deux classes sociales naissent de la révolution industrielle ?",
+            "options": [
+              "Nobles et clergé",
+              "Bourgeoisie et prolétariat",
+              "Paysans et artisans",
+              "Marchands et soldats"
+            ],
+            "answer": 1,
+            "explanation": "La bourgeoisie industrielle et le prolétariat ouvrier émergent."
+          },
+          {
+            "q": "Quelle énergie caractérise la seconde révolution industrielle ?",
+            "options": [
+              "La vapeur",
+              "Le charbon de bois",
+              "L'électricité et le pétrole",
+              "L'énergie nucléaire"
+            ],
+            "answer": 2,
+            "explanation": "La seconde révolution industrielle repose sur l'électricité et le pétrole."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Le capitalisme et le mouvement ouvrier",
+      "video": "https://www.youtube.com/watch?v=lLkWZ0i4i7g",
+      "lesson": "# Le capitalisme et le mouvement ouvrier\n\n## Introduction\nLa révolution industrielle donne naissance au **capitalisme** moderne, système économique fondé sur la **propriété privée** des moyens de production et la recherche du **profit**. Face à la misère ouvrière, naît le **mouvement ouvrier**, organisé pour défendre les travailleurs. Comment le capitalisme s'est-il imposé et comment les ouvriers se sont-ils organisés pour y répondre ?\n\n## I. Le triomphe du capitalisme\n- Le **capitalisme** repose sur le **capital** (machines, usines, argent), la **libre entreprise** et la **concurrence**.\n- On distingue le **capitalisme industriel** (production) et le **capitalisme financier** (banques, Bourse).\n- Concentration des entreprises : **trusts**, **cartels**, **monopoles**.\n- Doctrine du **libéralisme économique** (Adam Smith, *La Richesse des nations*, **1776**) : « laisser faire, laisser passer ».\n\n## II. La condition ouvrière au XIXe siècle\n- Travail pénible : journées de **12 à 16 heures**, salaires faibles.\n- **Travail des enfants** et des femmes, sous-payés.\n- Logements insalubres, maladies, absence de protection sociale.\n- Chômage et insécurité de l'emploi (crises économiques).\n\n## III. Les doctrines sociales\n- Le **socialisme utopique** : Saint-Simon, **Fourier**, Robert Owen imaginent une société plus juste.\n- Le **socialisme scientifique** : **Karl Marx** et **Friedrich Engels** publient le ***Manifeste du Parti communiste*** en **1848** ; Marx publie ***Le Capital*** (**1867**). Ils prônent la **lutte des classes** et la **révolution prolétarienne**.\n- L'**anarchisme** (Proudhon, Bakounine) refuse l'État.\n- La **doctrine sociale de l'Église** : encyclique ***Rerum Novarum*** du pape **Léon XIII** (**1891**).\n\n## IV. L'organisation du mouvement ouvrier\n- Naissance des **syndicats** (trade-unions en Grande-Bretagne).\n- Création de l'**Association internationale des travailleurs** (**Ire Internationale, 1864**) puis de la **IIe Internationale (1889)**.\n- Instauration du **1er mai** comme journée internationale des travailleurs (1889).\n- Grèves, partis socialistes, conquête progressive de **droits sociaux** : limitation du temps de travail, interdiction du travail des enfants, droit de grève.\n\n## Repères et chiffres clés\n- **1776** : *La Richesse des nations* d'Adam Smith.\n- **1848** : *Manifeste du Parti communiste* (Marx et Engels).\n- **1864** : Ire Internationale.\n- **1867** : *Le Capital* de Marx.\n- **1889** : IIe Internationale et institution du 1er mai.\n- **1891** : encyclique *Rerum Novarum*.\n\n## Sujet type corrigé\n**Sujet : Comment les ouvriers se sont-ils organisés au XIXe siècle pour améliorer leur condition ?**\n\n*Problématique :* Face à l'exploitation capitaliste, par quels moyens le mouvement ouvrier a-t-il défendu les travailleurs ?\n\n*Plan proposé :*\n- **I. Une condition ouvrière difficile** : travail, salaires, misère.\n- **II. Des doctrines pour penser une société nouvelle** : socialisme utopique et scientifique, marxisme.\n- **III. Une organisation concrète** : syndicats, Internationales, grèves et conquêtes sociales.\n\n## À retenir\n- Le **capitalisme** repose sur la propriété privée et la recherche du profit.\n- **Marx et Engels** théorisent la **lutte des classes** (*Manifeste*, **1848**).\n- Le mouvement ouvrier s'organise en **syndicats** et **Internationales**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Sur quoi repose le capitalisme ?",
+            "options": [
+              "La propriété collective",
+              "La propriété privée et le profit",
+              "Le troc",
+              "L'autarcie"
+            ],
+            "answer": 1,
+            "explanation": "Le capitalisme repose sur la propriété privée des moyens de production et la recherche du profit."
+          },
+          {
+            "q": "Qui publie le Manifeste du Parti communiste en 1848 ?",
+            "options": [
+              "Adam Smith",
+              "Marx et Engels",
+              "Léon XIII",
+              "Proudhon"
+            ],
+            "answer": 1,
+            "explanation": "Karl Marx et Friedrich Engels publient le Manifeste en 1848."
+          },
+          {
+            "q": "Que prône le socialisme scientifique de Marx ?",
+            "options": [
+              "Le libéralisme",
+              "La lutte des classes",
+              "L'autarcie",
+              "La monarchie"
+            ],
+            "answer": 1,
+            "explanation": "Marx prône la lutte des classes et la révolution prolétarienne."
+          },
+          {
+            "q": "Quelle encyclique exprime la doctrine sociale de l'Église en 1891 ?",
+            "options": [
+              "Rerum Novarum",
+              "Pacem in Terris",
+              "Quadragesimo Anno",
+              "Mater et Magistra"
+            ],
+            "answer": 0,
+            "explanation": "Rerum Novarum, du pape Léon XIII, paraît en 1891."
+          },
+          {
+            "q": "Que devient le 1er mai à partir de 1889 ?",
+            "options": [
+              "Fête nationale française",
+              "Journée internationale des travailleurs",
+              "Jour de l'indépendance",
+              "Fête religieuse"
+            ],
+            "answer": 1,
+            "explanation": "La IIe Internationale (1889) institue le 1er mai comme journée des travailleurs."
+          }
+        ]
+      }
+    },
+    {
+      "title": "L'impérialisme et la colonisation de l'Afrique",
+      "video": "https://www.youtube.com/watch?v=Tq8U8d6gqHw",
+      "lesson": "# L'impérialisme et la colonisation de l'Afrique\n\n## Introduction\nÀ la fin du **XIXe siècle**, les puissances européennes se lancent dans une expansion mondiale appelée **impérialisme** : domination économique, politique et culturelle de territoires lointains. L'**Afrique** est presque entièrement partagée entre **1880 et 1914**. Quelles sont les causes, les modalités et les conséquences de cette colonisation ?\n\n## I. Les causes de l'impérialisme\n- **Causes économiques** : besoin de **matières premières**, de **débouchés** pour les produits industriels, de **zones d'investissement** des capitaux.\n- **Causes politiques et stratégiques** : prestige national, rivalités entre puissances, contrôle des routes maritimes.\n- **Causes idéologiques** : prétendue « **mission civilisatrice** », théories racistes de supériorité, action des **missionnaires**.\n- **Causes démographiques** : émigration du trop-plein de population.\n\n## II. Le partage de l'Afrique\n- Avant 1880, l'Europe ne contrôle que les côtes (comptoirs).\n- La **Conférence de Berlin (1884-1885)**, convoquée par **Bismarck**, fixe les règles du partage : principe de l'**occupation effective**, liberté de navigation sur le Congo et le Niger.\n- Les principales puissances : **France**, **Grande-Bretagne**, **Allemagne**, **Belgique** (Léopold II au Congo), **Portugal**, **Italie**, **Espagne**.\n- En **1914**, presque toute l'Afrique est colonisée, sauf l'**Éthiopie** et le **Liberia**.\n\n## III. Les formes de domination coloniale\n- L'**administration directe** (France) : remplacement des chefs locaux par des administrateurs.\n- L'**administration indirecte** (*indirect rule*, Grande-Bretagne) : maintien des autorités traditionnelles sous contrôle.\n- L'**économie de traite** : cultures de rente (cacao, café, coton, arachide), travail forcé, **portage**, impôt de capitation.\n\n## IV. Les conséquences de la colonisation\n- **Conséquences négatives** : exploitation, travail forcé, pertes humaines, frontières artificielles, acculturation, destruction des structures politiques africaines.\n- **Conséquences mitigées** : routes, chemins de fer, écoles, hôpitaux, mais au service de la colonisation.\n- Les **résistances africaines** : Samory Touré, Béhanzin, la reine **Yaa Asantewaa**, les Allemands au Cameroun face aux résistances locales (Douala, Bamiléké, etc.).\n\n## Repères et chiffres clés\n- **1884-1885** : **Conférence de Berlin**.\n- **1914** : presque toute l'Afrique colonisée (sauf Éthiopie et Liberia).\n- Le **Cameroun** devient protectorat allemand le **12 juillet 1884** (traités germano-douala).\n- Léopold II : **État indépendant du Congo** (propriété personnelle, 1885).\n\n## Sujet type corrigé\n**Sujet : La Conférence de Berlin (1884-1885) et le partage de l'Afrique.**\n\n*Problématique :* Comment la Conférence de Berlin a-t-elle organisé le partage de l'Afrique entre les puissances européennes ?\n\n*Plan proposé :*\n- **I. Le contexte** : rivalités impérialistes et causes de l'expansion.\n- **II. Les décisions de Berlin** : règles du partage, occupation effective.\n- **III. Les conséquences** : colonisation effective, exploitation et résistances.\n\n## À retenir\n- L'**impérialisme** est la domination des pays forts sur les pays faibles.\n- La **Conférence de Berlin (1884-1885)** organise le partage de l'Afrique.\n- En **1914**, seuls l'**Éthiopie** et le **Liberia** restent indépendants.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Quand se tient la Conférence de Berlin ?",
+            "options": [
+              "1870-1871",
+              "1884-1885",
+              "1899-1902",
+              "1914-1918"
+            ],
+            "answer": 1,
+            "explanation": "La Conférence de Berlin se tient de 1884 à 1885."
+          },
+          {
+            "q": "Quels deux États africains restent indépendants en 1914 ?",
+            "options": [
+              "Égypte et Maroc",
+              "Éthiopie et Liberia",
+              "Ghana et Nigeria",
+              "Soudan et Kenya"
+            ],
+            "answer": 1,
+            "explanation": "L'Éthiopie et le Liberia échappent à la colonisation."
+          },
+          {
+            "q": "Quel système britannique maintient les autorités traditionnelles ?",
+            "options": [
+              "L'administration directe",
+              "L'indirect rule",
+              "L'assimilation",
+              "Le protectorat français"
+            ],
+            "answer": 1,
+            "explanation": "L'indirect rule maintient les chefs locaux sous contrôle britannique."
+          },
+          {
+            "q": "Quelle 'mission' invoquaient les Européens pour justifier la colonisation ?",
+            "options": [
+              "La mission commerciale",
+              "La mission civilisatrice",
+              "La mission militaire",
+              "La mission diplomatique"
+            ],
+            "answer": 1,
+            "explanation": "Les Européens invoquaient une prétendue mission civilisatrice."
+          },
+          {
+            "q": "Qui convoque la Conférence de Berlin ?",
+            "options": [
+              "Léopold II",
+              "Bismarck",
+              "Jules Ferry",
+              "La reine Victoria"
+            ],
+            "answer": 1,
+            "explanation": "Le chancelier allemand Bismarck convoque la conférence."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La Première Guerre mondiale (1914-1918)",
+      "video": "https://www.youtube.com/watch?v=qE2Nj_AfgPM",
+      "lesson": "# La Première Guerre mondiale (1914-1918)\n\n## Introduction\nLa **Première Guerre mondiale** (1914-1918), aussi appelée **Grande Guerre**, est le premier conflit de dimension planétaire. Opposant la **Triple-Entente** à la **Triple-Alliance**, elle fait environ **10 millions de morts**. Quelles sont ses causes, ses grandes phases et ses conséquences ?\n\n## I. Les causes de la guerre\n- **Causes lointaines** : rivalités impérialistes coloniales, course aux armements, nationalismes, désir de revanche français (Alsace-Lorraine perdue en 1871).\n- Les **alliances** opposées : **Triple-Alliance** (Allemagne, Autriche-Hongrie, Italie) contre **Triple-Entente** (France, Royaume-Uni, Russie).\n- **Cause immédiate** : l'**attentat de Sarajevo**, le **28 juin 1914**, où l'archiduc **François-Ferdinand** est assassiné par Gavrilo Princip. Le jeu des alliances entraîne la guerre générale.\n\n## II. Les grandes phases du conflit\n- **1914 : la guerre de mouvement** : invasion de la Belgique (plan Schlieffen), arrêt allemand à la **bataille de la Marne** (septembre 1914).\n- **1915-1917 : la guerre de position (de tranchées)** : front stabilisé ; batailles meurtrières de **Verdun** et de la **Somme** (**1916**).\n- **1917 : année charnière** : entrée en guerre des **États-Unis** (avril 1917) ; **révolution russe** et retrait de la Russie (paix de Brest-Litovsk, 1918).\n- **1918** : offensives finales, contre-offensives alliées. **Armistice le 11 novembre 1918** à Rethondes.\n\n## III. Une guerre totale\n- Mobilisation de toute la société : économie de guerre, **propagande**, rôle des **femmes** dans les usines.\n- Mobilisation des **colonies** : tirailleurs africains, dont les **tirailleurs sénégalais** et camerounais.\n- Nouvelles armes : **mitrailleuses**, **gaz de combat**, **chars**, **avions**, sous-marins.\n\n## IV. Le bilan et les conséquences\n- **Bilan humain** : environ **10 millions de morts**, des millions de blessés et de « gueules cassées ».\n- **Bilan matériel et économique** : régions dévastées, dettes, inflation.\n- **Conséquences politiques** : disparition de quatre empires (allemand, austro-hongrois, russe, ottoman) ; le **Traité de Versailles (28 juin 1919)** impose de lourdes conditions à l'Allemagne.\n- Création de la **Société des Nations (SDN)** pour garantir la paix.\n- Redécoupage des colonies : le **Cameroun** passe sous **mandat** franco-britannique de la SDN (1919-1922).\n\n## Repères et chiffres clés\n- **28 juin 1914** : attentat de Sarajevo.\n- **Septembre 1914** : bataille de la Marne.\n- **1916** : Verdun et la Somme.\n- **Avril 1917** : entrée des États-Unis.\n- **11 novembre 1918** : armistice.\n- **28 juin 1919** : Traité de Versailles.\n- Environ **10 millions de morts**.\n\n## Sujet type corrigé\n**Sujet : Pourquoi peut-on qualifier la Première Guerre mondiale de « guerre totale » ?**\n\n*Problématique :* En quoi le conflit de 1914-1918 a-t-il mobilisé toutes les forces des sociétés combattantes ?\n\n*Plan proposé :*\n- **I. Une mobilisation humaine totale** : soldats, colonies, femmes.\n- **II. Une mobilisation économique et industrielle** : économie de guerre, propagande.\n- **III. Un bilan total** : pertes humaines et matérielles, bouleversements politiques.\n\n## À retenir\n- La guerre commence après l'**attentat de Sarajevo (28 juin 1914)**.\n- **Verdun** et la **Somme** (1916) symbolisent la guerre de tranchées.\n- L'**armistice** est signé le **11 novembre 1918** ; le **Traité de Versailles** en 1919.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Quel événement déclenche la Première Guerre mondiale ?",
+            "options": [
+              "L'attentat de Sarajevo",
+              "La crise de 1929",
+              "L'invasion de la Pologne",
+              "La révolution russe"
+            ],
+            "answer": 0,
+            "explanation": "L'attentat de Sarajevo (28 juin 1914) déclenche l'engrenage des alliances."
+          },
+          {
+            "q": "Quelle bataille de 1916 symbolise la guerre de tranchées ?",
+            "options": [
+              "La Marne",
+              "Verdun",
+              "Stalingrad",
+              "Waterloo"
+            ],
+            "answer": 1,
+            "explanation": "Verdun (1916) est emblématique de la guerre de position."
+          },
+          {
+            "q": "Quand est signé l'armistice ?",
+            "options": [
+              "8 mai 1945",
+              "11 novembre 1918",
+              "28 juin 1919",
+              "2 septembre 1945"
+            ],
+            "answer": 1,
+            "explanation": "L'armistice est signé le 11 novembre 1918."
+          },
+          {
+            "q": "Quel traité met fin à la guerre avec l'Allemagne ?",
+            "options": [
+              "Le traité de Brest-Litovsk",
+              "Le traité de Versailles",
+              "Le traité de Vienne",
+              "Le traité de Tordesillas"
+            ],
+            "answer": 1,
+            "explanation": "Le Traité de Versailles est signé le 28 juin 1919."
+          },
+          {
+            "q": "Quelle organisation est créée pour garantir la paix après 1918 ?",
+            "options": [
+              "L'ONU",
+              "La Société des Nations",
+              "L'OTAN",
+              "L'Union européenne"
+            ],
+            "answer": 1,
+            "explanation": "La Société des Nations (SDN) est créée pour préserver la paix."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La crise économique de 1929",
+      "video": "https://www.youtube.com/watch?v=Xb8Q9z7Yx0g",
+      "lesson": "# La crise économique de 1929\n\n## Introduction\nLa **crise de 1929** est la plus grave crise économique du **XXe siècle**. Partie des **États-Unis** avec le **krach boursier** de Wall Street, elle se transforme en **Grande Dépression** mondiale et a de profondes conséquences sociales et politiques. Comment une crise financière américaine est-elle devenue une crise mondiale ?\n\n## I. Les origines de la crise\n- Dans les **années 1920**, les États-Unis connaissent une forte croissance (« prospérité », *Roaring Twenties*).\n- **Surproduction** industrielle et agricole face à une consommation limitée.\n- **Spéculation boursière** excessive : achat d'actions à crédit.\n- Déséquilibre entre l'offre et la demande.\n\n## II. Le krach boursier\n- Le **jeudi 24 octobre 1929** (« **Jeudi noir** »), puis le **mardi 29 octobre** (« **Mardi noir** »), les cours s'effondrent à la **Bourse de Wall Street** (New York).\n- Des millions d'actions vendues à perte : ruine de nombreux épargnants.\n\n## III. La diffusion et l'aggravation\n- **Faillites en chaîne** : banques, entreprises.\n- **Chômage massif** : environ **13 millions de chômeurs** aux États-Unis (1933).\n- La crise gagne l'**Europe** (Allemagne très touchée) et le reste du monde par le retrait des capitaux américains et la baisse du commerce.\n- **Effondrement des prix** des matières premières : grave impact sur les **colonies** (chute des cours du cacao, café, coton).\n\n## IV. Les réponses à la crise\n- Aux États-Unis : le **New Deal** du président **Franklin D. Roosevelt** (à partir de **1933**) : grands travaux, intervention de l'État, réformes sociales (inspiré des idées de **Keynes**).\n- En Europe : protectionnisme, dévaluations.\n- **Conséquences politiques** : montée des **régimes totalitaires** ; en Allemagne, la crise favorise l'arrivée d'**Hitler** au pouvoir (**1933**).\n\n## Repères et chiffres clés\n- **24 octobre 1929** : Jeudi noir (krach de Wall Street).\n- **29 octobre 1929** : Mardi noir.\n- **1933** : environ **13 millions de chômeurs** aux États-Unis ; lancement du **New Deal**.\n- **1933** : Hitler accède au pouvoir en Allemagne.\n\n## Sujet type corrigé\n**Sujet : De la crise boursière de 1929 à la crise mondiale : causes et conséquences.**\n\n*Problématique :* Comment le krach de Wall Street de 1929 s'est-il transformé en crise mondiale aux lourdes conséquences ?\n\n*Plan proposé :*\n- **I. Les causes** : surproduction et spéculation des années 1920.\n- **II. Le krach et sa diffusion** : faillites, chômage, propagation mondiale.\n- **III. Les conséquences et les réponses** : New Deal, montée des totalitarismes.\n\n## À retenir\n- La crise part du **krach de Wall Street** (**octobre 1929**).\n- Elle provoque **faillites** et **chômage massif** dans le monde.\n- Le **New Deal** de **Roosevelt** est la réponse américaine ; la crise favorise les **totalitarismes**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Où débute la crise de 1929 ?",
+            "options": [
+              "En Allemagne",
+              "Aux États-Unis",
+              "En France",
+              "En URSS"
+            ],
+            "answer": 1,
+            "explanation": "La crise débute avec le krach de Wall Street aux États-Unis."
+          },
+          {
+            "q": "Quel jour est appelé le 'Jeudi noir' ?",
+            "options": [
+              "24 octobre 1929",
+              "29 octobre 1929",
+              "1er mai 1929",
+              "11 novembre 1929"
+            ],
+            "answer": 0,
+            "explanation": "Le 24 octobre 1929 est le Jeudi noir."
+          },
+          {
+            "q": "Quelle est une cause majeure de la crise ?",
+            "options": [
+              "La pénurie de marchandises",
+              "La surproduction et la spéculation",
+              "La guerre mondiale",
+              "La colonisation"
+            ],
+            "answer": 1,
+            "explanation": "La surproduction et la spéculation boursière sont des causes majeures."
+          },
+          {
+            "q": "Quel programme Roosevelt met-il en place ?",
+            "options": [
+              "Le plan Marshall",
+              "Le New Deal",
+              "La NEP",
+              "Le plan Schlieffen"
+            ],
+            "answer": 1,
+            "explanation": "Roosevelt lance le New Deal à partir de 1933."
+          },
+          {
+            "q": "Quelle conséquence politique la crise a-t-elle en Allemagne ?",
+            "options": [
+              "La chute de l'empire",
+              "L'arrivée d'Hitler au pouvoir",
+              "La révolution communiste",
+              "La création de la SDN"
+            ],
+            "answer": 1,
+            "explanation": "La crise favorise l'accession d'Hitler au pouvoir en 1933."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les régimes totalitaires : fascisme, nazisme, stalinisme",
+      "video": "https://www.youtube.com/watch?v=fmf5x5Tq3oQ",
+      "lesson": "# Les régimes totalitaires : fascisme, nazisme, stalinisme\n\n## Introduction\nDans l'**entre-deux-guerres** (1919-1939), des régimes d'un type nouveau apparaissent en Europe : les **régimes totalitaires**. Un État totalitaire contrôle totalement la société, la pensée et l'individu. On distingue le **fascisme** italien, le **nazisme** allemand et le **stalinisme** soviétique. Quelles sont leurs caractéristiques communes et leurs différences ?\n\n## I. Le fascisme italien\n- **Benito Mussolini** prend le pouvoir après la **Marche sur Rome** en **octobre 1922**.\n- Parti unique (**Parti national fasciste**), culte du chef (*Duce*), nationalisme, milices (chemises noires).\n- Encadrement de la jeunesse, propagande, expansionnisme (conquête de l'**Éthiopie**, 1935-1936).\n\n## II. Le nazisme allemand\n- **Adolf Hitler**, chef du **parti nazi (NSDAP)**, devient chancelier le **30 janvier 1933**.\n- Idéologie : **racisme** (suprématie de la « race aryenne »), **antisémitisme**, **espace vital** (*Lebensraum*), culte du chef (*Führer*).\n- Mise en place d'une **dictature** : suppression des libertés, **camps de concentration**, **lois de Nuremberg (1935)** contre les Juifs.\n- Réarmement et préparation de la guerre.\n\n## III. Le stalinisme soviétique\n- **Joseph Staline** dirige l'**URSS** à partir de **1924** (après la mort de Lénine).\n- **Collectivisation** des terres (kolkhozes, sovkhozes), **industrialisation** forcée (plans quinquennaux).\n- **Dictature du parti unique** (Parti communiste), **culte de la personnalité**.\n- Répression : **Grandes Purges**, **goulag**, procès de Moscou.\n\n## IV. Points communs et différences\n- **Points communs** : parti unique, chef tout-puissant, idéologie officielle, propagande, police politique, terreur, embrigadement, absence de libertés.\n- **Différences** : le nazisme et le fascisme sont d'**extrême droite** (nationalistes, racistes) ; le stalinisme se réclame du **communisme** (égalité, collectivisme) mais aboutit aussi à une dictature.\n\n## Repères et chiffres clés\n- **Octobre 1922** : Marche sur Rome (Mussolini).\n- **1924** : Staline au pouvoir en URSS.\n- **30 janvier 1933** : Hitler chancelier.\n- **1935** : lois de Nuremberg.\n- **1936-1938** : Grandes Purges en URSS.\n\n## Sujet type corrigé\n**Sujet : Comparez les régimes totalitaires de l'entre-deux-guerres.**\n\n*Problématique :* Quels sont les traits communs et les spécificités du fascisme, du nazisme et du stalinisme ?\n\n*Plan proposé :*\n- **I. Trois régimes, des origines différentes** : Italie, Allemagne, URSS.\n- **II. Des caractéristiques communes** : parti unique, chef, terreur, propagande.\n- **III. Des différences idéologiques** : extrême droite raciste contre communisme.\n\n## À retenir\n- Un État **totalitaire** contrôle toute la société par un **parti unique** et la **terreur**.\n- **Mussolini** (1922), **Hitler** (1933), **Staline** (1924).\n- Le **nazisme** est raciste et antisémite ; le **stalinisme** se réclame du communisme.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Qui dirige le régime fasciste italien ?",
+            "options": [
+              "Hitler",
+              "Mussolini",
+              "Staline",
+              "Franco"
+            ],
+            "answer": 1,
+            "explanation": "Benito Mussolini dirige le fascisme italien depuis 1922."
+          },
+          {
+            "q": "Quand Hitler devient-il chancelier ?",
+            "options": [
+              "30 janvier 1933",
+              "octobre 1922",
+              "1924",
+              "1939"
+            ],
+            "answer": 0,
+            "explanation": "Hitler devient chancelier le 30 janvier 1933."
+          },
+          {
+            "q": "Quelle idéologie caractérise le nazisme ?",
+            "options": [
+              "L'égalité sociale",
+              "Le racisme et l'antisémitisme",
+              "Le libéralisme",
+              "Le pacifisme"
+            ],
+            "answer": 1,
+            "explanation": "Le nazisme repose sur le racisme et l'antisémitisme."
+          },
+          {
+            "q": "Quel régime se réclame du communisme ?",
+            "options": [
+              "Le fascisme",
+              "Le nazisme",
+              "Le stalinisme",
+              "Le franquisme"
+            ],
+            "answer": 2,
+            "explanation": "Le stalinisme se réclame du communisme."
+          },
+          {
+            "q": "Quel est un point commun à tous les régimes totalitaires ?",
+            "options": [
+              "Le multipartisme",
+              "Le parti unique et la terreur",
+              "La liberté de la presse",
+              "Le libéralisme économique"
+            ],
+            "answer": 1,
+            "explanation": "Tous reposent sur un parti unique, la propagande et la terreur."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La Seconde Guerre mondiale (1939-1945)",
+      "video": "https://www.youtube.com/watch?v=Q78COTwT7nE",
+      "lesson": "# La Seconde Guerre mondiale (1939-1945)\n\n## Introduction\nLa **Seconde Guerre mondiale** (1939-1945) est le conflit le plus meurtrier de l'histoire, avec environ **50 à 60 millions de morts**. Elle oppose les **Alliés** à l'**Axe** et se distingue par son caractère idéologique et le **génocide**. Quelles sont ses causes, ses grandes étapes et son bilan ?\n\n## I. Les causes de la guerre\n- L'humiliation allemande du **Traité de Versailles** et la volonté de revanche d'Hitler.\n- La crise de 1929 et la montée des totalitarismes.\n- L'expansionnisme de l'Axe : remilitarisation de la Rhénanie, **Anschluss** (1938), annexion des Sudètes.\n- **L'invasion de la Pologne** par l'Allemagne, le **1er septembre 1939**, déclenche la guerre.\n\n## II. Les grandes phases du conflit\n- **1939-1942 : les victoires de l'Axe** : **guerre éclair** (*Blitzkrieg*), défaite de la France (juin 1940), bataille d'Angleterre, invasion de l'URSS (1941), attaque japonaise de **Pearl Harbor** (7 décembre 1941) entraînant l'entrée des États-Unis.\n- **1942-1943 : le tournant** : victoires alliées à **Stalingrad** (1942-1943), **El-Alamein**, **Midway** ; débarquement en Afrique du Nord.\n- **1943-1945 : la victoire des Alliés** : débarquement de Normandie (**6 juin 1944**), libération de l'Europe. **Capitulation allemande le 8 mai 1945**. Bombes atomiques sur **Hiroshima et Nagasaki** (août 1945) ; **capitulation du Japon le 2 septembre 1945**.\n\n## III. Une guerre d'anéantissement et le génocide\n- Guerre idéologique et raciale.\n- **Génocide des Juifs (Shoah)** et des Tziganes : environ **6 millions de Juifs** exterminés dans les **camps de la mort** (Auschwitz).\n- Crimes contre l'humanité, massacres de civils.\n- Participation des **colonies** (tirailleurs africains et camerounais aux côtés de la France libre).\n\n## IV. Le bilan et les conséquences\n- **Bilan humain** : **50 à 60 millions de morts**, majorité de civils.\n- Destructions matérielles considérables.\n- Procès de **Nuremberg** (1945-1946) : jugement des criminels nazis.\n- Création de l'**Organisation des Nations unies (ONU)** en **1945**.\n- Nouvel ordre mondial : domination des **États-Unis** et de l'**URSS** ; début de la **Guerre froide** ; impulsion à la **décolonisation**.\n\n## Repères et chiffres clés\n- **1er septembre 1939** : invasion de la Pologne.\n- **7 décembre 1941** : Pearl Harbor.\n- **1942-1943** : Stalingrad (tournant).\n- **6 juin 1944** : débarquement de Normandie.\n- **8 mai 1945** : capitulation allemande.\n- **Août 1945** : Hiroshima et Nagasaki.\n- **2 septembre 1945** : capitulation japonaise.\n- **50 à 60 millions de morts** ; environ **6 millions de Juifs**.\n\n## Sujet type corrigé\n**Sujet : La Seconde Guerre mondiale : une guerre d'anéantissement.**\n\n*Problématique :* En quoi la Seconde Guerre mondiale fut-elle une guerre d'anéantissement par son ampleur et le génocide ?\n\n*Plan proposé :*\n- **I. Une guerre mondiale et totale** : étapes et théâtres d'opérations.\n- **II. Une guerre d'anéantissement** : génocide, crimes de masse.\n- **III. Un bilan et un nouvel ordre mondial** : pertes, ONU, Guerre froide, décolonisation.\n\n## À retenir\n- La guerre commence le **1er septembre 1939** (invasion de la Pologne).\n- Le tournant est la bataille de **Stalingrad** (1942-1943).\n- La guerre s'achève en **1945** ; environ **6 millions de Juifs** victimes de la **Shoah**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Quel événement déclenche la Seconde Guerre mondiale ?",
+            "options": [
+              "L'attentat de Sarajevo",
+              "L'invasion de la Pologne",
+              "Pearl Harbor",
+              "Le krach de 1929"
+            ],
+            "answer": 1,
+            "explanation": "L'invasion de la Pologne (1er septembre 1939) déclenche la guerre."
+          },
+          {
+            "q": "Quelle bataille marque le tournant du conflit ?",
+            "options": [
+              "Verdun",
+              "Stalingrad",
+              "La Marne",
+              "Waterloo"
+            ],
+            "answer": 1,
+            "explanation": "La bataille de Stalingrad (1942-1943) marque le tournant."
+          },
+          {
+            "q": "Quand a lieu le débarquement de Normandie ?",
+            "options": [
+              "8 mai 1945",
+              "6 juin 1944",
+              "7 décembre 1941",
+              "1er septembre 1939"
+            ],
+            "answer": 1,
+            "explanation": "Le débarquement de Normandie a lieu le 6 juin 1944."
+          },
+          {
+            "q": "Comment appelle-t-on le génocide des Juifs ?",
+            "options": [
+              "La Shoah",
+              "Le goulag",
+              "L'Anschluss",
+              "Le Blitzkrieg"
+            ],
+            "answer": 0,
+            "explanation": "Le génocide des Juifs est appelé la Shoah."
+          },
+          {
+            "q": "Quelle organisation est créée en 1945 ?",
+            "options": [
+              "La SDN",
+              "L'ONU",
+              "L'OTAN",
+              "L'Union européenne"
+            ],
+            "answer": 1,
+            "explanation": "L'Organisation des Nations unies (ONU) est créée en 1945."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La population mondiale et sa répartition",
+      "video": "https://www.youtube.com/watch?v=l8s2GZL5xS0",
+      "lesson": "# La population mondiale et sa répartition\n\n## Introduction\nLa **population mondiale** dépasse aujourd'hui **8 milliards d'habitants** et connaît une croissance rapide depuis le **XXe siècle**. Sa répartition est très inégale à la surface du globe. Comment évolue la population mondiale et comment se répartit-elle ?\n\n## I. L'évolution de la population mondiale\n- La population mondiale a connu une **croissance accélérée** : environ **1 milliard** en 1800, **2,5 milliards** en 1950, **plus de 8 milliards** aujourd'hui.\n- Cette croissance s'explique par la **transition démographique** : passage d'une forte mortalité et natalité à une faible mortalité, puis baisse de la natalité.\n- Le **taux d'accroissement naturel** = taux de natalité − taux de mortalité.\n\n## II. La répartition de la population\n- La population est **très inégalement répartie** : 90 % vivent dans l'hémisphère Nord.\n- Les **grands foyers de peuplement** : l'**Asie de l'Est** (Chine), l'**Asie du Sud** (Inde), l'**Europe**, le **nord-est des États-Unis**.\n- Les **vides humains** (déserts humains) : déserts chauds (Sahara), régions polaires, hautes montagnes, forêts denses (Amazonie).\n\n## III. Les facteurs de la répartition\n- **Facteurs naturels** : climat, relief, sols, présence d'eau.\n- **Facteurs historiques** : anciennes civilisations, foyers de peuplement anciens.\n- **Facteurs économiques** : ressources, activités, industrialisation, littoralisation.\n\n## IV. Les contrastes Nord-Sud\n- Les **pays du Sud** (en développement) ont une forte **natalité** et une population **jeune**.\n- Les **pays du Nord** (développés) ont une faible natalité et une population **vieillissante**.\n- Enjeux : **surpopulation** relative, **migrations**, urbanisation, pression sur les ressources.\n\n## Repères et chiffres clés\n- **Plus de 8 milliards** d'habitants (population mondiale actuelle).\n- **Asie** : plus de **60 %** de la population mondiale.\n- Densité = nombre d'habitants / km².\n- Les principaux foyers : Asie de l'Est et du Sud, Europe, nord-est des États-Unis.\n\n## Sujet type corrigé\n**Sujet : La répartition inégale de la population mondiale.**\n\n*Problématique :* Pourquoi la population mondiale est-elle si inégalement répartie ?\n\n*Plan proposé :*\n- **I. Une croissance rapide** : évolution et transition démographique.\n- **II. Une répartition contrastée** : foyers de peuplement et vides humains.\n- **III. Les facteurs explicatifs** : naturels, historiques, économiques.\n\n## À retenir\n- La population mondiale dépasse **8 milliards** d'habitants.\n- L'**Asie** concentre plus de **60 %** des habitants.\n- La répartition dépend de facteurs **naturels**, **historiques** et **économiques**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Combien d'habitants compte environ la population mondiale aujourd'hui ?",
+            "options": [
+              "1 milliard",
+              "4 milliards",
+              "Plus de 8 milliards",
+              "20 milliards"
+            ],
+            "answer": 2,
+            "explanation": "La population mondiale dépasse 8 milliards d'habitants."
+          },
+          {
+            "q": "Quel continent concentre la majorité de la population mondiale ?",
+            "options": [
+              "L'Afrique",
+              "L'Asie",
+              "L'Europe",
+              "L'Amérique"
+            ],
+            "answer": 1,
+            "explanation": "L'Asie concentre plus de 60 % de la population mondiale."
+          },
+          {
+            "q": "Comment calcule-t-on le taux d'accroissement naturel ?",
+            "options": [
+              "Natalité + mortalité",
+              "Natalité − mortalité",
+              "Mortalité − natalité",
+              "Natalité × mortalité"
+            ],
+            "answer": 1,
+            "explanation": "Accroissement naturel = taux de natalité − taux de mortalité."
+          },
+          {
+            "q": "Qu'appelle-t-on un 'vide humain' ?",
+            "options": [
+              "Une zone très peuplée",
+              "Une zone faiblement peuplée",
+              "Une grande ville",
+              "Un foyer de peuplement"
+            ],
+            "answer": 1,
+            "explanation": "Un vide humain est une région faiblement peuplée (désert, pôle...)."
+          },
+          {
+            "q": "Quelle caractéristique ont les pays du Sud ?",
+            "options": [
+              "Population vieillissante",
+              "Forte natalité et population jeune",
+              "Faible natalité",
+              "Aucune croissance"
+            ],
+            "answer": 1,
+            "explanation": "Les pays du Sud ont une forte natalité et une population jeune."
+          }
+        ]
+      }
+    },
+    {
+      "title": "L'urbanisation dans le monde",
+      "video": "https://www.youtube.com/watch?v=Wb9F5gqJdGA",
+      "lesson": "# L'urbanisation dans le monde\n\n## Introduction\nL'**urbanisation** est le processus de concentration croissante de la population dans les **villes**. Depuis la révolution industrielle, le monde se transforme : aujourd'hui, plus de la **moitié de l'humanité** vit en ville. Comment s'effectue l'urbanisation et quelles en sont les conséquences ?\n\n## I. Le phénomène de l'urbanisation\n- L'urbanisation = augmentation de la **part de la population urbaine**.\n- Le **taux d'urbanisation** = part de la population vivant en ville.\n- Depuis **2007-2008**, plus de **50 %** de la population mondiale vit en ville.\n- Naissance de **mégapoles** (plus de 10 millions d'habitants) : Tokyo, Delhi, Shanghai, Lagos, etc.\n\n## II. Les facteurs de l'urbanisation\n- L'**exode rural** : départ des campagnes vers les villes.\n- La **croissance naturelle** urbaine.\n- Le développement des **activités** (industrie, services, commerce).\n- L'attraction des villes (emploi, équipements, modernité).\n\n## III. Les contrastes Nord-Sud\n- Dans les **pays du Nord** : urbanisation ancienne, taux élevé, croissance ralentie ; étalement urbain, **périurbanisation**.\n- Dans les **pays du Sud** : urbanisation **rapide et récente**, croissance forte ; développement de **bidonvilles**, manque d'équipements.\n\n## IV. Les conséquences de l'urbanisation\n- **Conséquences positives** : concentration des activités, emplois, services, modernité.\n- **Problèmes** : **bidonvilles**, pollution, embouteillages, chômage, insécurité, manque de logements et d'eau potable.\n- Enjeux de **développement durable** : ville durable, transports, assainissement.\n\n## Repères et chiffres clés\n- **2007-2008** : plus de 50 % de la population mondiale est urbaine.\n- **Mégapole** : agglomération de plus de **10 millions** d'habitants.\n- Villes principales : **Tokyo**, Delhi, Shanghai, Lagos, Le Caire.\n- Au **Cameroun**, les principales villes : **Douala** et **Yaoundé**.\n\n## Sujet type corrigé\n**Sujet : L'urbanisation dans les pays du Sud : atouts et problèmes.**\n\n*Problématique :* Quelles sont les caractéristiques et les conséquences de l'urbanisation rapide dans les pays du Sud ?\n\n*Plan proposé :*\n- **I. Une urbanisation rapide** : exode rural et croissance urbaine.\n- **II. Des problèmes nombreux** : bidonvilles, chômage, équipements insuffisants.\n- **III. Des enjeux de développement** : aménagement et ville durable.\n\n## À retenir\n- L'**urbanisation** est la concentration de la population dans les villes.\n- Depuis **2007-2008**, plus de **50 %** de l'humanité vit en ville.\n- Les pays du **Sud** s'urbanisent vite, avec des **bidonvilles**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Qu'est-ce que l'urbanisation ?",
+            "options": [
+              "Le retour à la campagne",
+              "La concentration de la population dans les villes",
+              "La baisse de la population",
+              "L'agriculture intensive"
+            ],
+            "answer": 1,
+            "explanation": "L'urbanisation est la concentration croissante de la population dans les villes."
+          },
+          {
+            "q": "Depuis quand plus de 50 % de l'humanité vit en ville ?",
+            "options": [
+              "1950",
+              "2007-2008",
+              "1900",
+              "2020"
+            ],
+            "answer": 1,
+            "explanation": "Depuis 2007-2008, plus de la moitié de l'humanité est urbaine."
+          },
+          {
+            "q": "Qu'est-ce qu'une mégapole ?",
+            "options": [
+              "Un village",
+              "Une ville de plus de 10 millions d'habitants",
+              "Une capitale",
+              "Une zone rurale"
+            ],
+            "answer": 1,
+            "explanation": "Une mégapole compte plus de 10 millions d'habitants."
+          },
+          {
+            "q": "Quel facteur principal alimente l'urbanisation ?",
+            "options": [
+              "L'exode rural",
+              "Le retour à la terre",
+              "La baisse des naissances",
+              "La désindustrialisation"
+            ],
+            "answer": 0,
+            "explanation": "L'exode rural alimente fortement l'urbanisation."
+          },
+          {
+            "q": "Quel problème est typique des villes du Sud ?",
+            "options": [
+              "Le vieillissement",
+              "Les bidonvilles",
+              "La dépopulation",
+              "Le manque d'usines"
+            ],
+            "answer": 1,
+            "explanation": "Les bidonvilles sont caractéristiques de l'urbanisation rapide du Sud."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les grands domaines climatiques et bioclimatiques",
+      "video": "https://www.youtube.com/watch?v=t1Q3Rp4y5xE",
+      "lesson": "# Les grands domaines climatiques et bioclimatiques\n\n## Introduction\nLe **climat** est l'ensemble des conditions atmosphériques (température, précipitations) d'une région sur une longue période. À chaque grand domaine climatique correspond une **végétation** particulière : on parle de **domaines bioclimatiques**. Quels sont les grands domaines climatiques de la Terre et leur végétation ?\n\n## I. Les éléments et facteurs du climat\n- **Éléments du climat** : **température**, **précipitations**, vents, humidité.\n- **Facteurs** : la **latitude** (zonation), l'**altitude**, la **proximité de la mer**, les **courants marins**, le relief.\n- On distingue trois grandes **zones climatiques** : la **zone chaude** (intertropicale), les **zones tempérées**, les **zones froides** (polaires).\n\n## II. Les domaines de la zone chaude\n- Le **climat équatorial** : chaud et humide toute l'année, pluies abondantes ; végétation de **forêt dense équatoriale** (forêt vierge).\n- Le **climat tropical** : deux saisons (sèche et pluvieuse) ; végétation de **savane**.\n- Le **climat désertique (aride)** : très sec et chaud ; végétation rare (**steppe**, désert).\n\n## III. Les domaines des zones tempérées\n- Le **climat méditerranéen** : été chaud et sec, hiver doux et pluvieux ; végétation de **maquis** et **garrigue**.\n- Le **climat océanique** : doux et humide toute l'année ; **forêts de feuillus**.\n- Le **climat continental** : hivers froids, étés chauds, amplitude forte ; **forêts** et **steppes**.\n\n## IV. Les domaines des zones froides\n- Le **climat polaire** : très froid, neige et glace ; végétation absente ou rare.\n- Le climat **subpolaire** : **toundra** et **forêt de conifères (taïga)**.\n\n## Repères et chiffres clés\n- **Trois grandes zones** : chaude, tempérée, froide.\n- **Forêt équatoriale** : climat équatorial, chaud et humide.\n- **Savane** : climat tropical.\n- **Taïga** : forêt de conifères (zone froide).\n- Le **Cameroun**, « Afrique en miniature », présente plusieurs climats : équatorial (Sud), tropical (Centre/Nord), de montagne (Ouest).\n\n## Sujet type corrigé\n**Sujet : Présentez les grands domaines bioclimatiques de la zone intertropicale.**\n\n*Problématique :* Comment les climats de la zone chaude déterminent-ils la végétation de cette zone ?\n\n*Plan proposé :*\n- **I. Le domaine équatorial** : climat humide et forêt dense.\n- **II. Le domaine tropical** : saisons contrastées et savane.\n- **III. Le domaine désertique** : aridité et végétation rare.\n\n## À retenir\n- Le climat se définit par la **température** et les **précipitations**.\n- La **latitude** explique les trois grandes **zones** (chaude, tempérée, froide).\n- À chaque climat correspond une **végétation** (forêt, savane, taïga...).\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Quels sont les deux éléments principaux du climat ?",
+            "options": [
+              "Le relief et les sols",
+              "La température et les précipitations",
+              "Les vents et les marées",
+              "La faune et la flore"
+            ],
+            "answer": 1,
+            "explanation": "Le climat se définit surtout par la température et les précipitations."
+          },
+          {
+            "q": "Quelle végétation correspond au climat équatorial ?",
+            "options": [
+              "La savane",
+              "La forêt dense équatoriale",
+              "La toundra",
+              "Le maquis"
+            ],
+            "answer": 1,
+            "explanation": "Le climat équatorial donne la forêt dense équatoriale."
+          },
+          {
+            "q": "Quelle végétation correspond au climat tropical ?",
+            "options": [
+              "La forêt de conifères",
+              "La savane",
+              "La garrigue",
+              "La taïga"
+            ],
+            "answer": 1,
+            "explanation": "Le climat tropical est associé à la savane."
+          },
+          {
+            "q": "Quel facteur explique la zonation des climats ?",
+            "options": [
+              "La latitude",
+              "La langue",
+              "La religion",
+              "La densité de population"
+            ],
+            "answer": 0,
+            "explanation": "La latitude est le principal facteur de la zonation climatique."
+          },
+          {
+            "q": "Qu'appelle-t-on la taïga ?",
+            "options": [
+              "Un désert chaud",
+              "Une forêt de conifères des zones froides",
+              "Une savane",
+              "Une forêt équatoriale"
+            ],
+            "answer": 1,
+            "explanation": "La taïga est la forêt de conifères des zones froides."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les activités économiques : agriculture et industrie",
+      "video": "https://www.youtube.com/watch?v=Yk0v6wzv6cE",
+      "lesson": "# Les activités économiques : agriculture et industrie\n\n## Introduction\nLes **activités économiques** permettent aux hommes de produire les biens et services nécessaires à la vie. On les classe en trois **secteurs** : **primaire** (agriculture), **secondaire** (industrie) et **tertiaire** (services). Comment s'organisent l'agriculture et l'industrie dans le monde ?\n\n## I. Les secteurs d'activité\n- **Secteur primaire** : exploitation des ressources naturelles (agriculture, élevage, pêche, mines).\n- **Secteur secondaire** : transformation des matières premières (industrie, BTP).\n- **Secteur tertiaire** : services (commerce, transport, banque, administration, tourisme).\n\n## II. L'agriculture dans le monde\n- **L'agriculture vivrière** : destinée à l'autoconsommation, surtout dans les pays du Sud (manuelle, faible rendement).\n- **L'agriculture commerciale (de plantation, intensive)** : destinée à la vente, mécanisée, à fort rendement (pays du Nord, grandes exploitations).\n- Les **cultures de rente** : cacao, café, coton, banane (importantes au **Cameroun**).\n- Défis : sécurité alimentaire, modernisation, **développement durable**.\n\n## III. L'industrie dans le monde\n- L'industrie transforme les **matières premières** en produits finis.\n- Types : industries **lourdes** (sidérurgie, chimie), industries **légères** (textile, agroalimentaire), industries de **pointe** (électronique, informatique).\n- Localisation : anciennes régions industrielles (Europe, Amérique du Nord) et nouveaux pôles (**Asie**, notamment la **Chine**, « atelier du monde »).\n- Facteurs de localisation : matières premières, énergie, main-d'œuvre, transports, marchés.\n\n## IV. Les contrastes Nord-Sud\n- Le **Nord** : agriculture et industrie performantes, modernes.\n- Le **Sud** : économie souvent dominée par le secteur primaire et les exportations de matières premières ; industrialisation inégale.\n- Émergence de pays comme la Chine, l'Inde, le Brésil.\n\n## Repères et chiffres clés\n- **Trois secteurs** : primaire, secondaire, tertiaire.\n- **Chine** : « atelier du monde ».\n- Au **Cameroun** : cacao, café, coton, banane, bois (principales exportations).\n- Le secteur **tertiaire** domine dans les pays développés.\n\n## Sujet type corrigé\n**Sujet : Agriculture et industrie : moteurs du développement.**\n\n*Problématique :* Comment l'agriculture et l'industrie contribuent-elles au développement des pays ?\n\n*Plan proposé :*\n- **I. L'agriculture** : types et rôle dans l'économie.\n- **II. L'industrie** : formes et localisation.\n- **III. Les contrastes Nord-Sud** : niveaux de développement.\n\n## À retenir\n- On distingue trois **secteurs** : primaire, secondaire, tertiaire.\n- L'agriculture peut être **vivrière** ou **commerciale**.\n- L'industrie transforme les **matières premières** ; la **Chine** est « l'atelier du monde ».\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "À quel secteur appartient l'agriculture ?",
+            "options": [
+              "Primaire",
+              "Secondaire",
+              "Tertiaire",
+              "Quaternaire"
+            ],
+            "answer": 0,
+            "explanation": "L'agriculture appartient au secteur primaire."
+          },
+          {
+            "q": "Que produit l'agriculture vivrière ?",
+            "options": [
+              "Des produits pour la vente",
+              "Des produits pour l'autoconsommation",
+              "Des produits industriels",
+              "Des minerais"
+            ],
+            "answer": 1,
+            "explanation": "L'agriculture vivrière est destinée à l'autoconsommation."
+          },
+          {
+            "q": "Quel pays est surnommé 'l'atelier du monde' ?",
+            "options": [
+              "La France",
+              "La Chine",
+              "Le Cameroun",
+              "Le Brésil"
+            ],
+            "answer": 1,
+            "explanation": "La Chine est surnommée 'l'atelier du monde'."
+          },
+          {
+            "q": "Que fait le secteur secondaire ?",
+            "options": [
+              "Il exploite les ressources naturelles",
+              "Il transforme les matières premières",
+              "Il fournit des services",
+              "Il commercialise"
+            ],
+            "answer": 1,
+            "explanation": "Le secteur secondaire transforme les matières premières (industrie)."
+          },
+          {
+            "q": "Quelle culture de rente est importante au Cameroun ?",
+            "options": [
+              "Le riz",
+              "Le cacao",
+              "Le blé",
+              "La pomme de terre"
+            ],
+            "answer": 1,
+            "explanation": "Le cacao est une importante culture de rente au Cameroun."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Le Cameroun : milieu naturel et population",
+      "video": "https://www.youtube.com/watch?v=2D4Q4Q1c3yE",
+      "lesson": "# Le Cameroun : milieu naturel et population\n\n## Introduction\nSurnommé l'« **Afrique en miniature** », le **Cameroun** présente une grande diversité de **milieux naturels** et de **populations**. Situé en Afrique centrale, sur le golfe de Guinée, il s'étend sur environ **475 000 km²**. Quelles sont les caractéristiques du milieu naturel et de la population camerounaise ?\n\n## I. La situation et le relief\n- Le Cameroun est situé en **Afrique centrale**, entre l'équateur et le bassin du lac Tchad, ouvert sur l'**océan Atlantique** (golfe de Guinée).\n- Superficie : environ **475 442 km²**. Capitale : **Yaoundé** ; capitale économique : **Douala**.\n- Relief varié : **plaines côtières**, **plateaux** (Sud, Adamaoua), **montagnes** (mont **Cameroun**, point culminant à **4 095 m**, volcan actif), **plaines du Nord**.\n\n## II. Le climat, l'hydrographie et la végétation\n- **Climats** : équatorial au Sud (chaud et humide), tropical au Centre et au Nord (saison sèche marquée), de montagne à l'Ouest.\n- **Hydrographie** : nombreux fleuves (Sanaga, Nyong, Logone, Bénoué...) ; le **lac Tchad** au Nord.\n- **Végétation** : **forêt dense** au Sud, **savane** au Centre et au Nord, **steppe** vers l'extrême Nord, végétation de montagne à l'Ouest.\n\n## III. La population camerounaise\n- Population : environ **27 à 28 millions** d'habitants, en forte croissance.\n- Population **jeune** : forte natalité, majorité de moins de 25 ans.\n- Répartition **inégale** : forte densité à l'**Ouest**, au **Centre**, dans le **Littoral** et l'**Extrême-Nord** ; faible densité dans l'Est et le Sud.\n- Grande **diversité ethnique et linguistique** : plus de **250 ethnies**, deux langues officielles (**français** et **anglais**), bilinguisme.\n\n## IV. Les enjeux de population\n- Forte **urbanisation** (Douala, Yaoundé).\n- Défis : emploi des jeunes, éducation, santé, aménagement du territoire, exode rural.\n- Atouts : richesse humaine, diversité culturelle, ressources naturelles.\n\n## Repères et chiffres clés\n- Superficie : environ **475 442 km²**.\n- Mont Cameroun : **4 095 m** (point culminant d'Afrique de l'Ouest/Centre).\n- Population : environ **27-28 millions** d'habitants.\n- Plus de **250 ethnies** ; deux langues officielles (**français**, **anglais**).\n- Capitale politique : **Yaoundé** ; capitale économique : **Douala**.\n\n## Sujet type corrigé\n**Sujet : Le Cameroun, une « Afrique en miniature ».**\n\n*Problématique :* Pourquoi qualifie-t-on le Cameroun d'« Afrique en miniature » du point de vue de son milieu naturel et de sa population ?\n\n*Plan proposé :*\n- **I. Un milieu naturel diversifié** : relief, climats et végétation variés.\n- **II. Une population nombreuse et diverse** : démographie et diversité culturelle.\n- **III. Des enjeux et des atouts** : urbanisation, défis et richesses.\n\n## À retenir\n- Le Cameroun est l'« **Afrique en miniature** » (relief, climats et peuples variés).\n- Superficie d'environ **475 442 km²** ; mont Cameroun à **4 095 m**.\n- Population **jeune**, environ **27-28 millions** d'habitants, plus de **250 ethnies**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Quel surnom donne-t-on au Cameroun ?",
+            "options": [
+              "Le grenier de l'Afrique",
+              "L'Afrique en miniature",
+              "Le toit de l'Afrique",
+              "La porte de l'Afrique"
+            ],
+            "answer": 1,
+            "explanation": "Le Cameroun est surnommé 'l'Afrique en miniature' pour sa diversité."
+          },
+          {
+            "q": "Quel est le point culminant du Cameroun ?",
+            "options": [
+              "Le mont Cameroun (4 095 m)",
+              "Le Kilimandjaro",
+              "Le mont Manengouba",
+              "Les monts Mandara"
+            ],
+            "answer": 0,
+            "explanation": "Le mont Cameroun culmine à 4 095 m."
+          },
+          {
+            "q": "Quelle est la capitale politique du Cameroun ?",
+            "options": [
+              "Douala",
+              "Yaoundé",
+              "Bafoussam",
+              "Garoua"
+            ],
+            "answer": 1,
+            "explanation": "Yaoundé est la capitale politique ; Douala la capitale économique."
+          },
+          {
+            "q": "Quelles sont les deux langues officielles du Cameroun ?",
+            "options": [
+              "Français et espagnol",
+              "Français et anglais",
+              "Anglais et allemand",
+              "Français et arabe"
+            ],
+            "answer": 1,
+            "explanation": "Le Cameroun a deux langues officielles : le français et l'anglais."
+          },
+          {
+            "q": "Quelle est une caractéristique de la population camerounaise ?",
+            "options": [
+              "Elle est vieillissante",
+              "Elle est jeune et en forte croissance",
+              "Elle décroît",
+              "Elle est homogène"
+            ],
+            "answer": 1,
+            "explanation": "La population camerounaise est jeune et en forte croissance."
+          }
+        ]
+      }
+    }
+  ]
+}
