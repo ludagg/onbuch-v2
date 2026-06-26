@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/rich_answer.dart';
 import '../../models/course.dart';
@@ -83,19 +84,7 @@ class _LessonReaderScreenState extends State<LessonReaderScreen> {
       Expanded(child: ListView(
         padding: const EdgeInsets.fromLTRB(20, 4, 20, 120),
         children: [
-          AspectRatio(
-            aspectRatio: 16 / 9,
-            child: Container(
-              decoration: BoxDecoration(color: OC.panel, borderRadius: BorderRadius.circular(16)),
-              alignment: Alignment.center,
-              child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-                Container(width: 56, height: 56, decoration: const BoxDecoration(gradient: OC.grad, shape: BoxShape.circle),
-                    child: const Icon(Icons.play_arrow_rounded, color: Colors.white, size: 30)),
-                const SizedBox(height: 8),
-                Text('Vidéo de la leçon', style: body(11.5, color: OC.muted, weight: FontWeight.w600)),
-              ]),
-            ),
-          ),
+          _LessonVideo(m?.videoUrl),
           const SizedBox(height: 14),
           Row(children: List.generate(_kTabs.length, (t) {
             final active = _tab == t;
@@ -195,6 +184,8 @@ class _LessonReaderScreenState extends State<LessonReaderScreen> {
             child: Text(label, style: body(13.5, weight: FontWeight.w700, color: Colors.white))),
       );
 
+  // (lecteur vidéo extrait en _LessonVideo ci-dessous)
+
   Widget _footer(Pack p, int total) {
     final hasNext = _i < total - 1;
     return Container(
@@ -218,6 +209,80 @@ class _LessonReaderScreenState extends State<LessonReaderScreen> {
               child: Text(hasNext ? 'Leçon suivante →' : 'Terminer ✓', style: body(14, weight: FontWeight.w700, color: Colors.white))),
         )),
       ]),
+    );
+  }
+}
+
+/// Lecteur vidéo **intégré** (inline) de la leçon. Affiche la vidéo YouTube du
+/// chapitre via `youtube_player_iframe` ; emplacement « bientôt disponible » si
+/// aucune vidéo (ou lien non reconnu). Recrée le contrôleur si l'URL change.
+class _LessonVideo extends StatefulWidget {
+  final String? url;
+  const _LessonVideo(this.url);
+
+  @override
+  State<_LessonVideo> createState() => _LessonVideoState();
+}
+
+class _LessonVideoState extends State<_LessonVideo> {
+  YoutubePlayerController? _yt;
+
+  @override
+  void initState() {
+    super.initState();
+    _setup();
+  }
+
+  void _setup() {
+    final url = (widget.url ?? '').trim();
+    if (url.isEmpty) return;
+    final id = YoutubePlayerController.convertUrlToId(url);
+    if (id != null) {
+      _yt = YoutubePlayerController.fromVideoId(
+        videoId: id,
+        autoPlay: false,
+        params: const YoutubePlayerParams(showFullscreenButton: true),
+      );
+    }
+  }
+
+  @override
+  void didUpdateWidget(covariant _LessonVideo old) {
+    super.didUpdateWidget(old);
+    if (old.url != widget.url) {
+      _yt?.close();
+      _yt = null;
+      _setup();
+      if (mounted) setState(() {});
+    }
+  }
+
+  @override
+  void dispose() {
+    _yt?.close();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (_yt != null) {
+      return ClipRRect(
+        borderRadius: BorderRadius.circular(16),
+        child: AspectRatio(aspectRatio: 16 / 9, child: YoutubePlayer(controller: _yt!)),
+      );
+    }
+    // Aucune vidéo (ou lien non reconnu) : emplacement neutre.
+    return AspectRatio(
+      aspectRatio: 16 / 9,
+      child: Container(
+        decoration: BoxDecoration(color: OC.panel, borderRadius: BorderRadius.circular(16)),
+        alignment: Alignment.center,
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Icon(Icons.smart_display_outlined, size: 34, color: OC.faint),
+          const SizedBox(height: 8),
+          Text('Vidéo bientôt disponible', style: body(11.5, color: OC.muted, weight: FontWeight.w600)),
+        ]),
+      ),
     );
   }
 }
