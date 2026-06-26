@@ -1,0 +1,774 @@
+{
+  "code": "An",
+  "level": "Première",
+  "chapters": [
+    {
+      "title": "Present and Past Tenses",
+      "video": "https://www.youtube.com/watch?v=Ix3Hpa86vGc",
+      "lesson": "# Present and Past Tenses\n\n## Introduction\n\nEnglish verbs locate actions in **time** (present or past) and describe the **aspect** of the action (simple, continuous, perfect, perfect continuous). At Première level you must use these tenses accurately to narrate events, describe habits and report experiences. This chapter reviews the four present forms and the four past forms.\n\n## The Present Simple\n\nThe **present simple** describes habits, routines, general truths and permanent situations.\n\n**Form:** subject + base verb (add **-s/-es** for he/she/it).\n\n- I **work** in Yaoundé.\n- She **studies** every evening.\n- Water **boils** at 100 degrees Celsius.\n- The sun **rises** in the east.\n\n**Signal words:** always, usually, often, every day, sometimes, never.\n\n- We **always go** to church on Sundays.\n\n## The Present Continuous\n\nThe **present continuous** describes an action happening **now** or a temporary situation.\n\n**Form:** subject + **am/is/are** + verb-**ing**.\n\n- I **am writing** an essay at the moment.\n- They **are playing** football right now.\n- He **is staying** with his uncle this week. (temporary)\n\n**Note:** stative verbs (know, love, believe, want, understand) are normally **not** used in the continuous: *I know the answer* (not *I am knowing*).\n\n## The Present Perfect\n\nThe **present perfect** links the past to the present: an action that happened at an unspecified time, or that started in the past and continues.\n\n**Form:** subject + **have/has** + past participle.\n\n- I **have visited** Douala twice.\n- She **has finished** her homework. (it is done now)\n- We **have lived** here **for** ten years.\n\n**Signal words:** ever, never, already, yet, just, since, for.\n\n- Have you **ever eaten** ndolé?\n\n## The Past Simple\n\nThe **past simple** describes completed actions at a **definite** time in the past.\n\n**Form:** verb + **-ed** (regular) or special past form (irregular).\n\n- I **visited** my grandmother yesterday.\n- They **went** to the market last Saturday.\n- He **wrote** a beautiful poem.\n\n**Signal words:** yesterday, ago, last week, in 2010, then.\n\n## The Past Continuous\n\nThe **past continuous** describes an action **in progress** at a moment in the past, often interrupted by another action.\n\n**Form:** subject + **was/were** + verb-**ing**.\n\n- I **was reading** when the lights went out.\n- While she **was cooking**, the phone rang.\n\n## The Past Perfect\n\nThe **past perfect** describes an action completed **before** another past action.\n\n**Form:** subject + **had** + past participle.\n\n- When we arrived, the film **had already started**.\n- She **had eaten** before she left home.\n\n## Worked Examples / Practice\n\n**Example 1:** Put the verb in the correct tense: *Last night I (watch) a film while my brother (sleep).*\n**Answer:** *Last night I **watched** a film while my brother **was sleeping**.* — The main completed action takes the past simple; the background action in progress takes the past continuous.\n\n**Example 2:** Choose present perfect or past simple: *I (see) that film. I (see) it in 2019.*\n**Answer:** *I **have seen** that film.* (unspecified time, link to now) / *I **saw** it in 2019.* (definite past time).\n\n**Example 3:** Combine with the past perfect: *The match started. Then we arrived.*\n**Answer:** *When we arrived, the match **had** already **started**.* — The earlier action (the match starting) takes the past perfect.\n\n## Key Points\n\n- **Present simple** = habits and general truths; add **-s** for he/she/it.\n- **Present continuous** = action happening now; not used with stative verbs.\n- **Present perfect** = past action with present relevance (ever, just, already, since, for).\n- **Past simple** = completed action at a definite past time.\n- **Past continuous** = action in progress in the past, often interrupted.\n- **Past perfect** = action completed before another past action.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Choose the correct sentence about a daily habit.",
+            "options": [
+              "She is going to school every day.",
+              "She goes to school every day.",
+              "She go to school every day.",
+              "She has gone to school every day."
+            ],
+            "answer": 1,
+            "explanation": "Daily habits take the present simple; with 'she' the verb adds -es: 'goes'."
+          },
+          {
+            "q": "Complete: 'I ___ my keys, so I cannot open the door.'",
+            "options": [
+              "lose",
+              "was losing",
+              "have lost",
+              "lost"
+            ],
+            "answer": 2,
+            "explanation": "The present perfect 'have lost' shows a past action with a present result (the door cannot be opened now)."
+          },
+          {
+            "q": "Which sentence correctly uses the past continuous?",
+            "options": [
+              "I was reading when the phone rang.",
+              "I read when the phone was ringing.",
+              "I have read when the phone rang.",
+              "I reading when the phone rang."
+            ],
+            "answer": 0,
+            "explanation": "The past continuous 'was reading' describes the action in progress, interrupted by the simple-past action 'rang'."
+          },
+          {
+            "q": "Complete: 'When we got to the cinema, the film ___.'",
+            "options": [
+              "already started",
+              "has already started",
+              "had already started",
+              "was already start"
+            ],
+            "answer": 2,
+            "explanation": "The past perfect 'had already started' shows the film started before we arrived."
+          },
+          {
+            "q": "Which verb is normally NOT used in the continuous form?",
+            "options": [
+              "run",
+              "write",
+              "know",
+              "play"
+            ],
+            "answer": 2,
+            "explanation": "'Know' is a stative verb, so we say 'I know' not 'I am knowing'."
+          }
+        ]
+      }
+    },
+    {
+      "title": "The Future and Its Aspects",
+      "video": "https://www.youtube.com/watch?v=NUMQTTUtvT8",
+      "lesson": "# The Future and Its Aspects\n\n## Introduction\n\nEnglish has several ways of talking about **the future**. The form you choose depends on whether you are making a **prediction**, a **decision**, a **plan**, an **arrangement**, or describing something already in progress at a future time. This chapter presents the main future forms and when to use them.\n\n## Will (Future Simple)\n\nWe use **will** + base verb for predictions, instant decisions, promises and offers.\n\n**Form:** subject + **will** + base verb.\n\n- I think it **will rain** tomorrow. (prediction)\n- The phone is ringing — I **will answer** it. (instant decision)\n- I **will help** you with your homework. (promise/offer)\n\n**Negative:** will not (**won't**): *She **won't be** late.*\n\n## Be Going To\n\nWe use **be going to** + base verb for **intentions/plans** already decided and for predictions based on **present evidence**.\n\n**Form:** subject + **am/is/are** + **going to** + base verb.\n\n- We **are going to build** a new school. (plan)\n- Look at those clouds — it **is going to rain**. (evidence)\n\n## Present Continuous for the Future\n\nThe **present continuous** expresses **fixed arrangements** with other people, often with a time/place.\n\n- I **am meeting** the headmaster at 3 p.m.\n- They **are travelling** to Bamenda next weekend.\n\n## Present Simple for the Future\n\nThe **present simple** is used for **timetables and schedules**.\n\n- The train **leaves** at 6 a.m.\n- The exam **starts** on Monday.\n\n## Future Continuous\n\nThe **future continuous** describes an action **in progress** at a specific future time.\n\n**Form:** subject + **will be** + verb-**ing**.\n\n- This time tomorrow I **will be sitting** the exam.\n- Don't call at 8 — we **will be having** dinner.\n\n## Future Perfect\n\nThe **future perfect** describes an action that **will be completed before** a future moment.\n\n**Form:** subject + **will have** + past participle.\n\n- By 2030 I **will have finished** university.\n- By the time you arrive, we **will have eaten**.\n\n## Worked Examples / Practice\n\n**Example 1:** Choose the best future form: *Look at the sky! It ___ rain.*\n**Answer:** *It **is going to** rain.* — A prediction based on present evidence (the sky) uses 'be going to'.\n\n**Example 2:** Express a fixed arrangement: *I / meet / my friends / tonight.*\n**Answer:** *I **am meeting** my friends tonight.* — A definite social arrangement uses the present continuous.\n\n**Example 3:** Use the future perfect: *He started a five-year course in 2026.*\n**Answer:** *By 2031 he **will have completed** the course.* — An action finished before a future point uses the future perfect.\n\n## Key Points\n\n- **Will** = predictions, instant decisions, promises, offers.\n- **Be going to** = prior intentions and predictions from evidence.\n- **Present continuous** = fixed personal arrangements.\n- **Present simple** = timetables and schedules.\n- **Future continuous (will be + -ing)** = action in progress at a future time.\n- **Future perfect (will have + past participle)** = action completed before a future moment.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Which form best expresses an instant decision made at the moment of speaking?",
+            "options": [
+              "I am going to answer the phone.",
+              "I will answer the phone.",
+              "I answer the phone.",
+              "I am answering the phone."
+            ],
+            "answer": 1,
+            "explanation": "'Will' is used for decisions made at the moment of speaking."
+          },
+          {
+            "q": "Complete: 'Look at those black clouds! It ___ rain.'",
+            "options": [
+              "will",
+              "is going to",
+              "shall",
+              "rains"
+            ],
+            "answer": 1,
+            "explanation": "'Be going to' expresses a prediction based on present evidence (the clouds)."
+          },
+          {
+            "q": "Choose the correct sentence for a fixed personal arrangement.",
+            "options": [
+              "I meet the doctor at 5 tomorrow.",
+              "I will meeting the doctor at 5 tomorrow.",
+              "I am meeting the doctor at 5 tomorrow.",
+              "I will met the doctor at 5 tomorrow."
+            ],
+            "answer": 2,
+            "explanation": "The present continuous is used for fixed personal arrangements with a definite time."
+          },
+          {
+            "q": "Which sentence uses the future perfect correctly?",
+            "options": [
+              "By June I will finishing my project.",
+              "By June I will have finished my project.",
+              "By June I am finishing my project.",
+              "By June I finish my project."
+            ],
+            "answer": 1,
+            "explanation": "'Will have finished' shows the action will be complete before the future point (June)."
+          },
+          {
+            "q": "Choose the correct form for a timetable: 'The bus ___ at 7 a.m.'",
+            "options": [
+              "is leaving",
+              "will leave",
+              "leaves",
+              "leave"
+            ],
+            "answer": 2,
+            "explanation": "Timetables and schedules take the present simple: 'leaves'."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Modal Verbs",
+      "video": "https://www.youtube.com/watch?v=l9Ympw5Esuw",
+      "lesson": "# Modal Verbs\n\n## Introduction\n\n**Modal verbs** (also called modal auxiliaries) express attitudes such as **ability, permission, obligation, advice, possibility** and **certainty**. The common modals are **can, could, may, might, must, shall, should, will, would, ought to**. They are special because they are followed by the **base form** of the verb and do not change with the subject.\n\n## Key Features of Modals\n\n- No **-s** in the third person: *She **can** swim* (not *cans*).\n- Followed by the **base verb**: *He **must go*** (not *must to go*).\n- Negatives add **not**: cannot, must not, should not.\n- No **do/does** in questions: *Can you help?* (not *Do you can?*).\n\n## Ability: can, could, be able to\n\n- I **can** speak English and French. (present ability)\n- When I was young, I **could** climb trees. (past ability)\n- She **was able to** finish the race. (managed to, single achievement)\n\n## Permission: can, could, may\n\n- **Can** I leave the room? (informal)\n- **Could** I borrow your pen? (polite)\n- **May** I come in? (formal)\n\n## Obligation and Necessity: must, have to\n\n- You **must** wear a uniform. (strong obligation, often from the speaker)\n- Students **have to** pay the fees. (external obligation/rule)\n- You **mustn't** cheat. (prohibition — it is forbidden)\n- You **don't have to** come early. (no obligation — it is not necessary)\n\n**Note:** *must not* and *don't have to* mean very different things.\n\n## Advice: should, ought to\n\n- You **should** revise every day. (advice)\n- He **ought to** apologise. (advice/duty)\n- You **shouldn't** waste time.\n\n## Possibility and Certainty: may, might, must, can't\n\n- It **may/might** rain later. (possibility)\n- She **must** be tired — she worked all night. (logical certainty)\n- That **can't** be true. (logical impossibility)\n\n## Worked Examples / Practice\n\n**Example 1:** Express prohibition: *Smoking here is forbidden.*\n**Answer:** *You **mustn't** smoke here.* — 'Mustn't' expresses prohibition.\n\n**Example 2:** Choose between 'mustn't' and 'don't have to': *The exam is optional, so you ___ take it.*\n**Answer:** *You **don't have to** take it.* — There is no obligation, so we use 'don't have to', not 'mustn't'.\n\n**Example 3:** Express logical certainty: *The lights are on and I can hear voices.*\n**Answer:** *Someone **must** be at home.* — 'Must' expresses a strong logical conclusion.\n\n## Key Points\n\n- Modals are followed by the **base verb** and never take **-s**.\n- **Can/could/be able to** = ability; **can/could/may** = permission.\n- **Must/have to** = obligation; **mustn't** = prohibition; **don't have to** = no obligation.\n- **Should/ought to** = advice.\n- **May/might** = possibility; **must** = certainty; **can't** = impossibility.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Which sentence is grammatically correct?",
+            "options": [
+              "She cans drive a car.",
+              "She can drives a car.",
+              "She can drive a car.",
+              "She can to drive a car."
+            ],
+            "answer": 2,
+            "explanation": "Modals take no -s and are followed by the base verb: 'She can drive.'"
+          },
+          {
+            "q": "'The exam is optional.' Which sentence follows logically?",
+            "options": [
+              "You mustn't take it.",
+              "You don't have to take it.",
+              "You must take it.",
+              "You should not be able to take it."
+            ],
+            "answer": 1,
+            "explanation": "'Don't have to' means there is no obligation; 'mustn't' would mean it is forbidden."
+          },
+          {
+            "q": "Choose the modal for polite permission: '___ I borrow your book, please?'",
+            "options": [
+              "Must",
+              "Could",
+              "Should",
+              "Would"
+            ],
+            "answer": 1,
+            "explanation": "'Could' is used to ask for permission politely."
+          },
+          {
+            "q": "'He worked all night.' Which expresses logical certainty?",
+            "options": [
+              "He might be tired.",
+              "He can't be tired.",
+              "He must be tired.",
+              "He should be tired."
+            ],
+            "answer": 2,
+            "explanation": "'Must' expresses a strong logical conclusion based on evidence."
+          },
+          {
+            "q": "Which sentence gives advice?",
+            "options": [
+              "You must pay the fees by law.",
+              "You can speak three languages.",
+              "You should revise every day.",
+              "You may leave now."
+            ],
+            "answer": 2,
+            "explanation": "'Should' is used to give advice."
+          }
+        ]
+      }
+    },
+    {
+      "title": "The Passive Voice",
+      "video": "https://www.youtube.com/watch?v=A2_e8sZyD0Q",
+      "lesson": "# The Passive Voice\n\n## Introduction\n\nIn the **active voice**, the subject does the action. In the **passive voice**, the subject **receives** the action. We use the passive when the **doer is unknown, unimportant or obvious**, or when we want to focus on the action or the result.\n\n- **Active:** The teacher corrected the essays.\n- **Passive:** The essays **were corrected** by the teacher.\n\n## How to Form the Passive\n\n**Form:** subject + the correct tense of **be** + **past participle** (+ by + agent).\n\nThe object of the active sentence becomes the **subject** of the passive sentence.\n\n| Tense | Active | Passive |\n|---|---|---|\n| Present simple | They build houses. | Houses **are built**. |\n| Present continuous | They are building a house. | A house **is being built**. |\n| Past simple | They built a house. | A house **was built**. |\n| Present perfect | They have built a house. | A house **has been built**. |\n| Future (will) | They will build a house. | A house **will be built**. |\n| Modal | They must build a house. | A house **must be built**. |\n\n## The Agent (by + doer)\n\nWe add **by + agent** only when the doer is important.\n\n- The novel **was written by** Ferdinand Oyono.\n- My phone **was stolen**. (agent unknown — no 'by')\n\n## When to Use the Passive\n\n- The doer is **unknown:** *The window **was broken** last night.*\n- The doer is **obvious:** *The thief **was arrested**.* (by the police)\n- To focus on the **process/result:** *Cocoa **is grown** in the South Region.*\n- In **formal/scientific** writing: *The water **was heated** to 100°C.*\n\n## Changing Active to Passive: Steps\n\n1. Make the **object** of the active sentence the **subject**.\n2. Put **be** in the **same tense** as the active verb.\n3. Add the **past participle** of the main verb.\n4. Add **by + the old subject** if needed.\n\n**Active:** *People speak French in Cameroon.*\n**Passive:** *French **is spoken** in Cameroon.*\n\n## Worked Examples / Practice\n\n**Example 1:** Make passive: *Someone has stolen my bicycle.*\n**Answer:** *My bicycle **has been stolen**.* — Present perfect passive = has/have been + past participle; no agent because it is unknown.\n\n**Example 2:** Make passive: *They will announce the results tomorrow.*\n**Answer:** *The results **will be announced** tomorrow.* — Future passive = will be + past participle.\n\n**Example 3:** Make passive keeping the agent: *Chinua Achebe wrote 'Things Fall Apart'.*\n**Answer:** *'Things Fall Apart' **was written by** Chinua Achebe.* — Past simple passive with the agent kept because it is important.\n\n## Key Points\n\n- Passive = correct tense of **be** + **past participle**.\n- The active **object** becomes the passive **subject**.\n- Keep the verb in the **same tense** when changing voice.\n- Use **by + agent** only when the doer matters.\n- Use the passive when the doer is unknown, obvious, or unimportant.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Change to the passive: 'They build houses here.'",
+            "options": [
+              "Houses build here.",
+              "Houses are built here.",
+              "Houses are building here.",
+              "Houses have built here."
+            ],
+            "answer": 1,
+            "explanation": "Present simple passive = are + past participle: 'Houses are built here.'"
+          },
+          {
+            "q": "Which is the correct present perfect passive?",
+            "options": [
+              "My car has stolen.",
+              "My car has been stolen.",
+              "My car is stolen yesterday.",
+              "My car was been stolen."
+            ],
+            "answer": 1,
+            "explanation": "Present perfect passive = has/have been + past participle: 'has been stolen.'"
+          },
+          {
+            "q": "Change to passive: 'They will announce the results.'",
+            "options": [
+              "The results will announced.",
+              "The results are announced.",
+              "The results will be announced.",
+              "The results will being announced."
+            ],
+            "answer": 2,
+            "explanation": "Future passive with 'will' = will be + past participle."
+          },
+          {
+            "q": "When is 'by + agent' usually omitted?",
+            "options": [
+              "When the doer is the writer of a book.",
+              "When the doer is unknown or unimportant.",
+              "When the verb is in the past.",
+              "When the sentence is a question."
+            ],
+            "answer": 1,
+            "explanation": "The agent is left out when the doer is unknown, obvious, or unimportant."
+          },
+          {
+            "q": "Which sentence is correctly in the passive voice?",
+            "options": [
+              "French is speaking in Cameroon.",
+              "French speaks in Cameroon.",
+              "French is spoken in Cameroon.",
+              "French has speak in Cameroon."
+            ],
+            "answer": 2,
+            "explanation": "Passive = be + past participle: 'is spoken'."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Reported Speech (Introduction)",
+      "video": "https://www.youtube.com/watch?v=L4XfByiOu94",
+      "lesson": "# Reported Speech (Introduction)\n\n## Introduction\n\n**Direct speech** repeats a speaker's exact words inside quotation marks. **Reported (indirect) speech** tells what someone said **without** quoting them exactly. When we report, we usually **change tenses, pronouns and time/place words**.\n\n- **Direct:** She said, \"I **am** tired.\"\n- **Reported:** She said (that) she **was** tired.\n\n## Reporting Statements\n\nUse **say** or **tell** + (that) + clause. With **tell** you must name the listener.\n\n- He **said (that)** he liked football.\n- He **told me (that)** he liked football.\n\n### The Backshift of Tenses\n\nWhen the reporting verb is in the **past** (said, told), the verb in the reported clause usually moves **one tense back**.\n\n| Direct | Reported |\n|---|---|\n| present simple → | past simple |\n| present continuous → | past continuous |\n| past simple → | past perfect |\n| present perfect → | past perfect |\n| will → | would |\n| can → | could |\n| may → | might |\n| must → | had to |\n\n- \"I **work** hard.\" → He said he **worked** hard.\n- \"I **will** call you.\" → She said she **would** call me.\n- \"I **can** swim.\" → He said he **could** swim.\n\n## Changing Pronouns and Time/Place Words\n\nPronouns change to match the new speaker's point of view.\n\n- \"**I** lost **my** pen.\" → He said **he** had lost **his** pen.\n\nTime and place expressions also shift:\n\n| Direct | Reported |\n|---|---|\n| now → | then |\n| today → | that day |\n| tomorrow → | the next day |\n| yesterday → | the day before |\n| here → | there |\n| this → | that |\n\n- \"I will see you **tomorrow**.\" → She said she would see me **the next day**.\n\n## Reporting Questions\n\nFor **yes/no** questions, use **if/whether**; for **wh-** questions, keep the question word. The word order becomes that of a **statement** (no inversion, no auxiliary 'do').\n\n- \"**Do** you like tea?\" → She asked **if** I **liked** tea.\n- \"**Where** do you live?\" → He asked **where** I **lived**.\n\n## Reporting Commands\n\nUse **tell/ask** + object + **to**-infinitive.\n\n- \"Sit down.\" → The teacher **told us to sit down**.\n- \"Please don't shout.\" → She **asked them not to shout**.\n\n## Worked Examples / Practice\n\n**Example 1:** Report: *He said, \"I am studying English.\"*\n**Answer:** *He said (that) he **was studying** English.* — Present continuous backshifts to past continuous; 'I' becomes 'he'.\n\n**Example 2:** Report the question: *She asked, \"Where are you going?\"*\n**Answer:** *She asked **where I was going**.* — Keep the wh-word, use statement order, backshift 'are' to 'was'.\n\n**Example 3:** Report the command: *The teacher said, \"Open your books.\"*\n**Answer:** *The teacher **told us to open** our books.* — Commands use tell + object + to-infinitive.\n\n## Key Points\n\n- Reported speech tells what was said **without** exact quotation.\n- After a past reporting verb, **backshift** the tense one step.\n- Change **pronouns** and **time/place** words to fit the new viewpoint.\n- Questions: use **if/whether** or the **wh-word** with **statement word order**.\n- Commands: **tell/ask + object + (not) to + verb**.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Report: He said, 'I am happy.'",
+            "options": [
+              "He said he is happy.",
+              "He said he was happy.",
+              "He said I am happy.",
+              "He said he be happy."
+            ],
+            "answer": 1,
+            "explanation": "After 'said', present simple 'am' backshifts to past 'was', and 'I' becomes 'he'."
+          },
+          {
+            "q": "Report: 'I will help you,' she said.",
+            "options": [
+              "She said she will help me.",
+              "She said she helped me.",
+              "She said she would help me.",
+              "She said I would help you."
+            ],
+            "answer": 2,
+            "explanation": "'Will' backshifts to 'would' and the pronouns change to 'she' and 'me'."
+          },
+          {
+            "q": "Report the question: She asked, 'Do you speak French?'",
+            "options": [
+              "She asked do I speak French.",
+              "She asked if I spoke French.",
+              "She asked if did I speak French.",
+              "She asked whether do I speak French."
+            ],
+            "answer": 1,
+            "explanation": "Yes/no questions use 'if/whether' with statement word order; 'do you speak' becomes 'I spoke'."
+          },
+          {
+            "q": "Report the command: 'Close the door,' he said.",
+            "options": [
+              "He said to close the door.",
+              "He told me close the door.",
+              "He told me to close the door.",
+              "He said me to close the door."
+            ],
+            "answer": 2,
+            "explanation": "Commands use 'tell + object + to + verb': 'He told me to close the door.'"
+          },
+          {
+            "q": "Which word change is correct in reported speech?",
+            "options": [
+              "tomorrow stays 'tomorrow'",
+              "today becomes 'that day'",
+              "here becomes 'this place exactly'",
+              "now becomes 'right now'"
+            ],
+            "answer": 1,
+            "explanation": "'Today' becomes 'that day' when the reporting viewpoint shifts to the past."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Relative Clauses",
+      "video": "https://www.youtube.com/watch?v=fHKbVi6gPyk",
+      "lesson": "# Relative Clauses\n\n## Introduction\n\nA **relative clause** gives more information about a noun. It begins with a **relative pronoun** (who, whom, which, that, whose) or a **relative adverb** (where, when, why). Relative clauses help us combine two short sentences into one and avoid repetition.\n\n- The boy **who won the prize** is my friend.\n- This is the house **where I was born**.\n\n## Relative Pronouns\n\n| Pronoun | Used for | Example |\n|---|---|---|\n| **who** | people (subject) | The teacher **who** helped me is kind. |\n| **whom** | people (object, formal) | The man **whom** I met is a doctor. |\n| **which** | things/animals | The book **which** I read is interesting. |\n| **that** | people or things | The car **that** broke down is mine. |\n| **whose** | possession | The girl **whose** bag was stolen cried. |\n\n## Defining (Restrictive) Relative Clauses\n\nA **defining** relative clause gives **essential** information: it identifies which person or thing we mean. It is **not** separated by commas.\n\n- The student **who studies hard** passes. (tells us which student)\n- The phone **that I bought** is excellent.\n\nIn defining clauses, you can often use **that** instead of who/which, and you can **omit** the pronoun when it is the **object**.\n\n- The film (**that/which**) I watched was great. (object — can be dropped)\n\n## Non-Defining (Non-Restrictive) Relative Clauses\n\nA **non-defining** clause gives **extra**, non-essential information. It is separated by **commas**, and **that** cannot be used.\n\n- My father, **who is a teacher**, lives in Buea.\n- Mount Cameroon, **which is the highest peak in West Africa**, is in the South-West.\n\n## Relative Adverbs\n\n- **where** (place): This is the school **where** I studied.\n- **when** (time): I remember the day **when** we met.\n- **why** (reason): That is the reason **why** he left.\n\n## Worked Examples / Practice\n\n**Example 1:** Combine: *I know a man. The man speaks five languages.*\n**Answer:** *I know a man **who speaks five languages**.* — 'Who' refers to the person and acts as the subject of the relative clause.\n\n**Example 2:** Combine using 'whose': *That is the woman. Her son won the scholarship.*\n**Answer:** *That is the woman **whose son** won the scholarship.* — 'Whose' shows possession.\n\n**Example 3:** Add commas correctly: *Yaoundé which is the capital of Cameroon is a large city.*\n**Answer:** *Yaoundé, **which is the capital of Cameroon**, is a large city.* — This is extra information about a unique place, so it is non-defining and needs commas; 'that' would be wrong here.\n\n## Key Points\n\n- **Who/whom** = people, **which** = things, **whose** = possession, **that** = people/things (defining only).\n- **Defining** clauses: essential information, **no commas**, 'that' allowed, object pronoun can be dropped.\n- **Non-defining** clauses: extra information, **commas**, 'that' **not** allowed.\n- Relative adverbs: **where** (place), **when** (time), **why** (reason).",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Choose the correct relative pronoun: 'The girl ___ won the prize is my sister.'",
+            "options": [
+              "which",
+              "who",
+              "whose",
+              "where"
+            ],
+            "answer": 1,
+            "explanation": "'Who' refers to people and acts as the subject of the relative clause."
+          },
+          {
+            "q": "Which pronoun shows possession?",
+            "options": [
+              "who",
+              "which",
+              "whose",
+              "whom"
+            ],
+            "answer": 2,
+            "explanation": "'Whose' indicates possession: 'the girl whose bag was stolen'."
+          },
+          {
+            "q": "Which sentence is a correct non-defining clause?",
+            "options": [
+              "My father that is a teacher lives in Buea.",
+              "My father, who is a teacher, lives in Buea.",
+              "My father who is a teacher, lives in Buea.",
+              "My father, that is a teacher, lives in Buea."
+            ],
+            "answer": 1,
+            "explanation": "Non-defining clauses need commas and cannot use 'that'; 'who' is correct."
+          },
+          {
+            "q": "In which sentence can the relative pronoun be omitted?",
+            "options": [
+              "The man who lives next door is kind.",
+              "The book that I read was good.",
+              "The woman whose car was stolen is sad.",
+              "The boy who helped me is here."
+            ],
+            "answer": 1,
+            "explanation": "When the pronoun is the OBJECT of a defining clause ('I read the book'), it can be dropped: 'The book I read was good.'"
+          },
+          {
+            "q": "Choose the correct relative adverb: 'This is the house ___ I was born.'",
+            "options": [
+              "which",
+              "when",
+              "where",
+              "who"
+            ],
+            "answer": 2,
+            "explanation": "'Where' is the relative adverb for place."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Comparatives and Superlatives",
+      "video": "https://www.youtube.com/watch?v=lYDFM2WdgRA",
+      "lesson": "# Comparatives and Superlatives\n\n## Introduction\n\nWe use **comparatives** to compare **two** things and **superlatives** to compare **three or more**, showing which has the highest or lowest degree of a quality. The form depends on the **length** of the adjective or adverb.\n\n- Comparative: *Douala is **bigger than** Buea.*\n- Superlative: *Douala is **the biggest** city in Cameroon.*\n\n## Short (One-Syllable) Adjectives\n\nAdd **-er** for the comparative and **-est** for the superlative.\n\n- tall → tall**er** → the tall**est**\n- cheap → cheap**er** → the cheap**est**\n\n**Spelling:** double the final consonant after a single vowel (big → bigger → biggest); change **-y** to **-i** (happy → happier → happiest).\n\n## Long (Two+ Syllable) Adjectives\n\nUse **more** for the comparative and **most** for the superlative.\n\n- expensive → **more** expensive → the **most** expensive\n- intelligent → **more** intelligent → the **most** intelligent\n- beautiful → **more** beautiful → the **most** beautiful\n\n## Irregular Forms\n\n| Adjective | Comparative | Superlative |\n|---|---|---|\n| good | **better** | the **best** |\n| bad | **worse** | the **worst** |\n| far | **farther/further** | the **farthest/furthest** |\n| little | **less** | the **least** |\n| much/many | **more** | the **most** |\n\n## Important Structures\n\n- **than** with comparatives: *He is **taller than** his brother.*\n- **the** with superlatives: *She is **the** cleverest student in the class.*\n- **as ... as** for equality: *He is **as tall as** his father.*\n- **not as ... as** for inequality: *Buea is **not as hot as** Maroua.*\n- Double comparatives for change: *The **harder** you work, the **more** you earn.*\n\n## Worked Examples / Practice\n\n**Example 1:** Complete: *This exercise is ___ (difficult) than the last one.*\n**Answer:** *This exercise is **more difficult** than the last one.* — 'Difficult' is a long adjective, so we use 'more ... than'.\n\n**Example 2:** Complete with the superlative: *Mount Cameroon is ___ (high) mountain in West Africa.*\n**Answer:** *Mount Cameroon is **the highest** mountain in West Africa.* — 'High' is short, so add '-est' and use 'the'.\n\n**Example 3:** Use 'as ... as': *Paul / strong / his brother (equal).*\n**Answer:** *Paul is **as strong as** his brother.* — 'As ... as' expresses equality.\n\n## Key Points\n\n- Compare **two** things → comparative; compare **three+** → superlative.\n- Short adjectives: **-er / -est**; long adjectives: **more / most**.\n- Irregular: good→better→best, bad→worse→worst, far→further→furthest.\n- Use **than** after comparatives and **the** before superlatives.\n- **(not) as ... as** expresses equality or inequality.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Choose the correct comparative: 'A car is ___ than a bicycle.'",
+            "options": [
+              "fast",
+              "faster",
+              "fastest",
+              "more fast"
+            ],
+            "answer": 1,
+            "explanation": "'Fast' is a short adjective, so the comparative is 'faster' + 'than'."
+          },
+          {
+            "q": "Complete: 'This is ___ film I have ever seen.'",
+            "options": [
+              "the best",
+              "the better",
+              "the most good",
+              "best"
+            ],
+            "answer": 0,
+            "explanation": "'Good' has the irregular superlative 'the best'."
+          },
+          {
+            "q": "Choose the correct form: 'English is ___ than Latin.'",
+            "options": [
+              "more easy",
+              "easier",
+              "easiest",
+              "the easier"
+            ],
+            "answer": 1,
+            "explanation": "'Easy' ends in -y, so the comparative is 'easier' (y→i + er)."
+          },
+          {
+            "q": "Which sentence expresses equality?",
+            "options": [
+              "He is taller than his brother.",
+              "He is the tallest boy.",
+              "He is as tall as his brother.",
+              "He is more tall than his brother."
+            ],
+            "answer": 2,
+            "explanation": "'As ... as' expresses equality between two things."
+          },
+          {
+            "q": "Choose the correct superlative of a long adjective: 'It is ___ building in town.'",
+            "options": [
+              "the beautifullest",
+              "the most beautiful",
+              "the more beautiful",
+              "most beautiful"
+            ],
+            "answer": 1,
+            "explanation": "Long adjectives form the superlative with 'the most': 'the most beautiful'."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Conditionals (Types 0, 1 and 2)",
+      "video": "https://www.youtube.com/watch?v=kV0jzdHfEM8",
+      "lesson": "# Conditionals (Types 0, 1 and 2)\n\n## Introduction\n\n**Conditional sentences** describe a **condition** (the **if-clause**) and its **result** (the **main clause**). At Première level you study three types: the **zero conditional** (general truths), the **first conditional** (real future possibilities) and the **second conditional** (unreal or unlikely situations).\n\nA conditional has two parts:\n- **if-clause** (the condition): *If it rains...*\n- **main clause** (the result): *...the ground gets wet.*\n\nThe clauses can come in either order. When the **if-clause comes first**, put a **comma** after it.\n\n## Zero Conditional — General Truths\n\nUsed for facts, scientific truths and things that are **always** true.\n\n**Form:** *If + present simple, ... present simple.*\n\n- If you **heat** ice, it **melts**.\n- If you **mix** blue and yellow, you **get** green.\n- Plants **die** if they **don't get** water.\n\n## First Conditional — Real Future Possibility\n\nUsed for **possible** future situations and their likely results.\n\n**Form:** *If + present simple, ... will + base verb.*\n\n- If it **rains**, we **will stay** at home.\n- If you **study** hard, you **will pass** the exam.\n- I **will help** you if you **ask** me.\n\n**Note:** Do **not** use 'will' in the if-clause: *If it **will rain*** is wrong.\n\n## Second Conditional — Unreal / Unlikely Present\n\nUsed for **imaginary**, **unlikely** or **impossible** present situations and their results.\n\n**Form:** *If + past simple, ... would + base verb.*\n\n- If I **had** a million francs, I **would build** a school.\n- If she **studied** more, she **would pass**.\n- I **would travel** the world if I **were** rich.\n\n**Note:** With 'be', formal English uses **were** for all subjects: *If I **were** you, I would apologise.*\n\n## Comparing the Types\n\n| Type | If-clause | Main clause | Meaning |\n|---|---|---|---|\n| Zero | present | present | always true |\n| First | present | will + verb | real future |\n| Second | past | would + verb | unreal/unlikely |\n\n## Worked Examples / Practice\n\n**Example 1:** Complete (zero): *If you ___ (touch) fire, you ___ (get) burnt.*\n**Answer:** *If you **touch** fire, you **get** burnt.* — A general truth uses present + present.\n\n**Example 2:** Complete (first): *If it ___ (be) sunny tomorrow, we ___ (go) to the beach.*\n**Answer:** *If it **is** sunny tomorrow, we **will go** to the beach.* — A real future possibility: present in the if-clause, 'will' in the result.\n\n**Example 3:** Complete (second): *If I ___ (be) the president, I ___ (reduce) school fees.*\n**Answer:** *If I **were** the president, I **would reduce** school fees.* — An unreal/imaginary situation: past simple + would; 'were' is used with 'I'.\n\n## Key Points\n\n- **Zero:** if + present, present → general truths.\n- **First:** if + present, will + verb → real future possibility.\n- **Second:** if + past, would + verb → unreal/unlikely present.\n- Never use **will** or **would** in the **if-clause**.\n- Use **were** (not 'was') with all subjects in the second conditional.\n- Put a **comma** after the if-clause when it comes first.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Choose the zero conditional: 'If you heat water to 100°C, it ___.'",
+            "options": [
+              "will boil",
+              "would boil",
+              "boils",
+              "boiled"
+            ],
+            "answer": 2,
+            "explanation": "Zero conditional (general truth) uses present simple in both clauses: 'boils'."
+          },
+          {
+            "q": "Complete the first conditional: 'If it rains tomorrow, we ___ at home.'",
+            "options": [
+              "stay",
+              "will stay",
+              "would stay",
+              "stayed"
+            ],
+            "answer": 1,
+            "explanation": "First conditional result clause uses 'will + verb': 'will stay'."
+          },
+          {
+            "q": "Which is a correct second conditional?",
+            "options": [
+              "If I had money, I will buy a car.",
+              "If I have money, I would buy a car.",
+              "If I had money, I would buy a car.",
+              "If I will have money, I buy a car."
+            ],
+            "answer": 2,
+            "explanation": "Second conditional = if + past simple, would + base verb."
+          },
+          {
+            "q": "Which sentence is INCORRECT?",
+            "options": [
+              "If you study, you will pass.",
+              "If it will rain, we will stay home.",
+              "If I were you, I would apologise.",
+              "If you heat ice, it melts."
+            ],
+            "answer": 1,
+            "explanation": "'Will' must not appear in the if-clause; it should be 'If it rains'."
+          },
+          {
+            "q": "Complete: 'If I ___ you, I would tell the truth.'",
+            "options": [
+              "am",
+              "was",
+              "were",
+              "will be"
+            ],
+            "answer": 2,
+            "explanation": "In the second conditional we use 'were' for all subjects, including 'I'."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Word Formation and Vocabulary",
+      "video": "https://www.youtube.com/watch?v=9gE9hbiV0lY",
+      "lesson": "# Word Formation and Vocabulary\n\n## Introduction\n\n**Word formation** is the process of creating new words from existing ones, mainly by adding **prefixes** and **suffixes** to a **root** word. Knowing how words are built helps you guess meanings, expand your vocabulary, and choose the right **part of speech** in fill-in-the-gap exercises common in the Probatoire exam.\n\n## Prefixes\n\nA **prefix** is added to the **beginning** of a word and usually changes its **meaning**.\n\n| Prefix | Meaning | Example |\n|---|---|---|\n| **un-** | not | unhappy, unfair |\n| **in-/im-/il-/ir-** | not | incorrect, impossible, illegal, irregular |\n| **dis-** | opposite | disagree, dishonest |\n| **re-** | again | rewrite, return |\n| **mis-** | wrongly | misunderstand, misuse |\n| **over-** | too much | overcook, overload |\n| **pre-** | before | prepare, preview |\n\n- *honest → **dis**honest* / *possible → **im**possible*\n\n## Suffixes\n\nA **suffix** is added to the **end** of a word and often changes its **part of speech**.\n\n### Noun suffixes\n- **-tion/-sion:** educate → educa**tion**; decide → deci**sion**\n- **-ness:** kind → kind**ness**; happy → happi**ness**\n- **-ment:** govern → govern**ment**; develop → develop**ment**\n- **-ity:** active → activ**ity**; able → abil**ity**\n\n### Adjective suffixes\n- **-ful:** care → care**ful**; use → use**ful**\n- **-less:** care → care**less**; hope → hope**less**\n- **-ous:** danger → danger**ous**; fame → fam**ous**\n- **-able/-ible:** comfort → comfort**able**; sense → sens**ible**\n\n### Adverb suffix\n- **-ly:** quick → quick**ly**; careful → careful**ly**\n\n### Verb suffixes\n- **-ise/-ize:** modern → modern**ise**; **-en:** wide → wid**en**\n\n## Word Families\n\nFrom one root you can build several words:\n\n- **beauty** (noun), **beautiful** (adjective), **beautifully** (adverb), **beautify** (verb)\n- **act** (verb), **action** (noun), **active** (adjective), **actively** (adverb)\n- **care** (noun/verb), **careful/careless** (adjectives), **carefully** (adverb)\n\n## Worked Examples / Practice\n\n**Example 1:** Complete with the right form of CARE: *He drove ___.*\n**Answer:** *He drove **carefully**.* — A word describing a verb (how he drove) needs the adverb 'carefully'.\n\n**Example 2:** Form the opposite of 'possible'.\n**Answer:** ***Impossible***. — Before 'p', the negative prefix 'in-' becomes 'im-'.\n\n**Example 3:** Complete with the right form of EDUCATE: *Free ___ is a basic right.*\n**Answer:** *Free **education** is a basic right.* — The gap needs a noun, so add the suffix '-tion'.\n\n## Key Points\n\n- **Prefixes** change **meaning** (un-, in-, dis-, re-, mis-, over-).\n- **Suffixes** often change the **part of speech** (-tion, -ness, -ful, -less, -ly).\n- Negative prefixes: **im-** before p/b/m, **il-** before l, **ir-** before r.\n- Learn **word families** to switch easily between noun, verb, adjective and adverb.\n- In gap-fill tasks, decide which **part of speech** is needed, then add the right affix.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "What is the opposite of 'honest'?",
+            "options": [
+              "unhonest",
+              "dishonest",
+              "inhonest",
+              "ahonest"
+            ],
+            "answer": 1,
+            "explanation": "The opposite of 'honest' is formed with the prefix 'dis-': 'dishonest'."
+          },
+          {
+            "q": "Complete with the correct form of CARE: 'She listened ___.'",
+            "options": [
+              "careful",
+              "care",
+              "carefully",
+              "careless"
+            ],
+            "answer": 2,
+            "explanation": "We need an adverb to describe how she listened, so 'carefully' (-ly)."
+          },
+          {
+            "q": "Form a noun from 'happy'.",
+            "options": [
+              "happily",
+              "happiness",
+              "happyful",
+              "unhappy"
+            ],
+            "answer": 1,
+            "explanation": "The noun is formed with '-ness': 'happiness' (y changes to i)."
+          },
+          {
+            "q": "Which prefix means 'again'?",
+            "options": [
+              "mis-",
+              "dis-",
+              "re-",
+              "over-"
+            ],
+            "answer": 2,
+            "explanation": "'Re-' means 'again', as in 'rewrite' and 'return'."
+          },
+          {
+            "q": "Complete: 'It is ___ to finish in one minute.' (possible)",
+            "options": [
+              "unpossible",
+              "dispossible",
+              "impossible",
+              "inpossible"
+            ],
+            "answer": 2,
+            "explanation": "Before 'p', the negative prefix 'in-' becomes 'im-': 'impossible'."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Reading Comprehension",
+      "video": "https://www.youtube.com/watch?v=Kz3nVZyrIPg",
+      "lesson": "# Reading Comprehension\n\n## Introduction\n\n**Reading comprehension** tests your ability to **understand a text** and answer questions about it. In the Probatoire English paper, you read a passage and answer questions on its **main idea, details, vocabulary, inference** and the **writer's purpose**. Good comprehension depends on reading **actively** and answering **using evidence from the text**.\n\n## Reading Strategies\n\n### 1. Skimming\nRead quickly to get the **general idea** and the topic of each paragraph. Do not stop at every word.\n\n### 2. Scanning\nLook quickly for **specific information** such as a name, date, number or key word.\n\n### 3. Reading in detail\nRead carefully when answering questions that need exact understanding.\n\n## Types of Comprehension Questions\n\n- **Main idea:** What is the text mostly about?\n- **Detail / factual:** What does the text say about X? (the answer is stated directly)\n- **Vocabulary in context:** What does the word \"____\" mean **in the passage**?\n- **Inference:** What can we **conclude** even though it is not stated directly?\n- **Reference:** What does \"it\" / \"they\" / \"this\" refer to?\n- **Purpose / tone:** Why did the writer write this? Is the tone serious, critical, humorous?\n\n## How to Answer Well\n\n1. **Read the questions first** so you know what to look for.\n2. **Read the whole passage** to grasp the main idea.\n3. **Locate** the relevant sentence(s) for each question (scanning).\n4. Answer **in your own words** where required; do not copy whole sentences unless asked.\n5. Use **complete sentences** and correct grammar.\n6. For vocabulary, replace the word with a **synonym** that fits the sentence.\n\n## Worked Examples / Practice\n\n**Read this short passage:**\n*\"Awa woke up early. The sky was grey and a cold wind blew through the village. She put on her thickest coat before walking the long road to school, hoping the rain would hold off until she arrived.\"*\n\n**Example 1 (detail):** Why did Awa put on her thickest coat?\n**Answer:** *Because the weather was cold (a cold wind was blowing).* — The text states the wind was cold, so she dressed warmly.\n\n**Example 2 (inference):** Was the weather likely to be sunny? Explain.\n**Answer:** *No. The sky was grey and she hoped the rain would hold off, which suggests rain was expected, not sunshine.* — We infer this from \"grey\" sky and \"rain\".\n\n**Example 3 (vocabulary):** What does \"hold off\" mean in the passage?\n**Answer:** *It means \"not start / be delayed\".* — She hoped the rain would not begin until she reached school.\n\n## Key Points\n\n- **Skim** for the main idea, **scan** for specific facts, then read in detail.\n- Identify the **question type**: detail, inference, vocabulary, reference, purpose.\n- Always support answers with **evidence from the text**.\n- Answer in **complete sentences** and, where required, **in your own words**.\n- For vocabulary questions, choose a **synonym** that fits the context.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Which strategy means reading quickly to get the general idea?",
+            "options": [
+              "Scanning",
+              "Skimming",
+              "Translating",
+              "Memorising"
+            ],
+            "answer": 1,
+            "explanation": "Skimming is reading quickly to get the overall idea of a text."
+          },
+          {
+            "q": "What is 'scanning'?",
+            "options": [
+              "Reading every word slowly",
+              "Looking quickly for specific information",
+              "Summarising the whole text",
+              "Guessing the ending"
+            ],
+            "answer": 1,
+            "explanation": "Scanning means searching quickly for specific information like a name or date."
+          },
+          {
+            "q": "An 'inference' question asks you to:",
+            "options": [
+              "copy a sentence from the text",
+              "conclude something not stated directly",
+              "count the paragraphs",
+              "translate the passage"
+            ],
+            "answer": 1,
+            "explanation": "Inference questions require drawing a conclusion that is implied but not stated directly."
+          },
+          {
+            "q": "For a vocabulary-in-context question, the best approach is to:",
+            "options": [
+              "use a dictionary definition only",
+              "choose a synonym that fits the sentence",
+              "ignore the surrounding words",
+              "translate into French"
+            ],
+            "answer": 1,
+            "explanation": "You should pick a synonym that fits the meaning in that particular context."
+          },
+          {
+            "q": "What should you usually do FIRST in a comprehension exercise?",
+            "options": [
+              "Write the conclusion",
+              "Read the questions, then read the passage",
+              "Copy the whole text",
+              "Count the words"
+            ],
+            "answer": 1,
+            "explanation": "Reading the questions first tells you what information to look for in the passage."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Paragraph and Essay Writing (Introduction)",
+      "video": "https://www.youtube.com/watch?v=ALHGOZGTU2Q",
+      "lesson": "# Paragraph and Essay Writing (Introduction)\n\n## Introduction\n\nGood **writing** is organised, clear and developed with examples. This chapter introduces the **paragraph** (the building block of all writing) and the basic structure of a short **essay**. At Première level you should be able to write a well-organised paragraph and a simple three-part essay.\n\n## The Paragraph\n\nA **paragraph** is a group of sentences about **one main idea**. A good paragraph has three parts:\n\n1. **Topic sentence** — states the main idea.\n2. **Supporting sentences** — explain, give reasons, examples and details.\n3. **Concluding sentence** — closes the idea or restates it.\n\n**Example paragraph:**\n*\"Reading has many benefits. (topic) First, it improves vocabulary because readers meet new words. It also develops imagination and helps students write better. For instance, learners who read often make fewer grammar mistakes. (support) For all these reasons, reading is a habit worth keeping.\" (conclusion)*\n\n## Unity and Coherence\n\n- **Unity:** every sentence must relate to the **topic sentence**. Remove anything off-topic.\n- **Coherence:** ideas must flow logically, helped by **linking words**.\n\n**Useful linkers:** firstly, secondly, then, in addition, moreover, however, on the other hand, for example, therefore, finally, in conclusion.\n\n## The Short Essay\n\nAn **essay** develops a topic in several paragraphs. The basic structure is:\n\n1. **Introduction** — introduces the topic and states your **main idea (thesis)**.\n2. **Body** — two or three paragraphs, each with **one** idea and supporting details.\n3. **Conclusion** — summarises and gives a final thought or opinion.\n\n**Plan first:** before writing, jot down your main points. This keeps your essay organised.\n\n## Writing Process\n\n1. **Understand** the question (what exactly is asked?).\n2. **Brainstorm** ideas and **plan** the order.\n3. **Write** the draft using clear paragraphs and linkers.\n4. **Check** grammar, spelling, punctuation and that you answered the question.\n\n## Worked Examples / Practice\n\n**Example 1:** Identify the topic sentence: *\"Sport is good for health. It strengthens the heart, reduces stress and helps people sleep better.\"*\n**Answer:** *The topic sentence is \"Sport is good for health.\"* — It states the main idea; the rest gives supporting details.\n\n**Example 2:** Add a suitable linker: *\"He studied very hard. ___, he passed the exam easily.\"*\n**Answer:** *\"**Therefore**, he passed the exam easily.\"* — 'Therefore' shows a result.\n\n**Example 3:** Plan a short essay on \"The importance of education.\" Give three body ideas.\n**Answer:** *(1) Education provides knowledge and skills; (2) It opens job opportunities; (3) It helps develop the country.* — Each idea becomes one body paragraph.\n\n## Key Points\n\n- A **paragraph** = one main idea with a **topic sentence**, **support** and a **conclusion**.\n- Keep **unity** (stay on topic) and **coherence** (use linking words).\n- An **essay** has an **introduction**, a **body** (2-3 paragraphs) and a **conclusion**.\n- Always **plan** before writing and **check** your work afterwards.\n- Use linkers: *firstly, in addition, however, for example, therefore, in conclusion*.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "What does the topic sentence of a paragraph do?",
+            "options": [
+              "It gives an example.",
+              "It states the main idea.",
+              "It ends the paragraph.",
+              "It lists the references."
+            ],
+            "answer": 1,
+            "explanation": "The topic sentence states the main idea of the paragraph."
+          },
+          {
+            "q": "Which linking word shows a result?",
+            "options": [
+              "however",
+              "for example",
+              "therefore",
+              "on the other hand"
+            ],
+            "answer": 2,
+            "explanation": "'Therefore' introduces a result or consequence."
+          },
+          {
+            "q": "What are the three main parts of a short essay?",
+            "options": [
+              "Title, body, references",
+              "Introduction, body, conclusion",
+              "Topic, examples, summary",
+              "Question, answer, plan"
+            ],
+            "answer": 1,
+            "explanation": "An essay has an introduction, a body and a conclusion."
+          },
+          {
+            "q": "'Unity' in a paragraph means:",
+            "options": [
+              "using long sentences",
+              "every sentence relates to the main idea",
+              "writing many paragraphs",
+              "using difficult words"
+            ],
+            "answer": 1,
+            "explanation": "Unity means all sentences relate to the topic sentence/main idea."
+          },
+          {
+            "q": "What should you do BEFORE writing an essay?",
+            "options": [
+              "Write the conclusion first",
+              "Plan and brainstorm the ideas",
+              "Count the words",
+              "Copy a model essay"
+            ],
+            "answer": 1,
+            "explanation": "Planning and brainstorming help organise ideas before writing."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Letter Writing",
+      "video": "https://www.youtube.com/watch?v=2bM8sQVj7Vs",
+      "lesson": "# Letter Writing\n\n## Introduction\n\nA **letter** is a written message sent to someone. There are two main kinds: the **formal (official) letter**, written to people you do not know personally (a headmaster, a company, an official), and the **informal (friendly) letter**, written to family and friends. Each has its own **layout, tone and language**.\n\n## Formal Letters\n\nA **formal letter** is polite, serious and follows a fixed layout.\n\n**Layout (top to bottom):**\n1. **Sender's address** (top right).\n2. **Date** (below the address).\n3. **Receiver's address** (left, below the date).\n4. **Salutation:** *Dear Sir/Madam,* (name unknown) or *Dear Mr Eyong,*\n5. **Body** — clear paragraphs stating the purpose.\n6. **Complimentary close:** *Yours faithfully,* (if you began *Dear Sir/Madam*) or *Yours sincerely,* (if you used the person's name).\n7. **Signature and full name.**\n\n**Features of formal language:**\n- No contractions: write *I am*, not *I'm*.\n- Polite, respectful tone: *I am writing to request..., I would be grateful if...*\n- Clear purpose stated in the first paragraph.\n\n**Example opening:** *\"I am writing to apply for the post of librarian advertised in the newspaper.\"*\n\n## Informal Letters\n\nAn **informal letter** is friendly and relaxed.\n\n**Layout:**\n1. **Sender's address** and **date** (top right).\n2. **Salutation:** *Dear Paul,* / *Hi Awa,*\n3. **Body** — chatty, personal news.\n4. **Close:** *Best wishes,* / *Yours,* / *Love,*\n5. **First name** only.\n\n**Features of informal language:**\n- Contractions are fine: *I'm, don't, can't.*\n- Friendly tone, questions about the reader: *How are you? Hope you're well.*\n\n## Comparing the Two\n\n| Feature | Formal | Informal |\n|---|---|---|\n| Tone | serious, polite | friendly, relaxed |\n| Contractions | avoided | allowed |\n| Salutation | Dear Sir/Madam | Dear Paul / Hi |\n| Closing | Yours faithfully/sincerely | Best wishes / Love |\n\n## Worked Examples / Practice\n\n**Example 1:** Which closing matches *\"Dear Sir,\"*?\n**Answer:** ***Yours faithfully,*** — When the name is unknown (Dear Sir/Madam), close with 'Yours faithfully'.\n\n**Example 2:** Make this formal: *\"I'm writing 'cause I wanna know about the job.\"*\n**Answer:** *\"**I am writing to enquire about the job.**\"* — Remove contractions and slang; use polite, full forms.\n\n**Example 3:** Choose a suitable opening for a friendly letter to a cousin.\n**Answer:** *\"**Dear Eric, How are you? I hope you and your family are well.**\"* — Informal letters open with a warm, personal greeting.\n\n## Key Points\n\n- **Formal letters:** fixed layout, polite tone, **no contractions**, clear purpose.\n- **Dear Sir/Madam → Yours faithfully**; **Dear Mr X → Yours sincerely**.\n- **Informal letters:** friendly tone, contractions allowed, close with *Best wishes/Love*.\n- Always include the **sender's address** and **date**.\n- State the **purpose** of a formal letter in the **first paragraph**.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "If a formal letter begins 'Dear Sir,', it should end with:",
+            "options": [
+              "Yours sincerely,",
+              "Yours faithfully,",
+              "Best wishes,",
+              "Love,"
+            ],
+            "answer": 1,
+            "explanation": "When the receiver's name is unknown ('Dear Sir/Madam'), close with 'Yours faithfully'."
+          },
+          {
+            "q": "Which feature belongs to a FORMAL letter?",
+            "options": [
+              "Using contractions like 'I'm'",
+              "A friendly, chatty tone",
+              "No contractions and a polite tone",
+              "Closing with 'Love'"
+            ],
+            "answer": 2,
+            "explanation": "Formal letters avoid contractions and keep a polite, serious tone."
+          },
+          {
+            "q": "Which salutation suits an informal letter?",
+            "options": [
+              "Dear Sir/Madam,",
+              "To Whom It May Concern,",
+              "Dear Mr Eyong,",
+              "Hi Awa,"
+            ],
+            "answer": 3,
+            "explanation": "'Hi Awa,' is friendly and suits an informal letter."
+          },
+          {
+            "q": "If you begin 'Dear Mr Eyong,', the correct closing is:",
+            "options": [
+              "Yours faithfully,",
+              "Yours sincerely,",
+              "Best wishes,",
+              "Cheers,"
+            ],
+            "answer": 1,
+            "explanation": "When you use the person's name, close with 'Yours sincerely'."
+          },
+          {
+            "q": "Where should the purpose of a formal letter be stated?",
+            "options": [
+              "In the last paragraph",
+              "In the address",
+              "In the first paragraph",
+              "It should not be stated"
+            ],
+            "answer": 2,
+            "explanation": "The purpose of a formal letter is stated clearly in the first paragraph."
+          }
+        ]
+      }
+    }
+  ]
+}
