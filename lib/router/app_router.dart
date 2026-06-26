@@ -47,7 +47,9 @@ import '../screens/menu/concours_detail_screen.dart';
 import '../screens/menu/concours_all_screen.dart';
 import '../screens/menu/orientation_guide_screen.dart';
 import '../screens/menu/universites_screen.dart';
+import '../screens/menu/university_detail_screen.dart';
 import '../screens/menu/bourses_screen.dart';
+import '../models/university.dart';
 import '../screens/menu/concours_inscription_screen.dart';
 import '../screens/menu/mes_candidatures_screen.dart';
 import '../screens/menu/concours_prep_screen.dart';
@@ -146,6 +148,7 @@ final appRouter = GoRouter(
     GoRoute(path: '/concours-all', builder: (_, __) => const ConcoursAllScreen()),
     GoRoute(path: '/orientation-guide', builder: (_, __) => const OrientationGuideScreen()),
     GoRoute(path: '/universites', builder: (_, __) => const UniversitesScreen()),
+    GoRoute(path: '/universite', builder: (_, s) => UniversityDetailScreen(university: s.extra as University?)),
     GoRoute(path: '/bourses', builder: (_, __) => const BoursesScreen()),
     GoRoute(path: '/concours-inscription', builder: (_, s) => ConcoursInscriptionScreen(concours: s.extra as Concours?)),
     GoRoute(path: '/mes-candidatures', builder: (_, __) => const MesCandidaturesScreen()),

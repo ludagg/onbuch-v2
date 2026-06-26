@@ -28,9 +28,13 @@ echo "── Attributs ──"
 str name 200        # « Université de Yaoundé I »
 str acronym 20      # « UY1 »
 str city 80         # « Yaoundé »
+str region 80       # région administrative, ex. « Centre »
 str type 20         # « Publique » | « Privée »
-str fields 600      # domaines phares, séparés par des virgules
+str fields 800      # domaines phares, séparés par « | »
+str schools 3000    # grandes écoles / facultés, séparées par « | »
+str programs 3000   # cursus / filières, séparés par « | »
 str website 500     # site officiel
+str logoUrl 1024    # logo officiel (image)
 str description 2000
 int founded         # année de création
 int rank            # classement national (1 = en tête ; 0 = non classé)
