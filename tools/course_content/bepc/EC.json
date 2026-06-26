@@ -1,0 +1,774 @@
+{
+  "code": "EC",
+  "level": "3ème",
+  "chapters": [
+    {
+      "title": "La citoyenneté et le civisme",
+      "video": "https://www.youtube.com/watch?v=Q8gjPzm9hM0",
+      "lesson": "# La citoyenneté et le civisme\n\n## Introduction\n\nVivre en société, c'est partager un espace, des règles et un destin commun avec d'autres personnes. Au Cameroun, chaque habitant fait partie d'une grande communauté nationale. Mais appartenir à un pays ne se limite pas à y être né ou à y résider : cela suppose des **droits**, des **devoirs** et une **attitude responsable** envers la collectivité. C'est tout le sens des notions de **citoyenneté** et de **civisme**, qui sont au cœur de l'Éducation à la Citoyenneté et à la Morale (ECM). Comprendre ces notions, c'est apprendre à devenir un citoyen utile, respectueux des lois et engagé pour le bien commun.\n\n## I. La citoyenneté\n\nLa **citoyenneté** est le lien juridique et politique qui unit une personne à un État. Le **citoyen** est le membre d'une communauté politique (la Nation) qui jouit de **droits** garantis par la loi et qui est tenu à des **devoirs** envers l'État et les autres citoyens.\n\nAu Cameroun, la citoyenneté est étroitement liée à la **nationalité**. Est citoyen camerounais celui qui possède la nationalité camerounaise, obtenue principalement :\n- par le **droit du sang** (être né d'un parent camerounais) ;\n- par le **droit du sol** dans certains cas prévus par la loi ;\n- par **naturalisation** (acquisition de la nationalité après en avoir fait la demande et rempli des conditions).\n\nLa **carte nationale d'identité** est le document qui atteste de la citoyenneté camerounaise. À partir de **20 ans** (majorité électorale), le citoyen peut s'inscrire sur les listes électorales et **voter**.\n\nOn distingue plusieurs dimensions de la citoyenneté :\n- la **citoyenneté locale** (être membre d'une commune, d'un village, d'un quartier) ;\n- la **citoyenneté nationale** (être Camerounais) ;\n- la **citoyenneté mondiale** (appartenir à l'humanité, se sentir responsable de la planète).\n\n## II. Le civisme\n\nLe **civisme** est l'attitude de respect, de dévouement et de loyauté du citoyen envers son pays, ses lois et l'intérêt général. C'est la mise en pratique quotidienne de la citoyenneté.\n\nÊtre civique, c'est notamment :\n- **respecter la loi** et les règlements (code de la route, lois fiscales, règlement intérieur de l'école) ;\n- **respecter les symboles de l'État** (drapeau, hymne national, devise) ;\n- **payer ses impôts** et **voter** ;\n- **respecter le bien public** (ne pas dégrader les écoles, hôpitaux, routes) ;\n- **respecter les autres** sans distinction d'ethnie, de religion ou de région ;\n- **participer à la vie de la communauté** (entretien des routes, salubrité, solidarité).\n\nL'**incivisme** est le contraire du civisme : il se manifeste par le non-respect des lois, la fraude, le vandalisme, la malpropreté, la corruption ou l'indifférence à l'égard du bien commun.\n\n## III. L'importance de la citoyenneté et du civisme\n\nUne nation forte repose sur des citoyens conscients de leurs responsabilités. Le civisme :\n- favorise la **paix sociale** et l'ordre ;\n- permet le **développement** du pays (un bien public bien entretenu profite à tous) ;\n- renforce l'**unité nationale** et le **vivre-ensemble** ;\n- protège l'**environnement** et les générations futures.\n\nLe **civisme** s'apprend dès l'école : respecter les enseignants, ses camarades, le matériel scolaire, c'est déjà se préparer à être un bon citoyen.\n\n## Cas pratique / exercice corrigé\n\n**Énoncé :** Dans ton quartier, certains jeunes ont l'habitude de jeter les ordures dans le caniveau, ce qui provoque des inondations à chaque saison des pluies. Tu décides d'agir.\n\n1. Comment qualifies-tu le comportement de ces jeunes ?\n2. Cite deux actions civiques que tu pourrais mener.\n3. Montre le lien entre civisme et développement.\n\n**Correction :**\n\n1. Le comportement de ces jeunes est un acte d'**incivisme** : ils ne respectent ni le bien public (les caniveaux) ni la salubrité de leur environnement, et ils mettent en danger la communauté (inondations).\n\n2. Deux actions civiques possibles :\n   - **Sensibiliser** les jeunes et les habitants sur les dangers de cette pratique et organiser une **journée de nettoyage** (curage des caniveaux).\n   - **Alerter** le chef de quartier ou la mairie pour la mise en place de poubelles publiques et l'entretien régulier.\n\n3. Le **civisme** (entretien des caniveaux, propreté) évite les inondations, protège les biens et la santé des habitants, et rend le quartier plus agréable et plus sûr : c'est une condition du **développement** local. Un environnement sain attire les investissements et améliore la qualité de vie.\n\n## À retenir\n\n- La **citoyenneté** est le lien juridique et politique qui unit une personne à un État ; elle est liée à la **nationalité**.\n- Le **citoyen** a des **droits** et des **devoirs**.\n- Le **civisme** est l'attitude de respect des lois, des symboles de l'État et du bien commun.\n- L'**incivisme** (fraude, vandalisme, malpropreté) nuit à la société.\n- Le civisme s'apprend dès l'**école** et favorise la **paix**, l'**unité** et le **développement**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Qu'est-ce que la citoyenneté ?",
+            "options": [
+              "Le simple fait d'habiter une ville",
+              "Le lien juridique et politique qui unit une personne à un État",
+              "Une attitude de malpropreté",
+              "Le refus de payer l'impôt"
+            ],
+            "answer": 1,
+            "explanation": "La citoyenneté est le lien juridique et politique entre une personne et son État, assorti de droits et de devoirs."
+          },
+          {
+            "q": "Le civisme se définit comme :",
+            "options": [
+              "L'attitude de respect des lois et du bien commun",
+              "Le droit de vote uniquement",
+              "La possession d'une carte d'identité",
+              "Le refus de l'autorité"
+            ],
+            "answer": 0,
+            "explanation": "Le civisme est l'attitude de respect, de loyauté et de dévouement du citoyen envers son pays, ses lois et l'intérêt général."
+          },
+          {
+            "q": "À quel âge un citoyen camerounais peut-il voter ?",
+            "options": [
+              "16 ans",
+              "18 ans",
+              "20 ans",
+              "25 ans"
+            ],
+            "answer": 2,
+            "explanation": "La majorité électorale au Cameroun est fixée à 20 ans."
+          },
+          {
+            "q": "Lequel de ces comportements est un acte d'incivisme ?",
+            "options": [
+              "Payer ses impôts",
+              "Respecter le drapeau",
+              "Jeter ses ordures dans un caniveau",
+              "Voter aux élections"
+            ],
+            "answer": 2,
+            "explanation": "Jeter ses ordures dans un caniveau dégrade le bien public et la salubrité : c'est un acte d'incivisme."
+          },
+          {
+            "q": "Quel document atteste de la citoyenneté camerounaise ?",
+            "options": [
+              "Le bulletin de notes",
+              "La carte nationale d'identité",
+              "Le ticket de transport",
+              "La carte de bibliothèque"
+            ],
+            "answer": 1,
+            "explanation": "La carte nationale d'identité atteste de la nationalité et donc de la citoyenneté camerounaise."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les droits de l'homme",
+      "video": "https://www.youtube.com/watch?v=JpY9s1Agbsw",
+      "lesson": "# Les droits de l'homme\n\n## Introduction\n\nTout être humain, quels que soient sa race, son sexe, sa religion, son origine ou sa fortune, possède une **dignité** qui doit être respectée. Cette dignité se traduit par des **droits** que personne ne peut lui retirer : ce sont les **droits de l'homme**. Reconnus au niveau international et inscrits dans la Constitution camerounaise, ils protègent la personne contre l'injustice, la violence et l'arbitraire. Connaître ses droits, c'est aussi apprendre à les respecter chez les autres.\n\n## I. Définition et caractéristiques des droits de l'homme\n\nLes **droits de l'homme** sont l'ensemble des prérogatives reconnues à toute personne humaine, du seul fait qu'elle est un être humain, et qui visent à garantir sa **dignité**, sa **liberté** et son **épanouissement**.\n\nLeurs caractéristiques principales :\n- **Universels** : ils s'appliquent à tous les hommes, partout dans le monde.\n- **Inaliénables** : on ne peut pas les vendre, les céder ou les retirer.\n- **Inviolables** : nul ne peut les bafouer.\n- **Indivisibles** : ils forment un tout (on ne peut pas en respecter certains et ignorer les autres).\n- **Égaux** : tous les hommes en jouissent de la même façon.\n\n## II. Les fondements et textes de référence\n\nLes droits de l'homme ont été solennellement proclamés par plusieurs textes :\n- La **Déclaration des Droits de l'Homme et du Citoyen** (France, 1789).\n- La **Déclaration Universelle des Droits de l'Homme (DUDH)**, adoptée par l'ONU le **10 décembre 1948** (d'où la **Journée des droits de l'homme** chaque 10 décembre).\n- La **Charte Africaine des Droits de l'Homme et des Peuples** (Banjul, 1981).\n- La **Constitution camerounaise**, dont le **préambule** affirme l'attachement du peuple aux libertés fondamentales.\n\n## III. Les différentes catégories ou générations de droits\n\nOn classe souvent les droits de l'homme en trois grandes catégories :\n\n1. **Les droits civils et politiques** (première génération) : droit à la vie, à la liberté, à la sûreté, droit de vote, liberté d'expression, liberté de religion, égalité devant la loi.\n2. **Les droits économiques, sociaux et culturels** (deuxième génération) : droit au travail, à l'éducation, à la santé, au logement, à un salaire juste.\n3. **Les droits de solidarité** (troisième génération) : droit à la paix, droit au développement, droit à un environnement sain.\n\n## IV. La protection des droits de l'homme au Cameroun\n\nLe Cameroun s'est doté d'institutions et de moyens pour protéger les droits de l'homme :\n- la **Commission des Droits de l'Homme du Cameroun (CDHC)** ;\n- les **tribunaux** et la **justice** (toute personne peut saisir un juge) ;\n- des **associations** et **ONG** de défense des droits de l'homme.\n\nCependant, à chaque droit correspond un **devoir** : ma liberté s'arrête là où commence celle des autres. Respecter les droits d'autrui est aussi important que de réclamer les siens.\n\n## Cas pratique / exercice corrigé\n\n**Énoncé :** Un enfant de 10 ans est retiré de l'école par ses parents pour travailler toute la journée dans un marché.\n\n1. Quel(s) droit(s) de l'enfant est/sont violé(s) ?\n2. À quelle catégorie de droits appartient le droit concerné ?\n3. Que peut faire la communauté pour protéger cet enfant ?\n\n**Correction :**\n\n1. On viole le **droit à l'éducation** de l'enfant et son **droit d'être protégé contre le travail des enfants** (et l'exploitation).\n2. Le **droit à l'éducation** appartient aux **droits économiques, sociaux et culturels** (deuxième génération).\n3. La communauté peut **sensibiliser** les parents sur l'importance de l'école, **alerter** les services sociaux ou la délégation de l'éducation, et faire intervenir les **autorités** ou une **ONG** de protection de l'enfance pour que l'enfant retourne à l'école.\n\n## À retenir\n\n- Les **droits de l'homme** garantissent la **dignité** de tout être humain.\n- Ils sont **universels, inaliénables, inviolables, indivisibles** et **égaux**.\n- La **DUDH** a été adoptée par l'ONU le **10 décembre 1948**.\n- On distingue les droits **civils et politiques**, **économiques, sociaux et culturels**, et **de solidarité**.\n- À chaque **droit** correspond un **devoir** : respecter les droits des autres.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Quand la Déclaration Universelle des Droits de l'Homme a-t-elle été adoptée ?",
+            "options": [
+              "Le 1er janvier 1960",
+              "Le 10 décembre 1948",
+              "Le 20 mai 1972",
+              "Le 14 juillet 1789"
+            ],
+            "answer": 1,
+            "explanation": "La DUDH a été adoptée par l'Assemblée générale de l'ONU le 10 décembre 1948."
+          },
+          {
+            "q": "Une caractéristique des droits de l'homme est qu'ils sont :",
+            "options": [
+              "Réservés aux riches",
+              "Inaliénables",
+              "Vendables",
+              "Limités aux adultes"
+            ],
+            "answer": 1,
+            "explanation": "Les droits de l'homme sont inaliénables : on ne peut ni les vendre ni les retirer."
+          },
+          {
+            "q": "Le droit à l'éducation appartient aux droits :",
+            "options": [
+              "Civils et politiques",
+              "Économiques, sociaux et culturels",
+              "Du commerce",
+              "De la guerre"
+            ],
+            "answer": 1,
+            "explanation": "Le droit à l'éducation fait partie des droits économiques, sociaux et culturels (deuxième génération)."
+          },
+          {
+            "q": "Quel texte africain protège les droits de l'homme ?",
+            "options": [
+              "La Charte de l'OTAN",
+              "La Charte Africaine des Droits de l'Homme et des Peuples",
+              "Le Traité de Rome",
+              "La Charte de l'OMC"
+            ],
+            "answer": 1,
+            "explanation": "La Charte Africaine des Droits de l'Homme et des Peuples (Banjul, 1981) protège ces droits en Afrique."
+          },
+          {
+            "q": "À chaque droit correspond :",
+            "options": [
+              "Un privilège",
+              "Un devoir",
+              "Une amende",
+              "Un cadeau"
+            ],
+            "answer": 1,
+            "explanation": "Les droits s'accompagnent toujours de devoirs : ma liberté s'arrête là où commence celle des autres."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les devoirs du citoyen",
+      "video": "https://www.youtube.com/watch?v=Q8gjPzm9hM0",
+      "lesson": "# Les devoirs du citoyen\n\n## Introduction\n\nOn parle souvent des droits, mais ceux-ci ne peuvent exister que si chacun accomplit ses **devoirs**. Un citoyen qui réclame ses droits sans remplir ses obligations met en danger l'équilibre de la société. Les **devoirs du citoyen** sont donc le complément naturel de ses droits : ils garantissent l'ordre, la justice et le bien commun. Ce chapitre présente les principaux devoirs qui incombent à tout Camerounais.\n\n## I. Qu'est-ce qu'un devoir ?\n\nUn **devoir** est une **obligation** morale ou légale qui s'impose au citoyen envers l'État, la société et les autres personnes. Tandis que le **droit** est ce que l'on peut exiger, le **devoir** est ce que l'on doit accomplir.\n\nOn distingue :\n- les **devoirs civiques** (envers l'État et la collectivité) ;\n- les **devoirs moraux** (envers les autres et soi-même) ;\n- les **devoirs juridiques** (imposés par la loi).\n\n## II. Les principaux devoirs du citoyen camerounais\n\n1. **Respecter la Constitution et les lois.** Nul n'est censé ignorer la loi ; tous y sont soumis.\n2. **Respecter les symboles de l'État** : drapeau, hymne national, devise, armoiries.\n3. **Payer ses impôts et taxes.** L'impôt finance les écoles, les hôpitaux, les routes.\n4. **Défendre la patrie.** En cas de besoin, le citoyen doit défendre l'intégrité du territoire.\n5. **Voter** lors des élections, pour participer au choix des dirigeants.\n6. **Respecter le bien public** : ne pas dégrader les équipements collectifs.\n7. **Respecter les autres** et leurs droits, sans discrimination.\n8. **Protéger l'environnement** : ne pas polluer, planter des arbres, éviter les feux de brousse.\n9. **Travailler** et contribuer au développement du pays.\n10. **Dénoncer les actes illégaux** (corruption, vol, violences) et collaborer avec la justice.\n\n## III. Les devoirs envers la famille et la communauté\n\nLe citoyen a aussi des devoirs de proximité :\n- envers la **famille** : respect des parents, entraide, éducation des enfants ;\n- envers la **communauté** : solidarité, participation aux travaux communautaires, entretien des biens collectifs ;\n- envers **lui-même** : se former, travailler, garder une bonne santé, éviter les drogues.\n\n## IV. Conséquences du non-respect des devoirs\n\nNe pas accomplir ses devoirs entraîne :\n- des **sanctions** (amendes, prison pour les infractions à la loi) ;\n- le **désordre** et l'insécurité ;\n- le **sous-développement** (quand l'impôt n'est pas payé, l'État manque de moyens) ;\n- la perte de **confiance** entre les citoyens.\n\nLe respect des devoirs est donc une condition de la **paix** et du **progrès**.\n\n## Cas pratique / exercice corrigé\n\n**Énoncé :** Monsieur ABÉGA refuse de payer ses impôts en disant : « L'État ne fait rien pour moi. »\n\n1. Quel devoir Monsieur ABÉGA refuse-t-il d'accomplir ?\n2. Montre pourquoi son raisonnement est faux.\n3. Quelles peuvent être les conséquences de son comportement s'il se généralise ?\n\n**Correction :**\n\n1. Monsieur ABÉGA refuse d'accomplir son **devoir fiscal** : payer ses impôts et taxes.\n2. Son raisonnement est faux parce que c'est justement **grâce aux impôts** que l'État construit les écoles, les hôpitaux, les routes et paie les fonctionnaires. En refusant de payer, il prive la collectivité — et donc lui-même — de ces services. L'impôt est une contribution au **bien commun**.\n3. Si tout le monde agissait comme lui, l'État manquerait de **ressources**, ne pourrait plus financer les services publics, et le pays sombrerait dans le **sous-développement** et le désordre. C'est pourquoi le non-paiement de l'impôt est aussi **sanctionné** par la loi.\n\n## À retenir\n\n- Un **devoir** est une obligation morale ou légale du citoyen.\n- Les droits et les devoirs sont **complémentaires**.\n- Principaux devoirs : respecter la **loi** et les **symboles de l'État**, **payer l'impôt**, **voter**, **défendre la patrie**, **protéger l'environnement**, respecter le **bien public** et **autrui**.\n- Le non-respect des devoirs entraîne des **sanctions** et nuit au **développement**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Qu'est-ce qu'un devoir ?",
+            "options": [
+              "Ce que l'on peut exiger des autres",
+              "Une obligation morale ou légale qui s'impose au citoyen",
+              "Un cadeau de l'État",
+              "Une récompense"
+            ],
+            "answer": 1,
+            "explanation": "Le devoir est une obligation qui s'impose au citoyen, par opposition au droit qui est ce que l'on peut exiger."
+          },
+          {
+            "q": "Le paiement de l'impôt sert principalement à :",
+            "options": [
+              "Enrichir un seul individu",
+              "Financer les écoles, hôpitaux et routes",
+              "Acheter des biens personnels",
+              "Payer des amusements"
+            ],
+            "answer": 1,
+            "explanation": "L'impôt finance les services publics : écoles, hôpitaux, routes, salaires des fonctionnaires."
+          },
+          {
+            "q": "Lequel de ces éléments est un devoir du citoyen ?",
+            "options": [
+              "Polluer l'environnement",
+              "Respecter les symboles de l'État",
+              "Fuir devant l'ennemi",
+              "Frauder aux examens"
+            ],
+            "answer": 1,
+            "explanation": "Respecter les symboles de l'État (drapeau, hymne, devise) est un devoir civique."
+          },
+          {
+            "q": "Les droits et les devoirs sont :",
+            "options": [
+              "Opposés et incompatibles",
+              "Complémentaires",
+              "Sans rapport",
+              "Réservés aux dirigeants"
+            ],
+            "answer": 1,
+            "explanation": "Les droits et les devoirs sont complémentaires : l'un ne va pas sans l'autre."
+          },
+          {
+            "q": "Le non-respect des devoirs du citoyen peut entraîner :",
+            "options": [
+              "Des récompenses",
+              "Des sanctions et le désordre",
+              "Plus de droits",
+              "Une médaille"
+            ],
+            "answer": 1,
+            "explanation": "Ne pas accomplir ses devoirs entraîne des sanctions, le désordre et le sous-développement."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La démocratie et l'État de droit",
+      "video": "https://www.youtube.com/watch?v=oQ2dpd0gdNg",
+      "lesson": "# La démocratie et l'État de droit\n\n## Introduction\n\nComment un peuple choisit-il ses dirigeants et fait-il entendre sa voix ? Comment garantir que le pouvoir ne soit pas exercé de manière arbitraire ? Les réponses se trouvent dans deux notions essentielles : la **démocratie** et l'**État de droit**. Elles assurent que le pouvoir appartient au peuple et que tout le monde, gouvernants comme gouvernés, est soumis à la loi.\n\n## I. La démocratie\n\nLe mot **démocratie** vient du grec *demos* (peuple) et *kratos* (pouvoir) : c'est le **gouvernement du peuple, par le peuple et pour le peuple** (formule d'Abraham Lincoln).\n\nCaractéristiques de la démocratie :\n- la **souveraineté du peuple** : le pouvoir vient du peuple ;\n- des **élections** libres, transparentes et régulières ;\n- le **pluralisme politique** (plusieurs partis politiques) ;\n- le respect des **libertés** (expression, presse, réunion, association) ;\n- la **séparation des pouvoirs** ;\n- le respect des **droits de l'opposition** et des **minorités**.\n\nOn distingue :\n- la **démocratie directe** : le peuple exerce lui-même le pouvoir (rare, ex. référendum) ;\n- la **démocratie représentative** : le peuple élit des représentants (députés, président) qui gouvernent en son nom. C'est le modèle du Cameroun.\n\n## II. L'État de droit\n\nL'**État de droit** est un État dans lequel **tous**, y compris les gouvernants, sont soumis au respect de la **loi**. Personne n'est au-dessus de la loi.\n\nLes principes de l'État de droit :\n- la **suprématie de la Constitution** (loi fondamentale) ;\n- la **hiérarchie des normes** (les lois doivent respecter la Constitution) ;\n- l'**égalité de tous devant la loi** ;\n- l'**indépendance de la justice** ;\n- la **garantie des libertés et des droits** ;\n- la possibilité pour le citoyen de **contester** une décision injuste devant un juge.\n\nL'État de droit s'oppose à l'**arbitraire** (le pouvoir personnel sans règles) et à la **dictature**.\n\n## III. La séparation des pouvoirs\n\nPour éviter l'abus de pouvoir, le philosophe **Montesquieu** a proposé la **séparation des trois pouvoirs** :\n- le pouvoir **législatif** (qui fait les lois) : le Parlement ;\n- le pouvoir **exécutif** (qui applique les lois) : le Président, le Gouvernement ;\n- le pouvoir **judiciaire** (qui juge) : les tribunaux et cours.\n\nCes pouvoirs se contrôlent mutuellement, ce qui protège les libertés des citoyens.\n\n## IV. Démocratie, État de droit et citoyen\n\nLa démocratie et l'État de droit ne fonctionnent que si les citoyens sont **actifs et responsables** : ils doivent voter, s'informer, respecter la loi, exprimer leurs opinions pacifiquement et accepter le résultat des élections. La démocratie est un **bien fragile** qui se construit et se défend chaque jour.\n\n## Cas pratique / exercice corrigé\n\n**Énoncé :** Lors d'une élection, un candidat perdant refuse de reconnaître sa défaite et appelle ses partisans à la violence.\n\n1. Ce comportement est-il démocratique ? Justifie.\n2. Quel principe de la démocratie est mis en cause ?\n3. Quelle attitude un bon citoyen devrait-il adopter ?\n\n**Correction :**\n\n1. Ce comportement n'est **pas démocratique** : la démocratie suppose l'acceptation du **verdict des urnes** et le règlement **pacifique** des différends. Appeler à la violence viole la loi et menace la paix.\n2. Le principe mis en cause est le respect du **résultat des élections** (et du choix du peuple), ainsi que le règlement pacifique des conflits politiques.\n3. Un bon citoyen devrait **accepter le résultat**, et s'il estime que l'élection a été irrégulière, **saisir les voies légales** (recours devant la juridiction compétente) plutôt que d'utiliser la violence.\n\n## À retenir\n\n- La **démocratie** est le gouvernement du peuple, par le peuple et pour le peuple.\n- Le Cameroun pratique la **démocratie représentative**.\n- L'**État de droit** soumet tout le monde, gouvernants compris, à la **loi**.\n- **Montesquieu** a théorisé la **séparation des trois pouvoirs** : législatif, exécutif, judiciaire.\n- Démocratie et État de droit reposent sur des citoyens **actifs et responsables**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Que signifie étymologiquement le mot démocratie ?",
+            "options": [
+              "Le pouvoir des riches",
+              "Le pouvoir du peuple",
+              "Le pouvoir d'un seul",
+              "Le pouvoir des militaires"
+            ],
+            "answer": 1,
+            "explanation": "Démocratie vient du grec demos (peuple) et kratos (pouvoir) : le pouvoir du peuple."
+          },
+          {
+            "q": "Quel type de démocratie est pratiqué au Cameroun ?",
+            "options": [
+              "La démocratie directe",
+              "La démocratie représentative",
+              "La monarchie",
+              "La théocratie"
+            ],
+            "answer": 1,
+            "explanation": "Au Cameroun, le peuple élit des représentants : c'est la démocratie représentative."
+          },
+          {
+            "q": "Dans un État de droit :",
+            "options": [
+              "Le Président est au-dessus de la loi",
+              "Tous, y compris les gouvernants, sont soumis à la loi",
+              "Seuls les pauvres respectent la loi",
+              "La loi ne s'applique à personne"
+            ],
+            "answer": 1,
+            "explanation": "L'État de droit signifie que personne n'est au-dessus de la loi, gouvernants compris."
+          },
+          {
+            "q": "Qui a théorisé la séparation des pouvoirs ?",
+            "options": [
+              "Montesquieu",
+              "Napoléon",
+              "Aristote",
+              "Lincoln"
+            ],
+            "answer": 0,
+            "explanation": "Le philosophe Montesquieu a proposé la séparation des trois pouvoirs."
+          },
+          {
+            "q": "Quels sont les trois pouvoirs de l'État ?",
+            "options": [
+              "Militaire, religieux, économique",
+              "Législatif, exécutif, judiciaire",
+              "Local, régional, national",
+              "Royal, populaire, divin"
+            ],
+            "answer": 1,
+            "explanation": "Les trois pouvoirs sont le législatif (faire les lois), l'exécutif (les appliquer) et le judiciaire (juger)."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les institutions de la République du Cameroun",
+      "video": "https://www.youtube.com/watch?v=oQ2dpd0gdNg",
+      "lesson": "# Les institutions de la République du Cameroun\n\n## Introduction\n\nPour fonctionner, un État a besoin d'**institutions**, c'est-à-dire d'organes chargés d'exercer le pouvoir et de servir la Nation. La République du Cameroun, organisée par la **Constitution du 18 janvier 1996** (révisée), repose sur des institutions qui appliquent le principe de la **séparation des pouvoirs**. Ce chapitre présente les principales institutions de la République.\n\n## I. Le pouvoir exécutif\n\nLe **pouvoir exécutif** applique les lois et conduit la politique de la Nation. Il comprend :\n- Le **Président de la République** : chef de l'État, élu au suffrage universel direct pour **7 ans**. Il est le garant de l'unité nationale, de l'intégrité du territoire et du respect de la Constitution. Il est chef des armées et nomme le Premier Ministre.\n- Le **Gouvernement**, dirigé par le **Premier Ministre** (chef du Gouvernement). Les ministres mettent en œuvre la politique de l'État dans leurs domaines (éducation, santé, finances…).\n\n## II. Le pouvoir législatif\n\nLe **pouvoir législatif** vote les lois et contrôle l'action du Gouvernement. Au Cameroun, le **Parlement** est **bicaméral** (deux chambres) :\n- l'**Assemblée Nationale** : **180 députés** élus pour **5 ans** au suffrage universel direct ;\n- le **Sénat** : **100 sénateurs** (70 élus par les conseillers municipaux et régionaux, 30 nommés par le Président), pour un mandat de **5 ans**. Le Sénat représente les **collectivités territoriales décentralisées**.\n\n## III. Le pouvoir judiciaire\n\nLe **pouvoir judiciaire** rend la justice au nom du peuple. Il comprend :\n- la **Cour Suprême** (la plus haute juridiction de l'ordre judiciaire) ;\n- les **Cours d'appel** ;\n- les **Tribunaux** (de première instance, de grande instance, etc.).\nLe Président de la République est garant de l'**indépendance du pouvoir judiciaire**, assisté du **Conseil Supérieur de la Magistrature**.\n\n## IV. Les autres institutions de la République\n\nLa Constitution prévoit également :\n- le **Conseil Constitutionnel** : il veille au respect de la Constitution et statue sur la régularité des élections présidentielles et législatives ;\n- la **Cour des Comptes** (au sein de la Cour Suprême) : contrôle les finances publiques ;\n- le **Conseil Économique et Social** : organe consultatif sur les questions économiques et sociales ;\n- le **Conseil National de la Communication**, etc.\n\n## V. L'importance des institutions\n\nLes institutions garantissent :\n- le **fonctionnement régulier** de l'État ;\n- le respect de la **séparation des pouvoirs** ;\n- la **stabilité** et la **continuité** de l'État ;\n- la **protection des droits** des citoyens.\n\nUn citoyen averti connaît ses institutions afin de mieux exercer ses droits et ses devoirs.\n\n## Cas pratique / exercice corrigé\n\n**Énoncé :** Un élève affirme : « Au Cameroun, c'est le Président qui vote toutes les lois tout seul. »\n\n1. Cette affirmation est-elle correcte ?\n2. Quelle institution vote les lois ?\n3. Décris brièvement la composition de cette institution.\n\n**Correction :**\n\n1. L'affirmation est **incorrecte**. Le Président de la République appartient au pouvoir **exécutif**, qui **applique** les lois mais ne les vote pas seul.\n2. Ce sont les lois sont votées par le **Parlement** (pouvoir législatif).\n3. Le Parlement camerounais est **bicaméral** : il comprend l'**Assemblée Nationale** (180 députés élus pour 5 ans) et le **Sénat** (100 sénateurs, dont 70 élus et 30 nommés par le Président). Le Sénat représente les collectivités territoriales décentralisées.\n\n## À retenir\n\n- La République du Cameroun est régie par la **Constitution de 1996** (révisée).\n- Le pouvoir **exécutif** : **Président de la République** (élu pour 7 ans) et **Gouvernement** (Premier Ministre).\n- Le pouvoir **législatif** : le **Parlement bicaméral** = **Assemblée Nationale** (180 députés) + **Sénat** (100 sénateurs).\n- Le pouvoir **judiciaire** : Cour Suprême, Cours d'appel, Tribunaux.\n- Autres institutions : **Conseil Constitutionnel**, Conseil Économique et Social, etc.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Pour combien d'années le Président de la République du Cameroun est-il élu ?",
+            "options": [
+              "4 ans",
+              "5 ans",
+              "7 ans",
+              "10 ans"
+            ],
+            "answer": 2,
+            "explanation": "Le Président de la République est élu au suffrage universel direct pour un mandat de 7 ans."
+          },
+          {
+            "q": "Le Parlement camerounais est composé de :",
+            "options": [
+              "Une seule chambre",
+              "L'Assemblée Nationale et le Sénat",
+              "Trois chambres",
+              "Le Gouvernement uniquement"
+            ],
+            "answer": 1,
+            "explanation": "Le Parlement est bicaméral : Assemblée Nationale et Sénat."
+          },
+          {
+            "q": "Combien de députés compte l'Assemblée Nationale ?",
+            "options": [
+              "100",
+              "150",
+              "180",
+              "200"
+            ],
+            "answer": 2,
+            "explanation": "L'Assemblée Nationale compte 180 députés élus pour 5 ans."
+          },
+          {
+            "q": "Quelle institution veille au respect de la Constitution et à la régularité des élections présidentielles ?",
+            "options": [
+              "Le Sénat",
+              "Le Conseil Constitutionnel",
+              "La Cour des Comptes",
+              "Le Gouvernement"
+            ],
+            "answer": 1,
+            "explanation": "Le Conseil Constitutionnel veille au respect de la Constitution et statue sur la régularité des élections."
+          },
+          {
+            "q": "Le Premier Ministre est :",
+            "options": [
+              "Le chef de l'État",
+              "Le chef du Gouvernement",
+              "Le président du Sénat",
+              "Un juge de la Cour Suprême"
+            ],
+            "answer": 1,
+            "explanation": "Le Premier Ministre est le chef du Gouvernement, nommé par le Président de la République."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les symboles de l'État",
+      "video": "https://www.youtube.com/watch?v=2pCgNkj5e7E",
+      "lesson": "# Les symboles de l'État\n\n## Introduction\n\nChaque État possède des **symboles** qui le représentent et qui expriment son **identité**, son **unité** et sa **souveraineté**. Les respecter, c'est respecter la Nation tout entière. Au Cameroun, les symboles de l'État sont définis par la **Constitution**. Les connaître et leur témoigner du respect est un devoir civique fondamental.\n\n## I. Le drapeau national\n\nLe **drapeau du Cameroun** est composé de **trois bandes verticales** d'égale largeur : **vert, rouge, jaune**, avec une **étoile d'or** au centre de la bande rouge.\n\nSignification des couleurs :\n- le **vert** symbolise l'espérance, la végétation et les forêts du Sud ;\n- le **rouge** symbolise l'unité nationale (il est au centre, reliant les deux autres) ;\n- le **jaune** symbolise le soleil, les savanes du Nord et les richesses ;\n- l'**étoile d'or** représente l'unité nationale (« l'étoile de l'unité »).\n\nLe drapeau doit être traité avec respect : on le hisse lors des cérémonies officielles, jamais à terre ni déchiré.\n\n## II. L'hymne national\n\nL'**hymne national** du Cameroun s'intitule **« Ô Cameroun, berceau de nos ancêtres »** (le *Chant de Ralliement*). Il fut composé vers 1928 par des élèves de l'École Normale de Foulassi. On l'écoute et on le chante debout, dans le recueillement, notamment lors de la **montée des couleurs**.\n\n## III. La devise nationale\n\nLa **devise** du Cameroun est : **« Paix – Travail – Patrie »**.\n- la **Paix** : condition de tout développement ;\n- le **Travail** : moyen du progrès et de la prospérité ;\n- la **Patrie** : l'amour et le service de son pays.\n\n## IV. Les armoiries (le sceau de l'État)\n\nLes **armoiries** (ou blason) comportent un écu portant l'étoile et la carte du Cameroun, soutenu par deux faisceaux de licteur, avec la **balance de la justice**, l'épée et la devise nationale. Elles figurent sur les documents officiels et le **sceau de la République**.\n\n## V. Les autres symboles et le respect dû\n\nD'autres éléments représentent l'État : la **Constitution** (loi fondamentale), la **monnaie** (le **Franc CFA**), les **fêtes nationales** (la **Fête Nationale le 20 mai**, la **Fête de la Jeunesse le 11 février**, la **Fête de l'Unité**).\n\nRespecter les symboles de l'État, c'est :\n- se tenir **debout et silencieux** pendant l'hymne ;\n- ne pas **dégrader** le drapeau ni les emblèmes ;\n- honorer les **fêtes nationales**.\n\nProfaner un symbole de l'État est une **faute civique** et peut être sanctionné par la loi.\n\n## Cas pratique / exercice corrigé\n\n**Énoncé :** Pendant la montée des couleurs à l'école, un élève continue de bavarder et de jouer.\n\n1. Quel symbole de l'État est concerné ?\n2. Quelle attitude correcte aurait-il dû adopter ?\n3. Pourquoi le respect des symboles de l'État est-il important ?\n\n**Correction :**\n\n1. Les symboles concernés sont le **drapeau national** (qu'on hisse) et l'**hymne national** (qu'on chante).\n2. L'élève aurait dû se tenir **debout, immobile et silencieux**, le regard tourné vers le drapeau, et chanter l'hymne avec respect.\n3. Le respect des symboles de l'État est important parce que ces symboles représentent la **Nation**, son **unité** et sa **souveraineté**. Les respecter, c'est manifester son **patriotisme** et son **civisme** ; les mépriser, c'est manquer de respect à tout le peuple camerounais.\n\n## À retenir\n\n- Le **drapeau** : trois bandes **vert, rouge, jaune** avec une **étoile d'or**.\n- L'**hymne national** : *« Ô Cameroun, berceau de nos ancêtres »* (Chant de Ralliement).\n- La **devise** : **« Paix – Travail – Patrie »**.\n- Les **armoiries** portent la balance de la justice et la devise.\n- Fêtes nationales : **20 mai** (Fête Nationale/de l'Unité), **11 février** (Fête de la Jeunesse).\n- Respecter les symboles de l'État est un **devoir civique**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Quelles sont les couleurs du drapeau camerounais ?",
+            "options": [
+              "Rouge, blanc, bleu",
+              "Vert, rouge, jaune",
+              "Noir, jaune, rouge",
+              "Vert, blanc, rouge"
+            ],
+            "answer": 1,
+            "explanation": "Le drapeau du Cameroun est composé de trois bandes : vert, rouge et jaune, avec une étoile d'or."
+          },
+          {
+            "q": "Quelle est la devise du Cameroun ?",
+            "options": [
+              "Liberté – Égalité – Fraternité",
+              "Paix – Travail – Patrie",
+              "Unité – Discipline – Travail",
+              "Un Peuple – Un But – Une Foi"
+            ],
+            "answer": 1,
+            "explanation": "La devise du Cameroun est : Paix – Travail – Patrie."
+          },
+          {
+            "q": "Quel est le titre de l'hymne national camerounais ?",
+            "options": [
+              "La Marseillaise",
+              "Ô Cameroun, berceau de nos ancêtres",
+              "Le Chant des Partisans",
+              "La Nouvelle Marseillaise"
+            ],
+            "answer": 1,
+            "explanation": "L'hymne national s'intitule Ô Cameroun, berceau de nos ancêtres (Chant de Ralliement)."
+          },
+          {
+            "q": "Que symbolise l'étoile d'or sur le drapeau ?",
+            "options": [
+              "La richesse pétrolière",
+              "L'unité nationale",
+              "La guerre",
+              "La religion"
+            ],
+            "answer": 1,
+            "explanation": "L'étoile d'or est appelée l'étoile de l'unité : elle symbolise l'unité nationale."
+          },
+          {
+            "q": "Quelle date correspond à la Fête Nationale (de l'Unité) du Cameroun ?",
+            "options": [
+              "1er janvier",
+              "11 février",
+              "20 mai",
+              "15 août"
+            ],
+            "answer": 2,
+            "explanation": "La Fête Nationale, ou Fête de l'Unité, est célébrée le 20 mai."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La décentralisation et les collectivités territoriales décentralisées",
+      "video": "https://www.youtube.com/watch?v=oQ2dpd0gdNg",
+      "lesson": "# La décentralisation et les collectivités territoriales décentralisées\n\n## Introduction\n\nPour rapprocher l'administration des populations et favoriser le **développement local**, le Cameroun a choisi de partager une partie du pouvoir entre l'État central et des collectivités locales : c'est la **décentralisation**. Ce processus permet aux citoyens de participer plus directement à la gestion de leurs affaires. Ce chapitre explique la décentralisation et présente les **collectivités territoriales décentralisées (CTD)**.\n\n## I. Qu'est-ce que la décentralisation ?\n\nLa **décentralisation** est le transfert par l'État de certaines **compétences** et de **moyens** à des **collectivités locales** dotées de la **personnalité juridique** et de l'**autonomie financière**, dirigées par des **élus locaux**.\n\nElle se distingue de la **déconcentration** : dans la déconcentration, l'État délègue des pouvoirs à ses propres représentants nommés (gouverneurs, préfets, sous-préfets) qui restent sous son autorité ; dans la décentralisation, ce sont des **élus locaux** qui gèrent les affaires locales.\n\nLa décentralisation est inscrite dans la **Constitution de 1996** et organisée par la **loi de 2019 portant Code Général des Collectivités Territoriales Décentralisées**.\n\n## II. Les collectivités territoriales décentralisées (CTD)\n\nAu Cameroun, on distingue deux niveaux de CTD :\n\n1. **La Région** (10 régions). Elle est administrée par un **Conseil Régional** présidé par un président élu. Elle gère les affaires d'intérêt régional (développement, éducation, santé à l'échelle régionale).\n2. **La Commune** (commune ou communauté urbaine). Elle est administrée par un **Conseil Municipal** et dirigée par un **Maire** élu. C'est l'échelon le plus proche des citoyens.\n\nLes régions du **Nord-Ouest** et du **Sud-Ouest** bénéficient en plus d'un **statut spécial**.\n\n## III. Les compétences et le rôle des CTD\n\nLes CTD assurent des missions de proximité :\n- l'**état civil** (actes de naissance, de mariage, de décès) ;\n- la gestion des **marchés**, **routes locales**, **éclairage public** ;\n- l'**eau**, l'**assainissement**, la **salubrité** ;\n- la **promotion** de l'éducation, de la santé, de la culture et du sport locaux ;\n- le **développement économique** local.\n\nLe rôle des CTD est de **rapprocher l'administration des citoyens**, de favoriser la **participation** et d'accélérer le **développement local**.\n\n## IV. L'élu local et le citoyen\n\nLes **maires**, **conseillers municipaux** et **conseillers régionaux** sont des **élus**. Le citoyen participe à la décentralisation :\n- en **votant** lors des élections municipales et régionales ;\n- en **participant** aux réunions et projets de sa commune ;\n- en **payant** les taxes communales ;\n- en **contrôlant** l'action de ses élus.\n\n## Cas pratique / exercice corrigé\n\n**Énoncé :** Les habitants d'une commune se plaignent du mauvais état du marché et de l'absence d'éclairage public.\n\n1. À quelle institution doivent-ils s'adresser ?\n2. Qui dirige cette institution ?\n3. Comment les citoyens peuvent-ils contribuer à la solution ?\n\n**Correction :**\n\n1. Ils doivent s'adresser à la **Commune** (mairie), car la gestion des marchés et de l'éclairage public relève des compétences de la collectivité locale.\n2. La commune est dirigée par le **Maire**, assisté du **Conseil Municipal** élu.\n3. Les citoyens peuvent **participer aux réunions** de la commune pour exprimer leurs besoins, **payer leurs taxes** communales (qui financent ces équipements), **voter** pour des élus compétents et **contrôler** la bonne utilisation des ressources.\n\n## À retenir\n\n- La **décentralisation** est le transfert de compétences et de moyens à des **collectivités locales** dirigées par des **élus**.\n- Elle se distingue de la **déconcentration** (agents nommés : gouverneurs, préfets).\n- Les **CTD** au Cameroun : la **Région** (10) et la **Commune** (dirigée par le **Maire**).\n- Le **Nord-Ouest** et le **Sud-Ouest** ont un **statut spécial**.\n- Les CTD gèrent l'**état civil**, les **marchés**, l'**eau**, la **salubrité**, le **développement local**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Qu'est-ce que la décentralisation ?",
+            "options": [
+              "La nomination de préfets par l'État",
+              "Le transfert de compétences à des collectivités locales dirigées par des élus",
+              "La suppression des communes",
+              "Le pouvoir absolu du Président"
+            ],
+            "answer": 1,
+            "explanation": "La décentralisation est le transfert de compétences et de moyens à des collectivités locales dirigées par des élus."
+          },
+          {
+            "q": "Quelles sont les deux catégories de collectivités territoriales décentralisées au Cameroun ?",
+            "options": [
+              "La Région et la Commune",
+              "Le département et l'arrondissement",
+              "La province et le canton",
+              "Le quartier et le village"
+            ],
+            "answer": 0,
+            "explanation": "Les CTD au Cameroun sont la Région et la Commune."
+          },
+          {
+            "q": "Qui dirige une commune ?",
+            "options": [
+              "Le préfet",
+              "Le gouverneur",
+              "Le Maire",
+              "Le ministre"
+            ],
+            "answer": 2,
+            "explanation": "La commune est dirigée par un Maire élu, assisté du Conseil Municipal."
+          },
+          {
+            "q": "La déconcentration se distingue de la décentralisation parce qu'elle confie le pouvoir à :",
+            "options": [
+              "Des élus locaux",
+              "Des agents nommés par l'État (préfets, gouverneurs)",
+              "Des entreprises privées",
+              "Des associations"
+            ],
+            "answer": 1,
+            "explanation": "Dans la déconcentration, le pouvoir est confié à des agents nommés par l'État, qui restent sous son autorité."
+          },
+          {
+            "q": "Combien de régions compte le Cameroun ?",
+            "options": [
+              "8",
+              "10",
+              "12",
+              "58"
+            ],
+            "answer": 1,
+            "explanation": "Le Cameroun compte 10 régions, dont le Nord-Ouest et le Sud-Ouest bénéficient d'un statut spécial."
+          }
+        ]
+      }
+    },
+    {
+      "title": "L'intégration nationale et le vivre-ensemble",
+      "video": "https://www.youtube.com/watch?v=2pCgNkj5e7E",
+      "lesson": "# L'intégration nationale et le vivre-ensemble\n\n## Introduction\n\nLe Cameroun est souvent appelé l'**« Afrique en miniature »** : plus de **250 ethnies**, deux langues officielles (le français et l'anglais), plusieurs religions, des cultures et des paysages très variés. Cette **diversité** est une richesse, mais elle doit être unie autour d'un même destin. C'est le rôle de l'**intégration nationale** et du **vivre-ensemble**, qui permettent à tous les Camerounais de former **une seule Nation**.\n\n## I. Le Cameroun, un pays divers\n\nLe Cameroun se caractérise par sa **diversité** :\n- **ethnique et linguistique** : plus de 250 groupes ethniques et plus de 240 langues nationales ;\n- **culturelle** : danses, traditions, cuisines variées ;\n- **religieuse** : christianisme, islam, religions traditionnelles ;\n- **géographique** : forêts, savanes, montagnes, côtes ;\n- **historique et linguistique officielle** : un héritage **francophone** et **anglophone** (bilinguisme officiel).\n\n## II. L'intégration nationale\n\nL'**intégration nationale** est le processus par lequel les différents groupes (ethnies, régions, religions) se rassemblent pour former **une seule communauté nationale** partageant les mêmes valeurs et le même destin.\n\nLes facteurs d'intégration nationale au Cameroun :\n- le **bilinguisme** officiel (français/anglais) ;\n- l'**école** et le service civique ;\n- les **symboles nationaux** communs (drapeau, hymne, devise) ;\n- les **mariages interethniques** ;\n- le **sport** (les Lions Indomptables rassemblent tout le pays) ;\n- les **infrastructures** (routes, médias) qui relient les régions ;\n- les **brassages** liés aux affectations professionnelles.\n\n## III. Le vivre-ensemble\n\nLe **vivre-ensemble** est la capacité de personnes différentes à **cohabiter pacifiquement**, dans le respect mutuel et la solidarité. Il repose sur des valeurs : **tolérance**, **respect de la différence**, **dialogue**, **solidarité**, **acceptation de l'autre**.\n\nLe vivre-ensemble exige de lutter contre :\n- le **tribalisme** (préférer ou rejeter quelqu'un selon son ethnie) ;\n- la **discrimination** (religieuse, régionale, etc.) ;\n- les **discours de haine** ;\n- la **xénophobie** et le **rejet de l'autre**.\n\n## IV. L'importance de l'intégration nationale et du vivre-ensemble\n\nL'intégration nationale et le vivre-ensemble :\n- garantissent la **paix** et la **stabilité** ;\n- renforcent l'**unité nationale** ;\n- favorisent le **développement** (un pays uni travaille mieux) ;\n- font de la **diversité** une force et non une faiblesse.\n\nChaque citoyen, dès l'école, doit cultiver le respect de l'autre, refuser le tribalisme et promouvoir l'amitié entre les peuples du Cameroun.\n\n## Cas pratique / exercice corrigé\n\n**Énoncé :** Dans une classe, certains élèves refusent de s'asseoir à côté de camarades venant d'une autre région ou parlant une autre langue.\n\n1. Comment qualifies-tu ce comportement ?\n2. Quelles valeurs sont menacées ?\n3. Propose deux actions pour favoriser le vivre-ensemble dans cette classe.\n\n**Correction :**\n\n1. Ce comportement relève du **tribalisme** et de la **discrimination** : on rejette des camarades à cause de leur région ou de leur langue.\n2. Les valeurs menacées sont la **tolérance**, le **respect de la différence**, la **solidarité** et l'**unité nationale** (le vivre-ensemble).\n3. Deux actions possibles :\n   - Organiser des **travaux de groupe mixtes** mêlant les élèves de régions différentes pour favoriser la connaissance mutuelle.\n   - Mener une **séance de sensibilisation** sur la richesse de la diversité et organiser une **journée culturelle** où chacun présente sa région, sa langue et ses traditions.\n\n## À retenir\n\n- Le Cameroun est l'**« Afrique en miniature »** : grande **diversité** ethnique, linguistique, religieuse et géographique.\n- L'**intégration nationale** rassemble les groupes pour former **une seule Nation**.\n- Facteurs d'intégration : **bilinguisme**, **école**, **symboles nationaux**, **sport**, **mariages interethniques**.\n- Le **vivre-ensemble** repose sur la **tolérance**, le **respect** et la **solidarité**.\n- Il faut combattre le **tribalisme**, la **discrimination** et la **xénophobie**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Pourquoi appelle-t-on le Cameroun « l'Afrique en miniature » ?",
+            "options": [
+              "Parce qu'il est très petit",
+              "Parce qu'il rassemble une grande diversité de peuples, de cultures et de paysages",
+              "Parce qu'il n'a qu'une seule ethnie",
+              "Parce qu'il est inhabité"
+            ],
+            "answer": 1,
+            "explanation": "Le Cameroun est appelé l'Afrique en miniature à cause de sa grande diversité ethnique, culturelle et géographique."
+          },
+          {
+            "q": "Qu'est-ce que l'intégration nationale ?",
+            "options": [
+              "Le rejet des étrangers",
+              "Le processus qui rassemble les groupes pour former une seule Nation",
+              "La séparation des régions",
+              "La domination d'une ethnie"
+            ],
+            "answer": 1,
+            "explanation": "L'intégration nationale rassemble les différents groupes en une seule communauté nationale."
+          },
+          {
+            "q": "Lequel de ces éléments favorise l'intégration nationale ?",
+            "options": [
+              "Le tribalisme",
+              "Le bilinguisme et les symboles nationaux communs",
+              "La discrimination",
+              "Les discours de haine"
+            ],
+            "answer": 1,
+            "explanation": "Le bilinguisme, les symboles nationaux, l'école et le sport favorisent l'intégration nationale."
+          },
+          {
+            "q": "Le vivre-ensemble exige de lutter contre :",
+            "options": [
+              "La tolérance",
+              "Le tribalisme et la discrimination",
+              "Le dialogue",
+              "La solidarité"
+            ],
+            "answer": 1,
+            "explanation": "Le vivre-ensemble exige de combattre le tribalisme, la discrimination et la xénophobie."
+          },
+          {
+            "q": "Combien de langues officielles le Cameroun possède-t-il ?",
+            "options": [
+              "Une",
+              "Deux (le français et l'anglais)",
+              "Trois",
+              "Dix"
+            ],
+            "answer": 1,
+            "explanation": "Le Cameroun a deux langues officielles : le français et l'anglais (bilinguisme officiel)."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La paix et la résolution des conflits",
+      "video": "https://www.youtube.com/watch?v=2pCgNkj5e7E",
+      "lesson": "# La paix et la résolution des conflits\n\n## Introduction\n\nLa **paix** est la première valeur de la devise camerounaise : *« Paix – Travail – Patrie »*. Sans paix, il n'y a ni école, ni travail, ni développement. Or, là où vivent des hommes, des **conflits** peuvent naître. L'important n'est pas tant d'éviter tout désaccord que de savoir le **résoudre pacifiquement**. Ce chapitre étudie la paix, les conflits et les moyens de les résoudre.\n\n## I. Qu'est-ce que la paix ?\n\nLa **paix** est l'état de **tranquillité**, d'**absence de violence** et de **bonne entente** entre les personnes, les groupes et les nations. On distingue :\n- la **paix intérieure** (sérénité de la personne) ;\n- la **paix sociale** (harmonie au sein d'une communauté) ;\n- la **paix nationale** (stabilité d'un pays) ;\n- la **paix internationale** (entente entre les États).\n\nLa paix n'est pas seulement l'absence de guerre : c'est aussi la **justice**, le **respect des droits**, la **solidarité** et le **dialogue**.\n\n## II. Les conflits\n\nUn **conflit** est une **opposition**, un **désaccord** ou un **affrontement** entre des personnes ou des groupes ayant des intérêts ou des opinions différents.\n\nCauses des conflits :\n- l'**intolérance** et le manque de dialogue ;\n- l'**injustice** et les inégalités ;\n- la **mauvaise répartition** des ressources (terre, eau, richesses) ;\n- le **tribalisme**, le **fanatisme** religieux ;\n- l'**ambition** et la soif de pouvoir ;\n- l'**ignorance** et les rumeurs.\n\nConséquences des conflits : destructions, morts, déplacements de populations, faim, arrêt de l'école, sous-développement.\n\n## III. La résolution pacifique des conflits\n\nRésoudre un conflit pacifiquement, c'est trouver une solution **sans violence**. Les principaux modes de résolution :\n- le **dialogue** : se parler pour se comprendre ;\n- la **négociation** : discuter pour trouver un accord ;\n- la **médiation** : faire appel à un tiers (médiateur) qui aide à rapprocher les parties ;\n- la **conciliation** et l'**arbitrage** ;\n- le recours à la **justice** (tribunaux) ;\n- le **pardon** et la **réconciliation**.\n\nAu niveau international, des organisations comme l'**ONU** et l'**Union Africaine** veillent au maintien de la paix (casques bleus, missions de médiation).\n\n## IV. Le rôle du citoyen et de l'élève dans la culture de la paix\n\nChacun peut être un **artisan de paix** :\n- en pratiquant la **tolérance** et le **respect** ;\n- en **dialoguant** plutôt qu'en se battant ;\n- en **refusant la violence** et les discours de haine ;\n- en **réconciliant** ceux qui se disputent ;\n- en respectant les **règles** de l'école et de la société.\n\nLa **culture de la paix** s'apprend dès l'école : elle fait des élèves les futurs bâtisseurs d'un Cameroun uni et pacifique.\n\n## Cas pratique / exercice corrigé\n\n**Énoncé :** Deux élèves se disputent violemment dans la cour à propos d'un ballon, et la dispute risque de dégénérer en bagarre.\n\n1. Identifie la cause du conflit.\n2. Quel mode de résolution pacifique peux-tu proposer ?\n3. Quel rôle un camarade témoin devrait-il jouer ?\n\n**Correction :**\n\n1. La cause du conflit est un **désaccord** sur l'usage d'un ballon : un problème de partage et de communication (manque de dialogue).\n2. On peut proposer le **dialogue** et la **négociation** : les deux élèves se parlent calmement pour convenir d'une règle (par exemple jouer à tour de rôle). Si nécessaire, faire appel à une **médiation** (un surveillant ou un camarade neutre).\n3. Le camarade témoin devrait jouer le rôle de **médiateur** : séparer calmement les deux élèves, les inviter au dialogue, éviter d'attiser la dispute, et au besoin alerter un adulte. Il agit ainsi en **artisan de paix**.\n\n## À retenir\n\n- La **paix** n'est pas seulement l'absence de guerre, mais aussi la **justice** et le **respect**.\n- Un **conflit** est une opposition entre personnes ou groupes.\n- Causes des conflits : **intolérance**, **injustice**, **mauvaise répartition** des ressources, **tribalisme**.\n- Modes de résolution pacifique : **dialogue**, **négociation**, **médiation**, **justice**, **pardon**.\n- L'**ONU** et l'**Union Africaine** œuvrent pour la paix dans le monde.\n- Chacun peut être un **artisan de paix**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "La paix se définit comme :",
+            "options": [
+              "L'absence totale de désaccords",
+              "Un état de tranquillité, d'absence de violence et de bonne entente",
+              "La domination d'un groupe",
+              "Le silence imposé par la force"
+            ],
+            "answer": 1,
+            "explanation": "La paix est un état de tranquillité, d'absence de violence et de bonne entente, fondé sur la justice et le respect."
+          },
+          {
+            "q": "Lequel de ces éléments est une cause fréquente de conflit ?",
+            "options": [
+              "Le dialogue",
+              "La tolérance",
+              "L'injustice et l'intolérance",
+              "La solidarité"
+            ],
+            "answer": 2,
+            "explanation": "L'injustice, l'intolérance et la mauvaise répartition des ressources sont des causes fréquentes de conflits."
+          },
+          {
+            "q": "La médiation consiste à :",
+            "options": [
+              "Se battre jusqu'à la victoire",
+              "Faire appel à un tiers qui aide à rapprocher les parties",
+              "Ignorer le problème",
+              "Punir tout le monde"
+            ],
+            "answer": 1,
+            "explanation": "La médiation fait intervenir un tiers (médiateur) qui aide les parties à trouver un accord."
+          },
+          {
+            "q": "Quelle organisation internationale veille au maintien de la paix dans le monde ?",
+            "options": [
+              "La FIFA",
+              "L'ONU",
+              "L'OMC",
+              "La CAF"
+            ],
+            "answer": 1,
+            "explanation": "L'ONU (et l'Union Africaine au niveau continental) veille au maintien de la paix."
+          },
+          {
+            "q": "Un artisan de paix est quelqu'un qui :",
+            "options": [
+              "Provoque des bagarres",
+              "Dialogue, réconcilie et refuse la violence",
+              "Répand des rumeurs",
+              "Encourage le tribalisme"
+            ],
+            "answer": 1,
+            "explanation": "Un artisan de paix dialogue, réconcilie, pratique la tolérance et refuse la violence."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La protection de l'environnement",
+      "video": "https://www.youtube.com/watch?v=Qf7nVc9Q5pY",
+      "lesson": "# La protection de l'environnement\n\n## Introduction\n\nL'**environnement** est notre cadre de vie : l'air que nous respirons, l'eau que nous buvons, le sol qui nous nourrit, la forêt, les animaux. Pourtant, l'activité humaine le détériore de plus en plus. Protéger l'environnement n'est pas seulement une question de confort : c'est une question de **survie** et un **devoir civique**. Ce chapitre montre pourquoi et comment protéger l'environnement, au Cameroun et dans le monde.\n\n## I. Qu'est-ce que l'environnement ?\n\nL'**environnement** est l'ensemble des éléments **naturels** (air, eau, sol, faune, flore, climat) et **humains** qui entourent et conditionnent la vie. C'est un patrimoine commun de l'humanité que nous devons transmettre aux générations futures.\n\n## II. Les problèmes environnementaux\n\nLes principales atteintes à l'environnement :\n- la **déforestation** (coupe abusive des arbres) ;\n- les **feux de brousse** ;\n- la **pollution** de l'air, de l'eau et des sols (déchets, plastiques, gaz d'usines et de voitures) ;\n- l'**érosion** et la dégradation des sols ;\n- le **braconnage** (chasse illégale d'animaux protégés) ;\n- les **changements climatiques** (réchauffement, sécheresses, inondations) ;\n- la mauvaise **gestion des déchets** (ordures, sachets plastiques).\n\nCes problèmes provoquent maladies, inondations, famines, disparition d'espèces et appauvrissement des populations.\n\n## III. La protection de l'environnement\n\nProtéger l'environnement, c'est adopter des comportements responsables :\n- **planter des arbres** (reboisement) ;\n- **éviter les feux de brousse** ;\n- **gérer les déchets** (tri, recyclage, poubelles, réduction des plastiques) ;\n- **économiser l'eau et l'énergie** ;\n- **protéger la faune et la flore** (lutter contre le braconnage) ;\n- **assainir** son cadre de vie (salubrité, curage des caniveaux) ;\n- **sensibiliser** son entourage.\n\nAu Cameroun, l'État agit à travers le **Ministère de l'Environnement, de la Protection de la Nature et du Développement Durable (MINEPDED)**, des **lois** et des **parcs nationaux** (Waza, Korup, Bénoué…). Des **journées** sont consacrées à l'environnement (Journée mondiale de l'environnement le **5 juin**, Journée nationale de l'arbre).\n\n## IV. Le développement durable\n\nLe **développement durable** est un développement qui répond aux besoins du présent **sans compromettre** la capacité des générations futures à satisfaire les leurs. Il repose sur trois piliers : **économique**, **social** et **environnemental**. Protéger l'environnement, c'est donc préparer un avenir vivable pour nos enfants.\n\n## Cas pratique / exercice corrigé\n\n**Énoncé :** Dans un village, des habitants pratiquent systématiquement le feu de brousse pour défricher leurs champs, ce qui détruit la végétation et chasse les animaux.\n\n1. Quel problème environnemental est posé ?\n2. Cite deux conséquences de cette pratique.\n3. Propose deux solutions responsables.\n\n**Correction :**\n\n1. Le problème posé est celui des **feux de brousse**, qui entraînent la **déforestation** et la dégradation de l'environnement.\n2. Deux conséquences : la **destruction de la végétation et de la faune** (biodiversité), et l'**appauvrissement et l'érosion des sols** (qui deviennent moins fertiles), favorisant aussi la pollution de l'air.\n3. Deux solutions : pratiquer des **techniques agricoles sans feu** (compostage, jachère, agroforesterie) et mener des actions de **reboisement** ; **sensibiliser** les habitants et faire respecter la réglementation interdisant les feux de brousse.\n\n## À retenir\n\n- L'**environnement** est l'ensemble des éléments naturels et humains qui conditionnent la vie.\n- Atteintes : **déforestation**, **feux de brousse**, **pollution**, **braconnage**, **changements climatiques**.\n- Protéger l'environnement : **reboiser**, **gérer les déchets**, **économiser l'eau**, **protéger la faune**.\n- L'État agit via le **MINEPDED**, des **lois** et des **parcs nationaux**.\n- Le **développement durable** satisfait le présent sans compromettre l'avenir.\n- La Journée mondiale de l'environnement est le **5 juin**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Qu'est-ce que l'environnement ?",
+            "options": [
+              "Seulement les bâtiments",
+              "L'ensemble des éléments naturels et humains qui conditionnent la vie",
+              "Uniquement les animaux",
+              "Le centre-ville"
+            ],
+            "answer": 1,
+            "explanation": "L'environnement est l'ensemble des éléments naturels (air, eau, sol, faune, flore) et humains qui entourent la vie."
+          },
+          {
+            "q": "Lequel de ces comportements protège l'environnement ?",
+            "options": [
+              "Le braconnage",
+              "Les feux de brousse",
+              "Le reboisement",
+              "La pollution des rivières"
+            ],
+            "answer": 2,
+            "explanation": "Le reboisement (planter des arbres) protège l'environnement ; les autres le détruisent."
+          },
+          {
+            "q": "Quand célèbre-t-on la Journée mondiale de l'environnement ?",
+            "options": [
+              "Le 1er janvier",
+              "Le 5 juin",
+              "Le 20 mai",
+              "Le 11 février"
+            ],
+            "answer": 1,
+            "explanation": "La Journée mondiale de l'environnement est célébrée le 5 juin."
+          },
+          {
+            "q": "Le développement durable est un développement qui :",
+            "options": [
+              "Détruit la nature pour aller plus vite",
+              "Répond aux besoins du présent sans compromettre l'avenir des générations futures",
+              "Ignore les questions sociales",
+              "Concerne uniquement l'argent"
+            ],
+            "answer": 1,
+            "explanation": "Le développement durable répond aux besoins présents sans compromettre ceux des générations futures."
+          },
+          {
+            "q": "Quel ministère est chargé de l'environnement au Cameroun ?",
+            "options": [
+              "Le MINESEC",
+              "Le MINEPDED",
+              "Le MINSANTE",
+              "Le MINFI"
+            ],
+            "answer": 1,
+            "explanation": "Le MINEPDED est le Ministère de l'Environnement, de la Protection de la Nature et du Développement Durable."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La lutte contre la corruption",
+      "video": "https://www.youtube.com/watch?v=Q8gjPzm9hM0",
+      "lesson": "# La lutte contre la corruption\n\n## Introduction\n\nLa **corruption** est l'un des plus grands obstacles au développement de l'Afrique. Elle détourne les ressources destinées aux écoles, aux hôpitaux et aux routes, et nourrit l'injustice et la pauvreté. Combattre la corruption est donc un **devoir citoyen** et une priorité nationale. Ce chapitre définit la corruption, en montre les causes et les conséquences, et présente les moyens de lutte.\n\n## I. Qu'est-ce que la corruption ?\n\nLa **corruption** est le fait d'**abuser** d'un pouvoir ou d'une fonction pour obtenir un **avantage personnel** illégal (argent, faveur, cadeau). Elle se manifeste sous plusieurs formes :\n- le **pot-de-vin** (« gombo », « motivation », « bière ») : payer un agent pour obtenir un service ou échapper à la loi ;\n- le **détournement de fonds publics** ;\n- le **favoritisme** et le **népotisme** (favoriser ses proches) ;\n- la **concussion** (un agent qui exige une somme indue) ;\n- la **fraude** (aux examens, aux marchés publics).\n\nOn distingue le **corrupteur** (celui qui donne) et le **corrompu** (celui qui reçoit) : les deux sont coupables.\n\n## II. Les causes de la corruption\n\n- la **pauvreté** et les bas salaires ;\n- l'**impunité** (les coupables ne sont pas punis) ;\n- l'**ignorance** de la loi et des droits ;\n- la **cupidité** et la perte des valeurs morales ;\n- la **lenteur** et la lourdeur administrative ;\n- le **mauvais exemple** des aînés.\n\n## III. Les conséquences de la corruption\n\nLa corruption :\n- **freine le développement** (les fonds publics sont détournés) ;\n- crée l'**injustice** et l'**inégalité** (seuls ceux qui paient sont servis) ;\n- dégrade la **qualité** des services et des infrastructures (routes mal construites, faux diplômes) ;\n- détruit la **confiance** envers les institutions ;\n- ternit l'**image** du pays et décourage les investisseurs.\n\n## IV. La lutte contre la corruption au Cameroun\n\nLe Cameroun a mis en place des institutions et des moyens :\n- la **CONAC** (Commission Nationale Anti-Corruption) ;\n- l'**ANIF** (Agence Nationale d'Investigation Financière) ;\n- le **Tribunal Criminel Spécial (TCS)** qui juge les détournements de fonds publics ;\n- des **lois** sanctionnant la corruption ;\n- des **opérations** comme l'« **Épervier** » (poursuite des détournements).\n\nChaque citoyen peut lutter contre la corruption :\n- en **refusant** de donner ou de recevoir un pot-de-vin ;\n- en **dénonçant** les actes de corruption ;\n- en cultivant l'**intégrité**, l'**honnêteté** et le **mérite** ;\n- en **respectant la loi** et en exigeant des reçus.\n\n## Cas pratique / exercice corrigé\n\n**Énoncé :** Pour obtenir plus vite un acte de naissance, le père d'un élève propose une « petite somme » à un agent qui le réclame.\n\n1. Identifie les acteurs de la corruption dans cette scène.\n2. Quelle forme de corruption est en jeu ?\n3. Quelle attitude citoyenne adopter et quelles institutions saisir ?\n\n**Correction :**\n\n1. Les acteurs sont le **corrupteur** (le père qui propose ou accepte de payer) et le **corrompu** (l'agent qui réclame ou reçoit la somme). Les deux sont **coupables**.\n2. Il s'agit d'un **pot-de-vin** (et de **concussion** de la part de l'agent qui exige une somme indue pour un service normalement dû).\n3. L'attitude citoyenne est de **refuser** de payer, d'**exiger** le service légal et un reçu, et de **dénoncer** l'agent auprès de sa hiérarchie ou de la **CONAC**. On peut aussi saisir le **Tribunal Criminel Spécial** pour les cas de détournement de fonds publics.\n\n## À retenir\n\n- La **corruption** est l'abus d'un pouvoir pour un avantage personnel illégal.\n- Le **corrupteur** et le **corrompu** sont tous deux coupables.\n- Causes : **pauvreté**, **impunité**, **cupidité**, **ignorance**.\n- Conséquences : elle **freine le développement**, crée l'**injustice** et détruit la **confiance**.\n- Institutions de lutte au Cameroun : **CONAC**, **ANIF**, **Tribunal Criminel Spécial**.\n- Le citoyen lutte par l'**intégrité**, le **refus** et la **dénonciation**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Qu'est-ce que la corruption ?",
+            "options": [
+              "Un service public gratuit",
+              "L'abus d'un pouvoir pour obtenir un avantage personnel illégal",
+              "Le paiement légal des impôts",
+              "Le respect de la loi"
+            ],
+            "answer": 1,
+            "explanation": "La corruption est l'abus d'un pouvoir ou d'une fonction pour obtenir un avantage personnel illégal."
+          },
+          {
+            "q": "Dans un acte de corruption :",
+            "options": [
+              "Seul le corrompu est coupable",
+              "Seul le corrupteur est coupable",
+              "Le corrupteur et le corrompu sont tous deux coupables",
+              "Personne n'est coupable"
+            ],
+            "answer": 2,
+            "explanation": "Le corrupteur (celui qui donne) et le corrompu (celui qui reçoit) sont tous deux coupables."
+          },
+          {
+            "q": "Quelle institution camerounaise lutte contre la corruption ?",
+            "options": [
+              "La CONAC",
+              "La FECAFOOT",
+              "Le MINESEC",
+              "La CRTV"
+            ],
+            "answer": 0,
+            "explanation": "La CONAC (Commission Nationale Anti-Corruption) est chargée de lutter contre la corruption."
+          },
+          {
+            "q": "Une conséquence de la corruption est :",
+            "options": [
+              "L'accélération du développement",
+              "Le freinage du développement et l'injustice",
+              "La hausse de la confiance dans l'État",
+              "L'amélioration des routes"
+            ],
+            "answer": 1,
+            "explanation": "La corruption freine le développement, crée l'injustice et détruit la confiance dans les institutions."
+          },
+          {
+            "q": "Comment un citoyen peut-il lutter contre la corruption ?",
+            "options": [
+              "En donnant des pots-de-vin",
+              "En refusant et en dénonçant les actes de corruption",
+              "En gardant le silence",
+              "En favorisant ses proches"
+            ],
+            "answer": 1,
+            "explanation": "Le citoyen lutte en refusant de donner ou recevoir des pots-de-vin et en dénonçant la corruption."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les organisations internationales (ONU, Union Africaine)",
+      "video": "https://www.youtube.com/watch?v=Q8gjPzm9hM0",
+      "lesson": "# Les organisations internationales (ONU, Union Africaine)\n\n## Introduction\n\nAucun pays ne vit isolé. Pour assurer la **paix**, le **développement** et la **coopération**, les États se regroupent au sein d'**organisations internationales**. Le Cameroun est membre de plusieurs d'entre elles. Ce chapitre présente les principales organisations internationales, en particulier l'**ONU** et l'**Union Africaine (UA)**, et le rôle qu'y joue le Cameroun.\n\n## I. Qu'est-ce qu'une organisation internationale ?\n\nUne **organisation internationale** est un groupement d'**États** (ou d'institutions) qui s'associent pour atteindre des **objectifs communs** : maintenir la paix, favoriser le développement, défendre les droits de l'homme, développer le commerce, etc.\n\nOn distingue :\n- les organisations à **vocation mondiale** (ONU, OMS, UNESCO, FMI, OMC…) ;\n- les organisations **régionales ou continentales** (Union Africaine, Union Européenne…) ;\n- les organisations **sous-régionales** (CEMAC, CEEAC en Afrique centrale).\n\n## II. L'Organisation des Nations Unies (ONU)\n\nL'**ONU** a été créée le **24 octobre 1945** (après la Seconde Guerre mondiale), son siège est à **New York**. Elle compte aujourd'hui **193 États membres**.\n\n**Objectifs de l'ONU :**\n- **maintenir la paix et la sécurité** dans le monde ;\n- développer la **coopération** entre les nations ;\n- protéger les **droits de l'homme** ;\n- favoriser le **développement** et l'aide humanitaire.\n\n**Principaux organes de l'ONU :**\n- l'**Assemblée Générale** (tous les États membres) ;\n- le **Conseil de Sécurité** (15 membres, dont 5 permanents : États-Unis, Russie, Chine, France, Royaume-Uni) ;\n- le **Secrétariat** (dirigé par le **Secrétaire Général**) ;\n- la **Cour Internationale de Justice** (siège à La Haye) ;\n- des **institutions spécialisées** : **UNESCO** (éducation/culture), **OMS** (santé), **UNICEF** (enfance), **FAO** (alimentation).\n\n## III. L'Union Africaine (UA)\n\nL'**Union Africaine** a été créée en **2002** à **Durban** (Afrique du Sud), en remplacement de l'**OUA** (Organisation de l'Unité Africaine, fondée en 1963). Son siège est à **Addis-Abeba** (Éthiopie). Elle regroupe **55 États** africains.\n\n**Objectifs de l'UA :**\n- promouvoir l'**unité** et la **solidarité** des pays africains ;\n- maintenir la **paix** et la **sécurité** sur le continent ;\n- favoriser le **développement** économique et l'**intégration** africaine ;\n- défendre la **souveraineté** et les **droits de l'homme** en Afrique.\n\n## IV. Le Cameroun et la coopération internationale\n\nLe Cameroun est membre de l'**ONU**, de l'**UA**, du **Commonwealth**, de l'**OIF** (Organisation Internationale de la Francophonie), de la **CEMAC** et de la **CEEAC**. Il participe aux opérations de **maintien de la paix** et bénéficie de l'aide au développement.\n\nPour le citoyen, ces organisations rappellent que la **paix** et le **développement** dépendent aussi de la **coopération** et de la **solidarité** entre les peuples.\n\n## Cas pratique / exercice corrigé\n\n**Énoncé :** Une épidémie se déclare dans plusieurs pays africains. Une organisation internationale envoie des vaccins et des experts pour aider le Cameroun.\n\n1. De quel type d'organisation internationale peut-il s'agir ?\n2. Cite une institution spécialisée de l'ONU compétente dans ce domaine.\n3. Montre l'intérêt de la coopération internationale pour le Cameroun.\n\n**Correction :**\n\n1. Il peut s'agir d'une organisation **à vocation mondiale** spécialisée dans la santé.\n2. L'institution compétente est l'**OMS** (Organisation Mondiale de la Santé), institution spécialisée de l'ONU.\n3. La **coopération internationale** permet au Cameroun de **bénéficier d'aides** (vaccins, experts, financements) qu'il ne pourrait pas toujours réunir seul, de **mieux faire face** aux crises (épidémies, catastrophes) et de **renforcer la paix** et le développement grâce à la solidarité entre les nations.\n\n## À retenir\n\n- Une **organisation internationale** regroupe des États pour des objectifs communs (paix, développement, droits de l'homme).\n- L'**ONU** : créée le **24 octobre 1945**, siège à **New York**, **193 membres** ; rôle : maintenir la **paix**.\n- Organes de l'ONU : **Assemblée Générale**, **Conseil de Sécurité** (5 membres permanents), **Secrétariat**, **CIJ**.\n- Institutions spécialisées : **UNESCO**, **OMS**, **UNICEF**, **FAO**.\n- L'**Union Africaine** : créée en **2002**, siège à **Addis-Abeba**, **55 États** ; elle a remplacé l'**OUA** (1963).\n- Le Cameroun est membre de l'**ONU**, de l'**UA**, du **Commonwealth**, de l'**OIF**, de la **CEMAC**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "En quelle année l'ONU a-t-elle été créée ?",
+            "options": [
+              "1919",
+              "1945",
+              "1963",
+              "2002"
+            ],
+            "answer": 1,
+            "explanation": "L'ONU a été créée le 24 octobre 1945, après la Seconde Guerre mondiale."
+          },
+          {
+            "q": "Où se trouve le siège de l'ONU ?",
+            "options": [
+              "Genève",
+              "New York",
+              "Paris",
+              "Addis-Abeba"
+            ],
+            "answer": 1,
+            "explanation": "Le siège de l'ONU se trouve à New York, aux États-Unis."
+          },
+          {
+            "q": "L'Union Africaine a remplacé en 2002 :",
+            "options": [
+              "L'ONU",
+              "L'OUA (Organisation de l'Unité Africaine)",
+              "La CEMAC",
+              "L'OMS"
+            ],
+            "answer": 1,
+            "explanation": "L'Union Africaine, créée en 2002, a remplacé l'OUA fondée en 1963."
+          },
+          {
+            "q": "Où se situe le siège de l'Union Africaine ?",
+            "options": [
+              "Yaoundé",
+              "Addis-Abeba",
+              "Le Caire",
+              "Dakar"
+            ],
+            "answer": 1,
+            "explanation": "Le siège de l'Union Africaine est à Addis-Abeba, en Éthiopie."
+          },
+          {
+            "q": "Quelle institution spécialisée de l'ONU s'occupe de la santé ?",
+            "options": [
+              "L'UNESCO",
+              "L'OMS",
+              "La FAO",
+              "L'UNICEF"
+            ],
+            "answer": 1,
+            "explanation": "L'OMS (Organisation Mondiale de la Santé) est l'institution spécialisée de l'ONU chargée de la santé."
+          }
+        ]
+      }
+    }
+  ]
+}

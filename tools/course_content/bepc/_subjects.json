@@ -1,0 +1,14 @@
+{
+  "exam": "BEPC",
+  "level": "3ème",
+  "subjects": {
+    "Ma": "6a3f05ef3cbab1e4c4b6",
+    "Fr": "6a3f05efb7c3e507ad75",
+    "An": "6a3f05f02d0236bd51d9",
+    "SV": "6a3f05f095cc913825b0",
+    "PC": "6a3f05f109a123542275",
+    "HG": "6a3f05f174e8c6a7c4fc",
+    "EC": "6a3f05f1ddf0c907280b",
+    "In": "6a3f05f2503cd2b3a64a"
+  }
+}

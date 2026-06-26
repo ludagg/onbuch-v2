@@ -1,232 +1,771 @@
 {
-  "subject": "SVT",
   "code": "SV",
-  "series": "C, D",
+  "level": "Terminale",
   "chapters": [
     {
-      "title": "Le brassage génétique et les lois de Mendel",
-      "lesson": "# Le brassage génétique et les lois de Mendel\n\n## Introduction\n\nLa **génétique** est la science qui étudie l'hérédité, c'est-à-dire la transmission des caractères des parents à leur descendance. À la méiose, lors de la formation des gamètes, les chromosomes (et donc les **gènes** qu'ils portent) sont redistribués : c'est le **brassage génétique**, à l'origine de la diversité des individus. Comprendre ce brassage permet d'expliquer la répartition des caractères dans les croisements, formalisée dès le XIXẛ siècle par le moine **Gregor Mendel** chez le pois.\n\n## I. Définitions essentielles\n\n- **Gène** : unité d'information héréditaire occupant une position précise (le **locus**) sur un chromosome.\n- **Allèle** : version d'un gène (ex. allèle « grain lisse » / allèle « grain ridé »).\n- **Génotype** : ensemble des allèles d'un individu (ex. *Aa*).\n- **Phénotype** : caractère observable résultant du génotype et du milieu.\n- **Homozygote** : deux allèles identiques (*AA* ou *aa*) ; **hétérozygote** : deux allèles différents (*Aa*).\n- **Allèle dominant** (noté en majuscule) : s'exprime même à l'état hétérozygote ; **allèle récessif** (minuscule) : ne s'exprime qu'à l'état homozygote.\n\n## II. La première loi de Mendel : uniformité de la F1\n\nEn croisant deux lignées pures (homozygotes) qui diffèrent par un caractère, on obtient une **première génération (F1) uniforme**. Exemple : pois à fleurs pourpres ($PP$) × pois à fleurs blanches ($pp$). Tous les descendants F1 sont $Pp$ : ils portent les deux allèles mais n'expriment que le caractère **dominant** (pourpre). C'est la **loi d'uniformité des hybrides de première génération**.\n\n## III. La deuxième loi de Mendel : disjonction des allèles\n\nEn croisant deux individus F1 entre eux ($Pp × Pp$), les allèles se **séparent** lors de la méiose (un gamète ne reçoit qu'un seul allèle). On obtient en F2 la proportion caractéristique **3/4 dominant : 1/4 récessif**, soit $\\frac{3}{4}$ de pourpres et $\\frac{1}{4}$ de blancs. Le tableau de croisement (échiquier de Punnett) donne les génotypes : $\\frac{1}{4} PP$, $\\frac{1}{2} Pp$, $\\frac{1}{4} pp$.\n\n## IV. La troisième loi : indépendance des caractères\n\nQuand deux gènes sont situés sur des **chromosomes différents** (non liés), leurs allèles se transmettent de façon **indépendante**. Le dihybridisme donne en F2 la proportion $9 : 3 : 3 : 1$. C'est le **brassage interchromosomique** : à la méiose, les paires de chromosomes homologues se répartissent au hasard. Quand deux gènes sont sur le **même chromosome** (gènes liés), le **brassage intrachromosomique** (crossing-over) peut recombiner les allèles, mais en proportions inégales.\n\n## V. Application : la drépanocytose\n\nLa **drépanocytose**, fréquente en Afrique centrale et au Cameroun, illustre la génétique humaine. Elle est due à un allèle récessif $S$ de l'hémoglobine. Un individu $SS$ est malade ; un individu $AS$ est sain mais **porteur sain** (hétérozygote). Le croisement de deux porteurs sains $AS × AS$ donne : $\\frac{1}{4} AA$ (sain), $\\frac{1}{2} AS$ (porteur), $\\frac{1}{4} SS$ (malade). Fait remarquable : l'allèle $S$ confère une **résistance au paludisme** à l'état hétérozygote, ce qui explique sa fréquence dans les zones impaludées.\n\n## VI. Schéma fonctionnel de la méiose et du brassage\n\nLors de la méiose, une cellule mère (2n) subit deux divisions successives donnant quatre gamètes (n). En première division, les chromosomes homologues se séparent (brassage interchromosomique) après d'éventuels crossing-over (brassage intrachromosomique). La **fécondation** combine ensuite au hasard gamète mâle et gamète femelle : c'est le brassage de la fécondation, source supplémentaire de diversité.\n\n## À retenir\n\n> - **3 lois de Mendel** : uniformité de la F1, disjonction (3:1), indépendance (9:3:3:1).\n> - Le brassage génétique a trois sources : **interchromosomique**, **intrachromosomique** (crossing-over), et **fécondation**.\n> - La drépanocytose ($AS × AS \\rightarrow \\frac{1}{4} SS$) est un exemple local de transmission d'un allèle récessif, lié à la résistance au paludisme.",
+      "title": "Brassage genetique et lois de Mendel",
+      "video": "https://www.youtube.com/watch?v=Mehz7tCxjSE",
+      "lesson": "# Brassage genetique et lois de Mendel\n\n## Introduction\n\nLa reproduction sexuee assure la **transmission des caracteres hereditaires** d'une generation a l'autre, mais aussi une **diversite genetique** considerable entre les individus. Cette diversite repose sur deux mecanismes complementaires : le **brassage genetique** lors de la meiose et le **brassage de la fecondation**. Les regularites observees dans la transmission des caracteres ont ete decouvertes par **Gregor Mendel** (1865) a partir de croisements sur le pois (*Pisum sativum*). Ce chapitre etablit le lien entre les lois statistiques de Mendel et les mecanismes chromosomiques.\n\n## I. Vocabulaire de la genetique\n\n- **Gene** : portion d'ADN codant une information, situe a un emplacement precis (**locus**) du chromosome.\n- **Allele** : version d'un gene. Un individu **diploide** possede deux alleles par gene.\n- **Homozygote** : les deux alleles sont identiques (ex. A//A ou a//a).\n- **Heterozygote** : les deux alleles sont differents (ex. A//a).\n- **Genotype** : ensemble des alleles (note entre crochets ou avec //). **Phenotype** : ensemble des caracteres observables (note entre crochets []).\n- **Dominance** : un allele **dominant** s'exprime a l'etat heterozygote (note en majuscule) ; l'allele **recessif** (minuscule) ne s'exprime qu'a l'etat homozygote.\n- **Lignee pure** : individu homozygote pour le(s) caractere(s) etudie(s).\n\n## II. Premiere et deuxieme lois de Mendel (monohybridisme)\n\n### 1. Croisement de deux lignees pures\n\nMendel croise un pois a graines **lisses** (L) avec un pois a graines **ridees** (l).\n\n- **Generation P** : [lisse] L//L x [ride] l//l.\n- **Premiere loi (uniformite des hybrides F1)** : tous les individus de la F1 sont identiques et heterozygotes L//l, de phenotype [lisse]. L'allele L est **dominant**.\n\n### 2. Croisement des hybrides F1 entre eux\n\nF1 x F1 : L//l x L//l.\n\nChaque hybride produit deux types de gametes en proportions egales : **1/2 L** et **1/2 l** (premiere loi de la meiose : separation des alleles).\n\nEchiquier de croisement :\n\n```onbuch-svg\n<svg viewBox=\"0 0 320 200\" xmlns=\"http://www.w3.org/2000/svg\">\n  <text x=\"160\" y=\"20\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\">Echiquier F2 (monohybridisme)</text>\n  <line x1=\"100\" y1=\"40\" x2=\"300\" y2=\"40\" stroke=\"#333\"/>\n  <line x1=\"100\" y1=\"40\" x2=\"100\" y2=\"180\" stroke=\"#333\"/>\n  <text x=\"150\" y=\"35\" font-size=\"13\">1/2 L</text>\n  <text x=\"250\" y=\"35\" font-size=\"13\">1/2 l</text>\n  <text x=\"60\" y=\"90\" font-size=\"13\">1/2 L</text>\n  <text x=\"60\" y=\"150\" font-size=\"13\">1/2 l</text>\n  <rect x=\"100\" y=\"50\" width=\"100\" height=\"60\" fill=\"#e8f5e9\" stroke=\"#333\"/>\n  <rect x=\"200\" y=\"50\" width=\"100\" height=\"60\" fill=\"#e8f5e9\" stroke=\"#333\"/>\n  <rect x=\"100\" y=\"110\" width=\"100\" height=\"60\" fill=\"#e8f5e9\" stroke=\"#333\"/>\n  <rect x=\"200\" y=\"110\" width=\"100\" height=\"60\" fill=\"#fff3e0\" stroke=\"#333\"/>\n  <text x=\"150\" y=\"85\" text-anchor=\"middle\" font-size=\"13\">L//L</text>\n  <text x=\"250\" y=\"85\" text-anchor=\"middle\" font-size=\"13\">L//l</text>\n  <text x=\"150\" y=\"145\" text-anchor=\"middle\" font-size=\"13\">L//l</text>\n  <text x=\"250\" y=\"145\" text-anchor=\"middle\" font-size=\"13\">l//l</text>\n</svg>\n```\n\n- **Deuxieme loi (purete des gametes / disjonction des alleles)** : un gamete ne contient qu'un seul allele de chaque gene.\n- Resultat F2 : **3/4 [lisse]** (1 L//L + 2 L//l) et **1/4 [ride]** (l//l), soit le rapport **3 : 1**.\n\n### 3. Cas particuliers\n\n- **Codominance** : les deux alleles s'expriment (ex. groupe sanguin AB).\n- **Dominance incomplete** : l'heterozygote presente un phenotype intermediaire (ex. fleur rose issue de rouge x blanc), rapport F2 = **1 : 2 : 1**.\n\n## III. Troisieme loi de Mendel (dihybridisme)\n\n### 1. Cas de genes independants\n\nOn croise une lignee pure [graine jaune lisse] (G//G L//L) avec [graine verte ridee] (g//g l//l). En F1, tous les individus sont [jaune lisse], double heterozygotes G//g L//l.\n\nSi les deux genes sont sur des **chromosomes differents (independants)**, l'hybride F1 produit **4 types de gametes equiprobables** : GL, Gl, gL, gl (1/4 chacun). C'est le **brassage interchromosomique**.\n\n- **Troisieme loi (independance des caracteres)** : les caracteres se transmettent independamment les uns des autres.\n- En F2, l'echiquier 4x4 donne le rapport caracteristique **9 : 3 : 3 : 1** :\n  - 9/16 [jaune lisse], 3/16 [jaune ride], 3/16 [vert lisse], 1/16 [vert ride].\n\n### 2. Cas de genes lies (linkage)\n\nSi les deux genes sont sur le **meme chromosome (lies)**, sans crossing-over, l'hybride ne produit que **2 types de gametes parentaux**. Avec **crossing-over** (brassage intrachromosomique) apparaissent des **gametes recombines**, minoritaires. Le **test-cross** (croisement avec un double recessif) revele les proportions :\n\n- Genes independants : 4 types en proportions egales (25 % chacun).\n- Genes lies : 2 types parentaux majoritaires + 2 types recombines minoritaires.\n\n## IV. Origine chromosomique du brassage\n\n- **Brassage interchromosomique** : a l'anaphase I de meiose, les chromosomes de chaque paire se repartissent au hasard. Pour *n* paires, on obtient **2^n** combinaisons (chez l'Homme, 2^23).\n- **Brassage intrachromosomique** : le **crossing-over** en prophase I echange des segments entre chromosomes homologues, creant de nouvelles combinaisons d'alleles sur un meme chromosome.\n- **Brassage de la fecondation** : la rencontre aleatoire de deux gametes multiplie encore la diversite (2^n x 2^n).\n\n```onbuch-svg\n<svg viewBox=\"0 0 360 160\" xmlns=\"http://www.w3.org/2000/svg\">\n  <text x=\"180\" y=\"18\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\">Crossing-over (brassage intrachromosomique)</text>\n  <rect x=\"40\" y=\"50\" width=\"14\" height=\"80\" fill=\"#1976d2\"/>\n  <rect x=\"70\" y=\"50\" width=\"14\" height=\"80\" fill=\"#d32f2f\"/>\n  <text x=\"60\" y=\"148\" text-anchor=\"middle\" font-size=\"11\">avant</text>\n  <rect x=\"200\" y=\"50\" width=\"14\" height=\"40\" fill=\"#1976d2\"/>\n  <rect x=\"200\" y=\"90\" width=\"14\" height=\"40\" fill=\"#d32f2f\"/>\n  <rect x=\"230\" y=\"50\" width=\"14\" height=\"40\" fill=\"#d32f2f\"/>\n  <rect x=\"230\" y=\"90\" width=\"14\" height=\"40\" fill=\"#1976d2\"/>\n  <text x=\"222\" y=\"148\" text-anchor=\"middle\" font-size=\"11\">apres (recombines)</text>\n</svg>\n```\n\n## Exercices corriges\n\n### Exercice 1 — Monohybridisme (analyse de croisement)\n\n**Enonce.** Chez la drosophile, on croise des femelles au corps gris de lignee pure avec des males au corps ebene (noir). La F1 est entierement grise. On croise ensuite les F1 entre elles : on obtient 152 mouches grises et 49 mouches ebene. Interpretez ces resultats.\n\n**Resolution.**\n1. La F1 est uniforme : on applique la **premiere loi de Mendel**, les parents sont de lignees pures et la F1 est heterozygote.\n2. La F1 est entierement grise : l'allele **gris (G) est dominant** sur **ebene (e)** recessif.\n3. Genotypes : P = [gris] G//G x [ebene] e//e ; F1 = G//e [gris].\n4. F2 : rapport observe 152/49 = 3,1 environ **3 : 1**. Ceci confirme le croisement F1 x F1 (G//e x G//e) donnant 3/4 [gris] et 1/4 [ebene].\n5. **Conclusion** : un seul gene, deux alleles, dominance de G. Les resultats sont conformes a la deuxieme loi de Mendel.\n\n### Exercice 2 — Dihybridisme et test-cross\n\n**Enonce.** On croise une lignee pure de mais [grain colore et lisse] avec une lignee [grain incolore et ride]. La F1 est [colore lisse]. On realise un **test-cross** de la F1 avec le double recessif. On obtient : 4032 [colore lisse], 4035 [incolore ride], 149 [colore ride], 152 [incolore lisse]. Conclure sur la localisation des genes.\n\n**Resolution.**\n1. F1 [colore lisse] : **colore (C) domine incolore (c)** et **lisse (L) domine ride (l)**.\n2. Test-cross : F1 (C//c L//l) x double recessif (c//c l//l). Les phenotypes du descendant refletent directement les **gametes de la F1**.\n3. Proportions : deux types majoritaires (~4032 et ~4035, soit ~96 %) = gametes **parentaux** [colore lisse] et [incolore ride] ; deux types minoritaires (~149 et ~152, soit ~4 %) = gametes **recombines**.\n4. Comme les types ne sont pas equiprobables, les genes sont **lies** (sur le meme chromosome). Les types minoritaires resultent d'un **crossing-over**.\n5. Taux de recombinaison = (149+152)/(8368) x 100 = **3,6 % environ**, soit une distance d'environ **3,6 centimorgans**.\n\n### Exercice 3 — Dominance incomplete\n\n**Enonce.** Chez la belle-de-nuit, le croisement de fleurs rouges pures par des fleurs blanches pures donne une F1 entierement rose. Que donne la F2 ? Justifiez.\n\n**Resolution.**\n1. La F1 est rose, intermediaire entre rouge et blanc : il s'agit d'une **dominance incomplete**. Genotypes : R//R (rouge), B//B (blanc), R//B (rose).\n2. F1 x F1 : R//B x R//B donne 1/4 R//R, 2/4 R//B, 1/4 B//B.\n3. F2 phenotypique : **1/4 rouge, 2/4 rose, 1/4 blanc**, soit le rapport **1 : 2 : 1**.\n\n## A retenir\n\n- **1re loi** : uniformite de la F1 (parents de lignees pures).\n- **2e loi** : purete des gametes (disjonction des alleles), rapport **3 : 1** en F2.\n- **3e loi** : independance des caracteres (genes sur chromosomes differents), rapport **9 : 3 : 3 : 1**.\n- Le **test-cross** distingue genes **independants** (4 types egaux) des genes **lies** (2 parentaux majoritaires + 2 recombines).\n- Trois sources de diversite : **brassage interchromosomique** (2^n), **brassage intrachromosomique** (crossing-over), **brassage de la fecondation**.\n",
       "quiz": {
         "questions": [
           {
-            "q": "Un individu hétérozygote possède :",
-            "options": ["Deux allèles identiques", "Deux allèles différents pour un même gène", "Un seul chromosome", "Aucun allèle"],
+            "q": "Quelle est la composition de la F1 quand on croise deux lignees pures pour un caractere a dominance complete ?",
+            "options": [
+              "Trois quarts dominants, un quart recessif",
+              "Entierement uniforme et heterozygote",
+              "Un demi dominant, un demi recessif",
+              "Entierement homozygote recessif"
+            ],
             "answer": 1,
-            "explanation": "Hétérozygote signifie que les deux allèles d'un même gène sont différents (ex. Aa)."
+            "explanation": "C'est la premiere loi de Mendel : la F1 est uniforme et heterozygote."
           },
           {
-            "q": "La proportion phénotypique attendue en F2 lors d'un monohybridisme est :",
-            "options": ["1:1", "3:1", "9:3:3:1", "1:2:1"],
-            "answer": 1,
-            "explanation": "En F2 du croisement Aa x Aa, on obtient 3/4 dominants et 1/4 récessifs, soit 3:1."
-          },
-          {
-            "q": "Le croisement de deux porteurs sains AS x AS donne quelle proportion d'enfants malades (SS) ?",
-            "options": ["0", "1/4", "1/2", "3/4"],
-            "answer": 1,
-            "explanation": "AS x AS donne 1/4 AA, 1/2 AS, 1/4 SS : un quart des enfants sont drépanocytaires."
-          },
-          {
-            "q": "Le brassage intrachromosomique est dû à :",
-            "options": ["La fécondation", "La répartition au hasard des chromosomes homologues", "Le crossing-over", "La mitose"],
+            "q": "En F2 d'un monohybridisme a dominance complete, le rapport phenotypique attendu est :",
+            "options": [
+              "1 : 1",
+              "9 : 3 : 3 : 1",
+              "3 : 1",
+              "1 : 2 : 1"
+            ],
             "answer": 2,
-            "explanation": "Le crossing-over (échange entre chromosomes homologues) réalise le brassage intrachromosomique."
+            "explanation": "La disjonction des alleles donne 3/4 dominants et 1/4 recessifs."
           },
           {
-            "q": "La première loi de Mendel concerne :",
-            "options": ["L'uniformité de la F1", "La disjonction des allèles", "L'indépendance des gènes", "Le crossing-over"],
+            "q": "Le rapport 9 : 3 : 3 : 1 en F2 caracterise :",
+            "options": [
+              "Deux genes lies",
+              "La dominance incomplete",
+              "Deux genes independants (dihybridisme)",
+              "Un seul gene a trois alleles"
+            ],
+            "answer": 2,
+            "explanation": "Le rapport 9:3:3:1 traduit l'independance de deux genes situes sur des chromosomes differents."
+          },
+          {
+            "q": "Dans un test-cross, des proportions de gametes inegales (par ex. 96 % / 4 %) indiquent :",
+            "options": [
+              "Des genes independants",
+              "Des genes lies avec crossing-over",
+              "Une dominance incomplete",
+              "Une mutation"
+            ],
+            "answer": 1,
+            "explanation": "Les types minoritaires sont des recombinants issus de crossing-over entre genes lies."
+          },
+          {
+            "q": "Le brassage interchromosomique se produit principalement :",
+            "options": [
+              "A l'anaphase I de meiose (repartition aleatoire des paires)",
+              "Lors de la replication de l'ADN",
+              "Pendant la mitose",
+              "A la fecondation uniquement"
+            ],
             "answer": 0,
-            "explanation": "La première loi de Mendel est la loi d'uniformité des hybrides de première génération."
+            "explanation": "La repartition aleatoire des chromosomes de chaque paire a l'anaphase I genere 2^n combinaisons."
           }
         ]
       }
     },
     {
-      "title": "L'immunologie : défenses de l'organisme",
-      "lesson": "# L'immunologie : les défenses de l'organisme\n\n## Introduction\n\nL'organisme est constamment exposé à des agents pathogènes (bactéries, virus, parasites comme le *Plasmodium* du paludisme). Le **système immunitaire** est l'ensemble des cellules et molécules qui protègent l'organisme en distinguant le **soi** du **non-soi**. On distingue deux grandes lignes de défense : l'**immunité innée** (immédiate, non spécifique) et l'**immunité adaptative** (spécifique, à mémoire).\n\n## I. Le soi et le non-soi\n\nChaque cellule porte à sa surface des marqueurs du **soi**, notamment les molécules du **CMH** (Complexe Majeur d'Histocompatibilité, ou système HLA chez l'homme). Toute molécule reconnue comme étrangère (**non-soi**) est un **antigène** capable de déclencher une réponse immunitaire. Cette reconnaissance est la base du rejet de greffe et de la tolérance.\n\n## II. L'immunité innée (non spécifique)\n\nC'est la **première ligne de défense**, immédiate et identique quel que soit l'agresseur. Elle comprend :\n- les **barrières naturelles** : peau, muqueuses, larmes, acidité gastrique ;\n- la **réaction inflammatoire** : rougeur, chaleur, gonflement, douleur, due à la libération d'**histamine** et à l'afflux de sang ;\n- la **phagocytose** : des cellules comme les **macrophages** et les **granulocytes** ingèrent et digèrent les microbes. La phagocytose se déroule en quatre étapes : adhésion, ingestion, digestion, rejet des déchets.\n\n## III. L'immunité adaptative (spécifique)\n\nQuand l'immunité innée est dépassée, l'immunité adaptative entre en jeu. Elle est **spécifique** d'un antigène donné et garde une **mémoire**. Elle repose sur les **lymphocytes**, produits dans la moelle osseuse.\n\n### 1. La réponse à médiation humorale (lymphocytes B)\n\nLes **lymphocytes B**, activés par un antigène, se multiplient et se différencient en **plasmocytes** sécrétant des **anticorps** (immunoglobulines). L'anticorps a une structure en Y avec des sites de fixation spécifiques de l'antigène. Le complexe **antigène-anticorps** neutralise l'agent pathogène et favorise sa destruction (complexe immun).\n\n### 2. La réponse à médiation cellulaire (lymphocytes T)\n\nLes **lymphocytes T cytotoxiques (LT8)** détruisent directement les cellules infectées (par un virus) ou cancéreuses. Les **lymphocytes T auxiliaires (LT4)**, véritables chefs d'orchestre, sécrètent des **interleukines** qui stimulent les LB et les LT8.\n\n## IV. Le VIH/SIDA : un enjeu de santé publique au Cameroun\n\nLe **VIH** (virus de l'immunodéficience humaine) infecte et détruit les **LT4**. Sans ces cellules coordinatrices, tout le système immunitaire s'effondre : c'est le **SIDA**, où l'organisme succombe à des **infections opportunistes** (tuberculose, candidoses). Cet exemple illustre le rôle central des LT4 et l'importance de la prévention.\n\n## V. La mémoire immunitaire et la vaccination\n\nAprès une première rencontre avec l'antigène, des **lymphocytes mémoire** persistent. Lors d'un second contact, la réponse est plus **rapide et plus intense** : c'est la base de la **vaccination**. Le vaccin (antigène atténué ou fragment) provoque une réponse primaire sans maladie, préparant l'organisme. Les campagnes camerounaises (rougeole, fièvre jaune, hépatite B) reposent sur ce principe.\n\n## À retenir\n\n> - Le système immunitaire distingue le **soi** (CMH) du **non-soi** (antigène).\n> - **Immunité innée** : immédiate, non spécifique (barrières, inflammation, phagocytose).\n> - **Immunité adaptative** : spécifique et à mémoire ; LB → anticorps (humorale), LT8 → cytotoxicité, LT4 → coordination.\n> - Le **VIH** détruit les LT4 → effondrement immunitaire (SIDA). La **vaccination** exploite la mémoire immunitaire.",
+      "title": "Mutations et anomalies chromosomiques",
+      "video": "https://www.youtube.com/watch?v=Gd3pZj0g5lI",
+      "lesson": "# Mutations et anomalies chromosomiques\n\n## Introduction\n\nLa diversite du vivant et l'apparition de nouveaux alleles reposent sur des **modifications du materiel genetique** : les **mutations**. Source de la **variabilite genetique** indispensable a l'evolution, elles peuvent etre neutres, benefiques ou pathologiques. On distingue les mutations affectant le **gene** (mutations geniques) de celles affectant les **chromosomes** (anomalies chromosomiques de nombre ou de structure).\n\n## I. Les mutations geniques\n\n### 1. Definition\n\nUne **mutation genique** est une modification de la sequence des nucleotides d'un gene. Elle peut survenir spontanement (erreur de replication) ou etre provoquee par des **agents mutagenes** : rayonnements UV, rayons X, substances chimiques, certains virus.\n\n### 2. Types de mutations ponctuelles\n\n- **Substitution** : remplacement d'un nucleotide par un autre.\n- **Insertion (addition)** : ajout d'un ou plusieurs nucleotides.\n- **Delection** : perte d'un ou plusieurs nucleotides.\n\nLes insertions et delections (sauf par multiples de 3) provoquent un **decalage du cadre de lecture (frameshift)**, modifiant tous les codons en aval.\n\n### 3. Consequences sur la proteine\n\nA partir du **code genetique** (table des codons), une mutation peut etre :\n\n- **Silencieuse (muette)** : le codon mute code le meme acide amine (degenerescence du code).\n- **Faux-sens** : le codon code un acide amine different (ex. anemie falciforme : Glu -> Val).\n- **Non-sens** : apparition d'un codon stop, proteine tronquee.\n\n**Exemple : la drepanocytose (anemie falciforme).** Une substitution A->T dans le gene de la beta-globine remplace l'**acide glutamique** par la **valine** en position 6. L'hemoglobine HbS polymerise en conditions de faible oxygenation, les hematies prennent une **forme de faucille**, fragiles et obstruant les vaisseaux.\n\n```onbuch-svg\n<svg viewBox=\"0 0 340 130\" xmlns=\"http://www.w3.org/2000/svg\">\n  <text x=\"170\" y=\"16\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\">Substitution -> drepanocytose</text>\n  <text x=\"20\" y=\"50\" font-size=\"12\">Normal : ...G A G... -> Glu</text>\n  <text x=\"20\" y=\"80\" font-size=\"12\">Mute   : ...G T G... -> Val</text>\n  <circle cx=\"250\" cy=\"55\" r=\"18\" fill=\"#e53935\"/>\n  <text x=\"250\" y=\"90\" text-anchor=\"middle\" font-size=\"10\">normale</text>\n  <path d=\"M300 45 q15 10 0 25 q-12 -8 0 -25\" fill=\"#b71c1c\"/>\n  <text x=\"300\" y=\"90\" text-anchor=\"middle\" font-size=\"10\">falciforme</text>\n</svg>\n```\n\n### 4. Importance evolutive\n\nSeules les mutations affectant les **cellules germinales** sont transmissibles a la descendance. Elles creent de **nouveaux alleles**, matiere premiere de l'evolution. Les mutations somatiques ne sont pas heritees (mais peuvent etre a l'origine de cancers).\n\n## II. Les anomalies chromosomiques\n\n### 1. Anomalies de nombre (aberrations numeriques)\n\nElles resultent d'une **non-disjonction** des chromosomes lors de la meiose (anaphase I ou II), produisant des gametes a n+1 ou n-1 chromosomes.\n\n- **Trisomie** : presence de trois chromosomes au lieu de deux (2n+1). Exemple : **trisomie 21 (syndrome de Down)** — caryotype 47, XX (ou XY), +21.\n- **Monosomie** : un seul chromosome (2n-1). Exemple : **syndrome de Turner** (45, X0).\n- **Anomalies des chromosomes sexuels** : Klinefelter (47, XXY), triple X (47, XXX).\n\n```onbuch-svg\n<svg viewBox=\"0 0 300 120\" xmlns=\"http://www.w3.org/2000/svg\">\n  <text x=\"150\" y=\"16\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\">Non-disjonction en meiose</text>\n  <circle cx=\"80\" cy=\"60\" r=\"22\" fill=\"#fff\" stroke=\"#333\"/>\n  <rect x=\"72\" y=\"45\" width=\"6\" height=\"30\" fill=\"#1976d2\"/>\n  <rect x=\"82\" y=\"45\" width=\"6\" height=\"30\" fill=\"#1976d2\"/>\n  <rect x=\"90\" y=\"45\" width=\"6\" height=\"30\" fill=\"#1976d2\"/>\n  <text x=\"80\" y=\"100\" text-anchor=\"middle\" font-size=\"10\">gamete n+1</text>\n  <circle cx=\"200\" cy=\"60\" r=\"22\" fill=\"#fff\" stroke=\"#333\"/>\n  <text x=\"200\" y=\"100\" text-anchor=\"middle\" font-size=\"10\">gamete n-1</text>\n</svg>\n```\n\n### 2. Anomalies de structure\n\nElles concernent un **remaniement** d'un chromosome :\n\n- **Delection** : perte d'un segment.\n- **Duplication** : repetition d'un segment.\n- **Inversion** : un segment est retourne.\n- **Translocation** : echange de segments entre chromosomes non homologues.\n\n### 3. Etablissement et lecture du caryotype\n\nLe **caryotype** est le classement des chromosomes d'une cellule par taille et position du centromere. Il permet de detecter les anomalies de nombre et de structure. On le realise a partir de cellules en **metaphase** (chromosomes condenses). Notation : **nombre total, chromosomes sexuels, anomalie** (ex. 47, XY, +21).\n\n## III. Mutations, environnement et sante\n\n- Les **agents mutagenes** (UV, tabac, radiations, certains pesticides) augmentent la frequence des mutations et le risque de cancer.\n- La **prevention** (protection solaire, limitation de l'exposition aux radiations) reduit ces risques.\n- Le **diagnostic prenatal** (amniocentese, choriocentese) permet de detecter certaines anomalies chromosomiques.\n\n## Exercices corriges\n\n### Exercice 1 — Effet d'une mutation sur une proteine\n\n**Enonce.** Un brin d'ADN porte la sequence transcrite (brin non transcrit) suivante : A T G - A A A - G G T - T G A. Une substitution transforme le deuxieme codon en A G A. En utilisant le code genetique (AAA = Lys, AGA = Arg, GGT = Gly), determinez la nature et la consequence de cette mutation.\n\n**Resolution.**\n1. Sequence ARNm normale (identique au brin non transcrit, U a la place de T) : AUG-AAA-GGU-UGA.\n2. Traduction normale : Met - Lys - Gly - Stop.\n3. Apres mutation : AUG-AGA-GGU-UGA -> Met - **Arg** - Gly - Stop.\n4. Un seul acide amine change (Lys -> Arg) : il s'agit d'une **mutation faux-sens par substitution**.\n5. Consequence : la proteine n'a qu'un acide amine modifie ; l'effet depend de la position et de la nature de l'acide amine (peut etre mineur ou grave).\n\n### Exercice 2 — Lecture de caryotype\n\n**Enonce.** Un caryotype presente 47 chromosomes dont une paire 21 comportant trois exemplaires, et un couple de chromosomes sexuels XY. Donnez la formule chromosomique, le nom du syndrome et expliquez son origine.\n\n**Resolution.**\n1. Formule : **47, XY, +21**.\n2. Syndrome : **trisomie 21** (syndrome de Down), individu de sexe masculin.\n3. Origine : **non-disjonction** de la paire 21 lors de la meiose (le plus souvent maternelle, en anaphase I), produisant un gamete a n+1 (24 chromosomes). La fecondation par un gamete normal (n=23) donne un zygote a 2n+1 = 47.\n\n### Exercice 3 — Frameshift\n\n**Enonce.** Comparez l'effet d'une delection d'un seul nucleotide a celui d'une delection de trois nucleotides consecutifs.\n\n**Resolution.**\n1. **Delection d'un nucleotide** : decalage du **cadre de lecture** ; tous les codons en aval sont modifies -> proteine tres differente, souvent non fonctionnelle (apparition possible d'un codon stop premature).\n2. **Delection de trois nucleotides** : perte d'un codon entier, soit un acide amine en moins, mais **le cadre de lecture est conserve** ; le reste de la proteine reste correct. L'effet est generalement **moins grave**.\n\n## A retenir\n\n- Les **mutations geniques** (substitution, insertion, delection) modifient la sequence d'un gene et peuvent etre silencieuses, faux-sens ou non-sens.\n- Seules les mutations **germinales** sont transmissibles et participent a l'evolution.\n- Les **anomalies chromosomiques** de nombre (trisomie, monosomie) proviennent d'une **non-disjonction** ; celles de structure (delection, duplication, inversion, translocation) d'un remaniement.\n- Le **caryotype** est l'outil de diagnostic des anomalies chromosomiques.\n- Les **agents mutagenes** augmentent la frequence des mutations et le risque de cancer.\n",
       "quiz": {
         "questions": [
           {
-            "q": "Les molécules du CMH (HLA) servent à reconnaître :",
-            "options": ["Le non-soi uniquement", "Le soi de l'organisme", "Les anticorps", "Les virus seulement"],
-            "answer": 1,
-            "explanation": "Le CMH porte les marqueurs du soi, permettant à l'organisme de distinguer ses propres cellules."
+            "q": "Une mutation qui ne change pas l'acide amine code est dite :",
+            "options": [
+              "Faux-sens",
+              "Non-sens",
+              "Silencieuse (muette)",
+              "Frameshift"
+            ],
+            "answer": 2,
+            "explanation": "Grace a la degenerescence du code, le codon mute peut coder le meme acide amine : mutation silencieuse."
           },
           {
-            "q": "La phagocytose fait partie de :",
-            "options": ["L'immunité adaptative", "L'immunité innée non spécifique", "La réponse humorale", "La vaccination"],
+            "q": "La drepanocytose resulte d'une substitution remplacant :",
+            "options": [
+              "La valine par l'acide glutamique",
+              "L'acide glutamique par la valine",
+              "La lysine par l'arginine",
+              "Un codon par un codon stop"
+            ],
             "answer": 1,
-            "explanation": "La phagocytose par les macrophages est une défense de l'immunité innée, non spécifique."
+            "explanation": "Dans la beta-globine, l'acide glutamique est remplace par la valine, d'ou l'HbS."
           },
           {
-            "q": "Les anticorps sont sécrétés par :",
-            "options": ["Les macrophages", "Les plasmocytes (issus des LB)", "Les LT8", "Les hématies"],
-            "answer": 1,
-            "explanation": "Les lymphocytes B se différencient en plasmocytes qui sécrètent les anticorps."
+            "q": "La trisomie 21 a pour origine principale :",
+            "options": [
+              "Une translocation systematique",
+              "Une mutation ponctuelle",
+              "Une non-disjonction de la paire 21 en meiose",
+              "Une delection"
+            ],
+            "answer": 2,
+            "explanation": "Une non-disjonction de la paire 21 produit un gamete n+1, d'ou 2n+1 = 47 chromosomes."
           },
           {
-            "q": "Le VIH détruit principalement :",
-            "options": ["Les hématies", "Les lymphocytes T4 auxiliaires", "Les plasmocytes", "Les neurones"],
-            "answer": 1,
-            "explanation": "Le VIH infecte les LT4, désorganisant la coordination immunitaire et conduisant au SIDA."
+            "q": "Un echange de segments entre chromosomes non homologues s'appelle :",
+            "options": [
+              "Inversion",
+              "Duplication",
+              "Delection",
+              "Translocation"
+            ],
+            "answer": 3,
+            "explanation": "La translocation est un transfert de segment entre chromosomes non homologues."
           },
           {
-            "q": "La vaccination repose sur :",
-            "options": ["La phagocytose immédiate", "La mémoire immunitaire", "Le rejet de greffe", "L'inflammation"],
+            "q": "La delection d'un seul nucleotide dans un gene provoque le plus souvent :",
+            "options": [
+              "Aucun effet",
+              "Un decalage du cadre de lecture",
+              "La perte d'un seul acide amine",
+              "Une trisomie"
+            ],
             "answer": 1,
-            "explanation": "Le vaccin déclenche une réponse primaire et la formation de lymphocytes mémoire."
+            "explanation": "Un nombre de nucleotides non multiple de 3 decale le cadre de lecture (frameshift)."
           }
         ]
       }
     },
     {
-      "title": "La communication nerveuse : neurone et réflexe",
-      "lesson": "# La communication nerveuse : neurone et réflexe\n\n## Introduction\n\nLe système nerveux assure la **coordination** de l'organisme : il reçoit des informations, les traite et commande des réponses. Son unité fonctionnelle est le **neurone**, cellule spécialisée dans la conduction de messages sous forme de signaux électriques. L'exemple le plus simple de réponse coordonnée est le **réflexe**, comme le retrait rapide de la main qui touche une marmite brûlante.\n\n## I. Le neurone : structure et fonction\n\nLe neurone comprend :\n- un **corps cellulaire** (péricaryon) contenant le noyau ;\n- des **dendrites**, prolongements courts qui reçoivent l'information ;\n- un **axone**, prolongement long qui conduit le message vers d'autres cellules, souvent gainé de **myéline** (qui accélère la conduction).\n\nLes neurones communiquent entre eux au niveau des **synapses**.\n\n## II. Le message nerveux : nature électrique\n\nAu repos, la membrane du neurone présente une **polarisation** : l'intérieur est négatif par rapport à l'extérieur (potentiel de repos d'environ $-70$ mV). Une stimulation suffisante (au-delà d'un **seuil**) déclenche un **potentiel d'action** (PA) : inversion brutale et transitoire de la polarité (**dépolarisation**) suivie d'un retour au repos (**repolarisation**).\n\nLe message nerveux obéit à la **loi du tout ou rien** : soit le seuil est atteint et un PA d'amplitude constante naît, soit rien ne se passe. L'intensité du stimulus est codée par la **fréquence** des PA, non par leur amplitude. Le PA se propage le long de l'axone sans s'affaiblir.\n\n## III. La synapse : transmission chimique\n\nLa synapse est la zone de jonction entre deux neurones. Le message électrique ne traverse pas la **fente synaptique** : il est relayé par un **neurotransmetteur** (acétylcholine, par exemple). À l'arrivée du PA, des vésicules libèrent le neurotransmetteur, qui se fixe sur des récepteurs de la membrane post-synaptique, générant un nouveau message. La transmission est donc **unidirectionnelle**.\n\n## IV. L'arc réflexe\n\nLe **réflexe myotatique** (réflexe rotulien) illustre la voie nerveuse la plus simple. Il met en jeu un **arc réflexe** comprenant cinq éléments :\n1. le **récepteur** sensoriel (fuseau neuromusculaire) ;\n2. la **voie afférente** (nerf sensitif) qui conduit le message vers le centre ;\n3. le **centre nerveux** (moelle épinière) qui traite l'information ;\n4. la **voie efférente** (nerf moteur) qui conduit la commande ;\n5. l'**effecteur** (muscle) qui exécute la réponse.\n\nLe réflexe est **involontaire**, **rapide** et **stéréotypé** : il assure une protection immédiate (retrait face à la douleur).\n\n## V. Exemple fonctionnel\n\nLorsqu'un élève marche pieds nus et pose le pied sur une épine, le récepteur cutané transmet le message par le nerf sensitif jusqu'à la moelle épinière, qui commande aussitôt le muscle fléchisseur : le pied se retire avant même que la douleur soit consciemment perçue par le cerveau. Le centre nerveux médullaire suffit ; le cerveau n'intervient qu'ensuite (perception de la douleur).\n\n## À retenir\n\n> - Le **neurone** (corps cellulaire, dendrites, axone) conduit un message électrique.\n> - Le **potentiel d'action** obéit à la **loi du tout ou rien** ; l'intensité est codée par la **fréquence**.\n> - La **synapse** assure une transmission **chimique** et **unidirectionnelle** via un neurotransmetteur.\n> - L'**arc réflexe** comporte 5 éléments : récepteur, voie afférente, centre nerveux, voie efférente, effecteur.",
+      "title": "Immunologie : les defenses de l'organisme",
+      "video": "https://www.youtube.com/watch?v=z3K1Gx7v8aU",
+      "lesson": "# Immunologie : les defenses de l'organisme\n\n## Introduction\n\nL'organisme est en permanence expose a des agents etrangers (bacteries, virus, parasites). Le **systeme immunitaire** assure sa defense en distinguant le **soi** du **non-soi**. On distingue l'**immunite innee** (non specifique, immediate) et l'**immunite adaptative** (specifique, plus lente mais douee de memoire). Le **VIH/SIDA**, qui detruit les lymphocytes T4, illustre l'importance vitale de ces defenses.\n\n## I. Le soi et le non-soi\n\n- **Soi** : ensemble des molecules propres a l'organisme, marquees par les molecules du **CMH (Complexe Majeur d'Histocompatibilite)**, ou systeme HLA chez l'Homme.\n- **Non-soi** : molecules etrangeres reconnues comme **antigenes**. Un **antigene** est une substance capable de declencher une reponse immunitaire.\n\n## II. L'immunite innee (non specifique)\n\nC'est la **premiere ligne de defense**, immediate et identique quel que soit l'agresseur.\n\n- **Barrieres naturelles** : peau, muqueuses, secretions (larmes, salive), flore commensale.\n- **Reaction inflammatoire** : declenchee par une infection locale. Signes : **rougeur, chaleur, gonflement (oedeme), douleur**. Elle implique la **vasodilatation**, le recrutement de **phagocytes** et la liberation de mediateurs (histamine).\n- **Phagocytose** : realisee par les **macrophages** et **granulocytes**. Etapes : adhesion -> ingestion (formation du phagosome) -> digestion (fusion avec lysosomes) -> rejet des debris.\n\n```onbuch-svg\n<svg viewBox=\"0 0 340 120\" xmlns=\"http://www.w3.org/2000/svg\">\n  <text x=\"170\" y=\"16\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\">Etapes de la phagocytose</text>\n  <circle cx=\"55\" cy=\"65\" r=\"20\" fill=\"#bbdefb\" stroke=\"#333\"/>\n  <circle cx=\"55\" cy=\"65\" r=\"5\" fill=\"#e53935\"/>\n  <text x=\"55\" y=\"100\" text-anchor=\"middle\" font-size=\"10\">adhesion</text>\n  <circle cx=\"150\" cy=\"65\" r=\"20\" fill=\"#bbdefb\" stroke=\"#333\"/>\n  <circle cx=\"150\" cy=\"65\" r=\"5\" fill=\"#e53935\"/>\n  <text x=\"150\" y=\"100\" text-anchor=\"middle\" font-size=\"10\">ingestion</text>\n  <circle cx=\"250\" cy=\"65\" r=\"20\" fill=\"#bbdefb\" stroke=\"#333\"/>\n  <text x=\"250\" y=\"100\" text-anchor=\"middle\" font-size=\"10\">digestion</text>\n</svg>\n```\n\n## III. L'immunite adaptative (specifique)\n\nQuand l'immunite innee est depassee, l'**immunite adaptative** prend le relais. Elle est **specifique** d'un antigene et dotee d'une **memoire**. Elle repose sur les **lymphocytes** produits dans la moelle osseuse ; les **lymphocytes T** maturent dans le **thymus**, les **lymphocytes B** dans la moelle.\n\n### 1. L'immunite a mediation humorale (lymphocytes B)\n\n- Le lymphocyte B reconnait l'antigene grace a ses **anticorps membranaires (BCR)**.\n- Apres activation (avec l'aide des **LT4 auxiliaires**), il se multiplie (**selection clonale**) et se differencie en **plasmocytes** secreteurs d'**anticorps** et en **lymphocytes B memoire**.\n- Les **anticorps (immunoglobulines)** sont des proteines en forme de Y, formees de deux chaines lourdes et deux chaines legeres, avec un **site de fixation specifique** a l'antigene. Ils forment le **complexe immun antigene-anticorps**, neutralisant l'antigene et favorisant sa phagocytose.\n\n```onbuch-svg\n<svg viewBox=\"0 0 200 140\" xmlns=\"http://www.w3.org/2000/svg\">\n  <text x=\"100\" y=\"16\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\">Anticorps (Ig)</text>\n  <line x1=\"100\" y1=\"120\" x2=\"100\" y2=\"80\" stroke=\"#333\" stroke-width=\"6\"/>\n  <line x1=\"100\" y1=\"80\" x2=\"60\" y2=\"40\" stroke=\"#333\" stroke-width=\"6\"/>\n  <line x1=\"100\" y1=\"80\" x2=\"140\" y2=\"40\" stroke=\"#333\" stroke-width=\"6\"/>\n  <rect x=\"50\" y=\"30\" width=\"20\" height=\"12\" fill=\"#e53935\"/>\n  <rect x=\"130\" y=\"30\" width=\"20\" height=\"12\" fill=\"#e53935\"/>\n  <text x=\"100\" y=\"135\" text-anchor=\"middle\" font-size=\"10\">sites de fixation (rouge)</text>\n</svg>\n```\n\n### 2. L'immunite a mediation cellulaire (lymphocytes T)\n\n- Les **lymphocytes T8** (cytotoxiques) reconnaissent les cellules infectees (presentant l'antigene via le CMH) et les **detruisent** (perforine).\n- Les **lymphocytes T4** (auxiliaires) sont les **chefs d'orchestre** : actives par les cellules presentatrices d'antigene (macrophages), ils secretent des **interleukines** qui stimulent les LB et les LT8.\n\n### 3. La cooperation cellulaire\n\nLa reponse adaptative repose sur la cooperation : **macrophage (presentation)** -> **LT4 (amplification)** -> **LB (anticorps)** et **LT8 (cytotoxicite)**.\n\n## IV. Memoire immunitaire et vaccination\n\n- **Reponse primaire** : lente (latence de plusieurs jours), faible production d'anticorps.\n- **Reponse secondaire** : rapide, intense et durable, grace aux **cellules memoire**.\n- La **vaccination** introduit un antigene attenue/inactive pour declencher une reponse primaire et creer une memoire **sans danger** : c'est une immunite **active et preventive**.\n- La **serotherapie** injecte directement des anticorps : immunite **passive**, immediate mais **transitoire** (curative).\n\n## V. Le VIH et le SIDA\n\nLe **VIH** est un retrovirus qui infecte et detruit les **lymphocytes T4**. La chute des LT4 desorganise tout le systeme immunitaire :\n\n- **Phase de primo-infection**, puis **phase asymptomatique**, puis **phase SIDA** (maladies opportunistes).\n- Le diagnostic repose sur la detection des **anticorps anti-VIH** (test de seropositivite).\n- Prevention : preservatif, depistage ; traitement : **multitherapie antiretrovirale**.\n\n## Exercices corriges\n\n### Exercice 1 — Reponses primaire et secondaire\n\n**Enonce.** On injecte a un lapin un antigene A au jour 0 puis a nouveau au jour 30. On mesure le taux d'anticorps anti-A. Apres la 1re injection, le taux monte lentement vers le jour 10 puis baisse. Apres la 2e injection, il monte tres vite et atteint un taux bien superieur. Interpretez.\n\n**Resolution.**\n1. La 1re injection declenche la **reponse primaire** : latence (selection et multiplication des LB specifiques), production moderee d'anticorps et formation de **cellules memoire**.\n2. La 2e injection declenche la **reponse secondaire** : grace aux cellules B memoire, la production est **plus rapide, plus intense et plus durable**.\n3. **Conclusion** : ces resultats demontrent l'existence d'une **memoire immunitaire**, fondement de la **vaccination** (le rappel renforce l'immunite).\n\n### Exercice 2 — Role des LT4 (VIH)\n\n**Enonce.** Chez un patient infecte par le VIH, on observe au cours des annees une diminution progressive des LT4 et l'apparition de maladies opportunistes. Expliquez le lien entre ces observations.\n\n**Resolution.**\n1. Le VIH infecte preferentiellement les **LT4**, qui sont les **cellules pivot** de l'immunite adaptative.\n2. La destruction des LT4 prive les LB et LT8 de leur **signal d'activation** (interleukines) : la reponse humorale et cellulaire s'effondrent.\n3. L'organisme ne peut plus se defendre -> **infections opportunistes** (champignons, virus, bacteries habituellement maitrises).\n4. **Conclusion** : le LT4 est indispensable a la coordination de l'immunite ; sa disparition explique le passage au stade **SIDA**.\n\n### Exercice 3 — Vaccination vs serotherapie\n\n**Enonce.** Distinguez l'immunite obtenue par vaccination de celle obtenue par serotherapie.\n\n**Resolution.**\n| Critere | Vaccination | Serotherapie |\n|---|---|---|\n| Produit injecte | Antigene attenue | Anticorps tout prets |\n| Type d'immunite | Active | Passive |\n| Delai d'action | Lent (jours) | Immediat |\n| Duree | Longue (memoire) | Courte (transitoire) |\n| But | Preventif | Curatif |\n\n## A retenir\n\n- Le systeme immunitaire distingue le **soi** (CMH) du **non-soi** (antigenes).\n- **Immunite innee** : barrieres, inflammation, **phagocytose** — rapide et non specifique.\n- **Immunite adaptative** : **LB -> plasmocytes -> anticorps** (humorale) et **LT8 cytotoxiques** (cellulaire), coordonnees par les **LT4**.\n- La **memoire immunitaire** fonde la **vaccination** (immunite active, preventive) ; la **serotherapie** donne une immunite passive et curative.\n- Le **VIH** detruit les **LT4**, effondrant l'immunite (SIDA).\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "La phagocytose appartient a :",
+            "options": [
+              "L'immunite adaptative humorale",
+              "L'immunite innee (non specifique)",
+              "L'immunite adaptative cellulaire",
+              "La serotherapie"
+            ],
+            "answer": 1,
+            "explanation": "La phagocytose est une defense rapide et non specifique de l'immunite innee."
+          },
+          {
+            "q": "Les anticorps sont produits par :",
+            "options": [
+              "Les macrophages",
+              "Les lymphocytes T8",
+              "Les plasmocytes (issus des LB)",
+              "Les lymphocytes T4"
+            ],
+            "answer": 2,
+            "explanation": "Les LB actives se differencient en plasmocytes secreteurs d'anticorps."
+          },
+          {
+            "q": "Les lymphocytes T4 auxiliaires ont pour role principal de :",
+            "options": [
+              "Detruire directement les cellules infectees",
+              "Secreter des anticorps",
+              "Coordonner la reponse immunitaire via les interleukines",
+              "Realiser la phagocytose"
+            ],
+            "answer": 2,
+            "explanation": "Les LT4 stimulent LB et LT8 ; ce sont les chefs d'orchestre de l'immunite adaptative."
+          },
+          {
+            "q": "La vaccination confere une immunite :",
+            "options": [
+              "Passive et immediate",
+              "Active et durable (memoire)",
+              "Innee",
+              "Transitoire et curative"
+            ],
+            "answer": 1,
+            "explanation": "Le vaccin declenche une reponse primaire et cree des cellules memoire : immunite active et durable."
+          },
+          {
+            "q": "Le VIH provoque le SIDA principalement parce qu'il detruit :",
+            "options": [
+              "Les hematies",
+              "Les lymphocytes T4",
+              "Les plaquettes",
+              "Les macrophages uniquement"
+            ],
+            "answer": 1,
+            "explanation": "La destruction des LT4 desorganise toute l'immunite adaptative, d'ou les infections opportunistes."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Communication nerveuse : neurone, reflexe et message nerveux",
+      "video": "https://www.youtube.com/watch?v=Iqr2eO4On8I",
+      "lesson": "# Communication nerveuse : neurone, reflexe et message nerveux\n\n## Introduction\n\nLe systeme nerveux assure la **communication rapide** entre les organes et la coordination des fonctions. L'unite de base est le **neurone**, capable de produire et de transmettre un **message nerveux** sous forme de signaux electriques (potentiels d'action) et chimiques (neurotransmetteurs). Le **reflexe** myotatique illustre l'organisation d'un circuit nerveux complet.\n\n## I. Le neurone, unite fonctionnelle\n\nLe neurone comprend :\n\n- un **corps cellulaire (peri-caryon)** contenant le noyau ;\n- des **dendrites** (recoivent les messages) ;\n- un **axone** unique qui conduit le message, souvent entoure d'une **gaine de myeline** (cellules de Schwann) interrompue par les **noeuds de Ranvier** ;\n- des **terminaisons axonales** etablissant des **synapses**.\n\n```onbuch-svg\n<svg viewBox=\"0 0 360 120\" xmlns=\"http://www.w3.org/2000/svg\">\n  <text x=\"180\" y=\"16\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\">Structure d'un neurone</text>\n  <circle cx=\"70\" cy=\"65\" r=\"20\" fill=\"#ffe0b2\" stroke=\"#333\"/>\n  <circle cx=\"70\" cy=\"65\" r=\"7\" fill=\"#8d6e63\"/>\n  <line x1=\"55\" y1=\"50\" x2=\"35\" y2=\"35\" stroke=\"#333\"/>\n  <line x1=\"55\" y1=\"80\" x2=\"35\" y2=\"95\" stroke=\"#333\"/>\n  <text x=\"40\" y=\"110\" font-size=\"10\">dendrites</text>\n  <line x1=\"90\" y1=\"65\" x2=\"290\" y2=\"65\" stroke=\"#333\" stroke-width=\"4\"/>\n  <ellipse cx=\"150\" cy=\"65\" rx=\"14\" ry=\"8\" fill=\"#fff9c4\" stroke=\"#333\"/>\n  <ellipse cx=\"220\" cy=\"65\" rx=\"14\" ry=\"8\" fill=\"#fff9c4\" stroke=\"#333\"/>\n  <text x=\"180\" y=\"48\" text-anchor=\"middle\" font-size=\"10\">axone + myeline</text>\n  <line x1=\"290\" y1=\"65\" x2=\"310\" y2=\"50\" stroke=\"#333\"/>\n  <line x1=\"290\" y1=\"65\" x2=\"310\" y2=\"80\" stroke=\"#333\"/>\n  <text x=\"305\" y=\"105\" font-size=\"10\">synapses</text>\n</svg>\n```\n\n## II. Le message nerveux : nature electrique\n\n### 1. Le potentiel de repos\n\nAu repos, la membrane du neurone est **polarisee** : l'interieur est negatif par rapport a l'exterieur. Le **potentiel de repos** vaut environ **-70 mV**. Il est du a une repartition inegale des ions (beaucoup de Na+ a l'exterieur, de K+ a l'interieur) maintenue par la **pompe Na+/K+**.\n\n### 2. Le potentiel d'action (PA)\n\nUne stimulation suffisante (**seuil**) declenche un **potentiel d'action** :\n\n- **Depolarisation** : entree massive de Na+, le potentiel passe de -70 a +30 mV ;\n- **Repolarisation** : sortie de K+, retour vers la valeur de repos ;\n- breve **hyperpolarisation** puis retour au repos.\n\nLe PA obeit a la **loi du tout ou rien** : il ne se produit que si le seuil est atteint, et son amplitude est constante. Le PA se **propage** le long de l'axone sans s'attenuer. Dans les fibres myelinisees, la conduction est **saltatoire** (de noeud en noeud), donc **plus rapide**.\n\n```onbuch-svg\n<svg viewBox=\"0 0 320 160\" xmlns=\"http://www.w3.org/2000/svg\">\n  <text x=\"160\" y=\"16\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\">Potentiel d'action</text>\n  <line x1=\"40\" y1=\"130\" x2=\"300\" y2=\"130\" stroke=\"#333\"/>\n  <line x1=\"40\" y1=\"30\" x2=\"40\" y2=\"140\" stroke=\"#333\"/>\n  <text x=\"15\" y=\"60\" font-size=\"10\">+30</text>\n  <text x=\"10\" y=\"115\" font-size=\"10\">-70</text>\n  <path d=\"M40 115 L100 115 L120 40 L150 120 L170 110 L300 115\" fill=\"none\" stroke=\"#1976d2\" stroke-width=\"2\"/>\n  <text x=\"125\" y=\"35\" font-size=\"9\">depol.</text>\n  <text x=\"160\" y=\"135\" font-size=\"9\">repol.</text>\n</svg>\n```\n\n### 3. Le codage du message\n\nL'intensite du stimulus n'est pas codee par l'amplitude (constante) mais par la **frequence des PA** (codage en frequence) et par le **nombre de fibres** recrutees.\n\n## III. La transmission synaptique : nature chimique\n\nLa **synapse** est la zone de communication entre deux neurones (ou neurone-muscle). Elle comporte un **element presynaptique**, une **fente synaptique** et un **element postsynaptique**.\n\nMecanisme :\n1. l'arrivee du PA provoque l'entree de **Ca2+** dans la terminaison ;\n2. les **vesicules** liberent le **neurotransmetteur** (ex. acetylcholine) par exocytose ;\n3. le neurotransmetteur se fixe sur des **recepteurs** postsynaptiques ;\n4. cela genere un nouveau message dans le neurone suivant.\n\nLa transmission est **unidirectionnelle** (du pre vers le postsynaptique).\n\n## IV. Le reflexe myotatique\n\nLe **reflexe** est une reponse motrice **involontaire, rapide et stereotypee** a une stimulation. Le **reflexe myotatique** (ex. reflexe rotulien) est la contraction d'un muscle en reponse a son propre etirement. Son circuit (**arc reflexe**) comprend :\n\n1. **Recepteur** : fuseau neuromusculaire (sensible a l'etirement) ;\n2. **Voie afferente** : neurone sensitif (vers la moelle) ;\n3. **Centre nerveux** : moelle epiniere (une seule synapse : reflexe **monosynaptique**) ;\n4. **Voie efferente** : neurone moteur (motoneurone) ;\n5. **Effecteur** : muscle qui se contracte.\n\n```onbuch-svg\n<svg viewBox=\"0 0 360 130\" xmlns=\"http://www.w3.org/2000/svg\">\n  <text x=\"180\" y=\"16\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\">Arc reflexe myotatique</text>\n  <ellipse cx=\"300\" cy=\"70\" rx=\"40\" ry=\"22\" fill=\"#ffcdd2\" stroke=\"#333\"/>\n  <text x=\"300\" y=\"74\" text-anchor=\"middle\" font-size=\"10\">muscle</text>\n  <ellipse cx=\"60\" cy=\"70\" rx=\"34\" ry=\"40\" fill=\"#e1bee7\" stroke=\"#333\"/>\n  <text x=\"60\" y=\"74\" text-anchor=\"middle\" font-size=\"9\">moelle</text>\n  <line x1=\"265\" y1=\"60\" x2=\"95\" y2=\"55\" stroke=\"#1976d2\" stroke-width=\"2\"/>\n  <text x=\"180\" y=\"48\" text-anchor=\"middle\" font-size=\"9\">afferent (sensitif)</text>\n  <line x1=\"95\" y1=\"85\" x2=\"265\" y2=\"85\" stroke=\"#d32f2f\" stroke-width=\"2\"/>\n  <text x=\"180\" y=\"105\" text-anchor=\"middle\" font-size=\"9\">efferent (moteur)</text>\n</svg>\n```\n\n## Exercices corriges\n\n### Exercice 1 — Loi du tout ou rien\n\n**Enonce.** On stimule un axone avec des intensites croissantes. En dessous de 2 V, aucune reponse. A partir de 2 V, on enregistre un PA d'amplitude 100 mV qui ne change pas meme si on augmente l'intensite. Interpretez.\n\n**Resolution.**\n1. En dessous de 2 V, le stimulus est **infraliminaire** : le seuil n'est pas atteint, pas de PA.\n2. A 2 V (**stimulation liminaire**), le seuil est atteint : un PA apparait.\n3. Au-dela, l'amplitude reste constante : c'est la **loi du tout ou rien**. L'amplitude du PA ne depend pas de l'intensite du stimulus.\n4. **Conclusion** : sur une fibre unique, le message ne code pas l'intensite par l'amplitude mais par la **frequence des PA**.\n\n### Exercice 2 — Sens du message et synapse\n\n**Enonce.** On stimule un nerf en un point M situe entre deux electrodes receptrices R1 et R2 placees de part et d'autre d'une synapse. On enregistre un PA en R1 mais pas en R2 (au-dela de la synapse) lorsqu'on stimule du cote R2. Expliquez.\n\n**Resolution.**\n1. Sur une fibre nue, un PA se propage dans les **deux sens** a partir du point de stimulation.\n2. Mais au niveau de la **synapse**, la transmission n'est possible que dans **un seul sens** (du presynaptique vers le postsynaptique), car seul l'element presynaptique libere le neurotransmetteur.\n3. **Conclusion** : la synapse impose l'**unidirectionnalite** du message nerveux ; c'est pourquoi le PA ne franchit pas la synapse dans le sens defavorable.\n\n### Exercice 3 — Analyse du reflexe\n\n**Enonce.** Une section de la racine **anterieure** d'un nerf rachidien supprime la reponse motrice mais conserve la sensibilite ; une section de la racine **posterieure** supprime la sensibilite mais conserve la motricite. Concluez sur le role de chaque racine.\n\n**Resolution.**\n1. La **racine posterieure (dorsale)** contient les fibres **sensitives (afferentes)** : sa section abolit la sensibilite.\n2. La **racine anterieure (ventrale)** contient les fibres **motrices (efferentes)** : sa section abolit la motricite.\n3. **Conclusion** : le message sensitif entre par la racine posterieure, le message moteur sort par la racine anterieure (loi de Bell-Magendie). C'est l'organisation de l'**arc reflexe**.\n\n## A retenir\n\n- Le **neurone** (corps, dendrites, axone, synapse) conduit le message nerveux.\n- **Potentiel de repos** ~ -70 mV ; le **potentiel d'action** obeit a la **loi du tout ou rien** et se propage sans s'attenuer (conduction **saltatoire** si myeline).\n- L'intensite est codee par la **frequence des PA**.\n- La **synapse** assure une transmission **chimique et unidirectionnelle** par neurotransmetteur.\n- Le **reflexe myotatique** suit un **arc reflexe** : recepteur -> afferent -> moelle -> efferent -> muscle.\n",
       "quiz": {
         "questions": [
           {
             "q": "Le potentiel de repos d'un neurone est d'environ :",
-            "options": ["+70 mV", "-70 mV", "0 mV", "-30 mV"],
+            "options": [
+              "+30 mV",
+              "-70 mV",
+              "0 mV",
+              "+70 mV"
+            ],
             "answer": 1,
-            "explanation": "Au repos, l'intérieur du neurone est négatif, soit environ -70 mV."
+            "explanation": "Au repos la membrane est polarisee, l'interieur etant negatif (~ -70 mV)."
           },
           {
             "q": "La loi du tout ou rien signifie que :",
-            "options": ["Le PA varie en amplitude selon le stimulus", "Le PA naît seulement si le seuil est atteint, avec une amplitude constante", "Tous les neurones réagissent ensemble", "Le message est chimique"],
+            "options": [
+              "L'amplitude du PA augmente avec l'intensite",
+              "Le PA n'apparait que si le seuil est atteint et garde une amplitude constante",
+              "Le PA se propage dans les deux sens a travers une synapse",
+              "Il n'y a jamais de PA"
+            ],
             "answer": 1,
-            "explanation": "Si le seuil est atteint, un PA d'amplitude constante apparaît ; sinon rien ne se passe."
+            "explanation": "Au-dela du seuil, l'amplitude du PA est fixe : tout ou rien."
           },
           {
-            "q": "Au niveau de la synapse, le message est transmis par :",
-            "options": ["Un courant électrique direct", "Un neurotransmetteur chimique", "La myéline", "Le sang"],
+            "q": "L'intensite d'un stimulus est codee par :",
+            "options": [
+              "L'amplitude du PA",
+              "La frequence des potentiels d'action",
+              "La duree du potentiel de repos",
+              "La couleur du neurone"
+            ],
             "answer": 1,
-            "explanation": "La transmission synaptique est chimique : un neurotransmetteur traverse la fente synaptique."
+            "explanation": "Comme l'amplitude est constante, c'est la frequence des PA (et le nombre de fibres) qui code l'intensite."
           },
           {
-            "q": "Quel est le centre nerveux du réflexe myotatique ?",
-            "options": ["Le cerveau", "Le cervelet", "La moelle épinière", "Le muscle"],
-            "answer": 2,
-            "explanation": "Le réflexe myotatique est un réflexe médullaire : son centre est la moelle épinière."
+            "q": "La transmission synaptique est unidirectionnelle car :",
+            "options": [
+              "L'axone est myelinise",
+              "Seul l'element presynaptique libere le neurotransmetteur",
+              "Le PA est trop rapide",
+              "Le calcium bloque le retour"
+            ],
+            "answer": 1,
+            "explanation": "Les vesicules de neurotransmetteur sont uniquement dans la terminaison presynaptique."
           },
           {
-            "q": "Dans l'arc réflexe, la voie efférente conduit le message :",
-            "options": ["Du récepteur vers le centre", "Du centre vers l'effecteur", "Entre deux récepteurs", "Du cerveau vers la peau"],
+            "q": "Dans l'arc reflexe myotatique, le recepteur est :",
+            "options": [
+              "Le motoneurone",
+              "Le fuseau neuromusculaire",
+              "La moelle epiniere",
+              "La plaque motrice"
+            ],
             "answer": 1,
-            "explanation": "La voie efférente (motrice) conduit la commande du centre nerveux vers l'effecteur (muscle)."
+            "explanation": "Le fuseau neuromusculaire detecte l'etirement du muscle et declenche le reflexe."
           }
         ]
       }
     },
     {
-      "title": "La reproduction humaine et la régulation hormonale",
-      "lesson": "# La reproduction humaine et la régulation hormonale\n\n## Introduction\n\nLa **reproduction** assure la perpétuation de l'espèce. Chez l'homme, elle est étroitement contrôlée par des **hormones**, messagers chimiques transportés par le sang. La compréhension de cette régulation éclaire la **contraception**, la **procréation** et la santé reproductive, enjeux importants au Cameroun.\n\n## I. Les hormones : définition\n\nUne **hormone** est une substance sécrétée par une **glande endocrine**, déversée dans le sang et agissant à distance sur des **cellules cibles** porteuses de récepteurs spécifiques. La régulation hormonale repose souvent sur un système de **rétrocontrôle** (feedback) qui stabilise les taux.\n\n## II. L'appareil reproducteur masculin\n\nLes **testicules** assurent une double fonction :\n- la fonction **exocrine** : production continue de **spermatozoïdes** (spermatogenèse) ;\n- la fonction **endocrine** : sécrétion de **testostérone** par les cellules de Leydig.\n\nLa testostérone développe les caractères sexuels secondaires et entretient la production de spermatozoïdes. Le **complexe hypothalamo-hypophysaire** contrôle les testicules via les hormones **FSH** et **LH**. Un **rétrocontrôle négatif** de la testostérone maintient une production stable.\n\n## III. L'appareil reproducteur féminin et le cycle\n\nLes **ovaires** assurent aussi une double fonction : production des **ovocytes** et sécrétion des hormones **œstrogènes** et **progestérone**. L'activité ovarienne est **cyclique** (cycle d'environ 28 jours).\n\n### 1. Le cycle ovarien\n\nIl comprend une **phase folliculaire** (maturation d'un follicule sécrétant des œstrogènes), l'**ovulation** vers le 14ṉ jour (expulsion de l'ovocyte), puis la **phase lutéale** (le corps jaune sécrète progestérone et œstrogènes).\n\n### 2. Le cycle utérin\n\nLa muqueuse utérine (**endomètre**) s'épaissit sous l'effet des hormones ovariennes pour préparer une éventuelle nidation. En l'absence de fécondation, le corps jaune régresse, les hormones chutent et la muqueuse se desquame : ce sont les **règles** (menstruations).\n\n## IV. La régulation par rétrocontrôle\n\nLe complexe hypothalamo-hypophysaire sécrète FSH et LH qui stimulent les ovaires. En retour, les hormones ovariennes exercent un **rétrocontrôle** sur l'hypophyse : négatif pendant l'essentiel du cycle, il devient **positif** juste avant l'ovulation (le taux élevé d'œstrogènes provoque un pic de **LH** déclenchant l'ovulation). C'est un bel exemple de boucle de régulation.\n\n## V. Maîtrise de la procréation\n\n- La **contraception hormonale** (pilule) apporte œstrogènes et progestérone de synthèse qui, par rétrocontrôle négatif, **bloquent l'ovulation**.\n- La **fécondation** unit spermatozoïde et ovocyte dans la trompe, formant un **zygote** qui s'implante dans l'endomètre (**nidation**).\n- La compréhension du cycle permet aussi la prévention des grossesses précoces et des IST, sujets de santé publique au Cameroun.\n\n## À retenir\n\n> - Une **hormone** agit à distance sur des cellules cibles via le sang.\n> - **Testicules** : spermatozoïdes + testostérone ; **ovaires** : ovocytes + œstrogènes/progestérone.\n> - Le cycle féminin : phase folliculaire → **ovulation** (J14, pic de LH) → phase lutéale → règles.\n> - La régulation se fait par **rétrocontrôle** (négatif, puis positif avant l'ovulation). La pilule bloque l'ovulation par rétrocontrôle négatif.",
+      "title": "Communication hormonale et reproduction humaine",
+      "video": "https://www.youtube.com/watch?v=8sJjT3lq6dE",
+      "lesson": "# Communication hormonale et reproduction humaine\n\n## Introduction\n\nA cote de la communication nerveuse (rapide), l'organisme dispose d'une **communication hormonale** plus lente mais durable, assuree par des **hormones** transportees par le sang. Cette regulation est essentielle a la **fonction de reproduction**, sous le controle d'un axe **hypothalamo-hypophysaire**. Ce chapitre etudie le fonctionnement des appareils reproducteurs male et femelle et leur regulation.\n\n## I. La communication hormonale\n\n- Une **hormone** est une substance produite par une **glande endocrine**, deversee dans le **sang** et agissant a distance sur des **cellules cibles** porteuses de **recepteurs specifiques**.\n- L'action est **lente, diffuse et durable**, contrairement au message nerveux.\n\n## II. La fonction de reproduction chez l'homme\n\n### 1. Les testicules : double fonction\n\n- **Fonction exocrine** : production des **spermatozoides** dans les **tubes seminiferes** (spermatogenese).\n- **Fonction endocrine** : secretion de **testosterone** par les **cellules de Leydig**.\n\nLa **testosterone** assure le developpement des caracteres sexuels secondaires et maintient la production de spermatozoides. Chez l'homme, le fonctionnement est **continu**.\n\n### 2. Regulation\n\nL'**hypothalamus** secrete la **GnRH**, qui stimule l'**hypophyse** : celle-ci libere **FSH** (stimule la spermatogenese) et **LH** (stimule les cellules de Leydig -> testosterone). La testosterone exerce un **retrocontrole negatif** sur l'hypothalamus et l'hypophyse, stabilisant son taux.\n\n## III. La fonction de reproduction chez la femme\n\n### 1. L'ovaire : double fonction cyclique\n\n- **Fonction exocrine** : liberation d'un **ovocyte** a chaque cycle (**ovulation**).\n- **Fonction endocrine** : secretion d'**oestrogenes** et de **progesterone**.\n\n### 2. Le cycle ovarien (28 jours)\n\n- **Phase folliculaire** (J1-J14) : maturation d'un **follicule**, secretion croissante d'**oestrogenes**.\n- **Ovulation** (J14) : expulsion de l'ovocyte, declenchee par un **pic de LH**.\n- **Phase luteale** (J15-J28) : le follicule devient **corps jaune** secretant **progesterone** (et oestrogenes).\n\n### 3. Le cycle uterin (menstruel)\n\nL'endometre se developpe sous l'effet des hormones ovariennes (**phase proliferative** puis **secretoire**, en « dentelle uterine »). En l'absence de fecondation, la chute hormonale provoque les **regles (menstruation)**.\n\n```onbuch-svg\n<svg viewBox=\"0 0 360 150\" xmlns=\"http://www.w3.org/2000/svg\">\n  <text x=\"180\" y=\"16\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\">Cycles ovarien et hormonal (28 j)</text>\n  <line x1=\"30\" y1=\"120\" x2=\"340\" y2=\"120\" stroke=\"#333\"/>\n  <line x1=\"180\" y1=\"40\" x2=\"180\" y2=\"125\" stroke=\"#999\" stroke-dasharray=\"3\"/>\n  <text x=\"180\" y=\"138\" text-anchor=\"middle\" font-size=\"10\">J14 ovulation</text>\n  <path d=\"M30 115 Q120 60 180 75 Q200 78 200 100\" fill=\"none\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n  <text x=\"90\" y=\"60\" font-size=\"9\" fill=\"#e91e63\">oestrogenes</text>\n  <path d=\"M200 115 Q250 60 300 70 Q330 75 340 115\" fill=\"none\" stroke=\"#3f51b5\" stroke-width=\"2\"/>\n  <text x=\"270\" y=\"60\" font-size=\"9\" fill=\"#3f51b5\">progesterone</text>\n</svg>\n```\n\n### 4. Regulation du cycle\n\n- Phase folliculaire : oestrogenes a faible dose -> **retrocontrole negatif**.\n- Juste avant l'ovulation : le taux eleve d'oestrogenes exerce un **retrocontrole positif** -> **pic de LH** -> ovulation.\n- Phase luteale : progesterone + oestrogenes -> **retrocontrole negatif** (freinage de FSH/LH).\n- En l'absence de grossesse, le corps jaune regresse, les hormones chutent, les regles surviennent et un nouveau cycle commence.\n\n## IV. De la fecondation a la grossesse\n\n- La **fecondation** (union d'un spermatozoide et de l'ovocyte) a lieu dans la **trompe**, formant le **zygote** (2n).\n- La **nidation** de l'embryon dans l'endometre se produit vers le 7e jour.\n- L'embryon secrete l'hormone **HCG**, qui maintient le corps jaune (et donc la progesterone), evitant les regles : c'est la base des **tests de grossesse**.\n\n## V. Maitrise de la procreation\n\n- **Contraception** : les pilules (oestro-progestatives) bloquent l'ovulation par **retrocontrole negatif** sur l'hypophyse.\n- **Contragestion** (ex. RU486) : empeche la nidation.\n- **PMA (procreation medicalement assistee)** : FIV, insemination, pour pallier l'infertilite.\n- Prevention des **IST** (preservatif).\n\n## Exercices corriges\n\n### Exercice 1 — Retrocontrole et ovulation\n\n**Enonce.** Une experimentation montre que l'injection d'une forte dose d'oestrogenes en milieu de cycle declenche un pic de LH puis l'ovulation, alors qu'une faible dose freine LH. Interpretez.\n\n**Resolution.**\n1. A **faible concentration**, les oestrogenes exercent un **retrocontrole negatif** : ils freinent la secretion hypophysaire de LH (phase folliculaire debutante).\n2. Quand le follicule mur secrete une **forte concentration** d'oestrogenes, le retrocontrole devient **positif** : il stimule une decharge massive de LH.\n3. Ce **pic de LH** declenche l'**ovulation**.\n4. **Conclusion** : c'est l'inversion du retrocontrole (negatif -> positif selon la dose) qui declenche l'ovulation au 14e jour.\n\n### Exercice 2 — Mode d'action d'une pilule\n\n**Enonce.** Une pilule combinee apporte chaque jour oestrogenes et progesterone de synthese. Expliquez comment elle empeche l'ovulation.\n\n**Resolution.**\n1. Les hormones de synthese maintiennent en permanence un taux sanguin eleve d'oestrogenes et de progesterone.\n2. Ce taux constant exerce un **retrocontrole negatif** continu sur l'hypothalamus et l'hypophyse.\n3. La secretion de **FSH et LH est freinee** : pas de maturation folliculaire ni de **pic de LH**.\n4. **Sans pic de LH, pas d'ovulation** : la contraception est assuree. (Effets complementaires : glaire epaissie, endometre peu receptif.)\n\n### Exercice 3 — Test de grossesse\n\n**Enonce.** Un test urinaire detecte l'hormone HCG. Expliquez pourquoi sa presence indique une grossesse et pourquoi les regles n'apparaissent pas.\n\n**Resolution.**\n1. Apres nidation, l'embryon (trophoblaste) secrete l'**HCG**.\n2. L'HCG **maintient le corps jaune** actif, qui continue de secreter de la **progesterone**.\n3. La progesterone maintient l'**endometre** : il n'y a pas de chute hormonale, donc **pas de regles**.\n4. **Conclusion** : detecter l'HCG revele la presence d'un embryon implante : c'est le principe du test de grossesse.\n\n## A retenir\n\n- Une **hormone** agit a distance, par voie sanguine, sur des **cellules cibles** : action lente et durable.\n- Chez l'homme : testicules = spermatozoides + **testosterone** ; fonctionnement **continu**, regule par **GnRH/FSH/LH** et retrocontrole negatif.\n- Chez la femme : ovaire **cyclique** -> oestrogenes (phase folliculaire), **pic de LH** -> ovulation, progesterone (phase luteale).\n- L'inversion du retrocontrole oestrogenique (negatif -> **positif**) declenche l'ovulation.\n- L'**HCG** maintient le corps jaune en debut de grossesse ; les pilules bloquent l'ovulation par **retrocontrole negatif**.\n",
       "quiz": {
         "questions": [
           {
-            "q": "L'hormone masculine sécrétée par les testicules est :",
-            "options": ["La progestérone", "La testostérone", "L'œstrogène", "L'insuline"],
+            "q": "La testosterone est secretee par :",
+            "options": [
+              "Les tubes seminiferes",
+              "Les cellules de Leydig",
+              "L'hypophyse",
+              "Le corps jaune"
+            ],
             "answer": 1,
-            "explanation": "Les cellules de Leydig des testicules sécrètent la testostérone."
+            "explanation": "Les cellules de Leydig (interstitielles) du testicule produisent la testosterone."
           },
           {
-            "q": "L'ovulation se produit généralement vers :",
-            "options": ["Le 1er jour du cycle", "Le 7e jour", "Le 14e jour", "Le 28e jour"],
+            "q": "L'ovulation est declenchee par :",
+            "options": [
+              "Un pic de progesterone",
+              "Un pic de FSH",
+              "Un pic de LH",
+              "La chute des oestrogenes"
+            ],
             "answer": 2,
-            "explanation": "Dans un cycle de 28 jours, l'ovulation a lieu vers le 14e jour."
+            "explanation": "Le retrocontrole positif des oestrogenes provoque un pic de LH qui declenche l'ovulation."
           },
           {
-            "q": "Le pic de quelle hormone déclenche l'ovulation ?",
-            "options": ["La FSH", "La LH", "La progestérone", "L'insuline"],
-            "answer": 1,
-            "explanation": "Un taux élevé d'œstrogènes provoque un pic de LH qui déclenche l'ovulation."
-          },
-          {
-            "q": "Les règles (menstruations) correspondent à :",
-            "options": ["La maturation du follicule", "La desquamation de l'endomètre", "L'ovulation", "La nidation"],
-            "answer": 1,
-            "explanation": "En l'absence de fécondation, la chute hormonale entraîne la desquamation de la muqueuse utérine : les règles."
-          },
-          {
-            "q": "La pilule contraceptive bloque l'ovulation par :",
-            "options": ["Un rétrocontrôle négatif sur l'hypophyse", "La destruction des ovaires", "L'augmentation de la FSH", "Un effet sur les testicules"],
+            "q": "Pendant la phase luteale, l'hormone dominante est :",
+            "options": [
+              "La progesterone (corps jaune)",
+              "La FSH",
+              "La GnRH",
+              "La testosterone"
+            ],
             "answer": 0,
-            "explanation": "Les hormones de synthèse exercent un rétrocontrôle négatif qui empêche le pic de LH et donc l'ovulation."
+            "explanation": "Le corps jaune secrete surtout de la progesterone qui prepare l'endometre."
+          },
+          {
+            "q": "La pilule combinee empeche l'ovulation en :",
+            "options": [
+              "Stimulant la FSH",
+              "Exercant un retrocontrole negatif qui bloque le pic de LH",
+              "Detruisant les ovocytes",
+              "Augmentant la GnRH"
+            ],
+            "answer": 1,
+            "explanation": "Le taux hormonal constant freine FSH/LH : pas de pic de LH, donc pas d'ovulation."
+          },
+          {
+            "q": "L'hormone HCG, detectee par les tests de grossesse, est secretee par :",
+            "options": [
+              "L'ovaire",
+              "L'hypophyse",
+              "L'embryon (trophoblaste)",
+              "L'endometre"
+            ],
+            "answer": 2,
+            "explanation": "L'embryon implante secrete l'HCG qui maintient le corps jaune."
           }
         ]
       }
     },
     {
-      "title": "La tectonique des plaques et la géologie",
-      "lesson": "# La tectonique des plaques et la géologie\n\n## Introduction\n\nLa **géologie** étudie la structure de la Terre et son histoire. La **théorie de la tectonique des plaques**, élaborée au XXṉ siècle à partir de la **dérive des continents** d'Alfred Wegener, explique de nombreux phénomènes : séismes, volcanisme, formation des montagnes. Le Cameroun, traversé par la **« ligne du Cameroun »** (chaîne volcanique du mont Cameroun à l'île de Bioko), en est une illustration vivante.\n\n## I. La structure interne de la Terre\n\nLa Terre est formée de couches concentriques :\n- la **croûte** (continentale ou océanique), mince et rigide ;\n- le **manteau**, épais, en partie ductile ;\n- le **noyau** (externe liquide, interne solide).\n\nLa **lithosphère** (croûte + partie supérieure rigide du manteau) repose sur l'**asthénosphère**, plus ductile, sur laquelle elle peut « glisser ».\n\n## II. Les plaques lithosphériques\n\nLa lithosphère est fragmentée en une douzaine de **plaques** rigides qui se déplacent de quelques centimètres par an. Ce mouvement est entraîné par les **courants de convection** du manteau. Les frontières entre plaques sont les zones les plus actives du globe.\n\n## III. Les trois types de frontières\n\n### 1. Les frontières divergentes (dorsales)\n\nDeux plaques s'**écartent** ; le magma remonte et crée de la nouvelle croûte océanique : c'est l'**accrétion** (ex. dorsale médio-atlantique). On y observe l'**expansion océanique**.\n\n### 2. Les frontières convergentes (subduction et collision)\n\nDeux plaques se **rapprochent**. Si une plaque océanique dense plonge sous une autre, c'est la **subduction**, qui engendre volcans et séismes profonds. Si deux continents se rencontrent, c'est la **collision**, qui forme des chaînes de montagnes (ex. Himalaya).\n\n### 3. Les frontières transformantes (coulissage)\n\nDeux plaques **glissent** l'une contre l'autre, provoquant de violents séismes (ex. faille de San Andreas).\n\n## IV. Preuves de la tectonique des plaques\n\nWegener et ses successeurs ont rassemblé plusieurs **preuves** :\n- la **complémentarité des côtes** (Afrique et Amérique du Sud s'emboîtent) ;\n- les **fossiles identiques** de part et d'autre de l'Atlantique ;\n- la continuité des **chaînes de montagnes** entre continents ;\n- les **anomalies magnétiques** symétriques de part et d'autre des dorsales, qui datent la croûte océanique et prouvent l'expansion.\n\n## V. Application : la ligne du Cameroun\n\nLa **ligne volcanique du Cameroun** est un alignement de volcans (mont Cameroun, mont Manengouba, monts Bamboutos) et de lacs de cratère. Le **mont Cameroun**, encore actif, témoigne d'un **volcanisme** intraplaque lié à un point chaud. La catastrophe du **lac Nyos** (1986), où un dégagement de CO₂ d'origine volcanique fit de nombreuses victimes, rappelle l'importance de la surveillance géologique.\n\n## À retenir\n\n> - La **lithosphère** (rigide) est fragmentée en **plaques** mobiles glissant sur l'**asthénosphère**, mues par la **convection** mantellique.\n> - Trois types de frontières : **divergentes** (dorsales, accrétion), **convergentes** (subduction/collision), **transformantes** (coulissage).\n> - Les **preuves** : emboîtement des côtes, fossiles communs, anomalies magnétiques.\n> - Le **mont Cameroun** et le **lac Nyos** illustrent le volcanisme local.",
+      "title": "Energetique cellulaire : respiration et fermentation",
+      "video": "https://www.youtube.com/watch?v=00jbG_cfGuQ",
+      "lesson": "# Energetique cellulaire : respiration et fermentation\n\n## Introduction\n\nToutes les cellules ont besoin d'**energie** pour fonctionner. Cette energie, stockee dans les molecules organiques (glucose), est liberee par **oxydation** et convertie en **ATP**, monnaie energetique universelle. Selon la presence ou non de **dioxygene**, la cellule realise la **respiration** (aerobie) ou la **fermentation** (anaerobie).\n\n## I. L'ATP, monnaie energetique\n\n- L'**ATP** (adenosine triphosphate) libere de l'energie lors de son hydrolyse : **ATP -> ADP + Pi + energie**.\n- Cette energie est utilisee pour les contractions, les syntheses, les transports actifs.\n- L'ATP est sans cesse **regenere** a partir de l'ADP grace a l'oxydation des nutriments.\n\n## II. La respiration cellulaire (aerobie)\n\nBilan global : **C6H12O6 + 6 O2 -> 6 CO2 + 6 H2O + energie (ATP)**.\n\nElle se deroule en trois etapes :\n\n### 1. La glycolyse (cytoplasme)\n\nLe **glucose (6 C)** est degrade en **2 molecules de pyruvate (3 C)**. Bilan : **2 ATP** et **2 NADH,H+** (transporteurs d'electrons reduits). La glycolyse ne necessite pas de dioxygene.\n\n### 2. Le cycle de Krebs (matrice mitochondriale)\n\nLe pyruvate entre dans la mitochondrie, est transforme en **acetyl-CoA**, puis oxyde dans le **cycle de Krebs** qui libere du **CO2** et reduit les transporteurs (**NADH,H+ et FADH2**).\n\n### 3. La chaine respiratoire et phosphorylation oxydative (membrane interne)\n\nLes transporteurs reduits cedent leurs **electrons** a la **chaine respiratoire**. L'**O2** est l'accepteur final, formant de l'**eau**. Le flux d'electrons cree un **gradient de protons** qui actionne l'**ATP synthase** : c'est la **phosphorylation oxydative**, produisant l'essentiel de l'ATP (environ **36 ATP** au total par glucose).\n\n```onbuch-svg\n<svg viewBox=\"0 0 360 150\" xmlns=\"http://www.w3.org/2000/svg\">\n  <text x=\"180\" y=\"16\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\">Respiration : 3 etapes</text>\n  <rect x=\"20\" y=\"50\" width=\"90\" height=\"50\" fill=\"#e3f2fd\" stroke=\"#333\"/>\n  <text x=\"65\" y=\"72\" text-anchor=\"middle\" font-size=\"10\">Glycolyse</text>\n  <text x=\"65\" y=\"88\" text-anchor=\"middle\" font-size=\"9\">cytoplasme</text>\n  <rect x=\"135\" y=\"50\" width=\"90\" height=\"50\" fill=\"#fff3e0\" stroke=\"#333\"/>\n  <text x=\"180\" y=\"72\" text-anchor=\"middle\" font-size=\"10\">Krebs</text>\n  <text x=\"180\" y=\"88\" text-anchor=\"middle\" font-size=\"9\">matrice</text>\n  <rect x=\"250\" y=\"50\" width=\"95\" height=\"50\" fill=\"#e8f5e9\" stroke=\"#333\"/>\n  <text x=\"297\" y=\"68\" text-anchor=\"middle\" font-size=\"9\">Chaine resp.</text>\n  <text x=\"297\" y=\"84\" text-anchor=\"middle\" font-size=\"9\">membrane int.</text>\n  <line x1=\"110\" y1=\"75\" x2=\"135\" y2=\"75\" stroke=\"#333\" marker-end=\"url(#a)\"/>\n  <line x1=\"225\" y1=\"75\" x2=\"250\" y2=\"75\" stroke=\"#333\"/>\n</svg>\n```\n\n## III. La fermentation (anaerobie)\n\nEn l'absence de dioxygene, la cellule ne peut utiliser la chaine respiratoire. Elle realise une **fermentation**, qui reoxyde le NADH,H+ pour permettre a la glycolyse de continuer.\n\n- **Fermentation lactique** (muscle, certaines bacteries) : pyruvate -> **acide lactique**. Bilan : **2 ATP** seulement.\n- **Fermentation alcoolique** (levures) : pyruvate -> **ethanol + CO2**. Bilan : **2 ATP**.\n\nLa fermentation est **peu rentable** (2 ATP) car le glucose n'est pas totalement oxyde : l'energie reste piegee dans le lactate ou l'ethanol.\n\n## IV. Comparaison\n\n| Critere | Respiration | Fermentation |\n|---|---|---|\n| Dioxygene | Oui (aerobie) | Non (anaerobie) |\n| Lieu | Cytoplasme + mitochondrie | Cytoplasme |\n| Produits finaux | CO2 + H2O | Lactate ou ethanol + CO2 |\n| Bilan ATP / glucose | ~ 36 ATP | 2 ATP |\n| Rendement | Eleve | Faible |\n\n## Exercices corriges\n\n### Exercice 1 — Identifier le metabolisme\n\n**Enonce.** On cultive des levures dans deux conditions. En presence d'O2, elles consomment de l'O2, rejettent du CO2 et se multiplient beaucoup. En absence d'O2, elles produisent de l'ethanol et du CO2 et se multiplient peu. Interpretez.\n\n**Resolution.**\n1. **Avec O2** : consommation d'O2 + rejet de CO2 = **respiration** ; forte production d'ATP (~36) -> multiplication intense.\n2. **Sans O2** : production d'ethanol + CO2 = **fermentation alcoolique** ; faible production d'ATP (2) -> multiplication reduite.\n3. **Conclusion** : les levures sont des organismes **anaerobies facultatifs** : elles respirent si l'O2 est disponible, fermentent sinon. La respiration est bien plus rentable.\n\n### Exercice 2 — Bilan energetique\n\n**Enonce.** Comparez le nombre d'ATP produits par une cellule musculaire qui respire et par la meme cellule en effort intense (fermentation lactique). Expliquez la fatigue musculaire.\n\n**Resolution.**\n1. En **respiration** : 1 glucose -> ~36 ATP. L'effort modere est soutenu durablement.\n2. En **effort intense**, l'apport d'O2 devient insuffisant : la cellule passe a la **fermentation lactique** -> seulement **2 ATP/glucose**.\n3. Pour le meme besoin d'ATP, il faut consommer beaucoup plus de glucose, et l'**acide lactique** s'accumule, abaissant le pH.\n4. **Conclusion** : le faible rendement et l'accumulation de lactate expliquent la **fatigue musculaire** lors des efforts intenses.\n\n### Exercice 3 — Localisation des etapes\n\n**Enonce.** On detruit selectivement les mitochondries d'une cellule. Quelles etapes du catabolisme du glucose peuvent encore avoir lieu et quel est le bilan ATP ?\n\n**Resolution.**\n1. La **glycolyse** se deroule dans le **cytoplasme** : elle reste possible (-> pyruvate, 2 ATP, NADH).\n2. Le **cycle de Krebs** (matrice) et la **chaine respiratoire** (membrane interne) ont lieu dans la **mitochondrie** : ils sont **supprimes**.\n3. Pour regenerer le NAD+ et poursuivre la glycolyse, la cellule realise une **fermentation**.\n4. **Bilan** : seulement **2 ATP** par glucose, comme une cellule en anaerobie.\n\n## A retenir\n\n- L'**ATP** est la monnaie energetique ; il est regenere par oxydation des nutriments.\n- La **respiration** (aerobie) : glycolyse (cytoplasme) -> Krebs (matrice) -> chaine respiratoire (membrane interne), bilan **~36 ATP**, produits CO2 + H2O.\n- La **fermentation** (anaerobie) : glycolyse + reoxydation du NADH ; lactique (lactate) ou alcoolique (ethanol + CO2), bilan **2 ATP**.\n- La respiration a un **rendement bien superieur** car le glucose y est totalement oxyde.\n",
       "quiz": {
         "questions": [
           {
-            "q": "La lithosphère repose et se déplace sur :",
-            "options": ["Le noyau", "L'asthénosphère", "La croûte océanique", "Le manteau inférieur solide"],
+            "q": "La glycolyse se deroule dans :",
+            "options": [
+              "La matrice mitochondriale",
+              "Le cytoplasme",
+              "La membrane interne de la mitochondrie",
+              "Le noyau"
+            ],
             "answer": 1,
-            "explanation": "La lithosphère rigide glisse sur l'asthénosphère plus ductile."
+            "explanation": "La glycolyse est cytoplasmique et ne necessite pas de dioxygene."
           },
           {
-            "q": "Le moteur du déplacement des plaques est :",
-            "options": ["Le vent", "Les marées", "Les courants de convection du manteau", "La rotation de la Lune"],
+            "q": "L'accepteur final des electrons dans la respiration est :",
+            "options": [
+              "Le CO2",
+              "Le glucose",
+              "Le dioxygene (O2)",
+              "Le NAD+"
+            ],
             "answer": 2,
-            "explanation": "Les courants de convection dans le manteau entraînent le mouvement des plaques."
+            "explanation": "Dans la chaine respiratoire, l'O2 capte les electrons et forme de l'eau."
           },
           {
-            "q": "À une dorsale océanique, les plaques :",
-            "options": ["Se rapprochent", "S'écartent et créent de la croûte", "Glissent latéralement", "Sont immobiles"],
-            "answer": 1,
-            "explanation": "Aux dorsales (frontières divergentes), les plaques s'écartent et une nouvelle croûte se forme par accrétion."
+            "q": "Le bilan approximatif d'ATP de la respiration par molecule de glucose est :",
+            "options": [
+              "2 ATP",
+              "4 ATP",
+              "36 ATP",
+              "100 ATP"
+            ],
+            "answer": 2,
+            "explanation": "La respiration complete fournit environ 36 ATP par glucose."
           },
           {
-            "q": "La subduction correspond à :",
-            "options": ["L'écartement de deux plaques", "Une plaque océanique plongeant sous une autre", "Le glissement horizontal", "La formation d'une dorsale"],
+            "q": "La fermentation alcoolique produit :",
+            "options": [
+              "De l'acide lactique",
+              "De l'ethanol et du CO2",
+              "De l'eau et du CO2",
+              "Uniquement du CO2"
+            ],
             "answer": 1,
-            "explanation": "La subduction est l'enfoncement d'une plaque océanique dense sous une autre plaque."
+            "explanation": "Chez les levures, le pyruvate est converti en ethanol et CO2."
           },
           {
-            "q": "Quelle preuve appuie l'expansion océanique ?",
-            "options": ["La couleur des roches", "Les anomalies magnétiques symétriques de part et d'autre des dorsales", "La hauteur des montagnes", "La salinité de la mer"],
+            "q": "Pourquoi la fermentation est-elle peu rentable ?",
+            "options": [
+              "Elle ne produit pas d'ATP",
+              "Le glucose n'est pas totalement oxyde, l'energie reste dans le lactate/ethanol",
+              "Elle consomme trop d'O2",
+              "Elle detruit les mitochondries"
+            ],
             "answer": 1,
-            "explanation": "Les bandes d'anomalies magnétiques symétriques datent la croûte et prouvent l'expansion à partir des dorsales."
+            "explanation": "L'oxydation incomplete du glucose laisse de l'energie dans les produits finaux."
           }
         ]
       }
     },
     {
-      "title": "L'évolution des espèces et les mécanismes de la spéciation",
-      "lesson": "# L'évolution des espèces et les mécanismes de la spéciation\n\n## Introduction\n\nL'**évolution** est la transformation des espèces vivantes au cours du temps. Loin d'être figé, le monde vivant change : des espèces apparaissent, se transforment, ou disparaissent. La théorie de l'évolution, fondée par **Charles Darwin** (1859) avec le concept de **sélection naturelle**, est aujourd'hui au cœur de la biologie. Elle s'appuie sur de nombreuses preuves, dont l'exemple local de la **drépanocytose** et de la résistance au paludisme.\n\n## I. Les preuves de l'évolution\n\nPlusieurs faisceaux d'arguments établissent la réalité de l'évolution :\n- les **fossiles** (paléontologie) montrent une succession des formes au fil des âges et des **formes intermédiaires** ;\n- l'**anatomie comparée** révèle des **organes homologues** : même plan d'organisation, origine commune (ex. membre antérieur de l'homme, de la chauve-souris et de la baleine) ;\n- l'**embryologie comparée** : les embryons de vertébrés se ressemblent fortement à un stade précoce ;\n- la **biologie moléculaire** : l'universalité de l'ADN et du code génétique, et la comparaison des séquences, indiquent une **parenté** entre tous les êtres vivants.\n\n## II. La variabilité, matière première de l'évolution\n\nLes individus d'une même espèce présentent des **variations** héréditaires. Leur source est double :\n- les **mutations**, modifications de l'ADN qui créent de nouveaux **allèles** ;\n- le **brassage génétique** lors de la méiose et de la fécondation, qui recombine ces allèles.\n\nC'est sur cette **diversité génétique** que les mécanismes évolutifs vont agir.\n\n## III. Les mécanismes de l'évolution\n\n### 1. La sélection naturelle (Darwin)\n\nDans un milieu donné, les individus les mieux **adaptés** survivent et se reproduisent davantage : ils transmettent plus leurs allèles. Au fil des générations, la fréquence des allèles favorables augmente. C'est la **sélection naturelle**.\n\nExemple local : dans les zones impaludées du Cameroun, les porteurs sains $AS$ de la drépanocytose résistent mieux au paludisme que les individus $AA$. L'allèle $S$ est donc maintenu dans la population malgré le désavantage des malades $SS$ : c'est un **avantage sélectif de l'hétérozygote**.\n\n### 2. La dérive génétique\n\nDans une **petite population**, le hasard peut modifier la fréquence des allèles d'une génération à l'autre, indépendamment de leur valeur adaptative : c'est la **dérive génétique**.\n\n## IV. La notion d'espèce et la spéciation\n\nUne **espèce** est un ensemble d'individus **interféconds** donnant une descendance elle-même féconde. Deux populations d'une même espèce peuvent être séparées (par une barrière géographique, par exemple). **Isolées**, elles accumulent des différences génétiques jusqu'à devenir **incapables de se reproduire entre elles** : une nouvelle espèce naît. C'est la **spéciation**. L'**isolement reproductif** est le critère fondamental de la séparation des espèces.\n\n## V. L'origine commune et l'arbre du vivant\n\nL'ensemble de ces mécanismes conduit à une **diversification** progressive à partir d'ancêtres communs. On représente ces parentés par un **arbre phylogénétique** (arbre du vivant), où chaque branchement correspond à un ancêtre commun. L'homme partage ainsi un ancêtre commun récent avec les autres **primates**, comme le montrent les similitudes anatomiques et moléculaires.\n\n## À retenir\n\n> - L'**évolution** est prouvée par les fossiles, l'anatomie et l'embryologie comparées, et la biologie moléculaire (universalité de l'ADN).\n> - La **variabilité** provient des **mutations** et du **brassage génétique**.\n> - Deux moteurs : la **sélection naturelle** (Darwin) et la **dérive génétique** (hasard, petites populations).\n> - La **spéciation** repose sur l'**isolement reproductif**. Tous les vivants partagent une **origine commune** (arbre phylogénétique).",
+      "title": "La photosynthese : production de matiere organique",
+      "video": "https://www.youtube.com/watch?v=Bp7L2W3eL2o",
+      "lesson": "# La photosynthese : production de matiere organique\n\n## Introduction\n\nLes vegetaux chlorophylliens sont des organismes **autotrophes** : ils fabriquent leur propre matiere organique a partir de matiere minerale, grace a l'energie lumineuse. Ce processus, la **photosynthese**, est a la base de presque toutes les chaines alimentaires et de la production d'**O2** atmospherique. Elle se deroule dans les **chloroplastes**.\n\n## I. Le chloroplaste, lieu de la photosynthese\n\nLe **chloroplaste** comprend :\n\n- des **thylakoides** (empiles en **granum**) contenant la **chlorophylle**, pigment qui capte la lumiere ;\n- le **stroma** (liquide) ou se deroulent les reactions de synthese.\n\n```onbuch-svg\n<svg viewBox=\"0 0 320 130\" xmlns=\"http://www.w3.org/2000/svg\">\n  <text x=\"160\" y=\"16\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\">Chloroplaste</text>\n  <ellipse cx=\"160\" cy=\"75\" rx=\"130\" ry=\"45\" fill=\"#c8e6c9\" stroke=\"#2e7d32\"/>\n  <text x=\"250\" y=\"78\" font-size=\"10\">stroma</text>\n  <rect x=\"70\" y=\"60\" width=\"40\" height=\"6\" fill=\"#388e3c\"/>\n  <rect x=\"70\" y=\"70\" width=\"40\" height=\"6\" fill=\"#388e3c\"/>\n  <rect x=\"70\" y=\"80\" width=\"40\" height=\"6\" fill=\"#388e3c\"/>\n  <text x=\"90\" y=\"105\" text-anchor=\"middle\" font-size=\"9\">granum (thylakoides)</text>\n</svg>\n```\n\n## II. Bilan global de la photosynthese\n\n**6 CO2 + 6 H2O --(lumiere, chlorophylle)--> C6H12O6 + 6 O2**\n\nL'eau est le **donneur d'electrons** (oxydee, liberant l'O2) et le CO2 est **reduit** en glucose. La photosynthese comprend **deux phases**.\n\n## III. La phase photochimique (claire, dans les thylakoides)\n\nElle **necessite la lumiere**.\n\n- La **chlorophylle** capte l'energie lumineuse.\n- L'eau est **photolysee** : **2 H2O -> 4 H+ + 4 e- + O2**. C'est l'origine du **dioxygene** degage.\n- L'energie sert a produire de l'**ATP** (photophosphorylation) et a reduire le transporteur **NADP+ en NADPH,H+**.\n\n**Mise en evidence (experiences de Hill, manip d'Engelmann)** : un vegetal eclaire degage de l'O2 ; l'O2 provient de l'eau (demontre par marquage isotopique de l'oxygene de l'eau).\n\n## IV. La phase non photochimique (sombre, cycle de Calvin, dans le stroma)\n\nElle **n'a pas besoin directement de lumiere** mais utilise l'ATP et le NADPH produits a la phase claire.\n\n- Le **CO2** est **fixe** sur un compose et reduit en molecules organiques (cycle de **Calvin**), aboutissant au **glucose**.\n- Cette phase consomme l'ATP et le NADPH de la phase claire.\n\n```onbuch-svg\n<svg viewBox=\"0 0 340 140\" xmlns=\"http://www.w3.org/2000/svg\">\n  <text x=\"170\" y=\"16\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\">Deux phases de la photosynthese</text>\n  <rect x=\"20\" y=\"45\" width=\"130\" height=\"60\" fill=\"#fff9c4\" stroke=\"#333\"/>\n  <text x=\"85\" y=\"65\" text-anchor=\"middle\" font-size=\"10\">Phase claire</text>\n  <text x=\"85\" y=\"80\" text-anchor=\"middle\" font-size=\"9\">lumiere, H2O -> O2</text>\n  <text x=\"85\" y=\"95\" text-anchor=\"middle\" font-size=\"9\">ATP + NADPH</text>\n  <rect x=\"190\" y=\"45\" width=\"130\" height=\"60\" fill=\"#c8e6c9\" stroke=\"#333\"/>\n  <text x=\"255\" y=\"65\" text-anchor=\"middle\" font-size=\"10\">Cycle de Calvin</text>\n  <text x=\"255\" y=\"80\" text-anchor=\"middle\" font-size=\"9\">CO2 -> glucose</text>\n  <text x=\"255\" y=\"95\" text-anchor=\"middle\" font-size=\"9\">utilise ATP/NADPH</text>\n  <line x1=\"150\" y1=\"75\" x2=\"190\" y2=\"75\" stroke=\"#333\"/>\n</svg>\n```\n\n## V. Facteurs influencant la photosynthese\n\nL'intensite de la photosynthese augmente avec :\n\n- l'**intensite lumineuse** (jusqu'a saturation) ;\n- la **concentration en CO2** ;\n- la **temperature** (dans une plage optimale).\n\nAu-dela, un **facteur limitant** plafonne la production.\n\n## Exercices corriges\n\n### Exercice 1 — Mise en evidence du degagement d'O2\n\n**Enonce.** Une plante aquatique (elodee) eclairee degage des bulles de gaz. On approche une buchette incandescente du gaz recueilli : elle se rallume. A l'obscurite, plus de bulles. Interpretez.\n\n**Resolution.**\n1. La buchette qui se rallume indique un gaz comburant : c'est du **dioxygene (O2)**.\n2. Le degagement d'O2 ne se produit qu'a la **lumiere** : il depend de la **phase photochimique** (photolyse de l'eau).\n3. A l'obscurite, pas de photolyse -> pas d'O2.\n4. **Conclusion** : la plante realise la **photosynthese** a la lumiere ; l'O2 degage provient de l'eau.\n\n### Exercice 2 — Phase claire / phase sombre\n\n**Enonce.** On eclaire des chloroplastes isoles en presence de NADP+ et d'ADP, sans CO2 : on obtient ATP, NADPH et O2 mais pas de glucose. Puis on les place a l'obscurite en ajoutant du CO2, de l'ATP et du NADPH : du glucose se forme. Concluez.\n\n**Resolution.**\n1. A la **lumiere sans CO2** : production d'O2, ATP, NADPH = **phase photochimique** (besoin de lumiere, pas de CO2).\n2. A l'**obscurite avec CO2 + ATP + NADPH** : synthese de glucose = **cycle de Calvin** (n'exige pas la lumiere mais consomme ATP/NADPH).\n3. **Conclusion** : la photosynthese se decompose en deux phases couplees : la phase claire fournit l'energie (ATP) et le pouvoir reducteur (NADPH) que la phase sombre utilise pour fixer le CO2.\n\n### Exercice 3 — Facteurs limitants\n\n**Enonce.** On mesure l'intensite de la photosynthese en fonction de l'eclairement, a deux teneurs en CO2. La courbe a forte teneur en CO2 plafonne plus haut. Interpretez.\n\n**Resolution.**\n1. A faible eclairement, la lumiere est le **facteur limitant** : l'intensite augmente avec l'eclairement.\n2. A fort eclairement, la courbe **plafonne** : un autre facteur (le **CO2**) devient limitant.\n3. Quand on augmente la teneur en CO2, le plateau est plus eleve : le CO2 etait bien limitant.\n4. **Conclusion** : la photosynthese est limitee par le facteur present en plus faible quantite (**loi des facteurs limitants**).\n\n## A retenir\n\n- La photosynthese a lieu dans le **chloroplaste** : bilan **6 CO2 + 6 H2O -> C6H12O6 + 6 O2**.\n- **Phase claire** (thylakoides) : la lumiere permet la **photolyse de l'eau** (-> O2) et la production d'**ATP** et **NADPH**.\n- **Phase sombre / cycle de Calvin** (stroma) : le **CO2 est reduit en glucose** en consommant ATP et NADPH.\n- L'**O2** degage provient de l'**eau**.\n- L'intensite depend de la lumiere, du CO2 et de la temperature (**facteurs limitants**).\n",
       "quiz": {
         "questions": [
           {
-            "q": "Des organes homologues sont des organes :",
-            "options": ["De fonctions identiques mais d'origines différentes", "De même plan d'organisation et d'origine commune", "Présents uniquement chez les plantes", "Sans rapport entre espèces"],
+            "q": "Le dioxygene degage lors de la photosynthese provient de :",
+            "options": [
+              "Du CO2",
+              "De l'eau (photolyse)",
+              "Du glucose",
+              "De l'ATP"
+            ],
             "answer": 1,
-            "explanation": "Les organes homologues ont le même plan d'organisation et témoignent d'une origine commune."
+            "explanation": "La photolyse de l'eau dans la phase claire libere l'O2."
           },
           {
-            "q": "La matière première de l'évolution provient surtout :",
-            "options": ["De la respiration", "Des mutations et du brassage génétique", "De la photosynthèse", "De la digestion"],
-            "answer": 1,
-            "explanation": "Les mutations créent de nouveaux allèles et le brassage les recombine : c'est la source de variabilité."
-          },
-          {
-            "q": "Pourquoi l'allèle S de la drépanocytose se maintient-il en zone impaludée ?",
-            "options": ["Il n'a aucun effet", "Les porteurs sains AS résistent mieux au paludisme", "Il rend immortel", "Il empêche toute maladie"],
-            "answer": 1,
-            "explanation": "L'hétérozygote AS résiste mieux au paludisme : c'est un avantage sélectif qui maintient l'allèle S."
-          },
-          {
-            "q": "Le critère fondamental qui définit une espèce est :",
-            "options": ["La couleur", "La taille", "L'interfécondité (descendance féconde)", "Le lieu de vie"],
+            "q": "La phase photochimique se deroule dans :",
+            "options": [
+              "Le stroma",
+              "Le cytoplasme",
+              "Les thylakoides",
+              "Le noyau"
+            ],
             "answer": 2,
-            "explanation": "Une espèce regroupe des individus interféconds donnant une descendance elle-même féconde."
+            "explanation": "Les thylakoides contiennent la chlorophylle qui capte la lumiere."
           },
           {
-            "q": "La dérive génétique agit surtout :",
-            "options": ["Dans les très grandes populations", "Dans les petites populations, par le hasard", "Uniquement par sélection", "Sur les organes homologues"],
+            "q": "Le cycle de Calvin (phase sombre) :",
+            "options": [
+              "Produit de l'O2",
+              "Fixe le CO2 et le reduit en glucose",
+              "A besoin directement de lumiere",
+              "Se deroule dans les thylakoides"
+            ],
             "answer": 1,
-            "explanation": "La dérive génétique modifie les fréquences alléliques par hasard, surtout dans les petites populations."
+            "explanation": "Le cycle de Calvin se deroule dans le stroma et reduit le CO2 en utilisant ATP/NADPH."
+          },
+          {
+            "q": "Les produits de la phase claire utilises par la phase sombre sont :",
+            "options": [
+              "O2 et glucose",
+              "ATP et NADPH",
+              "CO2 et H2O",
+              "Chlorophylle et eau"
+            ],
+            "answer": 1,
+            "explanation": "La phase claire fournit l'ATP (energie) et le NADPH (pouvoir reducteur)."
+          },
+          {
+            "q": "Selon la loi des facteurs limitants, l'intensite de la photosynthese est limitee par :",
+            "options": [
+              "Le facteur en plus forte quantite",
+              "Le facteur present en plus faible quantite",
+              "La couleur des feuilles",
+              "La taille de la plante"
+            ],
+            "answer": 1,
+            "explanation": "C'est le facteur le plus deficitaire (lumiere, CO2 ou temperature) qui limite la photosynthese."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Tectonique des plaques et geologie",
+      "video": "https://www.youtube.com/watch?v=kqVf8E4eGmA",
+      "lesson": "# Tectonique des plaques et geologie\n\n## Introduction\n\nLa **theorie de la tectonique des plaques** explique la mobilite de la surface terrestre : seismes, volcans, formation des oceans et des chaines de montagnes. Heritiere de la **derive des continents** de Wegener (1912), elle decrit une **lithosphere** fragmentee en **plaques rigides** se deplacant sur l'**asthenosphere** plus ductile.\n\n## I. La structure du globe terrestre\n\n- **Croute** (continentale, granitique, epaisse ; oceanique, basaltique, fine).\n- **Manteau** (superieur et inferieur).\n- **Noyau** (externe liquide, interne solide).\n\nOn distingue surtout :\n\n- la **lithosphere** : croute + partie superieure du manteau, **rigide** ;\n- l'**asthenosphere** : manteau superieur **ductile**, sur lequel glissent les plaques.\n\n```onbuch-svg\n<svg viewBox=\"0 0 320 130\" xmlns=\"http://www.w3.org/2000/svg\">\n  <text x=\"160\" y=\"16\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\">Lithosphere / asthenosphere</text>\n  <rect x=\"30\" y=\"30\" width=\"260\" height=\"25\" fill=\"#8d6e63\"/>\n  <text x=\"160\" y=\"47\" text-anchor=\"middle\" font-size=\"10\" fill=\"#fff\">Lithosphere (rigide)</text>\n  <rect x=\"30\" y=\"55\" width=\"260\" height=\"35\" fill=\"#ff8a65\"/>\n  <text x=\"160\" y=\"77\" text-anchor=\"middle\" font-size=\"10\">Asthenosphere (ductile)</text>\n  <rect x=\"30\" y=\"90\" width=\"260\" height=\"25\" fill=\"#bf360c\"/>\n  <text x=\"160\" y=\"107\" text-anchor=\"middle\" font-size=\"10\" fill=\"#fff\">Manteau profond</text>\n</svg>\n```\n\n## II. Arguments de la mobilite\n\nWegener s'appuyait sur :\n\n- la **complementarite des cotes** (Afrique / Amerique du Sud) ;\n- la continuite des **chaines de montagnes** et des **structures geologiques** d'un continent a l'autre ;\n- la repartition de **fossiles identiques** (ex. Mesosaurus) sur des continents separes ;\n- des **indices paleoclimatiques** (traces glaciaires).\n\nConfirmations modernes :\n\n- les **anomalies magnetiques symetriques** de part et d'autre des dorsales (inversions du champ enregistrees dans le basalte) ;\n- l'**age des fonds oceaniques** croissant en s'eloignant de la dorsale ;\n- le **flux de chaleur** et la **bathymetrie** ;\n- la **mesure GPS** des deplacements (quelques cm/an).\n\n## III. Les frontieres de plaques\n\n### 1. Frontieres divergentes (dorsales)\n\nAu niveau des **dorsales oceaniques**, les plaques s'**ecartent** ; du magma remonte et cree de la **lithosphere oceanique nouvelle** : c'est l'**accretion (expansion oceanique)**.\n\n### 2. Frontieres convergentes (subduction et collision)\n\n- **Subduction** : une plaque oceanique dense **plonge** sous une autre plaque. Cela cree des **fosses oceaniques**, un **volcanisme explosif** (arcs) et des **seismes profonds**.\n- **Collision** : deux lithospheres continentales se rencontrent et forment une **chaine de montagnes** (ex. Himalaya, Alpes).\n\n### 3. Frontieres transformantes (coulissage)\n\nLes plaques **glissent** l'une contre l'autre (ex. faille de San Andreas) : seismes superficiels frequents.\n\n```onbuch-svg\n<svg viewBox=\"0 0 360 130\" xmlns=\"http://www.w3.org/2000/svg\">\n  <text x=\"180\" y=\"16\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\">Subduction</text>\n  <rect x=\"30\" y=\"50\" width=\"150\" height=\"20\" fill=\"#1976d2\"/>\n  <text x=\"100\" y=\"64\" text-anchor=\"middle\" font-size=\"9\" fill=\"#fff\">plaque oceanique</text>\n  <polygon points=\"180,50 230,50 270,110 200,90\" fill=\"#1976d2\"/>\n  <rect x=\"230\" y=\"50\" width=\"100\" height=\"25\" fill=\"#6d4c41\"/>\n  <text x=\"285\" y=\"66\" text-anchor=\"middle\" font-size=\"9\" fill=\"#fff\">continent</text>\n  <text x=\"190\" y=\"100\" font-size=\"9\">plongement</text>\n</svg>\n```\n\n## IV. Le moteur de la tectonique\n\nLe deplacement des plaques resulte des **courants de convection** dans le manteau (chaleur interne de la Terre), associes a la **poussee a la dorsale** et a la **traction de la plaque plongeante** lors de la subduction.\n\n## V. Cycle des roches et chaines de montagnes\n\nLa tectonique produit des **roches magmatiques** (volcanisme, plutonisme), entraine le **metamorphisme** (transformation des roches sous pression/temperature) lors des collisions, et conditionne l'erosion-sedimentation. Les chaines de montagnes resultent de la **convergence** (subduction puis collision).\n\n## Exercices corriges\n\n### Exercice 1 — Age des fonds oceaniques\n\n**Enonce.** Les forages montrent que les sediments les plus anciens reposant sur le basalte sont de plus en plus vieux a mesure qu'on s'eloigne de la dorsale, et toujours recents pres de la dorsale. Interpretez.\n\n**Resolution.**\n1. Pres de la dorsale, le plancher est **recent** : c'est la zone d'**accretion** ou se forme la lithosphere oceanique.\n2. En s'eloignant, le plancher est **plus ancien** : il a ete cree plus tot et a migre.\n3. Cette symetrie de part et d'autre de la dorsale traduit l'**expansion oceanique**.\n4. **Conclusion** : la lithosphere oceanique se forme a la dorsale puis s'eloigne de part et d'autre, confirmant la tectonique des plaques.\n\n### Exercice 2 — Anomalies magnetiques\n\n**Enonce.** On enregistre, de part et d'autre d'une dorsale, des bandes magnetiques alternativement normales et inverses, disposees symetriquement. Expliquez.\n\n**Resolution.**\n1. Le **basalte** qui cristallise a la dorsale enregistre le **champ magnetique** terrestre du moment (aimantation fossile).\n2. Le champ terrestre s'est **inverse** plusieurs fois au cours des temps geologiques.\n3. Comme le plancher s'ecarte symetriquement de la dorsale, les bandes d'aimantation sont **symetriques** de part et d'autre.\n4. **Conclusion** : ces anomalies magnetiques symetriques sont une preuve majeure de l'**expansion oceanique**.\n\n### Exercice 3 — Identifier une frontiere\n\n**Enonce.** Une region presente une fosse oceanique profonde, des seismes de plus en plus profonds en s'eloignant de la fosse, et un volcanisme explosif. De quelle frontiere s'agit-il ? Justifiez.\n\n**Resolution.**\n1. **Fosse oceanique** + **seismes de plus en plus profonds** (plan de Benioff) + **volcanisme explosif** sont les marqueurs d'une **zone de subduction**.\n2. Une plaque oceanique **plonge** sous une autre plaque ; les seismes jalonnent le plan de plongement, d'ou leur profondeur croissante.\n3. La fusion partielle au-dessus de la plaque plongeante alimente le **volcanisme**.\n4. **Conclusion** : il s'agit d'une **frontiere convergente de subduction**.\n\n## A retenir\n\n- La **lithosphere** rigide est fragmentee en **plaques** mobiles glissant sur l'**asthenosphere** ductile.\n- Wegener : **derive des continents** (cotes, fossiles, structures, paleoclimats) ; confirmation par les **anomalies magnetiques** et l'**age des fonds oceaniques**.\n- Trois types de frontieres : **divergentes** (dorsales, accretion), **convergentes** (subduction, collision) et **transformantes** (coulissage).\n- Le **moteur** est la **convection** du manteau (chaleur interne) + traction des plaques plongeantes.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "La lithosphere se distingue de l'asthenosphere par :",
+            "options": [
+              "Sa composition uniquement chimique",
+              "Son caractere rigide (l'asthenosphere etant ductile)",
+              "Sa couleur",
+              "Sa temperature plus basse que le noyau"
+            ],
+            "answer": 1,
+            "explanation": "La lithosphere est rigide et glisse sur l'asthenosphere ductile."
+          },
+          {
+            "q": "Au niveau d'une dorsale oceanique, les plaques :",
+            "options": [
+              "Se rapprochent",
+              "S'ecartent et creent de la lithosphere nouvelle",
+              "Glissent l'une contre l'autre",
+              "Disparaissent par subduction"
+            ],
+            "answer": 1,
+            "explanation": "La dorsale est une frontiere divergente d'accretion (expansion oceanique)."
+          },
+          {
+            "q": "Les anomalies magnetiques symetriques de part et d'autre des dorsales prouvent :",
+            "options": [
+              "La collision continentale",
+              "L'expansion oceanique",
+              "Le metamorphisme",
+              "L'erosion"
+            ],
+            "answer": 1,
+            "explanation": "Le basalte enregistre les inversions du champ, disposees symetriquement par l'expansion."
+          },
+          {
+            "q": "Une zone de subduction est caracterisee par :",
+            "options": [
+              "Une dorsale et un volcanisme effusif",
+              "Une fosse, des seismes profonds et un volcanisme explosif",
+              "Une faille transformante seule",
+              "L'absence de seismes"
+            ],
+            "answer": 1,
+            "explanation": "La plaque plongeante cree fosse, seismes en profondeur croissante et volcanisme explosif."
+          },
+          {
+            "q": "Le moteur principal du deplacement des plaques est :",
+            "options": [
+              "L'attraction lunaire",
+              "Les courants de convection du manteau",
+              "Le vent solaire",
+              "L'erosion des continents"
+            ],
+            "answer": 1,
+            "explanation": "La chaleur interne entretient des courants de convection qui deplacent les plaques."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Evolution des especes et speciation",
+      "video": "https://www.youtube.com/watch?v=GhHOjC4oxh8",
+      "lesson": "# Evolution des especes et speciation\n\n## Introduction\n\nLa **biodiversite** actuelle resulte d'une longue histoire : l'**evolution** des especes au cours des temps geologiques. Les especes ne sont pas fixes ; elles se transforment, apparaissent et disparaissent. Ce chapitre presente les **preuves de l'evolution**, ses **mecanismes** (selection naturelle, derive) et la **speciation** (formation de nouvelles especes).\n\n## I. Les preuves de l'evolution\n\n- **Preuves paleontologiques** : les **fossiles** montrent des formes disparues et des **series evolutives** (ex. evolution du cheval).\n- **Preuves anatomiques** : organes **homologues** (meme plan d'organisation, ex. membres des vertebres) revelant une **origine commune** ; organes **vestigiaux** (appendice).\n- **Preuves embryologiques** : ressemblances entre embryons de vertebres.\n- **Preuves moleculaires** : universalite de l'**ADN** et du **code genetique** ; plus deux especes sont proches, plus leurs sequences (ADN, proteines) se ressemblent. Construction d'**arbres phylogenetiques**.\n\n```onbuch-svg\n<svg viewBox=\"0 0 320 130\" xmlns=\"http://www.w3.org/2000/svg\">\n  <text x=\"160\" y=\"16\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\">Organes homologues (membres)</text>\n  <line x1=\"40\" y1=\"40\" x2=\"40\" y2=\"90\" stroke=\"#333\" stroke-width=\"6\"/>\n  <text x=\"40\" y=\"105\" text-anchor=\"middle\" font-size=\"9\">humain</text>\n  <line x1=\"120\" y1=\"40\" x2=\"120\" y2=\"90\" stroke=\"#333\" stroke-width=\"6\"/>\n  <text x=\"120\" y=\"105\" text-anchor=\"middle\" font-size=\"9\">chauve-souris</text>\n  <line x1=\"210\" y1=\"40\" x2=\"210\" y2=\"90\" stroke=\"#333\" stroke-width=\"6\"/>\n  <text x=\"210\" y=\"105\" text-anchor=\"middle\" font-size=\"9\">baleine</text>\n  <line x1=\"280\" y1=\"40\" x2=\"280\" y2=\"90\" stroke=\"#333\" stroke-width=\"6\"/>\n  <text x=\"280\" y=\"105\" text-anchor=\"middle\" font-size=\"9\">oiseau</text>\n</svg>\n```\n\n## II. Les theories de l'evolution\n\n- **Lamarck (transformisme)** : usage/non-usage des organes et **heredite des caracteres acquis** (theorie aujourd'hui abandonnee).\n- **Darwin (selection naturelle)** : au sein d'une population variable, les individus les **mieux adaptes** survivent et se reproduisent davantage ; leurs caracteres se repandent. C'est la **selection naturelle**.\n- **Theorie synthetique (neo-darwinisme)** : combine la selection naturelle et la **genetique des populations** (mutations source de variabilite, recombinaison).\n\n## III. Les mecanismes de l'evolution\n\nL'evolution est une **modification des frequences alleliques** d'une population au cours des generations.\n\n- **Mutations** : creent de **nouveaux alleles** (variabilite, matiere premiere).\n- **Recombinaison genetique** (brassage meiotique) : nouvelles combinaisons.\n- **Selection naturelle** : favorise les alleles avantageux dans un milieu donne (evolution adaptative).\n- **Derive genetique** : variation aleatoire des frequences alleliques, surtout dans les **petites populations** (effet du hasard).\n- **Migration (flux de genes)** : echange d'alleles entre populations.\n\n## IV. La speciation\n\nUne **espece** est un ensemble d'individus **interfeconds** donnant une descendance fertile (definition biologique). La **speciation** est l'apparition de nouvelles especes.\n\n### Mecanisme : l'isolement reproducteur\n\n1. Une population est **separee** en deux (barriere geographique : montagne, mer...) : c'est l'**isolement geographique**.\n2. Chaque sous-population evolue independamment (mutations, selection, derive) et **diverge**.\n3. Quand les differences sont telles que les deux groupes ne peuvent plus se reproduire ensemble (**isolement reproducteur**), ils forment **deux especes distinctes**.\n\nOn parle de **speciation allopatrique** (avec separation geographique) ou **sympatrique** (sans separation geographique).\n\n```onbuch-svg\n<svg viewBox=\"0 0 340 120\" xmlns=\"http://www.w3.org/2000/svg\">\n  <text x=\"170\" y=\"16\" text-anchor=\"middle\" font-size=\"12\" font-weight=\"bold\">Speciation par isolement</text>\n  <ellipse cx=\"60\" cy=\"60\" rx=\"35\" ry=\"20\" fill=\"#a5d6a7\" stroke=\"#333\"/>\n  <text x=\"60\" y=\"64\" text-anchor=\"middle\" font-size=\"9\">population</text>\n  <line x1=\"120\" y1=\"60\" x2=\"160\" y2=\"60\" stroke=\"#333\" marker-end=\"url(#a)\"/>\n  <ellipse cx=\"220\" cy=\"35\" rx=\"32\" ry=\"16\" fill=\"#90caf9\" stroke=\"#333\"/>\n  <text x=\"220\" y=\"39\" text-anchor=\"middle\" font-size=\"9\">espece A</text>\n  <ellipse cx=\"220\" cy=\"90\" rx=\"32\" ry=\"16\" fill=\"#ffab91\" stroke=\"#333\"/>\n  <text x=\"220\" y=\"94\" text-anchor=\"middle\" font-size=\"9\">espece B</text>\n</svg>\n```\n\n## Exercices corriges\n\n### Exercice 1 — Selection naturelle (phalene du bouleau)\n\n**Enonce.** Avant l'industrialisation, la phalene (papillon) etait surtout claire (camouflee sur les troncs clairs). Apres, dans les regions polluees, la forme sombre est devenue majoritaire. Expliquez par la selection naturelle.\n\n**Resolution.**\n1. La population presente une **variabilite** : individus clairs et sombres (alleles differents issus de mutations).\n2. Avant la pollution, les troncs clairs (lichens) favorisent les **clairs** (camoufles), les sombres sont manges par les oiseaux : la selection favorise l'allele clair.\n3. Apres pollution, les troncs noircissent : les **sombres** sont mieux camoufles, les clairs sont manges. La selection favorise desormais l'allele sombre.\n4. **Conclusion** : la modification du milieu change la pression de selection ; la frequence de l'allele avantageux augmente. C'est la **selection naturelle** (evolution adaptative).\n\n### Exercice 2 — Preuves moleculaires et phylogenie\n\n**Enonce.** On compare une proteine chez l'Homme, le chimpanze, la souris et le poulet. Les differences de sequence sont : Homme/chimpanze = 1, Homme/souris = 12, Homme/poulet = 25. Que conclure ?\n\n**Resolution.**\n1. Plus deux especes sont **proches** par l'evolution, plus leurs sequences se ressemblent (peu de differences).\n2. Homme et chimpanze ne different que d'un acide amine : ils ont un **ancetre commun recent**.\n3. La souris (12) est plus eloignee, le poulet (25) encore plus : ancetres communs de plus en plus anciens.\n4. **Conclusion** : ces donnees moleculaires permettent de construire un **arbre phylogenetique** et confirment la **parente** entre les especes (origine commune).\n\n### Exercice 3 — Speciation allopatrique\n\n**Enonce.** Une population d'oiseaux d'une ile est separee en deux par la montee du niveau marin formant deux iles. Apres des milliers de generations, les oiseaux des deux iles ne se reproduisent plus entre eux. Expliquez la formation des deux especes.\n\n**Resolution.**\n1. La montee du niveau marin cree un **isolement geographique** : les deux populations ne s'echangent plus de genes (flux interrompu).\n2. Chaque population evolue independamment sous l'effet des **mutations, de la selection** (milieux differents) et de la **derive genetique**.\n3. Les differences genetiques s'accumulent : les deux groupes **divergent**.\n4. Lorsque les differences empechent toute reproduction fertile, l'**isolement reproducteur** est acquis : deux **especes distinctes** sont nees.\n5. **Conclusion** : il s'agit d'une **speciation allopatrique**.\n\n## A retenir\n\n- L'evolution est prouvee par les fossiles, les organes **homologues**, l'embryologie et les **donnees moleculaires** (ADN/proteines).\n- **Darwin** : la **selection naturelle** favorise les individus les mieux adaptes ; le **neo-darwinisme** y ajoute mutations et genetique des populations.\n- L'evolution = modification des **frequences alleliques** sous l'effet de mutations, recombinaison, **selection naturelle**, **derive genetique** et migration.\n- La **speciation** resulte d'un **isolement** (souvent geographique) puis d'une **divergence** aboutissant a l'**isolement reproducteur**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Des organes homologues (ex. membres des vertebres) temoignent de :",
+            "options": [
+              "Une convergence sans lien de parente",
+              "Une origine commune",
+              "Une mutation recente",
+              "Une absence d'evolution"
+            ],
+            "answer": 1,
+            "explanation": "Le meme plan d'organisation revele un ancetre commun."
+          },
+          {
+            "q": "Selon Darwin, le moteur de l'evolution adaptative est :",
+            "options": [
+              "L'heredite des caracteres acquis",
+              "La selection naturelle",
+              "La volonte des individus",
+              "La derive uniquement"
+            ],
+            "answer": 1,
+            "explanation": "Les individus les mieux adaptes se reproduisent davantage : selection naturelle."
+          },
+          {
+            "q": "La derive genetique agit surtout :",
+            "options": [
+              "Dans les tres grandes populations",
+              "Dans les petites populations (effet du hasard)",
+              "Uniquement chez les plantes",
+              "En l'absence de mutations"
+            ],
+            "answer": 1,
+            "explanation": "Le hasard fait varier fortement les frequences alleliques dans les petites populations."
+          },
+          {
+            "q": "L'evolution se definit genetiquement comme :",
+            "options": [
+              "La disparition de l'ADN",
+              "Une modification des frequences alleliques au fil des generations",
+              "Une augmentation de la taille des individus",
+              "Un changement de caryotype seul"
+            ],
+            "answer": 1,
+            "explanation": "L'evolution est la variation des frequences des alleles dans les populations."
+          },
+          {
+            "q": "La speciation allopatrique necessite d'abord :",
+            "options": [
+              "Un isolement geographique",
+              "Une mutation unique",
+              "Une migration massive",
+              "Une fecondation croisee"
+            ],
+            "answer": 0,
+            "explanation": "Une barriere geographique separe les populations, qui divergent jusqu'a l'isolement reproducteur."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Biotechnologies et genie genetique",
+      "video": "https://www.youtube.com/watch?v=ana1iVgvCQg",
+      "lesson": "# Biotechnologies et genie genetique\n\n## Introduction\n\nLes **biotechnologies** utilisent les etres vivants ou leurs constituants pour produire des biens et des services. Le **genie genetique** permet de **modifier l'ADN** des organismes et d'obtenir des **organismes genetiquement modifies (OGM)**. Ces techniques ont des applications majeures en medecine, agriculture et industrie, mais soulevent des questions **ethiques**.\n\n## I. Les outils du genie genetique\n\n- **Enzymes de restriction** : « ciseaux moleculaires » qui coupent l'ADN a des sequences precises, en laissant des **bouts collants** (extremites cohesives).\n- **ADN ligase** : « colle » qui soude des fragments d'ADN.\n- **Vecteurs** : **plasmides** (petits ADN circulaires de bacteries) ou virus qui transportent le gene dans la cellule hote.\n- **Transcriptase inverse** : synthetise un ADN (ADNc) a partir d'un ARN.\n\n```onbuch-svg\n<svg viewBox=\"0 0 340 120\" xmlns=\"http://www.w3.org/2000/svg\">\n  <text x=\"170\" y=\"16\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\">Construction d'un ADN recombine</text>\n  <circle cx=\"70\" cy=\"70\" r=\"28\" fill=\"none\" stroke=\"#1976d2\" stroke-width=\"4\"/>\n  <text x=\"70\" y=\"110\" text-anchor=\"middle\" font-size=\"9\">plasmide</text>\n  <rect x=\"150\" y=\"60\" width=\"50\" height=\"14\" fill=\"#e53935\"/>\n  <text x=\"175\" y=\"105\" text-anchor=\"middle\" font-size=\"9\">gene d'interet</text>\n  <circle cx=\"290\" cy=\"70\" r=\"28\" fill=\"none\" stroke=\"#1976d2\" stroke-width=\"4\"/>\n  <rect x=\"276\" y=\"44\" width=\"28\" height=\"10\" fill=\"#e53935\"/>\n  <text x=\"290\" y=\"110\" text-anchor=\"middle\" font-size=\"9\">plasmide recombine</text>\n</svg>\n```\n\n## II. Les etapes du clonage d'un gene (transgenese)\n\n1. **Isoler** le gene d'interet (decoupe par une enzyme de restriction, ou synthese a partir d'un ARN).\n2. **Ouvrir** un plasmide vecteur avec la **meme enzyme de restriction** (extremites compatibles).\n3. **Inserer** le gene dans le plasmide grace a l'**ADN ligase** : on obtient un **ADN recombine**.\n4. **Introduire** le plasmide recombine dans une bacterie (transformation).\n5. **Cloner** : la bacterie se multiplie, copiant le gene et exprimant la **proteine** voulue.\n\n**Exemple historique** : production d'**insuline humaine** par des bacteries *E. coli* transgeniques (insuline « recombinante »), au lieu de l'extraire d'animaux.\n\n## III. La PCR (amplification de l'ADN)\n\nLa **PCR (reaction de polymerisation en chaine)** permet d'**amplifier** in vitro une sequence d'ADN en des millions de copies. Cycles repetes de :\n\n1. **Denaturation** (chauffage : separation des deux brins) ;\n2. **Hybridation** des amorces (refroidissement) ;\n3. **Elongation** par l'**ADN polymerase** (synthese du brin complementaire).\n\nApplications : diagnostic, recherche, identification (empreintes genetiques).\n\n## IV. Applications des biotechnologies\n\n- **Medecine** : insuline, hormone de croissance, vaccins recombinants, **therapie genique** (corriger un gene defectueux), diagnostic des maladies genetiques.\n- **Agriculture** : plantes transgeniques resistantes aux insectes (Bt), aux herbicides, ou enrichies (« riz dore »).\n- **Industrie / environnement** : enzymes, **bioremediation** (depollution par micro-organismes), biocarburants.\n- **Police scientifique** : **empreintes genetiques** (identification par l'ADN).\n\n## V. Enjeux ethiques et risques\n\n- Risques pour la **biodiversite** (dissemination de transgenes, resistances).\n- Questions de **brevetabilite du vivant** et d'acces aux semences.\n- Securite sanitaire (allergenes potentiels).\n- Limites ethiques de la **modification du genome humain**.\n\nLe principe de **precaution** et un encadrement reglementaire sont necessaires.\n\n## Exercices corriges\n\n### Exercice 1 — Production d'insuline recombinante\n\n**Enonce.** Decrivez les principales etapes permettant a une bacterie de produire de l'insuline humaine.\n\n**Resolution.**\n1. **Isoler** le gene humain de l'insuline (a partir de l'ARNm grace a la transcriptase inverse, donnant un ADNc).\n2. **Ouvrir** un plasmide avec une enzyme de restriction et y **inserer** le gene avec l'ADN ligase -> ADN recombine.\n3. **Transformer** une bacterie (*E. coli*) avec ce plasmide.\n4. La bacterie **se multiplie** et **exprime** le gene : elle synthetise de l'**insuline humaine**.\n5. On **recolte et purifie** l'insuline.\n6. **Conclusion** : on dispose d'insuline humaine en grande quantite, sans extraction animale.\n\n### Exercice 2 — Role des enzymes de restriction\n\n**Enonce.** Pourquoi utilise-t-on la **meme** enzyme de restriction pour couper le gene et pour ouvrir le plasmide ?\n\n**Resolution.**\n1. Une enzyme de restriction coupe l'ADN a une **sequence specifique** et genere des **extremites cohesives** (bouts collants) caracteristiques de cette sequence.\n2. En utilisant la **meme enzyme** sur le gene et le plasmide, on obtient des extremites **complementaires**.\n3. Ces extremites peuvent alors **s'apparier** (par complementarite des bases), et l'**ADN ligase** soude le tout.\n4. **Conclusion** : l'emploi de la meme enzyme garantit la compatibilite des extremites, condition de l'insertion du gene dans le vecteur.\n\n### Exercice 3 — Empreintes genetiques\n\n**Enonce.** Sur une scene de crime, on compare l'ADN d'un echantillon a celui de trois suspects par PCR et electrophorese. Le profil de l'echantillon coincide exactement avec celui du suspect 2. Que conclure et sur quel principe ?\n\n**Resolution.**\n1. Chaque individu (sauf jumeaux vrais) possede un **profil ADN unique** (sequences variables, microsatellites).\n2. La **PCR amplifie** ces regions, et l'**electrophorese** les separe en un profil de bandes propre a chacun.\n3. La coincidence parfaite entre l'echantillon et le suspect 2 indique qu'ils ont le **meme ADN**.\n4. **Conclusion** : l'ADN de la scene appartient (tres probablement) au suspect 2. C'est le principe des **empreintes genetiques** utilise en police scientifique et tests de paternite.\n\n## A retenir\n\n- Le **genie genetique** modifie l'ADN grace a des outils : **enzymes de restriction** (couper), **ADN ligase** (coller), **plasmides** (vecteurs).\n- La **transgenese** insere un gene dans un vecteur (**ADN recombine**) introduit dans une cellule hote (ex. insuline recombinante).\n- La **PCR** amplifie l'ADN (denaturation, hybridation, elongation) ; base des diagnostics et **empreintes genetiques**.\n- Applications en **medecine, agriculture, industrie** ; necessite une reflexion **ethique** et le principe de **precaution**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Les enzymes de restriction servent a :",
+            "options": [
+              "Coller des fragments d'ADN",
+              "Couper l'ADN a des sequences precises",
+              "Amplifier l'ADN",
+              "Lire l'ARN"
+            ],
+            "answer": 1,
+            "explanation": "Ce sont des ciseaux moleculaires qui coupent l'ADN a des sites specifiques."
+          },
+          {
+            "q": "Le vecteur le plus utilise pour transporter un gene dans une bacterie est :",
+            "options": [
+              "Un ribosome",
+              "Un plasmide",
+              "Une mitochondrie",
+              "Un lysosome"
+            ],
+            "answer": 1,
+            "explanation": "Le plasmide, petit ADN circulaire bacterien, sert de vecteur."
+          },
+          {
+            "q": "L'ADN ligase a pour role de :",
+            "options": [
+              "Couper l'ADN",
+              "Souder les fragments d'ADN",
+              "Denaturer l'ADN",
+              "Detecter les antigenes"
+            ],
+            "answer": 1,
+            "explanation": "La ligase soude le gene au plasmide pour former l'ADN recombine."
+          },
+          {
+            "q": "La PCR comporte le cycle :",
+            "options": [
+              "Transcription, traduction, replication",
+              "Denaturation, hybridation des amorces, elongation",
+              "Mitose, meiose, fecondation",
+              "Glycolyse, Krebs, chaine respiratoire"
+            ],
+            "answer": 1,
+            "explanation": "Chaque cycle de PCR : denaturation, hybridation des amorces, elongation par l'ADN polymerase."
+          },
+          {
+            "q": "Les empreintes genetiques permettent d'identifier un individu car :",
+            "options": [
+              "Tous les ADN sont identiques",
+              "Chaque individu (hors jumeaux vrais) a un profil ADN unique",
+              "L'ADN change chaque jour",
+              "Seules les bacteries ont un ADN unique"
+            ],
+            "answer": 1,
+            "explanation": "Les regions variables de l'ADN donnent un profil propre a chaque individu."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Genetique humaine : heredite et arbres genealogiques",
+      "video": "https://www.youtube.com/watch?v=8ggXLZpL5Ws",
+      "lesson": "# Genetique humaine : heredite et arbres genealogiques\n\n## Introduction\n\nLa transmission des caracteres chez l'Homme obeit aux lois de Mendel, mais s'etudie differemment : on ne realise pas de croisements diriges. On utilise l'**arbre genealogique (pedigree)** pour suivre une maladie hereditaire sur plusieurs generations et determiner son **mode de transmission**. Ce chapitre applique la genetique a l'**heredite humaine** et aux **maladies genetiques**.\n\n## I. Le caryotype humain et la determination du sexe\n\n- L'Homme possede **46 chromosomes** : 23 paires, dont **22 paires d'autosomes** et **1 paire de chromosomes sexuels (gonosomes)**.\n- **Femme : XX** ; **Homme : XY**. Le sexe de l'enfant est determine par le **spermatozoide** (X ou Y).\n- Un gene porte par X est dit **lie au sexe (gonosomal)** ; un gene porte par un autosome est **autosomal**.\n\n## II. Lire un arbre genealogique\n\nConventions :\n\n- **carre** = homme, **rond** = femme ;\n- symbole **plein** = atteint (malade), **vide** = sain ;\n- les generations sont notees en chiffres romains (I, II, III).\n\n```onbuch-svg\n<svg viewBox=\"0 0 320 130\" xmlns=\"http://www.w3.org/2000/svg\">\n  <text x=\"160\" y=\"16\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\">Exemple de pedigree</text>\n  <rect x=\"60\" y=\"35\" width=\"20\" height=\"20\" fill=\"#333\"/>\n  <circle cx=\"130\" cy=\"45\" r=\"11\" fill=\"#fff\" stroke=\"#333\"/>\n  <line x1=\"80\" y1=\"45\" x2=\"119\" y2=\"45\" stroke=\"#333\"/>\n  <line x1=\"100\" y1=\"45\" x2=\"100\" y2=\"80\" stroke=\"#333\"/>\n  <rect x=\"80\" y=\"85\" width=\"18\" height=\"18\" fill=\"#fff\" stroke=\"#333\"/>\n  <circle cx=\"140\" cy=\"94\" r=\"10\" fill=\"#333\"/>\n  <text x=\"40\" y=\"49\" font-size=\"10\">I</text>\n  <text x=\"40\" y=\"98\" font-size=\"10\">II</text>\n</svg>\n```\n\n## III. Determiner le mode de transmission\n\nOn repond a deux questions :\n\n### 1. Dominant ou recessif ?\n\n- Si deux parents **sains** ont un enfant **malade**, l'allele est **recessif** (les parents sont porteurs heterozygotes).\n- Si l'allele se transmet a chaque generation et qu'un malade a toujours un parent malade, il est plutot **dominant**.\n\n### 2. Autosomal ou lie au sexe ?\n\n- **Autosomal** : garcons et filles atteints en proportions comparables ; transmission par les deux sexes.\n- **Lie a X recessif** : surtout les **garcons** atteints ; un garcon malade herite l'allele de sa **mere** (porteuse). Ex. : **hemophilie, daltonisme, myopathie de Duchenne**.\n- **Lie a Y** : transmis uniquement de pere en fils.\n\n## IV. Exemples de maladies genetiques\n\n- **Drepanocytose** : autosomale recessive (allele HbS) — frequente en Afrique.\n- **Hemophilie, daltonisme** : recessifs lies a l'X.\n- **Mucoviscidose** : autosomale recessive.\n- **Chorea de Huntington** : autosomale dominante.\n- **Trisomie 21** : anomalie chromosomique (non heritee d'un allele).\n\n## V. Conseil genetique et calcul de risque\n\nLe **conseil genetique** evalue, dans une famille, le **risque** qu'un couple ait un enfant atteint, en s'appuyant sur le pedigree et les lois de probabilite (echiquier de croisement). Le **diagnostic prenatal** complete cette demarche.\n\n## Exercices corriges\n\n### Exercice 1 — Allele recessif ou dominant ?\n\n**Enonce.** Dans une famille, un couple sain (I-1 et I-2) a quatre enfants dont une fille atteinte d'une maladie M. Determinez le mode de transmission (dominant/recessif) et donnez les genotypes des parents.\n\n**Resolution.**\n1. Les deux parents sont **sains** mais ont un enfant **atteint** : l'allele responsable est forcement **recessif** (sinon un parent serait malade).\n2. Les parents sont donc **heterozygotes porteurs** : I-1 = A//a et I-2 = A//a (A = sain dominant, a = malade recessif).\n3. L'enfant atteinte est **a//a**.\n4. **Conclusion** : maladie **recessive** ; les parents sont des porteurs sains.\n\n### Exercice 2 — Lie a l'X recessif (hemophilie)\n\n**Enonce.** Une femme dont le pere etait hemophile epouse un homme sain. Quelle est la probabilite que leurs garcons soient hemophiles ? (L'hemophilie est recessive liee a l'X : allele h.)\n\n**Resolution.**\n1. Le pere de la femme etait hemophile : son genotype X^h Y. Il a transmis son X^h a sa fille.\n2. La femme est donc **porteuse heterozygote** : X^H X^h (saine).\n3. L'homme sain est X^H Y.\n4. Croisement : X^H X^h x X^H Y. Les garcons recoivent le **Y du pere** et un X de la mere : 1/2 X^H Y (sain) et 1/2 X^h Y (**hemophile**).\n5. **Conclusion** : la probabilite qu'un garcon soit hemophile est de **1/2 (50 %)**. Les filles seront toutes saines (porteuses ou non).\n\n### Exercice 3 — Distinguer autosomal et gonosomal\n\n**Enonce.** Dans une maladie, seuls des garcons sont atteints sur plusieurs generations, et ils heritent toujours l'allele d'une mere saine. Quel est le mode de transmission ?\n\n**Resolution.**\n1. Le fait que **seuls les garcons** soient atteints oriente vers une transmission **liee au sexe**.\n2. Les garcons heritent l'allele d'une **mere saine** (porteuse) : l'allele est donc porte par l'**X** et **recessif** (la mere X^A X^a est saine).\n3. Un garcon n'ayant qu'un seul X (X^a Y) exprime la maladie : pas d'allele dominant compensateur.\n4. **Conclusion** : maladie **recessive liee a l'X**, comme l'hemophilie ou le daltonisme.\n\n## A retenir\n\n- L'Homme a **46 chromosomes** : 22 paires d'autosomes + 1 paire de gonosomes (**XX** femme, **XY** homme) ; le **spermatozoide** determine le sexe.\n- L'**arbre genealogique** permet de determiner le mode de transmission d'une maladie.\n- Deux parents sains avec enfant malade -> allele **recessif** ; surtout des garcons atteints heritant de la mere -> **recessif lie a l'X**.\n- Exemples : drepanocytose et mucoviscidose (autosomales recessives), hemophilie et daltonisme (lies a l'X), Huntington (dominante).\n- Le **conseil genetique** evalue le risque par les lois de probabilite.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Le sexe d'un enfant est determine par :",
+            "options": [
+              "L'ovule",
+              "Le spermatozoide (X ou Y)",
+              "L'hypophyse",
+              "Le nombre d'autosomes"
+            ],
+            "answer": 1,
+            "explanation": "L'ovule apporte toujours un X ; c'est le spermatozoide (X ou Y) qui fixe le sexe."
+          },
+          {
+            "q": "Deux parents sains ayant un enfant malade indiquent un allele :",
+            "options": [
+              "Dominant",
+              "Recessif",
+              "Lie a Y",
+              "Mitochondrial uniquement"
+            ],
+            "answer": 1,
+            "explanation": "Les parents sains sont porteurs heterozygotes d'un allele recessif."
+          },
+          {
+            "q": "Une maladie recessive liee a l'X touche surtout :",
+            "options": [
+              "Les filles",
+              "Les garcons",
+              "Les deux a egalite stricte",
+              "Personne"
+            ],
+            "answer": 1,
+            "explanation": "Les garcons n'ont qu'un X : un seul allele recessif suffit a exprimer la maladie."
+          },
+          {
+            "q": "L'hemophilie et le daltonisme sont :",
+            "options": [
+              "Autosomaux dominants",
+              "Recessifs lies a l'X",
+              "Des trisomies",
+              "Lies a Y"
+            ],
+            "answer": 1,
+            "explanation": "Ces maladies sont recessives et portees par le chromosome X."
+          },
+          {
+            "q": "Dans un pedigree, un symbole plein represente :",
+            "options": [
+              "Un individu sain",
+              "Un individu atteint",
+              "Une femme uniquement",
+              "Un homme uniquement"
+            ],
+            "answer": 1,
+            "explanation": "Le symbole plein (rempli) designe un individu atteint par la maladie etudiee."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Replication et expression de l'information genetique",
+      "video": "https://www.youtube.com/watch?v=oefAI2x2CQM",
+      "lesson": "# Replication et expression de l'information genetique\n\n## Introduction\n\nL'**ADN** porte l'information genetique. Pour etre transmise, elle doit etre **copiee** (replication) avant chaque division cellulaire ; pour s'exprimer, elle est **lue** et traduite en **proteines**. Ce chapitre etablit le lien entre **gene** et **proteine**, fondement de tous les autres chapitres de genetique.\n\n## I. La structure de l'ADN\n\n- L'ADN est une **double helice** de deux brins anti-paralleles.\n- Chaque brin est une succession de **nucleotides** : un sucre (desoxyribose), un phosphate et une **base azotee** (A, T, G, C).\n- Les bases s'apparient par **complementarite** : **A-T** et **G-C** (liaisons hydrogene).\n\n```onbuch-svg\n<svg viewBox=\"0 0 300 130\" xmlns=\"http://www.w3.org/2000/svg\">\n  <text x=\"150\" y=\"16\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\">Complementarite des bases</text>\n  <line x1=\"80\" y1=\"35\" x2=\"80\" y2=\"115\" stroke=\"#333\" stroke-width=\"3\"/>\n  <line x1=\"220\" y1=\"35\" x2=\"220\" y2=\"115\" stroke=\"#333\" stroke-width=\"3\"/>\n  <line x1=\"80\" y1=\"50\" x2=\"220\" y2=\"50\" stroke=\"#e53935\"/><text x=\"150\" y=\"47\" text-anchor=\"middle\" font-size=\"10\">A = T</text>\n  <line x1=\"80\" y1=\"72\" x2=\"220\" y2=\"72\" stroke=\"#1976d2\"/><text x=\"150\" y=\"69\" text-anchor=\"middle\" font-size=\"10\">G = C</text>\n  <line x1=\"80\" y1=\"94\" x2=\"220\" y2=\"94\" stroke=\"#e53935\"/><text x=\"150\" y=\"91\" text-anchor=\"middle\" font-size=\"10\">T = A</text>\n</svg>\n```\n\n## II. La replication de l'ADN\n\nElle a lieu en **phase S** du cycle cellulaire, avant la mitose ou la meiose.\n\n- La double helice s'**ouvre** ; chaque brin sert de **matrice**.\n- L'**ADN polymerase** synthetise le brin complementaire (A face a T, G face a C).\n- On obtient **deux molecules d'ADN identiques**, chacune formee d'un brin ancien et d'un brin neuf : la replication est dite **semi-conservative** (experience de Meselson et Stahl).\n\n## III. L'expression du gene : du gene a la proteine\n\n### 1. La transcription (noyau)\n\nLe gene (ADN) est copie en **ARN messager (ARNm)** par l'**ARN polymerase**. L'ARN est simple brin, contient le sucre **ribose** et la base **U (uracile)** a la place de T. L'ARNm sort du noyau vers le cytoplasme.\n\n### 2. La traduction (cytoplasme, ribosomes)\n\n- L'ARNm est lu par **codons** (groupes de 3 nucleotides).\n- Le **code genetique** fait correspondre a chaque codon un **acide amine** (ou un signal stop).\n- Les **ARN de transfert (ARNt)** apportent les acides amines correspondants.\n- Les acides amines s'assemblent en une **chaine polypeptidique** -> proteine.\n\n```onbuch-svg\n<svg viewBox=\"0 0 360 120\" xmlns=\"http://www.w3.org/2000/svg\">\n  <text x=\"180\" y=\"16\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\">ADN -> ARN -> Proteine</text>\n  <rect x=\"20\" y=\"50\" width=\"80\" height=\"40\" fill=\"#e3f2fd\" stroke=\"#333\"/>\n  <text x=\"60\" y=\"74\" text-anchor=\"middle\" font-size=\"11\">ADN</text>\n  <line x1=\"100\" y1=\"70\" x2=\"135\" y2=\"70\" stroke=\"#333\"/>\n  <text x=\"117\" y=\"62\" text-anchor=\"middle\" font-size=\"9\">transcr.</text>\n  <rect x=\"140\" y=\"50\" width=\"80\" height=\"40\" fill=\"#fff3e0\" stroke=\"#333\"/>\n  <text x=\"180\" y=\"74\" text-anchor=\"middle\" font-size=\"11\">ARNm</text>\n  <line x1=\"220\" y1=\"70\" x2=\"255\" y2=\"70\" stroke=\"#333\"/>\n  <text x=\"237\" y=\"62\" text-anchor=\"middle\" font-size=\"9\">traduc.</text>\n  <rect x=\"260\" y=\"50\" width=\"90\" height=\"40\" fill=\"#e8f5e9\" stroke=\"#333\"/>\n  <text x=\"305\" y=\"74\" text-anchor=\"middle\" font-size=\"11\">Proteine</text>\n</svg>\n```\n\n### 3. Le code genetique\n\n- **Universel** (le meme pour presque tous les etres vivants).\n- **Non chevauchant** (codons lus a la suite).\n- **Degenere (redondant)** : plusieurs codons codent le meme acide amine.\n- Codon **AUG** = debut (Methionine) ; **UAA, UAG, UGA** = stop.\n\n## IV. Relation gene-proteine-caractere\n\nLa sequence de l'**ADN** determine la sequence de l'**ARNm**, donc la sequence des **acides amines** de la proteine, donc sa **structure** et sa **fonction**, donc le **caractere**. Une mutation modifiant l'ADN peut modifier la proteine et le phenotype (cf. drepanocytose).\n\n## Exercices corriges\n\n### Exercice 1 — Complementarite et transcription\n\n**Enonce.** Un brin d'ADN transcrit a pour sequence : 3'- T A C - G G A - A T C -5'. Donnez la sequence de l'ARNm correspondant, puis les acides amines (AUG=Met, CCU=Pro, UAG=stop).\n\n**Resolution.**\n1. L'ARNm est complementaire du brin transcrit, avec U a la place de T, lu 5'->3' :\n   - brin transcrit : 3'-TAC-GGA-ATC-5'\n   - ARNm : 5'-AUG-CCU-UAG-3'.\n2. Lecture des codons : AUG -> **Met** ; CCU -> **Pro** ; UAG -> **stop**.\n3. **Conclusion** : la proteine est Met-Pro (puis arret). On illustre la complementarite ADN/ARNm et l'usage du code genetique.\n\n### Exercice 2 — Replication semi-conservative\n\n**Enonce.** Dans l'experience de Meselson et Stahl, l'ADN marque a l'azote lourd ($^{15}$N) est replique en milieu leger ($^{14}$N). Apres une replication, tout l'ADN a une densite **intermediaire**. Expliquez.\n\n**Resolution.**\n1. Au depart, les deux brins sont **lourds** ($^{15}$N).\n2. Lors de la replication, chaque brin lourd sert de matrice et un brin **leger** ($^{14}$N) est synthetise en face.\n3. Chaque molecule-fille comporte donc **un brin lourd et un brin leger** -> densite **intermediaire**.\n4. **Conclusion** : ce resultat prouve que la replication est **semi-conservative** (chaque ADN-fille conserve un brin parental).\n\n### Exercice 3 — Effet d'une mutation sur la traduction\n\n**Enonce.** Dans l'ARNm 5'-AUG-AAG-UUU-UAA-3', une substitution transforme le codon UUU en UAA. Quelle est la consequence sur la proteine ? (AUG=Met, AAG=Lys, UUU=Phe, UAA=stop)\n\n**Resolution.**\n1. Sequence normale : AUG-AAG-UUU-UAA -> Met - Lys - Phe - Stop (proteine de 3 acides amines).\n2. Apres mutation : AUG-AAG-**UAA**-UAA -> Met - Lys - **Stop**.\n3. Un codon stop apparait prematurement : c'est une **mutation non-sens**.\n4. **Consequence** : la proteine est **tronquee** (2 acides amines au lieu de 3), souvent non fonctionnelle.\n\n## A retenir\n\n- L'ADN est une **double helice** ; bases complementaires **A-T** et **G-C**.\n- La **replication** (phase S) est **semi-conservative** (ADN polymerase) : deux ADN identiques.\n- Expression : **transcription** (ADN -> ARNm, noyau) puis **traduction** (ARNm -> proteine, ribosomes).\n- Le **code genetique** (codons de 3 nucleotides) est universel, non chevauchant et degenere.\n- La sequence d'ADN determine la proteine et donc le **caractere** : une mutation peut modifier le phenotype.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Les bases azotees de l'ADN s'apparient selon :",
+            "options": [
+              "A-G et T-C",
+              "A-T et G-C",
+              "A-C et G-T",
+              "A-U et G-C"
+            ],
+            "answer": 1,
+            "explanation": "La complementarite est A avec T et G avec C dans l'ADN."
+          },
+          {
+            "q": "La replication de l'ADN est qualifiee de :",
+            "options": [
+              "Conservative",
+              "Dispersive",
+              "Semi-conservative",
+              "Aleatoire"
+            ],
+            "answer": 2,
+            "explanation": "Chaque ADN-fille garde un brin parental et un brin neuf (Meselson et Stahl)."
+          },
+          {
+            "q": "La transcription consiste a :",
+            "options": [
+              "Copier l'ADN en ARNm",
+              "Traduire l'ARNm en proteine",
+              "Repliquer l'ADN",
+              "Couper l'ADN"
+            ],
+            "answer": 0,
+            "explanation": "La transcription synthetise un ARNm complementaire du gene, dans le noyau."
+          },
+          {
+            "q": "Dans l'ARN, la base qui remplace la thymine est :",
+            "options": [
+              "La cytosine",
+              "La guanine",
+              "L'uracile",
+              "L'adenine"
+            ],
+            "answer": 2,
+            "explanation": "L'ARN contient de l'uracile (U) a la place de la thymine (T)."
+          },
+          {
+            "q": "Le code genetique est dit degenere car :",
+            "options": [
+              "Il est different selon les especes",
+              "Plusieurs codons peuvent coder le meme acide amine",
+              "Un codon code plusieurs acides amines",
+              "Il ne contient pas de codon stop"
+            ],
+            "answer": 1,
+            "explanation": "La degenerescence : plusieurs codons synonymes codent un meme acide amine."
           }
         ]
       }

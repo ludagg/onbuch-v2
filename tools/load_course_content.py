@@ -16,6 +16,8 @@ def api(method, path, body=None):
     r=subprocess.run(cmd,capture_output=True,text=True).stdout
     return r.rsplit('\n',1)[-1], r.rsplit('\n',1)[0]
 HERE=os.path.dirname(os.path.abspath(__file__))
+# S'assure que l'attribut videoUrl existe sur `chapters` (idempotent, 409 ignoré).
+api('POST','/collections/chapters/attributes/string',{"key":"videoUrl","size":1024,"required":False})
 for f in sorted(glob.glob(os.path.join(HERE,'course_content','*.json'))):
     d=json.load(open(f)); sid=SUBJ.get(d['code'])
     if not sid: continue
@@ -26,8 +28,9 @@ for f in sorted(glob.glob(os.path.join(HERE,'course_content','*.json'))):
         cid=c['$id']
         for col in ('lessons','quizzes','chapters'): api('DELETE',f"/collections/{col}/documents/{cid}")
     now="2026-06-22T00:00:00.000+00:00"; ok=0
+    level=d.get('level','Terminale')
     for i,ch in enumerate(d['chapters']):
-        cc,out=api('POST',"/collections/chapters/documents",{"documentId":"unique()","data":{"subjectId":sid,"title":ch['title'],"order":i,"level":"Terminale"}})
+        cc,out=api('POST',"/collections/chapters/documents",{"documentId":"unique()","data":{"subjectId":sid,"title":ch['title'],"order":i,"level":level,"videoUrl":ch.get('video','')}})
         if cc!='201': print("  ! fail",d['code'],i,cc); continue
         cid=json.loads(out)['$id']
         api('POST',"/collections/lessons/documents",{"documentId":cid,"data":{"chapterId":cid,"content":ch['lesson'],"createdAt":now}})

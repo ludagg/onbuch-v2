@@ -1,0 +1,966 @@
+{
+  "code": "Ma",
+  "level": "Première",
+  "chapters": [
+    {
+      "title": "Généralités sur les fonctions numériques",
+      "video": "https://www.youtube.com/watch?v=GWZ5gZ7OZ9o",
+      "lesson": "# Généralités sur les fonctions numériques\n\n## Introduction\n\nL'étude des **fonctions** est au cœur du programme de Première C et D. Une fonction permet de modéliser la dépendance d'une grandeur par rapport à une autre : la distance parcourue en fonction du temps, le coût en fonction de la quantité produite, etc. Ce chapitre pose le vocabulaire et les outils fondamentaux (ensemble de définition, parité, sens de variation, composition) qui seront réutilisés dans tous les chapitres d'analyse.\n\n## 1. Notion de fonction\n\n**Définition.** Soit $D$ une partie de $\\mathbb{R}$. Une **fonction numérique** $f$ de la variable réelle $x$ associe à chaque réel $x$ de $D$ **au plus un** réel noté $f(x)$, appelé **image** de $x$. On note :\n$$f : D \\to \\mathbb{R}, \\quad x \\mapsto f(x).$$\n\nL'**ensemble de définition** $D_f$ est l'ensemble des réels $x$ pour lesquels $f(x)$ existe (est un réel bien défini).\n\n**Règles usuelles pour déterminer $D_f$ :**\n\n- Un **dénominateur** doit être non nul.\n- Une **racine carrée** $\\sqrt{u(x)}$ exige $u(x) \\ge 0$.\n- (Notions de Terminale comme $\\ln$, exclues ici.)\n\n## 2. Égalité de deux fonctions\n\nDeux fonctions $f$ et $g$ sont **égales** lorsqu'elles ont le **même ensemble de définition** $D$ et que pour tout $x \\in D$, $f(x) = g(x)$.\n\n## 3. Parité d'une fonction\n\nOn suppose $D_f$ **symétrique par rapport à $0$** (c'est-à-dire : si $x \\in D_f$ alors $-x \\in D_f$).\n\n- $f$ est **paire** si pour tout $x \\in D_f$, $\\;f(-x) = f(x)$. Sa courbe est symétrique par rapport à l'**axe des ordonnées**.\n- $f$ est **impaire** si pour tout $x \\in D_f$, $\\;f(-x) = -f(x)$. Sa courbe est symétrique par rapport à l'**origine** $O$.\n\n**Exemple.** $x \\mapsto x^2$ est paire, $x \\mapsto x^3$ est impaire, $x \\mapsto x^2 + x$ n'est ni paire ni impaire.\n\n## 4. Sens de variation (monotonie)\n\nSoit $f$ définie sur un intervalle $I$.\n\n- $f$ est **croissante** sur $I$ si pour tous $a, b \\in I$ : $a \\le b \\Rightarrow f(a) \\le f(b)$.\n- $f$ est **décroissante** sur $I$ si pour tous $a, b \\in I$ : $a \\le b \\Rightarrow f(a) \\ge f(b)$.\n- $f$ est **constante** sur $I$ si $f(a) = f(b)$ pour tous $a, b \\in I$.\n\n**Méthode du taux d'accroissement.** Pour $a \\ne b$ dans $I$, on étudie le signe de\n$$T = \\frac{f(b) - f(a)}{b - a}.$$\nSi $T > 0$ pour tous $a \\ne b$, $f$ est strictement croissante ; si $T < 0$, strictement décroissante.\n\n## 5. Fonctions majorées, minorées, bornées\n\n- $f$ est **majorée** sur $D$ s'il existe $M \\in \\mathbb{R}$ tel que $f(x) \\le M$ pour tout $x \\in D$.\n- $f$ est **minorée** s'il existe $m$ tel que $f(x) \\ge m$ pour tout $x$.\n- $f$ est **bornée** si elle est à la fois majorée et minorée.\n\n## 6. Extremums\n\n$f$ admet un **maximum** $M$ en $x_0$ si $f(x_0) = M$ et $f(x) \\le M$ pour tout $x \\in D$. De même pour un **minimum**.\n\n## 7. Composée de deux fonctions\n\nSoient $f : D_f \\to \\mathbb{R}$ et $g : D_g \\to \\mathbb{R}$. La **composée** $g \\circ f$ est définie par :\n$$(g \\circ f)(x) = g\\big(f(x)\\big),$$\npour tout $x \\in D_f$ tel que $f(x) \\in D_g$.\n\n**Attention :** en général $g \\circ f \\ne f \\circ g$.\n\n## 8. Représentation graphique\n\nLa **courbe représentative** de $f$ dans un repère $(O; \\vec{i}, \\vec{j})$ est l'ensemble des points $M(x; y)$ tels que $x \\in D_f$ et $y = f(x)$.\n\n```onbuch-plot\n{\"functions\":[{\"expr\":\"x*x\",\"color\":\"#2563eb\",\"label\":\"y=x^2\"}],\"xmin\":-3,\"xmax\":3,\"ymin\":-1,\"ymax\":9}\n```\n\n## Exercices corrigés\n\n### Exercice 1 — Ensemble de définition\nDéterminer l'ensemble de définition de $f(x) = \\dfrac{\\sqrt{x+2}}{x-3}$.\n\n**Solution.** Deux conditions :\n- $x + 2 \\ge 0 \\iff x \\ge -2$ ;\n- $x - 3 \\ne 0 \\iff x \\ne 3$.\n\nDonc $D_f = [-2; 3[\\,\\cup\\,]3; +\\infty[$.\n\n### Exercice 2 — Parité\nÉtudier la parité de $f(x) = \\dfrac{x^3 - x}{x^2 + 1}$.\n\n**Solution.** $D_f = \\mathbb{R}$ (symétrique car $x^2 + 1 > 0$). Pour tout $x$ :\n$$f(-x) = \\frac{(-x)^3 - (-x)}{(-x)^2 + 1} = \\frac{-x^3 + x}{x^2 + 1} = -\\frac{x^3 - x}{x^2 + 1} = -f(x).$$\nLa fonction $f$ est **impaire**.\n\n### Exercice 3 — Sens de variation\nÉtudier le sens de variation de $f(x) = \\dfrac{1}{x}$ sur $]0; +\\infty[$.\n\n**Solution.** Pour $0 < a < b$, calculons :\n$$f(b) - f(a) = \\frac{1}{b} - \\frac{1}{a} = \\frac{a - b}{ab}.$$\nComme $a < b$, $a - b < 0$, et $ab > 0$, donc $f(b) - f(a) < 0$ : $f$ est **strictement décroissante** sur $]0; +\\infty[$.\n\n## À retenir\n\n- $D_f$ : exclure les dénominateurs nuls, imposer le radicande $\\ge 0$ sous une racine.\n- **Paire** : $f(-x)=f(x)$ (axe $Oy$) ; **impaire** : $f(-x)=-f(x)$ (origine).\n- **Sens de variation** : signe du taux $\\frac{f(b)-f(a)}{b-a}$.\n- La composée $g\\circ f$ applique $f$ **puis** $g$ ; elle n'est pas commutative.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Quel est l'ensemble de définition de $f(x)=\\sqrt{x-4}$ ?",
+            "options": [
+              "$[4;+\\infty[$",
+              "$]4;+\\infty[$",
+              "$]-\\infty;4]$",
+              "$\\mathbb{R}$"
+            ],
+            "answer": 0,
+            "explanation": "Il faut $x-4\\ge 0$, soit $x\\ge 4$, d'où $[4;+\\infty[$."
+          },
+          {
+            "q": "La fonction $f(x)=x^4-3x^2$ est :",
+            "options": [
+              "paire",
+              "impaire",
+              "ni paire ni impaire",
+              "constante"
+            ],
+            "answer": 0,
+            "explanation": "$f(-x)=x^4-3x^2=f(x)$ : elle est paire."
+          },
+          {
+            "q": "Si $f$ est impaire, sa courbe est symétrique par rapport :",
+            "options": [
+              "à l'axe $Ox$",
+              "à l'axe $Oy$",
+              "à l'origine $O$",
+              "à la droite $y=x$"
+            ],
+            "answer": 2,
+            "explanation": "Une fonction impaire a une courbe symétrique par rapport à l'origine."
+          },
+          {
+            "q": "Soit $f(x)=2x+1$ et $g(x)=x^2$. Que vaut $(g\\circ f)(1)$ ?",
+            "options": [
+              "$3$",
+              "$9$",
+              "$5$",
+              "$4$"
+            ],
+            "answer": 1,
+            "explanation": "$f(1)=3$ puis $g(3)=9$."
+          },
+          {
+            "q": "Une fonction $f$ telle que $f(x)\\le 5$ pour tout $x$ est dite :",
+            "options": [
+              "minorée",
+              "majorée",
+              "croissante",
+              "bornée"
+            ],
+            "answer": 1,
+            "explanation": "$5$ est un majorant : $f$ est majorée."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Polynômes et fractions rationnelles",
+      "video": "https://www.youtube.com/watch?v=8w4O3vQbZ9I",
+      "lesson": "# Polynômes et fractions rationnelles\n\n## Introduction\n\nLes **polynômes** sont les fonctions les plus simples après les fonctions affines : sommes de termes $a_k x^k$. Savoir les **factoriser**, les **diviser** et déterminer le signe d'une **fraction rationnelle** (quotient de deux polynômes) est indispensable pour résoudre équations, inéquations et étudier des fonctions.\n\n## 1. Définitions\n\nUn **polynôme** (à coefficients réels) est une expression de la forme :\n$$P(x) = a_n x^n + a_{n-1} x^{n-1} + \\cdots + a_1 x + a_0,$$\noù les $a_k$ sont des réels et $a_n \\ne 0$. L'entier $n$ est le **degré** de $P$, noté $\\deg P$. Le réel $a_n$ est le **coefficient dominant**, $a_0$ le **terme constant**.\n\n**Polynôme nul :** tous ses coefficients sont nuls (pas de degré).\n\n**Égalité de deux polynômes :** deux polynômes sont égaux si et seulement si ils ont **les mêmes coefficients** (identification terme à terme).\n\n## 2. Racine d'un polynôme\n\nUn réel $\\alpha$ est une **racine** (ou **zéro**) de $P$ si $P(\\alpha) = 0$.\n\n**Théorème (factorisation par $(x-\\alpha)$).** $\\alpha$ est racine de $P$ si et seulement si $P(x)$ est **divisible** par $(x - \\alpha)$, c'est-à-dire :\n$$P(x) = (x - \\alpha)\\, Q(x),$$\noù $Q$ est un polynôme de degré $\\deg P - 1$.\n\n## 3. Division euclidienne des polynômes\n\nPour tous polynômes $A$ et $B$ ($B \\ne 0$), il existe un **unique** couple $(Q, R)$ tel que :\n$$A(x) = B(x)\\,Q(x) + R(x), \\qquad \\deg R < \\deg B.$$\n$Q$ est le **quotient**, $R$ le **reste**. Si $R = 0$, on dit que $B$ **divise** $A$.\n\n**Schéma de Horner / division posée :** on procède comme pour les entiers, en alignant les puissances décroissantes.\n\n## 4. Factorisation et signe\n\nUne fois $P$ factorisé sous la forme $a_n (x - x_1)(x - x_2)\\cdots(x - x_n)$ (quand toutes les racines sont réelles), on établit un **tableau de signes** en utilisant la règle : un facteur $(x - x_i)$ est négatif avant $x_i$, positif après.\n\n**Trinôme du second degré** $ax^2 + bx + c$, discriminant $\\Delta = b^2 - 4ac$ :\n\n- $\\Delta > 0$ : deux racines $x_{1,2} = \\dfrac{-b \\pm \\sqrt{\\Delta}}{2a}$, factorisation $a(x-x_1)(x-x_2)$.\n- $\\Delta = 0$ : racine double $x_0 = \\dfrac{-b}{2a}$, factorisation $a(x - x_0)^2$.\n- $\\Delta < 0$ : pas de racine réelle, $ax^2+bx+c$ a le **signe de $a$** partout.\n\n## 5. Fractions rationnelles\n\nUne **fraction rationnelle** est un quotient $F(x) = \\dfrac{P(x)}{Q(x)}$ de deux polynômes, $Q \\ne 0$. Son ensemble de définition exclut les **racines de $Q$** (valeurs interdites).\n\n**Étude du signe :** on factorise numérateur et dénominateur, puis on dresse un tableau de signes. **Attention :** les valeurs interdites figurent par une double barre.\n\n**Simplification :** on ne peut simplifier $\\frac{(x-1)(x+2)}{(x-1)}$ en $(x+2)$ qu'en **précisant $x \\ne 1$**.\n\n## Exercices corrigés\n\n### Exercice 1 — Factorisation par une racine évidente\nFactoriser $P(x) = x^3 - 2x^2 - 5x + 6$ sachant que $1$ est racine.\n\n**Solution.** $P(1) = 1 - 2 - 5 + 6 = 0$, donc $(x-1)$ divise $P$. La division donne :\n$$P(x) = (x-1)(x^2 - x - 6).$$\nOn factorise $x^2 - x - 6$ : $\\Delta = 1 + 24 = 25$, racines $\\frac{1 \\pm 5}{2} = 3$ et $-2$. Donc :\n$$P(x) = (x-1)(x-3)(x+2).$$\n\n### Exercice 2 — Division euclidienne\nEffectuer la division euclidienne de $A(x) = 2x^3 + 3x^2 - 1$ par $B(x) = x + 2$.\n\n**Solution.** On obtient $Q(x) = 2x^2 - x + 2$ et $R = -5$ :\n$$2x^3 + 3x^2 - 1 = (x+2)(2x^2 - x + 2) - 5.$$\nVérification : $A(-2) = -16 + 12 - 1 = -5 = R$ (reste = valeur en $-2$).\n\n### Exercice 3 — Signe d'une fraction\nÉtudier le signe de $F(x) = \\dfrac{x - 1}{x + 2}$.\n\n**Solution.** Valeur interdite : $x = -2$. Racine du numérateur : $x = 1$. On obtient :\n$F(x) > 0$ sur $]-\\infty;-2[\\cup\\,]1;+\\infty[$ et $F(x) < 0$ sur $]-2;1[$ ; $F(1)=0$.\n\n## À retenir\n\n- $\\alpha$ racine de $P$ $\\iff$ $P(x) = (x-\\alpha)Q(x)$.\n- Division euclidienne : $A = BQ + R$ avec $\\deg R < \\deg B$.\n- Le **reste** de la division de $P$ par $(x-\\alpha)$ vaut $P(\\alpha)$.\n- Pour une fraction : exclure les racines du dénominateur, factoriser, tableau de signes.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Si $P(\\alpha)=0$, alors $P(x)$ est divisible par :",
+            "options": [
+              "$x+\\alpha$",
+              "$x-\\alpha$",
+              "$\\alpha x$",
+              "$x^2-\\alpha$"
+            ],
+            "answer": 1,
+            "explanation": "$\\alpha$ racine signifie que $(x-\\alpha)$ divise $P(x)$."
+          },
+          {
+            "q": "Le reste de la division de $P(x)$ par $(x-2)$ vaut :",
+            "options": [
+              "$P(0)$",
+              "$P(-2)$",
+              "$P(2)$",
+              "$0$ toujours"
+            ],
+            "answer": 2,
+            "explanation": "Le reste de la division par $(x-a)$ est $P(a)$, donc ici $P(2)$."
+          },
+          {
+            "q": "Pour $x^2-x-6$, le discriminant $\\Delta$ vaut :",
+            "options": [
+              "$25$",
+              "$23$",
+              "$-23$",
+              "$1$"
+            ],
+            "answer": 0,
+            "explanation": "$\\Delta=(-1)^2-4(1)(-6)=1+24=25$."
+          },
+          {
+            "q": "La valeur interdite de $F(x)=\\dfrac{2x}{x-3}$ est :",
+            "options": [
+              "$0$",
+              "$2$",
+              "$3$",
+              "$-3$"
+            ],
+            "answer": 2,
+            "explanation": "Le dénominateur s'annule pour $x=3$."
+          },
+          {
+            "q": "Si $\\Delta<0$ pour $ax^2+bx+c$, le trinôme est :",
+            "options": [
+              "du signe de $-a$",
+              "du signe de $a$ partout",
+              "positif partout",
+              "nul"
+            ],
+            "answer": 1,
+            "explanation": "Sans racine réelle, le trinôme garde le signe de $a$ sur $\\mathbb{R}$."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Équations, inéquations et systèmes",
+      "video": "https://www.youtube.com/watch?v=Q9oI2yQp4kE",
+      "lesson": "# Équations, inéquations et systèmes\n\n## Introduction\n\nRésoudre une **équation**, c'est trouver toutes les valeurs de l'inconnue qui la vérifient ; résoudre une **inéquation**, c'est trouver l'ensemble des valeurs satisfaisant une inégalité. Ce chapitre généralise le second degré et aborde les équations irrationnelles, avec valeur absolue, et les systèmes.\n\n## 1. Équation du second degré\n\nSoit $ax^2 + bx + c = 0$ avec $a \\ne 0$. Discriminant : $\\Delta = b^2 - 4ac$.\n\n- $\\Delta > 0$ : deux solutions $x_{1,2} = \\dfrac{-b \\pm \\sqrt{\\Delta}}{2a}$.\n- $\\Delta = 0$ : une solution double $x_0 = \\dfrac{-b}{2a}$.\n- $\\Delta < 0$ : aucune solution réelle.\n\n**Relations entre coefficients et racines** (somme $S$, produit $P$) :\n$$S = x_1 + x_2 = -\\frac{b}{a}, \\qquad P = x_1 x_2 = \\frac{c}{a}.$$\nDeux nombres de somme $S$ et produit $P$ sont solutions de $X^2 - SX + P = 0$.\n\n## 2. Inéquation du second degré\n\nPour résoudre $ax^2 + bx + c > 0$ (ou $<$, $\\ge$, $\\le$), on étudie le **signe du trinôme** :\n\n> « Le trinôme est du **signe de $a$ à l'extérieur** des racines, du **signe de $-a$ entre** les racines. »\n\n## 3. Équations et inéquations irrationnelles\n\nPour $\\sqrt{A(x)} = B(x)$ :\n\n1. Conditions d'existence : $A(x) \\ge 0$ **et** $B(x) \\ge 0$ (un radical est positif).\n2. On élève au carré : $A(x) = B(x)^2$.\n3. On résout, puis **on vérifie** les conditions.\n\nPour $\\sqrt{A(x)} \\le B(x)$ : équivaut à $A(x) \\ge 0$, $B(x) \\ge 0$ et $A(x) \\le B(x)^2$.\n\n## 4. Équations avec valeur absolue\n\nRappel : $|x| = x$ si $x \\ge 0$, $|x| = -x$ si $x < 0$.\n\n- $|A(x)| = k$ (avec $k \\ge 0$) $\\iff A(x) = k$ ou $A(x) = -k$.\n- $|A(x)| = |B(x)| \\iff A(x) = B(x)$ ou $A(x) = -B(x)$.\n- $|A(x)| \\le k \\iff -k \\le A(x) \\le k$ (pour $k \\ge 0$).\n\n## 5. Systèmes d'équations linéaires\n\n**Système $2\\times 2$ :**\n$$\\begin{cases} a x + b y = c \\\\ a' x + b' y = c' \\end{cases}$$\n\nMéthodes : **substitution**, **combinaison (élimination)**, ou **déterminant** :\n$$\\det = \\begin{vmatrix} a & b \\\\ a' & b' \\end{vmatrix} = ab' - a'b.$$\nSi $\\det \\ne 0$, solution unique (formules de **Cramer**) :\n$$x = \\frac{cb' - c'b}{\\det}, \\qquad y = \\frac{ac' - a'c}{\\det}.$$\n\n**Systèmes $3 \\times 3$ :** résolus par substitutions/combinaisons successives (méthode du pivot).\n\n## Exercices corrigés\n\n### Exercice 1 — Somme et produit\nTrouver deux nombres dont la somme est $7$ et le produit $12$.\n\n**Solution.** Ils sont solutions de $X^2 - 7X + 12 = 0$. $\\Delta = 49 - 48 = 1$, racines $\\frac{7 \\pm 1}{2} = 4$ et $3$. Les deux nombres sont $3$ et $4$.\n\n### Exercice 2 — Équation irrationnelle\nRésoudre $\\sqrt{x + 5} = x - 1$.\n\n**Solution.** Conditions : $x + 5 \\ge 0$ ($x \\ge -5$) et $x - 1 \\ge 0$ ($x \\ge 1$). On élève au carré :\n$$x + 5 = (x-1)^2 = x^2 - 2x + 1 \\;\\Rightarrow\\; x^2 - 3x - 4 = 0.$$\n$\\Delta = 9 + 16 = 25$, racines $4$ et $-1$. Seul $x = 4$ vérifie $x \\ge 1$. **Solution : $x = 4$.**\n\n### Exercice 3 — Système par déterminant\nRésoudre $\\begin{cases} 2x + 3y = 8 \\\\ x - y = -1 \\end{cases}$.\n\n**Solution.** $\\det = 2(-1) - 1(3) = -5 \\ne 0$.\n$$x = \\frac{8(-1) - (-1)(3)}{-5} = \\frac{-8 + 3}{-5} = 1, \\qquad y = \\frac{2(-1) - 1(8)}{-5} = \\frac{-2 - 8}{-5} = 2.$$\n**Solution : $(x; y) = (1; 2)$.**\n\n## À retenir\n\n- Second degré : $\\Delta = b^2 - 4ac$ donne le nombre de solutions.\n- $S = -\\frac{b}{a}$, $P = \\frac{c}{a}$ ; un trinôme est du signe de $a$ hors des racines.\n- Équation irrationnelle : poser les **conditions**, élever au carré, **vérifier**.\n- $|A|=k \\iff A=k$ ou $A=-k$ ; système : déterminant $\\ne 0 \\Rightarrow$ solution unique.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Pour $x^2-5x+6=0$, les solutions sont :",
+            "options": [
+              "$2$ et $3$",
+              "$-2$ et $-3$",
+              "$1$ et $6$",
+              "$5$ et $6$"
+            ],
+            "answer": 0,
+            "explanation": "$\\Delta=25-24=1$, racines $\\frac{5\\pm1}{2}=3$ et $2$ ; somme $5$, produit $6$."
+          },
+          {
+            "q": "L'ensemble solution de $x^2-4>0$ est :",
+            "options": [
+              "$]-2;2[$",
+              "$]-\\infty;-2[\\cup]2;+\\infty[$",
+              "$\\mathbb{R}$",
+              "$\\{-2;2\\}$"
+            ],
+            "answer": 1,
+            "explanation": "Le trinôme est du signe de $a>0$ à l'extérieur des racines $-2$ et $2$."
+          },
+          {
+            "q": "L'équation $|x|=3$ a pour solutions :",
+            "options": [
+              "$3$",
+              "$-3$",
+              "$3$ et $-3$",
+              "aucune"
+            ],
+            "answer": 2,
+            "explanation": "$|x|=3 \\iff x=3$ ou $x=-3$."
+          },
+          {
+            "q": "Pour $\\sqrt{A(x)}=B(x)$, on impose notamment :",
+            "options": [
+              "$B(x)\\le 0$",
+              "$B(x)\\ge 0$",
+              "$A(x)<0$",
+              "rien"
+            ],
+            "answer": 1,
+            "explanation": "Un radical est positif, donc $B(x)\\ge 0$ (et $A(x)\\ge 0$)."
+          },
+          {
+            "q": "Le déterminant du système $\\{2x+y=1;\\;x+3y=2\\}$ vaut :",
+            "options": [
+              "$5$",
+              "$6$",
+              "$7$",
+              "$1$"
+            ],
+            "answer": 0,
+            "explanation": "$\\det=2\\times3-1\\times1=5$."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Limites et continuité (introduction)",
+      "video": "https://www.youtube.com/watch?v=4OZ9bM3rkkY",
+      "lesson": "# Limites et continuité (introduction)\n\n## Introduction\n\nLa notion de **limite** décrit le comportement d'une fonction lorsque $x$ s'approche d'une valeur ou tend vers l'infini. Elle prépare l'étude des **asymptotes** et la **continuité**. En Première, on aborde ces notions de façon intuitive et calculatoire (limites usuelles, opérations, premières formes indéterminées simples).\n\n## 1. Limite en l'infini\n\nOn dit que $f(x)$ a pour limite $\\ell$ quand $x \\to +\\infty$ si $f(x)$ se rapproche autant qu'on veut de $\\ell$ pour $x$ assez grand. On note $\\displaystyle \\lim_{x \\to +\\infty} f(x) = \\ell$.\n\n**Limites de référence :**\n$$\\lim_{x\\to+\\infty} x^n = +\\infty,\\quad \\lim_{x\\to+\\infty}\\frac{1}{x^n}=0,\\quad \\lim_{x\\to+\\infty}\\sqrt{x}=+\\infty \\quad (n\\ge 1).$$\n\n## 2. Limite en un point — limite infinie\n\n$\\displaystyle \\lim_{x\\to a} f(x) = +\\infty$ signifie que $f(x)$ devient arbitrairement grand quand $x$ s'approche de $a$. Exemple typique : $\\dfrac{1}{x^2} \\to +\\infty$ quand $x \\to 0$.\n\n**Limites à gauche / à droite** : notées $\\lim_{x\\to a^-}$ et $\\lim_{x\\to a^+}$. La limite en $a$ existe si ces deux limites sont égales.\n\n## 3. Opérations sur les limites\n\nSi $\\lim f = \\ell$ et $\\lim g = \\ell'$ (finies) :\n$$\\lim (f+g) = \\ell + \\ell', \\quad \\lim(fg) = \\ell\\ell', \\quad \\lim \\frac{f}{g} = \\frac{\\ell}{\\ell'} \\;(\\ell' \\ne 0).$$\n\n**Formes indéterminées (FI)** : $\\infty - \\infty$, $\\dfrac{\\infty}{\\infty}$, $\\dfrac{0}{0}$, $0 \\times \\infty$. Il faut les **lever** (factoriser, simplifier).\n\n## 4. Limite d'un polynôme et d'une fraction rationnelle en l'infini\n\n- **Polynôme :** sa limite en $\\pm\\infty$ est celle de son **terme de plus haut degré**.\n- **Fraction rationnelle :** sa limite en $\\pm\\infty$ est celle du **quotient des termes de plus haut degré** du numérateur et du dénominateur.\n\n**Exemple :** $\\displaystyle \\lim_{x\\to+\\infty} \\frac{3x^2 + 1}{x^2 - x} = \\lim_{x\\to+\\infty} \\frac{3x^2}{x^2} = 3.$\n\n## 5. Continuité en un point\n\n$f$ est **continue en $a$** si :\n$$\\lim_{x\\to a} f(x) = f(a).$$\nIntuitivement, on trace la courbe « sans lever le crayon » au voisinage de $a$.\n\n**Propriété.** Les fonctions polynômes sont continues sur $\\mathbb{R}$ ; les fractions rationnelles sont continues sur leur ensemble de définition ; $x \\mapsto \\sqrt{x}$ est continue sur $[0;+\\infty[$.\n\n## 6. Asymptotes (introduction)\n\n- Si $\\lim_{x\\to a} f(x) = \\pm\\infty$, la droite $x = a$ est **asymptote verticale**.\n- Si $\\lim_{x\\to \\pm\\infty} f(x) = b$, la droite $y = b$ est **asymptote horizontale**.\n\n## Exercices corrigés\n\n### Exercice 1 — Limite d'une fraction rationnelle\nCalculer $\\displaystyle \\lim_{x\\to+\\infty} \\frac{2x^3 - x + 1}{x^3 + 4}$.\n\n**Solution.** On compare les termes de plus haut degré :\n$$\\lim_{x\\to+\\infty} \\frac{2x^3}{x^3} = 2.$$\nLa droite $y = 2$ est asymptote horizontale en $+\\infty$.\n\n### Exercice 2 — Forme indéterminée $\\frac{0}{0}$\nCalculer $\\displaystyle \\lim_{x\\to 2} \\frac{x^2 - 4}{x - 2}$.\n\n**Solution.** En $x=2$, forme $\\frac{0}{0}$. On factorise : $x^2 - 4 = (x-2)(x+2)$, donc pour $x\\ne 2$,\n$$\\frac{x^2-4}{x-2} = x + 2 \\xrightarrow[x\\to 2]{} 4.$$\nLa limite vaut $\\mathbf{4}$.\n\n### Exercice 3 — Asymptote verticale\nÉtudier $\\displaystyle \\lim_{x\\to 1^+} \\frac{1}{x-1}$ et $\\displaystyle \\lim_{x\\to 1^-} \\frac{1}{x-1}$.\n\n**Solution.** Pour $x \\to 1^+$, $x - 1 \\to 0^+$ donc $\\frac{1}{x-1} \\to +\\infty$. Pour $x \\to 1^-$, $x-1 \\to 0^-$ donc $\\frac{1}{x-1} \\to -\\infty$. La droite $x = 1$ est **asymptote verticale**.\n\n## À retenir\n\n- Limite d'un polynôme/fraction en $\\pm\\infty$ : terme(s) de plus haut degré.\n- FI à lever : $\\frac{0}{0}$ (factoriser), $\\frac{\\infty}{\\infty}$ (mettre en facteur).\n- **Continue en $a$** : $\\lim_{x\\to a} f(x) = f(a)$.\n- $\\lim = \\pm\\infty$ en $a$ $\\Rightarrow$ asymptote verticale $x=a$ ; $\\lim = b$ en $\\infty$ $\\Rightarrow$ asymptote horizontale $y=b$.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "$\\lim_{x\\to+\\infty} \\dfrac{5x^2+1}{2x^2-3}$ vaut :",
+            "options": [
+              "$0$",
+              "$\\frac{5}{2}$",
+              "$+\\infty$",
+              "$\\frac{1}{3}$"
+            ],
+            "answer": 1,
+            "explanation": "Rapport des termes dominants : $\\frac{5x^2}{2x^2}=\\frac{5}{2}$."
+          },
+          {
+            "q": "$\\lim_{x\\to+\\infty} \\dfrac{1}{x^3}$ vaut :",
+            "options": [
+              "$+\\infty$",
+              "$1$",
+              "$0$",
+              "$3$"
+            ],
+            "answer": 2,
+            "explanation": "$\\frac{1}{x^n}\\to 0$ quand $x\\to+\\infty$."
+          },
+          {
+            "q": "$f$ est continue en $a$ lorsque :",
+            "options": [
+              "$f(a)=0$",
+              "$\\lim_{x\\to a}f(x)=f(a)$",
+              "$f'(a)$ existe",
+              "$\\lim_{x\\to a}f(x)=+\\infty$"
+            ],
+            "answer": 1,
+            "explanation": "La continuité en $a$ s'écrit $\\lim_{x\\to a}f(x)=f(a)$."
+          },
+          {
+            "q": "$\\lim_{x\\to 3} \\dfrac{x^2-9}{x-3}$ vaut :",
+            "options": [
+              "$0$",
+              "$3$",
+              "$6$",
+              "n'existe pas"
+            ],
+            "answer": 2,
+            "explanation": "$\\frac{(x-3)(x+3)}{x-3}=x+3\\to 6$."
+          },
+          {
+            "q": "Si $\\lim_{x\\to+\\infty}f(x)=4$, la droite $y=4$ est :",
+            "options": [
+              "asymptote verticale",
+              "asymptote horizontale",
+              "tangente",
+              "axe de symétrie"
+            ],
+            "answer": 1,
+            "explanation": "Une limite finie $b$ en l'infini donne l'asymptote horizontale $y=b$."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Dérivation",
+      "video": "https://www.youtube.com/watch?v=hWPv4LpY3Ng",
+      "lesson": "# Dérivation\n\n## Introduction\n\nLa **dérivée** mesure le taux de variation instantané d'une fonction : c'est la pente de la tangente à la courbe. C'est l'outil central pour étudier les **variations** et trouver les **extremums** d'une fonction. Ce chapitre fonde tout le calcul différentiel du lycée.\n\n## 1. Nombre dérivé\n\nSoit $f$ définie sur un intervalle $I$ et $a \\in I$. Le **nombre dérivé** de $f$ en $a$ est, lorsqu'elle existe, la limite du taux d'accroissement :\n$$f'(a) = \\lim_{h \\to 0} \\frac{f(a+h) - f(a)}{h} = \\lim_{x\\to a}\\frac{f(x)-f(a)}{x-a}.$$\nSi cette limite existe (et est finie), $f$ est **dérivable en $a$**.\n\n## 2. Tangente\n\nL'équation de la **tangente** à la courbe de $f$ au point d'abscisse $a$ est :\n$$y = f'(a)(x - a) + f(a).$$\n$f'(a)$ est le **coefficient directeur** (pente) de cette tangente.\n\n## 3. Fonction dérivée et dérivées usuelles\n\n| $f(x)$ | $f'(x)$ |\n|---|---|\n| $k$ (constante) | $0$ |\n| $x$ | $1$ |\n| $x^n$ | $n x^{n-1}$ |\n| $\\dfrac{1}{x}$ | $-\\dfrac{1}{x^2}$ |\n| $\\sqrt{x}$ | $\\dfrac{1}{2\\sqrt{x}}$ |\n| $\\sin x$ | $\\cos x$ |\n| $\\cos x$ | $-\\sin x$ |\n\n## 4. Opérations sur les dérivées\n\nSoient $u$ et $v$ dérivables, $k$ constant :\n$$(u + v)' = u' + v', \\qquad (k u)' = k u',$$\n$$(uv)' = u'v + uv', \\qquad \\left(\\frac{u}{v}\\right)' = \\frac{u'v - uv'}{v^2}\\;(v\\ne 0),$$\n$$\\left(\\frac{1}{v}\\right)' = -\\frac{v'}{v^2}.$$\n\n**Dérivée d'une fonction composée :** $(u^n)' = n\\,u' \\,u^{n-1}$ ; plus généralement $\\big(g(u)\\big)' = u' \\cdot g'(u)$.\n\n## 5. Lien dérivée — variations\n\n**Théorème fondamental.** Soit $f$ dérivable sur un intervalle $I$ :\n\n- Si $f'(x) > 0$ sur $I$, alors $f$ est **strictement croissante** sur $I$.\n- Si $f'(x) < 0$ sur $I$, alors $f$ est **strictement décroissante** sur $I$.\n- Si $f'(x) = 0$ sur $I$, alors $f$ est **constante** sur $I$.\n\n**Extremum :** si $f'$ s'annule en $x_0$ **en changeant de signe**, $f$ admet un extremum local en $x_0$ (maximum si $f'$ passe de $+$ à $-$, minimum sinon).\n\n## Exercices corrigés\n\n### Exercice 1 — Dérivée d'un quotient\nDériver $f(x) = \\dfrac{2x + 1}{x - 3}$.\n\n**Solution.** $u = 2x+1$, $u' = 2$ ; $v = x - 3$, $v' = 1$.\n$$f'(x) = \\frac{u'v - uv'}{v^2} = \\frac{2(x-3) - (2x+1)(1)}{(x-3)^2} = \\frac{2x - 6 - 2x - 1}{(x-3)^2} = \\frac{-7}{(x-3)^2}.$$\nComme $f'(x) < 0$, $f$ est décroissante sur chaque intervalle de son domaine.\n\n### Exercice 2 — Tangente\nDéterminer la tangente à $f(x) = x^2 - 3x$ au point d'abscisse $2$.\n\n**Solution.** $f'(x) = 2x - 3$, donc $f'(2) = 1$ et $f(2) = 4 - 6 = -2$.\n$$y = f'(2)(x-2) + f(2) = 1\\cdot(x-2) - 2 = x - 4.$$\nLa tangente a pour équation $y = x - 4$.\n\n### Exercice 3 — Variations\nÉtudier les variations de $f(x) = x^3 - 3x$.\n\n**Solution.** $f'(x) = 3x^2 - 3 = 3(x^2 - 1) = 3(x-1)(x+1)$. $f'$ s'annule en $-1$ et $1$.\n- Sur $]-\\infty;-1[$ : $f' > 0$, $f$ croissante.\n- Sur $]-1;1[$ : $f' < 0$, $f$ décroissante.\n- Sur $]1;+\\infty[$ : $f' > 0$, $f$ croissante.\n\nMaximum local en $x=-1$ : $f(-1) = 2$ ; minimum local en $x=1$ : $f(1) = -2$.\n\n## À retenir\n\n- $f'(a)$ = pente de la tangente ; tangente : $y = f'(a)(x-a) + f(a)$.\n- $(x^n)' = n x^{n-1}$ ; $\\left(\\frac{u}{v}\\right)' = \\frac{u'v-uv'}{v^2}$ ; $(u^n)' = n u' u^{n-1}$.\n- **Signe de $f'$ = sens de variation de $f$.**\n- Extremum là où $f'$ s'annule **en changeant de signe**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "La dérivée de $f(x)=x^4$ est :",
+            "options": [
+              "$4x^3$",
+              "$x^3$",
+              "$4x^5$",
+              "$3x^4$"
+            ],
+            "answer": 0,
+            "explanation": "$(x^n)'=nx^{n-1}$, donc $(x^4)'=4x^3$."
+          },
+          {
+            "q": "La tangente à $f$ en $a$ a pour pente :",
+            "options": [
+              "$f(a)$",
+              "$f'(a)$",
+              "$f'(0)$",
+              "$\\frac{1}{f(a)}$"
+            ],
+            "answer": 1,
+            "explanation": "Le coefficient directeur de la tangente en $a$ est $f'(a)$."
+          },
+          {
+            "q": "Si $f'(x)<0$ sur $I$, alors $f$ est :",
+            "options": [
+              "croissante",
+              "décroissante",
+              "constante",
+              "paire"
+            ],
+            "answer": 1,
+            "explanation": "Dérivée négative implique fonction strictement décroissante."
+          },
+          {
+            "q": "La dérivée de $\\dfrac{1}{x}$ est :",
+            "options": [
+              "$-\\frac{1}{x^2}$",
+              "$\\frac{1}{x^2}$",
+              "$-\\frac{1}{x}$",
+              "$\\ln x$"
+            ],
+            "answer": 0,
+            "explanation": "$\\left(\\frac{1}{x}\\right)'=-\\frac{1}{x^2}$."
+          },
+          {
+            "q": "Pour $f(x)=2x^3-6x$, $f'(x)$ vaut :",
+            "options": [
+              "$6x^2-6$",
+              "$2x^2-6$",
+              "$6x^3$",
+              "$6x^2$"
+            ],
+            "answer": 0,
+            "explanation": "$f'(x)=6x^2-6$."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Étude et représentation graphique de fonctions",
+      "video": "https://www.youtube.com/watch?v=hWPv4LpY3Ng",
+      "lesson": "# Étude et représentation graphique de fonctions\n\n## Introduction\n\nÉtudier une fonction, c'est mener une **démarche complète** : ensemble de définition, limites, dérivée, tableau de variations, points particuliers et tracé de la courbe. Ce chapitre synthétise les outils des chapitres précédents (fonctions, limites, dérivation) pour produire une représentation graphique fiable.\n\n## 1. Plan d'étude d'une fonction\n\n1. **Ensemble de définition** $D_f$ et éventuelle réduction (parité, périodicité).\n2. **Limites** aux bornes de $D_f$ ; en déduire les **asymptotes**.\n3. **Dérivée** $f'(x)$ et son **signe**.\n4. **Tableau de variations** (avec limites et valeurs des extremums).\n5. **Points particuliers** : intersections avec les axes, tangentes remarquables.\n6. **Tracé** de la courbe.\n\n## 2. Réduction du domaine d'étude\n\n- Si $f$ est **paire**, on l'étudie sur $D_f \\cap [0;+\\infty[$ puis symétrie / axe $Oy$.\n- Si $f$ est **impaire**, étude sur $[0;+\\infty[$ puis symétrie / origine.\n- Si $f$ est **périodique** de période $T$, étude sur un intervalle de longueur $T$.\n\n## 3. Asymptotes et position de la courbe\n\n- **Asymptote verticale** $x = a$ : si $\\lim_{x\\to a} f(x) = \\pm\\infty$.\n- **Asymptote horizontale** $y = b$ : si $\\lim_{x\\to\\pm\\infty} f(x) = b$.\n- **Asymptote oblique** $y = ax + b$ : si $\\lim_{x\\to\\pm\\infty}\\big(f(x) - (ax+b)\\big) = 0$. On la cherche en écrivant $f(x) = ax + b + (\\text{terme} \\to 0)$ (souvent via division).\n\nLa **position** de la courbe par rapport à une asymptote $\\Delta : y = ax+b$ se lit dans le **signe** de $f(x) - (ax + b)$.\n\n## 4. Tableau de variations\n\nLe tableau résume : valeurs interdites, signe de $f'$, sens de variation (flèches), limites et extremums. C'est le document de référence avant le tracé.\n\n## 5. Tracé soigné\n\nOn place : asymptotes (en pointillés), points d'intersection avec les axes, extremums, quelques points supplémentaires, puis on relie en respectant le tableau de variations.\n\n```onbuch-plot\n{\"functions\":[{\"expr\":\"x*x*x-3*x\",\"color\":\"#dc2626\",\"label\":\"y=x^3-3x\"}],\"xmin\":-3,\"xmax\":3,\"ymin\":-4,\"ymax\":4}\n```\n\n## Exercices corrigés\n\n### Exercice 1 — Étude d'une fonction homographique\nÉtudier $f(x) = \\dfrac{2x - 1}{x + 1}$.\n\n**Solution.**\n- $D_f = \\mathbb{R}\\setminus\\{-1\\}$.\n- Limites : $\\lim_{x\\to\\pm\\infty} f = 2$ (asymptote horizontale $y=2$) ; $\\lim_{x\\to -1^-} f = +\\infty$, $\\lim_{x\\to -1^+} f = -\\infty$ (asymptote verticale $x=-1$).\n- Dérivée : $f'(x) = \\dfrac{2(x+1) - (2x-1)}{(x+1)^2} = \\dfrac{3}{(x+1)^2} > 0$. Donc $f$ est **strictement croissante** sur $]-\\infty;-1[$ et sur $]-1;+\\infty[$.\n\n### Exercice 2 — Asymptote oblique\nMontrer que $f(x) = \\dfrac{x^2 + 1}{x}$ admet une asymptote oblique.\n\n**Solution.** Pour $x \\ne 0$ : $f(x) = x + \\dfrac{1}{x}$. Or $\\dfrac{1}{x} \\to 0$ quand $x\\to\\pm\\infty$, donc $f(x) - x \\to 0$. La droite $y = x$ est **asymptote oblique**. Comme $\\frac{1}{x} > 0$ pour $x>0$, la courbe est **au-dessus** de l'asymptote sur $]0;+\\infty[$.\n\n### Exercice 3 — Intersections avec les axes\nTrouver les intersections de $f(x) = x^2 - x - 2$ avec les axes.\n\n**Solution.** Avec $Oy$ : $f(0) = -2$, point $(0;-2)$. Avec $Ox$ : $x^2 - x - 2 = 0$, $\\Delta = 9$, racines $2$ et $-1$ : points $(2;0)$ et $(-1;0)$.\n\n## À retenir\n\n- Plan d'étude : $D_f \\to$ limites/asymptotes $\\to f' \\to$ tableau $\\to$ tracé.\n- Asymptote oblique $y=ax+b$ : $\\lim\\big(f(x)-(ax+b)\\big)=0$ ; position par signe de la différence.\n- Exploiter parité/périodicité pour **réduire** l'étude.\n- Le tableau de variations doit précéder tout tracé.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Une asymptote horizontale apparaît quand :",
+            "options": [
+              "$f'$ s'annule",
+              "$\\lim_{x\\to\\pm\\infty}f(x)=b$ fini",
+              "$f(0)=0$",
+              "$f$ est paire"
+            ],
+            "answer": 1,
+            "explanation": "Une limite finie $b$ en l'infini donne l'asymptote horizontale $y=b$."
+          },
+          {
+            "q": "Pour $f(x)=\\dfrac{2x-1}{x+1}$, l'asymptote verticale est :",
+            "options": [
+              "$x=1$",
+              "$x=-1$",
+              "$y=2$",
+              "$x=2$"
+            ],
+            "answer": 1,
+            "explanation": "Le dénominateur s'annule en $x=-1$ et la limite y est infinie."
+          },
+          {
+            "q": "La position de la courbe / asymptote $y=ax+b$ se lit dans :",
+            "options": [
+              "le signe de $f'$",
+              "le signe de $f(x)-(ax+b)$",
+              "la valeur de $f(0)$",
+              "le degré"
+            ],
+            "answer": 1,
+            "explanation": "On étudie le signe de la différence $f(x)-(ax+b)$."
+          },
+          {
+            "q": "Si $f$ est paire, on peut réduire l'étude à :",
+            "options": [
+              "$]-\\infty;0]$",
+              "$[0;+\\infty[$",
+              "$\\mathbb{R}$",
+              "$[-1;1]$"
+            ],
+            "answer": 1,
+            "explanation": "La parité (symétrie / $Oy$) permet d'étudier sur $[0;+\\infty[$."
+          },
+          {
+            "q": "$f(x)=x+\\frac{1}{x}$ admet pour asymptote oblique :",
+            "options": [
+              "$y=x$",
+              "$y=2x$",
+              "$y=1$",
+              "$x=0$"
+            ],
+            "answer": 0,
+            "explanation": "$f(x)-x=\\frac{1}{x}\\to 0$, donc $y=x$ est asymptote oblique."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Suites numériques",
+      "video": "https://www.youtube.com/watch?v=Xn5KZb0Z3Wc",
+      "lesson": "# Suites numériques\n\n## Introduction\n\nUne **suite** est une liste ordonnée de nombres indexée par les entiers : $u_0, u_1, u_2, \\dots$ Les suites modélisent des phénomènes discrets (intérêts, populations année après année). On étudie en Première les suites **arithmétiques** et **géométriques**, leur sens de variation et leurs sommes.\n\n## 1. Définitions\n\nUne **suite numérique** $(u_n)$ est une fonction de $\\mathbb{N}$ (ou d'une partie) dans $\\mathbb{R}$ : à chaque entier $n$ on associe un réel $u_n$, le **terme de rang $n$**.\n\nDeux modes de définition :\n\n- **Explicite** : $u_n = f(n)$ (ex. $u_n = 2n + 1$).\n- **Récurrente** : $u_{n+1} = g(u_n)$ avec $u_0$ donné (ex. $u_{n+1} = 2u_n + 3$, $u_0 = 1$).\n\n## 2. Sens de variation\n\n- $(u_n)$ est **croissante** si $u_{n+1} \\ge u_n$ pour tout $n$ ; **décroissante** si $u_{n+1} \\le u_n$.\n- Méthode : étudier le **signe de $u_{n+1} - u_n$**, ou comparer $\\dfrac{u_{n+1}}{u_n}$ à $1$ (si tous les termes sont strictement positifs).\n\n## 3. Suites arithmétiques\n\nUne suite est **arithmétique de raison $r$** si $u_{n+1} = u_n + r$ pour tout $n$ (on **ajoute** toujours la même quantité).\n\n**Terme général :** $u_n = u_0 + n r$ (ou $u_n = u_p + (n - p) r$).\n\n**Sens de variation :** croissante si $r > 0$, décroissante si $r < 0$.\n\n**Somme des termes :**\n$$u_0 + u_1 + \\cdots + u_n = (n+1)\\cdot\\frac{u_0 + u_n}{2} = \\text{(nombre de termes)} \\times \\frac{\\text{premier} + \\text{dernier}}{2}.$$\n\n## 4. Suites géométriques\n\nUne suite est **géométrique de raison $q$** ($q \\ne 0$) si $u_{n+1} = q\\, u_n$ pour tout $n$ (on **multiplie** toujours par la même quantité).\n\n**Terme général :** $u_n = u_0 \\, q^n$ (ou $u_n = u_p \\, q^{n-p}$).\n\n**Somme des termes** (pour $q \\ne 1$) :\n$$u_0 + u_1 + \\cdots + u_n = u_0 \\, \\frac{1 - q^{n+1}}{1 - q} = \\text{(premier terme)} \\times \\frac{1 - q^{\\,\\text{nb termes}}}{1 - q}.$$\n\n**Sens de variation** (pour $u_0 > 0$) : croissante si $q > 1$, décroissante si $0 < q < 1$.\n\n## 5. Reconnaître la nature d'une suite\n\n- Si $u_{n+1} - u_n$ est **constant** $\\Rightarrow$ arithmétique.\n- Si $\\dfrac{u_{n+1}}{u_n}$ est **constant** $\\Rightarrow$ géométrique.\n\n## Exercices corrigés\n\n### Exercice 1 — Suite arithmétique\nSoit $(u_n)$ arithmétique avec $u_0 = 5$ et $r = 3$. Calculer $u_{10}$ et la somme $u_0 + \\cdots + u_{10}$.\n\n**Solution.** $u_{10} = u_0 + 10 r = 5 + 30 = 35$. La somme a $11$ termes :\n$$S = 11 \\times \\frac{u_0 + u_{10}}{2} = 11 \\times \\frac{5 + 35}{2} = 11 \\times 20 = 220.$$\n\n### Exercice 2 — Suite géométrique\nSoit $(v_n)$ géométrique avec $v_0 = 2$ et $q = 3$. Calculer $v_4$ et $v_0 + \\cdots + v_4$.\n\n**Solution.** $v_4 = v_0 q^4 = 2 \\times 81 = 162$. Somme ($5$ termes) :\n$$S = v_0 \\cdot \\frac{1 - q^5}{1 - q} = 2 \\cdot \\frac{1 - 243}{1 - 3} = 2 \\cdot \\frac{-242}{-2} = 242.$$\n\n### Exercice 3 — Nature d'une suite\nLa suite $u_n = 4 \\times 2^n$ est-elle arithmétique ou géométrique ?\n\n**Solution.** $\\dfrac{u_{n+1}}{u_n} = \\dfrac{4\\cdot 2^{n+1}}{4\\cdot 2^n} = 2$ : rapport constant. La suite est **géométrique** de raison $q = 2$ et premier terme $u_0 = 4$.\n\n## À retenir\n\n- **Arithmétique** : $u_{n+1} = u_n + r$, $u_n = u_0 + nr$, somme $= \\text{nb} \\times \\frac{\\text{1er}+\\text{dernier}}{2}$.\n- **Géométrique** : $u_{n+1} = q\\,u_n$, $u_n = u_0 q^n$, somme $= u_0\\frac{1-q^{n+1}}{1-q}$.\n- Variation : signe de $u_{n+1} - u_n$ (ou rapport $\\frac{u_{n+1}}{u_n}$ vs $1$).\n- Différence constante $\\Rightarrow$ arithmétique ; quotient constant $\\Rightarrow$ géométrique.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Une suite arithmétique de raison $r$ vérifie :",
+            "options": [
+              "$u_{n+1}=r\\,u_n$",
+              "$u_{n+1}=u_n+r$",
+              "$u_n=u_0 r^n$",
+              "$u_{n+1}=u_n^2$"
+            ],
+            "answer": 1,
+            "explanation": "On ajoute la raison : $u_{n+1}=u_n+r$."
+          },
+          {
+            "q": "Pour une suite géométrique, $u_n=$",
+            "options": [
+              "$u_0+nq$",
+              "$u_0 q^n$",
+              "$nq$",
+              "$u_0+q^n$"
+            ],
+            "answer": 1,
+            "explanation": "Le terme général est $u_n=u_0 q^n$."
+          },
+          {
+            "q": "Si $u_0=1$ et $r=2$ (arithmétique), alors $u_5=$",
+            "options": [
+              "$10$",
+              "$11$",
+              "$32$",
+              "$12$"
+            ],
+            "answer": 1,
+            "explanation": "$u_5=u_0+5r=1+10=11$."
+          },
+          {
+            "q": "La somme $1+2+4+8+16$ (géométrique $q=2$) vaut :",
+            "options": [
+              "$31$",
+              "$30$",
+              "$32$",
+              "$16$"
+            ],
+            "answer": 0,
+            "explanation": "$1\\cdot\\frac{1-2^5}{1-2}=\\frac{-31}{-1}=31$."
+          },
+          {
+            "q": "$u_n=3+5n$ est une suite :",
+            "options": [
+              "géométrique de raison $5$",
+              "arithmétique de raison $5$",
+              "arithmétique de raison $3$",
+              "constante"
+            ],
+            "answer": 1,
+            "explanation": "$u_{n+1}-u_n=5$ constant : arithmétique de raison $5$."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Trigonométrie",
+      "video": "https://www.youtube.com/watch?v=p6L0pZ6X9Qk",
+      "lesson": "# Trigonométrie\n\n## Introduction\n\nLa **trigonométrie** étudie les relations entre angles et longueurs via le **cercle trigonométrique**. En Première C/D, on consolide le radian, les lignes trigonométriques, les **formules d'addition et de duplication**, et la résolution d'**équations trigonométriques**.\n\n## 1. Le cercle trigonométrique et le radian\n\nLe **cercle trigonométrique** est le cercle de centre $O$ et de rayon $1$. Un angle se mesure en **radians** : un tour complet vaut $2\\pi$ rad $= 360°$. Conversion : $180° = \\pi$ rad.\n\nPour un point $M$ du cercle associé à l'angle $x$ : $\\cos x$ est l'**abscisse** de $M$, $\\sin x$ son **ordonnée**. On définit $\\tan x = \\dfrac{\\sin x}{\\cos x}$ (pour $\\cos x \\ne 0$).\n\n**Identité fondamentale :** $\\cos^2 x + \\sin^2 x = 1.$\n\n## 2. Valeurs remarquables\n\n| $x$ | $0$ | $\\dfrac{\\pi}{6}$ | $\\dfrac{\\pi}{4}$ | $\\dfrac{\\pi}{3}$ | $\\dfrac{\\pi}{2}$ |\n|---|---|---|---|---|---|\n| $\\cos x$ | $1$ | $\\dfrac{\\sqrt3}{2}$ | $\\dfrac{\\sqrt2}{2}$ | $\\dfrac12$ | $0$ |\n| $\\sin x$ | $0$ | $\\dfrac12$ | $\\dfrac{\\sqrt2}{2}$ | $\\dfrac{\\sqrt3}{2}$ | $1$ |\n\n## 3. Angles associés\n\n$$\\cos(-x) = \\cos x,\\quad \\sin(-x) = -\\sin x,$$\n$$\\cos(\\pi - x) = -\\cos x,\\quad \\sin(\\pi - x) = \\sin x,$$\n$$\\cos(\\pi + x) = -\\cos x,\\quad \\sin(\\pi + x) = -\\sin x,$$\n$$\\cos\\!\\left(\\tfrac{\\pi}{2} - x\\right) = \\sin x,\\quad \\sin\\!\\left(\\tfrac{\\pi}{2} - x\\right) = \\cos x.$$\n\n## 4. Formules d'addition et de duplication\n\n$$\\cos(a+b) = \\cos a\\cos b - \\sin a\\sin b,$$\n$$\\cos(a-b) = \\cos a\\cos b + \\sin a\\sin b,$$\n$$\\sin(a+b) = \\sin a\\cos b + \\cos a\\sin b,$$\n$$\\sin(a-b) = \\sin a\\cos b - \\cos a\\sin b.$$\n\n**Duplication ($b = a$) :**\n$$\\cos 2a = \\cos^2 a - \\sin^2 a = 2\\cos^2 a - 1 = 1 - 2\\sin^2 a,$$\n$$\\sin 2a = 2\\sin a\\cos a.$$\n\n## 5. Équations trigonométriques\n\n$$\\cos x = \\cos a \\iff x = a + 2k\\pi \\ \\text{ ou } \\ x = -a + 2k\\pi \\quad (k\\in\\mathbb{Z}),$$\n$$\\sin x = \\sin a \\iff x = a + 2k\\pi \\ \\text{ ou } \\ x = \\pi - a + 2k\\pi \\quad (k\\in\\mathbb{Z}).$$\n\n## Exercices corrigés\n\n### Exercice 1 — Calcul via les formules d'addition\nCalculer $\\cos\\dfrac{\\pi}{12}$.\n\n**Solution.** $\\dfrac{\\pi}{12} = \\dfrac{\\pi}{3} - \\dfrac{\\pi}{4}$, donc :\n$$\\cos\\frac{\\pi}{12} = \\cos\\frac{\\pi}{3}\\cos\\frac{\\pi}{4} + \\sin\\frac{\\pi}{3}\\sin\\frac{\\pi}{4} = \\frac12\\cdot\\frac{\\sqrt2}{2} + \\frac{\\sqrt3}{2}\\cdot\\frac{\\sqrt2}{2} = \\frac{\\sqrt2 + \\sqrt6}{4}.$$\n\n### Exercice 2 — Équation\nRésoudre $\\cos x = \\dfrac{1}{2}$ dans $[0; 2\\pi[$.\n\n**Solution.** $\\cos x = \\cos\\dfrac{\\pi}{3}$, donc $x = \\dfrac{\\pi}{3} + 2k\\pi$ ou $x = -\\dfrac{\\pi}{3} + 2k\\pi$. Dans $[0;2\\pi[$ : $x = \\dfrac{\\pi}{3}$ ou $x = 2\\pi - \\dfrac{\\pi}{3} = \\dfrac{5\\pi}{3}$.\n\n### Exercice 3 — Duplication\nSachant $\\sin a = \\dfrac{3}{5}$ avec $a$ aigu, calculer $\\sin 2a$.\n\n**Solution.** $\\cos^2 a = 1 - \\frac{9}{25} = \\frac{16}{25}$, et $a$ aigu donc $\\cos a = \\frac{4}{5}$. Ainsi :\n$$\\sin 2a = 2\\sin a\\cos a = 2 \\cdot \\frac35 \\cdot \\frac45 = \\frac{24}{25}.$$\n\n## À retenir\n\n- $\\cos^2 x + \\sin^2 x = 1$ ; $180° = \\pi$ rad.\n- Formules d'addition : $\\cos(a\\pm b)$, $\\sin(a\\pm b)$ ; duplication : $\\sin 2a = 2\\sin a\\cos a$.\n- $\\cos x = \\cos a \\iff x = \\pm a + 2k\\pi$.\n- $\\sin x = \\sin a \\iff x = a + 2k\\pi$ ou $x = \\pi - a + 2k\\pi$.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Combien vaut $\\sin\\dfrac{\\pi}{6}$ ?",
+            "options": [
+              "$\\frac12$",
+              "$\\frac{\\sqrt3}{2}$",
+              "$\\frac{\\sqrt2}{2}$",
+              "$1$"
+            ],
+            "answer": 0,
+            "explanation": "$\\sin\\frac{\\pi}{6}=\\frac12$."
+          },
+          {
+            "q": "L'identité fondamentale est :",
+            "options": [
+              "$\\cos x+\\sin x=1$",
+              "$\\cos^2 x+\\sin^2 x=1$",
+              "$\\cos^2 x-\\sin^2 x=1$",
+              "$\\tan^2 x=1$"
+            ],
+            "answer": 1,
+            "explanation": "$\\cos^2 x+\\sin^2 x=1$ pour tout $x$."
+          },
+          {
+            "q": "$\\sin 2a$ est égal à :",
+            "options": [
+              "$2\\sin a$",
+              "$\\sin^2 a$",
+              "$2\\sin a\\cos a$",
+              "$\\cos^2 a-\\sin^2 a$"
+            ],
+            "answer": 2,
+            "explanation": "Formule de duplication : $\\sin 2a=2\\sin a\\cos a$."
+          },
+          {
+            "q": "$\\cos(\\pi-x)$ vaut :",
+            "options": [
+              "$\\cos x$",
+              "$-\\cos x$",
+              "$\\sin x$",
+              "$-\\sin x$"
+            ],
+            "answer": 1,
+            "explanation": "$\\cos(\\pi-x)=-\\cos x$."
+          },
+          {
+            "q": "$\\cos x=\\cos a$ équivaut à :",
+            "options": [
+              "$x=a+2k\\pi$ seulement",
+              "$x=\\pm a+2k\\pi$",
+              "$x=\\pi-a+2k\\pi$",
+              "$x=a+k\\pi$"
+            ],
+            "answer": 1,
+            "explanation": "$\\cos x=\\cos a\\iff x=a+2k\\pi$ ou $x=-a+2k\\pi$."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Barycentre",
+      "video": "https://www.youtube.com/watch?v=Hn1B0r0bQ8w",
+      "lesson": "# Barycentre\n\n## Introduction\n\nLe **barycentre** généralise la notion de milieu et de centre de gravité : c'est un « point d'équilibre » de points pondérés par des coefficients (masses). C'est un outil puissant pour démontrer des alignements, des concours de droites et simplifier des calculs vectoriels.\n\n## 1. Définition\n\nSoient $A$ et $B$ deux points affectés des coefficients (masses) $\\alpha$ et $\\beta$ avec $\\alpha + \\beta \\ne 0$. Le **barycentre** $G$ du système $\\{(A,\\alpha), (B,\\beta)\\}$ est l'unique point tel que :\n$$\\alpha\\,\\overrightarrow{GA} + \\beta\\,\\overrightarrow{GB} = \\vec{0}.$$\n\nPlus généralement, pour $n$ points pondérés avec $\\sum \\alpha_i \\ne 0$ :\n$$\\sum_{i} \\alpha_i\\,\\overrightarrow{GA_i} = \\vec{0}.$$\n\n## 2. Propriété fondamentale (réduction)\n\nPour **tout** point $M$ du plan :\n$$\\sum_i \\alpha_i\\,\\overrightarrow{MA_i} = \\Big(\\sum_i \\alpha_i\\Big)\\,\\overrightarrow{MG}.$$\n\nCette formule permet de **réduire** une somme vectorielle. En prenant $M = O$ (origine), on obtient les **coordonnées du barycentre** :\n$$x_G = \\frac{\\sum \\alpha_i x_i}{\\sum \\alpha_i}, \\qquad y_G = \\frac{\\sum \\alpha_i y_i}{\\sum \\alpha_i}.$$\n\n## 3. Propriétés\n\n- **Homogénéité :** le barycentre est inchangé si l'on multiplie tous les coefficients par un même réel $k \\ne 0$.\n- **Isobarycentre :** si tous les coefficients sont égaux, $G$ est l'**isobarycentre** (centre de gravité). Pour deux points, c'est le **milieu** ; pour un triangle, le **centre de gravité**.\n- **Associativité (barycentre partiel) :** on peut remplacer plusieurs points par leur barycentre partiel affecté de la somme de leurs coefficients.\n\n## 4. Applications\n\n- Démontrer un **alignement** : $G$ barycentre de $A$ et $B$ $\\Rightarrow$ $G \\in (AB)$.\n- Montrer que des droites sont **concourantes** (ex. médianes d'un triangle au centre de gravité).\n- Le centre de gravité $G$ d'un triangle $ABC$ vérifie $\\overrightarrow{AG} = \\dfrac{2}{3}\\overrightarrow{AA'}$ ($A'$ milieu de $[BC]$).\n\n## Exercices corrigés\n\n### Exercice 1 — Coordonnées d'un barycentre\n$A(1;2)$, $B(4;-1)$. Déterminer $G$ barycentre de $\\{(A,2),(B,1)\\}$.\n\n**Solution.** Somme des masses $= 3$.\n$$x_G = \\frac{2\\cdot1 + 1\\cdot4}{3} = \\frac{6}{3} = 2,\\qquad y_G = \\frac{2\\cdot2 + 1\\cdot(-1)}{3} = \\frac{3}{3} = 1.$$\nDonc $G(2; 1)$.\n\n### Exercice 2 — Réduction vectorielle\nSoit $G$ barycentre de $\\{(A,1),(B,3)\\}$. Exprimer $\\overrightarrow{MA} + 3\\overrightarrow{MB}$ pour tout point $M$.\n\n**Solution.** D'après la propriété fondamentale (somme des masses $= 4$) :\n$$\\overrightarrow{MA} + 3\\overrightarrow{MB} = 4\\,\\overrightarrow{MG}.$$\n\n### Exercice 3 — Isobarycentre (centre de gravité)\n$A(0;0)$, $B(6;0)$, $C(3;6)$. Trouver le centre de gravité $G$.\n\n**Solution.** Coefficients égaux à $1$, somme $= 3$.\n$$x_G = \\frac{0 + 6 + 3}{3} = 3,\\qquad y_G = \\frac{0 + 0 + 6}{3} = 2.$$\n$G(3; 2)$.\n\n## À retenir\n\n- $G$ barycentre : $\\sum \\alpha_i\\,\\overrightarrow{GA_i} = \\vec0$ (avec $\\sum\\alpha_i\\ne 0$).\n- Réduction : $\\sum \\alpha_i\\,\\overrightarrow{MA_i} = (\\sum\\alpha_i)\\,\\overrightarrow{MG}$.\n- Coordonnées : moyenne **pondérée** des coordonnées.\n- Homogénéité (multiplier par $k\\ne0$) et associativité (barycentres partiels).\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "$G$ barycentre de $\\{(A,\\alpha),(B,\\beta)\\}$ vérifie :",
+            "options": [
+              "$\\alpha\\overrightarrow{GA}+\\beta\\overrightarrow{GB}=\\vec0$",
+              "$\\overrightarrow{GA}+\\overrightarrow{GB}=\\vec0$",
+              "$\\alpha\\overrightarrow{GA}=\\beta\\overrightarrow{GB}$",
+              "$\\overrightarrow{AB}=\\vec0$"
+            ],
+            "answer": 0,
+            "explanation": "Définition : $\\alpha\\overrightarrow{GA}+\\beta\\overrightarrow{GB}=\\vec0$."
+          },
+          {
+            "q": "La condition d'existence du barycentre est :",
+            "options": [
+              "$\\sum\\alpha_i=0$",
+              "$\\sum\\alpha_i\\ne 0$",
+              "tous $\\alpha_i>0$",
+              "$\\alpha_i=1$"
+            ],
+            "answer": 1,
+            "explanation": "Il faut que la somme des coefficients soit non nulle."
+          },
+          {
+            "q": "L'isobarycentre de deux points $A$ et $B$ est :",
+            "options": [
+              "$A$",
+              "le milieu de $[AB]$",
+              "$B$",
+              "le centre du cercle"
+            ],
+            "answer": 1,
+            "explanation": "Coefficients égaux pour deux points : c'est le milieu."
+          },
+          {
+            "q": "$A(2;0)$, $B(0;4)$, $G$ barycentre $\\{(A,1),(B,1)\\}$. $G=$",
+            "options": [
+              "$(1;2)$",
+              "$(2;4)$",
+              "$(0;0)$",
+              "$(1;1)$"
+            ],
+            "answer": 0,
+            "explanation": "$x_G=\\frac{2+0}{2}=1$, $y_G=\\frac{0+4}{2}=2$."
+          },
+          {
+            "q": "$\\sum\\alpha_i\\overrightarrow{MA_i}$ est égal à :",
+            "options": [
+              "$\\vec0$",
+              "$(\\sum\\alpha_i)\\overrightarrow{MG}$",
+              "$\\overrightarrow{MG}$",
+              "$\\overrightarrow{GM}$"
+            ],
+            "answer": 1,
+            "explanation": "Propriété de réduction : $\\sum\\alpha_i\\overrightarrow{MA_i}=(\\sum\\alpha_i)\\overrightarrow{MG}$."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Produit scalaire dans le plan",
+      "video": "https://www.youtube.com/watch?v=Jp7t0kZ8s9o",
+      "lesson": "# Produit scalaire dans le plan\n\n## Introduction\n\nLe **produit scalaire** est une opération entre deux vecteurs qui renvoie un **nombre réel**. Il encode à la fois les **longueurs** et l'**angle** entre vecteurs, ce qui en fait l'outil idéal pour calculer des distances, des angles et caractériser l'**orthogonalité**.\n\n## 1. Définitions équivalentes\n\nPour deux vecteurs $\\vec{u}$ et $\\vec{v}$ :\n\n**(a) Avec norme et angle :**\n$$\\vec{u}\\cdot\\vec{v} = \\|\\vec{u}\\|\\,\\|\\vec{v}\\|\\cos\\theta,$$\noù $\\theta = (\\widehat{\\vec u, \\vec v})$.\n\n**(b) Analytique :** si $\\vec u (x; y)$ et $\\vec v (x'; y')$ dans un repère orthonormé :\n$$\\vec u\\cdot\\vec v = xx' + yy'.$$\n\n**(c) Avec la norme :** $\\vec u\\cdot\\vec v = \\dfrac{1}{2}\\big(\\|\\vec u\\|^2 + \\|\\vec v\\|^2 - \\|\\vec u - \\vec v\\|^2\\big).$\n\n## 2. Propriétés\n\n- **Symétrie :** $\\vec u\\cdot\\vec v = \\vec v\\cdot\\vec u$.\n- **Bilinéarité :** $(\\lambda\\vec u)\\cdot\\vec v = \\lambda(\\vec u\\cdot\\vec v)$ ; $\\vec u\\cdot(\\vec v + \\vec w) = \\vec u\\cdot\\vec v + \\vec u\\cdot\\vec w$.\n- **Carré scalaire :** $\\vec u\\cdot\\vec u = \\|\\vec u\\|^2$.\n\n## 3. Orthogonalité\n\n$$\\vec u \\perp \\vec v \\iff \\vec u\\cdot\\vec v = 0.$$\nEn coordonnées : $xx' + yy' = 0$.\n\n## 4. Applications géométriques\n\n- **Norme :** $\\|\\vec u\\| = \\sqrt{x^2 + y^2}$.\n- **Angle :** $\\cos\\theta = \\dfrac{\\vec u\\cdot\\vec v}{\\|\\vec u\\|\\,\\|\\vec v\\|}$.\n- **Théorème d'Al-Kashi** (généralisation de Pythagore) dans un triangle $ABC$ :\n$$a^2 = b^2 + c^2 - 2bc\\cos\\widehat A.$$\n- **Droite normale** : la droite passant par $A$ et de vecteur normal $\\vec n$ est l'ensemble des $M$ tels que $\\overrightarrow{AM}\\cdot\\vec n = 0$.\n\n## Exercices corrigés\n\n### Exercice 1 — Produit scalaire analytique\n$\\vec u(3; -2)$ et $\\vec v(1; 4)$. Calculer $\\vec u\\cdot\\vec v$ et dire si les vecteurs sont orthogonaux.\n\n**Solution.** $\\vec u\\cdot\\vec v = 3\\times1 + (-2)\\times4 = 3 - 8 = -5 \\ne 0$. Les vecteurs **ne sont pas** orthogonaux.\n\n### Exercice 2 — Angle entre deux vecteurs\n$\\vec u(1; 0)$, $\\vec v(1; 1)$. Calculer l'angle $\\theta$.\n\n**Solution.** $\\vec u\\cdot\\vec v = 1$. $\\|\\vec u\\| = 1$, $\\|\\vec v\\| = \\sqrt2$. Donc :\n$$\\cos\\theta = \\frac{1}{1\\times\\sqrt2} = \\frac{\\sqrt2}{2} \\;\\Rightarrow\\; \\theta = \\frac{\\pi}{4} = 45°.$$\n\n### Exercice 3 — Al-Kashi\nDans un triangle $ABC$, $b = 5$, $c = 7$, $\\widehat A = 60°$. Calculer $a$.\n\n**Solution.**\n$$a^2 = b^2 + c^2 - 2bc\\cos 60° = 25 + 49 - 2\\times5\\times7\\times\\frac12 = 74 - 35 = 39.$$\nDonc $a = \\sqrt{39} \\approx 6{,}24$.\n\n## À retenir\n\n- $\\vec u\\cdot\\vec v = \\|\\vec u\\|\\|\\vec v\\|\\cos\\theta = xx' + yy'$ (repère orthonormé).\n- $\\vec u\\perp\\vec v \\iff \\vec u\\cdot\\vec v = 0 \\iff xx'+yy'=0$.\n- $\\|\\vec u\\| = \\sqrt{x^2+y^2}$ ; $\\cos\\theta = \\frac{\\vec u\\cdot\\vec v}{\\|\\vec u\\|\\|\\vec v\\|}$.\n- Al-Kashi : $a^2 = b^2 + c^2 - 2bc\\cos\\widehat A$.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Dans un repère orthonormé, $\\vec u(x;y)\\cdot\\vec v(x';y')=$",
+            "options": [
+              "$xx'-yy'$",
+              "$xy'+x'y$",
+              "$xx'+yy'$",
+              "$xy+x'y'$"
+            ],
+            "answer": 2,
+            "explanation": "Expression analytique : $xx'+yy'$."
+          },
+          {
+            "q": "Deux vecteurs sont orthogonaux si leur produit scalaire vaut :",
+            "options": [
+              "$1$",
+              "$0$",
+              "$-1$",
+              "leur norme"
+            ],
+            "answer": 1,
+            "explanation": "$\\vec u\\perp\\vec v\\iff\\vec u\\cdot\\vec v=0$."
+          },
+          {
+            "q": "$\\vec u\\cdot\\vec u$ est égal à :",
+            "options": [
+              "$0$",
+              "$\\|\\vec u\\|$",
+              "$\\|\\vec u\\|^2$",
+              "$2\\|\\vec u\\|$"
+            ],
+            "answer": 2,
+            "explanation": "Le carré scalaire vaut $\\|\\vec u\\|^2$."
+          },
+          {
+            "q": "Pour $\\vec u(2;1)$ et $\\vec v(-1;2)$, $\\vec u\\cdot\\vec v=$",
+            "options": [
+              "$0$",
+              "$4$",
+              "$-4$",
+              "$3$"
+            ],
+            "answer": 0,
+            "explanation": "$2(-1)+1(2)=-2+2=0$ : ils sont orthogonaux."
+          },
+          {
+            "q": "Le théorème d'Al-Kashi donne :",
+            "options": [
+              "$a^2=b^2+c^2$",
+              "$a^2=b^2+c^2-2bc\\cos\\widehat A$",
+              "$a=b+c$",
+              "$a^2=b^2+c^2+2bc$"
+            ],
+            "answer": 1,
+            "explanation": "$a^2=b^2+c^2-2bc\\cos\\widehat A$."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Géométrie analytique : droites et cercles",
+      "video": "https://www.youtube.com/watch?v=q3wHc3Q9Yew",
+      "lesson": "# Géométrie analytique : droites et cercles\n\n## Introduction\n\nLa **géométrie analytique** traduit les objets géométriques (points, droites, cercles) en **équations**. Cela permet de résoudre des problèmes géométriques par le calcul : positions relatives, distances, intersections.\n\n## 1. Le plan repéré\n\nDans un repère $(O; \\vec i, \\vec j)$, un point $M$ est repéré par ses **coordonnées** $(x; y)$. Pour $A(x_A; y_A)$ et $B(x_B; y_B)$ :\n$$\\overrightarrow{AB}(x_B - x_A;\\; y_B - y_A),\\qquad AB = \\sqrt{(x_B - x_A)^2 + (y_B - y_A)^2}.$$\nMilieu de $[AB]$ : $I\\left(\\dfrac{x_A + x_B}{2}; \\dfrac{y_A + y_B}{2}\\right)$.\n\n## 2. Équations de droites\n\n- **Équation cartésienne :** $ax + by + c = 0$ (avec $(a;b) \\ne (0;0)$). Le vecteur $\\vec n(a; b)$ est **normal** à la droite, $\\vec u(-b; a)$ en est un **vecteur directeur**.\n- **Équation réduite :** $y = mx + p$, où $m$ est le **coefficient directeur** (pente) et $p$ l'**ordonnée à l'origine**.\n- Coefficient directeur passant par $A$ et $B$ : $m = \\dfrac{y_B - y_A}{x_B - x_A}$.\n\n**Parallélisme / orthogonalité :**\n- Deux droites sont **parallèles** $\\iff$ même coefficient directeur ($m = m'$) ou vecteurs directeurs colinéaires.\n- Deux droites de pentes $m$ et $m'$ sont **perpendiculaires** $\\iff m\\,m' = -1$.\n\n## 3. Distance d'un point à une droite\n\nLa distance du point $M(x_0; y_0)$ à la droite $D : ax + by + c = 0$ est :\n$$d(M, D) = \\frac{|a x_0 + b y_0 + c|}{\\sqrt{a^2 + b^2}}.$$\n\n## 4. Équation d'un cercle\n\nLe cercle de centre $\\Omega(a; b)$ et de rayon $R$ a pour équation :\n$$(x - a)^2 + (y - b)^2 = R^2.$$\n\nDéveloppée : $x^2 + y^2 - 2ax - 2by + c = 0$. On retrouve centre et rayon par **mise sous forme canonique** (complétion du carré).\n\n**Cercle de diamètre $[AB]$ :** l'ensemble des $M$ tels que $\\overrightarrow{MA}\\cdot\\overrightarrow{MB} = 0$.\n\n## 5. Positions relatives droite / cercle\n\nOn compare la distance $d$ du centre à la droite avec le rayon $R$ :\n- $d > R$ : la droite ne coupe pas le cercle.\n- $d = R$ : la droite est **tangente**.\n- $d < R$ : la droite est **sécante** (deux points).\n\n## Exercices corrigés\n\n### Exercice 1 — Équation d'une droite\nDéterminer l'équation réduite de la droite passant par $A(1; 2)$ et $B(3; 6)$.\n\n**Solution.** $m = \\dfrac{6 - 2}{3 - 1} = 2$. Avec $A$ : $2 = 2(1) + p \\Rightarrow p = 0$. Donc $y = 2x$.\n\n### Exercice 2 — Distance point-droite\nDistance de $A(2; -1)$ à $D : 3x - 4y + 1 = 0$.\n\n**Solution.**\n$$d = \\frac{|3(2) - 4(-1) + 1|}{\\sqrt{9 + 16}} = \\frac{|6 + 4 + 1|}{5} = \\frac{11}{5} = 2{,}2.$$\n\n### Exercice 3 — Équation d'un cercle\nDéterminer le centre et le rayon du cercle $x^2 + y^2 - 4x + 6y - 3 = 0$.\n\n**Solution.** On complète les carrés :\n$$(x^2 - 4x) + (y^2 + 6y) - 3 = 0 \\Rightarrow (x-2)^2 - 4 + (y+3)^2 - 9 - 3 = 0,$$\n$$(x-2)^2 + (y+3)^2 = 16.$$\nCentre $\\Omega(2; -3)$, rayon $R = 4$.\n\n## À retenir\n\n- $AB = \\sqrt{(x_B - x_A)^2 + (y_B - y_A)^2}$ ; milieu = moyenne des coordonnées.\n- Droite : $ax+by+c=0$, normale $(a;b)$ ; perpendiculaires $\\iff mm' = -1$.\n- $d(M,D) = \\dfrac{|ax_0 + by_0 + c|}{\\sqrt{a^2+b^2}}$.\n- Cercle : $(x-a)^2 + (y-b)^2 = R^2$ ; position droite/cercle par comparaison $d$ et $R$.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "La distance entre $A(0;0)$ et $B(3;4)$ vaut :",
+            "options": [
+              "$5$",
+              "$7$",
+              "$\\sqrt{7}$",
+              "$25$"
+            ],
+            "answer": 0,
+            "explanation": "$AB=\\sqrt{9+16}=\\sqrt{25}=5$."
+          },
+          {
+            "q": "Deux droites de pentes $m$ et $m'$ sont perpendiculaires si :",
+            "options": [
+              "$m=m'$",
+              "$mm'=1$",
+              "$mm'=-1$",
+              "$m+m'=0$"
+            ],
+            "answer": 2,
+            "explanation": "Condition d'orthogonalité : $mm'=-1$."
+          },
+          {
+            "q": "Le cercle $(x-1)^2+(y+2)^2=9$ a pour centre et rayon :",
+            "options": [
+              "$(1;-2)$, $R=9$",
+              "$(1;-2)$, $R=3$",
+              "$(-1;2)$, $R=3$",
+              "$(1;2)$, $R=9$"
+            ],
+            "answer": 1,
+            "explanation": "Centre $(1;-2)$, rayon $\\sqrt9=3$."
+          },
+          {
+            "q": "Un vecteur normal à $D:2x-3y+1=0$ est :",
+            "options": [
+              "$(2;-3)$",
+              "$(3;2)$",
+              "$(-3;2)$",
+              "$(1;1)$"
+            ],
+            "answer": 0,
+            "explanation": "Le vecteur normal est $(a;b)=(2;-3)$."
+          },
+          {
+            "q": "Une droite est tangente à un cercle lorsque :",
+            "options": [
+              "$d<R$",
+              "$d=R$",
+              "$d>R$",
+              "$d=0$"
+            ],
+            "answer": 1,
+            "explanation": "Tangence : distance du centre à la droite égale au rayon."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Dénombrement",
+      "video": "https://www.youtube.com/watch?v=ywX0Wm0Vj1c",
+      "lesson": "# Dénombrement\n\n## Introduction\n\nLe **dénombrement** consiste à **compter** le nombre d'éléments d'un ensemble fini sans les énumérer un à un. C'est la base du calcul des **probabilités**. On distingue selon que l'ordre compte ou non, et selon qu'il y a répétition ou non.\n\n## 1. Cardinal et opérations\n\nLe **cardinal** d'un ensemble fini $E$, noté $\\text{card}(E)$ ou $|E|$, est son nombre d'éléments.\n\n- **Réunion :** $\\text{card}(A \\cup B) = \\text{card}(A) + \\text{card}(B) - \\text{card}(A \\cap B)$.\n- **Produit cartésien :** $\\text{card}(A \\times B) = \\text{card}(A) \\times \\text{card}(B)$.\n\n## 2. Principe multiplicatif\n\nSi un choix se fait en $k$ étapes successives, avec $n_1$ possibilités pour la 1ʳᵉ, $n_2$ pour la 2ᵉ, …, le **nombre total** de résultats est :\n$$n_1 \\times n_2 \\times \\cdots \\times n_k.$$\n\n## 3. Factorielle\n\nPour un entier $n \\ge 1$ : $n! = n \\times (n-1) \\times \\cdots \\times 2 \\times 1$, et par convention $0! = 1$.\n\n## 4. Permutations, arrangements, combinaisons\n\nOn choisit $p$ éléments parmi $n$ (avec $0 \\le p \\le n$) :\n\n- **Permutations** de $n$ éléments (tout l'ensemble, ordre compte) : $n!$.\n- **Arrangements** $A_n^p$ ($p$ éléments **ordonnés**, sans répétition) :\n$$A_n^p = \\frac{n!}{(n-p)!} = n(n-1)\\cdots(n-p+1).$$\n- **Combinaisons** $C_n^p$ ($p$ éléments **non ordonnés**, sans répétition) :\n$$C_n^p = \\binom{n}{p} = \\frac{n!}{p!\\,(n-p)!} = \\frac{A_n^p}{p!}.$$\n\n**Règle de décision :** l'ordre compte $\\to$ arrangement ; l'ordre ne compte pas $\\to$ combinaison.\n\n## 5. Propriétés des combinaisons\n\n$$C_n^0 = C_n^n = 1,\\quad C_n^1 = n,\\quad C_n^p = C_n^{\\,n-p},$$\n$$C_n^p = C_{n-1}^{p-1} + C_{n-1}^{p} \\quad \\text{(triangle de Pascal)}.$$\n\n**Formule du binôme de Newton :**\n$$(a + b)^n = \\sum_{p=0}^{n} C_n^p\\, a^{\\,p} b^{\\,n-p}.$$\n\n## Exercices corrigés\n\n### Exercice 1 — Principe multiplicatif\nCombien de plaques peut-on former avec $2$ lettres (parmi $26$) suivies de $3$ chiffres (parmi $10$) ?\n\n**Solution.** $26 \\times 26 \\times 10 \\times 10 \\times 10 = 676 \\times 1000 = 676\\,000$ plaques.\n\n### Exercice 2 — Combinaison\nDans une classe de $20$ élèves, on choisit un comité de $3$ élèves. Combien de comités possibles ?\n\n**Solution.** L'ordre ne compte pas (un comité) :\n$$C_{20}^3 = \\frac{20!}{3!\\,17!} = \\frac{20 \\times 19 \\times 18}{6} = \\frac{6840}{6} = 1140.$$\n\n### Exercice 3 — Arrangement\nDe combien de façons peut-on attribuer les médailles or, argent, bronze à $3$ athlètes parmi $8$ ?\n\n**Solution.** L'ordre compte (les médailles sont distinctes) :\n$$A_8^3 = 8 \\times 7 \\times 6 = 336.$$\n\n## À retenir\n\n- **Principe multiplicatif** : multiplier les possibilités étape par étape.\n- **Arrangement** $A_n^p = \\dfrac{n!}{(n-p)!}$ (ordre compte) ; **Combinaison** $C_n^p = \\dfrac{n!}{p!(n-p)!}$ (ordre ne compte pas).\n- $C_n^p = C_n^{n-p}$ ; triangle de Pascal : $C_n^p = C_{n-1}^{p-1} + C_{n-1}^p$.\n- Binôme : $(a+b)^n = \\sum_p C_n^p a^p b^{n-p}$.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "$C_n^p$ compte des choix de $p$ éléments parmi $n$ :",
+            "options": [
+              "ordonnés",
+              "non ordonnés",
+              "avec répétition obligatoire",
+              "de cardinal $n$"
+            ],
+            "answer": 1,
+            "explanation": "Les combinaisons ne tiennent pas compte de l'ordre."
+          },
+          {
+            "q": "Que vaut $A_5^2$ ?",
+            "options": [
+              "$10$",
+              "$20$",
+              "$25$",
+              "$5$"
+            ],
+            "answer": 1,
+            "explanation": "$A_5^2=5\\times4=20$."
+          },
+          {
+            "q": "Que vaut $C_6^2$ ?",
+            "options": [
+              "$30$",
+              "$12$",
+              "$15$",
+              "$36$"
+            ],
+            "answer": 2,
+            "explanation": "$C_6^2=\\frac{6\\times5}{2}=15$."
+          },
+          {
+            "q": "$0!$ est égal à :",
+            "options": [
+              "$0$",
+              "$1$",
+              "indéfini",
+              "$\\infty$"
+            ],
+            "answer": 1,
+            "explanation": "Par convention $0!=1$."
+          },
+          {
+            "q": "On a toujours $C_n^p=$",
+            "options": [
+              "$C_n^{n-p}$",
+              "$C_n^{p+1}$",
+              "$A_n^p$",
+              "$n^p$"
+            ],
+            "answer": 0,
+            "explanation": "Propriété de symétrie : $C_n^p=C_n^{n-p}$."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Statistiques",
+      "video": "https://www.youtube.com/watch?v=Y0Q5y8wH3kE",
+      "lesson": "# Statistiques\n\n## Introduction\n\nLa **statistique descriptive** organise et résume des données issues d'observations. On calcule des **paramètres de position** (moyenne, médiane, mode) et de **dispersion** (variance, écart-type) pour décrire une série de manière synthétique.\n\n## 1. Vocabulaire\n\n- **Population** : ensemble étudié ; ses éléments sont les **individus**.\n- **Caractère (variable)** : ce qu'on observe ; il peut être **qualitatif** ou **quantitatif** (discret ou continu).\n- **Effectif** $n_i$ : nombre d'individus prenant la valeur $x_i$ ; **effectif total** $N = \\sum n_i$.\n- **Fréquence** : $f_i = \\dfrac{n_i}{N}$ (souvent en %). Les **effectifs cumulés** servent à la médiane.\n\n## 2. Paramètres de position\n\n- **Moyenne** : $\\bar{x} = \\dfrac{1}{N}\\sum_i n_i x_i = \\sum_i f_i x_i$.\n- **Mode** : valeur (ou classe) de plus grand effectif.\n- **Médiane** $M_e$ : valeur qui partage la série **ordonnée** en deux moitiés d'effectifs égaux. On la lit grâce aux **effectifs cumulés croissants** (premier dépassement de $N/2$).\n\n## 3. Paramètres de dispersion\n\n- **Étendue** : $x_{\\max} - x_{\\min}$.\n- **Variance** :\n$$V = \\frac{1}{N}\\sum_i n_i (x_i - \\bar{x})^2 = \\frac{1}{N}\\sum_i n_i x_i^2 - \\bar{x}^2 \\quad\\text{(formule de König)}.$$\n- **Écart-type** : $\\sigma = \\sqrt{V}$. Il mesure la **dispersion** autour de la moyenne (même unité que les données).\n\n## 4. Données en classes\n\nPour des classes $[a_i; b_i[$, on utilise le **centre de classe** $c_i = \\dfrac{a_i + b_i}{2}$ comme valeur représentative. Médiane par **interpolation linéaire** dans la classe médiane.\n\n## 5. Quartiles (introduction)\n\n$Q_1$ (1ᵉʳ quartile) : un quart des données en dessous ; $Q_3$ : trois quarts en dessous. **Écart interquartile** : $Q_3 - Q_1$.\n\n## Exercices corrigés\n\n### Exercice 1 — Moyenne et écart-type\nNotes : $8, 12, 14, 10, 16$ (effectif $1$ chacune). Calculer $\\bar x$ et $\\sigma$.\n\n**Solution.** $\\bar x = \\dfrac{8 + 12 + 14 + 10 + 16}{5} = \\dfrac{60}{5} = 12$.\n$$V = \\frac{8^2 + 12^2 + 14^2 + 10^2 + 16^2}{5} - 12^2 = \\frac{64 + 144 + 196 + 100 + 256}{5} - 144 = \\frac{760}{5} - 144 = 152 - 144 = 8.$$\n$\\sigma = \\sqrt8 \\approx 2{,}83$.\n\n### Exercice 2 — Moyenne pondérée\n| $x_i$ | $2$ | $5$ | $8$ |\n|---|---|---|---|\n| $n_i$ | $3$ | $4$ | $3$ |\n\n**Solution.** $N = 10$.\n$$\\bar x = \\frac{3\\times2 + 4\\times5 + 3\\times8}{10} = \\frac{6 + 20 + 24}{10} = \\frac{50}{10} = 5.$$\n\n### Exercice 3 — Médiane\nSérie ordonnée : $3, 5, 7, 9, 11, 13$. Déterminer la médiane.\n\n**Solution.** $N = 6$ (pair) : la médiane est la moyenne des deux valeurs centrales (3ᵉ et 4ᵉ) :\n$$M_e = \\frac{7 + 9}{2} = 8.$$\n\n## À retenir\n\n- $\\bar x = \\dfrac{1}{N}\\sum n_i x_i$ ; **mode** = effectif max ; **médiane** = milieu de la série ordonnée.\n- Variance (König) : $V = \\dfrac{1}{N}\\sum n_i x_i^2 - \\bar x^2$ ; **écart-type** $\\sigma = \\sqrt V$.\n- Données en classes : utiliser le **centre de classe**.\n- L'écart-type mesure la dispersion autour de la moyenne.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "La moyenne de $4, 6, 8, 10$ vaut :",
+            "options": [
+              "$6$",
+              "$7$",
+              "$8$",
+              "$28$"
+            ],
+            "answer": 1,
+            "explanation": "$(4+6+8+10)/4=28/4=7$."
+          },
+          {
+            "q": "L'écart-type est :",
+            "options": [
+              "la variance au carré",
+              "la racine de la variance",
+              "la moyenne des écarts",
+              "l'étendue"
+            ],
+            "answer": 1,
+            "explanation": "$\\sigma=\\sqrt V$."
+          },
+          {
+            "q": "Le mode d'une série est :",
+            "options": [
+              "la plus grande valeur",
+              "la valeur de plus grand effectif",
+              "la moyenne",
+              "la médiane"
+            ],
+            "answer": 1,
+            "explanation": "Le mode est la valeur la plus fréquente."
+          },
+          {
+            "q": "La médiane de $2, 4, 6, 8, 10$ est :",
+            "options": [
+              "$5$",
+              "$6$",
+              "$4$",
+              "$30$"
+            ],
+            "answer": 1,
+            "explanation": "Série de 5 valeurs ordonnées : la 3e est $6$."
+          },
+          {
+            "q": "La formule de König donne la variance :",
+            "options": [
+              "$\\bar x^2-\\frac1N\\sum n_i x_i^2$",
+              "$\\frac1N\\sum n_i x_i^2-\\bar x^2$",
+              "$\\frac1N\\sum n_i x_i$",
+              "$\\sqrt{\\bar x}$"
+            ],
+            "answer": 1,
+            "explanation": "$V=\\frac1N\\sum n_i x_i^2-\\bar x^2$."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Probabilités (introduction)",
+      "video": "https://www.youtube.com/watch?v=Vbf9Xe5pYqA",
+      "lesson": "# Probabilités (introduction)\n\n## Introduction\n\nLes **probabilités** quantifient le hasard : à quel point un événement est-il susceptible de se produire ? En Première, on s'appuie sur le **dénombrement** pour calculer des probabilités dans des situations d'**équiprobabilité** (loi de Laplace).\n\n## 1. Vocabulaire\n\n- **Expérience aléatoire** : expérience dont on ne peut prévoir le résultat (lancer un dé).\n- **Univers** $\\Omega$ : ensemble de tous les résultats possibles (**issues**).\n- **Événement** : une partie de $\\Omega$. Événement **élémentaire** : un singleton.\n- **Événement certain** : $\\Omega$ ; **événement impossible** : $\\varnothing$.\n\n## 2. Probabilité d'un événement\n\nUne **probabilité** $P$ associe à chaque événement $A$ un nombre $P(A) \\in [0; 1]$ tel que :\n$$P(\\Omega) = 1, \\qquad P(\\varnothing) = 0.$$\nPour des événements **incompatibles** ($A \\cap B = \\varnothing$) : $P(A \\cup B) = P(A) + P(B)$.\n\n## 3. Loi de Laplace (équiprobabilité)\n\nSi toutes les issues sont **équiprobables** :\n$$P(A) = \\frac{\\text{nombre de cas favorables}}{\\text{nombre de cas possibles}} = \\frac{\\text{card}(A)}{\\text{card}(\\Omega)}.$$\n\n## 4. Opérations sur les événements\n\n- **Événement contraire** $\\bar A$ : $P(\\bar A) = 1 - P(A)$.\n- **Réunion (au moins l'un)** : $P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$.\n- **Intersection (les deux)** : $A \\cap B$ correspond à « $A$ **et** $B$ ».\n\n## 5. Méthode de résolution\n\n1. Décrire l'univers $\\Omega$ et son cardinal (souvent par **dénombrement** : combinaisons, arrangements).\n2. Dénombrer les cas favorables à $A$.\n3. Appliquer la loi de Laplace.\n\n## Exercices corrigés\n\n### Exercice 1 — Lancer d'un dé\nOn lance un dé équilibré à $6$ faces. Probabilité d'obtenir un nombre pair ?\n\n**Solution.** $\\Omega = \\{1,2,3,4,5,6\\}$, $\\text{card}(\\Omega) = 6$. Événement $A$ = « pair » $= \\{2,4,6\\}$, $\\text{card}(A) = 3$.\n$$P(A) = \\frac{3}{6} = \\frac{1}{2}.$$\n\n### Exercice 2 — Tirage de cartes (combinaisons)\nDans un jeu de $32$ cartes, on tire **simultanément** $2$ cartes. Probabilité d'obtenir $2$ rois ?\n\n**Solution.** $\\text{card}(\\Omega) = C_{32}^2 = \\dfrac{32\\times31}{2} = 496$. Cas favorables (2 rois parmi 4) : $C_4^2 = 6$.\n$$P = \\frac{6}{496} = \\frac{3}{248} \\approx 0{,}012.$$\n\n### Exercice 3 — Événement contraire\nUne urne contient $5$ boules rouges et $3$ noires. On tire $1$ boule. Probabilité de **ne pas** tirer une rouge ?\n\n**Solution.** $P(\\text{rouge}) = \\dfrac{5}{8}$, donc par l'événement contraire :\n$$P(\\overline{\\text{rouge}}) = 1 - \\frac{5}{8} = \\frac{3}{8}.$$\n\n## À retenir\n\n- $P(A) \\in [0;1]$, $P(\\Omega) = 1$, $P(\\varnothing) = 0$.\n- **Laplace** (équiprobabilité) : $P(A) = \\dfrac{\\text{card}(A)}{\\text{card}(\\Omega)}$.\n- $P(\\bar A) = 1 - P(A)$ ; $P(A \\cup B) = P(A) + P(B) - P(A\\cap B)$.\n- Le **dénombrement** fournit les cardinaux nécessaires.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Toute probabilité $P(A)$ appartient à :",
+            "options": [
+              "$[0;1]$",
+              "$[-1;1]$",
+              "$\\mathbb{R}$",
+              "$[0;100]$"
+            ],
+            "answer": 0,
+            "explanation": "Une probabilité est comprise entre 0 et 1."
+          },
+          {
+            "q": "En situation d'équiprobabilité, $P(A)=$",
+            "options": [
+              "$\\frac{\\text{card}(A)}{\\text{card}(\\Omega)}$",
+              "$\\text{card}(A)$",
+              "$1-\\text{card}(A)$",
+              "$\\frac{1}{\\text{card}(A)}$"
+            ],
+            "answer": 0,
+            "explanation": "Loi de Laplace : cas favorables / cas possibles."
+          },
+          {
+            "q": "$P(\\bar A)$ est égal à :",
+            "options": [
+              "$P(A)$",
+              "$1-P(A)$",
+              "$1+P(A)$",
+              "$0$"
+            ],
+            "answer": 1,
+            "explanation": "Probabilité de l'événement contraire : $1-P(A)$."
+          },
+          {
+            "q": "Probabilité d'obtenir un $6$ avec un dé équilibré :",
+            "options": [
+              "$\\frac16$",
+              "$\\frac12$",
+              "$\\frac13$",
+              "$1$"
+            ],
+            "answer": 0,
+            "explanation": "Une face favorable sur six : $\\frac16$."
+          },
+          {
+            "q": "Pour deux événements incompatibles, $P(A\\cup B)=$",
+            "options": [
+              "$P(A)P(B)$",
+              "$P(A)+P(B)$",
+              "$P(A)-P(B)$",
+              "$1$"
+            ],
+            "answer": 1,
+            "explanation": "Si $A\\cap B=\\varnothing$, $P(A\\cup B)=P(A)+P(B)$."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Transformations du plan",
+      "video": "https://www.youtube.com/watch?v=2sQ9c0a3T3o",
+      "lesson": "# Transformations du plan\n\n## Introduction\n\nUne **transformation du plan** associe à chaque point $M$ un point image $M'$ selon une règle géométrique. Les transformations usuelles (translation, symétries, rotation, homothétie) conservent ou modifient distances et angles, et structurent la géométrie.\n\n## 1. Translation\n\nLa **translation de vecteur** $\\vec u$ envoie $M$ sur $M'$ tel que $\\overrightarrow{MM'} = \\vec u$.\n\n**En coordonnées** : si $\\vec u(a; b)$, alors $M'(x + a;\\; y + b)$.\n\nElle **conserve** les distances, les angles, le parallélisme (c'est une **isométrie**).\n\n## 2. Symétrie centrale\n\nLa **symétrie de centre** $\\Omega$ envoie $M$ sur $M'$ tel que $\\Omega$ est le **milieu** de $[MM']$, c'est-à-dire $\\overrightarrow{\\Omega M'} = -\\overrightarrow{\\Omega M}$.\n\n**En coordonnées** (centre $\\Omega(a;b)$) : $M'(2a - x;\\; 2b - y)$. C'est l'**homothétie de rapport $-1$**.\n\n## 3. Symétrie axiale (orthogonale)\n\nLa **symétrie d'axe** $D$ envoie $M$ sur son symétrique $M'$ par rapport à la droite $D$ (la droite $D$ est la **médiatrice** de $[MM']$). Cas usuels :\n- Axe $Ox$ : $M(x;y) \\mapsto M'(x; -y)$.\n- Axe $Oy$ : $M(x;y) \\mapsto M'(-x; y)$.\n\n## 4. Rotation\n\nLa **rotation de centre $\\Omega$ et d'angle $\\theta$** envoie $M$ sur $M'$ tel que $\\Omega M' = \\Omega M$ et $(\\widehat{\\overrightarrow{\\Omega M}, \\overrightarrow{\\Omega M'}}) = \\theta$. C'est une **isométrie** qui conserve les distances et les angles.\n\n## 5. Homothétie\n\nL'**homothétie de centre $\\Omega$ et de rapport $k$** ($k \\ne 0$) envoie $M$ sur $M'$ tel que :\n$$\\overrightarrow{\\Omega M'} = k\\,\\overrightarrow{\\Omega M}.$$\n**En coordonnées** (centre $\\Omega(a;b)$) : $M'\\big(a + k(x - a);\\; b + k(y - b)\\big)$.\n\nUne homothétie **multiplie les distances par $|k|$** et conserve les angles (les figures images sont **semblables**). Si $k = -1$, c'est la symétrie centrale.\n\n## 6. Propriétés générales\n\n| Transformation | Conserve les distances ? | Conserve les angles ? |\n|---|---|---|\n| Translation | oui | oui |\n| Symétrie centrale/axiale | oui | oui |\n| Rotation | oui | oui |\n| Homothétie ($k\\ne\\pm1$) | non ($\\times|k|$) | oui |\n\nToutes conservent l'**alignement**, le **parallélisme** et le **barycentre**.\n\n## Exercices corrigés\n\n### Exercice 1 — Translation\nImage de $A(2; -3)$ par la translation de vecteur $\\vec u(4; 1)$.\n\n**Solution.** $A'(2 + 4;\\; -3 + 1) = A'(6; -2)$.\n\n### Exercice 2 — Symétrie centrale\nImage de $B(5; 2)$ par la symétrie de centre $\\Omega(1; 1)$.\n\n**Solution.** $B'(2\\times1 - 5;\\; 2\\times1 - 2) = B'(-3; 0)$.\n\n### Exercice 3 — Homothétie\n$\\Omega(0; 0)$, rapport $k = 3$. Image de $C(2; -1)$.\n\n**Solution.** $\\overrightarrow{\\Omega C'} = 3\\overrightarrow{\\Omega C}$, donc $C'(3\\times2;\\; 3\\times(-1)) = C'(6; -3)$. La distance $\\Omega C$ est multipliée par $3$.\n\n## À retenir\n\n- **Translation** : $M'(x+a; y+b)$ ; isométrie.\n- **Symétrie centrale** $\\Omega$ : $M'(2a - x; 2b - y)$ ($=$ homothétie de rapport $-1$).\n- **Homothétie** de rapport $k$ : $\\overrightarrow{\\Omega M'} = k\\overrightarrow{\\Omega M}$, distances $\\times|k|$.\n- Toutes ces transformations conservent **alignement**, **parallélisme** et **angles**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "La translation de vecteur $\\vec u(a;b)$ envoie $M(x;y)$ sur :",
+            "options": [
+              "$(x+a;y+b)$",
+              "$(ax;by)$",
+              "$(x-a;y-b)$",
+              "$(a;b)$"
+            ],
+            "answer": 0,
+            "explanation": "On ajoute les coordonnées du vecteur : $(x+a;y+b)$."
+          },
+          {
+            "q": "La symétrie centrale est une homothétie de rapport :",
+            "options": [
+              "$1$",
+              "$-1$",
+              "$2$",
+              "$0$"
+            ],
+            "answer": 1,
+            "explanation": "La symétrie centrale correspond à $k=-1$."
+          },
+          {
+            "q": "Une homothétie de rapport $k$ multiplie les distances par :",
+            "options": [
+              "$k$",
+              "$|k|$",
+              "$k^2$",
+              "$1$"
+            ],
+            "answer": 1,
+            "explanation": "Les distances sont multipliées par $|k|$."
+          },
+          {
+            "q": "Par la symétrie d'axe $Ox$, $M(x;y)$ devient :",
+            "options": [
+              "$(-x;y)$",
+              "$(x;-y)$",
+              "$(-x;-y)$",
+              "$(y;x)$"
+            ],
+            "answer": 1,
+            "explanation": "La symétrie d'axe $Ox$ change le signe de l'ordonnée."
+          },
+          {
+            "q": "Quelle transformation n'est PAS une isométrie (en général) ?",
+            "options": [
+              "translation",
+              "rotation",
+              "homothétie de rapport $2$",
+              "symétrie axiale"
+            ],
+            "answer": 2,
+            "explanation": "Une homothétie de rapport $\\ne\\pm1$ modifie les distances."
+          }
+        ]
+      }
+    }
+  ]
+}

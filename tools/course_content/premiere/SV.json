@@ -1,0 +1,838 @@
+{
+  "code": "SV",
+  "level": "Première",
+  "chapters": [
+    {
+      "title": "La cellule : structure et ultrastructure",
+      "video": "https://www.youtube.com/watch?v=Hmwvj9X4GNY",
+      "lesson": "# La cellule : structure et ultrastructure\n\n## Introduction\n\nLa **cellule** est l'unité **structurale** et **fonctionnelle** de tous les êtres vivants : c'est la plus petite portion de matière vivante capable de vivre de façon autonome. Découverte par **Robert Hooke** (1665) puis précisée par la **théorie cellulaire** (Schleiden, Schwann, Virchow au XIXᵉ siècle), elle constitue le fondement de la biologie. La théorie cellulaire énonce trois principes : (1) tout être vivant est formé d'une ou plusieurs cellules ; (2) la cellule est l'unité de base du vivant ; (3) toute cellule provient d'une cellule préexistante (*omnis cellula e cellula*).\n\nL'étude de l'**ultrastructure** (organisation fine révélée par le microscope électronique) distingue deux grands types cellulaires : les cellules **procaryotes** (sans noyau vrai) et les cellules **eucaryotes** (à noyau délimité par une enveloppe).\n\n## I. Les outils d'étude de la cellule\n\n- **Microscope optique (photonique)** : grossissement jusqu'à ×1000, montre la **structure** (membrane, cytoplasme, noyau).\n- **Microscope électronique** (transmission MET, balayage MEB) : grossissement jusqu'à ×500 000, révèle l'**ultrastructure** (organites, membranes).\n- **Centrifugation différentielle** : sépare les organites selon leur densité après broyage cellulaire (technique de **fractionnement cellulaire**).\n\nLe **pouvoir de résolution** (plus petite distance entre deux points distincts) est d'environ 0,2 µm pour le microscope optique et 0,2 nm pour le microscope électronique.\n\n## II. La cellule eucaryote\n\nUne cellule eucaryote (cellule animale ou végétale) comprend trois ensembles : la **membrane plasmique**, le **cytoplasme** avec ses organites, et le **noyau**.\n\n### 1. La membrane plasmique\nFine limite (**7 à 8 nm**) qui sépare le milieu intracellulaire du milieu extérieur. Constituée d'une **double couche de phospholipides** dans laquelle s'insèrent des protéines (modèle de la **mosaïque fluide**, Singer et Nicolson, 1972).\n\n### 2. Le cytoplasme et les organites\n- **Hyaloplasme (cytosol)** : milieu liquidien où baignent les organites.\n- **Réticulum endoplasmique** : réseau de saccules ; le **REG** (granuleux, porteur de ribosomes) synthétise les protéines, le **REL** (lisse) intervient dans la synthèse des lipides.\n- **Ribosomes** : grains d'ARN et protéines, lieu de la **synthèse des protéines**.\n- **Appareil de Golgi** (dictyosomes) : empilement de saccules, assure la **maturation, le tri et l'exportation** des molécules.\n- **Mitochondries** : organites limités par deux membranes (la membrane interne se replie en **crêtes**) ; siège de la **respiration cellulaire** → production d'**ATP**. Ce sont les « centrales énergétiques ».\n- **Lysosomes** : vésicules riches en enzymes (digestion intracellulaire).\n- **Vacuoles** : volumineuses dans la cellule végétale (réserve d'eau, turgescence).\n\n### 3. Le noyau\nDélimité par une **enveloppe nucléaire** (double membrane percée de **pores**), il contient le **nucléoplasme**, un ou plusieurs **nucléoles** (fabrication des ribosomes) et la **chromatine** (ADN + protéines), support de l'**information génétique**.\n\n> **Figure** : schéma d'une cellule eucaryote animale légendée — membrane, cytoplasme, noyau, mitochondrie, RE, Golgi, ribosomes, lysosome.\n\n## III. Cellule animale et cellule végétale\n\n| Caractère | Cellule animale | Cellule végétale |\n|---|---|---|\n| Paroi de cellulose | absente | **présente** |\n| Chloroplastes | absents | **présents** (photosynthèse) |\n| Grande vacuole | rare/petite | **présente** |\n| Centrioles | présents | absents (en général) |\n| Forme | variable, arrondie | géométrique, fixe |\n\nLes **chloroplastes** (à double membrane, contenant les **thylakoïdes** et la **chlorophylle**) réalisent la **photosynthèse**. La **paroi pecto-cellulosique** assure rigidité et protection.\n\n## IV. La cellule procaryote\n\nReprésentée par les **bactéries**. Caractéristiques : taille réduite (1 à 10 µm), **absence de noyau vrai** (ADN libre dans le cytoplasme = **nucléoïde**), absence d'organites membranaires (pas de mitochondries, ni RE, ni Golgi), présence d'une **paroi** et parfois d'une capsule et de flagelles. Les ribosomes y sont présents mais plus petits.\n\n## V. Notion de cellule : unité et diversité\n\nMalgré la diversité des formes (cellule nerveuse étoilée, globule rouge biconcave, cellule musculaire allongée), toutes les cellules partagent un **plan d'organisation commun** : membrane + cytoplasme + matériel génétique. La **spécialisation** (différenciation) explique la diversité des fonctions.\n\n## Exercices corrigés\n\n### Exercice 1 (type Probatoire)\nOn réalise le fractionnement d'un broyat de cellules hépatiques par centrifugation. On obtient trois culots successifs : A (noyaux), B (mitochondries), C (ribosomes).\n**Question** : Classer A, B et C par ordre de densité décroissante et justifier.\n**Correction** : Lors d'une centrifugation différentielle, les organites les plus **denses et volumineux** sédimentent en premier (vitesse faible), les plus petits en dernier (vitesse élevée). Ordre de densité décroissante : **A (noyaux) > B (mitochondries) > C (ribosomes)**. Les noyaux, plus volumineux, forment le premier culot ; les ribosomes, minuscules, nécessitent une ultracentrifugation.\n\n### Exercice 2 (type Probatoire)\nUne observation au microscope électronique révèle, dans une cellule X, l'absence d'enveloppe nucléaire et l'absence de mitochondries ; l'ADN est libre dans le cytoplasme.\n**Question** : 1) De quel type de cellule s'agit-il ? 2) Donner deux autres caractères de ce type. 3) Comment cette cellule produit-elle son énergie ?\n**Correction** : 1) Il s'agit d'une cellule **procaryote** (bactérie). 2) Présence d'une **paroi**, taille réduite (1–10 µm), **nucléoïde** (ADN circulaire libre), ribosomes plus petits. 3) En l'absence de mitochondries, les réactions énergétiques (respiration) se déroulent au niveau de la **membrane plasmique**.\n\n### Exercice 3\nCitez l'organite responsable et la fonction associée pour : (a) production d'ATP ; (b) synthèse des protéines ; (c) photosynthèse ; (d) digestion intracellulaire.\n**Correction** : (a) **mitochondrie** → respiration/ATP ; (b) **ribosome** → synthèse des protéines ; (c) **chloroplaste** → photosynthèse ; (d) **lysosome** → digestion intracellulaire.\n\n## À retenir\n\n- La cellule est l'**unité structurale et fonctionnelle** du vivant (théorie cellulaire).\n- **Eucaryote** = noyau vrai + organites membranaires ; **procaryote** = pas de noyau, pas d'organites.\n- La cellule **végétale** se distingue par la **paroi de cellulose**, les **chloroplastes** et une grande **vacuole**.\n- Mitochondrie = ATP ; ribosome = protéines ; Golgi = tri/export ; lysosome = digestion ; noyau = information génétique.\n- Microscope optique → structure ; microscope électronique → **ultrastructure**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Quel organite est appelé « centrale énergétique » de la cellule ?",
+            "options": [
+              "Le ribosome",
+              "La mitochondrie",
+              "L'appareil de Golgi",
+              "Le lysosome"
+            ],
+            "answer": 1,
+            "explanation": "La mitochondrie est le siège de la respiration cellulaire et produit l'ATP."
+          },
+          {
+            "q": "Quelle structure est présente dans la cellule végétale mais absente de la cellule animale ?",
+            "options": [
+              "La membrane plasmique",
+              "Le noyau",
+              "La paroi de cellulose",
+              "Les ribosomes"
+            ],
+            "answer": 2,
+            "explanation": "La paroi pecto-cellulosique est caractéristique de la cellule végétale."
+          },
+          {
+            "q": "Une cellule procaryote se caractérise par :",
+            "options": [
+              "Un noyau bien délimité",
+              "L'absence de noyau vrai (nucléoïde)",
+              "De nombreuses mitochondries",
+              "Un appareil de Golgi développé"
+            ],
+            "answer": 1,
+            "explanation": "Les procaryotes (bactéries) n'ont pas de noyau vrai ; l'ADN est libre dans le cytoplasme."
+          },
+          {
+            "q": "L'ultrastructure de la cellule est révélée par :",
+            "options": [
+              "Le microscope optique",
+              "L'œil nu",
+              "Le microscope électronique",
+              "La loupe binoculaire"
+            ],
+            "answer": 2,
+            "explanation": "Seul le microscope électronique, à fort pouvoir de résolution, montre l'ultrastructure."
+          },
+          {
+            "q": "La synthèse des protéines a lieu au niveau :",
+            "options": [
+              "Des ribosomes",
+              "Des vacuoles",
+              "Du nucléole uniquement",
+              "Des lysosomes"
+            ],
+            "answer": 0,
+            "explanation": "Les ribosomes (libres ou portés par le REG) assurent la synthèse des protéines."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La membrane cellulaire et les échanges",
+      "video": "https://www.youtube.com/watch?v=qBptpHbzx-A",
+      "lesson": "# La membrane cellulaire et les échanges\n\n## Introduction\n\nLa **membrane plasmique** délimite la cellule et contrôle les échanges entre le milieu intracellulaire et le milieu extracellulaire. Loin d'être une simple barrière passive, elle est **sélectivement perméable** : elle laisse passer certaines substances et en bloque d'autres. Sa structure fine et ses propriétés expliquent des phénomènes essentiels comme l'**osmose**, la **turgescence** des cellules végétales ou l'**hémolyse** des globules rouges.\n\n## I. Structure de la membrane : le modèle de la mosaïque fluide\n\nProposé par **Singer et Nicolson (1972)**, ce modèle décrit la membrane comme :\n- une **double couche de phospholipides** (bicouche), de 7 à 8 nm d'épaisseur ; chaque phospholipide possède une **tête hydrophile** (tournée vers l'eau) et une **queue hydrophobe** (tournée vers l'intérieur) ;\n- des **protéines** insérées (intrinsèques/transmembranaires) ou posées (extrinsèques) qui jouent le rôle de **transporteurs**, de **canaux**, de **récepteurs** ou d'enzymes ;\n- des **glucides** fixés sur les lipides et protéines (glycolipides, glycoprotéines) formant le **glycocalyx**, support de la reconnaissance cellulaire ;\n- du **cholestérol** (cellules animales) régulant la fluidité.\n\nL'ensemble est **fluide** : les molécules se déplacent latéralement, d'où le terme « mosaïque fluide ».\n\n> **Figure** : bicouche phospholipidique avec têtes hydrophiles à l'extérieur, queues hydrophobes au centre, protéines transmembranaires et glycocalyx.\n\n## II. Les échanges à travers la membrane\n\n### 1. Le transport passif (sans dépense d'énergie)\nSe fait **dans le sens du gradient** (du plus concentré vers le moins concentré).\n- **Diffusion simple** : passage direct de petites molécules (O₂, CO₂) à travers la bicouche.\n- **Diffusion facilitée** : passage par des **protéines canaux** ou **transporteurs** (ex. glucose).\n- **Osmose** : diffusion de l'**eau** à travers une membrane semi-perméable, du milieu **hypotonique** (peu concentré en solutés) vers le milieu **hypertonique** (très concentré).\n\n### 2. Le transport actif (avec dépense d'énergie, ATP)\nSe fait **contre le gradient** de concentration, grâce à des protéines appelées **pompes** (ex. **pompe Na⁺/K⁺** qui maintient les concentrations ioniques). Il nécessite de l'**ATP** fourni par les mitochondries.\n\n### 3. Les transports en masse\n- **Endocytose** : la cellule englobe des substances dans une vésicule (phagocytose pour les solides, pinocytose pour les liquides).\n- **Exocytose** : rejet de substances par fusion d'une vésicule avec la membrane (sécrétions).\n\n## III. Phénomènes osmotiques et conséquences\n\nSelon le milieu, une cellule réagit différemment :\n\n| Milieu extérieur | Cellule animale (globule rouge) | Cellule végétale |\n|---|---|---|\n| **Hypotonique** (peu concentré) | entrée d'eau → gonflement → **hémolyse** (éclatement) | entrée d'eau → **turgescence** (la paroi empêche l'éclatement) |\n| **Isotonique** | inchangée | inchangée |\n| **Hypertonique** (très concentré) | sortie d'eau → **crénelure** | sortie d'eau → **plasmolyse** (décollement du cytoplasme) |\n\nLa **paroi** végétale, rigide, protège la cellule de l'éclatement et permet la **pression de turgescence** (tenue des tissus).\n\n## IV. Expérience de la plasmolyse / turgescence\n\nOn observe des cellules d'épiderme d'oignon (riches en pigments).\n- Dans l'eau distillée (hypotonique) : cellules **turgescentes**, cytoplasme plaqué contre la paroi.\n- Dans une solution salée concentrée (hypertonique) : le cytoplasme se rétracte = **plasmolyse**.\n- Retour dans l'eau : **déplasmolyse** (réversible si la cellule n'est pas morte).\nCette expérience prouve que la membrane est **semi-perméable** et que l'eau se déplace par **osmose**.\n\n## Exercices corrigés\n\n### Exercice 1 (type Probatoire)\nOn place des globules rouges humains successivement dans : une solution A à 9 g/L de NaCl (isotonique), une solution B d'eau distillée, une solution C salée à 30 g/L.\n**Question** : Décrire l'état des globules rouges dans chaque solution et expliquer.\n**Correction** : Dans **A (isotonique)** : pas de mouvement net d'eau, globules **intacts**. Dans **B (hypotonique)** : l'eau entre par osmose, les globules gonflent et éclatent = **hémolyse**. Dans **C (hypertonique)** : l'eau sort, les globules se rétractent = **crénelure**. Ces phénomènes illustrent l'osmose à travers la membrane semi-perméable.\n\n### Exercice 2 (type Probatoire)\nLa pompe Na⁺/K⁺ expulse 3 Na⁺ et fait entrer 2 K⁺ contre leur gradient.\n**Question** : 1) De quel type de transport s'agit-il ? 2) Quelle molécule fournit l'énergie ? 3) Quel organite est indispensable au fonctionnement de cette pompe ?\n**Correction** : 1) Un **transport actif** (mouvement contre le gradient de concentration). 2) L'**ATP** fournit l'énergie. 3) La **mitochondrie**, qui produit l'ATP par respiration cellulaire.\n\n### Exercice 3\nClassez les modes suivants en transport passif ou actif : diffusion simple, pompe Na⁺/K⁺, osmose, endocytose.\n**Correction** : **Passif** : diffusion simple, osmose. **Actif (avec énergie)** : pompe Na⁺/K⁺, endocytose (transport en masse nécessitant de l'ATP).\n\n## À retenir\n\n- La membrane suit le modèle de la **mosaïque fluide** : bicouche de phospholipides + protéines + glucides.\n- Elle est **sélectivement perméable**.\n- **Transport passif** = sans énergie, dans le sens du gradient (diffusion, osmose). **Transport actif** = avec ATP, contre le gradient (pompes).\n- **Osmose** : l'eau va du milieu hypotonique vers le milieu hypertonique.\n- Hypotonique → hémolyse (animal) / turgescence (végétal) ; hypertonique → crénelure / plasmolyse.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Le modèle décrivant la membrane plasmique est :",
+            "options": [
+              "Le modèle filamenteux",
+              "La mosaïque fluide",
+              "Le modèle rigide",
+              "Le double feuillet protéique"
+            ],
+            "answer": 1,
+            "explanation": "Singer et Nicolson (1972) ont proposé le modèle de la mosaïque fluide."
+          },
+          {
+            "q": "L'osmose est le déplacement de l'eau du milieu :",
+            "options": [
+              "Hypertonique vers hypotonique",
+              "Hypotonique vers hypertonique",
+              "Isotonique vers hypertonique",
+              "Aucun déplacement"
+            ],
+            "answer": 1,
+            "explanation": "L'eau diffuse du milieu peu concentré (hypotonique) vers le milieu concentré (hypertonique)."
+          },
+          {
+            "q": "Le transport actif se caractérise par :",
+            "options": [
+              "Aucune dépense d'énergie",
+              "Un déplacement dans le sens du gradient",
+              "Une dépense d'ATP contre le gradient",
+              "L'absence de protéines"
+            ],
+            "answer": 2,
+            "explanation": "Le transport actif se fait contre le gradient et consomme de l'ATP."
+          },
+          {
+            "q": "Un globule rouge placé dans l'eau distillée subit :",
+            "options": [
+              "Une plasmolyse",
+              "Une crénelure",
+              "Une hémolyse",
+              "Aucun changement"
+            ],
+            "answer": 2,
+            "explanation": "En milieu hypotonique, l'eau entre, le globule gonfle et éclate : hémolyse."
+          },
+          {
+            "q": "La plasmolyse d'une cellule végétale survient en milieu :",
+            "options": [
+              "Hypotonique",
+              "Isotonique",
+              "Hypertonique",
+              "Acide uniquement"
+            ],
+            "answer": 2,
+            "explanation": "En milieu hypertonique, l'eau sort, le cytoplasme se rétracte : plasmolyse."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les enzymes et le métabolisme cellulaire",
+      "video": "https://www.youtube.com/watch?v=qgVFkRn8f10",
+      "lesson": "# Les enzymes et le métabolisme cellulaire\n\n## Introduction\n\nLe **métabolisme** désigne l'ensemble des réactions chimiques qui se déroulent dans la cellule. Il comprend le **catabolisme** (dégradation de molécules avec libération d'énergie, ex. respiration) et l'**anabolisme** (synthèse de molécules avec consommation d'énergie, ex. photosynthèse). Ces réactions, qui seraient impossibles ou trop lentes dans les conditions douces de la cellule (37 °C, pH neutre), sont rendues possibles par des **catalyseurs biologiques** : les **enzymes**.\n\n## I. Notion d'enzyme\n\nUne **enzyme** est une **protéine** (le plus souvent) qui **catalyse** une réaction biochimique : elle **accélère** la réaction sans être consommée ni modifiée à la fin. On parle de **biocatalyseur**.\n- Le **substrat** est la molécule sur laquelle agit l'enzyme.\n- Le **produit** est la molécule formée.\n- Le **site actif** est la région de l'enzyme qui fixe le substrat.\n\nExemple : l'**amylase** transforme l'amidon (substrat) en maltose (produit).\n\n## II. Propriétés des enzymes\n\n### 1. La spécificité\n- **Spécificité de substrat** : une enzyme n'agit que sur un substrat (ou une famille) donné — modèle **clé-serrure** : le site actif a une forme complémentaire de celle du substrat.\n- **Spécificité d'action** : une enzyme ne catalyse qu'un seul type de réaction (hydrolyse, oxydation…).\n\n### 2. L'efficacité\nUne faible quantité d'enzyme transforme une grande quantité de substrat (elle se régénère).\n\n### 3. La réutilisation\nL'enzyme est **récupérée intacte** à la fin de la réaction.\n\n> **Figure** : modèle clé-serrure — le substrat s'emboîte dans le site actif de l'enzyme → complexe enzyme-substrat → libération des produits + enzyme intacte.\n\n## III. Facteurs influençant l'activité enzymatique\n\n- **Température** : l'activité augmente avec la température jusqu'à un **optimum** (≈ 37 °C chez l'homme) ; au-delà, l'enzyme se **dénature** (destruction du site actif) et devient inactive.\n- **pH** : chaque enzyme a un **pH optimal** (pepsine ≈ 2 dans l'estomac ; amylase ≈ 7).\n- **Concentration en substrat** : la vitesse augmente puis atteint un **plateau** (saturation des sites actifs).\n- **Concentration en enzyme** : plus d'enzyme = réaction plus rapide.\n- **Inhibiteurs** : substances qui bloquent l'enzyme (poisons, certains médicaments).\n\n## IV. Le métabolisme énergétique : l'ATP\n\nL'**ATP** (adénosine triphosphate) est la « monnaie énergétique » de la cellule. Sa décomposition (ATP → ADP + Pi) **libère de l'énergie** utilisée pour les réactions cellulaires. Il est produit par :\n- la **respiration cellulaire** (mitochondrie) : `C₆H₁₂O₆ + 6 O₂ → 6 CO₂ + 6 H₂O + énergie (ATP)` ;\n- la **fermentation** (sans O₂, rendement faible) ;\n- la **photosynthèse** (chloroplaste) qui fabrique du glucose à partir de CO₂, d'eau et de lumière.\n\nLes enzymes interviennent à **chaque étape** de ces voies métaboliques (chaînes de réactions).\n\n## Exercices corrigés\n\n### Exercice 1 (type Probatoire)\nOn étudie l'action de l'amylase salivaire sur l'amidon à différentes températures. Résultats : à 0 °C, action nulle ; à 37 °C, action maximale ; à 80 °C, action nulle.\n**Question** : 1) Tracer l'allure de la courbe vitesse = f(température). 2) Expliquer le résultat à 0 °C et à 80 °C.\n**Correction** : 1) Courbe en cloche : montée jusqu'à un maximum à 37 °C (optimum), puis chute. 2) À **0 °C**, l'enzyme est **inactive mais non détruite** (l'agitation moléculaire est trop faible) ; en réchauffant, elle redevient active. À **80 °C**, l'enzyme est **dénaturée** : son site actif est détruit de façon **irréversible**, l'action est définitivement nulle.\n\n### Exercice 2 (type Probatoire)\nOn mélange une enzyme E à un substrat S₁ : réaction. On la met avec un substrat S₂ : pas de réaction.\n**Question** : Quelle propriété des enzymes met en évidence cette expérience ? Expliquer à l'aide d'un modèle.\n**Correction** : Cette expérience met en évidence la **spécificité de substrat**. Selon le modèle **clé-serrure**, le **site actif** de l'enzyme E a une forme complémentaire de S₁ qui s'y emboîte, mais pas de S₂. Sans complémentarité, pas de complexe enzyme-substrat, donc pas de réaction.\n\n### Exercice 3\nIndiquez si chaque réaction relève du catabolisme ou de l'anabolisme : (a) respiration ; (b) photosynthèse ; (c) digestion des aliments.\n**Correction** : (a) respiration = **catabolisme** (dégradation, libère de l'énergie) ; (b) photosynthèse = **anabolisme** (synthèse de glucose, consomme de l'énergie) ; (c) digestion = **catabolisme** (hydrolyse des aliments).\n\n## À retenir\n\n- Une enzyme est un **biocatalyseur** protéique : elle accélère une réaction sans être consommée.\n- Propriétés : **spécificité** (substrat et action, modèle clé-serrure), **efficacité**, **réutilisation**.\n- Facteurs : **température**, **pH** (chacun a un optimum), concentrations, inhibiteurs. Au-delà de l'optimum thermique → **dénaturation** irréversible.\n- **Métabolisme** = catabolisme (dégradation) + anabolisme (synthèse).\n- L'**ATP** est la monnaie énergétique, produite par la respiration cellulaire.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Une enzyme est avant tout :",
+            "options": [
+              "Un glucide",
+              "Un lipide",
+              "Une protéine catalyseur",
+              "Un acide nucléique"
+            ],
+            "answer": 2,
+            "explanation": "Les enzymes sont des protéines qui catalysent les réactions biochimiques."
+          },
+          {
+            "q": "Le modèle clé-serrure illustre :",
+            "options": [
+              "L'efficacité",
+              "La spécificité de substrat",
+              "La dénaturation",
+              "La réutilisation"
+            ],
+            "answer": 1,
+            "explanation": "Le site actif a une forme complémentaire du substrat (spécificité)."
+          },
+          {
+            "q": "À 80 °C, une enzyme humaine est inactive car :",
+            "options": [
+              "Elle est réutilisée",
+              "Elle est dénaturée (site actif détruit)",
+              "Le substrat est congelé",
+              "Le pH est trop bas"
+            ],
+            "answer": 1,
+            "explanation": "Au-delà de l'optimum, la chaleur dénature l'enzyme de façon irréversible."
+          },
+          {
+            "q": "La respiration cellulaire relève du :",
+            "options": [
+              "Catabolisme",
+              "Anabolisme",
+              "Aucun des deux",
+              "De la photosynthèse"
+            ],
+            "answer": 0,
+            "explanation": "La respiration dégrade le glucose et libère de l'énergie : c'est du catabolisme."
+          },
+          {
+            "q": "La « monnaie énergétique » de la cellule est :",
+            "options": [
+              "Le glucose",
+              "L'ADN",
+              "L'ATP",
+              "Le CO₂"
+            ],
+            "answer": 2,
+            "explanation": "L'ATP libère de l'énergie lors de sa décomposition en ADP + Pi."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La division cellulaire : la mitose",
+      "video": "https://www.youtube.com/watch?v=DkKpkVGoZN4",
+      "lesson": "# La division cellulaire : la mitose\n\n## Introduction\n\nLa **mitose** est le mode de **division cellulaire** par lequel une cellule mère donne **deux cellules filles génétiquement identiques** à elle-même. Elle assure la **croissance**, le **renouvellement** et la **réparation** des tissus, ainsi que la reproduction des organismes unicellulaires. Elle conserve constant le nombre de chromosomes (**reproduction conforme**) : une cellule à 2n chromosomes donne deux cellules à 2n chromosomes.\n\n## I. Le cycle cellulaire\n\nLe cycle cellulaire comprend deux grandes périodes :\n- l'**interphase** (la plus longue, ≈ 90 % du cycle), pendant laquelle la cellule grandit et **duplique son ADN**. Elle comporte trois phases : **G1** (croissance), **S** (synthèse/réplication de l'ADN → chaque chromosome devient à **deux chromatides**), **G2** (préparation à la division) ;\n- la **mitose** (phase M), au cours de laquelle la cellule se divise.\n\n> **Figure** : roue du cycle cellulaire — G1 → S → G2 → M, avec quantité d'ADN doublée pendant S.\n\n## II. Les phases de la mitose\n\nLa mitose se déroule en quatre phases continues :\n\n### 1. La prophase\n- Les chromosomes se **condensent** et deviennent visibles (chaque chromosome a **deux chromatides** reliées par un **centromère**).\n- L'**enveloppe nucléaire** disparaît, le nucléole disparaît.\n- Le **fuseau de division** se met en place (à partir des centrioles chez l'animal).\n\n### 2. La métaphase\n- Les chromosomes, très condensés, se rangent à l'**équateur** de la cellule formant la **plaque équatoriale**.\n- C'est la phase où les chromosomes sont le mieux observables (utilisée pour le **caryotype**).\n\n### 3. L'anaphase\n- Les deux chromatides de chaque chromosome **se séparent** au niveau du centromère et **migrent** vers les pôles opposés (tractées par le fuseau).\n- Chaque pôle reçoit un lot complet de chromosomes à **une chromatide**.\n\n### 4. La télophase\n- Les chromosomes se **décondensent** à chaque pôle.\n- L'enveloppe nucléaire et le nucléole **réapparaissent** → deux noyaux.\n- Puis survient la **cytodiérèse** (division du cytoplasme) : étranglement chez l'animal, **plaque cellulaire** chez le végétal → deux cellules filles.\n\n## III. Évolution de la quantité d'ADN\n\n- Pendant l'**interphase (phase S)** : l'ADN **double** (chaque chromosome passe à deux chromatides).\n- En **anaphase** : la séparation des chromatides répartit l'ADN également → chaque cellule fille récupère la **même quantité** d'ADN que la cellule mère initiale (avant la phase S).\n\nAinsi, mitose + réplication garantissent que les cellules filles sont **identiques** entre elles et à la cellule mère.\n\n## IV. Importance biologique de la mitose\n\n- **Croissance** des organismes (multiplication des cellules).\n- **Renouvellement** des cellules usées (peau, sang, intestin).\n- **Cicatrisation** et réparation des tissus.\n- **Reproduction asexuée** (bouturage, organismes unicellulaires).\n- Toute **anomalie** du contrôle de la mitose peut conduire à une prolifération anarchique (**cancer**).\n\n## Exercices corrigés\n\n### Exercice 1 (type Probatoire)\nUne cellule possède 8 chromosomes (2n = 8). On l'observe en anaphase de mitose.\n**Question** : 1) Combien de chromosomes migrent vers chaque pôle ? 2) Combien de chromatides comporte chaque chromosome à la fin de l'anaphase ? 3) Combien de chromosomes auront les cellules filles ?\n**Correction** : 1) En anaphase, les chromatides se séparent : **8 chromosomes migrent vers chaque pôle** (chaque pôle reçoit un lot de 8). 2) Après séparation, chaque chromosome n'a plus qu'**une seule chromatide**. 3) Chaque cellule fille aura **8 chromosomes** (2n = 8) : la mitose est conforme.\n\n### Exercice 2 (type Probatoire)\nOn mesure la quantité d'ADN d'une cellule au cours du temps : elle vaut Q en G1, passe à 2Q, puis revient à Q.\n**Question** : 1) À quel moment l'ADN passe-t-il de Q à 2Q ? 2) À quel moment revient-il à Q ? 3) Conclure sur le rôle de la mitose.\n**Correction** : 1) L'ADN double pendant la **phase S** de l'interphase (réplication). 2) Il revient à Q lors de l'**anaphase/télophase** (répartition des chromatides). 3) La mitose, précédée de la réplication, assure une **répartition égale** du matériel génétique : les cellules filles ont la même quantité d'ADN que la cellule mère, c'est une **division conforme**.\n\n### Exercice 3\nReplacez dans l'ordre les phases suivantes : anaphase, prophase, télophase, métaphase. Donnez le caractère principal de chacune.\n**Correction** : Ordre : **Prophase** (condensation, disparition de l'enveloppe) → **Métaphase** (plaque équatoriale) → **Anaphase** (séparation et migration des chromatides) → **Télophase** (décondensation, reformation des noyaux, cytodiérèse).\n\n## À retenir\n\n- La mitose donne **2 cellules filles identiques** à la cellule mère (2n → 2n) : division **conforme**.\n- Cycle cellulaire : **interphase** (G1, **S** = réplication, G2) puis **mitose** (M).\n- Phases : **P**rophase, **M**étaphase, **A**naphase, **T**élophase (« PMAT »).\n- En **anaphase**, les **chromatides** se séparent et migrent aux pôles.\n- Rôles : croissance, renouvellement, réparation ; dérèglement → cancer.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "La mitose produit :",
+            "options": [
+              "4 cellules différentes",
+              "2 cellules filles identiques à la mère",
+              "2 gamètes",
+              "1 seule cellule à n chromosomes"
+            ],
+            "answer": 1,
+            "explanation": "La mitose est une division conforme : 2 cellules filles identiques (2n → 2n)."
+          },
+          {
+            "q": "La réplication de l'ADN a lieu pendant :",
+            "options": [
+              "La phase S de l'interphase",
+              "La métaphase",
+              "L'anaphase",
+              "La télophase"
+            ],
+            "answer": 0,
+            "explanation": "L'ADN double pendant la phase S de l'interphase."
+          },
+          {
+            "q": "Les chromosomes se rangent à l'équateur (plaque équatoriale) en :",
+            "options": [
+              "Prophase",
+              "Métaphase",
+              "Anaphase",
+              "Télophase"
+            ],
+            "answer": 1,
+            "explanation": "En métaphase, les chromosomes forment la plaque équatoriale."
+          },
+          {
+            "q": "La séparation des chromatides se produit en :",
+            "options": [
+              "Prophase",
+              "Métaphase",
+              "Anaphase",
+              "Interphase"
+            ],
+            "answer": 2,
+            "explanation": "En anaphase, les deux chromatides se séparent et migrent aux pôles."
+          },
+          {
+            "q": "La mitose intervient dans :",
+            "options": [
+              "La formation des gamètes",
+              "La croissance et le renouvellement des tissus",
+              "La réduction du nombre de chromosomes",
+              "Le brassage génétique"
+            ],
+            "answer": 1,
+            "explanation": "La mitose assure croissance, renouvellement et réparation des tissus."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La méiose et la formation des gamètes",
+      "video": "https://www.youtube.com/watch?v=ROlmFmHv4dw",
+      "lesson": "# La méiose et la formation des gamètes\n\n## Introduction\n\nLa **méiose** est une **division cellulaire particulière** qui transforme une cellule mère **diploïde (2n)** en **quatre cellules filles haploïdes (n)** : les **gamètes** (ou les spores). Elle est indispensable à la **reproduction sexuée** car elle **réduit de moitié** le nombre de chromosomes, ce qui permet, après la **fécondation** (n + n → 2n), de **maintenir constant** le nombre de chromosomes de l'espèce d'une génération à l'autre. La méiose est aussi une source majeure de **diversité génétique**.\n\n## I. Caractéristiques générales\n\nLa méiose comporte **deux divisions successives** précédées d'**une seule réplication de l'ADN** :\n- la **première division (réductionnelle)** : sépare les chromosomes **homologues** → le nombre de chromosomes passe de 2n à n ;\n- la **seconde division (équationnelle)** : sépare les **chromatides** (semblable à une mitose) → conserve n.\n\nBilan : 1 cellule (2n) → **4 cellules (n)**.\n\n## II. Déroulement de la méiose\n\n### Première division (méiose I)\n- **Prophase I** : condensation des chromosomes ; les chromosomes homologues s'**apparient** (formant des **bivalents** ou tétrades) ; il peut y avoir échange de portions de chromatides = **crossing-over** (enjambement).\n- **Métaphase I** : les **paires** d'homologues se placent à l'équateur.\n- **Anaphase I** : les chromosomes homologues (chacun à 2 chromatides) **se séparent** et migrent vers les pôles → **réduction** du nombre de chromosomes.\n- **Télophase I** : formation de deux cellules à **n chromosomes** (chacun à 2 chromatides).\n\n### Seconde division (méiose II)\nSemblable à une mitose, **sans réplication préalable** :\n- **Prophase II, Métaphase II** : les chromosomes (à 2 chromatides) s'alignent.\n- **Anaphase II** : les **chromatides se séparent**.\n- **Télophase II** : formation de **quatre cellules haploïdes** (n, chromosomes à une chromatide).\n\n> **Figure** : schéma d'une cellule 2n=4 suivant les deux divisions → 4 gamètes à n=2.\n\n## III. Méiose et diversité génétique\n\nLa méiose crée de la **variabilité** par deux mécanismes de **brassage** :\n- le **brassage interchromosomique** : répartition **aléatoire** des chromosomes homologues lors de l'anaphase I (les chromosomes d'origine paternelle et maternelle se mélangent) ;\n- le **brassage intrachromosomique** : les **crossing-over** (prophase I) échangent des morceaux entre homologues, créant de nouvelles combinaisons d'allèles.\n\nAssociée à la **fécondation** (rencontre aléatoire de deux gamètes), la méiose explique l'**unicité génétique** des individus.\n\n## IV. Gamétogenèse\n\n- Chez l'homme : la **spermatogenèse** produit, à partir d'une cellule mère, **4 spermatozoïdes** fonctionnels.\n- Chez la femme : l'**ovogenèse** produit **1 ovule** (les autres cellules dégénèrent en globules polaires).\n- Chez les plantes à fleurs, la méiose produit les **spores** à l'origine des grains de pollen (gamètes mâles) et du sac embryonnaire (gamète femelle).\n\n## Exercices corrigés\n\n### Exercice 1 (type Probatoire)\nUne cellule de testicule possède 2n = 6 chromosomes.\n**Question** : 1) Combien de chromosomes possède chaque spermatozoïde formé ? 2) Combien de cellules filles obtient-on à la fin de la méiose ? 3) Pourquoi parle-t-on de division réductionnelle ?\n**Correction** : 1) Chaque spermatozoïde possède **n = 3 chromosomes** (haploïde). 2) On obtient **4 cellules filles** (4 spermatozoïdes). 3) On parle de division **réductionnelle** parce que la méiose **divise par deux** le nombre de chromosomes (de 2n=6 à n=3), grâce à la séparation des homologues en anaphase I.\n\n### Exercice 2 (type Probatoire)\nComparez la mitose et la méiose dans un tableau.\n**Correction** :\n\n| Critère | Mitose | Méiose |\n|---|---|---|\n| Nombre de divisions | 1 | 2 |\n| Cellules filles | 2 | 4 |\n| Nombre de chromosomes | 2n → 2n | 2n → n |\n| Cellules filles | identiques | différentes (brassage) |\n| Rôle | croissance, renouvellement | formation des gamètes |\n\n### Exercice 3\nCitez les deux types de brassage génétique de la méiose et la phase où ils ont lieu.\n**Correction** : **Brassage intrachromosomique** : crossing-over en **prophase I**. **Brassage interchromosomique** : répartition aléatoire des homologues en **anaphase I**.\n\n## À retenir\n\n- La méiose : 1 cellule **2n → 4 cellules n** (deux divisions, une seule réplication).\n- **Méiose I** = réductionnelle (séparation des **homologues**, 2n → n). **Méiose II** = équationnelle (séparation des **chromatides**).\n- Sources de diversité : **crossing-over** (prophase I) et **brassage interchromosomique** (anaphase I).\n- Méiose + fécondation = maintien du nombre de chromosomes + diversité génétique.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "La méiose produit, à partir d'une cellule 2n :",
+            "options": [
+              "2 cellules 2n",
+              "4 cellules haploïdes (n)",
+              "2 cellules n",
+              "4 cellules 2n"
+            ],
+            "answer": 1,
+            "explanation": "La méiose donne 4 cellules filles haploïdes (n) : les gamètes."
+          },
+          {
+            "q": "La séparation des chromosomes homologues a lieu en :",
+            "options": [
+              "Anaphase I",
+              "Anaphase II",
+              "Métaphase II",
+              "Prophase II"
+            ],
+            "answer": 0,
+            "explanation": "C'est en anaphase I (division réductionnelle) que les homologues se séparent."
+          },
+          {
+            "q": "Le crossing-over (enjambement) se produit en :",
+            "options": [
+              "Métaphase I",
+              "Prophase I",
+              "Anaphase II",
+              "Télophase II"
+            ],
+            "answer": 1,
+            "explanation": "Le crossing-over a lieu lors de l'appariement des homologues en prophase I."
+          },
+          {
+            "q": "La méiose est qualifiée de réductionnelle car :",
+            "options": [
+              "Elle augmente l'ADN",
+              "Elle réduit de moitié le nombre de chromosomes",
+              "Elle réduit la taille de la cellule",
+              "Elle supprime les chromatides"
+            ],
+            "answer": 1,
+            "explanation": "Elle fait passer le nombre de chromosomes de 2n à n."
+          },
+          {
+            "q": "Le rôle essentiel de la méiose dans la reproduction sexuée est :",
+            "options": [
+              "La croissance des tissus",
+              "Le maintien du nombre de chromosomes et la diversité",
+              "La cicatrisation",
+              "La duplication identique des cellules"
+            ],
+            "answer": 1,
+            "explanation": "Avec la fécondation, elle maintient 2n et crée de la diversité génétique."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les chromosomes et le caryotype",
+      "video": "https://www.youtube.com/watch?v=Yr1iuwTH4_Q",
+      "lesson": "# Les chromosomes et le caryotype\n\n## Introduction\n\nL'**information génétique** d'une cellule est portée par les **chromosomes**, structures situées dans le noyau et formées d'**ADN** associé à des protéines. L'étude de l'ensemble des chromosomes d'une cellule, classés et ordonnés, constitue le **caryotype**. Le caryotype permet de déterminer le **sexe** d'un individu et de détecter certaines **anomalies chromosomiques**.\n\n## I. Structure du chromosome\n\nUn chromosome **condensé** (visible en métaphase) est formé de :\n- **deux chromatides** identiques (après réplication), reliées par un **centromère** ;\n- chaque chromatide contient une longue molécule d'**ADN** enroulée autour de protéines (**histones**).\n\nÀ l'état non condensé (interphase), l'ADN forme la **chromatine** (filaments fins). Le chromosome est le support physique des **gènes** : portions d'ADN codant une information (un caractère héréditaire).\n\n> **Figure** : chromosome métaphasique à deux chromatides reliées par un centromère ; gènes alignés sur la chromatide.\n\n## II. Le caryotype\n\nLe **caryotype** est la présentation ordonnée des chromosomes d'une cellule, classés par **taille décroissante** et par **forme** (position du centromère), groupés en **paires d'homologues**.\n\nChez l'**Homme** : **2n = 46 chromosomes**, soit **23 paires** :\n- **22 paires d'autosomes** (chromosomes identiques chez les deux sexes) ;\n- **1 paire de chromosomes sexuels (gonosomes)** : **XX** chez la femme, **XY** chez l'homme.\n\nNotation : femme = **44 + XX** ; homme = **44 + XY**.\n\n### Chromosomes homologues\nLes deux chromosomes d'une même paire sont **homologues** : même taille, même forme, mêmes gènes (mais éventuellement des **allèles** différents). L'un vient du **père**, l'autre de la **mère**.\n\n## III. Détermination du sexe\n\nLe sexe est déterminé par les **gonosomes** :\n- la femme (XX) ne produit que des ovules portant **X** ;\n- l'homme (XY) produit des spermatozoïdes portant soit **X**, soit **Y**.\n\nC'est donc le **spermatozoïde** (du père) qui détermine le sexe de l'enfant :\n- ovule X + spermatozoïde X → **XX (fille)** ;\n- ovule X + spermatozoïde Y → **XY (garçon)**.\n\nLa probabilité est de **50 %** pour chaque sexe.\n\n## IV. Les anomalies chromosomiques\n\nUne mauvaise répartition des chromosomes lors de la méiose (**non-disjonction**) entraîne des **aberrations** :\n- **Trisomie 21** (syndrome de Down) : **3 chromosomes 21** au lieu de 2 → caryotype **47 chromosomes**.\n- **Syndrome de Turner** : un seul X (**45, X0**) ; **syndrome de Klinefelter** : **47, XXY**.\n\nLe caryotype permet de **diagnostiquer** ces anomalies.\n\n## Exercices corrigés\n\n### Exercice 1 (type Probatoire)\nOn réalise le caryotype d'un individu : on compte 47 chromosomes, dont 3 chromosomes 21 et une paire XY.\n**Question** : 1) Cet individu est-il normal ? 2) De quelle anomalie s'agit-il ? 3) Quel est son sexe ? 4) Quelle est la cause de cette anomalie ?\n**Correction** : 1) Non, l'individu n'est pas normal (47 chromosomes au lieu de 46). 2) Il s'agit d'une **trisomie 21**. 3) La présence de **XY** indique un **garçon**. 4) La cause est une **non-disjonction** des chromosomes 21 lors de la méiose (chez l'un des parents), aboutissant à un gamète à 2 chromosomes 21.\n\n### Exercice 2 (type Probatoire)\nExpliquez, à l'aide d'un échiquier de croisement, pourquoi un couple a autant de chances d'avoir une fille qu'un garçon.\n**Correction** : La mère (XX) ne donne que des ovules **X**. Le père (XY) donne des spermatozoïdes **X** ou **Y** (50/50).\n\n| | Spz X | Spz Y |\n|---|---|---|\n| **Ovule X** | XX (fille) | XY (garçon) |\n\nOn obtient **50 % XX (filles)** et **50 % XY (garçons)** : les chances sont égales.\n\n### Exercice 3\nDonnez le caryotype (notation) d'une femme et d'un homme normaux, puis indiquez le nombre d'autosomes et de gonosomes.\n**Correction** : Femme = **44 + XX** ; Homme = **44 + XY**. Dans les deux cas : **44 autosomes** (22 paires) et **2 gonosomes** (1 paire).\n\n## À retenir\n\n- Un chromosome condensé = **2 chromatides** reliées par un **centromère**, formé d'**ADN + protéines**.\n- **Caryotype** = chromosomes classés par paires ; l'Homme a **2n = 46** (23 paires).\n- **22 paires d'autosomes** + **1 paire de gonosomes** : **XX** (femme), **XY** (homme).\n- Le **sexe** de l'enfant est déterminé par le **spermatozoïde** (50/50).\n- Une **non-disjonction** méiotique cause les anomalies (ex. **trisomie 21** = 47 chromosomes).\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Le nombre de chromosomes de l'espèce humaine est :",
+            "options": [
+              "23",
+              "46",
+              "44",
+              "48"
+            ],
+            "answer": 1,
+            "explanation": "L'Homme possède 2n = 46 chromosomes, soit 23 paires."
+          },
+          {
+            "q": "Le caryotype d'une femme normale s'écrit :",
+            "options": [
+              "44 + XY",
+              "44 + XX",
+              "46 + XX",
+              "22 + XX"
+            ],
+            "answer": 1,
+            "explanation": "Une femme = 44 autosomes + XX."
+          },
+          {
+            "q": "Le sexe de l'enfant est déterminé par :",
+            "options": [
+              "L'ovule de la mère",
+              "Le spermatozoïde du père",
+              "La taille du fœtus",
+              "Le hasard du caryotype maternel"
+            ],
+            "answer": 1,
+            "explanation": "L'homme (XY) fournit X ou Y ; c'est le spermatozoïde qui fixe le sexe."
+          },
+          {
+            "q": "La trisomie 21 correspond à :",
+            "options": [
+              "3 chromosomes 21 (47 chromosomes)",
+              "Un seul chromosome 21",
+              "L'absence de gonosomes",
+              "45 chromosomes"
+            ],
+            "answer": 0,
+            "explanation": "Trois exemplaires du chromosome 21 → 47 chromosomes au total."
+          },
+          {
+            "q": "Les deux chromosomes d'une même paire sont dits :",
+            "options": [
+              "Identiques (clones)",
+              "Homologues",
+              "Autosomes uniquement",
+              "Sexuels"
+            ],
+            "answer": 1,
+            "explanation": "Les chromosomes d'une même paire sont homologues (mêmes gènes, allèles parfois différents)."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Introduction à la génétique : les lois de Mendel",
+      "video": "https://www.youtube.com/watch?v=Mehz7tCxjSE",
+      "lesson": "# Introduction à la génétique : les lois de Mendel\n\n## Introduction\n\nLa **génétique** est la science de l'**hérédité** : elle étudie la transmission des caractères des parents aux descendants. Ses bases ont été posées par **Gregor Mendel** (1865) à partir de croisements de petits pois. Le caractère héréditaire est porté par un **gène**, situé à un emplacement précis (**locus**) sur un chromosome. Un gène peut exister sous plusieurs versions : les **allèles**.\n\n## I. Vocabulaire fondamental\n\n- **Gène** : portion d'ADN responsable d'un caractère.\n- **Allèle** : version d'un gène (ex. allèle « grande taille » et allèle « petite taille »).\n- **Locus** : position du gène sur le chromosome.\n- **Génotype** : ensemble des allèles d'un individu (noté entre crochets, ex. [A//a]).\n- **Phénotype** : caractère observable (noté entre crochets, ex. [grand]).\n- **Homozygote** : deux allèles **identiques** (A//A ou a//a).\n- **Hétérozygote** : deux allèles **différents** (A//a) ; on parle d'**hybride**.\n- **Allèle dominant** (noté majuscule) : s'exprime même à l'état hétérozygote ; **allèle récessif** (minuscule) : ne s'exprime qu'à l'état homozygote.\n- **Lignée pure** : individu homozygote, qui se reproduit conforme.\n\n## II. Premier croisement : monohybridisme (un seul caractère)\n\nOn croise deux lignées pures différant par **un caractère** (ex. pois à graines lisses × pois à graines ridées).\n\n### 1. Première loi de Mendel — uniformité de la F1\nTous les individus de la **première génération (F1)** sont **identiques** et ressemblent à l'un des parents : l'allèle exprimé est **dominant**, l'autre **récessif**.\nExemple : Lisse (L//L) × Ridé (r//r) → F1 = **L//r**, tous **lisses** (L domine r).\n\n### 2. Seconde loi — disjonction des allèles en F2\nEn croisant les hybrides F1 entre eux, on obtient en **F2** une proportion **3/4 dominants : 1/4 récessifs** (ratio **3 : 1**). Cela s'explique par la **séparation des allèles** lors de la méiose (chaque gamète ne porte qu'un allèle).\n\nÉchiquier F1 × F1 (L//r × L//r) :\n\n| | L | r |\n|---|---|---|\n| **L** | L//L | L//r |\n| **r** | L//r | r//r |\n\n→ 3 lisses (L//L, L//r, L//r) : 1 ridé (r//r) = **3 : 1**.\n\n## III. Le test-cross (croisement test)\n\nPour connaître le génotype d'un individu de phénotype dominant (L//L ou L//r ?), on le croise avec un **homozygote récessif** (r//r) :\n- s'il est **homozygote (L//L)** → 100 % de descendants dominants ;\n- s'il est **hétérozygote (L//r)** → **50 % dominants : 50 % récessifs**.\n\n## IV. Cas de la dominance incomplète et codominance\n\n- **Dominance incomplète** : l'hétérozygote présente un phénotype **intermédiaire** (ex. fleur rouge × fleur blanche → F1 **rose**).\n- **Codominance** : les deux allèles s'expriment **simultanément** (ex. groupe sanguin **AB** : allèles A et B coexprimés).\n\n## V. Le brassage génétique : origine de la diversité\n\nLors de la méiose, les allèles se **séparent** (gamètes variés) ; la **fécondation** combine au hasard les gamètes. Mendel a ainsi expliqué la diversité des descendants. Ces principes s'appuient sur le comportement des **chromosomes** en méiose (théorie chromosomique de l'hérédité).\n\n## Exercices corrigés\n\n### Exercice 1 (type Probatoire)\nChez la tomate, la couleur rouge (R) domine la couleur jaune (r). On croise deux lignées pures : tomate rouge × tomate jaune.\n**Question** : 1) Donner les génotypes des parents. 2) Quel est le phénotype et le génotype de la F1 ? 3) On croise la F1 entre elle : quelles proportions en F2 ?\n**Correction** : 1) Parents : rouge **R//R**, jaune **r//r**. 2) F1 : génotype **R//r**, phénotype **rouge** (R domine r) — première loi de Mendel (uniformité). 3) F1 × F1 (R//r × R//r) → **3/4 rouges : 1/4 jaunes** (ratio 3 : 1), par échiquier de croisement.\n\n### Exercice 2 (type Probatoire)\nOn dispose d'une plante à fleurs pourpres dont le génotype est inconnu (P//P ou P//p, le pourpre P dominant le blanc p).\n**Question** : Proposer un croisement permettant de déterminer son génotype et interpréter les résultats possibles.\n**Correction** : On réalise un **test-cross** : croisement avec une plante **blanche homozygote récessive (p//p)**. Deux résultats possibles : si toute la descendance est **pourpre** → la plante testée est **P//P** (homozygote) ; si on obtient **50 % pourpres et 50 % blanches** → elle est **P//p** (hétérozygote).\n\n### Exercice 3\nChez une fleur, le croisement rouge pur × blanc pur donne une F1 entièrement **rose**.\n**Question** : Quel phénomène met-on en évidence ? Donner les génotypes.\n**Correction** : Il s'agit d'une **dominance incomplète** (aucun allèle n'est dominant). Rouge = R//R, blanc = B//B, F1 = **R//B** de phénotype **intermédiaire rose**.\n\n## À retenir\n\n- **Gène** = caractère ; **allèle** = version du gène ; **génotype** (allèles) ≠ **phénotype** (observable).\n- **1ʳᵉ loi de Mendel** : la **F1 est uniforme** (allèle dominant).\n- **2ᵉ loi** : en **F2**, ratio **3 dominants : 1 récessif** (disjonction des allèles).\n- **Test-cross** : croiser avec un homozygote récessif pour identifier un génotype.\n- **Dominance incomplète** → phénotype intermédiaire ; **codominance** → les deux allèles s'expriment.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Un individu possédant deux allèles différents est dit :",
+            "options": [
+              "Homozygote",
+              "Hétérozygote",
+              "Récessif",
+              "Haploïde"
+            ],
+            "answer": 1,
+            "explanation": "Deux allèles différents (A//a) = hétérozygote (hybride)."
+          },
+          {
+            "q": "Selon la première loi de Mendel, la génération F1 issue de deux lignées pures est :",
+            "options": [
+              "Variée (3:1)",
+              "Uniforme",
+              "Stérile",
+              "Toujours récessive"
+            ],
+            "answer": 1,
+            "explanation": "La F1 est uniforme : tous les individus se ressemblent (allèle dominant)."
+          },
+          {
+            "q": "Le croisement de deux hybrides (F1 × F1) donne en F2 le rapport :",
+            "options": [
+              "1 : 1",
+              "3 : 1",
+              "9 : 3 : 3 : 1",
+              "2 : 1"
+            ],
+            "answer": 1,
+            "explanation": "En monohybridisme, la F2 présente un rapport 3 dominants : 1 récessif."
+          },
+          {
+            "q": "Le test-cross consiste à croiser l'individu testé avec :",
+            "options": [
+              "Un homozygote dominant",
+              "Un homozygote récessif",
+              "Un hybride",
+              "Lui-même"
+            ],
+            "answer": 1,
+            "explanation": "On croise avec un homozygote récessif pour révéler le génotype."
+          },
+          {
+            "q": "Une F1 rose issue de parents rouge pur et blanc pur illustre :",
+            "options": [
+              "La dominance complète",
+              "La dominance incomplète",
+              "La codominance",
+              "Une mutation"
+            ],
+            "answer": 1,
+            "explanation": "Le phénotype intermédiaire (rose) traduit une dominance incomplète."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La reproduction sexuée chez les plantes à fleurs",
+      "video": "https://www.youtube.com/watch?v=djq0GVxQDPM",
+      "lesson": "# La reproduction sexuée chez les plantes à fleurs\n\n## Introduction\n\nLes **plantes à fleurs** (angiospermes) se reproduisent par voie **sexuée** grâce à la **fleur**, qui est l'**appareil reproducteur**. La reproduction passe par la formation de gamètes, la **pollinisation**, la **fécondation** (ici **double**), puis la transformation de la fleur en **fruit** contenant des **graines**. Ce mode de reproduction assure la **dispersion** et la **diversité** des espèces végétales.\n\n## I. Organisation de la fleur\n\nUne fleur complète comprend, de l'extérieur vers l'intérieur, quatre verticilles :\n- le **calice** : ensemble des **sépales** (verts, protègent le bouton) ;\n- la **corolle** : ensemble des **pétales** (colorés, attirent les insectes) ;\n- l'**androcée** (appareil mâle) : ensemble des **étamines** ; chaque étamine = **filet** + **anthère** (qui produit le **pollen**) ;\n- le **gynécée ou pistil** (appareil femelle) : formé d'un ou plusieurs **carpelles** comprenant le **stigmate**, le **style** et l'**ovaire** (qui contient les **ovules**).\n\n> **Figure** : coupe longitudinale de fleur — sépales, pétales, étamines (filet + anthère), pistil (stigmate, style, ovaire, ovules).\n\n## II. Les gamètes\n\n- Les **grains de pollen** (dans l'anthère) renferment les **gamètes mâles**.\n- Les **ovules** (dans l'ovaire) contiennent le **sac embryonnaire** avec l'**oosphère** (gamète femelle) et la **cellule centrale** (à deux noyaux).\n\n## III. La pollinisation\n\nC'est le **transport du pollen** des anthères vers le stigmate.\n- **Pollinisation directe (autopollinisation)** : le pollen féconde la fleur qui l'a produit.\n- **Pollinisation croisée** : le pollen passe d'une fleur à une autre.\nAgents pollinisateurs : **vent** (anémophilie), **insectes** (entomophilie), eau, oiseaux. Les fleurs aux pétales colorés et au nectar attirent les insectes.\n\n## IV. La fécondation : la double fécondation\n\nSur le stigmate, le grain de pollen **germe** et émet un **tube pollinique** qui traverse le style et atteint l'ovule. Il y a alors **double fécondation** (caractéristique des angiospermes) :\n- 1 gamète mâle + **oosphère** → **œuf principal (2n)** → futur **embryon** ;\n- 1 gamète mâle + **cellule centrale** → **œuf accessoire (3n)** → **albumen** (tissu de réserve nourricier).\n\n## V. De la fleur au fruit\n\nAprès la fécondation :\n- l'**ovule** se transforme en **graine** (contenant l'embryon + réserves) ;\n- l'**ovaire** se transforme en **fruit** (qui protège et disperse les graines) ;\n- les autres pièces florales (pétales, étamines) se fanent et tombent.\n\nLa **graine**, déposée dans un milieu favorable, **germe** et donne une nouvelle plante : le cycle recommence.\n\n## VI. Reproduction sexuée et diversité\n\nLa reproduction sexuée combine les patrimoines génétiques de deux parents (gamètes), produisant des descendants **génétiquement variés**, contrairement à la **multiplication végétative** (bouturage, marcottage) qui donne des **clones** identiques.\n\n## Exercices corrigés\n\n### Exercice 1 (type Probatoire)\nOn observe une fleur d'hibiscus. Une élève affirme : « les pétales servent à fabriquer le pollen ».\n**Question** : Corriger cette affirmation et préciser le rôle de chaque pièce florale.\n**Correction** : L'affirmation est **fausse** : le **pollen** est produit par les **anthères des étamines** (androcée), pas par les pétales. Rôles : **sépales** = protection ; **pétales** = attraction des pollinisateurs ; **étamines** (filet + anthère) = production du pollen (gamètes mâles) ; **pistil** (stigmate, style, ovaire, ovules) = appareil femelle, contient les ovules.\n\n### Exercice 2 (type Probatoire)\nDécrire les étapes qui conduisent de la pollinisation à la formation de la graine.\n**Correction** : 1) **Pollinisation** : le pollen se dépose sur le stigmate. 2) **Germination du grain de pollen** : émission d'un **tube pollinique** qui traverse le style. 3) **Double fécondation** : un gamète mâle féconde l'oosphère (→ œuf à 2n, futur embryon) ; un autre féconde la cellule centrale (→ albumen 3n). 4) L'**ovule** devient une **graine**, l'**ovaire** devient un **fruit**.\n\n### Exercice 3\nIndiquez ce que deviennent après fécondation : (a) l'ovule, (b) l'ovaire, (c) l'oosphère fécondée.\n**Correction** : (a) l'ovule → **graine** ; (b) l'ovaire → **fruit** ; (c) l'oosphère fécondée (œuf) → **embryon**.\n\n## À retenir\n\n- La fleur est l'organe reproducteur : **sépales, pétales, étamines (mâle), pistil (femelle)**.\n- Le **pollen** porte les gamètes mâles ; l'**ovule** contient le gamète femelle (oosphère).\n- **Pollinisation** = transport du pollen (vent, insectes…) vers le stigmate.\n- **Double fécondation** : œuf principal (2n → embryon) + œuf accessoire (3n → albumen).\n- Après fécondation : **ovule → graine**, **ovaire → fruit**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "L'appareil reproducteur mâle de la fleur est :",
+            "options": [
+              "Le pistil",
+              "L'androcée (étamines)",
+              "Le calice",
+              "La corolle"
+            ],
+            "answer": 1,
+            "explanation": "L'androcée, formé des étamines, produit le pollen (gamètes mâles)."
+          },
+          {
+            "q": "Le pollen est produit par :",
+            "options": [
+              "L'ovaire",
+              "Le stigmate",
+              "L'anthère",
+              "Le style"
+            ],
+            "answer": 2,
+            "explanation": "L'anthère de l'étamine produit les grains de pollen."
+          },
+          {
+            "q": "La pollinisation est :",
+            "options": [
+              "La fusion des gamètes",
+              "Le transport du pollen vers le stigmate",
+              "La formation du fruit",
+              "La germination de la graine"
+            ],
+            "answer": 1,
+            "explanation": "La pollinisation est le transport du pollen des anthères au stigmate."
+          },
+          {
+            "q": "Après fécondation, l'ovaire se transforme en :",
+            "options": [
+              "Graine",
+              "Fruit",
+              "Embryon",
+              "Albumen"
+            ],
+            "answer": 1,
+            "explanation": "L'ovaire devient le fruit ; l'ovule devient la graine."
+          },
+          {
+            "q": "La double fécondation est caractéristique :",
+            "options": [
+              "Des animaux",
+              "Des angiospermes (plantes à fleurs)",
+              "Des bactéries",
+              "Des champignons"
+            ],
+            "answer": 1,
+            "explanation": "La double fécondation est propre aux plantes à fleurs (angiospermes)."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La reproduction sexuée chez les animaux",
+      "video": "https://www.youtube.com/watch?v=Zj7q9hQ4Hch",
+      "lesson": "# La reproduction sexuée chez les animaux\n\n## Introduction\n\nLa **reproduction sexuée** chez les animaux assure la **pérennité des espèces** et la **diversité génétique**. Elle nécessite deux individus de sexes différents, qui produisent des **gamètes** (spermatozoïdes et ovules) dans des **gonades**. La rencontre des gamètes (**fécondation**) donne une **cellule-œuf (zygote)** qui se développe en un nouvel individu.\n\n## I. Les appareils reproducteurs\n\n### Appareil reproducteur mâle\n- **Testicules** : gonades mâles qui produisent les **spermatozoïdes** (par spermatogenèse) et l'hormone **testostérone**.\n- **Voies génitales** : épididyme, canaux déférents, urètre.\n- **Glandes annexes** : prostate, vésicules séminales (sécrètent le liquide séminal → **sperme**).\n\n### Appareil reproducteur femelle\n- **Ovaires** : gonades femelles qui produisent les **ovules** (ovogenèse) et les hormones **œstrogènes** et **progestérone**.\n- **Trompes** (oviductes) : lieu de la **fécondation**.\n- **Utérus** : organe de la **gestation** (développement de l'embryon).\n- **Vagin** : organe de copulation.\n\n## II. Les gamètes\n\n- Le **spermatozoïde** : cellule mobile (à **flagelle**), petite, à n chromosomes ; produit en très grand nombre.\n- L'**ovule** : cellule volumineuse, immobile, riche en réserves, à n chromosomes ; produit en petit nombre.\nLa rencontre n + n donne un zygote à **2n** : la fécondation **rétablit la diploïdie**.\n\n## III. La fécondation\n\nC'est la **fusion d'un spermatozoïde et d'un ovule** formant la **cellule-œuf (zygote)**.\n- **Fécondation externe** : a lieu dans l'eau (poissons, amphibiens) ; nombreux gamètes émis.\n- **Fécondation interne** : dans les voies génitales femelles (mammifères, oiseaux, reptiles) ; plus sûre, moins de gamètes.\n\nLa fécondation est **aléatoire** (n'importe quel spermatozoïde peut féconder l'ovule), ce qui, ajouté au brassage de la méiose, explique l'**unicité** de chaque individu.\n\n## IV. Le développement\n\nAprès fécondation, le zygote se divise par **mitoses** (segmentation) → **embryon**.\n- **Animaux ovipares** : l'embryon se développe dans un **œuf** pondu hors du corps (oiseaux, reptiles, poissons).\n- **Animaux vivipares** : l'embryon se développe dans l'**utérus** maternel, nourri par le **placenta** (mammifères) ; la naissance suit la **gestation**.\n- **Animaux ovovivipares** : les œufs éclosent à l'intérieur du corps maternel (certains serpents, requins).\n\nLe **développement** peut être **direct** (le jeune ressemble à l'adulte) ou **indirect** avec **métamorphose** (têtard → grenouille, chenille → papillon).\n\n## V. Contrôle hormonal de la reproduction (notion)\n\nChez la femme, le **cycle menstruel** (≈ 28 jours) est réglé par des hormones : il prépare l'utérus à une éventuelle grossesse. L'**ovulation** (libération de l'ovule) se produit vers le 14ᵉ jour. La testostérone et les œstrogènes/progestérone assurent les caractères sexuels et la fertilité.\n\n## Exercices corrigés\n\n### Exercice 1 (type Probatoire)\nOn compare un spermatozoïde et un ovule.\n**Question** : Présenter dans un tableau quatre différences entre ces deux gamètes.\n**Correction** :\n\n| Critère | Spermatozoïde | Ovule |\n|---|---|---|\n| Taille | très petit | volumineux |\n| Mobilité | mobile (flagelle) | immobile |\n| Réserves | pauvres | riches |\n| Nombre produit | très grand | faible |\n\n(Les deux sont **haploïdes**, à n chromosomes.)\n\n### Exercice 2 (type Probatoire)\nUn poisson rejette ses ovules dans l'eau et le mâle libère sa semence au même endroit. Une vache porte son petit dans l'utérus jusqu'à la naissance.\n**Question** : 1) Identifier le type de fécondation chez le poisson. 2) Identifier le mode de développement de la vache. 3) Justifier pourquoi le poisson produit beaucoup plus de gamètes.\n**Correction** : 1) Le poisson présente une **fécondation externe** (dans l'eau). 2) La vache est **vivipare** (développement intra-utérin avec placenta). 3) En fécondation externe, beaucoup de gamètes sont **perdus** (prédateurs, courants) ; produire de **grandes quantités** augmente les chances de rencontre des gamètes et de survie.\n\n### Exercice 3\nClassez : grenouille, oiseau, homme, requin (ovovivipare) selon ovipare / vivipare / ovovivipare.\n**Correction** : **Ovipares** : oiseau, grenouille (œufs pondus). **Vivipare** : homme. **Ovovivipare** : requin (œufs éclosant à l'intérieur).\n\n## À retenir\n\n- Gonades : **testicules** (spermatozoïdes + testostérone) et **ovaires** (ovules + œstrogènes/progestérone).\n- **Spermatozoïde** : petit, mobile ; **ovule** : volumineux, immobile ; les deux à **n** chromosomes.\n- **Fécondation** = fusion des gamètes → **zygote (2n)** ; externe (eau) ou interne.\n- Développement : **ovipare** (œuf), **vivipare** (utérus + placenta), **ovovivipare**.\n- Reproduction sexuée + brassage méiotique = **diversité** et unicité des individus.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Les gonades mâles qui produisent les spermatozoïdes sont :",
+            "options": [
+              "Les ovaires",
+              "Les testicules",
+              "La prostate",
+              "L'utérus"
+            ],
+            "answer": 1,
+            "explanation": "Les testicules produisent les spermatozoïdes et la testostérone."
+          },
+          {
+            "q": "La fécondation correspond à :",
+            "options": [
+              "La fusion d'un spermatozoïde et d'un ovule",
+              "La division de l'ovule",
+              "La ponte des œufs",
+              "La métamorphose"
+            ],
+            "answer": 0,
+            "explanation": "La fécondation est la fusion des deux gamètes formant le zygote (2n)."
+          },
+          {
+            "q": "Un animal dont l'embryon se développe dans l'utérus maternel avec un placenta est :",
+            "options": [
+              "Ovipare",
+              "Vivipare",
+              "Ovovivipare",
+              "Hermaphrodite"
+            ],
+            "answer": 1,
+            "explanation": "Les vivipares (mammifères) développent l'embryon dans l'utérus via le placenta."
+          },
+          {
+            "q": "Comparé à l'ovule, le spermatozoïde est :",
+            "options": [
+              "Plus gros et immobile",
+              "Petit et mobile grâce à un flagelle",
+              "Riche en réserves",
+              "Diploïde"
+            ],
+            "answer": 1,
+            "explanation": "Le spermatozoïde est petit, mobile (flagelle) et haploïde."
+          },
+          {
+            "q": "La fécondation externe est typique :",
+            "options": [
+              "Des mammifères",
+              "Des poissons et amphibiens",
+              "Des oiseaux",
+              "Des reptiles"
+            ],
+            "answer": 1,
+            "explanation": "Poissons et amphibiens libèrent leurs gamètes dans l'eau (fécondation externe)."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La nutrition et la digestion",
+      "video": "https://www.youtube.com/watch?v=8gNi_qmFhqo",
+      "lesson": "# La nutrition et la digestion\n\n## Introduction\n\nLa **nutrition** est l'ensemble des fonctions qui permettent à l'organisme de se procurer la **matière** et l'**énergie** nécessaires à la vie. Chez les animaux, les aliments ingérés sont d'abord **digérés** : transformés en petites molécules **assimilables** appelées **nutriments**, qui passent dans le sang. Cette transformation est assurée par les **enzymes digestives**.\n\n## I. Les aliments et leurs constituants\n\nLes aliments apportent des **nutriments** classés en :\n- **Glucides** (sucres) : amidon, glucose → énergie immédiate.\n- **Lipides** (graisses) → réserve d'énergie.\n- **Protides** (protéines) → construction et renouvellement des cellules.\n- **Eau, sels minéraux, vitamines** : indispensables, sans valeur énergétique propre (sauf rôle fonctionnel).\nUne **ration alimentaire équilibrée** apporte ces constituants en proportions correctes.\n\n## II. L'appareil digestif\n\nLe **tube digestif** comprend : **bouche → pharynx → œsophage → estomac → intestin grêle → gros intestin → anus**, accompagné de **glandes digestives** : glandes salivaires, foie (bile), pancréas, glandes gastriques et intestinales.\n\n> **Figure** : schéma de l'appareil digestif humain légendé (bouche, œsophage, estomac, intestin grêle, gros intestin, foie, pancréas).\n\n## III. La digestion : transformations des aliments\n\nLa digestion est à la fois **mécanique** (mastication, brassage) et **chimique** (action des enzymes).\n\n### 1. Dans la bouche\nLa **mastication** broie les aliments ; l'**amylase salivaire** commence la digestion de l'**amidon** → maltose. Le **bol alimentaire** est avalé.\n\n### 2. Dans l'estomac\nLe suc gastrique (acide, riche en **pepsine**) attaque les **protéines** → grosses chaînes (peptides). Brassage → **chyme**.\n\n### 3. Dans l'intestin grêle\nC'est le lieu principal de la digestion. Sous l'action de la **bile** (foie, émulsionne les graisses) et du **suc pancréatique + suc intestinal** (riches en enzymes), les transformations s'achèvent :\n- **amidon → glucose** ;\n- **protéines → acides aminés** ;\n- **lipides → acides gras + glycérol**.\n\n## IV. L'absorption intestinale\n\nLes **nutriments** (glucose, acides aminés, acides gras) traversent la paroi de l'intestin grêle, dont la surface est augmentée par les **villosités** et **microvillosités**. Ils passent dans le **sang** (et la lymphe pour les lipides) puis sont distribués aux cellules. C'est l'**assimilation**.\nLe **gros intestin** réabsorbe l'**eau** ; les déchets non digérés forment les **fèces**, évacuées par l'**anus**.\n\n## V. Le devenir des nutriments\n\n- Le **glucose** est utilisé par les cellules pour produire de l'**énergie** (respiration) ou stocké (glycogène, graisses).\n- Les **acides aminés** servent à fabriquer les **protéines** (construction).\n- Les **lipides** sont une réserve d'énergie.\nAinsi nutrition + digestion + respiration assurent l'apport de matière et d'énergie aux cellules.\n\n## Exercices corrigés\n\n### Exercice 1 (type Probatoire)\nOn place de l'amidon avec de la salive à 37 °C. Après 15 minutes, le test à l'eau iodée est négatif (pas de coloration bleue) et le test de Fehling est positif.\n**Question** : 1) Qu'indiquent ces deux tests ? 2) Interpréter ces résultats. 3) Quelle enzyme est responsable ?\n**Correction** : 1) L'**eau iodée** détecte l'amidon (bleu-noir si présent) ; la **liqueur de Fehling** détecte les sucres réducteurs (rouge brique à chaud). 2) Test iodé **négatif** = l'amidon a **disparu** ; Fehling **positif** = il s'est formé un **sucre réducteur (maltose)**. L'amidon a donc été **digéré**. 3) L'enzyme responsable est l'**amylase salivaire**.\n\n### Exercice 2 (type Probatoire)\nCitez, pour chaque aliment, le nutriment final obtenu après digestion complète : (a) amidon ; (b) protéines ; (c) lipides.\n**Correction** : (a) amidon → **glucose** ; (b) protéines → **acides aminés** ; (c) lipides → **acides gras + glycérol**. Ces nutriments sont absorbés au niveau de l'**intestin grêle**.\n\n### Exercice 3\nExpliquez le rôle des villosités intestinales dans l'absorption.\n**Correction** : Les **villosités** (et microvillosités) augmentent considérablement la **surface d'échange** de l'intestin grêle, ce qui **accélère et augmente l'absorption** des nutriments vers le sang. Sans elles, l'absorption serait beaucoup moins efficace.\n\n## À retenir\n\n- Nutriments : **glucides** (énergie), **lipides** (réserve), **protides** (construction), eau, sels, vitamines.\n- Tube digestif : bouche → estomac → **intestin grêle** (digestion principale + absorption) → gros intestin.\n- Digestion **mécanique** + **chimique** (enzymes) : amidon→glucose, protéines→acides aminés, lipides→acides gras + glycérol.\n- L'**absorption** se fait dans l'intestin grêle grâce aux **villosités** ; les nutriments passent dans le **sang**.\n- Tests : **eau iodée** (amidon), **liqueur de Fehling** (sucres réducteurs).\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "La digestion principale et l'absorption ont lieu dans :",
+            "options": [
+              "L'estomac",
+              "L'intestin grêle",
+              "Le gros intestin",
+              "L'œsophage"
+            ],
+            "answer": 1,
+            "explanation": "L'intestin grêle est le siège principal de la digestion et de l'absorption."
+          },
+          {
+            "q": "Après digestion complète, les protéines donnent :",
+            "options": [
+              "Du glucose",
+              "Des acides aminés",
+              "Des acides gras",
+              "Du maltose"
+            ],
+            "answer": 1,
+            "explanation": "Les protéines sont digérées en acides aminés."
+          },
+          {
+            "q": "L'amylase salivaire agit sur :",
+            "options": [
+              "Les protéines",
+              "Les lipides",
+              "L'amidon",
+              "L'eau"
+            ],
+            "answer": 2,
+            "explanation": "L'amylase salivaire transforme l'amidon en maltose dès la bouche."
+          },
+          {
+            "q": "Les villosités intestinales servent à :",
+            "options": [
+              "Broyer les aliments",
+              "Augmenter la surface d'absorption",
+              "Sécréter la bile",
+              "Stocker les graisses"
+            ],
+            "answer": 1,
+            "explanation": "Les villosités augmentent la surface d'échange pour absorber les nutriments."
+          },
+          {
+            "q": "Le test qui révèle la présence d'amidon est :",
+            "options": [
+              "La liqueur de Fehling",
+              "L'eau iodée",
+              "Le test à la soude",
+              "Le papier pH"
+            ],
+            "answer": 1,
+            "explanation": "L'eau iodée colore l'amidon en bleu-noir."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les roches et leur formation",
+      "video": "https://www.youtube.com/watch?v=oCq6oVZxOXY",
+      "lesson": "# Les roches et leur formation\n\n## Introduction\n\nLa **géologie** étudie la Terre, sa structure et son histoire. La partie superficielle solide de la Terre, l'**écorce terrestre (croûte)**, est formée de **roches**, elles-mêmes constituées de **minéraux**. Selon leur **mode de formation**, on distingue trois grandes familles : les roches **magmatiques**, **sédimentaires** et **métamorphiques**. L'étude des roches permet de reconstituer l'histoire de la Terre.\n\n## I. Minéraux et roches\n\n- Un **minéral** est un corps solide naturel, de composition chimique définie (ex. **quartz**, **mica**, **feldspath**, **calcite**).\n- Une **roche** est un assemblage naturel de minéraux. Elle peut être :\n  - **cohérente** (dure, ex. granite) ou **meuble** (ex. sable) ;\n  - **homogène** (un seul minéral) ou **hétérogène** (plusieurs).\n\n## II. Les roches magmatiques (ou éruptives)\n\nElles proviennent du **refroidissement et de la solidification du magma** (roche en fusion).\n- **Roches plutoniques (intrusives)** : le magma refroidit **lentement en profondeur** → gros cristaux visibles (structure **grenue**). Exemple : le **granite** (quartz + feldspath + mica).\n- **Roches volcaniques (extrusives)** : le magma (lave) refroidit **rapidement en surface** → cristaux fins ou pâte (structure **microlitique**). Exemple : le **basalte**.\n\nLa taille des cristaux dépend de la **vitesse de refroidissement** : lent = gros cristaux, rapide = petits cristaux.\n\n## III. Les roches sédimentaires\n\nElles résultent de l'accumulation et du dépôt de **sédiments** en couches (**strates**). Leur formation comprend :\n1. l'**altération/érosion** des roches existantes (par l'eau, le vent, le gel) ;\n2. le **transport** des débris (par les rivières, le vent) ;\n3. le **dépôt (sédimentation)** dans les bassins (mers, lacs) ;\n4. la **diagenèse** (compaction + cimentation) → roche dure.\n\nExemples : **grès** (sable cimenté), **argile**, **calcaire** (formé de débris de coquilles), **sel gemme**. Elles peuvent contenir des **fossiles** (restes d'êtres vivants) — précieux pour dater les terrains.\n\n## IV. Les roches métamorphiques\n\nElles proviennent de la **transformation** de roches préexistantes sous l'effet d'une forte **pression** et/ou **température** (en profondeur), **sans fusion**. Les minéraux se réorganisent (structure souvent **feuilletée/foliée**).\nExemples : le **gneiss** (issu du granite), le **schiste** (issu de l'argile), le **marbre** (issu du calcaire).\n\n## V. Le cycle des roches\n\nLes roches se **transforment** les unes en les autres au cours des temps géologiques :\n- une roche magmatique peut être **érodée** → sédiments → roche sédimentaire ;\n- une roche sédimentaire enfouie peut être **métamorphisée** → roche métamorphique ;\n- une roche enfouie profondément peut **fondre** → magma → nouvelle roche magmatique.\n\n> **Figure** : schéma du cycle des roches reliant magmatiques, sédimentaires et métamorphiques par érosion, dépôt, métamorphisme et fusion.\n\n## Exercices corrigés\n\n### Exercice 1 (type Probatoire)\nOn observe deux roches : la roche A présente de gros cristaux visibles à l'œil nu (quartz, feldspath, mica) ; la roche B est sombre, à très petits cristaux.\n**Question** : 1) Quelle est la famille de ces roches ? 2) Nommer A et B. 3) Expliquer la différence de taille des cristaux.\n**Correction** : 1) Ce sont des roches **magmatiques (éruptives)**. 2) A = **granite** (structure grenue) ; B = **basalte** (structure microlitique). 3) La taille des cristaux dépend de la **vitesse de refroidissement** : A a refroidi **lentement en profondeur** (gros cristaux) ; B a refroidi **rapidement en surface** (petits cristaux).\n\n### Exercice 2 (type Probatoire)\nUne roche présente des couches superposées (strates) et contient des coquillages fossilisés.\n**Question** : 1) À quelle famille appartient-elle ? 2) Décrire son mode de formation. 3) Quel intérêt présentent les fossiles ?\n**Correction** : 1) C'est une roche **sédimentaire**. 2) Formation : altération/érosion → transport des débris → dépôt en couches → diagenèse (compaction + cimentation). 3) Les **fossiles** permettent de **dater les terrains** et de reconstituer les **milieux et climats anciens**.\n\n### Exercice 3\nReliez chaque roche métamorphique à sa roche d'origine : gneiss, marbre, schiste.\n**Correction** : **gneiss** ← granite ; **marbre** ← calcaire ; **schiste** ← argile.\n\n## À retenir\n\n- **Minéral** = corps simple défini ; **roche** = assemblage de minéraux.\n- **Magmatiques** : refroidissement du magma — **granite** (grenue, lent/profond), **basalte** (microlitique, rapide/surface).\n- **Sédimentaires** : érosion → transport → dépôt → diagenèse ; contiennent des **fossiles** (grès, calcaire, argile).\n- **Métamorphiques** : transformation par pression/température (gneiss, schiste, marbre).\n- Le **cycle des roches** relie les trois familles par érosion, métamorphisme et fusion.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Le granite est une roche :",
+            "options": [
+              "Sédimentaire",
+              "Magmatique grenue",
+              "Métamorphique",
+              "Volcanique microlitique"
+            ],
+            "answer": 1,
+            "explanation": "Le granite est une roche magmatique plutonique à structure grenue."
+          },
+          {
+            "q": "Les roches sédimentaires se forment par :",
+            "options": [
+              "Refroidissement du magma",
+              "Accumulation et dépôt de sédiments",
+              "Forte pression sans érosion",
+              "Fusion des minéraux"
+            ],
+            "answer": 1,
+            "explanation": "Elles résultent de l'érosion, du transport, du dépôt puis de la diagenèse."
+          },
+          {
+            "q": "La gros cristaux du granite s'expliquent par :",
+            "options": [
+              "Un refroidissement rapide en surface",
+              "Un refroidissement lent en profondeur",
+              "Une forte érosion",
+              "La présence de fossiles"
+            ],
+            "answer": 1,
+            "explanation": "Un refroidissement lent en profondeur laisse le temps aux gros cristaux de se former."
+          },
+          {
+            "q": "Le marbre provient de la transformation :",
+            "options": [
+              "Du granite",
+              "De l'argile",
+              "Du calcaire",
+              "Du basalte"
+            ],
+            "answer": 2,
+            "explanation": "Le marbre est une roche métamorphique issue du calcaire."
+          },
+          {
+            "q": "Les fossiles se trouvent surtout dans les roches :",
+            "options": [
+              "Magmatiques",
+              "Métamorphiques",
+              "Sédimentaires",
+              "Volcaniques"
+            ],
+            "answer": 2,
+            "explanation": "Les fossiles sont conservés dans les roches sédimentaires en strates."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les phénomènes géologiques : volcanisme et séismes",
+      "video": "https://www.youtube.com/watch?v=k_qXq6gq-Mk",
+      "lesson": "# Les phénomènes géologiques : volcanisme et séismes\n\n## Introduction\n\nLa Terre est une planète **active** : sa surface est animée par des phénomènes parfois violents comme les **éruptions volcaniques** et les **séismes (tremblements de terre)**. Ces manifestations traduisent l'activité **interne** du globe et sont, pour la plupart, expliquées par la théorie de la **tectonique des plaques**. Le Cameroun, traversé par la **« ligne du Cameroun »** (mont Cameroun, lac Nyos), est directement concerné par le volcanisme.\n\n## I. Structure interne de la Terre\n\nDe la surface vers le centre, la Terre comprend :\n- la **croûte (écorce)** : couche superficielle solide (continentale ou océanique) ;\n- le **manteau** : couche épaisse, en partie ductile (les **plaques** « glissent » sur l'asthénosphère) ;\n- le **noyau** : externe liquide, interne solide (fer, nickel), très chaud.\nLa chaleur interne provient de la radioactivité et de la chaleur initiale.\n\n## II. Le volcanisme\n\nLe **volcanisme** est l'arrivée en surface de **magma** (roche en fusion) formé en profondeur.\n- Le magma s'accumule dans une **chambre magmatique**, remonte par une **cheminée** et sort par le **cratère** : c'est l'**éruption**.\n- Produits émis : **lave**, **gaz** (vapeur d'eau, CO₂, SO₂), **cendres**, **bombes** et projections.\n\n### Deux grands types d'éruptions\n- **Effusive** (magma fluide) : coulées de **lave** tranquilles → volcans en bouclier (ex. type hawaïen, mont Cameroun).\n- **Explosive** (magma visqueux) : explosions violentes, **nuées ardentes**, cendres → volcans gris (ex. type péléen).\n\n> **Figure** : coupe d'un volcan — chambre magmatique, cheminée, cratère, coulée de lave, cône.\n\n### Cas du Cameroun\nLa **ligne du Cameroun** est un alignement volcanique. Le **lac Nyos** (1986) a libéré un nuage de **CO₂** mortel : exemple de risque lié au volcanisme.\n\n## III. Les séismes (tremblements de terre)\n\nUn **séisme** est une **vibration brutale** de l'écorce terrestre due à une **libération soudaine d'énergie** accumulée par les contraintes (mouvements des plaques, ruptures de roches).\n- Le **foyer (hypocentre)** : point de départ en profondeur.\n- L'**épicentre** : point de la surface à la verticale du foyer (dégâts maximaux).\n- Les **ondes sismiques** se propagent dans toutes les directions et sont enregistrées par un **sismographe** (tracé = sismogramme).\n- L'intensité se mesure sur l'**échelle de Richter** (magnitude).\n\nConséquences : effondrements, fissures, **tsunamis** (si séisme sous-marin).\n\n## IV. La tectonique des plaques\n\nL'écorce terrestre est découpée en **plaques** rigides qui se **déplacent** lentement (quelques cm/an) sur le manteau. Aux **frontières** des plaques se concentrent volcans et séismes :\n- plaques qui **s'écartent** (dorsales) → volcanisme ;\n- plaques qui **se rapprochent** (subduction, collision) → séismes et volcans, formation de **montagnes** ;\n- plaques qui **coulissent** → séismes.\n\nCette théorie explique la **répartition** des volcans et séismes (« ceinture de feu » du Pacifique).\n\n## V. Prévention des risques\n\nOn ne peut pas empêcher ces phénomènes, mais on peut **réduire les risques** : surveillance (sismographes, capteurs de gaz), **cartes des zones à risque**, constructions **parasismiques**, plans d'évacuation, dégazage du lac Nyos.\n\n## Exercices corrigés\n\n### Exercice 1 (type Probatoire)\nUn volcan émet une lave très fluide qui s'écoule en longues coulées sans explosion ; un autre projette violemment cendres et nuées ardentes.\n**Question** : 1) Identifier les deux types d'éruptions. 2) Relier chaque type à la viscosité du magma. 3) Donner un exemple camerounais.\n**Correction** : 1) Le premier est une **éruption effusive**, le second une **éruption explosive**. 2) Effusive = magma **fluide** (la lave s'écoule) ; explosive = magma **visqueux** (les gaz s'accumulent et explosent). 3) Le **mont Cameroun** (ligne du Cameroun) présente surtout un volcanisme **effusif**.\n\n### Exercice 2 (type Probatoire)\nLors d'un séisme, on définit le foyer et l'épicentre.\n**Question** : 1) Définir foyer et épicentre. 2) Où les dégâts sont-ils les plus importants ? 3) Quel appareil enregistre les séismes et sur quelle échelle mesure-t-on leur force ?\n**Correction** : 1) Le **foyer (hypocentre)** est le point de départ du séisme en **profondeur** ; l'**épicentre** est le point de la **surface** situé à la verticale du foyer. 2) Les dégâts sont **maximaux à l'épicentre**. 3) L'appareil est le **sismographe** ; la force (magnitude) se mesure sur l'**échelle de Richter**.\n\n### Exercice 3\nExpliquez pourquoi volcans et séismes ne sont pas répartis au hasard à la surface du globe.\n**Correction** : Parce qu'ils se concentrent aux **frontières des plaques tectoniques**, là où les plaques s'écartent, se rapprochent ou coulissent. C'est aux limites de plaques que se libère l'énergie (séismes) et que remonte le magma (volcans).\n\n## À retenir\n\n- Structure de la Terre : **croûte – manteau – noyau**.\n- **Volcanisme** = remontée de magma : éruptions **effusives** (lave fluide) ou **explosives** (magma visqueux, nuées ardentes).\n- **Séisme** = vibration brutale ; **foyer** (profondeur), **épicentre** (surface, dégâts max), mesuré au **sismographe** (échelle de Richter).\n- La **tectonique des plaques** explique la répartition des volcans et séismes (frontières de plaques).\n- Au Cameroun : **ligne du Cameroun**, mont Cameroun, catastrophe du **lac Nyos** (1986).\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Une éruption à lave fluide qui s'écoule sans explosion est dite :",
+            "options": [
+              "Explosive",
+              "Effusive",
+              "Péléenne",
+              "Sismique"
+            ],
+            "answer": 1,
+            "explanation": "Une lave fluide donne une éruption effusive (coulées tranquilles)."
+          },
+          {
+            "q": "Le point de la surface situé à la verticale du foyer d'un séisme est :",
+            "options": [
+              "L'hypocentre",
+              "L'épicentre",
+              "Le cratère",
+              "La faille"
+            ],
+            "answer": 1,
+            "explanation": "L'épicentre est à la verticale du foyer ; les dégâts y sont maximaux."
+          },
+          {
+            "q": "Les séismes sont enregistrés par :",
+            "options": [
+              "Le baromètre",
+              "Le sismographe",
+              "Le thermomètre",
+              "Le pluviomètre"
+            ],
+            "answer": 1,
+            "explanation": "Le sismographe enregistre les ondes sismiques (sismogramme)."
+          },
+          {
+            "q": "La répartition des volcans et séismes s'explique par :",
+            "options": [
+              "Le hasard",
+              "Le climat",
+              "La tectonique des plaques",
+              "L'érosion"
+            ],
+            "answer": 2,
+            "explanation": "Volcans et séismes se concentrent aux frontières des plaques tectoniques."
+          },
+          {
+            "q": "La catastrophe du lac Nyos (1986) au Cameroun est liée à :",
+            "options": [
+              "Un tsunami",
+              "Une libération de CO₂ d'origine volcanique",
+              "Un séisme géant",
+              "Une éruption explosive"
+            ],
+            "answer": 1,
+            "explanation": "Le lac Nyos a relâché un nuage de CO₂ mortel, lié au volcanisme de la ligne du Cameroun."
+          }
+        ]
+      }
+    },
+    {
+      "title": "L'écologie et les écosystèmes",
+      "video": "https://www.youtube.com/watch?v=mfX-PnQ8DRY",
+      "lesson": "# L'écologie et les écosystèmes\n\n## Introduction\n\nL'**écologie** est la science qui étudie les **relations** entre les êtres vivants et leur **milieu de vie**. L'unité d'étude est l'**écosystème** : un ensemble formé d'un **milieu (biotope)** et des **êtres vivants (biocénose)** qui l'habitent et interagissent. Comprendre les écosystèmes permet de protéger la **biodiversité** et de gérer durablement les ressources, enjeu majeur pour le Cameroun (forêts, savanes, mangroves).\n\n## I. Notions de base\n\n- **Biotope** : milieu physique (sol, eau, air) avec ses **facteurs abiotiques** (température, lumière, humidité, pH).\n- **Biocénose** : ensemble des êtres vivants (animaux, végétaux, micro-organismes) d'un milieu.\n- **Écosystème** = biotope + biocénose **en interaction**.\n- **Population** : ensemble des individus d'une même espèce dans un milieu.\n- **Habitat** : « adresse » d'une espèce ; **niche écologique** : « métier » (rôle) de l'espèce.\n\n## II. Les facteurs écologiques\n\n- **Facteurs abiotiques** (physico-chimiques) : lumière, température, eau, sol, vent — ils conditionnent la répartition des espèces.\n- **Facteurs biotiques** : relations entre êtres vivants (prédation, compétition, parasitisme, symbiose, coopération).\n\n## III. Les relations alimentaires\n\nDans un écosystème, les êtres vivants sont reliés par la **nourriture** :\n- **Producteurs** : les **végétaux verts** (autotrophes) qui fabriquent leur matière par **photosynthèse** (point de départ de toute chaîne).\n- **Consommateurs** : les animaux (hétérotrophes) — **C1** (herbivores), **C2** et **C3** (carnivores).\n- **Décomposeurs** : bactéries et champignons qui dégradent la matière morte et recyclent les sels minéraux.\n\n### Chaîne et réseau alimentaires\nUne **chaîne alimentaire** relie les êtres par « qui mange qui » :\n`herbe → criquet → grenouille → serpent → rapace`\nLa flèche signifie « **est mangé par** ». L'ensemble des chaînes interconnectées forme un **réseau (toile) alimentaire**.\n\n> **Figure** : pyramide écologique — base = producteurs (nombreux), sommet = grands prédateurs (peu nombreux).\n\n## IV. Les cycles de la matière et flux d'énergie\n\n- La **matière** circule en **cycle** (cycle du carbone, de l'azote) : elle est recyclée par les décomposeurs.\n- L'**énergie** vient du **Soleil**, est captée par les producteurs et circule le long des chaînes, mais **diminue** à chaque niveau (pertes sous forme de chaleur) → flux **à sens unique**, non recyclé.\n\n## V. Équilibres et déséquilibres ; protection de l'environnement\n\nUn écosystème est en **équilibre dynamique** : les populations se régulent (un prédateur limite ses proies). Cet équilibre peut être **rompu** par :\n- les actions humaines : **déforestation**, **pollution**, **surexploitation**, **braconnage**, urbanisation ;\n- la disparition d'une espèce, qui se répercute sur tout le réseau.\n\n**Protéger l'environnement** : reboisement, aires protégées (parcs nationaux du Cameroun : Waza, Korup), gestion durable, lutte contre la pollution, éducation écologique. La **biodiversité** est une richesse à préserver.\n\n## Exercices corrigés\n\n### Exercice 1 (type Probatoire)\nSoit la chaîne alimentaire : feuilles → chenille → mésange → épervier.\n**Question** : 1) Identifier le producteur, les consommateurs et leur rang. 2) Que signifie la flèche ? 3) Que se passe-t-il si l'on extermine les mésanges ?\n**Correction** : 1) **Producteur** : les feuilles (végétal vert). **Consommateurs** : chenille = **C1 (herbivore)**, mésange = **C2 (carnivore 1ᵉ)**, épervier = **C3 (carnivore 2ᵉ)**. 2) La flèche signifie « **est mangé par** ». 3) Sans mésanges : les **chenilles prolifèrent** (plus de prédateur) → les feuilles sont dévastées ; les **éperviers** manquent de nourriture → l'équilibre de l'écosystème est rompu.\n\n### Exercice 2 (type Probatoire)\nOn définit biotope, biocénose et écosystème.\n**Question** : 1) Définir chaque terme. 2) Donner un exemple d'écosystème camerounais en précisant son biotope et sa biocénose.\n**Correction** : 1) **Biotope** = milieu physique et ses facteurs abiotiques ; **biocénose** = ensemble des êtres vivants ; **écosystème** = biotope + biocénose en interaction. 2) Exemple : la **forêt de Korup** — biotope : sol humide, climat chaud et pluvieux ; biocénose : arbres, singes, oiseaux, insectes, micro-organismes.\n\n### Exercice 3\nPourquoi le nombre d'individus diminue-t-il du producteur vers le dernier consommateur ?\n**Correction** : Parce que l'**énergie diminue à chaque niveau** de la chaîne (pertes par respiration et chaleur). Il faut beaucoup de producteurs pour nourrir peu de prédateurs : d'où la **pyramide écologique** (base large, sommet étroit).\n\n## À retenir\n\n- **Écologie** = science des relations êtres vivants / milieu. **Écosystème = biotope + biocénose**.\n- Facteurs **abiotiques** (lumière, température, eau…) et **biotiques** (relations entre vivants).\n- Chaîne alimentaire : **producteurs (végétaux) → consommateurs → décomposeurs** ; flèche = « est mangé par ».\n- La **matière** est recyclée (cycle) ; l'**énergie** vient du Soleil, circule à sens unique et diminue à chaque niveau.\n- L'**équilibre** des écosystèmes est fragile : protéger la **biodiversité** (reboisement, parcs, lutte contre la pollution).\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Un écosystème est constitué de :",
+            "options": [
+              "Biotope + biocénose en interaction",
+              "Uniquement les animaux",
+              "Uniquement le milieu physique",
+              "Les producteurs seuls"
+            ],
+            "answer": 0,
+            "explanation": "Écosystème = biotope (milieu) + biocénose (vivants) en interaction."
+          },
+          {
+            "q": "Dans une chaîne alimentaire, les producteurs sont :",
+            "options": [
+              "Les carnivores",
+              "Les végétaux verts (autotrophes)",
+              "Les décomposeurs",
+              "Les herbivores"
+            ],
+            "answer": 1,
+            "explanation": "Les végétaux verts fabriquent leur matière par photosynthèse : ce sont les producteurs."
+          },
+          {
+            "q": "Dans la chaîne « herbe → criquet → grenouille », le criquet est :",
+            "options": [
+              "Un producteur",
+              "Un consommateur de 1er ordre (C1)",
+              "Un décomposeur",
+              "Un consommateur de 3e ordre"
+            ],
+            "answer": 1,
+            "explanation": "Le criquet (herbivore) mange l'herbe : c'est un C1."
+          },
+          {
+            "q": "Le rôle des décomposeurs (bactéries, champignons) est de :",
+            "options": [
+              "Produire de la lumière",
+              "Recycler la matière morte en sels minéraux",
+              "Chasser les herbivores",
+              "Fabriquer de l'oxygène"
+            ],
+            "answer": 1,
+            "explanation": "Les décomposeurs dégradent la matière morte et recyclent les sels minéraux."
+          },
+          {
+            "q": "Le long d'une chaîne alimentaire, l'énergie :",
+            "options": [
+              "Augmente à chaque niveau",
+              "Diminue à chaque niveau",
+              "Reste constante",
+              "Est recyclée intégralement"
+            ],
+            "answer": 1,
+            "explanation": "L'énergie diminue à chaque niveau (pertes de chaleur), d'où la pyramide écologique."
+          }
+        ]
+      }
+    }
+  ]
+}

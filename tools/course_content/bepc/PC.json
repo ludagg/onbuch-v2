@@ -1,0 +1,1030 @@
+{
+  "code": "PC",
+  "level": "3ème",
+  "chapters": [
+    {
+      "title": "Le circuit électrique",
+      "video": "https://www.youtube.com/watch?v=Rd4a1X3B6sY",
+      "lesson": "# Le circuit électrique\n\n## Introduction\n\nL'électricité est partout dans notre vie quotidienne : lampes, téléphones, télévisions, moteurs. Tous ces appareils fonctionnent grâce à un **circuit électrique**. Dans ce chapitre, nous allons découvrir comment circule le courant électrique et comment construire un circuit qui fonctionne.\n\n## 1. Qu'est-ce qu'un circuit électrique ?\n\nUn **circuit électrique** est un ensemble d'éléments reliés entre eux par des fils conducteurs et formant une **boucle fermée** dans laquelle peut circuler le **courant électrique**.\n\nUn circuit comporte généralement :\n- un **générateur** (pile, batterie) : il fournit l'énergie électrique ;\n- un ou plusieurs **récepteurs** (lampe, moteur, résistance) : ils utilisent l'énergie ;\n- des **fils de connexion** : ils relient les éléments ;\n- un **interrupteur** : il ouvre ou ferme le circuit.\n\n## 2. Circuit ouvert et circuit fermé\n\n- Un **circuit fermé** est une boucle complète : le courant circule, la lampe brille.\n- Un **circuit ouvert** présente une coupure (interrupteur ouvert ou fil débranché) : le courant ne circule pas, la lampe est éteinte.\n\n**Le courant ne peut circuler que dans un circuit fermé.**\n\n## 3. Les conducteurs et les isolants\n\n- Un **conducteur** laisse passer le courant électrique (métaux : cuivre, fer, aluminium ; le corps humain ; l'eau salée).\n- Un **isolant** ne laisse pas passer le courant (plastique, verre, bois sec, caoutchouc).\n\nC'est pourquoi les fils électriques sont en **cuivre** (conducteur) entourés de **plastique** (isolant).\n\n## 4. Le sens du courant\n\nOn distingue deux sens :\n- Le **sens conventionnel** du courant : à l'extérieur du générateur, il va de la borne **+** vers la borne **-**.\n- Le **sens réel** des électrons : opposé au sens conventionnel (de **-** vers **+**).\n\nEn classe de 3e, on utilise le **sens conventionnel** (de + vers -).\n\n## 5. Symboles normalisés\n\nPour dessiner un circuit, on utilise des symboles :\n- Générateur (pile) : un grand trait (+) et un petit trait (-)\n- Lampe : un cercle avec une croix\n- Interrupteur : un trait mobile\n- Moteur : un cercle avec la lettre M\n- Résistance : un rectangle\n- Fil : un simple trait\n\n## 6. Montage en série et en dérivation\n\n- **En série** : les dipôles sont placés les uns à la suite des autres, sur une seule boucle. Si une lampe grille, tout s'éteint.\n- **En dérivation (parallèle)** : les dipôles sont sur des branches différentes. Si une lampe grille, les autres continuent de briller.\n\n## Exercices corrigés\n\n### Exercice 1\n\nOn dispose d'une pile, d'une lampe, d'un interrupteur et de fils. La lampe ne brille pas alors que l'interrupteur est fermé.\n\n**Citer deux causes possibles de ce dysfonctionnement.**\n\n**Correction :**\nCauses possibles :\n1. La lampe est grillée (filament cassé).\n2. Un fil est mal branché ou coupé.\n3. La pile est usée (déchargée).\nLe circuit n'est donc pas réellement fermé électriquement.\n\n### Exercice 2\n\nOn classe les matériaux suivants : cuivre, plastique, fer, verre, eau salée, bois sec.\n\n**Indiquer pour chacun s'il est conducteur ou isolant.**\n\n**Correction :**\n- Cuivre : **conducteur**\n- Plastique : **isolant**\n- Fer : **conducteur**\n- Verre : **isolant**\n- Eau salée : **conducteur**\n- Bois sec : **isolant**\n\n### Exercice 3\n\nDeux lampes $L_1$ et $L_2$ sont montées **en série** avec une pile. La lampe $L_1$ grille.\n\n**Que se passe-t-il pour $L_2$ ? Expliquer.**\n\n**Correction :**\nQuand $L_1$ grille, son filament est cassé : le circuit devient **ouvert**. Le courant ne peut plus circuler dans la boucle unique. Donc $L_2$ **s'éteint** aussi. C'est l'inconvénient du montage en série.\n\n## À retenir\n\n- Un **circuit électrique** est une **boucle fermée** : générateur + récepteurs + fils + interrupteur.\n- Le courant circule **uniquement** dans un circuit **fermé**.\n- Les **conducteurs** (métaux) laissent passer le courant ; les **isolants** (plastique, verre) non.\n- Sens **conventionnel** : de **+** vers **-** à l'extérieur du générateur.\n- **Série** : une seule boucle (une coupure éteint tout). **Dérivation** : branches indépendantes.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Dans quel cas le courant circule-t-il dans un circuit ?",
+            "options": [
+              "Circuit ouvert",
+              "Circuit fermé",
+              "Sans générateur",
+              "Avec un isolant partout"
+            ],
+            "answer": 1,
+            "explanation": "Le courant ne circule que dans un circuit fermé (boucle complète)."
+          },
+          {
+            "q": "Lequel de ces matériaux est un isolant ?",
+            "options": [
+              "Cuivre",
+              "Fer",
+              "Plastique",
+              "Eau salée"
+            ],
+            "answer": 2,
+            "explanation": "Le plastique est un isolant ; les métaux et l'eau salée sont conducteurs."
+          },
+          {
+            "q": "Sens conventionnel du courant à l'extérieur du générateur :",
+            "options": [
+              "De - vers +",
+              "De + vers -",
+              "Dans les deux sens",
+              "Il ne circule pas"
+            ],
+            "answer": 1,
+            "explanation": "Par convention, le courant va de la borne + vers la borne -."
+          },
+          {
+            "q": "Dans un montage en série, si une lampe grille :",
+            "options": [
+              "Les autres restent allumées",
+              "Tout s'éteint",
+              "La pile chauffe",
+              "Le courant double"
+            ],
+            "answer": 1,
+            "explanation": "En série il n'y a qu'une boucle : une coupure éteint tout."
+          },
+          {
+            "q": "Quel élément fournit l'énergie au circuit ?",
+            "options": [
+              "La lampe",
+              "Le générateur",
+              "L'interrupteur",
+              "Le fil"
+            ],
+            "answer": 1,
+            "explanation": "Le générateur (pile, batterie) fournit l'énergie électrique."
+          }
+        ]
+      }
+    },
+    {
+      "title": "L'intensité du courant électrique",
+      "video": "https://www.youtube.com/watch?v=Wq5pHm9b9zU",
+      "lesson": "# L'intensité du courant électrique\n\n## Introduction\n\nQuand le courant circule dans un circuit, il transporte des charges électriques. Plus il y a de charges qui passent par seconde, plus le courant est « fort ». Cette grandeur s'appelle l'**intensité du courant**. Nous allons apprendre à la mesurer et à connaître ses lois.\n\n## 1. Définition\n\nL'**intensité du courant électrique** mesure le débit de charges électriques dans un circuit. Elle se note **I** et s'exprime en **ampères (A)**.\n\nOn utilise aussi des sous-multiples :\n- 1 milliampère : $1\\,\\text{mA} = 0{,}001\\,\\text{A} = 10^{-3}\\,\\text{A}$\n- 1 microampère : $1\\,\\mu\\text{A} = 10^{-6}\\,\\text{A}$\n\n## 2. Mesure de l'intensité : l'ampèremètre\n\nOn mesure l'intensité avec un **ampèremètre**.\n\n**Règle importante : l'ampèremètre se branche TOUJOURS en SÉRIE** dans la branche où l'on veut mesurer le courant.\n\nBranchement :\n- borne **COM** (ou -) reliée vers la borne - du générateur ;\n- borne **A** (ou +) reliée vers la borne + du générateur.\n\nOn respecte ainsi le sens du courant : il entre par la borne + de l'ampèremètre.\n\n## 3. Loi d'unicité (circuit en série)\n\nDans un circuit **en série**, l'intensité du courant est **la même en tout point** :\n$$I_1 = I_2 = I_3 = \\dots = I$$\n\nLe courant n'est ni « consommé » ni « usé » en passant dans les récepteurs.\n\n## 4. Loi des nœuds (circuit en dérivation)\n\nUn **nœud** est un point où se rejoignent au moins trois fils.\n\n**Loi des nœuds** : la somme des intensités qui **arrivent** à un nœud est égale à la somme des intensités qui en **repartent**.\n$$I = I_1 + I_2$$\n\nL'intensité dans le circuit principal est égale à la somme des intensités dans les branches dérivées.\n\n## Exercices corrigés\n\n### Exercice 1\n\nDans un circuit en série, un ampèremètre indique $I = 250\\,\\text{mA}$.\n\n**Convertir cette valeur en ampères.**\n\n**Correction :**\n$$I = 250\\,\\text{mA} = 250 \\times 10^{-3}\\,\\text{A} = 0{,}250\\,\\text{A}$$\n\n### Exercice 2\n\nUn circuit comporte une dérivation. Dans la branche principale, $I = 0{,}8\\,\\text{A}$. Dans la première branche, $I_1 = 0{,}5\\,\\text{A}$.\n\n**Calculer l'intensité $I_2$ dans la seconde branche.**\n\n**Correction :**\nD'après la loi des nœuds : $I = I_1 + I_2$, donc :\n$$I_2 = I - I_1 = 0{,}8 - 0{,}5 = 0{,}3\\,\\text{A}$$\n\n### Exercice 3\n\nDeux lampes sont montées **en série**. Un ampèremètre placé avant la première lampe indique $0{,}3\\,\\text{A}$.\n\n**Quelle intensité indiquerait un ampèremètre placé après la deuxième lampe ?**\n\n**Correction :**\nEn série, l'intensité est la **même en tout point** (loi d'unicité). Donc l'ampèremètre indiquerait aussi $0{,}3\\,\\text{A}$.\n\n## À retenir\n\n- L'**intensité** $I$ se mesure en **ampères (A)** avec un **ampèremètre** branché **en série**.\n- $1\\,\\text{A} = 1000\\,\\text{mA}$.\n- **En série** : l'intensité est la **même partout** ($I_1 = I_2 = \\dots$).\n- **En dérivation** : **loi des nœuds** $I = I_1 + I_2$.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Quelle est l'unité de l'intensité du courant ?",
+            "options": [
+              "Le volt",
+              "L'ampère",
+              "L'ohm",
+              "Le watt"
+            ],
+            "answer": 1,
+            "explanation": "L'intensité I se mesure en ampères (A)."
+          },
+          {
+            "q": "Comment branche-t-on un ampèremètre ?",
+            "options": [
+              "En dérivation",
+              "En série",
+              "En parallèle aux bornes",
+              "N'importe comment"
+            ],
+            "answer": 1,
+            "explanation": "L'ampèremètre se branche toujours en série."
+          },
+          {
+            "q": "En série, l'intensité du courant est :",
+            "options": [
+              "Plus forte au début",
+              "La même partout",
+              "Nulle à la fin",
+              "Double à chaque lampe"
+            ],
+            "answer": 1,
+            "explanation": "Loi d'unicité : I est identique en tout point d'un circuit série."
+          },
+          {
+            "q": "À un nœud, I = 1,2 A et I1 = 0,7 A. Que vaut I2 ?",
+            "options": [
+              "1,9 A",
+              "0,5 A",
+              "0,7 A",
+              "1,2 A"
+            ],
+            "answer": 1,
+            "explanation": "Loi des nœuds : I2 = I - I1 = 1,2 - 0,7 = 0,5 A."
+          },
+          {
+            "q": "Combien vaut 500 mA en ampères ?",
+            "options": [
+              "5 A",
+              "0,5 A",
+              "50 A",
+              "0,05 A"
+            ],
+            "answer": 1,
+            "explanation": "500 mA = 500 x 10⁻³ = 0,5 A."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La tension électrique",
+      "video": "https://www.youtube.com/watch?v=3Hk0fK0pVvE",
+      "lesson": "# La tension électrique\n\n## Introduction\n\nLe générateur « pousse » le courant dans le circuit grâce à une grandeur appelée la **tension électrique**. C'est elle qui crée la différence entre les deux bornes d'une pile. Apprenons à la mesurer et à connaître ses lois.\n\n## 1. Définition\n\nLa **tension électrique** (ou différence de potentiel) entre deux points A et B se note **U** et s'exprime en **volts (V)**. On note $U_{AB}$.\n\nSous-multiples et multiples :\n- 1 millivolt : $1\\,\\text{mV} = 10^{-3}\\,\\text{V}$\n- 1 kilovolt : $1\\,\\text{kV} = 1000\\,\\text{V}$\n\n## 2. Mesure : le voltmètre\n\nOn mesure la tension avec un **voltmètre**.\n\n**Règle importante : le voltmètre se branche TOUJOURS en DÉRIVATION** (en parallèle) aux bornes du dipôle dont on veut mesurer la tension.\n\nBranchement :\n- borne **V** (ou +) du côté de la borne + du générateur ;\n- borne **COM** (ou -) de l'autre côté.\n\n## 3. Tension à vide et appareil\n\nUne pile « plate » (1,5 V) délivre une tension de **1,5 V**, une pile de 9 V délivre **9 V**, etc. La tension du secteur en Afrique est de **220 V à 230 V**.\n\n## 4. Loi d'additivité des tensions (en série)\n\nDans un circuit **en série**, la tension aux bornes du générateur est égale à la **somme** des tensions aux bornes de chaque récepteur :\n$$U = U_1 + U_2 + U_3 + \\dots$$\n\n## 5. Loi d'unicité des tensions (en dérivation)\n\nDans un montage en **dérivation**, les dipôles branchés en parallèle ont **la même tension** à leurs bornes :\n$$U_1 = U_2 = U$$\n\n## Exercices corrigés\n\n### Exercice 1\n\nDeux lampes sont en **série** avec une pile de $4{,}5\\,\\text{V}$. Aux bornes de la première, on mesure $U_1 = 2\\,\\text{V}$.\n\n**Calculer la tension $U_2$ aux bornes de la seconde lampe.**\n\n**Correction :**\nLoi d'additivité : $U = U_1 + U_2$.\n$$U_2 = U - U_1 = 4{,}5 - 2 = 2{,}5\\,\\text{V}$$\n\n### Exercice 2\n\nDeux lampes sont montées en **dérivation** sur une pile de $6\\,\\text{V}$.\n\n**Quelle est la tension aux bornes de chaque lampe ?**\n\n**Correction :**\nEn dérivation, la tension est la **même** pour chaque branche :\n$$U_1 = U_2 = U = 6\\,\\text{V}$$\n\n### Exercice 3\n\n**Convertir** : $2300\\,\\text{mV}$ en volts, puis $0{,}4\\,\\text{kV}$ en volts.\n\n**Correction :**\n$$2300\\,\\text{mV} = 2300 \\times 10^{-3} = 2{,}3\\,\\text{V}$$\n$$0{,}4\\,\\text{kV} = 0{,}4 \\times 1000 = 400\\,\\text{V}$$\n\n## À retenir\n\n- La **tension** $U$ se mesure en **volts (V)** avec un **voltmètre** branché **en dérivation**.\n- **En série** : la tension s'**additionne** ($U = U_1 + U_2 + \\dots$).\n- **En dérivation** : la tension est la **même** ($U_1 = U_2 = U$).\n- Tension du secteur ≈ **220 V**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Quelle est l'unité de la tension électrique ?",
+            "options": [
+              "L'ampère",
+              "Le volt",
+              "L'ohm",
+              "Le joule"
+            ],
+            "answer": 1,
+            "explanation": "La tension U se mesure en volts (V)."
+          },
+          {
+            "q": "Comment branche-t-on un voltmètre ?",
+            "options": [
+              "En série",
+              "En dérivation aux bornes du dipôle",
+              "Dans la pile",
+              "On ne peut pas"
+            ],
+            "answer": 1,
+            "explanation": "Le voltmètre se branche en dérivation (parallèle) aux bornes du dipôle."
+          },
+          {
+            "q": "En série, U = 9 V et U1 = 4 V. Que vaut U2 ?",
+            "options": [
+              "13 V",
+              "5 V",
+              "9 V",
+              "4 V"
+            ],
+            "answer": 1,
+            "explanation": "Loi d'additivité : U2 = U - U1 = 9 - 4 = 5 V."
+          },
+          {
+            "q": "En dérivation, deux lampes sur une pile de 6 V ont une tension de :",
+            "options": [
+              "3 V chacune",
+              "6 V chacune",
+              "12 V chacune",
+              "0 V"
+            ],
+            "answer": 1,
+            "explanation": "En dérivation la tension est la même partout : 6 V."
+          },
+          {
+            "q": "Combien vaut 1,5 kV en volts ?",
+            "options": [
+              "15 V",
+              "150 V",
+              "1500 V",
+              "0,0015 V"
+            ],
+            "answer": 2,
+            "explanation": "1,5 kV = 1,5 x 1000 = 1500 V."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La loi d'Ohm et les résistances",
+      "video": "https://www.youtube.com/watch?v=Hf3Dnp0Eo1g",
+      "lesson": "# La loi d'Ohm et les résistances\n\n## Introduction\n\nCertains dipôles, appelés **résistances** (ou conducteurs ohmiques), s'opposent au passage du courant. Le physicien **Georg Ohm** a découvert la relation entre la tension et l'intensité pour ces dipôles : c'est la **loi d'Ohm**.\n\n## 1. La résistance\n\nUne **résistance** (conducteur ohmique) est un dipôle qui s'oppose au passage du courant. Sa valeur se note **R** et s'exprime en **ohms** (symbole $\\Omega$).\n\nMultiples : $1\\,\\text{k}\\Omega = 1000\\,\\Omega$ ; $1\\,\\text{M}\\Omega = 10^{6}\\,\\Omega$.\n\n## 2. La loi d'Ohm\n\nPour un conducteur ohmique, la tension U à ses bornes est **proportionnelle** à l'intensité I qui le traverse :\n$$\\boxed{U = R \\times I}$$\n\navec :\n- **U** en volts (V),\n- **R** en ohms ($\\Omega$),\n- **I** en ampères (A).\n\nOn en déduit les formules dérivées :\n$$R = \\frac{U}{I} \\qquad \\text{et} \\qquad I = \\frac{U}{R}$$\n\n## 3. Caractéristique d'un conducteur ohmique\n\nSi l'on trace U en fonction de I, on obtient une **droite passant par l'origine**. Sa pente (le coefficient directeur) est égale à la **résistance R**. C'est la signature de la proportionnalité.\n\n## 4. Code des couleurs (initiation)\n\nLes résistances portent des anneaux colorés indiquant leur valeur. En 3e, on retient surtout que **la valeur est fixe** et lisible avec un ohmmètre.\n\n## 5. Association de résistances (initiation)\n\n- **En série** : $R = R_1 + R_2$ (les résistances s'additionnent).\n- **En dérivation** : la résistance équivalente est **plus petite** que chacune.\n\n## Exercices corrigés\n\n### Exercice 1\n\nUne résistance $R = 100\\,\\Omega$ est traversée par un courant $I = 0{,}2\\,\\text{A}$.\n\n**Calculer la tension U à ses bornes.**\n\n**Correction :**\n$$U = R \\times I = 100 \\times 0{,}2 = 20\\,\\text{V}$$\n\n### Exercice 2\n\nAux bornes d'une résistance, on mesure $U = 6\\,\\text{V}$ et $I = 0{,}03\\,\\text{A}$.\n\n**Calculer la valeur de la résistance R.**\n\n**Correction :**\n$$R = \\frac{U}{I} = \\frac{6}{0{,}03} = 200\\,\\Omega$$\n\n### Exercice 3\n\nUne résistance $R = 50\\,\\Omega$ est soumise à une tension $U = 4{,}5\\,\\text{V}$.\n\n**Calculer l'intensité I du courant qui la traverse.**\n\n**Correction :**\n$$I = \\frac{U}{R} = \\frac{4{,}5}{50} = 0{,}09\\,\\text{A} = 90\\,\\text{mA}$$\n\n## À retenir\n\n- Une **résistance** se mesure en **ohms ($\\Omega$)**.\n- **Loi d'Ohm** : $U = R \\times I$ (U en V, R en $\\Omega$, I en A).\n- Formules : $R = \\dfrac{U}{I}$ et $I = \\dfrac{U}{R}$.\n- La caractéristique U=f(I) d'un conducteur ohmique est une **droite passant par l'origine**.\n- En série : $R = R_1 + R_2$.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Quelle est la formule de la loi d'Ohm ?",
+            "options": [
+              "U = R + I",
+              "U = R x I",
+              "U = R / I",
+              "U = I / R"
+            ],
+            "answer": 1,
+            "explanation": "La loi d'Ohm s'écrit U = R x I."
+          },
+          {
+            "q": "Unité de la résistance électrique :",
+            "options": [
+              "Le volt",
+              "L'ampère",
+              "L'ohm",
+              "Le watt"
+            ],
+            "answer": 2,
+            "explanation": "La résistance s'exprime en ohms (Ω)."
+          },
+          {
+            "q": "R = 200 Ω et I = 0,1 A. Que vaut U ?",
+            "options": [
+              "2 V",
+              "20 V",
+              "200 V",
+              "0,2 V"
+            ],
+            "answer": 1,
+            "explanation": "U = R x I = 200 x 0,1 = 20 V."
+          },
+          {
+            "q": "U = 12 V, I = 0,04 A. Que vaut R ?",
+            "options": [
+              "48 Ω",
+              "300 Ω",
+              "0,48 Ω",
+              "3 Ω"
+            ],
+            "answer": 1,
+            "explanation": "R = U / I = 12 / 0,04 = 300 Ω."
+          },
+          {
+            "q": "La caractéristique U=f(I) d'un conducteur ohmique est :",
+            "options": [
+              "Une courbe",
+              "Une droite passant par l'origine",
+              "Une parabole",
+              "Un cercle"
+            ],
+            "answer": 1,
+            "explanation": "C'est une droite passant par l'origine (proportionnalité)."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Puissance et énergie électriques",
+      "video": "https://www.youtube.com/watch?v=oqDQfp4Z6Vo",
+      "lesson": "# Puissance et énergie électriques\n\n## Introduction\n\nUne ampoule de 100 W éclaire plus qu'une de 40 W ; un fer à repasser consomme beaucoup d'énergie. Ces notions de **puissance** et d'**énergie** électriques sont essentielles, notamment pour comprendre la facture d'électricité.\n\n## 1. La puissance électrique\n\nLa **puissance** P mesure l'énergie consommée (ou fournie) par seconde. Elle s'exprime en **watts (W)**.\n\nPour un appareil parcouru par un courant I sous une tension U :\n$$\\boxed{P = U \\times I}$$\n\navec **P** en watts (W), **U** en volts (V), **I** en ampères (A).\n\nMultiple : $1\\,\\text{kW} = 1000\\,\\text{W}$.\n\n## 2. L'énergie électrique\n\nL'**énergie** consommée dépend de la puissance et de la **durée** d'utilisation :\n$$\\boxed{E = P \\times t}$$\n\n- Si **P** est en watts et **t** en secondes, **E** est en **joules (J)**.\n- Si **P** est en kilowatts et **t** en heures, **E** est en **kilowattheures (kWh)** : c'est l'unité de la facture d'électricité.\n\n## 3. La facture d'électricité\n\nLe compteur mesure l'énergie en **kWh**. Le montant à payer :\n$$\\text{Coût} = E_{(\\text{kWh})} \\times \\text{prix du kWh}$$\n\n## 4. L'effet Joule\n\nQuand un courant traverse un conducteur, celui-ci **chauffe** : c'est l'**effet Joule**. Il est utile (fer à repasser, chauffe-eau, ampoule) mais aussi source de pertes (échauffement des fils).\n\n## Exercices corrigés\n\n### Exercice 1\n\nUne lampe fonctionne sous $U = 220\\,\\text{V}$ et est traversée par $I = 0{,}5\\,\\text{A}$.\n\n**Calculer sa puissance.**\n\n**Correction :**\n$$P = U \\times I = 220 \\times 0{,}5 = 110\\,\\text{W}$$\n\n### Exercice 2\n\nUn fer à repasser de puissance $P = 1000\\,\\text{W}$ fonctionne pendant $2\\,\\text{h}$.\n\n**Calculer l'énergie consommée en kWh.**\n\n**Correction :**\n$$P = 1000\\,\\text{W} = 1\\,\\text{kW}$$\n$$E = P \\times t = 1 \\times 2 = 2\\,\\text{kWh}$$\n\n### Exercice 3\n\nLe prix du kWh est de **80 FCFA**. Une famille consomme $150\\,\\text{kWh}$ par mois.\n\n**Calculer le montant de la facture.**\n\n**Correction :**\n$$\\text{Coût} = 150 \\times 80 = 12\\,000\\,\\text{FCFA}$$\n\n## À retenir\n\n- **Puissance** : $P = U \\times I$ (en watts W).\n- **Énergie** : $E = P \\times t$ (en joules J si t en s, ou en kWh si P en kW et t en h).\n- $1\\,\\text{kWh}$ = énergie d'un appareil de 1 kW pendant 1 h.\n- **Effet Joule** : un conducteur parcouru par un courant chauffe.\n- Facture = énergie (kWh) x prix du kWh.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Formule de la puissance électrique :",
+            "options": [
+              "P = U + I",
+              "P = U x I",
+              "P = U / I",
+              "P = R x I"
+            ],
+            "answer": 1,
+            "explanation": "P = U x I, en watts."
+          },
+          {
+            "q": "Unité de l'énergie électrique de la facture :",
+            "options": [
+              "Le watt",
+              "Le joule",
+              "Le kilowattheure (kWh)",
+              "L'ampère"
+            ],
+            "answer": 2,
+            "explanation": "La facture est exprimée en kWh."
+          },
+          {
+            "q": "P = 100 W, t = 3 h. Énergie en kWh ?",
+            "options": [
+              "300 kWh",
+              "0,3 kWh",
+              "3 kWh",
+              "30 kWh"
+            ],
+            "answer": 1,
+            "explanation": "P = 0,1 kW ; E = 0,1 x 3 = 0,3 kWh."
+          },
+          {
+            "q": "L'échauffement d'un conducteur parcouru par un courant s'appelle :",
+            "options": [
+              "L'effet Ohm",
+              "L'effet Joule",
+              "L'effet Volta",
+              "L'effet Ampère"
+            ],
+            "answer": 1,
+            "explanation": "C'est l'effet Joule."
+          },
+          {
+            "q": "U = 220 V, I = 2 A. Quelle puissance ?",
+            "options": [
+              "110 W",
+              "440 W",
+              "222 W",
+              "22 W"
+            ],
+            "answer": 1,
+            "explanation": "P = 220 x 2 = 440 W."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La lumière et les sources lumineuses",
+      "video": "https://www.youtube.com/watch?v=2cXdQ8b1iN4",
+      "lesson": "# La lumière et les sources lumineuses\n\n## Introduction\n\nSans lumière, nous ne verrions rien. Mais d'où vient la lumière ? Comment se propage-t-elle ? Ce chapitre étudie les **sources de lumière** et le **modèle du rayon lumineux**.\n\n## 1. Sources primaires et objets diffusants\n\n- Une **source primaire** produit sa propre lumière : le Soleil, une lampe, une bougie, une étoile, le feu.\n- Un **objet diffusant** (ou source secondaire) ne produit pas de lumière : il **renvoie** la lumière qu'il reçoit. Exemples : la Lune, un mur, un livre, nous-mêmes.\n\n**On voit un objet diffusant uniquement s'il est éclairé.**\n\n## 2. Comment voit-on un objet ?\n\nPour voir un objet, il faut que la lumière qui en provient **entre dans notre œil**. La lumière part de la source ou de l'objet diffusant, puis arrive à l'œil.\n\n## 3. Propagation rectiligne de la lumière\n\nDans un **milieu transparent et homogène** (air, eau pure, verre), la lumière se propage en **ligne droite** : c'est la **propagation rectiligne de la lumière**.\n\nOn modélise un trajet de lumière par un **rayon lumineux**, représenté par une droite fléchée indiquant le sens de propagation.\n\n## 4. Les milieux\n\n- **Transparent** : laisse passer la lumière et voir à travers (verre propre, air, eau).\n- **Translucide** : laisse passer la lumière mais on ne voit pas nettement (papier calque, verre dépoli).\n- **Opaque** : ne laisse pas passer la lumière (bois, métal, carton).\n\n## 5. La vitesse de la lumière\n\nDans le vide (et à peu près dans l'air), la lumière se déplace très vite :\n$$c \\approx 300\\,000\\,\\text{km/s} = 3 \\times 10^{8}\\,\\text{m/s}$$\n\nC'est la plus grande vitesse possible dans l'univers.\n\n## Exercices corrigés\n\n### Exercice 1\n\nClasser les éléments suivants en sources primaires ou objets diffusants : le Soleil, la Lune, une bougie, un cahier, une étoile.\n\n**Correction :**\n- Sources primaires : **le Soleil, une bougie, une étoile**.\n- Objets diffusants : **la Lune, un cahier**.\n\n### Exercice 2\n\nLa lumière du Soleil met environ **8 minutes** à nous parvenir.\n\n**Sachant que $c = 3 \\times 10^{8}\\,\\text{m/s}$, expliquer pourquoi on dit que la lumière est très rapide.**\n\n**Correction :**\nEn 8 min (480 s), la lumière parcourt $d = c \\times t = 3 \\times 10^{8} \\times 480 = 1{,}44 \\times 10^{11}\\,\\text{m}$, soit environ 144 millions de km (distance Terre-Soleil). Parcourir une telle distance en quelques minutes montre que la lumière est extrêmement rapide.\n\n### Exercice 3\n\nOn regarde un mur dans une pièce totalement noire (aucune lumière).\n\n**Voit-on le mur ? Pourquoi ?**\n\n**Correction :**\nNon. Le mur est un **objet diffusant** : il ne produit pas de lumière. Sans aucune source pour l'éclairer, aucune lumière ne provient du mur, donc l'œil ne reçoit rien : on ne le voit pas.\n\n## À retenir\n\n- **Source primaire** : produit sa lumière (Soleil, lampe). **Objet diffusant** : renvoie la lumière (Lune, mur).\n- Pour voir un objet, sa lumière doit **entrer dans l'œil**.\n- Dans un milieu transparent et homogène, la lumière se propage **en ligne droite** (rayon lumineux).\n- Vitesse de la lumière : $c \\approx 300\\,000\\,\\text{km/s}$.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Lequel est une source primaire de lumière ?",
+            "options": [
+              "La Lune",
+              "Un miroir",
+              "Le Soleil",
+              "Un mur blanc"
+            ],
+            "answer": 2,
+            "explanation": "Le Soleil produit sa propre lumière : source primaire."
+          },
+          {
+            "q": "La Lune est :",
+            "options": [
+              "Une source primaire",
+              "Un objet diffusant",
+              "Opaque sans lumière",
+              "Une étoile"
+            ],
+            "answer": 1,
+            "explanation": "La Lune renvoie la lumière du Soleil : objet diffusant."
+          },
+          {
+            "q": "Dans un milieu transparent homogène, la lumière se propage :",
+            "options": [
+              "En zigzag",
+              "En ligne droite",
+              "En cercle",
+              "En spirale"
+            ],
+            "answer": 1,
+            "explanation": "Propagation rectiligne : en ligne droite."
+          },
+          {
+            "q": "La vitesse de la lumière vaut environ :",
+            "options": [
+              "300 km/s",
+              "3000 km/s",
+              "300 000 km/s",
+              "30 km/s"
+            ],
+            "answer": 2,
+            "explanation": "c ≈ 300 000 km/s = 3 x 10⁸ m/s."
+          },
+          {
+            "q": "Un matériau qui ne laisse pas passer la lumière est :",
+            "options": [
+              "Transparent",
+              "Translucide",
+              "Opaque",
+              "Lumineux"
+            ],
+            "answer": 2,
+            "explanation": "Un matériau opaque bloque la lumière."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Ombres et éclipses",
+      "video": "https://www.youtube.com/watch?v=mUk_Pz0gKZE",
+      "lesson": "# Ombres et éclipses\n\n## Introduction\n\nQuand un objet opaque est éclairé, il forme une **ombre**. À l'échelle astronomique, ces ombres expliquent les magnifiques phénomènes d'**éclipses** de Soleil et de Lune. Tout cela découle de la **propagation rectiligne de la lumière**.\n\n## 1. Formation des ombres\n\nLorsqu'un objet **opaque** est placé devant une source de lumière, il empêche la lumière de passer. On distingue :\n- l'**ombre propre** : la partie de l'objet non éclairée ;\n- l'**ombre portée** : la zone sombre projetée sur un écran derrière l'objet.\n\nLa forme de l'ombre s'explique par la propagation **rectiligne** de la lumière.\n\n## 2. Source ponctuelle et source étendue\n\n- Avec une **source ponctuelle** (petite), on obtient une ombre nette (cône d'ombre).\n- Avec une **source étendue** (large), on obtient une zone d'ombre totale et une zone de **pénombre** (éclairée par une partie de la source).\n\n## 3. Le jour et la nuit\n\nLa Terre tourne sur elle-même : la moitié face au Soleil est éclairée (**jour**), l'autre moitié est dans l'ombre (**nuit**). La Terre fait un tour sur elle-même en **24 heures**.\n\n## 4. L'éclipse de Soleil\n\nUne **éclipse de Soleil** se produit quand la **Lune** passe **entre le Soleil et la Terre**, sur le même alignement. La Lune cache le Soleil et projette son ombre sur la Terre.\nOrdre : **Soleil - Lune - Terre**.\n\n## 5. L'éclipse de Lune\n\nUne **éclipse de Lune** se produit quand la **Terre** passe **entre le Soleil et la Lune**. La Terre projette son ombre sur la Lune, qui s'assombrit.\nOrdre : **Soleil - Terre - Lune**.\n\n## Exercices corrigés\n\n### Exercice 1\n\nOn éclaire une balle opaque avec une lampe et on place un écran derrière.\n\n**Que voit-on sur l'écran ? Pourquoi ?**\n\n**Correction :**\nOn voit une **ombre portée** : une zone sombre de la forme de la balle. La balle, opaque, bloque la lumière qui se propage en ligne droite ; derrière elle, l'écran ne reçoit pas de lumière.\n\n### Exercice 2\n\nOn observe le Soleil disparaître en plein jour alors que la Lune passe devant lui.\n\n**De quel phénomène s'agit-il ? Donner l'alignement des astres.**\n\n**Correction :**\nIl s'agit d'une **éclipse de Soleil**. L'alignement est : **Soleil - Lune - Terre** (la Lune entre le Soleil et la Terre).\n\n### Exercice 3\n\n**Pourquoi y a-t-il une alternance jour/nuit sur Terre ?**\n\n**Correction :**\nLa Terre est opaque et tourne sur elle-même en 24 h. La face tournée vers le Soleil est éclairée (**jour**) ; la face opposée est dans son ombre propre (**nuit**). La rotation fait alterner les deux.\n\n## À retenir\n\n- Un objet **opaque** éclairé forme une **ombre propre** (sur lui) et une **ombre portée** (sur un écran).\n- Les ombres s'expliquent par la propagation **rectiligne** de la lumière.\n- **Éclipse de Soleil** : Soleil - **Lune** - Terre (la Lune cache le Soleil).\n- **Éclipse de Lune** : Soleil - **Terre** - Lune (la Terre cache la lumière à la Lune).\n- Jour/nuit : rotation de la Terre en 24 h.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Une ombre se forme derrière un objet :",
+            "options": [
+              "Transparent",
+              "Translucide",
+              "Opaque",
+              "Lumineux"
+            ],
+            "answer": 2,
+            "explanation": "Seul un objet opaque bloque la lumière et forme une ombre."
+          },
+          {
+            "q": "Lors d'une éclipse de Soleil, l'alignement est :",
+            "options": [
+              "Soleil - Terre - Lune",
+              "Soleil - Lune - Terre",
+              "Terre - Soleil - Lune",
+              "Lune - Soleil - Terre"
+            ],
+            "answer": 1,
+            "explanation": "La Lune passe entre le Soleil et la Terre."
+          },
+          {
+            "q": "Lors d'une éclipse de Lune, c'est :",
+            "options": [
+              "La Lune qui cache le Soleil",
+              "La Terre qui projette son ombre sur la Lune",
+              "Le Soleil derrière la Terre",
+              "Une étoile filante"
+            ],
+            "answer": 1,
+            "explanation": "La Terre se place entre le Soleil et la Lune et l'ombrage."
+          },
+          {
+            "q": "La zone partiellement éclairée autour de l'ombre s'appelle :",
+            "options": [
+              "L'ombre propre",
+              "La pénombre",
+              "Le rayon",
+              "L'éclipse"
+            ],
+            "answer": 1,
+            "explanation": "La pénombre apparaît avec une source étendue."
+          },
+          {
+            "q": "L'alternance jour/nuit est due :",
+            "options": [
+              "Aux nuages",
+              "À la rotation de la Terre sur elle-même",
+              "À la Lune",
+              "Aux étoiles"
+            ],
+            "answer": 1,
+            "explanation": "La Terre tourne sur elle-même en 24 h."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les lentilles (initiation)",
+      "video": "https://www.youtube.com/watch?v=Hk7s6cZ6Yyk",
+      "lesson": "# Les lentilles (initiation)\n\n## Introduction\n\nLes lunettes, la loupe, l'appareil photo et même notre œil utilisent des **lentilles**. Une lentille dévie la lumière et peut former des **images**. Découvrons leur fonctionnement de façon simple.\n\n## 1. Qu'est-ce qu'une lentille ?\n\nUne **lentille** est un morceau de verre (ou de plastique) transparent dont au moins une face est courbée. On distingue deux familles :\n- **Lentille convergente** : plus épaisse au centre qu'aux bords. Elle **rassemble** les rayons lumineux. (loupe)\n- **Lentille divergente** : plus mince au centre qu'aux bords. Elle **écarte** les rayons.\n\n## 2. La lentille convergente\n\nQuand des rayons parallèles arrivent sur une lentille convergente, ils se rejoignent en un point appelé **foyer (F)**.\n\nLa distance entre le centre de la lentille (O) et le foyer (F) s'appelle la **distance focale** :\n$$f = OF$$\nOn l'exprime en mètres (m) ou en centimètres (cm).\n\n## 3. Reconnaître une lentille\n\n- Avec une lentille **convergente**, on peut **brûler du papier** au soleil (elle concentre la lumière) et obtenir une image nette sur un écran.\n- Une lentille convergente utilisée comme **loupe** agrandit les objets proches.\n\n## 4. Formation d'une image (initiation)\n\nEn plaçant un objet éclairé devant une lentille convergente et un écran derrière, on peut obtenir une **image nette**. Selon la distance, l'image peut être plus grande, plus petite, renversée. C'est le principe de l'**appareil photo** et de l'**œil**.\n\n## Exercices corrigés\n\n### Exercice 1\n\nOn dispose de deux lentilles : l'une est plus épaisse au centre, l'autre plus mince au centre.\n\n**Indiquer laquelle est convergente et laquelle est divergente.**\n\n**Correction :**\n- La lentille **plus épaisse au centre** est **convergente**.\n- La lentille **plus mince au centre** est **divergente**.\n\n### Exercice 2\n\nUne lentille convergente a une distance focale $f = 10\\,\\text{cm}$.\n\n**Que représente cette distance ?**\n\n**Correction :**\nC'est la distance entre le centre **O** de la lentille et son **foyer F**, c'est-à-dire le point où se rejoignent des rayons parallèles à l'axe après la lentille. Ici $OF = 10\\,\\text{cm}$.\n\n### Exercice 3\n\n**Pourquoi peut-on enflammer une feuille de papier avec une loupe au soleil ?**\n\n**Correction :**\nLa loupe est une lentille **convergente**. Elle **concentre** les rayons du Soleil en un point (le foyer). En ce point, l'énergie lumineuse est très concentrée : la température monte fortement et le papier s'enflamme.\n\n## À retenir\n\n- **Lentille convergente** : épaisse au centre, **rassemble** la lumière (loupe).\n- **Lentille divergente** : mince au centre, **écarte** la lumière.\n- Le **foyer F** est le point où convergent des rayons parallèles ; $f = OF$ est la **distance focale**.\n- Une lentille convergente peut former une **image** sur un écran (appareil photo, œil).\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Une lentille convergente est :",
+            "options": [
+              "Plus mince au centre",
+              "Plus épaisse au centre",
+              "Toujours plate",
+              "Opaque"
+            ],
+            "answer": 1,
+            "explanation": "La lentille convergente est plus épaisse au centre."
+          },
+          {
+            "q": "Le point où se rejoignent des rayons parallèles s'appelle :",
+            "options": [
+              "Le centre",
+              "Le foyer",
+              "L'axe",
+              "L'image"
+            ],
+            "answer": 1,
+            "explanation": "C'est le foyer F."
+          },
+          {
+            "q": "La distance focale est la distance entre :",
+            "options": [
+              "Deux foyers",
+              "Le centre O et le foyer F",
+              "L'objet et l'écran",
+              "Deux lentilles"
+            ],
+            "answer": 1,
+            "explanation": "f = OF, distance du centre au foyer."
+          },
+          {
+            "q": "Une loupe est une lentille :",
+            "options": [
+              "Divergente",
+              "Convergente",
+              "Opaque",
+              "Plate"
+            ],
+            "answer": 1,
+            "explanation": "La loupe est une lentille convergente."
+          },
+          {
+            "q": "Une lentille divergente :",
+            "options": [
+              "Rassemble les rayons",
+              "Écarte les rayons",
+              "Bloque la lumière",
+              "Ne dévie rien"
+            ],
+            "answer": 1,
+            "explanation": "La lentille divergente écarte les rayons lumineux."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Le mouvement et la vitesse",
+      "video": "https://www.youtube.com/watch?v=6f1tNs9Pk8Q",
+      "lesson": "# Le mouvement et la vitesse\n\n## Introduction\n\nUne voiture qui roule, un élève qui marche, la Terre qui tourne : tout est question de **mouvement**. Pour décrire un mouvement, on a besoin de connaître la **vitesse**. Étudions cette grandeur essentielle de la mécanique.\n\n## 1. Mouvement et repos : la relativité\n\nUn objet est en **mouvement** par rapport à un **référentiel** si sa position change au cours du temps. Il est au **repos** si sa position ne change pas.\n\n**Le mouvement est relatif** : un passager assis dans un bus est au repos par rapport au bus, mais en mouvement par rapport au sol.\n\n## 2. Trajectoire\n\nLa **trajectoire** est la ligne décrite par un point en mouvement. Elle peut être :\n- **rectiligne** (ligne droite),\n- **circulaire** (cercle),\n- **curviligne** (courbe quelconque).\n\n## 3. La vitesse\n\nLa **vitesse moyenne** est le rapport de la distance parcourue par la durée du parcours :\n$$\\boxed{v = \\frac{d}{t}}$$\n\navec :\n- **d** la distance (en mètres m ou kilomètres km),\n- **t** la durée (en secondes s ou heures h),\n- **v** la vitesse (en m/s ou km/h).\n\nFormules dérivées :\n$$d = v \\times t \\qquad ; \\qquad t = \\frac{d}{v}$$\n\n## 4. Conversion des unités\n\nPour passer de **m/s** à **km/h**, on **multiplie par 3,6**. Pour l'inverse (km/h vers m/s), on **divise par 3,6**.\n$$1\\,\\text{m/s} = 3{,}6\\,\\text{km/h}$$\n\n## 5. Types de mouvement\n\n- **Uniforme** : la vitesse reste constante.\n- **Accéléré** : la vitesse augmente.\n- **Ralenti (décéléré)** : la vitesse diminue.\n\n## Exercices corrigés\n\n### Exercice 1\n\nUn cycliste parcourt $30\\,\\text{km}$ en $2\\,\\text{h}$.\n\n**Calculer sa vitesse moyenne en km/h.**\n\n**Correction :**\n$$v = \\frac{d}{t} = \\frac{30}{2} = 15\\,\\text{km/h}$$\n\n### Exercice 2\n\nUne voiture roule à $90\\,\\text{km/h}$.\n\n**Convertir cette vitesse en m/s.**\n\n**Correction :**\n$$v = \\frac{90}{3{,}6} = 25\\,\\text{m/s}$$\n\n### Exercice 3\n\nUn coureur a une vitesse de $5\\,\\text{m/s}$.\n\n**Quelle distance parcourt-il en $1\\,\\text{min}$ (60 s) ?**\n\n**Correction :**\n$$d = v \\times t = 5 \\times 60 = 300\\,\\text{m}$$\n\n## À retenir\n\n- Le mouvement est **relatif** : il dépend du **référentiel** choisi.\n- **Trajectoire** : rectiligne, circulaire ou curviligne.\n- **Vitesse** : $v = \\dfrac{d}{t}$ ; et $d = v \\times t$, $t = \\dfrac{d}{v}$.\n- Conversion : **m/s vers km/h : x3,6** ; **km/h vers m/s : ÷3,6**.\n- Mouvement uniforme = vitesse constante.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Formule de la vitesse moyenne :",
+            "options": [
+              "v = d x t",
+              "v = d / t",
+              "v = t / d",
+              "v = d + t"
+            ],
+            "answer": 1,
+            "explanation": "v = d / t (distance divisée par la durée)."
+          },
+          {
+            "q": "Un objet immobile par rapport à un référentiel est :",
+            "options": [
+              "En mouvement",
+              "Au repos",
+              "Accéléré",
+              "Ralenti"
+            ],
+            "answer": 1,
+            "explanation": "Position qui ne change pas = repos."
+          },
+          {
+            "q": "Pour convertir des m/s en km/h, on :",
+            "options": [
+              "Divise par 3,6",
+              "Multiplie par 3,6",
+              "Multiplie par 10",
+              "Divise par 10"
+            ],
+            "answer": 1,
+            "explanation": "m/s vers km/h : on multiplie par 3,6."
+          },
+          {
+            "q": "Un train parcourt 120 km en 2 h. Sa vitesse est :",
+            "options": [
+              "240 km/h",
+              "60 km/h",
+              "122 km/h",
+              "60 m/s"
+            ],
+            "answer": 1,
+            "explanation": "v = 120/2 = 60 km/h."
+          },
+          {
+            "q": "Une vitesse de 72 km/h vaut, en m/s :",
+            "options": [
+              "20 m/s",
+              "72 m/s",
+              "259 m/s",
+              "36 m/s"
+            ],
+            "answer": 0,
+            "explanation": "72 / 3,6 = 20 m/s."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les forces et le poids",
+      "video": "https://www.youtube.com/watch?v=Pn5Yg2v6jZk",
+      "lesson": "# Les forces et le poids\n\n## Introduction\n\nPousser une porte, soulever un sac, retenir un objet qui tombe : dans tous les cas, on exerce une **force**. La Terre exerce aussi une force d'attraction sur tous les corps : le **poids**. Étudions ces notions fondamentales.\n\n## 1. Qu'est-ce qu'une force ?\n\nUne **force** est une action capable de :\n- mettre en mouvement un objet (ou l'arrêter),\n- modifier sa vitesse ou sa trajectoire,\n- le **déformer**.\n\nL'unité de force est le **newton (N)**.\n\n## 2. Caractéristiques d'une force\n\nUne force est représentée par un **vecteur** (une flèche) défini par :\n- son **point d'application** (où la force s'exerce),\n- sa **direction** (la droite d'action),\n- son **sens** (la pointe de la flèche),\n- sa **valeur (intensité)** en newtons, mesurée avec un **dynamomètre**.\n\n## 3. Le poids\n\nLe **poids** $P$ d'un corps est la force d'attraction exercée par la **Terre** sur ce corps. Il est toujours dirigé **vers le bas** (vers le centre de la Terre), vertical.\n\nIl se mesure avec un **dynamomètre** et s'exprime en **newtons (N)**.\n\n## 4. Relation entre poids et masse\n\nLe poids est proportionnel à la masse :\n$$\\boxed{P = m \\times g}$$\n\navec :\n- **P** le poids en newtons (N),\n- **m** la masse en kilogrammes (kg),\n- **g** l'intensité de la pesanteur, environ $g \\approx 9{,}8\\,\\text{N/kg}$ (souvent arrondie à $10\\,\\text{N/kg}$).\n\n## 5. Ne pas confondre poids et masse\n\n- La **masse** (en kg) est la quantité de matière : elle est **invariable** (la même sur Terre et sur la Lune).\n- Le **poids** (en N) dépend du lieu : il est **plus faible sur la Lune** (où $g \\approx 1{,}6\\,\\text{N/kg}$).\n\n## Exercices corrigés\n\n### Exercice 1\n\nUn objet a une masse $m = 5\\,\\text{kg}$. On prend $g = 10\\,\\text{N/kg}$.\n\n**Calculer son poids.**\n\n**Correction :**\n$$P = m \\times g = 5 \\times 10 = 50\\,\\text{N}$$\n\n### Exercice 2\n\nLe poids d'un sac est $P = 30\\,\\text{N}$ (avec $g = 10\\,\\text{N/kg}$).\n\n**Calculer sa masse.**\n\n**Correction :**\n$$m = \\frac{P}{g} = \\frac{30}{10} = 3\\,\\text{kg}$$\n\n### Exercice 3\n\nUn astronaute a une masse de $80\\,\\text{kg}$.\n\n**Calculer son poids sur Terre ($g = 10\\,\\text{N/kg}$) puis sur la Lune ($g = 1{,}6\\,\\text{N/kg}$).**\n\n**Correction :**\n- Sur Terre : $P = 80 \\times 10 = 800\\,\\text{N}$.\n- Sur la Lune : $P = 80 \\times 1{,}6 = 128\\,\\text{N}$.\nSa **masse** ne change pas (80 kg), mais son **poids** est environ 6 fois plus faible sur la Lune.\n\n## À retenir\n\n- Une **force** (en **newtons N**) met en mouvement, modifie la vitesse ou déforme un corps.\n- Une force a 4 caractéristiques : point d'application, direction, sens, valeur (mesurée au **dynamomètre**).\n- Le **poids** $P = m \\times g$ est l'attraction de la Terre, vertical vers le bas.\n- $g \\approx 10\\,\\text{N/kg}$ sur Terre.\n- La **masse** (kg) est invariable ; le **poids** (N) dépend du lieu.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Quelle est l'unité d'une force ?",
+            "options": [
+              "Le kilogramme",
+              "Le newton",
+              "Le joule",
+              "Le watt"
+            ],
+            "answer": 1,
+            "explanation": "Une force se mesure en newtons (N)."
+          },
+          {
+            "q": "Le poids est dû à l'attraction exercée par :",
+            "options": [
+              "La Lune",
+              "Le Soleil",
+              "La Terre",
+              "Le vent"
+            ],
+            "answer": 2,
+            "explanation": "Le poids est la force d'attraction de la Terre."
+          },
+          {
+            "q": "Formule du poids :",
+            "options": [
+              "P = m / g",
+              "P = m x g",
+              "P = m + g",
+              "P = g / m"
+            ],
+            "answer": 1,
+            "explanation": "P = m x g (m en kg, g en N/kg)."
+          },
+          {
+            "q": "Masse 2 kg, g = 10 N/kg. Quel poids ?",
+            "options": [
+              "20 N",
+              "0,2 N",
+              "12 N",
+              "5 N"
+            ],
+            "answer": 0,
+            "explanation": "P = 2 x 10 = 20 N."
+          },
+          {
+            "q": "Quand on va sur la Lune, la masse d'un corps :",
+            "options": [
+              "Augmente",
+              "Diminue",
+              "Ne change pas",
+              "Devient nulle"
+            ],
+            "answer": 2,
+            "explanation": "La masse est invariable ; seul le poids change."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Atomes et molécules",
+      "video": "https://www.youtube.com/watch?v=Q1gMLisHc7s",
+      "lesson": "# Atomes et molécules\n\n## Introduction\n\nToute la matière qui nous entoure - l'air, l'eau, notre corps - est faite de minuscules grains invisibles : les **atomes** et les **molécules**. Comprendre ces « briques » est la base de toute la chimie.\n\n## 1. La matière est constituée de grains\n\nLa matière est **discontinue** : elle est faite de très petites particules. Les plus petites sont les **atomes**.\n\n## 2. L'atome\n\nL'**atome** est la plus petite particule d'un élément chimique. Il est constitué de :\n- un **noyau** central (chargé positivement, contenant protons et neutrons),\n- des **électrons** (chargés négativement) qui tournent autour du noyau.\n\nL'atome est **électriquement neutre** : autant de charges + que de charges -.\n\nChaque atome est représenté par un **symbole** :\n- Hydrogène : **H**, Oxygène : **O**, Carbone : **C**, Azote : **N**, Fer : **Fe**, Sodium : **Na**, Chlore : **Cl**.\n\n## 3. La molécule\n\nUne **molécule** est un assemblage de plusieurs atomes liés entre eux. On la représente par une **formule chimique**.\n\nExemples :\n- **Dioxygène** : $O_2$ (2 atomes d'oxygène)\n- **Eau** : $H_2O$ (2 atomes d'hydrogène + 1 d'oxygène)\n- **Dioxyde de carbone** : $CO_2$\n- **Dihydrogène** : $H_2$\n\n## 4. Lire une formule chimique\n\nDans une formule, le **chiffre en indice** indique le nombre d'atomes de l'élément qui le précède.\nExemple : dans $H_2O$, il y a **2** atomes d'hydrogène et **1** atome d'oxygène.\n\n## 5. La conservation des atomes\n\nLors d'une transformation, les atomes ne disparaissent pas et ne se créent pas : ils se **réarrangent**. Le nombre de chaque type d'atome est **conservé**.\n\n## Exercices corrigés\n\n### Exercice 1\n\n**Donner le nombre et le type d'atomes dans la molécule de dioxyde de carbone $CO_2$.**\n\n**Correction :**\nLa formule $CO_2$ contient :\n- **1** atome de carbone (C),\n- **2** atomes d'oxygène (O).\nTotal : **3 atomes**.\n\n### Exercice 2\n\n**Combien d'atomes au total contient une molécule d'eau $H_2O$ ? De quels éléments ?**\n\n**Correction :**\n$H_2O$ contient **2** atomes d'hydrogène et **1** atome d'oxygène, soit **3 atomes** au total.\n\n### Exercice 3\n\n**Pourquoi dit-on qu'un atome est électriquement neutre ?**\n\n**Correction :**\nParce qu'il contient autant de charges positives (protons du noyau) que de charges négatives (électrons). Les charges + et - se compensent : l'atome est globalement **neutre**.\n\n## À retenir\n\n- La matière est faite d'**atomes** (plus petites particules) : noyau (+) + électrons (-), globalement **neutre**.\n- Chaque atome a un **symbole** (H, O, C, Fe...).\n- Une **molécule** = plusieurs atomes liés, représentée par une **formule** ($H_2O$, $CO_2$, $O_2$).\n- L'**indice** indique le nombre d'atomes.\n- Les atomes se **conservent** lors d'une transformation.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "La plus petite particule d'un élément chimique est :",
+            "options": [
+              "La molécule",
+              "L'atome",
+              "Le noyau",
+              "La goutte"
+            ],
+            "answer": 1,
+            "explanation": "L'atome est la plus petite particule d'un élément."
+          },
+          {
+            "q": "Un atome est constitué d'un noyau et :",
+            "options": [
+              "De protons seulement",
+              "D'électrons qui tournent autour",
+              "D'air",
+              "D'eau"
+            ],
+            "answer": 1,
+            "explanation": "Des électrons tournent autour du noyau."
+          },
+          {
+            "q": "Combien d'atomes d'oxygène dans CO₂ ?",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "0"
+            ],
+            "answer": 1,
+            "explanation": "L'indice 2 indique 2 atomes d'oxygène."
+          },
+          {
+            "q": "La formule de l'eau est :",
+            "options": [
+              "O₂",
+              "CO₂",
+              "H₂O",
+              "H₂"
+            ],
+            "answer": 2,
+            "explanation": "L'eau a pour formule H₂O."
+          },
+          {
+            "q": "L'atome est électriquement :",
+            "options": [
+              "Positif",
+              "Négatif",
+              "Neutre",
+              "Variable"
+            ],
+            "answer": 2,
+            "explanation": "Autant de charges + que de - : il est neutre."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Mélanges et corps purs",
+      "video": "https://www.youtube.com/watch?v=6fLT_v2RyVk",
+      "lesson": "# Mélanges et corps purs\n\n## Introduction\n\nL'eau du robinet, l'air, le jus de fruit : sont-ce des corps purs ou des mélanges ? Savoir distinguer et séparer ces substances est une compétence clé en chimie.\n\n## 1. Corps pur et mélange\n\n- Un **corps pur** est constitué d'**une seule sorte** de molécules (ou d'atomes). Exemples : eau distillée $H_2O$, dioxygène $O_2$, fer, sucre pur.\n- Un **mélange** contient **plusieurs** corps purs différents. Exemples : air, eau de mer, jus de fruit, lait.\n\n## 2. Mélanges homogènes et hétérogènes\n\n- **Mélange homogène** : on ne distingue pas les constituants à l'œil nu ; il a un seul aspect. Exemples : eau salée, air, eau sucrée. Ces mélanges sont appelés **solutions**.\n- **Mélange hétérogène** : on distingue les constituants. Exemples : eau + huile, eau + sable, jus avec pulpe.\n\n## 3. Vocabulaire des solutions\n\nDans une solution :\n- le **solvant** est le constituant le plus abondant (souvent l'eau, on parle de solution **aqueuse**) ;\n- le **soluté** est la substance dissoute (sel, sucre).\n\n## 4. Techniques de séparation\n\n- **Décantation** : on laisse reposer ; le solide lourd tombe au fond (eau + sable).\n- **Filtration** : on verse à travers un filtre ; le solide reste, le liquide (filtrat) passe.\n- **Distillation** : on chauffe puis on refroidit la vapeur ; sépare l'eau pure d'un mélange (eau salée vers eau distillée).\n\n## 5. Tester la pureté de l'eau\n\nL'eau **pure** bout à **100 °C** et gèle à **0 °C** (sous pression normale). Si la température d'ébullition diffère, l'eau contient des substances dissoutes : c'est un mélange.\n\n## Exercices corrigés\n\n### Exercice 1\n\nClasser en corps pur ou mélange : eau distillée, air, fer, eau de mer, dioxygène.\n\n**Correction :**\n- Corps purs : **eau distillée, fer, dioxygène**.\n- Mélanges : **air, eau de mer**.\n\n### Exercice 2\n\nOn veut séparer un mélange d'**eau et de sable**.\n\n**Quelle technique simple utiliser ? Décrire.**\n\n**Correction :**\nOn utilise la **filtration** (ou la décantation suivie de filtration). On verse le mélange dans un entonnoir muni d'un papier filtre : le **sable** reste sur le filtre, l'**eau** (filtrat) passe à travers.\n\n### Exercice 3\n\nOn dissout du sel dans de l'eau.\n\n**Identifier le solvant et le soluté, et le type de mélange obtenu.**\n\n**Correction :**\n- Solvant : l'**eau** (le plus abondant).\n- Soluté : le **sel** (dissous).\n- Le mélange est **homogène** : c'est une **solution** (eau salée), on ne distingue plus le sel.\n\n## À retenir\n\n- **Corps pur** : une seule sorte de molécules. **Mélange** : plusieurs corps purs.\n- **Homogène** (un seul aspect = solution) vs **hétérogène** (constituants visibles).\n- Solution : **solvant** (eau) + **soluté** (dissous).\n- Séparations : **décantation**, **filtration**, **distillation**.\n- L'eau pure bout à **100 °C** et gèle à **0 °C**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Un corps pur contient :",
+            "options": [
+              "Plusieurs sortes de molécules",
+              "Une seule sorte de molécules",
+              "Toujours de l'eau",
+              "Du sable"
+            ],
+            "answer": 1,
+            "explanation": "Un corps pur est fait d'une seule sorte de molécules."
+          },
+          {
+            "q": "L'eau salée est un mélange :",
+            "options": [
+              "Hétérogène",
+              "Homogène",
+              "Corps pur",
+              "Gazeux"
+            ],
+            "answer": 1,
+            "explanation": "On ne distingue pas le sel : mélange homogène (solution)."
+          },
+          {
+            "q": "Quelle technique sépare l'eau et le sable ?",
+            "options": [
+              "La distillation",
+              "La filtration",
+              "L'évaporation du sel",
+              "La fusion"
+            ],
+            "answer": 1,
+            "explanation": "La filtration retient le sable et laisse passer l'eau."
+          },
+          {
+            "q": "Dans l'eau salée, le solvant est :",
+            "options": [
+              "Le sel",
+              "L'eau",
+              "L'air",
+              "Le sable"
+            ],
+            "answer": 1,
+            "explanation": "L'eau est le solvant (le plus abondant)."
+          },
+          {
+            "q": "L'eau pure bout à :",
+            "options": [
+              "0 °C",
+              "50 °C",
+              "100 °C",
+              "220 °C"
+            ],
+            "answer": 2,
+            "explanation": "L'eau pure bout à 100 °C sous pression normale."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les réactions chimiques",
+      "video": "https://www.youtube.com/watch?v=PIajZB5o7-A",
+      "lesson": "# Les réactions chimiques\n\n## Introduction\n\nLe bois qui brûle, le fer qui rouille, le pain qui cuit : dans tous ces cas, de **nouvelles substances** apparaissent. C'est une **réaction chimique** : une transformation de la matière. Apprenons à la décrire.\n\n## 1. Transformation physique et chimique\n\n- Une **transformation physique** change l'état ou la forme, mais pas la nature : l'eau qui gèle reste de l'eau ($H_2O$).\n- Une **transformation chimique** crée de **nouvelles substances** : le bois qui brûle devient cendre + gaz.\n\n## 2. Réactifs et produits\n\nDans une réaction chimique :\n- les **réactifs** sont les corps présents **au départ** (ils disparaissent ou diminuent) ;\n- les **produits** sont les corps **formés** (ils apparaissent).\n\nOn l'écrit sous forme de **bilan** :\n$$\\text{réactifs} \\longrightarrow \\text{produits}$$\n\nExemple (combustion du carbone) :\n$$\\text{carbone} + \\text{dioxygène} \\longrightarrow \\text{dioxyde de carbone}$$\n$$C + O_2 \\longrightarrow CO_2$$\n\n## 3. Conservation de la masse (loi de Lavoisier)\n\nLors d'une réaction chimique, **la masse totale se conserve** :\n$$m_{\\text{réactifs}} = m_{\\text{produits}}$$\n\n« Rien ne se perd, rien ne se crée, tout se transforme » (**Lavoisier**). Les atomes sont seulement **réarrangés**.\n\n## 4. Équilibrer une équation (initiation)\n\nLe nombre d'atomes de chaque élément doit être **le même** avant et après. Exemple :\n$$2\\,H_2 + O_2 \\longrightarrow 2\\,H_2O$$\nÀ gauche comme à droite : 4 atomes d'H et 2 atomes d'O.\n\n## 5. Signes d'une réaction chimique\n\nOn reconnaît une réaction par : changement de couleur, dégagement de gaz, formation d'un solide (précipité), dégagement de chaleur ou de lumière.\n\n## Exercices corrigés\n\n### Exercice 1\n\nOn brûle $3\\,\\text{g}$ de carbone qui se combine avec $8\\,\\text{g}$ de dioxygène.\n\n**Quelle masse de dioxyde de carbone obtient-on ?**\n\n**Correction :**\nD'après la conservation de la masse :\n$$m_{CO_2} = m_C + m_{O_2} = 3 + 8 = 11\\,\\text{g}$$\n\n### Exercice 2\n\nDans la réaction $C + O_2 \\longrightarrow CO_2$, identifier les réactifs et le produit.\n\n**Correction :**\n- **Réactifs** (au départ) : le **carbone (C)** et le **dioxygène ($O_2$)**.\n- **Produit** (formé) : le **dioxyde de carbone ($CO_2$)**.\n\n### Exercice 3\n\n**L'eau qui se transforme en glace : est-ce une transformation physique ou chimique ? Justifier.**\n\n**Correction :**\nC'est une transformation **physique** : l'eau change seulement d'**état** (liquide vers solide) mais reste de l'eau ($H_2O$). Aucune nouvelle substance n'est créée.\n\n## À retenir\n\n- Une **réaction chimique** crée de **nouvelles substances** (différente d'une transformation physique).\n- **Réactifs** vers **Produits** (bilan de la réaction).\n- **Loi de Lavoisier** : la masse totale se **conserve** ; les atomes se réarrangent.\n- Une équation doit être **équilibrée** (même nombre d'atomes des deux côtés).\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Une réaction chimique se reconnaît par :",
+            "options": [
+              "Un simple changement d'état",
+              "La formation de nouvelles substances",
+              "Un changement de forme",
+              "Rien de visible"
+            ],
+            "answer": 1,
+            "explanation": "Une réaction chimique forme de nouvelles substances."
+          },
+          {
+            "q": "Les corps présents au départ sont les :",
+            "options": [
+              "Produits",
+              "Réactifs",
+              "Atomes",
+              "Mélanges"
+            ],
+            "answer": 1,
+            "explanation": "Les réactifs sont présents au départ."
+          },
+          {
+            "q": "Lors d'une réaction chimique, la masse totale :",
+            "options": [
+              "Augmente",
+              "Diminue",
+              "Se conserve",
+              "Disparaît"
+            ],
+            "answer": 2,
+            "explanation": "Loi de Lavoisier : la masse se conserve."
+          },
+          {
+            "q": "L'eau qui gèle est une transformation :",
+            "options": [
+              "Chimique",
+              "Physique",
+              "Nucléaire",
+              "Impossible"
+            ],
+            "answer": 1,
+            "explanation": "Elle reste H₂O : transformation physique."
+          },
+          {
+            "q": "On brûle 2 g de carbone avec 5 g de dioxygène. Masse de CO₂ formée ?",
+            "options": [
+              "3 g",
+              "7 g",
+              "10 g",
+              "2 g"
+            ],
+            "answer": 1,
+            "explanation": "Conservation : 2 + 5 = 7 g."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La combustion",
+      "video": "https://www.youtube.com/watch?v=4kc7MA0Ympw",
+      "lesson": "# La combustion\n\n## Introduction\n\nUne bougie, un feu de bois, le gaz de la cuisinière : ce sont des **combustions**. La combustion est une réaction chimique très importante, utile mais parfois dangereuse. Étudions ses conditions et ses produits.\n\n## 1. Définition\n\nUne **combustion** est une réaction chimique entre un **combustible** (qui brûle) et un **comburant** (qui permet de brûler, le plus souvent le **dioxygène $O_2$** de l'air), avec dégagement de **chaleur** et souvent de **lumière**.\n\n## 2. Le triangle du feu\n\nPour qu'une combustion ait lieu, il faut **trois** éléments :\n1. un **combustible** (bois, gaz, papier),\n2. un **comburant** (dioxygène de l'air),\n3. une **source de chaleur** (étincelle, flamme).\n\nSupprimer un seul de ces éléments **éteint le feu** (principe de l'extincteur : on supprime le dioxygène).\n\n## 3. Combustion complète du carbone\n\n$$C + O_2 \\longrightarrow CO_2$$\nLe carbone brûle dans le dioxygène et forme du **dioxyde de carbone ($CO_2$)**.\n\n## 4. Combustion incomplète : danger !\n\nSi le dioxygène est insuffisant, il se forme du **monoxyde de carbone (CO)**, gaz **toxique, incolore et inodore**, et du carbone (fumée noire). C'est très dangereux dans une pièce mal aérée.\n\n## 5. Tester les produits\n\n- Le **dioxyde de carbone $CO_2$** **trouble l'eau de chaux** (elle devient laiteuse) : c'est le test de reconnaissance.\n- La combustion de nombreux corps produit aussi de l'**eau** (qui se dépose en buée).\n\n## Exercices corrigés\n\n### Exercice 1\n\n**Citer les trois éléments du triangle du feu.**\n\n**Correction :**\n1. Le **combustible** (ce qui brûle),\n2. le **comburant** (le dioxygène de l'air),\n3. une **source de chaleur** (étincelle, flamme).\n\n### Exercice 2\n\nOn approche de l'eau de chaux limpide du gaz produit par une combustion. L'eau de chaux se **trouble**.\n\n**Quel gaz a été produit ?**\n\n**Correction :**\nLe gaz qui trouble l'eau de chaux est le **dioxyde de carbone ($CO_2$)**. C'est son test de reconnaissance.\n\n### Exercice 3\n\n**Pourquoi une combustion dans une pièce fermée et mal aérée est-elle dangereuse ?**\n\n**Correction :**\nLe dioxygène se raréfie : la combustion devient **incomplète** et produit du **monoxyde de carbone (CO)**, un gaz **toxique, incolore et inodore** qui peut provoquer des intoxications mortelles. Il faut toujours **aérer**.\n\n## À retenir\n\n- **Combustion** = combustible + comburant ($O_2$) + chaleur, avec dégagement de chaleur et lumière.\n- **Triangle du feu** : combustible, comburant, chaleur. Supprimer l'un d'eux éteint le feu.\n- Combustion complète du carbone : $C + O_2 \\to CO_2$.\n- Combustion **incomplète** vers **monoxyde de carbone (CO)**, toxique.\n- Le **$CO_2$ trouble l'eau de chaux** (test).\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Le comburant d'une combustion est le plus souvent :",
+            "options": [
+              "Le bois",
+              "Le dioxygène (O₂)",
+              "L'azote",
+              "L'eau"
+            ],
+            "answer": 1,
+            "explanation": "Le comburant est le dioxygène de l'air."
+          },
+          {
+            "q": "Le triangle du feu comprend combustible, chaleur et :",
+            "options": [
+              "Eau",
+              "Comburant",
+              "Lumière",
+              "Cendre"
+            ],
+            "answer": 1,
+            "explanation": "Combustible + comburant + source de chaleur."
+          },
+          {
+            "q": "Quel gaz trouble l'eau de chaux ?",
+            "options": [
+              "Le dioxygène",
+              "Le dioxyde de carbone (CO₂)",
+              "Le dihydrogène",
+              "L'azote"
+            ],
+            "answer": 1,
+            "explanation": "Le CO₂ trouble l'eau de chaux : c'est son test."
+          },
+          {
+            "q": "Une combustion incomplète produit un gaz toxique :",
+            "options": [
+              "O₂",
+              "CO₂",
+              "Le monoxyde de carbone (CO)",
+              "H₂O"
+            ],
+            "answer": 2,
+            "explanation": "Le monoxyde de carbone CO est toxique."
+          },
+          {
+            "q": "Pour éteindre un feu, on peut :",
+            "options": [
+              "Ajouter du combustible",
+              "Supprimer le dioxygène",
+              "Augmenter la chaleur",
+              "Ajouter de l'oxygène"
+            ],
+            "answer": 1,
+            "explanation": "Supprimer un élément du triangle (ici O₂) éteint le feu."
+          }
+        ]
+      }
+    },
+    {
+      "title": "L'air et l'eau",
+      "video": "https://www.youtube.com/watch?v=Lt2pj_zXYxA",
+      "lesson": "# L'air et l'eau\n\n## Introduction\n\nL'**air** que nous respirons et l'**eau** que nous buvons sont indispensables à la vie. Ce sont aussi des objets d'étude essentiels en chimie. Quelle est leur composition ?\n\n## 1. Composition de l'air\n\nL'**air** est un **mélange de gaz**. En volume, il contient environ :\n- **78 % de diazote ($N_2$)**,\n- **21 % de dioxygène ($O_2$)**,\n- **1 %** d'autres gaz (argon, dioxyde de carbone, vapeur d'eau...).\n\nOn retient simplement : **≈ 4/5 de diazote et 1/5 de dioxygène**.\n\n## 2. Propriétés de l'air\n\n- L'air est un **gaz** : il n'a pas de forme propre et occupe tout l'espace disponible.\n- L'air est **compressible** (on peut réduire son volume) et **expansible**.\n- L'air a une **masse** : environ $1{,}3\\,\\text{g}$ par litre.\n- Le **dioxygène** entretient la combustion et la respiration ; le **diazote** est inerte.\n\n## 3. L'eau et ses états\n\nL'eau pure ($H_2O$) existe sous **trois états** :\n- **solide** (glace),\n- **liquide** (eau),\n- **gazeux** (vapeur d'eau).\n\nChangements d'état : **fusion** (solide vers liquide), **solidification** (liquide vers solide), **vaporisation** (liquide vers gaz), **liquéfaction** (gaz vers liquide).\n\n## 4. Repères de température de l'eau pure\n\n- **Fusion/solidification** : $0\\,°\\text{C}$.\n- **Ébullition** : $100\\,°\\text{C}$ (sous pression normale).\n\nPendant un changement d'état d'un corps pur, la **température reste constante** (palier).\n\n## 5. Tester l'eau\n\nL'eau est mise en évidence par le **sulfate de cuivre anhydre** (poudre blanche) qui devient **bleu** en présence d'eau.\n\n## Exercices corrigés\n\n### Exercice 1\n\n**Donner la composition approximative de l'air en volume.**\n\n**Correction :**\nL'air contient environ **78 % de diazote ($N_2$)**, **21 % de dioxygène ($O_2$)** et **1 %** d'autres gaz. Soit, en simplifiant, **4/5 de diazote** et **1/5 de dioxygène**.\n\n### Exercice 2\n\n**Citer les trois états de l'eau et la température de fusion de la glace.**\n\n**Correction :**\nLes trois états : **solide (glace), liquide (eau), gazeux (vapeur)**. La glace fond à **0 °C** : c'est la température de **fusion**.\n\n### Exercice 3\n\n**Quel gaz de l'air entretient la combustion et la respiration ? Quel est le gaz majoritaire ?**\n\n**Correction :**\nLe gaz qui entretient la combustion et la respiration est le **dioxygène ($O_2$)**, qui ne représente qu'environ 21 % de l'air. Le gaz **majoritaire** est le **diazote ($N_2$)**, à environ 78 %.\n\n## À retenir\n\n- L'**air** est un mélange : ≈ **78 % diazote** + **21 % dioxygène** + 1 % autres.\n- L'air est **compressible**, **expansible** et a une **masse**.\n- L'**eau ($H_2O$)** a 3 états : **solide, liquide, gazeux**.\n- Eau pure : **fusion à 0 °C**, **ébullition à 100 °C** (température constante pendant le changement d'état).\n- Test de l'eau : le **sulfate de cuivre anhydre** blanc devient **bleu**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Le gaz majoritaire de l'air est :",
+            "options": [
+              "Le dioxygène",
+              "Le diazote",
+              "Le dioxyde de carbone",
+              "La vapeur d'eau"
+            ],
+            "answer": 1,
+            "explanation": "Le diazote représente environ 78 % de l'air."
+          },
+          {
+            "q": "Le pourcentage de dioxygène dans l'air est d'environ :",
+            "options": [
+              "78 %",
+              "21 %",
+              "50 %",
+              "1 %"
+            ],
+            "answer": 1,
+            "explanation": "Le dioxygène représente environ 21 % de l'air."
+          },
+          {
+            "q": "L'eau pure bout à :",
+            "options": [
+              "0 °C",
+              "50 °C",
+              "100 °C",
+              "78 °C"
+            ],
+            "answer": 2,
+            "explanation": "L'ébullition de l'eau pure a lieu à 100 °C."
+          },
+          {
+            "q": "Le passage de l'état solide à liquide s'appelle :",
+            "options": [
+              "La vaporisation",
+              "La fusion",
+              "La solidification",
+              "La liquéfaction"
+            ],
+            "answer": 1,
+            "explanation": "Solide vers liquide : c'est la fusion."
+          },
+          {
+            "q": "Quel test met en évidence la présence d'eau ?",
+            "options": [
+              "L'eau de chaux",
+              "Le sulfate de cuivre anhydre (devient bleu)",
+              "La filtration",
+              "La flamme"
+            ],
+            "answer": 1,
+            "explanation": "Le sulfate de cuivre anhydre blanc devient bleu avec l'eau."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Acides et bases (initiation)",
+      "video": "https://www.youtube.com/watch?v=mZ7q9rT2pVc",
+      "lesson": "# Acides et bases (initiation)\n\n## Introduction\n\nLe jus de citron est acide, le savon est basique : ces propriétés ont une grande importance dans la vie quotidienne et l'industrie. Comment reconnaître une solution **acide**, **basique** ou **neutre** ? La réponse : le **pH**.\n\n## 1. Les solutions acides et basiques\n\n- Une solution **acide** a un goût piquant (citron, vinaigre).\n- Une solution **basique** (ou alcaline) est savonneuse au toucher (eau de javel, soude, savon).\n- Une solution **neutre** n'est ni acide ni basique (eau pure).\n\n## 2. Le pH\n\nLe **pH** (potentiel hydrogène) mesure l'acidité d'une solution. Il varie de **0 à 14** :\n- $pH < 7$ : solution **acide** (plus le pH est petit, plus c'est acide) ;\n- $pH = 7$ : solution **neutre** (eau pure) ;\n- $pH > 7$ : solution **basique** (plus le pH est grand, plus c'est basique).\n\n## 3. Mesurer le pH\n\nOn mesure le pH avec :\n- du **papier pH** (change de couleur selon l'acidité),\n- un **indicateur coloré** (ex. le **BBT**, bleu de bromothymol : **jaune** en milieu acide, **vert** en milieu neutre, **bleu** en milieu basique),\n- un **pH-mètre** (mesure précise).\n\n## 4. Dangers et précautions\n\nLes acides et bases concentrés sont **corrosifs** : ils attaquent la peau, les yeux, les vêtements. On porte des **lunettes** et des **gants**, et on **ne goûte jamais** un produit en laboratoire.\n\n## 5. La dilution\n\nQuand on **ajoute de l'eau** à une solution acide, le pH **augmente** (se rapproche de 7) : la solution devient **moins acide**. À l'inverse, diluer une base **diminue** son pH vers 7.\n\n## Exercices corrigés\n\n### Exercice 1\n\nOn mesure le pH de trois solutions : jus de citron ($pH = 2$), eau pure ($pH = 7$), eau savonneuse ($pH = 10$).\n\n**Classer ces solutions en acide, neutre ou basique.**\n\n**Correction :**\n- Jus de citron : $pH = 2 < 7$ donc **acide**.\n- Eau pure : $pH = 7$ donc **neutre**.\n- Eau savonneuse : $pH = 10 > 7$ donc **basique**.\n\n### Exercice 2\n\nOn ajoute du BBT (bleu de bromothymol) à une solution : il devient **jaune**.\n\n**La solution est-elle acide, neutre ou basique ?**\n\n**Correction :**\nLe BBT est **jaune** en milieu **acide**. La solution est donc **acide** ($pH < 7$).\n\n### Exercice 3\n\nOn verse de l'eau dans une solution acide de $pH = 3$.\n\n**Que devient le pH ? La solution devient-elle plus ou moins acide ?**\n\n**Correction :**\nEn ajoutant de l'eau (dilution), le pH **augmente** et se rapproche de 7. La solution devient donc **moins acide**.\n\n## À retenir\n\n- **Acide** : $pH < 7$ ; **neutre** : $pH = 7$ ; **basique** : $pH > 7$ (échelle 0 à 14).\n- On mesure le pH avec le **papier pH**, un **indicateur coloré (BBT)** ou un **pH-mètre**.\n- **BBT** : jaune (acide), vert (neutre), bleu (basique).\n- Acides et bases concentrés sont **corrosifs** : gants, lunettes, ne jamais goûter.\n- **Diluer** un acide **augmente** son pH (vers 7).\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Une solution est acide si son pH est :",
+            "options": [
+              "Égal à 7",
+              "Inférieur à 7",
+              "Supérieur à 7",
+              "Égal à 14"
+            ],
+            "answer": 1,
+            "explanation": "pH < 7 : solution acide."
+          },
+          {
+            "q": "Le pH de l'eau pure (neutre) vaut :",
+            "options": [
+              "0",
+              "7",
+              "14",
+              "1"
+            ],
+            "answer": 1,
+            "explanation": "L'eau pure est neutre, pH = 7."
+          },
+          {
+            "q": "Le BBT est jaune en milieu :",
+            "options": [
+              "Basique",
+              "Neutre",
+              "Acide",
+              "Salé"
+            ],
+            "answer": 2,
+            "explanation": "Le BBT vire au jaune en milieu acide."
+          },
+          {
+            "q": "L'échelle de pH va de :",
+            "options": [
+              "0 à 7",
+              "0 à 10",
+              "0 à 14",
+              "1 à 100"
+            ],
+            "answer": 2,
+            "explanation": "Le pH varie de 0 à 14."
+          },
+          {
+            "q": "Quand on ajoute de l'eau à un acide, son pH :",
+            "options": [
+              "Diminue",
+              "Augmente vers 7",
+              "Reste à 0",
+              "Devient 14"
+            ],
+            "answer": 1,
+            "explanation": "La dilution rapproche le pH de 7 (moins acide)."
+          }
+        ]
+      }
+    }
+  ]
+}

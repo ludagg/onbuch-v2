@@ -17,7 +17,8 @@ class PackModule {
   final String id; // chapterId
   final String title;
   final bool free; // chapitre en aperçu gratuit
-  const PackModule(this.id, this.title, {this.free = false});
+  final String? videoUrl; // vidéo du chapitre (YouTube/MP4), optionnelle
+  const PackModule(this.id, this.title, {this.free = false, this.videoUrl});
 }
 
 /// Vue « pack » = matière (`subjects`) + ses chapitres + métadonnées d'achat.
@@ -53,7 +54,8 @@ class Pack {
   factory Pack.fromSubject(Subject s, List<Chapter> chapters) {
     final modules = <PackModule>[
       for (var i = 0; i < chapters.length; i++)
-        PackModule(chapters[i].id, chapters[i].title.isEmpty ? 'Chapitre ${i + 1}' : chapters[i].title, free: i < s.freeChapters),
+        PackModule(chapters[i].id, chapters[i].title.isEmpty ? 'Chapitre ${i + 1}' : chapters[i].title,
+            free: i < s.freeChapters, videoUrl: chapters[i].videoUrl),
     ];
     return Pack(
       id: s.id,
