@@ -1,0 +1,1094 @@
+{
+  "code": "Ma",
+  "level": "3ème",
+  "chapters": [
+    {
+      "title": "Calcul numérique : les puissances",
+      "video": "https://www.youtube.com/watch?v=2Xpc8oz0Kp8",
+      "lesson": "# Calcul numérique : les puissances\n\n## Introduction\n\nLes **puissances** permettent d'écrire de manière courte des produits de facteurs égaux. Au lieu d'écrire $2 \\times 2 \\times 2 \\times 2 \\times 2$, on écrit $2^5$. Cet outil est essentiel pour la notation scientifique, les grands nombres (distances en astronomie) et les très petits nombres (taille d'un atome). En classe de 3e, on apprend à manipuler les puissances d'exposant entier, **positif ou négatif**.\n\n## 1. Définition\n\n**Définition.** Soit $a$ un nombre et $n$ un entier strictement positif. La **puissance** $n$-ième de $a$ est :\n$$a^n = \\underbrace{a \\times a \\times \\cdots \\times a}_{n \\text{ facteurs}}$$\n\nLe nombre $a$ s'appelle la **base** et $n$ l'**exposant**.\n\n**Cas particuliers.** Pour tout nombre $a \\neq 0$ :\n$$a^1 = a \\qquad a^0 = 1$$\n\n**Exposant négatif.** Pour tout $a \\neq 0$ et tout entier $n$ :\n$$a^{-n} = \\frac{1}{a^n}$$\n\nPar exemple $2^{-3} = \\dfrac{1}{2^3} = \\dfrac{1}{8}$ et $10^{-2} = \\dfrac{1}{100} = 0{,}01$.\n\n## 2. Signe d'une puissance\n\nSi la base est **négative**, le signe de $a^n$ dépend de la parité de $n$ :\n- si $n$ est **pair**, $a^n$ est **positif** : $(-2)^4 = 16$ ;\n- si $n$ est **impair**, $a^n$ est **négatif** : $(-2)^3 = -8$.\n\n**Attention.** $-2^4 = -(2^4) = -16$ tandis que $(-2)^4 = 16$. Les parenthèses sont essentielles !\n\n## 3. Règles de calcul (lois des exposants)\n\nPour tous nombres $a$, $b$ non nuls et tous entiers $m$, $n$ :\n\n| Règle | Formule |\n|---|---|\n| Produit, même base | $a^m \\times a^n = a^{m+n}$ |\n| Quotient, même base | $\\dfrac{a^m}{a^n} = a^{m-n}$ |\n| Puissance d'une puissance | $\\left(a^m\\right)^n = a^{m\\times n}$ |\n| Produit, même exposant | $a^n \\times b^n = (a\\times b)^n$ |\n| Quotient, même exposant | $\\dfrac{a^n}{b^n} = \\left(\\dfrac{a}{b}\\right)^n$ |\n\n## 4. Puissances de 10\n\nLes puissances de $10$ sont très utiles :\n$$10^3 = 1000 \\qquad 10^{-3} = 0{,}001$$\nPour $n > 0$, $10^n$ s'écrit avec un $1$ suivi de $n$ zéros. Pour $10^{-n}$, on a $n$ chiffres après la virgule (le $1$ en dernier).\n\n## Exercices corrigés\n\n### Exercice 1\nCalculer $A = \\dfrac{3^5 \\times 3^{-2}}{3^4}$.\n\n**Correction.** On applique la règle du produit au numérateur :\n$$3^5 \\times 3^{-2} = 3^{5+(-2)} = 3^{3}.$$\nPuis la règle du quotient :\n$$A = \\frac{3^3}{3^4} = 3^{3-4} = 3^{-1} = \\frac{1}{3}.$$\n\n### Exercice 2\nÉcrire sous la forme $a^n$ : $B = \\left(2^3\\right)^2 \\times 2^{-4}$.\n\n**Correction.** On commence par la puissance de puissance :\n$$\\left(2^3\\right)^2 = 2^{3\\times 2} = 2^6.$$\nDonc $B = 2^6 \\times 2^{-4} = 2^{6-4} = 2^{2} = 4.$\n\n### Exercice 3\nCalculer $C = (-2)^3 + (-3)^2 - 4^0$.\n\n**Correction.**\n$$(-2)^3 = -8, \\quad (-3)^2 = 9, \\quad 4^0 = 1.$$\nDonc $C = -8 + 9 - 1 = 0.$\n\n## À retenir\n\n- $a^n = a\\times a \\times \\cdots \\times a$ ($n$ facteurs) ; $a^0 = 1$ ; $a^{-n} = \\dfrac{1}{a^n}$.\n- Produit même base : on **additionne** les exposants ; quotient : on **soustrait**.\n- Puissance d'une puissance : on **multiplie** les exposants.\n- $(-a)^n$ est positif si $n$ pair, négatif si $n$ impair ; attention aux parenthèses.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Que vaut $2^{-3}$ ?",
+            "options": [
+              "$-6$",
+              "$\\dfrac{1}{8}$",
+              "$-8$",
+              "$8$"
+            ],
+            "answer": 1,
+            "explanation": "$2^{-3}=\\dfrac{1}{2^3}=\\dfrac{1}{8}$."
+          },
+          {
+            "q": "$a^5 \\times a^3$ est égal à :",
+            "options": [
+              "$a^{15}$",
+              "$a^{8}$",
+              "$a^{2}$",
+              "$2a^{8}$"
+            ],
+            "answer": 1,
+            "explanation": "Même base : on additionne les exposants, $5+3=8$."
+          },
+          {
+            "q": "$\\left(5^2\\right)^3$ vaut :",
+            "options": [
+              "$5^{5}$",
+              "$5^{6}$",
+              "$5^{8}$",
+              "$5^{1}$"
+            ],
+            "answer": 1,
+            "explanation": "Puissance d'une puissance : $2\\times 3 = 6$, donc $5^6$."
+          },
+          {
+            "q": "Quel est le signe de $(-3)^4$ ?",
+            "options": [
+              "Positif",
+              "Négatif",
+              "Nul",
+              "Indéterminé"
+            ],
+            "answer": 0,
+            "explanation": "L'exposant 4 est pair, donc le résultat est positif : $(-3)^4=81$."
+          },
+          {
+            "q": "$\\dfrac{7^6}{7^6}$ est égal à :",
+            "options": [
+              "$0$",
+              "$1$",
+              "$7$",
+              "$7^{12}$"
+            ],
+            "answer": 1,
+            "explanation": "$\\dfrac{7^6}{7^6}=7^{6-6}=7^0=1$."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les racines carrées",
+      "video": "https://www.youtube.com/watch?v=Q0gLpyc3sNI",
+      "lesson": "# Les racines carrées\n\n## Introduction\n\nQuand on connaît l'aire d'un carré, comment retrouver la longueur de son côté ? Si l'aire vaut $25$ cm$^2$, le côté mesure $5$ cm car $5^2 = 25$. On dit que $5$ est la **racine carrée** de $25$. Les racines carrées interviennent aussi dans le théorème de Pythagore. Ce chapitre apprend à les définir et à les calculer.\n\n## 1. Définition\n\n**Définition.** Soit $a$ un nombre **positif** ($a \\geq 0$). La **racine carrée** de $a$, notée $\\sqrt{a}$, est le nombre **positif** dont le carré vaut $a$ :\n$$\\left(\\sqrt{a}\\right)^2 = a \\qquad \\text{et} \\qquad \\sqrt{a} \\geq 0.$$\n\nExemples : $\\sqrt{9} = 3$, $\\sqrt{0} = 0$, $\\sqrt{1} = 1$.\n\n**Remarque importante.** La racine carrée d'un nombre **négatif n'existe pas** : $\\sqrt{-4}$ n'a pas de sens, car aucun carré n'est négatif.\n\n## 2. Carrés parfaits\n\nLes **carrés parfaits** sont les carrés des entiers. Il faut les connaître par cœur :\n$$1,\\ 4,\\ 9,\\ 16,\\ 25,\\ 36,\\ 49,\\ 64,\\ 81,\\ 100,\\ 121,\\ 144.$$\nAinsi $\\sqrt{144} = 12$.\n\n## 3. Propriétés\n\nPour $a \\geq 0$ :\n$$\\left(\\sqrt{a}\\right)^2 = a \\qquad \\text{et} \\qquad \\sqrt{a^2} = a.$$\n\n**Produit et quotient.** Pour $a \\geq 0$ et $b \\geq 0$ :\n$$\\sqrt{a \\times b} = \\sqrt{a} \\times \\sqrt{b} \\qquad \\sqrt{\\frac{a}{b}} = \\frac{\\sqrt{a}}{\\sqrt{b}} \\ (b>0).$$\n\n**Attention.** En général $\\sqrt{a+b} \\neq \\sqrt{a} + \\sqrt{b}$. Par exemple $\\sqrt{9+16} = \\sqrt{25} = 5$, mais $\\sqrt{9}+\\sqrt{16} = 3+4 = 7$.\n\n## 4. Simplifier une racine carrée\n\nPour simplifier, on cherche le **plus grand carré parfait** facteur du nombre.\n$$\\sqrt{50} = \\sqrt{25 \\times 2} = \\sqrt{25} \\times \\sqrt{2} = 5\\sqrt{2}.$$\n\n## 5. Rendre rationnel un dénominateur\n\nPour supprimer la racine au dénominateur, on multiplie haut et bas par cette racine :\n$$\\frac{3}{\\sqrt{2}} = \\frac{3 \\times \\sqrt{2}}{\\sqrt{2}\\times \\sqrt{2}} = \\frac{3\\sqrt{2}}{2}.$$\n\n## Exercices corrigés\n\n### Exercice 1\nCalculer $\\sqrt{36}$, $\\sqrt{0{,}25}$ et $\\sqrt{49} + \\sqrt{16}$.\n\n**Correction.** $\\sqrt{36} = 6$ car $6^2 = 36$. $\\sqrt{0{,}25} = 0{,}5$ car $0{,}5^2 = 0{,}25$. Enfin $\\sqrt{49}+\\sqrt{16} = 7 + 4 = 11.$\n\n### Exercice 2\nÉcrire $\\sqrt{72}$ sous la forme $a\\sqrt{b}$ avec $b$ le plus petit possible.\n\n**Correction.** $72 = 36 \\times 2$ et $36$ est un carré parfait :\n$$\\sqrt{72} = \\sqrt{36 \\times 2} = \\sqrt{36}\\times \\sqrt{2} = 6\\sqrt{2}.$$\n\n### Exercice 3\nCalculer $D = \\sqrt{18} + \\sqrt{8}$.\n\n**Correction.** On simplifie chaque racine :\n$$\\sqrt{18} = \\sqrt{9\\times 2} = 3\\sqrt{2}, \\qquad \\sqrt{8} = \\sqrt{4\\times 2} = 2\\sqrt{2}.$$\nDonc $D = 3\\sqrt{2} + 2\\sqrt{2} = 5\\sqrt{2}.$\n\n## À retenir\n\n- $\\sqrt{a}$ est le nombre **positif** dont le carré est $a$ ; elle n'existe que si $a \\geq 0$.\n- $\\left(\\sqrt{a}\\right)^2 = a$ et $\\sqrt{a^2} = a$ (pour $a \\geq 0$).\n- $\\sqrt{a\\times b} = \\sqrt{a}\\times \\sqrt{b}$, mais $\\sqrt{a+b} \\neq \\sqrt{a}+\\sqrt{b}$.\n- Pour simplifier : extraire le plus grand carré parfait.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Que vaut $\\sqrt{81}$ ?",
+            "options": [
+              "$8$",
+              "$9$",
+              "$40{,}5$",
+              "$18$"
+            ],
+            "answer": 1,
+            "explanation": "$9^2=81$ donc $\\sqrt{81}=9$."
+          },
+          {
+            "q": "$\\sqrt{-16}$ vaut :",
+            "options": [
+              "$-4$",
+              "$4$",
+              "$16$",
+              "N'existe pas"
+            ],
+            "answer": 3,
+            "explanation": "La racine carrée d'un nombre négatif n'existe pas."
+          },
+          {
+            "q": "$\\left(\\sqrt{7}\\right)^2$ est égal à :",
+            "options": [
+              "$\\sqrt{7}$",
+              "$7$",
+              "$49$",
+              "$14$"
+            ],
+            "answer": 1,
+            "explanation": "Par définition $\\left(\\sqrt{a}\\right)^2=a$, ici $7$."
+          },
+          {
+            "q": "$\\sqrt{50}$ s'écrit :",
+            "options": [
+              "$5\\sqrt{2}$",
+              "$2\\sqrt{5}$",
+              "$25\\sqrt{2}$",
+              "$\\sqrt{5}\\times 10$"
+            ],
+            "answer": 0,
+            "explanation": "$\\sqrt{50}=\\sqrt{25\\times2}=5\\sqrt{2}$."
+          },
+          {
+            "q": "$\\sqrt{9+16}$ est égal à :",
+            "options": [
+              "$7$",
+              "$5$",
+              "$25$",
+              "$3+4$"
+            ],
+            "answer": 1,
+            "explanation": "$\\sqrt{9+16}=\\sqrt{25}=5$ (on ne sépare pas une somme)."
+          }
+        ]
+      }
+    },
+    {
+      "title": "L'écriture scientifique",
+      "video": "https://www.youtube.com/watch?v=8h3Hb3Q3wYA",
+      "lesson": "# L'écriture scientifique\n\n## Introduction\n\nEn sciences, on rencontre des nombres très grands (la vitesse de la lumière : $300\\,000\\,000$ m/s) ou très petits (le diamètre d'un globule rouge : $0{,}000007$ m). Les écrire entièrement est long et source d'erreurs. L'**écriture scientifique** offre une notation compacte et standardisée à l'aide des puissances de $10$.\n\n## 1. Définition\n\n**Définition.** L'**écriture scientifique** d'un nombre est de la forme :\n$$a \\times 10^{n}$$\noù $a$ est un nombre décimal vérifiant $1 \\leq |a| < 10$ (un seul chiffre non nul avant la virgule), et $n$ est un entier relatif.\n\nExemple : $5\\,300 = 5{,}3 \\times 10^{3}$ et $0{,}047 = 4{,}7 \\times 10^{-2}$.\n\n## 2. Méthode\n\n**Pour un grand nombre.** On place la virgule juste après le premier chiffre, puis on compte de combien de rangs on l'a déplacée vers la **gauche** : c'est l'exposant **positif**.\n$$32\\,000 = 3{,}2 \\times 10^{4}.$$\n\n**Pour un petit nombre.** On déplace la virgule vers la **droite** jusqu'au premier chiffre non nul ; l'exposant est **négatif** et égal au nombre de rangs.\n$$0{,}0056 = 5{,}6 \\times 10^{-3}.$$\n\n## 3. Ordre de grandeur\n\nL'**ordre de grandeur** d'un nombre est la puissance de $10$ la plus proche. Pour $a \\times 10^n$ : si $a < 5$, l'ordre de grandeur est $10^n$ ; si $a \\geq 5$, c'est $10^{n+1}$. Cela permet d'estimer rapidement un résultat.\n\n## 4. Calculer avec l'écriture scientifique\n\nOn regroupe les nombres décimaux d'un côté et les puissances de $10$ de l'autre :\n$$(3 \\times 10^4) \\times (2 \\times 10^{-7}) = (3\\times 2) \\times 10^{4+(-7)} = 6 \\times 10^{-3}.$$\n\n## Exercices corrigés\n\n### Exercice 1\nDonner l'écriture scientifique de $148\\,000\\,000$ (distance Terre-Soleil en km).\n\n**Correction.** Le premier chiffre est $1$, on place la virgule après : $1{,}48$. On a déplacé la virgule de $8$ rangs vers la gauche, donc :\n$$148\\,000\\,000 = 1{,}48 \\times 10^{8}.$$\n\n### Exercice 2\nÉcrire $0{,}000\\,32$ en notation scientifique.\n\n**Correction.** Le premier chiffre non nul est $3$. On obtient $3{,}2$ en déplaçant la virgule de $4$ rangs vers la droite, donc l'exposant est $-4$ :\n$$0{,}000\\,32 = 3{,}2 \\times 10^{-4}.$$\n\n### Exercice 3\nCalculer et donner le résultat en écriture scientifique : $E = \\dfrac{8 \\times 10^{5}}{2 \\times 10^{2}}$.\n\n**Correction.**\n$$E = \\frac{8}{2} \\times 10^{5-2} = 4 \\times 10^{3}.$$\nC'est déjà une écriture scientifique car $1 \\leq 4 < 10$.\n\n## À retenir\n\n- Écriture scientifique : $a \\times 10^n$ avec $1 \\leq |a| < 10$.\n- Grand nombre $\\Rightarrow$ exposant **positif** ; petit nombre $\\Rightarrow$ exposant **négatif**.\n- Pour multiplier/diviser : on regroupe les $a$ et on ajoute/soustrait les exposants de $10$.\n- L'ordre de grandeur sert à estimer rapidement.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "L'écriture scientifique de $45\\,000$ est :",
+            "options": [
+              "$45\\times 10^3$",
+              "$4{,}5\\times 10^4$",
+              "$0{,}45\\times 10^5$",
+              "$4{,}5\\times 10^3$"
+            ],
+            "answer": 1,
+            "explanation": "$4{,}5\\times10^4=45000$ et $1\\le4{,}5<10$."
+          },
+          {
+            "q": "$0{,}007$ en écriture scientifique :",
+            "options": [
+              "$7\\times 10^{-3}$",
+              "$7\\times 10^{3}$",
+              "$0{,}7\\times 10^{-2}$",
+              "$7\\times 10^{-2}$"
+            ],
+            "answer": 0,
+            "explanation": "On déplace la virgule de 3 rangs vers la droite : $7\\times10^{-3}$."
+          },
+          {
+            "q": "Dans $a\\times 10^n$, le nombre $a$ doit vérifier :",
+            "options": [
+              "$0\\le a<1$",
+              "$1\\le |a|<10$",
+              "$a>10$",
+              "$a$ entier"
+            ],
+            "answer": 1,
+            "explanation": "Par définition $1\\le|a|<10$ : un seul chiffre non nul avant la virgule."
+          },
+          {
+            "q": "$(2\\times 10^3)\\times(4\\times 10^2)$ vaut :",
+            "options": [
+              "$8\\times 10^5$",
+              "$6\\times 10^6$",
+              "$8\\times 10^6$",
+              "$2\\times 10^5$"
+            ],
+            "answer": 0,
+            "explanation": "$2\\times4=8$ et $10^{3+2}=10^5$, soit $8\\times10^5$."
+          },
+          {
+            "q": "$3{,}5\\times 10^{-2}$ est l'écriture décimale de :",
+            "options": [
+              "$350$",
+              "$3{,}5$",
+              "$0{,}035$",
+              "$0{,}35$"
+            ],
+            "answer": 2,
+            "explanation": "$10^{-2}$ déplace la virgule de 2 rangs : $0{,}035$."
+          }
+        ]
+      }
+    },
+    {
+      "title": "PGCD et fractions irréductibles",
+      "video": "https://www.youtube.com/watch?v=Hh3pXfDQ7vE",
+      "lesson": "# PGCD et fractions irréductibles\n\n## Introduction\n\nPour simplifier une fraction comme $\\dfrac{24}{36}$, il faut diviser le numérateur et le dénominateur par un même nombre. Pour aller le plus loin possible en une seule étape, on utilise le **PGCD** (Plus Grand Commun Diviseur). C'est aussi un outil utile en gestion (partager équitablement) et en informatique.\n\n## 1. Diviseurs et multiples\n\n**Définition.** Un entier $d$ est un **diviseur** d'un entier $a$ si la division de $a$ par $d$ tombe juste (reste nul). On dit alors que $a$ est un **multiple** de $d$.\n\nExemple : les diviseurs de $12$ sont $1, 2, 3, 4, 6, 12$.\n\n## 2. Le PGCD\n\n**Définition.** Le **PGCD** de deux entiers $a$ et $b$ est le **plus grand** des diviseurs communs à $a$ et $b$. On le note $\\mathrm{PGCD}(a\\,;b)$.\n\n**Nombres premiers entre eux.** Si $\\mathrm{PGCD}(a\\,;b) = 1$, on dit que $a$ et $b$ sont **premiers entre eux**.\n\n## 3. Algorithme des soustractions successives\n\nTant que les deux nombres sont différents, on **remplace le plus grand par la différence** des deux. Le PGCD est la valeur commune obtenue à la fin.\n\nExemple avec $\\mathrm{PGCD}(24\\,;36)$ : $36-24 = 12$ ; il reste $24$ et $12$ ; $24-12 = 12$ ; il reste $12$ et $12$. Donc $\\mathrm{PGCD}(24\\,;36) = 12$.\n\n## 4. Algorithme d'Euclide (par divisions)\n\nOn effectue la division euclidienne du plus grand par le plus petit, puis on recommence avec le diviseur et le **reste**, jusqu'à obtenir un reste nul. Le **dernier reste non nul** est le PGCD.\n\nExemple : $\\mathrm{PGCD}(48\\,;36)$.\n$$48 = 36 \\times 1 + 12, \\qquad 36 = 12 \\times 3 + 0.$$\nLe dernier reste non nul est $12$, donc $\\mathrm{PGCD}(48\\,;36) = 12$.\n\n## 5. Fraction irréductible\n\n**Définition.** Une fraction est **irréductible** lorsque son numérateur et son dénominateur sont premiers entre eux (PGCD égal à $1$).\n\n**Méthode.** Pour rendre une fraction irréductible, on **divise** le numérateur et le dénominateur par leur PGCD.\n$$\\frac{24}{36} = \\frac{24 \\div 12}{36 \\div 12} = \\frac{2}{3}.$$\n\n## Exercices corrigés\n\n### Exercice 1\nDéterminer $\\mathrm{PGCD}(60\\,;48)$ par l'algorithme d'Euclide.\n\n**Correction.**\n$$60 = 48\\times 1 + 12, \\quad 48 = 12 \\times 4 + 0.$$\nLe dernier reste non nul est $12$, donc $\\mathrm{PGCD}(60\\,;48) = 12.$\n\n### Exercice 2\nRendre la fraction $\\dfrac{84}{126}$ irréductible.\n\n**Correction.** Cherchons $\\mathrm{PGCD}(126\\,;84)$ :\n$$126 = 84\\times 1 + 42, \\quad 84 = 42 \\times 2 + 0.$$\nDonc le PGCD est $42$. On divise :\n$$\\frac{84}{126} = \\frac{84 \\div 42}{126 \\div 42} = \\frac{2}{3}.$$\n\n### Exercice 3\nUn fleuriste a $30$ roses et $42$ tulipes. Il veut faire des bouquets identiques en utilisant toutes les fleurs. Quel est le nombre maximal de bouquets ?\n\n**Correction.** Le nombre de bouquets doit diviser $30$ et $42$ : c'est le PGCD.\n$$42 = 30\\times 1 + 12, \\ 30 = 12\\times 2 + 6, \\ 12 = 6\\times 2 + 0.$$\nDonc $\\mathrm{PGCD}(42\\,;30) = 6$. Il pourra faire **6 bouquets** (5 roses et 7 tulipes chacun).\n\n## À retenir\n\n- Le **PGCD** est le plus grand diviseur commun à deux entiers.\n- Algorithme d'Euclide : on divise, puis on recommence avec le reste ; le **dernier reste non nul** est le PGCD.\n- Une fraction est **irréductible** quand numérateur et dénominateur sont premiers entre eux.\n- On simplifie une fraction en divisant haut et bas par leur PGCD.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Le PGCD de $12$ et $18$ est :",
+            "options": [
+              "$2$",
+              "$3$",
+              "$6$",
+              "$36$"
+            ],
+            "answer": 2,
+            "explanation": "Diviseurs communs : 1, 2, 3, 6 ; le plus grand est 6."
+          },
+          {
+            "q": "Deux nombres sont premiers entre eux lorsque leur PGCD vaut :",
+            "options": [
+              "$0$",
+              "$1$",
+              "$2$",
+              "Leur produit"
+            ],
+            "answer": 1,
+            "explanation": "Premiers entre eux $\\Leftrightarrow$ PGCD $=1$."
+          },
+          {
+            "q": "$\\dfrac{15}{25}$ rendue irréductible donne :",
+            "options": [
+              "$\\dfrac{3}{5}$",
+              "$\\dfrac{5}{3}$",
+              "$\\dfrac{1}{2}$",
+              "$\\dfrac{15}{25}$"
+            ],
+            "answer": 0,
+            "explanation": "PGCD$(15;25)=5$, donc $\\dfrac{15}{25}=\\dfrac{3}{5}$."
+          },
+          {
+            "q": "Dans l'algorithme d'Euclide, le PGCD est :",
+            "options": [
+              "Le premier reste",
+              "Le dernier reste non nul",
+              "Le dernier quotient",
+              "La somme des restes"
+            ],
+            "answer": 1,
+            "explanation": "On s'arrête au reste nul ; le PGCD est le dernier reste non nul."
+          },
+          {
+            "q": "$\\mathrm{PGCD}(35\\,;14)$ vaut :",
+            "options": [
+              "$5$",
+              "$7$",
+              "$2$",
+              "$14$"
+            ],
+            "answer": 1,
+            "explanation": "$35=14\\times2+7$ puis $14=7\\times2+0$, donc PGCD $=7$."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Calcul littéral : développement et factorisation",
+      "video": "https://www.youtube.com/watch?v=4dM2J0bX0Vw",
+      "lesson": "# Calcul littéral : développement et factorisation\n\n## Introduction\n\nLe **calcul littéral** consiste à effectuer des calculs avec des **lettres** qui représentent des nombres. Il permet d'écrire des formules générales, de démontrer des propriétés et de résoudre des équations. Deux opérations centrales s'opposent : **développer** (transformer un produit en somme) et **factoriser** (transformer une somme en produit).\n\n## 1. Développer\n\n**Développer**, c'est supprimer les parenthèses en transformant un produit en somme.\n\n**Simple distributivité :**\n$$k(a + b) = ka + kb.$$\n\n**Double distributivité :**\n$$(a + b)(c + d) = ac + ad + bc + bd.$$\n\nExemple : $(x+2)(x+3) = x^2 + 3x + 2x + 6 = x^2 + 5x + 6.$\n\n## 2. Réduire\n\n**Réduire** une expression, c'est regrouper les termes de même nature (mêmes lettres, mêmes exposants).\n$$3x + 5 - x + 2 = 2x + 7.$$\n\n## 3. Factoriser\n\n**Factoriser**, c'est transformer une somme en produit en mettant en évidence un **facteur commun** :\n$$ka + kb = k(a+b).$$\n\nExemple : $6x + 9 = 3\\times 2x + 3\\times 3 = 3(2x + 3).$\n\nLe facteur commun peut être une lettre : $x^2 + 5x = x(x + 5)$, ou une parenthèse : $(x+1)(x+2) + (x+1)(x-3) = (x+1)\\big[(x+2)+(x-3)\\big] = (x+1)(2x-1).$\n\n## 4. Méthode\n\n- Pour **développer** : on multiplie chaque terme, puis on **réduit**.\n- Pour **factoriser** : on cherche un facteur commun à tous les termes.\n\n## Exercices corrigés\n\n### Exercice 1\nDévelopper et réduire $A = 3(2x - 1) - 2(x + 4)$.\n\n**Correction.**\n$$A = 6x - 3 - 2x - 8 = (6x - 2x) + (-3 - 8) = 4x - 11.$$\n\n### Exercice 2\nDévelopper et réduire $B = (2x + 3)(x - 5)$.\n\n**Correction.** Double distributivité :\n$$B = 2x\\times x + 2x\\times(-5) + 3\\times x + 3\\times(-5) = 2x^2 - 10x + 3x - 15 = 2x^2 - 7x - 15.$$\n\n### Exercice 3\nFactoriser $C = 4x^2 + 8x$.\n\n**Correction.** Le facteur commun est $4x$ :\n$$C = 4x\\times x + 4x\\times 2 = 4x(x + 2).$$\n\n## À retenir\n\n- **Développer** : produit $\\to$ somme, à l'aide de la distributivité, puis **réduire**.\n- $(a+b)(c+d) = ac + ad + bc + bd$.\n- **Factoriser** : somme $\\to$ produit, en mettant en évidence un **facteur commun**.\n- Le facteur commun peut être un nombre, une lettre ou une parenthèse.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Développer $3(x+4)$ donne :",
+            "options": [
+              "$3x+4$",
+              "$3x+12$",
+              "$x+12$",
+              "$3x+7$"
+            ],
+            "answer": 1,
+            "explanation": "$3\\times x+3\\times4=3x+12$."
+          },
+          {
+            "q": "$(x+2)(x+3)$ développé et réduit est :",
+            "options": [
+              "$x^2+6$",
+              "$x^2+5x+6$",
+              "$x^2+5x+5$",
+              "$2x+5$"
+            ],
+            "answer": 1,
+            "explanation": "$x^2+3x+2x+6=x^2+5x+6$."
+          },
+          {
+            "q": "Factoriser $5x+10$ donne :",
+            "options": [
+              "$5(x+2)$",
+              "$5(x+10)$",
+              "$x(5+10)$",
+              "$5x+10$"
+            ],
+            "answer": 0,
+            "explanation": "Facteur commun 5 : $5(x+2)$."
+          },
+          {
+            "q": "$x^2+7x$ factorisé est :",
+            "options": [
+              "$x(x+7)$",
+              "$x^2(1+7)$",
+              "$7x(x+1)$",
+              "$x+7$"
+            ],
+            "answer": 0,
+            "explanation": "Facteur commun $x$ : $x(x+7)$."
+          },
+          {
+            "q": "Réduire $4x+3-x+5$ donne :",
+            "options": [
+              "$3x+8$",
+              "$4x+8$",
+              "$3x+2$",
+              "$5x+8$"
+            ],
+            "answer": 0,
+            "explanation": "$4x-x=3x$ et $3+5=8$, donc $3x+8$."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les identités remarquables",
+      "video": "https://www.youtube.com/watch?v=l3jX5sQ8b1M",
+      "lesson": "# Les identités remarquables\n\n## Introduction\n\nCertains produits reviennent si souvent qu'on a établi des formules pour aller plus vite : les **identités remarquables**. Elles permettent de développer ou de factoriser en une seule étape, sans tout détailler. Elles sont indispensables au calcul littéral et à la résolution d'équations.\n\n## 1. Les trois identités\n\nPour tous nombres $a$ et $b$ :\n\n$$\\boxed{(a+b)^2 = a^2 + 2ab + b^2}$$\n$$\\boxed{(a-b)^2 = a^2 - 2ab + b^2}$$\n$$\\boxed{(a+b)(a-b) = a^2 - b^2}$$\n\nLa troisième est appelée **différence de deux carrés**.\n\n## 2. Sens « développement »\n\nOn part du produit et on obtient la somme.\n\nExemple : $(x+3)^2 = x^2 + 2\\times x \\times 3 + 3^2 = x^2 + 6x + 9.$\n\nExemple : $(2x-5)(2x+5) = (2x)^2 - 5^2 = 4x^2 - 25.$\n\n## 3. Sens « factorisation »\n\nOn reconnaît la forme développée et on revient au produit. Pour repérer une différence de carrés, on vérifie que l'expression s'écrit $a^2 - b^2$.\n\nExemple : $x^2 - 16 = x^2 - 4^2 = (x-4)(x+4).$\n\nExemple : $x^2 + 10x + 25 = x^2 + 2\\times x\\times 5 + 5^2 = (x+5)^2.$\n\n## 4. Erreurs fréquentes\n\n$(a+b)^2 \\neq a^2 + b^2$ : il ne faut **jamais** oublier le double produit $2ab$.\n\n## Exercices corrigés\n\n### Exercice 1\nDévelopper $(3x + 4)^2$.\n\n**Correction.** Ici $a = 3x$ et $b = 4$ :\n$$(3x+4)^2 = (3x)^2 + 2\\times 3x\\times 4 + 4^2 = 9x^2 + 24x + 16.$$\n\n### Exercice 2\nFactoriser $D = 49 - x^2$.\n\n**Correction.** C'est une différence de carrés : $49 = 7^2$ donc\n$$D = 7^2 - x^2 = (7 - x)(7 + x).$$\n\n### Exercice 3\nFactoriser $E = x^2 - 6x + 9$.\n\n**Correction.** On reconnaît $a^2 - 2ab + b^2$ avec $a = x$ et $b = 3$ (car $2\\times x\\times 3 = 6x$ et $3^2 = 9$) :\n$$E = (x - 3)^2.$$\n\n## À retenir\n\n- $(a+b)^2 = a^2 + 2ab + b^2$.\n- $(a-b)^2 = a^2 - 2ab + b^2$.\n- $(a+b)(a-b) = a^2 - b^2$ (différence de deux carrés).\n- Ne **jamais** oublier le double produit $2ab$ dans un carré.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "$(a+b)^2$ est égal à :",
+            "options": [
+              "$a^2+b^2$",
+              "$a^2+2ab+b^2$",
+              "$a^2-2ab+b^2$",
+              "$2a+2b$"
+            ],
+            "answer": 1,
+            "explanation": "Identité remarquable : $a^2+2ab+b^2$."
+          },
+          {
+            "q": "Développer $(x-5)^2$ donne :",
+            "options": [
+              "$x^2-25$",
+              "$x^2-10x+25$",
+              "$x^2+10x+25$",
+              "$x^2-5x+25$"
+            ],
+            "answer": 1,
+            "explanation": "$x^2-2\\times x\\times5+5^2=x^2-10x+25$."
+          },
+          {
+            "q": "$(x-3)(x+3)$ vaut :",
+            "options": [
+              "$x^2-9$",
+              "$x^2+9$",
+              "$x^2-6x+9$",
+              "$x^2-3$"
+            ],
+            "answer": 0,
+            "explanation": "Différence de carrés : $x^2-3^2=x^2-9$."
+          },
+          {
+            "q": "Factoriser $x^2-16$ donne :",
+            "options": [
+              "$(x-4)(x+4)$",
+              "$(x-8)(x+8)$",
+              "$(x-4)^2$",
+              "$(x+4)^2$"
+            ],
+            "answer": 0,
+            "explanation": "$x^2-4^2=(x-4)(x+4)$."
+          },
+          {
+            "q": "$x^2+8x+16$ factorisé est :",
+            "options": [
+              "$(x+8)^2$",
+              "$(x+4)^2$",
+              "$(x-4)^2$",
+              "$(x+4)(x-4)$"
+            ],
+            "answer": 1,
+            "explanation": "$2\\times x\\times4=8x$ et $4^2=16$, donc $(x+4)^2$."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Équations du premier degré à une inconnue",
+      "video": "https://www.youtube.com/watch?v=l9p2P5x8Z0M",
+      "lesson": "# Équations du premier degré à une inconnue\n\n## Introduction\n\nUne **équation** traduit un problème par une égalité contenant une lettre inconnue. La résoudre, c'est trouver toutes les valeurs de l'inconnue qui rendent l'égalité vraie. Les équations sont l'outil mathématique de base pour modéliser des situations concrètes (âge, prix, distances...).\n\n## 1. Vocabulaire\n\n**Définition.** Une **équation du premier degré à une inconnue** $x$ est une égalité du type $ax + b = 0$ (ou ramenable à cette forme) avec $a \\neq 0$.\n\nUne **solution** est une valeur de $x$ qui rend l'égalité vraie. **Résoudre** l'équation, c'est trouver toutes ses solutions.\n\n## 2. Règles de transformation\n\nOn peut, sans changer les solutions :\n- **ajouter** ou **soustraire** un même nombre aux deux membres ;\n- **multiplier** ou **diviser** les deux membres par un même nombre **non nul**.\n\nConcrètement, un terme qui « change de côté » du signe $=$ change de signe ; un facteur qui passe de l'autre côté devient un diviseur.\n\n## 3. Méthode de résolution\n\n1. **Développer** et réduire chaque membre si nécessaire.\n2. **Regrouper** les termes en $x$ d'un côté, les nombres de l'autre.\n3. **Réduire** pour obtenir $ax = c$.\n4. **Diviser** par $a$ : $x = \\dfrac{c}{a}$.\n5. **Vérifier** en remplaçant.\n\n## 4. Équation produit\n\nUne **équation produit** est de la forme $A \\times B = 0$. D'après la règle du produit nul :\n$$A\\times B = 0 \\iff A = 0 \\ \\text{ou}\\ B = 0.$$\nOn résout alors deux équations plus simples.\n\n## Exercices corrigés\n\n### Exercice 1\nRésoudre $5x - 3 = 2x + 9$.\n\n**Correction.** On regroupe les $x$ à gauche et les nombres à droite :\n$$5x - 2x = 9 + 3 \\ \\Rightarrow\\ 3x = 12 \\ \\Rightarrow\\ x = \\frac{12}{3} = 4.$$\nLa solution est $x = 4$. **Vérification :** $5\\times 4 - 3 = 17$ et $2\\times 4 + 9 = 17$. ✓\n\n### Exercice 2\nRésoudre $3(x - 2) = 2(x + 1)$.\n\n**Correction.** On développe :\n$$3x - 6 = 2x + 2 \\ \\Rightarrow\\ 3x - 2x = 2 + 6 \\ \\Rightarrow\\ x = 8.$$\n\n### Exercice 3 (mise en équation)\nLa somme de trois nombres entiers consécutifs vaut $48$. Quels sont ces nombres ?\n\n**Correction.** Notons-les $x$, $x+1$, $x+2$. Alors :\n$$x + (x+1) + (x+2) = 48 \\ \\Rightarrow\\ 3x + 3 = 48 \\ \\Rightarrow\\ 3x = 45 \\ \\Rightarrow\\ x = 15.$$\nLes nombres sont $15$, $16$ et $17$.\n\n## À retenir\n\n- Résoudre $ax + b = 0$ donne $x = -\\dfrac{b}{a}$ (avec $a \\neq 0$).\n- On regroupe les $x$ d'un côté, les nombres de l'autre, puis on divise par le coefficient de $x$.\n- **Équation produit** : $A\\times B = 0 \\iff A = 0$ ou $B = 0$.\n- Toujours **vérifier** la solution.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "La solution de $2x+6=0$ est :",
+            "options": [
+              "$x=3$",
+              "$x=-3$",
+              "$x=6$",
+              "$x=-6$"
+            ],
+            "answer": 1,
+            "explanation": "$2x=-6$ donc $x=-3$."
+          },
+          {
+            "q": "Résoudre $4x=20$ donne :",
+            "options": [
+              "$x=80$",
+              "$x=5$",
+              "$x=16$",
+              "$x=24$"
+            ],
+            "answer": 1,
+            "explanation": "$x=\\dfrac{20}{4}=5$."
+          },
+          {
+            "q": "$x+7=2x-1$ a pour solution :",
+            "options": [
+              "$x=6$",
+              "$x=8$",
+              "$x=-6$",
+              "$x=3$"
+            ],
+            "answer": 1,
+            "explanation": "$7+1=2x-x$ donc $x=8$."
+          },
+          {
+            "q": "L'équation $(x-2)(x+5)=0$ a pour solutions :",
+            "options": [
+              "$2$ et $-5$",
+              "$-2$ et $5$",
+              "$2$ et $5$",
+              "$0$ seulement"
+            ],
+            "answer": 0,
+            "explanation": "Produit nul : $x-2=0$ ou $x+5=0$, soit $2$ et $-5$."
+          },
+          {
+            "q": "Dans $ax+b=0$ avec $a\\neq0$, la solution est :",
+            "options": [
+              "$x=\\dfrac{b}{a}$",
+              "$x=-\\dfrac{b}{a}$",
+              "$x=a-b$",
+              "$x=ab$"
+            ],
+            "answer": 1,
+            "explanation": "$ax=-b$ puis $x=-\\dfrac{b}{a}$."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Inéquations du premier degré à une inconnue",
+      "video": "https://www.youtube.com/watch?v=zRfN5Yk1m5A",
+      "lesson": "# Inéquations du premier degré à une inconnue\n\n## Introduction\n\nParfois, on ne cherche pas une égalité mais une condition du type « au moins », « au plus », « moins de »... On utilise alors une **inéquation**. Résoudre une inéquation, c'est trouver **toutes** les valeurs de l'inconnue qui la vérifient ; il y en a en général une infinité, qu'on représente sur une droite graduée.\n\n## 1. Les symboles\n\n$$<\\ \\text{(strictement inférieur)} \\qquad \\leq\\ \\text{(inférieur ou égal)}$$\n$$>\\ \\text{(strictement supérieur)} \\qquad \\geq\\ \\text{(supérieur ou égal)}$$\n\n## 2. Règles de transformation\n\n- On peut **ajouter** ou **soustraire** un même nombre aux deux membres : le sens ne change pas.\n- On peut **multiplier** ou **diviser** par un nombre **positif** : le sens ne change pas.\n- **RÈGLE CLÉ :** si on multiplie ou divise par un nombre **négatif**, on **change le sens** de l'inégalité.\n\nExemple : $-2x < 6$. On divise par $-2$ (négatif) donc on inverse : $x > -3.$\n\n## 3. Méthode\n\n1. Développer/réduire si besoin.\n2. Regrouper les $x$ d'un côté, les nombres de l'autre.\n3. Diviser par le coefficient de $x$ (**inverser le sens** s'il est négatif).\n4. Écrire l'ensemble des solutions et le représenter.\n\n## 4. Représentation sur une droite\n\nOn trace une droite graduée. La valeur limite est marquée par un **crochet** : ouvert (exclusion) pour $<$ ou $>$, fermé pour $\\leq$ ou $\\geq$. On hachure la zone des solutions.\n\n[onbuch-plot] Droite des solutions de $x \\geq 2$ : crochet fermé en $2$, hachures vers la droite.\n\n## Exercices corrigés\n\n### Exercice 1\nRésoudre $3x + 4 \\leq 19$.\n\n**Correction.**\n$$3x \\leq 19 - 4 \\ \\Rightarrow\\ 3x \\leq 15 \\ \\Rightarrow\\ x \\leq 5.$$\nLes solutions sont tous les nombres $x \\leq 5$.\n\n### Exercice 2\nRésoudre $-2x + 1 > 7$.\n\n**Correction.**\n$$-2x > 7 - 1 \\ \\Rightarrow\\ -2x > 6.$$\nOn divise par $-2$ (négatif), donc on **inverse** le sens :\n$$x < \\frac{6}{-2} \\ \\Rightarrow\\ x < -3.$$\n\n### Exercice 3 (problème)\nUn taxi coûte $500$ F de prise en charge plus $150$ F par kilomètre. Avec $2\\,000$ F, quelle distance maximale peut-on parcourir ?\n\n**Correction.** Soit $x$ le nombre de km. Il faut :\n$$500 + 150x \\leq 2000 \\ \\Rightarrow\\ 150x \\leq 1500 \\ \\Rightarrow\\ x \\leq 10.$$\nOn peut parcourir au maximum **10 km**.\n\n## À retenir\n\n- Une inéquation a en général une **infinité** de solutions.\n- Ajouter/soustraire : le sens ne change pas.\n- Multiplier/diviser par un nombre **négatif** : on **inverse** le sens de l'inégalité.\n- On représente les solutions sur une droite graduée (crochet ouvert ou fermé).\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Résoudre $x+3<7$ donne :",
+            "options": [
+              "$x<4$",
+              "$x>4$",
+              "$x<10$",
+              "$x<-4$"
+            ],
+            "answer": 0,
+            "explanation": "$x<7-3=4$."
+          },
+          {
+            "q": "Pour $-3x>9$, on obtient :",
+            "options": [
+              "$x>-3$",
+              "$x<-3$",
+              "$x>3$",
+              "$x<3$"
+            ],
+            "answer": 1,
+            "explanation": "On divise par $-3$ (négatif), on inverse : $x<-3$."
+          },
+          {
+            "q": "Multiplier une inéquation par un nombre négatif :",
+            "options": [
+              "ne change rien",
+              "inverse le sens",
+              "la rend fausse",
+              "supprime l'inconnue"
+            ],
+            "answer": 1,
+            "explanation": "Règle clé : le sens de l'inégalité s'inverse."
+          },
+          {
+            "q": "$2x\\le 10$ a pour solutions :",
+            "options": [
+              "$x\\ge5$",
+              "$x\\le5$",
+              "$x\\le20$",
+              "$x<5$"
+            ],
+            "answer": 1,
+            "explanation": "On divise par 2 (positif) : $x\\le5$."
+          },
+          {
+            "q": "Le symbole $\\ge$ signifie :",
+            "options": [
+              "strictement supérieur",
+              "supérieur ou égal",
+              "inférieur ou égal",
+              "différent"
+            ],
+            "answer": 1,
+            "explanation": "$\\ge$ se lit « supérieur ou égal »."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Systèmes de deux équations à deux inconnues",
+      "video": "https://www.youtube.com/watch?v=Tq3hM1xL0xY",
+      "lesson": "# Systèmes de deux équations à deux inconnues\n\n## Introduction\n\nQuand un problème comporte **deux** inconnues, une seule équation ne suffit pas. Il faut deux relations : on obtient un **système** de deux équations. Résoudre le système, c'est trouver le couple $(x\\,;y)$ qui vérifie les **deux** équations en même temps. Géométriquement, c'est le point d'intersection de deux droites.\n\n## 1. Définition\n\n**Définition.** Un **système de deux équations à deux inconnues** $x$ et $y$ s'écrit :\n$$\\left\\{ \\begin{array}{l} a x + b y = c \\\\ a' x + b' y = c' \\end{array} \\right.$$\nUne **solution** est un couple $(x\\,;y)$ qui vérifie les deux égalités.\n\n## 2. Méthode par substitution\n\n1. On isole une inconnue dans une équation (par exemple $x$).\n2. On **remplace** cette inconnue dans l'autre équation : on obtient une équation à une seule inconnue.\n3. On résout, puis on revient calculer la seconde inconnue.\n\n## 3. Méthode par combinaison (addition)\n\n1. On multiplie chaque équation pour que les coefficients d'une inconnue soient **opposés**.\n2. On **additionne** les deux équations : une inconnue disparaît.\n3. On résout, puis on calcule l'autre inconnue.\n\n## Exercices corrigés\n\n### Exercice 1 (substitution)\nRésoudre $\\left\\{ \\begin{array}{l} y = 2x + 1 \\\\ 3x + y = 11 \\end{array} \\right.$\n\n**Correction.** On remplace $y$ par $2x+1$ dans la deuxième équation :\n$$3x + (2x + 1) = 11 \\ \\Rightarrow\\ 5x + 1 = 11 \\ \\Rightarrow\\ 5x = 10 \\ \\Rightarrow\\ x = 2.$$\nPuis $y = 2\\times 2 + 1 = 5$. La solution est le couple $(2\\,;5)$.\n\n### Exercice 2 (combinaison)\nRésoudre $\\left\\{ \\begin{array}{l} 2x + 3y = 8 \\\\ 2x - y = 0 \\end{array} \\right.$\n\n**Correction.** On soustrait la deuxième équation de la première (les $2x$ s'éliminent) :\n$$(2x + 3y) - (2x - y) = 8 - 0 \\ \\Rightarrow\\ 4y = 8 \\ \\Rightarrow\\ y = 2.$$\nAvec $2x - y = 0$ : $2x = 2$, donc $x = 1$. La solution est $(1\\,;2)$.\n\n### Exercice 3 (problème)\nAu marché, $3$ mangues et $2$ oranges coûtent $700$ F ; $1$ mangue et $2$ oranges coûtent $500$ F. Trouver le prix d'une mangue et d'une orange.\n\n**Correction.** Soit $x$ le prix d'une mangue et $y$ celui d'une orange.\n$$\\left\\{ \\begin{array}{l} 3x + 2y = 700 \\\\ x + 2y = 500 \\end{array} \\right.$$\nOn soustrait : $(3x + 2y) - (x + 2y) = 700 - 500$, soit $2x = 200$, donc $x = 100$. Puis $100 + 2y = 500$, donc $y = 200$. Une mangue coûte **100 F**, une orange **200 F**.\n\n## À retenir\n\n- Un système se résout par **substitution** (on isole et remplace) ou par **combinaison** (on additionne pour éliminer une inconnue).\n- La solution est un **couple** $(x\\,;y)$.\n- Toujours vérifier le couple dans les **deux** équations.\n- Géométriquement : intersection de deux droites.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Une solution d'un système à deux inconnues est :",
+            "options": [
+              "un nombre",
+              "un couple $(x;y)$",
+              "une droite",
+              "une fraction"
+            ],
+            "answer": 1,
+            "explanation": "C'est un couple vérifiant les deux équations."
+          },
+          {
+            "q": "Dans la méthode par substitution, on commence par :",
+            "options": [
+              "additionner les équations",
+              "isoler une inconnue",
+              "tracer les droites",
+              "diviser par zéro"
+            ],
+            "answer": 1,
+            "explanation": "On isole une inconnue pour la remplacer dans l'autre équation."
+          },
+          {
+            "q": "Si $y=2x$ et $x+y=9$, alors $x$ vaut :",
+            "options": [
+              "$3$",
+              "$6$",
+              "$9$",
+              "$4{,}5$"
+            ],
+            "answer": 0,
+            "explanation": "$x+2x=9$ donne $3x=9$, soit $x=3$."
+          },
+          {
+            "q": "La méthode par combinaison consiste à :",
+            "options": [
+              "multiplier les inconnues",
+              "éliminer une inconnue par addition",
+              "supprimer une équation",
+              "tirer au sort"
+            ],
+            "answer": 1,
+            "explanation": "On rend les coefficients opposés puis on additionne pour éliminer une inconnue."
+          },
+          {
+            "q": "Le couple $(2;3)$ est solution de $x+y=5$ et :",
+            "options": [
+              "$x-y=-1$",
+              "$x-y=1$",
+              "$2x+y=5$",
+              "$xy=5$"
+            ],
+            "answer": 0,
+            "explanation": "$2-3=-1$, donc $x-y=-1$ est vérifiée."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Le théorème de Thalès",
+      "video": "https://www.youtube.com/watch?v=Q5kE0c2Z9wY",
+      "lesson": "# Le théorème de Thalès\n\n## Introduction\n\nLe **théorème de Thalès** relie des longueurs dans une configuration de droites parallèles coupant deux sécantes. Il permet de calculer des longueurs inaccessibles (hauteur d'un arbre, largeur d'une rivière) à partir de mesures plus simples. Sa réciproque sert à prouver que deux droites sont parallèles.\n\n## 1. La configuration\n\nOn considère deux droites sécantes en un point $A$. Deux points $B$, $M$ sont sur la première, $C$, $N$ sur la seconde, tels que $(BC)$ et $(MN)$ soient parallèles.\n\n[onbuch-svg] Triangle $ABC$ avec une droite $(MN)$ parallèle à $(BC)$, $M$ sur $[AB]$ et $N$ sur $[AC]$.\n\n## 2. Le théorème\n\n**Théorème de Thalès.** Si $M \\in (AB)$, $N \\in (AC)$ et si $(MN)$ est **parallèle** à $(BC)$, alors les longueurs sont proportionnelles :\n$$\\frac{AM}{AB} = \\frac{AN}{AC} = \\frac{MN}{BC}.$$\n\nOn dit que les triangles $AMN$ et $ABC$ sont en **configuration de Thalès**.\n\n## 3. À quoi ça sert\n\nConnaissant trois des longueurs, on calcule la quatrième par le **produit en croix**.\n\n## 4. Réciproque du théorème\n\n**Réciproque.** Si les points $A$, $M$, $B$ sont alignés dans le même ordre que $A$, $N$, $C$, et si\n$$\\frac{AM}{AB} = \\frac{AN}{AC},$$\nalors les droites $(MN)$ et $(BC)$ sont **parallèles**.\n\n## Exercices corrigés\n\n### Exercice 1\nDans un triangle $ABC$, $M \\in [AB]$ et $N \\in [AC]$ avec $(MN) \\parallel (BC)$. On donne $AM = 3$, $AB = 9$ et $AC = 12$. Calculer $AN$.\n\n**Correction.** D'après Thalès :\n$$\\frac{AM}{AB} = \\frac{AN}{AC} \\ \\Rightarrow\\ \\frac{3}{9} = \\frac{AN}{12}.$$\nPar produit en croix : $AN = \\dfrac{3 \\times 12}{9} = \\dfrac{36}{9} = 4.$ Donc $AN = 4.$\n\n### Exercice 2\nMêmes notations, avec $AM = 4$, $AB = 10$, $BC = 15$. Calculer $MN$.\n\n**Correction.**\n$$\\frac{AM}{AB} = \\frac{MN}{BC} \\ \\Rightarrow\\ \\frac{4}{10} = \\frac{MN}{15} \\ \\Rightarrow\\ MN = \\frac{4\\times 15}{10} = 6.$$\n\n### Exercice 3 (réciproque)\nOn a $AM = 2$, $AB = 6$, $AN = 3$, $AC = 9$. Les droites $(MN)$ et $(BC)$ sont-elles parallèles ?\n\n**Correction.** On compare les rapports :\n$$\\frac{AM}{AB} = \\frac{2}{6} = \\frac{1}{3}, \\qquad \\frac{AN}{AC} = \\frac{3}{9} = \\frac{1}{3}.$$\nLes rapports sont égaux et les points alignés dans le même ordre : d'après la réciproque, $(MN) \\parallel (BC).$\n\n## À retenir\n\n- Configuration de Thalès : $(MN) \\parallel (BC) \\Rightarrow \\dfrac{AM}{AB} = \\dfrac{AN}{AC} = \\dfrac{MN}{BC}$.\n- On calcule la longueur manquante par **produit en croix**.\n- **Réciproque** : rapports égaux (et même ordre) $\\Rightarrow$ droites parallèles.\n- Bien identifier les points alignés et les côtés correspondants.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Le théorème de Thalès s'applique en présence de :",
+            "options": [
+              "droites perpendiculaires",
+              "droites parallèles",
+              "un cercle",
+              "un carré"
+            ],
+            "answer": 1,
+            "explanation": "Il faut $(MN)$ parallèle à $(BC)$."
+          },
+          {
+            "q": "Si $(MN)\\parallel(BC)$, alors :",
+            "options": [
+              "$\\dfrac{AM}{AB}=\\dfrac{AN}{AC}$",
+              "$AM=AN$",
+              "$AB=AC$",
+              "$\\dfrac{AM}{AN}=BC$"
+            ],
+            "answer": 0,
+            "explanation": "Les rapports des longueurs correspondantes sont égaux."
+          },
+          {
+            "q": "Avec $AM=2$, $AB=8$, $AC=12$, on a $AN=$ :",
+            "options": [
+              "$3$",
+              "$4$",
+              "$6$",
+              "$2$"
+            ],
+            "answer": 0,
+            "explanation": "$\\dfrac{2}{8}=\\dfrac{AN}{12}$ donne $AN=\\dfrac{2\\times12}{8}=3$."
+          },
+          {
+            "q": "La réciproque de Thalès permet de prouver :",
+            "options": [
+              "une égalité d'aires",
+              "que deux droites sont parallèles",
+              "un angle droit",
+              "un périmètre"
+            ],
+            "answer": 1,
+            "explanation": "Rapports égaux $\\Rightarrow$ droites parallèles."
+          },
+          {
+            "q": "Pour calculer une longueur avec Thalès, on utilise :",
+            "options": [
+              "la calculatrice seule",
+              "le produit en croix",
+              "Pythagore",
+              "le cosinus"
+            ],
+            "answer": 1,
+            "explanation": "L'égalité des rapports se résout par produit en croix."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Le théorème de Pythagore",
+      "video": "https://www.youtube.com/watch?v=hQ4sJ4Bw0Ng",
+      "lesson": "# Le théorème de Pythagore\n\n## Introduction\n\nLe **théorème de Pythagore** est l'un des plus célèbres des mathématiques. Il relie les longueurs des trois côtés d'un **triangle rectangle**. Il permet de calculer une longueur manquante et, avec sa réciproque, de prouver qu'un triangle possède un angle droit — très utile en construction (équerre, charpente).\n\n## 1. Vocabulaire\n\nDans un triangle rectangle, le côté **opposé à l'angle droit** est le plus long : on l'appelle l'**hypoténuse**.\n\n[onbuch-svg] Triangle $ABC$ rectangle en $A$ : l'hypoténuse est $[BC]$.\n\n## 2. Le théorème\n\n**Théorème de Pythagore.** Si le triangle $ABC$ est **rectangle en $A$**, alors :\n$$BC^2 = AB^2 + AC^2.$$\nLe carré de l'hypoténuse est égal à la **somme des carrés** des deux autres côtés.\n\n## 3. Calculer une longueur\n\n**Calculer l'hypoténuse** (on connaît les deux côtés de l'angle droit) :\n$$BC = \\sqrt{AB^2 + AC^2}.$$\n\n**Calculer un côté de l'angle droit** (on connaît l'hypoténuse et un côté) :\n$$AB^2 = BC^2 - AC^2, \\quad \\text{donc}\\quad AB = \\sqrt{BC^2 - AC^2}.$$\n\n## 4. Réciproque\n\n**Réciproque.** Si dans un triangle $ABC$ on a $BC^2 = AB^2 + AC^2$ (où $[BC]$ est le plus grand côté), alors le triangle est **rectangle en $A$**.\n\nPour l'appliquer : on calcule séparément $BC^2$ d'un côté et $AB^2 + AC^2$ de l'autre, puis on compare. S'ils sont égaux, le triangle est rectangle ; sinon il ne l'est pas.\n\n## Exercices corrigés\n\n### Exercice 1\n$ABC$ est rectangle en $A$ avec $AB = 3$ cm et $AC = 4$ cm. Calculer $BC$.\n\n**Correction.** D'après Pythagore :\n$$BC^2 = AB^2 + AC^2 = 3^2 + 4^2 = 9 + 16 = 25.$$\nDonc $BC = \\sqrt{25} = 5$ cm.\n\n### Exercice 2\n$DEF$ est rectangle en $D$ avec $EF = 13$ cm (hypoténuse) et $DE = 5$ cm. Calculer $DF$.\n\n**Correction.**\n$$DF^2 = EF^2 - DE^2 = 13^2 - 5^2 = 169 - 25 = 144.$$\nDonc $DF = \\sqrt{144} = 12$ cm.\n\n### Exercice 3 (réciproque)\nUn triangle $GHI$ a pour côtés $GH = 6$, $HI = 8$, $GI = 10$. Est-il rectangle ?\n\n**Correction.** Le plus grand côté est $GI = 10$. On calcule :\n$$GI^2 = 100, \\qquad GH^2 + HI^2 = 36 + 64 = 100.$$\nLes deux résultats sont égaux, donc d'après la réciproque, le triangle $GHI$ est **rectangle en $H$**.\n\n## À retenir\n\n- Triangle rectangle $\\Rightarrow$ (hypoténuse)$^2$ = somme des carrés des deux autres côtés.\n- Hypoténuse : $BC = \\sqrt{AB^2 + AC^2}$ ; côté de l'angle droit : $AB = \\sqrt{BC^2 - AC^2}$.\n- **Réciproque** : si $BC^2 = AB^2 + AC^2$ alors le triangle est rectangle.\n- L'hypoténuse est toujours le **plus grand** côté.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "L'hypoténuse d'un triangle rectangle est :",
+            "options": [
+              "le plus petit côté",
+              "le côté opposé à l'angle droit",
+              "un côté de l'angle droit",
+              "la hauteur"
+            ],
+            "answer": 1,
+            "explanation": "L'hypoténuse est le côté opposé à l'angle droit, le plus long."
+          },
+          {
+            "q": "Si $ABC$ est rectangle en $A$, alors :",
+            "options": [
+              "$AB^2=BC^2+AC^2$",
+              "$BC^2=AB^2+AC^2$",
+              "$AC^2=AB^2+BC^2$",
+              "$BC=AB+AC$"
+            ],
+            "answer": 1,
+            "explanation": "Le carré de l'hypoténuse $BC$ égale la somme des carrés des deux côtés."
+          },
+          {
+            "q": "Avec $AB=6$ et $AC=8$ (rectangle en $A$), $BC$ vaut :",
+            "options": [
+              "$10$",
+              "$14$",
+              "$48$",
+              "$100$"
+            ],
+            "answer": 0,
+            "explanation": "$BC^2=36+64=100$ donc $BC=10$."
+          },
+          {
+            "q": "Un triangle de côtés $5$, $12$, $13$ est :",
+            "options": [
+              "rectangle",
+              "équilatéral",
+              "isocèle non rectangle",
+              "quelconque"
+            ],
+            "answer": 0,
+            "explanation": "$13^2=169=25+144=5^2+12^2$, donc rectangle."
+          },
+          {
+            "q": "Pour calculer un côté de l'angle droit, on fait :",
+            "options": [
+              "une addition de carrés",
+              "une soustraction de carrés",
+              "un produit en croix",
+              "un cosinus"
+            ],
+            "answer": 1,
+            "explanation": "$AB=\\sqrt{BC^2-AC^2}$ : on soustrait les carrés."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Trigonométrie dans le triangle rectangle",
+      "video": "https://www.youtube.com/watch?v=Hh3pXfDQ7vE",
+      "lesson": "# Trigonométrie dans le triangle rectangle\n\n## Introduction\n\nLa **trigonométrie** établit un lien entre les **angles** et les **longueurs** d'un triangle rectangle. Grâce au cosinus, au sinus et à la tangente, on peut calculer un côté à partir d'un angle, ou inversement retrouver un angle à partir de deux côtés. C'est l'outil des géomètres, navigateurs et topographes.\n\n## 1. Côtés par rapport à un angle\n\nDans un triangle rectangle, pour un **angle aigu** $\\widehat{B}$ :\n- l'**hypoténuse** est le côté opposé à l'angle droit ;\n- le côté **opposé** à $\\widehat{B}$ est celui qui ne le touche pas ;\n- le côté **adjacent** à $\\widehat{B}$ est celui qui le touche (autre que l'hypoténuse).\n\n[onbuch-svg] Triangle rectangle, repérage opposé / adjacent / hypoténuse pour l'angle $\\widehat{B}$.\n\n## 2. Les trois rapports\n\n$$\\cos(\\widehat{B}) = \\frac{\\text{côté adjacent}}{\\text{hypoténuse}}$$\n$$\\sin(\\widehat{B}) = \\frac{\\text{côté opposé}}{\\text{hypoténuse}}$$\n$$\\tan(\\widehat{B}) = \\frac{\\text{côté opposé}}{\\text{côté adjacent}}$$\n\n**Moyen mnémotechnique : CAH – SOH – TOA.**\n\n## 3. Propriétés\n\nPour tout angle aigu $x$ : $0 < \\cos x < 1$ et $0 < \\sin x < 1$. De plus :\n$$\\cos^2 x + \\sin^2 x = 1 \\qquad \\text{et} \\qquad \\tan x = \\frac{\\sin x}{\\cos x}.$$\n\n## 4. Retrouver un angle\n\nConnaissant un rapport, on utilise les touches $\\cos^{-1}$, $\\sin^{-1}$, $\\tan^{-1}$ de la calculatrice (mode **degré**) pour retrouver l'angle.\n\n## Exercices corrigés\n\n### Exercice 1\n$ABC$ rectangle en $A$, avec $\\widehat{B} = 30°$ et $BC = 10$ cm (hypoténuse). Calculer $AB$.\n\n**Correction.** $AB$ est le côté **adjacent** à $\\widehat{B}$, $BC$ l'hypoténuse, donc on utilise le cosinus :\n$$\\cos(30°) = \\frac{AB}{BC} \\ \\Rightarrow\\ AB = BC \\times \\cos(30°) = 10 \\times 0{,}866 \\approx 8{,}7\\ \\text{cm}.$$\n\n### Exercice 2\nDans le même triangle, calculer $AC$.\n\n**Correction.** $AC$ est le côté **opposé** à $\\widehat{B}$, donc on utilise le sinus :\n$$\\sin(30°) = \\frac{AC}{BC} \\ \\Rightarrow\\ AC = 10 \\times \\sin(30°) = 10 \\times 0{,}5 = 5\\ \\text{cm}.$$\n\n### Exercice 3\n$ABC$ rectangle en $A$ avec $AB = 4$ et $AC = 3$. Calculer la mesure de l'angle $\\widehat{B}$.\n\n**Correction.** Par rapport à $\\widehat{B}$ : opposé $= AC = 3$, adjacent $= AB = 4$, donc on utilise la tangente :\n$$\\tan(\\widehat{B}) = \\frac{AC}{AB} = \\frac{3}{4} = 0{,}75.$$\nÀ la calculatrice : $\\widehat{B} = \\tan^{-1}(0{,}75) \\approx 36{,}9°.$\n\n## À retenir\n\n- **CAH – SOH – TOA** : $\\cos = \\dfrac{\\text{adj}}{\\text{hyp}}$, $\\sin = \\dfrac{\\text{opp}}{\\text{hyp}}$, $\\tan = \\dfrac{\\text{opp}}{\\text{adj}}$.\n- Repérer d'abord l'angle, puis opposé / adjacent / hypoténuse.\n- $\\cos^2 x + \\sin^2 x = 1$.\n- Pour un angle : touches $\\cos^{-1}$, $\\sin^{-1}$, $\\tan^{-1}$ (calculatrice en degrés).\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "$\\cos$ d'un angle est égal à :",
+            "options": [
+              "opp/hyp",
+              "adj/hyp",
+              "opp/adj",
+              "hyp/adj"
+            ],
+            "answer": 1,
+            "explanation": "CAH : cosinus = adjacent / hypoténuse."
+          },
+          {
+            "q": "$\\sin$ d'un angle est égal à :",
+            "options": [
+              "opp/hyp",
+              "adj/hyp",
+              "opp/adj",
+              "adj/opp"
+            ],
+            "answer": 0,
+            "explanation": "SOH : sinus = opposé / hypoténuse."
+          },
+          {
+            "q": "$\\tan$ d'un angle est égal à :",
+            "options": [
+              "adj/opp",
+              "opp/hyp",
+              "opp/adj",
+              "adj/hyp"
+            ],
+            "answer": 2,
+            "explanation": "TOA : tangente = opposé / adjacent."
+          },
+          {
+            "q": "Pour tout angle aigu, $\\cos^2 x+\\sin^2 x$ vaut :",
+            "options": [
+              "$0$",
+              "$1$",
+              "$2$",
+              "$x$"
+            ],
+            "answer": 1,
+            "explanation": "Relation fondamentale : $\\cos^2 x+\\sin^2 x=1$."
+          },
+          {
+            "q": "Si $\\sin(30°)=0{,}5$ et hyp $=10$, le côté opposé vaut :",
+            "options": [
+              "$5$",
+              "$10$",
+              "$0{,}5$",
+              "$20$"
+            ],
+            "answer": 0,
+            "explanation": "opp $=$ hyp $\\times\\sin=10\\times0{,}5=5$."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Fonctions linéaires et affines",
+      "video": "https://www.youtube.com/watch?v=O1bN2yYwK1A",
+      "lesson": "# Fonctions linéaires et affines\n\n## Introduction\n\nUne **fonction** est un procédé qui, à un nombre, en associe un autre. Les fonctions **linéaires** modélisent les situations de **proportionnalité** (prix selon la quantité), et les fonctions **affines** ajoutent une partie fixe (un abonnement plus une consommation). Leurs représentations graphiques sont des **droites**.\n\n## 1. Fonction linéaire\n\n**Définition.** Une **fonction linéaire** est une fonction de la forme :\n$$f(x) = a x$$\noù $a$ est un nombre fixe appelé **coefficient** (ou coefficient de proportionnalité).\n\nSa représentation graphique est une **droite passant par l'origine** $O$. Le coefficient $a$ est la **pente**.\n\n## 2. Fonction affine\n\n**Définition.** Une **fonction affine** est une fonction de la forme :\n$$f(x) = a x + b$$\noù $a$ est le **coefficient directeur** (pente) et $b$ l'**ordonnée à l'origine**.\n\nSa représentation est une **droite** ; elle coupe l'axe des ordonnées au point $(0\\,;b)$. Si $b = 0$, la fonction est linéaire.\n\n## 3. Calculer le coefficient directeur\n\nConnaissant deux points $A(x_A\\,;y_A)$ et $B(x_B\\,;y_B)$ de la droite :\n$$a = \\frac{y_B - y_A}{x_B - x_A}.$$\n\n## 4. Calculer une image, un antécédent\n\n- L'**image** de $x$ est $f(x)$ (on remplace $x$).\n- Un **antécédent** de $y$ est un $x$ tel que $f(x) = y$ (on résout une équation).\n\n## Exercices corrigés\n\n### Exercice 1\nSoit $f(x) = 3x - 2$. Calculer $f(4)$ et l'antécédent de $7$.\n\n**Correction.** Image : $f(4) = 3\\times 4 - 2 = 10.$\nAntécédent de $7$ : on résout $3x - 2 = 7$, soit $3x = 9$, donc $x = 3.$ L'antécédent de $7$ est $3$.\n\n### Exercice 2\nUne fonction linéaire $g$ vérifie $g(5) = 15$. Déterminer son coefficient, puis $g(x)$.\n\n**Correction.** Comme $g(x) = ax$, on a $a = \\dfrac{g(5)}{5} = \\dfrac{15}{5} = 3.$ Donc $g(x) = 3x.$\n\n### Exercice 3\nDéterminer la fonction affine dont la droite passe par $A(1\\,;5)$ et $B(3\\,;11)$.\n\n**Correction.** Coefficient directeur :\n$$a = \\frac{11 - 5}{3 - 1} = \\frac{6}{2} = 3.$$\nOn a $f(x) = 3x + b$. Avec $A$ : $5 = 3\\times 1 + b$, donc $b = 2.$ Ainsi $f(x) = 3x + 2.$\n\n## À retenir\n\n- **Linéaire** : $f(x) = ax$ ; droite passant par l'**origine** (proportionnalité).\n- **Affine** : $f(x) = ax + b$ ; droite coupant l'axe des $y$ en $(0\\,;b)$.\n- Coefficient directeur : $a = \\dfrac{y_B - y_A}{x_B - x_A}$.\n- **Image** : on calcule $f(x)$ ; **antécédent** : on résout $f(x) = y$.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Une fonction linéaire est de la forme :",
+            "options": [
+              "$f(x)=ax+b$",
+              "$f(x)=ax$",
+              "$f(x)=x^2$",
+              "$f(x)=b$"
+            ],
+            "answer": 1,
+            "explanation": "Linéaire : $f(x)=ax$, droite par l'origine."
+          },
+          {
+            "q": "La droite d'une fonction affine $f(x)=ax+b$ coupe l'axe des ordonnées en :",
+            "options": [
+              "$(0;a)$",
+              "$(0;b)$",
+              "$(b;0)$",
+              "l'origine"
+            ],
+            "answer": 1,
+            "explanation": "L'ordonnée à l'origine est $b$, point $(0;b)$."
+          },
+          {
+            "q": "Si $f(x)=2x+1$, alors $f(3)=$ :",
+            "options": [
+              "$5$",
+              "$6$",
+              "$7$",
+              "$8$"
+            ],
+            "answer": 2,
+            "explanation": "$f(3)=2\\times3+1=7$."
+          },
+          {
+            "q": "Le coefficient directeur entre $A(1;2)$ et $B(4;8)$ est :",
+            "options": [
+              "$2$",
+              "$3$",
+              "$6$",
+              "$\\dfrac{1}{2}$"
+            ],
+            "answer": 0,
+            "explanation": "$a=\\dfrac{8-2}{4-1}=\\dfrac{6}{3}=2$."
+          },
+          {
+            "q": "L'antécédent de $0$ par $f(x)=2x-6$ est :",
+            "options": [
+              "$-6$",
+              "$3$",
+              "$6$",
+              "$0$"
+            ],
+            "answer": 1,
+            "explanation": "$2x-6=0$ donne $x=3$."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Statistiques",
+      "video": "https://www.youtube.com/watch?v=Kk5Yw1QwY0E",
+      "lesson": "# Statistiques\n\n## Introduction\n\nLes **statistiques** permettent de recueillir, organiser et résumer des données (notes d'une classe, tailles d'élèves, ventes...). Quelques nombres-clés — moyenne, médiane, étendue — donnent une vision d'ensemble. Savoir les calculer et les interpréter est essentiel pour comprendre l'information chiffrée du quotidien.\n\n## 1. Vocabulaire\n\n- La **population** est l'ensemble étudié ; un élément est un **individu**.\n- Le **caractère** est ce qu'on observe (la note, la taille...).\n- L'**effectif** d'une valeur est le nombre d'individus qui la prennent.\n- L'**effectif total** $N$ est la somme de tous les effectifs.\n- La **fréquence** d'une valeur est $\\dfrac{\\text{effectif}}{N}$ (souvent en %).\n\n## 2. La moyenne\n\n**Définition.** La **moyenne** d'une série est la somme de toutes les valeurs divisée par leur nombre :\n$$\\bar{x} = \\frac{\\text{somme des valeurs}}{\\text{effectif total}}.$$\n\n**Moyenne pondérée** (valeurs $x_i$ d'effectifs $n_i$) :\n$$\\bar{x} = \\frac{n_1 x_1 + n_2 x_2 + \\cdots + n_p x_p}{N}.$$\n\n## 3. La médiane\n\n**Définition.** La **médiane** est la valeur qui **partage** la série ordonnée en deux moitiés de même effectif : au moins la moitié des valeurs lui sont inférieures ou égales, au moins la moitié lui sont supérieures ou égales.\n\nMéthode : on range les valeurs dans l'ordre croissant.\n- Si $N$ est **impair**, la médiane est la valeur centrale.\n- Si $N$ est **pair**, c'est la moyenne des deux valeurs centrales.\n\n## 4. L'étendue\n\n**Définition.** L'**étendue** est la différence entre la plus grande et la plus petite valeur :\n$$\\text{étendue} = x_{\\max} - x_{\\min}.$$\nElle mesure la dispersion de la série.\n\n## Exercices corrigés\n\n### Exercice 1\nCalculer la moyenne des notes : $8, 12, 14, 10, 16$.\n\n**Correction.**\n$$\\bar{x} = \\frac{8 + 12 + 14 + 10 + 16}{5} = \\frac{60}{5} = 12.$$\n\n### Exercice 2\nDéterminer la médiane de la série : $7, 9, 10, 12, 15, 18, 20$.\n\n**Correction.** La série est déjà ordonnée, $N = 7$ (impair). La valeur centrale est la $4^{\\text{e}}$ : c'est $12$. La médiane est $12$.\n\n### Exercice 3\nDans une classe, les notes et effectifs sont : $10$ (3 élèves), $12$ (5 élèves), $15$ (2 élèves). Calculer la moyenne et l'étendue.\n\n**Correction.** Effectif total : $N = 3 + 5 + 2 = 10$.\n$$\\bar{x} = \\frac{3\\times 10 + 5\\times 12 + 2\\times 15}{10} = \\frac{30 + 60 + 30}{10} = \\frac{120}{10} = 12.$$\nÉtendue $= 15 - 10 = 5.$\n\n## À retenir\n\n- **Moyenne** : somme des valeurs divisée par l'effectif total (pondérée si effectifs).\n- **Médiane** : valeur centrale de la série **ordonnée** (sépare en deux moitiés).\n- **Étendue** : $x_{\\max} - x_{\\min}$ ; elle mesure la dispersion.\n- **Fréquence** = effectif / effectif total.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "La moyenne de $4, 6, 8, 10$ est :",
+            "options": [
+              "$6$",
+              "$7$",
+              "$8$",
+              "$28$"
+            ],
+            "answer": 1,
+            "explanation": "$(4+6+8+10)/4=28/4=7$."
+          },
+          {
+            "q": "La médiane de $3, 5, 7, 9, 11$ est :",
+            "options": [
+              "$5$",
+              "$7$",
+              "$9$",
+              "$35$"
+            ],
+            "answer": 1,
+            "explanation": "5 valeurs, la centrale (3e) est 7."
+          },
+          {
+            "q": "L'étendue de la série $5, 8, 12, 20$ est :",
+            "options": [
+              "$15$",
+              "$20$",
+              "$5$",
+              "$45$"
+            ],
+            "answer": 0,
+            "explanation": "$20-5=15$."
+          },
+          {
+            "q": "La fréquence d'une valeur est :",
+            "options": [
+              "effectif $\\times N$",
+              "effectif / effectif total",
+              "la moyenne",
+              "l'étendue"
+            ],
+            "answer": 1,
+            "explanation": "Fréquence $=$ effectif / effectif total."
+          },
+          {
+            "q": "Pour une série à effectif total pair, la médiane est :",
+            "options": [
+              "la plus grande valeur",
+              "la moyenne des deux valeurs centrales",
+              "l'étendue",
+              "la valeur la plus fréquente"
+            ],
+            "answer": 1,
+            "explanation": "Si $N$ pair, on prend la moyenne des deux valeurs du milieu."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Vecteurs et translations",
+      "video": "https://www.youtube.com/watch?v=Q5kE0c2Z9wY",
+      "lesson": "# Vecteurs et translations\n\n## Introduction\n\nUn **vecteur** décrit un **déplacement** : il possède une direction, un sens et une longueur. Il sert à modéliser des translations en géométrie, mais aussi des forces et des vitesses en physique. En 3e, on apprend à définir les vecteurs, à les additionner et à les relier aux translations.\n\n## 1. Définition\n\n**Définition.** Le **vecteur** $\\overrightarrow{AB}$ est défini par :\n- sa **direction** (celle de la droite $(AB)$) ;\n- son **sens** (de $A$ vers $B$) ;\n- sa **longueur** (la distance $AB$, appelée **norme**).\n\n[onbuch-svg] Vecteur $\\overrightarrow{AB}$ : une flèche partant de $A$ vers $B$.\n\n## 2. Égalité de vecteurs\n\n**Définition.** Deux vecteurs sont **égaux** s'ils ont la même direction, le même sens et la même longueur. On écrit $\\overrightarrow{AB} = \\overrightarrow{CD}$.\n\n**Propriété.** $\\overrightarrow{AB} = \\overrightarrow{DC}$ équivaut à dire que $ABCD$ est un **parallélogramme**.\n\n## 3. La translation\n\n**Définition.** La **translation** de vecteur $\\overrightarrow{AB}$ est la transformation qui « glisse » chaque point de la figure suivant ce vecteur. Si $M'$ est l'image de $M$, alors $\\overrightarrow{MM'} = \\overrightarrow{AB}$.\n\nLa translation **conserve** les longueurs, les angles, les aires et le parallélisme.\n\n## 4. Somme de vecteurs (relation de Chasles)\n\n**Relation de Chasles.** Pour trois points quelconques :\n$$\\overrightarrow{AB} + \\overrightarrow{BC} = \\overrightarrow{AC}.$$\n\nEnchaîner le déplacement de $A$ à $B$ puis de $B$ à $C$ revient à aller directement de $A$ à $C$.\n\n## 5. Coordonnées d'un vecteur\n\nDans un repère, si $A(x_A\\,;y_A)$ et $B(x_B\\,;y_B)$, alors :\n$$\\overrightarrow{AB}\\ \\begin{pmatrix} x_B - x_A \\\\ y_B - y_A \\end{pmatrix}.$$\n\n## Exercices corrigés\n\n### Exercice 1\n$A(1\\,;2)$ et $B(4\\,;6)$. Déterminer les coordonnées de $\\overrightarrow{AB}$ et sa norme.\n\n**Correction.**\n$$\\overrightarrow{AB}\\ \\begin{pmatrix} 4 - 1 \\\\ 6 - 2 \\end{pmatrix} = \\begin{pmatrix} 3 \\\\ 4 \\end{pmatrix}.$$\nSa norme : $AB = \\sqrt{3^2 + 4^2} = \\sqrt{25} = 5.$\n\n### Exercice 2\nSimplifier $\\overrightarrow{AB} + \\overrightarrow{BC} + \\overrightarrow{CD}$.\n\n**Correction.** Par la relation de Chasles appliquée deux fois :\n$$\\overrightarrow{AB} + \\overrightarrow{BC} = \\overrightarrow{AC}, \\quad \\text{puis}\\quad \\overrightarrow{AC} + \\overrightarrow{CD} = \\overrightarrow{AD}.$$\nLe résultat est $\\overrightarrow{AD}.$\n\n### Exercice 3\n$ABCD$ est un parallélogramme. Que peut-on dire de $\\overrightarrow{AB}$ et $\\overrightarrow{DC}$ ?\n\n**Correction.** Dans le parallélogramme $ABCD$, les côtés $[AB]$ et $[DC]$ sont parallèles, de même longueur et de même sens, donc $\\overrightarrow{AB} = \\overrightarrow{DC}.$\n\n## À retenir\n\n- Un vecteur a une **direction**, un **sens** et une **longueur** (norme).\n- $\\overrightarrow{AB} = \\overrightarrow{DC} \\iff ABCD$ est un parallélogramme.\n- **Relation de Chasles** : $\\overrightarrow{AB} + \\overrightarrow{BC} = \\overrightarrow{AC}$.\n- Coordonnées : $\\overrightarrow{AB}(x_B - x_A\\,;\\,y_B - y_A)$ ; norme par Pythagore.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Un vecteur est caractérisé par :",
+            "options": [
+              "seulement sa longueur",
+              "direction, sens et longueur",
+              "seulement son sens",
+              "sa couleur"
+            ],
+            "answer": 1,
+            "explanation": "Un vecteur a une direction, un sens et une longueur."
+          },
+          {
+            "q": "La relation de Chasles s'écrit :",
+            "options": [
+              "$\\overrightarrow{AB}+\\overrightarrow{BC}=\\overrightarrow{AC}$",
+              "$\\overrightarrow{AB}+\\overrightarrow{BC}=\\overrightarrow{CA}$",
+              "$\\overrightarrow{AB}-\\overrightarrow{BC}=\\overrightarrow{AC}$",
+              "$\\overrightarrow{AB}=\\overrightarrow{BC}$"
+            ],
+            "answer": 0,
+            "explanation": "$\\overrightarrow{AB}+\\overrightarrow{BC}=\\overrightarrow{AC}$."
+          },
+          {
+            "q": "$\\overrightarrow{AB}=\\overrightarrow{DC}$ signifie que $ABCD$ est :",
+            "options": [
+              "un triangle",
+              "un parallélogramme",
+              "un cercle",
+              "un carré seulement"
+            ],
+            "answer": 1,
+            "explanation": "Cette égalité caractérise le parallélogramme $ABCD$."
+          },
+          {
+            "q": "Pour $A(0;0)$ et $B(3;4)$, $\\overrightarrow{AB}$ a pour coordonnées :",
+            "options": [
+              "$(3;4)$",
+              "$(4;3)$",
+              "$(0;0)$",
+              "$(-3;-4)$"
+            ],
+            "answer": 0,
+            "explanation": "$(3-0;4-0)=(3;4)$."
+          },
+          {
+            "q": "La translation conserve :",
+            "options": [
+              "rien",
+              "les longueurs et les angles",
+              "seulement la couleur",
+              "seulement la position"
+            ],
+            "answer": 1,
+            "explanation": "La translation conserve longueurs, angles, aires et parallélisme."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Géométrie dans l'espace : aires et volumes",
+      "video": "https://www.youtube.com/watch?v=8h3Hb3Q3wYA",
+      "lesson": "# Géométrie dans l'espace : aires et volumes\n\n## Introduction\n\nLes objets qui nous entourent (boîtes, ballons, cornets de glace) sont des **solides**. Savoir calculer leur **aire** (surface) et leur **volume** (espace occupé) est utile au quotidien : remplir un réservoir, emballer un cadeau, doser une quantité. Ce chapitre passe en revue les principaux solides étudiés en 3e.\n\n## 1. Quelques solides usuels\n\n| Solide | Volume |\n|---|---|\n| Pavé droit (dimensions $L, l, h$) | $V = L \\times l \\times h$ |\n| Cube (arête $a$) | $V = a^3$ |\n| Cylindre (rayon $r$, hauteur $h$) | $V = \\pi r^2 h$ |\n| Prisme droit (aire de base $B$, hauteur $h$) | $V = B \\times h$ |\n| Pyramide (aire de base $B$, hauteur $h$) | $V = \\dfrac{1}{3} B h$ |\n| Cône (rayon $r$, hauteur $h$) | $V = \\dfrac{1}{3}\\pi r^2 h$ |\n| Boule (rayon $r$) | $V = \\dfrac{4}{3}\\pi r^3$ |\n\n## 2. Aires utiles\n\n- **Disque** de rayon $r$ : aire $= \\pi r^2$ ; circonférence $= 2\\pi r$.\n- **Sphère** de rayon $r$ : aire $= 4\\pi r^2$.\n- **Cylindre** : aire latérale $= 2\\pi r h$.\n\n## 3. Sections de solides\n\nCouper un solide par un plan donne une **section** :\n- la section d'un cylindre par un plan parallèle à la base est un **disque** identique à la base ;\n- la section d'une pyramide ou d'un cône par un plan parallèle à la base est une **réduction** de la base.\n\n## 4. Unités\n\nLes volumes s'expriment en unités cubes (cm$^3$, m$^3$) ; rappel : $1$ L $= 1$ dm$^3$. Une conversion utile : $1$ m$^3 = 1000$ L.\n\n## Exercices corrigés\n\n### Exercice 1\nCalculer le volume d'un pavé droit de dimensions $5$ cm, $3$ cm et $4$ cm.\n\n**Correction.**\n$$V = L \\times l \\times h = 5 \\times 3 \\times 4 = 60\\ \\text{cm}^3.$$\n\n### Exercice 2\nCalculer le volume d'un cylindre de rayon $r = 2$ cm et de hauteur $h = 10$ cm (prendre $\\pi \\approx 3{,}14$).\n\n**Correction.**\n$$V = \\pi r^2 h = 3{,}14 \\times 2^2 \\times 10 = 3{,}14 \\times 4 \\times 10 = 125{,}6\\ \\text{cm}^3.$$\n\n### Exercice 3\nCalculer le volume d'une boule de rayon $3$ cm ($\\pi \\approx 3{,}14$).\n\n**Correction.**\n$$V = \\frac{4}{3}\\pi r^3 = \\frac{4}{3} \\times 3{,}14 \\times 3^3 = \\frac{4}{3} \\times 3{,}14 \\times 27 \\approx 113{,}0\\ \\text{cm}^3.$$\n\n## À retenir\n\n- Pavé : $V = L l h$ ; cube : $V = a^3$ ; cylindre : $V = \\pi r^2 h$.\n- Pyramide : $V = \\dfrac{1}{3}B h$ ; cône : $V = \\dfrac{1}{3}\\pi r^2 h$ ; boule : $V = \\dfrac{4}{3}\\pi r^3$.\n- Aire d'une sphère : $4\\pi r^2$ ; aire d'un disque : $\\pi r^2$.\n- Sections parallèles à la base : disque (cylindre) ou réduction (pyramide, cône).\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Le volume d'un cube d'arête $a$ est :",
+            "options": [
+              "$a^2$",
+              "$a^3$",
+              "$6a^2$",
+              "$3a$"
+            ],
+            "answer": 1,
+            "explanation": "$V=a\\times a\\times a=a^3$."
+          },
+          {
+            "q": "Le volume d'un cylindre de rayon $r$ et hauteur $h$ est :",
+            "options": [
+              "$2\\pi r h$",
+              "$\\pi r^2 h$",
+              "$\\dfrac{1}{3}\\pi r^2 h$",
+              "$\\pi r h$"
+            ],
+            "answer": 1,
+            "explanation": "$V=\\pi r^2 h$ (aire du disque $\\times$ hauteur)."
+          },
+          {
+            "q": "Le volume d'une boule de rayon $r$ est :",
+            "options": [
+              "$4\\pi r^2$",
+              "$\\dfrac{4}{3}\\pi r^3$",
+              "$\\pi r^3$",
+              "$\\dfrac{1}{3}\\pi r^2$"
+            ],
+            "answer": 1,
+            "explanation": "$V=\\dfrac{4}{3}\\pi r^3$."
+          },
+          {
+            "q": "Le volume d'un pavé de dimensions $2, 3, 4$ est :",
+            "options": [
+              "$9$",
+              "$24$",
+              "$12$",
+              "$48$"
+            ],
+            "answer": 1,
+            "explanation": "$2\\times3\\times4=24$."
+          },
+          {
+            "q": "Le volume d'une pyramide est :",
+            "options": [
+              "$B\\times h$",
+              "$\\dfrac{1}{3}B\\times h$",
+              "$\\dfrac{1}{2}B\\times h$",
+              "$3B\\times h$"
+            ],
+            "answer": 1,
+            "explanation": "$V=\\dfrac{1}{3}\\times$ (aire de base) $\\times$ hauteur."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Angles inscrits et angle au centre",
+      "video": "https://www.youtube.com/watch?v=Q0gLpyc3sNI",
+      "lesson": "# Angles inscrits et angle au centre\n\n## Introduction\n\nDans un cercle, les angles formés à partir des points du cercle obéissent à des règles élégantes. L'étude des **angles inscrits** et de l'**angle au centre** permet de résoudre de nombreux problèmes de géométrie et de justifier des propriétés des polygones réguliers.\n\n## 1. Vocabulaire\n\nDans un cercle de centre $O$ :\n- un **angle au centre** a son sommet en $O$ ;\n- un **angle inscrit** a son sommet **sur** le cercle et ses côtés coupent le cercle.\n\nDeux angles **interceptent** le même arc lorsqu'ils « voient » le même morceau du cercle.\n\n[onbuch-svg] Cercle de centre $O$ : angle au centre $\\widehat{AOB}$ et angle inscrit $\\widehat{AMB}$ interceptant l'arc $AB$.\n\n## 2. Théorème de l'angle inscrit\n\n**Théorème.** L'**angle au centre** qui intercepte un arc est le **double** de tout angle inscrit interceptant le **même** arc :\n$$\\widehat{AOB} = 2 \\times \\widehat{AMB}.$$\n\n## 3. Conséquences\n\n**Angles inscrits.** Deux angles inscrits qui interceptent le **même arc** sont **égaux**.\n\n**Angle droit (cas particulier).** Un angle inscrit qui intercepte un **diamètre** mesure $90°$ : tout triangle inscrit dans un cercle dont un côté est un diamètre est **rectangle** (lien avec Pythagore).\n\n## 4. Polygones réguliers\n\nDans un polygone régulier à $n$ côtés inscrit dans un cercle, l'angle au centre associé à un côté vaut $\\dfrac{360°}{n}$. Par exemple, pour un hexagone régulier : $\\dfrac{360°}{6} = 60°$.\n\n## Exercices corrigés\n\n### Exercice 1\nUn angle inscrit $\\widehat{AMB}$ mesure $40°$. Quelle est la mesure de l'angle au centre $\\widehat{AOB}$ interceptant le même arc ?\n\n**Correction.** L'angle au centre est le double :\n$$\\widehat{AOB} = 2 \\times 40° = 80°.$$\n\n### Exercice 2\nL'angle au centre $\\widehat{AOB}$ mesure $110°$. Que vaut un angle inscrit $\\widehat{AMB}$ interceptant le même arc ?\n\n**Correction.** L'angle inscrit est la moitié :\n$$\\widehat{AMB} = \\frac{110°}{2} = 55°.$$\n\n### Exercice 3\n$[AB]$ est un diamètre d'un cercle et $M$ un point du cercle. Quelle est la nature du triangle $AMB$ ?\n\n**Correction.** L'angle inscrit $\\widehat{AMB}$ intercepte le diamètre $[AB]$, donc $\\widehat{AMB} = 90°$. Le triangle $AMB$ est **rectangle en $M$**.\n\n## À retenir\n\n- **Angle au centre** = $2 \\times$ **angle inscrit** interceptant le même arc.\n- Deux angles inscrits interceptant le **même arc** sont **égaux**.\n- Un angle inscrit interceptant un **diamètre** vaut $90°$ (triangle rectangle).\n- Polygone régulier à $n$ côtés : angle au centre $= \\dfrac{360°}{n}$.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Un angle inscrit a son sommet :",
+            "options": [
+              "au centre",
+              "sur le cercle",
+              "hors du cercle",
+              "au milieu d'un rayon"
+            ],
+            "answer": 1,
+            "explanation": "L'angle inscrit a son sommet sur le cercle."
+          },
+          {
+            "q": "L'angle au centre est égal à :",
+            "options": [
+              "la moitié de l'angle inscrit",
+              "le double de l'angle inscrit",
+              "l'angle inscrit",
+              "$90°$ toujours"
+            ],
+            "answer": 1,
+            "explanation": "Angle au centre $=2\\times$ angle inscrit (même arc)."
+          },
+          {
+            "q": "Si l'angle inscrit vaut $30°$, l'angle au centre (même arc) vaut :",
+            "options": [
+              "$15°$",
+              "$30°$",
+              "$60°$",
+              "$90°$"
+            ],
+            "answer": 2,
+            "explanation": "$2\\times30°=60°$."
+          },
+          {
+            "q": "Un angle inscrit interceptant un diamètre mesure :",
+            "options": [
+              "$45°$",
+              "$60°$",
+              "$90°$",
+              "$180°$"
+            ],
+            "answer": 2,
+            "explanation": "Il vaut toujours $90°$ : le triangle est rectangle."
+          },
+          {
+            "q": "Deux angles inscrits interceptant le même arc sont :",
+            "options": [
+              "complémentaires",
+              "égaux",
+              "supplémentaires",
+              "opposés"
+            ],
+            "answer": 1,
+            "explanation": "Ils sont égaux."
+          }
+        ]
+      }
+    }
+  ]
+}
