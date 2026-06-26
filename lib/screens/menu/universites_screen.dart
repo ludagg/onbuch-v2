@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
 import '../../widgets/states.dart';
 import '../../widgets/skeletons.dart';
+import '../../widgets/cached_image.dart';
 import '../../models/university.dart';
 import '../../services/database_service.dart';
-import '../../utils/launch.dart';
 
 /// Annuaire des universités camerounaises (page Orientation) : classement
 /// indicatif, recherche, filtres par type (publique/privée) et par ville.
@@ -164,7 +165,7 @@ class _UniversityCard extends StatelessWidget {
         .where((e) => e.trim().isNotEmpty)
         .join(' · ');
     return GestureDetector(
-      onTap: u.website.isEmpty ? null : () => openUrl(context, u.website),
+      onTap: () => context.push('/universite', extra: u),
       child: Container(
         padding: const EdgeInsets.all(13),
         decoration: BoxDecoration(
@@ -174,14 +175,27 @@ class _UniversityCard extends StatelessWidget {
         ),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            // Badge classement + sigle
-            Container(
-              width: 50, height: 50,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(color: accent.withValues(alpha: 0.12), borderRadius: BorderRadius.circular(14)),
-              child: Text(u.acronym.isEmpty ? '?' : u.acronym,
-                  style: display(u.acronym.length >= 4 ? 12 : 15, weight: FontWeight.w800, color: accent)),
-            ),
+            // Logo si disponible, sinon pastille au sigle
+            if (u.hasLogo)
+              Container(
+                width: 50, height: 50,
+                padding: const EdgeInsets.all(6),
+                decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(14), border: Border.all(color: OC.line, width: 1)),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(9),
+                  child: CachedImage(u.logoUrl, fit: BoxFit.contain, gaplessPlayback: true,
+                      errorBuilder: (_, __, ___) => Center(child: Text(u.acronym.isEmpty ? '?' : u.acronym,
+                          style: display(u.acronym.length >= 4 ? 11 : 14, weight: FontWeight.w800, color: accent)))),
+                ),
+              )
+            else
+              Container(
+                width: 50, height: 50,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(color: accent.withValues(alpha: 0.12), borderRadius: BorderRadius.circular(14)),
+                child: Text(u.acronym.isEmpty ? '?' : u.acronym,
+                    style: display(u.acronym.length >= 4 ? 12 : 15, weight: FontWeight.w800, color: accent)),
+              ),
             const SizedBox(width: 12),
             Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Row(children: [
@@ -202,10 +216,8 @@ class _UniversityCard extends StatelessWidget {
                     style: body(11.5, color: OC.muted, weight: FontWeight.w600)),
               ],
             ])),
-            if (u.website.isNotEmpty) ...[
-              const SizedBox(width: 6),
-              Icon(Icons.open_in_new_rounded, size: 16, color: OC.faint),
-            ],
+            const SizedBox(width: 6),
+            Icon(Icons.chevron_right_rounded, size: 18, color: OC.faint),
           ]),
           if (u.description.isNotEmpty) ...[
             const SizedBox(height: 10),
