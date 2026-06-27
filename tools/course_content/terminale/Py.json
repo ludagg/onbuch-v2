@@ -1,0 +1,774 @@
+{
+  "code": "Py",
+  "level": "Terminale",
+  "chapters": [
+    {
+      "title": "Les lois de Newton et leurs applications",
+      "video": "https://www.youtube.com/watch?v=Vg6rGSQzh9o",
+      "lesson": "# Les lois de Newton et leurs applications\n\n## Introduction\n\nLa **dynamique** étudie le mouvement des corps en relation avec les **forces** qui en sont la cause. Au début du XVII$^e$ siècle, **Isaac Newton** a énoncé trois lois fondamentales qui régissent le mouvement de tous les corps matériels, du grain de poussière à la planète. Ces lois sont valables dans un référentiel particulier appelé **référentiel galiléen**.\n\n## 1. Référentiel galiléen\n\nUn **référentiel galiléen** (ou inertiel) est un référentiel dans lequel le **principe d'inertie** est vérifié. En pratique :\n- Le référentiel **terrestre** (lié au sol) est galiléen pour des expériences de courte durée.\n- Le référentiel **géocentrique** (centre de la Terre, axes vers les étoiles) convient pour l'étude des satellites.\n- Le référentiel **héliocentrique** (centre du Soleil) convient pour l'étude des planètes.\n\n## 2. Première loi : le principe d'inertie\n\n> Dans un référentiel galiléen, le **centre d'inertie** $G$ d'un système isolé (ou pseudo-isolé) est **soit au repos, soit animé d'un mouvement rectiligne uniforme**.\n\nMathématiquement, si $\\sum \\vec{F}_{ext} = \\vec{0}$ alors $\\vec{v}_G = \\overrightarrow{cste}$ (et réciproquement).\n\n## 3. Deuxième loi : théorème du centre d'inertie (TCI)\n\nC'est la **relation fondamentale de la dynamique** (RFD). Dans un référentiel galiléen :\n\n$$\\sum \\vec{F}_{ext} = m\\,\\vec{a}_G$$\n\noù $m$ est la masse du système (en kg), $\\vec{a}_G$ l'accélération de son centre d'inertie (en m·s$^{-2}$) et $\\sum \\vec{F}_{ext}$ la somme vectorielle des forces extérieures (en N).\n\nLe vecteur accélération a **même direction et même sens** que la résultante des forces.\n\n## 4. Troisième loi : principe des actions réciproques\n\n> Lorsqu'un corps $A$ exerce sur un corps $B$ une force $\\vec{F}_{A/B}$, alors $B$ exerce sur $A$ une force $\\vec{F}_{B/A}$ telle que :\n\n$$\\vec{F}_{A/B} = -\\vec{F}_{B/A}$$\n\nCes deux forces ont **même droite d'action, même intensité, mais des sens opposés**. Attention : elles s'exercent sur **deux corps différents** (elles ne se compensent donc pas).\n\n## 5. Méthode de résolution d'un problème de dynamique\n\n1. Définir le **système** étudié.\n2. Choisir un **référentiel galiléen**.\n3. Faire le **bilan des forces extérieures** (poids $\\vec{P}$, réaction $\\vec{R}$, tension, frottements $\\vec{f}$...).\n4. Appliquer le TCI : $\\sum \\vec{F}_{ext} = m\\,\\vec{a}_G$.\n5. **Projeter** sur des axes bien choisis.\n6. En déduire l'accélération, puis la vitesse et la position par intégration.\n\n## 6. Exemples classiques\n\n**Plan incliné sans frottement** (angle $\\alpha$) : la projection sur la ligne de plus grande pente donne\n$$a = g\\sin\\alpha$$\n\n**Mouvement sur plan incliné avec frottement** $f$ :\n$$a = g\\sin\\alpha - \\frac{f}{m}$$\n\n## Exercices corrigés\n\n### Exercice 1 — Solide tracté sur un plan horizontal\nUn solide de masse $m = 5\\ \\text{kg}$ est tiré sur un plan horizontal par une force $\\vec{F}$ horizontale d'intensité $F = 20\\ \\text{N}$. Les frottements sont équivalents à une force $f = 5\\ \\text{N}$ opposée au mouvement. On prend $g = 10\\ \\text{m·s}^{-2}$.\n\n**1.** Calculer l'accélération.\n**2.** Le solide partant du repos, calculer sa vitesse après $4\\ \\text{s}$.\n\n**Correction.**\nSystème : le solide. Référentiel terrestre galiléen. Forces : $\\vec{P}$, $\\vec{R}$, $\\vec{F}$, $\\vec{f}$.\nTCI projeté sur l'axe horizontal $(Ox)$ du mouvement :\n$$F - f = m a \\;\\Rightarrow\\; a = \\frac{F-f}{m} = \\frac{20-5}{5} = 3\\ \\text{m·s}^{-2}$$\nLe mouvement est rectiligne uniformément varié : $v = a t = 3 \\times 4 = 12\\ \\text{m·s}^{-1}$.\n\n### Exercice 2 — Plan incliné avec frottement\nUn objet de masse $m = 2\\ \\text{kg}$ glisse le long d'un plan incliné de $\\alpha = 30^\\circ$ par rapport à l'horizontale. La force de frottement vaut $f = 4\\ \\text{N}$. $g = 10\\ \\text{m·s}^{-2}$.\n\nCalculer l'accélération lors de la descente.\n\n**Correction.**\nProjection sur la ligne de plus grande pente (sens de la descente positif) :\n$$m g \\sin\\alpha - f = m a$$\n$$a = g\\sin\\alpha - \\frac{f}{m} = 10 \\times 0{,}5 - \\frac{4}{2} = 5 - 2 = 3\\ \\text{m·s}^{-2}$$\n\n### Exercice 3 — Application de la 3ᵉ loi\nUn cheval tire un chariot. On entend dire : « Le chariot tire le cheval avec une force égale et opposée, donc l'ensemble ne peut pas avancer. » Expliquer l'erreur.\n\n**Correction.**\nLes forces $\\vec{F}_{cheval/chariot}$ et $\\vec{F}_{chariot/cheval}$ sont bien opposées (3ᵉ loi), mais elles s'appliquent sur **deux systèmes différents**. Pour savoir si le chariot avance, on applique le TCI **au chariot seul** : la force motrice du cheval, la traction du sol et les frottements n'ont aucune raison de se compenser. Le système avance grâce à la force de **réaction du sol sur les sabots** du cheval.\n\n## À retenir\n\n- **1ère loi (inertie)** : $\\sum \\vec{F}_{ext}=\\vec 0 \\Leftrightarrow \\vec v_G = \\overrightarrow{cste}$.\n- **2ème loi (TCI)** : $\\boxed{\\sum \\vec{F}_{ext} = m\\,\\vec{a}_G}$, valable en référentiel **galiléen**.\n- **3ème loi (actions réciproques)** : $\\vec{F}_{A/B} = -\\vec{F}_{B/A}$, forces sur **deux corps distincts**.\n- Plan incliné sans frottement : $a = g\\sin\\alpha$.\n- Méthode : système → référentiel → bilan des forces → TCI → projection.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Le théorème du centre d'inertie s'écrit :",
+            "options": [
+              "$\\sum\\vec F = m\\vec v$",
+              "$\\sum\\vec F_{ext} = m\\vec a_G$",
+              "$\\sum\\vec F = 0$",
+              "$\\vec a = m\\sum\\vec F$"
+            ],
+            "answer": 1,
+            "explanation": "Le TCI (2ᵉ loi de Newton) relie la résultante des forces extérieures à l'accélération : ΣF_ext = m·a_G."
+          },
+          {
+            "q": "Un système est pseudo-isolé lorsque :",
+            "options": [
+              "Il est immobile",
+              "La somme des forces extérieures est nulle",
+              "Sa masse est nulle",
+              "Il n'est soumis à aucune force"
+            ],
+            "answer": 1,
+            "explanation": "Pseudo-isolé : la résultante des forces extérieures est nulle (forces présentes mais se compensant). Isolé : aucune force."
+          },
+          {
+            "q": "Sur un plan incliné sans frottement (angle α), l'accélération vaut :",
+            "options": [
+              "$g\\cos\\alpha$",
+              "$g\\sin\\alpha$",
+              "$g\\tan\\alpha$",
+              "$g$"
+            ],
+            "answer": 1,
+            "explanation": "La projection du poids sur la ligne de plus grande pente donne a = g·sin α."
+          },
+          {
+            "q": "Les deux forces de la 3ᵉ loi de Newton :",
+            "options": [
+              "S'exercent sur le même corps et se compensent",
+              "S'exercent sur deux corps différents",
+              "Ont des intensités différentes",
+              "Ont le même sens"
+            ],
+            "answer": 1,
+            "explanation": "Les actions réciproques s'exercent sur deux corps distincts ; elles ne se compensent donc jamais."
+          },
+          {
+            "q": "Un référentiel galiléen est un référentiel dans lequel :",
+            "options": [
+              "La vitesse est toujours nulle",
+              "Le principe d'inertie est vérifié",
+              "Les forces n'existent pas",
+              "L'accélération est constante"
+            ],
+            "answer": 1,
+            "explanation": "Par définition, un référentiel galiléen est celui où le principe d'inertie (1ère loi) s'applique."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Mouvements dans le champ de pesanteur uniforme",
+      "video": "https://www.youtube.com/watch?v=2Xb5cOyKaJk",
+      "lesson": "# Mouvements dans le champ de pesanteur uniforme\n\n## Introduction\n\nLorsqu'un projectile est lancé près de la surface de la Terre, il n'est soumis (si l'on néglige les frottements de l'air et la poussée d'Archimède) **qu'à son poids** $\\vec{P} = m\\vec{g}$. Le champ de pesanteur $\\vec g$ y est supposé **uniforme** (intensité $g \\approx 9{,}8\\ \\text{m·s}^{-2}$, direction verticale vers le bas). On étudie ici la **chute libre** et les **tirs de projectiles**.\n\n## 1. Équations du mouvement\n\nSystème : le projectile (masse $m$). Référentiel terrestre galiléen. Seule force : $\\vec P = m\\vec g$.\nLe TCI donne :\n$$m\\vec a = m\\vec g \\;\\Rightarrow\\; \\boxed{\\vec a = \\vec g}$$\n\n**L'accélération est indépendante de la masse** : tous les corps tombent de la même façon dans le vide.\n\nOn choisit un repère $(O, \\vec i, \\vec j)$ avec $\\vec j$ vertical ascendant. À $t=0$, le projectile part de $O$ avec une vitesse $\\vec v_0$ faisant un angle $\\alpha$ avec l'horizontale :\n$$v_{0x} = v_0\\cos\\alpha, \\qquad v_{0y} = v_0\\sin\\alpha$$\n\n**Accélération :** $a_x = 0$, $a_y = -g$.\n\n**Vitesse (intégration) :**\n$$v_x = v_0\\cos\\alpha, \\qquad v_y = -g t + v_0\\sin\\alpha$$\n\n**Position (intégration) :**\n$$x = (v_0\\cos\\alpha)\\,t, \\qquad y = -\\frac{1}{2}g t^2 + (v_0\\sin\\alpha)\\,t$$\n\n## 2. Équation de la trajectoire\n\nEn éliminant $t = \\dfrac{x}{v_0\\cos\\alpha}$ :\n\n$$\\boxed{y = -\\frac{g}{2 v_0^2 \\cos^2\\alpha}\\,x^2 + (\\tan\\alpha)\\,x}$$\n\nC'est l'équation d'une **parabole** : la trajectoire d'un projectile est parabolique.\n\n## 3. Grandeurs caractéristiques (tir oblique)\n\n**Flèche** (hauteur maximale, atteinte quand $v_y = 0$) :\n$$H = \\frac{v_0^2\\sin^2\\alpha}{2g}$$\n\n**Portée** (distance horizontale au retour à $y=0$) :\n$$x_P = \\frac{v_0^2\\sin(2\\alpha)}{g}$$\n\nLa portée est **maximale pour** $\\alpha = 45^\\circ$.\n\n## 4. Chute libre verticale\n\nCas particulier $v_0 = 0$ (lâché sans vitesse) : $y = -\\dfrac12 g t^2$ et $v = -g t$. Le mouvement est **rectiligne uniformément accéléré**.\n\n```onbuch-plot\n{\"title\":\"Trajectoire parabolique d'un projectile\",\"x\":\"x (m)\",\"y\":\"y (m)\",\"data\":[{\"label\":\"Trajectoire\",\"points\":[[0,0],[2,3.6],[4,6.4],[6,8.4],[8,9.6],[10,10],[12,9.6],[14,8.4],[16,6.4],[18,3.6],[20,0]]}]}\n```\n\n## Exercices corrigés\n\n### Exercice 1 — Tir oblique\nUn ballon est lancé avec $v_0 = 20\\ \\text{m·s}^{-1}$ sous un angle $\\alpha = 30^\\circ$. On prend $g = 10\\ \\text{m·s}^{-2}$.\n\n**1.** Calculer la flèche $H$.\n**2.** Calculer la portée $x_P$.\n\n**Correction.**\n$$H = \\frac{v_0^2\\sin^2\\alpha}{2g} = \\frac{20^2 \\times (0{,}5)^2}{2\\times 10} = \\frac{400 \\times 0{,}25}{20} = 5\\ \\text{m}$$\n$$x_P = \\frac{v_0^2\\sin(2\\alpha)}{g} = \\frac{400 \\times \\sin 60^\\circ}{10} = \\frac{400 \\times 0{,}866}{10} \\approx 34{,}6\\ \\text{m}$$\n\n### Exercice 2 — Chute libre\nUne bille est lâchée sans vitesse du haut d'un immeuble de hauteur $h = 45\\ \\text{m}$. $g = 10\\ \\text{m·s}^{-2}$.\n\n**1.** Durée de la chute.\n**2.** Vitesse à l'arrivée au sol.\n\n**Correction.**\n$h = \\frac12 g t^2 \\Rightarrow t = \\sqrt{\\dfrac{2h}{g}} = \\sqrt{\\dfrac{2\\times 45}{10}} = \\sqrt 9 = 3\\ \\text{s}$.\n$v = g t = 10 \\times 3 = 30\\ \\text{m·s}^{-1}$.\n\n### Exercice 3 — Tir horizontal\nD'une falaise de hauteur $h = 20\\ \\text{m}$, on lance une pierre **horizontalement** à $v_0 = 15\\ \\text{m·s}^{-1}$. $g=10\\ \\text{m·s}^{-2}$.\n\nCalculer la distance horizontale $d$ entre le pied de la falaise et le point d'impact.\n\n**Correction.**\nVerticalement (chute libre) : $h = \\frac12 g t^2 \\Rightarrow t = \\sqrt{2h/g} = \\sqrt{4} = 2\\ \\text{s}$.\nHorizontalement (uniforme) : $d = v_0 t = 15 \\times 2 = 30\\ \\text{m}$.\n\n## À retenir\n\n- Dans le champ de pesanteur (frottements négligés) : $\\vec a = \\vec g$, **indépendant de la masse**.\n- Trajectoire **parabolique** : $y = -\\dfrac{g}{2v_0^2\\cos^2\\alpha}x^2 + x\\tan\\alpha$.\n- Flèche : $H = \\dfrac{v_0^2\\sin^2\\alpha}{2g}$ ; Portée : $x_P = \\dfrac{v_0^2\\sin 2\\alpha}{g}$ (max à $45^\\circ$).\n- Chute libre : $t=\\sqrt{2h/g}$, $v=gt$.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Dans le champ de pesanteur (sans frottement), l'accélération d'un projectile est :",
+            "options": [
+              "Égale à g, indépendante de la masse",
+              "Proportionnelle à la masse",
+              "Nulle",
+              "Égale à v₀"
+            ],
+            "answer": 0,
+            "explanation": "Le TCI donne a = g : l'accélération est égale au champ de pesanteur, indépendamment de la masse."
+          },
+          {
+            "q": "La trajectoire d'un projectile lancé obliquement est :",
+            "options": [
+              "Une droite",
+              "Un cercle",
+              "Une parabole",
+              "Une hyperbole"
+            ],
+            "answer": 2,
+            "explanation": "L'équation y = f(x) est du second degré en x : c'est une parabole."
+          },
+          {
+            "q": "La portée d'un tir oblique est maximale pour un angle de :",
+            "options": [
+              "30°",
+              "45°",
+              "60°",
+              "90°"
+            ],
+            "answer": 1,
+            "explanation": "x_P = v₀²·sin(2α)/g est maximale quand sin(2α)=1, soit 2α=90° donc α=45°."
+          },
+          {
+            "q": "La durée de chute libre d'une hauteur h (sans vitesse initiale) vaut :",
+            "options": [
+              "$h/g$",
+              "$\\sqrt{2h/g}$",
+              "$2h/g$",
+              "$\\sqrt{h/g}$"
+            ],
+            "answer": 1,
+            "explanation": "De h = ½gt² on tire t = √(2h/g)."
+          },
+          {
+            "q": "Pour un tir horizontal, le mouvement vertical est :",
+            "options": [
+              "Uniforme",
+              "Une chute libre",
+              "Au repos",
+              "Circulaire"
+            ],
+            "answer": 1,
+            "explanation": "Horizontalement le mouvement est uniforme ; verticalement c'est une chute libre (a_y = -g)."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Le champ électrostatique",
+      "video": "https://www.youtube.com/watch?v=mdulzEfQXDE",
+      "lesson": "# Le champ électrostatique\n\n## Introduction\n\nUne charge électrique modifie les propriétés de l'espace qui l'entoure : elle crée un **champ électrostatique**. Toute autre charge placée dans cette région subit une **force électrique**. Ce chapitre établit la loi de Coulomb, définit le vecteur champ $\\vec E$ et étudie le mouvement d'une particule chargée dans un champ uniforme.\n\n## 1. Loi de Coulomb\n\nDeux charges ponctuelles $q_A$ et $q_B$, séparées d'une distance $r$, exercent l'une sur l'autre une force d'intensité :\n\n$$F = k\\,\\frac{|q_A\\, q_B|}{r^2}$$\n\navec $k = \\dfrac{1}{4\\pi\\varepsilon_0} \\approx 9 \\times 10^9\\ \\text{N·m}^2\\text{·C}^{-2}$ (dans le vide ou l'air).\n\nLa force est **répulsive** entre charges de même signe, **attractive** entre charges de signes contraires.\n\n## 2. Le vecteur champ électrostatique\n\nLe champ créé en un point $M$ par une charge $q$ se définit par l'effet sur une charge test $q_0$ placée en $M$ :\n\n$$\\vec E = \\frac{\\vec F}{q_0} \\qquad (\\text{unité : V·m}^{-1}\\ \\text{ou N·C}^{-1})$$\n\nPour une charge ponctuelle $q$ à la distance $r$ :\n$$E = k\\,\\frac{|q|}{r^2}$$\n\nLe champ est dirigé **de** la charge si $q>0$, **vers** la charge si $q<0$.\n\n## 3. Force subie par une charge dans un champ\n\nUne charge $q$ placée en un point où règne le champ $\\vec E$ subit :\n$$\\boxed{\\vec F = q\\,\\vec E}$$\n\nSi $q>0$, $\\vec F$ et $\\vec E$ ont même sens ; si $q<0$, ils sont opposés.\n\n## 4. Champ uniforme entre deux plaques\n\nEntre deux plaques parallèles distantes de $d$ et soumises à une tension $U$, le champ est **uniforme** :\n$$E = \\frac{U}{d}$$\n\ndirigé de la plaque $+$ vers la plaque $-$.\n\n## 5. Mouvement d'une particule chargée dans un champ uniforme\n\nUne particule de charge $q$ et de masse $m$, dans un champ $\\vec E$ uniforme (poids négligeable), subit $\\vec F = q\\vec E$ et donc :\n$$\\vec a = \\frac{q\\vec E}{m} = \\overrightarrow{cste}$$\n\nLe mouvement est analogue à celui d'un projectile : **parabolique** si la vitesse initiale est perpendiculaire à $\\vec E$.\n\n## Exercices corrigés\n\n### Exercice 1 — Loi de Coulomb\nDeux charges $q_A = 2\\times 10^{-6}\\ \\text{C}$ et $q_B = -3\\times 10^{-6}\\ \\text{C}$ sont distantes de $r = 30\\ \\text{cm}$. $k = 9\\times 10^9$ SI.\n\nCalculer l'intensité de la force et préciser sa nature.\n\n**Correction.**\n$$F = k\\frac{|q_A q_B|}{r^2} = 9\\times 10^9 \\times \\frac{2\\times 10^{-6}\\times 3\\times 10^{-6}}{(0{,}30)^2} = 9\\times10^9 \\times \\frac{6\\times10^{-12}}{0{,}09} = 0{,}6\\ \\text{N}$$\nLes charges étant de signes opposés, la force est **attractive**.\n\n### Exercice 2 — Champ entre deux plaques\nDeux plaques distantes de $d = 5\\ \\text{cm}$ sont soumises à $U = 1000\\ \\text{V}$.\n\n**1.** Calculer $E$.\n**2.** Force sur un électron ($q = -1{,}6\\times 10^{-19}\\ \\text{C}$).\n\n**Correction.**\n$$E = \\frac{U}{d} = \\frac{1000}{0{,}05} = 2\\times 10^4\\ \\text{V·m}^{-1}$$\n$$F = |q|E = 1{,}6\\times 10^{-19} \\times 2\\times 10^4 = 3{,}2\\times 10^{-15}\\ \\text{N}$$\nSur l'électron (charge $<0$), $\\vec F$ est dirigée vers la plaque positive.\n\n### Exercice 3 — Accélération d'un proton\nUn proton ($m = 1{,}67\\times 10^{-27}\\ \\text{kg}$, $q = 1{,}6\\times 10^{-19}\\ \\text{C}$) est placé dans un champ $E = 5\\times 10^4\\ \\text{V·m}^{-1}$.\n\nCalculer son accélération.\n\n**Correction.**\n$$a = \\frac{qE}{m} = \\frac{1{,}6\\times 10^{-19}\\times 5\\times 10^4}{1{,}67\\times 10^{-27}} \\approx 4{,}8\\times 10^{12}\\ \\text{m·s}^{-2}$$\n\n## À retenir\n\n- Loi de Coulomb : $F = k\\dfrac{|q_A q_B|}{r^2}$, $k=9\\times10^9$ SI.\n- Champ d'une charge : $E = k\\dfrac{|q|}{r^2}$ ; partout : $\\vec F = q\\vec E$.\n- Champ uniforme entre plaques : $E = \\dfrac{U}{d}$.\n- Dans un champ uniforme : $\\vec a = \\dfrac{q\\vec E}{m}$ constant ⇒ trajectoire **parabolique**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "L'unité du champ électrostatique est :",
+            "options": [
+              "Le volt (V)",
+              "Le V·m⁻¹ (ou N·C⁻¹)",
+              "Le coulomb (C)",
+              "Le newton (N)"
+            ],
+            "answer": 1,
+            "explanation": "E = F/q s'exprime en N·C⁻¹, équivalent au V·m⁻¹."
+          },
+          {
+            "q": "La force entre deux charges de même signe est :",
+            "options": [
+              "Attractive",
+              "Répulsive",
+              "Nulle",
+              "Perpendiculaire"
+            ],
+            "answer": 1,
+            "explanation": "Deux charges de même signe se repoussent (force répulsive)."
+          },
+          {
+            "q": "Le champ uniforme entre deux plaques distantes de d, sous tension U, vaut :",
+            "options": [
+              "$U\\cdot d$",
+              "$U/d$",
+              "$d/U$",
+              "$U^2/d$"
+            ],
+            "answer": 1,
+            "explanation": "Entre plaques parallèles, E = U/d, dirigé de la plaque + vers la plaque −."
+          },
+          {
+            "q": "La force subie par une charge q dans un champ E est :",
+            "options": [
+              "$\\vec F = q\\vec E$",
+              "$\\vec F = E/q$",
+              "$\\vec F = q/E$",
+              "$\\vec F = qE^2$"
+            ],
+            "answer": 0,
+            "explanation": "La relation fondamentale est F = qE."
+          },
+          {
+            "q": "Pour un électron (q<0) placé dans un champ E, la force est :",
+            "options": [
+              "De même sens que E",
+              "De sens opposé à E",
+              "Nulle",
+              "Perpendiculaire à E"
+            ],
+            "answer": 1,
+            "explanation": "Comme q<0, F=qE est opposée au vecteur champ E."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Le champ magnétique et la force de Laplace",
+      "video": "https://www.youtube.com/watch?v=0qDqBzj4VYk",
+      "lesson": "# Le champ magnétique et la force de Laplace\n\n## Introduction\n\nLes aimants et les courants électriques créent dans l'espace un **champ magnétique**, caractérisé par le vecteur $\\vec B$ (unité : le **tesla**, T). Un conducteur parcouru par un courant et placé dans un champ magnétique subit une force : la **force de Laplace**, à la base des moteurs électriques.\n\n## 1. Le vecteur champ magnétique $\\vec B$\n\n- Direction : celle prise par une petite aiguille aimantée placée au point considéré.\n- Sens : du pôle **Sud** vers le pôle **Nord** de l'aiguille (à l'intérieur), du Nord au Sud à l'extérieur de l'aimant.\n- Les **lignes de champ** sortent du pôle Nord et entrent par le pôle Sud.\n\n**Champ créé par un solénoïde** (longueur $\\ell$, $N$ spires, courant $I$) :\n$$B = \\mu_0\\,\\frac{N}{\\ell}\\,I = \\mu_0\\, n\\, I$$\navec $\\mu_0 = 4\\pi\\times 10^{-7}\\ \\text{T·m·A}^{-1}$ et $n = N/\\ell$ (spires par mètre).\n\n## 2. La force de Laplace\n\nUn élément de conducteur de longueur $\\ell$ parcouru par un courant $I$, placé dans un champ $\\vec B$, subit la force de Laplace :\n\n$$\\vec F = I\\,\\vec{\\ell} \\wedge \\vec B$$\n\n**Intensité :**\n$$F = B\\,I\\,\\ell\\,\\sin\\theta$$\n\noù $\\theta$ est l'angle entre $\\vec\\ell$ (orienté dans le sens du courant) et $\\vec B$. La force est **maximale** quand $\\vec\\ell \\perp \\vec B$ ($F = BI\\ell$) et **nulle** quand ils sont parallèles.\n\n## 3. Direction et sens : les trois doigts de la main droite\n\nLa force de Laplace est **perpendiculaire** au plan formé par $\\vec\\ell$ et $\\vec B$. On détermine son sens par la **règle des trois doigts de la main droite** (ou règle de la main droite) : pouce = courant $I$, index = champ $\\vec B$, majeur = force $\\vec F$.\n\n## 4. Force de Lorentz (particule chargée)\n\nUne charge $q$ animée d'une vitesse $\\vec v$ dans un champ $\\vec B$ subit :\n$$\\vec F = q\\,\\vec v \\wedge \\vec B \\qquad ; \\qquad F = |q|\\,v\\,B\\sin\\theta$$\n\nSi $\\vec v \\perp \\vec B$, le mouvement est **circulaire uniforme** de rayon :\n$$R = \\frac{m v}{|q| B}$$\n\n## Exercices corrigés\n\n### Exercice 1 — Force de Laplace\nUne tige conductrice de longueur $\\ell = 10\\ \\text{cm}$ est parcourue par un courant $I = 5\\ \\text{A}$, perpendiculaire à un champ $B = 0{,}2\\ \\text{T}$.\n\nCalculer l'intensité de la force de Laplace.\n\n**Correction.**\n$$F = B I \\ell \\sin 90^\\circ = 0{,}2 \\times 5 \\times 0{,}10 \\times 1 = 0{,}1\\ \\text{N}$$\n\n### Exercice 2 — Champ d'un solénoïde\nUn solénoïde de longueur $\\ell = 50\\ \\text{cm}$ comporte $N = 1000$ spires et est parcouru par $I = 2\\ \\text{A}$. $\\mu_0 = 4\\pi\\times 10^{-7}$ SI.\n\nCalculer $B$ à l'intérieur.\n\n**Correction.**\n$$B = \\mu_0\\frac{N}{\\ell}I = 4\\pi\\times 10^{-7}\\times \\frac{1000}{0{,}50}\\times 2 = 4\\pi\\times 10^{-7}\\times 4000 \\approx 5{,}0\\times 10^{-3}\\ \\text{T}$$\n\n### Exercice 3 — Trajectoire circulaire\nUn électron ($m = 9{,}1\\times 10^{-31}\\ \\text{kg}$, $|q| = 1{,}6\\times 10^{-19}\\ \\text{C}$) entre à $v = 2\\times 10^{6}\\ \\text{m·s}^{-1}$ perpendiculairement à un champ $B = 5\\times 10^{-3}\\ \\text{T}$.\n\nCalculer le rayon de sa trajectoire.\n\n**Correction.**\n$$R = \\frac{m v}{|q| B} = \\frac{9{,}1\\times 10^{-31}\\times 2\\times 10^{6}}{1{,}6\\times 10^{-19}\\times 5\\times 10^{-3}} \\approx 2{,}3\\times 10^{-3}\\ \\text{m} = 2{,}3\\ \\text{mm}$$\n\n## À retenir\n\n- Champ magnétique $\\vec B$ en **tesla** (T) ; solénoïde : $B = \\mu_0 \\dfrac{N}{\\ell} I$.\n- **Force de Laplace** : $\\vec F = I\\vec\\ell\\wedge\\vec B$, $F = BI\\ell\\sin\\theta$, maximale si $\\ell\\perp B$.\n- Sens donné par la **règle des trois doigts de la main droite**.\n- **Force de Lorentz** : $\\vec F = q\\vec v\\wedge\\vec B$ ; si $v\\perp B$, mouvement circulaire de rayon $R=\\dfrac{mv}{|q|B}$.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "L'unité du champ magnétique B est :",
+            "options": [
+              "Le tesla (T)",
+              "Le weber (Wb)",
+              "Le henry (H)",
+              "Le gauss seulement"
+            ],
+            "answer": 0,
+            "explanation": "Le champ magnétique B se mesure en tesla (T) dans le système international."
+          },
+          {
+            "q": "L'intensité de la force de Laplace vaut :",
+            "options": [
+              "$BI\\ell\\sin\\theta$",
+              "$BI\\ell\\cos\\theta$",
+              "$B/(I\\ell)$",
+              "$BI/\\ell$"
+            ],
+            "answer": 0,
+            "explanation": "F = B·I·ℓ·sin θ, maximale quand le conducteur est perpendiculaire à B."
+          },
+          {
+            "q": "La force de Laplace est nulle lorsque le conducteur est :",
+            "options": [
+              "Perpendiculaire à B",
+              "Parallèle à B",
+              "À 45° de B",
+              "Au repos seulement"
+            ],
+            "answer": 1,
+            "explanation": "sin θ = 0 quand le courant est parallèle à B : la force est nulle."
+          },
+          {
+            "q": "Le champ à l'intérieur d'un solénoïde vaut :",
+            "options": [
+              "$\\mu_0 N I$",
+              "$\\mu_0 (N/\\ell) I$",
+              "$\\mu_0 I/N$",
+              "$N I/\\ell$"
+            ],
+            "answer": 1,
+            "explanation": "B = μ₀·(N/ℓ)·I = μ₀·n·I où n est le nombre de spires par mètre."
+          },
+          {
+            "q": "Une particule chargée entrant perpendiculairement à B décrit :",
+            "options": [
+              "Une droite",
+              "Un cercle de rayon R = mv/(qB)",
+              "Une parabole",
+              "Une spirale toujours"
+            ],
+            "answer": 1,
+            "explanation": "Quand v⊥B, le mouvement est circulaire uniforme de rayon R = mv/(|q|B)."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Mouvements de particules chargées dans les champs",
+      "video": "https://www.youtube.com/watch?v=8VsBQT4t79U",
+      "lesson": "# Mouvements de particules chargées dans les champs\n\n## Introduction\n\nCe chapitre regroupe les **applications technologiques** des forces électrique et magnétique sur les particules chargées : canon à électrons, déviation électrostatique (oscilloscope), spectromètre de masse, accélérateur. On y combine $\\vec F = q\\vec E$ et $\\vec F = q\\vec v\\wedge\\vec B$.\n\n## 1. Accélération par un champ électrique (canon à électrons)\n\nUne particule de charge $q$ accélérée sous une tension $U$ acquiert une énergie cinétique (théorème de l'énergie cinétique) :\n$$\\frac12 m v^2 = |q|\\,U \\;\\Rightarrow\\; \\boxed{v = \\sqrt{\\frac{2|q|U}{m}}}$$\n\n## 2. Déviation électrostatique\n\nAprès accélération (vitesse $v_0$ horizontale), la particule entre entre deux plaques de longueur $L$, distantes de $d$, sous tension $U'$ (champ $E = U'/d$). Le mouvement y est **parabolique** :\n$$a = \\frac{|q|E}{m}, \\quad y = \\frac{1}{2}\\,\\frac{|q|E}{m v_0^2}\\,x^2$$\n\nLa **déviation** à la sortie des plaques, puis sur un écran à distance $D$, permet de visualiser des tensions (principe de l'**oscilloscope cathodique**).\n\n## 3. Sélecteur de vitesse (champs croisés)\n\nSi une particule traverse une zone où règnent simultanément $\\vec E$ et $\\vec B$ perpendiculaires, elle n'est pas déviée lorsque les deux forces se compensent :\n$$|q|E = |q|vB \\;\\Rightarrow\\; \\boxed{v = \\frac{E}{B}}$$\n\nSeules les particules de vitesse $v = E/B$ traversent sans déviation.\n\n## 4. Spectromètre de masse\n\nAprès le sélecteur, les ions pénètrent dans un champ magnétique seul $\\vec B'$ et décrivent un demi-cercle de rayon :\n$$R = \\frac{m v}{|q| B'}$$\n\nLa mesure de $R$ permet de déterminer la **masse** de l'ion (séparation des isotopes).\n\n## Exercices corrigés\n\n### Exercice 1 — Vitesse après accélération\nUn électron ($m = 9{,}1\\times 10^{-31}\\ \\text{kg}$, $|q| = 1{,}6\\times 10^{-19}\\ \\text{C}$) est accéléré sous $U = 500\\ \\text{V}$.\n\nCalculer sa vitesse.\n\n**Correction.**\n$$v = \\sqrt{\\frac{2|q|U}{m}} = \\sqrt{\\frac{2\\times 1{,}6\\times 10^{-19}\\times 500}{9{,}1\\times 10^{-31}}} = \\sqrt{1{,}76\\times 10^{14}} \\approx 1{,}33\\times 10^{7}\\ \\text{m·s}^{-1}$$\n\n### Exercice 2 — Sélecteur de vitesse\nDans un sélecteur, $E = 4\\times 10^{4}\\ \\text{V·m}^{-1}$ et $B = 0{,}1\\ \\text{T}$.\n\nQuelle est la vitesse des particules non déviées ?\n\n**Correction.**\n$$v = \\frac{E}{B} = \\frac{4\\times 10^4}{0{,}1} = 4\\times 10^5\\ \\text{m·s}^{-1}$$\n\n### Exercice 3 — Spectromètre de masse\nUn ion de charge $q = 1{,}6\\times 10^{-19}\\ \\text{C}$ et de vitesse $v = 2\\times 10^{5}\\ \\text{m·s}^{-1}$ décrit dans un champ $B' = 0{,}5\\ \\text{T}$ un cercle de rayon $R = 8{,}3\\ \\text{cm}$.\n\nCalculer la masse de l'ion.\n\n**Correction.**\n$$R = \\frac{mv}{qB'} \\Rightarrow m = \\frac{qB'R}{v} = \\frac{1{,}6\\times 10^{-19}\\times 0{,}5\\times 0{,}083}{2\\times 10^5} \\approx 3{,}3\\times 10^{-26}\\ \\text{kg}$$\n\n## À retenir\n\n- Accélération par tension : $v = \\sqrt{\\dfrac{2|q|U}{m}}$ (théorème de l'énergie cinétique).\n- Déviation électrostatique : trajectoire **parabolique**, $a = |q|E/m$ (oscilloscope).\n- Sélecteur de vitesse (E⊥B) : $v = \\dfrac{E}{B}$.\n- Spectromètre de masse : $R = \\dfrac{mv}{|q|B}$ ⇒ mesure de la masse.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "La vitesse d'une particule accélérée sous une tension U vaut :",
+            "options": [
+              "$\\sqrt{2|q|U/m}$",
+              "$|q|U/m$",
+              "$\\sqrt{|q|U}$",
+              "$2|q|U/m$"
+            ],
+            "answer": 0,
+            "explanation": "Le théorème de l'énergie cinétique ½mv²=|q|U donne v=√(2|q|U/m)."
+          },
+          {
+            "q": "Dans un sélecteur de vitesse (E⊥B), les particules non déviées ont la vitesse :",
+            "options": [
+              "$v=EB$",
+              "$v=E/B$",
+              "$v=B/E$",
+              "$v=E+B$"
+            ],
+            "answer": 1,
+            "explanation": "L'équilibre |q|E=|q|vB donne v=E/B."
+          },
+          {
+            "q": "La déviation entre deux plaques chargées correspond à un mouvement :",
+            "options": [
+              "Rectiligne uniforme",
+              "Parabolique",
+              "Circulaire",
+              "Sinusoïdal"
+            ],
+            "answer": 1,
+            "explanation": "Dans le champ uniforme entre plaques, l'accélération est constante : trajectoire parabolique."
+          },
+          {
+            "q": "Dans un spectromètre de masse, le rayon de la trajectoire vaut :",
+            "options": [
+              "$R=mv/(qB)$",
+              "$R=qB/(mv)$",
+              "$R=qvB$",
+              "$R=mB/(qv)$"
+            ],
+            "answer": 0,
+            "explanation": "R = mv/(|q|B) : la mesure de R donne la masse de l'ion."
+          },
+          {
+            "q": "Le théorème de l'énergie cinétique relie la variation d'énergie cinétique à :",
+            "options": [
+              "La masse seule",
+              "Le travail des forces",
+              "La vitesse moyenne",
+              "Le temps"
+            ],
+            "answer": 1,
+            "explanation": "ΔEc = ΣW(forces) : ici le travail de la force électrique |q|U."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Gravitation universelle et satellites",
+      "video": "https://www.youtube.com/watch?v=Ts3Mb1nLN_Y",
+      "lesson": "# Gravitation universelle et satellites\n\n## Introduction\n\nLa même force qui fait tomber une pomme retient la Lune autour de la Terre : c'est la **gravitation universelle**, énoncée par Newton. Ce chapitre établit la loi de l'attraction, le champ de gravitation et étudie le mouvement des **satellites** et des **planètes** (lois de Kepler).\n\n## 1. Loi de la gravitation universelle\n\nDeux corps ponctuels de masses $m_A$ et $m_B$, distants de $r$, s'attirent avec une force :\n\n$$F = G\\,\\frac{m_A\\, m_B}{r^2}$$\n\navec la **constante de gravitation** $G = 6{,}67\\times 10^{-11}\\ \\text{N·m}^2\\text{·kg}^{-2}$.\n\n## 2. Champ de gravitation\n\nLe champ créé par un astre de masse $M$ à la distance $r$ de son centre :\n$$\\mathcal{G} = \\frac{G M}{r^2}$$\n\nÀ la surface d'une planète de rayon $R$, ce champ est l'**intensité de la pesanteur** :\n$$g_0 = \\frac{G M}{R^2}$$\n\nÀ l'altitude $h$ : $g = \\dfrac{GM}{(R+h)^2} = g_0\\dfrac{R^2}{(R+h)^2}$.\n\n## 3. Satellite en orbite circulaire\n\nPour un satellite de masse $m$ en orbite circulaire de rayon $r = R+h$, la force gravitationnelle joue le rôle de **force centripète** :\n$$\\frac{GMm}{r^2} = \\frac{m v^2}{r} \\;\\Rightarrow\\; \\boxed{v = \\sqrt{\\frac{GM}{r}}}$$\n\n**La vitesse ne dépend pas de la masse du satellite.**\n\n**Période de révolution :**\n$$T = \\frac{2\\pi r}{v} = 2\\pi\\sqrt{\\frac{r^3}{GM}}$$\n\n## 4. Lois de Kepler\n\n1. **Loi des orbites** : les planètes décrivent des **ellipses** dont le Soleil occupe un foyer.\n2. **Loi des aires** : le rayon vecteur balaie des aires égales en des temps égaux.\n3. **Loi des périodes** : $\\dfrac{T^2}{r^3} = \\dfrac{4\\pi^2}{GM} = \\text{constante}$.\n\n## 5. Satellite géostationnaire\n\nUn satellite **géostationnaire** reste fixe au-dessus d'un point de l'équateur : sa période vaut $T = 24\\ \\text{h}$ (≈ $86\\,400\\ \\text{s}$), dans le plan équatorial, dans le sens de rotation de la Terre. Son altitude est d'environ $36\\,000\\ \\text{km}$.\n\n## Exercices corrigés\n\n### Exercice 1 — Pesanteur en altitude\n$g_0 = 9{,}8\\ \\text{m·s}^{-2}$ au sol, $R = 6400\\ \\text{km}$. Calculer $g$ à l'altitude $h = 3200\\ \\text{km}$.\n\n**Correction.**\n$$g = g_0\\frac{R^2}{(R+h)^2} = 9{,}8\\times\\frac{6400^2}{(9600)^2} = 9{,}8\\times\\left(\\frac{6400}{9600}\\right)^2 = 9{,}8\\times\\frac{4}{9} \\approx 4{,}4\\ \\text{m·s}^{-2}$$\n\n### Exercice 2 — Vitesse d'un satellite\nUn satellite orbite à $h = 600\\ \\text{km}$. $GM = 4\\times 10^{14}\\ \\text{SI}$, $R = 6400\\ \\text{km}$.\n\nCalculer sa vitesse.\n\n**Correction.**\n$r = R+h = 7000\\ \\text{km} = 7\\times 10^6\\ \\text{m}$.\n$$v = \\sqrt{\\frac{GM}{r}} = \\sqrt{\\frac{4\\times 10^{14}}{7\\times 10^6}} = \\sqrt{5{,}7\\times 10^7} \\approx 7{,}6\\times 10^3\\ \\text{m·s}^{-1}$$\n\n### Exercice 3 — Troisième loi de Kepler\nLa Terre orbite à $r_T = 1{,}5\\times 10^{11}\\ \\text{m}$ avec $T_T = 1\\ \\text{an}$. Une planète orbite à $r = 4\\,r_T$. Calculer sa période.\n\n**Correction.**\nD'après Kepler, $T^2 \\propto r^3$ donc :\n$$\\frac{T^2}{T_T^2} = \\left(\\frac{r}{r_T}\\right)^3 = 4^3 = 64 \\;\\Rightarrow\\; T = 8\\,T_T = 8\\ \\text{ans}$$\n\n## À retenir\n\n- Gravitation : $F = G\\dfrac{m_A m_B}{r^2}$, $G = 6{,}67\\times10^{-11}$ SI.\n- Pesanteur : $g_0 = \\dfrac{GM}{R^2}$ ; en altitude $g = g_0\\dfrac{R^2}{(R+h)^2}$.\n- Satellite circulaire : $v = \\sqrt{\\dfrac{GM}{r}}$, $T = 2\\pi\\sqrt{\\dfrac{r^3}{GM}}$ (vitesse **indépendante de m**).\n- **3ᵉ loi de Kepler** : $\\dfrac{T^2}{r^3} = $ constante. Géostationnaire : $T = 24\\ \\text{h}$, équatorial.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "La force de gravitation entre deux masses vaut :",
+            "options": [
+              "$G\\,m_A m_B/r^2$",
+              "$G\\,m_A m_B/r$",
+              "$k\\,q_A q_B/r^2$",
+              "$G\\,r^2/(m_A m_B)$"
+            ],
+            "answer": 0,
+            "explanation": "Loi de Newton : F = G·m_A·m_B/r², en 1/r²."
+          },
+          {
+            "q": "La vitesse d'un satellite en orbite circulaire :",
+            "options": [
+              "Dépend de sa masse",
+              "Ne dépend pas de sa masse",
+              "Est proportionnelle à sa masse",
+              "Est nulle"
+            ],
+            "answer": 1,
+            "explanation": "v = √(GM/r) ne fait pas intervenir la masse du satellite."
+          },
+          {
+            "q": "La 3ᵉ loi de Kepler s'écrit :",
+            "options": [
+              "$T^2/r^3 = $ cste",
+              "$T/r = $ cste",
+              "$T^3/r^2 = $ cste",
+              "$T\\cdot r = $ cste"
+            ],
+            "answer": 0,
+            "explanation": "Le rapport T²/r³ est constant pour tous les astres en orbite autour du même corps."
+          },
+          {
+            "q": "Un satellite géostationnaire a une période de :",
+            "options": [
+              "1 heure",
+              "12 heures",
+              "24 heures",
+              "1 mois"
+            ],
+            "answer": 2,
+            "explanation": "Il reste fixe au-dessus d'un point de l'équateur : sa période est celle de la Terre, 24 h."
+          },
+          {
+            "q": "L'intensité de la pesanteur à la surface d'une planète vaut :",
+            "options": [
+              "$GM/R$",
+              "$GM/R^2$",
+              "$GMR$",
+              "$G/R^2$"
+            ],
+            "answer": 1,
+            "explanation": "g₀ = GM/R², avec M masse et R rayon de la planète."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Travail et énergie",
+      "video": "https://www.youtube.com/watch?v=2WS1sG9fhOk",
+      "lesson": "# Travail et énergie\n\n## Introduction\n\nLe concept d'**énergie** offre une approche puissante de la mécanique : plutôt que de suivre le détail du mouvement, on relie les états initial et final par des bilans énergétiques. Ce chapitre définit le **travail** d'une force, l'**énergie cinétique**, l'**énergie potentielle** et la **conservation de l'énergie mécanique**.\n\n## 1. Travail d'une force constante\n\nPour une force constante $\\vec F$ dont le point d'application se déplace de $\\vec{AB}$ :\n$$W_{AB}(\\vec F) = \\vec F \\cdot \\vec{AB} = F\\times AB\\times\\cos\\theta$$\n\nUnité : le **joule** (J). Le travail est :\n- **moteur** si $\\cos\\theta>0$ (force qui favorise le mouvement),\n- **résistant** si $\\cos\\theta<0$,\n- **nul** si $\\vec F\\perp\\vec{AB}$.\n\n**Travail du poids** (indépendant du chemin) : $W(\\vec P) = m g (z_A - z_B) = \\pm mgh$.\n\n## 2. Puissance\n\n$$P = \\frac{W}{t} \\quad (\\text{watt, W}) \\qquad ; \\qquad P = \\vec F\\cdot\\vec v = Fv\\cos\\theta$$\n\n## 3. Énergie cinétique et son théorème\n\nL'énergie cinétique d'un corps de masse $m$ et de vitesse $v$ :\n$$E_c = \\frac12 m v^2$$\n\n**Théorème de l'énergie cinétique (TEC)** : dans un référentiel galiléen, la variation d'énergie cinétique est égale à la somme des travaux des forces extérieures :\n$$\\boxed{\\Delta E_c = E_{c,B} - E_{c,A} = \\sum W_{AB}(\\vec F_{ext})}$$\n\n## 4. Énergie potentielle de pesanteur\n\n$$E_{pp} = m g z \\quad (\\text{référence } z=0)$$\n\nLe travail du poids est l'opposé de la variation d'énergie potentielle : $W(\\vec P) = -\\Delta E_{pp}$.\n\n## 5. Énergie mécanique et sa conservation\n\n$$E_m = E_c + E_{pp}$$\n\n**Si les seules forces qui travaillent sont conservatives** (poids, ressort), l'énergie mécanique se **conserve** :\n$$E_m = \\text{constante} \\;\\Rightarrow\\; \\Delta E_c = -\\Delta E_{pp}$$\n\nEn présence de frottements, $E_m$ diminue : $\\Delta E_m = W(\\vec f) < 0$.\n\n## Exercices corrigés\n\n### Exercice 1 — Théorème de l'énergie cinétique\nUne voiture de masse $m = 1000\\ \\text{kg}$ passe de $v_A = 10\\ \\text{m·s}^{-1}$ à $v_B = 20\\ \\text{m·s}^{-1}$ sur une route horizontale en $200\\ \\text{m}$.\n\nCalculer la force motrice (frottements négligés).\n\n**Correction.**\n$$\\Delta E_c = \\frac12 m(v_B^2 - v_A^2) = \\frac12\\times 1000\\times(400-100) = 1{,}5\\times 10^5\\ \\text{J}$$\n$\\Delta E_c = F\\times d \\Rightarrow F = \\dfrac{1{,}5\\times 10^5}{200} = 750\\ \\text{N}$.\n\n### Exercice 2 — Conservation de l'énergie mécanique\nUne bille de masse $m$ glisse sans frottement d'une hauteur $h = 5\\ \\text{m}$, partant du repos. $g=10\\ \\text{m·s}^{-2}$.\n\nCalculer sa vitesse en bas.\n\n**Correction.**\nConservation : $\\frac12 m v^2 = m g h \\Rightarrow v = \\sqrt{2gh} = \\sqrt{2\\times 10\\times 5} = 10\\ \\text{m·s}^{-1}$.\n\n### Exercice 3 — Frottements\nUn solide de masse $m = 4\\ \\text{kg}$ lancé à $v_0 = 6\\ \\text{m·s}^{-1}$ sur un plan horizontal s'arrête après $9\\ \\text{m}$.\n\nCalculer la force de frottement.\n\n**Correction.**\n$\\Delta E_c = -W(f)$ : $0 - \\frac12 m v_0^2 = -f\\times d$.\n$$f = \\frac{\\frac12 m v_0^2}{d} = \\frac{\\frac12\\times 4\\times 36}{9} = \\frac{72}{9} = 8\\ \\text{N}$$\n\n## À retenir\n\n- Travail : $W = \\vec F\\cdot\\vec{AB} = F\\,d\\cos\\theta$ (joule). Poids : $W(\\vec P)=\\pm mgh$.\n- Puissance : $P = W/t = \\vec F\\cdot\\vec v$.\n- $E_c = \\frac12 mv^2$ ; **TEC** : $\\Delta E_c = \\sum W(\\vec F_{ext})$.\n- $E_m = E_c + E_{pp}$ ; **conservée** sans frottement ($v = \\sqrt{2gh}$ en chute).\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Le travail d'une force constante vaut :",
+            "options": [
+              "$F\\cdot d\\cdot\\cos\\theta$",
+              "$F\\cdot d\\cdot\\sin\\theta$",
+              "$F/d$",
+              "$F\\cdot t$"
+            ],
+            "answer": 0,
+            "explanation": "W = F·AB·cos θ, produit scalaire de la force par le déplacement."
+          },
+          {
+            "q": "Le théorème de l'énergie cinétique s'écrit :",
+            "options": [
+              "$\\Delta E_c = \\sum W(\\vec F_{ext})$",
+              "$E_c = mgh$",
+              "$\\Delta E_c = 0$ toujours",
+              "$E_c = Fd$"
+            ],
+            "answer": 0,
+            "explanation": "La variation d'énergie cinétique égale la somme des travaux des forces extérieures."
+          },
+          {
+            "q": "Lors d'une chute libre sans frottement de hauteur h, la vitesse au sol est :",
+            "options": [
+              "$\\sqrt{2gh}$",
+              "$gh$",
+              "$2gh$",
+              "$\\sqrt{gh}$"
+            ],
+            "answer": 0,
+            "explanation": "Conservation : ½mv² = mgh donne v = √(2gh)."
+          },
+          {
+            "q": "L'énergie mécanique se conserve lorsque :",
+            "options": [
+              "Il y a des frottements",
+              "Les seules forces qui travaillent sont conservatives",
+              "La vitesse est constante",
+              "Le poids est nul"
+            ],
+            "answer": 1,
+            "explanation": "Sans force non conservative (frottement), E_m = E_c + E_p reste constante."
+          },
+          {
+            "q": "L'unité de la puissance est :",
+            "options": [
+              "Le joule",
+              "Le watt",
+              "Le newton",
+              "Le pascal"
+            ],
+            "answer": 1,
+            "explanation": "La puissance P = W/t s'exprime en watt (W)."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les oscillations mécaniques",
+      "video": "https://www.youtube.com/watch?v=k2Vz-2Jaln0",
+      "lesson": "# Les oscillations mécaniques\n\n## Introduction\n\nUn **oscillateur mécanique** est un système qui, écarté de sa position d'équilibre, y revient en effectuant des **oscillations**. Le pendule élastique (masse-ressort) et le pendule simple en sont les exemples fondamentaux. On étudie leur **mouvement sinusoïdal** et leur **période propre**.\n\n## 1. Le pendule élastique horizontal\n\nUn solide de masse $m$ accroché à un ressort de raideur $k$ (constante de raideur, en N·m$^{-1}$). En appliquant le TCI sur l'axe du mouvement (sans frottement) :\n$$-k x = m\\ddot x \\;\\Rightarrow\\; \\boxed{\\ddot x + \\frac{k}{m}\\,x = 0}$$\n\nC'est l'équation différentielle d'un **oscillateur harmonique**. Sa solution :\n$$x(t) = X_m\\cos\\!\\left(\\frac{2\\pi}{T_0}t + \\varphi\\right)$$\n\navec la **pulsation propre** $\\omega_0 = \\sqrt{\\dfrac{k}{m}}$ et la **période propre** :\n$$\\boxed{T_0 = 2\\pi\\sqrt{\\frac{m}{k}}}$$\n\nLa période **ne dépend pas de l'amplitude** (isochronisme des oscillations).\n\n## 2. Le pendule simple\n\nUne masse ponctuelle suspendue à un fil inextensible de longueur $\\ell$. Pour les **petites oscillations**, la période propre vaut :\n$$T_0 = 2\\pi\\sqrt{\\frac{\\ell}{g}}$$\n\nElle est **indépendante de la masse** et de l'amplitude (petites oscillations).\n\n## 3. Énergie de l'oscillateur\n\nPour le pendule élastique :\n$$E_m = \\underbrace{\\frac12 m v^2}_{E_c} + \\underbrace{\\frac12 k x^2}_{E_{pe}} = \\frac12 k X_m^2 = \\text{constante}$$\n\n(sans frottement). L'énergie passe alternativement de la forme cinétique à la forme potentielle élastique.\n\n## 4. Oscillations amorties\n\nEn présence de frottements, l'amplitude **diminue** progressivement : régime **pseudo-périodique** (ou apériodique si frottements forts). L'énergie mécanique décroît.\n\n```onbuch-plot\n{\"title\":\"Élongation sinusoïdale x(t)\",\"x\":\"t (s)\",\"y\":\"x (cm)\",\"data\":[{\"label\":\"x(t)\",\"points\":[[0,5],[0.25,0],[0.5,-5],[0.75,0],[1,5],[1.25,0],[1.5,-5],[1.75,0],[2,5]]}]}\n```\n\n## Exercices corrigés\n\n### Exercice 1 — Pendule élastique\nUn ressort de raideur $k = 40\\ \\text{N·m}^{-1}$ porte une masse $m = 0{,}1\\ \\text{kg}$.\n\nCalculer la période propre.\n\n**Correction.**\n$$T_0 = 2\\pi\\sqrt{\\frac{m}{k}} = 2\\pi\\sqrt{\\frac{0{,}1}{40}} = 2\\pi\\sqrt{2{,}5\\times 10^{-3}} = 2\\pi\\times 0{,}05 \\approx 0{,}314\\ \\text{s}$$\n\n### Exercice 2 — Pendule simple\nUn pendule simple a une période $T_0 = 2\\ \\text{s}$. $g = 9{,}8\\ \\text{m·s}^{-2}$.\n\nCalculer la longueur du fil.\n\n**Correction.**\n$$T_0 = 2\\pi\\sqrt{\\frac{\\ell}{g}} \\Rightarrow \\ell = \\frac{g T_0^2}{4\\pi^2} = \\frac{9{,}8\\times 4}{4\\pi^2} = \\frac{39{,}2}{39{,}5} \\approx 0{,}99\\ \\text{m}$$\n\n### Exercice 3 — Énergie\nPour le pendule élastique de l'exercice 1, l'amplitude est $X_m = 4\\ \\text{cm}$.\n\nCalculer l'énergie mécanique et la vitesse maximale.\n\n**Correction.**\n$$E_m = \\frac12 k X_m^2 = \\frac12\\times 40\\times(0{,}04)^2 = \\frac12\\times 40\\times 1{,}6\\times 10^{-3} = 0{,}032\\ \\text{J}$$\nLa vitesse est maximale au passage par l'équilibre ($E_c = E_m$) :\n$$\\frac12 m v_{max}^2 = E_m \\Rightarrow v_{max} = \\sqrt{\\frac{2E_m}{m}} = \\sqrt{\\frac{2\\times 0{,}032}{0{,}1}} = \\sqrt{0{,}64} = 0{,}8\\ \\text{m·s}^{-1}$$\n\n## À retenir\n\n- Oscillateur harmonique : $\\ddot x + \\omega_0^2 x = 0$, $\\omega_0 = \\sqrt{k/m}$.\n- Pendule élastique : $T_0 = 2\\pi\\sqrt{\\dfrac{m}{k}}$.\n- Pendule simple (petites oscillations) : $T_0 = 2\\pi\\sqrt{\\dfrac{\\ell}{g}}$, **indépendant de la masse**.\n- Énergie : $E_m = \\frac12 m v^2 + \\frac12 k x^2 = \\frac12 k X_m^2$ (constante sans frottement).\n- Avec frottement : oscillations **amorties** (pseudo-périodiques).\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "La période propre d'un pendule élastique vaut :",
+            "options": [
+              "$2\\pi\\sqrt{m/k}$",
+              "$2\\pi\\sqrt{k/m}$",
+              "$2\\pi\\sqrt{\\ell/g}$",
+              "$2\\pi\\,mk$"
+            ],
+            "answer": 0,
+            "explanation": "T₀ = 2π√(m/k) pour le système masse-ressort."
+          },
+          {
+            "q": "La période d'un pendule simple (petites oscillations) :",
+            "options": [
+              "Dépend de la masse",
+              "Ne dépend pas de la masse",
+              "Dépend de l'amplitude",
+              "Est proportionnelle à g"
+            ],
+            "answer": 1,
+            "explanation": "T₀ = 2π√(ℓ/g) ne fait pas intervenir la masse."
+          },
+          {
+            "q": "L'équation différentielle d'un oscillateur harmonique est :",
+            "options": [
+              "$\\ddot x + \\omega_0^2 x = 0$",
+              "$\\dot x + kx = 0$",
+              "$\\ddot x = g$",
+              "$\\ddot x - \\omega_0^2 x=0$"
+            ],
+            "answer": 0,
+            "explanation": "L'oscillateur harmonique vérifie ẍ + ω₀²x = 0 (solution sinusoïdale)."
+          },
+          {
+            "q": "L'énergie mécanique d'un pendule élastique sans frottement :",
+            "options": [
+              "Diminue",
+              "Reste constante",
+              "Augmente",
+              "Est nulle"
+            ],
+            "answer": 1,
+            "explanation": "Sans frottement E_m = ½mv² + ½kx² = ½kX_m² est constante."
+          },
+          {
+            "q": "En présence de frottements, les oscillations sont :",
+            "options": [
+              "Amplifiées",
+              "Amorties",
+              "Inchangées",
+              "Plus rapides"
+            ],
+            "answer": 1,
+            "explanation": "Les frottements dissipent l'énergie : l'amplitude décroît (oscillations amorties)."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les oscillations électriques (circuit RLC)",
+      "video": "https://www.youtube.com/watch?v=BvU-5G7Qrr0",
+      "lesson": "# Les oscillations électriques (circuit RLC)\n\n## Introduction\n\nUn condensateur chargé que l'on relie à une bobine donne naissance à des **oscillations électriques** : la charge et le courant varient de façon sinusoïdale. Le circuit **RLC** est l'analogue électrique de l'oscillateur mécanique. On étudie la décharge oscillante et l'analogie énergétique.\n\n## 1. Le dipôle RC : charge et décharge\n\nLa **charge** d'un condensateur ($C$ en farad) à travers une résistance $R$ suit :\n$$q(t) = C E\\left(1 - e^{-t/\\tau}\\right), \\qquad \\tau = RC$$\n\n$\\tau$ est la **constante de temps**. La décharge : $q(t) = q_0\\,e^{-t/\\tau}$.\n\n## 2. Le dipôle RL : établissement du courant\n\nDans une bobine (inductance $L$ en henry, résistance interne $r$), le courant s'établit selon :\n$$i(t) = \\frac{E}{R}\\left(1 - e^{-t/\\tau}\\right), \\qquad \\tau = \\frac{L}{R}$$\n\nLa bobine s'oppose aux variations du courant (loi de Lenz).\n\n## 3. Oscillations libres dans un circuit LC\n\nUn condensateur de charge initiale $Q_0$ relié à une bobine d'inductance $L$ (résistance négligeable). La loi des mailles donne :\n$$\\frac{q}{C} + L\\frac{di}{dt} = 0 \\quad\\text{avec } i = \\frac{dq}{dt}$$\n$$\\boxed{\\ddot q + \\frac{1}{LC}\\,q = 0}$$\n\nOscillations **sinusoïdales** de **période propre** :\n$$T_0 = 2\\pi\\sqrt{LC}$$\n\n## 4. Analogie électrique / mécanique\n\n| Mécanique | Électrique |\n|---|---|\n| position $x$ | charge $q$ |\n| vitesse $v$ | courant $i$ |\n| masse $m$ | inductance $L$ |\n| raideur $k$ | $1/C$ |\n| $T_0 = 2\\pi\\sqrt{m/k}$ | $T_0 = 2\\pi\\sqrt{LC}$ |\n\n## 5. Énergie\n\n$$E = \\underbrace{\\frac{q^2}{2C}}_{\\text{condensateur}} + \\underbrace{\\frac12 L i^2}_{\\text{bobine}} = \\text{constante (si } R=0)$$\n\nAvec une résistance $R$, l'énergie se dissipe par **effet Joule** : oscillations **amorties** (régime pseudo-périodique).\n\n## Exercices corrigés\n\n### Exercice 1 — Constante de temps RC\n$R = 2\\ \\text{k}\\Omega$, $C = 10\\ \\mu\\text{F}$. Calculer $\\tau$ et le temps pour atteindre 63 % de la charge.\n\n**Correction.**\n$$\\tau = RC = 2000\\times 10\\times 10^{-6} = 0{,}02\\ \\text{s} = 20\\ \\text{ms}$$\nÀ $t = \\tau$, la charge atteint $\\approx 63\\%$ de sa valeur finale : donc $20\\ \\text{ms}$.\n\n### Exercice 2 — Période propre LC\n$L = 0{,}1\\ \\text{H}$, $C = 1\\ \\mu\\text{F}$. Calculer la période propre.\n\n**Correction.**\n$$T_0 = 2\\pi\\sqrt{LC} = 2\\pi\\sqrt{0{,}1\\times 10^{-6}} = 2\\pi\\sqrt{10^{-7}} = 2\\pi\\times 3{,}16\\times 10^{-4} \\approx 2\\times 10^{-3}\\ \\text{s}$$\n\n### Exercice 3 — Énergie d'un condensateur\nUn condensateur $C = 4\\ \\mu\\text{F}$ porte une charge $Q_0 = 8\\times 10^{-4}\\ \\text{C}$.\n\nCalculer l'énergie emmagasinée.\n\n**Correction.**\n$$E = \\frac{Q_0^2}{2C} = \\frac{(8\\times 10^{-4})^2}{2\\times 4\\times 10^{-6}} = \\frac{6{,}4\\times 10^{-7}}{8\\times 10^{-6}} = 0{,}08\\ \\text{J}$$\n\n## À retenir\n\n- Constante de temps : RC → $\\tau = RC$ ; RL → $\\tau = L/R$.\n- Circuit LC : $\\ddot q + \\dfrac{1}{LC}q = 0$, période propre $T_0 = 2\\pi\\sqrt{LC}$.\n- **Analogie** : $q\\leftrightarrow x$, $i\\leftrightarrow v$, $L\\leftrightarrow m$, $1/C\\leftrightarrow k$.\n- Énergie : $E = \\dfrac{q^2}{2C} + \\dfrac12 L i^2$ ; avec R, dissipation par **effet Joule** (amortissement).\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "La période propre d'un circuit LC vaut :",
+            "options": [
+              "$2\\pi\\sqrt{LC}$",
+              "$2\\pi\\sqrt{L/C}$",
+              "$2\\pi LC$",
+              "$2\\pi/\\sqrt{LC}$"
+            ],
+            "answer": 0,
+            "explanation": "T₀ = 2π√(LC), analogue de 2π√(m/k) en mécanique."
+          },
+          {
+            "q": "La constante de temps d'un dipôle RC est :",
+            "options": [
+              "$\\tau = R/C$",
+              "$\\tau = RC$",
+              "$\\tau = C/R$",
+              "$\\tau = L/R$"
+            ],
+            "answer": 1,
+            "explanation": "Pour le RC, τ = RC ; pour le RL, τ = L/R."
+          },
+          {
+            "q": "Dans l'analogie électromécanique, la masse m correspond à :",
+            "options": [
+              "La capacité C",
+              "L'inductance L",
+              "La résistance R",
+              "La charge q"
+            ],
+            "answer": 1,
+            "explanation": "L joue le rôle de l'inertie (masse), 1/C celui de la raideur k."
+          },
+          {
+            "q": "L'énergie emmagasinée dans un condensateur vaut :",
+            "options": [
+              "$q^2/(2C)$",
+              "$Cq^2/2$",
+              "$q^2 C/2$",
+              "$\\frac12 Li^2$"
+            ],
+            "answer": 0,
+            "explanation": "E = q²/(2C) pour le condensateur (½Li² pour la bobine)."
+          },
+          {
+            "q": "Dans un circuit RLC réel, les oscillations sont amorties à cause :",
+            "options": [
+              "De la capacité",
+              "De l'effet Joule dans R",
+              "De l'inductance",
+              "Du condensateur seul"
+            ],
+            "answer": 1,
+            "explanation": "La résistance dissipe l'énergie par effet Joule, d'où l'amortissement."
+          }
+        ]
+      }
+    },
+    {
+      "title": "L'induction électromagnétique",
+      "video": "https://www.youtube.com/watch?v=Pyc1fdjz4eo",
+      "lesson": "# L'induction électromagnétique\n\n## Introduction\n\nEn 1831, **Faraday** découvre qu'une variation de champ magnétique à travers un circuit y fait apparaître un courant : c'est l'**induction électromagnétique**. Ce phénomène est à la base des **générateurs**, **transformateurs** et **alternateurs**. On étudie le flux magnétique, la loi de Faraday et la loi de Lenz.\n\n## 1. Flux magnétique\n\nLe **flux** du champ $\\vec B$ à travers une surface plane $S$ dont la normale fait un angle $\\theta$ avec $\\vec B$ :\n$$\\Phi = B\\,S\\cos\\theta \\qquad (\\text{weber, Wb})$$\n\nPour une bobine de $N$ spires : $\\Phi = N B S\\cos\\theta$.\n\n## 2. Loi de Faraday\n\nToute **variation du flux** à travers un circuit y crée une **force électromotrice induite** (f.é.m.) :\n$$\\boxed{e = -\\frac{d\\Phi}{dt}}$$\n\nL'unité de $e$ est le **volt** (V). Si le circuit est fermé de résistance $R$, le courant induit vaut $i = e/R$.\n\n## 3. Loi de Lenz\n\n> Le courant induit s'oppose, par ses effets, à la cause qui lui donne naissance.\n\nLe signe « moins » de la loi de Faraday traduit cette opposition : le courant induit crée un champ qui **s'oppose à la variation** du flux (modération). C'est une conséquence de la conservation de l'énergie.\n\n## 4. Auto-induction\n\nUn circuit parcouru par un courant variable crée son propre flux : il apparaît une f.é.m. d'**auto-induction** :\n$$e = -L\\frac{di}{dt}$$\n\noù $L$ est l'**inductance** (henry, H). L'énergie magnétique stockée dans la bobine vaut $E = \\frac12 L i^2$.\n\n## 5. Applications\n\n- **Alternateur** : un aimant tourne devant des bobines → tension sinusoïdale.\n- **Transformateur** : $\\dfrac{U_2}{U_1} = \\dfrac{N_2}{N_1}$.\n- **Freinage par courants de Foucault**.\n\n## Exercices corrigés\n\n### Exercice 1 — Flux magnétique\nUne bobine de $N = 200$ spires, de surface $S = 50\\ \\text{cm}^2$, est plongée dans $B = 0{,}4\\ \\text{T}$, normale parallèle à $\\vec B$.\n\nCalculer le flux total.\n\n**Correction.**\n$$\\Phi = N B S\\cos 0 = 200\\times 0{,}4\\times 50\\times 10^{-4} = 200\\times 0{,}4\\times 5\\times 10^{-3} = 0{,}4\\ \\text{Wb}$$\n\n### Exercice 2 — F.é.m. induite\nLe flux à travers une bobine passe de $0{,}4\\ \\text{Wb}$ à $0{,}1\\ \\text{Wb}$ en $0{,}05\\ \\text{s}$.\n\nCalculer la f.é.m. moyenne induite.\n\n**Correction.**\n$$|e| = \\left|\\frac{\\Delta\\Phi}{\\Delta t}\\right| = \\frac{0{,}4 - 0{,}1}{0{,}05} = \\frac{0{,}3}{0{,}05} = 6\\ \\text{V}$$\n\n### Exercice 3 — Auto-induction\nUne bobine d'inductance $L = 0{,}5\\ \\text{H}$ voit son courant varier de $0$ à $2\\ \\text{A}$ en $0{,}1\\ \\text{s}$.\n\nCalculer la f.é.m. d'auto-induction.\n\n**Correction.**\n$$|e| = L\\left|\\frac{di}{dt}\\right| = 0{,}5\\times\\frac{2}{0{,}1} = 0{,}5\\times 20 = 10\\ \\text{V}$$\n\n## À retenir\n\n- Flux : $\\Phi = N B S\\cos\\theta$ (weber).\n- **Loi de Faraday** : $e = -\\dfrac{d\\Phi}{dt}$ (volt).\n- **Loi de Lenz** : le courant induit **s'oppose** à la cause qui le crée (signe −).\n- Auto-induction : $e = -L\\dfrac{di}{dt}$ ; énergie magnétique $E = \\frac12 L i^2$.\n- Applications : alternateur, transformateur ($U_2/U_1 = N_2/N_1$).\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Le flux magnétique à travers une surface vaut :",
+            "options": [
+              "$\\Phi = BS\\cos\\theta$",
+              "$\\Phi = BS\\sin\\theta$",
+              "$\\Phi = B/S$",
+              "$\\Phi = BSt$"
+            ],
+            "answer": 0,
+            "explanation": "Φ = B·S·cos θ, où θ est l'angle entre B et la normale à la surface."
+          },
+          {
+            "q": "La loi de Faraday s'écrit :",
+            "options": [
+              "$e = -d\\Phi/dt$",
+              "$e = \\Phi/t$",
+              "$e = BS$",
+              "$e = Ri$"
+            ],
+            "answer": 0,
+            "explanation": "La f.é.m. induite est l'opposé de la dérivée du flux : e = -dΦ/dt."
+          },
+          {
+            "q": "La loi de Lenz indique que le courant induit :",
+            "options": [
+              "Amplifie la cause qui le crée",
+              "S'oppose à la cause qui le crée",
+              "Est toujours nul",
+              "Ne dépend pas du flux"
+            ],
+            "answer": 1,
+            "explanation": "Le courant induit s'oppose, par ses effets, à la variation de flux (modération)."
+          },
+          {
+            "q": "L'unité du flux magnétique est :",
+            "options": [
+              "Le tesla",
+              "Le weber",
+              "Le henry",
+              "Le volt"
+            ],
+            "answer": 1,
+            "explanation": "Le flux Φ s'exprime en weber (Wb) ; 1 Wb = 1 T·m²."
+          },
+          {
+            "q": "La f.é.m. d'auto-induction d'une bobine vaut :",
+            "options": [
+              "$e=-L\\,di/dt$",
+              "$e=-L\\,i$",
+              "$e=-Ri$",
+              "$e=-i/L$"
+            ],
+            "answer": 0,
+            "explanation": "L'auto-induction donne e = -L·di/dt, L étant l'inductance."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les phénomènes ondulatoires (interférences et diffraction)",
+      "video": "https://www.youtube.com/watch?v=Iuv6hY6zsd0",
+      "lesson": "# Les phénomènes ondulatoires (interférences et diffraction)\n\n## Introduction\n\nUne **onde** est la propagation d'une perturbation transportant de l'énergie sans transport de matière. Ce chapitre étudie les ondes mécaniques et lumineuses, et deux phénomènes caractéristiques : la **diffraction** et les **interférences**, preuves de la nature ondulatoire de la lumière.\n\n## 1. Caractéristiques d'une onde\n\n- **Période** $T$ (s), **fréquence** $f = 1/T$ (Hz), **célérité** $v$ (m·s$^{-1}$).\n- **Longueur d'onde** : distance parcourue en une période :\n$$\\lambda = v\\,T = \\frac{v}{f}$$\n\nDeux points distants de $\\lambda$ (ou d'un multiple) vibrent **en phase**.\n\n## 2. La diffraction\n\nLorsqu'une onde rencontre une **ouverture** ou un **obstacle** de dimension $a$ comparable à $\\lambda$, elle s'étale : c'est la **diffraction**. L'écart angulaire de la tache centrale :\n$$\\theta \\approx \\frac{\\lambda}{a}$$\n\nLa diffraction est d'autant plus marquée que $a$ est petit. Largeur de la tache centrale sur un écran à distance $D$ :\n$$L = \\frac{2\\lambda D}{a}$$\n\n## 3. Les interférences (fentes de Young)\n\nDeux sources **cohérentes** (même fréquence, déphasage constant) se superposent. Avec deux fentes distantes de $a$, sur un écran à distance $D$, on observe des **franges** alternativement brillantes et sombres. **Interfrange** :\n$$\\boxed{i = \\frac{\\lambda D}{a}}$$\n\n- **Franges brillantes** (interférences constructives) : différence de marche $\\delta = k\\lambda$ ($k$ entier).\n- **Franges sombres** (interférences destructives) : $\\delta = \\left(k+\\frac12\\right)\\lambda$.\n\n## 4. Ondes stationnaires (corde de Melde)\n\nUne corde tendue de longueur $L$ vibre selon des modes : $L = n\\dfrac{\\lambda}{2}$, fréquences propres $f_n = n\\dfrac{v}{2L}$.\n\n## Exercices corrigés\n\n### Exercice 1 — Longueur d'onde\nUne onde sonore a une fréquence $f = 680\\ \\text{Hz}$ et se propage à $v = 340\\ \\text{m·s}^{-1}$.\n\nCalculer la longueur d'onde.\n\n**Correction.**\n$$\\lambda = \\frac{v}{f} = \\frac{340}{680} = 0{,}5\\ \\text{m}$$\n\n### Exercice 2 — Interfrange (fentes de Young)\nLumière de longueur d'onde $\\lambda = 600\\ \\text{nm}$, fentes distantes de $a = 0{,}2\\ \\text{mm}$, écran à $D = 2\\ \\text{m}$.\n\nCalculer l'interfrange.\n\n**Correction.**\n$$i = \\frac{\\lambda D}{a} = \\frac{600\\times 10^{-9}\\times 2}{0{,}2\\times 10^{-3}} = \\frac{1{,}2\\times 10^{-6}}{2\\times 10^{-4}} = 6\\times 10^{-3}\\ \\text{m} = 6\\ \\text{mm}$$\n\n### Exercice 3 — Diffraction\nUn laser ($\\lambda = 633\\ \\text{nm}$) éclaire une fente de largeur $a = 0{,}1\\ \\text{mm}$. Écran à $D = 3\\ \\text{m}$.\n\nCalculer la largeur de la tache centrale.\n\n**Correction.**\n$$L = \\frac{2\\lambda D}{a} = \\frac{2\\times 633\\times 10^{-9}\\times 3}{0{,}1\\times 10^{-3}} = \\frac{3{,}8\\times 10^{-6}}{10^{-4}} \\approx 3{,}8\\times 10^{-2}\\ \\text{m} = 3{,}8\\ \\text{cm}$$\n\n## À retenir\n\n- Longueur d'onde : $\\lambda = vT = \\dfrac{v}{f}$.\n- **Diffraction** (ouverture $a\\sim\\lambda$) : $\\theta\\approx\\dfrac{\\lambda}{a}$, tache $L = \\dfrac{2\\lambda D}{a}$.\n- **Interférences** (fentes de Young) : interfrange $i = \\dfrac{\\lambda D}{a}$ ; franges brillantes $\\delta = k\\lambda$.\n- Diffraction et interférences prouvent la **nature ondulatoire** de la lumière.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "La longueur d'onde est reliée à la fréquence par :",
+            "options": [
+              "$\\lambda = v/f$",
+              "$\\lambda = vf$",
+              "$\\lambda = f/v$",
+              "$\\lambda = v+f$"
+            ],
+            "answer": 0,
+            "explanation": "λ = v·T = v/f : distance parcourue pendant une période."
+          },
+          {
+            "q": "L'interfrange dans le dispositif des fentes de Young vaut :",
+            "options": [
+              "$i = \\lambda D/a$",
+              "$i = aD/\\lambda$",
+              "$i = \\lambda a/D$",
+              "$i = D/(\\lambda a)$"
+            ],
+            "answer": 0,
+            "explanation": "i = λD/a, avec a l'écart des fentes et D la distance à l'écran."
+          },
+          {
+            "q": "La diffraction est marquée lorsque la taille de l'ouverture :",
+            "options": [
+              "Est très grande devant λ",
+              "Est comparable à λ",
+              "Est nulle",
+              "Est infinie"
+            ],
+            "answer": 1,
+            "explanation": "La diffraction est notable quand la dimension a est de l'ordre de la longueur d'onde λ."
+          },
+          {
+            "q": "Une frange brillante (interférence constructive) correspond à :",
+            "options": [
+              "$\\delta = k\\lambda$",
+              "$\\delta = (k+\\tfrac12)\\lambda$",
+              "$\\delta = 0$ uniquement",
+              "$\\delta = \\lambda/2$"
+            ],
+            "answer": 0,
+            "explanation": "Interférence constructive : différence de marche δ = k·λ (k entier)."
+          },
+          {
+            "q": "Les interférences lumineuses prouvent que la lumière a une nature :",
+            "options": [
+              "Corpusculaire seulement",
+              "Ondulatoire",
+              "Thermique",
+              "Électrique"
+            ],
+            "answer": 1,
+            "explanation": "La diffraction et les interférences sont des comportements typiquement ondulatoires."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La physique nucléaire et la radioactivité",
+      "video": "https://www.youtube.com/watch?v=tBT5q2Q1jbk",
+      "lesson": "# La physique nucléaire et la radioactivité\n\n## Introduction\n\nLe **noyau atomique** est constitué de **nucléons** (protons et neutrons). Certains noyaux sont **instables** et se transforment spontanément en émettant un rayonnement : c'est la **radioactivité**. Ce chapitre étudie les désintégrations, la loi de décroissance et l'énergie nucléaire.\n\n## 1. Le noyau atomique\n\nUn noyau se note $^{A}_{Z}X$ :\n- $Z$ = nombre de **protons** (numéro atomique),\n- $A$ = nombre de **nucléons** (nombre de masse),\n- $N = A - Z$ = nombre de **neutrons**.\n\nDes **isotopes** ont même $Z$ mais des $A$ différents.\n\n## 2. Les types de radioactivité\n\n**Radioactivité $\\alpha$** : émission d'un noyau d'hélium $^4_2He$.\n$$^{A}_{Z}X \\rightarrow\\ ^{A-4}_{Z-2}Y + ^4_2He$$\n\n**Radioactivité $\\beta^-$** : émission d'un électron (un neutron devient proton).\n$$^{A}_{Z}X \\rightarrow\\ ^{A}_{Z+1}Y + ^{0}_{-1}e$$\n\n**Radioactivité $\\beta^+$** : émission d'un positon.\n$$^{A}_{Z}X \\rightarrow\\ ^{A}_{Z-1}Y + ^{0}_{+1}e$$\n\n**Émission $\\gamma$** : photon de désexcitation (pas de changement de $Z$ ni $A$).\n\nLes **lois de Soddy** (conservation) imposent : conservation du nombre de **nucléons** $A$ et de la **charge** $Z$.\n\n## 3. Loi de décroissance radioactive\n\nLe nombre de noyaux non désintégrés décroît exponentiellement :\n$$\\boxed{N(t) = N_0\\,e^{-\\lambda t}}$$\n\noù $\\lambda$ est la **constante radioactive** (s$^{-1}$).\n\n**Demi-vie** (période radioactive) $T$ : temps au bout duquel la moitié des noyaux se sont désintégrés.\n$$T = \\frac{\\ln 2}{\\lambda} \\approx \\frac{0{,}693}{\\lambda}$$\n\n**Activité** : $A(t) = \\lambda N(t)$ (becquerel, Bq).\n\n## 4. Énergie nucléaire — relation d'Einstein\n\nL'équivalence masse-énergie : $E = m c^2$. Le **défaut de masse** lors d'une réaction libère une énergie :\n$$E = |\\Delta m|\\,c^2$$\n\navec $c = 3\\times 10^8\\ \\text{m·s}^{-1}$. **Fission** (noyaux lourds) et **fusion** (noyaux légers) libèrent d'énormes énergies.\n\n## Exercices corrigés\n\n### Exercice 1 — Équation de désintégration\nLe radium $^{226}_{88}Ra$ est émetteur $\\alpha$. Écrire l'équation et identifier le noyau fils.\n\n**Correction.**\n$$^{226}_{88}Ra \\rightarrow\\ ^{222}_{86}Rn + ^4_2He$$\nConservation : $226 = 222 + 4$ et $88 = 86 + 2$. Le noyau fils est le **radon** $^{222}_{86}Rn$.\n\n### Exercice 2 — Demi-vie\nUn échantillon contient $N_0 = 8\\times 10^{12}$ noyaux. La demi-vie est $T = 5\\ \\text{jours}$.\n\nCombien reste-t-il de noyaux après $15\\ \\text{jours}$ ?\n\n**Correction.**\n$15\\ \\text{jours} = 3T$, donc le nombre est divisé par $2^3 = 8$ :\n$$N = \\frac{N_0}{8} = \\frac{8\\times 10^{12}}{8} = 10^{12}\\ \\text{noyaux}$$\n\n### Exercice 3 — Énergie libérée\nUne réaction présente un défaut de masse $|\\Delta m| = 0{,}02\\ \\text{u}$ avec $1\\ \\text{u} = 1{,}66\\times 10^{-27}\\ \\text{kg}$, $c = 3\\times 10^8\\ \\text{m·s}^{-1}$.\n\nCalculer l'énergie libérée en joules.\n\n**Correction.**\n$$|\\Delta m| = 0{,}02\\times 1{,}66\\times 10^{-27} = 3{,}32\\times 10^{-29}\\ \\text{kg}$$\n$$E = |\\Delta m|c^2 = 3{,}32\\times 10^{-29}\\times(3\\times 10^8)^2 = 3{,}32\\times 10^{-29}\\times 9\\times 10^{16} \\approx 3{,}0\\times 10^{-12}\\ \\text{J}$$\n\n## À retenir\n\n- Noyau $^A_ZX$ : $Z$ protons, $A$ nucléons, $N=A-Z$ neutrons. **Lois de Soddy** : conservation de $A$ et $Z$.\n- Radioactivités : $\\alpha$ ($^4_2He$), $\\beta^-$ ($^0_{-1}e$), $\\beta^+$ ($^0_{+1}e$), $\\gamma$ (photon).\n- **Décroissance** : $N(t) = N_0 e^{-\\lambda t}$ ; demi-vie $T = \\dfrac{\\ln 2}{\\lambda}$ ; activité $A = \\lambda N$.\n- Énergie : $E = |\\Delta m|c^2$ (fission et fusion).\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Dans une désintégration α, le noyau émet :",
+            "options": [
+              "Un électron",
+              "Un noyau d'hélium $^4_2He$",
+              "Un photon",
+              "Un proton seul"
+            ],
+            "answer": 1,
+            "explanation": "La radioactivité α correspond à l'émission d'un noyau d'hélium (²He⁴)."
+          },
+          {
+            "q": "La loi de décroissance radioactive est :",
+            "options": [
+              "$N=N_0 e^{-\\lambda t}$",
+              "$N=N_0 e^{+\\lambda t}$",
+              "$N=N_0(1-\\lambda t)$",
+              "$N=N_0\\lambda t$"
+            ],
+            "answer": 0,
+            "explanation": "Le nombre de noyaux décroît exponentiellement : N(t) = N₀·e^(-λt)."
+          },
+          {
+            "q": "La demi-vie T est reliée à λ par :",
+            "options": [
+              "$T=\\ln 2/\\lambda$",
+              "$T=\\lambda/\\ln 2$",
+              "$T=1/\\lambda^2$",
+              "$T=\\lambda \\ln 2$"
+            ],
+            "answer": 0,
+            "explanation": "T = ln2/λ ≈ 0,693/λ : durée pour que la moitié des noyaux se désintègrent."
+          },
+          {
+            "q": "Les lois de Soddy traduisent la conservation :",
+            "options": [
+              "De la vitesse",
+              "Du nombre de nucléons A et de la charge Z",
+              "De l'énergie cinétique seule",
+              "Du volume"
+            ],
+            "answer": 1,
+            "explanation": "Dans une réaction nucléaire, A (nucléons) et Z (charge) se conservent."
+          },
+          {
+            "q": "L'énergie libérée par un défaut de masse Δm vaut :",
+            "options": [
+              "$E=\\Delta m\\,c$",
+              "$E=|\\Delta m|c^2$",
+              "$E=\\Delta m/c^2$",
+              "$E=\\tfrac12\\Delta m c^2$"
+            ],
+            "answer": 1,
+            "explanation": "Relation d'Einstein : E = |Δm|·c², avec c = 3×10⁸ m/s."
+          }
+        ]
+      }
+    }
+  ]
+}
