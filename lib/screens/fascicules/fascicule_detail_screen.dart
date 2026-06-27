@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
 import '../../widgets/states.dart';
@@ -124,6 +125,34 @@ class _FasciculeDetailScreenState extends State<FasciculeDetailScreen> {
               ])),
             ]),
           ),
+          const SizedBox(height: 14),
+
+          // Voir l'aperçu (10 premières pages)
+          if (f.hasPdf)
+            GestureDetector(
+              onTap: () => context.push('/annales/pdf', extra: {
+                'url': f.pdfUrl,
+                'title': f.title,
+                'subtitle': f.shelfSubtitle.isEmpty ? 'Aperçu' : f.shelfSubtitle,
+                'previewPages': 10,
+                'orderUrl': _orderUrl(f),
+                'orderLabel': 'Précommander sur WhatsApp',
+              }),
+              child: Container(
+                height: 50,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: OC.paper,
+                  borderRadius: BorderRadius.circular(14),
+                  border: Border.all(color: OC.ink, width: 1.5),
+                ),
+                child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  Icon(Icons.visibility_rounded, size: 19, color: OC.ink),
+                  const SizedBox(width: 9),
+                  Text('Voir l\'aperçu (10 pages)', style: body(14, weight: FontWeight.w800, color: OC.ink)),
+                ]),
+              ),
+            ),
           const SizedBox(height: 20),
 
           // Description

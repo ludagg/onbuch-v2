@@ -849,13 +849,8 @@ class _FasciculesCarouselState extends State<_FasciculesCarousel>
   }
 
   void _open(Fascicule f) {
-    if (!f.hasPdf) return;
-    context.push('/annales/pdf', extra: {
-      'url': f.pdfUrl,
-      'title': f.title,
-      'subtitle': f.shelfSubtitle.isEmpty ? 'Fascicule OnBuch' : f.shelfSubtitle,
-      'offlineId': 'fascicule:${f.id}',
-    });
+    // Ouvre la fiche du fascicule (aperçu + précommande), pas le PDF complet.
+    context.push('/fascicule', extra: f);
   }
 
   @override
