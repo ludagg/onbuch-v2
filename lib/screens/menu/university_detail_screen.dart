@@ -66,6 +66,9 @@ class UniversityDetailScreen extends StatelessWidget {
             const SizedBox(height: 18),
           ],
 
+          // ── Fiche pratique (frais, admission, places…) ──
+          ..._practical(u, accent),
+
           // ── Domaines ──
           if (u.fields.isNotEmpty) ...[
             _sectionTitle('Domaines'),
@@ -149,6 +152,81 @@ class UniversityDetailScreen extends StatelessWidget {
   }
 
   Widget _sectionTitle(String t) => Text(t, style: body(13, weight: FontWeight.w800, color: OC.ink2));
+
+  // ── Fiche pratique de l'école (chaque bloc ne s'affiche que si renseigné) ──
+  List<Widget> _practical(University u, Color accent) {
+    if (!u.hasDetails) return const [];
+    final stats = <Widget>[
+      if (u.tuition.isNotEmpty) _statTile(Icons.payments_rounded, u.tuition, 'Frais de scolarité', accent),
+      if (u.places.isNotEmpty) _statTile(Icons.event_seat_rounded, u.places, 'Places', accent),
+      if (u.successRate.isNotEmpty) _statTile(Icons.trending_up_rounded, u.successRate, 'Taux de réussite', accent),
+    ];
+    return [
+      _sectionTitle('Infos pratiques'),
+      const SizedBox(height: 10),
+      if (stats.isNotEmpty) ...[
+        Wrap(spacing: 10, runSpacing: 10, children: stats),
+        const SizedBox(height: 12),
+      ],
+      if (u.admission.isNotEmpty) _kvCard(Icons.checklist_rounded, 'Conditions d\'admission', u.admission, accent),
+      if (u.registrationDates.isNotEmpty) _kvCard(Icons.event_rounded, 'Dates des inscriptions', u.registrationDates, accent),
+      if (u.documents.isNotEmpty) _chipsCard(Icons.description_rounded, 'Pièces à fournir', u.documents, accent),
+      if (u.accreditation.isNotEmpty) _kvCard(Icons.verified_rounded, 'Accréditation', u.accreditation, accent),
+      if (u.campuses.isNotEmpty) _chipsCard(Icons.location_city_rounded, 'Campus disponibles', u.campuses, accent),
+      if (u.residences.isNotEmpty) _kvCard(Icons.bed_rounded, 'Résidences universitaires', u.residences, accent),
+      const SizedBox(height: 10),
+    ];
+  }
+
+  Widget _statTile(IconData ic, String value, String label, Color accent) => Container(
+        width: 104,
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(color: OC.paper, borderRadius: BorderRadius.circular(14), border: Border.all(color: OC.line, width: 1.5)),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Icon(ic, size: 18, color: accent),
+          const SizedBox(height: 8),
+          Text(value, maxLines: 2, overflow: TextOverflow.ellipsis, style: body(13, weight: FontWeight.w800).copyWith(height: 1.15)),
+          const SizedBox(height: 2),
+          Text(label, style: body(10, color: OC.muted, weight: FontWeight.w600)),
+        ]),
+      );
+
+  Widget _kvCard(IconData ic, String title, String value, Color accent) => Container(
+        margin: const EdgeInsets.only(bottom: 10),
+        padding: const EdgeInsets.all(13),
+        decoration: BoxDecoration(color: OC.paper, borderRadius: BorderRadius.circular(14), border: Border.all(color: OC.line, width: 1.5)),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Row(children: [
+            Icon(ic, size: 16, color: accent),
+            const SizedBox(width: 8),
+            Text(title, style: body(12.5, weight: FontWeight.w800)),
+          ]),
+          const SizedBox(height: 8),
+          Text(value, style: body(12.5, color: OC.ink2, weight: FontWeight.w500).copyWith(height: 1.45)),
+        ]),
+      );
+
+  Widget _chipsCard(IconData ic, String title, List<String> items, Color accent) => Container(
+        margin: const EdgeInsets.only(bottom: 10),
+        padding: const EdgeInsets.all(13),
+        decoration: BoxDecoration(color: OC.paper, borderRadius: BorderRadius.circular(14), border: Border.all(color: OC.line, width: 1.5)),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Row(children: [
+            Icon(ic, size: 16, color: accent),
+            const SizedBox(width: 8),
+            Text(title, style: body(12.5, weight: FontWeight.w800)),
+          ]),
+          const SizedBox(height: 10),
+          Wrap(spacing: 7, runSpacing: 7, children: [
+            for (final it in items)
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                decoration: BoxDecoration(color: OC.panel, borderRadius: BorderRadius.circular(9)),
+                child: Text(it, style: body(11.5, color: OC.ink2, weight: FontWeight.w600)),
+              ),
+          ]),
+        ]),
+      );
 }
 
 /// Logo de l'université : image réseau si disponible, sinon pastille au sigle.

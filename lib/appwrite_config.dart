@@ -22,6 +22,9 @@ const appwritePrepCentersCollectionId = 'prep_centers';
 // tools/setup_universites.sh et tools/setup_bourses.sh.
 const appwriteUniversitiesCollectionId = 'universities';
 const appwriteBoursesCollectionId = 'bourses';
+// Fiches métiers (orientation « Découvre ton futur métier »), gérées par l'admin.
+// Cf. tools/setup_orientation_plus.sh.
+const appwriteMetiersCollectionId = 'metiers';
 const appwriteConcoursResourcesCollectionId = 'concours_resources';
 const appwriteConcoursApplicationsCollectionId = 'concours_applications';
 const appwriteSubjectsCollectionId = 'subjects';
