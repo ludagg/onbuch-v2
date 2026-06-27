@@ -16,7 +16,8 @@ class Fascicule {
   final bool premium;
   final int order;
   final bool active;
-  final int price;           // prix en FCFA (0 = sur demande)
+  final int price;           // prix normal en FCFA (0 = sur demande)
+  final int promoPrice;      // prix promotionnel en FCFA (0 = pas de promo)
   final String benefits;     // avantages (1 par ligne) — facultatif
 
   const Fascicule({
@@ -35,16 +36,25 @@ class Fascicule {
     this.order = 0,
     this.active = true,
     this.price = 0,
+    this.promoPrice = 0,
     this.benefits = '',
   });
 
   bool get hasCover => coverUrl.trim().isNotEmpty;
   bool get hasPdf => pdfUrl.trim().isNotEmpty;
 
-  /// Prix formaté (« 2 500 FCFA ») ou null si sur demande.
-  String? get priceLabel {
-    if (price <= 0) return null;
-    final s = price.toString();
+  /// Promo active : prix promo renseigné et strictement inférieur au prix normal.
+  bool get hasPromo => promoPrice > 0 && price > 0 && promoPrice < price;
+
+  /// Prix à payer (promo si active, sinon prix normal). 0 = sur demande.
+  int get effectivePrice => hasPromo ? promoPrice : price;
+
+  /// % de réduction (0 si pas de promo).
+  int get discountPercent =>
+      hasPromo ? ((1 - promoPrice / price) * 100).round() : 0;
+
+  static String _fmt(int v) {
+    final s = v.toString();
     final b = StringBuffer();
     for (var i = 0; i < s.length; i++) {
       if (i > 0 && (s.length - i) % 3 == 0) b.write(' ');
@@ -52,6 +62,15 @@ class Fascicule {
     }
     return '$b FCFA';
   }
+
+  /// Prix normal formaté (« 2 500 FCFA ») ou null si sur demande.
+  String? get priceLabel => price <= 0 ? null : _fmt(price);
+
+  /// Prix promo formaté ou null si pas de promo.
+  String? get promoLabel => hasPromo ? _fmt(promoPrice) : null;
+
+  /// Prix effectif formaté (promo si active) ou null si sur demande.
+  String? get effectivePriceLabel => effectivePrice <= 0 ? null : _fmt(effectivePrice);
 
   /// Liste d'avantages : ceux saisis par l'admin, sinon une liste par défaut.
   List<String> get benefitList {
@@ -112,6 +131,7 @@ class Fascicule {
       order: i(m['order']),
       active: m['active'] != false,
       price: i(m['price']),
+      promoPrice: i(m['promoPrice']),
       benefits: s(m['benefits']),
     );
   }
