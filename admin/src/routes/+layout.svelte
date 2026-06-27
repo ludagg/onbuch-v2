@@ -57,6 +57,9 @@
         <a class="nav-item" class:active={path.startsWith('/exercices')} href="/exercices">
           <span class="nav-ico">🧪</span> Atelier Exercices
         </a>
+        <a class="nav-item" class:active={path.startsWith('/cours')} href="/cours">
+          <span class="nav-ico">📘</span> Atelier Cours
+        </a>
         {#each RESOURCES as r}
           <a class="nav-item" class:active={path.startsWith('/c/' + r.id)} href={'/c/' + r.id}>
             <span class="nav-ico">{r.icon}</span> {r.label}
