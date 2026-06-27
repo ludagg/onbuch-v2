@@ -4,6 +4,7 @@ import 'package:appwrite/appwrite.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../appwrite_config.dart';
 import 'appwrite_client.dart';
+import 'local_notifications_service.dart';
 
 /// État de progression (gamification) de l'élève.
 class GamificationState {
@@ -217,6 +218,10 @@ class GamificationService {
     next = next.copyWith(badges: _withNewBadges(next));
     state.value = next;
     await _persist();
+    // L'élève est venu aujourd'hui → on annule le rappel du jour et on
+    // reprogramme les suivants à partir du nouvel état de la série.
+    LocalNotificationsService.instance
+        .reschedule(streak: next.streak, lastActive: next.lastActive);
   }
 
   /// Ajoute de l'XP (+ incréments éventuels), recalcule les badges.

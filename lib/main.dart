@@ -10,6 +10,8 @@ import 'services/auth_service.dart';
 import 'services/push_service.dart';
 import 'services/theme_controller.dart';
 import 'services/exam_structure_service.dart';
+import 'services/local_notifications_service.dart';
+import 'services/gamification_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,6 +39,19 @@ void main() async {
   } catch (_) {
     firebaseReady = false;
   }
+
+  // Rappels locaux de série (« façon Duolingo ») : init + planification depuis
+  // l'état connu. Lancé sans bloquer le 1ᵉʳ frame ; best-effort.
+  () async {
+    try {
+      await LocalNotificationsService.instance.init();
+      await LocalNotificationsService.instance.requestPermission();
+      await GamificationService.instance.load();
+      final g = GamificationService.instance.state.value;
+      await LocalNotificationsService.instance
+          .reschedule(streak: g.streak, lastActive: g.lastActive);
+    } catch (_) {/* sans notifications locales si indisponible */}
+  }();
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   // Liens de partage / deep links (onbuch://annale/{id} ou …/a/{id}) : gérés
