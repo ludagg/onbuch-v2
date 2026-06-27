@@ -182,12 +182,12 @@ class _ProgressScreenState extends State<ProgressScreen> {
   // ── Grille d'activité (6 tuiles, données réelles) ───────────────────────────
   Widget _activityGrid(GamificationState s) {
     final tiles = [
-      _Stat('🔥', '${s.streak} j', 'Série'),
-      _Stat('🏅', '${s.bestStreak} j', 'Record'),
-      _Stat('🧠', '${s.quizzes}', 'Quiz'),
-      _Stat('🦁', '${s.tutorUses}', 'Léo'),
-      _Stat('✍️', '$_exosDone', 'Exercices'),
-      _Stat('✅', '$_corrections', 'Corrections'),
+      _Stat(Icons.local_fire_department_rounded, const Color(0xFFF4711E), '${s.streak} j', 'Série'),
+      _Stat(Icons.military_tech_rounded, const Color(0xFFC9821C), '${s.bestStreak} j', 'Record'),
+      _Stat(Icons.psychology_rounded, const Color(0xFF7A5AE0), '${s.quizzes}', 'Quiz'),
+      _Stat(Icons.forum_rounded, OC.o600, '${s.tutorUses}', 'Léo'),
+      _Stat(Icons.edit_note_rounded, OC.blue, '$_exosDone', 'Exercices'),
+      _Stat(Icons.fact_check_rounded, OC.good, '$_corrections', 'Corrections'),
     ];
     return GridView.count(
       shrinkWrap: true,
@@ -206,8 +206,13 @@ class _ProgressScreenState extends State<ProgressScreen> {
       decoration: BoxDecoration(
           color: OC.paper, borderRadius: BorderRadius.circular(16), border: Border.all(color: OC.line, width: 1.5)),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisAlignment: MainAxisAlignment.center, children: [
-        Text(t.emoji, style: const TextStyle(fontSize: 20)),
-        const SizedBox(height: 7),
+        Container(
+          width: 34, height: 34,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(color: t.color.withValues(alpha: 0.12), borderRadius: BorderRadius.circular(10)),
+          child: Icon(t.icon, size: 19, color: t.color),
+        ),
+        const SizedBox(height: 8),
         Text(t.value, style: display(18, weight: FontWeight.w800)),
         const SizedBox(height: 1),
         Text(t.label, maxLines: 1, overflow: TextOverflow.ellipsis,
@@ -227,7 +232,7 @@ class _ProgressScreenState extends State<ProgressScreen> {
       child: Row(children: [
         OBRing(
           pct: pct, size: 56, color: OC.o500,
-          center: Text(b.emoji, style: const TextStyle(fontSize: 22)),
+          center: Icon(b.icon, size: 24, color: OC.o600),
         ),
         const SizedBox(width: 14),
         Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -264,7 +269,7 @@ class _ProgressScreenState extends State<ProgressScreen> {
           border: Border.all(color: earned ? OC.o100 : OC.line, width: 1.5),
         ),
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Opacity(opacity: earned ? 1 : 0.32, child: Text(b.emoji, style: const TextStyle(fontSize: 28))),
+          Icon(b.icon, size: 30, color: earned ? OC.o600 : OC.faint),
           const SizedBox(height: 6),
           Text(b.label, textAlign: TextAlign.center, maxLines: 1, overflow: TextOverflow.ellipsis,
               style: body(10.5, weight: FontWeight.w700, color: earned ? OC.ink : OC.muted)),
@@ -296,7 +301,7 @@ class _ProgressScreenState extends State<ProgressScreen> {
           Container(
             width: 84, height: 84, alignment: Alignment.center,
             decoration: BoxDecoration(color: earned ? OC.o50 : OC.panel, shape: BoxShape.circle),
-            child: Opacity(opacity: earned ? 1 : 0.4, child: Text(b.emoji, style: const TextStyle(fontSize: 44))),
+            child: Icon(b.icon, size: 42, color: earned ? OC.o600 : OC.faint),
           ),
           const SizedBox(height: 14),
           Text(b.label, style: display(19, weight: FontWeight.w800)),
@@ -373,6 +378,8 @@ class _ProgressScreenState extends State<ProgressScreen> {
 }
 
 class _Stat {
-  final String emoji, value, label;
-  const _Stat(this.emoji, this.value, this.label);
+  final IconData icon;
+  final Color color;
+  final String value, label;
+  const _Stat(this.icon, this.color, this.value, this.label);
 }

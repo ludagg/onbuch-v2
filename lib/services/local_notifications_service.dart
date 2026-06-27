@@ -105,6 +105,8 @@ class LocalNotificationsService {
           m.body,
           when,
           _details(),
+          uiLocalNotificationDateInterpretation:
+              UILocalNotificationDateInterpretation.absoluteTime,
           androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
           payload: m.payload,
         );
