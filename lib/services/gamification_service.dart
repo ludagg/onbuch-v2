@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:appwrite/appwrite.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../appwrite_config.dart';
@@ -72,22 +72,22 @@ class GamificationState {
 /// Définition d'un badge (débloqué selon l'état).
 class GameBadge {
   final String id;
-  final String emoji;
+  final IconData icon;
   final String label;
   final String desc;
   final bool Function(GamificationState s) earned;
-  const GameBadge(this.id, this.emoji, this.label, this.desc, this.earned);
+  const GameBadge(this.id, this.icon, this.label, this.desc, this.earned);
 }
 
 const List<GameBadge> kBadges = [
-  GameBadge('first_quiz', '🎯', 'Premier quiz', 'Termine ton premier quiz', _bFirstQuiz),
-  GameBadge('quiz_10', '🧠', 'Studieux', 'Termine 10 quiz', _bQuiz10),
-  GameBadge('streak_3', '🔥', 'En forme', '3 jours d\'affilée', _bStreak3),
-  GameBadge('streak_7', '⚡', 'Régulier', '7 jours d\'affilée', _bStreak7),
-  GameBadge('streak_30', '🏆', 'Inarrêtable', '30 jours d\'affilée', _bStreak30),
-  GameBadge('tutor_5', '🦁', 'Curieux', 'Pose 5 questions à Léo', _bTutor5),
-  GameBadge('xp_500', '⭐', 'Monte en puissance', 'Atteins 500 XP', _bXp500),
-  GameBadge('xp_2000', '💎', 'Élite', 'Atteins 2000 XP', _bXp2000),
+  GameBadge('first_quiz', Icons.track_changes_rounded, 'Premier quiz', 'Termine ton premier quiz', _bFirstQuiz),
+  GameBadge('quiz_10', Icons.psychology_rounded, 'Studieux', 'Termine 10 quiz', _bQuiz10),
+  GameBadge('streak_3', Icons.local_fire_department_rounded, 'En forme', '3 jours d\'affilée', _bStreak3),
+  GameBadge('streak_7', Icons.bolt_rounded, 'Régulier', '7 jours d\'affilée', _bStreak7),
+  GameBadge('streak_30', Icons.emoji_events_rounded, 'Inarrêtable', '30 jours d\'affilée', _bStreak30),
+  GameBadge('tutor_5', Icons.forum_rounded, 'Curieux', 'Pose 5 questions à Léo', _bTutor5),
+  GameBadge('xp_500', Icons.star_rounded, 'Monte en puissance', 'Atteins 500 XP', _bXp500),
+  GameBadge('xp_2000', Icons.diamond_rounded, 'Élite', 'Atteins 2000 XP', _bXp2000),
 ];
 
 bool _bFirstQuiz(GamificationState s) => s.quizzes >= 1;
