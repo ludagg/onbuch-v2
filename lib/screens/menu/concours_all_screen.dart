@@ -7,10 +7,45 @@ import '../../widgets/states.dart';
 import '../../widgets/skeletons.dart';
 import '../../models/concours.dart';
 import '../../services/database_service.dart';
+import '../../data/orientation_guide.dart';
+
+// ── Catégorisation : domaine (déduit du nom) + ville (déduite du texte) ───────
+// Aucune saisie admin requise : on s'appuie sur la base « orientation » déjà
+// utilisée pour rattacher un concours à une filière, et sur une liste de villes.
+const _kCities = [
+  'Yaoundé', 'Douala', 'Dschang', 'Buéa', 'Bamenda', 'Ngaoundéré', 'Maroua',
+  'Garoua', 'Bertoua', 'Ebolowa', 'Bafoussam', 'Kumba', 'Foumban',
+  'Nkongsamba', 'Bandjoun', 'Soa', 'Mbalmayo', 'Limbé', 'Kribi', 'Edéa', 'Sangmélima',
+];
+
+String _fold(String s) {
+  const map = {
+    'à': 'a', 'â': 'a', 'ä': 'a', 'é': 'e', 'è': 'e', 'ê': 'e', 'ë': 'e',
+    'î': 'i', 'ï': 'i', 'ô': 'o', 'ö': 'o', 'û': 'u', 'ù': 'u', 'ü': 'u', 'ç': 'c',
+  };
+  final b = StringBuffer();
+  for (final ch in s.toLowerCase().split('')) {
+    b.write(map[ch] ?? ch);
+  }
+  return b.toString();
+}
+
+OrientationField? _concoursField(Concours c) =>
+    matchOrientation('${c.name} ${c.organizer} ${c.audience ?? ''}');
+
+String _concoursDomain(Concours c) => _concoursField(c)?.title ?? 'Autres';
+
+String? _concoursCity(Concours c) {
+  final hay = _fold('${c.name} ${c.organizer} ${c.description ?? ''} ${c.audience ?? ''}');
+  for (final city in _kCities) {
+    if (hay.contains(_fold(city))) return city;
+  }
+  return null;
+}
 
 /// Page dédiée à la **liste complète des concours** (ouverts et clôturés),
-/// avec recherche et filtre de statut. Distincte de l'onglet Concours qui ne
-/// met en avant que les concours ouverts.
+/// avec recherche et filtres : statut, domaine et ville. Distincte de l'onglet
+/// Concours qui ne met en avant que les concours ouverts.
 class ConcoursAllScreen extends StatefulWidget {
   const ConcoursAllScreen({super.key});
 
@@ -23,6 +58,8 @@ class _ConcoursAllScreenState extends State<ConcoursAllScreen> {
   late final Future<List<Concours>> _future = DatabaseService().getConcours();
   String _query = '';
   String _status = 'Tous'; // Tous | Ouverts | Clôturés
+  String _domain = 'Tous'; // Tous | <domaine>
+  String _city = 'Tous'; // Tous | <ville>
 
   @override
   void dispose() {
@@ -36,6 +73,8 @@ class _ConcoursAllScreenState extends State<ConcoursAllScreen> {
   bool _matches(Concours c) {
     if (_status == 'Ouverts' && !_isOpen(c)) return false;
     if (_status == 'Clôturés' && _isOpen(c)) return false;
+    if (_domain != 'Tous' && _concoursDomain(c) != _domain) return false;
+    if (_city != 'Tous' && _concoursCity(c) != _city) return false;
     if (_query.isEmpty) return true;
     bool has(String? s) => s != null && s.toLowerCase().contains(_query);
     return has(c.name) || has(c.organizer) || has(c.description) || has(c.audience);
@@ -68,6 +107,15 @@ class _ConcoursAllScreenState extends State<ConcoursAllScreen> {
             });
           final list = all.where(_matches).toList();
 
+          // Domaines & villes présents dans les données (« Autres » en dernier).
+          final domains = (all.map(_concoursDomain).toSet().toList()
+            ..sort((a, b) {
+              if (a == 'Autres') return 1;
+              if (b == 'Autres') return -1;
+              return a.compareTo(b);
+            }));
+          final cities = (all.map(_concoursCity).whereType<String>().toSet().toList()..sort());
+
           if (all.isEmpty) {
             return const EmptyState(
               icon: Icons.track_changes_rounded,
@@ -91,6 +139,26 @@ class _ConcoursAllScreenState extends State<ConcoursAllScreen> {
                     ),
                   ),
               ]),
+              // Filtre par domaine (défilant)
+              if (domains.length > 1) ...[
+                const SizedBox(height: 10),
+                _chipRow(
+                  ['Tous', ...domains],
+                  _domain,
+                  (v) => setState(() => _domain = v),
+                  icon: Icons.category_rounded,
+                ),
+              ],
+              // Filtre par ville (défilant)
+              if (cities.isNotEmpty) ...[
+                const SizedBox(height: 10),
+                _chipRow(
+                  ['Tous', ...cities],
+                  _city,
+                  (v) => setState(() => _city = v),
+                  icon: Icons.location_on_rounded,
+                ),
+              ],
               const SizedBox(height: 14),
               Text('${list.length} concours', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
               const SizedBox(height: 12),
@@ -117,6 +185,35 @@ class _ConcoursAllScreenState extends State<ConcoursAllScreen> {
             ],
           );
         },
+      ),
+    );
+  }
+
+  /// Rangée de filtres défilante (chips), précédée d'une icône repère.
+  Widget _chipRow(List<String> options, String active, ValueChanged<String> onPick, {required IconData icon}) {
+    return SizedBox(
+      height: 34,
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(right: 8),
+            child: Container(
+              width: 30, height: 30,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(color: OC.panel, borderRadius: BorderRadius.circular(999)),
+              child: Icon(icon, size: 16, color: OC.muted),
+            ),
+          ),
+          for (final o in options)
+            Padding(
+              padding: const EdgeInsets.only(right: 8),
+              child: GestureDetector(
+                onTap: () => onPick(o),
+                child: OBChip(o, active: active == o),
+              ),
+            ),
+        ],
       ),
     );
   }
@@ -167,6 +264,9 @@ class _ConcoursRow extends StatelessWidget {
   ];
   Color get _accent => _avatarColors[c.name.hashCode.abs() % _avatarColors.length];
 
+  OrientationField? get _field => _concoursField(c);
+  String? get _city => _concoursCity(c);
+
   String get _badge {
     final caps = RegExp(r'\b[A-Z]{2,6}\b').allMatches(c.name).map((m) => m.group(0)!).toList()
       ..sort((a, b) => b.length.compareTo(a.length));
@@ -207,6 +307,23 @@ class _ConcoursRow extends StatelessWidget {
             Text(c.organizer.isNotEmpty ? c.organizer : (c.description ?? ''),
                 maxLines: 1, overflow: TextOverflow.ellipsis,
                 style: body(11.5, color: OC.muted, weight: FontWeight.w500)),
+            if (_field != null || _city != null) ...[
+              const SizedBox(height: 5),
+              Row(children: [
+                if (_field != null) ...[
+                  Icon(_field!.icon, size: 12, color: _field!.accent),
+                  const SizedBox(width: 4),
+                  Flexible(child: Text(_field!.title, maxLines: 1, overflow: TextOverflow.ellipsis,
+                      style: body(10.5, color: _field!.accent, weight: FontWeight.w700))),
+                ],
+                if (_field != null && _city != null) const SizedBox(width: 8),
+                if (_city != null) ...[
+                  Icon(Icons.location_on_rounded, size: 12, color: OC.muted),
+                  const SizedBox(width: 3),
+                  Text(_city!, style: body(10.5, color: OC.ink2, weight: FontWeight.w600)),
+                ],
+              ]),
+            ],
             if (dl != null) ...[
               const SizedBox(height: 5),
               Row(children: [
