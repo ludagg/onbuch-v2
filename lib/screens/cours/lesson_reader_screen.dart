@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/rich_answer.dart';
+import '../../utils/launch.dart';
 import '../../models/course.dart';
 import '../../services/cours_packs_service.dart';
 import '../../services/cours_offline_service.dart';
@@ -84,7 +85,7 @@ class _LessonReaderScreenState extends State<LessonReaderScreen> {
       Expanded(child: ListView(
         padding: const EdgeInsets.fromLTRB(20, 4, 20, 120),
         children: [
-          _LessonVideo(m?.videoUrl),
+          _LessonVideo(url: m?.videoUrl, query: m == null ? null : '${m.title} ${p.name} cours'),
           const SizedBox(height: 14),
           Row(children: List.generate(_kTabs.length, (t) {
             final active = _tab == t;
@@ -263,7 +264,8 @@ class _LessonReaderScreenState extends State<LessonReaderScreen> {
 /// aucune vidéo (ou lien non reconnu). Recrée le contrôleur si l'URL change.
 class _LessonVideo extends StatefulWidget {
   final String? url;
-  const _LessonVideo(this.url);
+  final String? query; // recherche YouTube de repli (si pas de vidéo embarquée)
+  const _LessonVideo({this.url, this.query});
 
   @override
   State<_LessonVideo> createState() => _LessonVideoState();
@@ -316,17 +318,30 @@ class _LessonVideoState extends State<_LessonVideo> {
         child: AspectRatio(aspectRatio: 16 / 9, child: YoutubePlayer(controller: _yt!)),
       );
     }
-    // Aucune vidéo (ou lien non reconnu) : emplacement neutre.
-    return AspectRatio(
-      aspectRatio: 16 / 9,
-      child: Container(
-        decoration: BoxDecoration(color: OC.panel, borderRadius: BorderRadius.circular(16)),
-        alignment: Alignment.center,
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Icon(Icons.smart_display_outlined, size: 34, color: OC.faint),
-          const SizedBox(height: 8),
-          Text('Vidéo bientôt disponible', style: body(11.5, color: OC.muted, weight: FontWeight.w600)),
-        ]),
+    // Aucune vidéo embarquée : repli vers une recherche YouTube du chapitre.
+    final q = (widget.query ?? '').trim();
+    return GestureDetector(
+      onTap: q.isEmpty ? null : () => openUrl(context, 'https://www.youtube.com/results?search_query=${Uri.encodeQueryComponent(q)}'),
+      child: AspectRatio(
+        aspectRatio: 16 / 9,
+        child: Container(
+          decoration: BoxDecoration(color: OC.panel, borderRadius: BorderRadius.circular(16)),
+          alignment: Alignment.center,
+          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            Container(
+              width: 52, height: 52,
+              decoration: const BoxDecoration(color: Color(0xFFC0392B), shape: BoxShape.circle),
+              child: const Icon(Icons.smart_display_rounded, color: Colors.white, size: 28),
+            ),
+            const SizedBox(height: 10),
+            Text(q.isEmpty ? 'Vidéo bientôt disponible' : 'Voir des vidéos sur YouTube',
+                style: body(12.5, color: OC.ink2, weight: FontWeight.w700)),
+            if (q.isNotEmpty) ...[
+              const SizedBox(height: 2),
+              Text('Recherche du chapitre', style: body(10.5, color: OC.muted, weight: FontWeight.w500)),
+            ],
+          ]),
+        ),
       ),
     );
   }
