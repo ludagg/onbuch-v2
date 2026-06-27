@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/rich_answer.dart';
+import '../../utils/launch.dart';
 import '../../models/course.dart';
 import '../../services/cours_packs_service.dart';
 import '../../services/cours_offline_service.dart';
@@ -84,7 +85,7 @@ class _LessonReaderScreenState extends State<LessonReaderScreen> {
       Expanded(child: ListView(
         padding: const EdgeInsets.fromLTRB(20, 4, 20, 120),
         children: [
-          _LessonVideo(m?.videoUrl),
+          _LessonVideo(url: m?.videoUrl, query: m == null ? null : '${m.title} ${p.name} cours'),
           const SizedBox(height: 14),
           Row(children: List.generate(_kTabs.length, (t) {
             final active = _tab == t;
@@ -120,13 +121,19 @@ class _LessonReaderScreenState extends State<LessonReaderScreen> {
           _grad('Ouvrir la fiche', () => context.push('/cours/fiche?id=${m.id}&t=${Uri.encodeComponent(m.title)}')),
         ]));
       case 2: // Exemples
-        return _card(Column(children: [
-          Icon(Icons.lightbulb_outline_rounded, size: 30, color: OC.o500),
-          const SizedBox(height: 8),
-          Text('Exemples', style: body(14, weight: FontWeight.w800)),
-          const SizedBox(height: 4),
-          Text('Les exemples corrigés de ce chapitre arriveront ici.', textAlign: TextAlign.center, style: body(12.5, color: OC.muted)),
-        ]));
+        final cachedEx = CoursOffline.instance.offlineLesson(p.id, m.id);
+        if (cachedEx != null && cachedEx.trim().isNotEmpty) {
+          final ex = _examplesFrom(cachedEx);
+          return ex == null ? _noExamples() : RichAnswer(ex);
+        }
+        return FutureBuilder<String?>(
+          future: _db.getLesson(m.id),
+          builder: (context, snap) {
+            if (snap.connectionState == ConnectionState.waiting) return _loadingBars();
+            final ex = _examplesFrom((snap.data ?? '').trim());
+            return ex == null ? _noExamples() : RichAnswer(ex);
+          },
+        );
       case 3: // Quiz — moteur QCM réel
         return _card(Column(children: [
           Icon(Icons.quiz_rounded, size: 36, color: OC.o500),
@@ -177,6 +184,45 @@ class _LessonReaderScreenState extends State<LessonReaderScreen> {
         child: child,
       );
 
+  /// Extrait la section « exercices corrigés / exemples » d'une leçon Markdown
+  /// (de son titre jusqu'au prochain « À retenir »), pour alimenter l'onglet
+  /// Exemples sans dupliquer les données. `null` si la leçon n'en contient pas.
+  String? _examplesFrom(String md) {
+    if (md.trim().isEmpty) return null;
+    final lines = md.split('\n');
+    final heading = RegExp(r'^#{1,4}\s+(.*)$');
+    final startKey = RegExp(r'exerc|corrig|worked|practice|cas pratique|exemple r|sujet', caseSensitive: false);
+    final stopKey = RegExp(r'retenir|key point|repères et chiffres', caseSensitive: false);
+    int start = -1;
+    for (var i = 0; i < lines.length; i++) {
+      final h = heading.firstMatch(lines[i]);
+      if (h != null && startKey.hasMatch(h.group(1) ?? '')) { start = i; break; }
+    }
+    if (start < 0) return null;
+    int end = lines.length;
+    for (var i = start + 1; i < lines.length; i++) {
+      final h = heading.firstMatch(lines[i]);
+      if (h != null && stopKey.hasMatch(h.group(1) ?? '')) { end = i; break; }
+    }
+    final out = lines.sublist(start, end).join('\n').trim();
+    return out.isEmpty ? null : out;
+  }
+
+  Widget _loadingBars() => Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        for (final _ in [0, 1, 2, 3])
+          Container(height: 11, width: double.infinity, margin: const EdgeInsets.only(bottom: 8),
+              decoration: BoxDecoration(color: OC.line, borderRadius: BorderRadius.circular(6))),
+      ]);
+
+  Widget _noExamples() => _card(Column(children: [
+        Icon(Icons.lightbulb_outline_rounded, size: 28, color: OC.faint),
+        const SizedBox(height: 8),
+        Text('Exemples dans le cours', style: body(13.5, weight: FontWeight.w700)),
+        const SizedBox(height: 4),
+        Text('Les exercices corrigés de ce chapitre sont intégrés à l\'onglet « Cours ».',
+            textAlign: TextAlign.center, style: body(12.5, color: OC.muted)),
+      ]));
+
   Widget _grad(String label, VoidCallback onTap) => GestureDetector(
         onTap: onTap,
         child: Container(height: 46, width: double.infinity,
@@ -218,7 +264,8 @@ class _LessonReaderScreenState extends State<LessonReaderScreen> {
 /// aucune vidéo (ou lien non reconnu). Recrée le contrôleur si l'URL change.
 class _LessonVideo extends StatefulWidget {
   final String? url;
-  const _LessonVideo(this.url);
+  final String? query; // recherche YouTube de repli (si pas de vidéo embarquée)
+  const _LessonVideo({this.url, this.query});
 
   @override
   State<_LessonVideo> createState() => _LessonVideoState();
@@ -271,17 +318,30 @@ class _LessonVideoState extends State<_LessonVideo> {
         child: AspectRatio(aspectRatio: 16 / 9, child: YoutubePlayer(controller: _yt!)),
       );
     }
-    // Aucune vidéo (ou lien non reconnu) : emplacement neutre.
-    return AspectRatio(
-      aspectRatio: 16 / 9,
-      child: Container(
-        decoration: BoxDecoration(color: OC.panel, borderRadius: BorderRadius.circular(16)),
-        alignment: Alignment.center,
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          Icon(Icons.smart_display_outlined, size: 34, color: OC.faint),
-          const SizedBox(height: 8),
-          Text('Vidéo bientôt disponible', style: body(11.5, color: OC.muted, weight: FontWeight.w600)),
-        ]),
+    // Aucune vidéo embarquée : repli vers une recherche YouTube du chapitre.
+    final q = (widget.query ?? '').trim();
+    return GestureDetector(
+      onTap: q.isEmpty ? null : () => openUrl(context, 'https://www.youtube.com/results?search_query=${Uri.encodeQueryComponent(q)}'),
+      child: AspectRatio(
+        aspectRatio: 16 / 9,
+        child: Container(
+          decoration: BoxDecoration(color: OC.panel, borderRadius: BorderRadius.circular(16)),
+          alignment: Alignment.center,
+          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            Container(
+              width: 52, height: 52,
+              decoration: const BoxDecoration(color: Color(0xFFC0392B), shape: BoxShape.circle),
+              child: const Icon(Icons.smart_display_rounded, color: Colors.white, size: 28),
+            ),
+            const SizedBox(height: 10),
+            Text(q.isEmpty ? 'Vidéo bientôt disponible' : 'Voir des vidéos sur YouTube',
+                style: body(12.5, color: OC.ink2, weight: FontWeight.w700)),
+            if (q.isNotEmpty) ...[
+              const SizedBox(height: 2),
+              Text('Recherche du chapitre', style: body(10.5, color: OC.muted, weight: FontWeight.w500)),
+            ],
+          ]),
+        ),
       ),
     );
   }
