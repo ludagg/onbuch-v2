@@ -16,6 +16,8 @@ class Fascicule {
   final bool premium;
   final int order;
   final bool active;
+  final int price;           // prix en FCFA (0 = sur demande)
+  final String benefits;     // avantages (1 par ligne) — facultatif
 
   const Fascicule({
     required this.id,
@@ -32,10 +34,40 @@ class Fascicule {
     this.premium = false,
     this.order = 0,
     this.active = true,
+    this.price = 0,
+    this.benefits = '',
   });
 
   bool get hasCover => coverUrl.trim().isNotEmpty;
   bool get hasPdf => pdfUrl.trim().isNotEmpty;
+
+  /// Prix formaté (« 2 500 FCFA ») ou null si sur demande.
+  String? get priceLabel {
+    if (price <= 0) return null;
+    final s = price.toString();
+    final b = StringBuffer();
+    for (var i = 0; i < s.length; i++) {
+      if (i > 0 && (s.length - i) % 3 == 0) b.write(' ');
+      b.write(s[i]);
+    }
+    return '$b FCFA';
+  }
+
+  /// Liste d'avantages : ceux saisis par l'admin, sinon une liste par défaut.
+  List<String> get benefitList {
+    final custom = benefits
+        .split(RegExp(r'[\n|]'))
+        .map((e) => e.trim())
+        .where((e) => e.isNotEmpty)
+        .toList();
+    if (custom.isNotEmpty) return custom;
+    return const [
+      'Cours complet, conforme au programme MINESEC',
+      'Méthodes et astuces pour gagner des points',
+      'Exercices d\'application + corrigés détaillés',
+      'Sujets types d\'examen pour s\'entraîner',
+    ];
+  }
 
   /// Sous-titre court pour les cartes (matière/classe ou nb de pages).
   String get shelfSubtitle {
@@ -79,6 +111,8 @@ class Fascicule {
       premium: m['premium'] == true,
       order: i(m['order']),
       active: m['active'] != false,
+      price: i(m['price']),
+      benefits: s(m['benefits']),
     );
   }
 }

@@ -41,13 +41,9 @@ class _FasciculesLibraryScreenState extends State<FasciculesLibraryScreen> {
   }
 
   void _open(Fascicule f) {
-    if (!f.hasPdf) return;
-    context.push('/annales/pdf', extra: {
-      'url': f.pdfUrl,
-      'title': f.title,
-      'subtitle': f.shelfSubtitle.isEmpty ? 'Fascicule OnBuch' : f.shelfSubtitle,
-      'offlineId': 'fascicule:${f.id}',
-    });
+    // On n'ouvre plus le PDF directement : on présente la fiche (avantages +
+    // précommande WhatsApp).
+    context.push('/fascicule', extra: f);
   }
 
   @override

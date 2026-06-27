@@ -83,6 +83,8 @@ import '../screens/cours/quiz_result_screen.dart';
 import '../screens/cours/cours_search_screen.dart';
 import '../screens/exercices/exercices_screen.dart';
 import '../screens/fascicules/fascicules_library_screen.dart';
+import '../screens/fascicules/fascicule_detail_screen.dart';
+import '../models/fascicule.dart';
 import '../models/exercise.dart';
 import '../models/article.dart';
 import '../models/exam_result.dart';
@@ -171,6 +173,7 @@ final appRouter = GoRouter(
     GoRoute(path: '/search', builder: (_, s) => GlobalSearchScreen(scope: s.uri.queryParameters['scope'])),
     // Bibliothèque « Nos fascicules » (hors shell → plein écran).
     GoRoute(path: '/fascicules', builder: (_, __) => const FasciculesLibraryScreen()),
+    GoRoute(path: '/fascicule', builder: (_, s) => FasciculeDetailScreen(fascicule: s.extra as Fascicule?)),
     // Module Exercices (hors shell → plein écran).
     GoRoute(path: '/exercices', builder: (_, __) => const ExercicesScreen()),
     GoRoute(path: '/exercices/chapitres', builder: (_, s) {
