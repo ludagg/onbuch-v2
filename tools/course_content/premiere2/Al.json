@@ -1,0 +1,160 @@
+{
+  "code": "Al",
+  "level": "Première",
+  "chapters": [
+    {
+      "title": "L'alphabet et la prononciation allemande",
+      "video": "",
+      "lesson": "# L'alphabet et la prononciation allemande\n\n## Introduction\n\nL'allemand s'écrit avec l'alphabet latin mais comporte **quatre lettres supplémentaires** : trois voyelles infléchies (**Umlaut**) — **ä, ö, ü** — et le **ß** (appelé *Eszett* ou *scharfes S*, prononcé comme un *s* dur). Bien prononcer dès la Première est essentiel pour être compris et pour bien orthographier.\n\n## Les sons particuliers\n\nL'allemand se prononce de façon assez **régulière** : on lit presque toujours ce qui est écrit. Voici les sons qui posent problème aux francophones :\n\n| Lettre(s) | Prononciation | Exemple |\n|-----------|---------------|---------|\n| **w** | comme le *v* français | *Wasser* (l'eau) |\n| **v** | comme un *f* | *Vater* (le père) |\n| **z** | *ts* | *Zeit* (le temps) |\n| **s** + voyelle | *z* doux | *Sonne* (le soleil) |\n| **ch** | son guttural | *ich* (je), *Buch* (le livre) |\n| **sch** | *ch* français | *Schule* (l'école) |\n| **ei** | *aïe* | *mein* (mon) |\n| **ie** | *i* long | *Liebe* (l'amour) |\n| **eu / äu** | *oï* | *heute* (aujourd'hui) |\n\n## Les Umlauts\n\nLes **Umlauts** changent le sens d'un mot ! Il faut donc bien les distinguer :\n- **a → ä** : *Mann* (l'homme) → *Männer* (les hommes)\n- **o → ö** : *schon* (déjà) → *schön* (beau)\n- **u → ü** : *Mutter* (la mère) → *Mütter* (les mères)\n\nLe son **ü** se forme en disant *i* avec les lèvres arrondies comme pour *ou*.\n\n## Règles importantes\n\n- Tous les **noms communs** prennent une **majuscule** : *das Haus* (la maison), *der Tisch* (la table).\n- L'accent tonique tombe en général sur la **première syllabe** : *Apfel* (la pomme), *Lehrer* (le professeur).\n- Le **h** après une voyelle l'**allonge** et ne se prononce pas : *gehen* (aller), *Jahr* (l'année).\n\n## Conclusion\n\nMaîtriser la prononciation et l'alphabet (en sachant **épeler** : *Wie schreibt man das?* — Comment ça s'écrit ?) est la base pour progresser en allemand.",
+      "quiz": {
+        "questions": [
+          { "question": "Comment se prononce la lettre 'w' en allemand ?", "options": ["comme un 'v' français", "comme un 'w' anglais", "comme un 'f'", "elle est muette"], "answer": 0 },
+          { "question": "Que signifie le 'ß' (Eszett) ?", "options": ["un 'b' allongé", "un 's' dur (double s)", "un 'z' français", "une voyelle"], "answer": 1 },
+          { "question": "Comment se prononce 'ei' dans 'mein' ?", "options": ["'é'", "'i'", "'aïe'", "'oï'"], "answer": 2 },
+          { "question": "Tous les noms communs en allemand prennent...", "options": ["un accent", "une majuscule", "un Umlaut", "un tréma obligatoire"], "answer": 1 },
+          { "question": "Le groupe 'sch' se prononce comme...", "options": ["le 'ch' guttural", "le 'ch' français (comme dans 'chat')", "un 's' simple", "un 'k'"], "answer": 1 }
+        ]
+      }
+    },
+    {
+      "title": "Les salutations et se présenter (sich vorstellen)",
+      "video": "",
+      "lesson": "# Les salutations et se présenter\n\n## Introduction\n\nSavoir **saluer** et **se présenter** est la première compétence de communication. En allemand, on distingue le registre **familier** (*du*, le tutoiement) du registre **poli** (*Sie*, le vouvoiement), à utiliser avec un adulte inconnu ou un supérieur.\n\n## Saluer et prendre congé\n\n| Allemand | Français |\n|----------|----------|\n| *Guten Morgen!* | Bonjour (le matin) |\n| *Guten Tag!* | Bonjour (la journée) |\n| *Guten Abend!* | Bonsoir |\n| *Hallo! / Hi!* | Salut (familier) |\n| *Auf Wiedersehen!* | Au revoir |\n| *Tschüss!* | Salut (en partant, familier) |\n| *Gute Nacht!* | Bonne nuit |\n\n## Demander comment ça va\n\n- *Wie geht es dir?* (Comment vas-tu ? — familier)\n- *Wie geht es Ihnen?* (Comment allez-vous ? — poli)\n- Réponses : *Mir geht es gut, danke.* (Je vais bien, merci.) / *Es geht.* (Ça va.) / *Nicht so gut.* (Pas très bien.)\n\n## Se présenter\n\nLes phrases-clés à connaître par cœur :\n- *Ich heiße Anna.* (Je m'appelle Anna.) ou *Mein Name ist Anna.*\n- *Ich bin sechzehn Jahre alt.* (J'ai seize ans.)\n- *Ich komme aus Kamerun.* (Je viens du Cameroun.)\n- *Ich wohne in Yaoundé.* (J'habite à Yaoundé.)\n- *Ich spreche Französisch und Deutsch.* (Je parle français et allemand.)\n- *Ich gehe in die Schule.* (Je vais à l'école.)\n\n## Poser des questions à quelqu'un\n\n- *Wie heißt du?* (Comment t'appelles-tu ?)\n- *Woher kommst du?* (D'où viens-tu ?)\n- *Wo wohnst du?* (Où habites-tu ?)\n- *Wie alt bist du?* (Quel âge as-tu ?)\n\nPour répondre poliment quand on rencontre quelqu'un : *Freut mich!* ou *Es freut mich, dich kennenzulernen.* (Ravi de te connaître !)\n\n## Conclusion\n\nUn court dialogue de présentation combine ces éléments : on salue, on dit son nom, son âge, son origine et son lieu d'habitation. Pensez toujours à choisir entre **du** et **Sie** selon la personne.",
+      "quiz": {
+        "questions": [
+          { "question": "Comment dit-on 'Comment t'appelles-tu ?' ?", "options": ["Wo wohnst du?", "Wie heißt du?", "Woher kommst du?", "Wie alt bist du?"], "answer": 1 },
+          { "question": "Quelle salutation utilise-t-on le soir ?", "options": ["Guten Morgen!", "Gute Nacht!", "Guten Abend!", "Hallo!"], "answer": 2 },
+          { "question": "Le pronom poli (vouvoiement) est...", "options": ["du", "Sie", "ihr", "es"], "answer": 1 },
+          { "question": "'Ich komme aus Kamerun' signifie...", "options": ["J'habite au Cameroun", "Je viens du Cameroun", "Je vais au Cameroun", "J'aime le Cameroun"], "answer": 1 },
+          { "question": "Comment répond-on à 'Wie geht es dir?' pour dire que ça va bien ?", "options": ["Auf Wiedersehen.", "Mir geht es gut, danke.", "Ich heiße gut.", "Tschüss."], "answer": 1 }
+        ]
+      }
+    },
+    {
+      "title": "Les articles et le genre des noms",
+      "video": "",
+      "lesson": "# Les articles et le genre des noms\n\n## Introduction\n\nEn allemand, chaque nom a un **genre** : **masculin**, **féminin** ou **neutre**. Le genre n'est pas toujours logique, c'est pourquoi il faut **toujours apprendre le nom avec son article**. L'article change aussi selon le **cas** (nous verrons cela plus tard) ; ici on étudie le **Nominativ** (sujet).\n\n## Les articles définis (le, la, les)\n\n| Genre | Article | Exemple |\n|-------|---------|---------|\n| Masculin | **der** | *der Mann* (l'homme) |\n| Féminin | **die** | *die Frau* (la femme) |\n| Neutre | **das** | *das Kind* (l'enfant) |\n| Pluriel | **die** | *die Männer* (les hommes) |\n\nAu pluriel, l'article est **die** pour tous les genres.\n\n## Les articles indéfinis (un, une)\n\n| Genre | Article | Exemple |\n|-------|---------|---------|\n| Masculin | **ein** | *ein Tisch* (une table) |\n| Féminin | **eine** | *eine Lampe* (une lampe) |\n| Neutre | **ein** | *ein Buch* (un livre) |\n\nL'indéfini **n'a pas de pluriel** : on emploie le nom seul (*Bücher* = des livres).\n\n## Quelques indices pour deviner le genre\n\nLe genre n'est pas totalement imprévisible. Quelques règles utiles :\n- Souvent **masculins** : les jours, mois, saisons (*der Montag*, *der Sommer*).\n- Souvent **féminins** : les noms en **-ung**, **-heit**, **-keit**, **-schaft** (*die Zeitung* le journal, *die Freiheit* la liberté).\n- Souvent **neutres** : les noms en **-chen** et **-lein** (diminutifs) (*das Mädchen* la jeune fille).\n\n## Attention au piège\n\n*Das Mädchen* (la jeune fille) est **neutre** à cause du suffixe *-chen*, même si le sens est féminin ! Le genre grammatical ne suit pas toujours le sexe réel.\n\n## Conclusion\n\nRetenez la règle d'or : **n'apprenez jamais un nom seul**, mais toujours avec son article (*der*, *die* ou *das*) et son pluriel. C'est la clé pour réussir la déclinaison plus tard.",
+      "quiz": {
+        "questions": [
+          { "question": "Quel est l'article défini masculin au Nominativ ?", "options": ["die", "das", "der", "den"], "answer": 2 },
+          { "question": "'Une lampe' (féminin) se dit...", "options": ["ein Lampe", "eine Lampe", "einer Lampe", "das Lampe"], "answer": 1 },
+          { "question": "Au pluriel, l'article défini est toujours...", "options": ["der", "das", "die", "ein"], "answer": 2 },
+          { "question": "Quel genre a 'das Mädchen' (la jeune fille) ?", "options": ["masculin", "féminin", "neutre", "pluriel"], "answer": 2 },
+          { "question": "Les noms en '-ung' (ex. die Zeitung) sont généralement...", "options": ["masculins", "féminins", "neutres", "sans genre"], "answer": 1 }
+        ]
+      }
+    },
+    {
+      "title": "Les pronoms personnels",
+      "video": "",
+      "lesson": "# Les pronoms personnels\n\n## Introduction\n\nLes **pronoms personnels** (*Personalpronomen*) remplacent un nom pour éviter les répétitions. Au Nominativ (sujet), ils sont indispensables pour conjuguer les verbes. Une particularité allemande : il existe **trois façons** de dire « vous ».\n\n## Tableau des pronoms sujets (Nominativ)\n\n| Personne | Allemand | Français |\n|----------|----------|----------|\n| 1re sing. | **ich** | je |\n| 2e sing. | **du** | tu |\n| 3e sing. masc. | **er** | il |\n| 3e sing. fém. | **sie** | elle |\n| 3e sing. neutre | **es** | il/elle (neutre) |\n| 1re plur. | **wir** | nous |\n| 2e plur. | **ihr** | vous (familier, plusieurs) |\n| 3e plur. | **sie** | ils/elles |\n| Forme polie | **Sie** | vous (politesse) |\n\n## Les trois 'vous'\n\nC'est le point délicat pour les francophones :\n- **du** → on tutoie **une seule** personne proche (ami, camarade).\n- **ihr** → on s'adresse à **plusieurs** personnes qu'on tutoie (un groupe d'amis).\n- **Sie** (toujours avec **majuscule**) → registre **poli**, singulier ou pluriel.\n\n## Le pronom 'sie/Sie'\n\nAttention à ne pas confondre :\n- **sie** (minuscule) = *elle* ou *ils/elles*\n- **Sie** (majuscule) = *vous* (politesse)\n\nOn les distingue grâce à la **majuscule** et au **verbe** : *Sie kommen* (vous venez), *sie kommt* (elle vient).\n\n## Le pronom 'es'\n\nLe pronom **es** sert aussi pour les expressions impersonnelles :\n- *Es regnet.* (Il pleut.)\n- *Es ist kalt.* (Il fait froid.)\n- *Wie spät ist es?* (Quelle heure est-il ?)\n\n## Conclusion\n\nBien choisir son pronom, c'est respecter à la fois la **grammaire** (genre du nom remplacé) et la **politesse** (du / ihr / Sie). Reliez toujours le pronom à la bonne terminaison du verbe.",
+      "quiz": {
+        "questions": [
+          { "question": "Quel pronom signifie 'nous' ?", "options": ["ihr", "wir", "sie", "uns"], "answer": 1 },
+          { "question": "Pour vouvoyer poliment, on utilise...", "options": ["du", "ihr", "Sie", "es"], "answer": 2 },
+          { "question": "On s'adresse à un groupe d'amis (tutoiement) avec...", "options": ["du", "ihr", "Sie", "wir"], "answer": 1 },
+          { "question": "Dans 'Es regnet', le pronom 'es' est...", "options": ["un sujet personnel", "un pronom impersonnel", "un article", "un pluriel"], "answer": 1 },
+          { "question": "'sie kommt' signifie...", "options": ["vous venez", "ils viennent", "elle vient", "nous venons"], "answer": 2 }
+        ]
+      }
+    },
+    {
+      "title": "Le présent de sein et haben",
+      "video": "",
+      "lesson": "# Le présent de 'sein' et 'haben'\n\n## Introduction\n\nLes deux verbes les plus importants de l'allemand sont **sein** (être) et **haben** (avoir). Ils sont **irréguliers** et servent aussi d'**auxiliaires** pour former le passé composé (*Perfekt*). Il faut les connaître parfaitement.\n\n## Conjugaison de 'sein' (être)\n\n| Pronom | Forme | Français |\n|--------|-------|----------|\n| ich | **bin** | je suis |\n| du | **bist** | tu es |\n| er/sie/es | **ist** | il/elle est |\n| wir | **sind** | nous sommes |\n| ihr | **seid** | vous êtes |\n| sie/Sie | **sind** | ils sont / vous êtes |\n\nExemples : *Ich bin müde.* (Je suis fatigué.) — *Wir sind Schüler.* (Nous sommes élèves.)\n\n## Conjugaison de 'haben' (avoir)\n\n| Pronom | Forme | Français |\n|--------|-------|----------|\n| ich | **habe** | j'ai |\n| du | **hast** | tu as |\n| er/sie/es | **hat** | il/elle a |\n| wir | **haben** | nous avons |\n| ihr | **habt** | vous avez |\n| sie/Sie | **haben** | ils ont / vous avez |\n\nExemples : *Ich habe einen Bruder.* (J'ai un frère.) — *Du hast Recht.* (Tu as raison.)\n\n## Expressions idiomatiques avec 'haben'\n\nL'allemand utilise *haben* là où le français utilise parfois *être* :\n- *Ich habe Hunger.* (J'ai faim.)\n- *Ich habe Durst.* (J'ai soif.)\n- *Ich habe Angst.* (J'ai peur.)\n- *Wie alt bist du?* — *Ich bin 16.* (mais ici on emploie **sein** pour l'âge !)\n\n## À retenir\n\nNotez que pour l'**âge** on utilise **sein** : *Ich bin sechzehn Jahre alt.* (J'ai 16 ans, littéralement « je suis 16 ans »).\n\n## Conclusion\n\n**Sein** et **haben** sont la base de toute la grammaire allemande. Apprenez-les par cœur dans les deux sens : ils reviendront constamment, notamment pour le *Perfekt*.",
+      "quiz": {
+        "questions": [
+          { "question": "Comment conjugue-t-on 'sein' avec 'du' ?", "options": ["du bin", "du bist", "du ist", "du seid"], "answer": 1 },
+          { "question": "'Nous avons' se dit...", "options": ["wir habt", "wir hast", "wir haben", "wir sind"], "answer": 2 },
+          { "question": "Pour dire 'J'ai faim', on dit...", "options": ["Ich bin Hunger.", "Ich habe Hunger.", "Ich hast Hunger.", "Ich ist Hunger."], "answer": 1 },
+          { "question": "Pour dire son âge, on utilise le verbe...", "options": ["haben", "sein", "machen", "gehen"], "answer": 1 },
+          { "question": "Quelle est la forme correcte : 'Il est fatigué' ?", "options": ["Er bin müde.", "Er bist müde.", "Er ist müde.", "Er sind müde."], "answer": 2 }
+        ]
+      }
+    },
+    {
+      "title": "Le présent des verbes réguliers et irréguliers",
+      "video": "",
+      "lesson": "# Le présent des verbes\n\n## Introduction\n\nAu présent (*Präsens*), le verbe allemand se conjugue en ajoutant des **terminaisons** au radical. La plupart des verbes sont **réguliers** (verbes faibles), mais certains verbes courants changent leur **voyelle** du radical : ce sont les verbes **irréguliers** (verbes forts).\n\n## Les verbes réguliers (faibles)\n\nOn prend l'infinitif (ex. *spielen* = jouer), on enlève **-en** pour obtenir le radical (*spiel-*), puis on ajoute les terminaisons :\n\n| Pronom | Terminaison | *spielen* |\n|--------|-------------|-----------|\n| ich | **-e** | spiel**e** |\n| du | **-st** | spiel**st** |\n| er/sie/es | **-t** | spiel**t** |\n| wir | **-en** | spiel**en** |\n| ihr | **-t** | spiel**t** |\n| sie/Sie | **-en** | spiel**en** |\n\nExemple : *Ich spiele Fußball.* (Je joue au football.)\n\n## Les verbes à modification du radical (forts)\n\nCertains verbes changent leur voyelle aux 2e et 3e personnes du **singulier** seulement :\n- **a → ä** : *fahren* (rouler) → *du fährst*, *er fährt*\n- **e → i** : *sprechen* (parler) → *du sprichst*, *er spricht*\n- **e → ie** : *sehen* (voir) → *du siehst*, *er sieht*\n\nLes autres personnes restent régulières : *wir sprechen*, *ihr sprecht*.\n\n## Cas particuliers d'orthographe\n\nQuand le radical finit par **-t** ou **-d**, on ajoute un **e** pour faciliter la prononciation :\n- *arbeiten* (travailler) → *du arbeit**e**st*, *er arbeit**e**t*\n- *finden* (trouver) → *du find**e**st*\n\n## La place du verbe\n\nDans une phrase déclarative, le verbe conjugué est **toujours en deuxième position** :\n- *Ich lerne heute Deutsch.* (J'apprends l'allemand aujourd'hui.)\n- *Heute lerne ich Deutsch.* (le verbe reste en 2e position même si on commence autrement)\n\n## Conclusion\n\nMaîtrisez d'abord les terminaisons régulières, puis mémorisez les verbes forts fréquents (*fahren, sprechen, sehen, lesen, essen, nehmen*). La **règle de la deuxième position** du verbe est fondamentale en allemand.",
+      "quiz": {
+        "questions": [
+          { "question": "Quelle est la terminaison du verbe avec 'du' au présent ?", "options": ["-e", "-st", "-t", "-en"], "answer": 1 },
+          { "question": "Comment conjugue-t-on 'sprechen' avec 'er' ?", "options": ["er sprechen", "er sprecht", "er spricht", "er sprichst"], "answer": 2 },
+          { "question": "Le verbe 'fahren' avec 'du' donne...", "options": ["du fahrst", "du fährst", "du fahrt", "du fährt"], "answer": 1 },
+          { "question": "Dans une phrase déclarative, le verbe conjugué est en...", "options": ["1re position", "2e position", "dernière position", "n'importe où"], "answer": 1 },
+          { "question": "Avec 'arbeiten' et 'er', on écrit...", "options": ["er arbeitt", "er arbeitet", "er arbeitst", "er arbeit"], "answer": 1 }
+        ]
+      }
+    },
+    {
+      "title": "Le Nominativ et l'Akkusativ",
+      "video": "",
+      "lesson": "# Le Nominativ et l'Akkusativ\n\n## Introduction\n\nL'allemand est une langue à **cas** : la fonction d'un nom dans la phrase change la forme de son **article**. Les deux premiers cas à maîtriser sont le **Nominativ** (le sujet) et l'**Akkusativ** (le complément d'objet direct, COD).\n\n## Le Nominativ : le sujet\n\nC'est le cas du **sujet**, celui qui fait l'action. On le trouve en posant la question *Wer?* (Qui ?) ou *Was?* (Quoi ?).\n- *Der Mann liest.* (L'homme lit.) → *Wer liest? Der Mann.*\n\n## L'Akkusativ : le COD\n\nC'est le cas du **complément d'objet direct**. On le trouve avec *Wen?* (Qui ?) ou *Was?* (Quoi ?).\n- *Ich sehe den Mann.* (Je vois l'homme.) → *Wen sehe ich? Den Mann.*\n\n## Tableau comparatif des articles\n\n| Genre | Nominativ (défini / indéfini) | Akkusativ (défini / indéfini) |\n|-------|-------------------------------|-------------------------------|\n| Masculin | **der / ein** | **den / einen** |\n| Féminin | **die / eine** | **die / eine** |\n| Neutre | **das / ein** | **das / ein** |\n| Pluriel | **die** | **die** |\n\n## La règle essentielle\n\n**Seul le masculin change** à l'Akkusativ : *der → den*, *ein → einen*. Le féminin, le neutre et le pluriel restent **identiques**.\n\nExemples :\n- *Ich habe einen Bruder.* (J'ai un frère — masculin → einen)\n- *Ich habe eine Schwester.* (J'ai une sœur — féminin → eine, inchangé)\n- *Ich kaufe ein Buch.* (J'achète un livre — neutre → ein, inchangé)\n\n## Verbes courants suivis de l'Akkusativ\n\n*haben, sehen, kaufen, essen, trinken, lesen, suchen, finden*.\n- *Ich trinke einen Kaffee.* (Je bois un café.)\n- *Er sucht den Schlüssel.* (Il cherche la clé.)\n\n## Conclusion\n\nRetenez la formule magique : à l'Akkusativ, **le masculin prend -n** (*den/einen*). Tout le reste ne bouge pas. C'est la première étape vers la maîtrise des déclinaisons allemandes.",
+      "quiz": {
+        "questions": [
+          { "question": "Le Nominativ est le cas du...", "options": ["complément d'objet", "sujet", "lieu", "temps"], "answer": 1 },
+          { "question": "À l'Akkusativ, l'article masculin 'der' devient...", "options": ["dem", "des", "den", "der"], "answer": 2 },
+          { "question": "Quelle phrase est correcte ?", "options": ["Ich habe ein Bruder.", "Ich habe einen Bruder.", "Ich habe einem Bruder.", "Ich habe einer Bruder."], "answer": 1 },
+          { "question": "À l'Akkusativ, le féminin 'eine'...", "options": ["devient einen", "devient einem", "reste eine", "devient einer"], "answer": 2 },
+          { "question": "Quel mot interrogatif sert à trouver le COD ?", "options": ["Wer?", "Wen?", "Wo?", "Wann?"], "answer": 1 }
+        ]
+      }
+    },
+    {
+      "title": "Les nombres, l'heure et la date",
+      "video": "",
+      "lesson": "# Les nombres, l'heure et la date\n\n## Introduction\n\nSavoir compter, dire l'heure et la date est indispensable dans la vie quotidienne. L'allemand a une particularité célèbre : pour les nombres, on dit les **unités avant les dizaines**.\n\n## Les nombres de 0 à 20\n\n*null, eins, zwei, drei, vier, fünf, sechs, sieben, acht, neun, zehn, elf, zwölf, dreizehn, vierzehn, fünfzehn, sechzehn, siebzehn, achtzehn, neunzehn, zwanzig.*\n\n## Les dizaines et l'inversion\n\nÀ partir de 21, on dit **l'unité + und + la dizaine**, en un seul mot :\n- **21** = *einundzwanzig* (littéralement « un-et-vingt »)\n- **34** = *vierunddreißig* (quatre-et-trente)\n- **99** = *neunundneunzig*\n\nDizaines : *zwanzig (20), dreißig (30), vierzig (40), fünfzig (50), sechzig (60), siebzig (70), achtzig (80), neunzig (90), hundert (100).*\n\n## Dire l'heure\n\nQuestion : *Wie spät ist es?* (Quelle heure est-il ?) ou *Wie viel Uhr ist es?*\n\n| Heure | Allemand |\n|-------|----------|\n| 8h00 | *Es ist acht Uhr.* |\n| 8h15 | *Es ist Viertel nach acht.* |\n| 8h30 | *Es ist halb neun.* (demie « vers » neuf !) |\n| 8h45 | *Es ist Viertel vor neun.* |\n\nAttention : *halb neun* signifie **8h30** (la moitié *avant* neuf heures), pas 9h30 !\n\n## Les jours et les mois\n\nLes jours : *Montag, Dienstag, Mittwoch, Donnerstag, Freitag, Samstag, Sonntag* (lundi à dimanche).\nLes mois : *Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember.*\n\n## Dire la date\n\nOn utilise les nombres **ordinaux** : *der erste, der zweite, der dritte...*\n- *Heute ist der dritte März.* (Aujourd'hui, c'est le 3 mars.)\n- *Wann hast du Geburtstag?* — *Am fünften Mai.* (Le 5 mai.)\n\n## Conclusion\n\nLe piège principal reste l'**inversion des nombres** (*einundzwanzig*) et l'heure *halb* (la demie compte vers l'heure suivante). Entraînez-vous à compter et à lire l'horloge en allemand.",
+      "quiz": {
+        "questions": [
+          { "question": "Comment dit-on '21' en allemand ?", "options": ["zwanzigeins", "einundzwanzig", "zwanzig und eins", "zweiundzwanzig"], "answer": 1 },
+          { "question": "Que signifie 'Es ist halb neun' ?", "options": ["Il est 9h30", "Il est 8h30", "Il est 9h00", "Il est 8h15"], "answer": 1 },
+          { "question": "Quel est le mot allemand pour 'mercredi' ?", "options": ["Montag", "Dienstag", "Mittwoch", "Donnerstag"], "answer": 2 },
+          { "question": "'Wie spät ist es?' signifie...", "options": ["Quel jour est-on ?", "Quelle heure est-il ?", "Quel âge as-tu ?", "Quand viens-tu ?"], "answer": 1 },
+          { "question": "Comment dit-on 'Viertel nach acht' ?", "options": ["8h45", "7h45", "8h15", "8h30"], "answer": 2 }
+        ]
+      }
+    },
+    {
+      "title": "Les verbes de modalité (Modalverben)",
+      "video": "",
+      "lesson": "# Les verbes de modalité\n\n## Introduction\n\nLes **verbes de modalité** (*Modalverben*) expriment la possibilité, l'obligation, la volonté ou la permission. Ce sont : **können** (pouvoir/savoir), **müssen** (devoir), **wollen** (vouloir), **dürfen** (avoir le droit), **sollen** (devoir, conseil), **mögen** (aimer).\n\n## Une construction particulière\n\nLe verbe modal se conjugue et le **deuxième verbe** reste à l'**infinitif**, rejeté à la **fin** de la phrase :\n- *Ich kann gut schwimmen.* (Je sais bien nager.)\n- *Du musst die Hausaufgaben machen.* (Tu dois faire les devoirs.)\n\n## Conjugaison de 'können' (pouvoir / savoir)\n\n| Pronom | Forme |\n|--------|-------|\n| ich | **kann** |\n| du | **kannst** |\n| er/sie/es | **kann** |\n| wir | **können** |\n| ihr | **könnt** |\n| sie/Sie | **können** |\n\nNotez que **ich** et **er** ont la **même forme** (pas de -t à la 3e personne), et que la voyelle change au singulier.\n\n## Le sens des principaux modaux\n\n| Verbe | Sens | Exemple |\n|-------|------|---------|\n| **können** | pouvoir, savoir | *Ich kann Deutsch sprechen.* (Je sais parler allemand.) |\n| **müssen** | devoir (obligation) | *Wir müssen lernen.* (Nous devons étudier.) |\n| **wollen** | vouloir | *Sie will nach Hause gehen.* (Elle veut rentrer.) |\n| **dürfen** | avoir le droit | *Du darfst hier nicht rauchen.* (Tu n'as pas le droit de fumer ici.) |\n| **sollen** | devoir (conseil/ordre) | *Du sollst pünktlich sein.* (Tu dois être ponctuel.) |\n| **mögen** | aimer | *Ich mag Schokolade.* (J'aime le chocolat.) |\n\n## La forme polie 'möchten'\n\n*möchten* (forme de *mögen*) sert à exprimer un **souhait poli** :\n- *Ich möchte einen Kaffee, bitte.* (Je voudrais un café, s'il vous plaît.)\n\n## Conclusion\n\nRetenez deux choses : la **conjugaison irrégulière** au singulier (ich = er, sans -t) et le **rejet de l'infinitif en fin de phrase**. Les modaux rendent la communication beaucoup plus riche.",
+      "quiz": {
+        "questions": [
+          { "question": "Dans une phrase avec un verbe modal, le second verbe va...", "options": ["en 2e position", "à l'infinitif en fin de phrase", "juste après le sujet", "au participe"], "answer": 1 },
+          { "question": "Comment conjugue-t-on 'können' avec 'ich' ?", "options": ["ich kannt", "ich kann", "ich könne", "ich kannst"], "answer": 1 },
+          { "question": "Quel verbe modal exprime l'obligation ?", "options": ["wollen", "müssen", "mögen", "dürfen"], "answer": 1 },
+          { "question": "Pour demander poliment 'Je voudrais un café', on dit...", "options": ["Ich will einen Kaffee.", "Ich kann einen Kaffee.", "Ich möchte einen Kaffee.", "Ich muss einen Kaffee."], "answer": 2 },
+          { "question": "À la 3e personne du singulier (er), 'müssen' donne...", "options": ["er musst", "er muss", "er müsst", "er müssen"], "answer": 1 }
+        ]
+      }
+    },
+    {
+      "title": "La négation : nicht et kein",
+      "video": "",
+      "lesson": "# La négation : nicht et kein\n\n## Introduction\n\nPour dire **non** ou exprimer le contraire, l'allemand dispose de deux mots de négation : **nicht** et **kein**. Bien les distinguer est essentiel, car ils ne s'emploient pas dans les mêmes cas.\n\n## 'kein' : nier un nom\n\n**kein** s'emploie devant un **nom** précédé d'un article **indéfini** (*ein/eine*) ou **sans article**. Il signifie « pas de / aucun ». Il se décline comme *ein* :\n- *Ich habe ein Auto.* → *Ich habe **kein** Auto.* (Je n'ai pas de voiture.)\n- *Ich trinke Milch.* → *Ich trinke **keine** Milch.* (Je ne bois pas de lait.)\n- *Er hat einen Bruder.* → *Er hat **keinen** Bruder.* (Akkusativ masculin.)\n\n## 'nicht' : tout le reste\n\n**nicht** sert à nier un **verbe**, un **adjectif**, un **adverbe**, ou un nom précédé d'un article **défini** :\n- *Ich verstehe das nicht.* (Je ne comprends pas ça.)\n- *Das Buch ist nicht interessant.* (Le livre n'est pas intéressant.)\n- *Ich kenne den Mann nicht.* (Je ne connais pas l'homme — article défini.)\n\n## Tableau de décision\n\n| On nie... | Négation | Exemple |\n|-----------|----------|---------|\n| nom avec *ein* / sans article | **kein** | *Ich habe kein Geld.* (pas d'argent) |\n| nom avec *der/die/das* | **nicht** | *Ich mag den Film nicht.* |\n| un verbe / une action | **nicht** | *Sie kommt nicht.* |\n| un adjectif | **nicht** | *Es ist nicht teuer.* |\n\n## La place de 'nicht'\n\n- Pour nier **toute la phrase**, *nicht* va plutôt à la **fin** : *Ich komme heute nicht.* (Je ne viens pas aujourd'hui.)\n- Pour nier un **élément précis**, *nicht* se place **devant** cet élément : *Ich komme nicht heute, sondern morgen.* (Je ne viens pas aujourd'hui, mais demain.)\n\n## Répondre 'doch'\n\nFait unique de l'allemand : pour **contredire** une question négative, on répond **doch** (et non *ja*) :\n- *Magst du keinen Tee?* — *Doch!* (Tu n'aimes pas le thé ? — Si !)\n\n## Conclusion\n\nLa règle simple : **kein** devant un nom (avec *ein* ou sans article), **nicht** partout ailleurs. Et n'oubliez pas le précieux **doch** pour répondre « si ».",
+      "quiz": {
+        "questions": [
+          { "question": "Pour nier 'Ich habe ein Auto', on dit...", "options": ["Ich habe nicht Auto.", "Ich habe kein Auto.", "Ich habe nicht ein Auto.", "Ich habe keine Auto."], "answer": 1 },
+          { "question": "On utilise 'nicht' pour nier...", "options": ["un nom avec 'ein'", "un verbe ou un adjectif", "un nom sans article", "rien"], "answer": 1 },
+          { "question": "Comment nier 'Ich mag den Film' ?", "options": ["Ich mag kein Film.", "Ich mag den Film nicht.", "Ich mag keinen Film.", "Ich nicht mag den Film."], "answer": 1 },
+          { "question": "Pour répondre 'si' à une question négative, on dit...", "options": ["ja", "nein", "doch", "kein"], "answer": 2 },
+          { "question": "'Er hat einen Bruder' à la forme négative donne...", "options": ["Er hat nicht Bruder.", "Er hat keinen Bruder.", "Er hat kein Bruder.", "Er hat keine Bruder."], "answer": 1 }
+        ]
+      }
+    },
+    {
+      "title": "Le Perfekt (passé composé)",
+      "video": "",
+      "lesson": "# Le Perfekt (passé composé)\n\n## Introduction\n\nLe **Perfekt** est le temps du passé le plus utilisé à l'**oral** et dans les conversations. Il correspond au passé composé français. Il se forme avec un **auxiliaire** (*haben* ou *sein*) conjugué au présent + le **participe passé** (*Partizip II*) rejeté en **fin de phrase**.\n\n## La structure\n\n**Sujet + auxiliaire (présent) + ... + participe passé (fin)**\n- *Ich habe Deutsch gelernt.* (J'ai appris l'allemand.)\n- *Wir sind nach Hause gegangen.* (Nous sommes rentrés à la maison.)\n\n## Former le participe passé\n\nPour les verbes **réguliers (faibles)** : **ge- + radical + -t**\n- *lernen* → *ge**lern**t*\n- *spielen* → *ge**spiel**t*\n- *machen* → *ge**mach**t*\n\nPour les verbes **irréguliers (forts)** : **ge- + radical (souvent modifié) + -en**\n- *gehen* → *ge**gang**en*\n- *sehen* → *ge**seh**en*\n- *trinken* → *ge**trunk**en*\n\n## Choisir l'auxiliaire : haben ou sein ?\n\n| Auxiliaire | Quand ? | Exemple |\n|------------|---------|---------|\n| **haben** | la majorité des verbes | *Ich habe gegessen.* (J'ai mangé.) |\n| **sein** | verbes de **mouvement** ou de **changement d'état** | *Er ist gekommen.* (Il est venu.) |\n\nVerbes courants avec **sein** : *gehen* (aller), *kommen* (venir), *fahren* (rouler), *fliegen* (voler), *bleiben* (rester), *sein* (être), *werden* (devenir).\n\n## Cas particuliers\n\n- Les verbes en **-ieren** ne prennent **pas** *ge-* : *studieren* → *studiert* (*Ich habe studiert.*).\n- Les verbes à préfixe inséparable (*be-, ver-, er-*) n'ont pas de *ge-* : *verstehen* → *verstanden*.\n\n## Conclusion\n\nLe Perfekt est incontournable pour raconter ce qui s'est passé. Mémorisez les participes des **verbes forts** fréquents et la règle de l'auxiliaire : **sein** pour le mouvement/changement, **haben** pour le reste.",
+      "quiz": {
+        "questions": [
+          { "question": "Le Perfekt se forme avec un auxiliaire + ...", "options": ["l'infinitif", "le participe passé", "le radical seul", "un verbe modal"], "answer": 1 },
+          { "question": "Quel est le participe passé de 'lernen' ?", "options": ["gelernen", "gelernt", "lernt", "gelernet"], "answer": 1 },
+          { "question": "Quel auxiliaire utilise-t-on avec 'gehen' ?", "options": ["haben", "sein", "werden", "können"], "answer": 1 },
+          { "question": "Dans le Perfekt, le participe passé se place...", "options": ["en 2e position", "juste après le sujet", "à la fin de la phrase", "au début"], "answer": 2 },
+          { "question": "Quelle phrase est correcte ?", "options": ["Ich habe nach Hause gegangen.", "Ich bin nach Hause gegangen.", "Ich habe nach Hause gehen.", "Ich bin nach Hause gehen."], "answer": 1 }
+        ]
+      }
+    }
+  ]
+}

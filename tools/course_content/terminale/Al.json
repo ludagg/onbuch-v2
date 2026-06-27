@@ -1,0 +1,174 @@
+{
+  "code": "Al",
+  "level": "Terminale",
+  "chapters": [
+    {
+      "title": "Alphabet, prononciation et premières règles",
+      "video": "",
+      "lesson": "# Alphabet et prononciation\n\n## Introduction\n\nMaîtriser la **prononciation** est la base pour bien parler et comprendre l'allemand. Cette langue se lit de façon assez régulière : une fois les règles connues, on lit presque tout correctement.\n\n## L'alphabet et les lettres particulières\n\nL'alphabet allemand a 26 lettres, plus quatre signes spéciaux :\n\n| Lettre | Nom | Exemple |\n|---|---|---|\n| **ä** | a-Umlaut | *Mädchen* (jeune fille) |\n| **ö** | o-Umlaut | *schön* (beau) |\n| **ü** | u-Umlaut | *Tür* (porte) |\n| **ß** | Eszett | *Straße* (rue) |\n\nLe **ß** se prononce comme un *s* sourd ; il ne s'écrit jamais en majuscule au début d'un mot.\n\n## Sons importants\n\n- **ch** après *a, o, u* = son rauque : *Buch* (livre), *machen* (faire).\n- **ch** après *i, e* = son doux : *ich* (je), *Milch* (lait).\n- **sch** = *ch* français de « chat » : *Schule* (école).\n- **sp / st** en début de mot = *chp / cht* : *Sport*, *Stadt* (ville).\n- **ei** se prononce « aï » : *mein* (mon) ; **ie** se prononce « i » long : *Liebe* (amour).\n- **eu / äu** se prononcent « oï » : *heute* (aujourd'hui), *Häuser* (maisons).\n- **v** se prononce souvent « f » : *Vater* (père) ; **w** se prononce « v » : *Wasser* (eau).\n- **z** se prononce « ts » : *Zeit* (temps).\n\n## Règles d'écriture\n\n- Tous les **noms** (Substantive) prennent une **majuscule** : *der Tisch* (la table), *die Liebe* (l'amour).\n- Le pronom de politesse **Sie** (vous) prend toujours une majuscule.\n\n## Exemple\n\n*Guten Tag! Ich heiße Anna und ich komme aus Kamerun.* (Bonjour ! Je m'appelle Anna et je viens du Cameroun.)\n\nBien articuler les voyelles longues et courtes change parfois le sens : *Stadt* (ville) ≠ *Staat* (État).",
+      "quiz": {
+        "questions": [
+          {"question": "Comment se prononce le « ie » dans *Liebe* ?", "options": ["« aï »", "« i » long", "« é »", "« iè »"], "answer": 1},
+          {"question": "Quel mot est correctement écrit avec une majuscule (nom) ?", "options": ["der tisch", "Der Tisch", "der Tisch", "DER tisch"], "answer": 2},
+          {"question": "La lettre « w » en allemand se prononce comme :", "options": ["« v » français", "« w » anglais", "« ou »", "« f »"], "answer": 0},
+          {"question": "Le signe « ß » correspond au son :", "options": ["« ch »", "« z »", "« s » sourd", "« b »"], "answer": 2},
+          {"question": "Comment se prononce « ei » dans *mein* ?", "options": ["« é »", "« i »", "« oï »", "« aï »"], "answer": 3}
+        ]
+      }
+    },
+    {
+      "title": "Les articles et le genre des noms",
+      "video": "",
+      "lesson": "# Les articles et le genre des noms\n\n## Introduction\n\nEn allemand, chaque nom a un **genre** : masculin, féminin ou neutre. Le genre n'est pas toujours logique : il faut apprendre l'article **avec** le nom.\n\n## Les trois genres\n\n| Genre | Article défini | Article indéfini | Exemple |\n|---|---|---|---|\n| Masculin | **der** | **ein** | *der Mann* (l'homme) |\n| Féminin | **die** | **eine** | *die Frau* (la femme) |\n| Neutre | **das** | **ein** | *das Kind* (l'enfant) |\n\nAu **pluriel**, l'article défini est toujours **die** pour les trois genres : *die Männer, die Frauen, die Kinder*.\n\n## Article défini et indéfini\n\n- L'**article défini** (*der, die, das*) désigne une chose connue : *Der Lehrer ist nett.* (Le professeur est gentil.)\n- L'**article indéfini** (*ein, eine*) désigne une chose nouvelle ou indéterminée : *Ich habe einen Hund.* (J'ai un chien.)\n- La **négation** de *ein* est **kein** : *Ich habe kein Geld.* (Je n'ai pas d'argent.)\n\n## Quelques aides pour deviner le genre\n\n- Mots en **-ung, -heit, -keit, -schaft, -ion** = **féminins** : *die Zeitung* (le journal), *die Freiheit* (la liberté).\n- Mots en **-er** désignant des personnes/métiers = souvent **masculins** : *der Lehrer* (le professeur).\n- Mots en **-chen, -lein** (diminutifs) = **neutres** : *das Mädchen* (la jeune fille).\n- Les jours, mois et saisons sont **masculins** : *der Montag* (lundi), *der Sommer* (l'été).\n\n## Exemple\n\n*Das ist eine Schule. Die Schule ist groß.* (C'est une école. L'école est grande.)\n\nAstuce : notez toujours un nouveau nom sous la forme *der/die/das + nom*, jamais le nom seul.",
+      "quiz": {
+        "questions": [
+          {"question": "Quel est l'article correct de *Frau* (femme) ?", "options": ["der", "das", "die", "ein"], "answer": 2},
+          {"question": "Au pluriel, l'article défini est toujours :", "options": ["der", "die", "das", "den"], "answer": 1},
+          {"question": "Les noms en *-ung* sont en général :", "options": ["masculins", "féminins", "neutres", "pluriels"], "answer": 1},
+          {"question": "Comment dit-on « un enfant » (neutre) ?", "options": ["eine Kind", "ein Kind", "einen Kind", "der Kind"], "answer": 1},
+          {"question": "Quelle est la négation de *ein* ?", "options": ["nicht", "nein", "kein", "ohne"], "answer": 2}
+        ]
+      }
+    },
+    {
+      "title": "Les pronoms personnels et possessifs",
+      "video": "",
+      "lesson": "# Les pronoms personnels et possessifs\n\n## Introduction\n\nLes **pronoms personnels** remplacent une personne ou une chose. Les **pronoms possessifs** expriment l'appartenance. Ils sont indispensables pour construire des phrases correctes.\n\n## Les pronoms personnels (Nominativ)\n\n| Personne | Pronom | Sens |\n|---|---|---|\n| 1re sing. | **ich** | je |\n| 2e sing. | **du** | tu |\n| 3e sing. | **er / sie / es** | il / elle / cela |\n| 1re plur. | **wir** | nous |\n| 2e plur. | **ihr** | vous (familier) |\n| 3e plur. | **sie** | ils/elles |\n| Politesse | **Sie** | vous (poli) |\n\n## Les pronoms à l'accusatif et au datif\n\n| Nominatif | Accusatif | Datif |\n|---|---|---|\n| ich | **mich** | **mir** |\n| du | **dich** | **dir** |\n| er | **ihn** | **ihm** |\n| sie | **sie** | **ihr** |\n| wir | **uns** | **uns** |\n\nExemple : *Er sieht mich.* (Il me voit.) — *Sie hilft mir.* (Elle m'aide.)\n\n## Les adjectifs possessifs\n\n- **mein** (mon), **dein** (ton), **sein** (son, à lui), **ihr** (son, à elle / leur), **unser** (notre), **euer** (votre), **Ihr** (votre, poli).\n\nIls s'accordent comme *ein/kein* : *mein Vater* (mon père), *meine Mutter* (ma mère), *mein Kind* (mon enfant), *meine Eltern* (mes parents).\n\n## Exemple\n\n*Das ist mein Bruder. Seine Tasche ist hier.* (C'est mon frère. Son sac est ici.)\n\nAttention : **ihr** peut signifier « son (à elle) », « leur » ou « vous (familier) » selon le contexte.",
+      "quiz": {
+        "questions": [
+          {"question": "Quel pronom signifie « nous » ?", "options": ["wir", "ihr", "sie", "uns"], "answer": 0},
+          {"question": "À l'accusatif, « ich » devient :", "options": ["mir", "mich", "mein", "ihn"], "answer": 1},
+          {"question": "Comment dit-on « ma mère » ?", "options": ["mein Mutter", "meine Mutter", "meiner Mutter", "meines Mutter"], "answer": 1},
+          {"question": "Dans *Sie hilft mir*, « mir » est au :", "options": ["nominatif", "accusatif", "datif", "génitif"], "answer": 2},
+          {"question": "Le possessif « son (à lui) » se dit :", "options": ["ihr", "sein", "dein", "unser"], "answer": 1}
+        ]
+      }
+    },
+    {
+      "title": "Le présent : verbes réguliers, sein et haben",
+      "video": "",
+      "lesson": "# Le présent de l'indicatif (Präsens)\n\n## Introduction\n\nLe **présent** sert à parler du moment présent, d'habitudes et même du futur proche. C'est le temps le plus utilisé.\n\n## Conjugaison régulière\n\nOn enlève la terminaison **-en** de l'infinitif (le radical) et on ajoute les terminaisons. Exemple avec **lernen** (apprendre) :\n\n| Personne | Terminaison | Forme |\n|---|---|---|\n| ich | **-e** | lern**e** |\n| du | **-st** | lern**st** |\n| er/sie/es | **-t** | lern**t** |\n| wir | **-en** | lern**en** |\n| ihr | **-t** | lern**t** |\n| sie/Sie | **-en** | lern**en** |\n\nExemple : *Wir lernen Deutsch.* (Nous apprenons l'allemand.)\n\n## Les verbes essentiels : sein et haben\n\nDeux verbes irréguliers à connaître par cœur :\n\n| | **sein** (être) | **haben** (avoir) |\n|---|---|---|\n| ich | bin | habe |\n| du | bist | hast |\n| er/sie/es | ist | hat |\n| wir | sind | haben |\n| ihr | seid | habt |\n| sie/Sie | sind | haben |\n\nExemples : *Ich bin Schüler.* (Je suis élève.) — *Du hast ein Buch.* (Tu as un livre.)\n\n## Particularités\n\n- Verbes en **-ten / -den** ajoutent un **-e** : *arbeiten → du arbeitest* (tu travailles).\n- Verbes en **-s, -ss, -ß, -z** : à *du*, on ajoute seulement **-t** : *heißen → du heißt* (tu t'appelles).\n\n## Exemple\n\n*Ich heiße Paul. Ich bin sechzehn Jahre alt und ich wohne in Yaoundé.* (Je m'appelle Paul. J'ai seize ans et j'habite à Yaoundé.)",
+      "quiz": {
+        "questions": [
+          {"question": "Conjuguez *lernen* avec « du » :", "options": ["lerne", "lernst", "lernt", "lernen"], "answer": 1},
+          {"question": "« Ich ___ Schüler » (être) :", "options": ["bin", "bist", "ist", "sind"], "answer": 0},
+          {"question": "« Du ___ ein Buch » (avoir) :", "options": ["habe", "hast", "hat", "habt"], "answer": 1},
+          {"question": "Quelle est la forme correcte de *arbeiten* avec « du » ?", "options": ["du arbeitst", "du arbeitest", "du arbeitet", "du arbeiten"], "answer": 1},
+          {"question": "« Wir ___ Deutsch » (apprendre) :", "options": ["lernt", "lerne", "lernen", "lernst"], "answer": 2}
+        ]
+      }
+    },
+    {
+      "title": "Les verbes irréguliers et à particule séparable",
+      "video": "",
+      "lesson": "# Verbes irréguliers et verbes séparables\n\n## Introduction\n\nBeaucoup de verbes allemands courants sont **irréguliers** : leur voyelle du radical change aux 2e et 3e personnes du singulier. D'autres ont une **particule séparable** qui se déplace dans la phrase.\n\n## Le changement de voyelle\n\nPlusieurs verbes forts changent leur voyelle au présent :\n\n| Infinitif | du | er/sie/es | Sens |\n|---|---|---|---|\n| **fahren** | f**ä**hrst | f**ä**hrt | aller (en véhicule) |\n| **lesen** | l**ie**st | l**ie**st | lire |\n| **sprechen** | spr**i**chst | spr**i**cht | parler |\n| **nehmen** | n**i**mmst | n**i**mmt | prendre |\n| **geben** | g**i**bst | g**i**bt | donner |\n\nExemple : *Er spricht gut Deutsch.* (Il parle bien allemand.) — *Sie liest ein Buch.* (Elle lit un livre.)\n\n## Les verbes à particule séparable\n\nCertains verbes ont un **préfixe** (an-, auf-, aus-, ein-, mit-, zu-, fern-...) qui se **détache** et part à la **fin** de la phrase au présent.\n\n- **aufstehen** (se lever) : *Ich stehe um sieben Uhr auf.* (Je me lève à sept heures.)\n- **einkaufen** (faire les courses) : *Wir kaufen am Samstag ein.* (Nous faisons les courses le samedi.)\n- **fernsehen** (regarder la télé) : *Er sieht jeden Abend fern.* (Il regarde la télé chaque soir.)\n\n## Préfixes inséparables\n\nLes préfixes **be-, ge-, ver-, er-, ent-, emp-, zer-** ne se séparent jamais : *verstehen* (comprendre) → *Ich verstehe dich.* (Je te comprends.)\n\n## Exemple\n\n*Am Morgen stehe ich auf, ich nehme mein Buch und ich fahre zur Schule.* (Le matin je me lève, je prends mon livre et je vais à l'école.)",
+      "quiz": {
+        "questions": [
+          {"question": "Conjuguez *sprechen* avec « er » :", "options": ["spricht", "sprecht", "spracht", "sprichst"], "answer": 0},
+          {"question": "Dans *Ich stehe um 7 Uhr auf*, le verbe à l'infinitif est :", "options": ["stehen", "aufstehen", "auf", "umstehen"], "answer": 1},
+          {"question": "Quel préfixe est INSÉPARABLE ?", "options": ["an-", "auf-", "ver-", "mit-"], "answer": 2},
+          {"question": "« Elle lit un livre » se dit :", "options": ["Sie lest ein Buch", "Sie liest ein Buch", "Sie last ein Buch", "Sie lieset ein Buch"], "answer": 1},
+          {"question": "Conjuguez *fahren* avec « du » :", "options": ["fahrst", "fährst", "fahrt", "fährt"], "answer": 1}
+        ]
+      }
+    },
+    {
+      "title": "Les verbes de modalité (Modalverben)",
+      "video": "",
+      "lesson": "# Les verbes de modalité\n\n## Introduction\n\nLes **Modalverben** expriment la possibilité, l'obligation, la volonté ou la permission. Ils accompagnent un autre verbe à l'**infinitif** placé à la **fin** de la phrase.\n\n## Les six verbes de modalité\n\n| Verbe | Sens | ich / er |\n|---|---|---|\n| **können** | pouvoir (capacité) | kann |\n| **müssen** | devoir (obligation) | muss |\n| **wollen** | vouloir | will |\n| **sollen** | devoir (conseil) | soll |\n| **dürfen** | avoir le droit | darf |\n| **mögen** | aimer | mag |\n\nRemarque : aux 1re et 3e personnes du singulier, la forme est **identique** et **sans -t** : *ich kann, er kann*.\n\n## La construction de la phrase\n\nLe verbe de modalité est conjugué en **2e position** ; le verbe principal reste à l'**infinitif** à la **fin** :\n\n- *Ich kann gut schwimmen.* (Je sais bien nager.)\n- *Wir müssen heute lernen.* (Nous devons étudier aujourd'hui.)\n- *Darf ich hereinkommen?* (Puis-je entrer ?)\n\n## Conjugaison de können\n\n| Personne | Forme |\n|---|---|\n| ich | kann |\n| du | kannst |\n| er/sie/es | kann |\n| wir | können |\n| ihr | könnt |\n| sie/Sie | können |\n\n## La forme polie : möchte\n\n**möchten** (je voudrais) est la forme polie de *wollen* : *Ich möchte einen Kaffee, bitte.* (Je voudrais un café, s'il vous plaît.)\n\n## Exemple\n\n*Ich muss meine Hausaufgaben machen, aber ich möchte ins Kino gehen.* (Je dois faire mes devoirs, mais je voudrais aller au cinéma.)",
+      "quiz": {
+        "questions": [
+          {"question": "Quel verbe signifie « pouvoir / savoir faire » ?", "options": ["müssen", "können", "wollen", "dürfen"], "answer": 1},
+          {"question": "Dans une phrase avec Modalverb, le verbe principal est :", "options": ["conjugué en 2e position", "à l'infinitif à la fin", "supprimé", "au participe"], "answer": 1},
+          {"question": "« Ich ___ heute lernen » (devoir, obligation) :", "options": ["muss", "musst", "müssen", "musste"], "answer": 0},
+          {"question": "La forme polie de *wollen* est :", "options": ["mag", "möchte", "soll", "darf"], "answer": 1},
+          {"question": "« Darf ich hereinkommen? » exprime :", "options": ["une obligation", "une permission", "une capacité", "un souhait"], "answer": 1}
+        ]
+      }
+    },
+    {
+      "title": "Les quatre cas et la déclinaison",
+      "video": "",
+      "lesson": "# Les quatre cas (Kasus)\n\n## Introduction\n\nL'allemand utilise **quatre cas** qui indiquent la **fonction** du nom dans la phrase. L'article change selon le cas.\n\n## Les fonctions des cas\n\n- **Nominatif** : le **sujet**. (Qui ? Was?)\n- **Accusatif** : le **COD**. (Wen? Was?)\n- **Datif** : le **COI** / complément d'attribution. (Wem?)\n- **Génitif** : la **possession**. (Wessen?)\n\n## Tableau des articles définis\n\n| Cas | Masculin | Féminin | Neutre | Pluriel |\n|---|---|---|---|---|\n| **Nom.** | der | die | das | die |\n| **Akk.** | **den** | die | das | die |\n| **Dat.** | **dem** | **der** | **dem** | **den** |\n| **Gen.** | **des** | **der** | **des** | **der** |\n\n## Tableau des articles indéfinis\n\n| Cas | Masculin | Féminin | Neutre |\n|---|---|---|---|\n| **Nom.** | ein | eine | ein |\n| **Akk.** | **einen** | eine | ein |\n| **Dat.** | **einem** | **einer** | **einem** |\n| **Gen.** | **eines** | **einer** | **eines** |\n\n## Exemples par cas\n\n- Nominatif : *Der Mann arbeitet.* (L'homme travaille.)\n- Accusatif : *Ich sehe den Mann.* (Je vois l'homme.)\n- Datif : *Ich gebe dem Mann ein Buch.* (Je donne un livre à l'homme.)\n- Génitif : *Das Auto des Mannes ist neu.* (La voiture de l'homme est neuve.)\n\nOn remarque que seul le **masculin** change beaucoup à l'accusatif (*der → den*). Au datif pluriel, le nom prend souvent un **-n** : *mit den Kindern* (avec les enfants).\n\n## Exemple\n\n*Die Lehrerin gibt dem Schüler das Heft des Direktors.* (La professeure donne au élève le cahier du directeur.)",
+      "quiz": {
+        "questions": [
+          {"question": "Quel cas désigne le sujet ?", "options": ["Nominatif", "Accusatif", "Datif", "Génitif"], "answer": 0},
+          {"question": "À l'accusatif masculin, *der* devient :", "options": ["dem", "des", "den", "der"], "answer": 2},
+          {"question": "« Ich gebe ___ Mann ein Buch » (datif) :", "options": ["den", "dem", "des", "der"], "answer": 1},
+          {"question": "Le génitif répond à la question :", "options": ["Wer?", "Wen?", "Wem?", "Wessen?"], "answer": 3},
+          {"question": "Au datif pluriel, le nom prend souvent la terminaison :", "options": ["-s", "-n", "-e", "-er"], "answer": 1}
+        ]
+      }
+    },
+    {
+      "title": "Les prépositions et le mélange des cas (Wechselpräpositionen)",
+      "video": "",
+      "lesson": "# Les prépositions et les cas\n\n## Introduction\n\nEn allemand, chaque **préposition** impose un **cas** au nom qui la suit. Certaines prennent toujours le même cas, d'autres varient.\n\n## Prépositions toujours suivies de l'accusatif\n\n**durch** (à travers), **für** (pour), **gegen** (contre), **ohne** (sans), **um** (autour de).\n\n- *Das Geschenk ist für meinen Freund.* (Le cadeau est pour mon ami.)\n\n## Prépositions toujours suivies du datif\n\n**aus** (de, hors de), **bei** (chez), **mit** (avec), **nach** (après, vers), **seit** (depuis), **von** (de), **zu** (à, chez).\n\n- *Ich fahre mit dem Bus.* (Je vais en bus.)\n\n## Les Wechselpräpositionen (datif ou accusatif)\n\nNeuf prépositions de lieu prennent l'**accusatif** (mouvement, direction → wohin?) ou le **datif** (position fixe → wo?) :\n\n| Préposition | Sens |\n|---|---|\n| **in** | dans |\n| **auf** | sur |\n| **an** | à, contre |\n| **über** | au-dessus |\n| **unter** | sous |\n| **vor** | devant |\n| **hinter** | derrière |\n| **neben** | à côté |\n| **zwischen** | entre |\n\n## La règle wo? / wohin?\n\n- **Mouvement** (wohin ?) → **accusatif** : *Ich gehe in die Schule.* (Je vais à l'école.)\n- **Position** (wo ?) → **datif** : *Ich bin in der Schule.* (Je suis à l'école.)\n\nAutre exemple : *Ich lege das Buch auf den Tisch* (accusatif, je pose) ≠ *Das Buch liegt auf dem Tisch* (datif, il est posé).\n\n## Exemple\n\n*Am Wochenende fahre ich mit meiner Familie nach Douala und wir gehen ins Restaurant.* (Le week-end je vais à Douala avec ma famille et nous allons au restaurant.)",
+      "quiz": {
+        "questions": [
+          {"question": "Quelle préposition est TOUJOURS suivie de l'accusatif ?", "options": ["mit", "für", "bei", "zu"], "answer": 1},
+          {"question": "Quelle préposition est TOUJOURS suivie du datif ?", "options": ["durch", "ohne", "mit", "gegen"], "answer": 2},
+          {"question": "Avec un mouvement (wohin?), une Wechselpräposition prend le :", "options": ["nominatif", "accusatif", "datif", "génitif"], "answer": 1},
+          {"question": "« Ich bin in ___ Schule » (position, féminin) :", "options": ["die", "der", "den", "dem"], "answer": 1},
+          {"question": "Combien y a-t-il de Wechselpräpositionen ?", "options": ["5", "7", "9", "12"], "answer": 2}
+        ]
+      }
+    },
+    {
+      "title": "Le passé : Perfekt et Präteritum",
+      "video": "",
+      "lesson": "# Le passé en allemand\n\n## Introduction\n\nL'allemand a deux temps du passé courants : le **Perfekt** (passé composé, surtout à l'oral) et le **Präteritum** (prétérit, surtout à l'écrit et pour *sein, haben*, les modaux).\n\n## Le Perfekt\n\nIl se forme avec un **auxiliaire** (*haben* ou *sein*) conjugué au présent + le **participe passé** (Partizip II) à la fin.\n\n- Verbes réguliers : **ge- + radical + -t** : *machen → gemacht* (fait).\n- Verbes forts : **ge- + radical (voyelle changée) + -en** : *sprechen → gesprochen* (parlé).\n\nExemple : *Ich habe einen Brief geschrieben.* (J'ai écrit une lettre.)\n\n## haben ou sein ?\n\n- La plupart des verbes utilisent **haben**.\n- Les verbes de **mouvement** ou de **changement d'état** utilisent **sein** : *gehen* (aller), *kommen* (venir), *fahren*, *bleiben* (rester), *werden* (devenir).\n\n*Ich bin nach Hause gegangen.* (Je suis rentré à la maison.)\n\n## Le Präteritum\n\nIl est très utilisé pour **sein, haben** et les **Modalverben**, ainsi que dans les récits écrits.\n\n| Verbe | ich/er Präteritum | Sens |\n|---|---|---|\n| **sein** | war | était |\n| **haben** | hatte | avait |\n| **können** | konnte | pouvait |\n| **müssen** | musste | devait |\n| **machen** | machte | faisait |\n\n## Participes irréguliers fréquents\n\n| Infinitif | Partizip II | Auxiliaire |\n|---|---|---|\n| sehen | gesehen | haben |\n| essen | gegessen | haben |\n| fahren | gefahren | sein |\n| kommen | gekommen | sein |\n\n## Exemple\n\n*Gestern war ich krank. Ich bin nicht zur Schule gegangen und ich habe den ganzen Tag geschlafen.* (Hier j'étais malade. Je ne suis pas allé à l'école et j'ai dormi toute la journée.)",
+      "quiz": {
+        "questions": [
+          {"question": "Le Perfekt se forme avec un auxiliaire + :", "options": ["l'infinitif", "le participe passé", "le radical seul", "le futur"], "answer": 1},
+          {"question": "Quel auxiliaire pour *gehen* (aller) au Perfekt ?", "options": ["haben", "sein", "werden", "müssen"], "answer": 1},
+          {"question": "Le participe passé de *machen* est :", "options": ["gemacht", "machte", "gemachen", "machen"], "answer": 0},
+          {"question": "Au Präteritum, *sein* (3e sing.) donne :", "options": ["hatte", "war", "ist", "wurde"], "answer": 1},
+          {"question": "« J'ai écrit une lettre » se dit :", "options": ["Ich habe einen Brief schreiben", "Ich bin einen Brief geschrieben", "Ich habe einen Brief geschrieben", "Ich schreibe einen Brief"], "answer": 2}
+        ]
+      }
+    },
+    {
+      "title": "Le futur (Futur I) et l'expression du temps",
+      "video": "",
+      "lesson": "# Le futur (Futur I)\n\n## Introduction\n\nPour parler de l'avenir, l'allemand utilise souvent le **présent + un mot de temps**, mais il dispose aussi d'un temps spécifique, le **Futur I**, pour les projets, prédictions et promesses.\n\n## La formation du Futur I\n\nFutur I = **werden** (conjugué) + **infinitif** à la **fin** de la phrase.\n\n| Personne | werden |\n|---|---|\n| ich | **werde** |\n| du | **wirst** |\n| er/sie/es | **wird** |\n| wir | **werden** |\n| ihr | **werdet** |\n| sie/Sie | **werden** |\n\nExemple : *Ich werde nächstes Jahr Deutsch studieren.* (J'étudierai l'allemand l'année prochaine.)\n\n## Le présent pour exprimer le futur\n\nTrès courant à l'oral, avec un complément de temps :\n\n- *Morgen gehe ich zum Arzt.* (Demain je vais chez le médecin.)\n- *Nächste Woche schreiben wir einen Test.* (La semaine prochaine, nous avons un contrôle.)\n\n## Les expressions de temps utiles\n\n| Allemand | Français |\n|---|---|\n| **heute** | aujourd'hui |\n| **morgen** | demain |\n| **übermorgen** | après-demain |\n| **gestern** | hier |\n| **bald** | bientôt |\n| **nächste Woche** | la semaine prochaine |\n| **in zwei Tagen** | dans deux jours |\n\n## Indiquer l'heure\n\n- *Es ist acht Uhr.* (Il est huit heures.)\n- *Um wie viel Uhr? — Um halb neun.* (À quelle heure ? — À huit heures et demie.)\n\nNote : *halb neun* signifie « huit heures et demie » (la moitié vers neuf heures).\n\n## Exemple\n\n*In den Ferien werde ich nach Deutschland reisen. Ich werde viel Deutsch sprechen und neue Freunde finden.* (Pendant les vacances, je voyagerai en Allemagne. Je parlerai beaucoup allemand et me ferai de nouveaux amis.)",
+      "quiz": {
+        "questions": [
+          {"question": "Le Futur I se forme avec :", "options": ["haben + participe", "sein + infinitif", "werden + infinitif", "werden + participe"], "answer": 2},
+          {"question": "Conjuguez *werden* avec « du » :", "options": ["werde", "wirst", "wird", "werdet"], "answer": 1},
+          {"question": "« morgen » signifie :", "options": ["hier", "aujourd'hui", "demain", "bientôt"], "answer": 2},
+          {"question": "En allemand, *halb neun* signifie :", "options": ["neuf heures et demie", "huit heures et demie", "neuf heures", "huit heures"], "answer": 1},
+          {"question": "Dans une phrase au Futur I, l'infinitif se place :", "options": ["en 2e position", "au début", "à la fin", "après le sujet"], "answer": 2}
+        ]
+      }
+    },
+    {
+      "title": "Subordination et ordre des mots (weil, dass, wenn)",
+      "video": "",
+      "lesson": "# La subordination et l'ordre des mots\n\n## Introduction\n\nL'ordre des mots est une particularité majeure de l'allemand. La règle de base : le **verbe conjugué est en 2e position** dans la principale, mais il part à la **fin** dans la subordonnée.\n\n## La règle de la 2e position\n\nDans une phrase principale, le verbe occupe la **2e position**, même si la phrase commence par un complément :\n\n- *Ich gehe heute ins Kino.* (Je vais au cinéma aujourd'hui.)\n- *Heute gehe ich ins Kino.* (le verbe reste 2e, le sujet passe après.)\n\n## Les conjonctions de subordination\n\nElles envoient le verbe à la **fin** : **weil** (parce que), **dass** (que), **wenn** (si/quand), **ob** (si interrogatif), **obwohl** (bien que), **als** (quand, passé unique).\n\n- *Ich lerne Deutsch, weil ich nach Deutschland reisen möchte.* (J'apprends l'allemand parce que je veux voyager en Allemagne.)\n- *Ich weiß, dass du fleißig bist.* (Je sais que tu es travailleur.)\n- *Wenn es regnet, bleibe ich zu Hause.* (Quand il pleut, je reste à la maison.)\n\n## Les conjonctions de coordination\n\n**und** (et), **aber** (mais), **oder** (ou), **denn** (car), **sondern** (mais au contraire) ne changent **pas** l'ordre des mots :\n\n- *Ich bin müde, aber ich lerne weiter.* (Je suis fatigué, mais je continue à étudier.)\n\n## Récapitulatif\n\n| Type | Exemple | Place du verbe |\n|---|---|---|\n| Principale | *Ich lese ein Buch.* | 2e position |\n| Subordonnée (weil) | *..., weil ich Zeit habe.* | à la fin |\n| Coordination (aber) | *..., aber ich lese.* | 2e position |\n\n## Exemple\n\n*Ich kann heute nicht kommen, weil ich krank bin. Wenn ich gesund bin, besuche ich dich.* (Je ne peux pas venir aujourd'hui parce que je suis malade. Quand je serai guéri, je te rendrai visite.)",
+      "quiz": {
+        "questions": [
+          {"question": "Dans une principale, le verbe conjugué est en :", "options": ["1re position", "2e position", "dernière position", "3e position"], "answer": 1},
+          {"question": "Avec « weil », le verbe se place :", "options": ["en 2e position", "au début", "à la fin", "après le COD"], "answer": 2},
+          {"question": "Quelle conjonction NE change PAS l'ordre des mots ?", "options": ["weil", "dass", "aber", "wenn"], "answer": 2},
+          {"question": "« dass » signifie :", "options": ["parce que", "que", "quand", "si"], "answer": 1},
+          {"question": "« Ich lerne Deutsch, weil ich reisen ___ » (vouloir) :", "options": ["möchte", "möchten", "will möchte", "möchtest"], "answer": 0}
+        ]
+      }
+    },
+    {
+      "title": "Comparatif, superlatif et expression écrite (Bewerbung)",
+      "video": "",
+      "lesson": "# Comparaison et expression écrite\n\n## Introduction\n\nCe chapitre couvre deux compétences clés du Bac : la **comparaison** (comparatif/superlatif) et la **rédaction** d'une lettre ou d'une candidature (**Bewerbung**).\n\n## Le comparatif\n\nOn ajoute **-er** à l'adjectif + **als** (que) :\n\n- *Anna ist größer als Paul.* (Anna est plus grande que Paul.)\n- *Deutsch ist schwerer als Englisch.* (L'allemand est plus difficile que l'anglais.)\n\nL'**égalité** se forme avec **so ... wie** : *Er ist so alt wie ich.* (Il a le même âge que moi.)\n\n## Le superlatif\n\nOn utilise **am + adjectif + -sten**, ou **der/die/das + adjectif + -ste** devant un nom :\n\n- *Sie ist am schnellsten.* (Elle est la plus rapide.)\n- *Das ist das beste Buch.* (C'est le meilleur livre.)\n\n## Les formes irrégulières\n\n| Adjectif | Comparatif | Superlatif |\n|---|---|---|\n| **gut** | besser | am besten |\n| **viel** | mehr | am meisten |\n| **gern** | lieber | am liebsten |\n| **hoch** | höher | am höchsten |\n| **groß** | größer | am größten |\n\nNote : beaucoup d'adjectifs courts prennent un **Umlaut** : *alt → älter*, *jung → jünger*.\n\n## Rédiger une lettre / Bewerbung\n\nStructure d'une lettre formelle :\n\n1. **Anrede** (formule d'appel) : *Sehr geehrte Damen und Herren,* (Madame, Monsieur,).\n2. **Einleitung** : *Ich schreibe Ihnen, weil ...* (Je vous écris parce que...).\n3. **Hauptteil** : motivation, qualités, expériences.\n4. **Schluss** : *Über eine positive Antwort würde ich mich freuen.* (Je serais heureux d'une réponse positive.)\n5. **Grußformel** : *Mit freundlichen Grüßen,* (Cordialement,) + signature.\n\n## Exemple\n\n*Sehr geehrte Damen und Herren, ich interessiere mich für die Stelle als Praktikant. Ich bin fleißig und ich spreche Französisch und Deutsch. Mit freundlichen Grüßen, Paul.* (Madame, Monsieur, je m'intéresse au poste de stagiaire. Je suis travailleur et je parle français et allemand. Cordialement, Paul.)",
+      "quiz": {
+        "questions": [
+          {"question": "Le comparatif de supériorité se forme avec :", "options": ["-er + als", "-ste + wie", "am + -sten", "so + wie"], "answer": 0},
+          {"question": "Le comparatif de *gut* est :", "options": ["guter", "besser", "mehr", "am besten"], "answer": 1},
+          {"question": "Comment exprimer l'égalité (« aussi... que ») ?", "options": ["-er als", "mehr als", "so ... wie", "am ... sten"], "answer": 2},
+          {"question": "Quelle formule d'appel formelle convient ?", "options": ["Hallo!", "Sehr geehrte Damen und Herren,", "Tschüss,", "Liebe Grüße,"], "answer": 1},
+          {"question": "La formule finale d'une lettre formelle est :", "options": ["Bis bald", "Mit freundlichen Grüßen", "Guten Tag", "Danke schön"], "answer": 1}
+        ]
+      }
+    }
+  ]
+}
