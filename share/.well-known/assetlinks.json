@@ -1,0 +1,15 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls",
+      "delegate_permission/common.get_login_creds"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.luvvix.onbuch",
+      "sha256_cert_fingerprints": [
+        "7B:9F:D2:FC:4E:70:C4:88:CC:AD:9A:80:57:90:27:8B:F7:51:C0:42:DE:19:59:A8:7F:F2:5D:52:B8:B3:74:BF"
+      ]
+    }
+  }
+]
