@@ -9,7 +9,9 @@ KEY=os.environ.get('APPWRITE_API_KEY') or sys.exit('Définis APPWRITE_API_KEY')
 EP="https://nyc.cloud.appwrite.io/v1/databases/6a3047f8001d11d1b3c1"
 H=['-H','X-Appwrite-Project: 6a30463b00001375e229','-H',f'X-Appwrite-Key: {KEY}','-H','Content-Type: application/json']
 # code matière -> $id du document `subjects`
-SUBJ={'Ma':'6a316d67950013025e89','PC':'6a316d67b096b3cb24b0','SV':'6a316d67d08503fd815e',
+# NB : 'PC' (Physique-Chimie combinée) retiré au Bac — remplacé par les matières
+# séparées Physique + Chimie (cf. tools/course_content/terminale/).
+SUBJ={'Ma':'6a316d67950013025e89','SV':'6a316d67d08503fd815e',
       'Ph':'6a316d67e3a839325bba','Fr':'6a316d680e40da8b7ec8','An':'6a316d6824c6f38a6e3b','HG':'6a316d6847b4e14d8ce5'}
 def api(method, path, body=None):
     cmd=['curl','-s','-X',method,EP+path]+H+(['-d',json.dumps(body)] if body is not None else [])+['-w','\n%{http_code}']
