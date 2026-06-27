@@ -32,6 +32,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
   List<LeaderboardEntry> _natEntries = const [];
   int _natRank = 0;
   int _natTotal = 0;
+  LeaderboardEntry? _meEntry; // mon entrée, pour la ligne « toi » épinglée
 
   Map<String, int> _counts = const {};
 
@@ -68,18 +69,16 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
         _entries = list;
         _myRank = list.indexWhere((e) => e.uid == _uid) + 1;
 
-        final nat = await lb.nationalTop();
-        if (!nat.any((e) => e.uid == _uid)) {
-          nat.add(LeaderboardEntry(uid: _uid!, name: name, level: g.level, weeklyXp: weekly, xp: g.xp));
-          nat.sort((a, b) => b.xp.compareTo(a.xp));
-          for (var i = 0; i < nat.length; i++) {
-            nat[i].rank = i + 1;
-          }
-        }
-        _natEntries = nat;
+        // Top national (top 50, rangs réels 1..N). On n'injecte PLUS l'élève
+        // dans cette liste : s'il est hors du top, on l'épingle séparément avec
+        // son VRAI rang national (calculé côté serveur via un simple comptage),
+        // ce qui reste correct et léger même avec des milliers d'élèves.
+        _natEntries = await lb.nationalTop();
         final r = await lb.nationalRank(myXp: g.xp);
         _natRank = r.rank;
         _natTotal = r.total;
+        _meEntry = LeaderboardEntry(
+            uid: _uid!, name: name, level: g.level, weeklyXp: weekly, xp: g.xp, rank: _natRank);
       }
       _league = league;
       _counts = await lb.leagueCounts();
@@ -185,13 +184,26 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
         if (top3.isNotEmpty) _podium(top3, national: true),
         const SizedBox(height: 8),
         for (final e in rest) _rankRow(e, national: true),
+        // Hors du top affiché → ligne « toi » épinglée avec le vrai rang national.
+        if (_meEntry != null && _natRank > 0 && !_natEntries.any((e) => e.uid == _uid)) ...[
+          _pinSeparator(),
+          _rankRow(_meEntry!, national: true),
+        ],
       ],
     ];
   }
 
+  // Séparateur « · · · » avant la ligne épinglée de l'élève (quand il est hors
+  // du top affiché) — repère visuel façon Duolingo.
+  Widget _pinSeparator() => Padding(
+        padding: const EdgeInsets.only(bottom: 9, top: 1),
+        child: Center(
+          child: Text('· · ·', style: display(18, weight: FontWeight.w800, color: OC.faint)),
+        ),
+      );
+
   // ════ Onglet Ma ligue ════════════════════════════════════════════════════════
   List<Widget> _ligue() {
-    final c = _league.color;
     final idx = kLeagues.indexOf(_league);
     final isTop = idx == kLeagues.length - 1;
     final isBottom = idx == 0;
