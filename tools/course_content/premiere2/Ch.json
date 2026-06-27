@@ -1,0 +1,655 @@
+{
+  "code": "Ch",
+  "level": "Première",
+  "chapters": [
+    {
+      "title": "L'atome et sa structure",
+      "video": "https://www.youtube.com/watch?v=Rb0YpREMV8I",
+      "lesson": "# L'atome et sa structure\n\n## Introduction\n\nToute la matière qui nous entoure — l'air que nous respirons, l'eau que nous buvons, notre propre corps — est constituée de minuscules grains appelés **atomes**. Pendant longtemps on a cru l'atome insécable (du grec *atomos* = « qu'on ne peut couper »), mais on sait aujourd'hui qu'il possède une structure interne. Comprendre cette structure est la base de toute la chimie.\n\n## 1. Constitution de l'atome\n\nL'atome est constitué :\n- d'un **noyau** central, très petit mais qui concentre presque toute la masse ;\n- d'un **nuage électronique** : des **électrons** qui « tournent » autour du noyau.\n\nLe noyau contient deux types de particules appelées **nucléons** :\n- les **protons**, de charge positive ;\n- les **neutrons**, électriquement neutres.\n\n| Particule | Symbole | Charge | Masse (kg) |\n|---|---|---|---|\n| Proton | $p$ | $+e = +1{,}6 \\times 10^{-19}\\,\\text{C}$ | $1{,}673 \\times 10^{-27}$ |\n| Neutron | $n$ | $0$ | $1{,}675 \\times 10^{-27}$ |\n| Électron | $e^-$ | $-e = -1{,}6 \\times 10^{-19}\\,\\text{C}$ | $9{,}1 \\times 10^{-31}$ |\n\nL'atome est **électriquement neutre** : il contient autant de protons que d'électrons.\n\n## 2. Nombre de charge et nombre de masse\n\nOn caractérise un noyau par :\n- le **numéro atomique** $Z$ = nombre de protons (= nombre d'électrons dans l'atome neutre) ;\n- le **nombre de masse** $A$ = nombre de nucléons (protons + neutrons).\n\nLe nombre de neutrons vaut donc :\n\n$$N = A - Z$$\n\nOn représente un noyau (ou un atome) par le symbole :\n\n$$^{A}_{Z}\\mathrm{X}$$\n\n**Exemple :** $^{23}_{11}\\mathrm{Na}$ possède $Z = 11$ protons, $11$ électrons et $N = 23 - 11 = 12$ neutrons.\n\n## 3. Masse et dimensions\n\nComme la masse de l'électron est négligeable, la masse de l'atome est pratiquement celle de son noyau :\n\n$$m_{\\text{atome}} \\approx A \\times m_{\\text{nucléon}} \\approx A \\times 1{,}67 \\times 10^{-27}\\ \\text{kg}$$\n\nLe rayon de l'atome est de l'ordre de $10^{-10}\\,\\text{m}$, celui du noyau de l'ordre de $10^{-15}\\,\\text{m}$ : le noyau est **100 000 fois plus petit** que l'atome. La matière est donc essentiellement constituée de **vide**.\n\n## 4. Les isotopes\n\nDeux atomes sont **isotopes** lorsqu'ils ont le **même numéro atomique $Z$** mais un **nombre de masse $A$ différent** (même nombre de protons, mais nombre de neutrons différent).\n\n**Exemple :** le chlore existe sous deux formes : $^{35}_{17}\\mathrm{Cl}$ et $^{37}_{17}\\mathrm{Cl}$.\n\n## 5. Les ions\n\nUn atome peut gagner ou perdre des électrons : il devient alors un **ion**.\n- Il perd des électrons $\\rightarrow$ **cation** (charge positive), ex. $\\mathrm{Na}^+$.\n- Il gagne des électrons $\\rightarrow$ **anion** (charge négative), ex. $\\mathrm{Cl}^-$.\n\n## Exercices corrigés\n\n### Exercice 1\nL'atome d'aluminium a pour symbole $^{27}_{13}\\mathrm{Al}$. Donner le nombre de protons, de neutrons et d'électrons.\n\n**Correction.**\n- Protons : $Z = 13$.\n- Électrons (atome neutre) : $13$.\n- Neutrons : $N = A - Z = 27 - 13 = 14$.\n\n### Exercice 2\nCalculer la masse approchée de l'atome de carbone $^{12}_{6}\\mathrm{C}$.\n\n**Correction.**\n$$m \\approx A \\times m_{\\text{nucléon}} = 12 \\times 1{,}67 \\times 10^{-27} = 2{,}00 \\times 10^{-26}\\ \\text{kg}.$$\n\n### Exercice 3\nL'ion $\\mathrm{Mg}^{2+}$ provient de l'atome $^{24}_{12}\\mathrm{Mg}$. Combien possède-t-il d'électrons ?\n\n**Correction.**\nL'atome neutre a $12$ électrons. L'ion $2+$ a perdu $2$ électrons : il en possède $12 - 2 = 10$.\n\n## À retenir\n\n- L'atome = **noyau** (protons + neutrons) + **électrons**, et il est **neutre**.\n- $Z$ = nombre de protons = nombre d'électrons ; $A$ = nombre de nucléons ; $N = A - Z$.\n- Symbole : $^{A}_{Z}\\mathrm{X}$.\n- **Isotopes** : même $Z$, $A$ différent.\n- **Ion** : atome ayant gagné (anion) ou perdu (cation) des électrons.\n",
+      "quiz": {
+        "questions": [
+          {
+            "question": "Dans un atome neutre, le nombre d'électrons est égal :",
+            "options": [
+              "au nombre de neutrons",
+              "au nombre de protons (Z)",
+              "au nombre de masse A",
+              "à A + Z"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "Le nombre de neutrons d'un noyau se calcule par :",
+            "options": [
+              "N = A + Z",
+              "N = A - Z",
+              "N = Z - A",
+              "N = A × Z"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "Pour ⁵⁶₂₆Fe, le nombre de neutrons est :",
+            "options": [
+              "26",
+              "56",
+              "30",
+              "82"
+            ],
+            "answer": 2
+          },
+          {
+            "question": "Deux isotopes ont :",
+            "options": [
+              "même A, Z différent",
+              "même Z, A différent",
+              "même Z et même A",
+              "des charges différentes"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "Un cation est un atome qui a :",
+            "options": [
+              "gagné des électrons",
+              "perdu des électrons",
+              "gagné des protons",
+              "perdu des neutrons"
+            ],
+            "answer": 1
+          }
+        ]
+      }
+    },
+    {
+      "title": "La classification périodique des éléments",
+      "video": "https://www.youtube.com/watch?v=Qw7DBlSqzZk",
+      "lesson": "# La classification périodique des éléments\n\n## Introduction\n\nIl existe une centaine d'éléments chimiques. Pour les ranger de façon logique, le chimiste russe **Mendeleïev** a imaginé en 1869 un tableau, ancêtre de la **classification périodique** actuelle. Ce tableau est l'outil le plus puissant du chimiste : il permet de prévoir les propriétés d'un élément à partir de sa position.\n\n## 1. La structure électronique de l'atome\n\nLes électrons se répartissent autour du noyau dans des **couches électroniques**, notées $K$, $L$, $M$… Chaque couche peut contenir un nombre maximal d'électrons :\n\n$$K : 2 \\text{ électrons}, \\quad L : 8 \\text{ électrons}, \\quad M : 8 \\text{ (au niveau du programme)}$$\n\nLes électrons remplissent d'abord la couche $K$, puis $L$, puis $M$ (**règle de remplissage**). La dernière couche occupée est la **couche externe** ; ses électrons (**électrons de valence**) gouvernent les propriétés chimiques.\n\n**Exemple :** pour $\\mathrm{Na}$ ($Z = 11$) : $(K)^2 (L)^8 (M)^1$. Il possède **1 électron** sur sa couche externe.\n\n## 2. Règle de l'octet (et du duet)\n\nLes atomes évoluent pour acquérir la structure électronique stable du gaz noble le plus proche :\n- **règle du duet** : 2 électrons sur la couche externe (comme $\\mathrm{He}$) pour les premiers éléments ;\n- **règle de l'octet** : 8 électrons sur la couche externe (comme $\\mathrm{Ne}$, $\\mathrm{Ar}$).\n\nC'est pourquoi $\\mathrm{Na}$ perd 1 électron ($\\mathrm{Na}^+$) et $\\mathrm{Cl}$ en gagne 1 ($\\mathrm{Cl}^-$).\n\n## 3. Construction du tableau périodique\n\nLes éléments sont rangés par **numéro atomique $Z$ croissant**.\n- Une **ligne** s'appelle une **période** : elle correspond au remplissage d'une même couche externe.\n- Une **colonne** s'appelle une **famille** (ou groupe) : les éléments d'une même colonne ont **le même nombre d'électrons sur la couche externe** et donc des **propriétés chimiques voisines**.\n\n## 4. Quelques familles importantes\n\n| Famille | Colonne | Électrons externes | Exemples |\n|---|---|---|---|\n| Alcalins | 1 (sauf H) | 1 | Li, Na, K |\n| Alcalino-terreux | 2 | 2 | Mg, Ca |\n| Halogènes | 17 | 7 | F, Cl, Br |\n| Gaz nobles | 18 | 8 (2 pour He) | He, Ne, Ar |\n\nLes gaz nobles sont **chimiquement inertes** car leur couche externe est déjà saturée.\n\n## Exercices corrigés\n\n### Exercice 1\nDonner la structure électronique de l'atome de soufre $\\mathrm{S}$ ($Z = 16$) et son nombre d'électrons externes.\n\n**Correction.**\n$(K)^2 (L)^8 (M)^6$. Couche externe : $M$, avec **6 électrons**.\n\n### Exercice 2\nÀ quelle famille appartient le potassium $\\mathrm{K}$ ($Z = 19$) ?\n\n**Correction.**\n$(K)^2 (L)^8 (M)^8 (N)^1$ : 1 électron externe $\\Rightarrow$ famille des **alcalins** (colonne 1).\n\n### Exercice 3\nL'atome de fluor $\\mathrm{F}$ ($Z = 9$) : combien d'électrons doit-il gagner pour respecter la règle de l'octet ? Quel ion forme-t-il ?\n\n**Correction.**\n$(K)^2 (L)^7$ : il lui manque **1 électron** pour atteindre 8 sur la couche $L$. Il gagne 1 électron et forme l'ion $\\mathrm{F}^-$.\n\n## À retenir\n\n- Les électrons se répartissent par couches : $K$ (2), $L$ (8), $M$ (8).\n- Les atomes cherchent à respecter la **règle du duet/octet**.\n- Le tableau est rangé par $Z$ croissant : **périodes** (lignes) et **familles** (colonnes).\n- Les éléments d'une même **famille** ont le même nombre d'électrons externes et des propriétés voisines.\n",
+      "quiz": {
+        "questions": [
+          {
+            "question": "La couche L peut contenir au maximum :",
+            "options": [
+              "2 électrons",
+              "6 électrons",
+              "8 électrons",
+              "18 électrons"
+            ],
+            "answer": 2
+          },
+          {
+            "question": "La structure électronique de Mg (Z=12) est :",
+            "options": [
+              "(K)2(L)8(M)2",
+              "(K)2(L)10",
+              "(K)2(L)8(M)8",
+              "(K)8(L)4"
+            ],
+            "answer": 0
+          },
+          {
+            "question": "Les éléments d'une même colonne ont :",
+            "options": [
+              "le même nombre de neutrons",
+              "le même nombre d'électrons externes",
+              "la même masse",
+              "le même nombre de couches"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "La règle de l'octet correspond à une couche externe contenant :",
+            "options": [
+              "2 électrons",
+              "4 électrons",
+              "8 électrons",
+              "18 électrons"
+            ],
+            "answer": 2
+          },
+          {
+            "question": "Les gaz nobles sont peu réactifs car :",
+            "options": [
+              "ils sont lourds",
+              "leur couche externe est saturée",
+              "ils n'ont pas de noyau",
+              "ils sont radioactifs"
+            ],
+            "answer": 1
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les liaisons chimiques",
+      "video": "https://www.youtube.com/watch?v=8u1jZSlW6XU",
+      "lesson": "# Les liaisons chimiques\n\n## Introduction\n\nLes atomes sont rarement isolés : ils s'associent pour former des **molécules** ou des **cristaux**. Ce qui les maintient ensemble s'appelle une **liaison chimique**. Toutes les liaisons ont la même origine : les atomes cherchent à respecter la **règle de l'octet (ou du duet)**.\n\n## 1. La liaison covalente\n\nUne **liaison covalente** résulte de la **mise en commun de deux électrons** par deux atomes : chaque atome apporte un électron, et le **doublet d'électrons** ainsi formé est partagé.\n\n- Une liaison covalente simple = 1 doublet partagé : $\\mathrm{H{-}H}$.\n- Liaison double = 2 doublets : $\\mathrm{O{=}O}$.\n- Liaison triple = 3 doublets : $\\mathrm{N{\\equiv}N}$.\n\n**Doublets liants** : partagés entre deux atomes.\n**Doublets non liants** : appartiennent à un seul atome.\n\n## 2. La représentation de Lewis\n\nLa **formule de Lewis** d'une molécule montre tous les doublets (liants et non liants). Méthode :\n1. Compter les électrons de valence de chaque atome.\n2. Établir les liaisons pour que chaque atome respecte l'octet (le duet pour H).\n\n**Exemples :**\n- Eau $\\mathrm{H_2O}$ : l'oxygène (6 e⁻ de valence) forme 2 liaisons avec H et garde 2 doublets non liants.\n- Dioxyde de carbone : $\\mathrm{O{=}C{=}O}$.\n- Diazote : $\\mathrm{N{\\equiv}N}$ avec un doublet non liant sur chaque azote.\n\n## 3. La liaison ionique\n\nLorsque deux atomes très différents se rencontrent (un métal et un non-métal), l'un **cède** ses électrons et l'autre les **capte** : il se forme des **ions** de charges opposées qui s'attirent. C'est la **liaison ionique**.\n\n**Exemple — le chlorure de sodium :**\n\n$$\\mathrm{Na} \\rightarrow \\mathrm{Na}^+ + e^- \\qquad \\mathrm{Cl} + e^- \\rightarrow \\mathrm{Cl}^-$$\n\nLes ions $\\mathrm{Na}^+$ et $\\mathrm{Cl}^-$ forment un cristal ionique de formule $\\mathrm{NaCl}$.\n\n## 4. Valence d'un atome\n\nLa **valence** est le nombre de liaisons covalentes qu'un atome peut former :\n\n| Atome | H | O | N | C | Cl |\n|---|---|---|---|---|---|\n| Valence | 1 | 2 | 3 | 4 | 1 |\n\n## Exercices corrigés\n\n### Exercice 1\nDonner la représentation de Lewis de la molécule de dichlore $\\mathrm{Cl_2}$.\n\n**Correction.**\nChaque $\\mathrm{Cl}$ a 7 électrons de valence. Ils mettent en commun 1 électron chacun $\\Rightarrow$ 1 doublet liant. Chaque Cl garde 3 doublets non liants : $\\;\\mathrm{\\overline{\\underline{Cl}}{-}\\overline{\\underline{Cl}}}\\;$. Chaque atome a bien 8 électrons.\n\n### Exercice 2\nCombien de liaisons covalentes forme l'atome de carbone dans le méthane $\\mathrm{CH_4}$ ?\n\n**Correction.**\nLe carbone a 4 électrons de valence et une valence de 4 : il forme **4 liaisons** avec 4 atomes H. Tous respectent l'octet (C) et le duet (H).\n\n### Exercice 3\nQuel type de liaison existe dans $\\mathrm{KCl}$ ? Justifier.\n\n**Correction.**\n$\\mathrm{K}$ (métal alcalin) cède 1 électron $\\rightarrow \\mathrm{K}^+$ ; $\\mathrm{Cl}$ le capte $\\rightarrow \\mathrm{Cl}^-$. C'est une **liaison ionique**.\n\n## À retenir\n\n- **Liaison covalente** = doublet d'électrons **partagé** (simple, double, triple).\n- **Doublets liants** vs **doublets non liants** ; représentation de **Lewis**.\n- **Liaison ionique** = transfert d'électrons $\\rightarrow$ ions de charges opposées.\n- La **valence** = nombre de liaisons : H(1), O(2), N(3), C(4).\n",
+      "quiz": {
+        "questions": [
+          {
+            "question": "Une liaison covalente simple correspond à :",
+            "options": [
+              "un électron partagé",
+              "un doublet d'électrons partagé",
+              "un transfert d'électron",
+              "deux doublets non liants"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "Dans la molécule N≡N, le nombre de doublets liants est :",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4"
+            ],
+            "answer": 2
+          },
+          {
+            "question": "La liaison dans NaCl est :",
+            "options": [
+              "covalente simple",
+              "covalente double",
+              "ionique",
+              "métallique"
+            ],
+            "answer": 2
+          },
+          {
+            "question": "La valence du carbone est :",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4"
+            ],
+            "answer": 3
+          },
+          {
+            "question": "Un doublet non liant :",
+            "options": [
+              "est partagé entre deux atomes",
+              "appartient à un seul atome",
+              "n'existe pas",
+              "relie trois atomes"
+            ],
+            "answer": 1
+          }
+        ]
+      }
+    },
+    {
+      "title": "La mole et les quantités de matière",
+      "video": "https://www.youtube.com/watch?v=TEl4jeETVmg",
+      "lesson": "# La mole et les quantités de matière\n\n## Introduction\n\nLes atomes et les molécules sont si petits qu'on ne peut pas les compter un par un. Le chimiste a donc inventé une « unité de comptage » adaptée : la **mole**. C'est l'outil indispensable pour passer du monde microscopique (atomes) au monde macroscopique (grammes, litres) que l'on mesure au laboratoire.\n\n## 1. La mole et le nombre d'Avogadro\n\nLa **mole** (symbole **mol**) est la quantité de matière d'un système contenant autant d'entités qu'il y a d'atomes dans $12\\,\\text{g}$ de carbone 12. Ce nombre est le **nombre d'Avogadro** :\n\n$$N_A = 6{,}02 \\times 10^{23}\\ \\text{mol}^{-1}$$\n\nUne mole d'entités contient donc $6{,}02 \\times 10^{23}$ entités. Le nombre d'entités $N$ et la quantité de matière $n$ sont reliés par :\n\n$$N = n \\times N_A \\qquad \\Longleftrightarrow \\qquad n = \\dfrac{N}{N_A}$$\n\n## 2. Masse molaire\n\nLa **masse molaire** $M$ est la masse d'une mole d'entités, en $\\text{g·mol}^{-1}$.\n- **Masse molaire atomique** : lue dans le tableau (ex. $M(\\mathrm{H}) = 1$, $M(\\mathrm{C}) = 12$, $M(\\mathrm{O}) = 16$).\n- **Masse molaire moléculaire** : somme des masses molaires des atomes.\n\n**Exemple :** $M(\\mathrm{H_2O}) = 2 \\times 1 + 16 = 18\\ \\text{g·mol}^{-1}$.\n\nLa quantité de matière d'un échantillon de masse $m$ est :\n\n$$\\boxed{n = \\dfrac{m}{M}}$$\n\n## 3. Volume molaire des gaz\n\nDans les **mêmes conditions** de température et de pression, une mole de **n'importe quel gaz** occupe le même volume, appelé **volume molaire** $V_m$.\n\nDans les conditions normales : $V_m = 22{,}4\\ \\text{L·mol}^{-1}$.\n\n$$\\boxed{n = \\dfrac{V}{V_m}}$$\n\n## 4. Tableau récapitulatif\n\n| Grandeur connue | Formule | Unité |\n|---|---|---|\n| Masse $m$ | $n = m/M$ | g, g·mol⁻¹ |\n| Volume de gaz $V$ | $n = V/V_m$ | L, L·mol⁻¹ |\n| Nombre d'entités $N$ | $n = N/N_A$ | sans unité |\n\n## Exercices corrigés\n\n### Exercice 1\nCalculer la quantité de matière contenue dans $36\\,\\text{g}$ d'eau. Donnée : $M(\\mathrm{H_2O}) = 18\\ \\text{g·mol}^{-1}$.\n\n**Correction.**\n$$n = \\dfrac{m}{M} = \\dfrac{36}{18} = 2{,}0\\ \\text{mol}.$$\n\n### Exercice 2\nCombien de molécules y a-t-il dans $0{,}50\\,\\text{mol}$ de dioxygène ?\n\n**Correction.**\n$$N = n \\times N_A = 0{,}50 \\times 6{,}02 \\times 10^{23} = 3{,}0 \\times 10^{23}\\ \\text{molécules}.$$\n\n### Exercice 3\nQuel volume occupe $0{,}25\\,\\text{mol}$ de dioxyde de carbone dans les conditions normales ?\n\n**Correction.**\n$$V = n \\times V_m = 0{,}25 \\times 22{,}4 = 5{,}6\\ \\text{L}.$$\n\n### Exercice 4\nCalculer la masse molaire du glucose $\\mathrm{C_6H_{12}O_6}$.\n\n**Correction.**\n$$M = 6 \\times 12 + 12 \\times 1 + 6 \\times 16 = 72 + 12 + 96 = 180\\ \\text{g·mol}^{-1}.$$\n\n## À retenir\n\n- $N_A = 6{,}02 \\times 10^{23}\\ \\text{mol}^{-1}$ ; une mole = $N_A$ entités.\n- $n = \\dfrac{m}{M}$ (masse) ; $n = \\dfrac{V}{V_m}$ (gaz) ; $n = \\dfrac{N}{N_A}$ (entités).\n- $V_m = 22{,}4\\ \\text{L·mol}^{-1}$ dans les conditions normales.\n- $M$ moléculaire = somme des $M$ atomiques.\n",
+      "quiz": {
+        "questions": [
+          {
+            "question": "Le nombre d'Avogadro vaut :",
+            "options": [
+              "6,02×10²³ mol⁻¹",
+              "9,1×10⁻³¹",
+              "1,6×10⁻¹⁹",
+              "22,4"
+            ],
+            "answer": 0
+          },
+          {
+            "question": "La quantité de matière d'une masse m se calcule par :",
+            "options": [
+              "n = M×m",
+              "n = m/M",
+              "n = m×Na",
+              "n = V/m"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "Le volume molaire d'un gaz dans les conditions normales est :",
+            "options": [
+              "18 L/mol",
+              "22,4 L/mol",
+              "6,02 L/mol",
+              "12 L/mol"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "La masse molaire de CO₂ (C=12, O=16) est :",
+            "options": [
+              "28 g/mol",
+              "44 g/mol",
+              "32 g/mol",
+              "16 g/mol"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "Dans 2 mol d'une substance, il y a :",
+            "options": [
+              "6,02×10²³ entités",
+              "1,2×10²⁴ entités",
+              "3,01×10²³ entités",
+              "22,4 entités"
+            ],
+            "answer": 1
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les solutions aqueuses et la concentration",
+      "video": "https://www.youtube.com/watch?v=p1jJrf3T-Vc",
+      "lesson": "# Les solutions aqueuses et la concentration\n\n## Introduction\n\nL'eau est le solvant le plus répandu : la plupart des réactions chimiques du quotidien (et du laboratoire) se déroulent en **solution aqueuse**. Savoir préparer une solution et calculer sa **concentration** est une compétence fondamentale du chimiste.\n\n## 1. Vocabulaire\n\n- **Soluté** : l'espèce que l'on dissout (sel, sucre…).\n- **Solvant** : le liquide qui dissout (ici l'eau).\n- **Solution** : le mélange homogène obtenu.\n\nUne solution est **aqueuse** lorsque le solvant est l'eau.\n\n## 2. La concentration molaire\n\nLa **concentration molaire** (ou molarité) $C$ d'une espèce dissoute est la quantité de matière de soluté par litre de solution :\n\n$$\\boxed{C = \\dfrac{n}{V}} \\qquad C\\ \\text{en mol·L}^{-1}, \\quad n\\ \\text{en mol}, \\quad V\\ \\text{en L}$$\n\n## 3. La concentration massique\n\nLa **concentration massique** $C_m$ est la masse de soluté par litre de solution :\n\n$$C_m = \\dfrac{m}{V} \\qquad \\text{en g·L}^{-1}$$\n\nLien entre les deux, via la masse molaire $M$ :\n\n$$C_m = C \\times M$$\n\n## 4. Dissolution et dilution\n\n**Dissolution** : on dissout une masse $m$ de soluté pour préparer un volume $V$ de solution de concentration $C = \\dfrac{n}{V} = \\dfrac{m}{M\\,V}$.\n\n**Dilution** : on ajoute du solvant à une solution « mère » pour obtenir une solution « fille » plus diluée. La **quantité de matière de soluté se conserve** :\n\n$$\\boxed{C_{\\text{mère}} \\times V_{\\text{mère}} = C_{\\text{fille}} \\times V_{\\text{fille}}}$$\n\nLe **facteur de dilution** est $F = \\dfrac{C_{\\text{mère}}}{C_{\\text{fille}}} = \\dfrac{V_{\\text{fille}}}{V_{\\text{mère}}}$.\n\n## 5. Solution électrolytique\n\nCertains solides (sel, soude) se dissocient en **ions** quand on les dissout : la solution conduit alors le courant, on parle de **solution électrolytique**.\n\n$$\\mathrm{NaCl}_{(s)} \\xrightarrow{\\text{eau}} \\mathrm{Na}^+_{(aq)} + \\mathrm{Cl}^-_{(aq)}$$\n\n## Exercices corrigés\n\n### Exercice 1\nOn dissout $0{,}10\\,\\text{mol}$ de soluté dans de l'eau pour obtenir $500\\,\\text{mL}$ de solution. Calculer la concentration molaire.\n\n**Correction.**\n$V = 0{,}500\\,\\text{L}$, donc\n$$C = \\dfrac{n}{V} = \\dfrac{0{,}10}{0{,}500} = 0{,}20\\ \\text{mol·L}^{-1}.$$\n\n### Exercice 2\nQuelle masse de chlorure de sodium ($M = 58{,}5\\ \\text{g·mol}^{-1}$) faut-il peser pour préparer $250\\,\\text{mL}$ de solution à $0{,}40\\ \\text{mol·L}^{-1}$ ?\n\n**Correction.**\n$$n = C \\times V = 0{,}40 \\times 0{,}250 = 0{,}10\\ \\text{mol}, \\qquad m = n \\times M = 0{,}10 \\times 58{,}5 = 5{,}85\\ \\text{g}.$$\n\n### Exercice 3\nOn prélève $20\\,\\text{mL}$ d'une solution mère à $0{,}50\\ \\text{mol·L}^{-1}$ et on complète à $100\\,\\text{mL}$. Quelle est la concentration de la solution fille ?\n\n**Correction.**\n$$C_f = \\dfrac{C_m V_m}{V_f} = \\dfrac{0{,}50 \\times 20}{100} = 0{,}10\\ \\text{mol·L}^{-1}.$$\nLe facteur de dilution est $F = 5$.\n\n## À retenir\n\n- $C = \\dfrac{n}{V}$ (mol·L⁻¹) ; $C_m = \\dfrac{m}{V}$ (g·L⁻¹) ; $C_m = C \\times M$.\n- **Dilution** : conservation de la matière $\\Rightarrow C_m V_m = C_f V_f$.\n- Une **solution électrolytique** contient des **ions** et conduit le courant.\n",
+      "quiz": {
+        "questions": [
+          {
+            "question": "La concentration molaire est définie par :",
+            "options": [
+              "C = n×V",
+              "C = n/V",
+              "C = V/n",
+              "C = m×V"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "Le soluté est :",
+            "options": [
+              "le liquide qui dissout",
+              "l'espèce que l'on dissout",
+              "le mélange final",
+              "toujours de l'eau"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "Lors d'une dilution, ce qui se conserve est :",
+            "options": [
+              "le volume",
+              "la concentration",
+              "la quantité de matière de soluté",
+              "la masse de solvant"
+            ],
+            "answer": 2
+          },
+          {
+            "question": "Relation entre concentration massique et molaire :",
+            "options": [
+              "Cm = C/M",
+              "Cm = C×M",
+              "Cm = C+M",
+              "Cm = M/C"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "Une solution électrolytique :",
+            "options": [
+              "n'a pas de soluté",
+              "contient des ions et conduit le courant",
+              "est toujours colorée",
+              "est un solide"
+            ],
+            "answer": 1
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les réactions chimiques et les équations-bilan",
+      "video": "https://www.youtube.com/watch?v=8m6RtOpqvtU",
+      "lesson": "# Les réactions chimiques et les équations-bilan\n\n## Introduction\n\nBrûler du bois, faire rouiller du fer, digérer un aliment : ce sont des **transformations chimiques**. Au cours d'une réaction chimique, des espèces (les **réactifs**) disparaissent tandis que d'autres (les **produits**) se forment. L'**équation-bilan** est l'écriture symbolique de cette transformation.\n\n## 1. Réactifs et produits\n\nUne transformation chimique se traduit par :\n\n$$\\text{réactifs} \\longrightarrow \\text{produits}$$\n\n**Exemple :** la combustion du carbone : $\\mathrm{C} + \\mathrm{O_2} \\longrightarrow \\mathrm{CO_2}$.\n\n## 2. Les lois de conservation (Lavoisier)\n\nAu cours d'une réaction chimique :\n- les **éléments chimiques se conservent** (aucun atome n'apparaît ni ne disparaît) ;\n- la **masse se conserve** : « Rien ne se perd, rien ne se crée, tout se transforme » (Lavoisier).\n\nC'est pourquoi une équation-bilan doit être **équilibrée** : autant d'atomes de chaque élément à gauche et à droite.\n\n## 3. Équilibrer une équation-bilan\n\nOn place des **coefficients stœchiométriques** (jamais on ne modifie les formules) pour que chaque élément soit en même nombre des deux côtés.\n\n**Exemple — combustion du méthane :**\n\n$$\\mathrm{CH_4} + 2\\,\\mathrm{O_2} \\longrightarrow \\mathrm{CO_2} + 2\\,\\mathrm{H_2O}$$\n\nVérification : C : 1 = 1 ; H : 4 = 4 ; O : 4 = 2 + 2 = 4. ✔\n\n## 4. Bilan de matière\n\nLes coefficients donnent les **proportions** dans lesquelles réagissent les espèces. Pour la réaction $\\;a\\,A + b\\,B \\rightarrow c\\,C\\;$ :\n\n$$\\dfrac{n_A}{a} = \\dfrac{n_B}{b} = \\dfrac{n_C}{c}$$\n\nLe **réactif limitant** est celui qui s'épuise en premier ; il fixe la quantité de produit formé.\n\n## Exercices corrigés\n\n### Exercice 1\nÉquilibrer : $\\;\\mathrm{Fe} + \\mathrm{O_2} \\longrightarrow \\mathrm{Fe_2O_3}$.\n\n**Correction.**\n$$4\\,\\mathrm{Fe} + 3\\,\\mathrm{O_2} \\longrightarrow 2\\,\\mathrm{Fe_2O_3}.$$\nFe : 4 = 4 ; O : 6 = 6. ✔\n\n### Exercice 2\nOn fait réagir $0{,}20\\,\\text{mol}$ de méthane selon $\\mathrm{CH_4} + 2\\,\\mathrm{O_2} \\rightarrow \\mathrm{CO_2} + 2\\,\\mathrm{H_2O}$. Quelle quantité de $\\mathrm{CO_2}$ se forme ?\n\n**Correction.**\nLa proportion est $1:1$ entre $\\mathrm{CH_4}$ et $\\mathrm{CO_2}$, donc $n(\\mathrm{CO_2}) = 0{,}20\\,\\text{mol}$.\n\n### Exercice 3\nOn mélange $3\\,\\text{mol}$ de $\\mathrm{H_2}$ et $1\\,\\text{mol}$ de $\\mathrm{O_2}$ : $2\\,\\mathrm{H_2} + \\mathrm{O_2} \\rightarrow 2\\,\\mathrm{H_2O}$. Quel est le réactif limitant ?\n\n**Correction.**\nPour $1\\,\\text{mol}$ de $\\mathrm{O_2}$ il faut $2\\,\\text{mol}$ de $\\mathrm{H_2}$. On a $3\\,\\text{mol}$ de $\\mathrm{H_2}$ : il y en a assez. C'est donc le **dioxygène** $\\mathrm{O_2}$ qui est limitant ; il se forme $2\\,\\text{mol}$ d'eau et il reste $1\\,\\text{mol}$ de $\\mathrm{H_2}$.\n\n## À retenir\n\n- Réaction : **réactifs $\\rightarrow$ produits**.\n- **Conservation** des éléments et de la masse (Lavoisier) $\\Rightarrow$ équation **équilibrée**.\n- On ajuste les **coefficients stœchiométriques**, jamais les formules.\n- Le **réactif limitant** fixe la quantité de produit.\n",
+      "quiz": {
+        "questions": [
+          {
+            "question": "Au cours d'une réaction chimique, la masse totale :",
+            "options": [
+              "augmente",
+              "diminue",
+              "se conserve",
+              "devient nulle"
+            ],
+            "answer": 2
+          },
+          {
+            "question": "Pour équilibrer une équation, on modifie :",
+            "options": [
+              "les formules des molécules",
+              "les coefficients stœchiométriques",
+              "les symboles des atomes",
+              "le sens de la flèche"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "L'équation 2H₂ + O₂ → 2H₂O respecte la conservation car :",
+            "options": [
+              "il y a 4 H et 2 O de chaque côté",
+              "elle a une flèche",
+              "H₂ est un gaz",
+              "l'eau est un produit"
+            ],
+            "answer": 0
+          },
+          {
+            "question": "Le réactif limitant est celui qui :",
+            "options": [
+              "reste en excès",
+              "s'épuise en premier",
+              "ne réagit pas",
+              "est le plus lourd"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "Équilibrer Fe + O₂ → Fe₂O₃ donne les coefficients :",
+            "options": [
+              "1,1,1",
+              "2,3,1",
+              "4,3,2",
+              "3,2,4"
+            ],
+            "answer": 2
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les réactions acide-base (introduction)",
+      "video": "https://www.youtube.com/watch?v=zWZRS7qiFGE",
+      "lesson": "# Les réactions acide-base (introduction)\n\n## Introduction\n\nLe jus de citron est acide, l'eau de javel est basique. Acides et bases sont partout dans la vie courante. La chimie les définit précisément à partir d'un ion particulier : l'**ion hydrogène** $\\mathrm{H^+}$. Cette introduction pose les bases que l'on approfondira en Terminale.\n\n## 1. Définition selon Brønsted\n\n- Un **acide** est une espèce capable de **céder un ion $\\mathrm{H^+}$** (un proton).\n- Une **base** est une espèce capable de **capter un ion $\\mathrm{H^+}$**.\n\n**Exemples d'acides :** $\\mathrm{HCl}$, $\\mathrm{H_2SO_4}$, $\\mathrm{CH_3COOH}$ (acide éthanoïque).\n**Exemples de bases :** $\\mathrm{NaOH}$ (soude), $\\mathrm{NH_3}$ (ammoniac).\n\n## 2. Acides et bases en solution\n\nEn solution aqueuse :\n- un acide libère des ions hydrogène (hydronium) : $\\;\\mathrm{HCl} \\rightarrow \\mathrm{H^+} + \\mathrm{Cl^-}\\;$ ;\n- une base libère (ou produit) des ions hydroxyde $\\mathrm{OH^-}$ : $\\;\\mathrm{NaOH} \\rightarrow \\mathrm{Na^+} + \\mathrm{OH^-}$.\n\n## 3. Le pH\n\nLe **pH** mesure l'acidité d'une solution aqueuse (échelle de 0 à 14) :\n- $pH < 7$ : solution **acide** ;\n- $pH = 7$ : solution **neutre** ;\n- $pH > 7$ : solution **basique**.\n\nPlus le pH est petit, plus la solution est acide.\n\n## 4. La réaction acide-base\n\nQuand on mélange un acide et une base, ils réagissent : c'est une **réaction de neutralisation**. L'ion $\\mathrm{H^+}$ de l'acide se combine avec l'ion $\\mathrm{OH^-}$ de la base :\n\n$$\\mathrm{H^+} + \\mathrm{OH^-} \\longrightarrow \\mathrm{H_2O}$$\n\n**Exemple :** acide chlorhydrique + soude :\n\n$$\\mathrm{HCl} + \\mathrm{NaOH} \\longrightarrow \\mathrm{NaCl} + \\mathrm{H_2O}$$\n\nIl se forme de l'eau et un **sel** (ici le chlorure de sodium).\n\n## Exercices corrigés\n\n### Exercice 1\nIndiquer la nature (acide, neutre, basique) des solutions de pH : $2$ ; $7$ ; $11$.\n\n**Correction.**\n$pH = 2$ : acide ; $pH = 7$ : neutre ; $pH = 11$ : basique.\n\n### Exercice 2\nÉcrire l'équation de la réaction entre l'acide nitrique $\\mathrm{HNO_3}$ et la soude $\\mathrm{NaOH}$.\n\n**Correction.**\n$$\\mathrm{HNO_3} + \\mathrm{NaOH} \\longrightarrow \\mathrm{NaNO_3} + \\mathrm{H_2O}.$$\nOn obtient de l'eau et le sel nitrate de sodium.\n\n### Exercice 3\nSelon Brønsted, l'ammoniac $\\mathrm{NH_3}$ capte un proton pour donner $\\mathrm{NH_4^+}$. Est-ce un acide ou une base ?\n\n**Correction.**\nIl **capte** un ion $\\mathrm{H^+}$ : c'est donc une **base**.\n\n## À retenir\n\n- **Acide** = cède $\\mathrm{H^+}$ ; **base** = capte $\\mathrm{H^+}$ (Brønsted).\n- En solution : acide $\\rightarrow \\mathrm{H^+}$, base $\\rightarrow \\mathrm{OH^-}$.\n- **pH** : < 7 acide, = 7 neutre, > 7 basique.\n- **Neutralisation** : $\\mathrm{H^+} + \\mathrm{OH^-} \\rightarrow \\mathrm{H_2O}$, formation d'eau + un **sel**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "question": "Selon Brønsted, un acide est une espèce qui :",
+            "options": [
+              "capte un H⁺",
+              "cède un H⁺",
+              "cède un OH⁻",
+              "ne réagit pas"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "Une solution de pH = 4 est :",
+            "options": [
+              "basique",
+              "neutre",
+              "acide",
+              "salée"
+            ],
+            "answer": 2
+          },
+          {
+            "question": "La réaction H⁺ + OH⁻ → H₂O est une :",
+            "options": [
+              "combustion",
+              "neutralisation",
+              "oxydation",
+              "dissolution"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "La soude NaOH en solution libère :",
+            "options": [
+              "H⁺",
+              "OH⁻",
+              "Cl⁻",
+              "NH₄⁺"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "Le produit d'une réaction acide-base, en plus de l'eau, est :",
+            "options": [
+              "un gaz noble",
+              "un sel",
+              "un métal",
+              "un acide plus fort"
+            ],
+            "answer": 1
+          }
+        ]
+      }
+    },
+    {
+      "title": "L'oxydoréduction (introduction)",
+      "video": "https://www.youtube.com/watch?v=KwpO-bxsTAo",
+      "lesson": "# L'oxydoréduction (introduction)\n\n## Introduction\n\nLe fer qui rouille, une pile qui alimente une lampe, la respiration : toutes ces transformations mettent en jeu un **échange d'électrons** entre espèces. C'est le domaine de l'**oxydoréduction**, l'une des grandes familles de réactions chimiques.\n\n## 1. Oxydation et réduction\n\nL'oxydoréduction repose sur un **transfert d'électrons** :\n- l'**oxydation** est une **perte d'électrons** ;\n- la **réduction** est un **gain d'électrons**.\n\nMoyen mnémotechnique : **« OXydation = perte »**, **« RÉDuction = gain »**.\n\n## 2. Oxydant et réducteur\n\n- Un **réducteur** est une espèce qui **cède des électrons** (elle est oxydée).\n- Un **oxydant** est une espèce qui **capte des électrons** (elle est réduit).\n\nDans une réaction d'oxydoréduction, le réducteur donne ses électrons à l'oxydant.\n\n## 3. Les demi-équations électroniques\n\nChaque couple oxydant/réducteur, noté $\\mathrm{Ox}/\\mathrm{Red}$, est associé à une **demi-équation** :\n\n$$\\mathrm{Ox} + n\\,e^- \\rightleftharpoons \\mathrm{Red}$$\n\n**Exemples :**\n$$\\mathrm{Cu^{2+}} + 2\\,e^- \\rightleftharpoons \\mathrm{Cu} \\qquad ; \\qquad \\mathrm{Zn^{2+}} + 2\\,e^- \\rightleftharpoons \\mathrm{Zn}$$\n\n## 4. L'équation globale\n\nOn combine les deux demi-équations de manière à **éliminer les électrons** (autant cédés que captés).\n\n**Exemple — le zinc plonge dans une solution de sulfate de cuivre :**\n\n$$\\mathrm{Zn} \\rightarrow \\mathrm{Zn^{2+}} + 2\\,e^- \\quad (\\text{oxydation})$$\n$$\\mathrm{Cu^{2+}} + 2\\,e^- \\rightarrow \\mathrm{Cu} \\quad (\\text{réduction})$$\n\nEn additionnant :\n\n$$\\boxed{\\mathrm{Zn} + \\mathrm{Cu^{2+}} \\longrightarrow \\mathrm{Zn^{2+}} + \\mathrm{Cu}}$$\n\nLe zinc (réducteur) est oxydé ; les ions cuivre (oxydant) sont réduits et se déposent en cuivre métallique rouge.\n\n## Exercices corrigés\n\n### Exercice 1\nDans la transformation $\\mathrm{Fe} \\rightarrow \\mathrm{Fe^{2+}} + 2\\,e^-$, le fer subit-il une oxydation ou une réduction ?\n\n**Correction.**\nLe fer **perd** 2 électrons : c'est une **oxydation**. Le fer joue le rôle de **réducteur**.\n\n### Exercice 2\nÉcrire la demi-équation du couple $\\mathrm{Ag^+}/\\mathrm{Ag}$.\n\n**Correction.**\n$$\\mathrm{Ag^+} + e^- \\rightleftharpoons \\mathrm{Ag}.$$\n\n### Exercice 3\nÉcrire l'équation globale entre le fer et les ions cuivre $\\mathrm{Cu^{2+}}$, sachant que le fer donne $\\mathrm{Fe^{2+}}$.\n\n**Correction.**\nOxydation : $\\mathrm{Fe} \\rightarrow \\mathrm{Fe^{2+}} + 2\\,e^-$.\nRéduction : $\\mathrm{Cu^{2+}} + 2\\,e^- \\rightarrow \\mathrm{Cu}$.\nBilan :\n$$\\mathrm{Fe} + \\mathrm{Cu^{2+}} \\longrightarrow \\mathrm{Fe^{2+}} + \\mathrm{Cu}.$$\n\n## À retenir\n\n- **Oxydation = perte d'électrons** ; **réduction = gain d'électrons**.\n- **Réducteur** cède des électrons (il est oxydé) ; **oxydant** capte des électrons (il est réduit).\n- Couple $\\mathrm{Ox}/\\mathrm{Red}$ : $\\;\\mathrm{Ox} + n\\,e^- \\rightleftharpoons \\mathrm{Red}$.\n- L'équation globale s'obtient en éliminant les électrons entre deux demi-équations.\n",
+      "quiz": {
+        "questions": [
+          {
+            "question": "L'oxydation est :",
+            "options": [
+              "un gain d'électrons",
+              "une perte d'électrons",
+              "un gain de protons",
+              "une perte de neutrons"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "Un réducteur est une espèce qui :",
+            "options": [
+              "capte des électrons",
+              "cède des électrons",
+              "capte des H⁺",
+              "ne réagit pas"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "Dans Cu²⁺ + 2e⁻ → Cu, l'ion cuivre subit :",
+            "options": [
+              "une oxydation",
+              "une réduction",
+              "une neutralisation",
+              "une dissolution"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "La demi-équation du couple Ag⁺/Ag est :",
+            "options": [
+              "Ag⁺ + e⁻ ⇌ Ag",
+              "Ag → Ag⁺ + 2e⁻",
+              "Ag²⁺ + 2e⁻ ⇌ Ag",
+              "Ag⁺ + OH⁻ ⇌ Ag"
+            ],
+            "answer": 0
+          },
+          {
+            "question": "Dans Zn + Cu²⁺ → Zn²⁺ + Cu, l'oxydant est :",
+            "options": [
+              "Zn",
+              "Cu²⁺",
+              "Zn²⁺",
+              "Cu"
+            ],
+            "answer": 1
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les hydrocarbures : alcanes, alcènes, alcynes",
+      "video": "https://www.youtube.com/watch?v=p08wnzfgnvw",
+      "lesson": "# Les hydrocarbures : alcanes, alcènes, alcynes\n\n## Introduction\n\nLa **chimie organique** est la chimie des composés du **carbone**. Les plus simples sont les **hydrocarbures**, formés uniquement de carbone et d'hydrogène. Pétrole, gaz naturel, plastiques : tout part de ces molécules. On les classe selon le type de liaisons entre les atomes de carbone.\n\n## 1. Le carbone, atome de base\n\nLe carbone est **tétravalent** : il forme **4 liaisons**. Les atomes de carbone peuvent s'enchaîner pour former des chaînes (linéaires, ramifiées ou cycliques).\n\n## 2. Les alcanes\n\nLes **alcanes** sont des hydrocarbures à **liaisons simples** uniquement (**saturés**). Leur formule générale est :\n\n$$\\boxed{\\mathrm{C_n H_{2n+2}}}$$\n\n| n | Nom | Formule |\n|---|---|---|\n| 1 | méthane | $\\mathrm{CH_4}$ |\n| 2 | éthane | $\\mathrm{C_2H_6}$ |\n| 3 | propane | $\\mathrm{C_3H_8}$ |\n| 4 | butane | $\\mathrm{C_4H_{10}}$ |\n\n**Réaction caractéristique :** la **combustion**. Combustion complète du méthane :\n\n$$\\mathrm{CH_4} + 2\\,\\mathrm{O_2} \\longrightarrow \\mathrm{CO_2} + 2\\,\\mathrm{H_2O}$$\n\n## 3. Les alcènes\n\nLes **alcènes** possèdent **une double liaison** $\\mathrm{C{=}C}$ (**insaturés**). Formule générale :\n\n$$\\boxed{\\mathrm{C_n H_{2n}}}$$\n\nLe premier terme est l'**éthène** (ou éthylène) $\\mathrm{C_2H_4}$. Réaction caractéristique : l'**addition** (ex. avec le dihydrogène, l'eau, ou le dibrome qui décolore une solution de brome — test des insaturations).\n\n$$\\mathrm{C_2H_4} + \\mathrm{H_2} \\longrightarrow \\mathrm{C_2H_6}$$\n\n## 4. Les alcynes\n\nLes **alcynes** possèdent **une triple liaison** $\\mathrm{C{\\equiv}C}$. Formule générale :\n\n$$\\boxed{\\mathrm{C_n H_{2n-2}}}$$\n\nLe premier terme est l'**éthyne** (ou acétylène) $\\mathrm{C_2H_2}$, utilisé dans les chalumeaux. Ils donnent aussi des réactions d'**addition**.\n\n## 5. Nomenclature\n\nLe nom indique le nombre d'atomes de carbone (préfixe) et la famille (suffixe) :\n- **-ane** pour les alcanes, **-ène** pour les alcènes, **-yne** pour les alcynes.\n- Préfixes : méth-(1), éth-(2), prop-(3), but-(4), pent-(5).\n\n## Exercices corrigés\n\n### Exercice 1\nDonner la formule brute de l'alcane à 5 atomes de carbone (pentane).\n\n**Correction.**\n$\\mathrm{C_nH_{2n+2}}$ avec $n = 5$ : $\\mathrm{C_5H_{12}}$.\n\n### Exercice 2\nÉcrire l'équation de la combustion complète de l'éthane $\\mathrm{C_2H_6}$.\n\n**Correction.**\n$$2\\,\\mathrm{C_2H_6} + 7\\,\\mathrm{O_2} \\longrightarrow 4\\,\\mathrm{CO_2} + 6\\,\\mathrm{H_2O}.$$\nVérification — C : 4 = 4 ; H : 12 = 12 ; O : 14 = 8 + 6 = 14. ✔\n\n### Exercice 3\nQuelle est la formule générale d'un alcène ? Donner la formule du propène.\n\n**Correction.**\n$\\mathrm{C_nH_{2n}}$. Pour le propène, $n = 3$ : $\\mathrm{C_3H_6}$.\n\n## À retenir\n\n- **Alcanes** : liaisons simples, saturés, $\\mathrm{C_nH_{2n+2}}$, réaction de **combustion**.\n- **Alcènes** : 1 double liaison, $\\mathrm{C_nH_{2n}}$, réaction d'**addition**.\n- **Alcynes** : 1 triple liaison, $\\mathrm{C_nH_{2n-2}}$.\n- Suffixes : **-ane / -ène / -yne**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "question": "La formule générale des alcanes est :",
+            "options": [
+              "CnH2n",
+              "CnH2n+2",
+              "CnH2n-2",
+              "CnHn"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "Les alcènes possèdent :",
+            "options": [
+              "seulement des liaisons simples",
+              "une double liaison C=C",
+              "une triple liaison",
+              "un atome d'oxygène"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "Le premier terme des alcynes est :",
+            "options": [
+              "le méthane",
+              "l'éthène",
+              "l'éthyne (acétylène)",
+              "le propane"
+            ],
+            "answer": 2
+          },
+          {
+            "question": "La formule du butane (alcane à 4 C) est :",
+            "options": [
+              "C4H8",
+              "C4H10",
+              "C4H6",
+              "C4H4"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "La réaction caractéristique des alcènes est :",
+            "options": [
+              "la combustion uniquement",
+              "l'addition",
+              "la neutralisation",
+              "l'oxydation des métaux"
+            ],
+            "answer": 1
+          }
+        ]
+      }
+    },
+    {
+      "title": "Le benzène et les composés aromatiques",
+      "video": "https://www.youtube.com/watch?v=u1J7Bq2gnxk",
+      "lesson": "# Le benzène et les composés aromatiques\n\n## Introduction\n\nParmi les hydrocarbures, une famille particulière se distingue par sa grande stabilité : les **composés aromatiques**, dont le chef de file est le **benzène**. On les retrouve dans de nombreux médicaments, colorants, parfums et matières plastiques.\n\n## 1. La molécule de benzène\n\nLe benzène a pour formule brute :\n\n$$\\mathrm{C_6H_6}$$\n\nSes six atomes de carbone forment un **cycle hexagonal** régulier, chaque carbone portant un atome d'hydrogène. On le représente par un hexagone avec trois doubles liaisons alternées :\n\n$$\\text{cycle à 6 carbones} \\;+\\; 3 \\text{ doubles liaisons alternées}$$\n\nCette représentation est commode mais simplifiée : en réalité, les électrons des doubles liaisons sont **délocalisés** sur tout le cycle, ce qui confère au benzène sa stabilité particulière (caractère **aromatique**). On symbolise souvent cette délocalisation par un **cercle** au centre de l'hexagone.\n\n## 2. Propriétés du benzène\n\n- Liquide incolore, odeur caractéristique, peu soluble dans l'eau.\n- **Toxique et cancérigène** : à manipuler avec précaution.\n- Malgré ses doubles liaisons, il ne donne **pas facilement** les réactions d'addition des alcènes : il préfère les réactions de **substitution** (un atome H est remplacé par un autre groupe), ce qui préserve le cycle aromatique.\n\n## 3. Réaction de substitution\n\nDans une **substitution**, un atome d'hydrogène du cycle est remplacé par un autre atome ou groupe, sans casser le cycle.\n\n**Exemple — halogénation (avec le dichlore, catalyseur) :**\n\n$$\\mathrm{C_6H_6} + \\mathrm{Cl_2} \\longrightarrow \\mathrm{C_6H_5Cl} + \\mathrm{HCl}$$\n\nOn obtient le chlorobenzène.\n\n## 4. Quelques dérivés aromatiques\n\n| Composé | Formule | Remarque |\n|---|---|---|\n| Toluène (méthylbenzène) | $\\mathrm{C_6H_5{-}CH_3}$ | solvant |\n| Phénol | $\\mathrm{C_6H_5{-}OH}$ | antiseptique |\n| Chlorobenzène | $\\mathrm{C_6H_5{-}Cl}$ | intermédiaire de synthèse |\n\n## Exercices corrigés\n\n### Exercice 1\nDonner la formule brute du benzène et indiquer le nombre d'atomes de carbone du cycle.\n\n**Correction.**\nFormule : $\\mathrm{C_6H_6}$. Le cycle comporte **6 atomes de carbone**.\n\n### Exercice 2\nPourquoi dit-on que le benzène donne plutôt des réactions de substitution que d'addition ?\n\n**Correction.**\nParce que la **délocalisation** des électrons rend le cycle très **stable** ; la substitution remplace un H **sans détruire** ce cycle aromatique, contrairement à l'addition.\n\n### Exercice 3\nÉcrire l'équation de la réaction du benzène avec le dichlore donnant le chlorobenzène.\n\n**Correction.**\n$$\\mathrm{C_6H_6} + \\mathrm{Cl_2} \\longrightarrow \\mathrm{C_6H_5Cl} + \\mathrm{HCl}.$$\n\n## À retenir\n\n- Le **benzène** $\\mathrm{C_6H_6}$ : cycle hexagonal de 6 carbones, électrons **délocalisés** $\\Rightarrow$ grande stabilité (**aromaticité**).\n- Réaction caractéristique : la **substitution** (remplacement d'un H), pas l'addition.\n- Dérivés : **toluène**, **phénol**, **chlorobenzène**.\n- Le benzène est **toxique/cancérigène**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "question": "La formule brute du benzène est :",
+            "options": [
+              "C6H12",
+              "C6H6",
+              "C6H14",
+              "C5H10"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "Le cycle du benzène comporte :",
+            "options": [
+              "4 carbones",
+              "5 carbones",
+              "6 carbones",
+              "8 carbones"
+            ],
+            "answer": 2
+          },
+          {
+            "question": "La réaction caractéristique du benzène est :",
+            "options": [
+              "l'addition",
+              "la substitution",
+              "la neutralisation",
+              "la précipitation"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "La grande stabilité du benzène vient :",
+            "options": [
+              "de ses liaisons ioniques",
+              "de la délocalisation des électrons",
+              "de sa masse élevée",
+              "de sa solubilité"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "Le méthylbenzène est aussi appelé :",
+            "options": [
+              "phénol",
+              "toluène",
+              "éthène",
+              "acétylène"
+            ],
+            "answer": 1
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les alcools (introduction)",
+      "video": "https://www.youtube.com/watch?v=hcLb5Yn3i_A",
+      "lesson": "# Les alcools (introduction)\n\n## Introduction\n\nL'éthanol des boissons fermentées, le méthanol, le glycérol : ce sont des **alcools**. Cette grande famille de composés organiques se reconnaît à la présence d'un groupe caractéristique particulier. Les alcools ont une importance considérable dans l'industrie, la pharmacie et le quotidien.\n\n## 1. Le groupe hydroxyle\n\nUn **alcool** est un composé organique qui possède un **groupe hydroxyle** $\\mathrm{-OH}$ fixé sur un atome de carbone (non aromatique) :\n\n$$\\mathrm{R{-}OH}$$\n\noù $\\mathrm{R}$ représente une chaîne carbonée. Pour les alcools saturés à chaîne ouverte, la formule générale est :\n\n$$\\mathrm{C_n H_{2n+1} OH} \\qquad (\\text{ou } \\mathrm{C_n H_{2n+2}O})$$\n\n## 2. Nomenclature\n\nLe nom dérive de l'alcane correspondant en remplaçant le **-e** final par **-ol** :\n- $\\mathrm{CH_3{-}OH}$ : **méthanol** ;\n- $\\mathrm{CH_3{-}CH_2{-}OH}$ : **éthanol** ;\n- $\\mathrm{CH_3{-}CH_2{-}CH_2{-}OH}$ : **propan-1-ol**.\n\n## 3. Classe d'un alcool\n\nSelon le nombre de carbones liés au carbone portant le $\\mathrm{-OH}$ (carbone fonctionnel) :\n- **alcool primaire** : ce carbone est lié à **1 carbone** (ou 0) ;\n- **alcool secondaire** : lié à **2 carbones** ;\n- **alcool tertiaire** : lié à **3 carbones**.\n\n## 4. Quelques propriétés\n\n- Les premiers alcools (méthanol, éthanol) sont des liquides **miscibles à l'eau** (le groupe $\\mathrm{-OH}$ « aime » l'eau).\n- **Combustion** de l'éthanol :\n\n$$\\mathrm{C_2H_5OH} + 3\\,\\mathrm{O_2} \\longrightarrow 2\\,\\mathrm{CO_2} + 3\\,\\mathrm{H_2O}$$\n\n- L'**oxydation ménagée** transforme un alcool primaire en aldéhyde puis en acide carboxylique (vu plus en détail en Terminale).\n\n## Exercices corrigés\n\n### Exercice 1\nDonner le nom de l'alcool de formule $\\mathrm{CH_3{-}CH_2{-}OH}$ et sa formule brute.\n\n**Correction.**\nC'est l'**éthanol**, de formule brute $\\mathrm{C_2H_6O}$ (ou $\\mathrm{C_2H_5OH}$).\n\n### Exercice 2\nÉcrire l'équation de la combustion complète du méthanol $\\mathrm{CH_3OH}$.\n\n**Correction.**\n$$2\\,\\mathrm{CH_3OH} + 3\\,\\mathrm{O_2} \\longrightarrow 2\\,\\mathrm{CO_2} + 4\\,\\mathrm{H_2O}.$$\nVérification — C : 2 = 2 ; H : 8 = 8 ; O : 2 + 6 = 8 = 4 + 4. ✔\n\n### Exercice 3\nCalculer la masse molaire de l'éthanol $\\mathrm{C_2H_6O}$. Données : C = 12, H = 1, O = 16.\n\n**Correction.**\n$$M = 2 \\times 12 + 6 \\times 1 + 16 = 24 + 6 + 16 = 46\\ \\text{g·mol}^{-1}.$$\n\n## À retenir\n\n- Un **alcool** possède le groupe caractéristique **hydroxyle** $\\mathrm{-OH}$ : $\\;\\mathrm{R{-}OH}$.\n- Nom : alcane $\\rightarrow$ suffixe **-ol** (méthanol, éthanol…).\n- **Classes** : primaire, secondaire, tertiaire (selon le carbone fonctionnel).\n- Les alcools brûlent (combustion) et subissent l'**oxydation ménagée**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "question": "Le groupe caractéristique des alcools est :",
+            "options": [
+              "–COOH",
+              "–OH",
+              "–NH₂",
+              "–CHO"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "Le nom de CH₃–OH est :",
+            "options": [
+              "éthanol",
+              "méthanol",
+              "propanol",
+              "méthane"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "Le suffixe utilisé pour nommer un alcool est :",
+            "options": [
+              "-ane",
+              "-ène",
+              "-ol",
+              "-yne"
+            ],
+            "answer": 2
+          },
+          {
+            "question": "Un alcool dont le carbone fonctionnel est lié à 2 carbones est dit :",
+            "options": [
+              "primaire",
+              "secondaire",
+              "tertiaire",
+              "aromatique"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "La masse molaire de l'éthanol C₂H₆O (C=12,H=1,O=16) est :",
+            "options": [
+              "30 g/mol",
+              "46 g/mol",
+              "60 g/mol",
+              "44 g/mol"
+            ],
+            "answer": 1
+          }
+        ]
+      }
+    }
+  ]
+}
