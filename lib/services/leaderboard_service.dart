@@ -191,6 +191,25 @@ class LeaderboardService {
     }
   }
 
+  /// Nombre de joueurs par ligue cette semaine (pour l'échelle des ligues).
+  Future<Map<String, int>> leagueCounts() async {
+    final out = <String, int>{};
+    final week = currentWeekId();
+    for (final l in kLeagues) {
+      try {
+        final res = await AppwriteClient.databases.listDocuments(
+          databaseId: appwriteDatabaseId,
+          collectionId: appwriteLeaderboardCollectionId,
+          queries: [Query.equal('weekId', week), Query.equal('league', l.name), Query.limit(1)],
+        );
+        out[l.name] = res.total;
+      } catch (_) {
+        out[l.name] = 0;
+      }
+    }
+    return out;
+  }
+
   /// Top national (tous les élèves, meilleur XP total d'abord).
   Future<List<LeaderboardEntry>> nationalTop({int limit = 50}) async {
     try {
