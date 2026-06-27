@@ -73,6 +73,15 @@ class LeaderboardService {
   LeaderboardService._();
   static final LeaderboardService instance = LeaderboardService._();
 
+  /// Comptes **exclus** du classement (compte propriétaire/test + compte admin) :
+  /// ils ne publient pas leur entrée et sont masqués des listes et des comptages.
+  /// Pour en ajouter/retirer, modifier ce set (puis patch).
+  static const Set<String> excludedUids = {
+    'adminonbuch', // Admin OnBuch (admin@onbuch.cm)
+    '6a3a5f4cc0b393a72fab', // compte propriétaire (Ludovic · aggax27@gmail.com)
+  };
+  static bool isExcluded(String uid) => excludedUids.contains(uid.trim());
+
   /// Identifiant de la semaine = date du lundi ('YYYY-MM-DD'). Le XP
   /// hebdomadaire repart de zéro chaque lundi.
   String currentWeekId() {
@@ -91,6 +100,7 @@ class LeaderboardService {
     required int xp,
     required int weeklyXp,
   }) async {
+    if (isExcluded(uid)) return; // compte non classé (propriétaire/admin)
     final data = {
       'uid': uid,
       'name': name,
@@ -140,7 +150,10 @@ class LeaderboardService {
           Query.limit(limit),
         ],
       );
-      final list = res.documents.map((d) => LeaderboardEntry.fromMap(d.data)).toList();
+      final list = res.documents
+          .map((d) => LeaderboardEntry.fromMap(d.data))
+          .where((e) => !isExcluded(e.uid))
+          .toList();
       for (var i = 0; i < list.length; i++) {
         list[i].rank = i + 1;
       }
@@ -218,7 +231,10 @@ class LeaderboardService {
         collectionId: appwriteLeaderboardCollectionId,
         queries: [Query.orderDesc('xp'), Query.limit(limit)],
       );
-      final list = res.documents.map((d) => LeaderboardEntry.fromMap(d.data)).toList();
+      final list = res.documents
+          .map((d) => LeaderboardEntry.fromMap(d.data))
+          .where((e) => !isExcluded(e.uid))
+          .toList();
       for (var i = 0; i < list.length; i++) {
         list[i].rank = i + 1;
       }

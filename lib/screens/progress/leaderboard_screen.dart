@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
@@ -33,8 +34,10 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
   int _natRank = 0;
   int _natTotal = 0;
   LeaderboardEntry? _meEntry; // mon entrée, pour la ligne « toi » épinglée
+  bool _excluded = false; // compte non classé (propriétaire/admin)
 
   Map<String, int> _counts = const {};
+  bool _countsLoading = false;
 
   @override
   void initState() {
@@ -50,14 +53,26 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
       final weekly = GamificationService.instance.weeklyXp();
       final league = leagueForLevel(g.level);
       final lb = LeaderboardService.instance;
+      _league = league;
 
       if (user != null) {
         _uid = user.$id;
         final name = user.name.trim().isNotEmpty ? user.name.trim() : 'Élève';
-        await lb.submit(uid: _uid!, name: name, level: g.level, xp: g.xp, weeklyXp: weekly);
+        _excluded = LeaderboardService.isExcluded(_uid!);
 
-        var list = await lb.top(league: league.name);
-        if (!list.any((e) => e.uid == _uid)) {
+        // Publication NON bloquante (et ignorée pour un compte exclu) : on
+        // n'attend pas l'écriture avant d'afficher le classement.
+        if (!_excluded) {
+          unawaited(lb.submit(uid: _uid!, name: name, level: g.level, xp: g.xp, weeklyXp: weekly));
+        }
+
+        // Lectures lancées EN PARALLÈLE (gros gain de vitesse vs séquentiel).
+        final fTop = lb.top(league: league.name);
+        final fNat = lb.nationalTop();
+        final fRank = _excluded ? null : lb.nationalRank(myXp: g.xp);
+
+        var list = await fTop;
+        if (!_excluded && !list.any((e) => e.uid == _uid)) {
           list = [
             ...list,
             LeaderboardEntry(uid: _uid!, name: name, level: g.level, weeklyXp: weekly, xp: g.xp),
@@ -67,23 +82,42 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
           }
         }
         _entries = list;
-        _myRank = list.indexWhere((e) => e.uid == _uid) + 1;
+        _myRank = _excluded ? 0 : list.indexWhere((e) => e.uid == _uid) + 1;
 
         // Top national (top 50, rangs réels 1..N). On n'injecte PLUS l'élève
         // dans cette liste : s'il est hors du top, on l'épingle séparément avec
         // son VRAI rang national (calculé côté serveur via un simple comptage),
         // ce qui reste correct et léger même avec des milliers d'élèves.
-        _natEntries = await lb.nationalTop();
-        final r = await lb.nationalRank(myXp: g.xp);
-        _natRank = r.rank;
-        _natTotal = r.total;
-        _meEntry = LeaderboardEntry(
-            uid: _uid!, name: name, level: g.level, weeklyXp: weekly, xp: g.xp, rank: _natRank);
+        _natEntries = await fNat;
+        if (fRank != null) {
+          final r = await fRank;
+          _natRank = r.rank;
+          _natTotal = r.total;
+          _meEntry = LeaderboardEntry(
+              uid: _uid!, name: name, level: g.level, weeklyXp: weekly, xp: g.xp, rank: _natRank);
+        } else {
+          _natRank = 0;
+          _natTotal = 0;
+          _meEntry = null;
+        }
       }
-      _league = league;
-      _counts = await lb.leagueCounts();
+      // Les compteurs par ligue (6 requêtes) ne servent qu'à l'onglet « Ligues » :
+      // chargés à la demande (cf. _ensureCounts) pour accélérer l'ouverture.
     } catch (_) {/* hors-ligne → cache / vide */}
     if (mounted) setState(() => _loading = false);
+  }
+
+  /// Compteurs par ligue : chargés seulement à l'ouverture de l'onglet « Ligues »
+  /// (6 requêtes) — évite de ralentir le chargement initial du classement.
+  Future<void> _ensureCounts() async {
+    if (_counts.isNotEmpty || _countsLoading) return;
+    _countsLoading = true;
+    try {
+      final c = await LeaderboardService.instance.leagueCounts();
+      if (mounted) setState(() { _counts = c; _countsLoading = false; });
+    } catch (_) {
+      if (mounted) setState(() => _countsLoading = false);
+    }
   }
 
   // ── Compte à rebours fin de semaine (lundi) ─────────────────────────────────
@@ -122,7 +156,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
   Widget _segmented() {
     Widget seg(String label, int i) => Expanded(
           child: GestureDetector(
-            onTap: () => setState(() => _tab = i),
+            onTap: () { setState(() => _tab = i); if (i == 2) _ensureCounts(); },
             child: Container(
               height: 40,
               alignment: Alignment.center,
@@ -166,9 +200,14 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
           ),
           const SizedBox(width: 16),
           Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text('Ton rang national', style: body(12.5, color: Colors.white.withValues(alpha: 0.8), weight: FontWeight.w700)),
-            Text(_natRank > 0 ? '#$_natRank' : '—', style: display(30, weight: FontWeight.w800, color: Colors.white)),
-            if (_natTotal > 0)
+            Text(_excluded ? 'Classement national' : 'Ton rang national',
+                style: body(12.5, color: Colors.white.withValues(alpha: 0.8), weight: FontWeight.w700)),
+            Text(_excluded ? 'Non classé' : (_natRank > 0 ? '#$_natRank' : '—'),
+                style: display(_excluded ? 22 : 30, weight: FontWeight.w800, color: Colors.white)),
+            if (_excluded)
+              Text('Ce compte n\'apparaît pas dans le classement.',
+                  style: body(11.5, color: Colors.white.withValues(alpha: 0.75), weight: FontWeight.w600))
+            else if (_natTotal > 0)
               Text('sur $_natTotal élève${_natTotal > 1 ? 's' : ''} classé${_natTotal > 1 ? 's' : ''}',
                   style: body(11.5, color: Colors.white.withValues(alpha: 0.75), weight: FontWeight.w600)),
           ])),
