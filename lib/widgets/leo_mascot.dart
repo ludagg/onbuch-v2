@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 /// Humeurs disponibles de Léo (chaque humeur = un asset transparent).
 ///
 /// Les 4 dernières (`sleepy/sad/fire/alarm`) servent aux rappels de série
-/// (notifications). Tant que leurs PNG dédiés ne sont pas fournis, elles
-/// pointent sur un asset existant proche (placeholder) — il suffira de déposer
-/// `leo_sleepy.png`, `leo_sad.png`, `leo_fire.png`, `leo_alarm.png` dans
-/// `assets/images/` puis de mettre à jour la table ci-dessous.
+/// (notifications) : Léo qui dort, Léo triste (sablier), Léo qui brandit une
+/// flamme, Léo à l'heure de réviser (réveil).
 enum LeoMood { idle, thinking, celebrate, encourage, wave, lab, sleepy, sad, fire, alarm }
 
 const Map<LeoMood, String> _leoAssets = {
@@ -16,11 +14,11 @@ const Map<LeoMood, String> _leoAssets = {
   LeoMood.encourage: 'assets/images/leo_encourage.png',
   LeoMood.wave: 'assets/images/leo_wave.png',
   LeoMood.lab: 'assets/images/leo_lab.png',
-  // Rappels / série — PNG dédiés à fournir (placeholders en attendant).
-  LeoMood.sleepy: 'assets/images/leo_thinking.png', // TODO → leo_sleepy.png
-  LeoMood.sad: 'assets/images/leo_encourage.png', // TODO → leo_sad.png
-  LeoMood.fire: 'assets/images/leo_celebrate.png', // TODO → leo_fire.png
-  LeoMood.alarm: 'assets/images/leo_wave.png', // TODO → leo_alarm.png
+  // Rappels / série.
+  LeoMood.sleepy: 'assets/images/leo_sleepy.png',
+  LeoMood.sad: 'assets/images/leo_sad.png',
+  LeoMood.fire: 'assets/images/leo_fire.png',
+  LeoMood.alarm: 'assets/images/leo_alarm.png',
 };
 
 /// Léo, la mascotte OnBuch (petit lion). Affiché **animé** (léger flottement
