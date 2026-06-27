@@ -156,7 +156,14 @@ class _PdfReaderScreenState extends State<PdfReaderScreen> {
             padding: const EdgeInsets.only(bottom: 12),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(6),
-              child: Image.memory(_previewImages[i], fit: BoxFit.fitWidth, width: double.infinity),
+              // Fond BLANC obligatoire : les PDF (fascicules LaTeX) n'ont pas de
+              // rectangle de page blanc → le PNG rastérisé a un fond transparent.
+              // Sans ce blanc, la page apparaîtrait noire (sur le fond sombre du
+              // lecteur) et le texte serait illisible. Un document = toujours blanc.
+              child: Container(
+                color: Colors.white,
+                child: Image.memory(_previewImages[i], fit: BoxFit.fitWidth, width: double.infinity),
+              ),
             ),
           ),
         if (_previewLoading)
