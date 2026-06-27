@@ -1,0 +1,774 @@
+{
+  "code": "EC",
+  "level": "Terminale",
+  "chapters": [
+    {
+      "title": "L'État de droit et la démocratie",
+      "video": "https://www.youtube.com/watch?v=qE2t3hL8jJ0",
+      "lesson": "# L'État de droit et la démocratie\n\n## Introduction\n\nAu sortir du collège, l'élève sait que vivre ensemble suppose des règles. En classe de Terminale, il s'agit d'approfondir : comment le **pouvoir politique** est-il encadré pour ne pas devenir arbitraire ? La réponse moderne tient en deux notions liées : l'**État de droit** et la **démocratie**. L'État de droit garantit que tout pouvoir, y compris celui des gouvernants, est soumis au droit ; la démocratie assure que ce droit procède du peuple. Le Cameroun, dans le préambule de sa **Constitution du 18 janvier 1996** (révisée le 14 avril 2008), proclame son attachement à ces principes.\n\n## I. La notion d'État de droit\n\n### 1. Définition\nL'**État de droit** (en allemand *Rechtsstaat*) est un système dans lequel la puissance publique est **soumise au droit**. Les gouvernants ne peuvent agir qu'en vertu d'une habilitation juridique et dans les limites fixées par la loi. Il s'oppose à l'**État de police** ou arbitraire.\n\n### 2. Les caractéristiques\n- **La hiérarchie des normes** (pyramide de Hans Kelsen) : Constitution > traités > lois > règlements > décisions individuelles.\n- **La séparation des pouvoirs** (Montesquieu, *De l'esprit des lois*, 1748) : pouvoirs **exécutif**, **législatif** et **judiciaire** distincts.\n- **Le contrôle de constitutionnalité** : au Cameroun, assuré par le **Conseil constitutionnel**.\n- **L'indépendance de la justice** et l'égalité de tous devant la loi.\n- **La garantie des libertés fondamentales**.\n\n## II. La notion de démocratie\n\n### 1. Définition\nLa **démocratie** (du grec *dêmos*, peuple, et *kratos*, pouvoir) est le « gouvernement du peuple, par le peuple et pour le peuple » (Abraham Lincoln, 1863).\n\n### 2. Les formes de démocratie\n- **Démocratie directe** : le peuple exerce lui-même le pouvoir (ex. référendum).\n- **Démocratie représentative** : le peuple élit des représentants (cas du Cameroun).\n- **Démocratie participative** : associe les citoyens entre deux élections.\n\n### 3. Les principes démocratiques\n- La **souveraineté nationale**.\n- Le **suffrage universel**, libre, égal, secret.\n- Le **pluralisme politique** (loi n° 90/056 du 19 décembre 1990 sur les partis).\n- Le respect des **droits de l'opposition** et l'**alternance**.\n\n## III. État de droit et démocratie : une articulation nécessaire\n\nLa démocratie sans État de droit risque de devenir une « **dictature de la majorité** » ; l'État de droit sans démocratie peut servir un pouvoir non élu. Les deux se complètent : la démocratie légitime le droit, l'État de droit limite la démocratie. Au Cameroun, le **Conseil constitutionnel**, le **multipartisme** et **ELECAM** (créé en 2006) traduisent cette recherche d'équilibre.\n\n## Cas pratique / exercice corrigé\n\n**Énoncé.** Une majorité parlementaire vote une loi interdisant à un parti minoritaire de tenir des réunions publiques. Un citoyen estime cette loi contraire à la Constitution. Que peut-il invoquer ? Quel organe peut censurer la loi ?\n\n**Correction.**\n1. Le citoyen peut invoquer la **liberté de réunion** et le **pluralisme politique**, garantis par le préambule de la Constitution de 1996.\n2. Même votée à la majorité, la loi ne peut contredire une norme supérieure (la Constitution) : c'est l'**État de droit**.\n3. L'organe compétent est le **Conseil constitutionnel**, saisi avant promulgation.\n4. La loi peut être déclarée **non conforme** : l'État de droit protège la minorité contre l'abus de la majorité.\n\n## À retenir\n\n- L'**État de droit** soumet tout pouvoir au droit (hiérarchie des normes, séparation des pouvoirs, contrôle de constitutionnalité).\n- La **démocratie** est le gouvernement du peuple : souveraineté, suffrage universel, pluralisme, alternance.\n- Les deux sont **complémentaires**.\n- Repères : **Constitution du 18 janvier 1996**, **Conseil constitutionnel**, loi de **1990** sur le multipartisme, **ELECAM**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Quel penseur a théorisé la séparation des pouvoirs dans 'De l'esprit des lois' (1748) ?",
+            "options": [
+              "Jean-Jacques Rousseau",
+              "Montesquieu",
+              "Hans Kelsen",
+              "Abraham Lincoln"
+            ],
+            "answer": 1,
+            "explanation": "Montesquieu distingue les pouvoirs exécutif, législatif et judiciaire dans 'De l'esprit des lois' (1748)."
+          },
+          {
+            "q": "Dans la hiérarchie des normes (Kelsen), quelle norme se trouve au sommet au Cameroun ?",
+            "options": [
+              "La loi ordinaire",
+              "Le décret",
+              "La Constitution",
+              "Le règlement"
+            ],
+            "answer": 2,
+            "explanation": "La Constitution est la norme suprême ; toutes les autres normes doivent lui être conformes."
+          },
+          {
+            "q": "Quel organe assure le contrôle de constitutionnalité des lois au Cameroun ?",
+            "options": [
+              "La Cour suprême",
+              "Le Conseil constitutionnel",
+              "L'Assemblée nationale",
+              "ELECAM"
+            ],
+            "answer": 1,
+            "explanation": "Le Conseil constitutionnel veille à la conformité des lois à la Constitution."
+          },
+          {
+            "q": "La démocratie où le peuple élit des représentants est dite :",
+            "options": [
+              "directe",
+              "représentative",
+              "autoritaire",
+              "censitaire"
+            ],
+            "answer": 1,
+            "explanation": "La démocratie représentative repose sur l'élection de représentants ; c'est le système camerounais."
+          },
+          {
+            "q": "Quelle loi camerounaise de 1990 a consacré le multipartisme ?",
+            "options": [
+              "La loi n° 90/056 du 19 décembre 1990",
+              "La Constitution de 1996",
+              "La loi sur ELECAM de 2006",
+              "La Déclaration de 1948"
+            ],
+            "answer": 0,
+            "explanation": "La loi n° 90/056 du 19 décembre 1990 relative aux partis politiques a instauré le multipartisme."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les droits humains et leur protection",
+      "video": "https://www.youtube.com/watch?v=Oe8T_HQbStY",
+      "lesson": "# Les droits humains et leur protection\n\n## Introduction\n\nLes **droits humains** sont les droits inhérents à tout être humain, sans distinction. Proclamés par la **Déclaration universelle des droits de l'homme (DUDH) du 10 décembre 1948**, ils constituent le socle de la dignité de la personne. Le préambule de la Constitution camerounaise affirme l'attachement aux libertés fondamentales de la DUDH, de la Charte des Nations Unies et de la Charte africaine. Mais proclamer des droits ne suffit pas : encore faut-il les **protéger**.\n\n## I. La notion et les générations de droits humains\n\n### 1. Caractères\nLes droits humains sont **universels**, **inaliénables**, **indivisibles** et **interdépendants**.\n\n### 2. Les générations de droits\n- **1re génération — droits civils et politiques** : droit à la vie, à la liberté, liberté d'expression, droit de vote.\n- **2e génération — droits économiques, sociaux et culturels** : travail, éducation, santé (Pacte de 1966).\n- **3e génération — droits de solidarité** : paix, développement, environnement sain (Charte africaine, 1981).\n\n## II. Les textes de référence\n\n- **Déclaration des droits de l'homme et du citoyen**, 1789.\n- **DUDH**, 10 décembre 1948.\n- **Pactes internationaux** de 1966 (PIDCP et PIDESC).\n- **Convention relative aux droits de l'enfant**, 1989.\n- **Charte africaine des droits de l'homme et des peuples** (Banjul), 1981.\n\n## III. La protection des droits humains\n\n### 1. Au niveau national\n- La **Constitution** et son préambule.\n- Les **tribunaux**.\n- La **Commission des droits de l'homme du Cameroun (CDHC)**.\n- La **société civile** et la presse.\n\n### 2. Au niveau régional et international\n- La **Commission** et la **Cour africaines des droits de l'homme et des peuples**.\n- Le **Conseil des droits de l'homme** de l'ONU et le **Haut-Commissariat (HCDH)**.\n- Les **ONG** : Amnesty International, Human Rights Watch.\n\n### 3. Les obstacles\nPauvreté, ignorance des droits, conflits armés, lenteur judiciaire. D'où l'importance de l'**éducation aux droits humains**.\n\n## Cas pratique / exercice corrigé\n\n**Énoncé.** Un enfant de 12 ans est retiré de l'école par ses parents pour travailler. Quels droits sont violés ? Quels textes le protègent ?\n\n**Correction.**\n1. Sont violés : le **droit à l'éducation** (DUDH art. 26 ; Convention de 1989 art. 28) et la protection contre le **travail des enfants** (Convention de 1989 art. 32).\n2. Textes : la **Convention relative aux droits de l'enfant** (1989), ratifiée par le Cameroun.\n3. Acteurs : services sociaux, **CDHC**, ONG, école qui peut signaler.\n4. L'enfant a des droits opposables même à ses parents ; la collectivité doit les faire respecter.\n\n## À retenir\n\n- Les droits humains sont **universels, inaliénables, indivisibles**.\n- Trois générations : **civils/politiques**, **économiques/sociaux/culturels**, **de solidarité**.\n- Textes clés : **DUDH 1948**, **Pactes 1966**, **Convention de l'enfant 1989**, **Charte africaine 1981**.\n- Protection : **Constitution**, **juge**, **CDHC**, **Cour africaine**, **ONU/HCDH**, **ONG**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Quand a été adoptée la Déclaration universelle des droits de l'homme ?",
+            "options": [
+              "Le 14 juillet 1789",
+              "Le 10 décembre 1948",
+              "Le 18 janvier 1996",
+              "Le 26 juin 1945"
+            ],
+            "answer": 1,
+            "explanation": "La DUDH a été adoptée par l'Assemblée générale de l'ONU le 10 décembre 1948."
+          },
+          {
+            "q": "Le droit à l'éducation et au travail relève de quelle génération de droits ?",
+            "options": [
+              "1re génération (civils et politiques)",
+              "2e génération (économiques et sociaux)",
+              "3e génération (solidarité)",
+              "Aucune"
+            ],
+            "answer": 1,
+            "explanation": "Les droits économiques, sociaux et culturels sont des droits de 2e génération."
+          },
+          {
+            "q": "La Charte africaine des droits de l'homme et des peuples est aussi appelée :",
+            "options": [
+              "Charte de Banjul",
+              "Charte de San Francisco",
+              "Pacte de 1966",
+              "Charte de l'OUA"
+            ],
+            "answer": 0,
+            "explanation": "Adoptée en 1981 à Banjul (Gambie), elle est dite Charte de Banjul."
+          },
+          {
+            "q": "Quel organe national veille aux droits humains au Cameroun ?",
+            "options": [
+              "ELECAM",
+              "La Commission des droits de l'homme du Cameroun (CDHC)",
+              "Le Conseil constitutionnel",
+              "La CEMAC"
+            ],
+            "answer": 1,
+            "explanation": "La CDHC est l'institution nationale de promotion et protection des droits humains."
+          },
+          {
+            "q": "Quelle convention de 1989 protège spécifiquement les mineurs ?",
+            "options": [
+              "Le PIDCP",
+              "La Convention relative aux droits de l'enfant",
+              "La DUDH",
+              "Le PIDESC"
+            ],
+            "answer": 1,
+            "explanation": "La Convention relative aux droits de l'enfant (1989) protège les droits des mineurs."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les institutions de la République du Cameroun",
+      "video": "https://www.youtube.com/watch?v=8m1Q4iyEb1A",
+      "lesson": "# Les institutions de la République du Cameroun\n\n## Introduction\n\nLe Cameroun est un **État unitaire décentralisé** (Constitution du 18 janvier 1996, révisée en 2008). Sa devise est « **Paix – Travail – Patrie** ». L'organisation du pouvoir repose sur des **institutions** qui incarnent la séparation des pouvoirs : l'exécutif, le législatif, le judiciaire, complétés par des organes de régulation.\n\n## I. Le pouvoir exécutif\n\n### 1. Le Président de la République\n- **Chef de l'État**, élu au **suffrage universel direct** pour un mandat de **7 ans**.\n- Garant de la Constitution, de l'unité nationale, de l'intégrité du territoire.\n- Chef des armées ; il nomme le Premier ministre et le gouvernement, promulgue les lois.\n\n### 2. Le Gouvernement\n- Dirigé par le **Premier ministre, chef du gouvernement**, nommé par le Président.\n- Met en œuvre la politique de la nation.\n\n## II. Le pouvoir législatif : le Parlement bicaméral\n\n- **L'Assemblée nationale** : **180 députés** élus au suffrage universel direct pour **5 ans**.\n- **Le Sénat** : **100 sénateurs** (70 élus, 30 nommés par le Président) ; il représente les **collectivités territoriales décentralisées** ; mis en place en **2013**.\n\n## III. Le pouvoir judiciaire\n\n- Exercé par la **Cour suprême**, les **cours d'appel** et les **tribunaux**.\n- Le **Conseil supérieur de la magistrature** garantit l'indépendance des juges.\n- « Le pouvoir judiciaire est indépendant du pouvoir exécutif et du pouvoir législatif » (art. 37).\n\n## IV. Les organes de régulation et de contrôle\n\n- **Le Conseil constitutionnel** : contrôle de constitutionnalité, contentieux électoral.\n- **ELECAM** : organise et supervise les élections.\n- **La Cour des comptes** : contrôle des finances publiques.\n- **Le Conseil économique et social** : organe consultatif.\n\n## V. La décentralisation\n\nDepuis 1996, le Cameroun est un **État unitaire décentralisé** : les **régions** (10) et les **communes** sont des collectivités territoriales décentralisées. La **loi de 2019 portant Code général des collectivités territoriales décentralisées** a renforcé ce processus, avec un **statut spécial** pour le Nord-Ouest et le Sud-Ouest.\n\n## Cas pratique / exercice corrigé\n\n**Énoncé.** Un projet de loi a été voté par l'Assemblée nationale. Quel autre organe l'examine ? Qui promulgue la loi ? Qui vérifie sa conformité à la Constitution ?\n\n**Correction.**\n1. Le texte est transmis au **Sénat** (Parlement bicaméral).\n2. La loi adoptée est **promulguée par le Président de la République**.\n3. Avant promulgation, le **Conseil constitutionnel** peut vérifier la conformité à la Constitution.\n4. L'exemple illustre la **collaboration des pouvoirs** et le **contrôle** constitutionnel.\n\n## À retenir\n\n- **Exécutif** : Président (7 ans, suffrage direct) + Gouvernement (Premier ministre).\n- **Législatif** : Parlement **bicaméral** = Assemblée nationale (180 députés, 5 ans) + Sénat (100 sénateurs, depuis 2013).\n- **Judiciaire** : Cour suprême, cours d'appel, tribunaux.\n- Organes : **Conseil constitutionnel**, **ELECAM**, **Cour des comptes**, **Conseil économique et social**.\n- **État unitaire décentralisé** : 10 régions, Code de 2019, statut spécial NO/SO.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Pour quelle durée le Président de la République du Cameroun est-il élu ?",
+            "options": [
+              "4 ans",
+              "5 ans",
+              "7 ans",
+              "6 ans"
+            ],
+            "answer": 2,
+            "explanation": "Le Président est élu au suffrage universel direct pour un mandat de 7 ans."
+          },
+          {
+            "q": "Combien de chambres compte le Parlement camerounais ?",
+            "options": [
+              "Une seule",
+              "Deux (bicaméral)",
+              "Trois",
+              "Aucune"
+            ],
+            "answer": 1,
+            "explanation": "Le Parlement est bicaméral : Assemblée nationale et Sénat."
+          },
+          {
+            "q": "Combien de députés compte l'Assemblée nationale du Cameroun ?",
+            "options": [
+              "100",
+              "150",
+              "180",
+              "250"
+            ],
+            "answer": 2,
+            "explanation": "L'Assemblée nationale compte 180 députés élus pour 5 ans."
+          },
+          {
+            "q": "Quelle institution organise et supervise les élections au Cameroun ?",
+            "options": [
+              "Le Conseil constitutionnel",
+              "ELECAM",
+              "Le Sénat",
+              "La Cour des comptes"
+            ],
+            "answer": 1,
+            "explanation": "ELECAM (Elections Cameroon) est l'organe chargé de l'organisation des élections."
+          },
+          {
+            "q": "Le Sénat camerounais représente principalement :",
+            "options": [
+              "Les partis politiques",
+              "Les collectivités territoriales décentralisées",
+              "Les syndicats",
+              "Les forces armées"
+            ],
+            "answer": 1,
+            "explanation": "Le Sénat représente les collectivités territoriales décentralisées (régions et communes)."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La citoyenneté responsable",
+      "video": "https://www.youtube.com/watch?v=O5y0pT7hYqM",
+      "lesson": "# La citoyenneté responsable\n\n## Introduction\n\nÊtre citoyen ne se limite pas à posséder une nationalité. La **citoyenneté responsable** désigne l'attitude active de la personne qui connaît ses **droits**, accomplit ses **devoirs** et s'engage pour le bien commun. À l'heure des grands défis (cohésion nationale, environnement, numérique), la République repose sur la participation de chacun.\n\n## I. La notion de citoyenneté\n\n### 1. Définition\nLa **citoyenneté** est le lien juridique et politique qui unit l'individu à l'État. Le citoyen jouit de **droits** et est tenu à des **devoirs**.\n\n### 2. Les dimensions\n- **Juridique** : la nationalité, les droits civiques.\n- **Politique** : la participation à la vie publique.\n- **Sociale et morale** : la solidarité, le civisme, le respect d'autrui.\n\n## II. Droits et devoirs du citoyen\n\n### 1. Les droits civiques\n- Droit de **vote** et d'**éligibilité** (vote à partir de 20 ans).\n- Liberté d'opinion, d'expression, d'association.\n- Droit à l'égalité et à la protection de l'État.\n\n### 2. Les devoirs civiques\n- Respect des **lois** et de la **Constitution**.\n- Paiement des **impôts**.\n- Participation à la **défense** de la patrie (devoir sacré).\n- Respect du **bien public**, de l'environnement et d'autrui.\n\n## III. La citoyenneté active et responsable\n\nLe citoyen responsable :\n- **S'informe** et exerce son esprit critique (lutte contre les fausses nouvelles).\n- **Vote** et participe aux consultations.\n- **S'engage** : associations, volontariat, vie de quartier.\n- Adopte un **comportement civique** : propreté, code de la route, paiement des taxes.\n- Pratique la **citoyenneté numérique**.\n\n## IV. Les obstacles au civisme et leurs remèdes\n\nObstacles : incivisme, corruption, tribalisme, abstention. Remèdes : **éducation civique**, **exemplarité**, **sanctions**, **valorisation du mérite**.\n\n## Cas pratique / exercice corrigé\n\n**Énoncé.** Un jeune majeur affirme : « Je ne vote pas car cela ne change rien, et je jette mes déchets dans la rue. » Analysez son attitude.\n\n**Correction.**\n1. Le refus de voter est une **démission civique** : le vote est un droit et l'expression de la souveraineté.\n2. Jeter ses déchets viole le **devoir de respect du bien public et de l'environnement**.\n3. Cette attitude relève de l'**incivisme**.\n4. Les droits et les devoirs sont **indissociables**.\n\n## À retenir\n\n- La **citoyenneté responsable** = connaître ses droits, accomplir ses devoirs, s'engager pour le bien commun.\n- **Droits civiques** : vote, expression, association, égalité.\n- **Devoirs civiques** : respect des lois, impôts, défense de la patrie, respect du bien public.\n- Citoyen actif : s'informe, vote, s'engage, agit avec civisme (y compris **numérique**).\n- Ennemis du civisme : incivisme, corruption, tribalisme, abstention.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "La citoyenneté responsable suppose que droits et devoirs sont :",
+            "options": [
+              "séparés",
+              "indissociables",
+              "facultatifs",
+              "réservés aux élus"
+            ],
+            "answer": 1,
+            "explanation": "Le citoyen responsable jouit de droits mais accomplit aussi ses devoirs."
+          },
+          {
+            "q": "Lequel de ces comportements relève d'un devoir civique ?",
+            "options": [
+              "Jeter ses déchets dans la rue",
+              "Payer ses impôts",
+              "S'abstenir de voter",
+              "Dégrader le bien public"
+            ],
+            "answer": 1,
+            "explanation": "Le paiement des impôts est un devoir civique qui finance les services publics."
+          },
+          {
+            "q": "Selon la Constitution camerounaise, la défense de la patrie est :",
+            "options": [
+              "facultative",
+              "un devoir sacré",
+              "réservée aux militaires de carrière",
+              "interdite aux civils"
+            ],
+            "answer": 1,
+            "explanation": "La Constitution fait de la défense de la patrie un devoir sacré."
+          },
+          {
+            "q": "La citoyenneté numérique consiste à :",
+            "options": [
+              "diffuser de fausses nouvelles",
+              "utiliser Internet de façon responsable",
+              "insulter en ligne",
+              "pirater des comptes"
+            ],
+            "answer": 1,
+            "explanation": "La citoyenneté numérique implique un usage responsable d'Internet et le respect d'autrui."
+          },
+          {
+            "q": "Quel est un obstacle majeur au civisme ?",
+            "options": [
+              "Le vote",
+              "L'engagement associatif",
+              "Le tribalisme",
+              "Le respect des lois"
+            ],
+            "answer": 2,
+            "explanation": "Le tribalisme, comme l'incivisme et la corruption, mine la citoyenneté."
+          }
+        ]
+      }
+    },
+    {
+      "title": "L'intégration nationale et régionale (CEMAC, UA)",
+      "video": "https://www.youtube.com/watch?v=Q3o5N4yI0nE",
+      "lesson": "# L'intégration nationale et régionale (CEMAC, UA)\n\n## Introduction\n\nLe Cameroun, par sa diversité, est qualifié d'« **Afrique en miniature** ». Faire vivre ensemble cette diversité est l'enjeu de l'**intégration nationale**. À l'échelle du continent, les États s'unissent : c'est l'**intégration régionale** (CEMAC) et **continentale** (Union africaine).\n\n## I. L'intégration nationale\n\n### 1. Définition\nL'**intégration nationale** vise à unir les composantes (ethnies, régions, langues, religions) d'un pays en une seule **nation**.\n\n### 2. Les facteurs au Cameroun\n- Le **bilinguisme officiel** (français et anglais).\n- Les **symboles nationaux** : drapeau, hymne, devise.\n- La **Commission nationale pour la promotion du bilinguisme et du multiculturalisme** (2017).\n- L'école, le sport (les **Lions Indomptables**), les brassages.\n\n### 3. Les menaces et remèdes\nMenaces : **tribalisme**, régionalisme. Remèdes : éducation à la tolérance, équité régionale, brassage.\n\n## II. L'intégration régionale : la CEMAC\n\n### 1. Présentation\nLa **CEMAC** (Communauté Économique et Monétaire de l'Afrique Centrale), créée en **1994**, regroupe **6 pays** : Cameroun, Congo, Gabon, Guinée équatoriale, RCA, Tchad.\n\n### 2. Objectifs et réalisations\n- Une **monnaie commune** : le **franc CFA**, géré par la **BEAC**.\n- La **libre circulation** (passeport CEMAC).\n- Un marché commun.\n\n## III. L'intégration continentale : l'Union africaine\n\n### 1. De l'OUA à l'UA\nL'**OUA**, créée en **1963** à Addis-Abeba, a été remplacée par l'**Union africaine (UA)** en **2002** (Durban).\n\n### 2. Objectifs de l'UA\n- Promouvoir l'**unité** et la **solidarité** africaines.\n- Défendre la **paix**, la **sécurité**, la **démocratie**.\n- Accélérer le **développement** (Agenda 2063, ZLECAf).\n\n## Cas pratique / exercice corrigé\n\n**Énoncé.** Un commerçant camerounais veut vendre ses marchandises au Gabon. Une organisation lui facilite-t-elle la tâche ? Laquelle ?\n\n**Correction.**\n1. Le Cameroun et le Gabon sont membres de la **CEMAC** (libre circulation, marché commun).\n2. Avantages : réduction des **droits de douane**, **monnaie commune** (FCFA), **passeport CEMAC**.\n3. À plus large échelle, la **ZLECAf** de l'UA élargit ce marché.\n4. L'intégration régionale ouvre des débouchés et renforce la solidarité.\n\n## À retenir\n\n- **Intégration nationale** : unir ethnies, langues, religions ; bilinguisme, symboles ; ennemi = tribalisme.\n- **CEMAC** (1994, 6 pays) : monnaie commune (FCFA, BEAC), libre circulation.\n- **OUA (1963) → UA (2002)** : unité, paix, démocratie, développement (Agenda 2063, ZLECAf).\n- Le Cameroun, « **Afrique en miniature** », est un laboratoire de l'intégration.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Le Cameroun est souvent surnommé :",
+            "options": [
+              "le grenier de l'Afrique",
+              "l'Afrique en miniature",
+              "le poumon vert",
+              "le château d'eau"
+            ],
+            "answer": 1,
+            "explanation": "Sa grande diversité vaut au Cameroun le surnom d'« Afrique en miniature »."
+          },
+          {
+            "q": "Combien de pays compte la CEMAC ?",
+            "options": [
+              "4",
+              "5",
+              "6",
+              "8"
+            ],
+            "answer": 2,
+            "explanation": "La CEMAC regroupe 6 pays : Cameroun, Congo, Gabon, Guinée équatoriale, RCA et Tchad."
+          },
+          {
+            "q": "En quelle année l'Union africaine a-t-elle remplacé l'OUA ?",
+            "options": [
+              "1963",
+              "1994",
+              "2002",
+              "2013"
+            ],
+            "answer": 2,
+            "explanation": "L'UA a été créée en 2002 à Durban, succédant à l'OUA fondée en 1963."
+          },
+          {
+            "q": "Quelle banque gère le franc CFA en Afrique centrale ?",
+            "options": [
+              "La BCEAO",
+              "La BEAC",
+              "La BAD",
+              "La Banque mondiale"
+            ],
+            "answer": 1,
+            "explanation": "La BEAC (Banque des États de l'Afrique centrale) gère le FCFA de la zone CEMAC."
+          },
+          {
+            "q": "La ZLECAf est un projet de l'Union africaine visant :",
+            "options": [
+              "une armée continentale",
+              "une zone de libre-échange continentale",
+              "une monnaie mondiale",
+              "un parlement mondial"
+            ],
+            "answer": 1,
+            "explanation": "La ZLECAf crée un grand marché commun africain."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La mondialisation et ses enjeux",
+      "video": "https://www.youtube.com/watch?v=2WZ7vP4Y4lE",
+      "lesson": "# La mondialisation et ses enjeux\n\n## Introduction\n\nLa **mondialisation** désigne la mise en relation croissante des sociétés humaines à l'échelle planétaire : échanges de marchandises, de capitaux, d'informations et de cultures. Accélérée par les **technologies de l'information**, elle offre des opportunités mais aussi des risques pour un pays comme le Cameroun.\n\n## I. La notion de mondialisation\n\n### 1. Définition\nLa **mondialisation** est le processus d'intensification des **interdépendances** entre les nations (économique, financier, culturel, technologique).\n\n### 2. Les acteurs\n- Les **firmes transnationales (FTN)**.\n- Les **États** et les **organisations internationales** (OMC, FMI, Banque mondiale).\n- Les **ONG**, les **médias**, les **réseaux sociaux**.\n\n## II. Les manifestations\n\n- **Économique** : libre-échange, délocalisations, marché mondial.\n- **Financière** : circulation rapide des capitaux.\n- **Culturelle** : diffusion de modèles de consommation.\n- **Technologique** : Internet, smartphones, intelligence artificielle.\n\n## III. Les enjeux pour l'Afrique et le Cameroun\n\n### 1. Les opportunités\n- Accès aux **marchés** et aux **technologies**.\n- **Investissements** étrangers.\n- Ouverture culturelle.\n\n### 2. Les risques\n- **Dépendance** économique.\n- **Concurrence** déloyale.\n- **Uniformisation culturelle** (acculturation).\n- **Fracture numérique**.\n- **Fuite des cerveaux**.\n\n### 3. Les réponses\n- **Intégration régionale** (CEMAC, ZLECAf).\n- **Transformation locale** des ressources.\n- Préservation des **cultures**.\n- Maîtrise du **numérique**.\n\n## Cas pratique / exercice corrigé\n\n**Énoncé.** Le Cameroun exporte du cacao brut et importe du chocolat fabriqué à l'étranger. Analysez et proposez une solution.\n\n**Correction.**\n1. Le pays vend une **matière première** à bas prix et rachète un **produit transformé** plus cher : c'est la **division internationale du travail** défavorable.\n2. Conséquences : faible **valeur ajoutée** locale, **dépendance**.\n3. Solution : développer la **transformation locale**, créer des emplois ; s'appuyer sur l'**intégration régionale**.\n4. La mondialisation n'est ni bonne ni mauvaise : tout dépend de la **stratégie**.\n\n## À retenir\n\n- **Mondialisation** = intensification des interdépendances.\n- Acteurs : **FTN**, **États**, **OMC/FMI/Banque mondiale**, **ONG**, **médias**.\n- Opportunités : marchés, technologies. Risques : **dépendance, acculturation, fracture numérique, fuite des cerveaux**.\n- Réponses : **intégration régionale, transformation locale, défense des cultures, maîtrise du numérique**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "La mondialisation désigne avant tout :",
+            "options": [
+              "l'isolement des nations",
+              "l'intensification des interdépendances mondiales",
+              "la fermeture des frontières",
+              "la fin du commerce"
+            ],
+            "answer": 1,
+            "explanation": "La mondialisation est le processus d'intensification des interdépendances entre les nations."
+          },
+          {
+            "q": "Quel organisme régule le commerce international ?",
+            "options": [
+              "L'OMC",
+              "L'UNESCO",
+              "Le HCR",
+              "L'OMS"
+            ],
+            "answer": 0,
+            "explanation": "L'Organisation mondiale du commerce (OMC) encadre les règles du commerce entre nations."
+          },
+          {
+            "q": "Vendre du cacao brut et importer du chocolat illustre :",
+            "options": [
+              "une forte valeur ajoutée locale",
+              "une division internationale du travail défavorable",
+              "l'autosuffisance",
+              "la fin de la dépendance"
+            ],
+            "answer": 1,
+            "explanation": "Exporter la matière première et importer le produit transformé traduit une dépendance."
+          },
+          {
+            "q": "L'uniformisation des cultures par la mondialisation est appelée :",
+            "options": [
+              "intégration",
+              "acculturation",
+              "décolonisation",
+              "alphabétisation"
+            ],
+            "answer": 1,
+            "explanation": "L'acculturation est la perte d'identité culturelle au profit de modèles dominants."
+          },
+          {
+            "q": "Quelle réponse permet à l'Afrique de mieux profiter de la mondialisation ?",
+            "options": [
+              "L'isolement total",
+              "La transformation locale des ressources et l'intégration régionale",
+              "L'arrêt des exportations",
+              "Le refus du numérique"
+            ],
+            "answer": 1,
+            "explanation": "Transformer localement les ressources et s'intégrer régionalement permet de capter plus de valeur."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La paix, la sécurité et la résolution des conflits",
+      "video": "https://www.youtube.com/watch?v=Q9zN5tQ8m1A",
+      "lesson": "# La paix, la sécurité et la résolution des conflits\n\n## Introduction\n\nLa **paix** est la condition première du développement. Le Cameroun a inscrit la paix au cœur de sa devise (« **Paix – Travail – Patrie** »). Pourtant l'Afrique connaît de nombreux conflits, et le Cameroun fait face à des défis sécuritaires. Comprendre les sources des conflits et les moyens de les résoudre pacifiquement est un enjeu civique majeur.\n\n## I. La notion de paix et de sécurité\n\n### 1. Définitions\n- La **paix** n'est pas seulement l'absence de guerre : c'est aussi la justice et la concorde (**paix positive**).\n- La **sécurité** est la protection des personnes et des biens.\n\n### 2. Les dimensions\n- **Sécurité humaine** : nourriture, santé, emploi, dignité.\n- **Sécurité collective** : protection des États et des frontières.\n\n## II. Les sources et types de conflits\n\n### 1. Les causes\n- **Politiques** : lutte pour le pouvoir, mauvaise gouvernance.\n- **Économiques** : pauvreté, accès aux ressources.\n- **Identitaires** : tribalisme, intolérance religieuse.\n- **Externes** : terrorisme, trafics.\n\n### 2. Les types\nConflits **interpersonnels**, **communautaires**, **armés internes**, **internationaux**.\n\n## III. La résolution pacifique des conflits\n\n### 1. Les modes de règlement\n- La **négociation** : dialogue direct.\n- La **médiation** : intervention d'un tiers neutre.\n- La **conciliation** et l'**arbitrage**.\n- Le recours **judiciaire** (Cour internationale de justice).\n\n### 2. Les acteurs de la paix\n- L'**ONU** (Casques bleus, **Conseil de sécurité**).\n- L'**Union africaine** (Conseil de paix et de sécurité).\n- Les **États**, la **société civile**, les chefs traditionnels et religieux.\n\n### 3. La culture de la paix\nTolérance, dialogue, éducation, pardon, justice. Au Cameroun, le **Grand Dialogue National** (2019) illustre la recherche de solutions négociées.\n\n## Cas pratique / exercice corrigé\n\n**Énoncé.** Deux communautés se disputent l'accès à un point d'eau, ce qui dégénère en violences. Proposez une démarche de résolution pacifique.\n\n**Correction.**\n1. Identifier la **cause réelle** : un conflit économique (ressource rare).\n2. Privilégier la **négociation** ou faire appel à un **médiateur neutre**.\n3. Rechercher une **solution gagnant-gagnant** (règlement d'usage, calendrier partagé).\n4. Consolider par l'**éducation à la paix**.\n5. Le **dialogue** permet des solutions durables, contrairement à la violence.\n\n## À retenir\n\n- La **paix positive** = absence de guerre + justice et concorde.\n- Causes des conflits : politiques, économiques, identitaires, externes.\n- Modes de résolution pacifique : **négociation, médiation, conciliation, arbitrage, justice**.\n- Acteurs : **ONU** (Casques bleus), **UA**, société civile.\n- **Culture de la paix** : tolérance, dialogue, éducation, pardon (ex. Grand Dialogue National 2019).\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "La paix positive désigne :",
+            "options": [
+              "la simple absence de guerre",
+              "l'absence de guerre accompagnée de justice et de concorde",
+              "l'armement massif",
+              "la fermeture des frontières"
+            ],
+            "answer": 1,
+            "explanation": "La paix positive inclut la justice et l'harmonie sociale, pas seulement l'absence de guerre."
+          },
+          {
+            "q": "L'intervention d'un tiers neutre pour rapprocher deux parties s'appelle :",
+            "options": [
+              "la guerre",
+              "la médiation",
+              "la vengeance",
+              "la répression"
+            ],
+            "answer": 1,
+            "explanation": "La médiation fait appel à un tiers neutre pour aider les parties à trouver un accord."
+          },
+          {
+            "q": "Quel organe de l'ONU est chargé du maintien de la paix ?",
+            "options": [
+              "L'Assemblée générale",
+              "Le Conseil de sécurité",
+              "La Cour internationale de justice",
+              "Le Secrétariat"
+            ],
+            "answer": 1,
+            "explanation": "Le Conseil de sécurité maintient la paix et peut déployer des Casques bleus."
+          },
+          {
+            "q": "Quel mode de résolution privilégie le dialogue direct entre les parties ?",
+            "options": [
+              "La négociation",
+              "La guerre",
+              "La répression",
+              "La fuite"
+            ],
+            "answer": 0,
+            "explanation": "La négociation est le dialogue direct entre les parties pour trouver un accord."
+          },
+          {
+            "q": "En 2019, le Cameroun a organisé pour favoriser la paix :",
+            "options": [
+              "le Grand Dialogue National",
+              "la coupe d'Afrique",
+              "un référendum",
+              "un recensement"
+            ],
+            "answer": 0,
+            "explanation": "Le Grand Dialogue National (2019) visait des solutions négociées, notamment à la crise anglophone."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La bonne gouvernance et la lutte contre la corruption",
+      "video": "https://www.youtube.com/watch?v=Wd1oQ8b3o2k",
+      "lesson": "# La bonne gouvernance et la lutte contre la corruption\n\n## Introduction\n\nLa **gouvernance** désigne la manière dont le pouvoir est exercé pour gérer les affaires publiques. La **bonne gouvernance** est une exigence du développement. Son principal ennemi est la **corruption**, fléau qui détourne les ressources et mine la confiance des citoyens. Le Cameroun s'est doté d'institutions de lutte (CONAC, ANIF).\n\n## I. La bonne gouvernance\n\n### 1. Définition\nLa **bonne gouvernance** est la gestion **transparente, responsable, participative et efficace** des affaires publiques.\n\n### 2. Les principes\n- La **transparence**.\n- La **redevabilité** (rendre compte).\n- La **participation** des citoyens.\n- L'**état de droit** et l'**égalité**.\n- L'**efficacité**.\n\n## II. La corruption\n\n### 1. Définition\nLa **corruption** est l'abus d'un pouvoir reçu en délégation à des fins privées. Elle prend la forme de **pots-de-vin**, **détournements**, **favoritisme**, **népotisme**.\n\n### 2. Les formes et causes\n- **Petite corruption** et **grande corruption**.\n- Causes : faiblesse des contrôles, impunité, perte de valeurs morales.\n\n### 3. Les conséquences\n- Détournement des ressources de l'**éducation, la santé, les routes**.\n- **Inégalités** et appauvrissement.\n- Perte de **confiance** et frein aux **investissements**.\n\n## III. La lutte contre la corruption\n\n### 1. Au Cameroun\n- La **CONAC** (Commission Nationale Anti-Corruption), créée en **2006**.\n- L'**ANIF** (Agence Nationale d'Investigation Financière).\n- Le **Tribunal Criminel Spécial (TCS)**, créé en **2011** (détournements à partir de 50 millions FCFA).\n- L'opération « **Épervier** ».\n\n### 2. Au niveau international\n- La **Convention des Nations Unies contre la corruption** (Mérida, 2003).\n- **Transparency International** et son **Indice de perception de la corruption**.\n\n### 3. Le rôle du citoyen\nRefuser de donner et de recevoir des pots-de-vin, **dénoncer**, promouvoir l'**intégrité**.\n\n## Cas pratique / exercice corrigé\n\n**Énoncé.** Un automobiliste en règle est arrêté à un contrôle ; l'agent lui demande de l'argent pour « accélérer » son passage. Que faire ?\n\n**Correction.**\n1. La demande d'argent indu est un acte de **corruption** (concussion).\n2. Le citoyen responsable doit **refuser** et peut **dénoncer**.\n3. Institutions à saisir : la **CONAC**, la hiérarchie, la justice ; le **TCS** pour les grands détournements.\n4. La lutte commence par le **refus individuel** et la **dénonciation**.\n\n## À retenir\n\n- **Bonne gouvernance** = gestion transparente, responsable, participative et efficace.\n- **Corruption** = abus d'un pouvoir délégué à des fins privées.\n- Conséquences : appauvrissement, inégalités, frein au développement.\n- Lutte au Cameroun : **CONAC (2006)**, **ANIF**, **TCS (2011)**, opération **Épervier**.\n- Texte international : **Convention de Mérida (2003)** ; le citoyen doit **refuser et dénoncer**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "La corruption se définit comme :",
+            "options": [
+              "un don volontaire à une œuvre",
+              "l'abus d'un pouvoir délégué à des fins privées",
+              "le paiement d'un impôt",
+              "une aide humanitaire"
+            ],
+            "answer": 1,
+            "explanation": "La corruption est l'abus d'un pouvoir reçu en délégation à des fins privées."
+          },
+          {
+            "q": "Quelle commission lutte contre la corruption au Cameroun depuis 2006 ?",
+            "options": [
+              "La CONAC",
+              "ELECAM",
+              "La BEAC",
+              "La CDHC"
+            ],
+            "answer": 0,
+            "explanation": "La Commission Nationale Anti-Corruption (CONAC) a été créée en 2006."
+          },
+          {
+            "q": "Le Tribunal Criminel Spécial (TCS) traite principalement :",
+            "options": [
+              "les divorces",
+              "les détournements de fonds publics",
+              "les litiges fonciers",
+              "les infractions routières"
+            ],
+            "answer": 1,
+            "explanation": "Le TCS, créé en 2011, juge les détournements de deniers publics."
+          },
+          {
+            "q": "Un principe clé de la bonne gouvernance est :",
+            "options": [
+              "l'opacité",
+              "la transparence",
+              "le népotisme",
+              "l'impunité"
+            ],
+            "answer": 1,
+            "explanation": "La transparence est un pilier de la bonne gouvernance."
+          },
+          {
+            "q": "La Convention des Nations Unies contre la corruption a été adoptée en 2003 à :",
+            "options": [
+              "Mérida",
+              "Banjul",
+              "Durban",
+              "Addis-Abeba"
+            ],
+            "answer": 0,
+            "explanation": "La Convention de Mérida (2003) est le principal instrument onusien contre la corruption."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Le développement durable et l'environnement",
+      "video": "https://www.youtube.com/watch?v=8FzN_v8j5wA",
+      "lesson": "# Le développement durable et l'environnement\n\n## Introduction\n\nFace à l'épuisement des ressources et au changement climatique, l'humanité a pris conscience qu'on ne peut développer l'économie au détriment de la planète. D'où la notion de **développement durable**, qui concilie progrès économique, justice sociale et protection de l'environnement. Le Cameroun, riche en forêts et en biodiversité, est directement concerné.\n\n## I. La notion de développement durable\n\n### 1. Définition\nLe **développement durable** est, selon le **rapport Brundtland (1987)**, « un développement qui répond aux besoins du présent sans compromettre la capacité des générations futures à répondre aux leurs ».\n\n### 2. Les trois piliers\n- **Économique** : une économie viable.\n- **Social** : équité, santé, éducation.\n- **Environnemental** : préservation des ressources et des écosystèmes.\n\n## II. Les enjeux environnementaux\n\n### 1. Les problèmes\n- **Déforestation** et perte de **biodiversité**.\n- **Pollution** de l'air, de l'eau et des sols.\n- **Changement climatique**.\n- **Désertification** (Extrême-Nord du Cameroun).\n- Gestion des **déchets** (plastiques).\n\n### 2. Les causes\nSurexploitation, urbanisation anarchique, agriculture sur brûlis, émissions de gaz à effet de serre, incivisme.\n\n## III. Les réponses et le cadre juridique\n\n### 1. Les engagements internationaux\n- Le **Sommet de la Terre** de Rio (1992).\n- Le **Protocole de Kyoto** (1997) et l'**Accord de Paris** (2015).\n- Les **17 Objectifs de Développement Durable (ODD)** (Agenda 2030).\n\n### 2. Au Cameroun\n- La **loi-cadre relative à la gestion de l'environnement (1996)**.\n- Le **MINEPDED**.\n- Les **aires protégées** (parcs de Waza, Korup…).\n\n### 3. Le rôle de l'éco-citoyen\nÉconomiser l'eau et l'énergie, **trier et réduire les déchets**, **planter des arbres**, éviter le gaspillage, sensibiliser.\n\n## Cas pratique / exercice corrigé\n\n**Énoncé.** Dans un village, des habitants brûlent la forêt pour cultiver, ce qui appauvrit les sols. Proposez des solutions durables.\n\n**Correction.**\n1. Le problème : l'**agriculture sur brûlis** entraîne **déforestation** et **dégradation des sols**.\n2. Solutions : techniques **agroécologiques** (rotation, fertilisation organique), **agroforesterie**, **reboisement**.\n3. Acteurs : le **MINEPDED**, les ONG, les collectivités.\n4. On peut développer l'agriculture **sans détruire** l'environnement.\n\n## À retenir\n\n- **Développement durable** (Brundtland, 1987) = besoins présents sans compromettre les générations futures.\n- **Trois piliers** : économique, social, environnemental.\n- Enjeux : déforestation, pollution, climat, désertification, déchets.\n- Cadre : **Rio 1992, Kyoto 1997, Accord de Paris 2015, 17 ODD** ; au Cameroun **loi de 1996**, **MINEPDED**.\n- L'**éco-citoyen** économise, trie, reboise, sensibilise.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Le développement durable a été défini en 1987 par :",
+            "options": [
+              "le rapport Brundtland",
+              "l'Accord de Paris",
+              "le Protocole de Kyoto",
+              "la DUDH"
+            ],
+            "answer": 0,
+            "explanation": "Le rapport Brundtland (1987) a popularisé la définition du développement durable."
+          },
+          {
+            "q": "Quels sont les trois piliers du développement durable ?",
+            "options": [
+              "Politique, militaire, religieux",
+              "Économique, social, environnemental",
+              "Public, privé, associatif",
+              "Local, national, mondial"
+            ],
+            "answer": 1,
+            "explanation": "Les trois piliers sont l'économique, le social et l'environnemental."
+          },
+          {
+            "q": "Combien d'Objectifs de Développement Durable (ODD) l'ONU a-t-elle fixés ?",
+            "options": [
+              "8",
+              "17",
+              "12",
+              "30"
+            ],
+            "answer": 1,
+            "explanation": "L'Agenda 2030 de l'ONU compte 17 Objectifs de Développement Durable."
+          },
+          {
+            "q": "L'Accord international sur le climat signé en 2015 est :",
+            "options": [
+              "le Protocole de Kyoto",
+              "l'Accord de Paris",
+              "le Sommet de Rio",
+              "la Convention de Mérida"
+            ],
+            "answer": 1,
+            "explanation": "L'Accord de Paris sur le climat a été adopté lors de la COP21 en 2015."
+          },
+          {
+            "q": "Un comportement d'éco-citoyen consiste à :",
+            "options": [
+              "brûler la forêt",
+              "trier et réduire ses déchets",
+              "gaspiller l'eau",
+              "polluer les rivières"
+            ],
+            "answer": 1,
+            "explanation": "Trier ses déchets, reboiser, économiser l'eau relèvent de l'éco-citoyenneté."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les organisations internationales (ONU)",
+      "video": "https://www.youtube.com/watch?v=4Tn7K0lHt8E",
+      "lesson": "# Les organisations internationales (ONU)\n\n## Introduction\n\nPour gérer les problèmes qui dépassent les frontières (guerre, pauvreté, maladies, climat), les États se regroupent dans des **organisations internationales**. La plus importante est l'**Organisation des Nations Unies (ONU)**, née au lendemain de la Seconde Guerre mondiale. Le Cameroun en est membre depuis 1960.\n\n## I. La notion d'organisation internationale\n\n### 1. Définition\nUne **organisation internationale** est une association d'États créée par un **traité**, dotée d'organes permanents.\n\n### 2. Typologie\n- **À vocation universelle** : ONU.\n- **Régionales** : UA, CEMAC, Union européenne.\n- **Spécialisées** : OMS, UNESCO, FAO, UNICEF, FMI, Banque mondiale, OMC.\n\n## II. L'Organisation des Nations Unies\n\n### 1. Création et objectifs\nFondée le **24 octobre 1945** à San Francisco par la **Charte des Nations Unies**. Objectifs :\n- Maintenir la **paix** et la **sécurité**.\n- Développer la **coopération**.\n- Promouvoir les **droits de l'homme** et le **développement**.\n\n### 2. Les organes principaux\n- L'**Assemblée générale** (1 État = 1 voix).\n- Le **Conseil de sécurité** : 15 membres dont **5 permanents** (États-Unis, Russie, Chine, France, Royaume-Uni) avec **droit de veto**.\n- Le **Secrétariat** (Secrétaire général).\n- La **Cour internationale de justice (CIJ)**, à La Haye.\n- Le **Conseil économique et social (ECOSOC)**.\n\n### 3. Les actions\nMaintien de la paix (**Casques bleus**), aide humanitaire, lutte contre les pandémies (OMS), protection de l'enfance (UNICEF), promotion des **ODD**.\n\n## III. Le Cameroun et les organisations internationales\n\nLe Cameroun est membre de l'**ONU** (1960), de l'**UA**, de la **CEMAC**, de l'**OIF** et du **Commonwealth**, ce qui reflète son **double héritage** francophone et anglophone.\n\n## Cas pratique / exercice corrigé\n\n**Énoncé.** Une épidémie grave se déclare dans plusieurs pays africains. Quelle organisation spécialisée intervient ? Comment l'ONU peut-elle aider ?\n\n**Correction.**\n1. L'organisation compétente est l'**OMS**, agence de l'ONU pour la santé.\n2. L'OMS coordonne la **riposte** : experts, **vaccins**, surveillance épidémiologique.\n3. D'autres agences interviennent : **UNICEF**, **PAM**, financement de la **Banque mondiale**.\n4. Les organisations internationales permettent une **action coordonnée**.\n\n## À retenir\n\n- Une **organisation internationale** est une association d'États créée par traité.\n- L'**ONU** (1945, Charte de San Francisco) maintient la paix, développe la coopération, promeut les droits humains.\n- Organes : **Assemblée générale**, **Conseil de sécurité** (5 permanents + veto), **Secrétariat**, **CIJ**, **ECOSOC**.\n- Agences : **OMS, UNESCO, UNICEF, FAO, FMI, Banque mondiale, OMC**.\n- Le Cameroun est membre de l'ONU (1960), de l'UA, de la CEMAC, de l'OIF et du Commonwealth.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "L'ONU a été fondée le :",
+            "options": [
+              "10 décembre 1948",
+              "24 octobre 1945",
+              "18 janvier 1996",
+              "14 juillet 1789"
+            ],
+            "answer": 1,
+            "explanation": "L'ONU a été créée le 24 octobre 1945 à San Francisco."
+          },
+          {
+            "q": "Combien de membres permanents le Conseil de sécurité compte-t-il ?",
+            "options": [
+              "3",
+              "5",
+              "10",
+              "15"
+            ],
+            "answer": 1,
+            "explanation": "Le Conseil de sécurité compte 5 membres permanents dotés du droit de veto."
+          },
+          {
+            "q": "Quelle agence de l'ONU est chargée de la santé ?",
+            "options": [
+              "L'UNESCO",
+              "L'OMS",
+              "La FAO",
+              "L'UNICEF"
+            ],
+            "answer": 1,
+            "explanation": "L'OMS (Organisation mondiale de la santé) coordonne l'action sanitaire mondiale."
+          },
+          {
+            "q": "Où siège la Cour internationale de justice ?",
+            "options": [
+              "New York",
+              "Genève",
+              "La Haye",
+              "Addis-Abeba"
+            ],
+            "answer": 2,
+            "explanation": "La CIJ, principal organe judiciaire de l'ONU, siège à La Haye."
+          },
+          {
+            "q": "Le Cameroun est membre de l'OIF et du Commonwealth car il a :",
+            "options": [
+              "un seul héritage colonial",
+              "un double héritage francophone et anglophone",
+              "aucun héritage",
+              "un héritage uniquement anglophone"
+            ],
+            "answer": 1,
+            "explanation": "Le double héritage francophone et anglophone explique cette double appartenance."
+          }
+        ]
+      }
+    },
+    {
+      "title": "L'éthique et les valeurs morales",
+      "video": "https://www.youtube.com/watch?v=K9oW9Q1pX0Y",
+      "lesson": "# L'éthique et les valeurs morales\n\n## Introduction\n\nAu-delà des lois, qui contraignent de l'extérieur, l'être humain est guidé par une exigence intérieure : la **morale** et l'**éthique**. Une société de droit a besoin de citoyens **intègres**. L'ECM ne forme pas seulement des connaisseurs des institutions, mais des **personnes de valeur**.\n\n## I. Morale, éthique et déontologie\n\n### 1. Distinctions\n- La **morale** : l'ensemble des règles du bien et du mal admises dans une société.\n- L'**éthique** : la réflexion sur ces règles, la recherche de la conduite juste.\n- La **déontologie** : les règles propres à une profession (ex. serment d'Hippocrate).\n\n### 2. La conscience morale\nLa **conscience** est la voix intérieure qui juge nos actes. Elle se forme par l'**éducation** et l'**exemple**.\n\n## II. Les valeurs morales fondamentales\n\n- L'**honnêteté** et l'**intégrité**.\n- La **justice** : donner à chacun son dû.\n- Le **respect** : de soi, d'autrui, des biens, des différences.\n- La **tolérance** et le **dialogue**.\n- La **solidarité** et l'**entraide**.\n- Le **travail**, l'**effort** et le **mérite**.\n- Le **courage** et le **sens des responsabilités**.\n\n## III. L'éthique dans la vie sociale et professionnelle\n\n### 1. L'éthique professionnelle\nChaque métier suppose une déontologie : un enseignant doit être juste, un médecin protéger la vie, un agent public servir l'intérêt général. C'est un rempart contre la corruption.\n\n### 2. Les défis contemporains\n- L'**éthique du numérique** : vie privée, cybercriminalité, fausses nouvelles.\n- La **bioéthique** : dignité humaine face aux progrès de la science.\n- L'**éthique de l'environnement** : responsabilité envers la nature.\n\n### 3. Le lien morale–citoyenneté\nUne société juste a besoin de **lois** ET de **morale**. Les lois punissent, la morale prévient. Un citoyen intègre respecte la loi par **conviction**.\n\n## Cas pratique / exercice corrigé\n\n**Énoncé.** Un élève trouve le portefeuille d'un camarade contenant de l'argent. Personne ne l'a vu. Que doit-il faire ?\n\n**Correction.**\n1. La situation met à l'épreuve la **conscience morale** : agir bien même sans témoin.\n2. La conduite éthique est de **restituer** le portefeuille ou de le remettre à une autorité.\n3. Valeurs en jeu : l'**honnêteté**, l'**intégrité**, le **respect d'autrui**.\n4. Garder l'argent relèverait du **vol**.\n5. La vraie moralité se mesure à la conduite adoptée **quand personne ne regarde**.\n\n## À retenir\n\n- **Morale** = règles du bien et du mal ; **éthique** = réflexion ; **déontologie** = règles d'une profession.\n- La **conscience morale** se forme par l'éducation et l'exemple.\n- Valeurs : **honnêteté, justice, respect, tolérance, solidarité, travail, courage**.\n- Défis actuels : **éthique du numérique, bioéthique, éthique de l'environnement**.\n- Loi et morale se complètent : le citoyen intègre agit bien **par conviction**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "L'ensemble des règles propres à une profession s'appelle :",
+            "options": [
+              "la morale",
+              "la déontologie",
+              "la loi",
+              "la coutume"
+            ],
+            "answer": 1,
+            "explanation": "La déontologie regroupe les règles éthiques propres à une profession."
+          },
+          {
+            "q": "L'éthique se distingue de la morale en ce qu'elle est :",
+            "options": [
+              "un ensemble de sanctions",
+              "une réflexion sur les règles du bien et du mal",
+              "une loi pénale",
+              "une coutume religieuse"
+            ],
+            "answer": 1,
+            "explanation": "L'éthique est la réflexion critique sur les règles morales."
+          },
+          {
+            "q": "Restituer un objet trouvé sans témoin témoigne surtout de :",
+            "options": [
+              "la peur du gendarme",
+              "l'intégrité et l'honnêteté",
+              "l'intérêt personnel",
+              "l'indifférence"
+            ],
+            "answer": 1,
+            "explanation": "Agir bien sans témoin relève de l'intégrité et de l'honnêteté."
+          },
+          {
+            "q": "Le respect de la vie privée et la lutte contre les fausses nouvelles relèvent de :",
+            "options": [
+              "l'éthique du numérique",
+              "la déontologie médicale",
+              "l'éthique de l'environnement",
+              "la bioéthique"
+            ],
+            "answer": 0,
+            "explanation": "L'éthique du numérique encadre l'usage responsable d'Internet."
+          },
+          {
+            "q": "Quel rapport unit la loi et la morale ?",
+            "options": [
+              "Elles s'opposent toujours",
+              "Elles se complètent : la loi punit, la morale prévient",
+              "La morale remplace la loi",
+              "La loi remplace la morale"
+            ],
+            "answer": 1,
+            "explanation": "Loi et morale se complètent : la loi sanctionne, la morale guide de l'intérieur."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Démocratie, élections et participation politique",
+      "video": "https://www.youtube.com/watch?v=3xqf6h6S9rE",
+      "lesson": "# Démocratie, élections et participation politique\n\n## Introduction\n\nLa démocratie se vit à travers les **élections** et la **participation** des citoyens à la vie publique. Voter, militer, débattre : autant de manières d'exercer la souveraineté. Comprendre le processus électoral et l'importance de l'engagement est un devoir civique pour le futur électeur camerounais.\n\n## I. Le suffrage et le droit de vote\n\n### 1. Caractères du suffrage démocratique\n- **Universel** : tous les citoyens majeurs votent (au Cameroun, à partir de **20 ans**).\n- **Égal** : une personne, une voix.\n- **Secret** : pour garantir la liberté de choix.\n- **Libre** : sans contrainte ni achat de conscience.\n\n### 2. L'inscription\nPour voter, il faut être inscrit sur les **listes électorales** (gérées par **ELECAM**) et détenir une **carte d'électeur**.\n\n## II. Les types d'élections au Cameroun\n\n- **Présidentielle** : élit le Président (7 ans).\n- **Législatives** : élisent les **députés** (5 ans).\n- **Sénatoriales** : élisent une partie des **sénateurs**.\n- **Municipales** : élisent les **conseillers municipaux**.\n- **Régionales** : élisent les **conseillers régionaux** (depuis 2020).\n- Le **référendum** permet au peuple de se prononcer directement.\n\n## III. La participation politique et ses formes\n\n### 1. Au-delà du vote\n- Adhérer à un **parti** ou à une **association**.\n- **Militer**, débattre, manifester pacifiquement.\n- Se porter **candidat**.\n- Exercer un **contrôle citoyen**.\n\n### 2. Les conditions d'élections crédibles\n- Un **fichier électoral** fiable.\n- La **transparence** du scrutin.\n- Des **observateurs**.\n- Le règlement du contentieux par le **Conseil constitutionnel**.\n\n### 3. Les ennemis de la participation\n**Abstention**, achat de conscience, fraude, violence électorale, désinformation.\n\n## Cas pratique / exercice corrigé\n\n**Énoncé.** À la veille d'une élection, un candidat distribue de l'argent pour obtenir des voix. Analysez cette pratique.\n\n**Correction.**\n1. C'est un **achat de conscience** (corruption électorale) : elle viole le caractère **libre** du suffrage.\n2. Elle est **illégale** et peut entraîner l'**annulation** des résultats par le Conseil constitutionnel.\n3. Pour un scrutin crédible : **fichier fiable**, **transparence**, **observateurs**, électorat éduqué.\n4. La démocratie suppose des élections **libres et honnêtes**.\n\n## À retenir\n\n- Le suffrage démocratique est **universel, égal, secret et libre** (vote à 20 ans au Cameroun).\n- Élections : **présidentielle, législatives, sénatoriales, municipales, régionales** ; le **référendum** = vote direct.\n- La participation dépasse le vote : militer, débattre, se porter candidat, contrôler les élus.\n- Élections crédibles : **fichier fiable, transparence, observateurs, Conseil constitutionnel**.\n- Ennemis : abstention, **achat de conscience**, fraude, désinformation.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "À partir de quel âge peut-on voter au Cameroun ?",
+            "options": [
+              "16 ans",
+              "18 ans",
+              "20 ans",
+              "21 ans"
+            ],
+            "answer": 2,
+            "explanation": "Au Cameroun, le droit de vote s'exerce à partir de 20 ans."
+          },
+          {
+            "q": "Le caractère 'secret' du suffrage vise à :",
+            "options": [
+              "empêcher de voter",
+              "garantir la liberté de choix de l'électeur",
+              "compter plusieurs fois les voix",
+              "réserver le vote aux élus"
+            ],
+            "answer": 1,
+            "explanation": "Le vote secret protège la liberté de l'électeur contre les pressions."
+          },
+          {
+            "q": "Quel organe gère les listes électorales au Cameroun ?",
+            "options": [
+              "ELECAM",
+              "La CONAC",
+              "La BEAC",
+              "Le Sénat"
+            ],
+            "answer": 0,
+            "explanation": "ELECAM gère le fichier électoral et organise les élections."
+          },
+          {
+            "q": "Distribuer de l'argent pour obtenir des voix est :",
+            "options": [
+              "une pratique légale",
+              "un achat de conscience illégal",
+              "une forme de campagne autorisée",
+              "un don caritatif"
+            ],
+            "answer": 1,
+            "explanation": "L'achat de conscience est une corruption électorale illégale."
+          },
+          {
+            "q": "Lequel de ces éléments garantit un scrutin crédible ?",
+            "options": [
+              "L'absence d'observateurs",
+              "Un fichier électoral fiable et transparent",
+              "Le vote public et nominatif",
+              "La fraude organisée"
+            ],
+            "answer": 1,
+            "explanation": "Un fichier fiable, la transparence et des observateurs garantissent la crédibilité du scrutin."
+          }
+        ]
+      }
+    }
+  ]
+}

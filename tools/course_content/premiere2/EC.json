@@ -1,0 +1,435 @@
+{
+  "code": "EC",
+  "level": "Première",
+  "chapters": [
+    {
+      "title": "La personne humaine et sa dignité",
+      "video": "https://www.youtube.com/watch?v=H6KdU0pZ0vE",
+      "lesson": "# La personne humaine et sa dignité\n\n## Introduction\n\nTout être humain, quels que soient son âge, son sexe, sa race, sa religion, sa condition sociale ou son état physique, possède une **valeur propre** qui ne se monnaie pas : c'est la **dignité humaine**. Étudier cette notion en classe de Première, c'est comprendre le fondement même de la morale et du droit, car c'est sur la dignité que reposent tous les droits humains. La fameuse phrase de l'article premier de la Déclaration universelle des droits de l'homme de 1948 le rappelle : « Tous les êtres humains naissent libres et égaux en dignité et en droits. »\n\n## I. Qu'est-ce que la personne humaine ?\n\nLa **personne humaine** est un être doté de **raison**, de **conscience**, de **liberté** et de **responsabilité**. Elle se distingue de l'animal et de la chose par plusieurs caractères :\n\n- **La rationalité** : la capacité de penser, de juger et de choisir.\n- **La conscience morale** : la faculté de distinguer le bien du mal.\n- **La sociabilité** : l'être humain ne vit pleinement qu'en relation avec autrui.\n- **La perfectibilité** : il peut se transformer et progresser par l'éducation.\n\nLa personne est donc à la fois un **individu** (un être singulier, unique) et un **sujet** (un être responsable de ses actes).\n\n## II. La notion de dignité\n\nLa **dignité** est le respect que mérite tout être humain du simple fait qu'il est humain. Elle a deux dimensions :\n\n- **La dignité ontologique** : elle est attachée à l'être même de la personne ; elle est **inaliénable**, c'est-à-dire qu'on ne peut ni la vendre, ni la retirer, ni la perdre, même si l'on commet une faute.\n- **La dignité morale** : c'est la valeur que la personne acquiert par sa conduite, son honneur, son comportement honorable.\n\nLa dignité interdit de **traiter l'homme comme un simple moyen**. Le philosophe Emmanuel Kant formule cet impératif : « Agis de telle sorte que tu traites l'humanité, aussi bien dans ta personne que dans celle d'autrui, toujours en même temps comme une fin, et jamais simplement comme un moyen. »\n\n## III. Les atteintes à la dignité humaine\n\nDe nombreuses pratiques portent atteinte à la dignité :\n\n- **L'esclavage** et la **traite des personnes**.\n- **La torture** et les **traitements inhumains ou dégradants**.\n- **Le travail forcé** et **l'exploitation des enfants**.\n- **Les discriminations** (raciales, ethniques, religieuses, de genre).\n- **La maltraitance** et le **harcèlement** sous toutes ses formes.\n\n## IV. La protection de la dignité\n\nLa dignité est protégée par :\n\n- **Les textes internationaux** : Déclaration universelle des droits de l'homme (1948), Charte africaine des droits de l'homme et des peuples (1981).\n- **La Constitution camerounaise** : son préambule affirme l'attachement aux libertés fondamentales et à la dignité de la personne humaine.\n- **Le Code pénal**, qui punit les atteintes à la personne.\n\nAu quotidien, respecter la dignité, c'est saluer poliment, écouter autrui, ne pas humilier, défendre le plus faible, refuser le mépris.\n\n## Cas pratique / exercice corrigé\n\n**Énoncé :** Dans un quartier, un commerçant emploie un enfant de 11 ans qu'il fait travailler de 6 h à 20 h sans le rémunérer correctement, en le privant d'école. Identifiez les atteintes à la dignité et proposez des solutions.\n\n**Correction :**\n\n1. **Atteintes identifiées :**\n   - Travail des enfants et **exploitation économique** : l'enfant devrait être à l'école.\n   - **Privation du droit à l'éducation**, qui est un droit fondamental.\n   - **Traitement contraire à la dignité** : horaires excessifs, absence de repos, faible rémunération assimilable au travail forcé.\n\n2. **Solutions :**\n   - Signaler la situation aux **services sociaux** ou aux **autorités locales** (délégation des affaires sociales, mairie).\n   - Scolariser l'enfant et lui assurer une protection.\n   - Sensibiliser le commerçant et, si nécessaire, engager des **poursuites pénales** conformément à la loi.\n\n**Conclusion :** la dignité de l'enfant exige sa scolarisation, sa protection et le respect de son intégrité.\n\n## À retenir\n\n- La **personne humaine** est un être de raison, de conscience, de liberté et de responsabilité.\n- La **dignité** est la valeur inaliénable de tout être humain ; elle interdit de le traiter comme un simple moyen.\n- Les principales atteintes sont l'esclavage, la torture, l'exploitation, les discriminations.\n- La dignité est protégée par des textes nationaux (Constitution) et internationaux (DUDH, Charte africaine).\n- Au quotidien, respecter la dignité, c'est respecter autrui dans ses paroles et ses actes.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Qu'est-ce qui caractérise la dignité ontologique de la personne humaine ?",
+            "options": ["Elle s'achète et se vend", "Elle est inaliénable et attachée à l'être humain", "Elle dépend de la richesse", "Elle se perd en cas de faute"],
+            "answer": 1,
+            "explanation": "La dignité ontologique est inaliénable : elle ne peut être ni vendue, ni retirée, ni perdue, même après une faute."
+          },
+          {
+            "q": "Quel texte de 1948 affirme l'égalité en dignité de tous les êtres humains ?",
+            "options": ["La Charte africaine des droits de l'homme", "La Constitution camerounaise", "La Déclaration universelle des droits de l'homme", "Le Code pénal"],
+            "answer": 2,
+            "explanation": "La Déclaration universelle des droits de l'homme (1948) proclame dans son article premier l'égalité en dignité et en droits."
+          },
+          {
+            "q": "Selon Kant, comment faut-il traiter l'humanité ?",
+            "options": ["Toujours comme une fin, jamais simplement comme un moyen", "Comme un moyen utile", "Selon son rang social", "Comme une marchandise"],
+            "answer": 0,
+            "explanation": "Kant enseigne qu'il faut traiter l'humanité toujours comme une fin et jamais simplement comme un moyen."
+          },
+          {
+            "q": "Laquelle de ces pratiques constitue une atteinte à la dignité humaine ?",
+            "options": ["L'éducation des enfants", "La torture et le travail forcé", "Le respect des aînés", "La solidarité"],
+            "answer": 1,
+            "explanation": "La torture et le travail forcé sont des atteintes graves à la dignité de la personne humaine."
+          },
+          {
+            "q": "Qu'est-ce qui distingue la personne humaine de la chose ?",
+            "options": ["Sa taille", "Sa couleur", "Sa raison, sa conscience et sa liberté", "Son poids"],
+            "answer": 2,
+            "explanation": "La personne se distingue de la chose par la raison, la conscience morale, la liberté et la responsabilité."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les droits et devoirs du citoyen",
+      "video": "https://www.youtube.com/watch?v=4j-bWQNRpQk",
+      "lesson": "# Les droits et devoirs du citoyen\n\n## Introduction\n\nÊtre citoyen, ce n'est pas seulement posséder une carte nationale d'identité : c'est appartenir à une communauté politique, l'**État**, en jouissant de **droits** et en assumant des **devoirs**. La citoyenneté est un équilibre : à chaque droit reconnu correspond un devoir attendu. Comprendre cet équilibre est essentiel pour vivre en société et participer à la construction de la Nation camerounaise.\n\n## I. La notion de citoyen et de citoyenneté\n\nLe **citoyen** est le membre d'un État qui jouit de droits civils et politiques et qui participe à la vie publique. La **citoyenneté** est le lien juridique et moral qui unit l'individu à l'État.\n\nAu Cameroun, la citoyenneté s'acquiert principalement par la **nationalité**, généralement par la filiation (droit du sang) ou par naturalisation. La pleine citoyenneté politique (droit de vote) s'exerce à la **majorité**, fixée à 20 ans pour le vote.\n\n## II. Les droits du citoyen\n\nLes droits se classent en plusieurs catégories :\n\n- **Les droits civils** : droit à la vie, à la liberté, à la sûreté, à la propriété, au respect de la vie privée.\n- **Les libertés publiques** : liberté d'opinion, d'expression, de religion, d'association, de réunion, de circulation.\n- **Les droits politiques** : droit de voter, d'être élu, de participer aux affaires publiques.\n- **Les droits économiques, sociaux et culturels** : droit au travail, à l'éducation, à la santé, à la culture.\n\nCes droits sont garantis par le **préambule de la Constitution** du Cameroun.\n\n## III. Les devoirs du citoyen\n\nÀ chaque droit correspond un devoir :\n\n- **Respecter la loi** et les institutions de la République.\n- **Payer ses impôts** pour le financement des services publics.\n- **Défendre la patrie** et participer à sa construction.\n- **Respecter les biens publics et privés**.\n- **Voter** lors des élections et participer à la vie civique.\n- **Respecter les droits d'autrui** et préserver la paix.\n- **Protéger l'environnement** et le patrimoine national.\n\n## IV. L'équilibre entre droits et devoirs\n\nUn citoyen responsable comprend que **la liberté de l'un s'arrête là où commence celle de l'autre**. On ne peut réclamer ses droits tout en négligeant ses devoirs. La citoyenneté active suppose engagement, civisme et solidarité.\n\n## Cas pratique / exercice corrigé\n\n**Énoncé :** Un jeune électeur affirme : « J'ai le droit de vote, donc je peux insulter les candidats que je n'aime pas et déchirer leurs affiches. » Analysez cette affirmation.\n\n**Correction :**\n\n1. **Ce qui est exact :** ce jeune a bien le **droit de vote** et la **liberté d'opinion**. Il peut ne pas apprécier certains candidats.\n\n2. **Ce qui est faux :**\n   - **Insulter** autrui dépasse la liberté d'expression : c'est une atteinte à la dignité et à l'honneur, punie par la loi.\n   - **Déchirer les affiches** est une dégradation de biens et une entrave à la campagne d'autrui.\n\n3. **Principe :** la liberté d'expression a des **limites** ; elle ne doit pas porter atteinte aux droits d'autrui ni à l'ordre public. Le citoyen responsable exprime son désaccord par le **débat** et le **bulletin de vote**, non par la violence.\n\n## À retenir\n\n- Le **citoyen** est membre d'un État, titulaire de droits et de devoirs.\n- Les **droits** se répartissent en droits civils, libertés publiques, droits politiques et droits sociaux.\n- Les **devoirs** comprennent le respect de la loi, le paiement des impôts, la défense de la patrie, le vote, le respect d'autrui.\n- Droits et devoirs sont **indissociables** : la liberté de chacun s'arrête là où commence celle d'autrui.\n- La citoyenneté active suppose civisme, engagement et solidarité.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "À quoi correspond chaque droit du citoyen ?",
+            "options": ["À un privilège", "À un devoir correspondant", "À une récompense", "À aucune obligation"],
+            "answer": 1,
+            "explanation": "Droits et devoirs sont indissociables : à chaque droit reconnu correspond un devoir attendu du citoyen."
+          },
+          {
+            "q": "Lequel de ces éléments est un devoir du citoyen ?",
+            "options": ["Insulter les autorités", "Payer ses impôts", "Refuser de voter", "Dégrader les biens publics"],
+            "answer": 1,
+            "explanation": "Payer ses impôts est un devoir civique qui finance les services publics."
+          },
+          {
+            "q": "Le droit de voter et d'être élu fait partie des :",
+            "options": ["Droits politiques", "Droits économiques", "Devoirs militaires", "Obligations fiscales"],
+            "answer": 0,
+            "explanation": "Le droit de voter et d'être élu relève des droits politiques du citoyen."
+          },
+          {
+            "q": "La liberté d'expression du citoyen :",
+            "options": ["Est sans aucune limite", "S'arrête là où commence le droit d'autrui", "Permet d'insulter les autres", "Autorise la violence"],
+            "answer": 1,
+            "explanation": "La liberté de chacun s'arrête là où commence celle d'autrui ; elle ne doit pas porter atteinte aux droits des autres."
+          },
+          {
+            "q": "Qu'est-ce que la citoyenneté ?",
+            "options": ["Le lieu de naissance", "Le lien juridique et moral entre l'individu et l'État", "Le métier exercé", "La richesse possédée"],
+            "answer": 1,
+            "explanation": "La citoyenneté est le lien juridique et moral qui unit l'individu à son État."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La famille et la société",
+      "video": "https://www.youtube.com/watch?v=Q3oIqXjY7Yc",
+      "lesson": "# La famille et la société\n\n## Introduction\n\nLa **famille** est la cellule de base de toute société. C'est en son sein que l'enfant fait l'apprentissage des premières valeurs morales : le respect, la solidarité, l'amour, le partage. Comprendre le rôle de la famille, c'est comprendre comment se construisent les fondements de la vie sociale et de la citoyenneté.\n\n## I. La notion de famille\n\nLa **famille** est un groupe de personnes unies par des liens de **parenté** (filiation, alliance) ou d'**adoption**. On distingue :\n\n- **La famille nucléaire** : le père, la mère et les enfants.\n- **La famille élargie** : elle inclut grands-parents, oncles, tantes, cousins, très présente dans la culture africaine.\n- **La famille monoparentale** : un seul parent élève les enfants.\n- **La famille recomposée** : issue d'une nouvelle union.\n\nAu Cameroun, la famille élargie joue un rôle social et économique majeur (solidarité, entraide, éducation collective).\n\n## II. Les fonctions de la famille\n\nLa famille remplit plusieurs fonctions :\n\n- **Fonction biologique** : assurer la reproduction et la perpétuation de l'espèce.\n- **Fonction éducative** : transmettre les valeurs, les normes, la langue, la culture (socialisation primaire).\n- **Fonction affective** : offrir amour, sécurité et soutien.\n- **Fonction économique** : subvenir aux besoins matériels de ses membres.\n- **Fonction sociale** : intégrer l'individu dans la société.\n\n## III. La famille, cellule de base de la société\n\nLa société est un ensemble de familles. Une société se porte bien quand ses familles sont solides. La famille est le premier lieu où l'on apprend :\n\n- Le **respect** des aînés et des autres.\n- La **solidarité** et le partage.\n- La **discipline** et le sens des responsabilités.\n- Les **valeurs morales** (honnêteté, tolérance, travail).\n\n## IV. Les défis de la famille moderne\n\nLa famille connaît aujourd'hui des mutations et des difficultés :\n\n- **L'exode rural** et l'éclatement de la famille élargie.\n- **La démission éducative** de certains parents.\n- **La pauvreté** et le chômage.\n- **Les divorces** et les conflits familiaux.\n- **L'influence des écrans** et des réseaux sociaux.\n\nIl revient à chaque membre de préserver l'unité, le dialogue et les valeurs familiales.\n\n## Cas pratique / exercice corrigé\n\n**Énoncé :** Dans une famille, les parents passent tout leur temps au travail et confient l'éducation des enfants à la télévision et au téléphone. Quelles peuvent être les conséquences et quelles solutions proposer ?\n\n**Correction :**\n\n1. **Conséquences possibles :**\n   - Affaiblissement de la **fonction éducative** : les valeurs ne sont plus transmises.\n   - Risque d'**exposition à des contenus inadaptés**.\n   - Manque d'**affection** et de repères, repli sur soi.\n\n2. **Solutions :**\n   - Réserver des **moments de dialogue** en famille (repas, week-ends).\n   - Encadrer et limiter le **temps d'écran**.\n   - Suivre la scolarité et les fréquentations des enfants.\n   - Recourir à la **famille élargie** pour épauler l'éducation.\n\n**Conclusion :** la fonction éducative de la famille ne se délègue pas entièrement aux écrans ; le dialogue et la présence des parents sont irremplaçables.\n\n## À retenir\n\n- La **famille** est la cellule de base de la société, unie par des liens de parenté.\n- On distingue la famille nucléaire, élargie, monoparentale et recomposée.\n- Ses fonctions sont biologique, éducative, affective, économique et sociale.\n- C'est le premier lieu d'apprentissage des valeurs morales et de la socialisation.\n- La famille moderne fait face à des défis : exode rural, écrans, divorces, pauvreté.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "La famille est considérée comme :",
+            "options": ["Un groupe d'amis", "La cellule de base de la société", "Une entreprise", "Une institution politique"],
+            "answer": 1,
+            "explanation": "La famille est la cellule de base de la société, où se construisent les premières valeurs."
+          },
+          {
+            "q": "La famille qui comprend grands-parents, oncles et tantes est dite :",
+            "options": ["Nucléaire", "Monoparentale", "Élargie", "Recomposée"],
+            "answer": 2,
+            "explanation": "La famille élargie inclut les grands-parents, oncles, tantes et cousins, très présente en Afrique."
+          },
+          {
+            "q": "Quelle fonction de la famille consiste à transmettre les valeurs et la culture ?",
+            "options": ["La fonction biologique", "La fonction éducative", "La fonction économique", "La fonction politique"],
+            "answer": 1,
+            "explanation": "La fonction éducative assure la socialisation primaire : transmission des valeurs, normes et culture."
+          },
+          {
+            "q": "Lequel est un défi de la famille moderne ?",
+            "options": ["La solidarité", "Le respect des aînés", "L'influence excessive des écrans", "Le dialogue familial"],
+            "answer": 2,
+            "explanation": "L'influence des écrans et des réseaux sociaux est un défi majeur de la famille moderne."
+          },
+          {
+            "q": "La famille nucléaire est composée de :",
+            "options": ["Tout le village", "Père, mère et enfants", "Oncles et tantes seulement", "Cousins éloignés"],
+            "answer": 1,
+            "explanation": "La famille nucléaire se compose du père, de la mère et des enfants."
+          }
+        ]
+      }
+    },
+    {
+      "title": "L'État et ses institutions",
+      "video": "https://www.youtube.com/watch?v=8sP_3aJxh1U",
+      "lesson": "# L'État et ses institutions\n\n## Introduction\n\nL'**État** est l'organisation politique et juridique d'une société sur un territoire donné. Au Cameroun, l'État garantit l'ordre, la sécurité, la justice et le développement. Comprendre l'État et ses institutions permet au citoyen de connaître l'organisation des pouvoirs et son rôle dans la vie de la Nation.\n\n## I. La notion d'État\n\nL'État repose sur trois **éléments constitutifs** :\n\n- **Un territoire** : l'espace délimité par des frontières (terre, mer, air).\n- **Une population** : l'ensemble des habitants soumis à une même autorité.\n- **Un pouvoir politique souverain** : une autorité qui édicte les lois et les fait respecter.\n\nL'État est doté de la **souveraineté** : à l'intérieur, il est l'autorité suprême ; à l'extérieur, il est indépendant des autres États.\n\n## II. La séparation des pouvoirs\n\nPour éviter la tyrannie, Montesquieu a théorisé la **séparation des trois pouvoirs** :\n\n- **Le pouvoir législatif** : il vote les lois. Au Cameroun, il est exercé par le **Parlement** composé de l'**Assemblée nationale** (députés) et du **Sénat** (sénateurs).\n- **Le pouvoir exécutif** : il applique les lois et dirige l'administration. Il est exercé par le **Président de la République**, chef de l'État, assisté du **Gouvernement** (Premier ministre, ministres).\n- **Le pouvoir judiciaire** : il rend la justice et applique les sanctions. Il est exercé par les **tribunaux et cours** (Cour suprême, Conseil constitutionnel).\n\n## III. Les institutions de la République du Cameroun\n\nLe Cameroun est une **République unitaire décentralisée**. Ses principales institutions sont :\n\n- **Le Président de la République** : élu au suffrage universel, garant de l'unité nationale.\n- **Le Parlement** (Assemblée nationale et Sénat) : vote les lois et contrôle le Gouvernement.\n- **Le Gouvernement** : conduit la politique de la Nation.\n- **Le pouvoir judiciaire** : Cour suprême, tribunaux.\n- **Le Conseil constitutionnel** : veille à la constitutionnalité des lois et à la régularité des élections.\n- **Les collectivités territoriales décentralisées** : régions et communes.\n\n## IV. Le rôle de l'État\n\nL'État remplit des **fonctions régaliennes** : assurer la **sécurité** (armée, police), rendre la **justice**, gérer les **finances** (monnaie, impôts), conduire la **diplomatie**. Il assure aussi des fonctions de service public : éducation, santé, infrastructures.\n\n## Cas pratique / exercice corrigé\n\n**Énoncé :** Un élève affirme que « le Président de la République vote lui-même toutes les lois du pays ». Corrigez cette affirmation en expliquant le rôle des pouvoirs.\n\n**Correction :**\n\n1. **Erreur identifiée :** confusion entre pouvoir exécutif et pouvoir législatif.\n\n2. **Rectification :**\n   - C'est le **Parlement** (Assemblée nationale + Sénat), pouvoir **législatif**, qui **vote** les lois.\n   - Le **Président de la République**, chef du pouvoir **exécutif**, **promulgue** et **fait appliquer** les lois.\n\n3. **Principe :** la **séparation des pouvoirs** garantit l'équilibre et évite la concentration du pouvoir entre les mains d'une seule personne.\n\n**Conclusion :** voter la loi et l'appliquer sont deux fonctions distinctes confiées à des pouvoirs différents.\n\n## À retenir\n\n- L'**État** repose sur trois éléments : territoire, population, pouvoir souverain.\n- La **séparation des pouvoirs** (législatif, exécutif, judiciaire) protège la liberté.\n- Le Cameroun est une **République unitaire décentralisée**.\n- Le Parlement (Assemblée nationale + Sénat) vote les lois ; le Président promulgue et applique.\n- L'État assure les fonctions régaliennes : sécurité, justice, finances, diplomatie.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Quels sont les trois éléments constitutifs de l'État ?",
+            "options": ["Drapeau, hymne, devise", "Territoire, population, pouvoir souverain", "Armée, police, justice", "Lois, impôts, élections"],
+            "answer": 1,
+            "explanation": "L'État repose sur un territoire, une population et un pouvoir politique souverain."
+          },
+          {
+            "q": "Quel pouvoir vote les lois au Cameroun ?",
+            "options": ["Le pouvoir exécutif", "Le pouvoir judiciaire", "Le pouvoir législatif (Parlement)", "Le pouvoir militaire"],
+            "answer": 2,
+            "explanation": "Le pouvoir législatif, exercé par le Parlement (Assemblée nationale et Sénat), vote les lois."
+          },
+          {
+            "q": "Qui a théorisé la séparation des pouvoirs ?",
+            "options": ["Kant", "Montesquieu", "Rousseau", "Aristote"],
+            "answer": 1,
+            "explanation": "Montesquieu a théorisé la séparation des trois pouvoirs pour éviter la tyrannie."
+          },
+          {
+            "q": "Le Parlement camerounais est composé de :",
+            "options": ["L'Assemblée nationale et le Sénat", "La Cour suprême et le Sénat", "Le Gouvernement et les communes", "Les régions seulement"],
+            "answer": 0,
+            "explanation": "Le Parlement comprend l'Assemblée nationale (députés) et le Sénat (sénateurs)."
+          },
+          {
+            "q": "La forme de l'État camerounais est :",
+            "options": ["Une monarchie", "Une République unitaire décentralisée", "Une fédération", "Un empire"],
+            "answer": 1,
+            "explanation": "Le Cameroun est une République unitaire décentralisée comportant régions et communes."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La démocratie et la participation citoyenne",
+      "video": "https://www.youtube.com/watch?v=2D5N9pQqkOk",
+      "lesson": "# La démocratie et la participation citoyenne\n\n## Introduction\n\nLe mot **démocratie** vient du grec *demos* (le peuple) et *kratos* (le pouvoir) : il signifie le **pouvoir du peuple**. Abraham Lincoln la définissait comme « le gouvernement du peuple, par le peuple et pour le peuple ». Dans une démocratie, les citoyens ne sont pas de simples spectateurs : ils **participent** à la vie publique. C'est cette participation qui donne sens à la citoyenneté.\n\n## I. La notion de démocratie\n\nLa **démocratie** est un régime politique dans lequel le pouvoir appartient au peuple, qui l'exerce directement ou par l'intermédiaire de représentants élus. Elle repose sur des **principes fondamentaux** :\n\n- La **souveraineté du peuple**.\n- L'**égalité** des citoyens devant la loi.\n- La **liberté** (d'opinion, d'expression, d'association).\n- Le **pluralisme** politique (plusieurs partis).\n- Le **respect des droits de l'homme**.\n- L'**alternance** au pouvoir par des élections libres.\n\n## II. Les formes de démocratie\n\n- **La démocratie directe** : le peuple exerce lui-même le pouvoir (rare aujourd'hui ; ex. référendum).\n- **La démocratie représentative** : le peuple élit des représentants (députés, conseillers) qui gouvernent en son nom. C'est le modèle du Cameroun.\n- **La démocratie participative** : les citoyens sont associés aux décisions entre les élections (consultations, débats publics).\n\n## III. La participation citoyenne\n\nParticiper, c'est s'engager dans la vie de la cité. Les formes de participation sont nombreuses :\n\n- **Le vote** aux élections (présidentielle, législatives, municipales, sénatoriales, régionales).\n- L'**adhésion** à un parti politique ou à une association.\n- Le **militantisme** dans la société civile (ONG, syndicats).\n- La **participation aux débats** publics et au contrôle de l'action publique.\n- Le **civisme** quotidien : respect des lois, paiement des impôts, propreté.\n\n## IV. Les conditions et les obstacles de la démocratie\n\nUne démocratie vivante suppose des **élections libres et transparentes**, une **presse libre**, une **justice indépendante** et des **citoyens éclairés**. Ses obstacles sont : l'**abstention**, la **fraude électorale**, la **corruption**, l'**ignorance**, l'**intolérance** et les **tribalismes**.\n\n## Cas pratique / exercice corrigé\n\n**Énoncé :** Lors d'une élection, un citoyen décide de ne pas voter en disant : « Ma voix ne changera rien. » Discutez cette attitude.\n\n**Correction :**\n\n1. **Analyse de l'attitude :** il s'agit d'**abstentionnisme**, un obstacle à la démocratie.\n\n2. **Critique :**\n   - Chaque voix **compte** : des élections se jouent parfois à quelques voix.\n   - L'abstention laisse les autres **décider à sa place**.\n   - Le vote est à la fois un **droit** et un **devoir civique**.\n\n3. **Recommandation :** le citoyen responsable doit **s'inscrire**, **s'informer** sur les programmes et **voter**, car la démocratie ne vit que par la participation.\n\n**Conclusion :** se priver de son vote, c'est renoncer à influencer l'avenir de son pays.\n\n## À retenir\n\n- La **démocratie** est le pouvoir du peuple, exercé directement ou par des représentants.\n- Elle repose sur la souveraineté du peuple, l'égalité, la liberté, le pluralisme et l'alternance.\n- On distingue les démocraties directe, représentative et participative.\n- La **participation citoyenne** passe par le vote, l'engagement associatif et le civisme.\n- Ses obstacles sont l'abstention, la fraude, la corruption, l'ignorance et l'intolérance.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Que signifie étymologiquement le mot démocratie ?",
+            "options": ["Le pouvoir des riches", "Le pouvoir du peuple", "Le pouvoir d'un seul", "Le pouvoir de l'armée"],
+            "answer": 1,
+            "explanation": "Démocratie vient du grec demos (peuple) et kratos (pouvoir) : le pouvoir du peuple."
+          },
+          {
+            "q": "Quel type de démocratie le peuple élit-il des représentants ?",
+            "options": ["La démocratie directe", "La démocratie représentative", "La monarchie", "La dictature"],
+            "answer": 1,
+            "explanation": "Dans la démocratie représentative, le peuple élit des représentants qui gouvernent en son nom."
+          },
+          {
+            "q": "Lequel est un principe fondamental de la démocratie ?",
+            "options": ["Le parti unique", "Le pluralisme politique", "La fraude électorale", "La censure"],
+            "answer": 1,
+            "explanation": "Le pluralisme politique (plusieurs partis) est un principe fondamental de la démocratie."
+          },
+          {
+            "q": "L'abstention au vote est :",
+            "options": ["Un atout pour la démocratie", "Un obstacle à la démocratie", "Un devoir civique", "Une obligation légale"],
+            "answer": 1,
+            "explanation": "L'abstention est un obstacle à la démocratie car elle réduit la participation citoyenne."
+          },
+          {
+            "q": "Qui a défini la démocratie comme « le gouvernement du peuple, par le peuple et pour le peuple » ?",
+            "options": ["Montesquieu", "Abraham Lincoln", "Rousseau", "Kant"],
+            "answer": 1,
+            "explanation": "Cette célèbre définition de la démocratie a été donnée par Abraham Lincoln."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La justice et l'équité",
+      "video": "https://www.youtube.com/watch?v=4lh8tytPjPo",
+      "lesson": "# La justice et l'équité\n\n## Introduction\n\nLa **justice** est une valeur morale et une institution. Comme valeur, elle consiste à donner à chacun ce qui lui revient ; comme institution, elle règle les conflits et sanctionne les fautes. L'**équité**, quant à elle, corrige la rigueur de la loi pour tenir compte des situations particulières. Justice et équité sont des piliers de la paix sociale.\n\n## I. La notion de justice\n\nLa **justice** a deux sens :\n\n- **Sens moral** : c'est la vertu qui consiste à respecter les droits d'autrui et à rendre à chacun son dû. Aristote distinguait la **justice distributive** (répartir les biens selon le mérite) et la **justice commutative** (égalité dans les échanges).\n- **Sens institutionnel** : c'est l'ensemble des organes (tribunaux, cours) chargés de dire le droit et de trancher les litiges.\n\n## II. La notion d'équité\n\nL'**équité** est la justice appliquée au cas particulier. Elle **adapte** la règle générale aux circonstances pour éviter une injustice. Par exemple, à fautes identiques, on peut tenir compte de l'âge, de l'intention ou des circonstances. L'équité tempère la rigueur de la loi : *summum jus, summa injuria* (« l'excès de droit est le comble de l'injustice »).\n\n## III. Les principes de la justice\n\nUne justice digne de ce nom respecte :\n\n- **L'égalité devant la loi** : la loi est la même pour tous.\n- **La présomption d'innocence** : on est innocent jusqu'à preuve de culpabilité.\n- **Les droits de la défense** : tout accusé a droit à un avocat et à un procès équitable.\n- **L'indépendance et l'impartialité** du juge.\n- **La proportionnalité** des peines.\n\n## IV. L'organisation de la justice au Cameroun\n\nLa justice camerounaise est rendue au nom du peuple. Elle comprend :\n\n- **Les tribunaux de première instance et de grande instance**.\n- **Les cours d'appel**.\n- **La Cour suprême**, juridiction la plus élevée.\n- **Le Conseil constitutionnel** pour le contentieux constitutionnel et électoral.\n\nElle distingue la justice **pénale** (sanctionner les infractions), la justice **civile** (régler les litiges entre particuliers) et la justice **administrative**.\n\n## Cas pratique / exercice corrigé\n\n**Énoncé :** Deux élèves volent chacun un objet. Le premier l'a fait pour nourrir sa famille affamée ; le second par habitude et goût du gain. Faut-il les sanctionner de la même manière ? Justifiez.\n\n**Correction :**\n\n1. **Principe de justice :** le vol est interdit ; la **loi** s'applique également aux deux.\n\n2. **Principe d'équité :** l'équité invite à tenir compte des **circonstances** et de l'**intention** :\n   - Le premier a agi par **nécessité** (état de besoin) : circonstance atténuante.\n   - Le second a agi par **habitude et cupidité** : aucune excuse.\n\n3. **Conclusion :** sans nier la faute des deux, l'**équité** justifie une sanction plus indulgente pour le premier et plus ferme pour le second. La justice véritable allie **égalité** (la loi pour tous) et **équité** (adaptation au cas).\n\n## À retenir\n\n- La **justice** est à la fois une vertu morale (rendre à chacun son dû) et une institution.\n- Aristote distingue justice distributive et justice commutative.\n- L'**équité** adapte la règle générale au cas particulier pour éviter l'injustice.\n- Les principes de la justice : égalité devant la loi, présomption d'innocence, droits de la défense, impartialité.\n- Au Cameroun : tribunaux, cours d'appel, Cour suprême, Conseil constitutionnel.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Qu'est-ce que l'équité ?",
+            "options": ["L'application aveugle de la loi", "La justice adaptée au cas particulier", "L'absence de justice", "Le pouvoir du juge de violer la loi"],
+            "answer": 1,
+            "explanation": "L'équité est la justice appliquée au cas particulier, qui corrige la rigueur de la loi générale."
+          },
+          {
+            "q": "La présomption d'innocence signifie que :",
+            "options": ["Tout accusé est coupable", "On est innocent jusqu'à preuve de culpabilité", "Le juge décide seul sans preuve", "Il n'y a pas de procès"],
+            "answer": 1,
+            "explanation": "La présomption d'innocence pose que toute personne est innocente jusqu'à preuve de sa culpabilité."
+          },
+          {
+            "q": "Quel philosophe a distingué justice distributive et justice commutative ?",
+            "options": ["Aristote", "Montesquieu", "Lincoln", "Rousseau"],
+            "answer": 0,
+            "explanation": "Aristote a distingué la justice distributive (selon le mérite) et la justice commutative (égalité des échanges)."
+          },
+          {
+            "q": "Quelle est la juridiction la plus élevée du Cameroun citée dans la leçon ?",
+            "options": ["Le tribunal de première instance", "La Cour suprême", "La mairie", "Le commissariat"],
+            "answer": 1,
+            "explanation": "La Cour suprême est la juridiction la plus élevée parmi les tribunaux et cours."
+          },
+          {
+            "q": "L'égalité devant la loi signifie que :",
+            "options": ["La loi favorise les riches", "La loi est la même pour tous", "Chacun fait sa propre loi", "Seuls les puissants sont jugés"],
+            "answer": 1,
+            "explanation": "L'égalité devant la loi signifie que la loi s'applique de la même manière à tous les citoyens."
+          }
+        ]
+      }
+    },
+    {
+      "title": "L'intégration nationale et le vivre-ensemble",
+      "video": "https://www.youtube.com/watch?v=Wq3kQ0pCkSY",
+      "lesson": "# L'intégration nationale et le vivre-ensemble\n\n## Introduction\n\nLe Cameroun est souvent appelé « **l'Afrique en miniature** » en raison de sa diversité : plus de 250 groupes ethniques, plusieurs religions, deux langues officielles (français et anglais). Cette diversité est une richesse, mais elle exige un effort permanent d'**intégration nationale** et de **vivre-ensemble** pour faire de tous ces peuples une seule Nation unie.\n\n## I. La notion d'intégration nationale\n\nL'**intégration nationale** est le processus par lequel les différentes composantes d'un pays (ethnies, régions, religions, langues) s'unissent pour former une Nation solidaire, partageant un destin commun. Elle suppose de dépasser les appartenances particulières au profit de l'**intérêt national**.\n\n## II. Les fondements du vivre-ensemble\n\nLe **vivre-ensemble** repose sur des valeurs partagées :\n\n- **La tolérance** : accepter les différences d'autrui.\n- **Le respect mutuel** des cultures, langues et religions.\n- **La solidarité** entre les régions et les communautés.\n- **L'égalité** de tous les citoyens, sans discrimination.\n- **Le dialogue** comme moyen de résoudre les différends.\n\n## III. Les facteurs d'intégration nationale au Cameroun\n\nPlusieurs éléments favorisent l'unité :\n\n- **Les symboles nationaux** : drapeau, hymne (« Ô Cameroun, berceau de nos ancêtres »), devise (« Paix – Travail – Patrie »).\n- **Le bilinguisme** officiel (français et anglais).\n- **L'école** et le **service civique** qui brassent les jeunes.\n- **Le sport** (les Lions Indomptables fédèrent tout le pays).\n- **Les mariages interethniques** et la mobilité des populations.\n- **La décentralisation** qui rapproche l'administration des citoyens.\n\n## IV. Les obstacles et menaces\n\nL'intégration est menacée par :\n\n- **Le tribalisme** et le **régionalisme**.\n- **Les discriminations** ethniques ou religieuses.\n- **Les discours de haine** et les **rumeurs**.\n- **Les inégalités** de développement entre régions.\n\nFace à ces menaces, chaque citoyen doit cultiver l'esprit de **fraternité** et bannir les préjugés.\n\n## Cas pratique / exercice corrigé\n\n**Énoncé :** Dans un établissement, des élèves refusent de s'asseoir à côté de camarades d'une autre région et se moquent de leur accent. Analysez la situation et proposez des actions.\n\n**Correction :**\n\n1. **Analyse :** il s'agit d'un comportement **tribaliste** et **discriminatoire**, contraire au vivre-ensemble et à l'égalité des citoyens.\n\n2. **Conséquences :** division, souffrance des victimes, climat scolaire dégradé, atteinte à l'unité nationale.\n\n3. **Actions :**\n   - **Sensibiliser** les élèves à la richesse de la diversité (« Afrique en miniature »).\n   - Organiser des **activités communes** (clubs, sports, travaux de groupe mixtes).\n   - Valoriser les **symboles nationaux** et l'esprit de fraternité.\n   - Sanctionner les **moqueries** et discours de haine.\n\n**Conclusion :** la diversité du Cameroun est une force ; le vivre-ensemble s'apprend dès l'école.\n\n## À retenir\n\n- Le Cameroun, « **Afrique en miniature** », compte plus de 250 ethnies et deux langues officielles.\n- L'**intégration nationale** unit les composantes du pays au-delà des appartenances particulières.\n- Le **vivre-ensemble** repose sur la tolérance, le respect mutuel, la solidarité et le dialogue.\n- Les facteurs d'unité : symboles nationaux, bilinguisme, école, sport, décentralisation.\n- Les menaces : tribalisme, régionalisme, discriminations et discours de haine.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Pourquoi le Cameroun est-il appelé « l'Afrique en miniature » ?",
+            "options": ["Pour sa petite taille", "Pour sa grande diversité ethnique, culturelle et géographique", "Pour sa monnaie", "Pour son climat unique"],
+            "answer": 1,
+            "explanation": "Le Cameroun est appelé l'Afrique en miniature en raison de sa grande diversité ethnique, culturelle et géographique."
+          },
+          {
+            "q": "Quelle est la devise du Cameroun ?",
+            "options": ["Unité – Progrès – Justice", "Paix – Travail – Patrie", "Liberté – Égalité – Fraternité", "Dieu – Patrie – Roi"],
+            "answer": 1,
+            "explanation": "La devise du Cameroun est « Paix – Travail – Patrie »."
+          },
+          {
+            "q": "Lequel est un obstacle à l'intégration nationale ?",
+            "options": ["La tolérance", "Le tribalisme", "La solidarité", "Le dialogue"],
+            "answer": 1,
+            "explanation": "Le tribalisme est un obstacle majeur à l'intégration nationale et au vivre-ensemble."
+          },
+          {
+            "q": "Combien de langues officielles le Cameroun compte-t-il ?",
+            "options": ["Une", "Deux (français et anglais)", "Trois", "Aucune"],
+            "answer": 1,
+            "explanation": "Le Cameroun a deux langues officielles : le français et l'anglais (bilinguisme)."
+          },
+          {
+            "q": "Le vivre-ensemble repose principalement sur :",
+            "options": ["La méfiance", "La tolérance et le respect mutuel", "La discrimination", "Le repli sur soi"],
+            "answer": 1,
+            "explanation": "Le vivre-ensemble repose sur la tolérance, le respect mutuel, la solidarité et le dialogue."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La paix et la cohésion sociale",
+      "video": "https://www.youtube.com/watch?v=q0sP6oN2c8E",
+      "lesson": "# La paix et la cohésion sociale\n\n## Introduction\n\nLa **paix** est inscrite en tête de la devise camerounaise : « **Paix** – Travail – Patrie ». Elle n'est pas seulement l'absence de guerre, mais un état d'harmonie sociale fondé sur la justice, le dialogue et le respect mutuel. La **cohésion sociale** est le ciment qui maintient unie une société. Sans paix ni cohésion, aucun développement n'est possible.\n\n## I. La notion de paix\n\nOn distingue deux formes de paix :\n\n- **La paix négative** : la simple absence de guerre, de violence ou de conflit armé.\n- **La paix positive** : un état durable d'harmonie, fondé sur la **justice sociale**, le respect des droits, l'équité et la satisfaction des besoins. C'est la véritable paix.\n\nLa paix peut être **intérieure** (paix avec soi-même), **sociale** (entre les groupes) et **internationale** (entre les États).\n\n## II. La notion de cohésion sociale\n\nLa **cohésion sociale** est la force qui unit les membres d'une société et leur permet de vivre ensemble en harmonie malgré leurs différences. Elle repose sur :\n\n- La **solidarité** et l'**entraide**.\n- La **confiance** mutuelle.\n- Le **sentiment d'appartenance** à une même communauté.\n- La **justice** et la **réduction des inégalités**.\n\n## III. Les facteurs et menaces\n\n**Facteurs favorables :** l'éducation à la paix, le dialogue, la tolérance, la justice sociale, l'égalité des chances, le respect des institutions.\n\n**Menaces :** les conflits ethniques et religieux, les inégalités, l'injustice, la pauvreté, les discours de haine, la corruption, le terrorisme. Au Cameroun, des crises (Boko Haram au Nord, crise dans les régions anglophones) rappellent la fragilité de la paix.\n\n## IV. La construction et la préservation de la paix\n\nLa paix se construit par :\n\n- La **culture du dialogue** et la **résolution pacifique** des conflits (médiation, négociation).\n- La **réconciliation** et le **pardon**.\n- La **justice** qui répare les torts.\n- L'**éducation civique** et morale.\n- L'engagement de chacun à **bannir la violence**.\n\nChaque citoyen est un **artisan de la paix** : par ses paroles, ses actes et son refus de la haine.\n\n## Cas pratique / exercice corrigé\n\n**Énoncé :** Un conflit éclate entre deux groupes de jeunes de quartiers voisins à propos d'un terrain de football. La tension monte et des bagarres menacent. Proposez une démarche de résolution pacifique.\n\n**Correction :**\n\n1. **Identifier le problème :** un conflit d'usage (le terrain), aggravé par la rivalité de quartiers.\n\n2. **Démarche de résolution pacifique :**\n   - **Faire cesser la violence** immédiatement et calmer les esprits.\n   - Organiser une **médiation** avec une personne neutre (chef de quartier, enseignant).\n   - Permettre à chaque partie d'**exprimer ses griefs** (dialogue).\n   - Trouver un **compromis** : par exemple un calendrier de partage du terrain.\n   - Sceller un **accord** et encourager des matchs amicaux pour renforcer la cohésion.\n\n3. **Principe :** on privilégie toujours le **dialogue** et la **négociation** plutôt que la violence.\n\n**Conclusion :** la paix se construit par la médiation et le compromis, non par la force.\n\n## À retenir\n\n- La **paix** n'est pas seulement l'absence de guerre (paix négative) mais l'harmonie fondée sur la justice (paix positive).\n- La **cohésion sociale** unit les membres d'une société malgré leurs différences.\n- Elle repose sur la solidarité, la confiance, l'appartenance et la justice.\n- Les menaces : conflits, inégalités, injustice, discours de haine, terrorisme.\n- Chaque citoyen est un **artisan de la paix** par le dialogue et le refus de la violence.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Qu'est-ce que la paix positive ?",
+            "options": ["La simple absence de guerre", "Une harmonie durable fondée sur la justice sociale", "La victoire militaire", "Le silence des armes uniquement"],
+            "answer": 1,
+            "explanation": "La paix positive est un état durable d'harmonie fondé sur la justice sociale, et non la simple absence de guerre."
+          },
+          {
+            "q": "La cohésion sociale repose notamment sur :",
+            "options": ["La méfiance et la division", "La solidarité et la confiance mutuelle", "Les inégalités", "La haine"],
+            "answer": 1,
+            "explanation": "La cohésion sociale repose sur la solidarité, la confiance, l'appartenance et la justice."
+          },
+          {
+            "q": "Quel mot ouvre la devise du Cameroun ?",
+            "options": ["Travail", "Patrie", "Paix", "Liberté"],
+            "answer": 2,
+            "explanation": "La devise du Cameroun commence par « Paix » : Paix – Travail – Patrie."
+          },
+          {
+            "q": "Quelle est la meilleure manière de résoudre un conflit ?",
+            "options": ["La violence", "Le dialogue et la négociation", "La vengeance", "L'indifférence"],
+            "answer": 1,
+            "explanation": "La résolution pacifique des conflits passe par le dialogue, la médiation et la négociation."
+          },
+          {
+            "q": "Lequel est une menace pour la paix et la cohésion sociale ?",
+            "options": ["La tolérance", "Les discours de haine", "La justice sociale", "Le dialogue"],
+            "answer": 1,
+            "explanation": "Les discours de haine sont une menace majeure pour la paix et la cohésion sociale."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Le travail et le développement",
+      "video": "https://www.youtube.com/watch?v=oHg5SJYRHA0",
+      "lesson": "# Le travail et le développement\n\n## Introduction\n\nLe **travail** occupe la place centrale de la devise nationale : « Paix – **Travail** – Patrie ». Il est à la fois un **droit**, un **devoir** et un **facteur de développement**. Sans travail, ni l'individu ni la Nation ne peuvent progresser. Étudier le travail et le développement, c'est comprendre comment l'effort de chacun construit la prospérité de tous.\n\n## I. La notion de travail\n\nLe **travail** est l'activité par laquelle l'homme transforme la nature pour satisfaire ses besoins et produire des richesses. Il a plusieurs dimensions :\n\n- **Économique** : il produit des biens et des services.\n- **Sociale** : il intègre l'individu dans la société.\n- **Morale** : il développe la dignité, la discipline et le sens de l'effort.\n\nLe travail est un **droit** (chacun a droit à un emploi et à une juste rémunération) et un **devoir** (chacun doit contribuer à l'effort national).\n\n## II. La notion de développement\n\nLe **développement** est l'amélioration durable des conditions de vie d'une population. On distingue :\n\n- **La croissance économique** : l'augmentation des richesses (PIB).\n- **Le développement humain** : l'amélioration de la santé, de l'éducation, du niveau de vie (mesuré par l'IDH).\n- **Le développement durable** : un développement qui répond aux besoins du présent **sans compromettre** ceux des générations futures (équilibre entre économie, social et environnement).\n\n## III. Le travail, moteur du développement\n\nLe développement d'un pays dépend de :\n\n- La **qualité de la main-d'œuvre** (formation, compétences).\n- L'**esprit d'entreprise** et la **créativité**.\n- La **valorisation du travail** et la lutte contre la paresse et la fraude.\n- L'**éthique professionnelle** : ponctualité, honnêteté, conscience professionnelle.\n\nLe Cameroun s'est doté de stratégies de développement (la **Stratégie Nationale de Développement, SND30**, qui vise l'émergence) qui reposent largement sur le travail et la formation des jeunes.\n\n## IV. Les valeurs liées au travail\n\nLe travail bien fait suppose : la **discipline**, la **ponctualité**, l'**honnêteté**, la **persévérance** et l'**amour du travail bien fait**. Il faut bannir : la corruption, le détournement, le travail bâclé, la recherche du gain facile.\n\n## Cas pratique / exercice corrigé\n\n**Énoncé :** Deux jeunes diplômés au chômage adoptent des attitudes différentes : le premier attend un emploi de l'État en restant inactif ; le second lance une petite exploitation agricole avec ses économies. Comparez ces attitudes.\n\n**Correction :**\n\n1. **Attitude du premier :** **attentisme** et **dépendance**. Il associe le travail uniquement à l'emploi salarié de l'État, ce qui freine son développement personnel.\n\n2. **Attitude du second :** **esprit d'entreprise** et **initiative**. Il crée sa propre activité, produit des richesses, peut créer des emplois et participe au développement local.\n\n3. **Leçon :** le développement repose sur l'**initiative**, la **créativité** et la **valorisation du travail**, notamment dans l'agriculture et l'auto-emploi, plutôt que sur la seule attente d'un emploi public.\n\n**Conclusion :** le travail créateur et l'esprit d'entreprise sont des moteurs essentiels du développement.\n\n## À retenir\n\n- Le **travail** est un droit et un devoir ; il a une dimension économique, sociale et morale.\n- Le **développement** est l'amélioration durable des conditions de vie.\n- Le **développement durable** concilie économie, social et environnement pour les générations futures.\n- Le développement dépend de la qualité du travail, de l'esprit d'entreprise et de l'éthique professionnelle.\n- Il faut valoriser le travail bien fait et bannir la corruption et le gain facile.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Le travail dans la devise camerounaise est associé à :",
+            "options": ["Liberté et Égalité", "Paix et Patrie", "Dieu et Roi", "Unité et Progrès"],
+            "answer": 1,
+            "explanation": "La devise du Cameroun est « Paix – Travail – Patrie » : le travail y est central."
+          },
+          {
+            "q": "Le développement durable est celui qui :",
+            "options": ["Épuise toutes les ressources rapidement", "Répond aux besoins présents sans compromettre ceux des générations futures", "Ignore l'environnement", "Ne concerne que l'argent"],
+            "answer": 1,
+            "explanation": "Le développement durable répond aux besoins du présent sans compromettre ceux des générations futures."
+          },
+          {
+            "q": "Lequel est une valeur liée au travail bien fait ?",
+            "options": ["La paresse", "La corruption", "La ponctualité et l'honnêteté", "Le travail bâclé"],
+            "answer": 2,
+            "explanation": "Le travail bien fait suppose discipline, ponctualité, honnêteté et persévérance."
+          },
+          {
+            "q": "L'esprit d'entreprise consiste à :",
+            "options": ["Attendre passivement un emploi", "Prendre des initiatives et créer des activités", "Refuser de travailler", "Vivre de la fraude"],
+            "answer": 1,
+            "explanation": "L'esprit d'entreprise consiste à prendre des initiatives et à créer des activités productrices de richesses."
+          },
+          {
+            "q": "Le développement humain se mesure notamment par :",
+            "options": ["L'IDH (santé, éducation, niveau de vie)", "La taille du territoire", "Le nombre de voitures", "La météo"],
+            "answer": 0,
+            "explanation": "Le développement humain se mesure par l'Indice de Développement Humain (santé, éducation, niveau de vie)."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La protection de l'environnement",
+      "video": "https://www.youtube.com/watch?v=WfGMYdalClU",
+      "lesson": "# La protection de l'environnement\n\n## Introduction\n\nL'**environnement** est l'ensemble des éléments naturels (air, eau, sol, faune, flore) et humains qui nous entourent et conditionnent la vie. Aujourd'hui, il est gravement menacé par les activités humaines. Le protéger est devenu un **devoir citoyen** et une condition du développement durable. C'est aussi un enjeu moral : nous avons une responsabilité envers les générations futures.\n\n## I. La notion d'environnement\n\nL'**environnement** comprend :\n\n- **Le milieu naturel** : l'air, l'eau, le sol, les forêts, les animaux, les plantes.\n- **Le milieu humain** : les villes, les infrastructures, les activités.\n\nLes différents éléments forment des **écosystèmes** en équilibre. Rompre cet équilibre, c'est mettre en péril la vie.\n\n## II. Les atteintes à l'environnement\n\nL'environnement subit de nombreuses dégradations :\n\n- **La pollution** de l'air, de l'eau et des sols (déchets, plastiques, gaz).\n- **La déforestation** et la destruction des forêts.\n- **L'érosion** et la dégradation des sols.\n- **Le braconnage** et la disparition d'espèces.\n- **Le réchauffement climatique** dû aux gaz à effet de serre.\n- **L'insalubrité** dans les villes.\n\nAu Cameroun, la déforestation, l'ensablement du lac Tchad et les inondations sont des problèmes préoccupants.\n\n## III. Les enjeux et le développement durable\n\nProtéger l'environnement est essentiel pour :\n\n- **La santé** des populations.\n- **La sécurité alimentaire** (sols fertiles, eau propre).\n- **La préservation de la biodiversité**.\n- **Le développement durable** : satisfaire nos besoins sans détruire l'avenir.\n\n## IV. Les gestes et politiques de protection\n\nChacun peut agir :\n\n- **Trier et réduire les déchets**, ne pas jeter n'importe où.\n- **Planter des arbres** (reboisement).\n- **Économiser l'eau et l'énergie**.\n- **Protéger la faune et la flore**.\n- **Sensibiliser** son entourage.\n\nL'État, de son côté, adopte des **lois environnementales**, crée des **aires protégées** et participe aux accords internationaux (Accord de Paris sur le climat, 2015). La **Journée mondiale de l'environnement** (5 juin) mobilise chaque année.\n\n## Cas pratique / exercice corrigé\n\n**Énoncé :** Dans un quartier, les habitants jettent leurs ordures dans le caniveau. Lors des pluies, le quartier est inondé et des maladies se propagent. Analysez et proposez un plan d'action citoyen.\n\n**Correction :**\n\n1. **Analyse :**\n   - **Cause :** mauvaise gestion des déchets (ordures dans les caniveaux).\n   - **Conséquences :** **bouchage des caniveaux**, inondations, prolifération de moustiques, maladies (paludisme, choléra).\n\n2. **Plan d'action citoyen :**\n   - Organiser des journées de **salubrité communautaire** (curage des caniveaux).\n   - Mettre en place des **points de collecte** des ordures.\n   - **Sensibiliser** les habitants à ne plus jeter d'ordures dans les caniveaux.\n   - Solliciter la **mairie** pour le ramassage régulier des déchets.\n\n3. **Principe :** la protection de l'environnement commence par des **gestes simples et collectifs**.\n\n**Conclusion :** un environnement propre protège la santé et prévient les catastrophes.\n\n## À retenir\n\n- L'**environnement** regroupe le milieu naturel et le milieu humain, organisés en écosystèmes.\n- Les principales atteintes : pollution, déforestation, érosion, braconnage, réchauffement climatique.\n- Protéger l'environnement est un **devoir citoyen** lié au développement durable.\n- Gestes utiles : trier les déchets, reboiser, économiser l'eau et l'énergie, sensibiliser.\n- L'État légifère et participe aux accords (Accord de Paris, 2015) ; la Journée mondiale de l'environnement est le 5 juin.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Que comprend l'environnement ?",
+            "options": ["Uniquement les villes", "Le milieu naturel et le milieu humain", "Seulement les animaux", "Uniquement l'air"],
+            "answer": 1,
+            "explanation": "L'environnement comprend le milieu naturel (air, eau, sol, faune, flore) et le milieu humain."
+          },
+          {
+            "q": "Laquelle est une atteinte à l'environnement ?",
+            "options": ["Le reboisement", "La déforestation", "Le tri des déchets", "L'économie d'eau"],
+            "answer": 1,
+            "explanation": "La déforestation est une atteinte grave à l'environnement."
+          },
+          {
+            "q": "Quel geste citoyen protège l'environnement ?",
+            "options": ["Jeter les ordures dans les caniveaux", "Planter des arbres", "Gaspiller l'eau", "Brûler les forêts"],
+            "answer": 1,
+            "explanation": "Planter des arbres (reboisement) est un geste qui protège l'environnement."
+          },
+          {
+            "q": "Quel accord international de 2015 concerne le climat ?",
+            "options": ["L'Accord de Paris", "La Charte africaine", "La DUDH", "Le Traité de Rome"],
+            "answer": 0,
+            "explanation": "L'Accord de Paris sur le climat a été adopté en 2015."
+          },
+          {
+            "q": "Quand célèbre-t-on la Journée mondiale de l'environnement ?",
+            "options": ["Le 1er janvier", "Le 5 juin", "Le 20 mai", "Le 25 décembre"],
+            "answer": 1,
+            "explanation": "La Journée mondiale de l'environnement est célébrée le 5 juin."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les valeurs morales et l'éthique",
+      "video": "https://www.youtube.com/watch?v=lp-EO5I60KA",
+      "lesson": "# Les valeurs morales et l'éthique\n\n## Introduction\n\nUne société ne tient pas seulement par ses lois, mais aussi par les **valeurs morales** qui guident la conduite des individus. L'**éthique**, réflexion sur le bien et le mal, donne sens à nos actes. Honnêteté, respect, intégrité, tolérance : ces valeurs sont le socle d'une citoyenneté responsable et d'une société harmonieuse.\n\n## I. Morale, valeurs et éthique\n\nDistinguons trois notions :\n\n- **La morale** : l'ensemble des règles de conduite considérées comme bonnes dans une société (ce qu'il faut faire ou ne pas faire).\n- **Les valeurs** : ce qui est jugé important et désirable (l'honnêteté, la justice, la solidarité). Elles orientent nos choix.\n- **L'éthique** : la réflexion critique sur la morale, qui cherche à fonder ce qui est bien ou juste.\n\n## II. Les principales valeurs morales\n\nParmi les valeurs essentielles :\n\n- **L'honnêteté** : dire la vérité, ne pas tromper, ne pas voler.\n- **L'intégrité** : agir avec droiture, refuser la corruption.\n- **Le respect** : considérer la dignité d'autrui.\n- **La tolérance** : accepter les différences.\n- **La solidarité** : aider les autres.\n- **La responsabilité** : assumer ses actes.\n- **Le courage**, la **justice**, le **travail**, la **politesse**.\n\n## III. La conscience morale et le devoir\n\nLa **conscience morale** est cette « voix intérieure » qui nous dit ce qui est bien ou mal. Elle se forme par l'éducation, la famille, l'école et la religion. Le **devoir moral** est l'obligation de faire le bien indépendamment des sanctions. Agir par devoir, c'est agir bien même quand personne ne nous voit.\n\n## IV. L'éthique dans la vie sociale et professionnelle\n\nL'éthique s'applique partout :\n\n- **À l'école** : ne pas tricher, respecter ses camarades et ses maîtres.\n- **Au travail** : conscience professionnelle, refus de la corruption et du détournement.\n- **Dans la société** : civisme, respect du bien commun.\n- **Dans le numérique** : ne pas diffuser de fausses nouvelles, respecter autrui en ligne.\n\nLes **antivaleurs** à combattre : mensonge, corruption, tricherie, paresse, violence, intolérance.\n\n## Cas pratique / exercice corrigé\n\n**Énoncé :** Pendant un examen, un élève bien préparé voit son ami en difficulté lui demander de copier. Au nom de l'amitié, doit-il accepter ? Analysez selon les valeurs morales.\n\n**Correction :**\n\n1. **Conflit de valeurs :** l'**amitié** (aider son ami) entre en conflit avec l'**honnêteté** et la **justice** (ne pas tricher).\n\n2. **Analyse éthique :**\n   - Accepter, c'est commettre une **tricherie** : c'est malhonnête et injuste envers les autres candidats.\n   - La véritable amitié n'exige pas de mal agir ; elle pousse au contraire à aider **honnêtement** (réviser ensemble **avant** l'examen).\n\n3. **Décision morale :** il doit **refuser** de faire copier. Le respect de l'honnêteté prime. La vraie solidarité, c'est d'aider son ami à se préparer, pas à frauder.\n\n**Conclusion :** les valeurs morales (honnêteté, justice) doivent guider nos choix, même au prix d'un sacrifice apparent.\n\n## À retenir\n\n- La **morale** est l'ensemble des règles de conduite ; les **valeurs** orientent nos choix ; l'**éthique** réfléchit sur le bien.\n- Les valeurs essentielles : honnêteté, intégrité, respect, tolérance, solidarité, responsabilité.\n- La **conscience morale** est la voix intérieure qui distingue le bien du mal.\n- Agir par **devoir**, c'est bien agir même quand personne ne nous voit.\n- Il faut combattre les antivaleurs : mensonge, corruption, tricherie, intolérance.",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Qu'est-ce que l'éthique ?",
+            "options": ["L'ensemble des lois pénales", "La réflexion critique sur le bien et le mal", "Une religion", "Un parti politique"],
+            "answer": 1,
+            "explanation": "L'éthique est la réflexion critique sur la morale, qui cherche à fonder ce qui est bien ou juste."
+          },
+          {
+            "q": "Laquelle de ces notions est une valeur morale ?",
+            "options": ["La corruption", "L'honnêteté", "Le mensonge", "La tricherie"],
+            "answer": 1,
+            "explanation": "L'honnêteté est une valeur morale essentielle ; la corruption et le mensonge sont des antivaleurs."
+          },
+          {
+            "q": "La conscience morale est :",
+            "options": ["Une loi écrite", "La voix intérieure qui distingue le bien du mal", "Un tribunal", "Une sanction"],
+            "answer": 1,
+            "explanation": "La conscience morale est la voix intérieure qui nous indique ce qui est bien ou mal."
+          },
+          {
+            "q": "Agir par devoir moral, c'est :",
+            "options": ["Bien agir seulement quand on est surveillé", "Bien agir même quand personne ne nous voit", "Agir uniquement par peur de la sanction", "Faire ce qui nous arrange"],
+            "answer": 1,
+            "explanation": "Agir par devoir, c'est faire le bien indépendamment des sanctions, même quand personne ne nous voit."
+          },
+          {
+            "q": "Laquelle est une antivaleur à combattre ?",
+            "options": ["La tolérance", "La solidarité", "La corruption", "Le respect"],
+            "answer": 2,
+            "explanation": "La corruption est une antivaleur à combattre, contraire à l'intégrité morale."
+          }
+        ]
+      }
+    }
+  ]
+}

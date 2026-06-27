@@ -1,0 +1,774 @@
+{
+  "code": "In",
+  "level": "Première",
+  "chapters": [
+    {
+      "title": "L'ordinateur et ses composants",
+      "video": "https://www.youtube.com/watch?v=ZF7b_98w_FY",
+      "lesson": "# L'ordinateur et ses composants\n\n## Introduction\n\nUn **ordinateur** est une machine électronique programmable capable de **recevoir** des données (entrée), de les **traiter** selon un programme, de **stocker** des informations et de **restituer** des résultats (sortie). En classe de Première, il faut savoir distinguer le matériel (**hardware**) du logiciel (**software**) et identifier le rôle de chaque composant.\n\n## 1. Le schéma fonctionnel d'un ordinateur\n\nTout ordinateur respecte le modèle de **von Neumann** : une **unité centrale de traitement** entourée d'une **mémoire** et d'organes d'**entrée/sortie**.\n\n```\n   ENTRÉE  -->  [ UNITÉ CENTRALE : UC + Mémoire ]  -->  SORTIE\n                         |\n                     STOCKAGE\n```\n\n- **Unité de traitement** : exécute les instructions.\n- **Mémoire** : conserve données et programmes.\n- **Entrées / Sorties** : communiquent avec l'extérieur.\n\n## 2. L'unité centrale\n\nL'**unité centrale** est le boîtier qui contient les composants essentiels.\n\n### a) Le microprocesseur (CPU)\n\nLe **processeur** (CPU, *Central Processing Unit*) est le **cerveau** de l'ordinateur. Il est composé de :\n\n- l'**unité arithmétique et logique (UAL)** qui effectue les calculs et les comparaisons ;\n- l'**unité de commande (UC)** qui décode et coordonne les instructions ;\n- des **registres**, petites mémoires ultra-rapides internes.\n\nSa rapidité se mesure en **hertz** : un processeur cadencé à **3 GHz** exécute environ 3 milliards de cycles par seconde.\n\n### b) La carte mère\n\nLa **carte mère** (*motherboard*) est le circuit imprimé principal sur lequel sont connectés le processeur, les barrettes de mémoire, les cartes d'extension et les ports. Elle assure la **communication** entre tous les composants grâce aux **bus**.\n\n### c) Les bus\n\nUn **bus** est un ensemble de fils transportant l'information. On distingue le **bus de données**, le **bus d'adresses** et le **bus de commande**.\n\n## 3. Les mémoires\n\n| Type | Rôle | Volatile ? |\n|------|------|-----------|\n| **RAM** (mémoire vive) | mémoire de travail | **oui** (s'efface à l'arrêt) |\n| **ROM** (mémoire morte) | contient le BIOS/firmware | non |\n| **Disque dur / SSD** | stockage de masse permanent | non |\n| **Mémoire cache** | accélère le processeur | oui |\n\nLa **RAM** est rapide mais **volatile** : ce que l'on n'a pas enregistré est perdu à l'extinction.\n\n## 4. Hardware et software\n\n- **Hardware (matériel)** : tout ce que l'on peut **toucher** (clavier, écran, processeur).\n- **Software (logiciel)** : les **programmes** immatériels (système d'exploitation, jeux, traitement de texte).\n\n## Exercices corrigés\n\n**Exercice 1.** Citez les trois grandes fonctions d'un ordinateur et donnez un exemple de composant pour chacune.\n\n*Correction.*\n- **Entrée** : recevoir les données -> le **clavier**.\n- **Traitement / stockage** : traiter et conserver -> le **processeur** et le **disque dur**.\n- **Sortie** : restituer -> l'**écran**.\n\n**Exercice 2.** Le processeur d'un ordinateur est cadencé à 2,5 GHz. Combien de cycles effectue-t-il en une seconde ?\n\n*Correction.* 2,5 GHz = 2,5 x 10^9 Hz, soit **2 500 000 000 cycles par seconde**.\n\n**Exercice 3.** Vrai ou faux : « Les données stockées dans la RAM sont conservées après l'arrêt de l'ordinateur. » Justifiez.\n\n*Correction.* **Faux.** La RAM est une mémoire **volatile** : son contenu disparaît dès la coupure d'alimentation. Pour conserver des données, il faut les enregistrer sur le **disque dur** (mémoire non volatile).\n\n## À retenir\n\n- Un ordinateur **entre**, **traite**, **stocke** et **restitue** l'information (modèle de **von Neumann**).\n- Le **processeur (CPU)** est le cerveau : il contient l'**UAL**, l'**unité de commande** et les **registres**.\n- La **carte mère** relie tous les composants via les **bus**.\n- La **RAM** est rapide et **volatile** ; le **disque dur/SSD** est lent mais **permanent**.\n- **Hardware** = matériel ; **Software** = logiciel.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Quel composant est appelé le « cerveau » de l'ordinateur ?",
+            "options": [
+              "La RAM",
+              "Le processeur (CPU)",
+              "Le disque dur",
+              "La carte mère"
+            ],
+            "answer": 1,
+            "explanation": "Le processeur exécute les instructions ; il contient l'UAL et l'unité de commande."
+          },
+          {
+            "q": "Quelle mémoire est volatile (perd son contenu à l'extinction) ?",
+            "options": [
+              "Le disque dur",
+              "La ROM",
+              "La RAM",
+              "Le SSD"
+            ],
+            "answer": 2,
+            "explanation": "La RAM (mémoire vive) perd son contenu dès la coupure de courant."
+          },
+          {
+            "q": "Le modèle théorique d'organisation d'un ordinateur s'appelle le modèle de :",
+            "options": [
+              "Turing",
+              "von Neumann",
+              "Pascal",
+              "Boole"
+            ],
+            "answer": 1,
+            "explanation": "John von Neumann a décrit l'architecture UC + mémoire + entrées/sorties."
+          },
+          {
+            "q": "Comment appelle-t-on l'ensemble des éléments matériels d'un ordinateur ?",
+            "options": [
+              "Le software",
+              "Le firmware",
+              "Le hardware",
+              "Le freeware"
+            ],
+            "answer": 2,
+            "explanation": "Le hardware désigne les composants physiques que l'on peut toucher."
+          },
+          {
+            "q": "Le rôle de la carte mère est de :",
+            "options": [
+              "Stocker les fichiers définitivement",
+              "Relier et faire communiquer les composants",
+              "Afficher les images",
+              "Effectuer les calculs"
+            ],
+            "answer": 1,
+            "explanation": "La carte mère interconnecte tous les composants grâce aux bus."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les périphériques",
+      "video": "https://www.youtube.com/watch?v=Rdm8E59L8Og",
+      "lesson": "# Les périphériques\n\n## Introduction\n\nUn **périphérique** est un appareil **connecté à l'unité centrale** pour échanger des informations avec l'extérieur. Sans périphériques, l'ordinateur ne pourrait ni recevoir d'ordres, ni montrer de résultats. On les classe selon le **sens de circulation** de l'information.\n\n## 1. Les périphériques d'entrée\n\nIls **envoient** des données vers l'unité centrale.\n\n- **Clavier** : saisie de texte et de commandes.\n- **Souris** : déplacement du pointeur, sélection.\n- **Scanner** : numérise un document papier en image.\n- **Webcam**, **microphone**, **manette de jeu**, **lecteur de code-barres**.\n\n## 2. Les périphériques de sortie\n\nIls **reçoivent** des données depuis l'unité centrale pour les **restituer**.\n\n- **Écran (moniteur)** : affiche les images et le texte.\n- **Imprimante** : produit un document papier.\n- **Haut-parleurs / casque** : restituent le son.\n- **Vidéoprojecteur**.\n\n## 3. Les périphériques d'entrée/sortie (mixtes)\n\nIls peuvent **à la fois** envoyer et recevoir.\n\n- **Écran tactile** (affiche et reçoit le toucher).\n- **Modem** (envoie et reçoit des données réseau).\n- **Casque-micro** (sortie son + entrée voix).\n- **Imprimante multifonction** (imprime ET scanne).\n\n## 4. Les périphériques de stockage\n\nIls **conservent** les informations.\n\n- **Disque dur**, **SSD**.\n- **Clé USB**, **carte mémoire (SD)**.\n- **CD / DVD**, **disque dur externe**.\n\n## 5. Le branchement : les ports\n\nLes périphériques se branchent sur des **ports** :\n\n```\nUSB    -->  clavier, souris, clé USB, imprimante\nHDMI   -->  écran, vidéoprojecteur\nRJ45   -->  câble réseau (Ethernet)\nJack   -->  casque, haut-parleurs\n```\n\nAujourd'hui le port **USB** (*Universal Serial Bus*) est le plus répandu car universel et **enfichable à chaud** (*plug and play*).\n\n## Exercices corrigés\n\n**Exercice 1.** Classez les périphériques suivants : imprimante, clavier, scanner, haut-parleur, écran tactile.\n\n*Correction.*\n- **Entrée** : clavier, scanner.\n- **Sortie** : imprimante, haut-parleur.\n- **Entrée/Sortie** : écran tactile.\n\n**Exercice 2.** Un élève veut transférer un exposé de l'ordinateur du lycée vers celui de la maison. Quel périphérique conseillez-vous et de quelle catégorie est-il ?\n\n*Correction.* Une **clé USB**, qui est un périphérique de **stockage** : on y copie le fichier puis on le récupère sur l'autre machine.\n\n**Exercice 3.** Sur quel port branche-t-on un vidéoprojecteur pour afficher l'image de l'ordinateur ?\n\n*Correction.* Sur le port **HDMI** (ou VGA sur d'anciens modèles), car il transporte le signal vidéo vers le périphérique de sortie.\n\n## À retenir\n\n- Un **périphérique** échange l'information avec l'unité centrale.\n- **Entrée** : clavier, souris, scanner, micro.\n- **Sortie** : écran, imprimante, haut-parleurs.\n- **Entrée/Sortie** : écran tactile, modem, imprimante multifonction.\n- **Stockage** : disque dur, SSD, clé USB, CD/DVD.\n- Le port **USB** est universel et *plug and play*.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Le scanner est un périphérique de :",
+            "options": [
+              "Sortie",
+              "Entrée",
+              "Stockage",
+              "Traitement"
+            ],
+            "answer": 1,
+            "explanation": "Le scanner numérise un document et envoie l'image vers l'ordinateur : c'est une entrée."
+          },
+          {
+            "q": "Lequel de ces appareils est un périphérique de sortie ?",
+            "options": [
+              "La souris",
+              "Le microphone",
+              "L'imprimante",
+              "Le clavier"
+            ],
+            "answer": 2,
+            "explanation": "L'imprimante reçoit des données et produit un document : c'est une sortie."
+          },
+          {
+            "q": "L'écran tactile est un périphérique :",
+            "options": [
+              "d'entrée uniquement",
+              "de sortie uniquement",
+              "d'entrée/sortie (mixte)",
+              "de stockage"
+            ],
+            "answer": 2,
+            "explanation": "Il affiche (sortie) et reçoit le toucher (entrée)."
+          },
+          {
+            "q": "La clé USB appartient à la catégorie des périphériques de :",
+            "options": [
+              "entrée",
+              "sortie",
+              "stockage",
+              "communication"
+            ],
+            "answer": 2,
+            "explanation": "Elle conserve les informations : c'est un périphérique de stockage."
+          },
+          {
+            "q": "Quel port utilise-t-on généralement pour brancher un écran moderne ?",
+            "options": [
+              "RJ45",
+              "Jack",
+              "HDMI",
+              "PS/2"
+            ],
+            "answer": 2,
+            "explanation": "Le port HDMI transporte le signal vidéo (et audio) vers l'écran."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Le système d'exploitation",
+      "video": "https://www.youtube.com/watch?v=fkGCLIQx1MI",
+      "lesson": "# Le système d'exploitation\n\n## Introduction\n\nLe **système d'exploitation** (SE, en anglais *Operating System* ou **OS**) est le **logiciel de base** qui fait fonctionner l'ordinateur. C'est l'**intermédiaire** entre le matériel et l'utilisateur : sans lui, aucune application ne pourrait s'exécuter.\n\n## 1. Définition et rôle\n\nLe SE est le **premier logiciel** chargé au démarrage. Il :\n\n- **gère le matériel** (processeur, mémoire, périphériques) ;\n- **gère les fichiers** (création, lecture, suppression, organisation en dossiers) ;\n- **gère les applications** (lancement, partage du processeur) ;\n- offre une **interface** à l'utilisateur.\n\n## 2. Les grandes fonctions\n\n| Fonction | Description |\n|----------|-------------|\n| Gestion du **processeur** | partage le temps de calcul entre les programmes |\n| Gestion de la **mémoire** | attribue la RAM à chaque application |\n| Gestion des **fichiers** | organise les données sur le disque |\n| Gestion des **périphériques** | dialogue via des **pilotes** (*drivers*) |\n| **Interface utilisateur** | permet de communiquer avec la machine |\n\n## 3. Exemples de systèmes d'exploitation\n\n- **Ordinateurs** : **Windows**, **macOS**, **Linux** (Ubuntu, Fedora).\n- **Smartphones / tablettes** : **Android**, **iOS**.\n\nUn SE peut être **propriétaire** (Windows, macOS, payant et fermé) ou **libre** (Linux, gratuit et au code ouvert).\n\n## 4. Les interfaces\n\n- **Interface graphique (GUI)** : on clique sur des **icônes**, des **fenêtres**, des **menus** (Windows, Android).\n- **Interface en ligne de commande (CLI)** : on **tape des commandes** au clavier (terminal Linux).\n\nExemple de commandes en ligne de commande :\n\n```bash\ncd Documents      # se déplacer dans le dossier Documents\nls                # lister les fichiers (Linux/macOS)\nmkdir Devoirs     # créer un dossier \"Devoirs\"\n```\n\n## 5. L'organisation des fichiers\n\nLe SE range les données dans une **arborescence** de dossiers :\n\n```\nDisque C:\n └── Utilisateurs\n       └── Eleve\n             ├── Documents\n             │     └── expose.docx\n             └── Images\n                   └── photo.jpg\n```\n\nChaque fichier possède un **nom** et une **extension** (`.docx`, `.jpg`, `.mp3`) indiquant son type.\n\n## Exercices corrigés\n\n**Exercice 1.** Donnez deux exemples de systèmes d'exploitation pour ordinateur et deux pour smartphone.\n\n*Correction.* Ordinateur : **Windows**, **Linux** (ou macOS). Smartphone : **Android**, **iOS**.\n\n**Exercice 2.** Quelle est la différence entre une interface graphique et une interface en ligne de commande ?\n\n*Correction.* Dans l'**interface graphique**, on **clique** sur des icônes et fenêtres ; dans l'**interface en ligne de commande**, on **tape des commandes texte** au clavier.\n\n**Exercice 3.** Donnez l'extension probable des fichiers suivants : un document texte, une photo, une musique.\n\n*Correction.* Document texte : **.docx** (ou .txt) ; photo : **.jpg** (ou .png) ; musique : **.mp3**.\n\n## À retenir\n\n- Le **système d'exploitation** est le logiciel de base, intermédiaire entre le **matériel** et l'**utilisateur**.\n- Il gère le **processeur**, la **mémoire**, les **fichiers** et les **périphériques** (via les **pilotes**).\n- Exemples : **Windows, macOS, Linux** (PC) ; **Android, iOS** (mobile).\n- Deux interfaces : **graphique (GUI)** et **ligne de commande (CLI)**.\n- Les fichiers sont rangés dans une **arborescence** et identifiés par leur **extension**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Le système d'exploitation est :",
+            "options": [
+              "Un périphérique d'entrée",
+              "Le logiciel de base qui gère l'ordinateur",
+              "Un composant de la carte mère",
+              "Un type de mémoire"
+            ],
+            "answer": 1,
+            "explanation": "C'est le logiciel intermédiaire entre le matériel et l'utilisateur."
+          },
+          {
+            "q": "Lequel n'est PAS un système d'exploitation ?",
+            "options": [
+              "Linux",
+              "Android",
+              "Microsoft Word",
+              "Windows"
+            ],
+            "answer": 2,
+            "explanation": "Microsoft Word est une application de traitement de texte, pas un OS."
+          },
+          {
+            "q": "Le petit programme qui permet au SE de dialoguer avec un périphérique s'appelle :",
+            "options": [
+              "Un pilote (driver)",
+              "Un fichier",
+              "Un bus",
+              "Un registre"
+            ],
+            "answer": 0,
+            "explanation": "Le pilote (driver) fait le lien entre le SE et le matériel."
+          },
+          {
+            "q": "Dans une interface en ligne de commande, l'utilisateur :",
+            "options": [
+              "Clique sur des icônes",
+              "Tape des commandes au clavier",
+              "Utilise un écran tactile",
+              "N'a aucune interaction"
+            ],
+            "answer": 1,
+            "explanation": "La CLI fonctionne par saisie de commandes texte."
+          },
+          {
+            "q": "L'extension .jpg correspond généralement à :",
+            "options": [
+              "Un document texte",
+              "Une image / photo",
+              "Une musique",
+              "Une vidéo"
+            ],
+            "answer": 1,
+            "explanation": "L'extension .jpg désigne un fichier image."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les systèmes de numération (binaire, hexadécimal)",
+      "video": "https://www.youtube.com/watch?v=Y6M89-6106I",
+      "lesson": "# Les systèmes de numération (binaire, hexadécimal)\n\n## Introduction\n\nUn **système de numération** est une façon d'écrire les nombres avec un certain nombre de **symboles**. Nous utilisons tous les jours le système **décimal** (base 10). Mais l'ordinateur, qui ne connaît que deux états électriques (**0** et **1**), travaille en **binaire** (base 2). Les informaticiens utilisent aussi l'**hexadécimal** (base 16) pour écrire les nombres plus court.\n\n## 1. La notion de base\n\nDans une base **b**, on dispose de **b symboles** (de 0 à b-1) et chaque position vaut une **puissance de b**.\n\n| Base | Nom | Symboles |\n|------|-----|----------|\n| 2 | binaire | 0, 1 |\n| 10 | décimal | 0 à 9 |\n| 16 | hexadécimal | 0 à 9 puis A, B, C, D, E, F |\n\nEn hexadécimal : **A = 10, B = 11, C = 12, D = 13, E = 14, F = 15**.\n\n## 2. Du binaire vers le décimal\n\nOn multiplie chaque chiffre par la puissance de 2 de sa position (de droite à gauche : 2^0, 2^1, 2^2...).\n\n**Exemple :** convertir `1011` en décimal.\n\n```\n 1     0     1     1\n2^3   2^2   2^1   2^0\n 8  +  0  +  2  +  1  = 11\n```\n\nDonc `(1011)2 = (11)10`.\n\n## 3. Du décimal vers le binaire\n\nOn effectue des **divisions successives par 2** et on lit les **restes de bas en haut**.\n\n**Exemple :** convertir 13 en binaire.\n\n```\n13 ÷ 2 = 6  reste 1\n 6 ÷ 2 = 3  reste 0\n 3 ÷ 2 = 1  reste 1\n 1 ÷ 2 = 0  reste 1\n```\n\nEn lisant les restes de bas en haut : `(13)10 = (1101)2`.\n\n## 4. L'hexadécimal\n\n### Du décimal vers l'hexadécimal\n\nDivisions successives par **16**.\n\n**Exemple :** 47 en hexadécimal.\n\n```\n47 ÷ 16 = 2  reste 15  -> F\n 2 ÷ 16 = 0  reste 2   -> 2\n```\n\nDonc `(47)10 = (2F)16`.\n\n### Le lien binaire <-> hexadécimal\n\nUn chiffre hexadécimal vaut exactement **4 bits**. Il suffit de regrouper le binaire par paquets de 4 :\n\n```\n1011 1110  ->  B   E   ->  (BE)16\n```\n\n## 5. Pourquoi le binaire ?\n\nL'ordinateur est composé de transistors qui sont soit **passants (1)**, soit **bloqués (0)**. Toute l'information (nombres, lettres, images) est donc codée avec des **0** et des **1** appelés **bits**.\n\n## Exercices corrigés\n\n**Exercice 1.** Convertir `(110)2` en décimal.\n\n*Correction.* 1x4 + 1x2 + 0x1 = **6**. Donc `(110)2 = (6)10`.\n\n**Exercice 2.** Convertir 25 en binaire.\n\n*Correction.*\n```\n25 ÷ 2 = 12 r 1\n12 ÷ 2 = 6  r 0\n 6 ÷ 2 = 3  r 0\n 3 ÷ 2 = 1  r 1\n 1 ÷ 2 = 0  r 1\n```\nDe bas en haut : `(25)10 = (11001)2`.\n\n**Exercice 3.** Convertir `(1A)16` en décimal.\n\n*Correction.* 1x16 + A x1 = 16 + 10 = **26**. Donc `(1A)16 = (26)10`.\n\n## À retenir\n\n- La **base** d'un système indique le nombre de symboles et les puissances utilisées.\n- **Binaire** = base 2 (0, 1) ; **décimal** = base 10 ; **hexadécimal** = base 16 (0-9, A-F).\n- **Binaire -> décimal** : somme des puissances de 2.\n- **Décimal -> binaire** : divisions successives par 2, restes lus de bas en haut.\n- Un chiffre **hexadécimal** = **4 bits** : conversion binaire <-> hexa très facile.\n- L'ordinateur travaille en binaire car ses transistors ont **deux états** (0 et 1).\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Combien de symboles utilise le système binaire ?",
+            "options": [
+              "2",
+              "8",
+              "10",
+              "16"
+            ],
+            "answer": 0,
+            "explanation": "Le binaire (base 2) utilise seulement 0 et 1."
+          },
+          {
+            "q": "Que vaut (1011)2 en décimal ?",
+            "options": [
+              "9",
+              "10",
+              "11",
+              "13"
+            ],
+            "answer": 2,
+            "explanation": "8 + 0 + 2 + 1 = 11."
+          },
+          {
+            "q": "En hexadécimal, le symbole F représente :",
+            "options": [
+              "14",
+              "15",
+              "16",
+              "20"
+            ],
+            "answer": 1,
+            "explanation": "A=10, B=11, C=12, D=13, E=14, F=15."
+          },
+          {
+            "q": "Pour convertir un nombre décimal en binaire, on effectue des divisions successives par :",
+            "options": [
+              "10",
+              "2",
+              "8",
+              "16"
+            ],
+            "answer": 1,
+            "explanation": "On divise par 2 et on lit les restes de bas en haut."
+          },
+          {
+            "q": "Un chiffre hexadécimal correspond à combien de bits ?",
+            "options": [
+              "2 bits",
+              "3 bits",
+              "4 bits",
+              "8 bits"
+            ],
+            "answer": 2,
+            "explanation": "16 = 2^4, donc un chiffre hexa vaut exactement 4 bits."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Le codage de l'information",
+      "video": "https://www.youtube.com/watch?v=Q9hOL0SkADc",
+      "lesson": "# Le codage de l'information\n\n## Introduction\n\nUn ordinateur ne manipule que des **0** et des **1**. Pourtant il affiche du texte, des images, du son et des vidéos. Comment ? Grâce au **codage** : on associe à chaque information une suite de **bits**. Ce chapitre explique comment textes, images et sons sont représentés en mémoire.\n\n## 1. Le bit et l'octet\n\n- Un **bit** (*binary digit*) est la plus petite unité d'information : il vaut **0** ou **1**.\n- Un **octet** (*byte*) est un groupe de **8 bits**. Il peut représenter **2^8 = 256** valeurs (de 0 à 255).\n\n### Les multiples de l'octet\n\n| Unité | Symbole | Valeur |\n|-------|---------|--------|\n| kilo-octet | Ko | ~ 1 000 octets |\n| méga-octet | Mo | ~ 1 000 Ko |\n| giga-octet | Go | ~ 1 000 Mo |\n| téra-octet | To | ~ 1 000 Go |\n\n## 2. Le codage des caractères\n\nPour coder les lettres, on a inventé des **tables de correspondance**.\n\n- Le code **ASCII** associe à chaque caractère un nombre sur **7 bits** (128 caractères). Exemple : la lettre **A** = 65, la lettre **a** = 97, le chiffre **0** = 48.\n- Le code **Unicode (UTF-8)** étend l'ASCII pour représenter **tous les alphabets** du monde (é, ç, caractères chinois, emojis...).\n\n**Exemple :** le mot « OK » se code en ASCII par 79 puis 75, soit en binaire :\n\n```\nO -> 79 -> 1001111\nK -> 75 -> 1001011\n```\n\n## 3. Le codage des images\n\nUne image numérique est une grille de points appelés **pixels** (*picture elements*).\n\n- En **noir et blanc**, chaque pixel = **1 bit** (0 = noir, 1 = blanc).\n- En **couleur**, on utilise le modèle **RVB** (Rouge, Vert, Bleu) : chaque composante sur **1 octet** (0 à 255), soit **3 octets par pixel**.\n\nLa **résolution** est le nombre de pixels (ex. 1920 x 1080). Plus elle est grande, plus l'image est nette mais **lourde**.\n\n## 4. Le codage du son\n\nLe son est une onde **continue (analogique)**. Pour l'enregistrer, on le **numérise** : on mesure sa valeur à intervalles réguliers (**échantillonnage**), puis on code chaque mesure en binaire.\n\n## 5. Pourquoi le numérique ?\n\nL'information codée en binaire peut être **copiée sans perte**, **compressée**, **transmise** sur les réseaux et **stockée** durablement.\n\n## Exercices corrigés\n\n**Exercice 1.** Combien de valeurs différentes peut-on coder avec un octet ?\n\n*Correction.* Un octet = 8 bits, donc 2^8 = **256 valeurs** (de 0 à 255).\n\n**Exercice 2.** En code ASCII, la lettre A vaut 65. Quelle est la valeur de la lettre C ? (Les lettres se suivent.)\n\n*Correction.* A = 65, B = 66, donc **C = 67**.\n\n**Exercice 3.** Une image en couleur RVB contient 100 pixels. Combien d'octets occupe-t-elle au minimum (3 octets par pixel) ?\n\n*Correction.* 100 x 3 = **300 octets**.\n\n## À retenir\n\n- Le **bit** vaut 0 ou 1 ; l'**octet** = **8 bits** = 256 valeurs.\n- Multiples : **Ko, Mo, Go, To**.\n- Les **caractères** sont codés par **ASCII** (A = 65) puis **Unicode/UTF-8** pour tous les alphabets.\n- Une **image** est faite de **pixels** ; en couleur, modèle **RVB** = 3 octets/pixel.\n- Le **son** est numérisé par **échantillonnage**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Combien de bits contient un octet ?",
+            "options": [
+              "4",
+              "8",
+              "16",
+              "32"
+            ],
+            "answer": 1,
+            "explanation": "Un octet est un groupe de 8 bits."
+          },
+          {
+            "q": "Combien de valeurs différentes un octet peut-il représenter ?",
+            "options": [
+              "8",
+              "100",
+              "256",
+              "1024"
+            ],
+            "answer": 2,
+            "explanation": "2^8 = 256 valeurs (de 0 à 255)."
+          },
+          {
+            "q": "Le code qui associe la lettre A au nombre 65 s'appelle :",
+            "options": [
+              "RVB",
+              "ASCII",
+              "USB",
+              "RJ45"
+            ],
+            "answer": 1,
+            "explanation": "Le code ASCII fait correspondre chaque caractère à un nombre."
+          },
+          {
+            "q": "Le plus petit élément d'une image numérique est :",
+            "options": [
+              "Le bit",
+              "Le pixel",
+              "L'octet",
+              "L'échantillon"
+            ],
+            "answer": 1,
+            "explanation": "Une image est composée de pixels (points colorés)."
+          },
+          {
+            "q": "Dans le modèle de couleur RVB, les trois composantes sont :",
+            "options": [
+              "Rouge, Vert, Bleu",
+              "Rouge, Violet, Blanc",
+              "Rose, Vert, Bleu",
+              "Rouge, Vert, Noir"
+            ],
+            "answer": 0,
+            "explanation": "RVB = Rouge, Vert, Bleu."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Introduction à l'algorithmique",
+      "video": "https://www.youtube.com/watch?v=Hh6muN_4qNQ",
+      "lesson": "# Introduction à l'algorithmique\n\n## Introduction\n\nAvant de programmer, il faut **réfléchir à la méthode**. Un **algorithme** est une suite **finie** et **ordonnée** d'instructions permettant de résoudre un problème. C'est comme une **recette de cuisine** : on suit les étapes dans l'ordre pour obtenir un résultat.\n\n## 1. Définition\n\nUn **algorithme** doit être :\n\n- **fini** : il se termine après un nombre limité d'étapes ;\n- **précis** : chaque instruction est claire et sans ambiguïté ;\n- **ordonné** : les étapes s'enchaînent dans un ordre logique ;\n- **efficace** : il résout réellement le problème.\n\n## 2. La structure d'un algorithme\n\nUn algorithme comporte trois parties :\n\n```\nAlgorithme NomDeLAlgorithme\nVariables                 // déclaration des données\n   age : entier\nDébut                     // corps de l'algorithme\n   Lire(age)\n   Écrire(\"Votre âge est \", age)\nFin\n```\n\n## 3. Les variables et les types\n\nUne **variable** est une **case mémoire** portant un **nom** et contenant une **valeur** qui peut changer.\n\n| Type | Exemple |\n|------|---------|\n| **entier** | 5, -12, 100 |\n| **réel** | 3.14, -0.5 |\n| **caractère** | 'A', '?' |\n| **chaîne** | \"Bonjour\" |\n| **booléen** | Vrai / Faux |\n\nL'**affectation** range une valeur dans une variable. On la note avec une flèche :\n\n```\nage <- 17        // la variable age reçoit 17\nsomme <- a + b   // somme reçoit le résultat de a + b\n```\n\n## 4. Lire et écrire\n\n- **Lire(x)** : l'utilisateur **saisit** une valeur, rangée dans x (entrée).\n- **Écrire(...)** : l'algorithme **affiche** un message ou une valeur (sortie).\n\n## 5. Un premier algorithme complet\n\nCalculer la somme de deux nombres saisis :\n\n```\nAlgorithme Somme\nVariables\n   a, b, s : entier\nDébut\n   Écrire(\"Entrez le premier nombre :\")\n   Lire(a)\n   Écrire(\"Entrez le second nombre :\")\n   Lire(b)\n   s <- a + b\n   Écrire(\"La somme est \", s)\nFin\n```\n\n## 6. L'organigramme\n\nOn peut aussi représenter un algorithme par un **organigramme** (schéma) :\n\n```\n( Début )\n    |\n[ Lire a, b ]\n    |\n[ s <- a + b ]\n    |\n[ Écrire s ]\n    |\n( Fin )\n```\n\n## Exercices corrigés\n\n**Exercice 1.** Écrire un algorithme qui demande le rayon d'un cercle et affiche son périmètre (P = 2 x pi x r).\n\n*Correction.*\n```\nAlgorithme Perimetre\nVariables\n   r, p : réel\nDébut\n   Écrire(\"Rayon ?\")\n   Lire(r)\n   p <- 2 * 3.14 * r\n   Écrire(\"Périmètre = \", p)\nFin\n```\n\n**Exercice 2.** Que contient la variable `x` après ces instructions ?\n```\nx <- 5\nx <- x + 3\n```\n\n*Correction.* x reçoit d'abord 5, puis 5 + 3 = **8**.\n\n**Exercice 3.** Citez les quatre propriétés d'un bon algorithme.\n\n*Correction.* Il doit être **fini**, **précis**, **ordonné** et **efficace**.\n\n## À retenir\n\n- Un **algorithme** est une suite **finie**, **précise** et **ordonnée** d'instructions.\n- Un algorithme se structure en **Variables / Début / Fin**.\n- Une **variable** est une case mémoire de type **entier, réel, caractère, chaîne, booléen**.\n- L'**affectation** (`<-`) range une valeur dans une variable.\n- **Lire** = saisie (entrée) ; **Écrire** = affichage (sortie).\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Un algorithme est une suite d'instructions qui doit être :",
+            "options": [
+              "Infinie",
+              "Finie et ordonnée",
+              "Aléatoire",
+              "Sans variables"
+            ],
+            "answer": 1,
+            "explanation": "Un algorithme est fini, précis et ordonné."
+          },
+          {
+            "q": "Une variable est :",
+            "options": [
+              "Un périphérique",
+              "Une case mémoire contenant une valeur",
+              "Une boucle",
+              "Un type d'ordinateur"
+            ],
+            "answer": 1,
+            "explanation": "C'est un emplacement mémoire nommé qui stocke une valeur."
+          },
+          {
+            "q": "L'instruction Lire(x) permet de :",
+            "options": [
+              "Afficher x",
+              "Saisir une valeur dans x",
+              "Supprimer x",
+              "Multiplier x"
+            ],
+            "answer": 1,
+            "explanation": "Lire correspond à une saisie (entrée) rangée dans la variable."
+          },
+          {
+            "q": "Après x <- 4 puis x <- x * 2, que vaut x ?",
+            "options": [
+              "4",
+              "6",
+              "8",
+              "2"
+            ],
+            "answer": 2,
+            "explanation": "x devient 4, puis 4 x 2 = 8."
+          },
+          {
+            "q": "Le symbole <- en algorithmique signifie :",
+            "options": [
+              "Comparaison",
+              "Affectation",
+              "Addition",
+              "Affichage"
+            ],
+            "answer": 1,
+            "explanation": "<- est l'opérateur d'affectation : on range une valeur dans une variable."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les structures de contrôle (conditions, boucles)",
+      "video": "https://www.youtube.com/watch?v=Hh6muN_4qNQ",
+      "lesson": "# Les structures de contrôle (conditions, boucles)\n\n## Introduction\n\nJusqu'ici nos algorithmes exécutaient les instructions **les unes après les autres** (structure **séquentielle**). Mais souvent il faut **choisir** entre plusieurs actions ou **répéter** une action. Ce sont les **structures de contrôle** : les **conditions** et les **boucles**.\n\n## 1. La structure conditionnelle (Si ... Alors ... Sinon)\n\nElle permet d'exécuter des instructions **seulement si** une condition est vraie.\n\n```\nSi condition Alors\n   instructions si vrai\nSinon\n   instructions si faux\nFinSi\n```\n\n**Exemple :** déterminer si un élève est admis (moyenne >= 10).\n\n```\nSi moyenne >= 10 Alors\n   Écrire(\"Admis\")\nSinon\n   Écrire(\"Refusé\")\nFinSi\n```\n\n### Les opérateurs de comparaison\n\n| Opérateur | Signification |\n|-----------|---------------|\n| `=` | égal à |\n| `<>` | différent de |\n| `<` `>` | inférieur, supérieur |\n| `<=` `>=` | inférieur/supérieur ou égal |\n\nOn combine les conditions avec **ET**, **OU**, **NON** :\n\n```\nSi (age >= 18) ET (permis = Vrai) Alors\n   Écrire(\"Peut conduire\")\nFinSi\n```\n\n## 2. La boucle « Pour » (répétition à compteur)\n\nOn l'utilise quand on **connaît le nombre de répétitions**.\n\n```\nPour i de 1 à 5 Faire\n   Écrire(i)\nFinPour\n```\n\nAffiche : 1 2 3 4 5.\n\n## 3. La boucle « TantQue » (répétition conditionnelle)\n\nOn répète **tant qu'**une condition reste vraie. Le test est fait **avant** chaque tour.\n\n```\nsomme <- 0\ni <- 1\nTantQue i <= 10 Faire\n   somme <- somme + i\n   i <- i + 1\nFinTantQue\nÉcrire(\"Somme = \", somme)   // affiche 55\n```\n\n**Attention** : il faut que la condition finisse par devenir **fausse**, sinon la boucle est **infinie** !\n\n## 4. La boucle « Répéter ... Jusqu'à »\n\nLe test est fait **après** : le bloc s'exécute donc **au moins une fois**.\n\n```\nRépéter\n   Lire(note)\nJusqu'à (note >= 0) ET (note <= 20)\n```\n\n## Exercices corrigés\n\n**Exercice 1.** Écrire un algorithme qui lit un nombre et affiche s'il est **positif** ou **négatif**.\n\n*Correction.*\n```\nLire(n)\nSi n >= 0 Alors\n   Écrire(\"Positif\")\nSinon\n   Écrire(\"Négatif\")\nFinSi\n```\n\n**Exercice 2.** Écrire un algorithme qui affiche la table de multiplication de 7 (de 7x1 à 7x10).\n\n*Correction.*\n```\nPour i de 1 à 10 Faire\n   Écrire(\"7 x \", i, \" = \", 7 * i)\nFinPour\n```\n\n**Exercice 3.** Que se passe-t-il si, dans une boucle TantQue, le compteur n'est jamais modifié ?\n\n*Correction.* La condition reste toujours vraie : la boucle ne s'arrête plus, c'est une **boucle infinie**.\n\n## À retenir\n\n- Trois structures de base : **séquentielle**, **conditionnelle**, **répétitive**.\n- **Si ... Alors ... Sinon** choisit selon une condition.\n- Opérateurs logiques : **ET, OU, NON**.\n- Boucle **Pour** : nombre de répétitions **connu** (compteur).\n- Boucle **TantQue** : répétition **conditionnelle**, test **avant**.\n- Boucle **Répéter ... Jusqu'à** : test **après**, s'exécute au moins une fois.\n- Gare aux **boucles infinies** !\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Quelle structure permet de choisir entre deux actions selon une condition ?",
+            "options": [
+              "La boucle Pour",
+              "Si ... Alors ... Sinon",
+              "L'affectation",
+              "La séquence"
+            ],
+            "answer": 1,
+            "explanation": "La structure conditionnelle Si...Alors...Sinon réalise un choix."
+          },
+          {
+            "q": "Quelle boucle utilise-t-on quand on connaît à l'avance le nombre de répétitions ?",
+            "options": [
+              "TantQue",
+              "Répéter...Jusqu'à",
+              "Pour",
+              "Si"
+            ],
+            "answer": 2,
+            "explanation": "La boucle Pour est une répétition à compteur, nombre connu."
+          },
+          {
+            "q": "Dans une boucle TantQue, le test de la condition se fait :",
+            "options": [
+              "Après le bloc",
+              "Avant le bloc",
+              "Au milieu",
+              "Jamais"
+            ],
+            "answer": 1,
+            "explanation": "TantQue teste la condition AVANT d'exécuter le bloc."
+          },
+          {
+            "q": "L'opérateur « différent de » se note :",
+            "options": [
+              "==",
+              "<>",
+              "=",
+              ">="
+            ],
+            "answer": 1,
+            "explanation": "En algorithmique, <> signifie « différent de »."
+          },
+          {
+            "q": "Une boucle qui ne s'arrête jamais est appelée :",
+            "options": [
+              "Boucle Pour",
+              "Boucle infinie",
+              "Condition",
+              "Séquence"
+            ],
+            "answer": 1,
+            "explanation": "Si la condition reste toujours vraie, la boucle est infinie."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Introduction à la programmation",
+      "video": "https://www.youtube.com/watch?v=rfscVS0vtbw",
+      "lesson": "# Introduction à la programmation\n\n## Introduction\n\nUn **algorithme** décrit une méthode. Pour qu'un ordinateur l'exécute, il faut le **traduire** dans un **langage de programmation**. **Programmer**, c'est écrire ce texte (le **code source**) qui sera transformé en instructions comprises par la machine.\n\n## 1. Du langage humain au langage machine\n\nL'ordinateur ne comprend que le **langage machine** (des 0 et des 1). On utilise donc des **langages de programmation** plus proches de l'humain.\n\n- **Compilation** : un programme (le **compilateur**) traduit **tout** le code source en langage machine d'un coup (langages C, Pascal).\n- **Interprétation** : un **interpréteur** lit et exécute le code **ligne par ligne** (Python, JavaScript).\n\n## 2. Quelques langages\n\n| Langage | Usage |\n|---------|-------|\n| **Python** | apprentissage, IA, web |\n| **C / C++** | systèmes, jeux |\n| **Java** | applications, Android |\n| **JavaScript** | sites web |\n| **Pascal** | enseignement |\n\n## 3. Premiers pas en Python\n\n**Python** est simple à lire. Voici un programme qui affiche un message :\n\n```python\nprint(\"Bonjour le monde !\")\n```\n\n### Les variables\n\n```python\nnom = \"Awa\"\nage = 16\nprint(\"Bonjour\", nom, \"tu as\", age, \"ans\")\n```\n\n### La saisie\n\n```python\nnote = int(input(\"Entre ta note : \"))\nprint(\"Ta note est\", note)\n```\n\n## 4. Les conditions en Python\n\n```python\nmoyenne = float(input(\"Moyenne : \"))\nif moyenne >= 10:\n    print(\"Admis\")\nelse:\n    print(\"Refusé\")\n```\n\nEn Python, les blocs sont délimités par l'**indentation** (le décalage en début de ligne).\n\n## 5. Les boucles en Python\n\n```python\n# Afficher les nombres de 1 à 5\nfor i in range(1, 6):\n    print(i)\n\n# Répéter tant que\ni = 1\nwhile i <= 3:\n    print(\"Salut\")\n    i = i + 1\n```\n\n## 6. De l'algorithme au programme\n\nL'algorithme « somme de deux nombres » devient en Python :\n\n```python\na = int(input(\"Premier nombre : \"))\nb = int(input(\"Second nombre : \"))\ns = a + b\nprint(\"La somme est\", s)\n```\n\n## Exercices corrigés\n\n**Exercice 1.** Écrire en Python un programme qui affiche « J'aime l'informatique ».\n\n*Correction.*\n```python\nprint(\"J'aime l'informatique\")\n```\n\n**Exercice 2.** Écrire un programme Python qui lit deux nombres et affiche leur produit.\n\n*Correction.*\n```python\na = int(input(\"a : \"))\nb = int(input(\"b : \"))\nprint(\"Produit =\", a * b)\n```\n\n**Exercice 3.** Quelle est la différence entre un compilateur et un interpréteur ?\n\n*Correction.* Le **compilateur** traduit **tout** le programme en langage machine avant l'exécution ; l'**interpréteur** lit et exécute le code **ligne par ligne**.\n\n## À retenir\n\n- **Programmer** = traduire un algorithme dans un **langage de programmation**.\n- Le **code source** est transformé par **compilation** (tout d'un coup) ou **interprétation** (ligne par ligne).\n- Exemples : **Python, C, Java, JavaScript, Pascal**.\n- En **Python** : `print()` affiche, `input()` saisit, l'**indentation** délimite les blocs.\n- `if/else` pour les conditions, `for` et `while` pour les boucles.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Programmer, c'est :",
+            "options": [
+              "Brancher des périphériques",
+              "Traduire un algorithme dans un langage de programmation",
+              "Allumer l'ordinateur",
+              "Numériser une image"
+            ],
+            "answer": 1,
+            "explanation": "On écrit le code qui exprime l'algorithme dans un langage compris par la machine."
+          },
+          {
+            "q": "Quel programme traduit tout le code source d'un coup en langage machine ?",
+            "options": [
+              "L'interpréteur",
+              "Le compilateur",
+              "Le pilote",
+              "Le système d'exploitation"
+            ],
+            "answer": 1,
+            "explanation": "Le compilateur traduit l'ensemble du code avant l'exécution."
+          },
+          {
+            "q": "En Python, quelle instruction affiche un message à l'écran ?",
+            "options": [
+              "input()",
+              "print()",
+              "read()",
+              "echo()"
+            ],
+            "answer": 1,
+            "explanation": "print() affiche du texte à l'écran."
+          },
+          {
+            "q": "En Python, les blocs d'instructions sont délimités par :",
+            "options": [
+              "Des accolades {}",
+              "L'indentation",
+              "Le point-virgule",
+              "Les parenthèses"
+            ],
+            "answer": 1,
+            "explanation": "Python utilise l'indentation (décalage) pour délimiter les blocs."
+          },
+          {
+            "q": "Lequel de ces noms est un langage de programmation ?",
+            "options": [
+              "HDMI",
+              "Python",
+              "ASCII",
+              "RVB"
+            ],
+            "answer": 1,
+            "explanation": "Python est un langage de programmation."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Le traitement de texte",
+      "video": "https://www.youtube.com/watch?v=tHkPRoT5jX4",
+      "lesson": "# Le traitement de texte\n\n## Introduction\n\nLe **traitement de texte** est un **logiciel d'application** qui permet de **saisir**, **mettre en forme**, **corriger** et **imprimer** des documents (lettres, exposés, rapports). Les plus connus sont **Microsoft Word**, **LibreOffice Writer** et **Google Docs**.\n\n## 1. Rôle et exemples\n\nLe traitement de texte sert à produire des documents **propres et professionnels**. Contrairement à une machine à écrire, on peut **modifier** le texte autant qu'on veut avant d'imprimer.\n\n## 2. La saisie et l'édition\n\n- **Saisir** : taper le texte au clavier.\n- **Sélectionner** : surligner une partie du texte (cliquer-glisser).\n- **Copier / Couper / Coller** : déplacer ou dupliquer du texte.\n- **Annuler** (Ctrl+Z) : revenir en arrière.\n\n### Quelques raccourcis clavier\n\n```\nCtrl + C  : Copier\nCtrl + X  : Couper\nCtrl + V  : Coller\nCtrl + Z  : Annuler\nCtrl + S  : Enregistrer\nCtrl + P  : Imprimer\n```\n\n## 3. La mise en forme des caractères\n\nOn peut changer l'apparence du texte :\n\n- la **police** (Arial, Times New Roman...) ;\n- la **taille** (en points : 11, 12, 14...) ;\n- le **style** : **gras**, *italique*, souligné ;\n- la **couleur**.\n\n## 4. La mise en forme des paragraphes\n\n- **Alignement** : à gauche, à droite, centré, **justifié**.\n- **Interligne** (espacement entre les lignes).\n- **Retrait** et **listes à puces** ou **numérotées**.\n\n## 5. Les fonctions avancées\n\n- **Insérer** : images, tableaux, en-têtes et pieds de page, numéros de page.\n- **Correcteur orthographique** : souligne les fautes.\n- **Mise en page** : marges, orientation (portrait/paysage), format A4.\n\n## 6. Enregistrer et imprimer\n\nToujours **enregistrer** régulièrement (Ctrl+S) pour ne pas perdre son travail. Le document Word a l'extension **.docx**. On peut aussi exporter en **.pdf** pour partager un document non modifiable.\n\n## Exercices corrigés\n\n**Exercice 1.** Donnez les raccourcis clavier pour copier, coller et enregistrer.\n\n*Correction.* Copier = **Ctrl+C**, Coller = **Ctrl+V**, Enregistrer = **Ctrl+S**.\n\n**Exercice 2.** On veut que tous les bords d'un paragraphe soient bien alignés à gauche **et** à droite. Quel alignement choisir ?\n\n*Correction.* L'alignement **justifié**.\n\n**Exercice 3.** Quelle extension porte un document créé avec Microsoft Word ?\n\n*Correction.* L'extension **.docx**.\n\n## À retenir\n\n- Le **traitement de texte** sert à saisir, mettre en forme et imprimer des documents.\n- Exemples : **Word, LibreOffice Writer, Google Docs**.\n- Raccourcis utiles : **Ctrl+C/V/Z/S/P**.\n- Mise en forme des **caractères** (police, taille, gras) et des **paragraphes** (alignement, interligne, listes).\n- On peut **insérer** images et tableaux, corriger l'orthographe, régler la **mise en page**.\n- Le fichier Word a l'extension **.docx** ; on peut exporter en **.pdf**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Lequel de ces logiciels est un traitement de texte ?",
+            "options": [
+              "Microsoft Excel",
+              "Microsoft Word",
+              "VLC",
+              "Google Chrome"
+            ],
+            "answer": 1,
+            "explanation": "Word est le traitement de texte ; Excel est un tableur."
+          },
+          {
+            "q": "Le raccourci Ctrl+S sert à :",
+            "options": [
+              "Copier",
+              "Coller",
+              "Enregistrer",
+              "Imprimer"
+            ],
+            "answer": 2,
+            "explanation": "Ctrl+S enregistre le document."
+          },
+          {
+            "q": "L'alignement qui aligne le texte à la fois à gauche et à droite est :",
+            "options": [
+              "Centré",
+              "Justifié",
+              "À droite",
+              "À gauche"
+            ],
+            "answer": 1,
+            "explanation": "L'alignement justifié rend les bords gauche et droit nets."
+          },
+          {
+            "q": "Quelle extension porte un document Microsoft Word récent ?",
+            "options": [
+              ".xlsx",
+              ".docx",
+              ".mp3",
+              ".jpg"
+            ],
+            "answer": 1,
+            "explanation": ".docx est l'extension des documents Word."
+          },
+          {
+            "q": "Pour annuler la dernière action, on utilise :",
+            "options": [
+              "Ctrl+Z",
+              "Ctrl+P",
+              "Ctrl+C",
+              "Ctrl+V"
+            ],
+            "answer": 0,
+            "explanation": "Ctrl+Z annule la dernière action."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Le tableur",
+      "video": "https://www.youtube.com/watch?v=Vl0H-qTclOg",
+      "lesson": "# Le tableur\n\n## Introduction\n\nLe **tableur** est un logiciel qui présente les données dans un **tableau** et qui permet d'effectuer **automatiquement des calculs**. Les plus connus sont **Microsoft Excel**, **LibreOffice Calc** et **Google Sheets**. Le tableur est très utilisé pour les notes, les budgets et les statistiques.\n\n## 1. La feuille de calcul\n\nUne **feuille de calcul** est une grille composée de :\n\n- **colonnes** identifiées par des **lettres** (A, B, C...) ;\n- **lignes** identifiées par des **nombres** (1, 2, 3...) ;\n- **cellules** à l'intersection, repérées par une **référence** comme **B3** (colonne B, ligne 3).\n\n```\n      A          B        C\n1   Élève      Note 1   Note 2\n2   Awa         12       15\n3   Bello       08       11\n```\n\n## 2. Le contenu d'une cellule\n\nUne cellule peut contenir :\n\n- un **texte** (\"Élève\") ;\n- un **nombre** (12) ;\n- une **formule** (commence toujours par **=**).\n\n## 3. Les formules et les calculs\n\nUne **formule** commence par le signe **=**. On utilise les **références** des cellules pour que le calcul se mette à jour automatiquement.\n\n```\n= B2 + C2        // additionne les cellules B2 et C2\n= (B2 + C2) / 2  // moyenne des deux notes\n```\n\nSi on change une note, le résultat **se recalcule tout seul** : c'est l'intérêt du tableur.\n\n## 4. Les fonctions utiles\n\n| Fonction | Rôle | Exemple |\n|----------|------|---------|\n| `SOMME` | additionne | `=SOMME(B2:B10)` |\n| `MOYENNE` | calcule la moyenne | `=MOYENNE(B2:B10)` |\n| `MAX` / `MIN` | plus grand / plus petit | `=MAX(B2:B10)` |\n| `SI` | condition | `=SI(B2>=10;\"Admis\";\"Refusé\")` |\n\nL'écriture **B2:B10** désigne une **plage** (toutes les cellules de B2 à B10).\n\n## 5. Les graphiques\n\nÀ partir d'un tableau, le tableur crée automatiquement des **graphiques** : histogrammes, courbes, **camemberts** (secteurs). Ils permettent de **visualiser** rapidement les données.\n\n## 6. La recopie\n\nEn tirant la petite poignée d'une cellule contenant une formule, on **recopie** la formule sur les cellules voisines : les références s'ajustent automatiquement (référence **relative**).\n\n## Exercices corrigés\n\n**Exercice 1.** Dans une feuille, B2 contient 14 et C2 contient 16. Quelle formule donne la moyenne dans D2 ?\n\n*Correction.* `=(B2+C2)/2` ou `=MOYENNE(B2:C2)`, ce qui affiche **15**.\n\n**Exercice 2.** Que fait la formule `=SOMME(A1:A5)` ?\n\n*Correction.* Elle **additionne** toutes les cellules de A1 à A5.\n\n**Exercice 3.** Une formule doit afficher « Admis » si la note en B2 est >= 10, sinon « Refusé ». Écrivez-la.\n\n*Correction.* `=SI(B2>=10;\"Admis\";\"Refusé\")`.\n\n## À retenir\n\n- Le **tableur** organise les données en **tableau** et effectue des **calculs automatiques**.\n- Exemples : **Excel, LibreOffice Calc, Google Sheets**.\n- Une **cellule** est repérée par sa **référence** (ex. B3) ; **colonnes** = lettres, **lignes** = nombres.\n- Une **formule** commence par **=** et utilise les références des cellules.\n- Fonctions clés : **SOMME, MOYENNE, MAX, MIN, SI**.\n- Le tableur génère des **graphiques** et permet la **recopie** des formules.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Dans un tableur, la référence B3 désigne :",
+            "options": [
+              "La ligne 3, colonne B",
+              "La colonne 3, ligne B",
+              "Trois cellules",
+              "La feuille B3"
+            ],
+            "answer": 0,
+            "explanation": "Colonne B (lettre) et ligne 3 (nombre)."
+          },
+          {
+            "q": "Une formule dans un tableur commence toujours par :",
+            "options": [
+              "Le signe +",
+              "Le signe =",
+              "Une lettre",
+              "Un guillemet"
+            ],
+            "answer": 1,
+            "explanation": "Toute formule débute par le signe =."
+          },
+          {
+            "q": "Quelle fonction calcule la moyenne d'une plage de cellules ?",
+            "options": [
+              "SOMME",
+              "MAX",
+              "MOYENNE",
+              "SI"
+            ],
+            "answer": 2,
+            "explanation": "La fonction MOYENNE calcule la moyenne d'une plage."
+          },
+          {
+            "q": "L'écriture B2:B10 désigne :",
+            "options": [
+              "Une seule cellule",
+              "Une plage de cellules",
+              "Une colonne entière",
+              "Une formule"
+            ],
+            "answer": 1,
+            "explanation": "B2:B10 est la plage de toutes les cellules de B2 à B10."
+          },
+          {
+            "q": "Lequel de ces logiciels est un tableur ?",
+            "options": [
+              "Word",
+              "LibreOffice Calc",
+              "VLC",
+              "Paint"
+            ],
+            "answer": 1,
+            "explanation": "LibreOffice Calc est un tableur ; Word est un traitement de texte."
+          }
+        ]
+      }
+    },
+    {
+      "title": "Internet et le web",
+      "video": "https://www.youtube.com/watch?v=KdOZGCi0d1k",
+      "lesson": "# Internet et le web\n\n## Introduction\n\n**Internet** est le **réseau mondial** qui relie des millions d'ordinateurs entre eux. Le **web** (la « toile ») est l'un des **services** d'Internet : c'est l'ensemble des pages et sites que l'on consulte avec un **navigateur**. Il ne faut pas confondre Internet (le réseau) et le web (un service de ce réseau).\n\n## 1. Les réseaux informatiques\n\nUn **réseau** est un ensemble d'ordinateurs reliés pour **partager** des données et des ressources.\n\n- **LAN** (*Local Area Network*) : réseau **local** (une salle, un lycée).\n- **WAN** (*Wide Area Network*) : réseau **étendu** (à l'échelle d'un pays, du monde). **Internet** est le plus grand WAN.\n\n## 2. Internet, comment ça marche ?\n\nLes données circulent découpées en **paquets** grâce à des **protocoles** (règles communes), notamment **TCP/IP**. Chaque appareil possède une **adresse IP** (ex. `192.168.1.5`) qui l'identifie sur le réseau.\n\n## 3. Le web et ses éléments\n\n- Une **page web** est un document écrit en **HTML**.\n- Un **site web** est un ensemble de pages liées.\n- Une **URL** (adresse web) localise une page :\n\n```\nhttps://www.onbuch.cm/cours/index.html\n  |        |              |\nprotocole  nom de domaine  chemin\n```\n\n- Un **navigateur** (Chrome, Firefox, Edge) affiche les pages.\n- Un **lien hypertexte** permet de passer d'une page à une autre d'un clic.\n\n## 4. Les principaux services d'Internet\n\n| Service | Usage |\n|---------|-------|\n| **Le web (WWW)** | consulter des sites |\n| **La messagerie (e-mail)** | envoyer des courriels |\n| **Les moteurs de recherche** | trouver de l'information (Google) |\n| **Les réseaux sociaux** | échanger (Facebook, WhatsApp) |\n| **Le téléchargement** | récupérer des fichiers |\n\n## 5. Se connecter\n\nPour accéder à Internet, il faut un **fournisseur d'accès** (FAI) et un moyen de connexion : **fibre**, **ADSL**, **réseau mobile (3G/4G/5G)** ou **Wi-Fi**.\n\n## 6. Rechercher efficacement\n\nPour bien chercher avec un moteur de recherche :\n\n- utiliser des **mots-clés** précis ;\n- vérifier la **fiabilité** des sources ;\n- comparer **plusieurs** sites.\n\n## Exercices corrigés\n\n**Exercice 1.** Quelle est la différence entre Internet et le web ?\n\n*Correction.* **Internet** est le **réseau mondial** d'ordinateurs ; le **web** est un **service** d'Internet (l'ensemble des pages consultables avec un navigateur).\n\n**Exercice 2.** Dans l'URL `https://www.onbuch.cm/accueil`, quel est le nom de domaine ?\n\n*Correction.* Le nom de domaine est **www.onbuch.cm**.\n\n**Exercice 3.** Citez deux services offerts par Internet autres que le web.\n\n*Correction.* La **messagerie (e-mail)** et les **réseaux sociaux** (ou le téléchargement).\n\n## À retenir\n\n- **Internet** = réseau mondial d'ordinateurs ; le **web** = un de ses services.\n- **LAN** = réseau local, **WAN** = réseau étendu (Internet est un WAN).\n- Les données circulent en **paquets** via les **protocoles TCP/IP** ; chaque appareil a une **adresse IP**.\n- Une **page web** est en **HTML** ; une **URL** localise la page ; un **navigateur** l'affiche.\n- Services : **web, e-mail, moteurs de recherche, réseaux sociaux**.\n- On se connecte via un **FAI** (fibre, ADSL, mobile, Wi-Fi).\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Internet est :",
+            "options": [
+              "Un logiciel",
+              "Le réseau mondial reliant les ordinateurs",
+              "Un navigateur",
+              "Un site web"
+            ],
+            "answer": 1,
+            "explanation": "Internet est le réseau mondial ; le web n'en est qu'un service."
+          },
+          {
+            "q": "Un réseau limité à une seule salle ou un lycée s'appelle un :",
+            "options": [
+              "WAN",
+              "LAN",
+              "URL",
+              "FAI"
+            ],
+            "answer": 1,
+            "explanation": "LAN = Local Area Network, réseau local."
+          },
+          {
+            "q": "Le langage utilisé pour écrire les pages web est :",
+            "options": [
+              "Python",
+              "HTML",
+              "ASCII",
+              "TCP"
+            ],
+            "answer": 1,
+            "explanation": "Les pages web sont écrites en HTML."
+          },
+          {
+            "q": "Le logiciel qui permet d'afficher les pages web s'appelle :",
+            "options": [
+              "Un navigateur",
+              "Un tableur",
+              "Un pilote",
+              "Un compilateur"
+            ],
+            "answer": 0,
+            "explanation": "Chrome, Firefox, Edge sont des navigateurs."
+          },
+          {
+            "q": "L'adresse qui identifie un appareil sur le réseau est :",
+            "options": [
+              "L'adresse e-mail",
+              "L'adresse IP",
+              "L'URL",
+              "Le nom de domaine"
+            ],
+            "answer": 1,
+            "explanation": "L'adresse IP (ex. 192.168.1.5) identifie chaque appareil."
+          }
+        ]
+      }
+    },
+    {
+      "title": "La sécurité informatique",
+      "video": "https://www.youtube.com/watch?v=2bdvK_-1cMo",
+      "lesson": "# La sécurité informatique\n\n## Introduction\n\nLa **sécurité informatique** regroupe l'ensemble des moyens permettant de **protéger** les ordinateurs, les réseaux et les **données** contre les menaces : virus, vol d'informations, piratage. À l'ère d'Internet, savoir se protéger est devenu indispensable.\n\n## 1. Les objectifs de la sécurité\n\nOn résume la sécurité par trois grands principes (la **DIC**) :\n\n- **Disponibilité** : les données restent accessibles quand on en a besoin.\n- **Intégrité** : les données ne sont pas modifiées ou détruites par erreur ou malveillance.\n- **Confidentialité** : seules les personnes autorisées accèdent aux données.\n\n## 2. Les menaces\n\n### Les logiciels malveillants (*malwares*)\n\n- **Virus** : programme qui s'attache à un fichier et se propage.\n- **Ver** : se propage seul à travers le réseau.\n- **Cheval de Troie** (*trojan*) : se cache dans un logiciel d'apparence utile.\n- **Ransomware** : bloque les fichiers et réclame une rançon.\n- **Spyware** : espionne l'utilisateur.\n\n### Les attaques visant l'utilisateur\n\n- **Hameçonnage (phishing)** : faux e-mails/sites pour voler mots de passe.\n- **Spam** : courriers indésirables.\n\n## 3. Les moyens de protection\n\n| Moyen | Rôle |\n|-------|------|\n| **Antivirus** | détecte et supprime les malwares |\n| **Pare-feu (firewall)** | filtre les connexions réseau |\n| **Mot de passe fort** | protège l'accès aux comptes |\n| **Mises à jour** | corrigent les failles de sécurité |\n| **Sauvegarde** | copie de secours des données |\n| **Chiffrement** | rend les données illisibles sans la clé |\n\n## 4. Un bon mot de passe\n\nUn mot de passe solide :\n\n- est **long** (au moins 8 à 12 caractères) ;\n- mélange **majuscules, minuscules, chiffres et symboles** ;\n- n'est **pas** un mot du dictionnaire ni une date de naissance ;\n- est **différent** pour chaque compte.\n\n```\nFaible :  awa2008\nFort   :  Aw@_2008!Onb#\n```\n\n## 5. Les bons comportements\n\n- Ne pas **ouvrir** les pièces jointes suspectes.\n- Ne pas **cliquer** sur des liens douteux.\n- Ne pas **partager** ses mots de passe.\n- **Sauvegarder** régulièrement ses données.\n- Se **déconnecter** des comptes sur un ordinateur partagé.\n\n## Exercices corrigés\n\n**Exercice 1.** Citez les trois objectifs de la sécurité informatique.\n\n*Correction.* **Disponibilité**, **Intégrité**, **Confidentialité** (la DIC).\n\n**Exercice 2.** Comment appelle-t-on une attaque par faux e-mail visant à voler un mot de passe ?\n\n*Correction.* Le **hameçonnage** (*phishing*).\n\n**Exercice 3.** Parmi ces mots de passe, lequel est le plus sûr : `cameroun`, `12345678`, `K7m!2p@Ld` ? Pourquoi ?\n\n*Correction.* `K7m!2p@Ld`, car il est **long** et mélange **majuscules, minuscules, chiffres et symboles**, sans être un mot connu.\n\n## À retenir\n\n- La sécurité vise la **Disponibilité**, l'**Intégrité** et la **Confidentialité** (DIC).\n- Menaces : **virus, vers, chevaux de Troie, ransomware, spyware, phishing, spam**.\n- Protections : **antivirus, pare-feu, mots de passe forts, mises à jour, sauvegardes, chiffrement**.\n- Un **bon mot de passe** est long et varié (majuscules, chiffres, symboles).\n- Bons réflexes : ne pas ouvrir les pièces jointes suspectes, sauvegarder, se déconnecter.\n",
+      "quiz": {
+        "questions": [
+          {
+            "q": "Les trois objectifs de la sécurité informatique (DIC) sont :",
+            "options": [
+              "Données, Internet, Calcul",
+              "Disponibilité, Intégrité, Confidentialité",
+              "Disque, Image, Code",
+              "Débit, Information, Connexion"
+            ],
+            "answer": 1,
+            "explanation": "DIC = Disponibilité, Intégrité, Confidentialité."
+          },
+          {
+            "q": "Un logiciel malveillant qui bloque les fichiers et réclame une rançon est un :",
+            "options": [
+              "Antivirus",
+              "Pare-feu",
+              "Ransomware",
+              "Navigateur"
+            ],
+            "answer": 2,
+            "explanation": "Le ransomware chiffre les fichiers et exige une rançon."
+          },
+          {
+            "q": "Le faux e-mail destiné à voler des mots de passe s'appelle :",
+            "options": [
+              "Le spam",
+              "Le hameçonnage (phishing)",
+              "Le chiffrement",
+              "La sauvegarde"
+            ],
+            "answer": 1,
+            "explanation": "Le phishing imite un site/courriel légitime pour voler des données."
+          },
+          {
+            "q": "Lequel de ces mots de passe est le plus sûr ?",
+            "options": [
+              "123456",
+              "cameroun",
+              "Kx9!m@2Pd",
+              "azerty"
+            ],
+            "answer": 2,
+            "explanation": "Il est long et mélange majuscules, minuscules, chiffres et symboles."
+          },
+          {
+            "q": "Le logiciel qui filtre les connexions réseau entrantes et sortantes est :",
+            "options": [
+              "L'antivirus",
+              "Le pare-feu (firewall)",
+              "Le tableur",
+              "Le compilateur"
+            ],
+            "answer": 1,
+            "explanation": "Le pare-feu filtre le trafic réseau."
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,414 @@
+{
+  "code": "Es",
+  "level": "Terminale",
+  "chapters": [
+    {
+      "title": "L'alphabet et la prononciation",
+      "video": "https://www.youtube.com/watch?v=Yp2sQ4qZpL0",
+      "lesson": "# L'alphabet et la prononciation\n\n## Introduction\n\nMaîtriser la prononciation espagnole est la base de toute communication. L'espagnol a l'avantage d'être une langue **très phonétique** : on prononce presque tout ce qui est écrit, et les règles sont régulières. Ce chapitre révise l'alphabet (**el abecedario**) et les sons particuliers indispensables au Bac.\n\n## L'alphabet espagnol\n\nL'alphabet espagnol compte **27 lettres** : les 26 lettres latines plus la **ñ** (*eñe*).\n\n| Lettre | Nom | Lettre | Nom |\n|---|---|---|---|\n| a | a | n | ene |\n| b | be | ñ | eñe |\n| c | ce | o | o |\n| d | de | p | pe |\n| e | e | q | cu |\n| f | efe | r | erre |\n| g | ge | s | ese |\n| h | hache | t | te |\n| i | i | u | u |\n| j | jota | v | uve |\n| k | ka | w | uve doble |\n| l | ele | x | equis |\n| m | eme | y | ye / i griega |\n|  |  | z | zeta |\n\n## Les sons particuliers\n\n- **La J** et le **G** (devant *e/i*) se prononcent comme un **r raclé** (jota).\n  - *jamón* (jambon), *gente* (les gens), *girar* (tourner).\n- **La H** est toujours **muette**.\n  - *hola* (bonjour), *hombre* (homme), *hora* (heure).\n- **La Ñ** se prononce **gn** comme dans « agneau ».\n  - *España* (l'Espagne), *niño* (enfant), *mañana* (demain).\n- **Le double L (ll)** se prononce comme un **y**.\n  - *llave* (clé), *calle* (rue), *lluvia* (pluie).\n- **Le Z** et le **C** (devant *e/i*) se prononcent comme un **th** anglais en Espagne (ou *s* en Amérique latine).\n  - *zapato* (chaussure), *cielo* (ciel), *cinco* (cinq).\n- **Le R** est **roulé**, surtout en début de mot ou avec **rr**.\n  - *perro* (chien) vs *pero* (mais).\n\n## L'accent tonique\n\nL'accent écrit (**tilde**) indique la syllabe forte.\n- Mots terminés par **voyelle, n ou s** : accent sur l'**avant-dernière** syllabe.\n  - *casa* (maison), *hablan* (ils parlent).\n- Mots terminés par une **autre consonne** : accent sur la **dernière** syllabe.\n  - *español* (espagnol), *reloj* (montre).\n- Sinon, on met un **accent écrit** : *café* (café), *lápiz* (crayon), *examen* → *exámenes*.\n\n## Exercices corrigés\n\n**Exercice 1** : Indique comment se prononce le « g » dans *gente* et *gato*.\n- **Correction** : *gente* → g devant *e* = son **jota** (r raclé). *gato* → g devant *a* = son **g dur** comme « gare ».\n\n**Exercice 2** : Place l'accent tonique : *corazon* (cœur), *facil* (facile).\n- **Correction** : *corazón* (terminé par n mais accent sur la dernière → tilde). *fácil* (terminé par consonne *l* mais accent sur l'avant-dernière → tilde).\n\n**Exercice 3** : Traduis et lis : *La hija de mi hermano habla español.*\n- **Correction** : « La fille de mon frère parle espagnol. » Le *h* de *hija* et *hermano* est muet ; *español* a son accent sur la dernière syllabe.\n\n## À retenir\n\n- **27 lettres**, dont la **ñ**.\n- Le **h** est muet, la **j** et le **g (+e/i)** font un son raclé, le **ll** se dit **y**, le **ñ** se dit **gn**.\n- Le **r** est roulé (surtout *rr*).\n- L'**accent écrit (tilde)** marque la syllabe forte quand elle ne suit pas la règle générale.",
+      "quiz": {
+        "questions": [
+          {
+            "question": "Combien de lettres compte l'alphabet espagnol ?",
+            "options": ["26", "27", "28", "25"],
+            "answer": 1
+          },
+          {
+            "question": "Comment se prononce la lettre « h » en espagnol ?",
+            "options": ["Comme un r raclé", "Elle est muette", "Comme un j français", "Comme un s"],
+            "answer": 1
+          },
+          {
+            "question": "Le double « ll » dans « llave » se prononce comme :",
+            "options": ["Un l double", "Un y", "Un r", "Un v"],
+            "answer": 1
+          },
+          {
+            "question": "Dans le mot « gente », le « g » se prononce :",
+            "options": ["Comme « gare » (g dur)", "Comme la jota (r raclé)", "Comme un k", "Comme un h muet"],
+            "answer": 1
+          },
+          {
+            "question": "Quel mot porte correctement la tilde ?",
+            "options": ["espanol", "español", "espanôl", "èspañol"],
+            "answer": 1
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les articles et le genre des noms",
+      "video": "https://www.youtube.com/watch?v=Dy1cS0jVZdk",
+      "lesson": "# Les articles et le genre des noms\n\n## Introduction\n\nEn espagnol, comme en français, chaque nom a un **genre** (masculin/féminin) et un **nombre** (singulier/pluriel). Les articles s'accordent avec le nom. Bien les maîtriser évite les fautes les plus fréquentes au Bac.\n\n## Les articles définis et indéfinis\n\n| | Masculin sing. | Féminin sing. | Masculin plur. | Féminin plur. |\n|---|---|---|---|---|\n| **Défini (le/la/les)** | el | la | los | las |\n| **Indéfini (un/une/des)** | un | una | unos | unas |\n\n- *el libro* (le livre), *la mesa* (la table), *los libros* (les livres), *las mesas* (les tables).\n- *un coche* (une voiture), *una casa* (une maison), *unos amigos* (des amis), *unas chicas* (des filles).\n\n## Le genre des noms\n\n**Règle générale** :\n- Noms terminés par **-o** → souvent **masculins** : *el libro*, *el niño*, *el dinero* (l'argent).\n- Noms terminés par **-a** → souvent **féminins** : *la casa*, *la niña*, *la mesa*.\n\n**Exceptions importantes** :\n- *el día* (le jour), *el mapa* (la carte), *el problema* (le problème), *el clima* (le climat) → **masculins** en -a.\n- *la mano* (la main), *la foto*, *la moto* → **féminins** en -o.\n\nNoms en **-ción / -sión / -dad / -tad** → toujours **féminins** :\n- *la nación* (la nation), *la libertad* (la liberté), *la ciudad* (la ville).\n\n## Le pluriel\n\n- Mot terminé par **voyelle** → ajout de **-s** : *casa → casas*.\n- Mot terminé par **consonne** → ajout de **-es** : *profesor → profesores*, *ciudad → ciudades*.\n- Mot terminé par **-z** → **-ces** : *lápiz → lápices*, *luz → luces*.\n\n## L'article neutre « lo »\n\n**Lo** + adjectif exprime une idée abstraite : *lo importante* (l'important, ce qui est important), *lo bueno* (le bon côté).\n\n## Exercices corrigés\n\n**Exercice 1** : Mets l'article défini correct : ___ problema, ___ mano, ___ libertad.\n- **Correction** : **el** problema (masculin malgré -a), **la** mano (féminin malgré -o), **la** libertad (toujours féminin).\n\n**Exercice 2** : Mets au pluriel : *el lápiz*, *la ciudad*, *un profesor*.\n- **Correction** : *los lápices* (z → ces), *las ciudades* (+es), *unos profesores* (+es).\n\n**Exercice 3** : Traduis : « L'important, c'est de parler espagnol. »\n- **Correction** : *Lo importante es hablar español.* (article neutre *lo* + adjectif).\n\n## À retenir\n\n- Articles : **el/la/los/las** (définis), **un/una/unos/unas** (indéfinis).\n- **-o** → masculin, **-a** → féminin, mais attention aux exceptions (*el día*, *la mano*).\n- **-ción/-dad/-tad** → féminins.\n- Pluriel : **+s** (voyelle), **+es** (consonne), **z → ces**.\n- **Lo** + adjectif = idée abstraite.",
+      "quiz": {
+        "questions": [
+          {
+            "question": "Quel est le bon article pour « problema » ?",
+            "options": ["la problema", "el problema", "lo problema", "una problema"],
+            "answer": 1
+          },
+          {
+            "question": "Le mot « mano » (la main) est :",
+            "options": ["Masculin", "Féminin", "Neutre", "Variable"],
+            "answer": 1
+          },
+          {
+            "question": "Quel est le pluriel de « lápiz » ?",
+            "options": ["lápizs", "lápices", "lápizes", "lápis"],
+            "answer": 1
+          },
+          {
+            "question": "Les noms terminés par « -ción » sont généralement :",
+            "options": ["Masculins", "Féminins", "Neutres", "Invariables"],
+            "answer": 1
+          },
+          {
+            "question": "Comment traduire « l'important » (idée abstraite) ?",
+            "options": ["el importante", "la importante", "lo importante", "los importante"],
+            "answer": 2
+          }
+        ]
+      }
+    },
+    {
+      "title": "Ser et Estar",
+      "video": "https://www.youtube.com/watch?v=I8x2nP-y8eA",
+      "lesson": "# Ser et Estar\n\n## Introduction\n\nL'espagnol possède **deux verbes** pour traduire le français « être » : **ser** et **estar**. Choisir le bon est l'une des difficultés majeures du Bac. La règle générale : **ser** = identité/caractéristique permanente ; **estar** = état/situation passagère ou localisation.\n\n## Conjugaison au présent\n\n| Pronom | SER | ESTAR |\n|---|---|---|\n| yo | soy | estoy |\n| tú | eres | estás |\n| él/ella/usted | es | está |\n| nosotros/as | somos | estamos |\n| vosotros/as | sois | estáis |\n| ellos/ellas/ustedes | son | están |\n\n## Emplois de SER\n\nOn utilise **ser** pour :\n- **L'identité** : *Soy Pedro.* (Je suis Pedro.)\n- **L'origine / la nationalité** : *Es camerunés.* (Il est camerounais.)\n- **La profession** : *Somos estudiantes.* (Nous sommes étudiants.)\n- **Les caractéristiques permanentes** : *La nieve es blanca.* (La neige est blanche.)\n- **L'heure et la date** : *Son las tres.* (Il est trois heures.)\n\n## Emplois de ESTAR\n\nOn utilise **estar** pour :\n- **La localisation** : *Madrid está en España.* (Madrid est en Espagne.)\n- **Un état passager** : *Estoy cansado.* (Je suis fatigué.)\n- **L'humeur/la santé** : *¿Cómo estás? Estoy bien.* (Comment vas-tu ? Je vais bien.)\n- **Le gérondif (être en train de)** : *Estoy comiendo.* (Je suis en train de manger.)\n\n## Cas où le sens change\n\nCertains adjectifs changent de sens selon ser ou estar :\n\n| Adjectif | Avec SER | Avec ESTAR |\n|---|---|---|\n| listo | malin, intelligent | prêt |\n| aburrido | ennuyeux | qui s'ennuie |\n| rico | riche | délicieux |\n\n- *Pedro es listo* (Pedro est intelligent) / *Pedro está listo* (Pedro est prêt).\n\n## Exercices corrigés\n\n**Exercice 1** : Complète avec ser ou estar : *Yo ___ profesor. La sopa ___ caliente.*\n- **Correction** : *Yo **soy** profesor* (profession → ser). *La sopa **está** caliente* (état passager, température → estar).\n\n**Exercice 2** : Traduis : « Nous sommes camerounais et nous sommes à Yaoundé. »\n- **Correction** : *Somos cameruneses y estamos en Yaundé.* (nationalité → ser ; localisation → estar).\n\n**Exercice 3** : Choisis : *La fiesta ___ aburrida / Yo ___ aburrido.*\n- **Correction** : *La fiesta **es** aburrida* (la fête est ennuyeuse, caractéristique). *Yo **estoy** aburrido* (je m'ennuie, état).\n\n## À retenir\n\n- **SER** = identité, origine, profession, caractéristiques permanentes, heure.\n- **ESTAR** = localisation, état passager, humeur, gérondif.\n- *soy/eres/es/somos/sois/son* vs *estoy/estás/está/estamos/estáis/están*.\n- Certains adjectifs (*listo, rico, aburrido*) changent de sens.",
+      "quiz": {
+        "questions": [
+          {
+            "question": "Pour dire une nationalité, on utilise :",
+            "options": ["Estar", "Ser", "Tener", "Hay"],
+            "answer": 1
+          },
+          {
+            "question": "Pour localiser un lieu (« Madrid est en Espagne »), on emploie :",
+            "options": ["Ser", "Estar", "Haber", "Ir"],
+            "answer": 1
+          },
+          {
+            "question": "Quelle est la forme correcte de « estar » à la 1re personne du singulier ?",
+            "options": ["soy", "estás", "estoy", "está"],
+            "answer": 2
+          },
+          {
+            "question": "« Estoy cansado » exprime :",
+            "options": ["Une profession", "Un état passager", "Une origine", "L'heure"],
+            "answer": 1
+          },
+          {
+            "question": "« Pedro está listo » signifie :",
+            "options": ["Pedro est intelligent", "Pedro est prêt", "Pedro est riche", "Pedro est fatigué"],
+            "answer": 1
+          }
+        ]
+      }
+    },
+    {
+      "title": "Le présent de l'indicatif (réguliers et irréguliers)",
+      "video": "https://www.youtube.com/watch?v=rZ8Ym2Hh4Qk",
+      "lesson": "# Le présent de l'indicatif (réguliers et irréguliers)\n\n## Introduction\n\nLe **présent de l'indicatif** (*el presente de indicativo*) exprime une action actuelle, une habitude ou une vérité générale. Les verbes espagnols se classent en trois groupes selon leur terminaison : **-ar**, **-er**, **-ir**.\n\n## Les verbes réguliers\n\n| Pronom | hablAR (parler) | comER (manger) | vivIR (vivre) |\n|---|---|---|---|\n| yo | hablo | como | vivo |\n| tú | hablas | comes | vives |\n| él/ella | habla | come | vive |\n| nosotros | hablamos | comemos | vivimos |\n| vosotros | habláis | coméis | vivís |\n| ellos | hablan | comen | viven |\n\n- *Hablo español.* (Je parle espagnol.)\n- *Comemos a las dos.* (Nous mangeons à deux heures.)\n- *Viven en Camerún.* (Ils vivent au Cameroun.)\n\n## Les irréguliers : diphtongue (e→ie, o→ue)\n\nCertains verbes diphtonguent la voyelle du radical à toutes les personnes **sauf nosotros/vosotros**.\n\n| pensAR (e→ie) | poder (o→ue) |\n|---|---|\n| pienso | puedo |\n| piensas | puedes |\n| piensa | puede |\n| pensamos | podemos |\n| pensáis | podéis |\n| piensan | pueden |\n\n- Autres : *querer* (quiero), *empezar* (empiezo), *dormir* (duermo), *volver* (vuelvo).\n\n## Les irréguliers à la 1re personne\n\nBeaucoup de verbes sont irréguliers **seulement à yo** :\n- *hacer* → **hago**, *poner* → **pongo**, *salir* → **salgo**, *tener* → **tengo** (+ diphtongue : tienes…), *venir* → **vengo**, *saber* → **sé**, *ver* → **veo**, *dar* → **doy**.\n\n## Verbes totalement irréguliers\n\n| ir (aller) | ser | tener |\n|---|---|---|\n| voy | soy | tengo |\n| vas | eres | tienes |\n| va | es | tiene |\n| vamos | somos | tenemos |\n| vais | sois | tenéis |\n| van | son | tienen |\n\n## Exercices corrigés\n\n**Exercice 1** : Conjugue *vivir* à *nosotros* et *empezar* à *yo*.\n- **Correction** : *vivimos* (régulier en -ir), *empiezo* (diphtongue e→ie).\n\n**Exercice 2** : Traduis : « Je fais mes devoirs et je sors à six heures. »\n- **Correction** : *Hago mis deberes y salgo a las seis.* (hacer → hago ; salir → salgo).\n\n**Exercice 3** : Complète : *Ellos ___ (poder) venir, pero nosotros no ___ (poder).*\n- **Correction** : *Ellos **pueden** venir, pero nosotros no **podemos**.* (diphtongue sauf nosotros).\n\n## À retenir\n\n- Trois groupes : **-ar (-o, -as, -a…)**, **-er**, **-ir**.\n- Diphtongues **e→ie / o→ue** sauf à *nosotros/vosotros*.\n- Irréguliers à *yo* : *hago, pongo, salgo, tengo, vengo, sé, veo, doy*.\n- Totalement irréguliers : *ir, ser, tener*.",
+      "quiz": {
+        "questions": [
+          {
+            "question": "Quelle est la terminaison de « hablar » à la 1re personne du singulier ?",
+            "options": ["hablo", "hable", "hablas", "hablamos"],
+            "answer": 0
+          },
+          {
+            "question": "Le verbe « poder » au présent (yo) donne :",
+            "options": ["podo", "puedo", "puede", "podes"],
+            "answer": 1
+          },
+          {
+            "question": "Le verbe « hacer » à la 1re personne du singulier est :",
+            "options": ["haco", "hazo", "hago", "haso"],
+            "answer": 2
+          },
+          {
+            "question": "À quelles personnes la diphtongue (e→ie) NE se produit PAS ?",
+            "options": ["yo et tú", "él et ellos", "nosotros et vosotros", "tú et vosotros"],
+            "answer": 2
+          },
+          {
+            "question": "« Tengo » est la forme de quel verbe ?",
+            "options": ["tomar", "tener", "tener que", "temer"],
+            "answer": 1
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les temps du passé (passé composé, imparfait, passé simple)",
+      "video": "https://www.youtube.com/watch?v=Wn0gIPkVx5w",
+      "lesson": "# Les temps du passé (passé composé, imparfait, passé simple)\n\n## Introduction\n\nPour raconter au passé, l'espagnol dispose de trois temps essentiels : le **pretérito perfecto** (passé composé), le **pretérito imperfecto** (imparfait) et le **pretérito indefinido** (passé simple). Bien les distinguer est crucial à l'écrit du Bac.\n\n## Le passé composé (pretérito perfecto)\n\nFormé avec **haber au présent + participe passé**. Il exprime une action passée liée au présent (aujourd'hui, déjà, encore).\n\n| haber | + participe |\n|---|---|\n| he | hablado |\n| has | comido |\n| ha | vivido |\n| hemos | |\n| habéis | |\n| han | |\n\n- *Participes* : -ar → **-ado**, -er/-ir → **-ido**.\n- *Hoy he comido en casa.* (Aujourd'hui j'ai mangé à la maison.)\n- Irréguliers : *hacer → hecho*, *ver → visto*, *escribir → escrito*, *decir → dicho*, *volver → vuelto*.\n\n## L'imparfait (pretérito imperfecto)\n\nDécrit une habitude, une description ou une action en cours dans le passé. Très régulier.\n\n| Pronom | -ar (hablar) | -er/-ir (comer) |\n|---|---|---|\n| yo | hablaba | comía |\n| tú | hablabas | comías |\n| él | hablaba | comía |\n| nosotros | hablábamos | comíamos |\n| vosotros | hablabais | comíais |\n| ellos | hablaban | comían |\n\n- Seuls 3 irréguliers : **ser** (era, eras…), **ir** (iba, ibas…), **ver** (veía…).\n- *Cuando era niño, jugaba al fútbol.* (Quand j'étais enfant, je jouais au foot.)\n\n## Le passé simple (pretérito indefinido)\n\nExprime une action ponctuelle et achevée dans le passé (ayer, en 1990).\n\n| Pronom | -ar (hablar) | -er/-ir (comer) |\n|---|---|---|\n| yo | hablé | comí |\n| tú | hablaste | comiste |\n| él | habló | comió |\n| nosotros | hablamos | comimos |\n| vosotros | hablasteis | comisteis |\n| ellos | hablaron | comieron |\n\n- Irréguliers fréquents : *tener → tuve*, *estar → estuve*, *hacer → hice*, *ir/ser → fui*, *decir → dije*.\n- *Ayer fui al cine.* (Hier je suis allé au cinéma.)\n\n## Imparfait vs passé simple\n\n- **Imparfait** = décor, habitude (« il faisait beau, je lisais »).\n- **Indefinido** = action ponctuelle qui fait avancer le récit (« soudain, il entra »).\n- *Llovía cuando salí.* (Il pleuvait quand je suis sorti.)\n\n## Exercices corrigés\n\n**Exercice 1** : Conjugue *hacer* au passé composé (yo) et au passé simple (yo).\n- **Correction** : passé composé *he hecho* (participe irrégulier), passé simple *hice*.\n\n**Exercice 2** : Choisis le temps : *Ayer ___ (comer, yo) paella.*\n- **Correction** : *Ayer **comí** paella.* (« ayer » → action ponctuelle → indefinido).\n\n**Exercice 3** : Traduis : « Quand j'étais petit, j'allais à l'école à pied. »\n- **Correction** : *Cuando era pequeño, iba a la escuela a pie.* (habitude → imparfait ; *ser* et *ir* irréguliers).\n\n## À retenir\n\n- **Passé composé** = haber + participe (-ado/-ido), lié au présent.\n- **Imparfait** = description/habitude ; 3 irréguliers : *era, iba, veía*.\n- **Passé simple (indefinido)** = action ponctuelle achevée.\n- Imparfait = décor / Indefinido = action qui avance le récit.",
+      "quiz": {
+        "questions": [
+          {
+            "question": "Le passé composé se forme avec :",
+            "options": ["tener + participe", "haber (présent) + participe", "ser + participe", "estar + gérondif"],
+            "answer": 1
+          },
+          {
+            "question": "Quel temps exprime une habitude passée (« quand j'étais enfant ») ?",
+            "options": ["Le passé simple", "L'imparfait", "Le passé composé", "Le futur"],
+            "answer": 1
+          },
+          {
+            "question": "Le participe passé de « hacer » est :",
+            "options": ["hacido", "hecho", "hacado", "hacho"],
+            "answer": 1
+          },
+          {
+            "question": "« Ayer fui al cine » : quel temps est employé ?",
+            "options": ["Imparfait", "Passé simple (indefinido)", "Passé composé", "Présent"],
+            "answer": 1
+          },
+          {
+            "question": "Lequel est un verbe irrégulier à l'imparfait ?",
+            "options": ["hablar", "comer", "ser", "vivir"],
+            "answer": 2
+          }
+        ]
+      }
+    },
+    {
+      "title": "Le futur et le conditionnel",
+      "video": "https://www.youtube.com/watch?v=g3oWvDRwTaA",
+      "lesson": "# Le futur et le conditionnel\n\n## Introduction\n\nLe **futur** (*futuro simple*) exprime une action à venir ; le **conditionnel** (*condicional*) exprime une hypothèse, un souhait ou la politesse. Bonne nouvelle : ils se forment tous deux sur **l'infinitif complet** et partagent les mêmes radicaux irréguliers.\n\n## Le futur simple\n\nOn ajoute à l'**infinitif** les terminaisons : **-é, -ás, -á, -emos, -éis, -án** (identiques pour les trois groupes).\n\n| Pronom | hablar | comer | vivir |\n|---|---|---|---|\n| yo | hablaré | comeré | viviré |\n| tú | hablarás | comerás | vivirás |\n| él | hablará | comerá | vivirá |\n| nosotros | hablaremos | comeremos | viviremos |\n| vosotros | hablaréis | comeréis | viviréis |\n| ellos | hablarán | comerán | vivirán |\n\n- *Mañana hablaré con el profesor.* (Demain je parlerai au professeur.)\n\n## Le conditionnel\n\nMêmes radicaux que le futur + terminaisons de l'imparfait des -er/-ir : **-ía, -ías, -ía, -íamos, -íais, -ían**.\n\n| Pronom | hablar |\n|---|---|\n| yo | hablaría |\n| tú | hablarías |\n| él | hablaría |\n| nosotros | hablaríamos |\n| vosotros | hablaríais |\n| ellos | hablarían |\n\n- *Me gustaría viajar a España.* (J'aimerais voyager en Espagne.)\n\n## Les radicaux irréguliers (communs aux deux temps)\n\n| Verbe | Radical | Futur (yo) | Conditionnel (yo) |\n|---|---|---|---|\n| tener | tendr- | tendré | tendría |\n| poder | podr- | podré | podría |\n| hacer | har- | haré | haría |\n| decir | dir- | diré | diría |\n| poner | pondr- | pondré | pondría |\n| salir | saldr- | saldré | saldría |\n| venir | vendr- | vendré | vendría |\n| haber | habr- | habré | habría |\n| saber | sabr- | sabré | sabría |\n| querer | querr- | querré | querría |\n\n## Emplois\n\n- **Futur** : projets, prédictions, probabilité présente (*Serán las cinco* = il doit être cinq heures).\n- **Conditionnel** : politesse (*¿Podrías ayudarme?* = pourrais-tu m'aider ?), souhait, conseil (*Deberías estudiar* = tu devrais étudier).\n\n## Exercices corrigés\n\n**Exercice 1** : Mets au futur : *tener (yo)*, *hacer (ellos)*.\n- **Correction** : *tendré* (radical tendr-), *harán* (radical har-).\n\n**Exercice 2** : Traduis au conditionnel : « Nous aimerions étudier en Espagne. »\n- **Correction** : *Nos gustaría estudiar en España.* (gustar au conditionnel : *gustaría*).\n\n**Exercice 3** : Conjugue *poder* au futur (tú) et au conditionnel (tú).\n- **Correction** : futur *podrás*, conditionnel *podrías* (radical podr-).\n\n## À retenir\n\n- Futur et conditionnel se forment sur **l'infinitif**.\n- Terminaisons futur : **-é, -ás, -á, -emos, -éis, -án**.\n- Terminaisons conditionnel : **-ía, -ías, -ía, -íamos, -íais, -ían**.\n- Mêmes **radicaux irréguliers** : *tendr-, podr-, har-, dir-, pondr-, saldr-, vendr-, habr-, sabr-, querr-*.",
+      "quiz": {
+        "questions": [
+          {
+            "question": "Sur quelle base se construit le futur simple régulier ?",
+            "options": ["Le radical seul", "L'infinitif complet", "Le participe", "Le gérondif"],
+            "answer": 1
+          },
+          {
+            "question": "Quel est le radical irrégulier de « tener » au futur ?",
+            "options": ["tener-", "tendr-", "ten-", "ter-"],
+            "answer": 1
+          },
+          {
+            "question": "« Me gustaría viajar » est au :",
+            "options": ["Futur", "Conditionnel", "Présent", "Imparfait"],
+            "answer": 1
+          },
+          {
+            "question": "Quelle est la terminaison du conditionnel à « nosotros » ?",
+            "options": ["-emos", "-aremos", "-íamos", "-amos"],
+            "answer": 2
+          },
+          {
+            "question": "« Haré » est le futur de quel verbe ?",
+            "options": ["haber", "hacer", "hallar", "hartar"],
+            "answer": 1
+          }
+        ]
+      }
+    },
+    {
+      "title": "Le subjonctif présent",
+      "video": "https://www.youtube.com/watch?v=8gFqXq3WqAc",
+      "lesson": "# Le subjonctif présent\n\n## Introduction\n\nLe **subjonctif** (*subjuntivo*) exprime le souhait, le doute, l'ordre, l'émotion ou l'incertitude. Beaucoup plus employé qu'en français, il est indispensable à un bon niveau de Bac. On le forme à partir de la **1re personne du présent de l'indicatif**.\n\n## Formation\n\nOn prend la **1re personne du présent** (yo), on enlève le **-o**, et on ajoute les terminaisons « inversées » :\n- Verbes **-ar** → terminaisons en **-e** : *-e, -es, -e, -emos, -éis, -en*.\n- Verbes **-er/-ir** → terminaisons en **-a** : *-a, -as, -a, -amos, -áis, -an*.\n\n| Pronom | hablar | comer | vivir |\n|---|---|---|---|\n| yo | hable | coma | viva |\n| tú | hables | comas | vivas |\n| él | hable | coma | viva |\n| nosotros | hablemos | comamos | vivamos |\n| vosotros | habléis | comáis | viváis |\n| ellos | hablen | coman | vivan |\n\n## Les irréguliers gardent l'irrégularité du « yo »\n\n- *tener* (tengo) → **tenga, tengas…**\n- *hacer* (hago) → **haga…**\n- *salir* (salgo) → **salga…**\n- *decir* (digo) → **diga…**\n\n**Six irréguliers à mémoriser** :\n\n| ser | estar | ir | haber | saber | dar |\n|---|---|---|---|---|---|\n| sea | esté | vaya | haya | sepa | dé |\n| seas | estés | vayas | hayas | sepas | des |\n| sea | esté | vaya | haya | sepa | dé |\n\n## Emplois principaux\n\nLe subjonctif s'emploie surtout dans une **subordonnée introduite par que**, après :\n- **Un souhait/volonté** : *Quiero que estudies.* (Je veux que tu étudies.)\n- **Une émotion** : *Me alegro de que vengas.* (Je suis content que tu viennes.)\n- **Un doute/une négation** : *No creo que sea verdad.* (Je ne crois pas que ce soit vrai.)\n- **Le futur après cuando** : *Cuando llegues, llámame.* (Quand tu arriveras, appelle-moi.)\n- **Le but (para que)** : *Te lo digo para que lo sepas.* (Je te le dis pour que tu le saches.)\n- **L'ordre/conseil** : *Es necesario que trabajes.* (Il faut que tu travailles.)\n\n## Exercices corrigés\n\n**Exercice 1** : Conjugue *hablar* et *comer* au subjonctif (tú).\n- **Correction** : *hables* (-ar → -es), *comas* (-er → -as).\n\n**Exercice 2** : Complète : *Quiero que tú ___ (venir) a la fiesta.*\n- **Correction** : *Quiero que tú **vengas** a la fiesta.* (venir → vengo → venga…).\n\n**Exercice 3** : Traduis : « Quand tu arriveras, nous mangerons. »\n- **Correction** : *Cuando llegues, comeremos.* (futur après *cuando* → subjonctif présent).\n\n## À retenir\n\n- Subjonctif = **1re pers. présent moins -o** + terminaisons inversées (-ar → e, -er/-ir → a).\n- 6 irréguliers : *sea, esté, vaya, haya, sepa, dé*.\n- Employé après **que** : souhait, émotion, doute, but, ordre.\n- Après **cuando** + futur : subjonctif.",
+      "quiz": {
+        "questions": [
+          {
+            "question": "Sur quelle forme se construit le subjonctif présent ?",
+            "options": ["L'infinitif", "Le participe", "La 1re personne du présent (yo)", "Le futur"],
+            "answer": 2
+          },
+          {
+            "question": "Au subjonctif, un verbe en « -ar » prend des terminaisons en :",
+            "options": ["-a", "-e", "-i", "-o"],
+            "answer": 1
+          },
+          {
+            "question": "Quel est le subjonctif de « ser » à la 3e personne du singulier ?",
+            "options": ["es", "sea", "sé", "será"],
+            "answer": 1
+          },
+          {
+            "question": "Après « Quiero que… » on emploie :",
+            "options": ["L'indicatif", "Le subjonctif", "Le conditionnel", "L'infinitif"],
+            "answer": 1
+          },
+          {
+            "question": "Complète : « Cuando ___ (llegar, tú), llámame. »",
+            "options": ["llegas", "llegues", "llegarás", "llegaste"],
+            "answer": 1
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les pronoms personnels (sujets, COD et COI)",
+      "video": "https://www.youtube.com/watch?v=Q9z7tYwQ3Yc",
+      "lesson": "# Les pronoms personnels (sujets, COD et COI)\n\n## Introduction\n\nLes pronoms permettent d'éviter les répétitions. En espagnol, on distingue les pronoms **sujets**, les pronoms **compléments d'objet direct (COD)** et **indirect (COI)**. Leur place et leur combinaison sont des points clés du Bac.\n\n## Les pronoms sujets\n\n| Personne | Espagnol |\n|---|---|\n| je | yo |\n| tu | tú |\n| il/elle/vous (poli) | él / ella / usted |\n| nous | nosotros / nosotras |\n| vous | vosotros / vosotras |\n| ils/elles/vous (poli plur.) | ellos / ellas / ustedes |\n\n- On les **omet souvent** car la terminaison du verbe suffit : *(Yo) hablo español.*\n\n## Les pronoms COD (complément direct)\n\n| Personne | COD |\n|---|---|\n| me | me |\n| te | te |\n| le/la (lo/la) | lo / la |\n| nous | nos |\n| vous | os |\n| les | los / las |\n\n- *¿Ves la película? — Sí, la veo.* (La vois-tu ? — Oui, je la vois.)\n\n## Les pronoms COI (complément indirect)\n\n| Personne | COI |\n|---|---|\n| me | me |\n| te | te |\n| lui | le |\n| nous | nos |\n| vous | os |\n| leur | les |\n\n- *Doy un regalo a María → Le doy un regalo.* (Je lui donne un cadeau.)\n\n## La place des pronoms\n\n- **Avant** un verbe conjugué : *Lo veo.* (Je le vois.)\n- **Soudés après** un infinitif, un gérondif ou un impératif affirmatif : *Quiero verlo* (Je veux le voir), *Dámelo* (Donne-le-moi).\n\n## Combinaison COI + COD\n\nOrdre : **COI avant COD**. Si les deux commencent par L (*le/les + lo/la*), le COI **le/les devient SE** :\n- *Le doy el libro → Se lo doy.* (Je le lui donne.)\n- *Les escribo una carta → Se la escribo.* (Je la leur écris.)\n\n## Exercices corrigés\n\n**Exercice 1** : Remplace par un pronom COD : *Compro el pan.*\n- **Correction** : *Lo compro.* (el pan = masculin singulier → lo).\n\n**Exercice 2** : Transforme : *Doy el cuaderno a Pedro.*\n- **Correction** : *Se lo doy.* (a Pedro → le, qui devient *se* devant *lo*).\n\n**Exercice 3** : Place le pronom : *Quiero (comprar) (el coche).*\n- **Correction** : *Quiero comprarlo.* (pronom soudé à l'infinitif) ou *Lo quiero comprar.*\n\n## À retenir\n\n- Sujets souvent **omis** (verbe suffit).\n- **COD** : me, te, lo/la, nos, os, los/las.\n- **COI** : me, te, **le**, nos, os, **les**.\n- Place : avant le verbe conjugué, soudé après infinitif/gérondif/impératif.\n- **le/les + lo/la → se lo/la**.",
+      "quiz": {
+        "questions": [
+          {
+            "question": "Dans « Sí, la veo », « la » est un pronom :",
+            "options": ["Sujet", "COD", "COI", "Possessif"],
+            "answer": 1
+          },
+          {
+            "question": "Quel pronom COI correspond à « lui » (à Pedro) ?",
+            "options": ["lo", "la", "le", "se"],
+            "answer": 2
+          },
+          {
+            "question": "« Le doy el libro » devient avec deux pronoms :",
+            "options": ["Le lo doy", "Se lo doy", "Lo le doy", "Le la doy"],
+            "answer": 1
+          },
+          {
+            "question": "Où se place le pronom avec un infinitif (« quiero ver la película ») ?",
+            "options": ["Toujours avant l'infinitif", "Soudé après l'infinitif : verla", "Au début de phrase", "Il disparaît"],
+            "answer": 1
+          },
+          {
+            "question": "Pourquoi « le » devient-il « se » dans « se lo doy » ?",
+            "options": ["Par politesse", "Parce que deux pronoms commencent par L (le + lo)", "C'est une faute", "Pour le pluriel"],
+            "answer": 1
+          }
+        ]
+      }
+    },
+    {
+      "title": "Le gérondif et l'obligation (tener que, hay que, deber)",
+      "video": "https://www.youtube.com/watch?v=Vd5xqQpVZ3w",
+      "lesson": "# Le gérondif et l'obligation (tener que, hay que, deber)\n\n## Introduction\n\nCe chapitre regroupe deux outils essentiels de l'expression : le **gérondif** (*gerundio*), pour exprimer une action en cours, et les structures d'**obligation/nécessité**, très fréquentes à l'oral comme à l'écrit du Bac.\n\n## Le gérondif (gerundio)\n\nIl se forme à partir du radical du verbe :\n- Verbes **-ar** → **-ando** : *hablar → hablando*.\n- Verbes **-er/-ir** → **-iendo** : *comer → comiendo*, *vivir → viviendo*.\n\n**Irréguliers fréquents** :\n\n| Infinitif | Gérondif |\n|---|---|\n| leer | leyendo |\n| oír | oyendo |\n| dormir | durmiendo |\n| pedir | pidiendo |\n| ir | yendo |\n| decir | diciendo |\n\n## Estar + gérondif (action en cours)\n\nÉquivalent de « être en train de » :\n- *Estoy estudiando.* (Je suis en train d'étudier.)\n- *Estaban comiendo.* (Ils étaient en train de manger.)\n\n## L'obligation personnelle : TENER QUE + infinitif\n\nExprime une obligation propre à une personne (« devoir »).\n- *Tengo que estudiar.* (Je dois étudier.)\n- *Tienes que llegar a tiempo.* (Tu dois arriver à l'heure.)\n\n## L'obligation impersonnelle : HAY QUE + infinitif\n\nExprime une nécessité générale (« il faut »).\n- *Hay que respetar las reglas.* (Il faut respecter les règles.)\n- *Para aprobar, hay que trabajar.* (Pour réussir, il faut travailler.)\n\n## DEBER + infinitif (devoir/obligation morale)\n\n- *Debes estudiar más.* (Tu dois étudier davantage.)\n- *Deber de* + infinitif = probabilité : *Debe de ser tarde* (il doit être tard).\n\n## Exercices corrigés\n\n**Exercice 1** : Forme le gérondif de *leer* et *dormir*.\n- **Correction** : *leyendo* (i → y entre voyelles), *durmiendo* (o → u, irrégulier).\n\n**Exercice 2** : Traduis : « Nous sommes en train de travailler. »\n- **Correction** : *Estamos trabajando.* (estar + gérondif).\n\n**Exercice 3** : Choisis *tener que* ou *hay que* : « Il faut étudier pour réussir » / « Je dois finir mes devoirs. »\n- **Correction** : *Hay que estudiar para aprobar* (nécessité générale). *Tengo que terminar mis deberes* (obligation personnelle).\n\n## À retenir\n\n- Gérondif : **-ando** (-ar), **-iendo** (-er/-ir) ; irréguliers : *leyendo, durmiendo, pidiendo, diciendo*.\n- **Estar + gérondif** = action en cours (être en train de).\n- **Tener que + inf.** = obligation personnelle ; **Hay que + inf.** = obligation impersonnelle.\n- **Deber + inf.** = devoir (obligation morale).",
+      "quiz": {
+        "questions": [
+          {
+            "question": "Le gérondif d'un verbe en « -ar » se termine par :",
+            "options": ["-iendo", "-ando", "-ado", "-endo"],
+            "answer": 1
+          },
+          {
+            "question": "Quel est le gérondif irrégulier de « dormir » ?",
+            "options": ["dormiendo", "durmiendo", "dormando", "dormendo"],
+            "answer": 1
+          },
+          {
+            "question": "« Estoy estudiando » signifie :",
+            "options": ["J'étudierai", "Je suis en train d'étudier", "J'ai étudié", "Je dois étudier"],
+            "answer": 1
+          },
+          {
+            "question": "Pour exprimer une obligation personnelle (« je dois »), on utilise :",
+            "options": ["hay que", "tener que", "haber", "estar"],
+            "answer": 1
+          },
+          {
+            "question": "« Hay que respetar las reglas » exprime :",
+            "options": ["Une obligation personnelle", "Une nécessité générale (il faut)", "Une action en cours", "Un souhait"],
+            "answer": 1
+          }
+        ]
+      }
+    },
+    {
+      "title": "La comparaison et les superlatifs",
+      "video": "https://www.youtube.com/watch?v=N3xT0p1bqQk",
+      "lesson": "# La comparaison et les superlatifs\n\n## Introduction\n\nComparer, c'est exprimer la supériorité, l'égalité ou l'infériorité entre deux éléments. Le **superlatif** désigne le plus haut ou le plus bas degré. Ces structures enrichissent l'expression écrite au Bac.\n\n## Le comparatif de supériorité et d'infériorité\n\n- **Supériorité** : **más + adjectif/nom + que** (plus… que).\n  - *Pedro es más alto que Juan.* (Pedro est plus grand que Juan.)\n- **Infériorité** : **menos + adjectif/nom + que** (moins… que).\n  - *Este libro es menos caro que el otro.* (Ce livre est moins cher que l'autre.)\n\n## Le comparatif d'égalité\n\n- Avec un **adjectif/adverbe** : **tan… como** (aussi… que).\n  - *María es tan inteligente como su hermana.* (María est aussi intelligente que sa sœur.)\n- Avec un **nom** : **tanto/a/os/as… como** (autant de… que).\n  - *Tengo tantos libros como tú.* (J'ai autant de livres que toi.)\n\n## Les comparatifs irréguliers\n\n| Adjectif | Comparatif |\n|---|---|\n| bueno (bon) | mejor (meilleur) |\n| malo (mauvais) | peor (pire) |\n| grande (grand) | mayor (plus âgé/grand) |\n| pequeño (petit) | menor (plus jeune/petit) |\n\n- *Este coche es mejor que aquel.* (Cette voiture est meilleure que celle-là.)\n\n## Le superlatif relatif\n\n**el/la/los/las + más/menos + adjectif (+ de)** :\n- *Es el alumno más estudioso de la clase.* (C'est l'élève le plus studieux de la classe.)\n\n## Le superlatif absolu (-ísimo)\n\nOn ajoute **-ísimo/a** à l'adjectif (= très/extrêmement) :\n- *guapo → guapísimo* (très beau), *fácil → facilísimo* (très facile), *rico → riquísimo* (délicieux).\n\n## Exercices corrigés\n\n**Exercice 1** : Traduis : « Marie est plus grande que Paul. »\n- **Correction** : *María es más alta que Pablo.* (más + adjectif + que).\n\n**Exercice 2** : Complète l'égalité : *Tengo ___ amigos ___ tú.*\n- **Correction** : *Tengo **tantos** amigos **como** tú.* (nom masculin pluriel → tantos… como).\n\n**Exercice 3** : Transforme au superlatif absolu : *Esta comida es muy buena.*\n- **Correction** : *Esta comida es buenísima.* (ou *riquísima* pour « délicieuse »).\n\n## À retenir\n\n- Supériorité **más… que** / infériorité **menos… que**.\n- Égalité **tan… como** (adj/adv), **tanto/a/os/as… como** (nom).\n- Irréguliers : **mejor, peor, mayor, menor**.\n- Superlatif relatif : **el más/menos… de** ; absolu : **-ísimo**.",
+      "quiz": {
+        "questions": [
+          {
+            "question": "Comment dit-on « plus grand que » ?",
+            "options": ["tan alto como", "más alto que", "menos alto que", "alto como"],
+            "answer": 1
+          },
+          {
+            "question": "Le comparatif d'égalité avec un adjectif se construit avec :",
+            "options": ["más… que", "tan… como", "tanto… como", "menos… que"],
+            "answer": 1
+          },
+          {
+            "question": "Quel est le comparatif irrégulier de « bueno » ?",
+            "options": ["más bueno", "mejor", "buenísimo", "peor"],
+            "answer": 1
+          },
+          {
+            "question": "« Es el alumno más estudioso de la clase » est un :",
+            "options": ["Comparatif d'égalité", "Superlatif relatif", "Superlatif absolu", "Comparatif d'infériorité"],
+            "answer": 1
+          },
+          {
+            "question": "Le superlatif absolu de « fácil » est :",
+            "options": ["más fácil", "facilísimo", "muy facil", "facilmente"],
+            "answer": 1
+          }
+        ]
+      }
+    },
+    {
+      "title": "Le vocabulaire thématique et l'expression écrite",
+      "video": "https://www.youtube.com/watch?v=Hh7wD9w7tQk",
+      "lesson": "# Le vocabulaire thématique et l'expression écrite\n\n## Introduction\n\nL'épreuve du Bac valorise un **vocabulaire riche** et une **expression organisée**. Ce chapitre rassemble le lexique des grands thèmes du programme (mondes hispaniques, société, environnement) et les connecteurs indispensables pour rédiger.\n\n## Vocabulaire thématique essentiel\n\n**La famille et la société** :\n\n| Espagnol | Français |\n|---|---|\n| la familia | la famille |\n| la sociedad | la société |\n| el trabajo / el empleo | le travail / l'emploi |\n| la educación | l'éducation |\n| la juventud | la jeunesse |\n\n**Les études et l'avenir** :\n\n| Espagnol | Français |\n|---|---|\n| el examen / aprobar | l'examen / réussir |\n| la carrera | les études supérieures |\n| el porvenir | l'avenir |\n| el sueño | le rêve |\n\n**Le monde et l'environnement** :\n\n| Espagnol | Français |\n|---|---|\n| el medio ambiente | l'environnement |\n| la contaminación | la pollution |\n| el desarrollo | le développement |\n| la inmigración | l'immigration |\n| la pobreza | la pauvreté |\n\n## Les connecteurs logiques (clé de la rédaction)\n\n| Fonction | Connecteur | Français |\n|---|---|---|\n| Ajout | además, también | de plus, aussi |\n| Cause | porque, ya que | parce que, puisque |\n| Conséquence | por eso, así que | c'est pourquoi |\n| Opposition | pero, sin embargo | mais, cependant |\n| But | para, para que | pour, pour que |\n| Conclusion | en conclusión, por fin | en conclusion, enfin |\n| Opinion | en mi opinión, creo que | à mon avis, je crois que |\n\n## Méthode de l'expression écrite\n\n1. **Introduction** : présenter le sujet (*El texto trata de…* = le texte parle de…).\n2. **Développement** : organiser en paragraphes avec connecteurs (*En primer lugar… Además… Sin embargo…*).\n3. **Opinion personnelle** : *En mi opinión…, Creo que…, Pienso que…*.\n4. **Conclusion** : *En conclusión…, Para terminar…*.\n\n## Expressions utiles\n\n- *Estoy de acuerdo con…* (Je suis d'accord avec…).\n- *No estoy de acuerdo porque…* (Je ne suis pas d'accord parce que…).\n- *Por un lado… por otro lado…* (D'une part… d'autre part…).\n\n## Exercices corrigés\n\n**Exercice 1** : Relie par un connecteur : *Estudio mucho ___ quiero aprobar el examen.*\n- **Correction** : *Estudio mucho **porque** quiero aprobar el examen.* (cause).\n\n**Exercice 2** : Traduis : « À mon avis, il faut protéger l'environnement. »\n- **Correction** : *En mi opinión, hay que proteger el medio ambiente.*\n\n**Exercice 3** : Introduis une opposition : *Me gusta la ciudad ___ prefiero el campo.*\n- **Correction** : *Me gusta la ciudad **pero** prefiero el campo.* (ou *sin embargo*).\n\n## À retenir\n\n- Apprendre le lexique **par thèmes** (société, études, environnement).\n- Maîtriser les **connecteurs** : *además, porque, sin embargo, por eso, en conclusión*.\n- Structurer : introduction → développement → opinion → conclusion.\n- Donner son avis : *en mi opinión, creo que, estoy de acuerdo*.",
+      "quiz": {
+        "questions": [
+          {
+            "question": "Que signifie « el medio ambiente » ?",
+            "options": ["Le milieu social", "L'environnement", "La moitié", "Le quartier"],
+            "answer": 1
+          },
+          {
+            "question": "Quel connecteur exprime l'opposition ?",
+            "options": ["además", "porque", "sin embargo", "por eso"],
+            "answer": 2
+          },
+          {
+            "question": "Comment introduire son opinion personnelle ?",
+            "options": ["Por eso", "En mi opinión", "Además", "Ya que"],
+            "answer": 1
+          },
+          {
+            "question": "« Aprobar el examen » signifie :",
+            "options": ["Passer l'examen", "Réussir l'examen", "Rater l'examen", "Réviser l'examen"],
+            "answer": 1
+          },
+          {
+            "question": "Quel connecteur exprime la cause ?",
+            "options": ["sin embargo", "porque", "pero", "además"],
+            "answer": 1
+          }
+        ]
+      }
+    },
+    {
+      "title": "La compréhension et la traduction",
+      "video": "https://www.youtube.com/watch?v=5Hh9wQ2pXqA",
+      "lesson": "# La compréhension et la traduction\n\n## Introduction\n\nLa **compréhension écrite** et la **traduction** sont des épreuves clés du Bac. Elles exigent méthode, vigilance face aux faux-amis et bonne connaissance des structures grammaticales. Ce chapitre fournit les outils pour répondre efficacement.\n\n## Méthode de la compréhension écrite\n\n1. **Lire le titre et la source** : ils donnent le thème.\n2. **Lecture globale** : repérer les mots-clés et les noms propres.\n3. **Lecture détaillée** : souligner les idées principales de chaque paragraphe.\n4. **Répondre aux questions** en citant le texte (*como dice el texto…* = comme dit le texte).\n\n## Les mots interrogatifs (pour comprendre les questions)\n\n| Espagnol | Français |\n|---|---|\n| ¿Qué? | Que / Quoi ? |\n| ¿Quién? | Qui ? |\n| ¿Dónde? | Où ? |\n| ¿Cuándo? | Quand ? |\n| ¿Cómo? | Comment ? |\n| ¿Por qué? | Pourquoi ? |\n| ¿Cuánto? | Combien ? |\n\n## Les faux-amis fréquents (attention en traduction !)\n\n| Espagnol | Vrai sens | Faux-ami (à éviter) |\n|---|---|---|\n| el éxito | le succès | (≠ la sortie = *la salida*) |\n| largo | long | (≠ large = *ancho*) |\n| embarazada | enceinte | (≠ embarrassée) |\n| el suceso | l'événement | (≠ le succès) |\n| sensible | sensible | (≠ sensé) |\n| constipado | enrhumé | (≠ constipé) |\n\n## Conseils de traduction\n\n- **Du français vers l'espagnol** : respecter ser/estar, por/para, et l'emploi du subjonctif.\n- **De l'espagnol vers le français** : ne pas traduire mot à mot, respecter le sens.\n- Attention à **por** (cause, lieu, durée) vs **para** (but, destination) :\n  - *Lo hago por ti* (je le fais pour toi = à cause de toi) vs *Es un regalo para ti* (c'est un cadeau pour toi = destinataire).\n\n## Exercices corrigés\n\n**Exercice 1** : Traduis en faisant attention au faux-ami : *Tuvo mucho éxito.*\n- **Correction** : « Il a eu beaucoup de **succès** » (*éxito* = succès, et non « sortie »).\n\n**Exercice 2** : Traduis : « Je travaille pour réussir. »\n- **Correction** : *Trabajo **para** aprobar.* (*para* = but).\n\n**Exercice 3** : Réponds à la question : *¿Dónde vive Carmen? — En el texto: «Carmen vive en Madrid».*\n- **Correction** : *Carmen vive en Madrid.* (¿Dónde? = où → réponse de lieu).\n\n## À retenir\n\n- Méthode : titre → lecture globale → lecture détaillée → réponse justifiée.\n- Connaître les **mots interrogatifs** (*qué, quién, dónde, cuándo, por qué*).\n- Se méfier des **faux-amis** (*éxito = succès*, *largo = long*, *constipado = enrhumé*).\n- Distinguer **por** (cause) et **para** (but) en traduction.",
+      "quiz": {
+        "questions": [
+          {
+            "question": "Que signifie réellement « el éxito » ?",
+            "options": ["La sortie", "Le succès", "L'exil", "L'exit"],
+            "answer": 1
+          },
+          {
+            "question": "Le mot interrogatif « ¿Cuándo? » signifie :",
+            "options": ["Où ?", "Comment ?", "Quand ?", "Combien ?"],
+            "answer": 2
+          },
+          {
+            "question": "L'adjectif « largo » se traduit par :",
+            "options": ["Large", "Long", "Lourd", "Vague"],
+            "answer": 1
+          },
+          {
+            "question": "Pour exprimer un but (« pour réussir »), on emploie :",
+            "options": ["por", "para", "porque", "pero"],
+            "answer": 1
+          },
+          {
+            "question": "« Está constipado » signifie :",
+            "options": ["Il est constipé", "Il est enrhumé", "Il est constant", "Il est content"],
+            "answer": 1
+          }
+        ]
+      }
+    }
+  ]
+}

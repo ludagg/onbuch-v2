@@ -1,0 +1,710 @@
+{
+ "code": "Ch",
+ "level": "Terminale",
+ "chapters": [
+  {
+   "title": "La cinétique chimique",
+   "video": "https://www.youtube.com/watch?v=4qE5-2-zZ0Q",
+   "lesson": "# La cinétique chimique\n\n## Introduction\n\nLa **cinétique chimique** est la partie de la chimie qui étudie la **vitesse** des réactions et les **facteurs** qui l'influencent. Toutes les réactions ne se déroulent pas à la même allure : certaines sont quasi instantanées (précipitation, réactions acido-basiques), d'autres sont lentes (oxydation du fer, fermentation). Connaître la vitesse d'une réaction et savoir la contrôler est essentiel en laboratoire comme dans l'industrie.\n\n## 1. Réactions lentes et réactions rapides\n\n- Une **réaction rapide** s'achève en un temps trop court pour être suivie à l'œil (durée < 1 s).\n- Une **réaction lente** se déroule sur une durée mesurable (minutes, heures), permettant le suivi de l'évolution des concentrations.\n\nOn suit l'avancement d'une réaction lente par diverses méthodes : **conductimétrie**, **spectrophotométrie**, **pH-métrie**, dosages successifs, mesure de pression ou de volume de gaz.\n\n## 2. Avancement et vitesse de réaction\n\nPour la réaction $a\\,A + b\\,B \\rightarrow c\\,C + d\\,D$, l'**avancement** $x$ (en mol) relie les quantités :\n\n$$n_A = n_A^0 - a\\,x \\qquad n_C = n_C^0 + c\\,x$$\n\nLa **vitesse volumique de réaction** dans un volume $V$ constant est :\n\n$$v = \\frac{1}{V}\\cdot\\frac{dx}{dt}$$\n\nOn peut aussi définir la **vitesse de disparition** d'un réactif ou la **vitesse de formation** d'un produit :\n\n$$v_{disp}(A) = -\\frac{d[A]}{dt} \\qquad v_{form}(C) = +\\frac{d[C]}{dt}$$\n\nGraphiquement, la vitesse à un instant $t$ est le **coefficient directeur de la tangente** à la courbe $x = f(t)$.\n\n## 3. Temps de demi-réaction\n\nLe **temps de demi-réaction** $t_{1/2}$ est la durée au bout de laquelle l'avancement atteint la **moitié** de sa valeur finale :\n\n$$x(t_{1/2}) = \\frac{x_{max}}{2}$$\n\nC'est un indicateur commode de la rapidité d'une transformation.\n\n## 4. Facteurs cinétiques\n\nLes **facteurs cinétiques** modifient la vitesse :\n\n- **La température** : une élévation de température **augmente** la vitesse (agitation et chocs plus efficaces). C'est la base de la **trempe** : refroidir brutalement un mélange réactionnel pour **bloquer** la réaction avant un dosage.\n- **La concentration des réactifs** : plus elle est grande, plus la vitesse initiale est élevée (chocs plus fréquents).\n- **La surface de contact** (réactifs solides) et la **lumière** (réactions photochimiques) jouent aussi un rôle.\n\n## 5. Catalyse\n\nUn **catalyseur** est une espèce qui **accélère** une réaction sans figurer dans le bilan (régénéré en fin de réaction) et sans modifier l'état final.\n\n- **Catalyse homogène** : catalyseur et réactifs dans la même phase (ex. ions $Fe^{2+}$).\n- **Catalyse hétérogène** : phases différentes (ex. platine solide).\n- **Catalyse enzymatique** : catalyseurs biologiques (enzymes).\n\n## Exercices corrigés\n\n### Exercice 1 — Vitesse de disparition\nOn suit la décomposition de l'eau oxygénée $2\\,H_2O_2 \\rightarrow 2\\,H_2O + O_2$. À $t=0$, $[H_2O_2]_0 = 0{,}80\\ \\text{mol/L}$ ; à $t = 10$ min, $[H_2O_2] = 0{,}50\\ \\text{mol/L}$.\n\n**Question** : vitesse moyenne de disparition de $H_2O_2$ entre 0 et 10 min ?\n\n**Solution** :\n$$v_{moy} = -\\frac{\\Delta[H_2O_2]}{\\Delta t} = -\\frac{0{,}50 - 0{,}80}{10} = \\frac{0{,}30}{10} = 0{,}030\\ \\text{mol·L}^{-1}\\text{·min}^{-1}$$\n\n### Exercice 2 — Temps de demi-réaction\nUne réaction a un avancement maximal $x_{max} = 4{,}0\\times10^{-3}\\ \\text{mol}$. La courbe $x=f(t)$ montre que $x = 2{,}0\\times10^{-3}\\ \\text{mol}$ à $t = 8$ min.\n\n**Question** : quelle est la valeur de $t_{1/2}$ ?\n\n**Solution** : par définition, $t_{1/2}$ correspond à $x = x_{max}/2 = 2{,}0\\times10^{-3}\\ \\text{mol}$.\nOn lit directement : $t_{1/2} = 8\\ \\text{min}$.\n\n### Exercice 3 — Effet de la température\nUne réaction dure 60 min à 20 °C. En portant le mélange à 40 °C, sa vitesse est environ **multipliée par 4** (règle empirique : ×2 tous les 10 °C).\n\n**Question** : durée approximative à 40 °C ?\n\n**Solution** : la durée est divisée par 4 :\n$$t \\approx \\frac{60}{4} = 15\\ \\text{min}$$\nLa température est donc un puissant facteur cinétique.\n\n## À retenir\n\n- La **vitesse volumique** vaut $v = \\dfrac{1}{V}\\dfrac{dx}{dt}$ ; elle se lit sur la **tangente** à $x=f(t)$.\n- $t_{1/2}$ : temps pour atteindre la **moitié** de l'avancement final.\n- **Facteurs cinétiques** : température, concentration, surface de contact, lumière.\n- Un **catalyseur** accélère sans être consommé et sans changer l'état final.\n- La **trempe** (refroidissement brutal) **bloque** la réaction.\n",
+   "quiz": {
+    "questions": [
+     {
+      "q": "La vitesse volumique de réaction s'exprime par :",
+      "options": [
+       "v = V·dx/dt",
+       "v = (1/V)·dx/dt",
+       "v = dx·dt",
+       "v = x/V"
+      ],
+      "answer": 1,
+      "explanation": "v = (1/V)·dx/dt : c'est l'avancement par unité de temps rapporté au volume."
+     },
+     {
+      "q": "Le temps de demi-réaction correspond à :",
+      "options": [
+       "x = x_max",
+       "x = x_max/2",
+       "x = 0",
+       "x = 2·x_max"
+      ],
+      "answer": 1,
+      "explanation": "À t1/2, l'avancement atteint la moitié de sa valeur maximale."
+     },
+     {
+      "q": "Quel procédé permet de BLOQUER une réaction avant un dosage ?",
+      "options": [
+       "Chauffer fortement",
+       "Ajouter un catalyseur",
+       "La trempe (refroidissement brutal)",
+       "Agiter vivement"
+      ],
+      "answer": 2,
+      "explanation": "Refroidir brutalement (trempe) ralentit fortement la réaction et la fige."
+     },
+     {
+      "q": "Un catalyseur :",
+      "options": [
+       "est consommé par la réaction",
+       "modifie l'état final",
+       "accélère sans figurer dans le bilan",
+       "ralentit la réaction"
+      ],
+      "answer": 2,
+      "explanation": "Le catalyseur accélère, est régénéré et ne modifie pas l'état final."
+     },
+     {
+      "q": "Augmenter la température d'un mélange réactionnel :",
+      "options": [
+       "diminue la vitesse",
+       "n'a aucun effet",
+       "augmente la vitesse",
+       "bloque la réaction"
+      ],
+      "answer": 2,
+      "explanation": "L'élévation de température augmente la fréquence et l'efficacité des chocs, donc la vitesse."
+     }
+    ]
+   }
+  },
+  {
+   "title": "Les acides et les bases — pH",
+   "video": "https://www.youtube.com/watch?v=Z9aIoNTfsAU",
+   "lesson": "# Les acides et les bases — pH\n\n## Introduction\n\nLes notions d'**acide** et de **base** sont centrales en chimie des solutions. La théorie de **Brønsted** définit un acide comme un **donneur de proton** $H^+$ et une base comme un **accepteur de proton**. Le **pH** mesure l'acidité d'une solution aqueuse.\n\n## 1. Acide et base selon Brønsted\n\n- **Acide** : espèce capable de **céder** un proton $H^+$.\n- **Base** : espèce capable de **capter** un proton $H^+$.\n\nÀ tout acide correspond une base **conjuguée** : $\\text{acide} \\rightleftharpoons \\text{base} + H^+$. Le couple est noté $AH/A^-$.\n\nExemples : $CH_3COOH / CH_3COO^-$ ; $NH_4^+ / NH_3$.\n\n## 2. Le produit ionique de l'eau\n\nL'eau subit une **autoprotolyse** : $2\\,H_2O \\rightleftharpoons H_3O^+ + OH^-$. Le **produit ionique de l'eau** vaut, à 25 °C :\n\n$$K_e = [H_3O^+]\\,[OH^-] = 10^{-14} \\qquad pK_e = 14$$\n\n## 3. Définition du pH\n\n$$pH = -\\log [H_3O^+] \\qquad\\Longleftrightarrow\\qquad [H_3O^+] = 10^{-pH}$$\n\n- Solution **acide** : $[H_3O^+] > [OH^-]$ soit $pH < 7$.\n- Solution **neutre** : $pH = 7$.\n- Solution **basique** : $pH > 7$.\n\nOn a aussi $pOH = -\\log[OH^-]$ et $pH + pOH = 14$.\n\n## 4. Acides forts et acides faibles\n\n- Un **acide fort** est **totalement dissocié** dans l'eau : $HCl + H_2O \\rightarrow H_3O^+ + Cl^-$. Alors $[H_3O^+] = C$ et $pH = -\\log C$.\n- Un **acide faible** est **partiellement dissocié** : $AH + H_2O \\rightleftharpoons A^- + H_3O^+$ ; équilibre caractérisé par $K_a$.\n\nDe même : **base forte** (ex. $NaOH$, totalement dissociée, $[OH^-]=C$, $pH = 14 + \\log C$) et **base faible** (ex. $NH_3$).\n\n## 5. Constante d'acidité $K_a$\n\nPour le couple $AH/A^-$ :\n\n$$K_a = \\frac{[A^-][H_3O^+]}{[AH]} \\qquad pK_a = -\\log K_a$$\n\nRelation fondamentale (Henderson) : $pH = pK_a + \\log \\dfrac{[A^-]}{[AH]}$.\n\nPlus $K_a$ est grand (plus $pK_a$ est petit), plus l'acide est **fort**.\n\n## Exercices corrigés\n\n### Exercice 1 — pH d'un acide fort\nOn dissout du chlorure d'hydrogène pour obtenir $C = 10^{-2}\\ \\text{mol/L}$.\n\n**Solution** : $HCl$ acide fort donc $[H_3O^+] = C = 10^{-2}$,\n$$pH = -\\log(10^{-2}) = 2{,}0$$\n\n### Exercice 2 — pH d'une base forte\nSolution de soude $NaOH$ de concentration $C = 10^{-3}\\ \\text{mol/L}$.\n\n**Solution** : $[OH^-] = 10^{-3}$, d'où $[H_3O^+] = \\dfrac{K_e}{[OH^-]} = \\dfrac{10^{-14}}{10^{-3}} = 10^{-11}$,\n$$pH = 11 \\quad(\\text{ou } pH = 14 + \\log 10^{-3} = 11)$$\n\n### Exercice 3 — Acide faible\nUne solution d'acide éthanoïque a $C = 0{,}10\\ \\text{mol/L}$ et $pH = 2{,}9$.\n\n**Question** : calculer $[H_3O^+]$ puis $K_a$ (on néglige $[H_3O^+]$ devant $C$).\n\n**Solution** : $[H_3O^+] = 10^{-2{,}9} \\approx 1{,}26\\times10^{-3}\\ \\text{mol/L}$.\n$[A^-] \\approx [H_3O^+]$ et $[AH] \\approx C$ :\n$$K_a = \\frac{[A^-][H_3O^+]}{[AH]} \\approx \\frac{(1{,}26\\times10^{-3})^2}{0{,}10} \\approx 1{,}6\\times10^{-5}$$\nsoit $pK_a \\approx 4{,}8$, valeur attendue pour l'acide éthanoïque.\n\n## À retenir\n\n- $pH = -\\log[H_3O^+]$ ; $[H_3O^+] = 10^{-pH}$.\n- $K_e = [H_3O^+][OH^-] = 10^{-14}$ et $pH + pOH = 14$ à 25 °C.\n- **Acide fort** : $pH = -\\log C$ ; **base forte** : $pH = 14 + \\log C$.\n- **Acide faible** : équilibre caractérisé par $K_a$ ; $pH = pK_a + \\log\\frac{[A^-]}{[AH]}$.\n- Plus $pK_a$ est petit, plus l'acide est fort.\n",
+   "quiz": {
+    "questions": [
+     {
+      "q": "Selon Brønsted, un acide est :",
+      "options": [
+       "un accepteur de proton",
+       "un donneur de proton H+",
+       "un donneur d'électron",
+       "une base conjuguée"
+      ],
+      "answer": 1,
+      "explanation": "Un acide de Brønsted cède un proton H+."
+     },
+     {
+      "q": "À 25 °C, le produit ionique de l'eau Ke vaut :",
+      "options": [
+       "10^-7",
+       "10^-14",
+       "14",
+       "10^-1"
+      ],
+      "answer": 1,
+      "explanation": "Ke = [H3O+][OH-] = 10^-14 à 25 °C."
+     },
+     {
+      "q": "Le pH d'une solution d'acide fort de concentration C = 10^-3 mol/L est :",
+      "options": [
+       "3",
+       "11",
+       "7",
+       "10^-3"
+      ],
+      "answer": 0,
+      "explanation": "Acide fort totalement dissocié : pH = -log C = -log 10^-3 = 3."
+     },
+     {
+      "q": "Une solution est basique si :",
+      "options": [
+       "pH < 7",
+       "pH = 7",
+       "pH > 7",
+       "[H3O+] > [OH-]"
+      ],
+      "answer": 2,
+      "explanation": "Solution basique : pH > 7 et [OH-] > [H3O+]."
+     },
+     {
+      "q": "La relation pH = pKa + log([A-]/[AH]) s'applique à :",
+      "options": [
+       "un acide fort",
+       "un couple acide faible/base conjuguée",
+       "l'eau pure",
+       "une base forte"
+      ],
+      "answer": 1,
+      "explanation": "C'est la relation d'Henderson valable pour un couple acide faible/base conjuguée."
+     }
+    ]
+   }
+  },
+  {
+   "title": "Les dosages acido-basiques",
+   "video": "https://www.youtube.com/watch?v=8t3Jm5cYI6Y",
+   "lesson": "# Les dosages acido-basiques\n\n## Introduction\n\nUn **dosage** (ou titrage) acido-basique permet de **déterminer la concentration** inconnue d'un acide ou d'une base par réaction avec une solution de concentration connue (le **réactif titrant**). La réaction support doit être **totale, rapide et unique**.\n\n## 1. Principe et équivalence\n\nOn verse progressivement la solution titrante dans la solution titrée. À l'**équivalence**, les réactifs ont été mélangés dans les **proportions stœchiométriques** : ni l'un ni l'autre n'est en excès.\n\nPour la réaction $H_3O^+ + OH^- \\rightarrow 2\\,H_2O$ (acide fort / base forte), la relation à l'équivalence est :\n\n$$C_A V_A = C_B V_{BE}$$\n\noù $V_{BE}$ est le volume de base versé à l'équivalence.\n\n## 2. Repérage de l'équivalence\n\n- **pH-métrie** : l'équivalence correspond au **point d'inflexion** de la courbe $pH = f(V)$ (saut de pH le plus marqué). On utilise la méthode des **tangentes parallèles** ou la dérivée $\\frac{dpH}{dV}$ maximale.\n- **Indicateurs colorés** : on choisit un indicateur dont la **zone de virage** contient le pH à l'équivalence (hélianthine, BBT, phénolphtaléine).\n- **Conductimétrie** : rupture de pente de $\\sigma = f(V)$.\n\n## 3. pH à l'équivalence\n\n- **Acide fort + base forte** : $pH_E = 7$ (à 25 °C). Indicateur : **BBT**.\n- **Acide faible + base forte** : $pH_E > 7$ (basique). Indicateur : **phénolphtaléine**.\n- **Base faible + acide fort** : $pH_E < 7$ (acide). Indicateur : **hélianthine**.\n\n## 4. Demi-équivalence\n\nPour le titrage d'un **acide faible** par une base forte, à la **demi-équivalence** ($V = V_{BE}/2$), on a $[AH] = [A^-]$, donc :\n\n$$pH = pK_a$$\n\nC'est une méthode commode pour **déterminer le $pK_a$** d'un couple.\n\n## Exercices corrigés\n\n### Exercice 1 — Acide fort par base forte\nOn titre $V_A = 20{,}0\\ \\text{mL}$ d'acide chlorhydrique par de la soude $C_B = 0{,}10\\ \\text{mol/L}$. L'équivalence est à $V_{BE} = 15{,}0\\ \\text{mL}$.\n\n**Question** : concentration $C_A$ de l'acide ?\n\n**Solution** :\n$$C_A = \\frac{C_B V_{BE}}{V_A} = \\frac{0{,}10 \\times 15{,}0}{20{,}0} = 0{,}075\\ \\text{mol/L}$$\n\n### Exercice 2 — Détermination d'un pKa\nLors du titrage d'un acide faible par la soude, la courbe pH-métrique donne $V_{BE} = 12{,}0\\ \\text{mL}$ et le pH à $V = 6{,}0\\ \\text{mL}$ vaut $pH = 4{,}8$.\n\n**Question** : quel est le $pK_a$ ?\n\n**Solution** : $V = 6{,}0\\ \\text{mL} = V_{BE}/2$ : c'est la **demi-équivalence**, donc\n$$pK_a = pH = 4{,}8$$\n\n### Exercice 3 — Choix de l'indicateur\nOn titre l'ammoniac (base faible) par l'acide chlorhydrique. Le pH à l'équivalence est de l'ordre de 5,3.\n\n**Question** : quel indicateur choisir parmi BBT (6,0–7,6), phénolphtaléine (8,2–10,0), hélianthine (3,1–4,4) ?\n\n**Solution** : aucune zone ne contient exactement 5,3, mais **l'hélianthine** (virage en milieu acide) est l'indicateur le plus adapté pour un titrage de base faible par acide fort dont $pH_E < 7$.\n\n## À retenir\n\n- À l'**équivalence** : $C_A V_A = C_B V_{BE}$ (réaction totale et stœchiométrique).\n- L'équivalence se repère par le **saut de pH** (point d'inflexion) ou un **indicateur coloré** adapté.\n- $pH_E = 7$ (fort/fort), $pH_E > 7$ (acide faible/base forte), $pH_E < 7$ (base faible/acide fort).\n- À la **demi-équivalence** d'un acide faible : $pH = pK_a$.\n",
+   "quiz": {
+    "questions": [
+     {
+      "q": "À l'équivalence d'un titrage acide-base :",
+      "options": [
+       "l'acide est en excès",
+       "la base est en excès",
+       "les réactifs sont en proportions stœchiométriques",
+       "le pH vaut toujours 7"
+      ],
+      "answer": 2,
+      "explanation": "À l'équivalence, les réactifs ont été mélangés dans les proportions stœchiométriques."
+     },
+     {
+      "q": "Pour un acide fort titré par une base forte, le pH à l'équivalence vaut :",
+      "options": [
+       "2",
+       "7",
+       "9",
+       "14"
+      ],
+      "answer": 1,
+      "explanation": "Acide fort / base forte : pH_E = 7 à 25 °C."
+     },
+     {
+      "q": "À la demi-équivalence du titrage d'un acide faible par une base forte :",
+      "options": [
+       "pH = 7",
+       "pH = pKa",
+       "pH = 0",
+       "pH = 14"
+      ],
+      "answer": 1,
+      "explanation": "À la demi-équivalence, [AH] = [A-], donc pH = pKa."
+     },
+     {
+      "q": "On titre 20 mL d'acide (C_A) par une base 0,10 mol/L ; V_BE = 10 mL. C_A vaut :",
+      "options": [
+       "0,20 mol/L",
+       "0,05 mol/L",
+       "0,10 mol/L",
+       "0,025 mol/L"
+      ],
+      "answer": 1,
+      "explanation": "C_A = C_B·V_BE/V_A = 0,10×10/20 = 0,05 mol/L."
+     },
+     {
+      "q": "Pour un titrage acide faible / base forte (pH_E > 7), l'indicateur adapté est :",
+      "options": [
+       "l'hélianthine",
+       "la phénolphtaléine",
+       "aucun indicateur",
+       "le papier pH seulement"
+      ],
+      "answer": 1,
+      "explanation": "La phénolphtaléine vire vers pH 8–10, adaptée à pH_E > 7."
+     }
+    ]
+   }
+  },
+  {
+   "title": "Les équilibres chimiques",
+   "video": "https://www.youtube.com/watch?v=2Zqu6Jc9nVU",
+   "lesson": "# Les équilibres chimiques\n\n## Introduction\n\nCertaines réactions sont **totales**, d'autres **limitées** : elles ne consomment pas entièrement les réactifs et conduisent à un **état d'équilibre** où réactifs et produits coexistent. La transformation est alors **réversible** et symbolisée par une double flèche $\\rightleftharpoons$.\n\n## 1. État d'équilibre\n\nÀ l'équilibre, les concentrations restent **constantes** dans le temps : la réaction directe et la réaction inverse se compensent (équilibre **dynamique**). L'avancement atteint une valeur $x_{eq} < x_{max}$.\n\nLe **taux d'avancement final** est :\n\n$$\\tau = \\frac{x_{eq}}{x_{max}}$$\n\nSi $\\tau = 1$, la réaction est totale ; si $\\tau < 1$, elle est limitée.\n\n## 2. Quotient de réaction et constante d'équilibre\n\nPour $a\\,A + b\\,B \\rightleftharpoons c\\,C + d\\,D$, le **quotient de réaction** est :\n\n$$Q_r = \\frac{[C]^c[D]^d}{[A]^a[B]^b}$$\n\nÀ l'équilibre, $Q_r$ prend une valeur constante à température fixée, la **constante d'équilibre** :\n\n$$K = Q_{r,\\,eq} = \\frac{[C]_{eq}^c[D]_{eq}^d}{[A]_{eq}^a[B]_{eq}^b}$$\n\n(Les solides et le solvant n'apparaissent pas.)\n\n## 3. Sens d'évolution\n\nOn compare $Q_r$ à $K$ :\n\n- Si $Q_r < K$ : évolution dans le **sens direct** (→).\n- Si $Q_r > K$ : évolution dans le **sens inverse** (←).\n- Si $Q_r = K$ : système à l'**équilibre**.\n\n## 4. Déplacement d'équilibre — loi de Le Chatelier\n\nUn système à l'équilibre, soumis à une perturbation, évolue de façon à **s'opposer** à cette perturbation :\n\n- **Concentration** : ajouter un réactif déplace l'équilibre vers les produits.\n- **Température** : une élévation favorise le sens **endothermique**.\n- **Pression** (gaz) : une augmentation de pression déplace l'équilibre vers le côté qui contient le **moins de moles de gaz**.\n\n## Exercices corrigés\n\n### Exercice 1 — Taux d'avancement\nPour une réaction, $x_{max} = 0{,}010\\ \\text{mol}$ et l'équilibre est atteint pour $x_{eq} = 0{,}004\\ \\text{mol}$.\n\n**Solution** :\n$$\\tau = \\frac{0{,}004}{0{,}010} = 0{,}40 = 40\\%$$\nLa réaction est **limitée**.\n\n### Exercice 2 — Constante d'équilibre\nPour $H_2 + I_2 \\rightleftharpoons 2\\,HI$, à l'équilibre : $[H_2] = 0{,}20$, $[I_2] = 0{,}20$, $[HI] = 1{,}6\\ \\text{mol/L}$.\n\n**Solution** :\n$$K = \\frac{[HI]^2}{[H_2][I_2]} = \\frac{(1{,}6)^2}{0{,}20\\times0{,}20} = \\frac{2{,}56}{0{,}04} = 64$$\n\n### Exercice 3 — Sens d'évolution\nPour la réaction précédente ($K = 64$), on prépare un mélange tel que $Q_r = 100$.\n\n**Question** : dans quel sens le système évolue-t-il ?\n\n**Solution** : $Q_r = 100 > K = 64$, donc le système évolue dans le **sens inverse** (← consommation de HI) jusqu'à ce que $Q_r = K$.\n\n## À retenir\n\n- Une réaction **limitée** atteint un **équilibre dynamique** : $\\tau = x_{eq}/x_{max} < 1$.\n- **Constante d'équilibre** $K$ : valeur de $Q_r$ à l'équilibre (solides et solvant exclus).\n- $Q_r < K$ → sens direct ; $Q_r > K$ → sens inverse ; $Q_r = K$ → équilibre.\n- **Le Chatelier** : le système s'oppose à la perturbation (T, P, concentration).\n",
+   "quiz": {
+    "questions": [
+     {
+      "q": "Une réaction limitée se caractérise par :",
+      "options": [
+       "τ = 1",
+       "τ > 1",
+       "τ < 1",
+       "x_eq = x_max"
+      ],
+      "answer": 2,
+      "explanation": "Une réaction limitée a un taux d'avancement final τ < 1."
+     },
+     {
+      "q": "La constante d'équilibre K est :",
+      "options": [
+       "le quotient de réaction à l'état initial",
+       "le quotient de réaction à l'équilibre",
+       "toujours égale à 1",
+       "indépendante de la réaction"
+      ],
+      "answer": 1,
+      "explanation": "K est la valeur que prend Qr à l'équilibre, à température donnée."
+     },
+     {
+      "q": "Si Qr > K, le système évolue :",
+      "options": [
+       "dans le sens direct",
+       "dans le sens inverse",
+       "il reste à l'équilibre",
+       "il explose"
+      ],
+      "answer": 1,
+      "explanation": "Qr > K : évolution dans le sens inverse jusqu'à Qr = K."
+     },
+     {
+      "q": "Selon Le Chatelier, augmenter la pression d'un système gazeux déplace l'équilibre :",
+      "options": [
+       "vers le plus grand nombre de moles de gaz",
+       "vers le plus petit nombre de moles de gaz",
+       "sans effet",
+       "vers les solides"
+      ],
+      "answer": 1,
+      "explanation": "Le système s'oppose à la hausse de pression en allant vers le moins de moles gazeuses."
+     },
+     {
+      "q": "À l'équilibre dynamique, les concentrations :",
+      "options": [
+       "augmentent",
+       "diminuent",
+       "restent constantes",
+       "deviennent nulles"
+      ],
+      "answer": 2,
+      "explanation": "Les concentrations restent constantes car réactions directe et inverse se compensent."
+     }
+    ]
+   }
+  },
+  {
+   "title": "Les réactions d'estérification et d'hydrolyse",
+   "video": "https://www.youtube.com/watch?v=Mn1Njs0eAm8",
+   "lesson": "# Les réactions d'estérification et d'hydrolyse\n\n## Introduction\n\nL'**estérification** est la réaction entre un **acide carboxylique** et un **alcool** qui produit un **ester** et de l'**eau**. C'est l'exemple type d'un **équilibre chimique** limité, lente et athermique. Sa réaction inverse est l'**hydrolyse** de l'ester.\n\n## 1. Réaction d'estérification\n\n$$\\underbrace{R\\!-\\!COOH}_{\\text{acide}} + \\underbrace{R'\\!-\\!OH}_{\\text{alcool}} \\;\\rightleftharpoons\\; \\underbrace{R\\!-\\!COO\\!-\\!R'}_{\\text{ester}} + H_2O$$\n\nCaractéristiques :\n- **Lente** (catalysable),\n- **Limitée** (équilibre),\n- **Athermique** (ΔH ≈ 0, indépendante de la température pour le rendement).\n\n## 2. Hydrolyse de l'ester\n\nC'est la réaction **inverse** : l'ester réagit avec l'eau pour redonner l'acide et l'alcool. À l'équilibre, estérification et hydrolyse coexistent.\n\n## 3. Rendement et limite d'équilibre\n\nLe **rendement** dépend de la **classe de l'alcool** :\n- Alcool **primaire** : rendement ≈ **67 %**,\n- Alcool **secondaire** : ≈ **60 %**,\n- Alcool **tertiaire** : ≈ **5 %** (faible).\n\nLe rendement ne dépend **pas** de la température (athermique), mais celle-ci et le catalyseur (ions $H^+$) **accélèrent** l'atteinte de l'équilibre.\n\n## 4. Améliorer le rendement\n\nPour augmenter le rendement, on **déplace l'équilibre** :\n- utiliser un **excès** d'un réactif,\n- **éliminer l'eau** ou l'ester au fur et à mesure (distillation).\n\n## 5. Nomenclature des esters\n\nLe nom d'un ester est en deux parties : **(nom de l'acide en -oate) + (groupe de l'alcool en -yle)**.\nExemple : $CH_3\\!-\\!COO\\!-\\!C_2H_5$ = **éthanoate d'éthyle**.\n\n## Exercices corrigés\n\n### Exercice 1 — Équation et nom\nOn fait réagir l'acide éthanoïque $CH_3COOH$ avec le méthanol $CH_3OH$.\n\n**Solution** :\n$$CH_3COOH + CH_3OH \\rightleftharpoons CH_3\\!-\\!COO\\!-\\!CH_3 + H_2O$$\nL'ester est l'**éthanoate de méthyle**.\n\n### Exercice 2 — Calcul de rendement\nOn part de $0{,}50$ mol d'acide et $0{,}50$ mol d'un alcool primaire. À l'équilibre, il s'est formé $0{,}34$ mol d'ester.\n\n**Question** : rendement de l'estérification ?\n\n**Solution** : avec des quantités égales, $x_{max} = 0{,}50$ mol.\n$$\\eta = \\frac{x_{eq}}{x_{max}} = \\frac{0{,}34}{0{,}50} = 0{,}68 = 68\\%$$\nValeur conforme à un alcool primaire.\n\n### Exercice 3 — Déplacement d'équilibre\nOn veut augmenter la quantité d'ester formé.\n\n**Question** : citer deux méthodes.\n\n**Solution** :\n1. Introduire un **excès** d'acide (ou d'alcool) — l'équilibre se déplace vers l'ester.\n2. **Éliminer l'eau** formée (déshydratant ou distillation) — l'équilibre se déplace pour compenser.\nLe catalyseur acide n'augmente pas le rendement mais **accélère** l'atteinte de l'équilibre.\n\n## À retenir\n\n- **Estérification** : acide + alcool ⇌ ester + eau (lente, limitée, athermique).\n- **Hydrolyse** : réaction inverse.\n- **Rendement** selon la classe de l'alcool : primaire ≈ 67 %, secondaire ≈ 60 %, tertiaire ≈ 5 %.\n- On **déplace l'équilibre** par excès de réactif ou élimination de l'eau ; le catalyseur (H+) **accélère** sans changer le rendement.\n- Nom de l'ester : **…oate de …yle**.\n",
+   "quiz": {
+    "questions": [
+     {
+      "q": "La réaction d'estérification produit :",
+      "options": [
+       "un acide + une base",
+       "un ester + de l'eau",
+       "un alcool + un aldéhyde",
+       "un sel + de l'eau"
+      ],
+      "answer": 1,
+      "explanation": "Acide carboxylique + alcool ⇌ ester + eau."
+     },
+     {
+      "q": "La réaction d'estérification est :",
+      "options": [
+       "rapide et totale",
+       "lente et limitée",
+       "rapide et limitée",
+       "instantanée"
+      ],
+      "answer": 1,
+      "explanation": "Elle est lente et limitée (équilibre)."
+     },
+     {
+      "q": "Le rendement de l'estérification dépend surtout :",
+      "options": [
+       "de la température",
+       "de la classe de l'alcool",
+       "de la pression",
+       "du volume du récipient"
+      ],
+      "answer": 1,
+      "explanation": "Le rendement dépend de la classe de l'alcool (primaire, secondaire, tertiaire)."
+     },
+     {
+      "q": "L'ester CH3-COO-C2H5 se nomme :",
+      "options": [
+       "méthanoate d'éthyle",
+       "éthanoate d'éthyle",
+       "éthanoate de méthyle",
+       "propanoate d'éthyle"
+      ],
+      "answer": 1,
+      "explanation": "Acide éthanoïque + éthanol → éthanoate d'éthyle."
+     },
+     {
+      "q": "Pour augmenter le rendement, on peut :",
+      "options": [
+       "chauffer davantage",
+       "ajouter un catalyseur acide",
+       "éliminer l'eau formée",
+       "diminuer la concentration des réactifs"
+      ],
+      "answer": 2,
+      "explanation": "Éliminer l'eau déplace l'équilibre vers l'ester (le catalyseur n'augmente pas le rendement)."
+     }
+    ]
+   }
+  },
+  {
+   "title": "L'oxydoréduction",
+   "video": "https://www.youtube.com/watch?v=3PJgD-Bcd_M",
+   "lesson": "# L'oxydoréduction\n\n## Introduction\n\nUne réaction d'**oxydoréduction** (redox) est une réaction au cours de laquelle il y a **transfert d'électrons** entre espèces chimiques. Elle met en jeu des **couples redox** et fonde de nombreux phénomènes : corrosion, piles, électrolyse, métabolisme.\n\n## 1. Oxydant, réducteur, couple redox\n\n- Un **réducteur** est une espèce qui **cède** des électrons (il s'oxyde).\n- Un **oxydant** est une espèce qui **capte** des électrons (il se réduit).\n\nÀ chaque couple correspond une **demi-équation** électronique :\n\n$$Ox + n\\,e^- \\rightleftharpoons Red$$\n\nExemples : $Cu^{2+}/Cu$ ; $Fe^{2+}/Fe$ ; $MnO_4^-/Mn^{2+}$.\n\n## 2. Demi-équations électroniques\n\nPour équilibrer en milieu acide :\n1. équilibrer l'élément principal,\n2. équilibrer l'oxygène avec $H_2O$,\n3. équilibrer l'hydrogène avec $H^+$,\n4. équilibrer les charges avec les électrons.\n\nExemple :\n$$MnO_4^- + 8\\,H^+ + 5\\,e^- \\rightarrow Mn^{2+} + 4\\,H_2O$$\n\n## 3. Équation bilan redox\n\nOn combine les deux demi-équations de façon à **éliminer les électrons** (même nombre échangé). L'oxydant d'un couple réagit avec le réducteur de l'autre.\n\nExemple : $Cu^{2+} + Fe \\rightarrow Cu + Fe^{2+}$.\n\n## 4. Nombre d'oxydation (n.o.)\n\nLe **nombre d'oxydation** caractérise l'état d'oxydation d'un élément :\n- une **oxydation** = **augmentation** du n.o.,\n- une **réduction** = **diminution** du n.o.\nCette notion facilite l'équilibrage et l'identification des couples.\n\n## 5. Classification et prévision\n\nLes couples sont classés par **pouvoir oxydant croissant** (potentiel standard). La **règle du gamma** : l'oxydant le plus fort réagit avec le réducteur le plus fort.\n\n## Exercices corrigés\n\n### Exercice 1 — Identifier oxydant et réducteur\nDans $Zn + Cu^{2+} \\rightarrow Zn^{2+} + Cu$ :\n\n**Solution** : $Zn \\rightarrow Zn^{2+} + 2e^-$ : le zinc **cède** des électrons, c'est le **réducteur** (il s'oxyde). $Cu^{2+} + 2e^- \\rightarrow Cu$ : l'ion cuivre **capte** des électrons, c'est l'**oxydant** (il se réduit).\n\n### Exercice 2 — Équilibrage redox\nÉquilibrer la réaction des ions permanganate avec les ions $Fe^{2+}$ en milieu acide.\n\n**Solution** :\n- $MnO_4^- + 8H^+ + 5e^- \\rightarrow Mn^{2+} + 4H_2O$\n- $Fe^{2+} \\rightarrow Fe^{3+} + e^- \\;(\\times 5)$\n\nBilan :\n$$MnO_4^- + 5\\,Fe^{2+} + 8\\,H^+ \\rightarrow Mn^{2+} + 5\\,Fe^{3+} + 4\\,H_2O$$\n\n### Exercice 3 — Dosage redox\nOn titre $V = 20{,}0\\ \\text{mL}$ d'une solution de $Fe^{2+}$ par $MnO_4^-$ de concentration $C = 0{,}020\\ \\text{mol/L}$ ; équivalence à $V_E = 18{,}0\\ \\text{mL}$.\n\n**Question** : concentration en $Fe^{2+}$ ?\n\n**Solution** : d'après le bilan, $n(Fe^{2+}) = 5\\,n(MnO_4^-)$ à l'équivalence.\n$$C_{Fe} \\times V = 5\\,C\\,V_E \\Rightarrow C_{Fe} = \\frac{5\\times0{,}020\\times18{,}0}{20{,}0} = 0{,}090\\ \\text{mol/L}$$\n\n## À retenir\n\n- **Réducteur** : cède des électrons (s'oxyde) ; **oxydant** : capte des électrons (se réduit).\n- Couple redox : $Ox + n\\,e^- \\rightleftharpoons Red$.\n- L'équation bilan élimine les électrons (même nombre échangé).\n- **Oxydation** : n.o. augmente ; **réduction** : n.o. diminue.\n- À l'équivalence d'un dosage, on applique la **stœchiométrie** des électrons.\n",
+   "quiz": {
+    "questions": [
+     {
+      "q": "Un réducteur est une espèce qui :",
+      "options": [
+       "capte des électrons",
+       "cède des électrons",
+       "ne réagit pas",
+       "capte des protons"
+      ],
+      "answer": 1,
+      "explanation": "Le réducteur cède des électrons : il s'oxyde."
+     },
+     {
+      "q": "Une oxydation correspond à :",
+      "options": [
+       "un gain d'électrons",
+       "une perte d'électrons",
+       "une diminution du n.o.",
+       "un gain de protons"
+      ],
+      "answer": 1,
+      "explanation": "L'oxydation est une perte d'électrons (augmentation du n.o.)."
+     },
+     {
+      "q": "Dans la demi-équation Cu²⁺ + 2e⁻ → Cu, l'ion Cu²⁺ est :",
+      "options": [
+       "un réducteur",
+       "un oxydant",
+       "un acide",
+       "une base"
+      ],
+      "answer": 1,
+      "explanation": "Cu²⁺ capte des électrons : c'est l'oxydant."
+     },
+     {
+      "q": "Pour obtenir l'équation bilan, on combine les demi-équations afin de :",
+      "options": [
+       "doubler les électrons",
+       "éliminer les électrons",
+       "ajouter des protons",
+       "supprimer l'eau"
+      ],
+      "answer": 1,
+      "explanation": "On égalise le nombre d'électrons pour les éliminer du bilan."
+     },
+     {
+      "q": "Dans MnO4⁻ + 8H⁺ + 5e⁻ → Mn²⁺ + 4H2O, le permanganate est :",
+      "options": [
+       "réduit (oxydant)",
+       "oxydé (réducteur)",
+       "inerte",
+       "un catalyseur"
+      ],
+      "answer": 0,
+      "explanation": "MnO4⁻ capte 5 électrons : il est réduit, c'est l'oxydant."
+     }
+    ]
+   }
+  },
+  {
+   "title": "Les piles électrochimiques et l'électrolyse",
+   "video": "https://www.youtube.com/watch?v=qD2Qk7w8K6g",
+   "lesson": "# Les piles électrochimiques et l'électrolyse\n\n## Introduction\n\nLes réactions redox peuvent être exploitées pour **produire** de l'énergie électrique (**pile**) ou, à l'inverse, une énergie électrique peut **forcer** une réaction non spontanée (**électrolyse**). Ces deux dispositifs reposent sur la **conversion** entre énergie chimique et énergie électrique.\n\n## 1. La pile électrochimique\n\nUne **pile** est constituée de deux **demi-piles** reliées par un **pont salin** (ou paroi poreuse) et par un circuit extérieur. Chaque demi-pile comporte un métal plongé dans une solution de ses ions.\n\n- **Anode** (pôle **négatif**) : siège de l'**oxydation** (le réducteur cède des électrons).\n- **Cathode** (pôle **positif**) : siège de la **réduction**.\n\nLes électrons circulent dans le circuit de l'anode vers la cathode ; le **pont salin** assure la **neutralité électrique** des solutions.\n\n## 2. Exemple : pile Daniell\n\n$$Zn \\,|\\, Zn^{2+} \\;\\|\\; Cu^{2+}\\,|\\, Cu$$\n\n- Anode (−) : $Zn \\rightarrow Zn^{2+} + 2e^-$\n- Cathode (+) : $Cu^{2+} + 2e^- \\rightarrow Cu$\n- Bilan : $Zn + Cu^{2+} \\rightarrow Zn^{2+} + Cu$\n\nLa pile débite tant que les réactifs ne sont pas épuisés (équilibre atteint → pile usée, $Q_r = K$).\n\n## 3. Force électromotrice (f.é.m.)\n\nLa **f.é.m.** $E$ est la tension à vide de la pile : $E = E_+ - E_-$ (différence des potentiels des couples). Elle est **positive** pour une pile.\n\n## 4. Quantité d'électricité\n\nLa **charge** débitée relie l'intensité $I$ et la durée $t$ :\n\n$$Q = I\\cdot t = n(e^-)\\cdot \\mathcal{F}$$\n\noù $\\mathcal{F} = 96500\\ \\text{C/mol}$ est la **constante de Faraday** et $n(e^-)$ la quantité d'électrons échangés.\n\n## 5. L'électrolyse\n\nL'**électrolyse** force une réaction **non spontanée** grâce à un générateur extérieur.\n\n- La **cathode** (reliée au **−** du générateur) : siège de la **réduction**.\n- L'**anode** (reliée au **+**) : siège de l'**oxydation**.\n\nApplications : production de dichlore et de soude, dépôt de métaux (galvanoplastie), affinage du cuivre. La masse déposée se calcule par les **lois de Faraday**.\n\n## Exercices corrigés\n\n### Exercice 1 — Fonctionnement d'une pile\nDans la pile Daniell, identifier les pôles et le sens des électrons.\n\n**Solution** : le zinc est l'**anode** (pôle −, oxydation $Zn \\to Zn^{2+}+2e^-$). Le cuivre est la **cathode** (pôle +, réduction $Cu^{2+}+2e^- \\to Cu$). Les électrons vont du zinc vers le cuivre dans le circuit extérieur.\n\n### Exercice 2 — Quantité d'électricité\nUne pile débite un courant $I = 0{,}10\\ \\text{A}$ pendant $t = 2\\ \\text{h}$.\n\n**Question** : quantité d'électrons échangés ? ($\\mathcal{F} = 96500\\ \\text{C/mol}$)\n\n**Solution** :\n$$Q = I\\,t = 0{,}10 \\times (2\\times3600) = 720\\ \\text{C}$$\n$$n(e^-) = \\frac{Q}{\\mathcal{F}} = \\frac{720}{96500} \\approx 7{,}5\\times10^{-3}\\ \\text{mol}$$\n\n### Exercice 3 — Masse déposée par électrolyse\nLors de l'électrolyse d'une solution de cuivre, on fait passer $Q = 1930\\ \\text{C}$. ($M_{Cu} = 63{,}5\\ \\text{g/mol}$)\n\n**Question** : masse de cuivre déposée à la cathode ? ($Cu^{2+}+2e^- \\to Cu$)\n\n**Solution** :\n$$n(e^-) = \\frac{1930}{96500} = 0{,}020\\ \\text{mol} \\Rightarrow n(Cu) = \\frac{0{,}020}{2} = 0{,}010\\ \\text{mol}$$\n$$m = n\\,M = 0{,}010 \\times 63{,}5 = 0{,}635\\ \\text{g}$$\n\n## À retenir\n\n- **Pile** : convertit l'énergie chimique en énergie électrique (réaction **spontanée**).\n- **Anode = oxydation** (pôle − dans une pile) ; **cathode = réduction** (pôle +).\n- $Q = I\\,t = n(e^-)\\cdot\\mathcal{F}$ avec $\\mathcal{F} = 96500\\ \\text{C/mol}$.\n- **Électrolyse** : réaction **non spontanée** imposée par un générateur ; cathode = réduction, anode = oxydation.\n",
+   "quiz": {
+    "questions": [
+     {
+      "q": "Dans une pile, l'anode est le siège de :",
+      "options": [
+       "la réduction",
+       "l'oxydation",
+       "aucune réaction",
+       "la neutralisation"
+      ],
+      "answer": 1,
+      "explanation": "L'anode est le siège de l'oxydation (pôle négatif d'une pile)."
+     },
+     {
+      "q": "Le rôle du pont salin est :",
+      "options": [
+       "produire des électrons",
+       "assurer la neutralité électrique des solutions",
+       "chauffer la pile",
+       "stocker l'énergie"
+      ],
+      "answer": 1,
+      "explanation": "Le pont salin maintient la neutralité électrique en laissant migrer les ions."
+     },
+     {
+      "q": "La constante de Faraday vaut environ :",
+      "options": [
+       "9650 C/mol",
+       "96500 C/mol",
+       "6,02×10²³",
+       "8,31 C/mol"
+      ],
+      "answer": 1,
+      "explanation": "F ≈ 96500 C/mol."
+     },
+     {
+      "q": "Une électrolyse permet de réaliser :",
+      "options": [
+       "une réaction spontanée",
+       "une réaction non spontanée grâce à un générateur",
+       "une réaction sans courant",
+       "une réaction acido-basique"
+      ],
+      "answer": 1,
+      "explanation": "L'électrolyse force une réaction non spontanée à l'aide d'un générateur."
+     },
+     {
+      "q": "La charge débitée par une pile de courant I pendant t est :",
+      "options": [
+       "Q = I/t",
+       "Q = I·t",
+       "Q = t/I",
+       "Q = I + t"
+      ],
+      "answer": 1,
+      "explanation": "Q = I·t (en coulombs si I en A et t en s)."
+     }
+    ]
+   }
+  },
+  {
+   "title": "Les alcools",
+   "video": "https://www.youtube.com/watch?v=lP57gEWcisY",
+   "lesson": "# Les alcools\n\n## Introduction\n\nLes **alcools** sont des composés organiques portant un groupe **hydroxyle** $-OH$ fixé sur un atome de carbone **saturé**. Ils occupent une place centrale en chimie organique car ils se transforment en aldéhydes, cétones, acides ou esters.\n\n## 1. Définition et formule générale\n\nUn alcool a pour groupe caractéristique $-OH$. Formule générale des alcools saturés non cycliques :\n\n$$C_nH_{2n+1}\\!-\\!OH \\quad (C_nH_{2n+2}O)$$\n\nExemple : éthanol $C_2H_5\\!-\\!OH$.\n\n## 2. Nomenclature\n\nOn nomme l'alcane correspondant en remplaçant le **-e** final par **-ol**, en précisant la position du $-OH$.\nExemples : méthan**ol**, éthan**ol**, propan-2-**ol**.\n\n## 3. Classes d'alcools\n\nSelon le nombre de carbones liés au carbone porteur du $-OH$ :\n- **Alcool primaire** : carbone fonctionnel lié à **1** carbone (ou 0).\n- **Alcool secondaire** : lié à **2** carbones.\n- **Alcool tertiaire** : lié à **3** carbones.\n\nLa classe détermine les produits d'oxydation.\n\n## 4. Oxydation ménagée des alcools\n\nL'**oxydation ménagée** (par $KMnO_4$, $K_2Cr_2O_7$, ou $O_2$ avec catalyseur) dépend de la classe :\n\n- **Alcool primaire** → **aldéhyde** → puis **acide carboxylique** :\n$$R\\!-\\!CH_2OH \\xrightarrow{[O]} R\\!-\\!CHO \\xrightarrow{[O]} R\\!-\\!COOH$$\n- **Alcool secondaire** → **cétone** :\n$$R\\!-\\!CHOH\\!-\\!R' \\xrightarrow{[O]} R\\!-\\!CO\\!-\\!R'$$\n- **Alcool tertiaire** : **pas d'oxydation ménagée** (pas d'H sur le carbone fonctionnel).\n\n## 5. Autres réactions\n\n- **Déshydratation** (acide à chaud) → **alcène** ou **éther**.\n- **Estérification** avec un acide carboxylique → **ester** + eau.\n- **Combustion** : $C_2H_5OH + 3\\,O_2 \\rightarrow 2\\,CO_2 + 3\\,H_2O$.\n\n## Exercices corrigés\n\n### Exercice 1 — Classe d'un alcool\nDonner la classe du propan-2-ol $CH_3\\!-\\!CHOH\\!-\\!CH_3$.\n\n**Solution** : le carbone porteur du $-OH$ est lié à **2** autres carbones : c'est un **alcool secondaire**. Son oxydation ménagée donne une **cétone** (la propanone).\n\n### Exercice 2 — Produit d'oxydation\nOn oxyde l'éthanol $CH_3\\!-\\!CH_2OH$ par défaut d'oxydant.\n\n**Solution** : l'éthanol est **primaire**. Avec un oxydant en **défaut**, on s'arrête à l'**aldéhyde** :\n$$CH_3CH_2OH \\xrightarrow{[O]} CH_3CHO \\ (\\text{éthanal})$$\nAvec un oxydant en **excès** on obtient l'acide éthanoïque.\n\n### Exercice 3 — Combustion et quantité de matière\nOn brûle $m = 4{,}6\\ \\text{g}$ d'éthanol ($M = 46\\ \\text{g/mol}$).\n\n**Question** : volume de $CO_2$ formé (CNTP, $V_m = 22{,}4\\ \\text{L/mol}$) ?\n\n**Solution** : $n(\\text{éthanol}) = 4{,}6/46 = 0{,}10\\ \\text{mol}$. La combustion donne $2\\,CO_2$ par éthanol :\n$$n(CO_2) = 0{,}20\\ \\text{mol} \\Rightarrow V = 0{,}20 \\times 22{,}4 = 4{,}48\\ \\text{L}$$\n\n## À retenir\n\n- Alcool : groupe **$-OH$** ; formule $C_nH_{2n+1}OH$ ; nom en **-ol**.\n- **Classes** : primaire (→ aldéhyde puis acide), secondaire (→ cétone), tertiaire (**pas** d'oxydation ménagée).\n- L'oxydation ménagée d'un **primaire** donne un **aldéhyde** (oxydant en défaut) ou un **acide** (excès).\n- Autres réactions : **déshydratation**, **estérification**, **combustion**.\n",
+   "quiz": {
+    "questions": [
+     {
+      "q": "Le groupe caractéristique d'un alcool est :",
+      "options": [
+       "-COOH",
+       "-OH",
+       "-CHO",
+       "-CO-"
+      ],
+      "answer": 1,
+      "explanation": "L'alcool porte le groupe hydroxyle -OH."
+     },
+     {
+      "q": "Le propan-2-ol CH3-CHOH-CH3 est un alcool :",
+      "options": [
+       "primaire",
+       "secondaire",
+       "tertiaire",
+       "aromatique"
+      ],
+      "answer": 1,
+      "explanation": "Le carbone fonctionnel est lié à 2 carbones : alcool secondaire."
+     },
+     {
+      "q": "L'oxydation ménagée d'un alcool secondaire donne :",
+      "options": [
+       "un aldéhyde",
+       "une cétone",
+       "un acide carboxylique",
+       "rien"
+      ],
+      "answer": 1,
+      "explanation": "Un alcool secondaire s'oxyde en cétone."
+     },
+     {
+      "q": "Un alcool tertiaire en oxydation ménagée :",
+      "options": [
+       "donne un aldéhyde",
+       "donne une cétone",
+       "donne un acide",
+       "ne s'oxyde pas"
+      ],
+      "answer": 3,
+      "explanation": "Pas d'H sur le carbone fonctionnel : pas d'oxydation ménagée."
+     },
+     {
+      "q": "L'oxydation ménagée d'un alcool primaire par un oxydant en EXCÈS donne :",
+      "options": [
+       "un aldéhyde",
+       "un acide carboxylique",
+       "une cétone",
+       "un alcène"
+      ],
+      "answer": 1,
+      "explanation": "Primaire → aldéhyde → acide carboxylique (oxydant en excès)."
+     }
+    ]
+   }
+  },
+  {
+   "title": "Les composés carbonylés (aldéhydes et cétones)",
+   "video": "https://www.youtube.com/watch?v=Kf9KjGN-fjk",
+   "lesson": "# Les composés carbonylés (aldéhydes et cétones)\n\n## Introduction\n\nLes **composés carbonylés** possèdent le groupe **carbonyle** $>\\!C\\!=\\!O$. On distingue les **aldéhydes** (groupe $-CHO$ en bout de chaîne) et les **cétones** (groupe $>\\!C\\!=\\!O$ en milieu de chaîne). Ils proviennent de l'oxydation ménagée des alcools.\n\n## 1. Groupe carbonyle et nomenclature\n\n- **Aldéhyde** : $R\\!-\\!CHO$. Nom : alcane en **-al** (méthanal, éthanal, propanal).\n- **Cétone** : $R\\!-\\!CO\\!-\\!R'$. Nom : alcane en **-one** (propanone, butanone), avec position.\n\n$$\\text{Aldéhyde}: R\\!-\\!\\overset{O}{\\overset{\\|}{C}}\\!-\\!H \\qquad \\text{Cétone}: R\\!-\\!\\overset{O}{\\overset{\\|}{C}}\\!-\\!R'$$\n\n## 2. Origine : oxydation des alcools\n\n- Alcool **primaire** → **aldéhyde** ($R\\!-\\!CH_2OH \\to R\\!-\\!CHO$).\n- Alcool **secondaire** → **cétone** ($R\\!-\\!CHOH\\!-\\!R' \\to R\\!-\\!CO\\!-\\!R'$).\n\n## 3. Tests d'identification\n\nLe groupe carbonyle est révélé par la **2,4-DNPH** (2,4-dinitrophénylhydrazine) qui donne un **précipité jaune-orangé** avec aldéhydes ET cétones.\n\nPour **distinguer aldéhyde et cétone**, on utilise le caractère **réducteur** de l'aldéhyde :\n- **Liqueur de Fehling** : avec un **aldéhyde**, précipité **rouge brique** ($Cu_2O$) ; **rien** avec une cétone.\n- **Réactif de Tollens** (nitrate d'argent ammoniacal) : avec un aldéhyde, **miroir d'argent** ; rien avec une cétone.\n- **Réactif de Schiff** : rosit avec un aldéhyde.\n\nLes **cétones ne sont pas réductrices** : elles ne réagissent ni avec Fehling ni avec Tollens.\n\n## 4. Oxydation\n\n- L'**aldéhyde** s'oxyde facilement en **acide carboxylique** ($R\\!-\\!CHO \\to R\\!-\\!COOH$) : c'est un **réducteur**.\n- La **cétone** ne s'oxyde pas en oxydation ménagée.\n\n## Exercices corrigés\n\n### Exercice 1 — Nommer et classer\nIdentifier $CH_3\\!-\\!CO\\!-\\!CH_3$ et $CH_3\\!-\\!CH_2\\!-\\!CHO$.\n\n**Solution** :\n- $CH_3\\!-\\!CO\\!-\\!CH_3$ : groupe carbonyle en milieu de chaîne → **cétone** : **propanone**.\n- $CH_3\\!-\\!CH_2\\!-\\!CHO$ : groupe $-CHO$ en bout → **aldéhyde** : **propanal**.\n\n### Exercice 2 — Tests d'identification\nDeux flacons contiennent l'un du propanal, l'autre de la propanone. Comment les distinguer ?\n\n**Solution** : on ajoute de la **liqueur de Fehling** chauffée.\n- Le **propanal** (aldéhyde, réducteur) donne un **précipité rouge brique** ($Cu_2O$).\n- La **propanone** (cétone) ne donne **rien**.\nOn peut aussi utiliser le **réactif de Tollens** (miroir d'argent avec l'aldéhyde).\n\n### Exercice 3 — Oxydation\nOn oxyde l'éthanal $CH_3CHO$ par un excès d'oxydant.\n\n**Solution** : l'aldéhyde s'oxyde en **acide** :\n$$CH_3CHO \\xrightarrow{[O]} CH_3COOH \\ (\\text{acide éthanoïque})$$\n\n## À retenir\n\n- Groupe **carbonyle** $>\\!C\\!=\\!O$ : **aldéhyde** ($-CHO$, en **-al**) et **cétone** ($>\\!CO$, en **-one**).\n- Origine : oxydation des alcools primaires (→ aldéhyde) et secondaires (→ cétone).\n- La **2,4-DNPH** révèle le carbonyle (précipité jaune-orangé, aldéhyde ET cétone).\n- **Fehling / Tollens / Schiff** : positifs avec les **aldéhydes** (réducteurs), négatifs avec les **cétones**.\n- L'aldéhyde s'oxyde en **acide carboxylique** ; la cétone ne s'oxyde pas.\n",
+   "quiz": {
+    "questions": [
+     {
+      "q": "Le groupe caractéristique d'un aldéhyde est :",
+      "options": [
+       "-CO- en milieu de chaîne",
+       "-CHO en bout de chaîne",
+       "-OH",
+       "-COOH"
+      ],
+      "answer": 1,
+      "explanation": "L'aldéhyde porte le groupe -CHO en bout de chaîne."
+     },
+     {
+      "q": "La propanone CH3-CO-CH3 est :",
+      "options": [
+       "un aldéhyde",
+       "une cétone",
+       "un acide",
+       "un alcool"
+      ],
+      "answer": 1,
+      "explanation": "Le carbonyle en milieu de chaîne caractérise une cétone."
+     },
+     {
+      "q": "Le réactif révélant le carbonyle (aldéhyde ET cétone) est :",
+      "options": [
+       "la liqueur de Fehling",
+       "le réactif de Tollens",
+       "la 2,4-DNPH",
+       "le bleu de bromothymol"
+      ],
+      "answer": 2,
+      "explanation": "La 2,4-DNPH donne un précipité jaune-orangé avec aldéhydes et cétones."
+     },
+     {
+      "q": "La liqueur de Fehling donne un précipité rouge brique avec :",
+      "options": [
+       "une cétone",
+       "un aldéhyde",
+       "un alcool tertiaire",
+       "un alcane"
+      ],
+      "answer": 1,
+      "explanation": "Seul l'aldéhyde, réducteur, réduit Cu²⁺ en Cu2O (rouge brique)."
+     },
+     {
+      "q": "L'oxydation ménagée d'un aldéhyde donne :",
+      "options": [
+       "une cétone",
+       "un acide carboxylique",
+       "un alcool",
+       "un alcène"
+      ],
+      "answer": 1,
+      "explanation": "L'aldéhyde s'oxyde en acide carboxylique."
+     }
+    ]
+   }
+  },
+  {
+   "title": "Les acides carboxyliques et leurs dérivés",
+   "video": "https://www.youtube.com/watch?v=Nq8mB5sJ7lA",
+   "lesson": "# Les acides carboxyliques et leurs dérivés\n\n## Introduction\n\nLes **acides carboxyliques** portent le groupe **carboxyle** $-COOH$. Ce sont des acides faibles, à l'origine d'une riche chimie de **dérivés** : esters, chlorures d'acyle, anhydrides et amides.\n\n## 1. Le groupe carboxyle\n\n$$R\\!-\\!\\overset{O}{\\overset{\\|}{C}}\\!-\\!OH \\quad\\text{noté}\\quad R\\!-\\!COOH$$\n\nNomenclature : « acide » + alcane en **-oïque**. Exemples : acide méthan**oïque** ($HCOOH$), acide éthan**oïque** ($CH_3COOH$).\n\n## 2. Caractère acide\n\nEn solution aqueuse, l'acide carboxylique est un **acide faible** :\n\n$$R\\!-\\!COOH + H_2O \\rightleftharpoons R\\!-\\!COO^- + H_3O^+$$\n\nLe couple $R\\!-\\!COOH / R\\!-\\!COO^-$ (ion carboxylate) a un $pK_a \\approx 4{,}8$ pour l'acide éthanoïque.\n\n## 3. Les dérivés d'acides\n\nÀ partir de l'acide on prépare :\n\n- **Chlorure d'acyle** $R\\!-\\!COCl$ (très réactif) : $R\\!-\\!COOH + SOCl_2 \\to R\\!-\\!COCl$.\n- **Anhydride d'acide** $(R\\!-\\!CO)_2O$.\n- **Ester** $R\\!-\\!COO\\!-\\!R'$ (avec un alcool).\n- **Amide** $R\\!-\\!CO\\!-\\!NH_2$ (avec l'ammoniac ou une amine).\n\nLe chlorure d'acyle et l'anhydride sont **plus réactifs** que l'acide : ils réalisent des **estérifications totales et rapides**.\n\n## 4. Préparations d'esters (comparaison)\n\n| Réactif | Avec un alcool donne | Caractère |\n|---|---|---|\n| Acide carboxylique | ester + **eau** | lent, limité |\n| Chlorure d'acyle | ester + **HCl** | rapide, **total** |\n| Anhydride d'acide | ester + **acide** | rapide, total |\n\n## 5. Réaction acido-basique des acides carboxyliques\n\nAvec une base (soude), formation d'un **carboxylate** :\n\n$$R\\!-\\!COOH + NaOH \\to R\\!-\\!COO^-Na^+ + H_2O$$\n\nLes carboxylates à longue chaîne sont des **savons**.\n\n## Exercices corrigés\n\n### Exercice 1 — Nommer et écrire l'ion conjugué\nDonner le nom de $CH_3\\!-\\!CH_2\\!-\\!COOH$ et l'ion carboxylate conjugué.\n\n**Solution** : c'est l'**acide propanoïque**. Sa base conjuguée est l'ion **propanoate** $CH_3\\!-\\!CH_2\\!-\\!COO^-$.\n\n### Exercice 2 — Estérification totale\nOn veut préparer l'éthanoate d'éthyle **rapidement et totalement**.\n\n**Solution** : on n'utilise **pas** l'acide (lent, limité) mais le **chlorure d'éthanoyle** :\n$$CH_3COCl + C_2H_5OH \\to CH_3\\!-\\!COO\\!-\\!C_2H_5 + HCl$$\nRéaction **rapide et totale**.\n\n### Exercice 3 — Réaction avec une base\nOn neutralise $n = 0{,}050$ mol d'acide éthanoïque par de la soude.\n\n**Question** : quel volume de soude $C = 0{,}50\\ \\text{mol/L}$ faut-il ?\n\n**Solution** : réaction $1:1$ : $n(NaOH) = 0{,}050$ mol.\n$$V = \\frac{n}{C} = \\frac{0{,}050}{0{,}50} = 0{,}10\\ \\text{L} = 100\\ \\text{mL}$$\n\n## À retenir\n\n- Acide carboxylique : groupe **$-COOH$** ; nom « **acide …oïque** » ; **acide faible** ($pK_a \\approx 4{,}8$).\n- Couple $R\\!-\\!COOH / R\\!-\\!COO^-$ (carboxylate).\n- **Dérivés** : chlorure d'acyle, anhydride, ester, amide.\n- Le **chlorure d'acyle** et l'**anhydride** donnent des estérifications **rapides et totales** (contre lentes/limitées pour l'acide).\n- Avec une base : formation d'un **carboxylate** (savons si longue chaîne).\n",
+   "quiz": {
+    "questions": [
+     {
+      "q": "Le groupe caractéristique d'un acide carboxylique est :",
+      "options": [
+       "-OH",
+       "-CHO",
+       "-COOH",
+       "-CO-"
+      ],
+      "answer": 2,
+      "explanation": "L'acide carboxylique porte le groupe carboxyle -COOH."
+     },
+     {
+      "q": "En solution aqueuse, un acide carboxylique est :",
+      "options": [
+       "un acide fort",
+       "un acide faible",
+       "une base forte",
+       "neutre"
+      ],
+      "answer": 1,
+      "explanation": "Il est partiellement dissocié : acide faible (pKa ≈ 4,8)."
+     },
+     {
+      "q": "La base conjuguée d'un acide carboxylique R-COOH est :",
+      "options": [
+       "R-CO-",
+       "R-COO⁻ (carboxylate)",
+       "R-OH",
+       "R-CHO"
+      ],
+      "answer": 1,
+      "explanation": "Le couple est R-COOH / R-COO⁻ (ion carboxylate)."
+     },
+     {
+      "q": "Pour une estérification RAPIDE ET TOTALE, on utilise :",
+      "options": [
+       "l'acide carboxylique",
+       "le chlorure d'acyle",
+       "l'eau",
+       "un alcool seul"
+      ],
+      "answer": 1,
+      "explanation": "Le chlorure d'acyle donne une estérification rapide et totale."
+     },
+     {
+      "q": "Acide éthanoïque + soude donne :",
+      "options": [
+       "un ester",
+       "un carboxylate de sodium + eau",
+       "un aldéhyde",
+       "une amine"
+      ],
+      "answer": 1,
+      "explanation": "Réaction acido-basique : éthanoate de sodium + eau."
+     }
+    ]
+   }
+  },
+  {
+   "title": "Les amines et les acides aminés",
+   "video": "https://www.youtube.com/watch?v=7v0Yc8m3o7s",
+   "lesson": "# Les amines et les acides aminés\n\n## Introduction\n\nLes **amines** dérivent de l'ammoniac $NH_3$ par remplacement d'atomes d'hydrogène par des groupes carbonés. Les **acides aminés** combinent une fonction **amine** et une fonction **acide carboxylique** : ce sont les briques des **protéines**.\n\n## 1. Les amines : définition et classes\n\nUne amine dérive de $NH_3$ ; selon le nombre de groupes carbonés portés par l'azote :\n- **Amine primaire** : $R\\!-\\!NH_2$,\n- **Amine secondaire** : $R\\!-\\!NH\\!-\\!R'$,\n- **Amine tertiaire** : $R_3N$.\n\nNomenclature : nom du groupe + **amine** (méthylamine, éthylamine).\n\n## 2. Caractère basique des amines\n\nComme l'ammoniac, les amines sont des **bases faibles** : le doublet libre de l'azote capte un proton.\n\n$$R\\!-\\!NH_2 + H_2O \\rightleftharpoons R\\!-\\!NH_3^+ + OH^-$$\n\nCouple $R\\!-\\!NH_3^+ / R\\!-\\!NH_2$ ; une solution d'amine est **basique** ($pH > 7$).\n\n## 3. Les acides aminés (α-aminoacides)\n\nUn **acide α-aminé** porte un groupe $-NH_2$ et un groupe $-COOH$ sur le **même carbone** (carbone α) :\n\n$$H_2N\\!-\\!\\underset{R}{\\underset{|}{CH}}\\!-\\!COOH$$\n\nLe groupe $R$ (chaîne latérale) distingue les 20 acides aminés naturels. Le plus simple est la **glycine** ($R = H$).\n\n## 4. Amphotère et zwitterion\n\nL'acide aminé est **amphotère** (à la fois acide par $-COOH$ et basique par $-NH_2$). En solution, il existe sous forme d'**ion dipolaire (zwitterion)** :\n\n$$^+H_3N\\!-\\!CHR\\!-\\!COO^-$$\n\nLe **pH isoélectrique (pHi)** est le pH pour lequel l'acide aminé est globalement **neutre** (zwitterion majoritaire) : sa charge globale est nulle.\n\n## 5. Chiralité et liaison peptidique\n\nSauf la glycine, les acides aminés ont un **carbone asymétrique** (carbone α lié à 4 groupes différents) : ils sont **chiraux** (énantiomères). Deux acides aminés s'unissent par une **liaison peptidique** (amide $-CO\\!-\\!NH-$) en libérant de l'eau, formant un **dipeptide**, puis des **protéines**.\n\n## Exercices corrigés\n\n### Exercice 1 — Classe d'une amine\nDonner la classe de la diméthylamine $(CH_3)_2NH$.\n\n**Solution** : l'azote porte **2** groupes carbonés (et un H) : c'est une **amine secondaire**.\n\n### Exercice 2 — Caractère basique\nExpliquer pourquoi une solution de méthylamine a un pH > 7.\n\n**Solution** : la méthylamine $CH_3NH_2$ est une **base faible** : son azote capte un proton de l'eau,\n$$CH_3NH_2 + H_2O \\rightleftharpoons CH_3NH_3^+ + OH^-$$\nLa libération d'ions $OH^-$ rend la solution **basique** ($pH > 7$).\n\n### Exercice 3 — Zwitterion de l'alanine\nÉcrire la forme dipolaire de l'alanine $CH_3\\!-\\!CH(NH_2)\\!-\\!COOH$.\n\n**Solution** : le $-COOH$ cède un $H^+$ que capte le $-NH_2$ :\n$$CH_3\\!-\\!\\underset{N\\!H_3^+}{\\underset{|}{CH}}\\!-\\!COO^-$$\nC'est le **zwitterion** (ion dipolaire), forme majoritaire au pH isoélectrique.\n\n## À retenir\n\n- **Amine** : dérive de $NH_3$ ; classes **primaire / secondaire / tertiaire** ; **base faible** (solution $pH>7$).\n- Couple $R\\!-\\!NH_3^+ / R\\!-\\!NH_2$.\n- **Acide α-aminé** : $-NH_2$ et $-COOH$ sur le carbone α ; **amphotère**.\n- En solution : **zwitterion** $^+H_3N\\!-\\!CHR\\!-\\!COO^-$ ; neutre au **pHi**.\n- Carbone α **asymétrique** (sauf glycine) → **chiralité** ; liaison **peptidique** (amide) → peptides et protéines.\n",
+   "quiz": {
+    "questions": [
+     {
+      "q": "La diméthylamine (CH3)2NH est une amine :",
+      "options": [
+       "primaire",
+       "secondaire",
+       "tertiaire",
+       "quaternaire"
+      ],
+      "answer": 1,
+      "explanation": "L'azote porte 2 groupes carbonés : amine secondaire."
+     },
+     {
+      "q": "En solution aqueuse, une amine se comporte comme :",
+      "options": [
+       "un acide fort",
+       "une base faible",
+       "un oxydant",
+       "un sel neutre"
+      ],
+      "answer": 1,
+      "explanation": "L'amine capte un proton : c'est une base faible (pH > 7)."
+     },
+     {
+      "q": "Un acide α-aminé porte sur le même carbone :",
+      "options": [
+       "deux -COOH",
+       "deux -NH2",
+       "un -NH2 et un -COOH",
+       "un -OH et un -CHO"
+      ],
+      "answer": 2,
+      "explanation": "Le carbone α porte une fonction amine et une fonction acide carboxylique."
+     },
+     {
+      "q": "La forme dipolaire d'un acide aminé s'appelle :",
+      "options": [
+       "un ester",
+       "un zwitterion",
+       "un carboxylate",
+       "un amide"
+      ],
+      "answer": 1,
+      "explanation": "Le zwitterion (ion dipolaire) ⁺H3N-CHR-COO⁻ est amphotère."
+     },
+     {
+      "q": "La liaison entre deux acides aminés est :",
+      "options": [
+       "une liaison ester",
+       "une liaison peptidique (amide)",
+       "une liaison hydrogène",
+       "une liaison ionique"
+      ],
+      "answer": 1,
+      "explanation": "La liaison peptidique est une fonction amide -CO-NH- formée avec perte d'eau."
+     }
+    ]
+   }
+  }
+ ]
+}

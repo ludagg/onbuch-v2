@@ -1,0 +1,774 @@
+{
+ "code": "In",
+ "level": "Terminale",
+ "chapters": [
+  {
+   "title": "Architecture des ordinateurs",
+   "video": "https://www.youtube.com/watch?v=d86ws7mQYIg",
+   "lesson": "# Architecture des ordinateurs\n\n## Introduction\n\nUn **ordinateur** est une machine programmable capable de traiter automatiquement de l'information. Comprendre son **architecture**, c'est comprendre comment ses composants matériels coopèrent pour exécuter un programme. Le modèle de référence reste celui proposé par **John von Neumann** en 1945.\n\n## 1. Le modèle de von Neumann\n\nCe modèle décrit un ordinateur composé de quatre unités principales :\n\n- **L'unité centrale de traitement (UCT / CPU)** : le « cerveau » de la machine.\n- **La mémoire** : stocke à la fois les **données** et les **programmes**.\n- **Les unités d'entrée** (clavier, souris, scanner) : font entrer l'information.\n- **Les unités de sortie** (écran, imprimante, haut-parleur) : restituent l'information.\n\nL'idée centrale (le **programme enregistré**) est que les instructions d'un programme sont stockées en mémoire **comme** des données.\n\n## 2. Le processeur (CPU)\n\nLe **microprocesseur** est composé de :\n\n- **L'unité arithmétique et logique (UAL / ALU)** : effectue les calculs (addition, soustraction) et les opérations logiques (ET, OU, NON).\n- **L'unité de commande (UC)** : décode les instructions et coordonne le travail.\n- **Les registres** : petites mémoires très rapides internes au processeur.\n\nLe processeur exécute en boucle le **cycle d'instruction** :\n\n```\n1. FETCH   : aller chercher l'instruction en mémoire\n2. DECODE  : décoder (comprendre) l'instruction\n3. EXECUTE : exécuter l'instruction (calcul, accès mémoire...)\n4. STORE   : ranger le résultat\n```\n\nLa **fréquence d'horloge**, mesurée en **hertz (Hz)**, indique le nombre de cycles par seconde. Un processeur à **3 GHz** effectue **3 milliards** de cycles par seconde.\n\n## 3. La hiérarchie des mémoires\n\n| Mémoire | Vitesse | Capacité | Volatile ? |\n|---|---|---|---|\n| Registres | Très rapide | Très faible | Oui |\n| Mémoire cache | Rapide | Faible | Oui |\n| Mémoire vive (RAM) | Moyenne | Moyenne | **Oui** |\n| Mémoire de masse (disque dur, SSD) | Lente | Grande | **Non** |\n\n- **RAM (Random Access Memory)** : mémoire vive, **volatile** (s'efface quand on éteint).\n- **ROM (Read Only Memory)** : mémoire morte, contient le programme de démarrage (BIOS).\n\n## 4. Les bus\n\nLes composants communiquent par des **bus** (ensembles de fils) :\n\n- **Bus de données** : transporte l'information.\n- **Bus d'adresses** : indique où lire/écrire en mémoire.\n- **Bus de commande** : transporte les signaux de contrôle.\n\n## 5. La carte mère et les périphériques\n\nLa **carte mère** relie tous les composants. On distingue les périphériques **d'entrée**, **de sortie** et **d'entrée-sortie** (écran tactile, disque dur, carte réseau).\n\n## Exercices corrigés\n\n### Exercice 1\n**Énoncé.** Citez les trois sous-ensembles d'un microprocesseur et donnez le rôle de chacun.\n\n**Corrigé.**\n- **UAL** : réalise les opérations arithmétiques et logiques.\n- **Unité de commande** : décode et coordonne l'exécution des instructions.\n- **Registres** : stockent temporairement les données en cours de traitement.\n\n### Exercice 2\n**Énoncé.** Un processeur a une fréquence de 2,5 GHz. Combien de cycles effectue-t-il en 1 milliseconde ?\n\n**Corrigé.**\n$2{,}5\\text{ GHz} = 2{,}5 \\times 10^9$ cycles/seconde.\nEn 1 ms $= 10^{-3}$ s : $2{,}5 \\times 10^9 \\times 10^{-3} = 2{,}5 \\times 10^6 = 2\\,500\\,000$ cycles.\n\n### Exercice 3\n**Énoncé.** Classez par ordre de vitesse décroissante : RAM, registres, disque dur, cache.\n\n**Corrigé.** Registres > Cache > RAM > Disque dur.\n\n## À retenir\n\n- L'architecture de **von Neumann** : CPU, mémoire, entrées, sorties ; programme **enregistré** en mémoire.\n- Le **CPU** = UAL + unité de commande + registres ; il exécute le cycle **Fetch–Decode–Execute**.\n- La **RAM est volatile**, la **mémoire de masse** est permanente.\n- La **fréquence** (en Hz) mesure le rythme du processeur.",
+   "quiz": {
+    "questions": [
+     {
+      "q": "Quel modèle décrit l'architecture classique d'un ordinateur ?",
+      "options": [
+       "Le modèle de Turing",
+       "Le modèle de von Neumann",
+       "Le modèle d'Euler",
+       "Le modèle OSI"
+      ],
+      "answer": 1,
+      "explanation": "John von Neumann a décrit en 1945 l'architecture à programme enregistré."
+     },
+     {
+      "q": "Quelle unité du processeur effectue les calculs ?",
+      "options": [
+       "L'unité de commande",
+       "L'UAL (ALU)",
+       "Les registres",
+       "Le bus de données"
+      ],
+      "answer": 1,
+      "explanation": "L'unité arithmétique et logique réalise les opérations arithmétiques et logiques."
+     },
+     {
+      "q": "Quelle mémoire perd son contenu à l'extinction de l'ordinateur ?",
+      "options": [
+       "Le disque dur",
+       "La ROM",
+       "La RAM",
+       "Le SSD"
+      ],
+      "answer": 2,
+      "explanation": "La RAM (mémoire vive) est volatile."
+     },
+     {
+      "q": "Dans quel ordre se déroule le cycle d'instruction ?",
+      "options": [
+       "Decode, Fetch, Execute",
+       "Execute, Fetch, Decode",
+       "Fetch, Decode, Execute",
+       "Store, Fetch, Decode"
+      ],
+      "answer": 2,
+      "explanation": "Le cycle est Fetch (chercher), Decode (décoder), puis Execute (exécuter)."
+     },
+     {
+      "q": "Que mesure la fréquence d'horloge d'un processeur ?",
+      "options": [
+       "La capacité mémoire",
+       "Le nombre de cycles par seconde",
+       "La taille de l'écran",
+       "Le débit du réseau"
+      ],
+      "answer": 1,
+      "explanation": "Exprimée en hertz, elle indique le nombre de cycles par seconde."
+     }
+    ]
+   }
+  },
+  {
+   "title": "Systèmes de numération et codage de l'information",
+   "video": "https://www.youtube.com/watch?v=Rt-Fa4Xn0AY",
+   "lesson": "# Systèmes de numération et codage de l'information\n\n## Introduction\n\nUn ordinateur ne manipule que deux états : **0** et **1** (présence ou absence de courant). Pour représenter nombres, lettres et images, on utilise des **systèmes de numération** et des **codages**. Comprendre comment convertir d'une base à l'autre est essentiel.\n\n## 1. Les bases de numération\n\n- **Base 10 (décimale)** : chiffres de 0 à 9. Celle de tous les jours.\n- **Base 2 (binaire)** : chiffres 0 et 1. Celle de la machine.\n- **Base 16 (hexadécimale)** : chiffres 0–9 puis A, B, C, D, E, F (A=10, …, F=15).\n\nLe **bit** (binary digit) est l'unité élémentaire. Un groupe de **8 bits** forme un **octet** (byte).\n\n```\n1 octet  = 8 bits\n1 Ko     = 1024 octets\n1 Mo     = 1024 Ko\n1 Go     = 1024 Mo\n```\n\n## 2. Binaire vers décimal\n\nOn multiplie chaque bit par la puissance de 2 correspondant à sa position (de droite à gauche : 2⁰, 2¹, 2²…).\n\n**Exemple :** convertir $1011_2$ en décimal.\n$$1\\times2^3 + 0\\times2^2 + 1\\times2^1 + 1\\times2^0 = 8 + 0 + 2 + 1 = 11_{10}$$\n\n## 3. Décimal vers binaire\n\nOn effectue des **divisions successives par 2** et on lit les restes **de bas en haut**.\n\n**Exemple :** convertir $13_{10}$ en binaire.\n\n```\n13 / 2 = 6  reste 1\n 6 / 2 = 3  reste 0\n 3 / 2 = 1  reste 1\n 1 / 2 = 0  reste 1\n```\nOn lit les restes de bas en haut : $13_{10} = 1101_2$.\n\n## 4. L'hexadécimal\n\nPratique car **4 bits = 1 chiffre hexadécimal**.\n\n| Binaire | Hexa | Décimal |\n|---|---|---|\n| 1010 | A | 10 |\n| 1100 | C | 12 |\n| 1111 | F | 15 |\n\n**Exemple :** $11111010_2 = \\underbrace{1111}_{F}\\,\\underbrace{1010}_{A} = FA_{16} = 250_{10}$.\n\n## 5. Codage des caractères\n\n- **ASCII** : code chaque caractère sur 7 bits (lettres, chiffres, ponctuation). 'A' = 65, 'a' = 97.\n- **Unicode (UTF-8)** : étend l'ASCII à toutes les langues (é, ç, 中…).\n\n## 6. Codage des couleurs (RVB)\n\nUne couleur est codée par trois octets : **R**ouge, **V**ert, **B**leu (0 à 255 chacun). Le blanc = (255, 255, 255), le noir = (0, 0, 0). En hexadécimal : `#FF0000` = rouge pur.\n\n## Exercices corrigés\n\n### Exercice 1 — Binaire → décimal\n**Énoncé.** Convertir $10110_2$ en décimal.\n\n**Corrigé.**\n$$1\\times16 + 0\\times8 + 1\\times4 + 1\\times2 + 0\\times1 = 16+4+2 = 22_{10}.$$\n\n### Exercice 2 — Décimal → binaire\n**Énoncé.** Convertir $25_{10}$ en binaire.\n\n**Corrigé.**\n```\n25 / 2 = 12 reste 1\n12 / 2 = 6  reste 0\n 6 / 2 = 3  reste 0\n 3 / 2 = 1  reste 1\n 1 / 2 = 0  reste 1\n```\nRésultat (bas en haut) : $25_{10} = 11001_2$.\n\n### Exercice 3 — Hexadécimal\n**Énoncé.** Convertir $2B_{16}$ en décimal.\n\n**Corrigé.** $2\\times16 + 11 = 32 + 11 = 43_{10}$ (car B = 11).\n\n## À retenir\n\n- Le **binaire** (base 2) est le langage de la machine ; l'**hexadécimal** (base 16) le résume (4 bits = 1 chiffre hexa).\n- **Binaire → décimal** : somme des puissances de 2 ; **décimal → binaire** : divisions successives par 2.\n- **1 octet = 8 bits** ; **ASCII** et **Unicode** codent les caractères ; **RVB** code les couleurs.",
+   "quiz": {
+    "questions": [
+     {
+      "q": "Combien de bits contient un octet ?",
+      "options": [
+       "4",
+       "8",
+       "16",
+       "32"
+      ],
+      "answer": 1,
+      "explanation": "Un octet (byte) est un groupe de 8 bits."
+     },
+     {
+      "q": "Quelle est la valeur décimale de 1011₂ ?",
+      "options": [
+       "9",
+       "11",
+       "13",
+       "7"
+      ],
+      "answer": 1,
+      "explanation": "8+0+2+1 = 11."
+     },
+     {
+      "q": "Comment convertir un décimal en binaire ?",
+      "options": [
+       "Multiplications par 2",
+       "Divisions successives par 2",
+       "Additions par 10",
+       "Soustractions par 16"
+      ],
+      "answer": 1,
+      "explanation": "On divise par 2 et on lit les restes de bas en haut."
+     },
+     {
+      "q": "Quelle est la valeur du chiffre hexadécimal F ?",
+      "options": [
+       "14",
+       "15",
+       "16",
+       "10"
+      ],
+      "answer": 1,
+      "explanation": "En hexadécimal, F vaut 15."
+     },
+     {
+      "q": "Quel codage permet de représenter les caractères de toutes les langues ?",
+      "options": [
+       "ASCII",
+       "RVB",
+       "Unicode",
+       "Binaire"
+      ],
+      "answer": 2,
+      "explanation": "Unicode (UTF-8) étend l'ASCII à tous les alphabets."
+     }
+    ]
+   }
+  },
+  {
+   "title": "Algorithmique : variables, conditions et boucles",
+   "video": "https://www.youtube.com/watch?v=2hyMZB2WClE",
+   "lesson": "# Algorithmique : variables, conditions et boucles\n\n## Introduction\n\nUn **algorithme** est une suite finie et ordonnée d'instructions permettant de résoudre un problème. C'est la « recette » que l'ordinateur va suivre. On l'écrit d'abord en **pseudo-code** (langage proche du français) avant de le traduire dans un vrai langage.\n\n## 1. Structure d'un algorithme\n\n```\nALGORITHME nom_algorithme\nVARIABLES\n   a, b, somme : entier\nDEBUT\n   ... instructions ...\nFIN\n```\n\n## 2. Les variables\n\nUne **variable** est une zone mémoire nommée qui contient une valeur. On la **déclare** (nom + type) puis on l'**affecte** avec la flèche `←`.\n\nPrincipaux **types** :\n- **entier** : nombres sans virgule (5, -3) ;\n- **réel** : nombres à virgule (3.14) ;\n- **caractère** : un symbole ('A') ;\n- **chaîne** : du texte (\"Bonjour\") ;\n- **booléen** : Vrai ou Faux.\n\n```\na ← 5\nb ← 3\nsomme ← a + b   // somme vaut 8\n```\n\n## 3. Lecture et écriture\n\n- **Lire(x)** : récupère une valeur saisie par l'utilisateur.\n- **Écrire(x)** : affiche une valeur à l'écran.\n\n## 4. Les structures conditionnelles\n\nPermettent de **choisir** selon une condition (test booléen).\n\n```\nSI condition ALORS\n   instructions\nSINON\n   autres instructions\nFINSI\n```\n\n**Exemple :** déterminer si un nombre est pair.\n\n```\nSI n MOD 2 = 0 ALORS\n   Écrire(\"pair\")\nSINON\n   Écrire(\"impair\")\nFINSI\n```\n\nOpérateurs de comparaison : `=`, `≠`, `<`, `>`, `≤`, `≥`. Opérateurs logiques : `ET`, `OU`, `NON`.\n\n## 5. Les boucles\n\n### Boucle POUR (nombre d'itérations connu)\n```\nPOUR i DE 1 A 5 FAIRE\n   Écrire(i)\nFINPOUR\n```\n\n### Boucle TANT QUE (condition de continuation)\n```\nTANT QUE condition FAIRE\n   instructions\nFINTANTQUE\n```\n\n**Exemple :** somme des entiers de 1 à n.\n\n```\nsomme ← 0\nPOUR i DE 1 A n FAIRE\n   somme ← somme + i\nFINPOUR\nÉcrire(somme)\n```\n\n## Exercices corrigés\n\n### Exercice 1 — Maximum de deux nombres\n**Énoncé.** Écrire un algorithme qui lit deux entiers et affiche le plus grand.\n\n**Corrigé.**\n```\nALGORITHME maximum\nVARIABLES a, b : entier\nDEBUT\n   Lire(a)\n   Lire(b)\n   SI a > b ALORS\n      Écrire(a)\n   SINON\n      Écrire(b)\n   FINSI\nFIN\n```\n\n### Exercice 2 — Table de multiplication\n**Énoncé.** Afficher la table de multiplication de 7.\n\n**Corrigé.**\n```\nPOUR i DE 1 A 10 FAIRE\n   Écrire(7 * i)\nFINPOUR\n```\n\n### Exercice 3 — Factorielle\n**Énoncé.** Calculer n! (factorielle de n) avec une boucle.\n\n**Corrigé.**\n```\nfact ← 1\nPOUR i DE 1 A n FAIRE\n   fact ← fact * i\nFINPOUR\nÉcrire(fact)\n```\n\n## À retenir\n\n- Un **algorithme** est une suite finie d'instructions résolvant un problème.\n- Une **variable** a un nom, un **type** et reçoit une valeur par **affectation** (`←`).\n- La structure **SI…SINON** permet de **choisir** ; les boucles **POUR** (itérations connues) et **TANT QUE** (condition) permettent de **répéter**.",
+   "quiz": {
+    "questions": [
+     {
+      "q": "Qu'est-ce qu'un algorithme ?",
+      "options": [
+       "Un langage de programmation",
+       "Une suite finie d'instructions résolvant un problème",
+       "Un composant matériel",
+       "Un type de variable"
+      ],
+      "answer": 1,
+      "explanation": "C'est une suite finie et ordonnée d'instructions."
+     },
+     {
+      "q": "Quel symbole représente l'affectation en pseudo-code ?",
+      "options": [
+       "=",
+       "←",
+       "==",
+       ":"
+      ],
+      "answer": 1,
+      "explanation": "La flèche ← affecte une valeur à une variable."
+     },
+     {
+      "q": "Quelle boucle utilise-t-on quand le nombre de répétitions est connu d'avance ?",
+      "options": [
+       "TANT QUE",
+       "POUR",
+       "SI",
+       "RÉPÉTER"
+      ],
+      "answer": 1,
+      "explanation": "La boucle POUR convient pour un nombre d'itérations connu."
+     },
+     {
+      "q": "Quel test indique qu'un entier n est pair ?",
+      "options": [
+       "n / 2 = 0",
+       "n MOD 2 = 0",
+       "n > 2",
+       "n = 2"
+      ],
+      "answer": 1,
+      "explanation": "Le reste de la division par 2 (n MOD 2) doit être 0."
+     },
+     {
+      "q": "Quel type de variable ne prend que les valeurs Vrai ou Faux ?",
+      "options": [
+       "entier",
+       "réel",
+       "booléen",
+       "chaîne"
+      ],
+      "answer": 2,
+      "explanation": "Le type booléen prend les valeurs Vrai ou Faux."
+     }
+    ]
+   }
+  },
+  {
+   "title": "Programmation : fonctions, procédures et tableaux",
+   "video": "https://www.youtube.com/watch?v=rfscVS0vtbw",
+   "lesson": "# Programmation : fonctions, procédures et tableaux\n\n## Introduction\n\nAu-delà des structures de base, programmer efficacement suppose de **structurer** son code en blocs réutilisables (**fonctions** et **procédures**) et de manipuler des collections de données (**tableaux**). Les exemples sont donnés en **Python**, langage clair et très répandu.\n\n## 1. Variables et types en Python\n\n```python\nage = 17           # entier (int)\nnote = 14.5        # réel (float)\nnom = \"Awa\"        # chaîne (str)\npresent = True     # booléen (bool)\n```\n\n## 2. Les fonctions\n\nUne **fonction** est un bloc nommé qui prend des **paramètres** et **renvoie** un résultat avec `return`.\n\n```python\ndef carre(x):\n    return x * x\n\nprint(carre(5))    # affiche 25\n```\n\nUne **procédure** est une fonction qui ne renvoie rien (elle agit seulement) :\n\n```python\ndef saluer(nom):\n    print(\"Bonjour\", nom)\n```\n\nAvantages : **réutilisation**, lisibilité, découpage du problème.\n\n## 3. Les tableaux (listes)\n\nUn **tableau** stocke plusieurs valeurs sous un seul nom. En Python on utilise une **liste**. L'**indice** commence à **0**.\n\n```python\nnotes = [12, 8, 15, 10]\nprint(notes[0])     # 12 (premier élément)\nprint(notes[3])     # 10 (quatrième élément)\nprint(len(notes))   # 4 (taille du tableau)\n```\n\n## 4. Parcourir un tableau\n\n```python\nnotes = [12, 8, 15, 10]\ntotal = 0\nfor note in notes:\n    total = total + note\nmoyenne = total / len(notes)\nprint(moyenne)      # 11.25\n```\n\n## 5. Conditions et boucles en Python\n\n```python\nn = 7\nif n % 2 == 0:\n    print(\"pair\")\nelse:\n    print(\"impair\")\n\nfor i in range(1, 6):   # de 1 à 5\n    print(i)\n```\n\n## Exercices corrigés\n\n### Exercice 1 — Fonction maximum\n**Énoncé.** Écrire une fonction `maximum(a, b)` qui renvoie le plus grand de deux nombres.\n\n**Corrigé.**\n```python\ndef maximum(a, b):\n    if a > b:\n        return a\n    else:\n        return b\n\nprint(maximum(4, 9))   # 9\n```\n\n### Exercice 2 — Somme d'un tableau\n**Énoncé.** Écrire une fonction qui calcule la somme des éléments d'une liste.\n\n**Corrigé.**\n```python\ndef somme(tableau):\n    s = 0\n    for v in tableau:\n        s = s + v\n    return s\n\nprint(somme([1, 2, 3, 4]))   # 10\n```\n\n### Exercice 3 — Recherche du plus grand élément\n**Énoncé.** Trouver la plus grande valeur d'un tableau.\n\n**Corrigé.**\n```python\ndef maxi(tab):\n    m = tab[0]\n    for v in tab:\n        if v > m:\n            m = v\n    return m\n\nprint(maxi([3, 9, 2, 15, 7]))   # 15\n```\n\n## À retenir\n\n- Une **fonction** prend des **paramètres** et renvoie un résultat avec `return` ; une **procédure** agit sans renvoyer de valeur.\n- Un **tableau (liste)** regroupe plusieurs valeurs ; les **indices commencent à 0**.\n- On parcourt un tableau avec une **boucle for** ; `len()` donne sa taille.\n- Découper en fonctions rend le code **réutilisable** et lisible.",
+   "quiz": {
+    "questions": [
+     {
+      "q": "Quel mot-clé Python renvoie une valeur depuis une fonction ?",
+      "options": [
+       "print",
+       "return",
+       "def",
+       "for"
+      ],
+      "answer": 1,
+      "explanation": "return renvoie le résultat de la fonction."
+     },
+     {
+      "q": "Quel est l'indice du premier élément d'une liste en Python ?",
+      "options": [
+       "1",
+       "0",
+       "-1",
+       "2"
+      ],
+      "answer": 1,
+      "explanation": "Les indices commencent à 0."
+     },
+     {
+      "q": "Que renvoie len([4, 8, 1]) ?",
+      "options": [
+       "13",
+       "3",
+       "1",
+       "4"
+      ],
+      "answer": 1,
+      "explanation": "len() donne le nombre d'éléments, ici 3."
+     },
+     {
+      "q": "Quelle est la différence entre fonction et procédure ?",
+      "options": [
+       "Aucune",
+       "Une procédure ne renvoie pas de valeur",
+       "Une fonction n'a pas de paramètres",
+       "Une procédure est plus rapide"
+      ],
+      "answer": 1,
+      "explanation": "La procédure agit mais ne renvoie rien avec return."
+     },
+     {
+      "q": "Que produit range(1, 6) dans une boucle for ?",
+      "options": [
+       "1 à 6",
+       "1 à 5",
+       "0 à 6",
+       "0 à 5"
+      ],
+      "answer": 1,
+      "explanation": "range(1,6) parcourt 1, 2, 3, 4, 5 (la borne 6 est exclue)."
+     }
+    ]
+   }
+  },
+  {
+   "title": "Bases de données : modèle relationnel",
+   "video": "https://www.youtube.com/watch?v=Ofktdmkj1Cw",
+   "lesson": "# Bases de données : modèle relationnel\n\n## Introduction\n\nUne **base de données** est un ensemble structuré d'informations stockées de façon à être facilement consultées et modifiées. Le **modèle relationnel** (proposé par E. F. Codd) organise les données en **tables**. Un logiciel appelé **SGBD** (Système de Gestion de Base de Données : MySQL, PostgreSQL, Oracle…) gère ces bases.\n\n## 1. Vocabulaire fondamental\n\n- **Table (relation)** : un tableau à deux dimensions (ex. la table `ELEVE`).\n- **Enregistrement (ligne / tuple)** : une fiche, par exemple un élève précis.\n- **Champ (attribut / colonne)** : une caractéristique (ex. `nom`, `age`).\n\nExemple de table `ELEVE` :\n\n| id | nom | classe | moyenne |\n|---|---|---|---|\n| 1 | Awa | TleC | 14.5 |\n| 2 | Brice | TleD | 11.0 |\n| 3 | Carine | TleC | 16.2 |\n\n## 2. Les clés\n\n- **Clé primaire** : champ qui **identifie de façon unique** chaque enregistrement (ici `id`). Elle ne peut pas être vide ni dupliquée.\n- **Clé étrangère** : champ d'une table qui **référence** la clé primaire d'une autre table. Elle crée le **lien** entre tables.\n\n**Exemple** : une table `NOTE` avec une clé étrangère `id_eleve` qui pointe vers `ELEVE.id`.\n\n## 3. Le Modèle Conceptuel de Données (MCD)\n\nAvant de créer les tables, on modélise avec :\n- des **entités** (ÉLÈVE, MATIÈRE) ;\n- des **associations** (un élève **suit** une matière) ;\n- des **cardinalités** (1,1 / 0,n …) qui précisent combien d'éléments sont liés.\n\n## 4. La normalisation (notion)\n\nOn évite la **redondance** (répéter la même info) en découpant l'information en plusieurs tables reliées par des clés. Cela garantit la **cohérence** des données.\n\n## 5. Les contraintes d'intégrité\n\n- **Intégrité d'entité** : la clé primaire est unique et non nulle.\n- **Intégrité référentielle** : une clé étrangère doit correspondre à une clé primaire existante.\n\n## Exercices corrigés\n\n### Exercice 1 — Vocabulaire\n**Énoncé.** Dans la table `ELEVE` ci-dessus, identifiez : une table, un enregistrement, un champ, la clé primaire.\n\n**Corrigé.**\n- Table : `ELEVE`.\n- Enregistrement : la ligne `(1, Awa, TleC, 14.5)`.\n- Champ : `nom` (ou `classe`, `moyenne`…).\n- Clé primaire : `id`.\n\n### Exercice 2 — Clé étrangère\n**Énoncé.** On crée une table `NOTE(id_note, valeur, id_eleve)`. Quel champ est la clé étrangère et que référence-t-il ?\n\n**Corrigé.** La clé étrangère est `id_eleve` ; elle référence la clé primaire `id` de la table `ELEVE`. Elle établit le lien entre une note et l'élève concerné.\n\n### Exercice 3 — Redondance\n**Énoncé.** Pourquoi répéter le nom de la classe dans chaque ligne d'élève peut poser problème ?\n\n**Corrigé.** Cela crée de la **redondance** : si le libellé de la classe change, il faut le modifier partout, avec un risque d'**incohérence**. On préfère une table `CLASSE` distincte reliée par une clé étrangère.\n\n## À retenir\n\n- Le **modèle relationnel** organise les données en **tables** (lignes = enregistrements, colonnes = champs).\n- La **clé primaire** identifie chaque ligne de façon unique ; la **clé étrangère** relie deux tables.\n- Le **SGBD** gère la base ; la **normalisation** évite la **redondance** et préserve la **cohérence**.",
+   "quiz": {
+    "questions": [
+     {
+      "q": "Comment appelle-t-on une ligne dans une table relationnelle ?",
+      "options": [
+       "Un champ",
+       "Un enregistrement",
+       "Une clé",
+       "Une requête"
+      ],
+      "answer": 1,
+      "explanation": "Une ligne est un enregistrement (ou tuple)."
+     },
+     {
+      "q": "Quel champ identifie de façon unique chaque enregistrement ?",
+      "options": [
+       "La clé étrangère",
+       "La clé primaire",
+       "Le champ texte",
+       "L'index secondaire"
+      ],
+      "answer": 1,
+      "explanation": "La clé primaire est unique et non nulle."
+     },
+     {
+      "q": "Que fait une clé étrangère ?",
+      "options": [
+       "Elle chiffre les données",
+       "Elle relie deux tables",
+       "Elle trie la table",
+       "Elle supprime les doublons"
+      ],
+      "answer": 1,
+      "explanation": "Elle référence la clé primaire d'une autre table pour créer un lien."
+     },
+     {
+      "q": "Que désigne le sigle SGBD ?",
+      "options": [
+       "Système de Gestion de Base de Données",
+       "Service Général de Base de Données",
+       "Stockage Global de Bytes Distribués",
+       "Système Graphique de Bureau"
+      ],
+      "answer": 0,
+      "explanation": "SGBD = Système de Gestion de Base de Données."
+     },
+     {
+      "q": "Pourquoi évite-t-on la redondance dans une base de données ?",
+      "options": [
+       "Pour ralentir les requêtes",
+       "Pour éviter les incohérences",
+       "Pour augmenter la taille",
+       "Pour supprimer les clés"
+      ],
+      "answer": 1,
+      "explanation": "La redondance risque de créer des incohérences lors des mises à jour."
+     }
+    ]
+   }
+  },
+  {
+   "title": "Le langage SQL",
+   "video": "https://www.youtube.com/watch?v=na4Ym_43ImI",
+   "lesson": "# Le langage SQL\n\n## Introduction\n\n**SQL** (*Structured Query Language*) est le langage standard pour **interroger** et **manipuler** une base de données relationnelle. Avec quelques mots-clés, on retrouve, ajoute, modifie ou supprime des données.\n\nPour les exemples, on utilise la table `ELEVE` :\n\n| id | nom | classe | moyenne |\n|---|---|---|---|\n| 1 | Awa | TleC | 14.5 |\n| 2 | Brice | TleD | 11.0 |\n| 3 | Carine | TleC | 16.2 |\n| 4 | Daniel | TleD | 9.5 |\n\n## 1. Interroger : SELECT\n\n```sql\nSELECT nom, moyenne\nFROM ELEVE;\n```\n- `SELECT` : choisit les colonnes (`*` = toutes).\n- `FROM` : indique la table.\n\n## 2. Filtrer : WHERE\n\n```sql\nSELECT nom\nFROM ELEVE\nWHERE moyenne >= 12;\n```\nRenvoie les élèves ayant la moyenne. On combine avec `AND`, `OR`, `NOT`.\n\n```sql\nSELECT * FROM ELEVE\nWHERE classe = 'TleC' AND moyenne > 14;\n```\n\n## 3. Trier : ORDER BY\n\n```sql\nSELECT nom, moyenne\nFROM ELEVE\nORDER BY moyenne DESC;\n```\n`ASC` = croissant (défaut), `DESC` = décroissant.\n\n## 4. Fonctions d'agrégation\n\n```sql\nSELECT COUNT(*)      FROM ELEVE;          -- nombre d'élèves\nSELECT AVG(moyenne)  FROM ELEVE;          -- moyenne générale\nSELECT MAX(moyenne)  FROM ELEVE;          -- meilleure moyenne\nSELECT MIN(moyenne)  FROM ELEVE;          -- plus faible\n```\n\nAvec `GROUP BY` on regroupe :\n\n```sql\nSELECT classe, AVG(moyenne)\nFROM ELEVE\nGROUP BY classe;\n```\n\n## 5. Modifier les données\n\n```sql\n-- Ajouter\nINSERT INTO ELEVE (id, nom, classe, moyenne)\nVALUES (5, 'Eva', 'TleC', 13.0);\n\n-- Mettre à jour\nUPDATE ELEVE\nSET moyenne = 15.0\nWHERE id = 2;\n\n-- Supprimer\nDELETE FROM ELEVE\nWHERE id = 4;\n```\n\n## 6. Créer une table\n\n```sql\nCREATE TABLE MATIERE (\n   id_matiere INT PRIMARY KEY,\n   libelle    VARCHAR(30)\n);\n```\n\n## Exercices corrigés\n\n### Exercice 1 — Sélection filtrée\n**Énoncé.** Afficher le nom des élèves de TleC.\n\n**Corrigé.**\n```sql\nSELECT nom\nFROM ELEVE\nWHERE classe = 'TleC';\n```\n\n### Exercice 2 — Tri\n**Énoncé.** Afficher tous les élèves classés par moyenne décroissante.\n\n**Corrigé.**\n```sql\nSELECT *\nFROM ELEVE\nORDER BY moyenne DESC;\n```\n\n### Exercice 3 — Agrégation\n**Énoncé.** Calculer la moyenne générale de la classe TleD.\n\n**Corrigé.**\n```sql\nSELECT AVG(moyenne)\nFROM ELEVE\nWHERE classe = 'TleD';\n```\n\n## À retenir\n\n- `SELECT … FROM … WHERE …` : interroger et filtrer.\n- `ORDER BY` trie ; `COUNT`, `AVG`, `MAX`, `MIN` agrègent ; `GROUP BY` regroupe.\n- `INSERT`, `UPDATE`, `DELETE` modifient les données ; `CREATE TABLE` crée une table.\n- Toujours bien cibler avec `WHERE` avant `UPDATE` ou `DELETE` !",
+   "quiz": {
+    "questions": [
+     {
+      "q": "Quel mot-clé permet de récupérer des données dans une table ?",
+      "options": [
+       "INSERT",
+       "SELECT",
+       "UPDATE",
+       "CREATE"
+      ],
+      "answer": 1,
+      "explanation": "SELECT sert à interroger (lire) les données."
+     },
+     {
+      "q": "Quelle clause filtre les lignes selon une condition ?",
+      "options": [
+       "ORDER BY",
+       "WHERE",
+       "GROUP BY",
+       "FROM"
+      ],
+      "answer": 1,
+      "explanation": "WHERE applique une condition de filtrage."
+     },
+     {
+      "q": "Quelle requête ajoute une nouvelle ligne ?",
+      "options": [
+       "DELETE",
+       "SELECT",
+       "INSERT INTO",
+       "DROP"
+      ],
+      "answer": 2,
+      "explanation": "INSERT INTO insère un nouvel enregistrement."
+     },
+     {
+      "q": "Quelle fonction calcule la moyenne d'une colonne ?",
+      "options": [
+       "SUM()",
+       "COUNT()",
+       "AVG()",
+       "MAX()"
+      ],
+      "answer": 2,
+      "explanation": "AVG() renvoie la moyenne des valeurs."
+     },
+     {
+      "q": "Comment trier les résultats par ordre décroissant ?",
+      "options": [
+       "ORDER BY col ASC",
+       "ORDER BY col DESC",
+       "SORT col",
+       "GROUP BY col"
+      ],
+      "answer": 1,
+      "explanation": "ORDER BY ... DESC trie du plus grand au plus petit."
+     }
+    ]
+   }
+  },
+  {
+   "title": "Réseaux informatiques et Internet",
+   "video": "https://www.youtube.com/watch?v=oF2EgB6640o",
+   "lesson": "# Réseaux informatiques et Internet\n\n## Introduction\n\nUn **réseau informatique** est un ensemble d'équipements (ordinateurs, téléphones, serveurs) reliés entre eux pour **échanger** des informations et **partager** des ressources. **Internet** est le plus grand réseau du monde : un « réseau de réseaux ».\n\n## 1. Types de réseaux selon la taille\n\n- **PAN** : réseau personnel (Bluetooth entre un téléphone et des écouteurs).\n- **LAN** *(Local Area Network)* : réseau local (une salle, un lycée).\n- **MAN** *(Metropolitan)* : à l'échelle d'une ville.\n- **WAN** *(Wide Area Network)* : très étendu (Internet).\n\n## 2. Les équipements réseau\n\n- **Carte réseau** : connecte l'ordinateur au réseau.\n- **Switch (commutateur)** : relie les machines d'un LAN.\n- **Routeur** : relie des réseaux différents et choisit le chemin des données.\n- **Modem** : convertit le signal numérique/analogique pour l'accès Internet.\n- **Point d'accès Wi-Fi** : connexion sans fil.\n\n## 3. Les topologies\n\nFaçon dont les machines sont reliées :\n- **en étoile** (toutes reliées à un switch central, la plus courante) ;\n- **en bus** (un câble unique) ;\n- **en anneau** (boucle).\n\n## 4. Adressage IP\n\nChaque machine a une **adresse IP** unique sur le réseau.\n\n- **IPv4** : 4 nombres de 0 à 255, ex. `192.168.1.10`.\n- **IPv6** : plus longue, créée car les adresses IPv4 manquent.\n\nLe **DNS** *(Domain Name System)* traduit un nom de site (`www.onbuch.cm`) en adresse IP.\n\n## 5. Les protocoles\n\nUn **protocole** est un ensemble de règles de communication.\n- **TCP/IP** : protocole de base d'Internet (découpe en paquets, achemine, réassemble).\n- **HTTP / HTTPS** : consultation des pages web (HTTPS = sécurisé).\n- **FTP** : transfert de fichiers.\n- **SMTP / POP / IMAP** : courrier électronique.\n\n## 6. Internet, le Web et les services\n\nAttention : **Internet** (l'infrastructure) ≠ **le Web** (les pages consultées via un navigateur). Internet offre aussi l'e-mail, la messagerie, le streaming, etc.\n\n## Exercices corrigés\n\n### Exercice 1 — Type de réseau\n**Énoncé.** Quel type de réseau relie les ordinateurs d'une seule salle informatique ?\n\n**Corrigé.** Un **LAN** (réseau local).\n\n### Exercice 2 — Adresse IP\n**Énoncé.** L'adresse `256.1.1.1` est-elle une adresse IPv4 valide ? Justifier.\n\n**Corrigé.** **Non** : chaque nombre d'une IPv4 doit être compris entre **0 et 255**. Or 256 dépasse 255 ; l'adresse est invalide.\n\n### Exercice 3 — Rôle du DNS\n**Énoncé.** À quoi sert le DNS lorsqu'on tape `www.onbuch.cm` ?\n\n**Corrigé.** Le **DNS** traduit le nom de domaine en **adresse IP** du serveur, afin que la machine puisse le contacter.\n\n## À retenir\n\n- Un réseau **partage** ressources et information ; **Internet** est un réseau de réseaux (WAN mondial).\n- Équipements clés : **switch** (LAN), **routeur** (entre réseaux), **modem**, **point d'accès Wi-Fi**.\n- Chaque machine a une **adresse IP** (IPv4 : 4 nombres de 0 à 255) ; le **DNS** traduit les noms en IP.\n- Les **protocoles** (TCP/IP, HTTP, FTP, SMTP) régissent les échanges ; **Internet ≠ Web**.",
+   "quiz": {
+    "questions": [
+     {
+      "q": "Comment appelle-t-on un réseau local limité à un bâtiment ?",
+      "options": [
+       "WAN",
+       "LAN",
+       "PAN",
+       "MAN"
+      ],
+      "answer": 1,
+      "explanation": "Un LAN (Local Area Network) est un réseau local."
+     },
+     {
+      "q": "Quel équipement relie deux réseaux différents et choisit le chemin des données ?",
+      "options": [
+       "Le switch",
+       "Le routeur",
+       "La carte réseau",
+       "Le modem"
+      ],
+      "answer": 1,
+      "explanation": "Le routeur achemine les données entre réseaux distincts."
+     },
+     {
+      "q": "Quelle adresse IPv4 est valide ?",
+      "options": [
+       "256.1.1.1",
+       "192.168.1.10",
+       "192.300.0.1",
+       "10.0.0.999"
+      ],
+      "answer": 1,
+      "explanation": "Chaque nombre d'une IPv4 doit être entre 0 et 255 ; 192.168.1.10 convient."
+     },
+     {
+      "q": "À quoi sert le DNS ?",
+      "options": [
+       "Chiffrer les données",
+       "Traduire un nom de domaine en adresse IP",
+       "Transférer des fichiers",
+       "Filtrer les virus"
+      ],
+      "answer": 1,
+      "explanation": "Le DNS associe un nom de domaine à une adresse IP."
+     },
+     {
+      "q": "Quel protocole est utilisé pour consulter les pages web de façon sécurisée ?",
+      "options": [
+       "FTP",
+       "SMTP",
+       "HTTPS",
+       "POP"
+      ],
+      "answer": 2,
+      "explanation": "HTTPS est la version sécurisée de HTTP."
+     }
+    ]
+   }
+  },
+  {
+   "title": "Le Web : HTML et structure d'une page",
+   "video": "https://www.youtube.com/watch?v=ok-plXXHlWw",
+   "lesson": "# Le Web : HTML et structure d'une page\n\n## Introduction\n\nLe **Web** est l'ensemble des pages consultables via un **navigateur**. Ces pages sont écrites en **HTML** *(HyperText Markup Language)*, un **langage de balisage** qui décrit la **structure** d'un document. Le **CSS** s'occupe de la mise en forme.\n\n## 1. Notion de balise\n\nUne **balise** entoure le contenu. La plupart vont par paire : une balise **ouvrante** `<p>` et une balise **fermante** `</p>`.\n\n```html\n<p>Ceci est un paragraphe.</p>\n```\n\nCertaines balises sont **uniques** (auto-fermantes), comme `<br>` (saut de ligne) ou `<img>`.\n\n## 2. Structure minimale d'une page\n\n```html\n<!DOCTYPE html>\n<html>\n  <head>\n    <title>Ma page</title>\n  </head>\n  <body>\n    <h1>Bienvenue sur OnBuch</h1>\n    <p>Première page web.</p>\n  </body>\n</html>\n```\n\n- `<!DOCTYPE html>` : indique que c'est du HTML5.\n- `<head>` : informations sur la page (titre, encodage), non affichées.\n- `<body>` : le contenu visible.\n\n## 3. Les balises de contenu\n\n- Titres : `<h1>` (le plus grand) à `<h6>`.\n- Paragraphe : `<p>`.\n- Lien hypertexte : `<a href=\"https://...\">texte</a>`.\n- Image : `<img src=\"photo.jpg\" alt=\"description\">`.\n- Listes : `<ul>` (à puces) ou `<ol>` (numérotée) avec des `<li>`.\n\n```html\n<ul>\n  <li>Cours</li>\n  <li>Concours</li>\n  <li>Annales</li>\n</ul>\n```\n\n## 4. Les liens hypertextes\n\nLe **lien** (`<a>`) est l'âme du Web : il relie les pages entre elles.\n\n```html\n<a href=\"cours.html\">Voir les cours</a>\n```\n\n## 5. CSS (notion)\n\nLe **CSS** décrit l'apparence (couleurs, polices, positions). On peut l'écrire dans la balise `<style>` :\n\n```html\n<style>\n  h1 { color: orange; }\n  p  { font-size: 16px; }\n</style>\n```\n\n## Exercices corrigés\n\n### Exercice 1 — Corriger une balise\n**Énoncé.** Corriger : `<p>Bonjour</h1>`.\n\n**Corrigé.** La balise ouvrante et la balise fermante doivent correspondre :\n```html\n<p>Bonjour</p>\n```\n\n### Exercice 2 — Créer un lien\n**Énoncé.** Écrire un lien vers `https://onbuch.cm` affichant le texte « Accueil ».\n\n**Corrigé.**\n```html\n<a href=\"https://onbuch.cm\">Accueil</a>\n```\n\n### Exercice 3 — Liste\n**Énoncé.** Créer une liste à puces avec « Maths », « Physique », « Informatique ».\n\n**Corrigé.**\n```html\n<ul>\n  <li>Maths</li>\n  <li>Physique</li>\n  <li>Informatique</li>\n</ul>\n```\n\n## À retenir\n\n- **HTML** est un langage de **balisage** qui décrit la **structure** d'une page ; le **CSS** gère l'apparence.\n- Une page contient `<head>` (infos) et `<body>` (contenu visible).\n- Balises clés : `<h1>`–`<h6>`, `<p>`, `<a href>`, `<img>`, `<ul>/<ol>/<li>`.\n- Le **lien hypertexte** `<a>` relie les pages : c'est le fondement du Web.",
+   "quiz": {
+    "questions": [
+     {
+      "q": "Que signifie HTML ?",
+      "options": [
+       "High Tech Modern Language",
+       "HyperText Markup Language",
+       "Home Tool Markup Language",
+       "Hyperlink Text Machine Language"
+      ],
+      "answer": 1,
+      "explanation": "HTML = HyperText Markup Language, un langage de balisage."
+     },
+     {
+      "q": "Quelle balise contient le contenu visible de la page ?",
+      "options": [
+       "<head>",
+       "<title>",
+       "<body>",
+       "<style>"
+      ],
+      "answer": 2,
+      "explanation": "Le contenu affiché se place dans <body>."
+     },
+     {
+      "q": "Quelle balise crée un lien hypertexte ?",
+      "options": [
+       "<p>",
+       "<a>",
+       "<img>",
+       "<li>"
+      ],
+      "answer": 1,
+      "explanation": "La balise <a href> crée un lien."
+     },
+     {
+      "q": "Quelle balise crée le plus grand titre ?",
+      "options": [
+       "<h6>",
+       "<h1>",
+       "<p>",
+       "<title>"
+      ],
+      "answer": 1,
+      "explanation": "<h1> est le titre de plus haut niveau."
+     },
+     {
+      "q": "À quoi sert le CSS ?",
+      "options": [
+       "Structurer le contenu",
+       "Mettre en forme l'apparence",
+       "Stocker des données",
+       "Gérer le réseau"
+      ],
+      "answer": 1,
+      "explanation": "Le CSS gère les couleurs, polices et positions."
+     }
+    ]
+   }
+  },
+  {
+   "title": "Les systèmes d'exploitation",
+   "video": "https://www.youtube.com/watch?v=26QPDBe-NB8",
+   "lesson": "# Les systèmes d'exploitation\n\n## Introduction\n\nLe **système d'exploitation** (SE, en anglais *OS*) est le logiciel **fondamental** qui gère le matériel et sert d'intermédiaire entre l'utilisateur, les programmes et l'ordinateur. Sans SE, la machine est inutilisable. Exemples : **Windows**, **Linux**, **macOS**, **Android**, **iOS**.\n\n## 1. Rôles du système d'exploitation\n\n- **Gestion du processeur** : répartir le temps de calcul entre les programmes (**ordonnancement**).\n- **Gestion de la mémoire** : attribuer de la RAM à chaque programme.\n- **Gestion des fichiers** : organiser le stockage (système de fichiers).\n- **Gestion des périphériques** : piloter clavier, écran, imprimante via des **pilotes** (drivers).\n- **Interface utilisateur** : graphique (GUI) ou en ligne de commande (CLI).\n\n## 2. Processus et multitâche\n\nUn **processus** est un programme en cours d'exécution. Le SE permet le **multitâche** : faire tourner plusieurs processus « en même temps » en répartissant rapidement le processeur entre eux.\n\n## 3. Le système de fichiers\n\nLes données sont organisées en **fichiers** rangés dans des **dossiers** (répertoires), formant une **arborescence**.\n\n```\n/ (racine)\n├── Documents/\n│   ├── cours.pdf\n│   └── notes.txt\n└── Images/\n    └── leo.png\n```\n\nUn **chemin** indique l'emplacement : `/Documents/cours.pdf`. L'**extension** (`.pdf`, `.txt`) indique le type de fichier.\n\n## 4. Quelques commandes (Linux)\n\n```bash\nls          # lister le contenu d'un dossier\ncd dossier  # changer de dossier\npwd         # afficher le dossier courant\nmkdir test  # créer un dossier\nrm fichier  # supprimer un fichier\n```\n\n## 5. Logiciels libres et propriétaires\n\n- **Propriétaire** : code fermé, payant (Windows, macOS).\n- **Libre / open source** : code accessible, souvent gratuit (Linux, Ubuntu).\n\n## Exercices corrigés\n\n### Exercice 1 — Rôles\n**Énoncé.** Citez trois rôles essentiels du système d'exploitation.\n\n**Corrigé.** Gestion du **processeur** (ordonnancement), gestion de la **mémoire**, gestion des **fichiers** (ou des périphériques, ou l'interface utilisateur).\n\n### Exercice 2 — Chemin de fichier\n**Énoncé.** Dans l'arborescence ci-dessus, donnez le chemin du fichier `leo.png`.\n\n**Corrigé.** `/Images/leo.png`.\n\n### Exercice 3 — Commande\n**Énoncé.** Quelle commande Linux liste le contenu d'un dossier ?\n\n**Corrigé.** La commande `ls`.\n\n## À retenir\n\n- Le **système d'exploitation** gère le matériel et fait le lien entre l'utilisateur, les programmes et la machine.\n- Ses rôles : gérer **processeur**, **mémoire**, **fichiers**, **périphériques** et l'**interface**.\n- Un **processus** est un programme en exécution ; le **multitâche** en fait tourner plusieurs à la fois.\n- Les fichiers s'organisent en **arborescence** de dossiers, repérés par un **chemin**.",
+   "quiz": {
+    "questions": [
+     {
+      "q": "Quel est le rôle principal d'un système d'exploitation ?",
+      "options": [
+       "Naviguer sur le web",
+       "Gérer le matériel et les programmes",
+       "Créer des images",
+       "Calculer des moyennes"
+      ],
+      "answer": 1,
+      "explanation": "Le SE gère le matériel et sert d'intermédiaire avec les programmes."
+     },
+     {
+      "q": "Lequel est un système d'exploitation libre ?",
+      "options": [
+       "Windows",
+       "macOS",
+       "Linux",
+       "iOS"
+      ],
+      "answer": 2,
+      "explanation": "Linux est un système d'exploitation libre/open source."
+     },
+     {
+      "q": "Qu'est-ce qu'un processus ?",
+      "options": [
+       "Un fichier image",
+       "Un programme en cours d'exécution",
+       "Un câble réseau",
+       "Une adresse IP"
+      ],
+      "answer": 1,
+      "explanation": "Un processus est un programme en cours d'exécution."
+     },
+     {
+      "q": "Quelle commande Linux liste le contenu d'un dossier ?",
+      "options": [
+       "cd",
+       "ls",
+       "rm",
+       "pwd"
+      ],
+      "answer": 1,
+      "explanation": "ls affiche le contenu du dossier courant."
+     },
+     {
+      "q": "Comment appelle-t-on le fait d'exécuter plusieurs programmes à la fois ?",
+      "options": [
+       "Le monotâche",
+       "Le multitâche",
+       "Le formatage",
+       "Le boot"
+      ],
+      "answer": 1,
+      "explanation": "Le multitâche fait tourner plusieurs processus simultanément."
+     }
+    ]
+   }
+  },
+  {
+   "title": "La sécurité informatique",
+   "video": "https://www.youtube.com/watch?v=inWWhr5tnEA",
+   "lesson": "# La sécurité informatique\n\n## Introduction\n\nLa **sécurité informatique** vise à protéger les systèmes et les données contre les menaces (vol, destruction, espionnage). À l'ère du numérique, c'est un enjeu majeur pour les particuliers comme pour les États.\n\n## 1. Les trois piliers (DIC)\n\n- **Disponibilité** : le système et les données sont accessibles quand on en a besoin.\n- **Intégrité** : les données ne sont pas altérées ni modifiées sans autorisation.\n- **Confidentialité** : seules les personnes autorisées accèdent à l'information.\n\n## 2. Les menaces principales\n\n- **Virus** : programme qui s'attache à un fichier et se propage.\n- **Ver (worm)** : se propage seul sur le réseau.\n- **Cheval de Troie (trojan)** : programme d'apparence inoffensive qui cache une fonction malveillante.\n- **Ransomware (rançongiciel)** : chiffre les fichiers et exige une rançon.\n- **Phishing (hameçonnage)** : faux message pour voler des identifiants.\n- **Spyware** : espionne l'activité de l'utilisateur.\n\nLe terme général est **malware** (logiciel malveillant).\n\n## 3. Les moyens de protection\n\n- **Mot de passe fort** : long, mêlant majuscules, chiffres, symboles ; jamais réutilisé.\n- **Antivirus** et **pare-feu (firewall)**.\n- **Mises à jour** régulières du système.\n- **Sauvegardes** (backups) pour restaurer en cas d'attaque.\n- **Méfiance** vis-à-vis des liens et pièces jointes suspects.\n\n## 4. Le chiffrement\n\nLe **chiffrement (cryptage)** transforme un message lisible (clair) en message illisible (chiffré) grâce à une **clé**. Seul le destinataire possédant la bonne clé peut le **déchiffrer**. C'est ce qui sécurise **HTTPS** et les paiements en ligne.\n\n## 5. L'authentification\n\nProuver son identité par :\n- **ce que l'on sait** (mot de passe) ;\n- **ce que l'on possède** (téléphone, carte) ;\n- **ce que l'on est** (empreinte, visage).\n\nLa **double authentification (2FA)** combine deux de ces facteurs.\n\n## Exercices corrigés\n\n### Exercice 1 — Les piliers\n**Énoncé.** Un pirate rend un site inaccessible par une attaque. Quel pilier de la sécurité est touché ?\n\n**Corrigé.** La **disponibilité** : les utilisateurs ne peuvent plus accéder au service.\n\n### Exercice 2 — Identifier la menace\n**Énoncé.** Vous recevez un e-mail imitant votre banque qui réclame votre mot de passe. De quelle attaque s'agit-il ?\n\n**Corrigé.** Il s'agit de **phishing (hameçonnage)** : on cherche à voler vos identifiants par un faux message.\n\n### Exercice 3 — Mot de passe\n**Énoncé.** Parmi `1234`, `awa`, `M0t2P@sse!`, lequel est le plus sûr et pourquoi ?\n\n**Corrigé.** `M0t2P@sse!` : il est **long** et mêle **majuscules, chiffres et symboles**, donc difficile à deviner ou à casser.\n\n## À retenir\n\n- Les trois piliers : **Disponibilité, Intégrité, Confidentialité** (DIC).\n- Menaces : **virus, ver, cheval de Troie, ransomware, phishing** — l'ensemble = **malware**.\n- Protection : **mot de passe fort, antivirus, pare-feu, mises à jour, sauvegardes**.\n- Le **chiffrement** rend les données illisibles sans la **clé** ; la **2FA** renforce l'authentification.",
+   "quiz": {
+    "questions": [
+     {
+      "q": "Que signifie le sigle DIC en sécurité informatique ?",
+      "options": [
+       "Données, Internet, Code",
+       "Disponibilité, Intégrité, Confidentialité",
+       "Défense, Informatique, Cryptage",
+       "Disque, Identité, Connexion"
+      ],
+      "answer": 1,
+      "explanation": "Les trois piliers sont Disponibilité, Intégrité et Confidentialité."
+     },
+     {
+      "q": "Comment appelle-t-on un faux message visant à voler vos identifiants ?",
+      "options": [
+       "Phishing",
+       "Pare-feu",
+       "Antivirus",
+       "Backup"
+      ],
+      "answer": 0,
+      "explanation": "Le phishing (hameçonnage) usurpe une identité pour voler des informations."
+     },
+     {
+      "q": "Qu'est-ce qu'un ransomware ?",
+      "options": [
+       "Un antivirus",
+       "Un logiciel qui chiffre les fichiers et exige une rançon",
+       "Un pare-feu",
+       "Un navigateur"
+      ],
+      "answer": 1,
+      "explanation": "Le rançongiciel bloque les données contre une rançon."
+     },
+     {
+      "q": "Que fait le chiffrement d'un message ?",
+      "options": [
+       "Il le supprime",
+       "Il le rend illisible sans la clé",
+       "Il l'imprime",
+       "Il l'envoie plus vite"
+      ],
+      "answer": 1,
+      "explanation": "Le chiffrement transforme le message en texte illisible sans la bonne clé."
+     },
+     {
+      "q": "Quel mot de passe est le plus sûr ?",
+      "options": [
+       "1234",
+       "azerty",
+       "M0t2P@sse!",
+       "nom2018"
+      ],
+      "answer": 2,
+      "explanation": "Un mot de passe long mêlant majuscules, chiffres et symboles est plus robuste."
+     }
+    ]
+   }
+  },
+  {
+   "title": "Tableur et traitement de l'information",
+   "video": "https://www.youtube.com/watch?v=kS6Ja6XaXys",
+   "lesson": "# Tableur et traitement de l'information\n\n## Introduction\n\nUn **tableur** (Excel, LibreOffice Calc, Google Sheets) est un logiciel qui organise des données en **lignes** et **colonnes** et permet de les calculer automatiquement. C'est un outil puissant pour traiter l'information : moyennes, statistiques, graphiques.\n\n## 1. La grille du tableur\n\n- Les **colonnes** sont repérées par des **lettres** (A, B, C…).\n- Les **lignes** sont repérées par des **nombres** (1, 2, 3…).\n- Une **cellule** est l'intersection : `B3` = colonne B, ligne 3.\n- Une **plage** est un groupe de cellules : `A1:A10`.\n\n## 2. Les formules\n\nToute formule commence par le signe **=**.\n\n```\n=A1+B1        addition\n=A1*B1        multiplication\n=(A1+B1)/2    moyenne de deux notes\n```\n\n## 3. Les fonctions utiles\n\n```\n=SOMME(A1:A10)        somme d'une plage\n=MOYENNE(A1:A10)      moyenne\n=MAX(A1:A10)          plus grande valeur\n=MIN(A1:A10)          plus petite valeur\n=NB(A1:A10)           nombre de valeurs\n```\n\n## 4. La fonction conditionnelle SI\n\nElle affiche un résultat selon une condition :\n\n```\n=SI(A1>=10; \"Admis\"; \"Refusé\")\n```\nSi la cellule `A1` est ≥ 10, affiche « Admis », sinon « Refusé ».\n\n## 5. Références relatives et absolues\n\n- **Relative** (`A1`) : se décale quand on copie la formule.\n- **Absolue** (`$A$1`) : reste **figée** quand on copie (le `$` verrouille).\n\nExemple : pour multiplier une colonne par un taux fixé en `B1`, on écrit `=A2*$B$1`.\n\n## 6. Les graphiques\n\nÀ partir des données, le tableur crée des **graphiques** (histogramme, courbe, secteurs) pour visualiser l'information.\n\n## Exercices corrigés\n\n### Exercice 1 — Moyenne\n**Énoncé.** Les notes d'un élève sont en `B2`, `B3`, `B4`. Écrire la formule de leur moyenne.\n\n**Corrigé.**\n```\n=MOYENNE(B2:B4)\n```\n\n### Exercice 2 — Fonction SI\n**Énoncé.** En `C2`, afficher « Admis » si la moyenne en `B2` est ≥ 10, sinon « Refusé ».\n\n**Corrigé.**\n```\n=SI(B2>=10; \"Admis\"; \"Refusé\")\n```\n\n### Exercice 3 — Référence absolue\n**Énoncé.** Le prix HT est en `A2` et le taux de TVA en `B1`. Écrire la formule du montant de TVA en `C2`, copiable vers le bas.\n\n**Corrigé.**\n```\n=A2*$B$1\n```\nLe `$B$1` reste figé lors de la copie ; seul `A2` se décale en `A3`, `A4`…\n\n## À retenir\n\n- Le **tableur** organise les données en **cellules** (lettre de colonne + numéro de ligne, ex. `B3`).\n- Toute formule commence par **=** ; fonctions clés : `SOMME`, `MOYENNE`, `MAX`, `MIN`, `NB`.\n- `=SI(condition; valeur_vrai; valeur_faux)` affiche un résultat conditionnel.\n- Référence **absolue** `$A$1` (figée) vs **relative** `A1` (se décale à la copie).",
+   "quiz": {
+    "questions": [
+     {
+      "q": "Comment désigne-t-on la cellule de la colonne C, ligne 5 ?",
+      "options": [
+       "5C",
+       "C5",
+       "C:5",
+       "5:C"
+      ],
+      "answer": 1,
+      "explanation": "La colonne (lettre) précède la ligne (numéro) : C5."
+     },
+     {
+      "q": "Par quel signe commence toute formule dans un tableur ?",
+      "options": [
+       "+",
+       "=",
+       "@",
+       "#"
+      ],
+      "answer": 1,
+      "explanation": "Une formule commence toujours par le signe =."
+     },
+     {
+      "q": "Quelle fonction calcule la moyenne d'une plage ?",
+      "options": [
+       "=SOMME()",
+       "=MOYENNE()",
+       "=MAX()",
+       "=NB()"
+      ],
+      "answer": 1,
+      "explanation": "=MOYENNE(plage) renvoie la moyenne."
+     },
+     {
+      "q": "Que fait =SI(A1>=10; \"Admis\"; \"Refusé\") ?",
+      "options": [
+       "Toujours Admis",
+       "Affiche Admis si A1>=10, sinon Refusé",
+       "Additionne A1",
+       "Compte les cellules"
+      ],
+      "answer": 1,
+      "explanation": "La fonction SI teste la condition et affiche l'un des deux textes."
+     },
+     {
+      "q": "Quelle écriture est une référence absolue ?",
+      "options": [
+       "A1",
+       "$A$1",
+       "A:1",
+       "1A"
+      ],
+      "answer": 1,
+      "explanation": "Le $ verrouille la référence : $A$1 reste figée à la copie."
+     }
+    ]
+   }
+  },
+  {
+   "title": "Logique booléenne et circuits logiques",
+   "video": "https://www.youtube.com/watch?v=gI-qXk7XojA",
+   "lesson": "# Logique booléenne et circuits logiques\n\n## Introduction\n\nL'ordinateur fonctionne en **binaire** : tout se ramène à **Vrai (1)** ou **Faux (0)**. L'**algèbre de Boole** (du mathématicien George Boole) décrit les opérations sur ces deux valeurs. Elle est à la base de tous les **circuits logiques** d'un processeur.\n\n## 1. Les opérateurs logiques de base\n\n### NON (NOT) — la négation\nInverse la valeur.\n\n| A | NON A |\n|---|---|\n| 0 | 1 |\n| 1 | 0 |\n\n### ET (AND) — la conjonction\nVrai **seulement si** les deux entrées sont vraies.\n\n| A | B | A ET B |\n|---|---|---|\n| 0 | 0 | 0 |\n| 0 | 1 | 0 |\n| 1 | 0 | 0 |\n| 1 | 1 | 1 |\n\n### OU (OR) — la disjonction\nVrai **dès qu'au moins** une entrée est vraie.\n\n| A | B | A OU B |\n|---|---|---|\n| 0 | 0 | 0 |\n| 0 | 1 | 1 |\n| 1 | 0 | 1 |\n| 1 | 1 | 1 |\n\n## 2. Les tables de vérité\n\nUne **table de vérité** liste toutes les combinaisons possibles des entrées et le résultat correspondant. Pour **n** variables, il y a **2ⁿ** lignes.\n\n## 3. Les portes logiques\n\nUne **porte logique** est un composant électronique qui réalise une opération logique. Les principales : **NON**, **ET**, **OU**, et leurs variantes **NON-ET (NAND)**, **NON-OU (NOR)**, **OU exclusif (XOR)**.\n\nLe **OU exclusif (XOR)** est vrai si les entrées sont **différentes** :\n\n| A | B | A XOR B |\n|---|---|---|\n| 0 | 0 | 0 |\n| 0 | 1 | 1 |\n| 1 | 0 | 1 |\n| 1 | 1 | 0 |\n\n## 4. Quelques propriétés\n\n- `A ET 1 = A` ; `A ET 0 = 0`.\n- `A OU 1 = 1` ; `A OU 0 = A`.\n- `A ET A = A` ; `A OU A = A`.\n- **Lois de De Morgan** : `NON(A ET B) = (NON A) OU (NON B)`.\n\n## Exercices corrigés\n\n### Exercice 1 — Évaluer une expression\n**Énoncé.** Avec A = 1 et B = 0, calculer `A ET (NON B)`.\n\n**Corrigé.** `NON B = 1`, puis `A ET 1 = 1 ET 1 = 1`. Le résultat est **1 (Vrai)**.\n\n### Exercice 2 — Table de vérité\n**Énoncé.** Donner la table de vérité de `S = A OU (NON B)`.\n\n**Corrigé.**\n\n| A | B | NON B | S = A OU NON B |\n|---|---|---|---|\n| 0 | 0 | 1 | 1 |\n| 0 | 1 | 0 | 0 |\n| 1 | 0 | 1 | 1 |\n| 1 | 1 | 0 | 1 |\n\n### Exercice 3 — Nombre de lignes\n**Énoncé.** Combien de lignes comporte la table de vérité d'une fonction à 3 variables ?\n\n**Corrigé.** $2^3 = 8$ lignes.\n\n## À retenir\n\n- L'**algèbre de Boole** manipule deux valeurs : **0 (Faux)** et **1 (Vrai)**.\n- Opérateurs de base : **NON** (inverse), **ET** (vrai si tout est vrai), **OU** (vrai si au moins un est vrai), **XOR** (vrai si différents).\n- Une **table de vérité** à n variables a **2ⁿ lignes**.\n- Les **portes logiques** réalisent ces opérations dans les circuits du processeur.",
+   "quiz": {
+    "questions": [
+     {
+      "q": "Quel est le résultat de 1 ET 0 ?",
+      "options": [
+       "0",
+       "1",
+       "2",
+       "Indéfini"
+      ],
+      "answer": 0,
+      "explanation": "L'opérateur ET n'est vrai que si les deux entrées sont vraies ; ici le résultat est 0."
+     },
+     {
+      "q": "Quand l'opérateur OU renvoie-t-il 1 ?",
+      "options": [
+       "Quand les deux entrées sont fausses",
+       "Quand au moins une entrée est vraie",
+       "Jamais",
+       "Seulement si les deux sont vraies"
+      ],
+      "answer": 1,
+      "explanation": "OU est vrai dès qu'au moins une entrée vaut 1."
+     },
+     {
+      "q": "Que fait l'opérateur NON ?",
+      "options": [
+       "Il additionne",
+       "Il inverse la valeur",
+       "Il compare",
+       "Il multiplie"
+      ],
+      "answer": 1,
+      "explanation": "NON (négation) inverse 0 en 1 et 1 en 0."
+     },
+     {
+      "q": "Combien de lignes a une table de vérité à 3 variables ?",
+      "options": [
+       "3",
+       "6",
+       "8",
+       "9"
+      ],
+      "answer": 2,
+      "explanation": "2³ = 8 combinaisons possibles."
+     },
+     {
+      "q": "Quand l'opérateur XOR (OU exclusif) vaut-il 1 ?",
+      "options": [
+       "Quand les entrées sont identiques",
+       "Quand les entrées sont différentes",
+       "Toujours",
+       "Jamais"
+      ],
+      "answer": 1,
+      "explanation": "XOR est vrai uniquement quand les deux entrées diffèrent."
+     }
+    ]
+   }
+  }
+ ]
+}
