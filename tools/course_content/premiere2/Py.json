@@ -1,0 +1,655 @@
+{
+  "code": "Py",
+  "level": "Première",
+  "chapters": [
+    {
+      "title": "Cinématique du point",
+      "video": "https://www.youtube.com/watch?v=Hr0bGz0YQ1w",
+      "lesson": "# Cinématique du point\n\n## Introduction\n\nLa **cinématique** est l'étude du mouvement des corps sans se préoccuper des causes (les forces) qui le produisent. On modélise le corps étudié par un **point matériel** : un point géométrique auquel on associe la masse du corps. Décrire un mouvement, c'est préciser à chaque instant la **position**, la **vitesse** et l'**accélération** de ce point par rapport à un **référentiel** choisi.\n\n## 1. Référentiel et repère\n\nUn **référentiel** est un solide (par exemple la Terre) auquel on attache un **repère d'espace** $(O, \\vec{i}, \\vec{j}, \\vec{k})$ et une **horloge** (repère de temps). Le mouvement est **relatif** : un même corps peut être en mouvement dans un référentiel et au repos dans un autre.\n\nLe référentiel le plus utilisé au lycée est le **référentiel terrestre** (lié au sol).\n\n## 2. Vecteur position\n\nLa position du point $M$ est repérée par le **vecteur position** :\n$$\\vec{OM} = x\\,\\vec{i} + y\\,\\vec{j} + z\\,\\vec{k}$$\n\nL'ensemble des positions occupées constitue la **trajectoire**. Quand le point se déplace, ses coordonnées sont des **fonctions du temps** : $x(t)$, $y(t)$, $z(t)$ ; ce sont les **équations horaires** du mouvement.\n\n## 3. Vecteur vitesse\n\nLe **vecteur vitesse instantanée** est la dérivée du vecteur position par rapport au temps :\n$$\\vec{v} = \\frac{d\\vec{OM}}{dt} = \\dot{x}\\,\\vec{i} + \\dot{y}\\,\\vec{j} + \\dot{z}\\,\\vec{k}$$\n\nLe vecteur vitesse est toujours **tangent à la trajectoire** et orienté dans le sens du mouvement. Sa norme s'exprime en **m·s⁻¹**.\n\nLa **vitesse moyenne** entre deux instants est :\n$$v_{moy} = \\frac{d}{\\Delta t}$$\noù $d$ est la distance parcourue.\n\n## 4. Vecteur accélération\n\nLe **vecteur accélération** est la dérivée du vecteur vitesse :\n$$\\vec{a} = \\frac{d\\vec{v}}{dt} = \\ddot{x}\\,\\vec{i} + \\ddot{y}\\,\\vec{j} + \\ddot{z}\\,\\vec{k}$$\n\nSon unité est le **m·s⁻²**. Dans le repère de Frenet, l'accélération se décompose en :\n$$\\vec{a} = a_t\\,\\vec{u_t} + a_n\\,\\vec{u_n}, \\quad a_t = \\frac{dv}{dt}, \\quad a_n = \\frac{v^2}{R}$$\noù $R$ est le rayon de courbure de la trajectoire.\n\n## 5. Mouvements particuliers\n\n**Mouvement rectiligne uniforme (MRU)** : trajectoire droite, vitesse constante, $\\vec{a} = \\vec{0}$.\n$$x(t) = x_0 + v\\,t$$\n\n**Mouvement rectiligne uniformément varié (MRUV)** : accélération constante $a$.\n$$v(t) = v_0 + a\\,t \\qquad x(t) = x_0 + v_0\\,t + \\frac{1}{2}a\\,t^2$$\nRelation indépendante du temps :\n$$v^2 - v_0^2 = 2a\\,(x - x_0)$$\n\n## Exercices corrigés\n\n**Exercice 1.** Une voiture roule en MRUV. Sa vitesse passe de $v_0 = 36$ km/h à $v = 108$ km/h en $\\Delta t = 10$ s. Calculer l'accélération et la distance parcourue.\n\n*Correction.* $v_0 = 36/3{,}6 = 10$ m/s, $v = 108/3{,}6 = 30$ m/s.\n$$a = \\frac{v - v_0}{\\Delta t} = \\frac{30 - 10}{10} = 2\\ \\text{m·s}^{-2}$$\nDistance :\n$$d = v_0\\,t + \\frac{1}{2}a\\,t^2 = 10 \\times 10 + \\frac{1}{2}\\times 2 \\times 10^2 = 100 + 100 = 200\\ \\text{m}$$\n\n**Exercice 2.** Un mobile a pour équation horaire $x(t) = 2t^2 - 4t + 3$ (en m, t en s). Déterminer $v(t)$, $a(t)$, et l'instant où le mobile change de sens.\n\n*Correction.* $v(t) = \\dot{x} = 4t - 4$ ; $a(t) = \\dot{v} = 4$ m·s⁻². Le mobile change de sens quand $v = 0$ : $4t - 4 = 0 \\Rightarrow t = 1$ s.\n\n## À retenir\n\n- La cinématique décrit le mouvement **sans** étudier ses causes.\n- Le mouvement est **relatif** à un référentiel.\n- $\\vec{v} = \\dfrac{d\\vec{OM}}{dt}$ est **tangent** à la trajectoire ; $\\vec{a} = \\dfrac{d\\vec{v}}{dt}$.\n- MRU : $a = 0$, $x = x_0 + vt$. MRUV : $v = v_0 + at$, $x = x_0 + v_0 t + \\frac{1}{2}at^2$, $v^2 - v_0^2 = 2a\\Delta x$.\n",
+      "quiz": {
+        "questions": [
+          {
+            "question": "Le vecteur vitesse instantanée est toujours :",
+            "options": [
+              "perpendiculaire à la trajectoire",
+              "tangent à la trajectoire",
+              "vertical",
+              "nul en MRU"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "L'unité SI de l'accélération est :",
+            "options": [
+              "m·s⁻¹",
+              "m·s⁻²",
+              "m·s",
+              "m²·s⁻¹"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "Dans un MRUV, la relation indépendante du temps est :",
+            "options": [
+              "v = v0 + at",
+              "x = v t",
+              "v² − v0² = 2a·Δx",
+              "a = v²/R"
+            ],
+            "answer": 2
+          },
+          {
+            "question": "Un mouvement rectiligne uniforme a une accélération :",
+            "options": [
+              "constante non nulle",
+              "nulle",
+              "variable",
+              "tangentielle"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "Le mouvement est une notion :",
+            "options": [
+              "absolue",
+              "relative à un référentiel",
+              "indépendante du temps",
+              "sans trajectoire"
+            ],
+            "answer": 1
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les forces et le principe d'inertie",
+      "video": "https://www.youtube.com/watch?v=8gFh1xV6f2g",
+      "lesson": "# Les forces et le principe d'inertie\n\n## Introduction\n\nUne **force** modélise une action mécanique capable de modifier le mouvement d'un corps (le mettre en mouvement, l'arrêter, le dévier) ou de le déformer. Le **principe d'inertie** (première loi de Newton) relie l'absence de force résultante à un mouvement particulier : le mouvement rectiligne uniforme ou le repos.\n\n## 1. Notion de force\n\nUne force est une **grandeur vectorielle** caractérisée par :\n- son **point d'application**,\n- sa **direction**,\n- son **sens**,\n- son **intensité** (en **newton**, N), mesurée par un dynamomètre.\n\nOn distingue les forces **de contact** (poussée, tension d'un fil, frottements, réaction d'un support) et les forces **à distance** (poids, force électrique, magnétique).\n\n## 2. Le poids\n\nLe **poids** $\\vec{P}$ est la force d'attraction exercée par la Terre :\n$$\\vec{P} = m\\,\\vec{g}$$\noù $m$ est la masse (en kg) et $g \\approx 9{,}8$ N/kg l'intensité de la pesanteur. Le poids est **vertical**, dirigé vers le bas, appliqué au **centre de gravité** $G$.\n\n⚠️ Ne pas confondre **masse** (grandeur invariable, en kg) et **poids** (force, en N, dépend du lieu).\n\n## 3. Le principe d'inertie (1re loi de Newton)\n\n> Dans un référentiel **galiléen**, tout corps **isolé** (soumis à aucune force) ou **pseudo-isolé** (forces qui se compensent) est soit **au repos**, soit en **mouvement rectiligne uniforme**.\n\nMathématiquement :\n$$\\sum \\vec{F} = \\vec{0} \\iff \\vec{v} = \\overrightarrow{cste}$$\n\nLa **réciproque** est vraie : si un corps est au repos ou en MRU, alors la somme des forces qui s'exercent sur lui est nulle.\n\n## 4. Équilibre d'un solide\n\nUn solide soumis à plusieurs forces est en **équilibre** si :\n$$\\sum \\vec{F} = \\vec{0}$$\nPour deux forces : elles ont **même droite d'action, même intensité, sens opposés**. Pour trois forces non parallèles : leurs droites d'action sont **concourantes** et les vecteurs forment un **triangle fermé**.\n\n## 5. Réaction d'un support et frottements\n\nQuand un solide repose sur un support, ce dernier exerce une **réaction** $\\vec{R}$. En l'absence de frottement, $\\vec{R}$ est **perpendiculaire** au support. En présence de frottement, $\\vec{R}$ se décompose en une composante normale $\\vec{R_N}$ et une composante tangentielle $\\vec{R_T}$ (force de frottement) qui s'oppose au glissement.\n\n## Exercices corrigés\n\n**Exercice 1.** Une masse de $m = 2$ kg est suspendue à un fil. Déterminer le poids et la tension du fil à l'équilibre. On prend $g = 9{,}8$ N/kg.\n\n*Correction.* Poids : $P = mg = 2 \\times 9{,}8 = 19{,}6$ N. À l'équilibre $\\sum\\vec{F} = \\vec{0}$, donc $\\vec{T} + \\vec{P} = \\vec{0}$ : la tension vaut $T = P = 19{,}6$ N, dirigée vers le haut.\n\n**Exercice 2.** Un solide de masse $m = 5$ kg est en équilibre sur un plan horizontal. Calculer la réaction du support ($g = 10$ N/kg).\n\n*Correction.* Forces : poids $\\vec{P}$ (vers le bas) et réaction $\\vec{R}$ (vers le haut). Équilibre : $R = P = mg = 5 \\times 10 = 50$ N.\n\n## À retenir\n\n- Une force est un **vecteur** : point d'application, direction, sens, intensité (N).\n- Poids : $\\vec{P} = m\\vec{g}$, vertical descendant, appliqué en $G$.\n- **Principe d'inertie** : $\\sum\\vec{F} = \\vec{0} \\iff$ repos ou MRU (référentiel galiléen).\n- Masse (kg, invariable) ≠ poids (N, dépend du lieu).\n",
+      "quiz": {
+        "questions": [
+          {
+            "question": "L'unité d'une force est :",
+            "options": [
+              "le kilogramme",
+              "le newton",
+              "le joule",
+              "le pascal"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "Le poids d'un corps est donné par :",
+            "options": [
+              "P = m/g",
+              "P = mg",
+              "P = g/m",
+              "P = m + g"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "D'après le principe d'inertie, si ΣF = 0, le corps est :",
+            "options": [
+              "en accélération",
+              "au repos ou en MRU",
+              "en chute libre",
+              "en rotation"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "La masse d'un corps :",
+            "options": [
+              "dépend du lieu",
+              "est invariable et se mesure en kg",
+              "se mesure en newton",
+              "est nulle dans l'espace"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "Sans frottement, la réaction d'un support est :",
+            "options": [
+              "parallèle au support",
+              "perpendiculaire au support",
+              "nulle",
+              "égale au poids toujours"
+            ],
+            "answer": 1
+          }
+        ]
+      }
+    },
+    {
+      "title": "Le travail et la puissance",
+      "video": "https://www.youtube.com/watch?v=2WgWvO9o1c8",
+      "lesson": "# Le travail et la puissance d'une force\n\n## Introduction\n\nLorsqu'une force déplace son point d'application, elle effectue un **travail**, qui mesure l'énergie transférée. La **puissance** indique avec quelle rapidité ce travail est fourni. Ces deux grandeurs sont essentielles pour aborder l'énergie.\n\n## 1. Travail d'une force constante\n\nPour une force constante $\\vec{F}$ dont le point d'application subit un déplacement $\\vec{AB}$ :\n$$W_{AB}(\\vec{F}) = \\vec{F} \\cdot \\vec{AB} = F \\times AB \\times \\cos\\alpha$$\noù $\\alpha$ est l'angle entre $\\vec{F}$ et le déplacement. Le travail s'exprime en **joule (J)**.\n\n- Si $\\alpha < 90°$ : $W > 0$, travail **moteur**.\n- Si $\\alpha = 90°$ : $W = 0$, travail **nul** (force perpendiculaire au déplacement).\n- Si $\\alpha > 90°$ : $W < 0$, travail **résistant**.\n\n## 2. Travail du poids\n\nPour un déplacement d'un point $A$ à un point $B$, le travail du poids ne dépend **que de la dénivellation** $h$ :\n$$W_{AB}(\\vec{P}) = m\\,g\\,h$$\navec $h = z_A - z_B$ (positif si le corps descend). Le travail du poids est **indépendant du chemin suivi** : le poids est une force **conservative**.\n\n## 3. Puissance d'une force\n\nLa **puissance moyenne** est le travail fourni par unité de temps :\n$$P_{moy} = \\frac{W}{\\Delta t}$$\nLa **puissance instantanée** :\n$$P = \\vec{F} \\cdot \\vec{v} = F\\,v\\,\\cos\\alpha$$\nL'unité de puissance est le **watt (W)** : $1\\ \\text{W} = 1\\ \\text{J·s}^{-1}$.\n\nOn retient aussi : $1\\ \\text{kWh} = 3{,}6\\times 10^6$ J (énergie).\n\n## Exercices corrigés\n\n**Exercice 1.** Une force horizontale $F = 50$ N tire une caisse sur $d = 8$ m dans la même direction. Calculer le travail.\n\n*Correction.* $\\alpha = 0°$, $\\cos 0° = 1$ :\n$$W = F \\times d \\times \\cos 0° = 50 \\times 8 \\times 1 = 400\\ \\text{J}$$\n\n**Exercice 2.** Un corps de masse $m = 10$ kg tombe d'une hauteur $h = 5$ m. Calculer le travail du poids ($g = 10$ N/kg), puis la puissance moyenne si la chute dure $1$ s.\n\n*Correction.*\n$$W(\\vec{P}) = mgh = 10 \\times 10 \\times 5 = 500\\ \\text{J}$$\n$$P_{moy} = \\frac{W}{\\Delta t} = \\frac{500}{1} = 500\\ \\text{W}$$\n\n**Exercice 3.** Une voiture roule à $v = 20$ m/s sous une force motrice $F = 800$ N (même sens). Puissance développée ?\n\n*Correction.* $P = F\\,v = 800 \\times 20 = 16\\,000\\ \\text{W} = 16$ kW.\n\n## À retenir\n\n- $W = \\vec{F}\\cdot\\vec{AB} = F\\,d\\,\\cos\\alpha$, en **joule**.\n- Travail **moteur** ($\\alpha < 90°$), **nul** ($90°$), **résistant** ($\\alpha > 90°$).\n- Travail du poids : $W = mgh$, **indépendant du chemin**.\n- Puissance : $P = \\dfrac{W}{\\Delta t} = F\\,v\\,\\cos\\alpha$, en **watt**.\n",
+      "quiz": {
+        "questions": [
+          {
+            "question": "Le travail d'une force se calcule par :",
+            "options": [
+              "W = F·d·cosα",
+              "W = F/d",
+              "W = m·g",
+              "W = F·t"
+            ],
+            "answer": 0
+          },
+          {
+            "question": "Une force perpendiculaire au déplacement effectue un travail :",
+            "options": [
+              "moteur",
+              "nul",
+              "résistant",
+              "négatif"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "Le travail du poids vaut :",
+            "options": [
+              "mgh",
+              "mg/h",
+              "m/gh",
+              "mgh²"
+            ],
+            "answer": 0
+          },
+          {
+            "question": "L'unité de la puissance est :",
+            "options": [
+              "le joule",
+              "le watt",
+              "le newton",
+              "le pascal"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "La puissance instantanée d'une force est :",
+            "options": [
+              "P = W·t",
+              "P = F·v·cosα",
+              "P = mg",
+              "P = F/v"
+            ],
+            "answer": 1
+          }
+        ]
+      }
+    },
+    {
+      "title": "L'énergie cinétique et potentielle",
+      "video": "https://www.youtube.com/watch?v=GZ1sFY3vC5Q",
+      "lesson": "# L'énergie cinétique et l'énergie potentielle\n\n## Introduction\n\nL'**énergie** mesure la capacité d'un système à fournir du travail. En mécanique, on distingue l'**énergie cinétique** (liée au mouvement) et l'**énergie potentielle de pesanteur** (liée à la position). Leur somme, l'**énergie mécanique**, obéit à des lois de variation et de conservation très utiles.\n\n## 1. Énergie cinétique\n\nUn corps de masse $m$ animé d'une vitesse $v$ possède une **énergie cinétique** :\n$$E_c = \\frac{1}{2}\\,m\\,v^2$$\nexprimée en **joule (J)**, avec $m$ en kg et $v$ en m/s.\n\n**Théorème de l'énergie cinétique** : dans un référentiel galiléen, la variation de l'énergie cinétique d'un corps entre deux instants est égale à la **somme des travaux** des forces extérieures :\n$$\\Delta E_c = E_{c,B} - E_{c,A} = \\sum W_{AB}(\\vec{F}_{ext})$$\n\n## 2. Énergie potentielle de pesanteur\n\nLiée à l'altitude $z$ par rapport à une origine choisie :\n$$E_{pp} = m\\,g\\,z$$\nLa variation d'énergie potentielle est l'opposé du travail du poids :\n$$\\Delta E_{pp} = -W(\\vec{P})$$\n\n## 3. Énergie mécanique\n\nL'**énergie mécanique** est la somme :\n$$E_m = E_c + E_{pp} = \\frac{1}{2}mv^2 + mgz$$\n\n**Conservation** : en l'absence de frottements (système soumis uniquement à des forces conservatives comme le poids), l'énergie mécanique se **conserve** :\n$$E_m = \\text{constante} \\iff E_{c,A} + E_{pp,A} = E_{c,B} + E_{pp,B}$$\n\nEn présence de frottements, $E_m$ **diminue** : $\\Delta E_m = W(\\vec{f}) < 0$.\n\n## Exercices corrigés\n\n**Exercice 1.** Une bille de masse $m = 0{,}2$ kg se déplace à $v = 10$ m/s. Calculer son énergie cinétique.\n\n*Correction.*\n$$E_c = \\frac{1}{2}mv^2 = \\frac{1}{2}\\times 0{,}2 \\times 10^2 = 10\\ \\text{J}$$\n\n**Exercice 2.** Un objet de masse $m = 2$ kg est lâché sans vitesse d'une hauteur $h = 5$ m. Déterminer sa vitesse au sol par conservation de l'énergie mécanique ($g = 10$ N/kg).\n\n*Correction.* Au point haut : $E_c = 0$, $E_{pp} = mgh$. Au sol : $E_{pp} = 0$, $E_c = \\frac{1}{2}mv^2$.\nConservation : $\\frac{1}{2}mv^2 = mgh \\Rightarrow v = \\sqrt{2gh} = \\sqrt{2\\times 10 \\times 5} = \\sqrt{100} = 10$ m/s.\n\n**Exercice 3.** Une voiture de masse $m = 1000$ kg passe de $v_0 = 0$ à $v = 20$ m/s. Travail des forces motrices (sol horizontal) ?\n\n*Correction.* Théorème de l'énergie cinétique :\n$$W = \\Delta E_c = \\frac{1}{2}m v^2 - 0 = \\frac{1}{2}\\times 1000 \\times 20^2 = 200\\,000\\ \\text{J} = 200\\ \\text{kJ}$$\n\n## À retenir\n\n- $E_c = \\dfrac{1}{2}mv^2$ ; $E_{pp} = mgz$ ; en joule.\n- **Théorème de l'énergie cinétique** : $\\Delta E_c = \\sum W(\\vec{F}_{ext})$.\n- $E_m = E_c + E_{pp}$ se **conserve** sans frottement.\n- Avec frottements : $\\Delta E_m = W(\\vec{f}) < 0$.\n- Chute libre : $v = \\sqrt{2gh}$.\n",
+      "quiz": {
+        "questions": [
+          {
+            "question": "L'énergie cinétique s'écrit :",
+            "options": [
+              "mgz",
+              "½mv²",
+              "mv",
+              "½mv"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "Le théorème de l'énergie cinétique relie ΔEc à :",
+            "options": [
+              "la masse seule",
+              "la somme des travaux des forces",
+              "la puissance",
+              "l'altitude"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "L'énergie potentielle de pesanteur vaut :",
+            "options": [
+              "½mv²",
+              "mgz",
+              "mg/z",
+              "mvz"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "Sans frottement, l'énergie mécanique :",
+            "options": [
+              "augmente",
+              "se conserve",
+              "diminue",
+              "s'annule"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "En chute libre depuis une hauteur h, la vitesse au sol est :",
+            "options": [
+              "√(gh)",
+              "√(2gh)",
+              "2gh",
+              "gh"
+            ],
+            "answer": 1
+          }
+        ]
+      }
+    },
+    {
+      "title": "Le courant électrique continu",
+      "video": "https://www.youtube.com/watch?v=8Iqz1tQ1V0M",
+      "lesson": "# Le courant électrique continu\n\n## Introduction\n\nLe **courant électrique** est un déplacement ordonné de **porteurs de charges** (les électrons dans un métal). Le courant **continu** est un courant dont l'intensité et le sens restent **constants** au cours du temps. Ce chapitre pose les grandeurs de base : intensité, tension, et les lois fondamentales des circuits.\n\n## 1. Nature et sens du courant\n\nDans un conducteur métallique, le courant est dû au déplacement des **électrons libres**. Par convention, le **sens conventionnel du courant** (à l'extérieur du générateur) va du pôle **+** vers le pôle **−**, soit **l'inverse** du déplacement réel des électrons.\n\n## 2. Intensité du courant\n\nL'**intensité** $I$ mesure le **débit de charges** à travers une section du conducteur :\n$$I = \\frac{Q}{\\Delta t}$$\noù $Q$ est la charge (en coulombs, C) traversant la section pendant $\\Delta t$ (en s). L'intensité s'exprime en **ampère (A)** et se mesure avec un **ampèremètre** branché **en série**.\n\n## 3. Tension électrique\n\nLa **tension** $U_{AB}$ entre deux points $A$ et $B$ représente la différence de potentiel $V_A - V_B$. Elle s'exprime en **volt (V)** et se mesure avec un **voltmètre** branché **en dérivation** (en parallèle).\n\n## 4. Lois des circuits\n\n**Loi des nœuds** (conservation de la charge) : la somme des intensités des courants qui **arrivent** à un nœud est égale à la somme des intensités qui en **repartent** :\n$$\\sum I_{entrant} = \\sum I_{sortant}$$\n\n**Loi des mailles** : dans une maille, la somme algébrique des tensions est nulle :\n$$\\sum U = 0$$\n\n**Conséquences :**\n- En **série**, l'intensité est la **même** partout : $I_1 = I_2 = \\dots$ ; les tensions **s'ajoutent**.\n- En **dérivation** (parallèle), la tension est la **même** aux bornes ; les intensités **s'ajoutent**.\n\n## Exercices corrigés\n\n**Exercice 1.** Une charge $Q = 60$ C traverse une section de fil en $\\Delta t = 2$ min. Calculer l'intensité.\n\n*Correction.* $\\Delta t = 2 \\times 60 = 120$ s.\n$$I = \\frac{Q}{\\Delta t} = \\frac{60}{120} = 0{,}5\\ \\text{A}$$\n\n**Exercice 2.** À un nœud, deux courants $I_1 = 0{,}3$ A et $I_2 = 0{,}5$ A arrivent ; un seul courant $I_3$ repart. Déterminer $I_3$.\n\n*Correction.* Loi des nœuds : $I_3 = I_1 + I_2 = 0{,}3 + 0{,}5 = 0{,}8$ A.\n\n**Exercice 3.** Dans un circuit série, le générateur délivre $U = 6$ V. Deux récepteurs ont $U_1 = 2{,}5$ V. Quelle est la tension $U_2$ aux bornes du second ?\n\n*Correction.* Loi des mailles : $U = U_1 + U_2 \\Rightarrow U_2 = 6 - 2{,}5 = 3{,}5$ V.\n\n## À retenir\n\n- Sens conventionnel : du **+** vers le **−** à l'extérieur du générateur (inverse des électrons).\n- $I = \\dfrac{Q}{\\Delta t}$, en ampère ; **ampèremètre en série**, **voltmètre en dérivation**.\n- **Loi des nœuds** : $\\sum I_{entrant} = \\sum I_{sortant}$.\n- **Loi des mailles** : $\\sum U = 0$.\n- Série : même $I$, tensions s'ajoutent. Dérivation : même $U$, intensités s'ajoutent.\n",
+      "quiz": {
+        "questions": [
+          {
+            "question": "Le sens conventionnel du courant va, hors du générateur :",
+            "options": [
+              "du − vers le +",
+              "du + vers le −",
+              "dans les deux sens",
+              "comme les électrons"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "L'intensité du courant est définie par :",
+            "options": [
+              "I = Q·t",
+              "I = Q/Δt",
+              "I = U/Q",
+              "I = Q + t"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "Un ampèremètre se branche :",
+            "options": [
+              "en dérivation",
+              "en série",
+              "aux bornes du générateur seulement",
+              "n'importe comment"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "La loi des nœuds traduit la conservation :",
+            "options": [
+              "de la tension",
+              "de la charge (intensité)",
+              "de l'énergie",
+              "de la puissance"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "Dans un circuit en série, l'intensité est :",
+            "options": [
+              "la même partout",
+              "différente partout",
+              "nulle",
+              "doublée à chaque récepteur"
+            ],
+            "answer": 0
+          }
+        ]
+      }
+    },
+    {
+      "title": "La loi d'Ohm et les résistances",
+      "video": "https://www.youtube.com/watch?v=8kK2zwjRV0E",
+      "lesson": "# La loi d'Ohm et les résistances\n\n## Introduction\n\nUne **résistance** (ou conducteur ohmique) est un dipôle qui s'oppose au passage du courant et convertit l'énergie électrique en chaleur (effet Joule). La **loi d'Ohm** lie simplement la tension à ses bornes et l'intensité qui le traverse.\n\n## 1. La loi d'Ohm\n\nPour un conducteur ohmique de résistance $R$, traversé par un courant d'intensité $I$ :\n$$U = R\\,I$$\navec $U$ en volts (V), $I$ en ampères (A) et $R$ en **ohms ($\\Omega$)**. La caractéristique $U = f(I)$ est une **droite passant par l'origine**, de pente $R$.\n\n## 2. Résistance d'un fil\n\nLa résistance d'un conducteur dépend de sa nature et de sa géométrie :\n$$R = \\rho\\,\\frac{L}{S}$$\noù $\\rho$ est la **résistivité** (en $\\Omega\\cdot$m), $L$ la longueur et $S$ la section. Plus le fil est long et fin, plus $R$ est grande.\n\n## 3. Associations de résistances\n\n**En série**, les résistances s'ajoutent :\n$$R_{eq} = R_1 + R_2 + \\dots + R_n$$\n\n**En parallèle (dérivation)**, les inverses s'ajoutent :\n$$\\frac{1}{R_{eq}} = \\frac{1}{R_1} + \\frac{1}{R_2} + \\dots + \\frac{1}{R_n}$$\nPour deux résistances en parallèle : $R_{eq} = \\dfrac{R_1\\,R_2}{R_1 + R_2}$.\n\n## 4. Effet Joule et puissance\n\nUn conducteur ohmique dissipe une puissance sous forme de chaleur :\n$$P = U\\,I = R\\,I^2 = \\frac{U^2}{R}$$\nexprimée en **watt (W)**. L'énergie dissipée pendant $\\Delta t$ vaut $E = P\\,\\Delta t$ (en joule).\n\n## Exercices corrigés\n\n**Exercice 1.** Une résistance $R = 220\\ \\Omega$ est traversée par $I = 50$ mA. Calculer la tension à ses bornes.\n\n*Correction.* $I = 0{,}050$ A.\n$$U = R\\,I = 220 \\times 0{,}050 = 11\\ \\text{V}$$\n\n**Exercice 2.** Deux résistances $R_1 = 100\\ \\Omega$ et $R_2 = 300\\ \\Omega$ sont associées (a) en série, (b) en parallèle. Calculer $R_{eq}$ dans chaque cas.\n\n*Correction.*\n(a) Série : $R_{eq} = 100 + 300 = 400\\ \\Omega$.\n(b) Parallèle : $R_{eq} = \\dfrac{100 \\times 300}{100 + 300} = \\dfrac{30000}{400} = 75\\ \\Omega$.\n\n**Exercice 3.** Une résistance $R = 50\\ \\Omega$ sous une tension $U = 10$ V. Puissance dissipée par effet Joule ?\n\n*Correction.*\n$$P = \\frac{U^2}{R} = \\frac{10^2}{50} = \\frac{100}{50} = 2\\ \\text{W}$$\n\n## À retenir\n\n- **Loi d'Ohm** : $U = R\\,I$ ; caractéristique = droite par l'origine.\n- Résistance d'un fil : $R = \\rho\\,\\dfrac{L}{S}$.\n- Série : $R_{eq} = R_1 + R_2$. Parallèle : $\\dfrac{1}{R_{eq}} = \\dfrac{1}{R_1} + \\dfrac{1}{R_2}$.\n- **Effet Joule** : $P = UI = RI^2 = \\dfrac{U^2}{R}$.\n",
+      "quiz": {
+        "questions": [
+          {
+            "question": "La loi d'Ohm s'écrit :",
+            "options": [
+              "U = R/I",
+              "U = R·I",
+              "U = I/R",
+              "U = R + I"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "L'unité de la résistance est :",
+            "options": [
+              "le volt",
+              "l'ampère",
+              "l'ohm",
+              "le watt"
+            ],
+            "answer": 2
+          },
+          {
+            "question": "En série, la résistance équivalente est :",
+            "options": [
+              "R1·R2",
+              "R1 + R2",
+              "1/R1 + 1/R2",
+              "R1/R2"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "La puissance dissipée par effet Joule est :",
+            "options": [
+              "P = R/I",
+              "P = R·I²",
+              "P = U/I",
+              "P = I/U"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "Pour deux résistances en parallèle, Req est :",
+            "options": [
+              "plus grande que chacune",
+              "égale à leur somme",
+              "R1·R2/(R1+R2)",
+              "nulle"
+            ],
+            "answer": 2
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les condensateurs",
+      "video": "https://www.youtube.com/watch?v=eXm0wgQ6gPo",
+      "lesson": "# Les condensateurs\n\n## Introduction\n\nUn **condensateur** est un dipôle capable d'**emmagasiner des charges électriques** et de l'énergie. Il est constitué de deux **armatures** conductrices séparées par un **isolant** (le diélectrique). On le retrouve dans la quasi-totalité des circuits électroniques (filtrage, mémorisation, temporisation).\n\n## 1. Charge et capacité\n\nQuand on applique une tension $U$ aux bornes d'un condensateur, ses armatures portent des charges opposées $+q$ et $-q$. La charge $q$ est **proportionnelle** à la tension :\n$$q = C\\,U$$\nLa constante $C$ est la **capacité**, exprimée en **farad (F)**. En pratique on utilise des sous-multiples : le microfarad ($1\\ \\mu\\text{F} = 10^{-6}$ F), le nanofarad ($10^{-9}$ F), le picofarad ($10^{-12}$ F).\n\n## 2. Capacité d'un condensateur plan\n\nPour deux armatures planes parallèles de surface $S$ séparées d'une distance $e$ :\n$$C = \\varepsilon\\,\\frac{S}{e}$$\noù $\\varepsilon$ est la **permittivité** du diélectrique. La capacité augmente avec la surface et diminue avec l'écartement.\n\n## 3. Relation intensité–tension\n\nL'intensité du courant qui charge le condensateur est liée à la variation de la tension :\n$$i = \\frac{dq}{dt} = C\\,\\frac{du}{dt}$$\nLa tension aux bornes d'un condensateur ne peut pas **varier brutalement**.\n\n## 4. Énergie emmagasinée\n\nUn condensateur chargé sous la tension $U$ emmagasine une **énergie** :\n$$E = \\frac{1}{2}\\,C\\,U^2 = \\frac{1}{2}\\,\\frac{q^2}{C} = \\frac{1}{2}\\,q\\,U$$\nexprimée en **joule (J)**.\n\n## 5. Associations\n\n**En parallèle**, les capacités s'ajoutent : $C_{eq} = C_1 + C_2 + \\dots$\n**En série**, les inverses s'ajoutent : $\\dfrac{1}{C_{eq}} = \\dfrac{1}{C_1} + \\dfrac{1}{C_2} + \\dots$\n\n## Exercices corrigés\n\n**Exercice 1.** Un condensateur de capacité $C = 10\\ \\mu$F est chargé sous $U = 12$ V. Calculer la charge $q$.\n\n*Correction.* $C = 10\\times 10^{-6}$ F.\n$$q = C\\,U = 10\\times 10^{-6} \\times 12 = 1{,}2\\times 10^{-4}\\ \\text{C} = 120\\ \\mu\\text{C}$$\n\n**Exercice 2.** Calculer l'énergie emmagasinée par ce condensateur.\n\n*Correction.*\n$$E = \\frac{1}{2}C U^2 = \\frac{1}{2}\\times 10\\times 10^{-6} \\times 12^2 = \\frac{1}{2}\\times 10^{-5}\\times 144 = 7{,}2\\times 10^{-4}\\ \\text{J}$$\n\n**Exercice 3.** Deux condensateurs $C_1 = 4\\ \\mu$F et $C_2 = 6\\ \\mu$F sont en parallèle. Capacité équivalente ?\n\n*Correction.* En parallèle : $C_{eq} = C_1 + C_2 = 4 + 6 = 10\\ \\mu$F.\n\n## À retenir\n\n- $q = C\\,U$ ; capacité en **farad (F)**.\n- Condensateur plan : $C = \\varepsilon\\,\\dfrac{S}{e}$.\n- $i = C\\,\\dfrac{du}{dt}$ ; la tension ne varie pas brutalement.\n- Énergie : $E = \\dfrac{1}{2}C U^2$.\n- Parallèle : $C_{eq} = C_1 + C_2$. Série : $\\dfrac{1}{C_{eq}} = \\dfrac{1}{C_1} + \\dfrac{1}{C_2}$.\n",
+      "quiz": {
+        "questions": [
+          {
+            "question": "La charge d'un condensateur vaut :",
+            "options": [
+              "q = C/U",
+              "q = C·U",
+              "q = U/C",
+              "q = C + U"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "L'unité de la capacité est :",
+            "options": [
+              "le farad",
+              "le coulomb",
+              "le volt",
+              "l'ohm"
+            ],
+            "answer": 0
+          },
+          {
+            "question": "L'énergie emmagasinée par un condensateur est :",
+            "options": [
+              "CU",
+              "½CU²",
+              "½q²",
+              "CU²"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "En parallèle, la capacité équivalente est :",
+            "options": [
+              "1/C1 + 1/C2",
+              "C1 + C2",
+              "C1·C2",
+              "C1 − C2"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "La tension aux bornes d'un condensateur :",
+            "options": [
+              "varie brutalement",
+              "ne peut pas varier brutalement",
+              "est toujours nulle",
+              "est indépendante de q"
+            ],
+            "answer": 1
+          }
+        ]
+      }
+    },
+    {
+      "title": "L'optique géométrique : réflexion et réfraction",
+      "video": "https://www.youtube.com/watch?v=L8gFPMmQFTw",
+      "lesson": "# L'optique géométrique : réflexion et réfraction\n\n## Introduction\n\nL'**optique géométrique** étudie la propagation de la lumière à l'aide du modèle du **rayon lumineux**. Dans un milieu transparent et homogène, la lumière se propage en **ligne droite**. Lorsqu'elle rencontre une surface séparant deux milieux, elle peut être **réfléchie** et/ou **réfractée**.\n\n## 1. Propagation rectiligne\n\nDans un milieu transparent, homogène et isotrope, la lumière se propage en ligne droite. Ce principe explique la formation des **ombres** et la **chambre noire**.\n\n## 2. La réflexion\n\nQuand un rayon lumineux frappe une surface réfléchissante, il **rebondit**. On définit la **normale** (perpendiculaire à la surface au point d'incidence), l'**angle d'incidence** $i_1$ et l'**angle de réflexion** $i_1'$, tous deux mesurés par rapport à la normale.\n\n**Lois de Descartes pour la réflexion :**\n1. Le rayon réfléchi est dans le **plan d'incidence**.\n2. L'angle de réflexion est égal à l'angle d'incidence :\n$$i_1' = i_1$$\n\n## 3. La réfraction\n\nQuand la lumière passe d'un milieu transparent à un autre (par exemple de l'air vers l'eau), elle **change de direction** : c'est la **réfraction**. Chaque milieu est caractérisé par son **indice de réfraction** $n$ (sans unité, $n \\geq 1$) :\n$$n = \\frac{c}{v}$$\noù $c$ est la vitesse de la lumière dans le vide et $v$ sa vitesse dans le milieu.\n\n**Loi de Snell-Descartes pour la réfraction :**\n$$n_1 \\sin i_1 = n_2 \\sin i_2$$\n\nQuand la lumière passe d'un milieu **moins réfringent** à un milieu **plus réfringent** ($n_2 > n_1$), elle se rapproche de la normale.\n\n## 4. Réflexion totale\n\nLorsque la lumière passe d'un milieu plus réfringent vers un milieu moins réfringent ($n_1 > n_2$), au-delà d'un **angle limite** $i_\\ell$ il n'y a plus de rayon réfracté : toute la lumière est réfléchie (**réflexion totale**). L'angle limite vérifie :\n$$\\sin i_\\ell = \\frac{n_2}{n_1}$$\nC'est le principe des **fibres optiques**.\n\n## Exercices corrigés\n\n**Exercice 1.** Un rayon arrive sur un miroir plan avec un angle d'incidence $i_1 = 30°$. Quel est l'angle de réflexion ?\n\n*Correction.* D'après la loi de la réflexion : $i_1' = i_1 = 30°$.\n\n**Exercice 2.** Un rayon passe de l'air ($n_1 = 1$) à l'eau ($n_2 = 1{,}33$) avec $i_1 = 45°$. Calculer l'angle de réfraction $i_2$.\n\n*Correction.* $n_1 \\sin i_1 = n_2 \\sin i_2$ :\n$$\\sin i_2 = \\frac{n_1 \\sin i_1}{n_2} = \\frac{1 \\times \\sin 45°}{1{,}33} = \\frac{0{,}707}{1{,}33} = 0{,}532$$\n$$i_2 = \\arcsin(0{,}532) \\approx 32{,}1°$$\nLe rayon se rapproche de la normale, ce qui est cohérent ($n_2 > n_1$).\n\n**Exercice 3.** Calculer l'angle limite à l'interface verre ($n_1 = 1{,}5$) / air ($n_2 = 1$).\n\n*Correction.*\n$$\\sin i_\\ell = \\frac{n_2}{n_1} = \\frac{1}{1{,}5} = 0{,}667 \\Rightarrow i_\\ell \\approx 41{,}8°$$\n\n## À retenir\n\n- Propagation **rectiligne** dans un milieu homogène transparent.\n- **Réflexion** : $i_1' = i_1$.\n- Indice : $n = \\dfrac{c}{v} \\geq 1$.\n- **Réfraction (Snell-Descartes)** : $n_1 \\sin i_1 = n_2 \\sin i_2$.\n- **Réflexion totale** si $n_1 > n_2$ et $i_1 > i_\\ell$, avec $\\sin i_\\ell = \\dfrac{n_2}{n_1}$.\n",
+      "quiz": {
+        "questions": [
+          {
+            "question": "La loi de la réflexion énonce que :",
+            "options": [
+              "i1 = 2·i1'",
+              "i1' = i1",
+              "i1' = 90° − i1",
+              "i1' = 0"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "L'indice de réfraction d'un milieu est :",
+            "options": [
+              "n = v/c",
+              "n = c/v",
+              "n = c·v",
+              "n = c + v"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "La loi de Snell-Descartes pour la réfraction est :",
+            "options": [
+              "n1·i1 = n2·i2",
+              "n1 sin i1 = n2 sin i2",
+              "n1/i1 = n2/i2",
+              "sin i1 = sin i2"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "La réflexion totale se produit quand la lumière va :",
+            "options": [
+              "d'un milieu moins vers plus réfringent",
+              "d'un milieu plus vers moins réfringent au-delà de l'angle limite",
+              "dans le vide",
+              "à incidence nulle"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "L'angle limite vérifie :",
+            "options": [
+              "sin iℓ = n1/n2",
+              "sin iℓ = n2/n1",
+              "cos iℓ = n2/n1",
+              "tan iℓ = n2/n1"
+            ],
+            "answer": 1
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les lentilles minces",
+      "video": "https://www.youtube.com/watch?v=YwzJhQjGd0Y",
+      "lesson": "# Les lentilles minces\n\n## Introduction\n\nUne **lentille mince** est un milieu transparent limité par deux surfaces dont au moins une est sphérique, et dont l'épaisseur est négligeable devant les rayons de courbure. Les lentilles permettent de **former des images** : c'est le principe des lunettes, appareils photo, microscopes et projecteurs.\n\n## 1. Les deux types de lentilles\n\n- **Lentilles convergentes** (bords minces) : elles font converger les rayons vers un point. Distance focale $f' > 0$.\n- **Lentilles divergentes** (bords épais) : elles font diverger les rayons. Distance focale $f' < 0$.\n\n## 2. Éléments caractéristiques\n\n- Le **centre optique** $O$ : tout rayon le traversant n'est pas dévié.\n- L'**axe optique** : axe de symétrie passant par $O$.\n- Le **foyer image** $F'$ : point où convergent les rayons parallèles à l'axe (pour une convergente).\n- Le **foyer objet** $F$, symétrique de $F'$ par rapport à $O$.\n- La **distance focale** : $f' = \\overline{OF'}$.\n- La **vergence** : $C = \\dfrac{1}{f'}$, en **dioptries ($\\delta$)**, $f'$ en mètres.\n\n## 3. Construction de l'image\n\nPour construire l'image $B'$ d'un point $B$, on utilise **deux rayons particuliers** parmi :\n1. Le rayon passant par le **centre optique** $O$ : non dévié.\n2. Le rayon **parallèle à l'axe** : émerge en passant par le **foyer image** $F'$.\n3. Le rayon passant par le **foyer objet** $F$ : émerge **parallèle à l'axe**.\n\n## 4. Relation de conjugaison et grandissement\n\nAvec les distances algébriques mesurées depuis $O$ ($\\overline{OA}$ pour l'objet, $\\overline{OA'}$ pour l'image) :\n$$\\frac{1}{\\overline{OA'}} - \\frac{1}{\\overline{OA}} = \\frac{1}{f'}$$\n\nLe **grandissement** :\n$$\\gamma = \\frac{\\overline{A'B'}}{\\overline{AB}} = \\frac{\\overline{OA'}}{\\overline{OA}}$$\n- $|\\gamma| > 1$ : image agrandie ; $|\\gamma| < 1$ : image réduite.\n- $\\gamma < 0$ : image renversée ; $\\gamma > 0$ : image droite.\n\n## Exercices corrigés\n\n**Exercice 1.** Une lentille convergente a une distance focale $f' = 20$ cm. Calculer sa vergence.\n\n*Correction.* $f' = 0{,}20$ m.\n$$C = \\frac{1}{f'} = \\frac{1}{0{,}20} = 5\\ \\delta$$\n\n**Exercice 2.** Un objet est placé à $\\overline{OA} = -30$ cm d'une lentille de distance focale $f' = 10$ cm. Déterminer la position de l'image et le grandissement.\n\n*Correction.* Relation de conjugaison :\n$$\\frac{1}{\\overline{OA'}} = \\frac{1}{f'} + \\frac{1}{\\overline{OA}} = \\frac{1}{10} + \\frac{1}{-30} = \\frac{3 - 1}{30} = \\frac{2}{30}$$\n$$\\overline{OA'} = \\frac{30}{2} = 15\\ \\text{cm}$$\nGrandissement :\n$$\\gamma = \\frac{\\overline{OA'}}{\\overline{OA}} = \\frac{15}{-30} = -0{,}5$$\nL'image est **réelle** (OA' > 0), **renversée** et **deux fois plus petite**.\n\n## À retenir\n\n- **Convergente** : bords minces, $f' > 0$ ; **divergente** : bords épais, $f' < 0$.\n- Vergence : $C = \\dfrac{1}{f'}$ en dioptries ($f'$ en m).\n- Trois rayons utiles : par $O$ (non dévié), parallèle → $F'$, par $F$ → parallèle.\n- Conjugaison : $\\dfrac{1}{\\overline{OA'}} - \\dfrac{1}{\\overline{OA}} = \\dfrac{1}{f'}$.\n- Grandissement : $\\gamma = \\dfrac{\\overline{OA'}}{\\overline{OA}}$.\n",
+      "quiz": {
+        "questions": [
+          {
+            "question": "Une lentille convergente a une distance focale :",
+            "options": [
+              "négative",
+              "positive",
+              "nulle",
+              "infinie"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "La vergence d'une lentille s'exprime en :",
+            "options": [
+              "mètres",
+              "dioptries",
+              "radians",
+              "lux"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "Un rayon passant par le centre optique O est :",
+            "options": [
+              "réfléchi",
+              "non dévié",
+              "dévié vers F'",
+              "absorbé"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "La relation de conjugaison est :",
+            "options": [
+              "1/OA' − 1/OA = 1/f'",
+              "OA' − OA = f'",
+              "OA'·OA = f'",
+              "1/OA' + 1/OA = f'"
+            ],
+            "answer": 0
+          },
+          {
+            "question": "Un grandissement γ négatif signifie que l'image est :",
+            "options": [
+              "agrandie",
+              "renversée",
+              "droite",
+              "virtuelle"
+            ],
+            "answer": 1
+          }
+        ]
+      }
+    },
+    {
+      "title": "Les miroirs",
+      "video": "https://www.youtube.com/watch?v=4HBP8sX2T3M",
+      "lesson": "# Les miroirs\n\n## Introduction\n\nUn **miroir** est une surface polie qui réfléchit la lumière. On distingue le **miroir plan** (surface plane) et les **miroirs sphériques** (concaves ou convexes). L'étude des miroirs prolonge la loi de la réflexion vue en optique géométrique et permet de comprendre la formation d'images.\n\n## 1. Le miroir plan\n\nUn miroir plan donne d'un objet une image :\n- **virtuelle** (on ne peut pas la recueillir sur un écran),\n- **symétrique** de l'objet par rapport au plan du miroir,\n- de **même taille** (grandissement $\\gamma = 1$),\n- **droite** mais **inversée** gauche-droite.\n\nLa distance objet-miroir est égale à la distance miroir-image.\n\n## 2. Les miroirs sphériques\n\nUn miroir sphérique est une portion de sphère réfléchissante :\n- **concave** (convergent) : la face réfléchissante est creuse ;\n- **convexe** (divergent) : la face réfléchissante est bombée.\n\nÉléments : le **centre** $C$, le **sommet** $S$, l'**axe optique** $(SC)$, le **foyer** $F$ situé au **milieu** de $[SC]$. La **distance focale** :\n$$f = \\overline{SF} = \\frac{\\overline{SC}}{2} = \\frac{R}{2}$$\noù $R$ est le rayon de courbure.\n\n## 3. Relation de conjugaison (origine au sommet)\n\n$$\\frac{1}{\\overline{SA'}} + \\frac{1}{\\overline{SA}} = \\frac{2}{\\overline{SC}} = \\frac{1}{\\overline{SF}}$$\n\nLe **grandissement** :\n$$\\gamma = \\frac{\\overline{A'B'}}{\\overline{AB}} = -\\frac{\\overline{SA'}}{\\overline{SA}}$$\n\n## 4. Rayons particuliers (miroir concave)\n\n1. Un rayon **parallèle à l'axe** se réfléchit en passant par le **foyer** $F$.\n2. Un rayon passant par le **foyer** $F$ se réfléchit **parallèlement à l'axe**.\n3. Un rayon passant par le **centre** $C$ revient sur lui-même (incidence normale).\n\n## Exercices corrigés\n\n**Exercice 1.** Un objet est placé à 1 m d'un miroir plan. À quelle distance se trouve son image et quelle est sa nature ?\n\n*Correction.* L'image d'un miroir plan est symétrique : elle est à **1 m derrière** le miroir, **virtuelle**, **droite** et de **même taille**.\n\n**Exercice 2.** Un miroir concave a un rayon de courbure $R = 40$ cm. Calculer sa distance focale.\n\n*Correction.*\n$$f = \\frac{R}{2} = \\frac{40}{2} = 20\\ \\text{cm}$$\n\n**Exercice 3.** Un objet est placé à $\\overline{SA} = -60$ cm d'un miroir concave de distance focale $f = -20$ cm (origine au sommet, axe orienté). Position de l'image ?\n\n*Correction.* (avec convention $\\overline{SF} = -20$ cm) :\n$$\\frac{1}{\\overline{SA'}} = \\frac{1}{\\overline{SF}} - \\frac{1}{\\overline{SA}} = \\frac{1}{-20} - \\frac{1}{-60} = \\frac{-3 + 1}{60} = \\frac{-2}{60}$$\n$$\\overline{SA'} = -30\\ \\text{cm}$$\nL'image est réelle, située à 30 cm devant le miroir.\n\n## À retenir\n\n- **Miroir plan** : image virtuelle, symétrique, même taille, droite.\n- Miroirs sphériques : **concave** (convergent), **convexe** (divergent).\n- Foyer au milieu de $[SC]$ : $f = \\dfrac{R}{2}$.\n- Conjugaison : $\\dfrac{1}{\\overline{SA'}} + \\dfrac{1}{\\overline{SA}} = \\dfrac{1}{\\overline{SF}}$.\n- Grandissement : $\\gamma = -\\dfrac{\\overline{SA'}}{\\overline{SA}}$.\n",
+      "quiz": {
+        "questions": [
+          {
+            "question": "L'image donnée par un miroir plan est :",
+            "options": [
+              "réelle et agrandie",
+              "virtuelle, symétrique, même taille",
+              "renversée et réduite",
+              "au centre du miroir"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "Pour un miroir sphérique, le foyer est situé :",
+            "options": [
+              "au sommet",
+              "au milieu de [SC]",
+              "au centre C",
+              "à l'infini"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "La distance focale d'un miroir sphérique vaut :",
+            "options": [
+              "R",
+              "R/2",
+              "2R",
+              "R²"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "Un miroir concave est :",
+            "options": [
+              "divergent",
+              "convergent",
+              "plan",
+              "sans foyer"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "Un rayon parallèle à l'axe d'un miroir concave se réfléchit :",
+            "options": [
+              "en passant par le foyer F",
+              "vers le centre C",
+              "parallèlement",
+              "perpendiculairement"
+            ],
+            "answer": 0
+          }
+        ]
+      }
+    },
+    {
+      "title": "La calorimétrie et la thermométrie",
+      "video": "https://www.youtube.com/watch?v=7sQF4xQ8X8Y",
+      "lesson": "# La calorimétrie et la thermométrie\n\n## Introduction\n\nLa **thermométrie** est la mesure des **températures**, tandis que la **calorimétrie** étudie les **échanges de chaleur** entre les corps. Quand deux corps de températures différentes sont mis en contact, ils échangent de l'énergie thermique jusqu'à atteindre une **température d'équilibre** commune.\n\n## 1. Température et échelles thermométriques\n\nLa **température** mesure l'agitation des particules. Les échelles usuelles :\n- échelle **Celsius** ($\\theta$ en °C),\n- échelle **Kelvin** ($T$ en K, échelle absolue).\n\nRelation : $T(\\text{K}) = \\theta(°\\text{C}) + 273{,}15$. Le **zéro absolu** correspond à $T = 0$ K, soit $\\theta = -273{,}15$ °C.\n\n## 2. La quantité de chaleur\n\nLa **chaleur** $Q$ est une énergie échangée à cause d'une différence de température. Pour faire varier la température d'un corps de masse $m$ d'une valeur $\\Delta\\theta$ sans changement d'état :\n$$Q = m\\,c\\,\\Delta\\theta$$\noù $c$ est la **chaleur massique** (ou capacité thermique massique), en **J·kg⁻¹·K⁻¹**. Pour l'eau, $c \\approx 4185$ J·kg⁻¹·K⁻¹.\n\n- $Q > 0$ : le corps **reçoit** de la chaleur (il se réchauffe).\n- $Q < 0$ : le corps **cède** de la chaleur (il se refroidit).\n\n## 3. Chaleur latente (changements d'état)\n\nLors d'un **changement d'état** (fusion, vaporisation…), la température reste **constante** et la chaleur échangée est :\n$$Q = m\\,L$$\noù $L$ est la **chaleur latente massique** (en J·kg⁻¹).\n\n## 4. Principe des échanges de chaleur\n\nDans un **calorimètre** (enceinte isolée), le système est thermiquement isolé : la somme des chaleurs échangées est nulle.\n$$\\sum Q = 0 \\quad\\Longrightarrow\\quad Q_{cédé} + Q_{reçu} = 0$$\nLe corps chaud cède une chaleur exactement compensée par celle reçue par le corps froid (en valeur absolue) ; tous atteignent la **température d'équilibre** $\\theta_e$.\n\n## Exercices corrigés\n\n**Exercice 1.** Quelle chaleur faut-il pour chauffer $m = 2$ kg d'eau de $20$ °C à $80$ °C ? ($c = 4185$ J·kg⁻¹·K⁻¹.)\n\n*Correction.* $\\Delta\\theta = 80 - 20 = 60$ °C (= 60 K).\n$$Q = m\\,c\\,\\Delta\\theta = 2 \\times 4185 \\times 60 = 502\\,200\\ \\text{J} \\approx 502\\ \\text{kJ}$$\n\n**Exercice 2.** Convertir $\\theta = 25$ °C en kelvins.\n\n*Correction.* $T = 25 + 273{,}15 = 298{,}15$ K.\n\n**Exercice 3.** On mélange $m_1 = 200$ g d'eau à $\\theta_1 = 80$ °C avec $m_2 = 300$ g d'eau à $\\theta_2 = 20$ °C (calorimètre parfait). Température d'équilibre ?\n\n*Correction.* $\\sum Q = 0$ :\n$$m_1 c (\\theta_e - \\theta_1) + m_2 c (\\theta_e - \\theta_2) = 0$$\n$c$ se simplifie :\n$$\\theta_e = \\frac{m_1\\theta_1 + m_2\\theta_2}{m_1 + m_2} = \\frac{200\\times 80 + 300\\times 20}{200 + 300} = \\frac{16000 + 6000}{500} = \\frac{22000}{500} = 44\\ °\\text{C}$$\n\n## À retenir\n\n- $T(\\text{K}) = \\theta(°\\text{C}) + 273{,}15$ ; zéro absolu à $-273{,}15$ °C.\n- Sans changement d'état : $Q = m\\,c\\,\\Delta\\theta$ ($c$ : chaleur massique).\n- Changement d'état : $Q = m\\,L$, à **température constante**.\n- Calorimètre isolé : $\\sum Q = 0$ (chaleur cédée = chaleur reçue).\n- Température d'équilibre par mélange de deux eaux : moyenne pondérée par les masses.\n",
+      "quiz": {
+        "questions": [
+          {
+            "question": "Pour convertir des °C en K, on ajoute :",
+            "options": [
+              "100",
+              "273,15",
+              "1000",
+              "rien"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "La quantité de chaleur sans changement d'état est :",
+            "options": [
+              "Q = mL",
+              "Q = m·c·Δθ",
+              "Q = c/m",
+              "Q = mΔθ"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "La chaleur massique s'exprime en :",
+            "options": [
+              "J",
+              "J·kg⁻¹·K⁻¹",
+              "K",
+              "W"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "Lors d'un changement d'état, la température :",
+            "options": [
+              "augmente",
+              "reste constante",
+              "diminue",
+              "double"
+            ],
+            "answer": 1
+          },
+          {
+            "question": "Dans un calorimètre parfaitement isolé :",
+            "options": [
+              "ΣQ = 0",
+              "ΣQ > 0",
+              "ΣQ < 0",
+              "Q = mc"
+            ],
+            "answer": 0
+          }
+        ]
+      }
+    }
+  ]
+}
