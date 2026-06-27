@@ -34,6 +34,7 @@ import '../screens/tutor/course_summary_result_screen.dart';
 import '../screens/tutor/crop_screen.dart';
 import '../screens/profile/profile_screen.dart';
 import '../screens/progress/progress_screen.dart';
+import '../screens/progress/leaderboard_screen.dart';
 import '../screens/profile/edit_profile_screen.dart';
 import '../screens/search/global_search_screen.dart';
 import '../screens/news/article_detail_screen.dart';
@@ -183,6 +184,7 @@ final appRouter = GoRouter(
     GoRoute(path: '/exercices/fiches', builder: (_, s) =>
         ExerciseSheetsScreen(chapter: s.extra as ExerciseChapter)),
     GoRoute(path: '/progress', builder: (_, __) => const ProgressScreen()),
+    GoRoute(path: '/leaderboard', builder: (_, __) => const LeaderboardScreen()),
     GoRoute(
       path: '/cours-subject',
       builder: (_, s) => ChaptersScreen(subject: s.extra as Subject?),

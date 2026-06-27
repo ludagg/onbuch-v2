@@ -5,6 +5,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../appwrite_config.dart';
 import 'appwrite_client.dart';
 import 'local_notifications_service.dart';
+import 'leaderboard_service.dart';
+import 'auth_service.dart';
 
 /// État de progression (gamification) de l'élève.
 class GamificationState {
@@ -107,8 +109,12 @@ class GamificationService {
   static final GamificationService instance = GamificationService._();
 
   static const _prefsKey = 'gamification_v1';
+  static const _dailyKey = 'gamification_daily_v1';
 
   final ValueNotifier<GamificationState> state = ValueNotifier(const GamificationState());
+  // Historique local du XP gagné par jour ('YYYY-MM-DD' → xp). Sert au graphe
+  // d'activité et au cumul hebdomadaire (leaderboard). ~3 semaines conservées.
+  final Map<String, int> _dailyXp = {};
   String? _uid;
   bool _loaded = false;
 
@@ -134,6 +140,13 @@ class GamificationService {
       final raw = p.getString(_prefsKey);
       if (raw != null && raw.isNotEmpty) {
         state.value = GamificationState.fromMap(jsonDecode(raw) as Map<String, dynamic>);
+      }
+      final rawDaily = p.getString(_dailyKey);
+      if (rawDaily != null && rawDaily.isNotEmpty) {
+        final m = jsonDecode(rawDaily) as Map<String, dynamic>;
+        _dailyXp
+          ..clear()
+          ..addAll(m.map((k, v) => MapEntry(k, (v as num).toInt())));
       }
     } catch (_) {}
     // Serveur (autorité si dispo).
@@ -194,6 +207,55 @@ class GamificationService {
     } catch (_) {}
   }
 
+  /// Incrémente le XP du jour (historique local) + élague au-delà de 21 jours.
+  Future<void> _bumpDaily(int amount) async {
+    if (amount <= 0) return;
+    final today = _today();
+    _dailyXp[today] = (_dailyXp[today] ?? 0) + amount;
+    // Élagage : ne garder que les 21 derniers jours.
+    if (_dailyXp.length > 21) {
+      final keys = _dailyXp.keys.toList()..sort();
+      for (final k in keys.take(_dailyXp.length - 21)) {
+        _dailyXp.remove(k);
+      }
+    }
+    try {
+      final p = await SharedPreferences.getInstance();
+      await p.setString(_dailyKey, jsonEncode(_dailyXp));
+    } catch (_) {}
+  }
+
+  String _dayKey(DateTime d) {
+    String two(int v) => v.toString().padLeft(2, '0');
+    return '${d.year}-${two(d.month)}-${two(d.day)}';
+  }
+
+  /// XP gagné chaque jour sur les [days] derniers jours (du plus ancien à
+  /// aujourd'hui). Pour le graphe d'activité.
+  List<int> dailyXpSeries({int days = 7}) {
+    final now = DateTime.now();
+    final today = DateTime(now.year, now.month, now.day);
+    return List.generate(days, (i) {
+      final d = today.subtract(Duration(days: days - 1 - i));
+      return _dailyXp[_dayKey(d)] ?? 0;
+    });
+  }
+
+  /// XP cumulé de la semaine en cours (lundi → aujourd'hui). Pour le leaderboard.
+  int weeklyXp() {
+    final now = DateTime.now();
+    final today = DateTime(now.year, now.month, now.day);
+    final monday = today.subtract(Duration(days: today.weekday - 1));
+    var total = 0;
+    _dailyXp.forEach((k, v) {
+      final parts = k.split('-');
+      if (parts.length != 3) return;
+      final d = DateTime(int.parse(parts[0]), int.parse(parts[1]), int.parse(parts[2]));
+      if (!d.isBefore(monday) && !d.isAfter(today)) total += v;
+    });
+    return total;
+  }
+
   Set<String> _withNewBadges(GamificationState s) {
     final b = {...s.badges};
     for (final badge in kBadges) {
@@ -216,12 +278,24 @@ class GamificationService {
       xp: s.xp + 10, // bonus de connexion quotidienne
     );
     next = next.copyWith(badges: _withNewBadges(next));
+    await _bumpDaily(10); // bonus quotidien dans l'historique
     state.value = next;
     await _persist();
     // L'élève est venu aujourd'hui → on annule le rappel du jour et on
     // reprogramme les suivants à partir du nouvel état de la série.
     LocalNotificationsService.instance
         .reschedule(streak: next.streak, lastActive: next.lastActive);
+    // Publie l'entrée de classement de la semaine (best-effort).
+    final uid = _uid;
+    if (uid != null) {
+      LeaderboardService.instance.submit(
+        uid: uid,
+        name: AuthService.cachedFullName ?? 'Élève',
+        level: next.level,
+        xp: next.xp,
+        weeklyXp: weeklyXp(),
+      );
+    }
   }
 
   /// Ajoute de l'XP (+ incréments éventuels), recalcule les badges.
@@ -234,6 +308,7 @@ class GamificationService {
       tutorUses: s.tutorUses + tutorUses,
     );
     next = next.copyWith(badges: _withNewBadges(next));
+    await _bumpDaily(amount);
     state.value = next;
     await _persist();
   }

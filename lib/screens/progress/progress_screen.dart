@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fl_chart/fl_chart.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
 import '../../widgets/streak_card.dart';
@@ -94,6 +95,9 @@ class _ProgressScreenState extends State<ProgressScreen> {
               const StreakCard(),
               const SizedBox(height: 22),
 
+              _weeklyChart(),
+              const SizedBox(height: 22),
+
               Text('Mon activité', style: body(14, weight: FontWeight.w800, color: OC.ink2)),
               const SizedBox(height: 12),
               _activityGrid(s),
@@ -133,6 +137,78 @@ class _ProgressScreenState extends State<ProgressScreen> {
           );
         },
       ),
+    );
+  }
+
+  // ── Graphe d'activité (XP des 7 derniers jours) ─────────────────────────────
+  Widget _weeklyChart() {
+    final series = GamificationService.instance.dailyXpSeries(days: 7);
+    final total = series.fold<int>(0, (a, b) => a + b);
+    final maxVal = series.fold<int>(0, (a, b) => b > a ? b : a);
+    final maxY = (maxVal <= 0 ? 10 : maxVal * 1.25).toDouble();
+    const labels = 'LMMJVSD';
+    final now = DateTime.now();
+    final today = DateTime(now.year, now.month, now.day);
+    // Indices de jour de la semaine (weekday-1) pour les 7 derniers jours.
+    final dows = List.generate(7, (i) => today.subtract(Duration(days: 6 - i)).weekday - 1);
+
+    return Container(
+      padding: const EdgeInsets.fromLTRB(16, 16, 16, 10),
+      decoration: BoxDecoration(
+        color: OC.paper, borderRadius: BorderRadius.circular(18), border: Border.all(color: OC.line, width: 1.5)),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Row(children: [
+          Text('Cette semaine', style: body(14, weight: FontWeight.w800)),
+          const Spacer(),
+          Text('$total XP', style: body(13, weight: FontWeight.w800, color: OC.o600)),
+        ]),
+        const SizedBox(height: 4),
+        Text('XP gagné par jour', style: body(11.5, color: OC.muted, weight: FontWeight.w600)),
+        const SizedBox(height: 16),
+        SizedBox(
+          height: 130,
+          child: BarChart(BarChartData(
+            alignment: BarChartAlignment.spaceAround,
+            maxY: maxY,
+            barTouchData: BarTouchData(enabled: false),
+            gridData: const FlGridData(show: false),
+            borderData: FlBorderData(show: false),
+            titlesData: FlTitlesData(
+              show: true,
+              leftTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+              rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+              topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+              bottomTitles: AxisTitles(sideTitles: SideTitles(
+                showTitles: true,
+                reservedSize: 22,
+                getTitlesWidget: (value, meta) {
+                  final i = value.toInt();
+                  if (i < 0 || i > 6) return const SizedBox.shrink();
+                  final isToday = i == 6;
+                  return Padding(
+                    padding: const EdgeInsets.only(top: 6),
+                    child: Text(labels[dows[i]],
+                        style: body(11, weight: FontWeight.w800, color: isToday ? OC.o600 : OC.muted)),
+                  );
+                },
+              )),
+            ),
+            barGroups: [
+              for (var i = 0; i < 7; i++)
+                BarChartGroupData(x: i, barRods: [
+                  BarChartRodData(
+                    toY: series[i].toDouble(),
+                    width: 18,
+                    color: i == 6 ? OC.o600 : OC.o200,
+                    borderRadius: const BorderRadius.vertical(top: Radius.circular(6)),
+                    backDrawRodData: BackgroundBarChartRodData(
+                      show: true, toY: maxY, color: OC.panel),
+                  ),
+                ]),
+            ],
+          )),
+        ),
+      ]),
     );
   }
 
