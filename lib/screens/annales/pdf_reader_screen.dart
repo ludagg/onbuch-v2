@@ -2,17 +2,19 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
+import 'package:http/http.dart' as http;
+import 'package:printing/printing.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import '../../theme/app_theme.dart';
 import '../../services/offline_cache.dart';
 import '../../utils/launch.dart';
 
 /// Lecteur PDF intégré (sujet / corrigé / cours / fiche). Affiche un PDF mis en
-/// cache hors-ligne (si dispo) sinon distant via [SfPdfViewer]. Le lien, les
-/// libellés et l'id (pour le cache offline) arrivent par `extra`.
+/// cache hors-ligne (si dispo) sinon distant via [SfPdfViewer].
 ///
-/// Mode **aperçu** (`previewPages`) : limite la lecture aux N premières pages
-/// (fascicules) et affiche un encart d'achat/précommande à la fin de l'aperçu.
+/// Mode **aperçu** (`previewPages`) : ne charge **réellement que les N
+/// premières pages** (rasterisées en images) — impossible d'aller plus loin —
+/// puis affiche un encart d'achat/précommande à la fin.
 class PdfReaderScreen extends StatefulWidget {
   final String url;
   final String? title;
@@ -40,62 +42,58 @@ class _PdfReaderScreenState extends State<PdfReaderScreen> {
   String? _error;
   Uint8List? _offlineBytes;
   bool _checking = true;
-  final PdfViewerController _ctrl = PdfViewerController();
-  int _page = 1;
-  int _pageCount = 0;
 
+  // Mode aperçu : images des N premières pages.
   bool get _isPreview => (widget.previewPages ?? 0) > 0;
-
-  /// Dernière page autorisée en aperçu (bornée au nombre réel de pages).
-  int get _limit {
-    final p = widget.previewPages ?? 0;
-    if (_pageCount > 0) return p > _pageCount ? _pageCount : p;
-    return p;
-  }
-
-  /// Aperçu terminé : l'élève a atteint la dernière page autorisée.
-  bool get _previewEnded => _isPreview && _page >= _limit;
+  List<Uint8List> _previewImages = const [];
+  bool _previewLoading = false;
 
   @override
   void initState() {
     super.initState();
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(statusBarIconBrightness: Brightness.light));
-    _checkOffline();
+    if (_isPreview) {
+      _loadPreview();
+    } else {
+      _checkOffline();
+    }
   }
 
   Future<void> _checkOffline() async {
     Uint8List? bytes;
-    // En mode aperçu on ne sert jamais la version hors-ligne (document complet).
-    if (!_isPreview && widget.offlineId != null && widget.offlineId!.isNotEmpty) {
+    if (widget.offlineId != null && widget.offlineId!.isNotEmpty) {
       bytes = await OfflineCache.readBytes(widget.offlineId!);
     }
     if (mounted) setState(() { _offlineBytes = bytes; _checking = false; });
   }
 
+  /// Télécharge le PDF et rasterise UNIQUEMENT les N premières pages.
+  Future<void> _loadPreview() async {
+    setState(() { _previewLoading = true; _checking = false; });
+    try {
+      final res = await http.get(Uri.parse(widget.url));
+      if (res.statusCode != 200) throw 'http ${res.statusCode}';
+      final n = widget.previewPages!;
+      final pages = List<int>.generate(n, (i) => i);
+      final imgs = <Uint8List>[];
+      await for (final page in Printing.raster(res.bodyBytes, pages: pages, dpi: 120)) {
+        imgs.add(await page.toPng());
+        if (mounted) setState(() => _previewImages = List.of(imgs));
+      }
+      if (mounted) setState(() => _previewLoading = false);
+    } catch (_) {
+      if (mounted) setState(() { _error = 'Aperçu indisponible.'; _previewLoading = false; });
+    }
+  }
+
   @override
   void dispose() {
-    _ctrl.dispose();
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(statusBarIconBrightness: Brightness.dark));
     super.dispose();
   }
 
-  void _onPageChanged(PdfPageChangedDetails d) {
-    if (!_isPreview) {
-      setState(() => _page = d.newPageNumber);
-      return;
-    }
-    // Empêche d'aller au-delà de l'aperçu : on ramène à la dernière page permise.
-    if (d.newPageNumber > _limit) {
-      _ctrl.jumpToPage(_limit);
-      setState(() => _page = _limit);
-    } else {
-      setState(() => _page = d.newPageNumber);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    final hasUrl = widget.url.trim().isNotEmpty;
     return Scaffold(
       backgroundColor: const Color(0xFF1A1410),
       body: SafeArea(
@@ -122,73 +120,81 @@ class _PdfReaderScreenState extends State<PdfReaderScreen> {
                 const SizedBox(width: 38),
             ]),
           ),
-          Expanded(
-            child: _checking
-                ? const Center(child: CircularProgressIndicator(color: Colors.white))
-                : Stack(children: [
-                    Positioned.fill(child: _viewer(hasUrl)),
-                    if (_isPreview) Positioned(left: 0, right: 0, bottom: 0, child: _previewBar()),
-                  ]),
-          ),
+          Expanded(child: _isPreview ? _previewBody() : _fullBody()),
         ]),
       ),
     );
   }
 
-  Widget _viewer(bool hasUrl) {
+  // ── Document complet ─────────────────────────────────────────────────────────
+  Widget _fullBody() {
+    final hasUrl = widget.url.trim().isNotEmpty;
+    if (_checking) return const Center(child: CircularProgressIndicator(color: Colors.white));
     if (_offlineBytes != null) return SfPdfViewer.memory(_offlineBytes!);
     if (!hasUrl) return _msg('Document indisponible.');
     if (_error != null) return _msg(_error!);
     return SfPdfViewer.network(
       widget.url,
-      controller: _ctrl,
-      canShowScrollHead: !_isPreview,
-      canShowScrollStatus: !_isPreview,
-      onPageChanged: _onPageChanged,
-      onDocumentLoaded: (d) {
-        if (mounted) setState(() => _pageCount = d.document.pages.count);
-      },
       onDocumentLoadFailed: (details) {
         if (mounted) setState(() => _error = 'Impossible d\'ouvrir ce PDF.');
       },
     );
   }
 
-  /// Barre d'aperçu : progression + encart d'achat quand l'aperçu est terminé.
-  Widget _previewBar() {
-    final ended = _previewEnded;
+  // ── Aperçu (N pages rasterisées + encart d'achat) ───────────────────────────
+  Widget _previewBody() {
+    if (_error != null) return _msg(_error!);
+    if (_previewImages.isEmpty && _previewLoading) {
+      return const Center(child: CircularProgressIndicator(color: Colors.white));
+    }
+    if (_previewImages.isEmpty) return _msg('Aperçu indisponible.');
+    return ListView(
+      padding: const EdgeInsets.fromLTRB(12, 4, 12, 20),
+      children: [
+        for (var i = 0; i < _previewImages.length; i++)
+          Padding(
+            padding: const EdgeInsets.only(bottom: 12),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(6),
+              child: Image.memory(_previewImages[i], fit: BoxFit.fitWidth, width: double.infinity),
+            ),
+          ),
+        if (_previewLoading)
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 16),
+            child: Center(child: CircularProgressIndicator(color: Colors.white)),
+          )
+        else
+          _paywall(),
+      ],
+    );
+  }
+
+  Widget _paywall() {
     return Container(
-      padding: const EdgeInsets.fromLTRB(16, 14, 16, 12),
+      margin: const EdgeInsets.only(top: 4),
+      padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter, end: Alignment.bottomCenter,
-          colors: [Colors.transparent, const Color(0xFF1A1410).withValues(alpha: 0.96), const Color(0xFF1A1410)],
-        ),
+        color: Colors.white.withValues(alpha: 0.06),
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.12)),
       ),
-      child: Column(mainAxisSize: MainAxisSize.min, children: [
-        if (!ended) ...[
-          Text('Aperçu — page $_page/$_limit',
-              style: body(12, weight: FontWeight.w700, color: Colors.white.withValues(alpha: 0.85))),
-          const SizedBox(height: 8),
-        ] else ...[
-          Text('🔒 Fin de l\'aperçu',
-              style: body(14, weight: FontWeight.w800, color: Colors.white)),
-          const SizedBox(height: 4),
-          Text('Achète ou précommande pour avoir la version complète (papier ou numérique).',
-              textAlign: TextAlign.center,
-              style: body(12.5, color: Colors.white.withValues(alpha: 0.8), weight: FontWeight.w500).copyWith(height: 1.4)),
-          const SizedBox(height: 12),
-        ],
+      child: Column(children: [
+        const Icon(Icons.lock_rounded, color: Colors.white, size: 30),
+        const SizedBox(height: 10),
+        Text('Fin de l\'aperçu', style: display(17, weight: FontWeight.w800, color: Colors.white)),
+        const SizedBox(height: 6),
+        Text('Achète ou précommande pour débloquer le fascicule complet (version papier ou numérique).',
+            textAlign: TextAlign.center,
+            style: body(12.5, color: Colors.white.withValues(alpha: 0.82), weight: FontWeight.w500).copyWith(height: 1.45)),
+        const SizedBox(height: 16),
         if (widget.orderUrl != null && widget.orderUrl!.isNotEmpty)
           GestureDetector(
             onTap: () => openUrl(context, widget.orderUrl),
             child: Container(
-              width: double.infinity, height: 50,
+              width: double.infinity, height: 52,
               alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: ended ? const Color(0xFF25D366) : Colors.white.withValues(alpha: 0.12),
-                borderRadius: BorderRadius.circular(14),
-              ),
+              decoration: BoxDecoration(color: const Color(0xFF25D366), borderRadius: BorderRadius.circular(14)),
               child: Text(widget.orderLabel ?? 'Précommander',
                   style: body(14.5, weight: FontWeight.w800, color: Colors.white)),
             ),

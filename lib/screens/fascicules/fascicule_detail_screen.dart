@@ -46,7 +46,7 @@ class _FasciculeDetailScreenState extends State<FasciculeDetailScreen> {
   String _orderUrl(Fascicule f) {
     final msg = 'Bonjour 👋 Je souhaite précommander le fascicule « ${f.title} »'
         '${f.shelfSubtitle.isNotEmpty ? ' (${f.shelfSubtitle})' : ''}'
-        '${f.priceLabel != null ? ' — ${f.priceLabel}' : ''}. Est-il disponible ?';
+        '${f.effectivePriceLabel != null ? ' — ${f.effectivePriceLabel}${f.hasPromo ? ' (promo)' : ''}' : ''}. Est-il disponible ?';
     final enc = Uri.encodeComponent(msg);
 
     String? raw = _orderNumber?.trim();
@@ -107,7 +107,7 @@ class _FasciculeDetailScreenState extends State<FasciculeDetailScreen> {
           ]),
           const SizedBox(height: 20),
 
-          // Prix
+          // Prix (avec promo si définie)
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
@@ -119,9 +119,28 @@ class _FasciculeDetailScreenState extends State<FasciculeDetailScreen> {
               Icon(Icons.local_offer_rounded, size: 20, color: OC.o600),
               const SizedBox(width: 10),
               Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text(f.priceLabel ?? 'Prix sur demande',
-                    style: display(20, weight: FontWeight.w800, color: OC.o700)),
-                Text('Disponible en précommande', style: body(11.5, color: OC.ink2, weight: FontWeight.w600)),
+                if (f.hasPromo) ...[
+                  Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+                    Flexible(child: Text(f.promoLabel!,
+                        maxLines: 1, overflow: TextOverflow.ellipsis,
+                        style: display(20, weight: FontWeight.w800, color: OC.o700))),
+                    const SizedBox(width: 8),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
+                      decoration: BoxDecoration(color: OC.bad, borderRadius: BorderRadius.circular(7)),
+                      child: Text('-${f.discountPercent}%',
+                          style: body(11, weight: FontWeight.w800, color: Colors.white)),
+                    ),
+                  ]),
+                  Text(f.priceLabel!,
+                      style: body(12.5, color: OC.muted, weight: FontWeight.w600)
+                          .copyWith(decoration: TextDecoration.lineThrough)),
+                ] else
+                  Text(f.priceLabel ?? 'Prix sur demande',
+                      style: display(20, weight: FontWeight.w800, color: OC.o700)),
+                const SizedBox(height: 1),
+                Text(f.hasPromo ? 'Offre de précommande 🔥' : 'Disponible en précommande',
+                    style: body(11.5, color: OC.ink2, weight: FontWeight.w600)),
               ])),
             ]),
           ),
