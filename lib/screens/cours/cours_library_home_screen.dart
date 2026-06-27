@@ -305,10 +305,13 @@ class _CoursLibraryHomeScreenState extends State<CoursLibraryHomeScreen> {
     );
   }
 
-  /// Construit la liste des matières à afficher : on part de la liste
-  /// **complète** de la classe (taxonomie, comme les Annales) et on rattache à
-  /// chaque matière son pack si la base en propose un. Les packs sans
-  /// correspondance dans la taxonomie sont ajoutés à la fin (rien n'est caché).
+  /// Construit la liste des matières à afficher : **exactement** les matières de
+  /// la série de l'élève (issues d'`exam_series`, comme les Annales/Ressources),
+  /// chacune rattachée à son pack de cours si la base en propose un (sinon
+  /// « Bientôt »). On n'ajoute **pas** les autres packs de l'examen : « Mes
+  /// matières » colle à la structure de la série — pour faire apparaître une
+  /// matière de cours, l'admin l'ajoute à la série (« Séries / filières »), ce
+  /// qui la fait apparaître ici ET dans les Ressources, de façon cohérente.
   List<_MatiereEntry> _matiereEntries() {
     final catalogue = _packs.catalogue;
     final names = _packs.classSubjects;
@@ -332,9 +335,6 @@ class _CoursLibraryHomeScreenState extends State<CoursLibraryHomeScreen> {
       final p = match(name);
       if (p != null) used.add(p.id);
       out.add(_MatiereEntry(name, p));
-    }
-    for (final p in catalogue) {
-      if (!used.contains(p.id)) out.add(_MatiereEntry(p.name, p));
     }
     return out;
   }
