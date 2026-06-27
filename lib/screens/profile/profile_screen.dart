@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
 import '../../widgets/streak_card.dart';
+import '../../services/gamification_service.dart';
 import '../../services/auth_service.dart';
 import '../../services/database_service.dart';
 import '../../services/tutor_service.dart';
@@ -172,6 +173,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
             onTap: () => context.push('/progress'),
             child: const StreakCard(),
           ),
+          const SizedBox(height: 16),
+
+          // Mes badges (aperçu) → progression
+          const _BadgesCard(),
           const SizedBox(height: 22),
 
           // Mon parcours
@@ -260,6 +265,45 @@ class _Section extends StatelessWidget {
         ])).toList()),
       ),
     ]);
+  }
+}
+
+/// Aperçu des badges sur le profil (→ page de progression).
+class _BadgesCard extends StatelessWidget {
+  const _BadgesCard();
+
+  @override
+  Widget build(BuildContext context) {
+    return ValueListenableBuilder<GamificationState>(
+      valueListenable: GamificationService.instance.state,
+      builder: (context, s, _) {
+        final earned = kBadges.where((b) => s.badges.contains(b.id) || b.earned(s)).length;
+        return GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: () => context.push('/progress'),
+          child: OBCard(
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Row(children: [
+                Icon(Icons.military_tech_rounded, size: 18, color: OC.o600),
+                const SizedBox(width: 8),
+                Text('Mes badges', style: body(14, weight: FontWeight.w800)),
+                const Spacer(),
+                Text('$earned/${kBadges.length}', style: body(12.5, weight: FontWeight.w800, color: OC.muted)),
+                Icon(Icons.chevron_right_rounded, size: 18, color: OC.muted),
+              ]),
+              const SizedBox(height: 12),
+              Row(children: [
+                for (final b in kBadges.take(8))
+                  Expanded(child: Builder(builder: (_) {
+                    final has = s.badges.contains(b.id) || b.earned(s);
+                    return Icon(b.icon, size: 24, color: has ? OC.o600 : OC.faint);
+                  })),
+              ]),
+            ]),
+          ),
+        );
+      },
+    );
   }
 }
 
