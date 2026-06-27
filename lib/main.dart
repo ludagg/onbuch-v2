@@ -46,10 +46,12 @@ void main() async {
     try {
       await LocalNotificationsService.instance.init();
       await LocalNotificationsService.instance.requestPermission();
+      // Bienvenue à la 1ʳᵉ ouverture (une fois) — test « ça marche sans serveur ».
+      await LocalNotificationsService.instance.maybeSendWelcome();
       await GamificationService.instance.load();
       final g = GamificationService.instance.state.value;
-      await LocalNotificationsService.instance
-          .reschedule(streak: g.streak, lastActive: g.lastActive);
+      await LocalNotificationsService.instance.reschedule(
+          streak: g.streak, lastActive: g.lastActive, weeklyXp: GamificationService.instance.weeklyXp());
     } catch (_) {/* sans notifications locales si indisponible */}
   }();
 

@@ -284,7 +284,7 @@ class GamificationService {
     // L'élève est venu aujourd'hui → on annule le rappel du jour et on
     // reprogramme les suivants à partir du nouvel état de la série.
     LocalNotificationsService.instance
-        .reschedule(streak: next.streak, lastActive: next.lastActive);
+        .reschedule(streak: next.streak, lastActive: next.lastActive, weeklyXp: weeklyXp());
     // Publie l'entrée de classement de la semaine (best-effort).
     final uid = _uid;
     if (uid != null) {

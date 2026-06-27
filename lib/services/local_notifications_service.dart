@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest_all.dart' as tzdata;
 import '../router/app_router.dart';
@@ -23,6 +24,9 @@ class LocalNotificationsService {
   static const int _hour = 18;
   static const int _horizonDays = 14; // nb de jours de rappels pré-programmés
   static const int _baseId = 7100; // plage d'IDs réservée à la série
+  static const int _welcomeId = 7000; // notif de bienvenue (une fois)
+  static const _welcomeKey = 'notif_welcome_v1';
+  static const List<int> _milestones = [3, 7, 30, 100];
 
   static const String _channelId = 'streak_reminders';
 
@@ -78,9 +82,35 @@ class LocalNotificationsService {
     return ymd == '${today.year}-${two(today.month)}-${two(today.day)}';
   }
 
-  /// (Re)planifie les rappels de série à partir de l'état courant.
-  /// [streak] = jours d'affilée, [lastActive] = 'YYYY-MM-DD' du dernier passage.
-  Future<void> reschedule({required int streak, required String lastActive}) async {
+  /// Notification de **bienvenue**, envoyée **une seule fois** (1ʳᵉ ouverture
+  /// après installation). 100% locale — sert aussi de test « ça marche sans
+  /// serveur ». Affichée immédiatement.
+  Future<void> maybeSendWelcome() async {
+    if (!_inited) await init();
+    try {
+      final p = await SharedPreferences.getInstance();
+      if (p.getBool(_welcomeKey) == true) return;
+      final name = (AuthService.cachedFirstName ?? '').trim();
+      final title = name.isEmpty ? 'Bienvenue sur OnBuch 🎓' : 'Bienvenue $name 🎓';
+      await _plugin.show(
+        _welcomeId,
+        title,
+        'Ravis de t\'accueillir ! Reviens chaque jour pour garder ta série, gagner de l\'XP et grimper au classement. — L\'équipe OnBuch',
+        _details(),
+        payload: 'welcome',
+      );
+      await p.setBool(_welcomeKey, true);
+    } catch (e) {
+      debugPrint('LocalNotifications.welcome: $e');
+    }
+  }
+
+  /// (Re)planifie les rappels (1 par jour, à 18 h — dans les heures « calmes »
+  /// 7 h–22 h). Messages contextuels : série, objectif du jour, anticipation de
+  /// palier, et **alerte ligue / récap le dimanche soir**.
+  /// [streak] = jours d'affilée, [lastActive] = 'YYYY-MM-DD', [weeklyXp] = XP de
+  /// la semaine (pour le récap du dimanche).
+  Future<void> reschedule({required int streak, required String lastActive, int weeklyXp = 0}) async {
     if (!_inited) await init();
     try {
       await _plugin.cancelAll();
@@ -95,10 +125,12 @@ class LocalNotificationsService {
         final when = tz.TZDateTime(tz.local, now.year, now.month, now.day, _hour)
             .add(Duration(days: offset));
         if (!when.isAfter(now)) continue;
-        // « gap » = nb de jours d'absence au moment où le rappel partira :
-        //  - venu aujourd'hui (startOffset=1) → offsets 1,2,3… = 1,2,3 jours ;
-        //  - pas encore venu, avant 18h (startOffset=0) → offset 0 = ce soir.
-        final m = _messageFor(gap: offset, streak: streak);
+        final m = _messageFor(
+          gap: offset, // jours d'absence au moment du rappel
+          streak: streak,
+          weekday: when.weekday, // 7 = dimanche
+          weeklyXp: weeklyXp,
+        );
         await _plugin.zonedSchedule(
           _baseId + offset,
           m.title,
@@ -135,33 +167,53 @@ class LocalNotificationsService {
         iOS: const DarwinNotificationDetails(),
       );
 
-  // ── Banque de messages (ton qui s'intensifie selon l'absence) ───────────────
-  _Msg _messageFor({required int gap, required int streak}) {
+  // ── Banque de messages contextuels (variés, 1/jour) ─────────────────────────
+  _Msg _messageFor({required int gap, required int streak, required int weekday, required int weeklyXp}) {
     final name = (AuthService.cachedFirstName ?? '').trim();
-    final vocatif = name.isEmpty ? '' : ', $name';
+    final v = name.isEmpty ? '' : ', $name';
 
+    // Dimanche soir → alerte ligue + récap de la semaine (la semaine se termine).
+    if (weekday == DateTime.sunday) {
+      if (weeklyXp > 0) {
+        return _Msg('🏆 Dernier jour de classement !',
+            '$weeklyXp XP cette semaine$v. Un dernier effort ce soir pour bien finir et viser la promotion !', 'fire');
+      }
+      return _Msg('🏆 La semaine de classement se termine',
+          'Gagne quelques XP ce soir$v pour ne pas te faire reléguer dans ta ligue.', 'alarm');
+    }
+
+    // Ce soir / aujourd'hui : pas encore venu.
     if (gap <= 0) {
-      // Ce soir, pas encore venu aujourd'hui.
+      // Anticipation d'un palier : si revenir aujourd'hui atteint 3/7/30/100 j.
+      if (streak > 0 && _milestones.contains(streak + 1)) {
+        return _Msg('⚡ Plus qu\'un jour pour ${streak + 1} d\'affilée !',
+            'Reviens aujourd\'hui$v et décroche ${streak + 1} jours de série. Ne lâche pas si près du but !', 'fire');
+      }
       if (streak > 0) {
         return _Msg('🔥 Ta série de $streak jour${streak > 1 ? 's' : ''} t\'attend',
-            'Ne la laisse pas s\'éteindre$vocatif ! Ouvre OnBuch ce soir.', 'fire');
+            'Ne la laisse pas s\'éteindre$v ! Un petit quiz suffit ce soir.', 'fire');
       }
-      return _Msg('⏰ C\'est l\'heure de réviser$vocatif',
-          'Quelques minutes sur OnBuch et tu démarres ta série 🔥', 'alarm');
+      // Pas de série en cours → objectif du jour.
+      return _Msg('🎯 Ton objectif du jour$v',
+          'Fais 1 quiz sur OnBuch aujourd\'hui et lance ta série 🔥', 'alarm');
     }
     if (gap == 1) {
       return _Msg('😴 Léo s\'ennuie sans toi',
-          'Reviens réviser un peu aujourd\'hui$vocatif, il t\'attend.', 'sleepy');
+          'Reviens réviser un peu aujourd\'hui$v, il t\'attend.', 'sleepy');
     }
     if (gap == 2) {
       return _Msg('🥺 Ta série va s\'éteindre',
-          'Un petit quiz suffit pour la sauver$vocatif. On y va ?', 'sad');
+          'Un petit quiz suffit pour la sauver$v. On y va ?', 'sad');
     }
     if (gap == 3) {
       return _Msg('🥺 Léo t\'attend depuis 3 jours',
-          'Reprends ta progression quand tu veux$vocatif, à ton rythme.', 'sad');
+          'Reprends ta progression quand tu veux$v, à ton rythme.', 'sad');
     }
-    return _Msg('🦁 OnBuch t\'attend$vocatif',
+    if (gap >= 7) {
+      return _Msg('🦁 Tu nous manques$v',
+          'Ça fait une semaine… Reviens, on t\'a gardé ta place et plein de quiz t\'attendent.', 'sad');
+    }
+    return _Msg('🦁 OnBuch t\'attend$v',
         'Reprends tes révisions aujourd\'hui — Léo serait content de te revoir.', 'sad');
   }
 
