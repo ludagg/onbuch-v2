@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../services/cours_packs_service.dart';
+import '../../services/exercise_service.dart';
+import '../../services/auth_service.dart';
+import '../../services/database_service.dart';
+import '../../models/exercise.dart';
 
 /// Détail d'un pack (fiche produit) — données réelles. `subjectId` via la route.
 class PackDetailScreen extends StatefulWidget {
@@ -18,16 +22,46 @@ class _PackDetailScreenState extends State<PackDetailScreen> {
   Pack? _fetched;
   bool _fetching = true;
 
+  // Exercices de la matière (banque admin) — pour le bouton « Voir les exercices ».
+  List<ExerciseChapter> _exoChapters = const [];
+  String? _examen, _serie;
+
   @override
   void initState() {
     super.initState();
     _resolve();
+    _loadExos();
   }
 
   Future<void> _resolve() async {
     final p = await CoursPacks.instance.fetchPack(widget.subjectId ?? '');
     if (mounted) setState(() { _fetched = p; _fetching = false; });
   }
+
+  /// Charge la classe de l'élève (examen/série) + la banque d'exercices, pour
+  /// proposer un accès direct aux exercices de la matière depuis sa fiche.
+  Future<void> _loadExos() async {
+    try {
+      final user = await AuthService().getCurrentUser();
+      if (user != null) {
+        final prof = await DatabaseService().getUserProfile(user.$id);
+        _examen = (prof?['examen'] ?? '').toString();
+        _serie = (prof?['serieCode'] ?? '').toString().isNotEmpty
+            ? (prof?['serieCode']).toString()
+            : (prof?['serie'] ?? '').toString();
+      }
+      final chapters = await ExerciseService().getChapters();
+      if (mounted) setState(() => _exoChapters = chapters);
+    } catch (_) {/* hors-ligne / non connecté → pas de bouton exercices */}
+  }
+
+  /// Chapitres d'exercices de cette matière, pour la classe de l'élève.
+  /// Même appariement (nom exact, insensible à la casse) que l'écran cible.
+  List<ExerciseChapter> _exosFor(Pack p) => _exoChapters
+      .where((c) =>
+          c.subject.trim().toLowerCase() == p.name.trim().toLowerCase() &&
+          c.appliesToClass(_examen, _serie))
+      .toList();
 
   Pack? _packOf(CoursPacks store) => store.byId(widget.subjectId ?? '') ?? _fetched;
 
@@ -84,6 +118,7 @@ class _PackDetailScreenState extends State<PackDetailScreen> {
                     const SizedBox(width: 9),
                     Expanded(child: _statBox('${p.coef}', 'Coef', accent: true)),
                   ]),
+                  ..._exercicesAccess(context, p),
                   const SizedBox(height: 20),
                   Text('Au programme', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
                   const SizedBox(height: 10),
@@ -110,6 +145,47 @@ class _PackDetailScreenState extends State<PackDetailScreen> {
         },
       ),
     );
+  }
+
+  /// Encart « Voir les exercices » — n'apparaît que si la matière a des
+  /// exercices pour la classe de l'élève. Ouvre directement la liste des
+  /// chapitres d'exercices de la matière.
+  List<Widget> _exercicesAccess(BuildContext context, Pack p) {
+    final exos = _exosFor(p);
+    if (exos.isEmpty) return const [];
+    final n = exos.length;
+    return [
+      const SizedBox(height: 20),
+      GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: () => context.push('/exercices/chapitres',
+            extra: {'subject': p.name, 'examen': _examen, 'serie': _serie}),
+        child: Container(
+          padding: const EdgeInsets.all(14),
+          decoration: BoxDecoration(
+            color: OC.o50,
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(color: OC.o200, width: 1.5),
+          ),
+          child: Row(children: [
+            Container(
+              width: 42, height: 42,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(color: OC.o600, borderRadius: BorderRadius.circular(12)),
+              child: const Icon(Icons.fitness_center_rounded, size: 22, color: Colors.white),
+            ),
+            const SizedBox(width: 12),
+            Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text('Voir les exercices', style: body(14, weight: FontWeight.w800, color: OC.ink)),
+              const SizedBox(height: 2),
+              Text('$n chapitre${n > 1 ? 's' : ''} d\'exercices · énoncés & corrigés',
+                  style: body(11.5, color: OC.o700, weight: FontWeight.w600)),
+            ])),
+            Icon(Icons.chevron_right_rounded, size: 20, color: OC.o600),
+          ]),
+        ),
+      ),
+    ];
   }
 
   Widget _moduleRow(BuildContext context, Pack p, int i, bool owned) {
