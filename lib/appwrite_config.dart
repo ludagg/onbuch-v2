@@ -54,6 +54,9 @@ const appwriteExerciseSheetsCollectionId = 'exercise_sheets';
 // Un fascicule = un PDF (bucket `annales_files`) + une couverture, géré par
 // l'admin. Cf. tools/setup_fascicules.sh.
 const appwriteFasciculesCollectionId = 'fascicules';
+// Numéro WhatsApp dédié aux PRÉCOMMANDES (fascicules…), géré par l'admin,
+// séparé des réseaux sociaux. Cf. tools/setup_order_settings.sh.
+const appwriteOrderSettingsCollectionId = 'order_settings';
 const appwriteExerciseProgressCollectionId = 'exercise_progress';
 
 // Endpoint serverless (Vercel) qui résout une recherche de résultat pour les

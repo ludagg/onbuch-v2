@@ -248,6 +248,27 @@ class DatabaseService {
       ..sort((a, b) => a.order.compareTo(b.order)), force: force);
   }
 
+  /// Numéro WhatsApp des **précommandes** (collection `order_settings`, gérée
+  /// par l'admin, séparée des réseaux sociaux). Renvoie le numéro/lien de
+  /// l'entrée active la plus prioritaire, ou null si non configuré.
+  Future<String?> getOrderWhatsApp({bool force = false}) async {
+    final list = await _cachedList<String>('order_settings', () async {
+      final res = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteOrderSettingsCollectionId,
+        queries: [Query.limit(10)],
+      );
+      return res.documents.map((d) => d.data).toList();
+    }, (raw) => (raw
+            .where((m) => m['active'] != false && (m['whatsapp'] ?? '').toString().trim().isNotEmpty)
+            .toList()
+          ..sort((a, b) =>
+              ((a['order'] as num?)?.toInt() ?? 0).compareTo((b['order'] as num?)?.toInt() ?? 0)))
+        .map((m) => m['whatsapp'].toString().trim())
+        .toList(), force: force);
+    return list.isEmpty ? null : list.first;
+  }
+
   // ── Résultats d'examens ──────────────────────────────────────────────────
 
   /// Sauvegarde un résultat dans la collection `results`.

@@ -21,38 +21,46 @@ class FasciculeDetailScreen extends StatefulWidget {
 }
 
 class _FasciculeDetailScreenState extends State<FasciculeDetailScreen> {
+  final _db = DatabaseService();
+  String? _orderNumber; // numéro dédié précommandes (order_settings)
   List<SocialLink> _links = const [];
 
   @override
   void initState() {
     super.initState();
-    _loadLinks();
+    _loadContacts();
   }
 
-  Future<void> _loadLinks() async {
+  Future<void> _loadContacts() async {
     try {
-      final l = await DatabaseService().getSocialLinks();
-      if (mounted) setState(() => _links = l);
+      final num = await _db.getOrderWhatsApp();
+      final links = await _db.getSocialLinks();
+      if (mounted) setState(() { _orderNumber = num; _links = links; });
     } catch (_) {}
   }
 
-  /// Lien WhatsApp de précommande (numéro admin depuis `social_links`).
+  /// Lien WhatsApp de précommande. Priorité au **numéro dédié** (réglages
+  /// commandes) ; repli sur le WhatsApp des réseaux sociaux, puis sur le
+  /// sélecteur de contact.
   String _orderUrl(Fascicule f) {
     final msg = 'Bonjour 👋 Je souhaite précommander le fascicule « ${f.title} »'
         '${f.shelfSubtitle.isNotEmpty ? ' (${f.shelfSubtitle})' : ''}'
         '${f.priceLabel != null ? ' — ${f.priceLabel}' : ''}. Est-il disponible ?';
     final enc = Uri.encodeComponent(msg);
-    final wa = _links.where((l) => l.platform == 'whatsapp' && l.url.trim().isNotEmpty).toList();
-    if (wa.isNotEmpty) {
-      final url = wa.first.url.trim();
-      final m = RegExp(r'wa\.me/(\+?\d{6,})').firstMatch(url);
-      if (m != null) return 'https://wa.me/${m.group(1)!.replaceAll('+', '')}?text=$enc';
-      if (RegExp(r'^\+?\d{6,}$').hasMatch(url)) {
-        return 'https://wa.me/${url.replaceAll('+', '')}?text=$enc';
-      }
-      return url; // lien de groupe / autre → ouvert tel quel
+
+    String? raw = _orderNumber?.trim();
+    if (raw == null || raw.isEmpty) {
+      final wa = _links.where((l) => l.platform == 'whatsapp' && l.url.trim().isNotEmpty).toList();
+      if (wa.isNotEmpty) raw = wa.first.url.trim();
     }
-    return 'https://wa.me/?text=$enc'; // repli : sélecteur de contact
+    if (raw == null || raw.isEmpty) return 'https://wa.me/?text=$enc';
+
+    final m = RegExp(r'wa\.me/(\+?\d{6,})').firstMatch(raw);
+    if (m != null) return 'https://wa.me/${m.group(1)!.replaceAll('+', '')}?text=$enc';
+    if (RegExp(r'^\+?\d{6,}$').hasMatch(raw)) {
+      return 'https://wa.me/${raw.replaceAll(RegExp(r'[^0-9]'), '')}?text=$enc';
+    }
+    return raw; // lien de groupe / autre → ouvert tel quel
   }
 
   @override

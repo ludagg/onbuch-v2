@@ -56,6 +56,8 @@ export const RESOURCES: Resource[] = [
       { key: 'exam', label: 'Examen', type: 'text', help: 'ex. Baccalauréat — vide = tous' },
       { key: 'track', label: 'Séries', type: 'text', help: 'ex. C,D,E,TI — vide = toutes' },
       { key: 'description', label: 'Description', type: 'textarea' },
+      { key: 'benefits', label: 'Avantages', type: 'textarea', help: 'Un avantage par ligne. Affichés sur la fiche. Vide = liste par défaut.' },
+      { key: 'price', label: 'Prix (FCFA)', type: 'number', help: '0 = « Prix sur demande ». Affiché sur la fiche de précommande.' },
       { key: 'pdfUrl', label: 'Lien PDF', type: 'text', required: true, help: 'URL de visualisation du PDF (bucket annales_files). Voir tools/upload_fascicule.py.' },
       { key: 'coverUrl', label: 'Lien couverture (image)', type: 'text', help: 'URL d’une image de couverture (jpg/png). Optionnel — une couverture par défaut est générée sinon.' },
       { key: 'author', label: 'Auteur / éditeur', type: 'text', help: 'ex. L’équipe OnBuch, dirigée par Ludovic Aggaï N.' },
@@ -63,6 +65,23 @@ export const RESOURCES: Resource[] = [
       { key: 'premium', label: 'Premium (payant)', type: 'boolean' },
       order,
       { key: 'active', label: 'Actif (cocher pour afficher)', type: 'boolean' }
+    ]
+  },
+  {
+    id: 'order_settings',
+    collectionId: 'order_settings',
+    label: 'Réglages commandes',
+    singular: 'Numéro WhatsApp',
+    icon: '🟢',
+    titleField: 'label',
+    subtitleField: 'whatsapp',
+    orderBy: { field: 'order', dir: 'asc' },
+    fields: [
+      { key: 'whatsapp', label: 'Numéro WhatsApp (précommandes)', type: 'text', required: true, help: 'Format international, ex. +237 6XX XX XX XX. Reçoit les précommandes de fascicules.' },
+      { key: 'label', label: 'Libellé', type: 'text', help: 'ex. Précommandes fascicules' },
+      { key: 'note', label: 'Note interne', type: 'textarea' },
+      order,
+      { key: 'active', label: 'Actif (cocher pour utiliser)', type: 'boolean' }
     ]
   },
   {
