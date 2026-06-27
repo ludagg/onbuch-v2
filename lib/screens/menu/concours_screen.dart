@@ -299,9 +299,9 @@ class _OrientationQuad extends StatelessWidget {
         _QuadButton(
           icon: Icons.explore_rounded,
           title: 'Filières & cursus',
-          subtitle: 'Débouchés par voie',
+          subtitle: 'Où, concours, débouchés',
           color: const Color(0xFF7A5AE0),
-          onTap: () => context.push('/orientation-guide'),
+          onTap: () => context.push('/filieres'),
         ),
         const SizedBox(width: 11),
         _QuadButton(
