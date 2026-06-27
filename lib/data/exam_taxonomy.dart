@@ -35,10 +35,10 @@ ExamNode _grp(String label, List<ExamNode> children, {String? note, List<String>
 List<ExamNode> _esgSeries({required bool bac}) {
   final philo = bac ? const ['Philosophie'] : const <String>[];
   List<String> sci(List<String> spec) =>
-      ['Mathématiques', ...spec, ...philo, 'Français', 'Anglais', 'Histoire-Géographie', 'ECM'];
+      ['Mathématiques', ...spec, ...philo, 'Français', 'Anglais', 'Histoire', 'Géographie', 'ECM'];
   List<String> lettres(List<String> spec) => [
         'Français', 'Littérature', ...spec, ...philo,
-        'Histoire-Géographie', 'Anglais', 'LV2', 'Mathématiques', 'ECM',
+        'Histoire', 'Géographie', 'Anglais', 'LV2', 'Mathématiques', 'ECM',
       ];
   return [
     _n('A1', 'A1 — Lettres-Langues anciennes', subjects: lettres(['Latin', 'Grec'])),
@@ -375,7 +375,7 @@ final Map<String, ExamNode> examTaxonomy = {
   // ── BEPC : pas de subdivision ni de série — épreuves par matière ───────────
   'BEPC': _grp('BEPC', const [], note: 'Collège · 3ᵉ', subjects: const [
     'Français', 'Anglais', 'Mathématiques', 'SVT', 'Physique-Chimie',
-    'Histoire-Géographie', 'ECM', 'LV2', 'Informatique',
+    'Histoire', 'Géographie', 'ECM', 'LV2', 'Informatique',
   ]),
 
   // ── CAP : spécialités-métiers (Industriel / Tertiaire) ────────────────────
