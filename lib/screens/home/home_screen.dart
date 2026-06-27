@@ -138,12 +138,6 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               const SizedBox(height: 16),
 
-              // Rang national (masqué tant que l'élève n'est pas classé)
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                child: _NationalRankPill(),
-              ),
-
               // Hero — carrousel d'examens (compte à rebours résultats)
               _HeroCarousel(),
               const SizedBox(height: 18),
@@ -292,6 +286,7 @@ class _HeaderStats extends StatefulWidget {
 class _HeaderStatsState extends State<_HeaderStats> {
   String _examShort = '—';
   String _credits = '—';
+  String _rank = '—';
 
   @override
   void initState() {
@@ -300,6 +295,17 @@ class _HeaderStatsState extends State<_HeaderStats> {
     GamificationService.instance.recordActivity();
     _loadProfile();
     _loadCredits();
+    _loadRank();
+  }
+
+  Future<void> _loadRank() async {
+    // Cache d'abord (instantané / hors-ligne), puis valeur fraîche.
+    final cached = await LeaderboardService.instance.cachedNationalRank();
+    if (mounted && cached != null && cached.rank > 0) setState(() => _rank = '#${cached.rank}');
+    await GamificationService.instance.load();
+    final xp = GamificationService.instance.state.value.xp;
+    final r = await LeaderboardService.instance.nationalRank(myXp: xp);
+    if (mounted && r.rank > 0) setState(() => _rank = '#${r.rank}');
   }
 
   Future<void> _loadProfile() async {
@@ -344,7 +350,7 @@ class _HeaderStatsState extends State<_HeaderStats> {
           child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
             _stat('${g.xp}', 'XP total', OC.warn),
             _div(),
-            _stat('—', 'Rang national', OC.blue),
+            _stat(_rank, 'Rang national', OC.blue, onTap: () => context.push('/leaderboard')),
             _div(),
             _stat(_examShort, 'Examen', const Color(0xFF7A5AE0)),
             _div(),
@@ -994,68 +1000,6 @@ class _TuteurCard extends StatelessWidget {
           ),
         ),
       ]),
-    );
-  }
-}
-
-// ─── Rang national (pastille accueil) ────────────────────────────────────────
-class _NationalRankPill extends StatefulWidget {
-  const _NationalRankPill();
-  @override
-  State<_NationalRankPill> createState() => _NationalRankPillState();
-}
-
-class _NationalRankPillState extends State<_NationalRankPill> {
-  int _rank = 0;
-  int _total = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    _load();
-  }
-
-  Future<void> _load() async {
-    // Cache d'abord (instantané, hors-ligne).
-    final cached = await LeaderboardService.instance.cachedNationalRank();
-    if (cached != null && mounted) setState(() { _rank = cached.rank; _total = cached.total; });
-    // Puis rafraîchissement réseau (best-effort).
-    try {
-      await GamificationService.instance.load();
-      final xp = GamificationService.instance.state.value.xp;
-      final r = await LeaderboardService.instance.nationalRank(myXp: xp);
-      if (mounted && r.rank > 0) setState(() { _rank = r.rank; _total = r.total; });
-    } catch (_) {}
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    if (_rank <= 0) return const SizedBox.shrink();
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: () => context.push('/leaderboard'),
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
-        decoration: BoxDecoration(
-          color: OC.paper,
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: OC.line, width: 1.5),
-        ),
-        child: Row(children: [
-          Container(
-            width: 40, height: 40, alignment: Alignment.center,
-            decoration: BoxDecoration(color: OC.o50, borderRadius: BorderRadius.circular(12)),
-            child: Icon(Icons.public_rounded, size: 21, color: OC.o600),
-          ),
-          const SizedBox(width: 12),
-          Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text('Ton rang national', style: body(11.5, color: OC.muted, weight: FontWeight.w600)),
-            Text('#$_rank${_total > 0 ? '  ·  sur $_total' : ''}',
-                style: body(15, weight: FontWeight.w800, color: OC.ink)),
-          ])),
-          Icon(Icons.chevron_right_rounded, size: 20, color: OC.muted),
-        ]),
-      ),
     );
   }
 }
