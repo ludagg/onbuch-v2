@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:appwrite/appwrite.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../appwrite_config.dart';
 import 'appwrite_client.dart';
 
@@ -138,6 +139,65 @@ class LeaderboardService {
           Query.orderDesc('weeklyXp'),
           Query.limit(limit),
         ],
+      );
+      final list = res.documents.map((d) => LeaderboardEntry.fromMap(d.data)).toList();
+      for (var i = 0; i < list.length; i++) {
+        list[i].rank = i + 1;
+      }
+      return list;
+    } catch (_) {
+      return const [];
+    }
+  }
+
+  // ── Classement NATIONAL (tous les élèves, par XP total) ─────────────────────
+  static const _nrKey = 'leaderboard_national_v1';
+
+  /// Rang national de l'élève = (nombre d'élèves avec plus d'XP) + 1, et le
+  /// nombre total d'élèves classés. Mis en cache pour l'accueil/hors-ligne.
+  Future<({int rank, int total})> nationalRank({required int myXp}) async {
+    try {
+      final above = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteLeaderboardCollectionId,
+        queries: [Query.greaterThan('xp', myXp), Query.limit(1)],
+      );
+      final all = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteLeaderboardCollectionId,
+        queries: [Query.limit(1)],
+      );
+      final r = (rank: above.total + 1, total: all.total);
+      try {
+        final p = await SharedPreferences.getInstance();
+        await p.setString(_nrKey, '${r.rank}|${r.total}');
+      } catch (_) {}
+      return r;
+    } catch (_) {
+      return (await cachedNationalRank()) ?? (rank: 0, total: 0);
+    }
+  }
+
+  /// Dernier rang national connu (sans réseau), pour l'accueil.
+  Future<({int rank, int total})?> cachedNationalRank() async {
+    try {
+      final p = await SharedPreferences.getInstance();
+      final raw = p.getString(_nrKey);
+      if (raw == null || !raw.contains('|')) return null;
+      final parts = raw.split('|');
+      return (rank: int.parse(parts[0]), total: int.parse(parts[1]));
+    } catch (_) {
+      return null;
+    }
+  }
+
+  /// Top national (tous les élèves, meilleur XP total d'abord).
+  Future<List<LeaderboardEntry>> nationalTop({int limit = 50}) async {
+    try {
+      final res = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteLeaderboardCollectionId,
+        queries: [Query.orderDesc('xp'), Query.limit(limit)],
       );
       final list = res.documents.map((d) => LeaderboardEntry.fromMap(d.data)).toList();
       for (var i = 0; i < list.length; i++) {

@@ -7,6 +7,7 @@ import 'package:image/image.dart' as img;
 import '../ai_config.dart';
 import '../appwrite_config.dart';
 import 'appwrite_client.dart';
+import 'disk_cache.dart';
 
 /// Retire le raisonnement `<think>…</think>` éventuel (filet de sécurité côté
 /// app : le serveur ne devrait plus jamais l'émettre, mais une ancienne version
@@ -395,6 +396,8 @@ class TutorService {
         final remaining = resetDate == _todayStr()
             ? (AIConfig.freeDaily - used).clamp(0, AIConfig.freeDaily)
             : AIConfig.freeDaily;
+        // Cache disque : les crédits restent visibles hors-ligne.
+        unawaited(DiskCache.writeMap('tutor_quota_last', {'credits': credits, 'remaining': remaining}));
         return TutorQuota(freeRemaining: remaining, credits: credits);
       } on AppwriteException catch (e) {
         if (e.code == 404) {
@@ -403,6 +406,14 @@ class TutorService {
         rethrow;
       }
     } catch (_) {
+      // Hors-ligne / erreur : dernière valeur connue (crédits notamment).
+      final disk = await DiskCache.readMap('tutor_quota_last');
+      if (disk != null) {
+        return TutorQuota(
+          freeRemaining: (disk['remaining'] as num?)?.toInt() ?? AIConfig.freeDaily,
+          credits: (disk['credits'] as num?)?.toInt() ?? 0,
+        );
+      }
       return const TutorQuota(freeRemaining: AIConfig.freeDaily, credits: 0);
     }
   }

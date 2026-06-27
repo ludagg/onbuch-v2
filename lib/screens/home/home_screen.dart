@@ -13,6 +13,7 @@ import '../../services/auth_service.dart';
 import '../../services/database_service.dart';
 import '../../services/annale_store.dart';
 import '../../services/gamification_service.dart';
+import '../../services/leaderboard_service.dart';
 import '../../services/tutor_service.dart';
 import '../../widgets/annale_actions.dart';
 import '../../utils/launch.dart';
@@ -135,7 +136,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: const _QuickLinks(),
               ),
-              const SizedBox(height: 22),
+              const SizedBox(height: 16),
+
+              // Rang national (masqué tant que l'élève n'est pas classé)
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: _NationalRankPill(),
+              ),
 
               // Hero — carrousel d'examens (compte à rebours résultats)
               _HeroCarousel(),
@@ -991,6 +998,68 @@ class _TuteurCard extends StatelessWidget {
   }
 }
 
+// ─── Rang national (pastille accueil) ────────────────────────────────────────
+class _NationalRankPill extends StatefulWidget {
+  const _NationalRankPill();
+  @override
+  State<_NationalRankPill> createState() => _NationalRankPillState();
+}
+
+class _NationalRankPillState extends State<_NationalRankPill> {
+  int _rank = 0;
+  int _total = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _load();
+  }
+
+  Future<void> _load() async {
+    // Cache d'abord (instantané, hors-ligne).
+    final cached = await LeaderboardService.instance.cachedNationalRank();
+    if (cached != null && mounted) setState(() { _rank = cached.rank; _total = cached.total; });
+    // Puis rafraîchissement réseau (best-effort).
+    try {
+      await GamificationService.instance.load();
+      final xp = GamificationService.instance.state.value.xp;
+      final r = await LeaderboardService.instance.nationalRank(myXp: xp);
+      if (mounted && r.rank > 0) setState(() { _rank = r.rank; _total = r.total; });
+    } catch (_) {}
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (_rank <= 0) return const SizedBox.shrink();
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () => context.push('/leaderboard'),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+        decoration: BoxDecoration(
+          color: OC.paper,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: OC.line, width: 1.5),
+        ),
+        child: Row(children: [
+          Container(
+            width: 40, height: 40, alignment: Alignment.center,
+            decoration: BoxDecoration(color: OC.o50, borderRadius: BorderRadius.circular(12)),
+            child: Icon(Icons.public_rounded, size: 21, color: OC.o600),
+          ),
+          const SizedBox(width: 12),
+          Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text('Ton rang national', style: body(11.5, color: OC.muted, weight: FontWeight.w600)),
+            Text('#$_rank${_total > 0 ? '  ·  sur $_total' : ''}',
+                style: body(15, weight: FontWeight.w800, color: OC.ink)),
+          ])),
+          Icon(Icons.chevron_right_rounded, size: 20, color: OC.muted),
+        ]),
+      ),
+    );
+  }
+}
+
 // ─── Raccourcis ───────────────────────────────────────────────────────────────
 // ─── Raccourcis rapides (rangée d'icônes colorées sous la recherche) ─────────
 class _QuickLinks extends StatelessWidget {
@@ -1002,7 +1071,7 @@ class _QuickLinks extends StatelessWidget {
   static const _items = <List<Object>>[
     [Icons.menu_book_rounded, 'Cours', 'go:/cours'],
     [Icons.article_rounded, 'Annales', 'go:/annales'],
-    [Icons.leaderboard_rounded, 'Classement', 'push:/leaderboard'],
+    [Icons.leaderboard_rounded, 'Rang', 'push:/leaderboard'],
     [Icons.explore_rounded, 'Orientation', 'go:/concours'],
     [Icons.camera_alt_rounded, 'Scanner', 'push:/tutor/capture'],
   ];
@@ -1032,7 +1101,9 @@ class _QuickLinks extends StatelessWidget {
           child: GestureDetector(
             behavior: HitTestBehavior.opaque,
             onTap: () => _tap(context, it[2] as String),
-            child: Column(children: [
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 3),
+              child: Column(children: [
               // Style « sans cadre » : grande icône colorée directement, sans
               // pastille ni ombre.
               Icon(it[0] as IconData, color: color, size: 32),
@@ -1051,6 +1122,7 @@ class _QuickLinks extends StatelessWidget {
                 ),
               ),
             ]),
+            ),
           ),
         );
       }),
