@@ -20,13 +20,61 @@ class LocalNotificationsService {
   final FlutterLocalNotificationsPlugin _plugin = FlutterLocalNotificationsPlugin();
   bool _inited = false;
 
-  /// Heure du rappel quotidien (18 h, heure du Cameroun).
-  static const int _hour = 18;
+  /// Heure du rappel quotidien par défaut (18 h, heure du Cameroun). Réglable
+  /// dans Paramètres (clampée aux heures « calmes » 7 h–21 h).
+  static const int _defaultHour = 18;
   static const int _horizonDays = 14; // nb de jours de rappels pré-programmés
   static const int _baseId = 7100; // plage d'IDs réservée à la série
   static const int _welcomeId = 7000; // notif de bienvenue (une fois)
   static const _welcomeKey = 'notif_welcome_v1';
+  static const _hourKey = 'notif_reminder_hour';
+  static const _enabledKey = 'notif_reminders_enabled';
   static const List<int> _milestones = [3, 7, 30, 100];
+
+  /// Heure de rappel choisie (défaut 18 h ; clampée 7–21 h).
+  Future<int> reminderHour() async {
+    try {
+      final p = await SharedPreferences.getInstance();
+      final h = p.getInt(_hourKey) ?? _defaultHour;
+      return h.clamp(7, 21);
+    } catch (_) {
+      return _defaultHour;
+    }
+  }
+
+  /// Rappels de révision activés ? (défaut oui).
+  Future<bool> remindersEnabled() async {
+    try {
+      final p = await SharedPreferences.getInstance();
+      return p.getBool(_enabledKey) ?? true;
+    } catch (_) {
+      return true;
+    }
+  }
+
+  Future<void> setReminderHour(int h) async {
+    try {
+      final p = await SharedPreferences.getInstance();
+      await p.setInt(_hourKey, h.clamp(7, 21));
+    } catch (_) {}
+  }
+
+  Future<void> setEnabled(bool e) async {
+    try {
+      final p = await SharedPreferences.getInstance();
+      await p.setBool(_enabledKey, e);
+    } catch (_) {}
+  }
+
+  /// Renvoie la notification de bienvenue (bouton de test en Paramètres).
+  Future<void> resendWelcome() async {
+    if (!_inited) await init();
+    try {
+      final p = await SharedPreferences.getInstance();
+      await p.remove(_welcomeKey);
+    } catch (_) {}
+    await maybeSendWelcome();
+  }
 
   static const String _channelId = 'streak_reminders';
 
@@ -114,15 +162,18 @@ class LocalNotificationsService {
     if (!_inited) await init();
     try {
       await _plugin.cancelAll();
+      // Rappels désactivés dans Paramètres → on n'en planifie aucun.
+      if (!await remindersEnabled()) return;
+      final hour = await reminderHour();
       final now = tz.TZDateTime.now(tz.local);
       final doneToday = _isToday(lastActive, now);
 
-      // Premier rappel : ce soir si pas encore fait et avant l'heure ; sinon demain.
-      final startOffset = (!doneToday && now.hour < _hour) ? 0 : 1;
+      // Premier rappel : aujourd'hui si pas encore fait et avant l'heure ; sinon demain.
+      final startOffset = (!doneToday && now.hour < hour) ? 0 : 1;
 
       for (var k = 0; k < _horizonDays; k++) {
         final offset = startOffset + k;
-        final when = tz.TZDateTime(tz.local, now.year, now.month, now.day, _hour)
+        final when = tz.TZDateTime(tz.local, now.year, now.month, now.day, hour)
             .add(Duration(days: offset));
         if (!when.isAfter(now)) continue;
         final m = _messageFor(

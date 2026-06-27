@@ -5,6 +5,8 @@ import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
 import '../../services/auth_service.dart';
 import '../../services/theme_controller.dart';
+import '../../services/local_notifications_service.dart';
+import '../../services/gamification_service.dart';
 import '../../utils/launch.dart';
 
 class ParametresScreen extends StatefulWidget {
@@ -16,10 +18,10 @@ class ParametresScreen extends StatefulWidget {
 
 class _ParametresScreenState extends State<ParametresScreen> {
   static const _kResultats = 'ob_notif_resultats';
-  static const _kConseils = 'ob_notif_conseils';
 
   bool _notifsResultats = true;
-  bool _notifsConseils = true;
+  bool _reminders = true;
+  int _reminderHour = 18;
   bool _working = false;
 
   @override
@@ -31,12 +33,45 @@ class _ParametresScreenState extends State<ParametresScreen> {
   Future<void> _loadPrefs() async {
     try {
       final p = await SharedPreferences.getInstance();
+      final reminders = await LocalNotificationsService.instance.remindersEnabled();
+      final hour = await LocalNotificationsService.instance.reminderHour();
       if (!mounted) return;
       setState(() {
         _notifsResultats = p.getBool(_kResultats) ?? true;
-        _notifsConseils = p.getBool(_kConseils) ?? true;
+        _reminders = reminders;
+        _reminderHour = hour;
       });
     } catch (_) {}
+  }
+
+  /// Reprogramme les rappels locaux depuis l'état courant (après un réglage).
+  Future<void> _reschedule() async {
+    final g = GamificationService.instance.state.value;
+    await LocalNotificationsService.instance.reschedule(
+      streak: g.streak,
+      lastActive: g.lastActive,
+      weeklyXp: GamificationService.instance.weeklyXp(),
+    );
+  }
+
+  Future<void> _pickReminderHour() async {
+    final picked = await showTimePicker(
+      context: context,
+      initialTime: TimeOfDay(hour: _reminderHour, minute: 0),
+      helpText: 'Heure du rappel quotidien',
+      builder: (ctx, child) => MediaQuery(
+        data: MediaQuery.of(ctx).copyWith(alwaysUse24HourFormat: true),
+        child: child!,
+      ),
+    );
+    if (picked == null) return;
+    final h = picked.hour.clamp(7, 21);
+    await LocalNotificationsService.instance.setReminderHour(h);
+    await _reschedule();
+    if (mounted) {
+      setState(() => _reminderHour = h);
+      _toast('Rappel réglé à ${h}h');
+    }
   }
 
   Future<void> _setPref(String key, bool v) async {
@@ -60,13 +95,21 @@ class _ParametresScreenState extends State<ParametresScreen> {
           ]),
           const SizedBox(height: 16),
           _section('Notifications', [
+            _toggle('Rappels de révision', 'Garde ta série et ta progression', _reminders, (v) async {
+              setState(() => _reminders = v);
+              await LocalNotificationsService.instance.setEnabled(v);
+              await _reschedule();
+            }),
+            if (_reminders)
+              _row(Icons.schedule_rounded, 'Heure du rappel', '${_reminderHour}h chaque jour', onTap: _pickReminderHour),
             _toggle('Alertes résultats', 'Sois prévenu dès la publication', _notifsResultats, (v) {
               setState(() => _notifsResultats = v);
               _setPref(_kResultats, v);
             }),
-            _toggle('Conseils & actus', 'Le fil OnBuch et les rappels', _notifsConseils, (v) {
-              setState(() => _notifsConseils = v);
-              _setPref(_kConseils, v);
+            _row(Icons.notifications_active_outlined, 'Renvoyer la notification test',
+                'Vérifie que les notifications fonctionnent', onTap: () async {
+              await LocalNotificationsService.instance.resendWelcome();
+              _toast('Notification envoyée 🔔');
             }),
           ]),
           const SizedBox(height: 16),
