@@ -1,0 +1,12 @@
+{
+  "exam": "Baccalauréat",
+  "level": "Terminale",
+  "subjects": {
+    "EC": "6a3f707dcb149486fe11",
+    "In": "6a3f707e46bfc001c876",
+    "Py": "6a3f707eb889ec3f0369",
+    "Ch": "6a3f707f704a2753d728",
+    "EP": "6a3f7080345a32eb34dc",
+    "Es": "6a3f7080b24b9aa077ce"
+  }
+}

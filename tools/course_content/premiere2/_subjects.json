@@ -1,0 +1,12 @@
+{
+  "exam": "Probatoire",
+  "level": "Première",
+  "subjects": {
+    "EC": "6a3f708130d76073d814",
+    "In": "6a3f7081baa8e93bb808",
+    "Py": "6a3f708252c2c373d997",
+    "Ch": "6a3f7082dc1f9ef96b3d",
+    "EP": "6a3f70838054eab489c7",
+    "Es": "6a3f7084121097fec88c"
+  }
+}
