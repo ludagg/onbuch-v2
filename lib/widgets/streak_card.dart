@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../theme/app_theme.dart';
 import '../services/gamification_service.dart';
+import 'leo_mascot.dart';
 
 /// Carte « série » (streak) : nombre de jours d'affilée où l'élève a ouvert
 /// l'app + bande des 7 derniers jours (jours actifs en flamme).
@@ -45,6 +46,14 @@ class _StreakCardState extends State<StreakCard> {
     return !d.isBefore(start) && !d.isAfter(last);
   }
 
+  /// Humeur de Léo selon l'état de la série.
+  LeoMood _mood(GamificationState s, DateTime today) {
+    if (s.streak <= 0) return LeoMood.sleepy; // pas de série → Léo dort
+    final last = _parse(s.lastActive);
+    if (last != null && last == today) return LeoMood.fire; // à jour → flamme
+    return LeoMood.alarm; // série en cours mais pas encore aujourd'hui
+  }
+
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder<GamificationState>(
@@ -67,9 +76,17 @@ class _StreakCardState extends State<StreakCard> {
           ),
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Row(children: [
-              Icon(Icons.local_fire_department_rounded,
-                  color: Colors.white, size: widget.compact ? 30 : 34),
-              const SizedBox(width: 10),
+              Container(
+                width: widget.compact ? 46 : 54,
+                height: widget.compact ? 46 : 54,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: Colors.white.withValues(alpha: 0.18),
+                  shape: BoxShape.circle,
+                ),
+                child: LeoMascot(size: widget.compact ? 40 : 48, mood: _mood(s, today)),
+              ),
+              const SizedBox(width: 11),
               Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 Row(crossAxisAlignment: CrossAxisAlignment.baseline, textBaseline: TextBaseline.alphabetic, children: [
                   Text('$streak', style: display(widget.compact ? 24 : 28, weight: FontWeight.w800, color: Colors.white)),
