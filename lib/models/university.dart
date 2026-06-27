@@ -20,6 +20,17 @@ class University {
   final int order;
   final bool active;
 
+  // ── Fiche détaillée (gérée par l'admin ; vide = section masquée) ───────────
+  final String tuition;            // frais de scolarité
+  final String admission;          // conditions d'admission
+  final String registrationDates;  // dates des inscriptions
+  final List<String> documents;    // pièces à fournir
+  final String places;             // nombre de places
+  final String successRate;        // taux de réussite
+  final String accreditation;      // accréditation des diplômes
+  final List<String> campuses;     // campus disponibles
+  final String residences;         // résidences universitaires
+
   const University({
     required this.name,
     required this.acronym,
@@ -36,7 +47,22 @@ class University {
     this.rank = 0,
     this.order = 0,
     this.active = true,
+    this.tuition = '',
+    this.admission = '',
+    this.registrationDates = '',
+    this.documents = const [],
+    this.places = '',
+    this.successRate = '',
+    this.accreditation = '',
+    this.campuses = const [],
+    this.residences = '',
   });
+
+  /// Vrai s'il y a au moins une info de fiche détaillée à afficher.
+  bool get hasDetails =>
+      tuition.isNotEmpty || admission.isNotEmpty || registrationDates.isNotEmpty ||
+      documents.isNotEmpty || places.isNotEmpty || successRate.isNotEmpty ||
+      accreditation.isNotEmpty || campuses.isNotEmpty || residences.isNotEmpty;
 
   bool get isPublic => type.trim().toLowerCase().startsWith('pub');
   bool get hasLogo => logoUrl.trim().isNotEmpty;
@@ -70,6 +96,15 @@ class University {
       rank: i(m['rank']),
       order: i(m['order']),
       active: m['active'] != false,
+      tuition: s(m['tuition']),
+      admission: s(m['admission']),
+      registrationDates: s(m['registrationDates']),
+      documents: _splitList(s(m['documents'])),
+      places: s(m['places']),
+      successRate: s(m['successRate']),
+      accreditation: s(m['accreditation']),
+      campuses: _splitList(s(m['campuses'])),
+      residences: s(m['residences']),
     );
   }
 

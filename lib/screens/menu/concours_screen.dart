@@ -118,6 +118,13 @@ class _ConcoursScreenState extends State<ConcoursScreen> {
               // Carrousel publicitaire — meilleurs centres de prépa (données admin)
               _PrepCenterCarousel(future: _prepFuture),
 
+              // Découvre ton futur métier (après la pub)
+              if (!searching) ...[
+                const SizedBox(height: 16),
+                _DiscoverMetierCard(),
+                const SizedBox(height: 18),
+              ],
+
               // Vedette — clôture la plus proche (masquée en recherche)
               if (!searching) ...[
                 _FeaturedCard(featured),
@@ -354,6 +361,44 @@ class _QuadButton extends StatelessWidget {
         ]),
       ),
     ));
+  }
+}
+
+// ─── Découvre ton futur métier (bandeau orientation) ─────────────────────────
+class _DiscoverMetierCard extends StatelessWidget {
+  const _DiscoverMetierCard();
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () => context.push('/metiers'),
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            begin: Alignment.topLeft, end: Alignment.bottomRight,
+            colors: [Color(0xFF1E9E63), Color(0xFF0E7A4A)]),
+          borderRadius: BorderRadius.circular(18),
+        ),
+        child: Row(children: [
+          Container(
+            width: 46, height: 46, alignment: Alignment.center,
+            decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.18), borderRadius: BorderRadius.circular(13)),
+            child: const Icon(Icons.work_rounded, color: Colors.white, size: 24),
+          ),
+          const SizedBox(width: 13),
+          Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text('Découvre ton futur métier', style: display(16, weight: FontWeight.w800, color: Colors.white)),
+            const SizedBox(height: 3),
+            Text('Salaire, études, compétences, débouchés au Cameroun',
+                maxLines: 2, overflow: TextOverflow.ellipsis,
+                style: body(11.5, color: Colors.white.withValues(alpha: 0.9), weight: FontWeight.w500).copyWith(height: 1.3)),
+          ])),
+          const Icon(Icons.chevron_right_rounded, color: Colors.white, size: 22),
+        ]),
+      ),
+    );
   }
 }
 

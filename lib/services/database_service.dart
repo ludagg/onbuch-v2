@@ -25,6 +25,7 @@ import '../models/fascicule.dart';
 import '../models/social_link.dart';
 import '../models/annale.dart';
 import '../models/university.dart';
+import '../models/metier.dart';
 import '../models/bourse.dart';
 import '../data/universities.dart';
 import '../data/bourses.dart';
@@ -730,6 +731,20 @@ class DatabaseService {
     }, (raw) => raw.map((m) => University.fromMap(m, id: m['\$id'] as String)).toList());
     final active = list.where((u) => u.active).toList();
     return active.isEmpty ? List<University>.from(kUniversities) : active;
+  }
+
+  /// Fiches métiers (admin), triées par `order`, actives uniquement. Cache
+  /// disque (lisible hors-ligne). Liste vide si la collection n'est pas remplie.
+  Future<List<Metier>> getMetiers({int limit = 100}) async {
+    final list = await _cachedList<Metier>('metiers:$limit', () async {
+      final res = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteMetiersCollectionId,
+        queries: [Query.orderAsc('order'), Query.limit(limit)],
+      );
+      return res.documents.map((d) => {...d.data, '\$id': d.$id}).toList();
+    }, (raw) => raw.map((m) => Metier.fromMap(m, id: m['\$id'] as String)).toList());
+    return list.where((m) => m.active).toList();
   }
 
   /// Liste des bourses (admin), avec repli sur la liste curée embarquée si la

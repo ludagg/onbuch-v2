@@ -1,0 +1,134 @@
+{
+  "UY1": {
+    "tuition": "50 000 FCFA/an (indicatif, droits universitaires d'État, 1er cycle), payable en deux tranches de 25 000 FCFA. Préinscription ~10 000 FCFA. Frais plus élevés pour certaines grandes écoles/concours.",
+    "admission": "Baccalauréat délivré par l'Office du Baccalauréat du Cameroun (ou équivalence) ou GCE Advanced Level (ou équivalent). Les certificats techniques ne sont pas acceptés. Admission par concours pour certaines grandes écoles (ENS, ENSP/Polytechnique).",
+    "registrationDates": "Préinscriptions en ligne généralement d'août à fin septembre (variable selon l'année académique).",
+    "documents": "Acte de naissance certifié|Relevés de notes et diplôme du Baccalauréat/GCE A Level certifiés|Relevés du Probatoire/GCE O Level|Photos 4x4|Certificat médical|Reçus de paiement des frais",
+    "places": "",
+    "successRate": "",
+    "accreditation": "Université publique d'État, sous tutelle du MINESUP (Ministère de l'Enseignement Supérieur).",
+    "campuses": "Yaoundé (campus principal Ngoa-Ekellé)|Mbalmayo (IUT-Bois)",
+    "residences": ""
+  },
+  "UD": {
+    "tuition": "50 000 FCFA/an (indicatif, droits universitaires d'État, 1er cycle), souvent payés en tranches. S'ajoutent préinscription (~15 000 FCFA) et visite médicale (~5 000 FCFA). Frais plus élevés pour les écoles/instituts (IUT, ESSEC, etc.).",
+    "admission": "Baccalauréat ou GCE Advanced Level (ou équivalence) pour les facultés. Admission par concours pour les grandes écoles et instituts (IUT, ESSEC, ESSUT...).",
+    "registrationDates": "Préinscription puis inscription académique, généralement à partir d'août/septembre (variable).",
+    "documents": "Acte de naissance certifié|Relevés et diplôme du Baccalauréat/GCE certifiés|Photos|Certificat médical du centre médical de l'université|Reçus de paiement (préinscription, visite médicale, droits)",
+    "places": "",
+    "successRate": "",
+    "accreditation": "Université publique d'État, sous tutelle du MINESUP.",
+    "campuses": "Douala (campus principal)|Nkongsamba (Institut des Beaux-Arts)",
+    "residences": ""
+  },
+  "UDs": {
+    "tuition": "50 000 FCFA/an (indicatif, droits universitaires d'État, 1er cycle). Frais plus élevés pour les écoles/instituts et certaines filières sur concours.",
+    "admission": "Baccalauréat ou GCE Advanced Level (ou équivalence) pour les facultés. Admission par concours pour les écoles et instituts (IUT Fotso Victor de Bandjoun, etc.).",
+    "registrationDates": "Préinscription et inscription en ligne via la plateforme sigesonline.univ-dschang.org, généralement à partir d'août/septembre (variable).",
+    "documents": "Acte de naissance certifié|Relevés et diplôme du Baccalauréat/GCE certifiés|Relevés du Probatoire/GCE O Level|Photos|Reçus de paiement",
+    "places": "",
+    "successRate": "",
+    "accreditation": "Université publique d'État, sous tutelle du MINESUP.",
+    "campuses": "Dschang (campus principal)|Bandjoun (IUT Fotso Victor)|Foumban (Institut des Beaux-Arts)|Ebolowa (filière des métiers du bois, de l'eau et de l'environnement)",
+    "residences": ""
+  },
+  "UB": {
+    "tuition": "Droits d'État (~50 000 FCFA/an indicatif pour les filières classiques) ; certains programmes professionnels affichent des frais plus élevés. Préciser auprès de l'université.",
+    "admission": "GCE Advanced Level ou Baccalauréat (ou équivalence) ; admission sélective basée sur le dossier académique et, pour certaines filières, sur concours/examen d'entrée.",
+    "registrationDates": "Inscription généralement à partir de septembre/octobre (variable). Université anglophone.",
+    "documents": "Acte de naissance certifié|Résultats du GCE O & A Level (ou Baccalauréat) certifiés|Photos|Certificat médical|Reçus de paiement",
+    "places": "",
+    "successRate": "",
+    "accreditation": "Université publique d'État (anglophone), sous tutelle du MINESUP. Fondée comme centre universitaire en 1985, université en 1992.",
+    "campuses": "Buea (campus principal, au pied du Mont Cameroun)",
+    "residences": ""
+  },
+  "UY2": {
+    "tuition": "50 000 FCFA/an (indicatif, droits universitaires d'État, 1er cycle). Frais plus élevés pour les grandes écoles (ESSTIC, IRIC, IFORD...).",
+    "admission": "Baccalauréat, GCE Advanced Level, ou diplôme en droit/économie. Pour les facultés (FSJP, FSEG), orientation académique obligatoire en 1ère année. Admission par concours pour les grandes écoles (ESSTIC, IRIC...).",
+    "registrationDates": "Préinscriptions et inscriptions généralement à partir d'août/septembre (variable).",
+    "documents": "Acte de naissance certifié|Relevés certifiés du Probatoire, Baccalauréat ou GCE O & A Level|Photos|Reçus de paiement",
+    "places": "",
+    "successRate": "",
+    "accreditation": "Université publique d'État, sous tutelle du MINESUP.",
+    "campuses": "Soa (campus principal, FSJP et FSEG)|Yaoundé-Obili (IRIC)|Yaoundé-Ngoa Ekellé (ESSTIC, IFORD)|Ebolowa|Bertoua",
+    "residences": ""
+  },
+  "UN": {
+    "tuition": "50 000 FCFA/an (indicatif, droits universitaires d'État, 1er cycle). Frais plus élevés pour les écoles/instituts.",
+    "admission": "Baccalauréat ou GCE Advanced Level (ou équivalence) pour les facultés ; admission par concours pour les grandes écoles et instituts.",
+    "registrationDates": "Préinscription, inscription et réinscription en ligne, généralement à partir de septembre (variable selon l'année).",
+    "documents": "Acte de naissance certifié|Relevés et diplôme du Baccalauréat/GCE certifiés|Photos|Reçus de paiement",
+    "places": "",
+    "successRate": "",
+    "accreditation": "Université publique d'État, sous tutelle du MINESUP.",
+    "campuses": "Ngaoundéré (campus principal)",
+    "residences": ""
+  },
+  "UMa": {
+    "tuition": "50 000 FCFA/an (indicatif, droits universitaires d'État, 1er cycle). Frais plus élevés pour les grandes écoles (ENS, ENSP/ENSMIP...).",
+    "admission": "Baccalauréat ou GCE Advanced Level (ou équivalence) pour les facultés ; admission par concours pour l'ENS, l'École Nationale Supérieure Polytechnique et autres écoles.",
+    "registrationDates": "Préinscription et inscription en ligne (préinscription.univ-maroua.cm), généralement à partir de septembre (variable).",
+    "documents": "Acte de naissance (copie certifiée et original)|Diplôme d'entrée (Baccalauréat/GCE, copie et original)|Photos|Reçus de paiement",
+    "places": "",
+    "successRate": "",
+    "accreditation": "Université publique d'État, sous tutelle du MINESUP.",
+    "campuses": "Maroua (campus principal)|Kaélé (ENSMIP)|Kousséri",
+    "residences": ""
+  },
+  "UBa": {
+    "tuition": "Droits d'État (~50 000 FCFA/an indicatif pour les filières classiques) ; frais plus élevés pour les écoles professionnelles. Préciser auprès de l'université.",
+    "admission": "GCE Advanced Level dans au moins 2 matières (une seule session) ou Baccalauréat (ou équivalence), plus GCE O Level dans au moins 4 matières (ou équivalence). Test d'anglais possible pour les candidats sans Anglais au O Level/Probatoire. Concours pour certaines écoles (College of Technology...).",
+    "registrationDates": "Inscription généralement à partir de septembre/octobre (variable). Université anglophone.",
+    "documents": "Acte de naissance certifié|Résultats GCE O & A Level (ou Baccalauréat) certifiés|Photos|Reçus de paiement",
+    "places": "",
+    "successRate": "",
+    "accreditation": "Université publique d'État (anglophone), créée en 2011, sous tutelle du MINESUP.",
+    "campuses": "Bambili (campus principal, Mezam, région du Nord-Ouest)|Bamenda",
+    "residences": ""
+  },
+  "UCAC": {
+    "tuition": "Privée : de l'ordre de 1 000 000 FCFA/an (indicatif, variable selon la filière). Logement sur campus ~32 500 FCFA/mois (indicatif).",
+    "admission": "Admission par concours en 1ère année (Faculté des sciences sociales et de gestion, Faculté de philosophie, École des sciences infirmières). Baccalauréat ou GCE Advanced Level requis pour se présenter au concours.",
+    "registrationDates": "Concours d'entrée et inscriptions selon le calendrier annuel de l'UCAC (généralement été/rentrée ; variable).",
+    "documents": "Acte de naissance|Diplôme et relevés du Baccalauréat/GCE A Level|Photos|Dossier de candidature au concours|Reçus de paiement",
+    "places": "",
+    "successRate": "",
+    "accreditation": "Université privée confessionnelle (catholique), fondée par l'ACERAC, agréée par le MINESUP. Issue de l'Institut catholique de Yaoundé (accord Saint-Siège / Cameroun, 1989).",
+    "campuses": "Yaoundé-Nkolbisson (sciences sociales)|Yaoundé-Ekounou (gestion)",
+    "residences": "Logement sur campus disponible (indicatif ~32 500 FCFA/mois)."
+  },
+  "UdM": {
+    "tuition": "Privée : variable selon la filière. Filières de santé (Médecine, Pharmacie, Chirurgie dentaire) ~1 300 000 FCFA/an (indicatif).",
+    "admission": "Deux modes : concours et étude de dossiers. Pour Médecine, Pharmacie et Chirurgie dentaire (entrée en 1ère et 4ème année), admission via le concours national organisé par le MINESUP. Baccalauréat/GCE A Level requis.",
+    "registrationDates": "Concours et inscriptions selon le calendrier annuel ; concours national santé organisé par le MINESUP (variable).",
+    "documents": "Acte de naissance|Diplôme et relevés du Baccalauréat/GCE|Photos|Dossier de candidature|Reçus de paiement",
+    "places": "",
+    "successRate": "",
+    "accreditation": "Université privée, apolitique et non confessionnelle, gérée comme un organisme privé sans but lucratif, agréée par le MINESUP. Ouverte en 2000.",
+    "campuses": "Bangangté (Ouest)",
+    "residences": ""
+  },
+  "ICTU": {
+    "tuition": "Privée : variable selon le programme. Frais de matériel pédagogique indicatifs ~200 USD/semestre (filières ingénierie/télécom) ou ~100 USD/semestre (autres). Frais de dossier ~12 500 FCFA (25 USD).",
+    "admission": "Admission sur dossier pour les programmes Diplôme, Licence, Master et Doctorat (sur site et en ligne). Baccalauréat/GCE A Level (ou équivalent) requis pour la licence.",
+    "registrationDates": "Inscriptions par semestre selon le calendrier de l'université (variable).",
+    "documents": "Fiche d'admission|Diplôme et relevés du Baccalauréat/GCE|Photos|Frais de dossier (~12 500 FCFA / 25 USD)",
+    "places": "",
+    "successRate": "",
+    "accreditation": "Université privée, campus du Cameroun agréé par le MINESUP (autorisation n° 02/04505/N/MINESUP/DDES/ESUP/SAC/ebm du 21 septembre 2012). Démarrée en 2010.",
+    "campuses": "Yaoundé (Zoatupsi)",
+    "residences": ""
+  },
+  "UAC": {
+    "tuition": "Privée : frais d'études de dossier 25 000 FCFA. Frais d'instruction annuels variables selon la filière (indicatifs) : ex. Sciences Juridiques ~300 000 FCFA, Informatique ~420 000 FCFA, Gestion ~420 000 FCFA, Sciences Infirmières ~600 000 FCFA, Biologie Clinique ~682 000 FCFA.",
+    "admission": "Sur dossier. Titulaire du Baccalauréat, GCE Advanced Level, Higher School Diploma ou tout autre diplôme de fin d'études secondaires. Frais d'admission non remboursables de 25 000 FCFA.",
+    "registrationDates": "Inscriptions selon le calendrier annuel de l'université (variable).",
+    "documents": "Demande d'admission|Acte de naissance|Diplôme et relevés du Baccalauréat/GCE/Higher School Diploma|Photos|Frais d'étude de dossier (25 000 FCFA)",
+    "places": "",
+    "successRate": "",
+    "accreditation": "Université privée confessionnelle (adventiste), agréée par le MINESUP. Établie en 1996. Pionnière du système LMD à crédits.",
+    "campuses": "Nanga-Eboko (campus principal, région du Centre)|Douala|Yaoundé|Maroua",
+    "residences": ""
+  }
+}

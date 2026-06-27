@@ -51,6 +51,8 @@ import '../screens/menu/filieres_screen.dart';
 import '../screens/menu/filiere_detail_screen.dart';
 import '../models/filiere.dart';
 import '../screens/menu/universites_screen.dart';
+import '../screens/menu/metiers_screen.dart';
+import '../models/metier.dart';
 import '../screens/menu/university_detail_screen.dart';
 import '../screens/menu/bourses_screen.dart';
 import '../models/university.dart';
@@ -156,6 +158,8 @@ final appRouter = GoRouter(
     GoRoute(path: '/filieres', builder: (_, __) => const FilieresScreen()),
     GoRoute(path: '/filiere', builder: (_, s) => FiliereDetailScreen(filiere: s.extra as Filiere?)),
     GoRoute(path: '/universites', builder: (_, __) => const UniversitesScreen()),
+    GoRoute(path: '/metiers', builder: (_, __) => const MetiersScreen()),
+    GoRoute(path: '/metier', builder: (_, s) => MetierDetailScreen(metier: s.extra as Metier?)),
     GoRoute(path: '/universite', builder: (_, s) => UniversityDetailScreen(university: s.extra as University?)),
     GoRoute(path: '/bourses', builder: (_, __) => const BoursesScreen()),
     GoRoute(path: '/concours-inscription', builder: (_, s) => ConcoursInscriptionScreen(concours: s.extra as Concours?)),
