@@ -23,7 +23,7 @@ class BillingService {
   };
 
   static const _verifyFunctionId = 'verify-purchase';
-  static const _packageName = 'cm.luvvix.onbuch';
+  static const _packageName = 'com.luvvix.onbuch';
 
   final InAppPurchase _iap = InAppPurchase.instance;
   StreamSubscription<List<PurchaseDetails>>? _sub;

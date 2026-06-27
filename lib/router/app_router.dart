@@ -273,6 +273,9 @@ final appRouter = GoRouter(
                   title: m['title'] as String?,
                   subtitle: m['subtitle'] as String?,
                   offlineId: m['offlineId'] as String?,
+                  previewPages: m['previewPages'] as int?,
+                  orderUrl: m['orderUrl'] as String?,
+                  orderLabel: m['orderLabel'] as String?,
                 );
               },
             ),

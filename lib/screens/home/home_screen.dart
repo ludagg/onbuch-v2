@@ -13,6 +13,7 @@ import '../../services/auth_service.dart';
 import '../../services/database_service.dart';
 import '../../services/annale_store.dart';
 import '../../services/gamification_service.dart';
+import '../../services/leaderboard_service.dart';
 import '../../services/tutor_service.dart';
 import '../../widgets/annale_actions.dart';
 import '../../utils/launch.dart';
@@ -135,7 +136,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: const _QuickLinks(),
               ),
-              const SizedBox(height: 22),
+              const SizedBox(height: 16),
 
               // Hero — carrousel d'examens (compte à rebours résultats)
               _HeroCarousel(),
@@ -285,6 +286,7 @@ class _HeaderStats extends StatefulWidget {
 class _HeaderStatsState extends State<_HeaderStats> {
   String _examShort = '—';
   String _credits = '—';
+  String _rank = '—';
 
   @override
   void initState() {
@@ -293,6 +295,17 @@ class _HeaderStatsState extends State<_HeaderStats> {
     GamificationService.instance.recordActivity();
     _loadProfile();
     _loadCredits();
+    _loadRank();
+  }
+
+  Future<void> _loadRank() async {
+    // Cache d'abord (instantané / hors-ligne), puis valeur fraîche.
+    final cached = await LeaderboardService.instance.cachedNationalRank();
+    if (mounted && cached != null && cached.rank > 0) setState(() => _rank = '#${cached.rank}');
+    await GamificationService.instance.load();
+    final xp = GamificationService.instance.state.value.xp;
+    final r = await LeaderboardService.instance.nationalRank(myXp: xp);
+    if (mounted && r.rank > 0) setState(() => _rank = '#${r.rank}');
   }
 
   Future<void> _loadProfile() async {
@@ -337,7 +350,7 @@ class _HeaderStatsState extends State<_HeaderStats> {
           child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
             _stat('${g.xp}', 'XP total', OC.warn),
             _div(),
-            _stat('—', 'Rang national', OC.blue),
+            _stat(_rank, 'Rang national', OC.blue, onTap: () => context.push('/leaderboard')),
             _div(),
             _stat(_examShort, 'Examen', const Color(0xFF7A5AE0)),
             _div(),
@@ -849,13 +862,8 @@ class _FasciculesCarouselState extends State<_FasciculesCarousel>
   }
 
   void _open(Fascicule f) {
-    if (!f.hasPdf) return;
-    context.push('/annales/pdf', extra: {
-      'url': f.pdfUrl,
-      'title': f.title,
-      'subtitle': f.shelfSubtitle.isEmpty ? 'Fascicule OnBuch' : f.shelfSubtitle,
-      'offlineId': 'fascicule:${f.id}',
-    });
+    // Ouvre la fiche du fascicule (aperçu + précommande), pas le PDF complet.
+    context.push('/fascicule', extra: f);
   }
 
   @override
@@ -1007,7 +1015,7 @@ class _QuickLinks extends StatelessWidget {
   static const _items = <List<Object>>[
     [Icons.menu_book_rounded, 'Cours', 'go:/cours'],
     [Icons.article_rounded, 'Annales', 'go:/annales'],
-    [Icons.leaderboard_rounded, 'Classement', 'push:/leaderboard'],
+    [Icons.leaderboard_rounded, 'Rang', 'push:/leaderboard'],
     [Icons.explore_rounded, 'Orientation', 'go:/concours'],
     [Icons.camera_alt_rounded, 'Scanner', 'push:/tutor/capture'],
   ];
@@ -1037,7 +1045,9 @@ class _QuickLinks extends StatelessWidget {
           child: GestureDetector(
             behavior: HitTestBehavior.opaque,
             onTap: () => _tap(context, it[2] as String),
-            child: Column(children: [
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 3),
+              child: Column(children: [
               // Style « sans cadre » : grande icône colorée directement, sans
               // pastille ni ombre.
               Icon(it[0] as IconData, color: color, size: 32),
@@ -1056,6 +1066,7 @@ class _QuickLinks extends StatelessWidget {
                 ),
               ),
             ]),
+            ),
           ),
         );
       }),

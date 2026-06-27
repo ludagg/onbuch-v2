@@ -1,4 +1,4 @@
-package cm.luvvix.onbuch
+package com.luvvix.onbuch
 
 import io.flutter.embedding.android.FlutterActivity
 

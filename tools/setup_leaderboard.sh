@@ -33,5 +33,7 @@ sleep 6
 echo "→ Index (filtre semaine+ligue, tri par weeklyXp)"
 api POST "/collections/$COL/indexes" '{"key":"rank","type":"key","attributes":["weekId","league","weeklyXp"],"orders":["ASC","ASC","DESC"]}'
 api POST "/collections/$COL/indexes" '{"key":"by_uid","type":"key","attributes":["uid"],"orders":["ASC"]}'
+# Classement national : tri par XP total.
+api POST "/collections/$COL/indexes" '{"key":"national","type":"key","attributes":["xp"],"orders":["DESC"]}'
 
 echo "Terminé."

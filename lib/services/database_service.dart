@@ -172,6 +172,15 @@ class DatabaseService {
         return disk;
       }
       rethrow;
+    } catch (_) {
+      // Erreur réseau non-Appwrite (ex. SocketException hors-ligne) : même repli.
+      if (cached != null) return cached.data as Map<String, dynamic>?;
+      final disk = await DiskCache.readMap(key);
+      if (disk != null) {
+        _cache[key] = _CacheEntry(disk, DateTime.now());
+        return disk;
+      }
+      return null;
     }
   }
 
