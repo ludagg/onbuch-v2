@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../app_globals.dart';
 import '../theme/app_theme.dart';
 import '../services/notifications_service.dart';
+import 'streak_card.dart';
 
 // ─── Wordmark ─────────────────────────────────────────────────────────────────
 class OBWordmark extends StatelessWidget {
@@ -523,7 +524,18 @@ class AppDrawer extends StatelessWidget {
               ),
             ]),
           ),
-          const SizedBox(height: 6),
+          // Série (streak) — tout en haut du menu.
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 4, 16, 8),
+            child: GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: () {
+                shellScaffoldKey.currentState?.closeEndDrawer();
+                context.push('/progress');
+              },
+              child: const StreakCard(compact: true),
+            ),
+          ),
           Expanded(
             child: ListView(
               padding: const EdgeInsets.symmetric(horizontal: 12),
