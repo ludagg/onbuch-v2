@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
+import '../../widgets/streak_card.dart';
 import '../../services/auth_service.dart';
 import '../../services/database_service.dart';
 import '../../services/tutor_service.dart';
@@ -162,6 +163,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ]),
               ),
             ]),
+          ),
+          const SizedBox(height: 16),
+
+          // Ma série (streak) — jours d'ouverture consécutifs
+          GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: () => context.push('/progress'),
+            child: const StreakCard(),
           ),
           const SizedBox(height: 22),
 
