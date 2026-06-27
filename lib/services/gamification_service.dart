@@ -5,6 +5,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../appwrite_config.dart';
 import 'appwrite_client.dart';
 import 'local_notifications_service.dart';
+import 'leaderboard_service.dart';
+import 'auth_service.dart';
 
 /// État de progression (gamification) de l'élève.
 class GamificationState {
@@ -283,6 +285,17 @@ class GamificationService {
     // reprogramme les suivants à partir du nouvel état de la série.
     LocalNotificationsService.instance
         .reschedule(streak: next.streak, lastActive: next.lastActive);
+    // Publie l'entrée de classement de la semaine (best-effort).
+    final uid = _uid;
+    if (uid != null) {
+      LeaderboardService.instance.submit(
+        uid: uid,
+        name: AuthService.cachedFullName ?? 'Élève',
+        level: next.level,
+        xp: next.xp,
+        weeklyXp: weeklyXp(),
+      );
+    }
   }
 
   /// Ajoute de l'XP (+ incréments éventuels), recalcule les badges.

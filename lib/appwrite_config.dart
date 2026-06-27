@@ -40,6 +40,9 @@ const appwriteAppConfigCollectionId = 'app_config';
 // Annonces configurables affichées en tête du carrousel d'accueil.
 const appwriteHomeAnnouncementsCollectionId = 'home_announcements';
 const appwriteGamificationCollectionId = 'gamification';
+// Classement / ligues (façon Duolingo) : chaque élève publie son entrée
+// (lecture publique, écriture propriétaire). Cf. tools/setup_leaderboard.sh.
+const appwriteLeaderboardCollectionId = 'leaderboard';
 
 // ── Module Exercices (banque d'exercices par matière/classe) ────────────────
 // Chapitres + fiches (énoncé PDF + correction PDF) gérés par l'admin ;
