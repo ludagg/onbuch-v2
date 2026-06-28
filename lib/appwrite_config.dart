@@ -69,6 +69,11 @@ const appwriteExerciseProgressCollectionId = 'exercise_progress';
 // publique. Le type `manual` est résolu côté app directement.
 const resultLookupUrl = 'https://onbuch-v2.vercel.app/api/result-lookup';
 
+// Parrainage : endpoint serveur (Vercel, projet onbuch-v2) qui crédite les
+// crédits OnBuch et écrit la collection `referrals`. Auth par JWT du filleul.
+const referralApiUrl = 'https://onbuch-v2.vercel.app/api/referral';
+const appwriteReferralsCollectionId = 'referrals';
+
 // Page d'atterrissage des liens de partage (ouvre l'app si installée, sinon
 // propose le téléchargement). Projet Vercel dédié.
 const onbuchShareBaseUrl = 'https://onbuch-go.vercel.app';
