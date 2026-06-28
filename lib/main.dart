@@ -13,6 +13,7 @@ import 'services/exam_structure_service.dart';
 import 'services/local_notifications_service.dart';
 import 'services/gamification_service.dart';
 import 'services/referral_service.dart';
+import 'services/home_widget_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -53,6 +54,13 @@ void main() async {
       final g = GamificationService.instance.state.value;
       await LocalNotificationsService.instance.reschedule(
           streak: g.streak, lastActive: g.lastActive, weeklyXp: GamificationService.instance.weeklyXp());
+      // Widget d'écran d'accueil « Ma série » : pousse la série courante, puis
+      // se met à jour à chaque changement d'état (gain de série, etc.).
+      HomeWidgetService.updateStreak(streak: g.streak, lastActive: g.lastActive);
+      GamificationService.instance.state.addListener(() {
+        final s = GamificationService.instance.state.value;
+        HomeWidgetService.updateStreak(streak: s.streak, lastActive: s.lastActive);
+      });
       // Parrainage : si l'élève (filleul) a atteint le palier, crédite son
       // parrain. Best-effort, no-op si non connecté ou rien en attente.
       ReferralService.instance.settle();
