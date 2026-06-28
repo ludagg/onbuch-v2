@@ -493,6 +493,7 @@ class AppDrawer extends StatelessWidget {
     OBMenuEntry(Icons.person_outline_rounded, 'Mon profil', '/profile'),
     OBMenuEntry(Icons.event_note_rounded, 'Campus & agenda', '/campus'),
     OBMenuEntry(Icons.paid_outlined, 'Crédits', '/credits'),
+    OBMenuEntry(Icons.card_giftcard_rounded, 'Inviter mes amis', '/parrainage'),
     OBMenuEntry(Icons.groups_rounded, 'Communauté', '/communaute'),
     OBMenuEntry(Icons.settings_outlined, 'Paramètres', '/parametres'),
     OBMenuEntry(Icons.help_outline_rounded, 'Aide & support', '/aide'),

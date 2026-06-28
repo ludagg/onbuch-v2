@@ -12,6 +12,7 @@ import 'services/theme_controller.dart';
 import 'services/exam_structure_service.dart';
 import 'services/local_notifications_service.dart';
 import 'services/gamification_service.dart';
+import 'services/referral_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -52,6 +53,9 @@ void main() async {
       final g = GamificationService.instance.state.value;
       await LocalNotificationsService.instance.reschedule(
           streak: g.streak, lastActive: g.lastActive, weeklyXp: GamificationService.instance.weeklyXp());
+      // Parrainage : si l'élève (filleul) a atteint le palier, crédite son
+      // parrain. Best-effort, no-op si non connecté ou rien en attente.
+      ReferralService.instance.settle();
     } catch (_) {/* sans notifications locales si indisponible */}
   }();
 

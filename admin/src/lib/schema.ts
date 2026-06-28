@@ -670,6 +670,28 @@ export const RESOURCES: Resource[] = [
       { key: 'priceCredits', label: 'Prix (crédits)', type: 'number' },
       { key: 'createdAt', label: 'Acheté le', type: 'text' }
     ]
+  },
+  {
+    id: 'referrals',
+    collectionId: 'referrals',
+    label: 'Parrainages',
+    singular: 'parrainage',
+    icon: '🎁',
+    titleField: 'code',
+    subtitleField: 'status',
+    orderBy: { field: '$createdAt', dir: 'desc' },
+    readOnly: true,
+    searchFields: ['referrerUid', 'refereeUid', 'code'],
+    fields: [
+      { key: 'code', label: 'Code utilisé', type: 'text' },
+      { key: 'status', label: 'Statut', type: 'text', help: 'pending = filleul inscrit ; rewarded = parrain crédité (palier atteint).' },
+      { key: 'referrerUid', label: 'Parrain (UID)', type: 'text' },
+      { key: 'refereeUid', label: 'Filleul (UID)', type: 'text' },
+      { key: 'refereeBonus', label: 'Bonus filleul (crédits)', type: 'number' },
+      { key: 'referrerBonus', label: 'Bonus parrain (crédits)', type: 'number' },
+      { key: 'createdAt', label: 'Créé le', type: 'text' },
+      { key: 'rewardedAt', label: 'Récompensé le', type: 'text' }
+    ]
   }
 ];
 

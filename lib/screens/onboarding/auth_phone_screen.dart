@@ -4,6 +4,7 @@ import '../../theme/app_theme.dart';
 import '../../widgets/leo_mascot.dart';
 import '../../services/auth_service.dart';
 import '../../services/database_service.dart';
+import '../../services/referral_service.dart';
 
 class AuthPhoneScreen extends StatefulWidget {
   const AuthPhoneScreen({super.key});
@@ -17,6 +18,7 @@ class _AuthPhoneScreenState extends State<AuthPhoneScreen> {
   final _emailCtrl = TextEditingController();
   final _passwordCtrl = TextEditingController();
   final _nomCtrl = TextEditingController();
+  final _referralCtrl = TextEditingController(); // code de parrainage (facultatif)
 
   final _authService = AuthService();
   final _databaseService = DatabaseService();
@@ -30,6 +32,7 @@ class _AuthPhoneScreenState extends State<AuthPhoneScreen> {
     _emailCtrl.dispose();
     _passwordCtrl.dispose();
     _nomCtrl.dispose();
+    _referralCtrl.dispose();
     super.dispose();
   }
 
@@ -75,6 +78,22 @@ class _AuthPhoneScreenState extends State<AuthPhoneScreen> {
           });
         } catch (_) {
           // Pré-remplissage non critique — on continue.
+        }
+
+        // Code de parrainage facultatif : on tente de le valider (crédite le
+        // filleul). Non bloquant — un code erroné n'empêche pas l'inscription.
+        final refCode = _referralCtrl.text.trim();
+        if (refCode.isNotEmpty) {
+          final err = await ReferralService.instance.claim(refCode);
+          if (mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text(err == null
+                  ? '🎁 Parrainage validé ! +5 crédits offerts.'
+                  : 'Code de parrainage : $err'),
+              backgroundColor: err == null ? OC.good : OC.ink2,
+              behavior: SnackBarBehavior.floating,
+            ));
+          }
         }
         if (!mounted) return;
         context.go('/auth/profile');
@@ -226,6 +245,26 @@ class _AuthPhoneScreenState extends State<AuthPhoneScreen> {
                       return null;
                     },
                   ),
+
+                  // Code de parrainage (inscription uniquement, facultatif)
+                  if (!_isLogin) ...[
+                    const SizedBox(height: 16),
+                    _FieldLabel('Code de parrainage (facultatif)'),
+                    const SizedBox(height: 8),
+                    TextFormField(
+                      controller: _referralCtrl,
+                      textCapitalization: TextCapitalization.characters,
+                      autocorrect: false,
+                      style: body(15, color: OC.ink),
+                      decoration: _inputDecoration(
+                        hint: 'Le code d\'un ami (ex. OB7K2Q)',
+                        icon: Icons.card_giftcard_rounded,
+                      ),
+                    ),
+                    const SizedBox(height: 6),
+                    Text('Un ami t\'a invité ? Mets son code et gagne 5 crédits offerts.',
+                        style: body(11.5, color: OC.muted).copyWith(height: 1.35)),
+                  ],
                   const SizedBox(height: 28),
 
                   // Bouton principal
