@@ -166,6 +166,25 @@ doit être ajouté : Console → Project → Platforms → Web, **ou** via l'API
   `npx vercel deploy --prod --yes --scope ludovic-aggais-projects --token <VERCEL_TOKEN>`
   (depuis `admin/` pour l'admin ; depuis `build/web` pour le web — pas encore
   d'auto-deploy Git).
+- **Fonctions serverless** : les fichiers `api/*.js` à la racine sont déployés
+  **avec le projet `onbuch-v2`** et servis sur `onbuch-v2.vercel.app/api/<nom>`
+  (`nv` = proxy NVIDIA streaming pour l'atelier admin ; `result-lookup` ;
+  `referral` = parrainage, **Node**, a besoin de `APPWRITE_API_KEY` en env ;
+  `orientation` = assistant orientation, **Edge/Groq**, a besoin de
+  `GROQ_API_KEY`). Variables d'env via `vercel env add <KEY> production`
+  (et `… preview` si on passe par l'astuce ci-dessous).
+- ⚠️ **Limite plan gratuit : 100 déploiements *production* / jour** (`vercel
+  deploy --prod`) → erreur `api-deployments-free-per-day`. **Astuce de contournement**
+  (déploiement quand même prod sans rebuild prod) :
+  1. `vercel env add <KEY> preview` pour chaque secret (un preview est buildé
+     avec les env **Preview**, pas Production).
+  2. `vercel deploy` (SANS `--prod`) → crée un **preview** (non compté dans la limite),
+     renvoie une URL `…-<hash>-ludovic-aggais-projects.vercel.app`.
+  3. `vercel alias set <url-preview> onbuch-v2.vercel.app` → le domaine principal
+     pointe sur ce déploiement (re-alias, **pas** un build prod). NB : la
+     protection « Vercel Authentication » des preview ne s'applique PAS au domaine
+     principal aliasé (l'URL `*.vercel.app` du preview reste, elle, protégée).
+  `vercel promote <url-preview>` ne marche pas ici (il relance un build prod → limité).
 - **Admin** : piloté par `admin/src/lib/schema.ts` (ajouter une collection = une
   entrée `Resource`, CRUD générique). Connexion = compte Appwrite membre `admins`.
 
