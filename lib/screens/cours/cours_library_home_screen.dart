@@ -8,7 +8,6 @@ import '../../widgets/leo_mascot.dart';
 import '../../data/exam_taxonomy.dart';
 import '../../services/cours_packs_service.dart';
 import '../../services/database_service.dart';
-import '../../models/annale.dart';
 import '../../models/fascicule.dart';
 
 /// Séries ESG retenues pour le Bac / Probatoire (libellé court → code).
@@ -65,8 +64,6 @@ class _CoursLibraryHomeScreenState extends State<CoursLibraryHomeScreen> {
 
   // Packs regroupés par examen (libellé carte → packs triés par nom).
   Map<String, List<Pack>> _byExam = const {};
-  // Cours PDF (course_docs) regroupés par examen, dans l'ordre d'affichage.
-  List<MapEntry<String, List<Annale>>> _coursePdf = const [];
   // Fascicules (livres OnBuch) pour la vitrine « Nos fascicules ».
   List<Fascicule> _fascicules = const [];
   bool _loaded = false;
@@ -82,7 +79,6 @@ class _CoursLibraryHomeScreenState extends State<CoursLibraryHomeScreen> {
     final bepc = await _packs.packsForExam('BEPC');
     final bac = await _packs.packsForExamSeries('Baccalauréat', _esgHeads);
     final prob = await _packs.packsForExamSeries('Probatoire', _esgHeads);
-    final docs = await DatabaseService().getCourseDocs();
     final fasc = await DatabaseService().getFascicules();
     int byName(Pack a, Pack b) => a.name.toLowerCase().compareTo(b.name.toLowerCase());
     final map = {
@@ -90,45 +86,7 @@ class _CoursLibraryHomeScreenState extends State<CoursLibraryHomeScreen> {
       'Bac ESG': bac..sort(byName),
       'Probatoire ESG': prob..sort(byName),
     };
-    if (mounted) setState(() { _byExam = map; _coursePdf = _groupCoursePdf(docs); _fascicules = fasc; _loaded = true; });
-  }
-
-  /// Regroupe les cours PDF par examen (ordre Bac → Probatoire → BEPC → … →
-  /// reste alpha), triés par matière puis titre à l'intérieur.
-  static List<MapEntry<String, List<Annale>>> _groupCoursePdf(List<Annale> docs) {
-    const order = ['Baccalauréat', 'Probatoire', 'BEPC', 'CAP', 'BT', 'BTS', 'HND'];
-    final map = <String, List<Annale>>{};
-    for (final d in docs) {
-      final e = d.exam.trim().isEmpty ? 'Autres' : d.exam.trim();
-      (map[e] ??= []).add(d);
-    }
-    int subjThenTitle(Annale a, Annale b) {
-      final s = a.subject.toLowerCase().compareTo(b.subject.toLowerCase());
-      return s != 0 ? s : a.title.toLowerCase().compareTo(b.title.toLowerCase());
-    }
-    final keys = map.keys.toList()
-      ..sort((a, b) {
-        final ia = order.indexOf(a), ib = order.indexOf(b);
-        if (ia != -1 || ib != -1) return (ia == -1 ? 99 : ia).compareTo(ib == -1 ? 99 : ib);
-        return a.toLowerCase().compareTo(b.toLowerCase());
-      });
-    return [for (final k in keys) MapEntry(k, map[k]!..sort(subjThenTitle))];
-  }
-
-  // Couleur d'accent par examen pour les en-têtes « Cours PDF ».
-  static Color _examColor(String exam) {
-    switch (exam) {
-      case 'Baccalauréat':
-        return const Color(0xFFDB4F12);
-      case 'Probatoire':
-        return const Color(0xFF2D6CDF);
-      case 'BEPC':
-        return const Color(0xFF1E9E63);
-      case 'CAP':
-        return const Color(0xFF0E9AA0);
-      default:
-        return const Color(0xFF7A5AE0);
-    }
+    if (mounted) setState(() { _byExam = map; _fascicules = fasc; _loaded = true; });
   }
 
   int _countFor(String name) => _byExam[name]?.length ?? 0;
@@ -250,54 +208,7 @@ class _CoursLibraryHomeScreenState extends State<CoursLibraryHomeScreen> {
                   )).toList(),
                 ),
               ),
-              const SizedBox(height: 22),
-
-              // ── Zone dédiée : Cours en PDF (collectés depuis la base) ───────
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Row(children: [
-                  Text('Cours PDF', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
-                  const SizedBox(width: 8),
-                  if (_loaded)
-                    Text('${_coursePdf.fold<int>(0, (n, e) => n + e.value.length)}',
-                        style: body(12, weight: FontWeight.w700, color: OC.muted)),
-                  const Spacer(),
-                  GestureDetector(
-                    onTap: () => context.push('/search?scope=annales'),
-                    child: Text('Rechercher', style: body(12, weight: FontWeight.w700, color: OC.o600)),
-                  ),
-                ]),
-              ),
-              const SizedBox(height: 11),
-              if (!_loaded)
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Column(children: List.generate(4, (_) => const SkeletonRow())),
-                )
-              else if (_coursePdf.isEmpty)
-                _emptyCoursePdf()
-              else
-                ..._coursePdf.expand((g) => [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 6, 20, 8),
-                        child: Row(children: [
-                          Container(width: 9, height: 9, decoration: BoxDecoration(color: _examColor(g.key), shape: BoxShape.circle)),
-                          const SizedBox(width: 8),
-                          Text(g.key, style: body(12.5, weight: FontWeight.w800, color: OC.ink)),
-                          const SizedBox(width: 6),
-                          Text('· ${g.value.length}', style: body(12, weight: FontWeight.w600, color: OC.muted)),
-                        ]),
-                      ),
-                      for (final d in g.value)
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: _CourseDocRow(
-                            doc: d,
-                            onTap: () => context.push('/annales/detail', extra: d),
-                          ),
-                        ),
-                      const SizedBox(height: 6),
-                    ]),
+              const SizedBox(height: 8),
             ],
           ),
         ),
@@ -462,65 +373,6 @@ class _CoursLibraryHomeScreenState extends State<CoursLibraryHomeScreen> {
           ),
         ),
     ]);
-  }
-
-  Widget _emptyCoursePdf() => Padding(
-        padding: const EdgeInsets.fromLTRB(20, 24, 20, 8),
-        child: Column(children: [
-          Icon(Icons.picture_as_pdf_rounded, size: 44, color: OC.faint),
-          const SizedBox(height: 12),
-          Text('Aucun cours PDF pour le moment', style: display(17, weight: FontWeight.w700), textAlign: TextAlign.center),
-          const SizedBox(height: 6),
-          Text('Les cours en PDF apparaîtront ici dès qu\'ils seront collectés et publiés.',
-              textAlign: TextAlign.center, style: body(13, color: OC.muted).copyWith(height: 1.4)),
-        ]),
-      );
-}
-
-/// Ligne d'un cours en PDF (section « Cours PDF »). Ouvre la fiche du document.
-class _CourseDocRow extends StatelessWidget {
-  final Annale doc;
-  final VoidCallback onTap;
-  const _CourseDocRow({required this.doc, required this.onTap});
-
-  @override
-  Widget build(BuildContext context) {
-    final d = doc;
-    final sub = [d.subject, d.track, if (d.year.isNotEmpty) d.year]
-        .where((e) => e.trim().isNotEmpty)
-        .join(' · ');
-    final (icon, c) = d.hasVideo && !d.hasPdf
-        ? (Icons.play_circle_outline_rounded, const Color(0xFF7A5AE0))
-        : (Icons.picture_as_pdf_rounded, const Color(0xFFC0392B));
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        margin: const EdgeInsets.only(bottom: 11),
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: OC.paper,
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: OC.line, width: 1.5),
-        ),
-        child: Row(children: [
-          Container(
-            width: 44, height: 44,
-            decoration: BoxDecoration(color: c.withValues(alpha: 0.12), borderRadius: BorderRadius.circular(12)),
-            child: Icon(icon, size: 21, color: c),
-          ),
-          const SizedBox(width: 12),
-          Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text(d.title.isEmpty ? (d.subject.isEmpty ? 'Cours' : d.subject) : d.title,
-                style: body(13.5, weight: FontWeight.w700), maxLines: 2, overflow: TextOverflow.ellipsis),
-            const SizedBox(height: 3),
-            Text(sub.isEmpty ? 'Cours' : sub, style: body(11, color: OC.muted, weight: FontWeight.w600),
-                maxLines: 1, overflow: TextOverflow.ellipsis),
-          ])),
-          const SizedBox(width: 8),
-          Icon(Icons.chevron_right_rounded, size: 18, color: OC.faint),
-        ]),
-      ),
-    );
   }
 }
 
