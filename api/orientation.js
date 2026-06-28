@@ -1,8 +1,9 @@
 // /api/orientation — assistant d'orientation « Léo Orientation » (Vercel Edge).
 //
 // DÉDIÉ à l'orientation, SÉPARÉ du tuteur : pas de tutor_jobs, pas de quota
-// photo. Modèle rapide (texte). La clé NVIDIA reste SERVEUR (env NVIDIA_API_KEY).
-// Accès réservé aux élèves connectés (JWT Appwrite vérifié).
+// photo. Propulsé par GROQ (LPU ultra-rapide, API compatible OpenAI). La clé
+// reste SERVEUR (env GROQ_API_KEY). Accès réservé aux élèves connectés (JWT
+// Appwrite vérifié).
 //
 // Requête : POST JSON { jwt, messages:[{role,content}], profile? }
 // Réponse : flux texte brut (deltas de tokens) — l'app les concatène.
@@ -11,8 +12,9 @@ export const config = { runtime: 'edge' };
 
 const ENDPOINT = process.env.APPWRITE_ENDPOINT || 'https://nyc.cloud.appwrite.io/v1';
 const PROJECT = process.env.APPWRITE_PROJECT || '6a30463b00001375e229';
-const NV_KEY = process.env.NVIDIA_API_KEY || '';
-const MODEL = process.env.ORIENTATION_MODEL || 'meta/llama-3.1-8b-instruct';
+const GROQ_KEY = process.env.GROQ_API_KEY || '';
+const MODEL = process.env.ORIENTATION_MODEL || 'llama-3.1-8b-instant';
+const GROQ_URL = 'https://api.groq.com/openai/v1/chat/completions';
 
 const CORS = {
   'Access-Control-Allow-Origin': '*',
@@ -66,7 +68,7 @@ function err(status, message) {
 export default async function handler(req) {
   if (req.method === 'OPTIONS') return new Response(null, { status: 204, headers: CORS });
   if (req.method !== 'POST') return err(405, 'POST uniquement.');
-  if (!NV_KEY) return err(500, 'Assistant non configuré (clé serveur manquante).');
+  if (!GROQ_KEY) return err(500, 'Assistant non configuré (clé serveur manquante).');
 
   let body;
   try { body = await req.json(); } catch (_) { body = {}; }
@@ -89,9 +91,9 @@ export default async function handler(req) {
 
   let upstream;
   try {
-    upstream = await fetch('https://integrate.api.nvidia.com/v1/chat/completions', {
+    upstream = await fetch(GROQ_URL, {
       method: 'POST',
-      headers: { Authorization: `Bearer ${NV_KEY}`, 'Content-Type': 'application/json', Accept: 'text/event-stream' },
+      headers: { Authorization: `Bearer ${GROQ_KEY}`, 'Content-Type': 'application/json', Accept: 'text/event-stream' },
       body: JSON.stringify({ model: MODEL, messages: [...sys, ...convo], temperature: 0.5, top_p: 0.9, max_tokens: 900, stream: true }),
     });
   } catch (e) {
