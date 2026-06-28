@@ -96,22 +96,6 @@ class _CoursLibraryHomeScreenState extends State<CoursLibraryHomeScreen> {
 
               // ── Mes matières : les matières de la classe de l'élève ─────────
               _mySubjectsSection(context),
-              const SizedBox(height: 22),
-
-              // Accès rapides : Mes cours · Panier · Catalogue
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Row(children: [
-                  _QuickCard(Icons.auto_stories_rounded, 'Mes cours', _loaded ? '${_packs.library.length}' : '…', OC.waInk, OC.goodBg,
-                      () async { await context.push('/cours/bibliotheque'); _load(); }),
-                  const SizedBox(width: 11),
-                  _QuickCard(Icons.shopping_bag_outlined, 'Panier', _loaded ? '${_packs.cart.length}' : '…', OC.blue, OC.blueBg,
-                      () async { await context.push('/cours/panier'); _load(); }),
-                  const SizedBox(width: 11),
-                  _QuickCard(Icons.grid_view_rounded, 'Catalogue', _loaded ? '${_packs.catalogue.length}' : '…', const Color(0xFFA6701A), const Color(0xFFFBF0DD),
-                      () async { await context.push('/cours/catalogue'); _load(); }),
-                ]),
-              ),
               const SizedBox(height: 18),
 
               // ── Vitrine éditoriale « Nos fascicules » (couvertures en éventail) ──
@@ -284,37 +268,6 @@ class _CoursLibraryHomeScreenState extends State<CoursLibraryHomeScreen> {
           ),
         ),
     ]);
-  }
-}
-
-class _QuickCard extends StatelessWidget {
-  final IconData icon;
-  final String label, count;
-  final Color c, bg;
-  final VoidCallback onTap;
-  const _QuickCard(this.icon, this.label, this.count, this.c, this.bg, this.onTap);
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(child: GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(color: OC.paper, borderRadius: BorderRadius.circular(16), border: Border.all(color: OC.line, width: 1.5)),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Container(
-            width: 34, height: 34,
-            decoration: BoxDecoration(color: bg, borderRadius: BorderRadius.circular(10)),
-            child: Icon(icon, size: 18, color: c),
-          ),
-          const SizedBox(height: 9),
-          Text(label, style: body(12.5, weight: FontWeight.w700), maxLines: 1, overflow: TextOverflow.ellipsis),
-          const SizedBox(height: 1),
-          Text('$count pack${count == '1' ? '' : 's'}', style: body(10.5, color: OC.muted, weight: FontWeight.w600)),
-        ]),
-      ),
-    ));
   }
 }
 
