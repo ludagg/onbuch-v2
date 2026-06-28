@@ -60,7 +60,7 @@
         <a class="nav-item" class:active={path.startsWith('/cours')} href="/cours">
           <span class="nav-ico">📘</span> Atelier Cours
         </a>
-        {#each RESOURCES as r}
+        {#each RESOURCES.filter((r) => !r.hidden) as r}
           <a class="nav-item" class:active={path.startsWith('/c/' + r.id)} href={'/c/' + r.id}>
             <span class="nav-ico">{r.icon}</span> {r.label}
           </a>

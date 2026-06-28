@@ -35,6 +35,9 @@ export interface Resource {
   // Vue lecture seule : pas de création / édition / suppression (suivi/audit de
   // données utilisateur comme les candidatures ou les achats).
   readOnly?: boolean;
+  // Masquée du menu latéral (la route /c/<id> reste accessible directement pour
+  // l'édition fine). Utile quand une page est remplacée par un atelier guidé.
+  hidden?: boolean;
 }
 
 const order: Field = { key: 'order', label: 'Ordre', type: 'number', help: 'Tri croissant (0 en premier).' };
@@ -514,6 +517,7 @@ export const RESOURCES: Resource[] = [
     label: 'Matières (Cours)',
     singular: 'matière',
     icon: '📘',
+    hidden: true, // remplacé par l'Atelier Cours (/cours)
     titleField: 'name',
     subtitleField: 'code',
     orderBy: { field: 'order', dir: 'asc' },
@@ -537,6 +541,7 @@ export const RESOURCES: Resource[] = [
     label: 'Chapitres (Cours)',
     singular: 'chapitre',
     icon: '📑',
+    hidden: true, // remplacé par l'Atelier Cours (/cours)
     titleField: 'title',
     subtitleField: 'subjectId',
     orderBy: { field: 'order', dir: 'asc' },
@@ -599,6 +604,7 @@ export const RESOURCES: Resource[] = [
     label: 'Leçons (Cours)',
     singular: 'leçon',
     icon: '📖',
+    hidden: true, // remplacé par l'Atelier Cours (/cours)
     titleField: 'chapterId',
     subtitleField: 'content',
     orderBy: { field: '$createdAt', dir: 'desc' },
@@ -615,6 +621,7 @@ export const RESOURCES: Resource[] = [
     label: 'Quiz (Cours)',
     singular: 'quiz',
     icon: '❓',
+    hidden: true, // remplacé par l'Atelier Cours (/cours)
     titleField: 'chapterId',
     subtitleField: 'content',
     orderBy: { field: '$createdAt', dir: 'desc' },
