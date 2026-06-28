@@ -491,6 +491,7 @@ class AppDrawer extends StatelessWidget {
 
   static const _entries = [
     OBMenuEntry(Icons.person_outline_rounded, 'Mon profil', '/profile'),
+    OBMenuEntry(Icons.explore_rounded, 'Orientation & Léo', '/orientation-guide'),
     OBMenuEntry(Icons.event_note_rounded, 'Campus & agenda', '/campus'),
     OBMenuEntry(Icons.paid_outlined, 'Crédits', '/credits'),
     OBMenuEntry(Icons.card_giftcard_rounded, 'Inviter mes amis', '/parrainage'),
