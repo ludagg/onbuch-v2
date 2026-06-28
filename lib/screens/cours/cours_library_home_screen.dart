@@ -5,40 +5,9 @@ import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
 import '../../widgets/skeletons.dart';
 import '../../widgets/leo_mascot.dart';
-import '../../data/exam_taxonomy.dart';
 import '../../services/cours_packs_service.dart';
 import '../../services/database_service.dart';
 import '../../models/fascicule.dart';
-
-/// Séries ESG retenues pour le Bac / Probatoire (libellé court → code).
-/// « A » est une série unique qui regroupe toutes les sous-séries A.
-const _esgSeries = [
-  ('A', 'A — Littéraire'),
-  ('C', 'C — Maths & Sciences physiques'),
-  ('D', 'D — Maths & Sciences de la vie'),
-  ('TI', 'TI — Technologies de l\'Information'),
-  ('E', 'E — Maths & Techniques'),
-];
-
-/// Têtes de track rattachées à l'ESG (le compteur/zone considère « A » comme
-/// couvrant A1..A5 et ABI). Correspondance exacte sur la tête du track.
-const _esgHeads = {'a', 'a1', 'a2', 'a3', 'a4', 'a5', 'abi', 'c', 'd', 'e', 'ti'};
-
-/// Nœud ESG (Bac / Probatoire) limité aux séries A · C · D · TI · E.
-ExamNode _esgNode(String label) => ExamNode(
-      label,
-      children: [for (final s in _esgSeries) ExamNode(s.$2, code: s.$1)],
-    );
-
-/// Les 3 examens proposés dans les Cours : BEPC, Bac ESG, Probatoire ESG.
-/// `node` = nœud de taxonomie à ouvrir (null → BEPC, pris dans la taxonomie).
-class _CoursExam {
-  final String name; // libellé carte
-  final String exam; // clé examen racine
-  final ExamNode? node; // nœud custom (drill ESG)
-  final Color c, bg;
-  const _CoursExam(this.name, this.exam, this.node, this.c, this.bg);
-}
 
 /// Accueil du module Cours — calque de la page Annales : recherche, accès
 /// rapides (Mes cours · Panier · Catalogue), grille « Parcourir par examen »
@@ -54,16 +23,6 @@ class CoursLibraryHomeScreen extends StatefulWidget {
 class _CoursLibraryHomeScreenState extends State<CoursLibraryHomeScreen> {
   final _packs = CoursPacks.instance;
 
-  late final List<_CoursExam> _exams = [
-    _CoursExam('BEPC', 'BEPC', null, const Color(0xFF1E9E63), const Color(0xFFE5F3EB)),
-    _CoursExam('Bac ESG', 'Baccalauréat', _esgNode('Baccalauréat ESG'),
-        const Color(0xFFDB4F12), const Color(0xFFFDEBE2)),
-    _CoursExam('Probatoire ESG', 'Probatoire', _esgNode('Probatoire ESG'),
-        const Color(0xFF2D6CDF), const Color(0xFFE7EEFB)),
-  ];
-
-  // Packs regroupés par examen (libellé carte → packs triés par nom).
-  Map<String, List<Pack>> _byExam = const {};
   // Fascicules (livres OnBuch) pour la vitrine « Nos fascicules ».
   List<Fascicule> _fascicules = const [];
   bool _loaded = false;
@@ -76,30 +35,8 @@ class _CoursLibraryHomeScreenState extends State<CoursLibraryHomeScreen> {
 
   Future<void> _load() async {
     await _packs.load();
-    final bepc = await _packs.packsForExam('BEPC');
-    final bac = await _packs.packsForExamSeries('Baccalauréat', _esgHeads);
-    final prob = await _packs.packsForExamSeries('Probatoire', _esgHeads);
     final fasc = await DatabaseService().getFascicules();
-    int byName(Pack a, Pack b) => a.name.toLowerCase().compareTo(b.name.toLowerCase());
-    final map = {
-      'BEPC': bepc..sort(byName),
-      'Bac ESG': bac..sort(byName),
-      'Probatoire ESG': prob..sort(byName),
-    };
-    if (mounted) setState(() { _byExam = map; _fascicules = fasc; _loaded = true; });
-  }
-
-  int _countFor(String name) => _byExam[name]?.length ?? 0;
-
-  void _openExam(_CoursExam e) {
-    if (e.node == null) {
-      context.push('/cours/folder/${Uri.encodeComponent(e.name)}');
-    } else {
-      context.push(
-        '/cours/folder/${Uri.encodeComponent(e.node!.label)}?exam=${Uri.encodeComponent(e.exam)}',
-        extra: e.node,
-      );
-    }
+    if (mounted) setState(() { _fascicules = fasc; _loaded = true; });
   }
 
   @override
@@ -181,32 +118,6 @@ class _CoursLibraryHomeScreenState extends State<CoursLibraryHomeScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: _FasciculesShowcase(_fascicules),
-              ),
-              const SizedBox(height: 22),
-
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Text('Parcourir par examen', style: body(13, weight: FontWeight.w800, color: OC.ink2)),
-              ),
-              const SizedBox(height: 12),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: GridView.count(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 12,
-                  crossAxisSpacing: 12,
-                  childAspectRatio: 1.3,
-                  children: _exams.map((e) => _FolderCard(
-                    name: e.name,
-                    count: _countFor(e.name),
-                    loaded: _loaded,
-                    c: e.c,
-                    bg: e.bg,
-                    onTap: () => _openExam(e),
-                  )).toList(),
-                ),
               ),
               const SizedBox(height: 8),
             ],
@@ -460,65 +371,6 @@ class _SubjectTile extends StatelessWidget {
     );
   }
 }
-
-class _FolderCard extends StatelessWidget {
-  final String name;
-  final int count;
-  final bool loaded;
-  final Color c, bg;
-  final VoidCallback onTap;
-  const _FolderCard({required this.name, required this.count, required this.loaded, required this.c, required this.bg, required this.onTap});
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.all(15),
-        decoration: BoxDecoration(
-          color: OC.paper,
-          borderRadius: BorderRadius.circular(18),
-          border: Border.all(color: OC.line, width: 1.5),
-          boxShadow: [
-            BoxShadow(color: OC.ink.withValues(alpha: 0.04), blurRadius: 2),
-            BoxShadow(color: OC.ink.withValues(alpha: 0.04), blurRadius: 14, offset: const Offset(0, 6)),
-          ],
-        ),
-        child: Stack(children: [
-          Positioned(top: -28, right: -22,
-            child: Container(width: 70, height: 70, decoration: BoxDecoration(color: bg.withValues(alpha: 0.55), shape: BoxShape.circle))),
-          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Stack(children: [
-              SizedBox(
-                width: 46, height: 40,
-                child: Stack(children: [
-                  Positioned(top: 0, left: 2, child: Container(
-                    width: 22, height: 8,
-                    decoration: BoxDecoration(color: c.withValues(alpha: 0.85),
-                      borderRadius: const BorderRadius.only(topLeft: Radius.circular(5), topRight: Radius.circular(5))),
-                  )),
-                  Positioned(top: 6, left: 0, child: Container(
-                    width: 46, height: 34,
-                    decoration: BoxDecoration(color: c, borderRadius: BorderRadius.circular(10),
-                      boxShadow: [BoxShadow(color: c.withValues(alpha: 0.27), blurRadius: 10, offset: const Offset(0, 4))]),
-                    child: const Icon(Icons.auto_stories_rounded, color: Colors.white, size: 19),
-                  )),
-                ]),
-              ),
-            ]),
-            const SizedBox(height: 14),
-            Text(name, style: display(15, weight: FontWeight.w600).copyWith(height: 1.1)),
-            const SizedBox(height: 3),
-            Text(loaded ? '$count pack${count == 1 ? '' : 's'}' : '…',
-                style: body(11.5, color: OC.muted, weight: FontWeight.w600)),
-          ]),
-          Positioned(right: 0, top: 0, child: Icon(Icons.chevron_right_rounded, color: OC.faint, size: 18)),
-        ]),
-      ),
-    );
-  }
-}
-
 
 /// Vitrine éditoriale « Nos fascicules » : 3 couvertures en éventail (héro sombre).
 /// 100 % Dart (Transform + Image.network) → patchable Shorebird, aucun plugin natif.
