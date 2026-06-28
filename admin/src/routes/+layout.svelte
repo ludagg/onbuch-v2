@@ -4,11 +4,46 @@
   import { page } from '$app/stores';
   import { session, refreshSession, logout } from '$lib/auth';
   import { RESOURCES } from '$lib/schema';
+  import { ADMIN_GATE_SHA256 } from '$lib/config';
   import { goto } from '$app/navigation';
 
   onMount(refreshSession);
 
+  // ── 2ᵉ couche : code secret après connexion (déverrouillage de session) ──
+  const GATE_KEY = 'admin_gate_v1';
+  let gateOk = false;
+  let gateInput = '';
+  let gateError = '';
+  let gateTries = 0;
+  let gateBusy = false;
+
+  onMount(() => {
+    try { gateOk = sessionStorage.getItem(GATE_KEY) === 'ok'; } catch { /* */ }
+  });
+
+  async function sha256Hex(s: string): Promise<string> {
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s));
+    return Array.from(new Uint8Array(buf)).map((b) => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  async function submitGate() {
+    if (gateBusy || gateTries >= 5) return;
+    gateBusy = true; gateError = '';
+    try {
+      const h = await sha256Hex(gateInput);
+      if (h === ADMIN_GATE_SHA256) {
+        gateOk = true;
+        try { sessionStorage.setItem(GATE_KEY, 'ok'); } catch { /* */ }
+      } else {
+        gateTries += 1; gateInput = '';
+        gateError = gateTries >= 5 ? 'Trop de tentatives. Recharge la page pour réessayer.' : 'Code incorrect.';
+      }
+    } finally { gateBusy = false; }
+  }
+
   async function onLogout() {
+    try { sessionStorage.removeItem(GATE_KEY); } catch { /* */ }
+    gateOk = false;
     await logout();
     goto('/login');
   }
@@ -32,6 +67,28 @@
   {:else}
     <div class="center"><div class="spinner"></div></div>
   {/if}
+{:else if !gateOk}
+  <div class="center">
+    <div class="gate card">
+      <div class="gate-ico">🔒</div>
+      <h1>Accès administrateur</h1>
+      <p>Saisis le code secret pour déverrouiller l'espace d'administration.</p>
+      <form on:submit|preventDefault={submitGate}>
+        <input
+          type="password"
+          autocomplete="off"
+          placeholder="Code secret"
+          bind:value={gateInput}
+          disabled={gateTries >= 5}
+        />
+        {#if gateError}<div class="gate-err">{gateError}</div>{/if}
+        <button class="btn-primary" type="submit" disabled={gateBusy || gateTries >= 5 || !gateInput}>
+          {gateBusy ? 'Vérification…' : 'Déverrouiller'}
+        </button>
+      </form>
+      <button class="btn-ghost btn-sm" on:click={onLogout}>Se déconnecter</button>
+    </div>
+  </div>
 {:else}
   <div class="shell">
     <aside class="sidebar">
@@ -89,6 +146,21 @@
     align-items: center;
     justify-content: center;
   }
+  .gate {
+    width: 360px; max-width: 92vw; padding: 28px 26px; text-align: center;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .gate-ico { font-size: 34px; }
+  .gate h1 { font-size: 19px; margin: 6px 0 0; }
+  .gate p { color: var(--muted); font-size: 13px; margin: 0 0 14px; line-height: 1.45; }
+  .gate form { display: flex; flex-direction: column; gap: 10px; }
+  .gate input {
+    width: 100%; padding: 11px 13px; border: 1.5px solid var(--line2); border-radius: 11px;
+    background: var(--paper); font: inherit; text-align: center; letter-spacing: 1px;
+  }
+  .gate input:focus { outline: none; border-color: var(--o500); }
+  .gate-err { color: var(--bad); font-size: 12.5px; font-weight: 600; }
+  .gate .btn-ghost { margin-top: 10px; }
   .shell {
     display: grid;
     grid-template-columns: 252px 1fr;
