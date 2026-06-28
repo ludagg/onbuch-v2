@@ -74,6 +74,11 @@ const resultLookupUrl = 'https://onbuch-v2.vercel.app/api/result-lookup';
 const referralApiUrl = 'https://onbuch-v2.vercel.app/api/referral';
 const appwriteReferralsCollectionId = 'referrals';
 
+// Assistant d'orientation « Léo Orientation » : endpoint serveur (Vercel,
+// onbuch-v2) qui relaie un modèle rapide. Clé NVIDIA côté serveur, auth JWT.
+// Dédié à l'orientation — séparé du tuteur.
+const orientationApiUrl = 'https://onbuch-v2.vercel.app/api/orientation';
+
 // Page d'atterrissage des liens de partage (ouvre l'app si installée, sinon
 // propose le téléchargement). Projet Vercel dédié.
 const onbuchShareBaseUrl = 'https://onbuch-go.vercel.app';
