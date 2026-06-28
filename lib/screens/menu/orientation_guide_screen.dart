@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../theme/app_theme.dart';
 import '../../widgets/ob_widgets.dart';
 import '../../widgets/states.dart';
+import '../../widgets/leo_mascot.dart';
 import '../../data/orientation_guide.dart';
 
 /// Guide d'orientation : présente chaque grande filière post-bac camerounaise
@@ -41,6 +43,30 @@ class OrientationGuideScreen extends StatelessWidget {
                     .copyWith(height: 1.5),
               ),
             ]),
+          ),
+          const SizedBox(height: 12),
+          // Assistant d'orientation dédié (séparé du tuteur).
+          GestureDetector(
+            onTap: () => context.push('/orientation-chat'),
+            child: Container(
+              padding: const EdgeInsets.fromLTRB(12, 12, 14, 12),
+              decoration: BoxDecoration(
+                color: OC.o50,
+                borderRadius: BorderRadius.circular(18),
+                border: Border.all(color: OC.o200, width: 1.5),
+              ),
+              child: Row(children: [
+                const LeoMascot(size: 44, mood: LeoMood.wave),
+                const SizedBox(width: 12),
+                Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Text('Demander à Léo', style: body(14.5, weight: FontWeight.w800, color: OC.o700)),
+                  const SizedBox(height: 2),
+                  Text('Ton conseiller d\'orientation : filière, école, métier, concours.',
+                      style: body(11.5, color: OC.ink2, weight: FontWeight.w500).copyWith(height: 1.3)),
+                ])),
+                Icon(Icons.chevron_right_rounded, size: 20, color: OC.o600),
+              ]),
+            ),
           ),
           const SizedBox(height: 18),
           for (var i = 0; i < kOrientationGuide.length; i++)

@@ -47,6 +47,7 @@ import '../screens/menu/concours_screen.dart';
 import '../screens/menu/concours_detail_screen.dart';
 import '../screens/menu/concours_all_screen.dart';
 import '../screens/menu/orientation_guide_screen.dart';
+import '../screens/orientation/orientation_chat_screen.dart';
 import '../screens/menu/filieres_screen.dart';
 import '../screens/menu/filiere_detail_screen.dart';
 import '../models/filiere.dart';
@@ -156,6 +157,7 @@ final appRouter = GoRouter(
     GoRoute(path: '/concours-detail', builder: (_, s) => ConcoursDetailScreen(concours: s.extra as Concours?)),
     GoRoute(path: '/concours-all', builder: (_, __) => const ConcoursAllScreen()),
     GoRoute(path: '/orientation-guide', builder: (_, __) => const OrientationGuideScreen()),
+    GoRoute(path: '/orientation-chat', builder: (_, __) => const OrientationChatScreen()),
     GoRoute(path: '/filieres', builder: (_, __) => const FilieresScreen()),
     GoRoute(path: '/filiere', builder: (_, s) => FiliereDetailScreen(filiere: s.extra as Filiere?)),
     GoRoute(path: '/universites', builder: (_, __) => const UniversitesScreen()),
