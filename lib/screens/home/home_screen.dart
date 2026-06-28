@@ -131,6 +131,10 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               const SizedBox(height: 18),
 
+              // Bandeau « résultats sortis » — activé par l'admin (app_config :
+              // results_banner_active=1, results_banner_text=…). Renvoie aux Résultats.
+              const _ResultsBanner(),
+
               // Raccourcis rapides (juste sous la recherche)
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -1737,6 +1741,82 @@ class _SocialIconsRowState extends State<_SocialIconsRow> {
           ]),
         );
       },
+    );
+  }
+}
+
+/// Bandeau « résultats sortis » sur l'accueil — visible UNIQUEMENT si l'admin
+/// l'active. Piloté par la collection `app_config` (back-office « Configuration ») :
+///   results_banner_active = 1 | true | oui   (sinon masqué)
+///   results_banner_text   = « Les résultats du Baccalauréat 2026 sont disponibles »
+///   results_banner_sub    = (optionnel) sous-texte
+/// Un appui renvoie à la page Résultats.
+class _ResultsBanner extends StatefulWidget {
+  const _ResultsBanner();
+
+  @override
+  State<_ResultsBanner> createState() => _ResultsBannerState();
+}
+
+class _ResultsBannerState extends State<_ResultsBanner> {
+  Map<String, String> _cfg = const {};
+  bool _loaded = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _load();
+  }
+
+  Future<void> _load() async {
+    final cfg = await DatabaseService().getAppConfig();
+    if (mounted) setState(() { _cfg = cfg; _loaded = true; });
+  }
+
+  bool get _active {
+    final v = (_cfg['results_banner_active'] ?? '').trim().toLowerCase();
+    return v == '1' || v == 'true' || v == 'oui' || v == 'yes' || v == 'on';
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (!_loaded || !_active) return const SizedBox.shrink();
+    final t = (_cfg['results_banner_text'] ?? '').trim();
+    final text = t.isEmpty ? 'Les résultats sont disponibles' : t;
+    final s = (_cfg['results_banner_sub'] ?? '').trim();
+    final sub = s.isEmpty ? 'Touche pour consulter tes résultats' : s;
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: () => context.push('/results'),
+        child: Container(
+          padding: const EdgeInsets.fromLTRB(14, 13, 12, 13),
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(
+              begin: Alignment.topLeft, end: Alignment.bottomRight,
+              colors: [Color(0xFF1E9E63), Color(0xFF0E7A4A)]),
+            borderRadius: BorderRadius.circular(18),
+            boxShadow: [BoxShadow(color: const Color(0xFF1E9E63).withValues(alpha: 0.30), blurRadius: 16, offset: const Offset(0, 7))],
+          ),
+          child: Row(children: [
+            Container(
+              width: 44, height: 44, alignment: Alignment.center,
+              decoration: BoxDecoration(color: Colors.white.withValues(alpha: 0.18), borderRadius: BorderRadius.circular(13)),
+              child: const Icon(Icons.workspace_premium_rounded, color: Colors.white, size: 24),
+            ),
+            const SizedBox(width: 12),
+            Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text('RÉSULTATS', style: body(9.5, weight: FontWeight.w800, color: Colors.white.withValues(alpha: 0.85)).copyWith(letterSpacing: 1.2)),
+              const SizedBox(height: 2),
+              Text(text, style: body(14, weight: FontWeight.w800, color: Colors.white), maxLines: 2, overflow: TextOverflow.ellipsis),
+              const SizedBox(height: 1),
+              Text(sub, style: body(11, weight: FontWeight.w500, color: Colors.white.withValues(alpha: 0.85)), maxLines: 1, overflow: TextOverflow.ellipsis),
+            ])),
+            const Icon(Icons.chevron_right_rounded, color: Colors.white, size: 22),
+          ]),
+        ),
+      ),
     );
   }
 }

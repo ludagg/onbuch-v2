@@ -671,6 +671,23 @@ class DatabaseService {
         .toList());
   }
 
+  /// Configuration clé→valeur de l'app (collection `app_config`, éditable dans
+  /// le back-office « Configuration »). Cache 5 min, tolérant hors-ligne.
+  Future<Map<String, String>> getAppConfig() async {
+    final list = await _cachedList<MapEntry<String, String>>('app_config', () async {
+      final res = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteAppConfigCollectionId,
+        queries: [Query.limit(100)],
+      );
+      return res.documents.map((d) => {...d.data, '\$id': d.$id}).toList();
+    }, (raw) => raw
+        .map((m) => MapEntry((m['key'] ?? '').toString().trim(), (m['value'] ?? '').toString()))
+        .where((e) => e.key.isNotEmpty)
+        .toList());
+    return {for (final e in list) e.key: e.value};
+  }
+
   // ── Calendrier scolaire ───────────────────────────────────────────────────
 
   /// Retourne les événements du calendrier scolaire, du plus ancien au plus
