@@ -163,6 +163,33 @@ class LeaderboardService {
     }
   }
 
+  /// Rang de l'élève dans SA ligue cette semaine = (nb d'élèves de la ligue avec
+  /// plus de weeklyXp) + 1, et le total de la ligue. Comptage indexé (composite
+  /// weekId+league+weeklyXp) → léger même avec des milliers d'élèves.
+  Future<({int rank, int total})> leagueRank({required String league, required int weeklyXp}) async {
+    try {
+      final week = currentWeekId();
+      final above = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteLeaderboardCollectionId,
+        queries: [
+          Query.equal('weekId', week),
+          Query.equal('league', league),
+          Query.greaterThan('weeklyXp', weeklyXp),
+          Query.limit(1),
+        ],
+      );
+      final all = await AppwriteClient.databases.listDocuments(
+        databaseId: appwriteDatabaseId,
+        collectionId: appwriteLeaderboardCollectionId,
+        queries: [Query.equal('weekId', week), Query.equal('league', league), Query.limit(1)],
+      );
+      return (rank: above.total + 1, total: all.total);
+    } catch (_) {
+      return (rank: 0, total: 0);
+    }
+  }
+
   // ── Classement NATIONAL (tous les élèves, par XP total) ─────────────────────
   static const _nrKey = 'leaderboard_national_v1';
 

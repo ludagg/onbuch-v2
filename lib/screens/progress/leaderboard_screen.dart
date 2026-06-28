@@ -29,6 +29,9 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
   League _league = kLeagues.first;
   List<LeaderboardEntry> _entries = const [];
   int _myRank = 0;
+  int _myWeekly = 0; // mon XP de la semaine (pour la carte « Ma ligue »)
+  int _leagueTotal = 0; // nb total d'élèves dans ma ligue cette semaine
+  LeaderboardEntry? _meLeagueEntry; // ligne « toi » épinglée (onglet Ma ligue)
 
   List<LeaderboardEntry> _natEntries = const [];
   int _natRank = 0;
@@ -66,23 +69,28 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
           unawaited(lb.submit(uid: _uid!, name: name, level: g.level, xp: g.xp, weeklyXp: weekly));
         }
 
+        _myWeekly = weekly;
+
         // Lectures lancées EN PARALLÈLE (gros gain de vitesse vs séquentiel).
         final fTop = lb.top(league: league.name);
         final fNat = lb.nationalTop();
         final fRank = _excluded ? null : lb.nationalRank(myXp: g.xp);
+        final fLeagueRank = _excluded ? null : lb.leagueRank(league: league.name, weeklyXp: weekly);
 
-        var list = await fTop;
-        if (!_excluded && !list.any((e) => e.uid == _uid)) {
-          list = [
-            ...list,
-            LeaderboardEntry(uid: _uid!, name: name, level: g.level, weeklyXp: weekly, xp: g.xp),
-          ]..sort((a, b) => b.weeklyXp.compareTo(a.weeklyXp));
-          for (var i = 0; i < list.length; i++) {
-            list[i].rank = i + 1;
-          }
+        // Top ligue (top 50, rangs réels). On épingle l'élève à part s'il est
+        // hors du top, avec son VRAI rang de ligue (comptage serveur).
+        _entries = await fTop;
+        if (fLeagueRank != null) {
+          final lr = await fLeagueRank;
+          _myRank = lr.rank;
+          _leagueTotal = lr.total;
+          _meLeagueEntry = LeaderboardEntry(
+              uid: _uid!, name: name, level: g.level, weeklyXp: weekly, xp: g.xp, rank: _myRank);
+        } else {
+          _myRank = 0;
+          _leagueTotal = 0;
+          _meLeagueEntry = null;
         }
-        _entries = list;
-        _myRank = _excluded ? 0 : list.indexWhere((e) => e.uid == _uid) + 1;
 
         // Top national (top 50, rangs réels 1..N). On n'injecte PLUS l'élève
         // dans cette liste : s'il est hors du top, on l'épingle séparément avec
@@ -246,19 +254,22 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
     final idx = kLeagues.indexOf(_league);
     final isTop = idx == kLeagues.length - 1;
     final isBottom = idx == 0;
-    final me = _entries.where((e) => e.uid == _uid).toList();
-    final myXp = me.isEmpty ? 0 : me.first.weeklyXp;
     final top3 = _entries.take(3).toList();
     final rest = _entries.skip(3).toList();
+    // Zone de relégation : seulement si on connaît tout le bas de la ligue
+    // (sinon le bas du top 50 n'est PAS le bas de la ligue).
+    bool inReleg(int rank) =>
+        !isBottom && _leagueTotal > _promoZone && rank > _leagueTotal - _relegZone;
     return [
       _leagueHeader(_league, subtitle: isTop
           ? 'La ligue la plus prestigieuse 👑'
           : 'Le top $_promoZone monte en ligue supérieure'),
       const SizedBox(height: 14),
       Row(children: [
-        Expanded(child: _miniCard(Icons.leaderboard_rounded, _myRank > 0 ? '#$_myRank' : '—', 'Ma position')),
+        Expanded(child: _miniCard(Icons.leaderboard_rounded,
+            _excluded ? '—' : (_myRank > 0 ? '#$_myRank' : '—'), 'Ma position')),
         const SizedBox(width: 10),
-        Expanded(child: _miniCard(Icons.bolt_rounded, '$myXp', 'XP semaine')),
+        Expanded(child: _miniCard(Icons.bolt_rounded, '$_myWeekly', 'XP semaine')),
         const SizedBox(width: 10),
         Expanded(child: _miniCard(Icons.timer_outlined, _countdown(), 'Fin de semaine')),
       ]),
@@ -272,9 +283,12 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
         if (top3.isNotEmpty) _podium(top3, national: false),
         const SizedBox(height: 8),
         for (final e in rest)
-          _rankRow(e, national: false,
-              promo: !isTop && e.rank <= _promoZone,
-              releg: !isBottom && e.rank > _entries.length - _relegZone && _entries.length > _promoZone),
+          _rankRow(e, national: false, promo: !isTop && e.rank <= _promoZone, releg: inReleg(e.rank)),
+        // Hors du top affiché → ligne « toi » épinglée avec le vrai rang de ligue.
+        if (_meLeagueEntry != null && _myRank > 0 && !_entries.any((e) => e.uid == _uid)) ...[
+          _pinSeparator(),
+          _rankRow(_meLeagueEntry!, national: false, promo: !isTop && _myRank <= _promoZone, releg: inReleg(_myRank)),
+        ],
       ],
     ];
   }
