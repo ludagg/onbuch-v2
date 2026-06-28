@@ -89,45 +89,26 @@ export default async function handler(req) {
   const pl = profileLine(body.profile);
   if (pl) sys.push({ role: 'system', content: pl });
 
+  // NON-streaming : Groq répond en ~1-2 s même pour une réponse complète. On
+  // renvoie le texte intégral d'un coup (text/plain). Plus robuste que le relais
+  // SSE (qui peut être bufferisé indéfiniment derrière le proxy Vercel/preview).
   let upstream;
   try {
     upstream = await fetch(GROQ_URL, {
       method: 'POST',
-      headers: { Authorization: `Bearer ${GROQ_KEY}`, 'Content-Type': 'application/json', Accept: 'text/event-stream' },
-      body: JSON.stringify({ model: MODEL, messages: [...sys, ...convo], temperature: 0.5, top_p: 0.9, max_tokens: 900, stream: true }),
+      headers: { Authorization: `Bearer ${GROQ_KEY}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ model: MODEL, messages: [...sys, ...convo], temperature: 0.5, top_p: 0.9, max_tokens: 900, stream: false }),
     });
   } catch (e) {
     return err(502, 'Service IA indisponible. Réessaie.');
   }
-  if (!upstream.ok || !upstream.body) {
+  if (!upstream.ok) {
     return err(502, 'Service IA indisponible (' + upstream.status + ').');
   }
-
-  // Relaie le flux SSE NVIDIA en texte brut (deltas) pour une conso simple côté app.
-  const reader = upstream.body.getReader();
-  const dec = new TextDecoder();
-  const enc = new TextEncoder();
-  let buf = '';
-  const stream = new ReadableStream({
-    async pull(controller) {
-      const { done, value } = await reader.read();
-      if (done) { controller.close(); return; }
-      buf += dec.decode(value, { stream: true });
-      let nl;
-      while ((nl = buf.indexOf('\n')) >= 0) {
-        const line = buf.slice(0, nl).trim();
-        buf = buf.slice(nl + 1);
-        if (!line.startsWith('data:')) continue;
-        const d = line.slice(5).trim();
-        if (!d || d === '[DONE]') continue;
-        try {
-          const delta = JSON.parse(d)?.choices?.[0]?.delta?.content || '';
-          if (delta) controller.enqueue(enc.encode(delta));
-        } catch (_) { /* fragment partiel */ }
-      }
-    },
-    cancel() { try { reader.cancel(); } catch (_) {} },
+  let data;
+  try { data = await upstream.json(); } catch (_) { return err(502, 'Réponse IA invalide.'); }
+  const text = (data && data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) || '';
+  return new Response(text || 'Désolé, je n\'ai pas pu répondre. Reformule ta question ?', {
+    headers: { ...CORS, 'Content-Type': 'text/plain; charset=utf-8' },
   });
-
-  return new Response(stream, { headers: { ...CORS, 'Content-Type': 'text/plain; charset=utf-8' } });
 }
