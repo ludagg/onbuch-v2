@@ -31,6 +31,7 @@
 \usepackage[siunitx,europeanresistors,europeaninductors]{circuitikz}
 \usepackage[version=4]{mhchem}   % notation noyaux/réactions : \ce{^{A}_{Z}X}
 \usepackage{graphicx}
+\usepackage{qrcode}
 \usepackage[hidelinks]{hyperref}
 \hypersetup{bookmarksnumbered}
 \usepackage{pdfpages}
@@ -180,6 +181,29 @@
 
 % Correction (titre vert, sécable)
 \newcommand{\corrige}[1]{\par\smallskip\noindent{\color{onbgreen}\sffamily\bfseries\small$\blacktriangleright$ Corrigé #1}\par\nopagebreak\smallskip}
+
+% ── Liaison Connectée (App OnBuch) ──────────────────────────────
+\newcommand{\onbuchconnect}[2][ex]{%
+  \nopagebreak\par\smallskip\noindent
+  \begin{tikzpicture}[remember picture, overlay]
+    \node[anchor=east, xshift=-2mm, yshift=4mm] at (0,0) {
+      \qrcode[height=1.2cm]{https://onbuch.cm/#1/#2}
+    };
+  \end{tikzpicture}
+  \begin{tcolorbox}[
+    enhanced, colback=onbsoft, colframe=onbo, boxrule=0.5pt,
+    arc=4pt, left=32pt, right=6pt, top=4pt, bottom=4pt,
+    fontupper=\small\sffamily, height=1.4cm, valign=center,
+    before skip=2pt, after skip=10pt
+  ]
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[anchor=west, xshift=3pt] at (frame.west) {
+        \includegraphics[height=0.8cm]{logo.png}
+      };
+    \end{tikzpicture}
+    \textbf{\color{onbo}Léo te corrige !} Scanne pour voir la correction animée ou poser une question sur cet exercice.
+  \end{tcolorbox}
+}
 
 % ── Raccourcis physique ─────────────────────────────────────────
 \DeclareRobustCommand{\vect}[1]{\overrightarrow{#1}}  % vecteur (robuste : OK dans les titres)

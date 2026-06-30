@@ -119,6 +119,19 @@ String? _shareAnnaleId(Uri uri) {
   return null;
 }
 
+/// Gère les liens profonds du "Fascicule Connecté" (onbuch://ex/...)
+String? _handleFasciculeLink(Uri uri) {
+  // Cas 1 : onbuch://ex/:id
+  if (uri.scheme == 'onbuch' && uri.host == 'ex' && uri.pathSegments.isNotEmpty) {
+    return '/tutor/correction?exoId=${uri.pathSegments.first}';
+  }
+  // Cas 2 : https://onbuch.cm/ex/:id
+  if (uri.host == 'onbuch.cm' && uri.pathSegments.length >= 2 && uri.pathSegments.first == 'ex') {
+    return '/tutor/correction?exoId=${uri.pathSegments[1]}';
+  }
+  return null;
+}
+
 final appRouter = GoRouter(
   navigatorKey: _rootNavigatorKey,
   initialLocation: '/splash',
@@ -127,6 +140,10 @@ final appRouter = GoRouter(
     // remet directement à go_router → on les convertit en route interne.
     final shareId = _shareAnnaleId(state.uri);
     if (shareId != null) return '/annales/open/$shareId';
+
+    // "Fascicule Connecté"
+    final fasciculeRoute = _handleFasciculeLink(state.uri);
+    if (fasciculeRoute != null) return fasciculeRoute;
 
     final path = state.uri.path;
     final isPublic = path == '/splash' ||
@@ -313,9 +330,12 @@ final appRouter = GoRouter(
               path: 'correction',
               builder: (_, s) {
                 final e = s.extra;
+                final exoId = s.uri.queryParameters['exoId'];
                 final req = e is TutorRequest
                     ? e
-                    : (e is Uint8List ? TutorRequest(image: e) : null);
+                    : (exoId != null
+                        ? TutorRequest(jobId: exoId, mode: 'connected')
+                        : (e is Uint8List ? TutorRequest(image: e) : null));
                 return TutorCorrectionScreen(request: req);
               },
             ),
